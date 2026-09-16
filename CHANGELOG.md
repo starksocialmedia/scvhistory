@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Grok Build
 - Date: 2026-09-16
+- Done: wired obvious Place relations (10 Places with people, 4 with orgs, Mentryville related to Pico Canyon). Wrote PLACE-RELATIONS.md. Persons still 33. No new stubs. No Cloudways.
+- Decisions: skip unsure civic mentions (Acosta, Wilk) and missing Friends of Mentryville org
+- Blockers: none
+- Next: Nathan reviews /places/newhall and PLACE-RELATIONS.md Unlinked list
+
+2026-09-16
+
+- Agent: Grok Build
+- Date: 2026-09-16
 - Done: Places hub live at /places (39 stubs, neighborhood filter, no map). Series live at /collections (13 Signal/OTN stubs, no articles). Templates places/_entry and collections/_entry. 301 tables stay in hub files only.
 - Decisions: Place body is a one-line ID; neighborhood tagged only when the term already exists; Mentryville Place kept separate from Organization; Tataviam Culture is not a Place
 - Blockers: none
