@@ -3,6 +3,14 @@ SCVHistory.com — Changelog
 2026-09-16
 
 - Agent: Grok Bot
+- Done: researched 39 candidate_review entities; wrote CANDIDATE-RESEARCH.md
+- Decisions: QID only on live label match; aliases flagged not as new entities; no Craft import recommendations; no scvhistory.com crawl
+- Blockers: Wikidata wbsearchentities rate-limited (429); used enwiki pageprops + EntityData instead; newhall-ranch and tejon-area left NEEDS_VERIFICATION
+- Next: Nathan/Leon review CANDIDATE-RESEARCH.md
+
+2026-09-16
+
+- Agent: Grok Bot
 - Done: continued taxonomy verification on leftover AAT URIs flagged NEEDS_VERIFICATION
 - Decisions: applied only live-matching AAT IDs; never invented URIs; Indigenous terms untouched
 - Blockers: american-frontier-1848-1876 (no matching AAT era); gold-rush AAT (no gold rushes concept found); spanish-colonial-expedition LCSH still Ballads, Danish (Q3966440 confirmed in JSON, not reverted)
