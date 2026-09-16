@@ -14,14 +14,22 @@ Inventory source: `INVENTORY.md` (Jordy scan, 2026-09-15).
 - Taxonomy terms need verified linked-data URIs (Wikidata, AAT, LCSH). Never invent a URI; mark `NEEDS_VERIFICATION`.
 - Follow `TATAVIAM_AUDIT.md` for Tataviam, Chumash, Tongva, Serrano, Kitanemuk, and Vanyume.
 
-Nathan, 2026-09-15 (no Leon gate for ingest mapping):
+Nathan, 2026-09-15 through 2026-09-16 (do not relitigate):
 
-- Skip indexes, empty pages, and flipbook HTML
+- Skip empty pages and flipbook HTML as entries
 - Object pages to photographs
 - `files/` packages to documents
 - Remainder HTML to articles
-- War memorial profiles to persons
-- Mentryville is one Organization plus one Place
+- Place-named indexes 301 to Place stubs; do not paste thumbnail grids into body
+- Signal series and Old Town Newhall columnist runs are Collections (Series)
+- Yearbook landings stay Documents
+- War Memorial is its own section. Casualties are `warMemorials`, not Persons
+- Person is notable figures and authors only
+- Nathan decides. Identity questions still go on a Leon list; they are not a gate on this extract
+- A rancho may be both Place and Organization when both roles recur (Camulos, San Francisco)
+- Agent outputs live in `~/scvhistory` on the MacBook
+- Local DDEV stubs are the sample. Cloudways is content of record. Do not import more entries until Nathan says so
+- Mentryville is one Organization plus one Place (do not merge)
 
 ## 1. Live schema
 
@@ -238,14 +246,14 @@ Not installed (JSON only, in `taxonomy-import/`): subject-tags, place-type, org-
 | Object / photo page | 4,871 | New Photograph/Object section. `legacyKey` = item ID (`LW3094`). `gif/` jpeg = `featuredImage`. TIFF/PDF in `files/{id}` = assets on the same entry or on a related Document (see split rule) | **Yes** |
 | Article / essay / reprint | 2,430 | Existing Articles. Remainder HTML that is not an object page, obituary, or `files/` package | No |
 | Obituary | 635 | Existing Obituaries. `obitSubject` to Person when the person is identified | No |
-| Topic or place index | 554 | Skip. Indexes are not entries | Skip |
+| Topic or place index | 554 | Place-named indexes 301 to Place stubs. Topic indexes (`people.htm`, `film.htm`) are not Places | See PLACES-HUB.md |
 | Signal newspaper page | 450 | Articles. One Collection per series (Perkins, Reynolds, Worden, Boston, Manzer, Newsmaker, coins, Iraq) | No |
 | Old Town Newhall minisite | 275 | Articles. One Collection per Gazette run / columnist (`patti`, `pauline`, `rioux`, `whyte`) | No |
 | Yearbook landing | 122 | New Document section (editorial wrapper). The `files/*yearbook*` package is that Document's files | **Yes** (Document) |
-| War memorial profile | 36 | Existing Persons (entity-first). Military details stay in `body` / `legacyHtml` until the settled Person military merge | No new section |
+| War memorial profile | 36 | `warMemorials` section. Not Persons. Military Profile merge into Person is unchanged and is not this mapping | Built locally |
 | Mentryville minisite | 9 | One Organization (Friends of Mentryville) plus one Place (Mentryville). Story pages that remain are Articles | No |
 | Pico minisite | 6 | Object pages with item IDs to photographs. Remainder HTML to articles | No |
-| War memorial index | 4 | Not an entry. Derived listing later. Special pages are parked | Skip as a type |
+| War memorial index | 4 | 301 to `/war-memorial`. Not entries | Skip as a type |
 | Home | 2 | Not entries. Craft homepage | Skip |
 | Obituary index | 1 | Derived from Obituaries | Skip |
 | Orig copy | 1 | Duplicate of Signal Reynolds. Do not import | Skip |
