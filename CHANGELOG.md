@@ -2,11 +2,12 @@ SCVHistory.com — Changelog
 
 2026-09-15
 
-- Agent: Grok Bot
-- Done: applied verified war and disaster Wikidata QIDs in taxonomy-import/
-- Decisions: left AAT-only failures as NEEDS_VERIFICATION
+- Agent: Grok Build
+- Date: 2026-09-15
+- Done: removed wrong Find A Grave URL for Abel Stearns from import scripts. Local Person entry already cleared in DDEV.
+- Decisions: no replacement memorial
 - Blockers: none
-- Next: wait for Nathan before further taxonomy edits
+- Next: Cloudways Person field still needs the same clear if that entry exists there
 
 2026-09-15
 

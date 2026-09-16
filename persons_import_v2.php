@@ -591,7 +591,7 @@ $entry->setFieldValues([
     'occupation' => 'Merchant; Rancher; Politician',
     'authorBio' => 'Abel Stearns was a Massachusetts-born merchant who became one of the wealthiest landowners in Southern California. Based in Los Angeles, he played a key role in confirming Francisco Lopez\'s 1842 gold discovery at Placerita Canyon — California\'s first gold rush — by testing the ore sample and forwarding it to the U.S. Mint in Philadelphia.',
     'personLegacyUrl' => '',
-    'personGraveUrl' => 'https://www.findagrave.com/memorial/9033/abel-stearns',
+    'personGraveUrl' => '',
     'personWikipediaUrl' => '',
     'historicalEra' => $eraIds,
     'historicalPeriod' => $periodIds,
