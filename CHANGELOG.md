@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Grok Build
 - Date: 2026-09-15
+- Done: exported all 58 local Person entries to grave-audit-export.md (slug, title, fullName, birthDate, deathDate, burialPlace, personGraveUrl). Abel Stearns personGraveUrl stays empty. No missing-memorial research. No Cloudways.
+- Decisions: audit file lists stored URLs only; do not invent Find A Grave links
+- Blockers: none
+- Next: Nathan reviews grave-audit-export.md
+
+2026-09-15
+
+- Agent: Grok Build
+- Date: 2026-09-15
 - Done: Task 4 Person pilot. Extracted 25 war-memorial profiles from Jordy to JSON on the MacBook. Imported 25 new Person entries in local DDEV (created=25 skipped=0 failed=0). Local count 33 to 58. personGraveUrl left empty. No Cloudways.
 - Decisions: war memorial first; skip existing slugs; no relations; no replacement grave URLs
 - Blockers: none
