@@ -4,7 +4,7 @@
 
 - Tribe: Fernandeño Tataviam Band of Mission Indians (preferred self-designation)
 - Official website: https://www.tataviam-nsn.us/
-- Wikidata QID: Q743736 — confirmed via Wikipedia cross-reference
+- Wikidata QID: Q1562200 (Tataviam people / ethnic group; corrected 2026-09-15). Prior Q743736 is the Tataviam language entity.
 - Full legal/governmental name: Fernandeño Tataviam Band of Mission Indians
 - Federal recognition status: Not currently federally recognized — actively petitioning
 
@@ -12,7 +12,7 @@
 
 | Resource | URI |
 |---|---|
-| Wikidata | https://www.wikidata.org/wiki/Q743736 |
+| Wikidata | https://www.wikidata.org/wiki/Q1562200 |
 | Official tribal site | https://www.tataviam-nsn.us/ |
 | Tribal history page | https://www.tataviam-nsn.us/heritage/history/ |
 | Territorial history | https://www.tataviam-nsn.us/heritage/territory/ |
@@ -159,7 +159,7 @@ Reference Tongva contextually in mission-era Articles, Events, subjectTags. Do n
 - Self-names: Maarrenga'yam or Vanyume (subgroup)
 - "Serrano" is an exonym (Spanish for "mountaineer") — use preferred self-names where possible
 - Traditional territory: San Bernardino Mountains, Antelope Valley, Mojave Desert
-- Wikidata QID: Q745474
+- Wikidata QID: Q617532 (Serrano people; Q745474 was an asteroid, corrected 2026-09-15)
 - Federal recognition: San Manuel Band of Mission Indians — federally recognized (est. 1891)
 
 ### Official Sources
@@ -207,7 +207,7 @@ Run: curl https://www.wikidata.org/wiki/Special:EntityData/Q2424671.json | pytho
 
 ### Kitanemuk
 - Territory: Tehachapi Mountains, Antelope Valley, southern Sierra Nevada foothills
-- Wikidata QID: Q6422453
+- Wikidata QID: Q6417841 (corrected 2026-09-15; Q6422453 was unrelated)
 - Federal status: No standalone federally recognized tribe — descendants affiliated with San Manuel Band (Serrano) or Tataviam groups
 - SCV connection: Border territory, trade routes through Soledad Canyon and Mint Canyon
 - Authority: San Manuel Band and Tataviam affiliates
@@ -215,7 +215,7 @@ Run: curl https://www.wikidata.org/wiki/Special:EntityData/Q2424671.json | pytho
 ### Vanyume
 - Classification: Serrano subgroup / dialect
 - Territory: Mojave Desert, Antelope Valley
-- Wikidata QID: Q7915068
+- Wikidata QID: Q11216568 (corrected 2026-09-15; Q7915068 was a family name)
 - Federal status: Under San Manuel Band of Mission Indians (Serrano)
 - SCV connection: Same as Serrano — northern/eastern border
 - Authority: San Manuel Band of Mission Indians
@@ -246,12 +246,12 @@ Then commit with: git commit -m "fix: verified Tongva Wikidata QID"
 
 | Term | Slug | QID | Status |
 |---|---|---|---|
-| Tataviam History | tataviam-history | Q743736 | Verified |
+| Tataviam History | tataviam-history | Q1562200 | Verified (people; was language Q743736; corrected 2026-09-15) |
 | Chumash History | chumash-history | Q24251468 | Verified |
 | Tongva History | tongva-history | Q1479279 | Verified |
-| Serrano History | serrano-history | Q745474 | Verified |
-| Kitanemuk History | kitanemuk-history | Q6422453 | Verified |
-| Vanyume History | vanyume-history | Q7915068 | Verified |
+| Serrano History | serrano-history | Q617532 | Verified (corrected 2026-09-15; was asteroid Q745474) |
+| Kitanemuk History | kitanemuk-history | Q6417841 | Verified (corrected 2026-09-15) |
+| Vanyume History | vanyume-history | Q11216568 | Verified (corrected 2026-09-15) |
 | Spanish Colonial Expedition | spanish-colonial-expedition | Q723198 | Verified |
 | Indigenous History | indigenous-history | Multiple | Updated |
 

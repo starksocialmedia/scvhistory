@@ -2,6 +2,15 @@ SCVHistory.com — Changelog
 
 2026-09-15
 
+- Grok Bot (research): applied Indigenous-first verified Wikidata URI fixes from TAXONOMY-AUDIT.md (Nathan approved)
+- subject-tags.json: Tongva placeholder -> Q1479279; Serrano Q745474 -> Q617532; Kitanemuk Q6422453 -> Q6417841; Vanyume Q7915068 -> Q11216568; Tataviam language Q743736 -> people Q1562200 (tataviam-history + indigenous-history)
+- historical-era.json: tataviam-pre-contact Wikidata -> Q1562200; tribal site URLs kept
+- Chumash Q24251468 unchanged (already correct)
+- Non-Indigenous URI corrections still pending Nathan approval
+- Next: Nathan review remaining TAXONOMY-AUDIT corrections; decide era gap 1990-2010 with Leon; push when ready
+
+2026-09-15
+
 - Grok Bot (research): audited all taxonomy-import/*.json against live Wikidata, Getty AAT, and LCSH
 - Wrote TAXONOMY-AUDIT.md (tables per file + Questions for Leon); JSON not edited pending Nathan approval
 - Failures: Tongva placeholder still present (verified fix Q1479279); Serrano Q745474 is an asteroid (fix Q617532); Kitanemuk Q6422453 and Vanyume Q7915068 wrong (fix Q6417841 / Q11216568); Tataviam Q743736 is language not people (prefer Q1562200); historical-era gap 1990-2010; many war/disaster/subject Wikidata QIDs and AAT/LCSH IDs point to unrelated concepts

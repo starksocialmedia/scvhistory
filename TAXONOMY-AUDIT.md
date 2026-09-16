@@ -7,6 +7,9 @@
 - **CARE note:** Followed `TATAVIAM_AUDIT.md`: no sacred-site coordinates; no new Indigenous terms beyond what is already in the JSON; sameAs to public Wikidata/tribal sites only.
 - **Typography:** ASCII hyphens only (per AGENTS.md; no em dashes).
 
+
+> **Update 2026-09-15 (PT):** Indigenous-first verified Wikidata URI fixes applied to `subject-tags.json` and `historical-era.json` (Tongva, Tataviam people, Serrano, Kitanemuk, Vanyume). Other recommended corrections still pending. JSON edits only for that cut.
+
 ## Executive summary
 
 | Status | Count |
