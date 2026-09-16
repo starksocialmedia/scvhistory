@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Grok Build
 - Date: 2026-09-16
+- Done: reported empty titles (IDs 583-685) caused by import_places_and_series.php plus hasTitleField false. Wrote TODO.md Waiting on Nathan for 22 community Places, 10 real Places, 13 collection titles from Jordy. No database changes.
+- Decisions: none executed. 7 Places listed as Open Questions. Five neighborhood terms missing (not added).
+- Blockers: waiting on Nathan before any Place delete or title write
+- Next: Nathan approves TODO.md then execute
+
+2026-09-16
+
+- Agent: Grok Build
+- Date: 2026-09-16
 - Done: wrote CANDIDATES.md from candidate_review (10 people, 29 places, 0 orgs). Aliases marked. No Craft import or edits.
 - Decisions: none
 - Blockers: none

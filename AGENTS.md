@@ -1,18 +1,26 @@
 # AGENTS.md: SCVHistory Craft CMS
 
 Before doing anything, read these in full:
-1. `HANDOFF.md`: project brief, priorities, settled decisions, tasks
-2. `CHANGELOG.md`: history and latest decisions
-3. `CONTENT-MODEL.md` and `INVENTORY.md` if they exist
+1. `PHILOSOPHY.md`: goals, principles, and design philosophy. It overrides your own assumptions
+2. `DATA-ORGANIZATION.md`: where each kind of thing goes. Check it before creating any record or category
+3. `HANDOFF.md`: current tasks, priorities, settled decisions
+4. `BUILDPLAN.md` and `DATA_MODEL.md`: roadmap and full data model
+5. `CHANGELOG.md` and `ERRORLOG.md`: history, decisions, known errors
+6. `CONTENT-MODEL.md` and `INVENTORY.md`: existing work to extend, not replace
+7. Any section-specific doc relevant to the task: `COLLECTIONS-HUB.md`, `PLACES-HUB.md`, `PLACE-RELATIONS.md`, `WAR-MEMORIAL.md`, `TAXONOMY_STANDARDS.md`, `craft-cp-field-checklist-2026-04-15.md`
 
 All legacy SCVHistory.com content is moving into this Craft build. Craft becomes the new site.
 
 Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files are the shared memory. Do not rely on anything not written here.
 
+## Decision authority
+
+Nathan makes all decisions. Leon Worden has preapproved the project, so nothing waits on Leon. **Design decisions are Nathan's alone.** Direct every question to Nathan.
+
 ## Roles
 
 - **Grok Build** (runs locally on Nathan's MacBook in `~/scvhistory`): content inventory, modeling, Craft schema work in DDEV, import scripts. Owns Tasks 1 through 5 in HANDOFF.md. Source content is at `/Volumes/Jordy/SCVHistory` (read-only; the drive can dismount, see HANDOFF.md).
-- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Leon Worden to review. Cannot access the Jordy drive or local DDEV. The legacy content lives on Jordy, not the live site: do not crawl scvhistory.com.
+- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Nathan to review. Cannot access the Jordy drive or local DDEV. The legacy content lives on Jordy, not the live site: do not crawl scvhistory.com.
 - **Grok chat and Claude**: review and advice. Changes come back through Nathan.
 
 ## Git rules
@@ -34,11 +42,16 @@ Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files 
 
 ## Content rules
 
-- Follow the "Settled decisions" in HANDOFF.md. Do not redesign what is already decided
+- Follow PHILOSOPHY.md and the settled decisions in HANDOFF.md, BUILDPLAN.md, and DATA_MODEL.md. Do not redesign what is already decided
+- Full records only for entities with a meaningful, recurring role in SCV history. Passing mentions stay in body text
+- Never rewrite Leon Worden's prose during migration. Preserve legacy URLs, photo IDs, and bylines
+- Dates keep their real precision; claims keep a confidence level
+- Do not invent visual design. Follow the design system in PHILOSOPHY.md
+- Do not build later-phase features until the content model and migration are done
 - Entity-first: canonical entities before any articles
 - Follow `TATAVIAM_AUDIT.md` for anything touching Indigenous peoples
 - Taxonomy terms need verified linked-data URIs. Never invent a URI; mark it `NEEDS_VERIFICATION` instead
-- When unsure whether something is a real historical entity or how to classify it, add it to a "Questions for Leon" list in CONTENT-MODEL.md rather than guessing
+- When unsure whether something is a real historical entity or how to classify it, add it to the "Open Questions" list in CONTENT-MODEL.md for Nathan rather than guessing
 
 ## Communicating with Nathan
 
@@ -49,4 +62,4 @@ Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files 
 
 ## End of every session
 
-Append a dated entry to `CHANGELOG.md` with: agent name, what was done, decisions made, blockers, next steps. Commit it.
+Add a dated entry to `CHANGELOG.md` with: agent name, what was done, decisions made, blockers, next steps. Log any errors and fixes in `ERRORLOG.md`. Propose (do not make) BUILDPLAN.md checkbox updates. Commit.
