@@ -3,6 +3,14 @@ SCVHistory.com — Changelog
 2026-09-16
 
 - Agent: Grok Bot
+- Done: Places research for 39 candidates (Wikidata/CHL) and Collections stub author/year lines; wrote PLACES-RESEARCH.md
+- Decisions: no invented URIs; NEEDS_VERIFICATION when unsure; no sacred-site coordinates; Tataviam Culture not a Place; no scvhistory.com crawl
+- Blockers: Wikidata rate limits slowed searches for some obscure Places; Melody Ranch enwiki/QID is the 1940 film not the movie ranch; several OTN/Signal collection years and authors remain NEEDS_VERIFICATION without scvhistory crawl
+- Next: Nathan review PLACES-RESEARCH.md before Craft Place stubs / CHL fields
+
+2026-09-16
+
+- Agent: Grok Bot
 - Done: Persons-only Find A Grave re-audit; rewrote GRAVE-AUDIT.md for remaining 33 Persons (skipped 25 warMemorials slugs from WAR-MEMORIAL.md)
 - Decisions: pass only on matching living memorial; Abel Stearns stays Wrong as removed; Missing is 18 empty-URL Persons by name only; no invented replacement URLs; no Craft edits
 - Blockers: none

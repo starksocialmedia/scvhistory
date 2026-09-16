@@ -1,0 +1,754 @@
+{
+  "final": {
+    "date": "2026-09-16 PT",
+    "agent": "Grok Bot (research)",
+    "counts": {
+      "qid_recommended": 31,
+      "needs_verification": 8,
+      "chl_found": 7
+    },
+    "places": [
+      {
+        "slug": "acton",
+        "title": "Acton",
+        "recommended_qid": "Q2308667",
+        "live_label": "Acton",
+        "chl": null,
+        "notes": "CDP in Los Angeles County. Confirmed via enwiki Acton, California + EntityData."
+      },
+      {
+        "slug": "agua-dulce",
+        "title": "Agua Dulce",
+        "recommended_qid": "Q2827313",
+        "live_label": "Agua Dulce",
+        "chl": null,
+        "notes": "CDP in Los Angeles County. Confirmed via enwiki Agua Dulce, California + EntityData."
+      },
+      {
+        "slug": "beales-cut",
+        "title": "Beale's Cut",
+        "recommended_qid": "Q85845486",
+        "live_label": "Beale's Cut",
+        "chl": "1006",
+        "notes": "Live label Beale's Cut; enwiki Beale's Cut Stagecoach Pass. CHL 1006 confirmed on ohp.parks.ca.gov ListedResources/Detail/1006."
+      },
+      {
+        "slug": "bouquet-canyon",
+        "title": "Bouquet Canyon",
+        "recommended_qid": "Q4950068",
+        "live_label": "Bouquet Canyon",
+        "chl": null,
+        "notes": "Unincorporated community in Los Angeles County (enwiki Bouquet Canyon, California). Valley item Q49779808 also exists; preferred community item for Place hub."
+      },
+      {
+        "slug": "canyon-country",
+        "title": "Canyon Country",
+        "recommended_qid": "Q5034183",
+        "live_label": "Canyon Country",
+        "chl": null,
+        "notes": "Neighborhood of Santa Clarita. Confirmed via enwiki Canyon Country, Santa Clarita, California + EntityData."
+      },
+      {
+        "slug": "castaic",
+        "title": "Castaic",
+        "recommended_qid": "Q3242084",
+        "live_label": "Castaic",
+        "chl": null,
+        "notes": "CDP in Los Angeles County. Confirmed via enwiki Castaic, California + EntityData."
+      },
+      {
+        "slug": "estancia",
+        "title": "Estancia",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "Legacy asistencia.htm titled Estancia. No confirmable Wikidata item found for Estancia de San Francisco Xavier / local asistencia under live search and enwiki title lookup. Do not invent QID."
+      },
+      {
+        "slug": "fort-tejon",
+        "title": "Fort Tejon",
+        "recommended_qid": "Q1415871",
+        "live_label": "Fort Tejon",
+        "chl": "129",
+        "notes": "Historic military post (Kern County). WD has P1435 California Historical Landmark; CHL number 129 confirmed on ohp.parks.ca.gov ListedResources/Detail/129."
+      },
+      {
+        "slug": "harry-carey-ranch",
+        "title": "Harry Carey Ranch",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "No Wikidata item found for Harry Carey Ranch or Tesoro Adobe Historic Park under live search/enwiki titles. Public sources describe Tesoro Adobe as the Carey home; naming/QID NEEDS_VERIFICATION. Do not invent QID."
+      },
+      {
+        "slug": "haskell-canyon",
+        "title": "Haskell Canyon",
+        "recommended_qid": "Q49809501",
+        "live_label": "Haskell Canyon",
+        "chl": null,
+        "notes": "Valley in Los Angeles County (P131 Los Angeles County). No enwiki sitelink. Label matches Place concept."
+      },
+      {
+        "slug": "hasley-canyon",
+        "title": "Hasley Canyon",
+        "recommended_qid": "Q5679315",
+        "live_label": "Hasley Canyon",
+        "chl": null,
+        "notes": "CDP in Los Angeles County. Confirmed via enwiki Hasley Canyon, California + EntityData."
+      },
+      {
+        "slug": "heritage-junction",
+        "title": "Heritage Junction",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "No confirmable Wikidata item found for Heritage Junction Historic Park / Newhall. Do not invent QID."
+      },
+      {
+        "slug": "lake-hughes",
+        "title": "Lake Hughes",
+        "recommended_qid": "Q6476239",
+        "live_label": "Lake Hughes",
+        "chl": null,
+        "notes": "Unincorporated community in California (LA County area). Confirmed via enwiki Lake Hughes, California + EntityData."
+      },
+      {
+        "slug": "lang",
+        "title": "Lang",
+        "recommended_qid": "Q85846376",
+        "live_label": "Lang Southern Pacific Station",
+        "chl": "590",
+        "notes": "Place title Lang maps to historic Lang station site. Live WD label is Lang Southern Pacific Station. CHL 590 LANG confirmed on ohp.parks.ca.gov ListedResources/Detail/590. WD has P1435 California Historical Landmark (number from OHP)."
+      },
+      {
+        "slug": "lebec",
+        "title": "Lebec",
+        "recommended_qid": "Q2879536",
+        "live_label": "Lebec",
+        "chl": null,
+        "notes": "Unincorporated community in Kern County. Confirmed via enwiki Lebec, California + EntityData."
+      },
+      {
+        "slug": "magic-mountain",
+        "title": "Magic Mountain",
+        "recommended_qid": "Q1515080",
+        "live_label": "Six Flags Magic Mountain",
+        "chl": null,
+        "notes": "Theme park in Valencia/Santa Clarita area. Live label includes Six Flags; Place title Magic Mountain. Confirmed via enwiki Six Flags Magic Mountain + EntityData."
+      },
+      {
+        "slug": "melody-ranch",
+        "title": "Melody Ranch",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "enwiki Melody Ranch and Q3171043 are the 1940 Gene Autry film (P31 film), not the Newhall movie ranch. No separate Wikidata item found for Melody Ranch Motion Picture Studio / Placerita movie ranch. Do not use Q3171043."
+      },
+      {
+        "slug": "mentryville",
+        "title": "Mentryville",
+        "recommended_qid": "Q6817616",
+        "live_label": "Mentryville",
+        "chl": "516-2",
+        "notes": "Settlement in Newhall. Confirmed via enwiki Mentryville, California + EntityData. CHL 516-2 MENTRYVILLE confirmed on ohp.parks.ca.gov Los Angeles landmarks page (page_id=21427) and californiahistoricallandmarks.com/landmarks/chl-516.2."
+      },
+      {
+        "slug": "mojave-desert",
+        "title": "Mojave Desert",
+        "recommended_qid": "Q184355",
+        "live_label": "Mojave Desert",
+        "chl": null,
+        "notes": "Desert in southwestern United States. Confirmed via enwiki Mojave Desert + EntityData."
+      },
+      {
+        "slug": "newhall",
+        "title": "Newhall",
+        "recommended_qid": "Q7018086",
+        "live_label": "Newhall",
+        "chl": null,
+        "notes": "District of Santa Clarita. Confirmed via enwiki Newhall, Santa Clarita, California + EntityData."
+      },
+      {
+        "slug": "pico-canyon",
+        "title": "Pico Canyon",
+        "recommended_qid": "Q7191006",
+        "live_label": "Pico Canyon Oilfield",
+        "chl": "516",
+        "notes": "Closest confirmable WD item for Pico Canyon Place; live label is Pico Canyon Oilfield (no separate Pico Canyon item found under enwiki title Pico Canyon). CHL 516 WELL, CSO 4 (PICO 4) confirmed on ohp.parks.ca.gov Los Angeles landmarks page. Distinct from Mentryville CHL 516-2."
+      },
+      {
+        "slug": "piru",
+        "title": "Piru",
+        "recommended_qid": "Q3322382",
+        "live_label": "Piru",
+        "chl": null,
+        "notes": "CDP in Ventura County. Confirmed via enwiki Piru, California + EntityData."
+      },
+      {
+        "slug": "placerita-canyon",
+        "title": "Placerita Canyon",
+        "recommended_qid": "Q7200318",
+        "live_label": "Placerita Canyon State Park",
+        "chl": null,
+        "notes": "Closest confirmable WD item; live label is Placerita Canyon State Park (no separate Placerita Canyon item under enwiki title Placerita Canyon). Related CHL 168 OAK OF THE GOLDEN DREAM is the oak site in Placerita Canyon (ohp.parks.ca.gov Detail/168), not a CHL for the canyon Place as a whole; left CHL blank for Nathan."
+      },
+      {
+        "slug": "potrero-canyon",
+        "title": "Potrero Canyon",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "No confirmable SCV/Newhall Potrero Canyon Wikidata item found (search hits empty or rate-limited; no enwiki title). Do not invent QID."
+      },
+      {
+        "slug": "rancho-camulos",
+        "title": "Rancho Camulos",
+        "recommended_qid": "Q7290871",
+        "live_label": "Rancho Camulos",
+        "chl": "553",
+        "notes": "Historic rancho near Piru (Ventura County). Confirmed via enwiki Rancho Camulos + EntityData. CHL 553 confirmed on ohp.parks.ca.gov ListedResources/Detail/553. Also NHL/NRHP on WD."
+      },
+      {
+        "slug": "rancho-san-francisco",
+        "title": "Rancho San Francisco",
+        "recommended_qid": "Q256822",
+        "live_label": "Rancho San Francisco",
+        "chl": "556",
+        "notes": "Mexican land grant in California. Confirmed via enwiki Rancho San Francisco + EntityData. CHL 556 confirmed on ohp.parks.ca.gov ListedResources/Detail/556."
+      },
+      {
+        "slug": "ridge-route",
+        "title": "Ridge Route",
+        "recommended_qid": "Q19195",
+        "live_label": "Ridge Route",
+        "chl": null,
+        "notes": "Historic highway in California. Confirmed via enwiki Ridge Route + EntityData. NRHP on WD; no CHL number confirmed from OHP for this Place."
+      },
+      {
+        "slug": "san-francisquito-canyon",
+        "title": "San Francisquito Canyon",
+        "recommended_qid": "Q7414194",
+        "live_label": "San Francisquito Canyon",
+        "chl": null,
+        "notes": "Canyon of the Sierra Pelona Mountains. Confirmed via enwiki San Francisquito Canyon + EntityData. Related CHL 919 ST. FRANCIS DAM DISASTER SITE is on San Francisquito Canyon Rd (OHP LA page); left CHL blank because landmark name is the dam disaster site, not the canyon Place."
+      },
+      {
+        "slug": "santa-clarita",
+        "title": "Santa Clarita",
+        "recommended_qid": "Q491132",
+        "live_label": "Santa Clarita",
+        "chl": null,
+        "notes": "City in Los Angeles County. Confirmed via enwiki Santa Clarita, California + EntityData."
+      },
+      {
+        "slug": "saugus",
+        "title": "Saugus",
+        "recommended_qid": "Q1840217",
+        "live_label": "Saugus",
+        "chl": null,
+        "notes": "Community in Santa Clarita / California. Confirmed via enwiki Saugus, Santa Clarita, California + EntityData."
+      },
+      {
+        "slug": "saugus-speedway",
+        "title": "Saugus Speedway",
+        "recommended_qid": "Q7427230",
+        "live_label": "Saugus Speedway",
+        "chl": null,
+        "notes": "Race track. Confirmed via enwiki Saugus Speedway + EntityData."
+      },
+      {
+        "slug": "sleepy-valley",
+        "title": "Sleepy Valley",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "No confirmable Wikidata item found for Sleepy Valley (LA County / Acton area) under live search. Do not invent QID."
+      },
+      {
+        "slug": "soledad-canyon",
+        "title": "Soledad Canyon",
+        "recommended_qid": "Q7557525",
+        "live_label": "Soledad Canyon",
+        "chl": null,
+        "notes": "Canyon/valley in Southern California. Confirmed via enwiki Soledad Canyon + EntityData."
+      },
+      {
+        "slug": "tejon",
+        "title": "Tejon",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "Ambiguous Place title Tejon (separate from fort-tejon and tejon-ranch). Candidates include Tejon Pass Q477468 and other Tejon-named entities; none clearly matches a general Tejon Place for SCV without Nathan choice. Do not invent or auto-map to Fort Tejon."
+      },
+      {
+        "slug": "tejon-ranch",
+        "title": "Tejon Ranch",
+        "recommended_qid": "Q7695260",
+        "live_label": "Tejon Ranch",
+        "chl": null,
+        "notes": "Land / ranch company in California. Confirmed via enwiki Tejon Ranch + EntityData."
+      },
+      {
+        "slug": "towsley-canyon",
+        "title": "Towsley Canyon",
+        "recommended_qid": "NEEDS_VERIFICATION",
+        "live_label": null,
+        "chl": null,
+        "notes": "Search hit Q133536426 Towsley Canyon has no English label or description on EntityData; not safe to recommend. Do not invent QID."
+      },
+      {
+        "slug": "val-verde",
+        "title": "Val Verde",
+        "recommended_qid": "Q2268355",
+        "live_label": "Val Verde",
+        "chl": null,
+        "notes": "CDP in Los Angeles County. Confirmed via enwiki Val Verde, California + EntityData."
+      },
+      {
+        "slug": "valencia",
+        "title": "Valencia",
+        "recommended_qid": "Q1319893",
+        "live_label": "Valencia",
+        "chl": null,
+        "notes": "Neighborhood of Santa Clarita. Confirmed via enwiki Valencia, Santa Clarita, California + EntityData."
+      },
+      {
+        "slug": "vasquez-rocks",
+        "title": "Vasquez Rocks",
+        "recommended_qid": "Q3554948",
+        "live_label": "Vasquez Rocks",
+        "chl": null,
+        "notes": "Natural area park in California. Confirmed via enwiki Vasquez Rocks + EntityData. NRHP on WD; no CHL number confirmed from OHP."
+      }
+    ]
+  },
+  "prior": {
+    "resolved_keys": [
+      "acton",
+      "agua-dulce",
+      "canyon-country",
+      "castaic",
+      "fort-tejon",
+      "hasley-canyon",
+      "lake-hughes",
+      "lebec",
+      "magic-mountain",
+      "melody-ranch",
+      "mentryville",
+      "mojave-desert",
+      "newhall",
+      "pico-canyon",
+      "piru",
+      "placerita-canyon",
+      "rancho-camulos",
+      "rancho-san-francisco",
+      "ridge-route",
+      "san-francisquito-canyon",
+      "santa-clarita",
+      "saugus",
+      "saugus-speedway",
+      "soledad-canyon",
+      "tejon-ranch",
+      "val-verde",
+      "valencia",
+      "vasquez-rocks",
+      "beales-cut",
+      "bouquet-canyon",
+      "estancia",
+      "harry-carey-ranch",
+      "haskell-canyon",
+      "heritage-junction",
+      "lang",
+      "potrero-canyon",
+      "sleepy-valley",
+      "tejon",
+      "towsley-canyon"
+    ],
+    "entities": {
+      "Q2308667": {
+        "label": "Acton",
+        "description": "census-designated place in Los Angeles County, California, United States",
+        "enwiki": "Acton, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q2827313": {
+        "label": "Agua Dulce",
+        "description": "census-designated place in Los Angeles County, California, United States",
+        "enwiki": "Agua Dulce, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q85845486": {
+        "label": "Beale's Cut",
+        "description": "former stagecoach pass in Santa Clarita, California",
+        "enwiki": "Beale's Cut Stagecoach Pass",
+        "chl_claims": [],
+        "P131": [
+          "Q491132"
+        ]
+      },
+      "Q4950068": {
+        "label": "Bouquet Canyon",
+        "description": "unincorporated community in Los Angeles County, Califirna, USA",
+        "enwiki": "Bouquet Canyon, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q49779808": {
+        "label": "Bouquet Canyon",
+        "description": "valley in Los Angeles County, California, United States of America",
+        "enwiki": null,
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q5034183": {
+        "label": "Canyon Country",
+        "description": "neighborhood in the eastern part of the city of\u00a0Santa Clarita, in northwestern\u00a0Los Angeles County, California, United States of America",
+        "enwiki": "Canyon Country, Santa Clarita, California",
+        "chl_claims": [],
+        "P131": [
+          "Q99"
+        ]
+      },
+      "Q3242084": {
+        "label": "Castaic",
+        "description": "census-designated place in Los Angeles County, California, United States",
+        "enwiki": "Castaic, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q1415871": {
+        "label": "Fort Tejon",
+        "description": "historic military post and museum",
+        "enwiki": "Fort Tejon",
+        "chl_claims": [
+          {
+            "designation": "Q19558910",
+            "ordinals": []
+          },
+          {
+            "designation": "Q2933979",
+            "ordinals": []
+          }
+        ],
+        "P131": [
+          "Q108047"
+        ]
+      },
+      "Q5679315": {
+        "label": "Hasley Canyon",
+        "description": "census-designated place in Los Angeles County, California",
+        "enwiki": "Hasley Canyon, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q6476239": {
+        "label": "Lake Hughes",
+        "description": "unincorporated community in California",
+        "enwiki": "Lake Hughes, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q2879536": {
+        "label": "Lebec",
+        "description": "unincorporated community in Kern County, California, United States",
+        "enwiki": "Lebec, California",
+        "chl_claims": [],
+        "P131": [
+          "Q108047"
+        ]
+      },
+      "Q1515080": {
+        "label": "Six Flags Magic Mountain",
+        "description": "theme park located in Valencia, California",
+        "enwiki": "Six Flags Magic Mountain",
+        "chl_claims": [],
+        "P131": [
+          "Q1319893",
+          "Q99",
+          "Q104994"
+        ]
+      },
+      "Q3171043": {
+        "label": "Melody Ranch",
+        "description": "1940 film",
+        "enwiki": "Melody Ranch",
+        "chl_claims": [],
+        "P131": []
+      },
+      "Q6817616": {
+        "label": "Mentryville",
+        "description": "human settlement in Newhall, California, United States of America",
+        "enwiki": "Mentryville, California",
+        "chl_claims": [],
+        "P131": [
+          "Q7018086"
+        ]
+      },
+      "Q184355": {
+        "label": "Mojave Desert",
+        "description": "desert in southwestern United States",
+        "enwiki": "Mojave Desert",
+        "chl_claims": [],
+        "P131": [
+          "Q99",
+          "Q829",
+          "Q816"
+        ]
+      },
+      "Q7018086": {
+        "label": "Newhall",
+        "description": "district of Santa Clarita, California, United States",
+        "enwiki": "Newhall, Santa Clarita, California",
+        "chl_claims": [],
+        "P131": [
+          "Q99",
+          "Q491132"
+        ]
+      },
+      "Q7191006": {
+        "label": "Pico Canyon Oilfield",
+        "description": "first commercially successful oil well in the Western United States",
+        "enwiki": "Pico Canyon Oilfield",
+        "chl_claims": [
+          {
+            "designation": "Q624232",
+            "ordinals": []
+          },
+          {
+            "designation": "Q19558910",
+            "ordinals": []
+          }
+        ],
+        "P131": [
+          "Q99"
+        ]
+      },
+      "Q3322382": {
+        "label": "Piru",
+        "description": "census-designated place in Ventura County, California",
+        "enwiki": "Piru, California",
+        "chl_claims": [],
+        "P131": [
+          "Q108127"
+        ]
+      },
+      "Q7200318": {
+        "label": "Placerita Canyon State Park",
+        "description": "state park in Los Angeles County, California",
+        "enwiki": "Placerita Canyon State Park",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q7290871": {
+        "label": "Rancho Camulos",
+        "description": "human settlement in California, United States of America",
+        "enwiki": "Rancho Camulos",
+        "chl_claims": [
+          {
+            "designation": "Q624232",
+            "ordinals": []
+          },
+          {
+            "designation": "Q19558910",
+            "ordinals": []
+          }
+        ],
+        "P131": [
+          "Q99"
+        ]
+      },
+      "Q256822": {
+        "label": "Rancho San Francisco",
+        "description": "Mexican land grant in California",
+        "enwiki": "Rancho San Francisco",
+        "chl_claims": [],
+        "P131": [
+          "Q99"
+        ]
+      },
+      "Q19195": {
+        "label": "Ridge Route",
+        "description": "highway in California",
+        "enwiki": "Ridge Route",
+        "chl_claims": [
+          {
+            "designation": "Q19558910",
+            "ordinals": []
+          }
+        ],
+        "P131": [
+          "Q104994",
+          "Q108047"
+        ]
+      },
+      "Q7414194": {
+        "label": "San Francisquito Canyon",
+        "description": "canyon of the Sierra Pelona Mountains, California",
+        "enwiki": "San Francisquito Canyon",
+        "chl_claims": [],
+        "P131": []
+      },
+      "Q491132": {
+        "label": "Santa Clarita",
+        "description": "city in Los Angeles County, California, USA",
+        "enwiki": "Santa Clarita, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q1840217": {
+        "label": "Saugus",
+        "description": "human settlement in California, United States of America",
+        "enwiki": "Saugus, Santa Clarita, California",
+        "chl_claims": [],
+        "P131": [
+          "Q491132"
+        ]
+      },
+      "Q7427230": {
+        "label": "Saugus Speedway",
+        "description": "Race track",
+        "enwiki": "Saugus Speedway",
+        "chl_claims": [],
+        "P131": [
+          "Q99"
+        ]
+      },
+      "Q7557525": {
+        "label": "Soledad Canyon",
+        "description": "canyon/valley in Southern California",
+        "enwiki": "Soledad Canyon",
+        "chl_claims": [],
+        "P131": [
+          "Q99"
+        ]
+      },
+      "Q7695260": {
+        "label": "Tejon Ranch",
+        "description": "Land owner in California, USA",
+        "enwiki": "Tejon Ranch",
+        "chl_claims": [],
+        "P131": []
+      },
+      "Q2268355": {
+        "label": "Val Verde",
+        "description": "census-designated place in Los Angeles County, California",
+        "enwiki": "Val Verde, California",
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q1319893": {
+        "label": "Valencia",
+        "description": "neighborhood of Santa Clarita/Los Angeles County, California, United States",
+        "enwiki": "Valencia, Santa Clarita, California",
+        "chl_claims": [],
+        "P131": [
+          "Q491132"
+        ]
+      },
+      "Q3554948": {
+        "label": "Vasquez Rocks",
+        "description": "natural Area Park in California, United States",
+        "enwiki": "Vasquez Rocks",
+        "chl_claims": [
+          {
+            "designation": "Q19558910",
+            "ordinals": []
+          }
+        ],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q133536426": {
+        "label": null,
+        "description": null,
+        "enwiki": null,
+        "chl_claims": [],
+        "P131": []
+      },
+      "Q477468": {
+        "label": "Tejon Pass",
+        "description": "Mountain pass in California, United States",
+        "enwiki": "Tejon Pass",
+        "chl_claims": [],
+        "P131": [
+          "Q99"
+        ]
+      },
+      "Q85846376": {
+        "label": "Lang Southern Pacific Station",
+        "description": "former Southern Pacific railway station located in Soledad Canyon near the eastern end of Santa Clarita, California, United States",
+        "enwiki": "Lang Southern Pacific Station",
+        "chl_claims": [
+          {
+            "designation": "Q2933979",
+            "ordinals": []
+          }
+        ],
+        "P131": [
+          "Q104994"
+        ]
+      },
+      "Q49809501": {
+        "label": "Haskell Canyon",
+        "description": "valley in Los Angeles County, California, United States of America",
+        "enwiki": null,
+        "chl_claims": [],
+        "P131": [
+          "Q104994"
+        ]
+      }
+    },
+    "gap_results": {
+      "beales-cut": [
+        {
+          "qid": "Q85845486",
+          "label": "Beale's Cut",
+          "description": "former stagecoach pass in Santa Clarita, California",
+          "enwiki": "Beale's Cut Stagecoach Pass",
+          "requested": "Beale's Cut Stagecoach Pass"
+        }
+      ],
+      "bouquet-canyon": [
+        {
+          "qid": "Q4950068",
+          "label": "Bouquet Canyon",
+          "description": "unincorporated community in Los Angeles County, Califirna, USA",
+          "enwiki": "Bouquet Canyon, California",
+          "requested": "Bouquet Canyon, California"
+        }
+      ],
+      "lang": [
+        {
+          "qid": "Q85846376",
+          "label": "Lang Southern Pacific Station",
+          "description": "former Southern Pacific railway station located in Soledad Canyon near the eastern end of Santa Clarita, California, United States",
+          "enwiki": "Lang Southern Pacific Station",
+          "requested": "Lang Southern Pacific Station"
+        }
+      ]
+    }
+  }
+}
