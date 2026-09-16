@@ -20,6 +20,7 @@ Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files 
 - Grok Build works on branch `grok-build`. Grok Bot works on branch `grok-bot`. Never commit directly to `main`
 - Pull before starting. Commit small, with clear messages
 - Nathan merges to `main`. Ask before any `git push`
+- **Pushing to `main` auto-deploys to production** via the workflow in `.github/workflows/` (GitHub Actions to Cloudways). Never push to `main`, and never edit the workflow
 - Never rewrite history (no force push, no rebase of shared branches)
 
 ## Safety
