@@ -1,9 +1,12 @@
 # AGENTS.md: SCVHistory Craft CMS
 
 Before doing anything, read these in full:
-1. `HANDOFF.md`: project brief, priorities, settled decisions, tasks
-2. `CHANGELOG.md`: history and latest decisions
-3. `CONTENT-MODEL.md` and `INVENTORY.md` if they exist
+1. `PHILOSOPHY.md`: goals, principles, and design philosophy. It overrides your own assumptions
+2. `HANDOFF.md`: current tasks, priorities, settled decisions
+3. `BUILDPLAN.md` and `DATA_MODEL.md`: roadmap and full data model
+4. `CHANGELOG.md` and `ERRORLOG.md`: history, decisions, known errors
+5. `CONTENT-MODEL.md` and `INVENTORY.md`: existing work to extend, not replace
+6. Any section-specific doc relevant to the task: `COLLECTIONS-HUB.md`, `PLACES-HUB.md`, `PLACE-RELATIONS.md`, `WAR-MEMORIAL.md`, `TAXONOMY_STANDARDS.md`, `craft-cp-field-checklist-2026-04-15.md`
 
 All legacy SCVHistory.com content is moving into this Craft build. Craft becomes the new site.
 
@@ -20,6 +23,7 @@ Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files 
 - Grok Build works on branch `grok-build`. Grok Bot works on branch `grok-bot`. Never commit directly to `main`
 - Pull before starting. Commit small, with clear messages
 - Nathan merges to `main`. Ask before any `git push`
+- **Pushing to `main` auto-deploys to production** via the workflow in `.github/workflows/` (GitHub Actions to Cloudways). Never push to `main`, and never edit the workflow
 - Never rewrite history (no force push, no rebase of shared branches)
 
 ## Safety
@@ -33,7 +37,12 @@ Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files 
 
 ## Content rules
 
-- Follow the "Settled decisions" in HANDOFF.md. Do not redesign what is already decided
+- Follow PHILOSOPHY.md and the settled decisions in HANDOFF.md, BUILDPLAN.md, and DATA_MODEL.md. Do not redesign what is already decided
+- Full records only for entities with a meaningful, recurring role in SCV history. Passing mentions stay in body text
+- Never rewrite Leon Worden's prose during migration. Preserve legacy URLs, photo IDs, and bylines
+- Dates keep their real precision; claims keep a confidence level
+- Do not invent visual design. Follow the design system in PHILOSOPHY.md
+- Do not build later-phase features until the content model and migration are done
 - Entity-first: canonical entities before any articles
 - Follow `TATAVIAM_AUDIT.md` for anything touching Indigenous peoples
 - Taxonomy terms need verified linked-data URIs. Never invent a URI; mark it `NEEDS_VERIFICATION` instead
@@ -48,4 +57,4 @@ Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files 
 
 ## End of every session
 
-Append a dated entry to `CHANGELOG.md` with: agent name, what was done, decisions made, blockers, next steps. Commit it.
+Add a dated entry to `CHANGELOG.md` with: agent name, what was done, decisions made, blockers, next steps. Log any errors and fixes in `ERRORLOG.md`. Propose (do not make) BUILDPLAN.md checkbox updates. Commit.
