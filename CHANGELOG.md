@@ -2,6 +2,14 @@ SCVHistory.com — Changelog
 
 2026-09-15
 
+- Agent: Grok Bot
+- Done: applied verified war and disaster Wikidata QIDs in taxonomy-import/
+- Decisions: left AAT-only failures as NEEDS_VERIFICATION
+- Blockers: none
+- Next: wait for Nathan before further taxonomy edits
+
+2026-09-15
+
 - Agent: Grok Build
 - Date: 2026-09-15
 - What was done: Tasks 1-3 on `grok-build`. Wrote `INVENTORY.md` from Jordy (read-only). Wrote `CONTENT-MODEL.md` from live `config/project/`. Implemented photographs and documents channels plus ingest fields in local DDEV only. No Cloudways apply. No imports.
