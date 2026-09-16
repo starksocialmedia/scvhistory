@@ -1,0 +1,361 @@
+{
+  "date": "2026-09-15 PT",
+  "agent": "Grok Bot (research)",
+  "source": "origin/grok-build grave-audit-export.md @ 80c8ac0",
+  "counts": {
+    "wrong": 11,
+    "correct": 4,
+    "missing": 43
+  },
+  "checks": [
+    {
+      "slug": "andres-pico",
+      "url": "https://www.findagrave.com/memorial/5913/andres-pico",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/5913/julius_ochs-adler",
+      "fag_name": "Julius Ochs Adler",
+      "fag_birth": "3 Dec 1892",
+      "fag_death": "3 Oct 1955",
+      "fag_burial": "Arlington National Cemetery",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "cave-johnson-couts",
+      "url": "https://www.findagrave.com/memorial/9372/cave-johnson-couts",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/9372/davison_alexander-dalziel",
+      "fag_name": "Davison Alexander Dalziel",
+      "fag_birth": "17 Oct 1852",
+      "fag_death": "18 Apr 1928",
+      "fag_burial": "Highgate Cemetery East",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "kit-carson",
+      "url": "https://www.findagrave.com/memorial/1819/christopher-houston-carson",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/1819/harry-chapin",
+      "fag_name": "Harry Chapin",
+      "fag_birth": "7 Dec 1942",
+      "fag_death": "16 Jul 1981",
+      "fag_burial": "Huntington Rural Cemetery",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "edward-fitzgerald-beale",
+      "url": "https://www.findagrave.com/memorial/5144/edward-fitzgerald-beale",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/5144/simon_bolivar-buckner",
+      "fag_name": "Simon Bolivar Buckner Sr.",
+      "fag_birth": "1 Apr 1823",
+      "fag_death": "8 Jan 1914",
+      "fag_burial": "Frankfort Cemetery",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "edwin-bryant",
+      "url": "https://www.findagrave.com/memorial/8906/edwin-bryant",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/8906/james_francis_edward-stuart",
+      "fag_name": "James Francis Edward Stuart",
+      "fag_birth": "10 Jun 1688",
+      "fag_death": "1 Jan 1766",
+      "fag_burial": "Saint Peter's Basilica",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "henry-mayo-newhall",
+      "url": "http://findagrave.com/memorial/5308/henry_mayo-newhall",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/5308/henry_mayo-newhall",
+      "fag_name": "Henry Mayo Newhall",
+      "fag_birth": "13 May 1825",
+      "fag_death": "13 Mar 1882",
+      "fag_burial": "Cypress Lawn Memorial Park",
+      "result": "pass",
+      "why": "name, birth, death, burial match"
+    },
+    {
+      "slug": "james-w-marshall",
+      "url": "https://www.findagrave.com/memorial/1144/james-wilson-marshall",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/1144/george_s-patton",
+      "fag_name": "GEN George S. Patton",
+      "fag_birth": "11 Nov 1885",
+      "fag_death": "21 Dec 1945",
+      "fag_burial": "Luxembourg American Cemetery and Memorial",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "jerry-reynolds",
+      "url": "https://www.findagrave.com/memorial/14716645/jerry-hugh-reynolds",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/14716645/jerry_hugh-reynolds",
+      "fag_name": "Jerry Hugh Reynolds",
+      "fag_birth": "20 Oct 1947",
+      "fag_death": "1996",
+      "fag_burial": "Eternal Valley Memorial Park",
+      "result": "fail",
+      "why": "birth mismatch export 1937 vs memorial 1947; not clear same person"
+    },
+    {
+      "slug": "john-c-fremont",
+      "url": "https://www.findagrave.com/memorial/834/john-charles-fremont",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/834/dick-powell",
+      "fag_name": "Dick Powell",
+      "fag_birth": "14 Nov 1904",
+      "fag_death": "2 Jan 1963",
+      "fag_burial": "Forest Lawn Memorial Park",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "juan-bandini",
+      "url": "https://www.findagrave.com/memorial/9366/juan-bandini",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/9366/mary_scott-hogarth",
+      "fag_name": "Mary Scott Hogarth",
+      "fag_birth": "26 Oct 1819",
+      "fag_death": "7 May 1837",
+      "fag_burial": "Kensal Green Cemetery",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "rodolfo-acosta",
+      "url": "https://www.findagrave.com/memorial/19542/rodolfo-acosta",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/19542/rodolfo-acosta",
+      "fag_name": "Rodolfo Acosta",
+      "fag_birth": "29 Jul 1920",
+      "fag_death": "7 Nov 1974",
+      "fag_burial": "Forest Lawn Memorial Park",
+      "result": "pass",
+      "why": "name, birth, death, burial match"
+    },
+    {
+      "slug": "tiburcio-vasquez",
+      "url": "https://www.findagrave.com/memorial/5334/tiburcio-vasquez",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/5334/tiburcio-vasquez",
+      "fag_name": "Tiburcio Vasquez",
+      "fag_birth": "7 Apr 1835",
+      "fag_death": "19 Mar 1875",
+      "fag_burial": "Santa Clara Mission Cemetery",
+      "result": "pass",
+      "why": "name, birth, death, burial match"
+    },
+    {
+      "slug": "william-lewis-manly",
+      "url": "https://www.findagrave.com/memorial/1979/william-lewis-manly",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/1979/anne",
+      "fag_name": "Queen Anne",
+      "fag_birth": "6 Feb 1665",
+      "fag_death": "1 Aug 1714",
+      "fag_burial": "Westminster Abbey",
+      "result": "fail",
+      "why": "different person; memorial ID reassigned"
+    },
+    {
+      "slug": "ygnacio-del-valle",
+      "url": "https://www.findagrave.com/memorial/136176316/ignacio_ramn_de_jess-del_valle",
+      "http": 200,
+      "canonical": "https://www.findagrave.com/memorial/136176316/ignacio_ramón_de_jesús-del_valle",
+      "fag_name": "Ignacio Ramón de Jesús del Valle",
+      "fag_birth": "1 Jul 1808",
+      "fag_death": "30 Mar 1880",
+      "fag_burial": "Rancho Camulos Cemetery",
+      "result": "pass",
+      "why": "same person (Ygnacio/Ignacio del Valle); birth, death year, Camulos burial match"
+    },
+    {
+      "slug": "abel-stearns",
+      "url": "",
+      "result": "fail",
+      "why": "already cleared / removed; kept in fail list per instructions"
+    }
+  ],
+  "missing": [
+    {
+      "slug": "albert-edward-thomas",
+      "name": "Albert Edward Thomas"
+    },
+    {
+      "slug": "albert-lee-moore",
+      "name": "Albert Lee Moore"
+    },
+    {
+      "slug": "antonio-del-valle",
+      "name": "Antonio del Valle"
+    },
+    {
+      "slug": "archibald-k-archie-beall",
+      "name": "Archibald K. 'Archie' Beall"
+    },
+    {
+      "slug": "arthur-b-perkins",
+      "name": "Arthur Burnett Perkins"
+    },
+    {
+      "slug": "augustus-a-august-rubel",
+      "name": "Augustus A. (August) Rubel"
+    },
+    {
+      "slug": "brian-cody-prosser",
+      "name": "Brian Cody Prosser"
+    },
+    {
+      "slug": "cole-william-larsen",
+      "name": "Cole William Larsen"
+    },
+    {
+      "slug": "dante-acosta",
+      "name": "Dante Acosta"
+    },
+    {
+      "slug": "dean-glenn-todd-jr",
+      "name": "Dean Glenn Todd Jr"
+    },
+    {
+      "slug": "dennis-lee-sellen-jr",
+      "name": "Dennis Lee Sellen Jr"
+    },
+    {
+      "slug": "donald-e-morissett",
+      "name": "Donald E. Morissett"
+    },
+    {
+      "slug": "edward-d-contreras",
+      "name": "Edward D. Contreras"
+    },
+    {
+      "slug": "eugene-e-darr",
+      "name": "Eugene E. Darr"
+    },
+    {
+      "slug": "father-francisco-garces",
+      "name": "Father Francisco Garcés"
+    },
+    {
+      "slug": "frank-pike-whitmore",
+      "name": "Frank Pike Whitmore"
+    },
+    {
+      "slug": "gaspar-de-portola",
+      "name": "Gaspar de Portolá"
+    },
+    {
+      "slug": "gilbert-d-montenegro",
+      "name": "Gilbert D. Montenegro"
+    },
+    {
+      "slug": "henry-acuna",
+      "name": "Henry Acuna"
+    },
+    {
+      "slug": "henry-clay-wiley",
+      "name": "Henry Clay Wiley"
+    },
+    {
+      "slug": "ian-timothy-d-gelig",
+      "name": "Ian Timothy D. Gelig"
+    },
+    {
+      "slug": "jake-william-suter",
+      "name": "Jake William Suter"
+    },
+    {
+      "slug": "john-michael-conant",
+      "name": "John Michael Conant"
+    },
+    {
+      "slug": "john-gifford",
+      "name": "John Timothy Gifford"
+    },
+    {
+      "slug": "jose-antonio-aguirre",
+      "name": "José Antonio Aguirre"
+    },
+    {
+      "slug": "jose-ricardo-flores-mejia",
+      "name": "Jose Ricardo Flores-Mejia"
+    },
+    {
+      "slug": "juan-bautista-de-anza",
+      "name": "Juan Bautista de Anza"
+    },
+    {
+      "slug": "juan-crespi",
+      "name": "Juan Crespí"
+    },
+    {
+      "slug": "francisco-lopez",
+      "name": "Juan José Francisco de Gracia (\"Chico\") Lopez"
+    },
+    {
+      "slug": "junipero-serra",
+      "name": "Junípero Serra"
+    },
+    {
+      "slug": "juventino-del-valle",
+      "name": "Juventino del Valle"
+    },
+    {
+      "slug": "lawrence-e-kenaston",
+      "name": "Lawrence E. Kenaston"
+    },
+    {
+      "slug": "leon-worden",
+      "name": "Leon Worden"
+    },
+    {
+      "slug": "pedro-fages",
+      "name": "Pedro Fages"
+    },
+    {
+      "slug": "raymond-gene-kelly",
+      "name": "Raymond Gene Kelly"
+    },
+    {
+      "slug": "remi-nadeau-i",
+      "name": "Remi Allen Nadeau"
+    },
+    {
+      "slug": "richard-patrick-slocum",
+      "name": "Richard Patrick Slocum"
+    },
+    {
+      "slug": "robert-l-whisler",
+      "name": "Robert L. Whisler"
+    },
+    {
+      "slug": "robert-michael-wilson",
+      "name": "Robert Michael Wilson"
+    },
+    {
+      "slug": "rudy-alexander-acosta",
+      "name": "Rudy Alexander Acosta"
+    },
+    {
+      "slug": "scott-wilk",
+      "name": "Scott Thomas Wilk Sr."
+    },
+    {
+      "slug": "stephen-edward-colley",
+      "name": "Stephen Edward Colley"
+    },
+    {
+      "slug": "thomas-o-larkin",
+      "name": "Thomas O. Larkin"
+    }
+  ],
+  "fetch_notes": "All 14 URLs returned HTTP 200. No soft fails needing retry. No fetch blocks. Find A Grave ignores URL slug and serves whoever currently owns the memorial ID; many low IDs now point at unrelated famous memorials."
+}

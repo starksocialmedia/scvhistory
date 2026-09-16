@@ -3,6 +3,14 @@ SCVHistory.com — Changelog
 2026-09-15
 
 - Agent: Grok Bot
+- Done: Find A Grave audit of personGraveUrl from grok-build export; wrote GRAVE-AUDIT.md
+- Decisions: pass only on matching living memorial; Abel Stearns kept in fail list as removed; no invented replacement URLs; Missing is names only
+- Blockers: none
+- Next: Nathan clear failed URLs in Craft; no Craft edits from Grok Bot
+
+2026-09-15
+
+- Agent: Grok Bot
 - Done: applied verified non-Indigenous Wikidata/LCSH URI corrections in taxonomy-import/ (wars, disasters, subjects, place/org/group types, water types); left spanish-colonial-expedition Wikidata as Portola expedition Q3966440 after live check
 - Decisions: left AAT-only failures as NEEDS_VERIFICATION; did not invent AAT replacements; Indigenous terms from 7fcb8d3 left untouched
 - Blockers: none
