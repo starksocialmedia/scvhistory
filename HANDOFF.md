@@ -61,6 +61,7 @@ The source drive sometimes dismounts mid-task. An interrupted write can corrupt 
 - Military Profile is merged into Person as a conditional field group
 - Import pipeline is entity-first: never import articles before canonical entities exist
 - Taxonomies use verified linked-data URIs (Wikidata, AAT, LCSH)
+- **Communities (Acton, Newhall, Saugus, etc.) are categories in the `neighborhood` group, never Place entries.** Places are specific sites like the William S. Hart Mansion. See DATA-ORGANIZATION.md
 
 Check CHANGELOG.md for any later decisions before acting.
 

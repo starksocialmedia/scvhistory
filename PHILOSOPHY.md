@@ -147,6 +147,7 @@ Design decisions are Nathan's alone. He is the Creative Director. Agents follow 
 | File | Purpose |
 |---|---|
 | `PHILOSOPHY.md` | Why (this file) |
+| `DATA-ORGANIZATION.md` | Where each kind of thing goes: entries, categories, relations, tags |
 | `BUILDPLAN.md` | Roadmap, status, decisions log |
 | `DATA_MODEL.md` | Every entry type, field, relation, taxonomy, and open questions |
 | `TAXONOMY_STANDARDS.md` | LCSH/AAT/TGN alignment, CARE, controlled vocabulary rules |

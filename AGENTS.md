@@ -2,11 +2,12 @@
 
 Before doing anything, read these in full:
 1. `PHILOSOPHY.md`: goals, principles, and design philosophy. It overrides your own assumptions
-2. `HANDOFF.md`: current tasks, priorities, settled decisions
-3. `BUILDPLAN.md` and `DATA_MODEL.md`: roadmap and full data model
-4. `CHANGELOG.md` and `ERRORLOG.md`: history, decisions, known errors
-5. `CONTENT-MODEL.md` and `INVENTORY.md`: existing work to extend, not replace
-6. Any section-specific doc relevant to the task: `COLLECTIONS-HUB.md`, `PLACES-HUB.md`, `PLACE-RELATIONS.md`, `WAR-MEMORIAL.md`, `TAXONOMY_STANDARDS.md`, `craft-cp-field-checklist-2026-04-15.md`
+2. `DATA-ORGANIZATION.md`: where each kind of thing goes. Check it before creating any record or category
+3. `HANDOFF.md`: current tasks, priorities, settled decisions
+4. `BUILDPLAN.md` and `DATA_MODEL.md`: roadmap and full data model
+5. `CHANGELOG.md` and `ERRORLOG.md`: history, decisions, known errors
+6. `CONTENT-MODEL.md` and `INVENTORY.md`: existing work to extend, not replace
+7. Any section-specific doc relevant to the task: `COLLECTIONS-HUB.md`, `PLACES-HUB.md`, `PLACE-RELATIONS.md`, `WAR-MEMORIAL.md`, `TAXONOMY_STANDARDS.md`, `craft-cp-field-checklist-2026-04-15.md`
 
 All legacy SCVHistory.com content is moving into this Craft build. Craft becomes the new site.
 
