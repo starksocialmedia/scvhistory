@@ -1,0 +1,20 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 8dd6b19b-d56f-4147-a107-973586b98c4e # War Memorial
+handle: warMemorials
+maxAuthors: 1
+name: 'War Memorials'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
+    enabledByDefault: true
+    hasUrls: true
+    template: war-memorial/_entry
+    uriFormat: 'war-memorial/{slug}'
+type: channel

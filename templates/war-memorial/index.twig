@@ -1,0 +1,18 @@
+{% extends "_layouts/base" %}
+
+{% block title %}War Memorial | SCVHistory.com{% endblock %}
+
+{% block content %}
+<h1>War Memorial</h1>
+<p>Honors Santa Clarita Valley service members killed in war. Person entries are for important figures and authors only.</p>
+{% set entries = craft.entries().section('warMemorials').orderBy('title ASC').all() %}
+{% if entries|length %}
+  <ul>
+    {% for entry in entries %}
+      <li><a href="{{ entry.url }}">{{ entry.title }}</a>{% if entry.wmConflict %} ({{ entry.wmConflict }}){% endif %}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No memorial entries imported yet.</p>
+{% endif %}
+{% endblock %}
