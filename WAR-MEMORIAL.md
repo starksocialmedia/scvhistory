@@ -125,11 +125,11 @@ Profiles (slug from filename):
 | eugene-e-darr | ww2-eugenedarr | warmemorial/ww2_eugenedarr.htm |
 | frank-pike-whitmore | ww2-frankwhitmore | warmemorial/ww2_frankwhitmore.htm |
 
-## Remaining Jordy profiles not imported yet
+## Remaining Jordy profiles imported 2026-09-16
 
-Import these into `warMemorials`, not Persons.
+These 11 WWII profiles were imported into `warMemorials` from Jordy. Not Persons. `wmRelatedPerson` empty. No Find A Grave. Local total: 36 War Memorials, 33 Persons.
 
-| Legacy path | Planned slug |
+| Legacy path | Slug |
 | --- | --- |
 | warmemorial/ww2_garrywingfield.htm | ww2-garrywingfield |
 | warmemorial/ww2_jackharland.htm | ww2-jackharland |

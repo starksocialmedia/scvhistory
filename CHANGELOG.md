@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Grok Build
 - Date: 2026-09-16
+- Done: 11 memorials imported into warMemorials from Jordy; hub specs written (PLACES-HUB.md, COLLECTIONS-HUB.md); Persons unchanged (33)
+- Decisions: remaining WWII profiles go to warMemorials, not Persons; no Place or Collection import
+- Blockers: none
+- Next: Nathan reviews 36 War Memorial entries before more HTML imports
+
+2026-09-16
+
+- Agent: Grok Build
+- Date: 2026-09-16
 - Done: added warMemorials section; moved 25 casualty records out of Persons
 - Decisions: casualties are War Memorial entries; Person stays figures and authors
 - Blockers: none
