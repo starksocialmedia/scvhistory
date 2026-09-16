@@ -1,5 +1,13 @@
 SCVHistory.com — Changelog
 
+2026-09-16
+
+- Agent: Grok Bot
+- Done: Persons-only Find A Grave re-audit; rewrote GRAVE-AUDIT.md for remaining 33 Persons (skipped 25 warMemorials slugs from WAR-MEMORIAL.md)
+- Decisions: pass only on matching living memorial; Abel Stearns stays Wrong as removed; Missing is 18 empty-URL Persons by name only; no invented replacement URLs; no Craft edits
+- Blockers: none
+- Next: Nathan clear failed personGraveUrl values in Craft for remaining Persons; war memorial grave URLs are out of scope here
+
 2026-09-15
 
 - Agent: Grok Bot
