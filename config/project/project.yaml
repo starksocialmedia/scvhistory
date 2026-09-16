@@ -1,4 +1,4 @@
-dateModified: 1776279659
+dateModified: 1789538822
 email:
   fromEmail: nathan@starksocial.com
   fromName: 'SCV History'
@@ -13,10 +13,12 @@ fs:
     url: '@web/uploads/archive-media'
 meta:
   __names__:
+    0a10d99a-34c7-474c-a2ef-adb9a3141640: Photograph # Photograph
     0a435923-bb41-4cc3-8f64-48ada83aef28: 'Obit Group' # Obit Group
     0e428760-475d-483d-97b2-d1444c7630f4: 'Photo Date' # Photo Date
     1b1e1845-f71f-49d3-9032-e609d3014117: 'Person Obituaries' # Person Obituaries
     1b97d8d9-6b72-48e2-9f3b-25bfe8e1a5f0: 'Webmaster Note Top' # Webmaster Note Top
+    1c84f22e-8bd7-4d95-9750-f1508f6d3a24: 'Credit Raw' # Credit Raw
     1c4743cd-c0fa-42eb-92c1-ace6b3f5bf18: Organizations # Organizations
     1cc4a471-4827-44f0-bbcf-d884b0f5a4ad: 'Event Places' # Event Places
     1d2482c4-095a-413b-9e52-d396af8ef90d: 'MP Base Station' # MP Base Station
@@ -27,18 +29,22 @@ meta:
     2e9b908e-9a15-488d-9902-71afac2c77f0: 'Photo Groups' # Photo Groups
     3a747d65-9c1e-466f-a067-725518530446: 'Photo Sources' # Photo Sources
     3ae144ef-e15a-4685-8fec-8ac0dfa20b68: 'SCV History' # SCV History
+    03b07b2a-45d6-42b3-935a-54ffa63a0168: 'Archival Files' # Archival Files
     3bee9c17-c323-425b-a326-462233b04cde: 'Public Schema' # Public Schema
     3c1958db-81e5-4078-9bb2-085ec9288fe9: 'Org Website' # Org Website
     3ca8c98c-5420-4133-96da-4f21f9f566e3: 'MP Siblings' # MP Siblings
     3e373788-6a9f-4f34-8d9c-37fe116dd115: 'MP Rank' # MP Rank
     3f17c1fb-9f4d-4d93-93c0-d5875c4f2910: 'Obit Subject' # Obit Subject
     3f801f56-13bb-43b7-96dc-4cdb524aa27c: Organization # Organization
+    4b9ddc11-19f2-4c19-b079-bedd7af8656d: 'Legacy HTML' # Legacy HTML
     4c63e41a-3d70-4840-9069-fa32507828ee: 'Group Events' # Group Events
     4c744660-4a32-4290-8c1c-c63ce96860a2: Neighborhood # Neighborhood
     4d66c49f-ea87-47c9-9678-ec3a61e72941: 'Sub Boards' # Sub Boards
+    4d552843-9cf4-48e1-a3da-98f6d83b1405: 'Credit DPI' # Credit DPI
     04e3416e-73bc-4e6b-b275-4684ebcefd34: Event # Event
     4f57db14-792f-4d7e-b71f-95e03830afb1: 'Photo Credit' # Photo Credit
     5ac21908-ed47-472d-ad63-d351ab78ec3e: 'Person Groups' # Person Groups
+    5b52d50d-72b0-4b5f-85a8-6ef3c01415be: 'Credit Name' # Credit Name
     5e8daf31-6516-4238-9d20-d2e62d65491f: 'Has Sub-Boards' # Has Sub-Boards
     5f320f53-c2c1-482c-8c5b-59abb89a2755: 'Subject Person' # Subject Person
     5f666556-bbe0-4999-b3db-cf58e10d2fb8: 'Person Webmaster Note Bottom' # Person Webmaster Note Bottom
@@ -50,6 +56,7 @@ meta:
     6cea5dc5-06a2-4154-94c8-463dfeec41d6: 'Person Events' # Person Events
     6d489164-21bb-490e-b068-916f5dd35394: 'Org Fine Print' # Org Fine Print
     6f1c8cb1-2216-4b03-9cb1-c5190c82b1a7: 'Event Date' # Event Date
+    6f160385-0b35-4fa8-bea5-29d8432d4530: Document # Document
     7ce3598f-7711-4df6-8f99-ac10d904f0e2: 'Place Longitude' # Place Longitude
     7eadd519-a55c-433a-8391-a6ec84fa97e7: 'MP Related Obituaries' # MP Related Obituaries
     7f2b776b-bbf7-4fd8-8f9f-4f9e5b3ef56b: 'Person Find A Grave URL' # Person Find A Grave URL
@@ -82,6 +89,7 @@ meta:
     0043c112-7178-4dd3-a3ee-602d9127ed84: 'Child Of' # Child Of
     46e0adbb-5c7a-4b0c-876f-d1f5bfdca53c: 'Featured Image' # Featured Image
     047b3491-7cfa-4aba-99ee-28de76344edb: 'Historical Era' # Historical Era
+    49f4b067-d126-483b-9ee7-13778317ad7a: 'Legacy Category' # Legacy Category
     51b9e121-0b2f-45d8-a7bd-999b3983fdee: 'Group Date End' # Group Date End
     55c3e400-151a-4fa1-8f31-01d869a5d5ba: 'MP Date of Birth' # MP Date of Birth
     58d3cf79-bea4-42c8-8fc1-e6043cae4118: 'Collection Groups' # Collection Groups
@@ -121,7 +129,9 @@ meta:
     962f38b8-f3e6-476e-8ad4-11e0226524df: 'MP Organizations' # MP Organizations
     988b1ca1-fba1-4fc1-9cae-4ca4a4eaeda4: 'Event Organizations' # Event Organizations
     1573db5e-b99d-4ba7-80b7-f20eeeb0bc79: 'Org Events' # Org Events
+    1702e809-d8cf-49e7-bab1-02c9f2a38a21: 'Credit Kind' # Credit Kind
     2041e1b2-ddec-4612-a05b-8a707377d1c4: 'Place Featured' # Place Featured
+    2786ceab-a65b-49aa-b576-8cbeeb055d8d: 'Credit Process' # Credit Process
     3060d06e-5a41-4dd6-96cc-553c4909d114: 'Edited By' # Edited By
     3771c8f4-34b2-4d34-b002-d0867da62d9f: 'Place Organizations' # Place Organizations
     4248c77d-a53f-4d72-89b2-30404e1375a4: 'Place SCV Landmark URL' # Place SCV Landmark URL
@@ -152,6 +162,7 @@ meta:
     68602574-7525-4259-95bf-d8b04f848b01: 'Photo Places' # Photo Places
     75145733-21e2-48ad-8719-877284efdc47: 'Legacy URL' # Legacy URL
     78044714-6da8-436b-bd35-473db1023624: Obituary # Obituary
+    a4c70e3a-ff4d-47e1-9242-7cdeeda0ef87: 'Source Path' # Source Path
     a5c082cc-7b40-4999-9e7b-156b63a992bc: 'MP Fine Print' # MP Fine Print
     a7c54af7-30d6-4ae8-8125-8753fc952bd7: 'MP Awards Citations' # MP Awards Citations
     a7d29285-f1cd-4793-8d5a-9f83c09cab99: 'MP Has Siblings' # MP Has Siblings
@@ -180,12 +191,14 @@ meta:
     cc6505fc-3350-4db4-97ad-e8ff3fec1d3d: 'Batch Sequence' # Batch Sequence
     cc358573-75fa-4e74-9c21-3da22a70051e: 'Group Date Start' # Group Date Start
     cd83b674-ea20-48d3-912e-1da3bb578813: 'MP Age at Loss' # MP Age at Loss
+    cece59d4-5fe8-4b97-a384-3dd311d7836d: 'Document Files' # Document Files
     d1c29e3e-8525-4db7-87ad-de3ac738589a: 'Event Persons' # Event Persons
     d18e03d6-ba55-488f-9ae0-6bf53e5f19a9: 'Depicts Place' # Depicts Place
     d128c8cb-5a5c-4c17-b8ec-025770ae4070: 'Extended Caption' # Extended Caption
     d487d693-b6f8-4637-9f22-86552a6e75bb: 'Obit Date of Death' # Obit Date of Death
     d81838a3-86d6-44fb-b151-b5b77f7bc8f1: 'MP High School' # MP High School
     d710292c-42cd-463f-b92f-a2851d2f258b: 'Historical Period' # Historical Period
+    d8986720-2f23-472c-a1fa-15359e42b55e: Photographs # Photographs
     dae6ce48-c5e5-4e45-bad8-4d5dc73348b1: 'Related Persons' # Related Persons
     dc38cbfd-540d-4988-bd35-a7c07015d57c: 'Event Legacy URL' # Event Legacy URL
     dd0a52b7-df2d-4e82-a561-d26cb387c12e: 'Org Longitude' # Org Longitude
@@ -203,6 +216,7 @@ meta:
     ebf41740-5f0c-48b0-a176-663bd3142759: 'Org Address' # Org Address
     eca3a22b-ede0-47d3-89bb-8fda28ebfe83: 'MP Related Persons' # MP Related Persons
     f0a5c7de-ccc3-4005-84ee-53feaafc26e9: 'Cultural Sensitivity Note' # Cultural Sensitivity Note
+    f4a71c17-3c33-43f1-a285-d8e7ecae62fb: 'Related Photographs' # Related Photographs
     f5eb4908-d535-4b94-9a6c-ecc1b3828387: 'Archive URL' # Archive URL
     f32eae51-5e21-4625-9edf-19e38d4a92b7: 'Org Latitude' # Org Latitude
     f93e01ae-4939-48d8-8151-268836846a7c: 'MP Specialty MOS' # MP Specialty MOS
@@ -212,6 +226,7 @@ meta:
     fdb7f91f-2ca8-4df3-b40b-ed08f4227c9f: 'Spouse Of' # Spouse Of
     fe7f97dd-7d4c-4a34-aba6-88be3274095c: 'Obit Related Military' # Obit Related Military
     fe92ac21-e789-4858-8229-ef9b241d0ce1: 'MP Home of Record' # MP Home of Record
+    fefda696-1d19-4719-a755-88d6c46b068f: Documents # Documents
 plugins:
   retour:
     edition: standard

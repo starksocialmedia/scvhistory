@@ -381,6 +381,92 @@ fieldLayouts:
         name: Taxonomy
         uid: 67586b0d-9a89-40ed-bfab-42d45c952f02
         userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a8ef966a-768e-4643-9830-6aa0d566a047 # Legacy Key
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5f5364ad-3fd6-445b-820f-4fee5e42dec5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 75145733-21e2-48ad-8719-877284efdc47 # Legacy URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2ba51c86-988b-4421-84d4-901820118121
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a4c70e3a-ff4d-47e1-9242-7cdeeda0ef87 # Source Path
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d7232730-93f5-41ec-8370-c28107d698e1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4b9ddc11-19f2-4c19-b079-bedd7af8656d # Legacy HTML
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 61db61af-0fba-4d18-b9e9-341604f757b7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 49f4b067-d126-483b-9ee7-13778317ad7a # Legacy Category
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: edbb54c3-86b3-463d-90d8-09fdc8aacf87
+            userCondition: null
+            warning: null
+            width: 100
+        name: Ingest
+        uid: a117f0ec-2ee9-483a-a7f3-bd015460d093
+        userCondition: null
     thumbFieldKey: null
 handle: place
 hasTitleField: false

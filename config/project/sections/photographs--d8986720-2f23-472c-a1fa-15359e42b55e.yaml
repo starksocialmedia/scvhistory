@@ -1,0 +1,20 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 0a10d99a-34c7-474c-a2ef-adb9a3141640 # Photograph
+handle: photographs
+maxAuthors: 1
+name: Photographs
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
+    enabledByDefault: true
+    hasUrls: true
+    template: photographs/_entry
+    uriFormat: 'photographs/{slug}'
+type: channel

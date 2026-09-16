@@ -13,9 +13,11 @@ SCVHistory.com — Changelog
 - Live schema: 9 sections, no Photograph, no Document. `legacyKey`/`legacyUrl` exist but are not on most types. `sourcePath`/`legacyHtml`/`legacyCategory` do not exist
 - Proposed ingest gaps only: Photograph/Object section, Document section, global ingest fields, credit parse fields, body vs legacyHtml
 - Did not redesign roles Matrix, military-on-Person, taxonomies, Award, map, haunted, On This Day, or IIIF
-- Decisions: none built. Schema changes wait for Nathan/Leon review
-- Blockers: Questions for Leon in CONTENT-MODEL.md
-- Next: Nathan and Leon review CONTENT-MODEL.md. Task 3 only after approval. No Craft apply yet
+- Nathan approved CONTENT-MODEL.md: skip indexes/empty/flipbook HTML; object pages to photographs; files/ packages to documents; remainder HTML to articles; war memorial profiles to persons; Mentryville is one org plus one place; no Leon gate
+- Task 3 (local DDEV only): photographs and documents channels; global `legacyKey`, `legacyUrl`, `sourcePath`, `legacyHtml`, `legacyCategory` on every migrated type except militaryProfiles; credit parse fields on photographs; `archivalFiles` and `documentFiles`
+- Did not apply on Cloudways. Did not start imports. Did not build roles Matrix or military merge
+- Blockers: none
+- Next: Task 4 only after Nathan asks. Entity-first still applies
 
 2026-04-15
 

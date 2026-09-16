@@ -1,0 +1,14 @@
+{% extends "_layouts/base" %}
+
+{% block content %}
+<article>
+  <h1>{{ entry.title }}</h1>
+  {% set image = entry.featuredImage.one() %}
+  {% if image %}
+    <p><img src="{{ image.url }}" alt="{{ entry.title }}"></p>
+  {% endif %}
+  {% if entry.body %}
+    <div>{{ entry.body|nl2br }}</div>
+  {% endif %}
+</article>
+{% endblock %}

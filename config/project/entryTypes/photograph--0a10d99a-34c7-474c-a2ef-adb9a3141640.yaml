@@ -2,14 +2,42 @@ allowLineBreaksInTitles: false
 color: null
 description: null
 fieldLayouts:
-  46c2c21c-2084-4830-8ede-1d3ea1dffe26:
+  61cb6563-2a4e-480d-95ce-0a4cfba18a55:
     cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 0f3d7049-0b2b-4e66-956f-6a4906f8889c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -20,12 +48,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: e50ca61c-ee22-4601-81ff-33fadf9c5ac9
+            uid: 3644d2db-dafb-41cc-bc5c-051623576e8b
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
@@ -36,490 +64,318 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 7dac4068-664c-4f9d-b5a2-4b06bfe1e981
+            uid: f1110642-06db-4d0b-a92a-88cbcd02130a
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 19b82513-b9da-4646-a2fd-d68c021bc39f # Full Name
+            fieldUid: 0e428760-475d-483d-97b2-d1444c7630f4 # Photo Date
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 0820510d-8887-45da-a8f4-e7370fa3eb41
+            uid: 77f93c26-b697-4985-a40e-745f247f9a25
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: ea2701b7-c19a-42f4-bfa6-673e90079acf # Birth Date
+            fieldUid: 4f57db14-792f-4d7e-b71f-95e03830afb1 # Photo Credit
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 053b1721-4b33-4e91-93b0-d37c5599801a
+            uid: 31d97a9b-bdf7-4759-9bde-0acfce18cb69
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: e34dff31-185d-469b-9dc0-528a82120aac # Birthplace
+            fieldUid: d128c8cb-5a5c-4c17-b8ec-025770ae4070 # Extended Caption
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 1b920237-8d81-4826-86f3-cb5980424ca8
+            uid: cdf7af70-e6c5-4d1d-a484-f340117271e9
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 345bc614-72e5-4974-baed-bef72b54a866 # Death Date
+            fieldUid: b6f60f2c-09bb-43e2-ab37-f36f1544c1d4 # Photo Source Code
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 80fae374-63fa-4b17-83ea-d019359076ff
+            uid: 4a977759-e29b-45cb-9519-cf0ce956cc8c
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: b9d1def6-30f2-4133-8bb0-2b222faad34e # Burial Place
+            fieldUid: 8a1309e9-6990-4d93-9c45-6b2a0cdd0855 # Photo Sequence
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: fd47ad04-6682-4804-bbb9-ecef80bae340
+            uid: 90074cf0-52ff-44de-b088-fcf167291f94
             userCondition: null
             warning: null
             width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 73a69018-cf55-4606-bb7b-d8a9e8b1a2d0 # Occupation
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 6407fc89-f6f1-42fc-bd4f-a1642c78b72d
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 68e6a476-a21e-4f5e-bd09-3668de8c50ce # Author Bio
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 665f5408-c22b-4594-8b4b-00bedfe24c61
-            userCondition: null
-            warning: null
-            width: 100
-        name: Identity
-        uid: 87408374-03db-4515-bd4a-8ee312ccd9ff
+        name: Content
+        uid: ff71b0b9-81bd-41bc-95b2-36801d25d1e8
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: fdb7f91f-2ca8-4df3-b40b-ed08f4227c9f # Spouse Of
+            fieldUid: 1c84f22e-8bd7-4d95-9750-f1508f6d3a24 # Credit Raw
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 14f9688a-4f4f-4947-b560-6375b5157f1a
+            uid: 10839021-90aa-4421-9b05-bcff5a645fb6
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 80f1e2a4-562c-496b-a74e-5b9715a20d8d # Parent Of
+            fieldUid: 4d552843-9cf4-48e1-a3da-98f6d83b1405 # Credit DPI
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: a26ebc3c-95d2-4e8a-9477-f28d91ea7229
+            uid: 54127b2e-2155-43b9-b4d6-758ec7d06a6e
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 0043c112-7178-4dd3-a3ee-602d9127ed84 # Child Of
+            fieldUid: 2786ceab-a65b-49aa-b576-8cbeeb055d8d # Credit Process
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: da5ecd6b-0fe1-4006-8f2c-a11bd37dcc12
+            uid: 7a67ea59-dffc-4d86-ab49-cbdbcd1f4420
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 19daf868-e058-424b-ad9f-d24eba29d9b7 # Sibling Of
+            fieldUid: 1702e809-d8cf-49e7-bab1-02c9f2a38a21 # Credit Kind
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 13b9f062-37a9-45d8-a6fd-5102c89cdfd2
+            uid: cd3aaa8f-d33b-4d46-a32a-c92c03085187
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: dae6ce48-c5e5-4e45-bad8-4d5dc73348b1 # Related Persons
+            fieldUid: 5b52d50d-72b0-4b5f-85a8-6ef3c01415be # Credit Name
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 0dbf7641-6820-4e4f-852a-dff349c8e31f
+            uid: 15b75f70-4e54-4ac4-9d74-0b820e193555
             userCondition: null
             warning: null
             width: 100
-        name: Family
-        uid: e2677b6a-3f24-4f0c-a8da-70f1bf608c16
+        name: Credits
+        uid: 6724d418-167b-4ea2-ae0a-e0e68d8b7531
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 23d034f3-39ef-4b79-abc8-90d90848af4c # Person Organizations
+            fieldUid: 03b07b2a-45d6-42b3-935a-54ffa63a0168 # Archival Files
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ec8cf1df-98c2-433e-b0a0-aba4fb31ec82
+            uid: 1936d9f3-6dc5-4be4-81e6-45be5683d072
             userCondition: null
             warning: null
             width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 5ac21908-ed47-472d-ad63-d351ab78ec3e # Person Groups
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: eabe455c-d460-4835-b29b-9e365c435198
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 6cea5dc5-06a2-4154-94c8-463dfeec41d6 # Person Events
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 427531ca-aa44-4fc4-83e8-83d8d0bbf141
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 506d9eee-d8b7-4646-a6ee-df8151946554 # Articles About
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: b9b396bb-71c4-43de-9c75-5952d29e156c
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 1b1e1845-f71f-49d3-9032-e609d3014117 # Person Obituaries
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 726ffa30-dc74-42cc-90de-41f6ab201fbe
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 564391aa-8033-46f2-bbbf-6d65ac723b28 # Related Military
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 466ee752-7185-4a93-b3b2-e40f4a1ce21a
-            userCondition: null
-            warning: null
-            width: 100
-        name: Connections
-        uid: 3fa71560-d613-4ed8-853f-82d2a24d7531
+        name: Files
+        uid: 8092375c-7fbd-44d8-9d45-5c88b9218da8
         userCondition: null
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 14e21ca9-0e1e-4188-b24a-a00381ce2367 # Person Wikipedia URL
+            fieldUid: bb08d01a-acf3-432e-8b98-261865127073 # Photo People
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 1e84b82b-ec85-43d0-9395-a611697634b4
+            uid: 55d02262-029a-4682-8e91-06c86989da91
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 7f2b776b-bbf7-4fd8-8f9f-4f9e5b3ef56b # Person Find A Grave URL
+            fieldUid: 68602574-7525-4259-95bf-d8b04f848b01 # Photo Places
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 67322910-9a46-4817-bc91-f25fd90694c0
+            uid: 93ea3b71-a3b8-4019-bfbd-5a790bb7916e
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 869c1a3c-de72-4539-9c4f-c2a66302a5ad # Person Legacy URL
+            fieldUid: 194eacba-378f-4297-9417-e248ba6b415f # Photo Organizations
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 9f8b3976-230a-4a3f-ba67-e8fc1573a763
-            userCondition: null
-            warning: null
-            width: 100
-        name: External
-        uid: 7e8620fb-62b5-44b4-9338-da006ac9a5f7
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 554b9680-0f62-4708-b169-40c1d6a371cb # Person Webmaster Note Top
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 9aff74d7-f90b-41dd-bd26-f93a0c0f5239
+            uid: 536573aa-193a-4308-a081-c23450b877e3
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 5f666556-bbe0-4999-b3db-cf58e10d2fb8 # Person Webmaster Note Bottom
+            fieldUid: 5780ae3b-9f20-4b68-89bb-b5764129e401 # Photo Events
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 50f9df22-8371-4022-890c-58fbb8a02a57
+            uid: 046ef9a7-882f-4225-9ae6-a1a9329958a6
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 600ba13a-cb0b-455e-b5a3-ce47481e5ee5 # Person Fine Print
+            fieldUid: b6ff062a-24fa-45e0-910c-a8197e59eb77 # Photo Articles
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: f4bd47e2-f45b-4d88-93e0-7ee2e229b756
+            uid: 04b67eec-596a-44da-abd6-d009d7166156
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:27:52+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: f0a5c7de-ccc3-4005-84ee-53feaafc26e9 # Cultural Sensitivity Note
+            fieldUid: 2e9b908e-9a15-488d-9902-71afac2c77f0 # Photo Groups
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 07f3e514-092f-43b1-bf5d-e8de91e7114b
-            userCondition: null
-            warning: null
-            width: 100
-        name: Notes
-        uid: 5fd0e679-d19b-4d62-9da6-98f509329aa7
-        userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: 9a795a95-5db5-4474-951f-38f5f2fdd6d6 # Historical Era
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 71ebc414-58ee-4043-a607-bd24103e0328
+            uid: 2c5bca83-ed1d-4b0f-8139-47e106e4a085
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2026-04-15T17:26:38+00:00'
+            dateAdded: null
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: d710292c-42cd-463f-b92f-a2851d2f258b # Historical Period
+            fieldUid: f4a71c17-3c33-43f1-a285-d8e7ecae62fb # Related Photographs
             handle: null
             instructions: null
             label: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 86fde8bb-f191-4b79-9fb3-768eb278c10d
+            uid: 4f3d1a53-c732-40c2-a29f-109ebc3dfda7
             userCondition: null
             warning: null
             width: 100
-          -
-            dateAdded: '2026-04-15T17:26:38+00:00'
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: a9d40f84-91b6-40fe-b6c1-14b3a4315c67 # Neighborhood
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 43a9d15e-902d-4d1f-b27f-a31191b89535
-            userCondition: null
-            warning: null
-            width: 100
-        name: Taxonomy
-        uid: 2abf2cae-4e99-499a-917b-6280b84a7cb9
+        name: Relations
+        uid: c408902f-9c79-4ca5-baf7-5df2d65cb075
         userCondition: null
       -
         elementCondition: null
@@ -536,7 +392,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 6eb1568b-f941-45ea-91d5-8f0870e0d8e1
+            uid: 9ed21db1-b64b-4424-a7b4-a6981c3f1a12
             userCondition: null
             warning: null
             width: 100
@@ -552,7 +408,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: dd4efcf9-2646-438e-8db9-e69f46f76734
+            uid: b0613069-9306-42b3-904b-d05ff914f5b8
             userCondition: null
             warning: null
             width: 100
@@ -568,7 +424,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ecf83635-1a2f-460b-90ed-ab5763654f8c
+            uid: d1b2ca13-6926-4dd7-a067-3bb904b2b950
             userCondition: null
             warning: null
             width: 100
@@ -584,7 +440,7 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 43a2c8b3-12dd-4380-82d3-6cf8f8487f9f
+            uid: 7c1ace50-46da-41a6-ab43-3cd48f820cc5
             userCondition: null
             warning: null
             width: 100
@@ -600,23 +456,93 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 70ef47be-8bdb-4fe3-b0f1-a60dafdf2561
+            uid: 23f41d19-a49c-43ef-992a-56628c91e611
             userCondition: null
             warning: null
             width: 100
         name: Ingest
-        uid: 9ac52719-f18c-456d-a1ad-9ccd94eedd72
+        uid: cb40100b-2334-4307-8d96-e2218d15a3dd
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9a795a95-5db5-4474-951f-38f5f2fdd6d6 # Historical Era
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f11eb683-6028-4a7f-84e5-d157d7f37d86
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d710292c-42cd-463f-b92f-a2851d2f258b # Historical Period
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ed3a282f-3312-4f06-8ae7-2eb9c096e161
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a9d40f84-91b6-40fe-b6c1-14b3a4315c67 # Neighborhood
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 910e3207-f57d-4337-9b36-fcd98854fbc2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f0a5c7de-ccc3-4005-84ee-53feaafc26e9 # Cultural Sensitivity Note
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2382ed13-b760-48bb-90df-b59948c2370b
+            userCondition: null
+            warning: null
+            width: 100
+        name: Taxonomy
+        uid: a34a9f08-27dc-49d7-957d-5a85ca9c9f0e
         userCondition: null
     thumbFieldKey: null
-handle: person
-hasTitleField: false
+handle: photograph
+hasTitleField: true
 icon: null
-name: Person
+name: Photograph
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: '{fullName}'
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
 uiLabelFormat: '{title}'

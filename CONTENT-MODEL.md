@@ -14,6 +14,15 @@ Inventory source: `INVENTORY.md` (Jordy scan, 2026-09-15).
 - Taxonomy terms need verified linked-data URIs (Wikidata, AAT, LCSH). Never invent a URI; mark `NEEDS_VERIFICATION`.
 - Follow `TATAVIAM_AUDIT.md` for Tataviam, Chumash, Tongva, Serrano, Kitanemuk, and Vanyume.
 
+Nathan, 2026-09-15 (no Leon gate for ingest mapping):
+
+- Skip indexes, empty pages, and flipbook HTML
+- Object pages to photographs
+- `files/` packages to documents
+- Remainder HTML to articles
+- War memorial profiles to persons
+- Mentryville is one Organization plus one Place
+
 ## 1. Live schema
 
 Nine sections. 174 fields. One volume (`archiveMedia`). Three category groups (`historicalEra`, `historicalPeriod`, `neighborhood`). No Photograph section. No Document section.
@@ -227,20 +236,20 @@ Not installed (JSON only, in `taxonomy-import/`): subject-tags, place-type, org-
 | Inventory type | Count | Destination | Gap? |
 | --- | --- | --- | --- |
 | Object / photo page | 4,871 | New Photograph/Object section. `legacyKey` = item ID (`LW3094`). `gif/` jpeg = `featuredImage`. TIFF/PDF in `files/{id}` = assets on the same entry or on a related Document (see split rule) | **Yes** |
-| Article / essay / reprint | 2,430 | Existing Articles. Remainder class: essays, reprints, some topic landings, some long transcriptions | No new section. Leon sorts the remainder |
+| Article / essay / reprint | 2,430 | Existing Articles. Remainder HTML that is not an object page, obituary, or `files/` package | No |
 | Obituary | 635 | Existing Obituaries. `obitSubject` to Person when the person is identified | No |
-| Topic or place index | 554 | Place-named indexes (`acton.htm`, `bealescut.htm`, `castaic.htm`) to existing Places. Non-place indexes (`people.htm`, `film.htm`, `general.htm`) are not a new section | Leon on non-place indexes |
+| Topic or place index | 554 | Skip. Indexes are not entries | Skip |
 | Signal newspaper page | 450 | Articles. One Collection per series (Perkins, Reynolds, Worden, Boston, Manzer, Newsmaker, coins, Iraq) | No |
 | Old Town Newhall minisite | 275 | Articles. One Collection per Gazette run / columnist (`patti`, `pauline`, `rioux`, `whyte`) | No |
 | Yearbook landing | 122 | New Document section (editorial wrapper). The `files/*yearbook*` package is that Document's files | **Yes** (Document) |
 | War memorial profile | 36 | Existing Persons (entity-first). Military details stay in `body` / `legacyHtml` until the settled Person military merge | No new section |
-| Mentryville minisite | 9 | Organization (Friends of Mentryville) and/or Place (Mentryville), plus Articles for story pages | Leon: one Org, one Place, or both |
-| Pico minisite | 6 | Photograph/Object if the page has an item ID; otherwise Article or Document | Leon if mixed |
+| Mentryville minisite | 9 | One Organization (Friends of Mentryville) plus one Place (Mentryville). Story pages that remain are Articles | No |
+| Pico minisite | 6 | Object pages with item IDs to photographs. Remainder HTML to articles | No |
 | War memorial index | 4 | Not an entry. Derived listing later. Special pages are parked | Skip as a type |
 | Home | 2 | Not entries. Craft homepage | Skip |
 | Obituary index | 1 | Derived from Obituaries | Skip |
 | Orig copy | 1 | Duplicate of Signal Reynolds. Do not import | Skip |
-| Unclassified / empty | 33 | Stubs, empty titles, funeral-home link pages | Skip unless Leon says keep |
+| Unclassified / empty | 33 | Stubs, empty titles, funeral-home link pages | Skip |
 | Unreadable | 1 | AppleDouble `._index.htm` | Skip |
 | Apache directory listing | 20,702 | Not editorial | Skip |
 | Flipbook / yearbook package HTML | 3,559 | Not entries. The package becomes one Document plus assets | Skip as pages |
@@ -253,11 +262,11 @@ Entity-first still applies: do not import the 4,871 object pages or 2,430 articl
 
 - If the legacy page is an item-ID object page (`SCVHistory.com LW3094 | ...`), it is Photograph/Object, even when the item is a postcard, clipping, or letter.
 - If the work is a `scvhistory/files/{package}` directory (yearbook, inquest, cookbook, DEIR, PDF flipbook), it is one Document. Apache `Index of` pages and `basic-html/pageN.html` are not entries.
-- An object page may **link** a TIFF that lives in a Document package. That is a relation, not a reason to skip Photograph/Object. Confirm with Leon (question 4).
+- An object page may **link** a TIFF that lives in a Document package. That is a relation, not a reason to skip Photograph/Object.
 
-## 3. Proposed ingest gaps only
+## 3. Ingest gaps (implemented locally 2026-09-16)
 
-Do not implement these until Nathan approves this file (Task 3).
+Local DDEV only. Not applied on Cloudways. Not an import.
 
 ### 3.1 Photograph/Object section (new)
 
@@ -384,24 +393,10 @@ Do not add or redesign in this round:
 - CKEditor, new plugins
 - Task 3 schema implementation until this file is approved
 
-## 5. Questions for Leon
+## 5. Mapping closed by Nathan
 
-Do not guess. Ambiguous items stay here until he answers.
+No Leon gate for ingest mapping. Remaining research (item-ID prefix meanings, `articleLat`/`articleLng` purpose, Tataviam handling under `TATAVIAM_AUDIT.md`) can wait. It does not block Task 3.
 
-1. Of the 2,430 "article" pages, which are essays, which are full-document transcriptions (examples: `scvhistory/costanso-diary.htm`, `scvhistory/nadeau_waterseekers.htm`), and which are topic landings (`scvhistory/tataviam.htm`, `scvhistory/timeline.htm`)?
-2. Non-place indexes (`people.htm`, `film.htm`, `general.htm`, `news.htm`, `maps.htm`): skip as navigation, or turn into Collections?
-3. What do item-ID prefixes mean (LW 2,459, AP 237, AL 211, HS 163, HB 108, GB 100, and the rest)? Collector, series, or institution?
-4. Confirm the split: item-ID object page is always Photograph/Object; `files/` package is always one Document, even when the object page links a TIFF in that package.
-5. Related-thumb strips: store as `relatedPhotographs` and also keep the original HTML in `legacyHtml`? (Recommend both.)
-6. War memorial profiles (36): create Person entries now, and leave rank/unit/death date in `body` / `legacyHtml` until the settled Person military merge?
-7. Skip the 33 empty/unclassified files and funeral-home `*link.htm` pages?
-8. Friends of Mentryville: one Organization, one Place, or both?
-9. Pico's six pages (`pico/ap9011.htm` and siblings): Photograph/Object when an item ID is in the footer?
-10. Tataviam Culture (100 object pages, 121 articles): keep them on Photograph/Article with `culturalSensitivityNote`, no separate Indigenous section? Follow `TATAVIAM_AUDIT.md`.
-11. Article `articleLat` / `articleLng`: location the article is about, or unused? (Live fields, purpose unclear.)
+## 6. After Task 3
 
-When something might be a real historical entity vs a heading, add it here rather than creating a Craft type.
-
-## 6. After this file is approved
-
-Task 3: implement Photograph/Object, Document, the global ingest fields, and the credit parse fields in local DDEV so they land in `config/project/`. Do not change production. Do not start imports (Task 4) until entities exist.
+Schema is in local DDEV and `config/project/`. Do not apply on Cloudways. Do not start imports (Task 4) until entities exist. Entity-first still applies.
