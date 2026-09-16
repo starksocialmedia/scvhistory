@@ -1,5 +1,18 @@
 SCVHistory.com — Changelog
 
+2026-09-15
+
+- Agent: Grok Build
+- Task 1 inventory of `/Volumes/Jordy/SCVHistory/scvhistory.com` (read-only). Wrote `INVENTORY.md`
+- Live walk: 734,880 files, 655.59 GiB, 0 errors. Manifest (20 Aug 2026): 734,889 files
+- Editorial HTML classified: 9,430. Dominant types: object/photo pages 4,871, articles/essays 2,430, obituaries 635, place/topic indexes 554
+- `scvhistory/files/` is 1,043 document packages (TIFFs, PDFs, flipbook HTML, Apache indexes), not the editorial site
+- TIFFs on this mirror are all under `scvhistory/files/` (about 351 GiB). `gif/` has none
+- Scripts in `scripts/inventory/` are resumable and refuse to write to Jordy
+- Decisions: none. Did not start Task 2
+- Blockers: none. Jordy stayed mounted
+- Next: Task 2 `CONTENT-MODEL.md` after Nathan reviews `INVENTORY.md`
+
 2026-04-15
 
 - Built full 12-phase BUILDPLAN covering templates, Archive.org, API, Flutter, search, ElevenLabs, membership, legitimacy, data model, community, LOD
