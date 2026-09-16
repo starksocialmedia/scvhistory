@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Grok Build
 - Date: 2026-09-15
+- Done: Task 4 Person pilot. Extracted 25 war-memorial profiles from Jordy to JSON on the MacBook. Imported 25 new Person entries in local DDEV (created=25 skipped=0 failed=0). Local count 33 to 58. personGraveUrl left empty. No Cloudways.
+- Decisions: war memorial first; skip existing slugs; no relations; no replacement grave URLs
+- Blockers: none
+- Next: Nathan reviews the 25 before scaling. Cloudways Abel Stearns grave URL still needs a clear if that entry exists there
+
+2026-09-15
+
+- Agent: Grok Build
+- Date: 2026-09-15
 - Done: removed wrong Find A Grave URL for Abel Stearns from import scripts. Local Person entry already cleared in DDEV.
 - Decisions: no replacement memorial
 - Blockers: none
