@@ -20,9 +20,16 @@ SCVHistory.com is a nearly 30-year-old Santa Clarita Valley history archive crea
 - Local mirror of the full legacy site: external 1TB ExFAT drive "Woodson", mounted at `/Volumes/Woodson` on the iMac (~729GB, includes TIFFs)
 - Code: private GitHub repo under the Stark Social org. Use it to move files between machines
 - Craft CMS: local via DDEV on the MacBook; production on Cloudways
-- Craft version: [FILL IN]
-- DDEV project path: [FILL IN]
-- Current state: 33 Person entries imported. Import method: [FILL IN]
+- Craft version: 5 (composer constraint `^5.9.20`)
+- DDEV project path: `~/scvhistory` on the MacBook (Docker must be running for DDEV)
+- Repo: `git@github.com:starksocialmedia/scvhistory.git`
+- Current state: modeling is well underway, not starting from scratch. 33 Person entries imported. See CHANGELOG.md for full history
+- Existing work in the repo (read before proposing anything):
+  - `taxonomy-import/`: 11 taxonomy JSON files with verified Wikidata, AAT, and LCSH URIs
+  - `TATAVIAM_AUDIT.md`: Indigenous cultural audit covering Tataviam, Chumash, Tongva, Serrano, Kitanemuk, and Vanyume. Follow it for any content touching these peoples
+  - `templates/_partials/jsonld/person.twig`: Person JSON-LD partial
+  - `config/project/`: the current Craft schema
+  - Any other .md docs in the repo root
 - Tools available: DDEV, Python, bash, curl, wget
 
 ## Known problem: the drive dismounts unexpectedly
@@ -46,6 +53,15 @@ Woodson sometimes dismounts mid-task. ExFAT has no journaling, so an interrupted
 - Never ask for or handle credentials (Cloudways, Cloudflare, Archive.org). Write the command; Nathan runs it
 - **End every session with a dated CHANGELOG.md entry**: what was done, decisions made, blockers, next steps
 
+## Settled decisions (do not relitigate)
+
+- Roles Matrix field replaces plain-text occupation on Person
+- Military Profile is merged into Person as a conditional field group
+- Import pipeline is entity-first: never import articles before canonical entities exist
+- Taxonomies use verified linked-data URIs (Wikidata, AAT, LCSH)
+
+Check CHANGELOG.md for any later decisions before acting.
+
 ## Task 1: Content inventory (do this before modeling)
 
 Goal: understand what is actually on the drive before designing anything.
@@ -57,22 +73,20 @@ Deliverable: `INVENTORY.md` containing
 - Recurring metadata visible in pages: dates, photo IDs, credits, captions, sources, bylines
 - Estimated count of pages per type
 
-## Task 2: Propose the content model
+## Task 2: Audit and extend the content model
 
-Deliverable: `CONTENT-MODEL.md` for Nathan and Leon to review **before** anything is built. Leon will help with entity identification, so flag anything ambiguous as a question for him.
+Deliverable: `CONTENT-MODEL.md` documenting the model as it exists in `config/project/`, then proposing what is missing, for Nathan and Leon to review **before** anything is built. Leon will help with entity identification, so flag anything ambiguous as a question for him.
 
-Starting hypotheses to test against the inventory (not settled):
-- Entities as channel sections: People (exists), Places, Organizations, Events
-- Content: Articles/Pages (the legacy narrative pages)
-- Media: Photos and documents as Assets with metadata fields (Leon's photo/item ID, date, credit, source, caption)
-- Classification: Topics and Eras, likely as a structure section so they can relate to everything
-- Relations between entities via Entries fields (e.g., Article relates to People, Places, Events)
+Steps:
+1. Document the current sections, entry types, fields, and relations from `config/project/` and the settled decisions above
+2. Map every page type from INVENTORY.md to an existing section, or mark it as a gap
+3. Propose additions only for the gaps. Likely candidates to check: Places, Organizations, Events, Articles/Pages, Photos and documents as Assets (Leon's item ID, date, credit, source, caption), Topics and Eras
 
-Required on every migrated entry:
+Required on every migrated entry (confirm whether these already exist):
 - `legacyUrl`: original SCVHistory.com path, for 301 redirects and traceability
 - `sourcePath`: path on the Woodson drive the content came from
 
-For each section, specify: section type, entry type(s), fields (handle, type, required or not), relations, and which legacy page type maps to it.
+For each new or changed section, specify: section type, entry type(s), fields (handle, type, required or not), relations, and which legacy page type maps to it.
 
 ## Task 3: Build the model
 
@@ -80,7 +94,7 @@ After Nathan approves CONTENT-MODEL.md, implement it in the local DDEV install s
 
 ## Task 4: Pilot import
 
-Pick one content type (expanding People beyond the current 33 is the natural start). Build a repeatable import: extract from HTML to a clean JSON or CSV on the internal disk, then import into Craft. Verify a sample by hand with Nathan before scaling up.
+Follow the entity-first rule: canonical entities (People, Places, Organizations, taxonomies) before any articles. Expanding People beyond the current 33 is the natural start. Build a repeatable import: extract from HTML to a clean JSON or CSV on the internal disk, then import into Craft. Verify a sample by hand with Nathan before scaling up.
 
 ## Task 5: Batch migration
 
