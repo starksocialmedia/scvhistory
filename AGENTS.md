@@ -5,12 +5,14 @@ Before doing anything, read these in full:
 2. `CHANGELOG.md`: history and latest decisions
 3. `CONTENT-MODEL.md` and `INVENTORY.md` if they exist
 
+All legacy SCVHistory.com content is moving into this Craft build. Craft becomes the new site.
+
 Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files are the shared memory. Do not rely on anything not written here.
 
 ## Roles
 
-- **Grok Build** (runs locally on Nathan's MacBook in `~/scvhistory`): content modeling, Craft schema work in DDEV, import scripts. Owns Tasks 2 through 5 in HANDOFF.md.
-- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Leon Worden to review. Cannot access the Woodson drive or local DDEV.
+- **Grok Build** (runs locally on Nathan's MacBook in `~/scvhistory`): content inventory, modeling, Craft schema work in DDEV, import scripts. Owns Tasks 1 through 5 in HANDOFF.md. Source content is at `/Volumes/Jordy/SCVHistory` (read-only; the drive can dismount, see HANDOFF.md).
+- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Leon Worden to review. Cannot access the Jordy drive or local DDEV. The legacy content lives on Jordy, not the live site: do not crawl scvhistory.com.
 - **Grok chat and Claude**: review and advice. Changes come back through Nathan.
 
 ## Git rules

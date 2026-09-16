@@ -4,7 +4,7 @@ Read this file and CHANGELOG.md at the start of every session. Multiple AI assis
 
 ## The project
 
-SCVHistory.com is a nearly 30-year-old Santa Clarita Valley history archive created by Leon Worden (journalist/historian). Nathan (Stark Social) is migrating its content into a new Craft CMS build. A nonprofit, Santa Clarita History Archives, is being formed to steward the site long-term, targeting a 2027 launch for the site's 30th anniversary.
+SCVHistory.com is a nearly 30-year-old Santa Clarita Valley history archive created by Leon Worden (journalist/historian). Nathan (Stark Social) is moving **all** of its content into a new Craft CMS build. Craft becomes the new SCVHistory.com. The local copy of the legacy site is source material only. A nonprofit, Santa Clarita History Archives, is being formed to steward the site long-term, targeting a 2027 launch for the site's 30th anniversary.
 
 ## Priorities (in order)
 
@@ -14,10 +14,9 @@ SCVHistory.com is a nearly 30-year-old Santa Clarita Valley history archive crea
 
 ## Environment
 
-- Two machines:
-  - **iMac** (2020): has the Woodson drive attached. Content inventory and extraction run here. No DDEV installed.
-  - **MacBook**: has the local Craft CMS build via DDEV. Content modeling and imports run here.
-- Local mirror of the full legacy site: external 1TB ExFAT drive "Woodson", mounted at `/Volumes/Woodson` on the iMac (~729GB, includes TIFFs)
+- **MacBook** is the working machine: local Craft build via DDEV, and the source drive is attached here. Inventory, modeling, extraction, and imports all run on the MacBook.
+- **Source content:** external drive "Jordy", legacy site at `/Volumes/Jordy/SCVHistory` on the MacBook
+- **iMac** (2020): also holds a full mirror on the "Woodson" drive (~729GB, includes TIFFs). Not used for this work; no DDEV installed
 - Code: private GitHub repo under the Stark Social org. Use it to move files between machines
 - Craft CMS: local via DDEV on the MacBook; production on Cloudways
 - Craft version: 5 (composer constraint `^5.9.20`)
@@ -34,9 +33,9 @@ SCVHistory.com is a nearly 30-year-old Santa Clarita Valley history archive crea
 
 ## Known problem: the drive dismounts unexpectedly
 
-Woodson sometimes dismounts mid-task. ExFAT has no journaling, so an interrupted write can corrupt files. Every script must account for this:
+The source drive sometimes dismounts mid-task. An interrupted write can corrupt files. Every script must account for this:
 
-- Check the drive is mounted before doing anything, and stop cleanly if it is not
+- Check `/Volumes/Jordy/SCVHistory` exists before doing anything, and stop cleanly if it is not
 - Treat the drive as **read-only source**. Never write output back to it
 - Write outputs to the iMac's internal disk
 - Make scripts resumable: keep a manifest or checkpoint file of what has been processed, and skip completed items on rerun
@@ -64,7 +63,7 @@ Check CHANGELOG.md for any later decisions before acting.
 
 ## Task 1: Content inventory (do this before modeling)
 
-Goal: understand what is actually on the drive before designing anything.
+Goal: understand what is actually in `/Volumes/Jordy/SCVHistory` before extending the model. Read-only; no bulk copying.
 
 Deliverable: `INVENTORY.md` containing
 - File counts and total size by extension
@@ -84,7 +83,7 @@ Steps:
 
 Required on every migrated entry (confirm whether these already exist):
 - `legacyUrl`: original SCVHistory.com path, for 301 redirects and traceability
-- `sourcePath`: path on the Woodson drive the content came from
+- `sourcePath`: path under `/Volumes/Jordy/SCVHistory` the content came from
 
 For each new or changed section, specify: section type, entry type(s), fields (handle, type, required or not), relations, and which legacy page type maps to it.
 
@@ -109,4 +108,4 @@ Run the remaining types in batches, following the drive rules above. Log counts 
 ## Lessons already learned
 
 - TIFFs in `/scvhistory/files/` download with curl using browser headers; wget fails. See `download-tiffs.sh`
-- The HTML on the drive has already been cleaned of ads, trackers, gtag, and Disqus code by a Python script (verified by diff)
+- The HTML in the mirror has already been cleaned of ads, trackers, gtag, and Disqus code by a Python script (verified by diff)
