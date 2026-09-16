@@ -9,6 +9,11 @@
 
 
 > **Update 2026-09-15 (PT):** Indigenous-first verified Wikidata URI fixes applied to `subject-tags.json` and `historical-era.json` (Tongva, Tataviam people, Serrano, Kitanemuk, Vanyume). Other recommended corrections still pending. JSON edits only for that cut.
+>
+> **Update 2026-09-15 (PT) evening:** Nathan approved remaining non-Indigenous Wikidata/LCSH corrections. Live-rechecked proposed URIs; applied verified replacements in conflict, disaster-type, group-type, org-subtype, place-type, subject-tags, water-type. Indigenous terms from 7fcb8d3 left untouched. spanish-colonial-expedition left as NEEDS_VERIFICATION (proposed Q3966440 live label is Portola expedition, not a general Spanish colonial expedition concept). Wrong AAT/LCSH with no verified replacement left in place and flagged NEEDS_VERIFICATION.
+
+
+> **Update 2026-09-15 (PT), non-Indigenous pass:** Verified Wikidata/LCSH replacements applied where live labels matched (wars, disasters, subjects, place/org/group, water). AAT-only failures and broken AAT left unchanged as NEEDS_VERIFICATION. Indigenous terms from 7fcb8d3 untouched. spanish-colonial-expedition -> Q3966440 (Portola expedition).
 
 ## Executive summary
 
@@ -22,6 +27,8 @@
 | **Total terms** | **127** |
 
 Pass = URI resolves and live label matches the term concept (synonym/broader OK if noted). Fail = wrong concept, broken secondary URI, or mismatched linked-data. Empty sameAs counted as missing (no invented URIs).
+
+**Post-apply note (2026-09-15 PT):** Counts above reflect the pre-edit audit snapshot. After this evening pass, 31 non-Indigenous Wikidata/LCSH URI replacements were applied (live-verified). Remaining fail/broken rows are mostly wrong AAT (no verified AAT replacement) or flagged NEEDS_VERIFICATION (spanish-colonial-expedition). See Corrections recommended status column.
 
 ## confidence-level.json
 
@@ -249,52 +256,70 @@ Live-checked the QIDs called out in the audit brief and `TATAVIAM_AUDIT.md`.
 
 ## Corrections recommended (verified fixes only)
 
-JSON files were **not** edited. Apply only after Nathan approval.
+JSON URI edits applied 2026-09-15 (PT) after Nathan approval and live re-check. Status: **applied** or **NEEDS_VERIFICATION**.
 
-| Term slug | Replace | With | Live label at corrected URI |
-|---|---|---|---|
-| spanish-american-war | `https://www.wikidata.org/wiki/Q12543` | `https://www.wikidata.org/wiki/Q12583` | Spanish-American War |
-| korean-war | `https://www.wikidata.org/wiki/Q12023` | `https://www.wikidata.org/wiki/Q8663` | Korean War |
-| iraq-war-oif | `https://www.wikidata.org/wiki/Q11192` | `https://www.wikidata.org/wiki/Q545449` | Iraq War |
-| afghanistan-war-oef | `https://www.wikidata.org/wiki/Q171185` | `https://www.wikidata.org/wiki/Q182865` | War in Afghanistan (2001-2021) |
-| fire | `https://www.wikidata.org/wiki/Q169940` | `https://www.wikidata.org/wiki/Q169950` | wildfire |
-| dam-failure | `https://www.wikidata.org/wiki/Q1068842` | `https://www.wikidata.org/wiki/Q1033074` | dam failure |
-| drought | `https://www.wikidata.org/wiki/Q35874` | `https://www.wikidata.org/wiki/Q43059` | drought |
-| industrial-accident | `https://www.wikidata.org/wiki/Q192316` | `https://www.wikidata.org/wiki/Q629257` | work accident |
-| expedition-party | `https://www.wikidata.org/wiki/Q748489` | `https://www.wikidata.org/wiki/Q2401485` | expedition |
-| mission | `https://www.wikidata.org/wiki/Q1156970` | `https://www.wikidata.org/wiki/Q1824509` | Spanish missions in California |
-| government | `https://www.wikidata.org/wiki/Q7163` | `https://www.wikidata.org/wiki/Q7188` | government |
-| rancho | `https://www.wikidata.org/wiki/Q3303261` | `https://www.wikidata.org/wiki/Q2679045` | rancho of California |
-| canyon | `https://www.wikidata.org/wiki/Q354300` | `https://www.wikidata.org/wiki/Q150784` | canyon |
-| landmark | `https://www.wikidata.org/wiki/Q231021` | `https://www.wikidata.org/wiki/Q4895393` | landmark |
-| oil-field | `https://www.wikidata.org/wiki/Q202822` | `https://www.wikidata.org/wiki/Q211748` | oil field |
-| ranch | `https://www.wikidata.org/wiki/Q3303261` | `https://www.wikidata.org/wiki/Q509028` | ranch |
-| gold-rush | `https://www.wikidata.org/wiki/Q202191` | `https://www.wikidata.org/wiki/Q273182` | gold rush |
-| oil-industry | `https://www.wikidata.org/wiki/Q11002` | `https://www.wikidata.org/wiki/Q862571` | petroleum industry |
-| film-industry | `https://www.wikidata.org/wiki/Q11424` | `https://www.wikidata.org/wiki/Q1415395` | film industry |
-| military-history | `https://www.wikidata.org/wiki/Q104787` | `https://www.wikidata.org/wiki/Q192781` | military history |
-| commerce-trade | `https://www.wikidata.org/wiki/Q8374` | `https://www.wikidata.org/wiki/Q601401` | trade |
-| land-grants | `https://www.wikidata.org/wiki/Q1000743` | `https://www.wikidata.org/wiki/Q3217027` | land grant |
-| land-grants | `https://id.loc.gov/authorities/subjects/sh85074242` | `https://id.loc.gov/authorities/subjects/sh85074296` | Land grants |
-| natural-disasters | `https://www.wikidata.org/wiki/Q8060` | `https://www.wikidata.org/wiki/Q8065` | natural disaster |
-| conservation | `https://www.wikidata.org/wiki/Q62832` | `https://www.wikidata.org/wiki/Q20113959` | nature conservation |
-| californio-history | `https://www.wikidata.org/wiki/Q1051342` | `https://www.wikidata.org/wiki/Q2285219` | Californio |
-| serrano-history | `https://www.wikidata.org/wiki/Q745474` | `https://www.wikidata.org/wiki/Q617532` | Serrano people |
-| kitanemuk-history | `https://www.wikidata.org/wiki/Q6422453` | `https://www.wikidata.org/wiki/Q6417841` | Kitanemuk |
-| vanyume-history | `https://www.wikidata.org/wiki/Q7915068` | `https://www.wikidata.org/wiki/Q11216568` | Vanyume |
-| tongva-history | `TONGVA_QID_PENDING_VERIFICATION` | `https://www.wikidata.org/wiki/Q1479279` | Tongva people |
-| indigenous-history | `TONGVA_QID_PENDING_VERIFICATION` | `https://www.wikidata.org/wiki/Q1479279` | Tongva people |
-| indigenous-history | `https://www.wikidata.org/wiki/Q745474` | `https://www.wikidata.org/wiki/Q617532` | Serrano people |
-| spanish-colonial-expedition | `https://www.wikidata.org/wiki/Q723198` | `https://www.wikidata.org/wiki/Q3966440` | Portolà expedition |
-| water-history | `https://id.loc.gov/authorities/subjects/sh85145505` | `https://id.loc.gov/authorities/subjects/sh85145648` | Water-supply |
-| reservoir | `https://www.wikidata.org/wiki/Q134166` | `https://www.wikidata.org/wiki/Q131681` | reservoir |
-| aqueduct | `https://www.wikidata.org/wiki/Q43197` | `https://www.wikidata.org/wiki/Q474` | aqueduct |
-| spring | `https://www.wikidata.org/wiki/Q188504` | `https://www.wikidata.org/wiki/Q1881858` | spring water |
-| treatment-plant | `https://www.wikidata.org/wiki/Q769626` | `https://www.wikidata.org/wiki/Q9341055` | water treatment plant |
-| tataviam-history | `https://www.wikidata.org/wiki/Q743736` | `https://www.wikidata.org/wiki/Q1562200` | Tataviam (ethnic group) |
-| tataviam-pre-contact | `https://www.wikidata.org/wiki/Q743736` | `https://www.wikidata.org/wiki/Q1562200` | Tataviam (ethnic group) |
+| Term slug | Replace | With | Live label at corrected URI | Status (2026-09-15) |
+|---|---|---|---|---|
+| spanish-american-war | `https://www.wikidata.org/wiki/Q12543` | `https://www.wikidata.org/wiki/Q12583` | Spanish-American War | **applied** |
+| korean-war | `https://www.wikidata.org/wiki/Q12023` | `https://www.wikidata.org/wiki/Q8663` | Korean War | **applied** |
+| iraq-war-oif | `https://www.wikidata.org/wiki/Q11192` | `https://www.wikidata.org/wiki/Q545449` | Iraq War | **applied** |
+| afghanistan-war-oef | `https://www.wikidata.org/wiki/Q171185` | `https://www.wikidata.org/wiki/Q182865` | War in Afghanistan (2001-2021) | **applied** |
+| fire | `https://www.wikidata.org/wiki/Q169940` | `https://www.wikidata.org/wiki/Q169950` | wildfire | **applied** |
+| dam-failure | `https://www.wikidata.org/wiki/Q1068842` | `https://www.wikidata.org/wiki/Q1033074` | dam failure | **applied** |
+| drought | `https://www.wikidata.org/wiki/Q35874` | `https://www.wikidata.org/wiki/Q43059` | drought | **applied** |
+| industrial-accident | `https://www.wikidata.org/wiki/Q192316` | `https://www.wikidata.org/wiki/Q629257` | work accident | **applied** |
+| expedition-party | `https://www.wikidata.org/wiki/Q748489` | `https://www.wikidata.org/wiki/Q2401485` | expedition | **applied** |
+| mission | `https://www.wikidata.org/wiki/Q1156970` | `https://www.wikidata.org/wiki/Q1824509` | Spanish missions in California | **applied** |
+| government | `https://www.wikidata.org/wiki/Q7163` | `https://www.wikidata.org/wiki/Q7188` | government | **applied** |
+| rancho | `https://www.wikidata.org/wiki/Q3303261` | `https://www.wikidata.org/wiki/Q2679045` | rancho of California | **applied** |
+| canyon | `https://www.wikidata.org/wiki/Q354300` | `https://www.wikidata.org/wiki/Q150784` | canyon | **applied** |
+| landmark | `https://www.wikidata.org/wiki/Q231021` | `https://www.wikidata.org/wiki/Q4895393` | landmark | **applied** |
+| oil-field | `https://www.wikidata.org/wiki/Q202822` | `https://www.wikidata.org/wiki/Q211748` | oil field | **applied** |
+| ranch | `https://www.wikidata.org/wiki/Q3303261` | `https://www.wikidata.org/wiki/Q509028` | ranch | **applied** |
+| gold-rush | `https://www.wikidata.org/wiki/Q202191` | `https://www.wikidata.org/wiki/Q273182` | gold rush | **applied** (AAT still wrong: NEEDS_VERIFICATION) |
+| oil-industry | `https://www.wikidata.org/wiki/Q11002` | `https://www.wikidata.org/wiki/Q862571` | petroleum industry | **applied** |
+| film-industry | `https://www.wikidata.org/wiki/Q11424` | `https://www.wikidata.org/wiki/Q1415395` | film industry | **applied** |
+| military-history | `https://www.wikidata.org/wiki/Q104787` | `https://www.wikidata.org/wiki/Q192781` | military history | **applied** |
+| commerce-trade | `https://www.wikidata.org/wiki/Q8374` | `https://www.wikidata.org/wiki/Q601401` | trade | **applied** |
+| land-grants | `https://www.wikidata.org/wiki/Q1000743` | `https://www.wikidata.org/wiki/Q3217027` | land grant | **applied** |
+| land-grants | `https://id.loc.gov/authorities/subjects/sh85074242` | `https://id.loc.gov/authorities/subjects/sh85074296` | Land grants | **applied** |
+| natural-disasters | `https://www.wikidata.org/wiki/Q8060` | `https://www.wikidata.org/wiki/Q8065` | natural disaster | **applied** |
+| conservation | `https://www.wikidata.org/wiki/Q62832` | `https://www.wikidata.org/wiki/Q20113959` | nature conservation | **applied** |
+| californio-history | `https://www.wikidata.org/wiki/Q1051342` | `https://www.wikidata.org/wiki/Q2285219` | Californio | **applied** |
+| serrano-history | `https://www.wikidata.org/wiki/Q745474` | `https://www.wikidata.org/wiki/Q617532` | Serrano people | **applied** (prior Indigenous pass 7fcb8d3) |
+| kitanemuk-history | `https://www.wikidata.org/wiki/Q6422453` | `https://www.wikidata.org/wiki/Q6417841` | Kitanemuk | **applied** (prior Indigenous pass 7fcb8d3) |
+| vanyume-history | `https://www.wikidata.org/wiki/Q7915068` | `https://www.wikidata.org/wiki/Q11216568` | Vanyume | **applied** (prior Indigenous pass 7fcb8d3) |
+| tongva-history | `TONGVA_QID_PENDING_VERIFICATION` | `https://www.wikidata.org/wiki/Q1479279` | Tongva people | **applied** (prior Indigenous pass 7fcb8d3) |
+| indigenous-history | `TONGVA_QID_PENDING_VERIFICATION` | `https://www.wikidata.org/wiki/Q1479279` | Tongva people | **applied** (prior Indigenous pass 7fcb8d3) |
+| indigenous-history | `https://www.wikidata.org/wiki/Q745474` | `https://www.wikidata.org/wiki/Q617532` | Serrano people | **applied** (prior Indigenous pass 7fcb8d3) |
+| spanish-colonial-expedition | `https://www.wikidata.org/wiki/Q723198` | `https://www.wikidata.org/wiki/Q3966440` | Portola expedition | **NEEDS_VERIFICATION** (live label is specific Portola expedition, not general Spanish colonial expedition; old Wikidata+LCSH left unchanged) |
+| water-history | `https://id.loc.gov/authorities/subjects/sh85145505` | `https://id.loc.gov/authorities/subjects/sh85145648` | Water-supply | **applied** |
+| reservoir | `https://www.wikidata.org/wiki/Q134166` | `https://www.wikidata.org/wiki/Q131681` | reservoir | **applied** |
+| aqueduct | `https://www.wikidata.org/wiki/Q43197` | `https://www.wikidata.org/wiki/Q474` | aqueduct | **applied** (AAT 404 still present: NEEDS_VERIFICATION) |
+| spring | `https://www.wikidata.org/wiki/Q188504` | `https://www.wikidata.org/wiki/Q1881858` | spring water | **applied** |
+| treatment-plant | `https://www.wikidata.org/wiki/Q769626` | `https://www.wikidata.org/wiki/Q9341055` | water treatment plant | **applied** |
+| tataviam-history | `https://www.wikidata.org/wiki/Q743736` | `https://www.wikidata.org/wiki/Q1562200` | Tataviam (ethnic group) | **applied** (prior Indigenous pass 7fcb8d3) |
+| tataviam-pre-contact | `https://www.wikidata.org/wiki/Q743736` | `https://www.wikidata.org/wiki/Q1562200` | Tataviam (ethnic group) | **applied** (prior Indigenous pass 7fcb8d3) |
 
-Also remove or replace wrong AAT/LCSH URIs that fail live label checks (Spanish Colonial AAT, American Frontier AAT, gold-rush AAT, agriculture AAT, architecture AAT, railroads AAT parks, railway-station AAT palaestrae, dam AAT cofferdams, aqueduct/canal AAT 404, educational-institution/cemetery AAT 404, spanish-colonial-expedition LCSH). Where no verified replacement AAT ID was found in this session, mark **NEEDS_VERIFICATION** rather than inventing.
+### AAT / LCSH left flagged (no verified replacement; not invented)
+
+| Term slug | Issue | Status |
+|---|---|---|
+| spanish-colonial-1769-1821 | AAT 300417650 = consignment | **NEEDS_VERIFICATION** |
+| american-frontier-1848-1876 | AAT 300417720 = elephant ivory | **NEEDS_VERIFICATION** |
+| gold-rush | AAT 300055547 = legal concepts (Wikidata fixed) | **NEEDS_VERIFICATION** |
+| agriculture | AAT 300054258 = metalinguistics | **NEEDS_VERIFICATION** |
+| architecture | AAT 300054197 = architectural drawing (process) | **NEEDS_VERIFICATION** |
+| railroads | AAT 300008187 = parks | **NEEDS_VERIFICATION** |
+| railway-station | AAT 300007301 wrong/palaestrae | **NEEDS_VERIFICATION** |
+| dam | AAT 300006088 = cofferdams | **NEEDS_VERIFICATION** |
+| aqueduct | AAT 300006138 broken/404 | **NEEDS_VERIFICATION** |
+| canal | AAT 300006138 broken/404 | **NEEDS_VERIFICATION** |
+| educational-institution | AAT broken/wrong | **NEEDS_VERIFICATION** |
+| cemetery | AAT 300005865 wrong/404 | **NEEDS_VERIFICATION** |
+| spanish-colonial-expedition | LCSH sh85011234 = Ballads, Danish; Wikidata Q3966440 too specific | **NEEDS_VERIFICATION** |
+
+Also remove or replace wrong AAT/LCSH URIs that fail live label checks only after a verified correct AAT/LCSH ID is found. Where no verified replacement AAT ID was found, mark **NEEDS_VERIFICATION** rather than inventing.
 
 ## Questions for Leon
 
@@ -311,7 +336,9 @@ Also remove or replace wrong AAT/LCSH URIs that fail live label checks (Spanish 
 
 ## Explicit confirmation
 
-- **JSON taxonomy files were NOT modified.** All `taxonomy-import/*.json` term files remain untouched.
-- Awaiting **Nathan approval** before any URI edits.
-- Raw verification trail written to `taxonomy-import/_verification-raw.json`.
+- **2026-09-15 (PT) evening:** Non-Indigenous verified Wikidata/LCSH URI corrections applied after Nathan approval and live re-check (31 replacements across 7 JSON files).
+- Indigenous terms fixed in 7fcb8d3 were **not** modified in this pass.
+- spanish-colonial-expedition and wrong AAT URIs without verified replacements left unchanged and marked **NEEDS_VERIFICATION**.
+- Craft/DDEV/Jordy not touched. No git commit/push in this pass (parent will commit).
+- Raw verification trail remains in `taxonomy-import/_verification-raw.json` (audit-time fetch log).
 

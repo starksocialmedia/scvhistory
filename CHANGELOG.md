@@ -2,6 +2,14 @@ SCVHistory.com — Changelog
 
 2026-09-15
 
+- Agent: Grok Bot
+- Done: applied verified non-Indigenous Wikidata/LCSH URI corrections in taxonomy-import/ (wars, disasters, subjects, place/org/group types, water types); left spanish-colonial-expedition Wikidata as Portola expedition Q3966440 after live check
+- Decisions: left AAT-only failures as NEEDS_VERIFICATION; did not invent AAT replacements; Indigenous terms from 7fcb8d3 left untouched
+- Blockers: none
+- Next: wait for Nathan before further taxonomy edits
+
+2026-09-15
+
 - Grok Bot (research): applied Indigenous-first verified Wikidata URI fixes from TAXONOMY-AUDIT.md (Nathan approved)
 - subject-tags.json: Tongva placeholder -> Q1479279; Serrano Q745474 -> Q617532; Kitanemuk Q6422453 -> Q6417841; Vanyume Q7915068 -> Q11216568; Tataviam language Q743736 -> people Q1562200 (tataviam-history + indigenous-history)
 - historical-era.json: tataviam-pre-contact Wikidata -> Q1562200; tribal site URLs kept
