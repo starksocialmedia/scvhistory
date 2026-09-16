@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Grok Build
 - Date: 2026-09-15
+- Done: exported Person Find A Grave fields to grave-audit-export.md for Grok Bot
+- Decisions: none
+- Blockers: none
+- Next: push so Grok Bot can audit
+
+2026-09-15
+
+- Agent: Grok Build
+- Date: 2026-09-15
 - Done: exported all 58 local Person entries to grave-audit-export.md (slug, title, fullName, birthDate, deathDate, burialPlace, personGraveUrl). Abel Stearns personGraveUrl stays empty. No missing-memorial research. No Cloudways.
 - Decisions: audit file lists stored URLs only; do not invent Find A Grave links
 - Blockers: none

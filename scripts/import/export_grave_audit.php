@@ -2,16 +2,6 @@
 
 use craft\elements\Entry;
 
-$abel = Entry::find()->section('persons')->slug('abel-stearns')->status(null)->one();
-if ($abel && trim((string) $abel->personGraveUrl) !== '') {
-    $abel->setFieldValues(['personGraveUrl' => '']);
-    if (!Craft::$app->getElements()->saveElement($abel)) {
-        echo "STOP: could not clear Abel Stearns personGraveUrl\n";
-        return;
-    }
-    echo "cleared Abel Stearns personGraveUrl\n";
-}
-
 $people = Entry::find()->section('persons')->status(null)->orderBy('title ASC')->all();
 
 function cell($value): string
