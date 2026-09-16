@@ -10,8 +10,8 @@ Nathan decides. No Leon gate. No Craft import in this session.
 | Section type | structure |
 | Entry type | `collection` |
 | URI | `collections/{slug}` |
-| Configured template | `_entries/collections` |
-| Entries in local DDEV | 0 |
+| Configured template | `collections/_entry` |
+| Entries in local DDEV | 13 series stubs (2026-09-16) |
 
 ### Fields on the live layout
 

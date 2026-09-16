@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Grok Build
 - Date: 2026-09-16
+- Done: Places hub live at /places (39 stubs, neighborhood filter, no map). Series live at /collections (13 Signal/OTN stubs, no articles). Templates places/_entry and collections/_entry. 301 tables stay in hub files only.
+- Decisions: Place body is a one-line ID; neighborhood tagged only when the term already exists; Mentryville Place kept separate from Organization; Tataviam Culture is not a Place
+- Blockers: none
+- Next: Nathan reviews /places and /collections before article attach or Cloudways 301s
+
+2026-09-16
+
+- Agent: Grok Build
+- Date: 2026-09-16
 - Done: 11 memorials imported into warMemorials from Jordy; hub specs written (PLACES-HUB.md, COLLECTIONS-HUB.md); Persons unchanged (33)
 - Decisions: remaining WWII profiles go to warMemorials, not Persons; no Place or Collection import
 - Blockers: none

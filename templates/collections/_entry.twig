@@ -1,0 +1,82 @@
+{% extends "_layouts/base" %}
+
+{% set articles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).orderBy('title ASC').all() %}
+{% set writers = entry.writtenBy.all() %}
+{% set legacy = entry.legacyUrl %}
+
+{% block content %}
+<div class="scv-article-wrap">
+  <main>
+    <article class="scv-entry">
+      <nav class="scv-breadcrumb">
+        <a href="{{ siteUrl }}">Home</a>
+        <span class="scv-bc-sep">›</span>
+        <a href="{{ url('collections') }}">Series</a>
+        <span class="scv-bc-sep">›</span>
+        <span>{{ entry.title }}</span>
+      </nav>
+
+      <header class="scv-entry-header">
+        <div class="scv-entry-header__text">
+          <h1 class="scv-entry-title">{{ entry.title }}</h1>
+        </div>
+      </header>
+
+      <hr class="scv-header-rule">
+
+      {% if entry.body %}
+        <div class="scv-entry-body">
+          {{ entry.body|nl2br }}
+        </div>
+      {% endif %}
+
+      <div class="scv-person-section">
+        <h2 class="scv-person-section__title">Articles</h2>
+        {% if articles|length %}
+          <ul class="scv-subject-persons">
+            {% for art in articles %}
+              <li class="scv-subject-person">
+                <a href="{{ art.url }}" class="scv-subject-person__link">
+                  <div class="scv-subject-person__name">{{ art.title }}</div>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No articles attached yet.</p>
+        {% endif %}
+      </div>
+    </article>
+  </main>
+
+  <aside class="scv-sidebar">
+    {% if writers|length %}
+      <div class="scv-sidebar-card">
+        <h3 class="scv-sidebar-card-title">Written by</h3>
+        <div class="scv-sidebar-card-body">
+          {% for person in writers %}
+            {% set pImg = person.featuredImage.one() %}
+            <a href="{{ person.url }}" class="scv-related-person">
+              {% if pImg %}
+                <img src="{{ pImg.url }}" alt="{{ person.title }}" class="scv-related-person__photo">
+              {% else %}
+                <div class="scv-related-person__photo scv-related-person__photo--placeholder"></div>
+              {% endif %}
+              <div class="scv-related-person__name">{{ person.title }}</div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if legacy %}
+      <div class="scv-sidebar-card">
+        <h3 class="scv-sidebar-card-title">Links</h3>
+        <div class="scv-sidebar-card-body scv-external-links">
+          <a href="https://scvhistory.com{{ legacy }}" target="_blank" rel="noopener" class="scv-external-link">Legacy series index</a>
+        </div>
+      </div>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

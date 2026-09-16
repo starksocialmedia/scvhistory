@@ -1,0 +1,68 @@
+{% extends "_layouts/base" %}
+
+{% block title %}Places | SCVHistory.com{% endblock %}
+
+{% block content %}
+
+{% set activeHood = craft.app.request.getParam('neighborhood') %}
+{% set query = craft.entries().section('places').orderBy('title ASC') %}
+{% if activeHood %}
+  {% set hoodCat = craft.categories().group('neighborhood').slug(activeHood).one() %}
+  {% if hoodCat %}
+    {% set query = query.relatedTo(hoodCat) %}
+  {% endif %}
+{% endif %}
+{% set places = query.all() %}
+{% set allHoods = craft.categories().group('neighborhood').orderBy('title ASC').all() %}
+
+<div class="scv-index-wrap">
+  <header class="scv-index-header">
+    <nav class="scv-breadcrumb">
+      <a href="{{ siteUrl }}">Home</a>
+      <span class="scv-bc-sep">›</span>
+      <span>Places</span>
+    </nav>
+    <h1 class="scv-index-title">Places</h1>
+    <p class="scv-index-desc">Named locations in the Santa Clarita Valley archive. Neighborhoods are filters, not extra Places.</p>
+  </header>
+
+  {% if allHoods|length %}
+  <nav class="scv-filter-bar">
+    <a href="{{ url('places') }}" class="scv-filter-btn {% if not activeHood %}scv-filter-btn--active{% endif %}">All</a>
+    {% for hood in allHoods %}
+      <a href="{{ url('places', { neighborhood: hood.slug }) }}"
+         class="scv-filter-btn {% if activeHood == hood.slug %}scv-filter-btn--active{% endif %}">
+        {{ hood.title }}
+      </a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+
+  <p class="scv-index-count">{{ places|length }} place{{ places|length != 1 ? 's' : '' }}</p>
+
+  {% if places|length %}
+  <ul class="scv-index-list">
+    {% for place in places %}
+      {% set peopleCount = place.placePeople.count() %}
+      {% set orgCount = place.placeOrganizations.count() %}
+      <li class="scv-index-item">
+        <a href="{{ place.url }}" class="scv-index-item__link">
+          <div class="scv-index-item__meta">
+            <div class="scv-index-item__title">{{ place.title }}</div>
+            {% if peopleCount or orgCount %}
+              <div class="scv-index-item__sub">
+                {% if peopleCount %}{{ peopleCount }} {{ peopleCount == 1 ? 'person' : 'people' }}{% endif %}
+                {% if peopleCount and orgCount %} · {% endif %}
+                {% if orgCount %}{{ orgCount }} organization{{ orgCount != 1 ? 's' : '' }}{% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No places yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

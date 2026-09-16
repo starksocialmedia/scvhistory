@@ -1,0 +1,115 @@
+{% extends "_layouts/base" %}
+
+{% set people = entry.placePeople.all() %}
+{% set orgs = entry.placeOrganizations.all() %}
+{% set related = entry.relatedPlaces.all() %}
+{% set wiki = entry.placeWikipediaUrl ?? null %}
+{% set chl = entry.placeChlUrl ?? null %}
+{% set scvhl = entry.placeScvhlUrl ?? null %}
+{% set legacy = entry.legacyUrl ?: entry.placeLegacyUrl %}
+
+{% block content %}
+<div class="scv-article-wrap">
+  <main>
+    <article class="scv-entry">
+      <nav class="scv-breadcrumb">
+        <a href="{{ siteUrl }}">Home</a>
+        <span class="scv-bc-sep">›</span>
+        <a href="{{ url('places') }}">Places</a>
+        <span class="scv-bc-sep">›</span>
+        <span>{{ entry.title }}</span>
+      </nav>
+
+      <header class="scv-entry-header">
+        <div class="scv-entry-header__text">
+          <h1 class="scv-entry-title">{{ entry.title }}</h1>
+          {% if entry.placeAliases %}
+            <p class="scv-entry-aliases">Also known as {{ entry.placeAliases }}</p>
+          {% endif %}
+          {% set hoods = entry.neighborhood.all() %}
+          {% if hoods|length %}
+            <div class="scv-tags">
+              {% for hood in hoods %}
+                <a href="{{ url('places', { neighborhood: hood.slug }) }}" class="scv-tag">{{ hood.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </header>
+
+      <hr class="scv-header-rule">
+
+      {% if entry.body %}
+        <div class="scv-entry-body">
+          {{ entry.body|nl2br }}
+        </div>
+      {% endif %}
+    </article>
+  </main>
+
+  <aside class="scv-sidebar">
+    {% if people|length %}
+      <div class="scv-sidebar-card">
+        <h3 class="scv-sidebar-card-title">People</h3>
+        <div class="scv-sidebar-card-body">
+          {% for person in people %}
+            {% set pImg = person.featuredImage.one() %}
+            <a href="{{ person.url }}" class="scv-related-person">
+              {% if pImg %}
+                <img src="{{ pImg.url }}" alt="{{ person.title }}" class="scv-related-person__photo">
+              {% else %}
+                <div class="scv-related-person__photo scv-related-person__photo--placeholder"></div>
+              {% endif %}
+              <div class="scv-related-person__name">{{ person.title }}</div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if orgs|length %}
+      <div class="scv-sidebar-card">
+        <h3 class="scv-sidebar-card-title">Organizations</h3>
+        <div class="scv-sidebar-card-body">
+          {% for org in orgs %}
+            <a href="{{ org.url }}" class="scv-sidebar-link">{{ org.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if related|length %}
+      <div class="scv-sidebar-card">
+        <h3 class="scv-sidebar-card-title">Related Places</h3>
+        <div class="scv-sidebar-card-body">
+          {% for place in related %}
+            <a href="{{ place.url }}" class="scv-sidebar-link">{{ place.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if wiki or chl or scvhl or legacy or entry.placeChlNumber %}
+      <div class="scv-sidebar-card">
+        <h3 class="scv-sidebar-card-title">Links</h3>
+        <div class="scv-sidebar-card-body scv-external-links">
+          {% if wiki and wiki.value is defined and wiki.value %}
+            <a href="{{ wiki.value }}" target="_blank" rel="noopener" class="scv-external-link">Wikipedia</a>
+          {% endif %}
+          {% if chl and chl.value is defined and chl.value %}
+            <a href="{{ chl.value }}" target="_blank" rel="noopener" class="scv-external-link">California Historical Landmark</a>
+          {% elseif entry.placeChlNumber %}
+            <p>CHL {{ entry.placeChlNumber }}</p>
+          {% endif %}
+          {% if scvhl and scvhl.value is defined and scvhl.value %}
+            <a href="{{ scvhl.value }}" target="_blank" rel="noopener" class="scv-external-link">SCV Landmark</a>
+          {% endif %}
+          {% if legacy %}
+            <a href="https://scvhistory.com{{ legacy }}" target="_blank" rel="noopener" class="scv-external-link">Legacy page</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

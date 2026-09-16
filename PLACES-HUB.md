@@ -10,8 +10,8 @@ Nathan decides. No Leon gate. No Craft import in this session. Place stubs are s
 | Section type | channel |
 | Entry type | `place` |
 | URI | `places/{slug}` |
-| Configured template | `_entries/places` |
-| Entries in local DDEV | 0 |
+| Configured template | `places/_entry` |
+| Entries in local DDEV | 39 (stubs, 2026-09-16) |
 
 ### Fields on the live layout
 

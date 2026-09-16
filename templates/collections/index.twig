@@ -1,0 +1,42 @@
+{% extends "_layouts/base" %}
+
+{% block title %}Series | SCVHistory.com{% endblock %}
+
+{% block content %}
+
+{% set series = craft.entries().section('collections').orderBy('title ASC').all() %}
+
+<div class="scv-index-wrap">
+  <header class="scv-index-header">
+    <nav class="scv-breadcrumb">
+      <a href="{{ siteUrl }}">Home</a>
+      <span class="scv-bc-sep">›</span>
+      <span>Series</span>
+    </nav>
+    <h1 class="scv-index-title">Series</h1>
+    <p class="scv-index-desc">Signal columns and Old Town Newhall runs. Articles attach later.</p>
+  </header>
+
+  <p class="scv-index-count">{{ series|length }} series</p>
+
+  {% if series|length %}
+  <ul class="scv-index-list">
+    {% for col in series %}
+      {% set artCount = craft.entries().section('articles').relatedTo({ targetElement: col, field: 'partOfCollection' }).count() %}
+      <li class="scv-index-item">
+        <a href="{{ col.url }}" class="scv-index-item__link">
+          <div class="scv-index-item__meta">
+            <div class="scv-index-item__title">{{ col.title }}</div>
+            {% if artCount %}
+              <div class="scv-index-item__sub">{{ artCount }} article{{ artCount != 1 ? 's' : '' }}</div>
+            {% endif %}
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No series yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
