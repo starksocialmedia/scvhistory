@@ -81,7 +81,7 @@ Follow Stage 1 of the import pipeline in PHILOSOPHY.md and BUILDPLAN.md. Deliver
 
 `CONTENT-MODEL.md` already exists. Read it first and build on it; do not start over. Also check `COLLECTIONS-HUB.md`, `PLACES-HUB.md`, `PLACE-RELATIONS.md`, and `WAR-MEMORIAL.md` for decisions already made.
 
-`DATA_MODEL.md` already documents the intended model. Deliverable: `CONTENT-MODEL.md` comparing DATA_MODEL.md against what actually exists in `config/project/` (what is built, what is missing, what differs), then proposing what is missing, for Nathan and Leon to review **before** anything is built. Leon will help with entity identification, so flag anything ambiguous as a question for him.
+`DATA_MODEL.md` already documents the intended model. Deliverable: `CONTENT-MODEL.md` comparing DATA_MODEL.md against what actually exists in `config/project/` (what is built, what is missing, what differs), then proposing what is missing, for Nathan to review **before** anything is built. Nathan makes all decisions (Leon has preapproved the project), so flag anything ambiguous as an open question for Nathan.
 
 Steps:
 1. Compare `config/project/` against DATA_MODEL.md and the settled decisions above
@@ -112,7 +112,7 @@ Nathan runs the remaining types on Cloudways in batches, using the scripts and a
 
 - **Archive.org upload** (identifier `scvhistory-com-archive`): paused. May be used later to host large files like TIFFs.
 - **Cloudways server clone and Cloudflare DNS cutover**: Nathan handles directly.
-- **~587 blocked TIFFs in `/gif/`**: returns 403 to automated tools. Requires Leon's cooperation; not a technical task.
+- **~587 blocked TIFFs in `/gif/`**: returns 403 to automated tools. Nathan handles this with Leon; not a technical task.
 
 ## Lessons already learned
 

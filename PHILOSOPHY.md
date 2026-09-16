@@ -1,6 +1,8 @@
 # SCVHistory.com: Goals and Design Philosophy
 
-Read this before making any decision about structure, content, or design. When a task seems to conflict with this document, stop and ask Nathan. This file explains *why*; BUILDPLAN.md and DATA_MODEL.md explain *what*.
+Read this before making any decision about structure, content, or design. When a task seems to conflict with this document, stop and ask Nathan.
+
+**Decision authority:** Leon Worden has preapproved the project. **Nathan makes all decisions**, and **design decisions are Nathan's alone.** All questions go to Nathan; he consults Leon at his own discretion. Agents do not wait on Leon's approval. This file explains *why*; BUILDPLAN.md and DATA_MODEL.md explain *what*.
 
 ---
 
@@ -38,7 +40,7 @@ Not every name deserves a record. Nathan's rule:
 
 > **A full record (Person, Place, Organization, etc.) is created only when the entity has a meaningful, recurring role in SCV history.** A passing mention stays in the body text (or a tag). It does not get a record.
 
-Being named in an article is not enough. Over-creating stub records is a known failure mode; it has happened before and Nathan rejected it. When in doubt, list the candidate under "Questions for Leon" instead of creating it.
+Being named in an article is not enough. Over-creating stub records is a known failure mode; it has happened before and Nathan rejected it. When in doubt, list the candidate under "Open Questions" in CONTENT-MODEL.md for Nathan instead of creating it.
 
 ### 2.4 Entities first, articles second
 
@@ -63,7 +65,7 @@ The archive's credibility is inseparable from Leon's. Migration is **faithful**,
 
 - Do not rewrite, summarize over, or "improve" Leon's articles during migration. Cleanup means removing broken markup and cruft, not editing prose.
 - Keep his bylines, original titles, fine print, and webmaster notes.
-- Leon is the authority on who and what an entity is. Ambiguities go to him.
+- Ambiguities about who or what an entity is go to Nathan as open questions. Never guess.
 - Planned public pages (Editorial Standards, Corrections Policy, visible "last revised" dates) exist to make that credibility visible.
 
 ### 2.8 Permanence and citability
@@ -87,7 +89,7 @@ AI speeds up the work; it does not make editorial calls.
 
 - Entity extraction, deduplication, and entity linking produce **suggestions** that a person approves.
 - Anything identifying a real person (e.g., face matching in yearbooks) is editor-confirmed only.
-- Decisions belong to Nathan and Leon. Agents propose, document, and ask.
+- Decisions belong to Nathan. Agents propose, document, and ask.
 
 ### 2.11 Build the core before the extras
 
@@ -101,7 +103,7 @@ The data model, import pipeline, and template patterns could someday become an o
 
 ## 3. Design philosophy
 
-Nathan is the Creative Director. Agents follow the design system; they do not invent new visual direction.
+Design decisions are Nathan's alone. He is the Creative Director. Agents follow the design system; they do not invent new visual direction, and design proposals are offered only when Nathan asks.
 
 - **Archival-grade typography.** Cormorant Garamond for headings, Inter for body and UI.
 - **Palette with historical resonance:** Navy `#1a2744`, Gold `#b8860b`, Cream `#faf6ef`, Warm Gray `#6b6560`.

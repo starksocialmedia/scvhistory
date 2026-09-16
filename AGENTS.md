@@ -12,10 +12,14 @@ All legacy SCVHistory.com content is moving into this Craft build. Craft becomes
 
 Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files are the shared memory. Do not rely on anything not written here.
 
+## Decision authority
+
+Nathan makes all decisions. Leon Worden has preapproved the project, so nothing waits on Leon. **Design decisions are Nathan's alone.** Direct every question to Nathan.
+
 ## Roles
 
 - **Grok Build** (runs locally on Nathan's MacBook in `~/scvhistory`): content inventory, modeling, Craft schema work in DDEV, import scripts. Owns Tasks 1 through 5 in HANDOFF.md. Source content is at `/Volumes/Jordy/SCVHistory` (read-only; the drive can dismount, see HANDOFF.md).
-- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Leon Worden to review. Cannot access the Jordy drive or local DDEV. The legacy content lives on Jordy, not the live site: do not crawl scvhistory.com.
+- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Nathan to review. Cannot access the Jordy drive or local DDEV. The legacy content lives on Jordy, not the live site: do not crawl scvhistory.com.
 - **Grok chat and Claude**: review and advice. Changes come back through Nathan.
 
 ## Git rules
@@ -46,7 +50,7 @@ Several AI agents work on this repo (Grok Build, Grok Bot, Claude). These files 
 - Entity-first: canonical entities before any articles
 - Follow `TATAVIAM_AUDIT.md` for anything touching Indigenous peoples
 - Taxonomy terms need verified linked-data URIs. Never invent a URI; mark it `NEEDS_VERIFICATION` instead
-- When unsure whether something is a real historical entity or how to classify it, add it to a "Questions for Leon" list in CONTENT-MODEL.md rather than guessing
+- When unsure whether something is a real historical entity or how to classify it, add it to the "Open Questions" list in CONTENT-MODEL.md for Nathan rather than guessing
 
 ## Communicating with Nathan
 
