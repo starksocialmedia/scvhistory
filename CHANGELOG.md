@@ -9,9 +9,13 @@ SCVHistory.com — Changelog
 - `scvhistory/files/` is 1,043 document packages (TIFFs, PDFs, flipbook HTML, Apache indexes), not the editorial site
 - TIFFs on this mirror are all under `scvhistory/files/` (about 351 GiB). `gif/` has none
 - Scripts in `scripts/inventory/` are resumable and refuse to write to Jordy
-- Decisions: none. Did not start Task 2
-- Blockers: none. Jordy stayed mounted
-- Next: Task 2 `CONTENT-MODEL.md` after Nathan reviews `INVENTORY.md`
+- Task 2: wrote `CONTENT-MODEL.md` from live `config/project/` plus INVENTORY.md mapping
+- Live schema: 9 sections, no Photograph, no Document. `legacyKey`/`legacyUrl` exist but are not on most types. `sourcePath`/`legacyHtml`/`legacyCategory` do not exist
+- Proposed ingest gaps only: Photograph/Object section, Document section, global ingest fields, credit parse fields, body vs legacyHtml
+- Did not redesign roles Matrix, military-on-Person, taxonomies, Award, map, haunted, On This Day, or IIIF
+- Decisions: none built. Schema changes wait for Nathan/Leon review
+- Blockers: Questions for Leon in CONTENT-MODEL.md
+- Next: Nathan and Leon review CONTENT-MODEL.md. Task 3 only after approval. No Craft apply yet
 
 2026-04-15
 
