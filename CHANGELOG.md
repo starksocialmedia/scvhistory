@@ -1,5 +1,12 @@
 SCVHistory.com — Changelog
 
+2026-09-15
+
+- Grok Bot (research): audited all taxonomy-import/*.json against live Wikidata, Getty AAT, and LCSH
+- Wrote TAXONOMY-AUDIT.md (tables per file + Questions for Leon); JSON not edited pending Nathan approval
+- Failures: Tongva placeholder still present (verified fix Q1479279); Serrano Q745474 is an asteroid (fix Q617532); Kitanemuk Q6422453 and Vanyume Q7915068 wrong (fix Q6417841 / Q11216568); Tataviam Q743736 is language not people (prefer Q1562200); historical-era gap 1990-2010; many war/disaster/subject Wikidata QIDs and AAT/LCSH IDs point to unrelated concepts
+- Next: Nathan review TAXONOMY-AUDIT.md; approve JSON URI corrections before any edits; then push grok-bot if wanted
+
 2026-04-15
 
 - Built full 12-phase BUILDPLAN covering templates, Archive.org, API, Flutter, search, ElevenLabs, membership, legitimacy, data model, community, LOD

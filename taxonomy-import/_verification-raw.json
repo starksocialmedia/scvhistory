@@ -1,0 +1,3449 @@
+{
+  "generated": "2026-09-15T22:50:00-07:00",
+  "agent": "Grok Bot (research)",
+  "branch": "grok-bot",
+  "method": "Live Wikidata EntityData, Getty AAT .json _label, LCSH id.loc.gov .json authoritativeLabel, HTTP status for tribal sites. Rate ~0.4-1.0s; retry on 429.",
+  "counts": {
+    "pass": 32,
+    "fail": 42,
+    "missing": 48,
+    "NEEDS_VERIFICATION": 2,
+    "broken": 3
+  },
+  "special_qid_checks": {
+    "Q1479279": {
+      "live_label": "Tongva people",
+      "aliases": [
+        "Kizh",
+        "Gabriele\u00f1o",
+        "Fernande\u00f1o",
+        "Gabrielino Tongva"
+      ],
+      "verdict": "PASS - correct Tongva/Gabrielino/Kizh people entity"
+    },
+    "Q24251468": {
+      "live_label": "Chumash people",
+      "aliases": [
+        "Chumash",
+        "Venture\u00f1o Chumash"
+      ],
+      "verdict": "PASS - Chumash people (not Tongva)"
+    },
+    "Q2424671": {
+      "live_label": null,
+      "aliases": [],
+      "verdict": "FAIL - does not resolve to Tongva (EntityData returns unrelated/missing; redirect path saw Vion Food Group Q495334). Do not use."
+    },
+    "Q743736": {
+      "live_label": "Tataviam",
+      "aliases": [
+        "Tataviam language"
+      ],
+      "verdict": "PARTIAL - label Tataviam but Wikidata description is language. People/ethnic group is Q1562200."
+    },
+    "Q1562200": {
+      "live_label": "Tataviam",
+      "aliases": [],
+      "verdict": "PASS - Tataviam ethnic group (preferred for people/history terms)"
+    },
+    "Q745474": {
+      "live_label": "117712 Podmaniczky",
+      "aliases": [
+        "Podmaniczky"
+      ],
+      "verdict": "FAIL - asteroid, not Serrano. Correct: Q617532 Serrano people"
+    },
+    "Q617532": {
+      "live_label": "Serrano people",
+      "aliases": [],
+      "verdict": "PASS - verified correction for Serrano"
+    },
+    "Q6422453": {
+      "live_label": "Knights of Father Mathew",
+      "aliases": [],
+      "verdict": "FAIL - not Kitanemuk. Correct: Q6417841"
+    },
+    "Q6417841": {
+      "live_label": "Kitanemuk",
+      "aliases": [],
+      "verdict": "PASS - indigenous Californian people"
+    },
+    "Q7915068": {
+      "live_label": "Vankov",
+      "aliases": [],
+      "verdict": "FAIL - not Vanyume. Correct: Q11216568"
+    },
+    "Q11216568": {
+      "live_label": "Vanyume",
+      "aliases": [],
+      "verdict": "PASS - Vanyume people"
+    }
+  },
+  "corrections_recommended": {
+    "spanish-american-war": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q12543",
+        "new": "https://www.wikidata.org/wiki/Q12583",
+        "live": "Spanish\u2013American War",
+        "reason": "Q12543 is Hauts-de-Seine; search confirmed Q12583"
+      }
+    ],
+    "korean-war": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q12023",
+        "new": "https://www.wikidata.org/wiki/Q8663",
+        "live": "Korean War",
+        "reason": "Q12023 is Thomisidae (crab spiders)"
+      }
+    ],
+    "iraq-war-oif": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q11192",
+        "new": "https://www.wikidata.org/wiki/Q545449",
+        "live": "Iraq War",
+        "reason": "Q11192 is Kimi R\u00e4ikk\u00f6nen"
+      }
+    ],
+    "afghanistan-war-oef": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q171185",
+        "new": "https://www.wikidata.org/wiki/Q182865",
+        "live": "War in Afghanistan (2001\u20132021)",
+        "reason": "Q171185 is Ivan III of Moscow"
+      }
+    ],
+    "fire": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q169940",
+        "new": "https://www.wikidata.org/wiki/Q169950",
+        "live": "wildfire",
+        "reason": "Q169940 is deforestation; Q169950 wildfire matches SCV fire disasters"
+      }
+    ],
+    "dam-failure": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q1068842",
+        "new": "https://www.wikidata.org/wiki/Q1033074",
+        "live": "dam failure",
+        "reason": "Q1068842 is footbridge"
+      }
+    ],
+    "drought": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q35874",
+        "new": "https://www.wikidata.org/wiki/Q43059",
+        "live": "drought",
+        "reason": "Q35874 is humor"
+      }
+    ],
+    "industrial-accident": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q192316",
+        "new": "https://www.wikidata.org/wiki/Q629257",
+        "live": "work accident",
+        "reason": "Q192316 is geostationary orbit; Q629257 work accident / also Q68800046 industrial disaster"
+      }
+    ],
+    "expedition-party": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q748489",
+        "new": "https://www.wikidata.org/wiki/Q2401485",
+        "live": "expedition",
+        "reason": "Q748489 is a spider species"
+      }
+    ],
+    "mission": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q1156970",
+        "new": "https://www.wikidata.org/wiki/Q1824509",
+        "live": "Spanish missions in California",
+        "reason": "Q1156970 is humanity; Q1824509 fits SCV mission context"
+      }
+    ],
+    "government": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q7163",
+        "new": "https://www.wikidata.org/wiki/Q7188",
+        "live": "government",
+        "reason": "Q7163 is politics; Q7188 is government"
+      }
+    ],
+    "rancho": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q3303261",
+        "new": "https://www.wikidata.org/wiki/Q2679045",
+        "live": "rancho of California",
+        "reason": "Q3303261 missing/no English label; Q2679045 California rancho"
+      }
+    ],
+    "canyon": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q354300",
+        "new": "https://www.wikidata.org/wiki/Q150784",
+        "live": "canyon",
+        "reason": "Q354300 is Adalgis (Lombard king)"
+      }
+    ],
+    "landmark": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q231021",
+        "new": "https://www.wikidata.org/wiki/Q4895393",
+        "live": "landmark",
+        "reason": "Q231021 is Foucherans disambiguation"
+      }
+    ],
+    "oil-field": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q202822",
+        "new": "https://www.wikidata.org/wiki/Q211748",
+        "live": "oil field",
+        "reason": "Q202822 is Amritsar district"
+      }
+    ],
+    "ranch": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q3303261",
+        "new": "https://www.wikidata.org/wiki/Q509028",
+        "live": "ranch",
+        "reason": "Q3303261 missing; Q509028 ranch"
+      }
+    ],
+    "gold-rush": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q202191",
+        "new": "https://www.wikidata.org/wiki/Q273182",
+        "live": "gold rush",
+        "reason": "Q202191 is Amaya disambiguation"
+      },
+      {
+        "old": "http://vocab.getty.edu/aat/300055547",
+        "new": null,
+        "live": "legal concepts",
+        "reason": "AAT ID is legal concepts, not gold rush; NEEDS_VERIFICATION for correct AAT"
+      }
+    ],
+    "oil-industry": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q11002",
+        "new": "https://www.wikidata.org/wiki/Q862571",
+        "live": "petroleum industry",
+        "reason": "Q11002 is sugar"
+      }
+    ],
+    "film-industry": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q11424",
+        "new": "https://www.wikidata.org/wiki/Q1415395",
+        "live": "film industry",
+        "reason": "Q11424 is film (artwork); Q1415395 is film industry"
+      }
+    ],
+    "military-history": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q104787",
+        "new": "https://www.wikidata.org/wiki/Q192781",
+        "live": "military history",
+        "reason": "Q104787 is actor Albert Florath"
+      }
+    ],
+    "commerce-trade": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q8374",
+        "new": "https://www.wikidata.org/wiki/Q601401",
+        "live": "trade",
+        "reason": "Q8374 is cimbalom; Q601401 trade (also Q26643 commerce)"
+      }
+    ],
+    "land-grants": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q1000743",
+        "new": "https://www.wikidata.org/wiki/Q3217027",
+        "live": "land grant",
+        "reason": "Q1000743 is Budde disambiguation"
+      },
+      {
+        "old": "https://id.loc.gov/authorities/subjects/sh85074242",
+        "new": "https://id.loc.gov/authorities/subjects/sh85074296",
+        "live": "Land grants",
+        "reason": "sh85074242 is Lampman family; LOC suggest confirms sh85074296"
+      }
+    ],
+    "natural-disasters": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q8060",
+        "new": "https://www.wikidata.org/wiki/Q8065",
+        "live": "natural disaster",
+        "reason": "Q8060 is Romani people"
+      }
+    ],
+    "conservation": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q62832",
+        "new": "https://www.wikidata.org/wiki/Q20113959",
+        "live": "nature conservation",
+        "reason": "Q62832 is observatory"
+      }
+    ],
+    "californio-history": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q1051342",
+        "new": "https://www.wikidata.org/wiki/Q2285219",
+        "live": "Californio",
+        "reason": "Q1051342 is Cattini disambiguation"
+      }
+    ],
+    "serrano-history": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q745474",
+        "new": "https://www.wikidata.org/wiki/Q617532",
+        "live": "Serrano people",
+        "reason": "Q745474 is asteroid 117712 Podmaniczky"
+      }
+    ],
+    "kitanemuk-history": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q6422453",
+        "new": "https://www.wikidata.org/wiki/Q6417841",
+        "live": "Kitanemuk",
+        "reason": "Q6422453 is Knights of Father Mathew; Q6417841 indigenous Californian people"
+      }
+    ],
+    "vanyume-history": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q7915068",
+        "new": "https://www.wikidata.org/wiki/Q11216568",
+        "live": "Vanyume",
+        "reason": "Q7915068 is Vankov; Q11216568 Vanyume people"
+      }
+    ],
+    "tongva-history": [
+      {
+        "old": "TONGVA_QID_PENDING_VERIFICATION",
+        "new": "https://www.wikidata.org/wiki/Q1479279",
+        "live": "Tongva people",
+        "reason": "Live: Tongva people; aliases Kizh, Gabriele\u00f1o, Gabrielino Tongva. Q2424671 does not resolve to Tongva."
+      }
+    ],
+    "indigenous-history": [
+      {
+        "old": "TONGVA_QID_PENDING_VERIFICATION",
+        "new": "https://www.wikidata.org/wiki/Q1479279",
+        "live": "Tongva people",
+        "reason": "Replace placeholder with verified Tongva Q1479279"
+      },
+      {
+        "old": "https://www.wikidata.org/wiki/Q745474",
+        "new": "https://www.wikidata.org/wiki/Q617532",
+        "live": "Serrano people",
+        "reason": "Wrong Serrano QID (asteroid)"
+      }
+    ],
+    "spanish-colonial-expedition": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q723198",
+        "new": "https://www.wikidata.org/wiki/Q3966440",
+        "live": "Portol\u00e0 expedition",
+        "reason": "Q723198 is Roberto de Assis Moreira; Portol\u00e1 is the SCV-relevant Spanish colonial expedition"
+      },
+      {
+        "old": "https://id.loc.gov/authorities/subjects/sh85011234",
+        "new": null,
+        "live": "Ballads, Danish",
+        "reason": "Wrong LCSH; NEEDS_VERIFICATION for Spanish expeditions / Portol\u00e1 LCSH"
+      }
+    ],
+    "water-history": [
+      {
+        "old": "https://id.loc.gov/authorities/subjects/sh85145505",
+        "new": "https://id.loc.gov/authorities/subjects/sh85145648",
+        "live": "Water-supply",
+        "reason": "sh85145505 is Christianity; LOC suggest confirms sh85145648 Water-supply"
+      }
+    ],
+    "reservoir": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q134166",
+        "new": "https://www.wikidata.org/wiki/Q131681",
+        "live": "reservoir",
+        "reason": "Q134166 is Mahakala (fossil genus)"
+      }
+    ],
+    "aqueduct": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q43197",
+        "new": "https://www.wikidata.org/wiki/Q474",
+        "live": "aqueduct",
+        "reason": "Q43197 is river delta"
+      }
+    ],
+    "spring": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q188504",
+        "new": "https://www.wikidata.org/wiki/Q1881858",
+        "live": "spring water",
+        "reason": "Q188504 is alternative medicine; Q1881858 spring water"
+      }
+    ],
+    "treatment-plant": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q769626",
+        "new": "https://www.wikidata.org/wiki/Q9341055",
+        "live": "water treatment plant",
+        "reason": "Q769626 is Hokkek\u014d"
+      }
+    ],
+    "tataviam-history": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q743736",
+        "new": "https://www.wikidata.org/wiki/Q1562200",
+        "live": "Tataviam (ethnic group)",
+        "reason": "Q743736 live description is language; Q1562200 is ethnic group. Prefer people QID for history tag; may keep language as additional."
+      }
+    ],
+    "tataviam-pre-contact": [
+      {
+        "old": "https://www.wikidata.org/wiki/Q743736",
+        "new": "https://www.wikidata.org/wiki/Q1562200",
+        "live": "Tataviam (ethnic group)",
+        "reason": "Same as tataviam-history: people QID Q1562200 vs language Q743736"
+      }
+    ]
+  },
+  "historical_era_gap": {
+    "after": "incorporation-era-1965-1990",
+    "before": "contemporary-2010-present",
+    "missing_years": "1990-2010",
+    "action": "Flag only; do not invent an era"
+  },
+  "files": {
+    "confidence-level.json": [
+      {
+        "slug": "confirmed",
+        "label": "Confirmed",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "probable",
+        "label": "Probable",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "uncertain",
+        "label": "Uncertain",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "disputed",
+        "label": "Disputed",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      }
+    ],
+    "conflict.json": [
+      {
+        "slug": "mexican-american-war",
+        "label": "Mexican-American War",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q6683"
+        ],
+        "live_labels": [
+          "Mexican-American War"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q6683",
+            "live_label": "Mexican-American War",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "civil-war",
+        "label": "Civil War",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q8676"
+        ],
+        "live_labels": [
+          "American Civil War"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q8676",
+            "live_label": "American Civil War",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "spanish-american-war",
+        "label": "Spanish-American War",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q12543"
+        ],
+        "live_labels": [
+          "Hauts-de-Seine"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q12583",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q12543",
+            "live_label": "Hauts-de-Seine",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q12543",
+            "new": "https://www.wikidata.org/wiki/Q12583",
+            "live": "Spanish\u2013American War",
+            "reason": "Q12543 is Hauts-de-Seine; search confirmed Q12583"
+          }
+        ]
+      },
+      {
+        "slug": "world-war-i",
+        "label": "World War I",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q361"
+        ],
+        "live_labels": [
+          "World War I"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q361",
+            "live_label": "World War I",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "world-war-ii",
+        "label": "World War II",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q362"
+        ],
+        "live_labels": [
+          "World War II"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q362",
+            "live_label": "World War II",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "korean-war",
+        "label": "Korean War",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q12023"
+        ],
+        "live_labels": [
+          "Thomisidae"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q8663",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q12023",
+            "live_label": "Thomisidae",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q12023",
+            "new": "https://www.wikidata.org/wiki/Q8663",
+            "live": "Korean War",
+            "reason": "Q12023 is Thomisidae (crab spiders)"
+          }
+        ]
+      },
+      {
+        "slug": "vietnam-war",
+        "label": "Vietnam War",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q8740"
+        ],
+        "live_labels": [
+          "Vietnam War"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q8740",
+            "live_label": "Vietnam War",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "gulf-war",
+        "label": "Gulf War",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q37643"
+        ],
+        "live_labels": [
+          "Gulf War"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q37643",
+            "live_label": "Gulf War",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "iraq-war-oif",
+        "label": "Iraq War (OIF)",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q11192"
+        ],
+        "live_labels": [
+          "Kimi R\u00e4ikk\u00f6nen"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q545449",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q11192",
+            "live_label": "Kimi R\u00e4ikk\u00f6nen",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q11192",
+            "new": "https://www.wikidata.org/wiki/Q545449",
+            "live": "Iraq War",
+            "reason": "Q11192 is Kimi R\u00e4ikk\u00f6nen"
+          }
+        ]
+      },
+      {
+        "slug": "afghanistan-war-oef",
+        "label": "Afghanistan War (OEF)",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q171185"
+        ],
+        "live_labels": [
+          "Ivan III of Moscow"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q182865",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q171185",
+            "live_label": "Ivan III of Moscow",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q171185",
+            "new": "https://www.wikidata.org/wiki/Q182865",
+            "live": "War in Afghanistan (2001\u20132021)",
+            "reason": "Q171185 is Ivan III of Moscow"
+          }
+        ]
+      }
+    ],
+    "disaster-type.json": [
+      {
+        "slug": "fire",
+        "label": "Fire",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q169940"
+        ],
+        "live_labels": [
+          "deforestation"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q169950",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q169940",
+            "live_label": "deforestation",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q169940",
+            "new": "https://www.wikidata.org/wiki/Q169950",
+            "live": "wildfire",
+            "reason": "Q169940 is deforestation; Q169950 wildfire matches SCV fire disasters"
+          }
+        ]
+      },
+      {
+        "slug": "flood",
+        "label": "Flood",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q8068"
+        ],
+        "live_labels": [
+          "flood"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q8068",
+            "live_label": "flood",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "earthquake",
+        "label": "Earthquake",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q7944"
+        ],
+        "live_labels": [
+          "earthquake"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q7944",
+            "live_label": "earthquake",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "dam-failure",
+        "label": "Dam Failure",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q1068842"
+        ],
+        "live_labels": [
+          "footbridge"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1033074",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q1068842",
+            "live_label": "footbridge",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q1068842",
+            "new": "https://www.wikidata.org/wiki/Q1033074",
+            "live": "dam failure",
+            "reason": "Q1068842 is footbridge"
+          }
+        ]
+      },
+      {
+        "slug": "landslide",
+        "label": "Landslide",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q167903"
+        ],
+        "live_labels": [
+          "landslide"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q167903",
+            "live_label": "landslide",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "drought",
+        "label": "Drought",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q35874"
+        ],
+        "live_labels": [
+          "humor"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q43059",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q35874",
+            "live_label": "humor",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q35874",
+            "new": "https://www.wikidata.org/wiki/Q43059",
+            "live": "drought",
+            "reason": "Q35874 is humor"
+          }
+        ]
+      },
+      {
+        "slug": "industrial-accident",
+        "label": "Industrial Accident",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q192316"
+        ],
+        "live_labels": [
+          "geostationary orbit"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q629257",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q192316",
+            "live_label": "geostationary orbit",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q192316",
+            "new": "https://www.wikidata.org/wiki/Q629257",
+            "live": "work accident",
+            "reason": "Q192316 is geostationary orbit; Q629257 work accident / also Q68800046 industrial disaster"
+          }
+        ]
+      }
+    ],
+    "group-type.json": [
+      {
+        "slug": "family",
+        "label": "Family",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q8436"
+        ],
+        "live_labels": [
+          "family"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q8436",
+            "live_label": "family",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "cultural-group",
+        "label": "Cultural Group",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q41710"
+        ],
+        "live_labels": [
+          "ethnic group"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "synonym OK: ethnic group",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q41710",
+            "live_label": "ethnic group",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "informal-association",
+        "label": "Informal Association",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "expedition-party",
+        "label": "Expedition Party",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q748489"
+        ],
+        "live_labels": [
+          "Mallinella bifurcata"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q2401485",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q748489",
+            "live_label": "Mallinella bifurcata",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q748489",
+            "new": "https://www.wikidata.org/wiki/Q2401485",
+            "live": "expedition",
+            "reason": "Q748489 is a spider species"
+          }
+        ]
+      },
+      {
+        "slug": "military-unit-informal",
+        "label": "Military Unit (Informal)",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q176799"
+        ],
+        "live_labels": [
+          "military unit"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q176799",
+            "live_label": "military unit",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      }
+    ],
+    "historical-era.json": [
+      {
+        "slug": "tataviam-pre-contact",
+        "label": "Tataviam / Pre-Contact",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q743736",
+          "https://www.tataviam-nsn.us/heritage/history/",
+          "https://www.tataviam-nsn.us/heritage/territory/"
+        ],
+        "live_labels": [
+          "Tataviam",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)"
+        ],
+        "status": "pass",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1562200",
+        "notes": "Q743736 live label Tataviam but description=language; people entity is Q1562200",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q743736",
+            "live_label": "Tataviam",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://www.tataviam-nsn.us/heritage/history/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://www.tataviam-nsn.us/heritage/territory/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q743736",
+            "new": "https://www.wikidata.org/wiki/Q1562200",
+            "live": "Tataviam (ethnic group)",
+            "reason": "Same as tataviam-history: people QID Q1562200 vs language Q743736"
+          }
+        ]
+      },
+      {
+        "slug": "spanish-colonial-1769-1821",
+        "label": "Spanish Colonial (1769\u20131821)",
+        "sameAs": [
+          "http://vocab.getty.edu/aat/300417650"
+        ],
+        "live_labels": [
+          "consignment (method of acquisition)"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "AAT consignment wrong for Spanish Colonial era",
+        "uri_details": [
+          {
+            "uri": "http://vocab.getty.edu/aat/300417650",
+            "live_label": "consignment (method of acquisition)",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "mexican-rancho-era-1821-1848",
+        "label": "Mexican Rancho Era (1821\u20131848)",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "american-frontier-1848-1876",
+        "label": "American Frontier (1848\u20131876)",
+        "sameAs": [
+          "http://vocab.getty.edu/aat/300417720"
+        ],
+        "live_labels": [
+          "elephant ivory"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "AAT elephant ivory wrong for American Frontier",
+        "uri_details": [
+          {
+            "uri": "http://vocab.getty.edu/aat/300417720",
+            "live_label": "elephant ivory",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "railroad-oil-era-1876-1910",
+        "label": "Railroad & Oil Era (1876\u20131910)",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "early-twentieth-century-1910-1945",
+        "label": "Early 20th Century (1910\u20131945)",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "postwar-boom-1945-1965",
+        "label": "Postwar Boom (1945\u20131965)",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "incorporation-era-1965-1990",
+        "label": "Incorporation Era (1965\u20131990)",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "contemporary-2010-present",
+        "label": "Contemporary (2010\u2013Present)",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "ERA GAP: follows incorporation-era-1965-1990; no 1990-2010 era (do not invent); empty sameAs",
+        "uri_details": []
+      }
+    ],
+    "historical-period.json": [
+      {
+        "slug": "pre-1850",
+        "label": "Pre-1850",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1850-1899",
+        "label": "1850-1899",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1900-1919",
+        "label": "1900-1919",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1920-1929",
+        "label": "1920-1929",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1930-1939",
+        "label": "1930-1939",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1940-1949",
+        "label": "1940-1949",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1950-1959",
+        "label": "1950-1959",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1960-1969",
+        "label": "1960-1969",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1970-1979",
+        "label": "1970-1979",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1980-1989",
+        "label": "1980-1989",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "1990-1999",
+        "label": "1990-1999",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "2000-2009",
+        "label": "2000-2009",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "2010-2019",
+        "label": "2010-2019",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "2020-present",
+        "label": "2020-present",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      }
+    ],
+    "neighborhood.json": [
+      {
+        "slug": "agua-dulce",
+        "label": "Agua Dulce",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "acton",
+        "label": "Acton",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "bouquet-canyon",
+        "label": "Bouquet Canyon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "camulos",
+        "label": "Camulos",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "canyon-country",
+        "label": "Canyon Country",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "castaic",
+        "label": "Castaic",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "green-valley",
+        "label": "Green Valley",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "hasley-canyon",
+        "label": "Hasley Canyon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "lebec",
+        "label": "Lebec",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "live-oak",
+        "label": "Live Oak",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "mint-canyon",
+        "label": "Mint Canyon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "newhall",
+        "label": "Newhall",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "piru",
+        "label": "Piru",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "placerita-canyon",
+        "label": "Placerita Canyon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "sand-canyon",
+        "label": "Sand Canyon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "san-francisquito-canyon",
+        "label": "San Francisquito Canyon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "saugus",
+        "label": "Saugus",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "soledad-canyon",
+        "label": "Soledad Canyon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "stevenson-ranch",
+        "label": "Stevenson Ranch",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "tejon",
+        "label": "Tejon",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "tourney-road-corridor",
+        "label": "Tourney Road Corridor",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "valencia",
+        "label": "Valencia",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      }
+    ],
+    "org-subtype.json": [
+      {
+        "slug": "educational-institution",
+        "label": "Educational Institution",
+        "sameAs": [
+          "http://vocab.getty.edu/aat/300055197"
+        ],
+        "live_labels": [
+          "NO_LABEL/BROKEN"
+        ],
+        "status": "broken",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "http://vocab.getty.edu/aat/300055197",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "aat 404",
+            "http_status": 404
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "rancho",
+        "label": "Rancho",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q3303261"
+        ],
+        "live_labels": [
+          "NO_LABEL/BROKEN"
+        ],
+        "status": "broken",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q2679045",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q3303261",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q3303261",
+            "new": "https://www.wikidata.org/wiki/Q2679045",
+            "live": "rancho of California",
+            "reason": "Q3303261 missing/no English label; Q2679045 California rancho"
+          }
+        ]
+      },
+      {
+        "slug": "mission",
+        "label": "Mission",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q1156970"
+        ],
+        "live_labels": [
+          "humanity"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1824509",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q1156970",
+            "live_label": "humanity",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q1156970",
+            "new": "https://www.wikidata.org/wiki/Q1824509",
+            "live": "Spanish missions in California",
+            "reason": "Q1156970 is humanity; Q1824509 fits SCV mission context"
+          }
+        ]
+      },
+      {
+        "slug": "government",
+        "label": "Government",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q7163"
+        ],
+        "live_labels": [
+          "politics"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q7188",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q7163",
+            "live_label": "politics",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q7163",
+            "new": "https://www.wikidata.org/wiki/Q7188",
+            "live": "government",
+            "reason": "Q7163 is politics; Q7188 is government"
+          }
+        ]
+      },
+      {
+        "slug": "business",
+        "label": "Business",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q4830453"
+        ],
+        "live_labels": [
+          "business"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q4830453",
+            "live_label": "business",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "nonprofit",
+        "label": "Nonprofit",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q163740"
+        ],
+        "live_labels": [
+          "nonprofit organization"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q163740",
+            "live_label": "nonprofit organization",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "media",
+        "label": "Media",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q11033"
+        ],
+        "live_labels": [
+          "mass media"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q11033",
+            "live_label": "mass media",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "military-unit",
+        "label": "Military Unit",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q176799"
+        ],
+        "live_labels": [
+          "military unit"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q176799",
+            "live_label": "military unit",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "cultural-organization",
+        "label": "Cultural Organization",
+        "sameAs": [],
+        "live_labels": [],
+        "status": "missing",
+        "corrected_uri": "",
+        "notes": "empty sameAs",
+        "uri_details": []
+      },
+      {
+        "slug": "religious-institution",
+        "label": "Religious Institution",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q1530022"
+        ],
+        "live_labels": [
+          "religious organization"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q1530022",
+            "live_label": "religious organization",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      }
+    ],
+    "place-type.json": [
+      {
+        "slug": "road",
+        "label": "Road",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q34442",
+          "http://vocab.getty.edu/aat/300008217"
+        ],
+        "live_labels": [
+          "road",
+          "roads"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q34442",
+            "live_label": "road",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300008217",
+            "live_label": "roads",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "park",
+        "label": "Park",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q22698",
+          "http://vocab.getty.edu/aat/300008187"
+        ],
+        "live_labels": [
+          "park",
+          "parks (public recreation areas)"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q22698",
+            "live_label": "park",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300008187",
+            "live_label": "parks (public recreation areas)",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "building",
+        "label": "Building",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q41176",
+          "http://vocab.getty.edu/aat/300004792"
+        ],
+        "live_labels": [
+          "building",
+          "buildings (structures)"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q41176",
+            "live_label": "building",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300004792",
+            "live_label": "buildings (structures)",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "canyon",
+        "label": "Canyon",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q354300"
+        ],
+        "live_labels": [
+          "Adalgis"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q150784",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q354300",
+            "live_label": "Adalgis",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q354300",
+            "new": "https://www.wikidata.org/wiki/Q150784",
+            "live": "canyon",
+            "reason": "Q354300 is Adalgis (Lombard king)"
+          }
+        ]
+      },
+      {
+        "slug": "school",
+        "label": "School",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q3914",
+          "http://vocab.getty.edu/aat/300055197"
+        ],
+        "live_labels": [
+          "school",
+          "NO_LABEL/BROKEN"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "secondary URI broken/404",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q3914",
+            "live_label": "school",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300055197",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "aat 404",
+            "http_status": 404
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "neighborhood",
+        "label": "Neighborhood",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q123705"
+        ],
+        "live_labels": [
+          "neighborhood"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q123705",
+            "live_label": "neighborhood",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "landmark",
+        "label": "Landmark",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q231021"
+        ],
+        "live_labels": [
+          "Foucherans"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q4895393",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q231021",
+            "live_label": "Foucherans",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q231021",
+            "new": "https://www.wikidata.org/wiki/Q4895393",
+            "live": "landmark",
+            "reason": "Q231021 is Foucherans disambiguation"
+          }
+        ]
+      },
+      {
+        "slug": "body-of-water",
+        "label": "Body of Water",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q15324"
+        ],
+        "live_labels": [
+          "body of water"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q15324",
+            "live_label": "body of water",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "ranch",
+        "label": "Ranch",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q3303261"
+        ],
+        "live_labels": [
+          "NO_LABEL/BROKEN"
+        ],
+        "status": "broken",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q509028",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q3303261",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q3303261",
+            "new": "https://www.wikidata.org/wiki/Q509028",
+            "live": "ranch",
+            "reason": "Q3303261 missing; Q509028 ranch"
+          }
+        ]
+      },
+      {
+        "slug": "cemetery",
+        "label": "Cemetery",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q39614",
+          "http://vocab.getty.edu/aat/300005865"
+        ],
+        "live_labels": [
+          "cemetery",
+          "NO_LABEL/BROKEN"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "secondary URI broken/404",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q39614",
+            "live_label": "cemetery",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300005865",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "aat 404",
+            "http_status": 404
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "mine",
+        "label": "Mine",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q820477"
+        ],
+        "live_labels": [
+          "mine"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q820477",
+            "live_label": "mine",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "oil-field",
+        "label": "Oil Field",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q202822"
+        ],
+        "live_labels": [
+          "Amritsar district"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q211748",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q202822",
+            "live_label": "Amritsar district",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q202822",
+            "new": "https://www.wikidata.org/wiki/Q211748",
+            "live": "oil field",
+            "reason": "Q202822 is Amritsar district"
+          }
+        ]
+      },
+      {
+        "slug": "railway-station",
+        "label": "Railway Station",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q55488",
+          "http://vocab.getty.edu/aat/300007301"
+        ],
+        "live_labels": [
+          "railway station",
+          "palaestrae"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q55488",
+            "live_label": "railway station",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300007301",
+            "live_label": "palaestrae",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      }
+    ],
+    "subject-tags.json": [
+      {
+        "slug": "gold-rush",
+        "label": "Gold Rush",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q202191",
+          "http://vocab.getty.edu/aat/300055547"
+        ],
+        "live_labels": [
+          "Amaya",
+          "legal concepts"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q273182",
+        "notes": "NEEDS_VERIFICATION: AAT ID is legal concepts, not gold rush; NEEDS_VERIFICATION for correct AAT",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q202191",
+            "live_label": "Amaya",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300055547",
+            "live_label": "legal concepts",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q202191",
+            "new": "https://www.wikidata.org/wiki/Q273182",
+            "live": "gold rush",
+            "reason": "Q202191 is Amaya disambiguation"
+          },
+          {
+            "old": "http://vocab.getty.edu/aat/300055547",
+            "new": null,
+            "live": "legal concepts",
+            "reason": "AAT ID is legal concepts, not gold rush; NEEDS_VERIFICATION for correct AAT"
+          }
+        ]
+      },
+      {
+        "slug": "water-history",
+        "label": "Water History",
+        "sameAs": [
+          "https://id.loc.gov/authorities/subjects/sh85145505"
+        ],
+        "live_labels": [
+          "Christianity"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://id.loc.gov/authorities/subjects/sh85145648",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://id.loc.gov/authorities/subjects/sh85145505",
+            "live_label": "Christianity",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "lcsh",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://id.loc.gov/authorities/subjects/sh85145505",
+            "new": "https://id.loc.gov/authorities/subjects/sh85145648",
+            "live": "Water-supply",
+            "reason": "sh85145505 is Christianity; LOC suggest confirms sh85145648 Water-supply"
+          }
+        ]
+      },
+      {
+        "slug": "indigenous-history",
+        "label": "Indigenous History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q743736",
+          "https://www.wikidata.org/wiki/Q24251468",
+          "TONGVA_QID_PENDING_VERIFICATION",
+          "https://www.wikidata.org/wiki/Q745474",
+          "https://www.tataviam-nsn.us/",
+          "https://chumash.gov/",
+          "https://www.gabrieleno-nsn.us/",
+          "https://sanmanuel-nsn.gov/"
+        ],
+        "live_labels": [
+          "Tataviam",
+          "Chumash people",
+          "PLACEHOLDER",
+          "117712 Podmaniczky",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)"
+        ],
+        "status": "NEEDS_VERIFICATION",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1479279; https://www.wikidata.org/wiki/Q617532",
+        "notes": "Q743736 live label Tataviam but description=language; people entity is Q1562200; placeholder present; verified correction Q1479279 available",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q743736",
+            "live_label": "Tataviam",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://www.wikidata.org/wiki/Q24251468",
+            "live_label": "Chumash people",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "TONGVA_QID_PENDING_VERIFICATION",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "placeholder",
+            "http_status": null
+          },
+          {
+            "uri": "https://www.wikidata.org/wiki/Q745474",
+            "live_label": "117712 Podmaniczky",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://www.tataviam-nsn.us/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://chumash.gov/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://www.gabrieleno-nsn.us/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://sanmanuel-nsn.gov/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "TONGVA_QID_PENDING_VERIFICATION",
+            "new": "https://www.wikidata.org/wiki/Q1479279",
+            "live": "Tongva people",
+            "reason": "Replace placeholder with verified Tongva Q1479279"
+          },
+          {
+            "old": "https://www.wikidata.org/wiki/Q745474",
+            "new": "https://www.wikidata.org/wiki/Q617532",
+            "live": "Serrano people",
+            "reason": "Wrong Serrano QID (asteroid)"
+          }
+        ]
+      },
+      {
+        "slug": "railroads",
+        "label": "Railroads",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q22667",
+          "http://vocab.getty.edu/aat/300008187"
+        ],
+        "live_labels": [
+          "railway",
+          "parks (public recreation areas)"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "AAT parks URI wrong for railroads",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q22667",
+            "live_label": "railway",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300008187",
+            "live_label": "parks (public recreation areas)",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "oil-industry",
+        "label": "Oil Industry",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q11002"
+        ],
+        "live_labels": [
+          "sugar"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q862571",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q11002",
+            "live_label": "sugar",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q11002",
+            "new": "https://www.wikidata.org/wiki/Q862571",
+            "live": "petroleum industry",
+            "reason": "Q11002 is sugar"
+          }
+        ]
+      },
+      {
+        "slug": "film-industry",
+        "label": "Film Industry",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q11424"
+        ],
+        "live_labels": [
+          "film"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1415395",
+        "notes": "Q11424 film is related but not film industry",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q11424",
+            "live_label": "film",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q11424",
+            "new": "https://www.wikidata.org/wiki/Q1415395",
+            "live": "film industry",
+            "reason": "Q11424 is film (artwork); Q1415395 is film industry"
+          }
+        ]
+      },
+      {
+        "slug": "agriculture",
+        "label": "Agriculture",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q11451",
+          "http://vocab.getty.edu/aat/300054258"
+        ],
+        "live_labels": [
+          "agriculture",
+          "metalinguistics"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "AAT metalinguistics wrong",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q11451",
+            "live_label": "agriculture",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300054258",
+            "live_label": "metalinguistics",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "architecture",
+        "label": "Architecture",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q12271",
+          "http://vocab.getty.edu/aat/300054197"
+        ],
+        "live_labels": [
+          "architecture",
+          "architectural drawing (process)"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "AAT is architectural drawing (process), not architecture discipline",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q12271",
+            "live_label": "architecture",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300054197",
+            "live_label": "architectural drawing (process)",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "military-history",
+        "label": "Military History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q104787"
+        ],
+        "live_labels": [
+          "Albert Florath"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q192781",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q104787",
+            "live_label": "Albert Florath",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q104787",
+            "new": "https://www.wikidata.org/wiki/Q192781",
+            "live": "military history",
+            "reason": "Q104787 is actor Albert Florath"
+          }
+        ]
+      },
+      {
+        "slug": "politics-government",
+        "label": "Politics & Government",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q7163"
+        ],
+        "live_labels": [
+          "politics"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q7163",
+            "live_label": "politics",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "law-enforcement",
+        "label": "Law Enforcement",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q44554"
+        ],
+        "live_labels": [
+          "law enforcement"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q44554",
+            "live_label": "law enforcement",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "education",
+        "label": "Education",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q8434"
+        ],
+        "live_labels": [
+          "education"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q8434",
+            "live_label": "education",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "religion",
+        "label": "Religion",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q9174"
+        ],
+        "live_labels": [
+          "religion"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q9174",
+            "live_label": "religion",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "commerce-trade",
+        "label": "Commerce and Trade",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q8374"
+        ],
+        "live_labels": [
+          "cimbalom"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q601401",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q8374",
+            "live_label": "cimbalom",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q8374",
+            "new": "https://www.wikidata.org/wiki/Q601401",
+            "live": "trade",
+            "reason": "Q8374 is cimbalom; Q601401 trade (also Q26643 commerce)"
+          }
+        ]
+      },
+      {
+        "slug": "land-grants",
+        "label": "Land Grants",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q1000743",
+          "https://id.loc.gov/authorities/subjects/sh85074242"
+        ],
+        "live_labels": [
+          "Budde",
+          "Lampman family"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q3217027; https://id.loc.gov/authorities/subjects/sh85074296",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q1000743",
+            "live_label": "Budde",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://id.loc.gov/authorities/subjects/sh85074242",
+            "live_label": "Lampman family",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "lcsh",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q1000743",
+            "new": "https://www.wikidata.org/wiki/Q3217027",
+            "live": "land grant",
+            "reason": "Q1000743 is Budde disambiguation"
+          },
+          {
+            "old": "https://id.loc.gov/authorities/subjects/sh85074242",
+            "new": "https://id.loc.gov/authorities/subjects/sh85074296",
+            "live": "Land grants",
+            "reason": "sh85074242 is Lampman family; LOC suggest confirms sh85074296"
+          }
+        ]
+      },
+      {
+        "slug": "natural-disasters",
+        "label": "Natural Disasters",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q8060"
+        ],
+        "live_labels": [
+          "Romani people"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q8065",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q8060",
+            "live_label": "Romani people",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q8060",
+            "new": "https://www.wikidata.org/wiki/Q8065",
+            "live": "natural disaster",
+            "reason": "Q8060 is Romani people"
+          }
+        ]
+      },
+      {
+        "slug": "conservation",
+        "label": "Conservation",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q62832"
+        ],
+        "live_labels": [
+          "observatory"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q20113959",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q62832",
+            "live_label": "observatory",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q62832",
+            "new": "https://www.wikidata.org/wiki/Q20113959",
+            "live": "nature conservation",
+            "reason": "Q62832 is observatory"
+          }
+        ]
+      },
+      {
+        "slug": "arts-culture",
+        "label": "Arts and Culture",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q735"
+        ],
+        "live_labels": [
+          "art"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q735",
+            "live_label": "art",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "tataviam-history",
+        "label": "Tataviam History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q743736",
+          "https://www.tataviam-nsn.us/heritage/history/",
+          "https://www.tataviam-nsn.us/heritage/territory/"
+        ],
+        "live_labels": [
+          "Tataviam",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)"
+        ],
+        "status": "pass",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1562200",
+        "notes": "Q743736 live label Tataviam but description=language; people entity is Q1562200",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q743736",
+            "live_label": "Tataviam",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://www.tataviam-nsn.us/heritage/history/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://www.tataviam-nsn.us/heritage/territory/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q743736",
+            "new": "https://www.wikidata.org/wiki/Q1562200",
+            "live": "Tataviam (ethnic group)",
+            "reason": "Q743736 live description is language; Q1562200 is ethnic group. Prefer people QID for history tag; may keep language as additional."
+          }
+        ]
+      },
+      {
+        "slug": "californio-history",
+        "label": "Californio History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q1051342"
+        ],
+        "live_labels": [
+          "Cattini"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q2285219",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q1051342",
+            "live_label": "Cattini",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q1051342",
+            "new": "https://www.wikidata.org/wiki/Q2285219",
+            "live": "Californio",
+            "reason": "Q1051342 is Cattini disambiguation"
+          }
+        ]
+      },
+      {
+        "slug": "chumash-history",
+        "label": "Chumash History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q24251468",
+          "https://chumash.gov/chumash-history",
+          "https://chumash.gov/",
+          "https://northernchumash.org/"
+        ],
+        "live_labels": [
+          "Chumash people",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)",
+          "HTTP status-only (202)"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q24251468",
+            "live_label": "Chumash people",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://chumash.gov/chumash-history",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://chumash.gov/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://northernchumash.org/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (202)",
+            "http_status": 202
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "tongva-history",
+        "label": "Tongva History",
+        "sameAs": [
+          "TONGVA_QID_PENDING_VERIFICATION",
+          "https://www.gabrieleno-nsn.us/",
+          "https://gabrielinotongva.org/",
+          "https://gabrielenoindians.org/"
+        ],
+        "live_labels": [
+          "PLACEHOLDER",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)",
+          "HTTP status-only (200)"
+        ],
+        "status": "NEEDS_VERIFICATION",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1479279",
+        "notes": "placeholder present; verified correction Q1479279 available",
+        "uri_details": [
+          {
+            "uri": "TONGVA_QID_PENDING_VERIFICATION",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "placeholder",
+            "http_status": null
+          },
+          {
+            "uri": "https://www.gabrieleno-nsn.us/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://gabrielinotongva.org/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://gabrielenoindians.org/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "TONGVA_QID_PENDING_VERIFICATION",
+            "new": "https://www.wikidata.org/wiki/Q1479279",
+            "live": "Tongva people",
+            "reason": "Live: Tongva people; aliases Kizh, Gabriele\u00f1o, Gabrielino Tongva. Q2424671 does not resolve to Tongva."
+          }
+        ]
+      },
+      {
+        "slug": "serrano-history",
+        "label": "Serrano History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q745474",
+          "https://sanmanuel-nsn.gov/",
+          "https://serranonationofindians.org/"
+        ],
+        "live_labels": [
+          "117712 Podmaniczky",
+          "HTTP status-only (200)",
+          "HTTP status-only (None)"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q617532",
+        "notes": "serranonationofindians.org did not resolve in this audit",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q745474",
+            "live_label": "117712 Podmaniczky",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://sanmanuel-nsn.gov/",
+            "live_label": null,
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "HTTP status-only (200)",
+            "http_status": 200
+          },
+          {
+            "uri": "https://serranonationofindians.org/",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "HTTP status-only (None)",
+            "http_status": null
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q745474",
+            "new": "https://www.wikidata.org/wiki/Q617532",
+            "live": "Serrano people",
+            "reason": "Q745474 is asteroid 117712 Podmaniczky"
+          }
+        ]
+      },
+      {
+        "slug": "kitanemuk-history",
+        "label": "Kitanemuk History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q6422453"
+        ],
+        "live_labels": [
+          "Knights of Father Mathew"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q6417841",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q6422453",
+            "live_label": "Knights of Father Mathew",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q6422453",
+            "new": "https://www.wikidata.org/wiki/Q6417841",
+            "live": "Kitanemuk",
+            "reason": "Q6422453 is Knights of Father Mathew; Q6417841 indigenous Californian people"
+          }
+        ]
+      },
+      {
+        "slug": "vanyume-history",
+        "label": "Vanyume History",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q7915068"
+        ],
+        "live_labels": [
+          "Vankov"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q11216568",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q7915068",
+            "live_label": "Vankov",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q7915068",
+            "new": "https://www.wikidata.org/wiki/Q11216568",
+            "live": "Vanyume",
+            "reason": "Q7915068 is Vankov; Q11216568 Vanyume people"
+          }
+        ]
+      },
+      {
+        "slug": "spanish-colonial-expedition",
+        "label": "Spanish Colonial Expedition",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q723198",
+          "https://id.loc.gov/authorities/subjects/sh85011234"
+        ],
+        "live_labels": [
+          "Roberto de Assis Moreira",
+          "Ballads, Danish"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q3966440",
+        "notes": "NEEDS_VERIFICATION: Wrong LCSH; NEEDS_VERIFICATION for Spanish expeditions / Portol\u00e1 LCSH",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q723198",
+            "live_label": "Roberto de Assis Moreira",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "https://id.loc.gov/authorities/subjects/sh85011234",
+            "live_label": "Ballads, Danish",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "lcsh",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q723198",
+            "new": "https://www.wikidata.org/wiki/Q3966440",
+            "live": "Portol\u00e0 expedition",
+            "reason": "Q723198 is Roberto de Assis Moreira; Portol\u00e1 is the SCV-relevant Spanish colonial expedition"
+          },
+          {
+            "old": "https://id.loc.gov/authorities/subjects/sh85011234",
+            "new": null,
+            "live": "Ballads, Danish",
+            "reason": "Wrong LCSH; NEEDS_VERIFICATION for Spanish expeditions / Portol\u00e1 LCSH"
+          }
+        ]
+      }
+    ],
+    "water-type.json": [
+      {
+        "slug": "dam",
+        "label": "Dam",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q12323",
+          "http://vocab.getty.edu/aat/300006088"
+        ],
+        "live_labels": [
+          "dam",
+          "cofferdams"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "AAT cofferdams too narrow/wrong vs dams",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q12323",
+            "live_label": "dam",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300006088",
+            "live_label": "cofferdams",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "aat",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "reservoir",
+        "label": "Reservoir",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q134166"
+        ],
+        "live_labels": [
+          "Mahakala"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q131681",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q134166",
+            "live_label": "Mahakala",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q134166",
+            "new": "https://www.wikidata.org/wiki/Q131681",
+            "live": "reservoir",
+            "reason": "Q134166 is Mahakala (fossil genus)"
+          }
+        ]
+      },
+      {
+        "slug": "aqueduct",
+        "label": "Aqueduct",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q43197",
+          "http://vocab.getty.edu/aat/300006138"
+        ],
+        "live_labels": [
+          "river delta",
+          "NO_LABEL/BROKEN"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q474",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q43197",
+            "live_label": "river delta",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300006138",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "aat 404",
+            "http_status": 404
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q43197",
+            "new": "https://www.wikidata.org/wiki/Q474",
+            "live": "aqueduct",
+            "reason": "Q43197 is river delta"
+          }
+        ]
+      },
+      {
+        "slug": "canal",
+        "label": "Canal",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q12284",
+          "http://vocab.getty.edu/aat/300006138"
+        ],
+        "live_labels": [
+          "canal",
+          "NO_LABEL/BROKEN"
+        ],
+        "status": "fail",
+        "corrected_uri": "",
+        "notes": "secondary URI broken/404",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q12284",
+            "live_label": "canal",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          },
+          {
+            "uri": "http://vocab.getty.edu/aat/300006138",
+            "live_label": null,
+            "resolve_ok": false,
+            "match": false,
+            "status_note": "aat 404",
+            "http_status": 404
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "spring",
+        "label": "Spring",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q188504"
+        ],
+        "live_labels": [
+          "alternative medicine"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q1881858",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q188504",
+            "live_label": "alternative medicine",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q188504",
+            "new": "https://www.wikidata.org/wiki/Q1881858",
+            "live": "spring water",
+            "reason": "Q188504 is alternative medicine; Q1881858 spring water"
+          }
+        ]
+      },
+      {
+        "slug": "well",
+        "label": "Well",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q43483"
+        ],
+        "live_labels": [
+          "water well"
+        ],
+        "status": "pass",
+        "corrected_uri": "",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q43483",
+            "live_label": "water well",
+            "resolve_ok": true,
+            "match": true,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": []
+      },
+      {
+        "slug": "treatment-plant",
+        "label": "Treatment Plant",
+        "sameAs": [
+          "https://www.wikidata.org/wiki/Q769626"
+        ],
+        "live_labels": [
+          "Hokkek\u014d"
+        ],
+        "status": "fail",
+        "corrected_uri": "https://www.wikidata.org/wiki/Q9341055",
+        "notes": "",
+        "uri_details": [
+          {
+            "uri": "https://www.wikidata.org/wiki/Q769626",
+            "live_label": "Hokkek\u014d",
+            "resolve_ok": true,
+            "match": false,
+            "status_note": "wikidata",
+            "http_status": 200
+          }
+        ],
+        "corrections": [
+          {
+            "old": "https://www.wikidata.org/wiki/Q769626",
+            "new": "https://www.wikidata.org/wiki/Q9341055",
+            "live": "water treatment plant",
+            "reason": "Q769626 is Hokkek\u014d"
+          }
+        ]
+      }
+    ]
+  },
+  "uri_cache_note": "Merged from live fetch session; labels confirmed via EntityData/_label/authoritativeLabel"
+}
