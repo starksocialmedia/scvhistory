@@ -1,6 +1,6 @@
 # SCVHistory Taxonomy Audit
 
-- **Date:** 2026-09-15 (PT)
+- **Date:** 2026-09-15 (PT); AAT follow-up 2026-09-16 (PT)
 - **Agent:** Grok Bot (research)
 - **Branch:** grok-bot
 - **Method:** For every term in all 11 `taxonomy-import/*.json` files (excluding `_verification-raw.json`), recorded slug, label, current `sameAs` URIs, live label at each URI, pass/fail, and corrected URI only when verified live. Fetched Wikidata via `Special:EntityData/QID.json` (English label + aliases), Getty AAT via `vocab.getty.edu/aat/ID.json` (`_label`), LCSH via `id.loc.gov` `.json` authoritativeLabel, and other sameAs (tribal sites) via HTTP status only. Rate limited ~0.4-1.0s between requests; retried on 429/5xx. Wrong URIs: searched Wikidata `wbsearchentities` and LOC suggest; proposed corrections only when returned label clearly matches.
@@ -14,6 +14,8 @@
 
 
 > **Update 2026-09-15 (PT), non-Indigenous pass:** Verified Wikidata/LCSH replacements applied where live labels matched (wars, disasters, subjects, place/org/group, water). AAT-only failures and broken AAT left unchanged as NEEDS_VERIFICATION. Indigenous terms from 7fcb8d3 untouched. spanish-colonial-expedition -> Q3966440 (Portola expedition).
+
+> **Update 2026-09-16 (PT):** Continued leftover AAT verification. Fetched live AAT ID JSON; searched Getty SPARQL lucene for matching prefLabels. Applied 10 AAT replacements where live prefLabel was an unmistakable match. Left american-frontier, gold-rush AAT, and spanish-colonial-expedition LCSH as NEEDS_VERIFICATION (no invented URIs). Confirmed spanish-colonial-expedition JSON already has Q3966440 (not reverted). Indigenous terms untouched.
 
 ## Executive summary
 
@@ -292,34 +294,38 @@ JSON URI edits applied 2026-09-15 (PT) after Nathan approval and live re-check. 
 | tongva-history | `TONGVA_QID_PENDING_VERIFICATION` | `https://www.wikidata.org/wiki/Q1479279` | Tongva people | **applied** (prior Indigenous pass 7fcb8d3) |
 | indigenous-history | `TONGVA_QID_PENDING_VERIFICATION` | `https://www.wikidata.org/wiki/Q1479279` | Tongva people | **applied** (prior Indigenous pass 7fcb8d3) |
 | indigenous-history | `https://www.wikidata.org/wiki/Q745474` | `https://www.wikidata.org/wiki/Q617532` | Serrano people | **applied** (prior Indigenous pass 7fcb8d3) |
-| spanish-colonial-expedition | `https://www.wikidata.org/wiki/Q723198` | `https://www.wikidata.org/wiki/Q3966440` | Portola expedition | **NEEDS_VERIFICATION** (live label is specific Portola expedition, not general Spanish colonial expedition; old Wikidata+LCSH left unchanged) |
+| spanish-colonial-expedition | `https://www.wikidata.org/wiki/Q723198` | `https://www.wikidata.org/wiki/Q3966440` | Portola expedition | **applied earlier** (JSON has Q3966440); LCSH sh85011234 still Ballads, Danish = **NEEDS_VERIFICATION**; not reverted 2026-09-16 |
 | water-history | `https://id.loc.gov/authorities/subjects/sh85145505` | `https://id.loc.gov/authorities/subjects/sh85145648` | Water-supply | **applied** |
 | reservoir | `https://www.wikidata.org/wiki/Q134166` | `https://www.wikidata.org/wiki/Q131681` | reservoir | **applied** |
-| aqueduct | `https://www.wikidata.org/wiki/Q43197` | `https://www.wikidata.org/wiki/Q474` | aqueduct | **applied** (AAT 404 still present: NEEDS_VERIFICATION) |
+| aqueduct | `https://www.wikidata.org/wiki/Q43197` | `https://www.wikidata.org/wiki/Q474` | aqueduct | **applied** (AAT also fixed 2026-09-16 -> 300006165 aqueducts) |
 | spring | `https://www.wikidata.org/wiki/Q188504` | `https://www.wikidata.org/wiki/Q1881858` | spring water | **applied** |
 | treatment-plant | `https://www.wikidata.org/wiki/Q769626` | `https://www.wikidata.org/wiki/Q9341055` | water treatment plant | **applied** |
 | tataviam-history | `https://www.wikidata.org/wiki/Q743736` | `https://www.wikidata.org/wiki/Q1562200` | Tataviam (ethnic group) | **applied** (prior Indigenous pass 7fcb8d3) |
 | tataviam-pre-contact | `https://www.wikidata.org/wiki/Q743736` | `https://www.wikidata.org/wiki/Q1562200` | Tataviam (ethnic group) | **applied** (prior Indigenous pass 7fcb8d3) |
 
-### AAT / LCSH left flagged (no verified replacement; not invented)
+### AAT / LCSH left flagged (updated 2026-09-16)
 
-| Term slug | Issue | Status |
-|---|---|---|
-| spanish-colonial-1769-1821 | AAT 300417650 = consignment | **NEEDS_VERIFICATION** |
-| american-frontier-1848-1876 | AAT 300417720 = elephant ivory | **NEEDS_VERIFICATION** |
-| gold-rush | AAT 300055547 = legal concepts (Wikidata fixed) | **NEEDS_VERIFICATION** |
-| agriculture | AAT 300054258 = metalinguistics | **NEEDS_VERIFICATION** |
-| architecture | AAT 300054197 = architectural drawing (process) | **NEEDS_VERIFICATION** |
-| railroads | AAT 300008187 = parks | **NEEDS_VERIFICATION** |
-| railway-station | AAT 300007301 wrong/palaestrae | **NEEDS_VERIFICATION** |
-| dam | AAT 300006088 = cofferdams | **NEEDS_VERIFICATION** |
-| aqueduct | AAT 300006138 broken/404 | **NEEDS_VERIFICATION** |
-| canal | AAT 300006138 broken/404 | **NEEDS_VERIFICATION** |
-| educational-institution | AAT broken/wrong | **NEEDS_VERIFICATION** |
-| cemetery | AAT 300005865 wrong/404 | **NEEDS_VERIFICATION** |
-| spanish-colonial-expedition | LCSH sh85011234 = Ballads, Danish; Wikidata Q3966440 too specific | **NEEDS_VERIFICATION** |
+Live-verified AAT replacements applied 2026-09-16 (PT). Status: **applied** or **NEEDS_VERIFICATION**.
+
+| Term slug | Old AAT | New AAT | Live prefLabel | Status |
+|---|---|---|---|---|
+| spanish-colonial-1769-1821 | 300417650 (consignment) | 300107033 | Spanish Colonial | **applied** |
+| agriculture | 300054258 (metalinguistics) | 300054463 | agriculture (discipline) | **applied** |
+| architecture | 300054197 (architectural drawing (process)) | 300054156 | architecture (discipline) | **applied** |
+| railroads | 300008187 (parks) | 300008591 | railroads (infrastructure) | **applied** |
+| railway-station | 300007301 (palaestrae) | 300007783 | railroad stations | **applied** |
+| dam | 300006088 (cofferdams) | 300006084 | dams (hydraulic structures) | **applied** |
+| aqueduct | 300006138 (404) | 300006165 | aqueducts | **applied** |
+| canal | 300006138 (404) | 300006075 | canals (waterways) | **applied** |
+| educational-institution | 300055197 (404) | 300386368 | educational institutions | **applied** |
+| cemetery | 300005865 (404) | 300266755 | cemeteries | **applied** |
+| american-frontier-1848-1876 | 300417720 = elephant ivory | n/a | SPARQL found frontiers / frontier settlements only; not American Frontier era | **NEEDS_VERIFICATION** |
+| gold-rush | 300055547 = legal concepts (Wikidata Q273182 OK) | n/a | No AAT prefLabel for gold rushes / gold rush in live SPARQL lucene | **NEEDS_VERIFICATION** |
+| spanish-colonial-expedition | LCSH sh85011234 = Ballads, Danish | n/a | JSON already has Q3966440 (Portola expedition) from earlier apply; LCSH still wrong; not reverted | **NEEDS_VERIFICATION** |
 
 Also remove or replace wrong AAT/LCSH URIs that fail live label checks only after a verified correct AAT/LCSH ID is found. Where no verified replacement AAT ID was found, mark **NEEDS_VERIFICATION** rather than inventing.
+
+Note: place-type `school` still carries broken AAT 300055197 (not in this leftover list; left unchanged).
 
 ## Questions for Leon
 
@@ -336,9 +342,10 @@ Also remove or replace wrong AAT/LCSH URIs that fail live label checks only afte
 
 ## Explicit confirmation
 
+- **2026-09-16 (PT):** Continued AAT verification on leftover NEEDS_VERIFICATION rows. Applied 10 live-matching AAT URI replacements. No invented URIs. Indigenous terms untouched. No git commit/push.
 - **2026-09-15 (PT) evening:** Non-Indigenous verified Wikidata/LCSH URI corrections applied after Nathan approval and live re-check (31 replacements across 7 JSON files).
-- Indigenous terms fixed in 7fcb8d3 were **not** modified in this pass.
-- spanish-colonial-expedition and wrong AAT URIs without verified replacements left unchanged and marked **NEEDS_VERIFICATION**.
-- Craft/DDEV/Jordy not touched. No git commit/push in this pass (parent will commit).
+- Indigenous terms fixed in 7fcb8d3 were **not** modified in these passes.
+- Remaining AAT/LCSH flags: american-frontier-1848-1876, gold-rush AAT, spanish-colonial-expedition LCSH (Q3966440 confirmed present in JSON).
+- Craft/DDEV/Jordy not touched.
 - Raw verification trail remains in `taxonomy-import/_verification-raw.json` (audit-time fetch log).
 

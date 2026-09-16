@@ -3,6 +3,14 @@ SCVHistory.com — Changelog
 2026-09-16
 
 - Agent: Grok Bot
+- Done: continued taxonomy verification on leftover AAT URIs flagged NEEDS_VERIFICATION
+- Decisions: applied only live-matching AAT IDs; never invented URIs; Indigenous terms untouched
+- Blockers: american-frontier-1848-1876 (no matching AAT era); gold-rush AAT (no gold rushes concept found); spanish-colonial-expedition LCSH still Ballads, Danish (Q3966440 confirmed in JSON, not reverted)
+- Next: Nathan review remaining NEEDS_VERIFICATION AAT/empty sameAs; era gap 1990-2010 still for Leon
+
+2026-09-16
+
+- Agent: Grok Bot
 - Done: Places research for 39 candidates (Wikidata/CHL) and Collections stub author/year lines; wrote PLACES-RESEARCH.md
 - Decisions: no invented URIs; NEEDS_VERIFICATION when unsure; no sacred-site coordinates; Tataviam Culture not a Place; no scvhistory.com crawl
 - Blockers: Wikidata rate limits slowed searches for some obscure Places; Melody Ranch enwiki/QID is the 1940 film not the movie ranch; several OTN/Signal collection years and authors remain NEEDS_VERIFICATION without scvhistory crawl
