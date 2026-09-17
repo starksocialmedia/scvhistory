@@ -37,7 +37,8 @@ A **Place** is a specific site you could stand at or point to on a map, with its
 
 - Examples: William S. Hart Mansion, Hart Park, St. Francis Dam, Vasquez Rocks, Beale's Cut, Pioneer Oil Refinery, Eternal Valley cemetery
 - Every Place **belongs to** one or more Communities (category field)
-- Place Type values: road, park, building, canyon, school, landmark, body-of-water, ranch, cemetery, mine, oil-field, railway-station
+- Place Type values (from the April build): historic-site, natural-feature, rancho, mission-church, transportation-corridor, dam-reservoir, oil-field, settlement-town
+- "settlement-town" is for historic townsites (Mentryville, Lyon's Station), not for living communities
 - **"Neighborhood" and "town" are NOT Place Types.** Those are Communities.
 - Fields that matter: coordinates, existed from / until (with date precision), status (standing, demolished, ruins), community
 
@@ -57,7 +58,7 @@ Edge cases (a named canyon that is both a region and a site, a historic townsite
 | **Person** | An individual with a meaningful, recurring role in SCV history | William S. Hart, Henry Mayo Newhall, Ygnacio del Valle, Leon Worden | Someone mentioned once (tag them) |
 | **Organization** | Something that acts: owns, operates, employs, governs, publishes | Newhall Land and Farming Co., City of Santa Clarita, Wiley Station, Rancho San Francisco, missions | The physical building (that is a Place) |
 | **Place** | A specific physical site | Hart Mansion, St. Francis Dam, Beale's Cut | A community or area |
-| **Group** | A collective that is not a formal organization | Families (del Valle family), tribes (Tataviam), military units, expeditions, cohorts | A company or agency |
+| **Group** | A collective that is not a formal organization | Families (del Valle family), tribes (Tataviam), military units (4th Squadron, 2nd Stryker Cavalry), expeditions | A company or agency |
 | **Article** | Historical articles, columns, essays | Jerry Reynolds' Signal columns | Photos or documents on their own |
 | **Collection** | A curated set of articles, like book chapters | "History of the Santa Clarita Valley" (Reynolds) | A topic or tag |
 | **Obituary** | Obituaries | | A Person record (not auto-created; manual editorial decision) |
@@ -84,6 +85,10 @@ Group type "Tribe." Follow TATAVIAM_AUDIT.md. Never merge distinct peoples (Tata
 | Category group | Handle | Purpose | Rule |
 |---|---|---|---|
 | **Communities** | `neighborhood` | Where the content is located | Section 2 |
+| **Place Type** | | What kind of site a Place is | See section 2 |
+| **Person Subject** | | What kind of figure a Person is: Historians and Authors, Civic Leaders, Military and First Responders, Outlaws and Notable Figures, Rancho Era Californios, Pioneers and Settlers, Indigenous Leaders | |
+| **Group Type** | | Expeditions, Families, Tribes and Nations, Military Units | |
+| **Event Type** | | Natural Disaster, Military, Political, Crime and Incident, Cultural Festival, Economic, Civic | |
 | **Historical Period** | `historicalPeriod` | Decade buckets: Pre-1850, 1850–1899, 1900–1919, then by decade to 2020–Present | The period the content is **about**, not when it was written |
 | **Historical Era** | `historicalEra` | Named eras (Rancho period, railroad era, etc.) | Use existing terms; propose new ones, do not add them |
 
