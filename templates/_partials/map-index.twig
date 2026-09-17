@@ -16,6 +16,13 @@
     polygonsUrl   optional URL of a GeoJSON FeatureCollection, fetched at runtime
     polygonMeta   optional map of slug -> { tooltip, url } for those polygons
     boundaryCount optional element id whose text is set to the polygon count
+    outlineUrl    optional base URL; when set the polygons draw as bare navy
+                  outlines under the pins instead of filled shapes, and a click
+                  goes to outlineUrl with ?community={slug}, the same filter the
+                  chip row uses
+    activeSlug    optional slug of the community currently filtered on; its
+                  outline draws gold at 2px and the map fits it rather than the
+                  pins
     mapHeight     optional css height, defaults to the 460px in the stylesheet
 #}
 {% do craft.app.view.registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css') %}
@@ -74,6 +81,8 @@
 {% set polygonsUrl = polygonsUrl ?? null %}
 {% set polygonMeta = polygonMeta ?? null %}
 {% set boundaryCount = boundaryCount ?? null %}
+{% set outlineUrl = outlineUrl ?? null %}
+{% set activeSlug = activeSlug ?? null %}
 
 <div class="pl-mapcard">
   <div id="map"{% if mapHeight is defined and mapHeight %} style="height:{{ mapHeight }}"{% endif %}></div>
@@ -94,31 +103,60 @@ document.addEventListener('DOMContentLoaded', function(){
   var SHAPES_URL = {{ polygonsUrl ? polygonsUrl|json_encode|raw : 'null' }};
   var SHAPE_META = {{ polygonMeta ? polygonMeta|json_encode|raw : '{}' }};
   var COUNT_EL = {{ boundaryCount ? boundaryCount|json_encode|raw : 'null' }};
+  var OUTLINE_URL = {{ outlineUrl ? outlineUrl|json_encode|raw : 'null' }};
+  var ACTIVE_SLUG = {{ activeSlug ? activeSlug|json_encode|raw : 'null' }};
   var HINT = {{ hint|json_encode|raw }};
   var map = L.map('map', { scrollWheelZoom: false });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
 
-  var shapeLayer = null, shapesBySlug = {};
-  var BASE = { color: '#17254C', weight: 1.5, opacity: 0.85, fillColor: '#17254C', fillOpacity: 0.12 };
-  var HOVER = { color: '#A9842B', weight: 2, opacity: 1, fillColor: '#C4A031', fillOpacity: 0.32 };
+  var shapeLayer = null, shapesBySlug = {}, activeLayer = null;
+  // Filled treatment for the Communities page; bare outlines under the pins
+  // everywhere else, so the pins stay the subject of the map.
+  var BASE  = OUTLINE_URL
+    ? { color: '#17254C', weight: 1, opacity: 0.55, fill: true, fillColor: '#17254C', fillOpacity: 0 }
+    : { color: '#17254C', weight: 1.5, opacity: 0.85, fillColor: '#17254C', fillOpacity: 0.12 };
+  var HOVER = OUTLINE_URL
+    ? { color: '#17254C', weight: 1.5, opacity: 0.9, fillColor: '#17254C', fillOpacity: 0.08 }
+    : { color: '#A9842B', weight: 2, opacity: 1, fillColor: '#C4A031', fillOpacity: 0.32 };
+  var ACTIVE = { color: '#C4A031', weight: 2, opacity: 1, fillColor: '#C4A031', fillOpacity: 0.08 };
 
   function drawShapes(geo){
     var keep = (geo.features || []).filter(function(f){
-      return SHAPE_META[(f.properties || {}).slug];
+      var slug = (f.properties || {}).slug;
+      // On an outline map every polygon in the file is drawn; communities with
+      // no polygon simply are not in the file.
+      return OUTLINE_URL ? !!slug : !!SHAPE_META[slug];
     });
     if (!keep.length) { return; }
     shapeLayer = L.geoJSON({ type: 'FeatureCollection', features: keep }, {
       style: function(){ return BASE; },
       onEachFeature: function(feature, layer){
-        var slug = (feature.properties || {}).slug;
+        var props = feature.properties || {};
+        var slug = props.slug;
         var meta = SHAPE_META[slug] || {};
+        var isActive = OUTLINE_URL && ACTIVE_SLUG && slug === ACTIVE_SLUG;
         shapesBySlug[slug] = layer;
-        if (meta.tooltip) { layer.bindTooltip(meta.tooltip, { sticky: true, direction: 'top' }); }
-        layer.on('mouseover', function(){ layer.setStyle(HOVER); });
-        layer.on('mouseout', function(){ layer.setStyle(BASE); });
-        if (meta.url) { layer.on('click', function(){ window.location = meta.url; }); }
+        if (isActive) { activeLayer = layer; layer.setStyle(ACTIVE); }
+
+        var tip = OUTLINE_URL ? (props.name || slug) : meta.tooltip;
+        if (tip) { layer.bindTooltip(tip, { sticky: true, direction: 'top' }); }
+
+        layer.on('mouseover', function(){ if (!isActive) { layer.setStyle(HOVER); } });
+        layer.on('mouseout',  function(){ layer.setStyle(isActive ? ACTIVE : BASE); });
+
+        var href = OUTLINE_URL
+          ? OUTLINE_URL + (OUTLINE_URL.indexOf('?') === -1 ? '?' : '&') + 'community=' + encodeURIComponent(slug)
+          : meta.url;
+        if (href) {
+          layer.on('click', function(){ window.location = href; });
+          if (layer.getElement) {
+            var el = layer.getElement();
+            if (el) { el.style.cursor = 'pointer'; }
+          }
+        }
       }
     }).addTo(map);
+    if (shapeLayer.bringToBack) { shapeLayer.bringToBack(); }
     Object.keys(shapesBySlug).forEach(function(slug){
       var pin = document.getElementById('pinslug-' + slug);
       if (pin && pin._marker) { map.removeLayer(pin._marker); }
@@ -149,8 +187,13 @@ document.addEventListener('DOMContentLoaded', function(){
   function fit(valley){
     var pts = valley ? PINS.filter(inValley) : PINS;
     if (!pts.length) pts = PINS;
+    // A community filter means the community is the subject: fit its outline.
+    if (activeLayer && activeLayer.getBounds && activeLayer.getBounds().isValid()) {
+      map.fitBounds(activeLayer.getBounds(), { padding: [30,30] });
+      return;
+    }
     var bounds = pts.length ? L.latLngBounds(pts.map(function(p){ return [p.lat, p.lng]; })) : null;
-    if (shapeLayer) {
+    if (shapeLayer && !OUTLINE_URL) {
       var sb = shapeLayer.getBounds();
       if (sb.isValid()) { bounds = bounds ? bounds.extend(sb) : sb; }
     }

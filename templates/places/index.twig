@@ -63,6 +63,9 @@
     <div class="pl-wrap">
       {% include "_partials/map-index" with {
         pins: pins,
+        polygonsUrl: siteUrl ~ 'data/communities.geojson',
+        outlineUrl: url('places'),
+        activeSlug: comSlug,
         hint: 'Select a place below to locate it, or a pin to jump to its card.',
         fitAllLabel: 'Fit all places'
       } only %}
