@@ -1,4 +1,12 @@
 {% css %}
+/* Shared page structure. A .scv-band is a full-width strip that carries a
+   background colour; .scv-band-in is the centred column inside it. Sections
+   add their own background and vertical padding on top of these. Never use a
+   negative-margin bleed: it overflows the document horizontally. */
+.scv-band{display:block;width:100%}
+.scv-band-in{max-width:1240px;margin:0 auto;padding:0 40px}
+{% endcss %}
+{% css %}
 .scv-doc{max-width:1180px;margin:0 auto;padding:0 24px}
 .scv-crumbs{font-size:13px;color:#6b6560;padding:18px 0 6px}
 .scv-crumbs a{color:#b8860b;text-decoration:none}

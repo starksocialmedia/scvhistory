@@ -1,60 +1,125 @@
 {% extends "_layouts/base" %}
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+{% css %}
+.pe{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.pe-wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.pe-crumbs{font-size:13px;color:#8A919E;padding:22px 0 18px}
+.pe-crumbs a{color:#A9842B;text-decoration:none}
+.pe-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:48px;padding:0 0 72px;align-items:start}
+@media(max-width:900px){.pe-grid{grid-template-columns:1fr}}
+.pe-top{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;align-items:start;margin-bottom:26px}
+@media(max-width:640px){.pe-top{grid-template-columns:1fr}}
+.pe-portrait{width:200px;height:200px;object-fit:cover;border:1px solid #E2E4E8;background:#fff;display:block}
+.pe-initials{width:200px;height:200px;background:#FDF7EA;border:1px solid #EFE6D0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:56px;color:#C4A031}
+.pe h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4vw,48px);line-height:1.08;margin:0 0 8px;color:#17254C}
+.pe-role{font-size:17px;color:#5B6472;margin:0 0 14px}
+.pe-dates{font-size:15px;color:#2C2C2C;line-height:1.7}
+.pe-dates b{font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.12em;color:#A9842B;margin-right:6px}
+.pe-era{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;color:#A9842B;margin:14px 0 8px}
+.pe-chips{display:flex;flex-wrap:wrap;gap:8px}
+.pe-chip{border:1px solid #C4A031;color:#A9842B;font-family:'Jost',sans-serif;font-size:12px;padding:5px 11px;border-radius:3px;text-decoration:none}
+.pe-chip.solid{border-color:#17254C;color:#17254C}
+.pe-body{background:#fff;border:1px solid #E2E4E8;padding:32px 36px;font-size:17px;line-height:1.75}
+.pe-body p{margin:0 0 20px}
+.pe-body p:last-child{margin-bottom:0}
+.pe-note{background:#FDF7EA;border-left:3px solid #C4A031;padding:12px 16px;margin:22px 0 0;font-size:15px}
+.pe-side .box{background:#fff;border:1px solid #E2E4E8;border-top:3px solid #C4A031;padding:18px 20px;margin-bottom:18px}
+.pe-side h3{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#A9842B;margin:0 0 12px;font-weight:500}
+.pe-side ul{list-style:none;margin:0;padding:0}
+.pe-side li{padding:8px 0;border-bottom:1px solid #F0F1F4;font-size:15px}
+.pe-side li:last-child{border-bottom:0}
+.pe-side a{color:#17254C;text-decoration:none;font-weight:500}
+.pe-side a:hover{color:#A9842B}
+.pe-sub{display:block;font-size:13px;color:#5B6472;margin-top:2px;font-weight:400}
+.pe-lab{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;color:#8A919E;margin:10px 0 2px}
+.pe-row{display:flex;justify-content:space-between;font-size:13px;color:#5B6472;padding:4px 0}
+.pe-cite{font-size:13px;background:#FDF7EA;border:1px solid #EFE6D0;padding:12px;line-height:1.55;word-break:break-word;color:#2C2C2C}
+{% endcss %}
+{% endblock %}
+
 {% block content %}
-<div class="crumbs"><a href="/">Home</a> › <a href="/persons">People</a> › {{ entry.title }}</div>
-<div class="layout">
-  <main>
-    <h1>{{ entry.title }}</h1>
-    {% if entry.occupation %}<p class="sub">{{ entry.occupation }}</p>{% endif %}
-    <p class="byline">
-      {% if entry.birthDate %}<strong>Born</strong> {{ entry.birthDate }}{% if entry.birthplace %} · {{ entry.birthplace }}{% endif %}<br>{% endif %}
-      {% if entry.deathDate %}<strong>Died</strong> {{ entry.deathDate }}{% if entry.burialPlace %} · {{ entry.burialPlace }}{% endif %}{% endif %}
-    </p>
-    {% set era = entry.historicalEra.one() ?? null %}
-    {% if era %}<div class="era">{{ era.title }}</div>{% endif %}
-    <div class="chips">
-      {% for p in entry.historicalPeriod.all() %}<span class="chip">{{ p.title }}</span>{% endfor %}
-      {% for c in entry.neighborhood.all() %}<span class="chip solid">{{ c.title }}</span>{% endfor %}
-    </div>
-    <article class="body">
-      {{ entry.body|raw }}
-      {% if entry.authorBio and not entry.body %}<p>{{ entry.authorBio }}</p>{% endif %}
-      {% if entry.personWebmasterNoteBottom %}<div class="note">{{ entry.personWebmasterNoteBottom }}</div>{% endif %}
-      {% if entry.personFinePrint %}<p class="fine">{{ entry.personFinePrint }}</p>{% endif %}
-    </article>
-  </main>
-  <aside>
-    <div class="box">
-      <div class="meta-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
-    </div>
-    <div class="box">
-      <h3>Cite this page</h3>
-      <div class="cite">"{{ entry.title }}." SCVHistory.com. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
-    </div>
-    {% set fam = {'Parent of': entry.parentOf.all(), 'Child of': entry.childOf.all(), 'Sibling of': entry.siblingOf.all()} %}
-    {% set hasFam = false %}
-    {% for k, v in fam %}{% if v|length %}{% set hasFam = true %}{% endif %}{% endfor %}
-    {% if hasFam %}
-    <div class="box"><h3>Family &amp; relationships</h3>
-      {% for label, people in fam %}
-        {% if people|length %}
-          <p class="small" style="margin:8px 0 2px">{{ label|upper }}</p>
-          <ul>{% for p in people %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<br><span class="small">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul>
+{% set img = null %}
+{% for handle in ['featuredImage', 'scvPhotos'] %}
+  {% if img is null and attribute(entry, handle) is defined %}{% set img = attribute(entry, handle).one() ?? null %}{% endif %}
+{% endfor %}
+{% set words = entry.title|split(' ') %}
+{% set initials = (words|first|slice(0,1)) ~ (words|length > 1 ? words|last|slice(0,1) : '') %}
+{% set era = entry.historicalEra.one() ?? null %}
+
+<div class="pe">
+  <div class="pe-wrap">
+    <div class="pe-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('persons') }}">People</a> &rsaquo; {{ entry.title }}</div>
+    <div class="pe-grid">
+      <main>
+        <div class="pe-top">
+          {% if img %}<img class="pe-portrait" src="{{ img.url }}" alt="{{ entry.title }}">{% else %}<div class="pe-initials">{{ initials|upper }}</div>{% endif %}
+          <div>
+            <h1>{{ entry.title }}</h1>
+            {% if entry.occupation %}<p class="pe-role">{{ entry.occupation }}</p>{% endif %}
+            <div class="pe-dates">
+              {% if entry.birthDate %}<div><b>BORN</b>{{ entry.birthDate }}{% if entry.birthplace %} &middot; {{ entry.birthplace }}{% endif %}</div>{% endif %}
+              {% if entry.deathDate %}<div><b>DIED</b>{{ entry.deathDate }}{% if entry.burialPlace %} &middot; {{ entry.burialPlace }}{% endif %}</div>{% endif %}
+            </div>
+            {% if era %}<div class="pe-era">{{ era.title|upper }}</div>{% endif %}
+            <div class="pe-chips">
+              {% for p in entry.historicalPeriod.all() %}<span class="pe-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in entry.neighborhood.all() %}<span class="pe-chip solid">{{ c.title }}</span>{% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <article class="pe-body">
+          {% include "_partials/prose" with { text: entry.body ?: entry.authorBio } %}
+          {% if entry.personWebmasterNoteBottom %}<div class="pe-note">{{ entry.personWebmasterNoteBottom }}</div>{% endif %}
+        </article>
+      </main>
+
+      <aside class="pe-side">
+        <div class="box">
+          <div class="pe-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
+        </div>
+        <div class="box">
+          <h3>Cite this page</h3>
+          <div class="pe-cite">"{{ entry.title }}." SCVHistory.com. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
+        </div>
+
+        {% set fam = {'Parent of': entry.parentOf.all(), 'Child of': entry.childOf.all(), 'Sibling of': entry.siblingOf.all(), 'Spouse of': entry.spouseOf.all()} %}
+        {% set hasFam = false %}{% for k, v in fam %}{% if v|length %}{% set hasFam = true %}{% endif %}{% endfor %}
+        {% if hasFam %}
+        <div class="box"><h3>Family &amp; relationships</h3>
+          {% for label, people in fam %}{% if people|length %}
+            <div class="pe-lab">{{ label|upper }}</div>
+            <ul>{% for p in people %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<span class="pe-sub">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul>
+          {% endif %}{% endfor %}
+        </div>
         {% endif %}
-      {% endfor %}
+
+        {% set orgs = entry.personOrganizations.all() %}
+        {% if orgs|length %}<div class="box"><h3>Organizations</h3><ul>{% for o in orgs %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+        {% set grps = entry.personGroups.all() %}
+        {% if grps|length %}<div class="box"><h3>Groups</h3><ul>{% for g in grps %}<li><a href="{{ g.url }}">{{ g.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+        {% set written = craft.entries().section('articles').relatedTo({targetElement: entry, field: 'writtenBy'}).status(null).all() %}
+        {% if written|length %}<div class="box"><h3>Written by {{ entry.title }}</h3><ul>{% for a in written %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+        {% set mentions = craft.entries().section('articles').relatedTo({targetElement: entry, field: 'subjectPerson'}).status(null).all() %}
+        {% if mentions|length %}<div class="box"><h3>Articles about {{ entry.title }}</h3><ul>{% for a in mentions %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+        {% set places = craft.entries().section('places').relatedTo({targetElement: entry, field: 'placePeople'}).status(null).all() %}
+        {% if places|length %}<div class="box"><h3>Places</h3><ul>{% for pl in places %}<li><a href="{{ pl.url }}">{{ pl.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+        {% set obits = entry.personObituaries.all() %}
+        {% if obits|length %}<div class="box"><h3>Obituary</h3><ul>{% for o in obits %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+        {% set links = [] %}
+        {% if entry.personWikipediaUrl is defined and entry.personWikipediaUrl %}{% set links = links|merge([{u: entry.personWikipediaUrl, l: 'Wikipedia'}]) %}{% endif %}
+        {% if entry.personGraveUrl is defined and entry.personGraveUrl %}{% set links = links|merge([{u: entry.personGraveUrl, l: 'Find a Grave'}]) %}{% endif %}
+        {% if entry.personLegacyUrl %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ entry.personLegacyUrl, l: 'View on legacy site'}]) %}{% endif %}
+        {% if links|length %}<div class="box"><h3>External</h3><ul>{% for lk in links %}<li><a href="{{ lk.u }}" target="_blank" rel="noopener">{{ lk.l }} &nearr;</a></li>{% endfor %}</ul></div>{% endif %}
+      </aside>
     </div>
-    {% endif %}
-    {% set orgs = entry.personOrganizations.all() %}
-    {% if orgs|length %}<div class="box"><h3>Organizations</h3><ul>{% for o in orgs %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
-    {% set grps = entry.personGroups.all() %}
-    {% if grps|length %}<div class="box"><h3>Groups</h3><ul>{% for g in grps %}<li><a href="{{ g.url }}">{{ g.title }}</a></li>{% endfor %}</ul></div>{% endif %}
-    {% set arts = entry.articlesAbout.all() %}
-    {% set written = craft.entries().section('articles').relatedTo({targetElement: entry, field: 'writtenBy'}).status(null).all() %}
-    {% if written|length %}<div class="box"><h3>Articles by {{ entry.title }}</h3><ul>{% for a in written %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
-    {% set mentions = craft.entries().section('articles').relatedTo({targetElement: entry, field: 'subjectPerson'}).status(null).all() %}
-    {% if mentions|length %}<div class="box"><h3>Articles mentioning {{ entry.title }}</h3><ul>{% for a in mentions %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
-    {% if entry.personLegacyUrl %}
-    <div class="box"><h3>External</h3><ul><li><a href="https://scvhistory.com{{ entry.personLegacyUrl }}">View on legacy site ↗</a></li></ul></div>
-    {% endif %}
-  </aside>
+  </div>
 </div>
 {% endblock %}

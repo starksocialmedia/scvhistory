@@ -1,14 +1,131 @@
 {% extends "_layouts/base" %}
+{% block head %}
+{% include "_partials/scv-extra-css" %}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+{% css %}
+.pp{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.pp-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}
+.pp-band-in{padding-top:44px;padding-bottom:48px}
+.pp-crumbs{font-size:13px;color:#5B6472;margin-bottom:22px}
+.pp-crumbs a{color:#A9842B;text-decoration:none}
+.pp-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:end}
+.pp-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#A9842B;margin-bottom:14px}
+.pp-band h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,4.6vw,54px);line-height:1.06;margin:0 0 16px;color:#17254C}
+.pp-band p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:560px}
+.pp-stats{display:flex;gap:40px;flex-wrap:wrap;justify-self:end}
+.pp-stats .n{font-family:'Playfair Display',serif;font-size:44px;line-height:1;color:#17254C}
+.pp-stats .l{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#A9842B;margin-top:8px}
+.pp-bar{background:#fff;border-bottom:1px solid #E2E4E8;position:sticky;top:0;z-index:5}
+.pp-bar-in{padding-top:16px;padding-bottom:16px;display:flex;align-items:center;gap:12px 10px;flex-wrap:wrap}
+.pp-lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#8A919E;margin-right:4px}
+.pp-chip{background:#fff;color:#A9842B;border:1px solid #C4A031;font-family:'Jost',sans-serif;font-size:13px;padding:7px 13px;border-radius:3px;text-decoration:none}
+.pp-chip:hover{background:#FDF7EA}
+.pp-chip.on{background:#17254C;color:#fff;border-color:#17254C}
+.pp-right{margin-left:auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pp-countlab{font-size:14px;color:#5B6472}
+.pp-sort{display:flex;border:1px solid #E2E4E8;border-radius:3px;overflow:hidden}
+.pp-sort a{font-family:'Jost',sans-serif;font-size:12.5px;letter-spacing:.06em;padding:7px 12px;text-decoration:none;color:#5B6472;background:#fff}
+.pp-sort a.on{background:#17254C;color:#fff}
+.pp-main{padding-top:40px;padding-bottom:96px}
+.pp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(208px,1fr));gap:24px}
+.pp-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E2E4E8;color:inherit;text-decoration:none;min-width:0}
+.pp-card:hover{border-color:#C4A031}
+.pp-photo{aspect-ratio:3/4;overflow:hidden;border-bottom:1px solid #EFE6D0;background:#FDF7EA;display:flex;align-items:center;justify-content:center}
+.pp-photo img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.pp-initials{font-family:'Playfair Display',serif;font-size:40px;color:#C4A031}
+.pp-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pp-name{font-family:'Playfair Display',serif;font-size:19px;line-height:1.2;color:#17254C}
+.pp-role{font-size:13px;line-height:1.5;color:#5B6472}
+.pp-dates{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.1em;color:#8A919E;margin-top:auto;padding-top:6px}
+.pp-empty{text-align:center;padding:64px 0;color:#5B6472;font-size:16px}
+{% endcss %}
+{% endblock %}
+
 {% block content %}
-<div class="crumbs"><a href="/">Home</a> › People</div>
-{% set entries = craft.entries().section('persons').status(null).orderBy('title asc').all() %}
-<h1>People</h1>
-<p class="small">{{ entries|length }} in the archive</p>
-<ul class="list">
-  {% for e in entries %}
-    <li><a href="{{ e.url }}">{{ e.title }}</a>
-      <div class="small">{{ e.occupation }}{% if e.birthDate %} · b. {{ e.birthDate }}{% endif %}</div>
-    </li>
-  {% endfor %}
-</ul>
+{% set eraSlug = craft.app.request.getParam('era') %}
+{% set sort = craft.app.request.getParam('sort') ?: 'alpha' %}
+{% set query = craft.entries().section('persons').status(null).orderBy('title asc') %}
+{% if eraSlug %}{% set t = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}{% if t %}{% set query = query.relatedTo(t) %}{% endif %}{% endif %}
+{% set people = query.all() %}
+
+{% set rows = [] %}
+{% set earliest = null %}
+{% for p in people %}
+  {% set by = p.birthDate ? p.birthDate|slice(-4) : '' %}
+  {% set byear = by matches '/^\\d{4}$/' ? by|number_format(0, '', '') : null %}
+  {% set dy = p.deathDate ? p.deathDate|slice(-4) : '' %}
+  {% set dyear = dy matches '/^\\d{4}$/' ? dy : '' %}
+  {% if byear and (earliest is null or byear < earliest) %}{% set earliest = byear %}{% endif %}
+  {% set rows = rows|merge([{e: p, by: byear ?? 9999, dates: (byear ?: (p.birthDate ? 'c. ' ~ by : '?')) ~ (dyear ? '–' ~ dyear : '')}]) %}
+{% endfor %}
+{% if sort == 'birth' %}{% set rows = rows|sort((a, b) => a.by <=> b.by) %}{% endif %}
+
+{% set eraCount = 0 %}
+{% set eras = craft.categories().group('historicalEra').status(null).all() %}
+{% for e in eras %}{% if craft.entries().section('persons').relatedTo(e).status(null).count() %}{% set eraCount = eraCount + 1 %}{% endif %}{% endfor %}
+
+<div class="pp">
+  <section class="scv-band pp-band">
+    <div class="scv-band-in pp-band-in">
+      <div class="pp-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>People</span></div>
+      <div class="pp-head">
+        <div>
+          <div class="pp-kicker">BIOGRAPHICAL RECORDS</div>
+          <h1>People of the Santa Clarita Valley</h1>
+          <p>Historians, explorers, ranchers, outlaws, civic leaders, and artists who shaped the history of the valley.</p>
+        </div>
+        <div class="pp-stats">
+          <div><div class="n">{{ craft.entries().section('persons').status(null).count() }}</div><div class="l">PEOPLE</div></div>
+          <div><div class="n">{{ eraCount }}</div><div class="l">ERAS</div></div>
+          {% if earliest %}<div><div class="n">{{ earliest }}</div><div class="l">EARLIEST BIRTH</div></div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scv-band pp-bar">
+    <div class="scv-band-in pp-bar-in">
+      <div class="pp-lab">ERA</div>
+      <a class="pp-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('persons', sort != 'alpha' ? {sort: sort} : {}) }}">All</a>
+      {% for e in eras %}
+        {% set n = craft.entries().section('persons').relatedTo(e).status(null).count() %}
+        {% if n %}<a class="pp-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('persons', sort != 'alpha' ? {era: e.slug, sort: sort} : {era: e.slug}) }}">{{ e.title }} ({{ n }})</a>{% endif %}
+      {% endfor %}
+      <div class="pp-right">
+        <div class="pp-countlab">{{ rows|length }} {{ rows|length == 1 ? 'person' : 'people' }}</div>
+        <div class="pp-sort">
+          <a class="{{ sort == 'alpha' ? 'on' : '' }}" href="{{ url('persons', eraSlug ? {era: eraSlug} : {}) }}">A–Z</a>
+          <a class="{{ sort == 'birth' ? 'on' : '' }}" href="{{ url('persons', eraSlug ? {era: eraSlug, sort: 'birth'} : {sort: 'birth'}) }}">By birth</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="scv-band-in pp-main">
+    {% if rows|length %}
+    <div class="pp-grid">
+      {% for r in rows %}
+        {% set p = r.e %}
+        {% set img = null %}
+        {% for handle in ['featuredImage', 'scvPhotos'] %}
+          {% if img is null and attribute(p, handle) is defined %}{% set img = attribute(p, handle).one() ?? null %}{% endif %}
+        {% endfor %}
+        {% set words = p.title|split(' ') %}
+        <a class="pp-card" href="{{ p.url }}">
+          <div class="pp-photo">
+            {% if img %}<img src="{{ img.url }}" alt="{{ p.title }}">{% else %}<span class="pp-initials">{{ (words|first|slice(0,1) ~ (words|length > 1 ? words|last|slice(0,1) : ''))|upper }}</span>{% endif %}
+          </div>
+          <div class="pp-body">
+            <div class="pp-name">{{ p.title }}</div>
+            {% if p.occupation %}<div class="pp-role">{{ p.occupation }}</div>{% endif %}
+            <div class="pp-dates">{{ r.dates }}</div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% else %}
+      <div class="pp-empty">No people in this era yet. <a href="{{ url('persons') }}" style="color:#A9842B">Show all</a></div>
+    {% endif %}
+  </main>
+</div>
 {% endblock %}

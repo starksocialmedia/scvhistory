@@ -10,7 +10,7 @@ img { max-width: 100%; height: auto; display: block; }
 .scv-site-nav a { font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; color: rgba(245,230,192,0.85); text-decoration: none; text-transform: uppercase; transition: color 0.2s ease; }
 .scv-site-nav a:hover { color: #d4a017; }
 
-#content { max-width: 1280px; margin: 0 auto; padding: 2rem 2rem; }
+/* #content carries no width or padding. Sections own their own bleed and inner width. See _layouts/base.twig and _partials/scv-extra-css.twig (.scv-band / .scv-band-in). */
 
 .scv-article-wrap { display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
 @media (max-width: 900px) { .scv-article-wrap { grid-template-columns: 1fr; } .scv-article-sidebar { order: -1; } }
