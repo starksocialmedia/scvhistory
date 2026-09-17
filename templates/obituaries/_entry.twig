@@ -1,0 +1,74 @@
+{% extends "_layouts/base" %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
+{% block content %}
+{#
+  The obituary field layout has no featuredImage, so there is no hero here.
+#}
+{% set subject = entry.obitSubject.one() ?? null %}
+{% set communities = entry.neighborhood.all() %}
+{% set era = entry.historicalEra.one() ?? null %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('obituaries') }}">Obituaries</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="scv-kicker">Obituary</div>
+      <h1>{{ entry.title ?: entry.slug }}</h1>
+      {% if entry.obitDateOfDeath or entry.obitDatePublished or entry.publicationDetails %}
+        <div class="scv-facts">
+          {% if entry.obitDateOfDeath %}<div><b>Died</b>{{ entry.obitDateOfDeath }}</div>{% endif %}
+          {% if entry.obitDatePublished %}<div><b>Published</b>{{ entry.obitDatePublished }}</div>{% endif %}
+          {% if entry.publicationDetails %}<div><b>Publication</b>{{ entry.publicationDetails }}</div>{% endif %}
+        </div>
+      {% endif %}
+      {% if era or entry.historicalPeriod.all()|length or communities|length %}
+        <div class="scv-chips">
+          {% if era %}<span class="scv-chip">{{ era.title }}</span>{% endif %}
+          {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
+          {% for c in communities %}<span class="scv-chip solid">{{ c.title }}</span>{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      <div class="scv-layout">
+        <div>
+          {% if entry.body or entry.obitWebmasterNoteTop or entry.obitWebmasterNoteBottom or entry.culturalSensitivityNote %}
+            <article class="scv-card">
+              {% if entry.obitWebmasterNoteTop %}<div class="scv-note">{{ entry.obitWebmasterNoteTop }}</div>{% endif %}
+              {% if entry.body %}{% include "_partials/prose" with { text: entry.body } %}{% endif %}
+              {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
+              {% if entry.obitWebmasterNoteBottom %}<div class="scv-note">{{ entry.obitWebmasterNoteBottom }}</div>{% endif %}
+            </article>
+          {% endif %}
+        </div>
+
+        <aside class="scv-side">
+          {% include "_partials/sidebar/meta" with { entry: entry } only %}
+          {% include "_partials/sidebar/cite" with { entry: entry, date: entry.obitDatePublished } only %}
+
+          {% if subject %}{% include "_partials/sidebar/related-list" with { title: 'Subject', entries: [subject] } only %}{% endif %}
+          {% include "_partials/sidebar/related-list" with { title: 'Published in', entries: entry.obitPublishedIn.all() } only %}
+          {% include "_partials/sidebar/related-list" with { title: 'Group', entries: entry.obitGroup.all() } only %}
+          {% include "_partials/sidebar/related-list" with { title: 'Related people', entries: entry.obitRelatedPersons.all() } only %}
+          {% include "_partials/sidebar/related-list" with { title: 'War Memorial', entries: entry.obitRelatedMilitary.all() } only %}
+
+          {% if communities|length %}
+            {% embed "_partials/sidebar/box" with { title: 'Communities', communities: communities } only %}
+              {% block body %}<ul>{% for c in communities %}<li>{{ c.title }}</li>{% endfor %}</ul>{% endblock %}
+            {% endembed %}
+          {% endif %}
+
+          {% include "_partials/sidebar/external" with {
+            grave: entry.obitGraveUrl ?? null,
+            legacy: entry.obitLegacyUrl ?: entry.legacyUrl
+          } only %}
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
