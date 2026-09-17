@@ -1,68 +1,44 @@
 {% extends "_layouts/base" %}
-
 {% block title %}Places | SCVHistory.com{% endblock %}
-
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 {% block content %}
-
 {% set activeHood = craft.app.request.getParam('neighborhood') %}
-{% set query = craft.entries().section('places').orderBy('title ASC') %}
+{% set query = craft.entries().section('places').status(null).orderBy('title asc') %}
 {% if activeHood %}
-  {% set hoodCat = craft.categories().group('neighborhood').slug(activeHood).one() %}
-  {% if hoodCat %}
-    {% set query = query.relatedTo(hoodCat) %}
-  {% endif %}
+  {% set hoodCat = craft.categories().group('neighborhood').slug(activeHood).status(null).one() %}
+  {% if hoodCat %}{% set query = query.relatedTo(hoodCat) %}{% endif %}
 {% endif %}
 {% set places = query.all() %}
-{% set allHoods = craft.categories().group('neighborhood').orderBy('title ASC').all() %}
-
-<div class="scv-index-wrap">
-  <header class="scv-index-header">
-    <nav class="scv-breadcrumb">
-      <a href="{{ siteUrl }}">Home</a>
-      <span class="scv-bc-sep">›</span>
-      <span>Places</span>
-    </nav>
-    <h1 class="scv-index-title">Places</h1>
-    <p class="scv-index-desc">Named locations in the Santa Clarita Valley archive. Neighborhoods are filters, not extra Places.</p>
-  </header>
-
-  {% if allHoods|length %}
-  <nav class="scv-filter-bar">
-    <a href="{{ url('places') }}" class="scv-filter-btn {% if not activeHood %}scv-filter-btn--active{% endif %}">All</a>
-    {% for hood in allHoods %}
-      <a href="{{ url('places', { neighborhood: hood.slug }) }}"
-         class="scv-filter-btn {% if activeHood == hood.slug %}scv-filter-btn--active{% endif %}">
-        {{ hood.title }}
-      </a>
-    {% endfor %}
-  </nav>
-  {% endif %}
-
-  <p class="scv-index-count">{{ places|length }} place{{ places|length != 1 ? 's' : '' }}</p>
-
-  {% if places|length %}
-  <ul class="scv-index-list">
-    {% for place in places %}
-      {% set peopleCount = place.placePeople.count() %}
-      {% set orgCount = place.placeOrganizations.count() %}
-      <li class="scv-index-item">
-        <a href="{{ place.url }}" class="scv-index-item__link">
-          <div class="scv-index-item__meta">
-            <div class="scv-index-item__title">{{ place.title }}</div>
-            {% if peopleCount or orgCount %}
-              <div class="scv-index-item__sub">
-                {% if peopleCount %}{{ peopleCount }} {{ peopleCount == 1 ? 'person' : 'people' }}{% endif %}
-                {% if peopleCount and orgCount %} · {% endif %}
-                {% if orgCount %}{{ orgCount }} organization{{ orgCount != 1 ? 's' : '' }}{% endif %}
-              </div>
-            {% endif %}
-          </div>
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>No places yet.</p>
-  {% endif %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; Places</div>
+  <div style="padding:10px 0 60px">
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">Places</h1>
+    <p style="max-width:660px;color:#3c3934">Specific sites in the Santa Clarita Valley with their own history: buildings, landmarks, stations, ranchos, and natural features. Communities are filters, not places.</p>
+    <div class="scv-chips" style="margin-top:22px">
+      <a class="scv-chip {{ not activeHood ? 'on' : '' }}" href="{{ url('places') }}">All communities</a>
+      {% for hood in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
+        {% set n = craft.entries().section('places').relatedTo(hood).status(null).count() %}
+        {% if n %}<a class="scv-chip {{ activeHood == hood.slug ? 'on' : '' }}" href="{{ url('places', { neighborhood: hood.slug }) }}">{{ hood.title }} ({{ n }})</a>{% endif %}
+      {% endfor %}
+    </div>
+    <p class="scv-small">{{ places|length }} place{{ places|length == 1 ? '' : 's' }}</p>
+    {% if places|length %}
+      <ul class="scv-list">
+        {% for place in places %}
+          {% set hoods = place.neighborhood.all() %}
+          <li>
+            <a href="{{ place.url }}">{{ place.title ?: place.slug }}</a>
+            <div class="scv-small">
+              {% if place.dateEstablished %}Est. {{ place.dateEstablished }}{% endif %}
+              {% if place.dateEstablished and hoods|length %} &middot; {% endif %}
+              {% for h in hoods %}{{ h.title }}{% if not loop.last %}, {% endif %}{% endfor %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="scv-small">No places match this filter.</p>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

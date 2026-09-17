@@ -1,0 +1,93 @@
+{% extends "_layouts/base" %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% block content %}
+{% set places = entry.eventPlaces.all() %}
+{% set people = entry.eventPersons.all() %}
+{% set orgs = entry.eventOrganizations.all() %}
+{% set articles = entry.eventArticles.all() %}
+{% set groups = entry.eventGroups.all() %}
+{% set related = entry.relatedEvents.all() %}
+{% set communities = entry.neighborhood.all() %}
+{% set whenLine = entry.eventDate ?: (entry.eventDateStart ? entry.eventDateStart ~ (entry.eventDateEnd ? ' to ' ~ entry.eventDateEnd : '') : null) %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('events') }}">Events</a> &rsaquo; {{ entry.title }}</div>
+  <div class="scv-grid">
+    <main>
+      <h1>{{ entry.title }}</h1>
+      {% if whenLine %}<p class="scv-sub">{{ whenLine }}</p>{% endif %}
+      {% if entry.eventSignificance %}<p class="scv-byline">{{ entry.eventSignificance }}</p>{% endif %}
+
+      {% set era = entry.historicalEra.one() ?? null %}
+      {% if era %}<div class="scv-era">{{ era.title }}</div>{% endif %}
+      <div class="scv-chips">
+        {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
+        {% for c in communities %}<span class="scv-chip solid">{{ c.title }}</span>{% endfor %}
+      </div>
+
+      {% if entry.body %}
+        <article class="scv-body">
+          {% include "_partials/prose" with { text: entry.body } %}
+          {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
+        </article>
+      {% endif %}
+    </main>
+
+    <aside class="scv-side">
+      <div class="scv-box">
+        <div class="scv-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
+      </div>
+
+      {% if whenLine or entry.eventSignificance or entry.eventChlNumber or entry.eventRecurring %}
+      <div class="scv-box">
+        <h3>The event</h3>
+        <ul>
+          {% if entry.eventDate %}<li><span class="scv-small">Date</span><br>{{ entry.eventDate }}</li>{% endif %}
+          {% if entry.eventDateStart %}<li><span class="scv-small">Began</span><br>{{ entry.eventDateStart }}</li>{% endif %}
+          {% if entry.eventDateEnd %}<li><span class="scv-small">Ended</span><br>{{ entry.eventDateEnd }}</li>{% endif %}
+          {% if entry.eventSignificance %}<li><span class="scv-small">Significance</span><br>{{ entry.eventSignificance }}</li>{% endif %}
+          {% if entry.eventChlNumber %}<li><span class="scv-small">California Historical Landmark</span><br>No. {{ entry.eventChlNumber }}</li>{% endif %}
+          {% if entry.eventRecurring %}
+            {% if entry.eventFrequency %}<li><span class="scv-small">Recurs</span><br>{{ entry.eventFrequency }}</li>{% endif %}
+            {% if entry.eventNextOccurrence %}<li><span class="scv-small">Next occurrence</span><br>{{ entry.eventNextOccurrence }}</li>{% endif %}
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="scv-box">
+        <h3>Cite this page</h3>
+        <div class="scv-cite">"{{ entry.title }}." SCVHistory.com. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
+      </div>
+
+      {% if places|length %}<div class="scv-box"><h3>Places</h3><ul>{% for pl in places %}<li><a href="{{ pl.url }}">{{ pl.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if people|length %}<div class="scv-box"><h3>People</h3><ul>{% for p in people %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<br><span class="scv-small">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% if orgs|length %}<div class="scv-box"><h3>Organizations</h3><ul>{% for o in orgs %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if groups|length %}<div class="scv-box"><h3>Groups</h3><ul>{% for g in groups %}<li><a href="{{ g.url }}">{{ g.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if articles|length %}<div class="scv-box"><h3>Articles</h3><ul>{% for a in articles %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% set mentions = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'articleEvents' }).status(null).all() %}
+      {% if mentions|length %}<div class="scv-box"><h3>Articles mentioning this event</h3><ul>{% for a in mentions %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if related|length %}<div class="scv-box"><h3>Related events</h3><ul>{% for ev in related %}<li><a href="{{ ev.url }}">{{ ev.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if communities|length %}<div class="scv-box"><h3>Communities</h3><ul>{% for c in communities %}<li>{{ c.title }}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% set wiki = entry.eventWikipediaUrl ?? null %}
+      {% set legacy = entry.eventLegacyUrl ?: entry.legacyUrl %}
+      {% if (wiki and wiki.value is defined and wiki.value) or legacy %}
+      <div class="scv-box">
+        <h3>External</h3>
+        <ul>
+          {% if wiki and wiki.value is defined and wiki.value %}<li><a href="{{ wiki.value }}" target="_blank" rel="noopener">Wikipedia &nearr;</a></li>{% endif %}
+          {% if legacy %}<li><a href="https://scvhistory.com{{ legacy }}" target="_blank" rel="noopener">View on legacy site &nearr;</a></li>{% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </aside>
+  </div>
+</div>
+{% endblock %}

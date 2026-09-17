@@ -1,18 +1,59 @@
 {% extends "_layouts/base" %}
-
 {% block title %}War Memorial | SCVHistory.com{% endblock %}
-
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 {% block content %}
-<h1>War Memorial</h1>
-<p>Honors Santa Clarita Valley service members killed in war. Person entries are for important figures and authors only.</p>
-{% set entries = craft.entries().section('warMemorials').orderBy('title ASC').all() %}
-{% if entries|length %}
-  <ul>
-    {% for entry in entries %}
-      <li><a href="{{ entry.url }}">{{ entry.title }}</a>{% if entry.wmConflict %} ({{ entry.wmConflict }}){% endif %}</li>
+{% set activeConflict = craft.app.request.getParam('conflict') %}
+{% set all = craft.entries().section('warMemorials').status(null).orderBy('title asc').all() %}
+
+{% set conflictOrder = ['World War I', 'World War II', 'Korean War', 'Vietnam War', 'War on Terror'] %}
+{% set counts = {} %}
+{% for e in all %}
+  {% set key = e.wmConflict ?: 'Conflict not recorded' %}
+  {% set counts = counts|merge({ (key): (counts[key] ?? 0) + 1 }) %}
+{% endfor %}
+{% set ordered = [] %}
+{% for c in conflictOrder %}{% if counts[c] is defined %}{% set ordered = ordered|merge([c]) %}{% endif %}{% endfor %}
+{% for c, n in counts %}{% if c not in ordered %}{% set ordered = ordered|merge([c]) %}{% endif %}{% endfor %}
+
+{% set shown = activeConflict ? all|filter(e => (e.wmConflict ?: 'Conflict not recorded') == activeConflict) : all %}
+
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; War Memorial</div>
+  <div style="padding:10px 0 60px">
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">War Memorial</h1>
+    <p style="max-width:660px;color:#3c3934">Santa Clarita Valley service members who died in war. Each record carries the service history, the incident, and the account as it was written.</p>
+    <div class="scv-chips" style="margin-top:22px">
+      <a class="scv-chip {{ not activeConflict ? 'on' : '' }}" href="{{ url('war-memorial') }}">All conflicts ({{ all|length }})</a>
+      {% for c in ordered %}
+        <a class="scv-chip {{ activeConflict == c ? 'on' : '' }}" href="{{ url('war-memorial', { conflict: c }) }}">{{ c }} ({{ counts[c] }})</a>
+      {% endfor %}
+    </div>
+    <p class="scv-small">{{ shown|length }} {{ shown|length == 1 ? 'name' : 'names' }}</p>
+
+    {% for c in ordered %}
+      {% set items = shown|filter(e => (e.wmConflict ?: 'Conflict not recorded') == c) %}
+      {% if items|length %}
+        <h2 class="scv-h2">{{ c }}</h2>
+        <ul class="scv-list">
+          {% for e in items %}
+            {% set rankLine = [e.wmRank, e.wmBranch]|filter(v => v)|join(', ') %}
+            <li>
+              <a href="{{ e.url }}">{{ e.title ?: e.slug }}</a>
+              <div class="scv-small">
+                {% if rankLine %}{{ rankLine }}{% endif %}
+                {% if rankLine and e.deathDate %} &middot; {% endif %}
+                {% if e.deathDate %}d. {{ e.deathDate }}{% endif %}
+                {% if e.wmIncidentLocation %} &middot; {{ e.wmIncidentLocation }}{% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     {% endfor %}
-  </ul>
-{% else %}
-  <p>No memorial entries imported yet.</p>
-{% endif %}
+
+    {% if not shown|length %}
+      <p class="scv-small">No memorial entries match this filter.</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

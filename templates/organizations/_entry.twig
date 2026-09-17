@@ -1,201 +1,132 @@
 {% extends "_layouts/base" %}
 
-{% set org = entry %}
-{% set orgImage = org.featuredImage.one() %}
+{% set hasMap = entry.orgLat and entry.orgLng %}
+
+{% block head %}
+  {% include "_partials/scv-extra-css" %}
+  {% if hasMap %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
+{% endblock %}
 
 {% block content %}
+{% set founders = entry.orgFoundedBy.all() %}
+{% set associated = entry.orgAssociatedPersons.all() %}
+{% set events = entry.orgEvents.all() %}
+{% set board = entry.boardMembers.all() %}
+{% set parent = entry.parentOrganization.one() ?? null %}
+{% set subs = entry.subBoards.all() %}
+{% set communities = entry.neighborhood.all() %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('organizations') }}">Organizations</a> &rsaquo; {{ entry.title }}</div>
+  <div class="scv-grid">
+    <main>
+      <h1>{{ entry.title }}</h1>
+      {% if entry.orgAliases %}<p class="scv-sub">Also known as {{ entry.orgAliases }}</p>{% endif %}
+      <p class="scv-byline">
+        {% if entry.dateFounded %}<strong>Founded</strong> {{ entry.dateFounded }}{% endif %}
+        {% if entry.dateFounded and entry.orgAddress %}<br>{% endif %}
+        {% if entry.orgAddress %}{{ entry.orgAddress }}{% endif %}
+      </p>
 
-<div class="scv-article-wrap">
+      {% set era = entry.historicalEra.one() ?? null %}
+      {% if era %}<div class="scv-era">{{ era.title }}</div>{% endif %}
+      <div class="scv-chips">
+        {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
+        {% for c in communities %}<span class="scv-chip solid">{{ c.title }}</span>{% endfor %}
+      </div>
 
-  <main>
-    <article class="scv-entry">
+      {% set hero = entry.featuredImage.one() ?? null %}
+      {% if hero %}<figure class="scv-hero"><img src="{{ hero.url }}" alt="{{ hero.alt ?: entry.title }}">{% if hero.title and hero.title != entry.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}</figure>{% endif %}
 
-      <nav class="scv-breadcrumb">
-        <a href="{{ siteUrl }}">Home</a>
-        <span class="scv-bc-sep">›</span>
-        <a href="{{ siteUrl }}organizations">Organizations</a>
-        <span class="scv-bc-sep">›</span>
-        <span>{{ org.title }}</span>
-      </nav>
+      {% if entry.body or entry.termNotes or entry.orgFinePrint %}
+        <article class="scv-body">
+          {% if entry.body %}{% include "_partials/prose" with { text: entry.body } %}{% endif %}
+          {% if entry.termNotes %}{% include "_partials/prose" with { text: entry.termNotes } %}{% endif %}
+          {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
+          {% if entry.orgFinePrint %}<p class="scv-small">{{ entry.orgFinePrint }}</p>{% endif %}
+        </article>
+      {% endif %}
+    </main>
 
-      <header class="scv-entry-header">
-        {% if orgImage %}
-          <div class="scv-entry-header__image">
-            <img src="{{ orgImage.url }}" alt="{{ org.title }}">
-          </div>
-        {% endif %}
+    <aside class="scv-side">
+      <div class="scv-box">
+        <div class="scv-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
+      </div>
 
-        <div class="scv-entry-header__text">
-          <h1 class="scv-entry-title">{{ org.title }}</h1>
-
-          {% if org.orgAliases %}
-            <p class="scv-entry-aliases">Also known as {{ org.orgAliases }}</p>
-          {% endif %}
-
-          <div class="scv-entry-meta">
-  {% if org.dateFounded %}
-    <p><strong>Founded:</strong> {{ org.dateFounded }}</p>
-  {% endif %}
-</div>
-          {% set eras = org.historicalEra.all() %}
-          {% if eras|length %}
-            <div class="scv-tags">
-              {% for era in eras %}
-                <span class="scv-tag scv-tag--era">{{ era.title }}</span>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-      </header>
-
-      <hr class="scv-header-rule">
-
-      {% if org.body %}
-        <div class="scv-entry-body">
-          {{ org.body }}
-        </div>
+      {% if entry.orgAddress or entry.dateFounded or hasMap %}
+      <div class="scv-box">
+        <h3>Details</h3>
+        <ul>
+          {% if entry.dateFounded %}<li><span class="scv-small">Founded</span><br>{{ entry.dateFounded }}</li>{% endif %}
+          {% if entry.orgAddress %}<li><span class="scv-small">Address</span><br>{{ entry.orgAddress }}</li>{% endif %}
+          {% if hasMap %}<li><span class="scv-small">Coordinates</span><br>{{ entry.orgLat }}, {{ entry.orgLng }}</li>{% endif %}
+        </ul>
+      </div>
       {% endif %}
 
-      {% if org.termNotes %}
-        <div class="scv-entry-body">
-          {{ org.termNotes }}
-        </div>
+      {% if hasMap %}
+      <div class="scv-box">
+        <h3>Location</h3>
+        <div id="scv-org-map" class="scv-map" style="height:220px"></div>
+      </div>
       {% endif %}
 
-      {% if org.orgFinePrint %}
-        <div class="scv-entry-fineprint">
-          {{ org.orgFinePrint }}
-        </div>
+      <div class="scv-box">
+        <h3>Cite this page</h3>
+        <div class="scv-cite">"{{ entry.title }}." SCVHistory.com. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
+      </div>
+
+      {% if founders|length %}<div class="scv-box"><h3>Founded by</h3><ul>{% for p in founders %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<br><span class="scv-small">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% if associated|length %}<div class="scv-box"><h3>Associated people</h3><ul>{% for p in associated %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<br><span class="scv-small">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% if board|length %}<div class="scv-box"><h3>Board members</h3><ul>{% for p in board %}<li><a href="{{ p.url }}">{{ p.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if parent %}<div class="scv-box"><h3>Parent organization</h3><ul><li><a href="{{ parent.url }}">{{ parent.title }}</a></li></ul></div>{% endif %}
+
+      {% if subs|length %}<div class="scv-box"><h3>Boards and subsidiaries</h3><ul>{% for o in subs %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if events|length %}<div class="scv-box"><h3>Events</h3><ul>{% for ev in events %}<li><a href="{{ ev.url }}">{{ ev.title }}</a>{% if ev.eventDate %}<br><span class="scv-small">{{ ev.eventDate }}</span>{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% set subject = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).status(null).all() %}
+      {% if subject|length %}<div class="scv-box"><h3>Articles</h3><ul>{% for a in subject %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% set pubBy = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).status(null).all() %}
+      {% if pubBy|length %}<div class="scv-box"><h3>Published by this organization</h3><ul>{% for a in pubBy %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if communities|length %}<div class="scv-box"><h3>Communities</h3><ul>{% for c in communities %}<li>{{ c.title }}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% set site = entry.orgWebsite ?? null %}
+      {% set wiki = entry.orgWikipediaUrl ?? null %}
+      {% set legacy = entry.orgLegacyUrl ?: entry.legacyUrl %}
+      {% if (site and site.value is defined and site.value) or (wiki and wiki.value is defined and wiki.value) or legacy %}
+      <div class="scv-box">
+        <h3>External</h3>
+        <ul>
+          {% if site and site.value is defined and site.value %}<li><a href="{{ site.value }}" target="_blank" rel="noopener">Official website &nearr;</a></li>{% endif %}
+          {% if wiki and wiki.value is defined and wiki.value %}<li><a href="{{ wiki.value }}" target="_blank" rel="noopener">Wikipedia &nearr;</a></li>{% endif %}
+          {% if legacy %}<li><a href="https://scvhistory.com{{ legacy }}" target="_blank" rel="noopener">View on legacy site &nearr;</a></li>{% endif %}
+        </ul>
+      </div>
       {% endif %}
-
-    </article>
-  </main>
-
-  {# ── SIDEBAR ─────────────────────────────────────────────── #}
-  <aside class="scv-sidebar">
-
-    {# Founded By #}
-    {% set founders = org.orgFoundedBy.all() %}
-    {% if founders|length %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">Founded By</h3>
-        <div class="scv-sidebar-card-body">
-          {% for person in founders %}
-            {% set pImg = person.featuredImage.one() %}
-            <a href="{{ person.url }}" class="scv-related-person">
-              {% if pImg %}
-                <img src="{{ pImg.getUrl('cardThumb') }}" alt="{{ person.title }}" class="scv-related-person__photo">
-              {% else %}
-                <div class="scv-related-person__photo scv-related-person__photo--placeholder"></div>
-              {% endif %}
-              <div class="scv-related-person__name">{{ person.title }}</div>
-            </a>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
-    {# Associated Persons #}
-    {% set associated = org.orgAssociatedPersons.all() %}
-    {% if associated|length %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">Associated People</h3>
-        <div class="scv-sidebar-card-body">
-          {% for person in associated %}
-            {% set pImg = person.featuredImage.one() %}
-            <a href="{{ person.url }}" class="scv-related-person">
-              {% if pImg %}
-                <img src="{{ pImg.getUrl('cardThumb') }}" alt="{{ person.title }}" class="scv-related-person__photo">
-              {% else %}
-                <div class="scv-related-person__photo scv-related-person__photo--placeholder"></div>
-              {% endif %}
-              <div class="scv-related-person__name">{{ person.title }}</div>
-            </a>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-
-    {# Parent Organization #}
-    {% if org.hasParentOrg and org.parentOrganization.one() %}
-      {% set parent = org.parentOrganization.one() %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">Parent Organization</h3>
-        <div class="scv-sidebar-card-body">
-          <a href="{{ parent.url }}" class="scv-sidebar-link">{{ parent.title }}</a>
-        </div>
-      </div>
-    {% endif %}
-
-    {# External Links #}
-    {% if org.orgWebsite or org.orgWikipediaUrl or org.orgLegacyUrl %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">External Links</h3>
-        <div class="scv-sidebar-card-body scv-external-links">
-          {% if org.orgWebsite.value is defined and org.orgWebsite.value %}
-  <a href="{{ org.orgWebsite.value }}" target="_blank" rel="noopener" class="scv-external-link">Official Website ↗</a>
-{% endif %}
-{% if org.orgWikipediaUrl.value is defined and org.orgWikipediaUrl.value %}
-  <a href="{{ org.orgWikipediaUrl.value }}" target="_blank" rel="noopener" class="scv-external-link">Wikipedia ↗</a>
-{% endif %}
-          {% if org.orgLegacyUrl %}
-            <a href="https://scvhistory.com/{{ org.orgLegacyUrl }}" target="_blank" rel="noopener" class="scv-external-link">View on Legacy Site ↗</a>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
-{# Location Map #}
-{% if org.orgLat and org.orgLng %}
-  <div class="scv-sidebar-card">
-    <h3 class="scv-sidebar-card-title">Location</h3>
-    <div class="scv-sidebar-card-body scv-sidebar-card-body--flush">
-      <div id="org-map" class="scv-map" style="height:220px;"></div>
-      <dl class="scv-location-meta">
-        {% if org.orgAddress %}
-          <dt>Address</dt>
-          <dd>{{ org.orgAddress }}</dd>
-        {% endif %}
-        {% if org.orgLat and org.orgLng %}
-          <dt>Lat</dt><dd>{{ org.orgLat }}</dd>
-          <dt>Long</dt><dd>{{ org.orgLng }}</dd>
-        {% endif %}
-        {% if org.orgWebsite.value is defined and org.orgWebsite.value %}
-          <dt>Website</dt>
-          <dd><a href="{{ org.orgWebsite.value }}" target="_blank" rel="noopener">{{ org.orgWebsite.value|replace({'https://': '', 'http://': ''}) }}</a></dd>
-        {% endif %}
-      </dl>
-    </div>
+    </aside>
   </div>
+</div>
+{% endblock %}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+{% block foot %}
+  {% if hasMap %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var map = L.map('org-map', { zoomControl: true, scrollWheelZoom: false })
-        .setView([{{ org.orgLat }}, {{ org.orgLng }}], 15);
+    document.addEventListener('DOMContentLoaded', function () {
+      var map = L.map('scv-org-map', { zoomControl: true, scrollWheelZoom: false })
+        .setView([{{ entry.orgLat }}, {{ entry.orgLng }}], 15);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>',
+        attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>',
         maxZoom: 19
       }).addTo(map);
-      L.marker([{{ org.orgLat }}, {{ org.orgLng }}])
-        .addTo(map)
-        .bindPopup('<strong>{{ org.title }}</strong>{% if org.orgAddress %}<br>{{ org.orgAddress }}{% endif %}');
+      L.marker([{{ entry.orgLat }}, {{ entry.orgLng }}]).addTo(map)
+        .bindPopup({{ (entry.title ~ (entry.orgAddress ? '<br>' ~ entry.orgAddress : ''))|json_encode|raw }});
     });
   </script>
-{% endif %}
-
-    {# Search #}
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        {% include '_partials/search-form' only %}
-      </div>
-    </div>
-
-    {# Cite This #}
-    {% include '_partials/cite-article' with { entry: org } only %}
-
-  </aside>
-
-</div>{# .scv-article-wrap #}
-
+  {% endif %}
 {% endblock %}

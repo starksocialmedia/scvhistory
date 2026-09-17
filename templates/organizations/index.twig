@@ -1,82 +1,44 @@
 {% extends "_layouts/base" %}
-
+{% block title %}Organizations | SCVHistory.com{% endblock %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 {% block content %}
-
-{% set orgs = craft.entries()
-  .section('organizations')
-  .orderBy('title ASC')
-  .all() %}
-
-<div class="scv-article-wrap">
-
-  <main>
-    <article class="scv-index">
-
-      <nav class="scv-breadcrumb">
-        <a href="{{ siteUrl }}">Home</a>
-        <span class="scv-bc-sep">›</span>
-        <span>Organizations</span>
-      </nav>
-
-      <header class="scv-index-header">
-        <h1>Organizations</h1>
-        <p class="scv-index-count">{{ orgs|length }} organization{{ orgs|length != 1 ? 's' : '' }}</p>
-      </header>
-
-      <hr class="scv-header-rule">
-
-      {% if orgs|length %}
-      <ul class="scv-index-list">
+{% set activeHood = craft.app.request.getParam('neighborhood') %}
+{% set query = craft.entries().section('organizations').status(null).orderBy('title asc') %}
+{% if activeHood %}
+  {% set hoodCat = craft.categories().group('neighborhood').slug(activeHood).status(null).one() %}
+  {% if hoodCat %}{% set query = query.relatedTo(hoodCat) %}{% endif %}
+{% endif %}
+{% set orgs = query.all() %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; Organizations</div>
+  <div style="padding:10px 0 60px">
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">Organizations</h1>
+    <p style="max-width:660px;color:#3c3934">Bodies that act in the valley's history: companies, agencies, missions, ranchos, newspapers, and the institutions that governed, employed, and published.</p>
+    <div class="scv-chips" style="margin-top:22px">
+      <a class="scv-chip {{ not activeHood ? 'on' : '' }}" href="{{ url('organizations') }}">All communities</a>
+      {% for hood in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
+        {% set n = craft.entries().section('organizations').relatedTo(hood).status(null).count() %}
+        {% if n %}<a class="scv-chip {{ activeHood == hood.slug ? 'on' : '' }}" href="{{ url('organizations', { neighborhood: hood.slug }) }}">{{ hood.title }} ({{ n }})</a>{% endif %}
+      {% endfor %}
+    </div>
+    <p class="scv-small">{{ orgs|length }} organization{{ orgs|length == 1 ? '' : 's' }}</p>
+    {% if orgs|length %}
+      <ul class="scv-list">
         {% for org in orgs %}
-          {% set orgImage = org.featuredImage.one() %}
-          <li class="scv-index-item">
-            <a href="{{ org.url }}" class="scv-index-item__link">
-
-              <div class="scv-index-item__photo-wrap">
-                {% if orgImage %}
-                  <img src="{{ orgImage.url }}" alt="{{ org.title }}" class="scv-index-item__photo">
-                {% else %}
-                  {% set sealAsset = craft.assets().volume('archiveMedia').filename('scvhistory-seal.svg').one() %}
-<div class="scv-index-item__placeholder">
-  {% if sealAsset %}
-    <img src="{{ sealAsset.url }}" alt="SCVHistory.com" class="scv-index-item__placeholder-seal">
-  {% else %}
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  {% endif %}
-</div>
-                {% endif %}
-              </div>
-
-              <div class="scv-index-item__meta">
-                <div class="scv-index-item__name">{{ org.title }}</div>
-
-                {% if org.dateFounded %}
-                  <div class="scv-index-item__detail">Est. {{ org.dateFounded }}</div>
-                {% endif %}
-
-              </div>
-
-            </a>
+          {% set hoods = org.neighborhood.all() %}
+          <li>
+            <a href="{{ org.url }}">{{ org.title ?: org.slug }}</a>
+            <div class="scv-small">
+              {% if org.dateFounded %}Est. {{ org.dateFounded }}{% endif %}
+              {% if org.dateFounded and hoods|length %} &middot; {% endif %}
+              {% for h in hoods %}{{ h.title }}{% if not loop.last %}, {% endif %}{% endfor %}
+            </div>
           </li>
         {% endfor %}
       </ul>
-      {% else %}
-        <p>No organizations found.</p>
-      {% endif %}
-
-    </article>
-  </main>
-
-  <aside class="scv-sidebar">
-
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        {% include '_partials/search-form' only %}
-      </div>
-    </div>
-
-  </aside>
-
-</div>{# .scv-article-wrap #}
-
+    {% else %}
+      <p class="scv-small">No organizations match this filter.</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

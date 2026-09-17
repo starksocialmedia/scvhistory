@@ -1,6 +1,6 @@
-{% extends "_layout" %}
-{% block crumbs %}<div class="crumbs"><a href="/">Home</a> › People</div>{% endblock %}
+{% extends "_layouts/base" %}
 {% block content %}
+<div class="crumbs"><a href="/">Home</a> › People</div>
 {% set entries = craft.entries().section('persons').status(null).orderBy('title asc').all() %}
 <h1>People</h1>
 <p class="small">{{ entries|length }} in the archive</p>

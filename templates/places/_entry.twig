@@ -1,115 +1,124 @@
 {% extends "_layouts/base" %}
 
-{% set people = entry.placePeople.all() %}
-{% set orgs = entry.placeOrganizations.all() %}
-{% set related = entry.relatedPlaces.all() %}
-{% set wiki = entry.placeWikipediaUrl ?? null %}
-{% set chl = entry.placeChlUrl ?? null %}
-{% set scvhl = entry.placeScvhlUrl ?? null %}
-{% set legacy = entry.legacyUrl ?: entry.placeLegacyUrl %}
+{% set hasMap = entry.placeLat and entry.placeLng %}
+
+{% block head %}
+  {% include "_partials/scv-extra-css" %}
+  {% if hasMap %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
+{% endblock %}
 
 {% block content %}
-<div class="scv-article-wrap">
-  <main>
-    <article class="scv-entry">
-      <nav class="scv-breadcrumb">
-        <a href="{{ siteUrl }}">Home</a>
-        <span class="scv-bc-sep">›</span>
-        <a href="{{ url('places') }}">Places</a>
-        <span class="scv-bc-sep">›</span>
-        <span>{{ entry.title }}</span>
-      </nav>
+{% set people = entry.placePeople.all() %}
+{% set orgs = entry.placeOrganizations.all() %}
+{% set events = entry.placeEvents.all() %}
+{% set articles = entry.placeArticles.all() %}
+{% set related = entry.relatedPlaces.all() %}
+{% set communities = entry.neighborhood.all() %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('places') }}">Places</a> &rsaquo; {{ entry.title }}</div>
+  <div class="scv-grid">
+    <main>
+      <h1>{{ entry.title }}</h1>
+      {% if entry.placeAliases %}<p class="scv-sub">Also known as {{ entry.placeAliases }}</p>{% endif %}
+      <p class="scv-byline">
+        {% if entry.dateEstablished %}<strong>Established</strong> {{ entry.dateEstablished }}{% endif %}
+        {% if entry.dateEstablished and entry.placeAddress %}<br>{% endif %}
+        {% if entry.placeAddress %}{{ entry.placeAddress }}{% endif %}
+      </p>
 
-      <header class="scv-entry-header">
-        <div class="scv-entry-header__text">
-          <h1 class="scv-entry-title">{{ entry.title }}</h1>
-          {% if entry.placeAliases %}
-            <p class="scv-entry-aliases">Also known as {{ entry.placeAliases }}</p>
-          {% endif %}
-          {% set hoods = entry.neighborhood.all() %}
-          {% if hoods|length %}
-            <div class="scv-tags">
-              {% for hood in hoods %}
-                <a href="{{ url('places', { neighborhood: hood.slug }) }}" class="scv-tag">{{ hood.title }}</a>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-      </header>
-
-      <hr class="scv-header-rule">
+      {% set era = entry.historicalEra.one() ?? null %}
+      {% if era %}<div class="scv-era">{{ era.title }}</div>{% endif %}
+      <div class="scv-chips">
+        {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
+        {% for c in communities %}<a class="scv-chip solid" href="{{ url('places', { neighborhood: c.slug }) }}">{{ c.title }}</a>{% endfor %}
+      </div>
 
       {% if entry.body %}
-        <div class="scv-entry-body">
-          {{ entry.body|nl2br }}
-        </div>
+        <article class="scv-body">
+          {% include "_partials/prose" with { text: entry.body } %}
+          {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
+        </article>
       {% endif %}
-    </article>
-  </main>
+    </main>
 
-  <aside class="scv-sidebar">
-    {% if people|length %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">People</h3>
-        <div class="scv-sidebar-card-body">
-          {% for person in people %}
-            {% set pImg = person.featuredImage.one() %}
-            <a href="{{ person.url }}" class="scv-related-person">
-              {% if pImg %}
-                <img src="{{ pImg.url }}" alt="{{ person.title }}" class="scv-related-person__photo">
-              {% else %}
-                <div class="scv-related-person__photo scv-related-person__photo--placeholder"></div>
-              {% endif %}
-              <div class="scv-related-person__name">{{ person.title }}</div>
-            </a>
-          {% endfor %}
-        </div>
+    <aside class="scv-side">
+      <div class="scv-box">
+        <div class="scv-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
       </div>
-    {% endif %}
 
-    {% if orgs|length %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">Organizations</h3>
-        <div class="scv-sidebar-card-body">
-          {% for org in orgs %}
-            <a href="{{ org.url }}" class="scv-sidebar-link">{{ org.title }}</a>
-          {% endfor %}
-        </div>
+      {% if entry.placeAddress or entry.dateEstablished or entry.placeChlNumber or hasMap %}
+      <div class="scv-box">
+        <h3>Details</h3>
+        <ul>
+          {% if entry.placeAddress %}<li><span class="scv-small">Address</span><br>{{ entry.placeAddress }}</li>{% endif %}
+          {% if entry.dateEstablished %}<li><span class="scv-small">Established</span><br>{{ entry.dateEstablished }}</li>{% endif %}
+          {% if entry.placeChlNumber %}<li><span class="scv-small">California Historical Landmark</span><br>No. {{ entry.placeChlNumber }}</li>{% endif %}
+          {% if hasMap %}<li><span class="scv-small">Coordinates</span><br>{{ entry.placeLat }}, {{ entry.placeLng }}</li>{% endif %}
+        </ul>
       </div>
-    {% endif %}
+      {% endif %}
 
-    {% if related|length %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">Related Places</h3>
-        <div class="scv-sidebar-card-body">
-          {% for place in related %}
-            <a href="{{ place.url }}" class="scv-sidebar-link">{{ place.title }}</a>
-          {% endfor %}
-        </div>
+      {% if hasMap %}
+      <div class="scv-box">
+        <h3>Location</h3>
+        <div id="scv-place-map" class="scv-map" style="height:220px"></div>
       </div>
-    {% endif %}
+      {% endif %}
 
-    {% if wiki or chl or scvhl or legacy or entry.placeChlNumber %}
-      <div class="scv-sidebar-card">
-        <h3 class="scv-sidebar-card-title">Links</h3>
-        <div class="scv-sidebar-card-body scv-external-links">
-          {% if wiki and wiki.value is defined and wiki.value %}
-            <a href="{{ wiki.value }}" target="_blank" rel="noopener" class="scv-external-link">Wikipedia</a>
-          {% endif %}
-          {% if chl and chl.value is defined and chl.value %}
-            <a href="{{ chl.value }}" target="_blank" rel="noopener" class="scv-external-link">California Historical Landmark</a>
-          {% elseif entry.placeChlNumber %}
-            <p>CHL {{ entry.placeChlNumber }}</p>
-          {% endif %}
-          {% if scvhl and scvhl.value is defined and scvhl.value %}
-            <a href="{{ scvhl.value }}" target="_blank" rel="noopener" class="scv-external-link">SCV Landmark</a>
-          {% endif %}
-          {% if legacy %}
-            <a href="https://scvhistory.com{{ legacy }}" target="_blank" rel="noopener" class="scv-external-link">Legacy page</a>
-          {% endif %}
-        </div>
+      <div class="scv-box">
+        <h3>Cite this page</h3>
+        <div class="scv-cite">"{{ entry.title }}." SCVHistory.com. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
       </div>
-    {% endif %}
-  </aside>
+
+      {% if people|length %}<div class="scv-box"><h3>Associated people</h3><ul>{% for p in people %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<br><span class="scv-small">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% if orgs|length %}<div class="scv-box"><h3>Organizations</h3><ul>{% for o in orgs %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if events|length %}<div class="scv-box"><h3>Events</h3><ul>{% for ev in events %}<li><a href="{{ ev.url }}">{{ ev.title }}</a>{% if ev.eventDate %}<br><span class="scv-small">{{ ev.eventDate }}</span>{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% if articles|length %}<div class="scv-box"><h3>Articles</h3><ul>{% for a in articles %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% set depicted = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'depictsPlace' }).status(null).all() %}
+      {% if depicted|length %}<div class="scv-box"><h3>Articles depicting this place</h3><ul>{% for a in depicted %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if related|length %}<div class="scv-box"><h3>Related places</h3><ul>{% for r in related %}<li><a href="{{ r.url }}">{{ r.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if communities|length %}<div class="scv-box"><h3>Communities</h3><ul>{% for c in communities %}<li><a href="{{ url('places', { neighborhood: c.slug }) }}">{{ c.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% set chl = entry.placeChlUrl ?? null %}
+      {% set wiki = entry.placeWikipediaUrl ?? null %}
+      {% set scvhl = entry.placeScvhlUrl ?? null %}
+      {% set legacy = entry.placeLegacyUrl ?: entry.legacyUrl %}
+      {% if (chl and chl.value is defined and chl.value) or (wiki and wiki.value is defined and wiki.value) or (scvhl and scvhl.value is defined and scvhl.value) or legacy %}
+      <div class="scv-box">
+        <h3>External</h3>
+        <ul>
+          {% if wiki and wiki.value is defined and wiki.value %}<li><a href="{{ wiki.value }}" target="_blank" rel="noopener">Wikipedia &nearr;</a></li>{% endif %}
+          {% if chl and chl.value is defined and chl.value %}<li><a href="{{ chl.value }}" target="_blank" rel="noopener">California Historical Landmark &nearr;</a></li>{% endif %}
+          {% if scvhl and scvhl.value is defined and scvhl.value %}<li><a href="{{ scvhl.value }}" target="_blank" rel="noopener">SCV Historical Landmark &nearr;</a></li>{% endif %}
+          {% if legacy %}<li><a href="https://scvhistory.com{{ legacy }}" target="_blank" rel="noopener">View on legacy site &nearr;</a></li>{% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </aside>
+  </div>
 </div>
+{% endblock %}
+
+{% block foot %}
+  {% if hasMap %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var map = L.map('scv-place-map', { zoomControl: true, scrollWheelZoom: false })
+        .setView([{{ entry.placeLat }}, {{ entry.placeLng }}], 14);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>',
+        maxZoom: 19
+      }).addTo(map);
+      L.marker([{{ entry.placeLat }}, {{ entry.placeLng }}]).addTo(map)
+        .bindPopup({{ (entry.title ~ (entry.placeAddress ? '<br>' ~ entry.placeAddress : ''))|json_encode|raw }});
+    });
+  </script>
+  {% endif %}
 {% endblock %}

@@ -1,6 +1,6 @@
-{% extends "_layout" %}
-{% block crumbs %}<div class="crumbs"><a href="/">Home</a> › <a href="/persons">People</a> › {{ entry.title }}</div>{% endblock %}
+{% extends "_layouts/base" %}
 {% block content %}
+<div class="crumbs"><a href="/">Home</a> › <a href="/persons">People</a> › {{ entry.title }}</div>
 <div class="layout">
   <main>
     <h1>{{ entry.title }}</h1>
