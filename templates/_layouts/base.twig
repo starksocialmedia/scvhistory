@@ -9,6 +9,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ siteUrl }}assets/css/main">
   <link rel="stylesheet" href="{{ siteUrl }}assets/css/layout">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+    .scv-site-header{background:#17254C}
+    .scv-site-header__inner{max-width:1240px;margin:0 auto;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+    .scv-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+    .scv-brand img{width:64px;height:64px;flex:none}
+    .scv-brand .wm{font-family:'Playfair Display',serif;font-weight:600;font-size:27px;line-height:1;color:#fff}
+    .scv-brand .rule{height:1px;background:#C4A031;margin:5px 0 4px}
+    .scv-brand .tag{font-family:'Jost',sans-serif;font-size:8.5px;letter-spacing:.2em;color:#C4A031}
+    .scv-site-nav{display:flex;gap:26px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;font-weight:500}
+    .scv-site-nav a{color:#fff;text-decoration:none;text-transform:uppercase}
+    .scv-site-nav a:hover{color:#C4A031}
+    .scv-site-nav a.on{color:#C4A031;border-bottom:2px solid #C4A031;padding-bottom:2px}
+    html,body{overflow-x:hidden}
+    #content{max-width:none;margin:0;padding:0}
+    .scv-footer{background:#17254C;color:#fff}
+  </style>
   {% block head %}{% endblock %}
 </head>
 <body>
@@ -16,21 +34,24 @@
   {# ── Header ─────────────────────────────────────────────────────── #}
   <header class="scv-site-header">
     <div class="scv-site-header__inner">
-      <a href="{{ siteUrl }}" class="scv-site-header__logo">
-        <img src="{{ siteUrl }}uploads/archive-media/site/scvhistory-logo.svg"
-             alt="SCVHistory.com — Santa Clarita Valley History Archives"
-             height="56">
+      <a href="{{ siteUrl }}" class="scv-brand">
+        <img src="{{ siteUrl }}uploads/archive-media/site/scvhistory-seal.svg" alt="">
+        <span>
+          <span class="wm">SCVHistory.com</span>
+          <span class="rule" style="display:block"></span>
+          <span class="tag">SANTA CLARITA VALLEY HISTORY ARCHIVES</span>
+        </span>
       </a>
       <nav class="scv-site-nav">
-        <a href="{{ url('persons') }}">People</a>
-        <a href="{{ url('places') }}">Places</a>
-        <a href="{{ url('organizations') }}">Organizations</a>
-        <a href="{{ url('collections') }}">Collections</a>
-        <a href="{{ url('articles') }}">Articles</a>
-        <a href="{{ url('groups') }}">Groups</a>
-        <a href="{{ url('events') }}">Events</a>
-        <a href="{{ url('war-memorial') }}">War Memorial</a>
-        <a href="{{ url('obituaries') }}">Obituaries</a>
+        <a href="{{ url('persons') }}"{% if craft.app.request.getSegment(1) == 'persons' %} class="on"{% endif %}>People</a>
+        <a href="{{ url('places') }}"{% if craft.app.request.getSegment(1) == 'places' %} class="on"{% endif %}>Places</a>
+        <a href="{{ url('organizations') }}"{% if craft.app.request.getSegment(1) == 'organizations' %} class="on"{% endif %}>Organizations</a>
+        <a href="{{ url('collections') }}"{% if craft.app.request.getSegment(1) == 'collections' %} class="on"{% endif %}>Collections</a>
+        <a href="{{ url('articles') }}"{% if craft.app.request.getSegment(1) == 'articles' %} class="on"{% endif %}>Articles</a>
+        <a href="{{ url('groups') }}"{% if craft.app.request.getSegment(1) == 'groups' %} class="on"{% endif %}>Groups</a>
+        <a href="{{ url('events') }}"{% if craft.app.request.getSegment(1) == 'events' %} class="on"{% endif %}>Events</a>
+        <a href="{{ url('war-memorial') }}"{% if craft.app.request.getSegment(1) == 'war-memorial' %} class="on"{% endif %}>War Memorial</a>
+        <a href="{{ url('obituaries') }}"{% if craft.app.request.getSegment(1) == 'obituaries' %} class="on"{% endif %}>Obituaries</a>
       </nav>
     </div>
   </header>
@@ -57,26 +78,26 @@
 
       <div class="scv-footer-col">
         <p class="scv-footer-heading">Browse</p>
-        <a href="{{ url('articles') }}">By Era</a>
-        <a href="{{ url('collections') }}">By Collection</a>
-        <a href="{{ url('persons') }}">People</a>
-        <a href="{{ url('obituaries') }}">Obituaries</a>
+        <a href="{{ url('articles') }}"{% if craft.app.request.getSegment(1) == 'articles' %} class="on"{% endif %}>By Era</a>
+        <a href="{{ url('collections') }}"{% if craft.app.request.getSegment(1) == 'collections' %} class="on"{% endif %}>By Collection</a>
+        <a href="{{ url('persons') }}"{% if craft.app.request.getSegment(1) == 'persons' %} class="on"{% endif %}>People</a>
+        <a href="{{ url('obituaries') }}"{% if craft.app.request.getSegment(1) == 'obituaries' %} class="on"{% endif %}>Obituaries</a>
       </div>
 
       <div class="scv-footer-col">
         <p class="scv-footer-heading">About</p>
-        <a href="{{ url('about') }}">About</a>
-        <a href="{{ url('contact') }}">Contact</a>
-        <a href="{{ url('permissions') }}">Permissions</a>
-        <a href="{{ url('photo-credits') }}">Photo Credits</a>
+        <a href="{{ url('about') }}"{% if craft.app.request.getSegment(1) == 'about' %} class="on"{% endif %}>About</a>
+        <a href="{{ url('contact') }}"{% if craft.app.request.getSegment(1) == 'contact' %} class="on"{% endif %}>Contact</a>
+        <a href="{{ url('permissions') }}"{% if craft.app.request.getSegment(1) == 'permissions' %} class="on"{% endif %}>Permissions</a>
+        <a href="{{ url('photo-credits') }}"{% if craft.app.request.getSegment(1) == 'photo-credits' %} class="on"{% endif %}>Photo Credits</a>
         <a href="https://scvhs.org" target="_blank" rel="noopener">SCV Historical Society</a>
       </div>
 
       <div class="scv-footer-col">
         <p class="scv-footer-heading">Connect</p>
         <a href="https://www.facebook.com/groups/scvhistory" target="_blank" rel="noopener">Facebook Group</a>
-        <a href="{{ url('newsletter') }}">Newsletter</a>
-        <a href="{{ url('submit') }}">Submit a photo/article</a>
+        <a href="{{ url('newsletter') }}"{% if craft.app.request.getSegment(1) == 'newsletter' %} class="on"{% endif %}>Newsletter</a>
+        <a href="{{ url('submit') }}"{% if craft.app.request.getSegment(1) == 'submit' %} class="on"{% endif %}>Submit a photo/article</a>
       </div>
 
     </div>
@@ -84,11 +105,11 @@
     <div class="scv-footer-bottom">
       <span>&copy; {{ now|date('Y') }} Santa Clarita Valley Historical Society</span>
       <span class="scv-footer-bottom-links">
-        <a href="{{ url('nonprofit') }}">Nonprofit</a>
+        <a href="{{ url('nonprofit') }}"{% if craft.app.request.getSegment(1) == 'nonprofit' %} class="on"{% endif %}>Nonprofit</a>
         &bull;
-        <a href="{{ url('permissions') }}">Permissions</a>
+        <a href="{{ url('permissions') }}"{% if craft.app.request.getSegment(1) == 'permissions' %} class="on"{% endif %}>Permissions</a>
         &bull;
-        <a href="{{ url('privacy') }}">Privacy Policy</a>
+        <a href="{{ url('privacy') }}"{% if craft.app.request.getSegment(1) == 'privacy' %} class="on"{% endif %}>Privacy Policy</a>
       </span>
     </div>
   </footer>
