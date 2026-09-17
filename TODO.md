@@ -105,3 +105,19 @@ Leave these 7 Place entries untouched until Nathan decides:
 - tejon-ranch
 
 Also still open: 301 target for community indexes; whether to add the five missing neighborhood terms; Ridge Route / Harry Carey Ranch / Estancia / Melody Ranch community assignment; coins and OTN Gazette collection titles.
+
+## Deploy pipeline (blocking production)
+- deploy.yml only runs `git pull origin main`. Production never receives schema changes.
+- Fix: after the pull, run `composer install --no-dev --optimize-autoloader`, `php craft project-config/apply`, `php craft up`, then `php craft clear-caches/all`.
+- Also fix the GitHub Actions to Cloudways SSH connection that broke on the new server.
+- Until fixed: do not push main. Merge locally only. Production stays on the old build.
+- After fixed: first deploy must also copy web/uploads/archive-media/site (logos, seals, now tracked) and the Craft assets volume.
+
+## Data gaps noted this session
+- 20 communities have no polygon; coordinates come from set_community_coords.php (batch 4).
+- Newhall, Saugus, Valencia, Canyon Country polygons are unincorporated fragments; sub-city boundaries task pending (city GIS, then ZCTA fallback).
+- Community terms have no body, aliases, or type content yet.
+- 12 places have no featured image until the legacy site images are pulled.
+- GeoJSON licence marked NEEDS_VERIFICATION; confirm LA County GIS terms and add attribution before launch.
+- militaryProfiles section has no template.
+- Obituary body still carries WordPress artifacts; run clean_bodies.php again after adding obituaries to the field list.
