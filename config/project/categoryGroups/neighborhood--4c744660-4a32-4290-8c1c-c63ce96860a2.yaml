@@ -144,9 +144,9 @@ handle: neighborhood
 name: Communities
 siteSettings:
   3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
-    hasUrls: false
-    template: null
-    uriFormat: null
+    hasUrls: true
+    template: communities/_entry
+    uriFormat: 'communities/{slug}'
 structure:
   maxLevels: null
   uid: 926d2da0-3be9-4c60-b0ba-218cf8609c8e

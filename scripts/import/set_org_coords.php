@@ -3,7 +3,7 @@
  * Only fills empty values. Set $FORCE = true to overwrite.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/set_org_coords.php'))"
  */
-$FORCE = false;
+$FORCE = true;
 $coords = [
     'henry-mayo-newhall-memorial-hospital' => [34.3924, -118.5628],
     'historical-society-of-southern-california' => [34.0740, -118.2130],
