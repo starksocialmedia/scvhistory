@@ -507,3 +507,62 @@ No database changes were made.
 - Populate community bodies, aliases and types.
 - Link war memorial records to their Person records so the badge appears.
 - Find coordinates for the six unresolved communities from a source with real data, ideally the GNIS domestic names file rather than the web app.
+
+## 2026-09-17 (Claude, branches templates-batch-5 and templates-batch-6)
+
+- Agent: Claude
+- Date: 2026-09-17
+
+### templates-batch-5, partial
+
+Two items of the quality pass landed. The rest is outstanding, listed below.
+
+**Legacy stylesheets stripped.** main.css went from 2131 lines to 34 and layout.css from 60 to 80. Of the 350 classes those two defined, only 19 were still referenced anywhere, all header, nav, footer, lightbox, band or map; the rest styled templates that no longer exist. Real deviations fixed in the chrome: the header carried a 2px #b8860b bottom border, the footer heading, links and tagline were still set in Inter, footer text used the old rgba(245,230,192,...) cream, and the footer column was 1280px against a 1240px header so the gutters did not line up. base.twig no longer loads the Cormorant Garamond and Inter webfonts. No occurrence of Cormorant, Inter, #1a2744 or #b8860b remains under templates/.
+
+**Cite this record moved into the sidebar.** The brief sets the sidebar order as portrait or unit box, then Cite this record, then label/value boxes, then relations, then External. Cite had been in the main column, which is where the approved war memorial reference put it; Nathan confirmed the move. cite.twig gained a sidebar variant that renders inside a .rec-box and stacks the toggles, citation and Copy for a 340px column.
+
+**Still outstanding from batch 5**, none of it started:
+
+- military-profiles/_entry.twig and index.twig. The section has no template at all and is the last one missing.
+- templates/404.twig, a search results template at templates/search/index.twig, and scripts/import/setup_search_route.php.
+- The internal link crawl for 404s, 500s, links to the old WordPress host and stray scvhistory.com links.
+- Head and metadata: title tags and meta descriptions. Nathan settled the meta description as roughly the first 160 characters of the body, cut at a word boundary.
+- Community boundaries drawn on the places and organizations maps.
+
+Note that the batch 5 brief was truncated: item 4 ended mid sentence at "drawn from the first 7" and the list jumped straight to an item numbered 7, so items 5 and 6 never arrived.
+
+### templates-batch-6
+
+**Fields verified.** recordImages and recordDocuments are Assets fields present on all twelve entry types: article, collection, document, event, group, militaryProfile, obituary, organization, person, photograph, place, warMemorial. Neither is on the neighborhood category group, so community pages cannot carry them. Every type also has a top and bottom editor note, and there is a third handle pair the brief did not mention: militaryProfile uses mpWebmasterNoteTop and mpWebmasterNoteBottom.
+
+**New partials in _partials/record/:**
+
+- `images.twig`: PHOTOS section under the prose, gold rule and label above a grid of square thumbnails, each opening the full image in a `<dialog>` lightbox with caption and credit beneath. No library. Caption from the asset title, credit from its alt.
+- `documents.twig`: DOCUMENTS sidebar box, each recordDocument a link with a PDF icon, its title and its file size, opening in a new tab. Sits after the relation boxes and before External.
+- `note.twig`: cream box with a 3px gold left rule, 15px text, gold links. Empty notes render nothing.
+
+`_partials/prose.twig` now replaces a line consisting only of `[image:N]` with a figure floated right at 300px, caption and credit beneath in italic 13.5px grey, unfloated below 640px. A token pointing at an image that is not there is dropped rather than printed. images.twig reads the same tokens, so an image placed inline is left out of the Photos grid and nothing appears twice.
+
+All nine record templates wired: top note between the tools row and the prose, prose with the images passed in, Photos section, bottom note, and the documents box in the sidebar. Each passes the note handle its own type carries.
+
+Where featuredImage is empty or absent the first record image becomes the hero. Six of the nine templates had no portrait markup at all, since their types have no featuredImage field, so the band now takes a portrait and drops the single column modifier when there is an image.
+
+**Verified.** All 151 entry pages, 11 indexes and 35 community pages return 200. The partials were exercised against real assets through a temporary template, since the fields hold no data: `[image:2]` produced one floated figure, `[image:9]` was dropped, the Photos grid showed the remaining three, the dialog and both notes rendered, and the documents box listed extension and size. That template was deleted before committing.
+
+### Blockers
+
+- None.
+
+### Data problems noticed, not touched
+
+No database changes were made.
+
+- recordImages and recordDocuments have zero relations across the whole site, so no Photos section, no documents box, no inline image and no hero fallback can appear until Nathan populates them. All of it is wired and tested, just unfed.
+- wmRelatedPerson still has zero relations, so the War Memorial badge on person records cannot appear.
+- All 35 community terms still have empty body, aliases and type.
+
+### Next
+
+- Finish the batch 5 items listed above.
+- Populate recordImages and recordDocuments, then re-check a record page with real photos.
+- Confirm whether community terms should get recordImages and recordDocuments too; they are the only content type without them.
