@@ -85,32 +85,23 @@
       </div>
 
       <div class="scv-footer-col">
-        <p class="scv-footer-heading">About</p>
-        <a href="{{ url('about') }}"{% if craft.app.request.getSegment(1) == 'about' %} class="on"{% endif %}>About</a>
-        <a href="{{ url('contact') }}"{% if craft.app.request.getSegment(1) == 'contact' %} class="on"{% endif %}>Contact</a>
-        <a href="{{ url('permissions') }}"{% if craft.app.request.getSegment(1) == 'permissions' %} class="on"{% endif %}>Permissions</a>
-        <a href="{{ url('photo-credits') }}"{% if craft.app.request.getSegment(1) == 'photo-credits' %} class="on"{% endif %}>Photo Credits</a>
-        <a href="https://scvhs.org" target="_blank" rel="noopener">SCV Historical Society</a>
+        <p class="scv-footer-heading">Browse</p>
+        <a href="{{ url('places') }}"{% if craft.app.request.getSegment(1) == 'places' %} class="on"{% endif %}>Places</a>
+        <a href="{{ url('communities') }}"{% if craft.app.request.getSegment(1) == 'communities' %} class="on"{% endif %}>Communities</a>
+        <a href="{{ url('war-memorial') }}"{% if craft.app.request.getSegment(1) == 'war-memorial' %} class="on"{% endif %}>War Memorial</a>
       </div>
 
       <div class="scv-footer-col">
-        <p class="scv-footer-heading">Connect</p>
+        <p class="scv-footer-heading">Elsewhere</p>
+        <a href="https://scvhs.org" target="_blank" rel="noopener">SCV Historical Society</a>
         <a href="https://www.facebook.com/groups/scvhistory" target="_blank" rel="noopener">Facebook Group</a>
-        <a href="{{ url('newsletter') }}"{% if craft.app.request.getSegment(1) == 'newsletter' %} class="on"{% endif %}>Newsletter</a>
-        <a href="{{ url('submit') }}"{% if craft.app.request.getSegment(1) == 'submit' %} class="on"{% endif %}>Submit a photo/article</a>
+        <a href="{{ url('search') }}">Search the archive</a>
       </div>
 
     </div>
 
     <div class="scv-footer-bottom">
       <span>&copy; {{ now|date('Y') }} Santa Clarita Valley Historical Society</span>
-      <span class="scv-footer-bottom-links">
-        <a href="{{ url('nonprofit') }}"{% if craft.app.request.getSegment(1) == 'nonprofit' %} class="on"{% endif %}>Nonprofit</a>
-        &bull;
-        <a href="{{ url('permissions') }}"{% if craft.app.request.getSegment(1) == 'permissions' %} class="on"{% endif %}>Permissions</a>
-        &bull;
-        <a href="{{ url('privacy') }}"{% if craft.app.request.getSegment(1) == 'privacy' %} class="on"{% endif %}>Privacy Policy</a>
-      </span>
     </div>
   </footer>
 

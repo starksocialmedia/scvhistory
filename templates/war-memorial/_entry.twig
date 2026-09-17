@@ -123,7 +123,7 @@
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
         {% set links = [] %}
-        {% if F.legacyUrl %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ F.legacyUrl, t: 'View on legacy site', ext: true}]) %}{% endif %}
+        {% if F.legacyUrl %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: F.legacyUrl })|trim, t: 'View on legacy site', ext: true}]) %}{% endif %}
         {% if links|length %}
         <div class="rec-box"><div class="rec-lab">RELATED</div>
           <div class="rec-links">{% for l in links %}<a href="{{ l.u }}"{% if l.ext %} target="_blank" rel="noopener"{% endif %}>{{ l.t }} <span>{{ l.ext ? '↗' : '→' }}</span></a>{% endfor %}</div>

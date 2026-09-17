@@ -1,0 +1,20 @@
+{#
+  Normalises a stored legacy URL into something linkable.
+
+  The data holds three shapes, so prefixing every value with the host produced
+  broken links: /scvhistory/lw3730.htm, scvhistory.com/scvhistory/lw3730.htm
+  and, where a website landed in the legacy field by mistake,
+  sangabrielmission.org. That last one rendered as
+  https://scvhistory.comsangabrielmission.org.
+
+  Rules: an absolute URL is used as is; a value starting with / is resolved
+  against scvhistory.com; anything else is treated as its own host.
+
+  Usage: {% set href = include('_partials/legacy-url', { value: legacy })|trim %}
+#}
+{%- set v = value|trim -%}
+{%- if v starts with 'http://' or v starts with 'https://' -%}{{ v }}
+{%- elseif v starts with '//' -%}https:{{ v }}
+{%- elseif v starts with '/' -%}https://scvhistory.com{{ v }}
+{%- else -%}https://{{ v }}
+{%- endif -%}

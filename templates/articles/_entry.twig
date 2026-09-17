@@ -144,7 +144,7 @@
 
         {% set links = [] %}
         {% if F.archiveUrl %}{% set links = links|merge([{u: F.archiveUrl, t: 'Archive.org'}]) %}{% endif %}
-        {% if F.legacyUrl %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ F.legacyUrl, t: 'View on legacy site'}]) %}{% endif %}
+        {% if F.legacyUrl %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: F.legacyUrl })|trim, t: 'View on legacy site'}]) %}{% endif %}
         {% if links|length %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
             <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>

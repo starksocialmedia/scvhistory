@@ -112,7 +112,7 @@
         {% if entry.placeChlUrl is defined and entry.placeChlUrl %}{% set links = links|merge([{u: entry.placeChlUrl, t: 'California Historical Landmark'}]) %}{% endif %}
         {% if entry.placeScvhlUrl is defined and entry.placeScvhlUrl %}{% set links = links|merge([{u: entry.placeScvhlUrl, t: 'SCV Historical Landmark'}]) %}{% endif %}
         {% set legacy = F.placeLegacyUrl ?: F.legacyUrl %}
-        {% if legacy %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ legacy, t: 'View on legacy site'}]) %}{% endif %}
+        {% if legacy %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: legacy })|trim, t: 'View on legacy site'}]) %}{% endif %}
         {% if links|length %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
             <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>

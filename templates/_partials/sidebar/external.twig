@@ -24,7 +24,7 @@
 {% endif %}
 {% if scvhl is defined and scvhl %}{% set rows = rows|merge([{u: scvhl, l: 'SCV Historical Landmark'}]) %}{% endif %}
 {% if archive is defined and archive %}{% set rows = rows|merge([{u: archive, l: 'Archive.org'}]) %}{% endif %}
-{% if legacy is defined and legacy %}{% set rows = rows|merge([{u: 'https://scvhistory.com' ~ legacy, l: 'View on legacy site'}]) %}{% endif %}
+{% if legacy is defined and legacy %}{% set rows = rows|merge([{u: include('_partials/legacy-url', { value: legacy })|trim, l: 'View on legacy site'}]) %}{% endif %}
 
 {% set plainChl = (chl is not defined or not chl) and chlNumber is defined and chlNumber %}
 

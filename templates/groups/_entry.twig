@@ -96,7 +96,7 @@
         {% set links = [] %}
         {% if entry.groupWebsite is defined and entry.groupWebsite %}{% set links = links|merge([{u: entry.groupWebsite, t: 'Official website'}]) %}{% endif %}
         {% set legacy = F.groupLegacyUrl ?: F.legacyUrl %}
-        {% if legacy %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ legacy, t: 'View on legacy site'}]) %}{% endif %}
+        {% if legacy %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: legacy })|trim, t: 'View on legacy site'}]) %}{% endif %}
         {% if links|length %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
             <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>

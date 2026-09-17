@@ -181,7 +181,7 @@
         {% set links = [] %}
         {% if entry.personWikipediaUrl is defined and entry.personWikipediaUrl %}{% set links = links|merge([{u: entry.personWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
         {% if entry.personGraveUrl is defined and entry.personGraveUrl %}{% set links = links|merge([{u: entry.personGraveUrl, t: 'Find a Grave'}]) %}{% endif %}
-        {% if F.personLegacyUrl %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ F.personLegacyUrl, t: 'View on legacy site'}]) %}{% endif %}
+        {% if F.personLegacyUrl %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: F.personLegacyUrl })|trim, t: 'View on legacy site'}]) %}{% endif %}
         {% if links|length %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
             <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
