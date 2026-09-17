@@ -91,7 +91,7 @@
       navigator.clipboard.writeText(visible.textContent.trim()).then(function(){
         copy.textContent = 'Copied';
         setTimeout(function(){ copy.textContent = 'Copy'; }, 2000);
-      });
+      }).catch(function(){ /* clipboard blocked; leave the label alone */ });
     });
   }
 })();

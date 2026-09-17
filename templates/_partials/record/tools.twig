@@ -36,7 +36,7 @@
   </div>
 </div>
 <script>
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   var btn = document.getElementById('recListen');
   var txt = document.getElementById({{ textId|json_encode|raw }});
   if (!btn || !txt || !('speechSynthesis' in window)) { return; }
@@ -48,5 +48,5 @@
     btn.textContent = 'Stop';
     speechSynthesis.speak(u);
   });
-})();
+});
 </script>
