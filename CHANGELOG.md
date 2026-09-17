@@ -319,3 +319,97 @@ No database changes were made.
 - Clean the obituary body, then import the rest of the obituaries.
 - Decide whether militaryProfiles gets templates or is folded into war memorial.
 - Add the missing category groups if indexes should group by type.
+
+## 2026-09-17 (Claude, branch templates-batch-3)
+
+- Agent: Claude
+- Date: 2026-09-17
+- A Communities section with a boundary map, plus one shared map implementation across the three map indexes.
+
+### Category URLs
+
+`scripts/import/setup_community_urls.php` sets the Communities group (handle `neighborhood`) to hasUrls true, uriFormat `communities/{slug}`, template `communities/_entry`, for every site the group is enabled on. Eval style, no opening tag, safe to run twice, prints settings before and after plus sample URLs. **Nathan runs it.** No `config/` was edited by hand.
+
+Until it runs, `/communities/{slug}` returns 404 and `term.url` is null. Both templates fall back to `url('communities/' ~ slug)` so links and citations are already correct.
+
+### Boundary data
+
+`web/data/communities.geojson`, 57 KB, 15 polygons.
+
+- Source: Los Angeles County Enterprise GIS, eGISBOS Countywide Statistical Areas, ArcGIS item `3abf2449cc054d72ab80e8f1968e5d94`.
+- Retrieved in WGS84 with `maxAllowableOffset=0.0002` and 5 decimal places.
+- Each feature carries `properties.slug` matching the Craft category slug, plus `source_name`, `city_type` and a `note` where the polygon needs one.
+- Source URL, attribution, retrieval date, the exact query and the caveats are in the file's `metadata` member and repeated below.
+- The ArcGIS item carries no licence statement, so `metadata.license` is marked `NEEDS_VERIFICATION`. Confirm LA County's open data terms before public launch.
+
+**Got a polygon (15):** acton, agua-dulce, bouquet-canyon, canyon-country, castaic, lake-hughes, newhall, placerita-canyon, san-francisquito-canyon, sand-canyon, santa-clarita, saugus, stevenson-ranch, val-verde, valencia
+
+**No polygon (20):** camulos, castaic-junction, fair-oaks-ranch, fillmore, frazier-park, haskell-canyon, hasley-canyon, lebec, mentryville, mint-canyon, mojave-desert, pico-canyon, piru, potrero-canyon, ravenna, saugus-valencia, soledad-canyon, soledad-township, tejon, towsley-canyon
+
+Those 20 split three ways: canyons and historic townsites with no official boundary; Ventura County (camulos, fillmore, piru) and Kern County (frazier-park, lebec, tejon), which an LA County dataset does not cover; and saugus-valencia, which is our own compound term with no single CSA. No polygon was invented for any of them.
+
+Two caveats worth knowing:
+
+- The Newhall, Saugus, Valencia and Canyon Country CSAs cover only the **unincorporated remnants** of those communities. The bulk of each sits inside the City of Santa Clarita polygon. A reader hovering "Newhall" is seeing a fragment, not the historic community.
+- san-francisquito-canyon uses the combined CSA "San Francisquito Canyon/Bouquet Canyon", which overlaps the separate bouquet-canyon polygon.
+
+### Templates
+
+`templates/communities/index.twig`: cream band with the community count and a live count of how many have boundaries, a 520px Leaflet 1.9.4 map from cdnjs, then a card grid of all 35 communities with name, type, alias line and counts. Polygons draw navy `#17254C` at 12 percent fill with a navy outline, turn gold `#C4A031` at 32 percent on hover, carry a tooltip with the name and counts, and navigate to the community on click.
+
+`templates/communities/_entry.twig`: cream band with name, aliases and type; body through `_partials/prose`; a 320px map of that community's polygon or its pin; then every related record grouped by section across people, places, organizations, groups, events, articles, war memorial and obituaries. Sidebar uses the batch 2 partials: meta, cite, neighbouring communities, and a per-section count box.
+
+The GeoJSON is fetched at runtime rather than inlined into every render. Twig has no `file_exists`, so the neighbours list is server rendered from `templates/_data/community-neighbors.json`, generated from the same GeoJSON.
+
+Communities was added to the nav in `_layouts/base.twig` after Places. That is the only base.twig edit.
+
+### Neighbouring communities
+
+Derived from the polygons: two communities are neighbours when any boundary vertex of one lies within 250 m of a boundary segment of the other. This is a proximity test on generalised geometry, not a topological adjacency computation, so it can miss a narrow touch or include a near miss. The method note travels with the data in both files. Shapely was not available and installing packages needs approval, so this was done in pure Python.
+
+### Refactor
+
+`_partials/map-index.twig` now holds the map CSS, the map card markup and the Leaflet wiring that `places/index.twig` and `organizations/index.twig` each carried a copy of. Both are about 80 lines shorter. Behaviour is identical: same pins, same card and pin selection, same hint line, same popups, same fit links. Differences are parameters: `hint`, `fitAllLabel`, `showFitValley`, `initialValley`, and the new `polygonsUrl`, `polygonMeta`, `boundaryCount`, `mapHeight`.
+
+Two fixes the move required:
+
+- The shared script now sits before the card grid rather than after it, so it is wrapped in `DOMContentLoaded` and binds card handlers whatever the order. Without this the card clicks would have silently stopped working.
+- Leaflet's stylesheet is registered with `registerCssFile` instead of a hand written link tag, so the partial carries its own dependency.
+
+`cite.twig` gained an optional `url` override.
+
+### Verified
+
+- All 151 entry pages, all 11 indexes including the new `/communities`, and all 35 community pages return 200. Community pages were rendered through a temporary harness template, since category URLs are not on yet; the harness was deleted before committing.
+- In the browser: 15 polygons drawn, navy fill at 0.12, gold at 0.32 on hover and back on mouseout, tooltips reading for example "Castaic / 8 people · 2 places · 13 articles", polygon click navigating to the community, the boundary counter filling to 15, map 520px.
+- Refactor checked by diffing rendered output before and after, then in the browser: 15 pins and 16 cards on places, 14 and 14 on organizations, card clicks intercepted and selecting rather than navigating.
+- Every category field handle re-audited against the `neighborhood` group layout. All six exist and all reads are guarded.
+
+### Blockers
+
+- None, but two things need Nathan.
+
+### Needs Nathan
+
+1. **Run the URL script** on **MacBook**, then commit `config/project/`:
+
+```
+ddev craft exec "eval(file_get_contents('scripts/import/setup_community_urls.php'))"
+```
+
+2. **`orgLat` and `orgLng` are set to `decimals: 0`.** Every organization pin rounds to a whole degree, so Rancho Camulos plots at 34, -119 instead of 34.407, -118.753, roughly 30 km out. This predates this branch; it came in with the organizations map. Fixing it means changing the two field settings and re-running `set_org_coords.php`. Not done here because the brief allowed no config changes beyond the URL script.
+
+### Data problems noticed, not touched
+
+No database changes were made.
+
+- All 35 community terms have completely empty field content: no body, no aliases, no type, no coordinates. So community pages currently show a title, the related records and nothing else, and the map shows only the 15 polygons. The 20 communities without a polygon will stay off the map until `communityLat` and `communityLng` are filled.
+- `warMemorials` has no `neighborhood` field, so its count is structurally always zero. The templates query it and simply omit the line, but no war memorial record can be filed under a community until the field is added.
+- Everything flagged in batches 1 and 2 is still open.
+
+### Next
+
+- Nathan runs the URL script, then reviews `/communities` and a few community pages.
+- Decide on the `orgLat`/`orgLng` precision fix.
+- Populate community bodies, types, aliases and coordinates. Coordinates are what unlock the remaining 20 pins.
+- Decide whether `neighborhood` should be added to the warMemorial layout.
