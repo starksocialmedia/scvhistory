@@ -248,3 +248,74 @@ No database changes were made. Flagging for a content session:
 - Decide whether persons gets a full rebuild on the same pattern.
 - Add the missing category groups (Place Type, Group Type, Event Type) if the indexes should group by type.
 - Resolve the duplicate places and war memorial records and the truncated narratives.
+
+## 2026-09-17 (Claude, branch templates-batch-2)
+
+- Agent: Claude
+- Date: 2026-09-17
+- One sidebar and page system across every entry page, in the current design language. Reference was the persons entry page and the persons and places indexes.
+
+### Shared sidebar partials
+
+New `templates/_partials/sidebar/`:
+
+- `box.twig`: white box, 3px gold top rule, small uppercase Jost heading. Used with `{% embed %}` so the caller supplies the body.
+- `related-list.twig`: related entries with a 44px square featuredImage thumbnail, initials fallback in cream (two initials for people, first letter otherwise), title link, and a one-line subtitle. Subtitle by section: persons gives occupation, events give date, places give community, everything else none.
+- `location.twig`: Leaflet 1.9.4 map 200px tall, scrollWheelZoom off, then Established, Address and Coordinates rows. Takes lat, lng, address, established and mapId, so places and organizations share it.
+- `meta.twig`: last updated, plus read time and word count on articles.
+- `cite.twig`: Chicago style, using author, collection, publish date and url.
+- `external.twig`: website, Wikipedia, Find a Grave, CHL, SCV landmark, Archive.org and legacy links, only the ones with values. Handles differ per section, so the caller passes values rather than the partial guessing a handle.
+
+### Design language
+
+`_partials/scv-extra-css.twig` rewritten. Playfair Display headings, Jost labels, Public Sans body. Navy #17254C, gold #C4A031 and #A9842B, cream #FDF7EA, borders #E2E4E8 and #EFE6D0, page #F6F7F9. Cormorant Garamond, Inter and the old #1a2744 and #b8860b palette are gone from the file. The Google Fonts link moved into the partial so entry templates stop repeating it. Verified in the browser: computed styles match the spec exactly.
+
+### Entry pages rebuilt
+
+articles, places, organizations, groups, events, war-memorial, collections, and a new obituaries entry. Each: cream band with breadcrumbs, kicker, title, aliases and key facts; era, period and community chips; featured image hero below the band when the section has the field; body in a white card; right sidebar built only from the partials.
+
+- Places get the location box first in the sidebar.
+- War memorial keeps the service record and incident panels as boxes, plus life and awards.
+- Articles keep the collection pager, the author bio and the in-this-collection list, and gained events, related articles and the editor.
+- Every relation the previous templates showed is preserved, including the reverse lookups on depictsPlace, subjectOrganization, publishedBy, personGroups, subjectGroup and articleEvents.
+
+### Index pages rebuilt
+
+organizations, groups, events, war-memorial, collections, and a new obituaries index. Cream band with stats, sticky filter bar where a filter makes sense, card grid with images and initials fallback. Organizations filter by community, groups and events by era, war memorial by conflict, obituaries by era. Collections has no filter so it has no bar.
+
+### Verified
+
+- All 151 entry pages across nine sections return 200, plus 10 indexes and 6 filter variants including bogus filter values.
+- Every field handle re-audited against its entry type layout in `config/project/`. The only out-of-layout reads are `featuredImage`, all guarded with `is defined`.
+- No horizontal overflow: `scrollWidth` equals `innerWidth` on ten pages at 1280px and 390px.
+
+### Fixed along the way
+
+- Obituaries had no templates at all. Every obituary URL and `/obituaries` returned 404. Both now exist.
+- `{% embed ... only %}` does not inherit outer variables, which broke the first place page that had a community. Variables are now passed in explicitly.
+
+### Skipped, and why
+
+- No hero image on place, group, event, article, collection or obituary entries, and no real card image on those indexes. `featuredImage` is only in the person, organization and warMemorial field layouts. Every reference is guarded, so images appear on their own if the field is added.
+- No era, period or community chips on war memorial entries. `historicalEra`, `historicalPeriod` and `neighborhood` are not in the warMemorial layout. The conflict chip is the only one.
+- Indexes still cannot group by type. Only three category groups exist (historicalEra, historicalPeriod, neighborhood). Place Type, Group Type, Event Type and Person Subject are described in DATA-ORGANIZATION.md but not built.
+- The homepage, articles index, persons index and places index were left alone. They are already in this design language with their own hp, ap, pp and pl prefixes. They still use `.scv-band` and `.scv-band-in`, which the rewrite keeps.
+- `militaryProfiles` still has no template. It was not in scope.
+
+### Data problems noticed, not touched
+
+No database changes were made.
+
+- The one obituary body still carries WordPress import artifacts: `[caption]` shortcodes, raw img tags, and absolute links to `wordpress-1656314-6593552.cloudwaysapps.com`. The page renders, but the body needs a cleanup pass before launch.
+- Everything flagged in the templates-batch-1 entry is still open: duplicate `beales-cut` places, duplicate Rudy Alexander Acosta war memorial records, the NULL title on `sleepy-valley`, "Lake Huges", four truncated war memorial narratives, and the one-line placeholder Place bodies.
+
+### Blockers
+
+- None.
+
+### Next
+
+- Nathan reviews the eight entry types and six indexes at scvhistory.ddev.site before this branch merges. Nothing pushed, nothing merged.
+- Clean the obituary body, then import the rest of the obituaries.
+- Decide whether militaryProfiles gets templates or is folded into war memorial.
+- Add the missing category groups if indexes should group by type.
