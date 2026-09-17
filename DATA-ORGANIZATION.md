@@ -110,6 +110,43 @@ Common relations:
 
 ---
 
+
+### The full link map (from the WordPress build)
+
+These are the connections the pages actually render. Craft must support all of them.
+
+**Article**
+- Part of Collection, **with a sequence number**: collections are ordered, and pages show previous and next chapters plus the full chapter list
+- Written By → Person. The page renders that Person's name, roles, bio, and a link to the profile
+- Edited By → Person
+- Published By → **one or more** Organizations or Sources (an article can credit both SCVHistory.com and The Signal; an obituary credits the newspaper that ran it)
+- People in this article → Person (only those who meet the record threshold)
+- Subject Organization, Depicts Place, Related Events
+- Historical Era, Historical Period, Community categories
+- Original publish date, which drives the citation, not the migration date
+- Webmaster note, rendered as a visible correction callout
+- Contributor credit ("courtesy of ...") → the donor and contributor registry from key.htm
+- Tags for everything below the threshold
+
+**Place**
+- Aliases ("Also known as: Fremont Pass, San Fernando Pass, Newhall Cut")
+- California Historical Landmark number and link
+- Associated People, Related Events (bidirectional: the earthquake lists the interchange, the interchange lists the earthquake)
+- Address, coordinates, established date, community
+
+**Event**
+- Date, Places, People, Organizations, Related Events, Historical Era and Period
+- Cross-links inline in body text to other entries
+
+**Person**
+- Family relations (parentOf, childOf, spouseOf, siblingOf), each showing the other person's roles
+- Organizations, Groups, Articles About, Obituaries, Military Profile
+- Wikipedia and Find A Grave external links
+
+**Military Profile**
+- mpSubject → Person (this is what makes a parent's page show a child's rank)
+- Conflict category, branch and school Organizations, burial Place, community
+
 ## 6. Tags
 
 Tags are for things that matter in context but do not earn a record:
