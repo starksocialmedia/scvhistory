@@ -634,3 +634,75 @@ All 151 entry pages, 15 indexes and route variants, and 35 community pages retur
 - Five partials are now unused and can go, but AGENTS.md says ask before deleting: `_partials/cite-article.twig` (0 bytes), `_partials/search-form.twig`, `_partials/sidebar/external.twig`, `_partials/sidebar/location.twig`, `_partials/sidebar/related-list.twig`. `_partials/sidebar/box.twig`, `cite.twig` and `meta.twig` are still used by the communities page.
 - Decide on `#8F6E22` versus `#7A5C1B` for small gold text on cream.
 - `recordImages`, `recordDocuments` and `wmRelatedPerson` still have zero relations sitewide.
+
+## 2026-09-17 (Claude, branch templates-batch-7)
+
+- Agent: Claude
+- Date: 2026-09-17
+
+### Small-text gold now clears AA
+
+`#8F6E22` measured 4.45:1 on cream, short of the 4.5 AA threshold for text under 18.66px. Small gold text is now `#7A5C1B`: 5.83:1 on cream, 6.22:1 on white, 5.81:1 on the page grey.
+
+The swap was decided per declaration block, reading the font-size in the same rule, plus the six inline link colours in the empty-state messages, which sit in 16px text. Four display uses keep `#8F6E22`, all Playfair numerals at 22 to 30px where AA only asks 3.0: the era and feature numerals on the homepage, the article list numeral, and the collection chapter numeral.
+
+### Pages section
+
+`scripts/import/setup_pages_section.php`, eval style, dry run behind `$APPLY`, safe to run twice. **Nathan runs it.** It creates:
+
+- section `pages`, channel, uriFormat `{slug}`, template `pages/_entry`
+- entry type `page` with body, webmasterNoteTop, webmasterNoteBottom, featuredImage, recordImages, recordDocuments, all six verified present
+- the eight entries with empty bodies: About, Contact, Permissions, Photo Credits, Newsletter, Submit a Photo or Article, Nonprofit, Privacy Policy
+
+No prose is written by the script. The copy is Nathan's to write in the control panel.
+
+`templates/pages/_entry.twig` on the record pattern with no relation boxes, since a page is prose rather than a record with connections: cream band, tools, top note, prose, images, bottom note; sidebar of cite, a search box and the other pages. It shows "This page has not been written yet" while a body is empty.
+
+### Footer restored
+
+Back to the original three columns and the bottom bar: Browse (By Era, By Collection, People, Obituaries), About (About, Contact, Permissions, Photo Credits, SCV Historical Society), Connect (Facebook Group, Newsletter, Submit a photo/article), and Nonprofit, Permissions, Privacy Policy along the bottom.
+
+By Era and By Collection needed somewhere real to point, so the articles index gained a `view` parameter. `view=era` groups the same articles by historical era, `view=collection` keeps the existing per series grouping, and a GROUP BY chip row switches between them. Verified: `?view=era` renders Spanish Colonial, Mexican Rancho Era, American Frontier and Other articles as group headings.
+
+**The eight page links 404 until Nathan runs the section script.** That is expected and resolves on the first run.
+
+### Unused partials deleted
+
+Confirmed zero references for each, then removed: `_partials/cite-article.twig` (an empty file), `_partials/search-form.twig`, `_partials/sidebar/external.twig`, `_partials/sidebar/location.twig`, `_partials/sidebar/related-list.twig`. `sidebar/box.twig`, `cite.twig` and `meta.twig` stay, since the communities page still uses them.
+
+### Content link fixes
+
+`scripts/import/fix_bad_links.php`, eval style, dry run behind `$APPLY`. **Nathan runs it.** Every rewrite is anchored on the exact stored URL, so a second run is a no-op.
+
+All four link targets were checked against Craft before the script was written, and all four exist:
+
+- `/person/pedro-fages/` in `articles/chapter-9-the-trail-blazer` to `/persons/pedro-fages`
+- `wordpress-1656314.../article/henry-clay-wiley/` to `/articles/henry-clay-wiley`
+- `wordpress-1656314.../article/surveyors-map-showing-lyons-station/` to `/articles/surveyors-map-showing-lyons-station`
+- `wordpress-1656314.../person/tiburcio-vasquez/` to `/persons/tiburcio-vasquez`
+
+The strip-the-anchor-keep-the-text path is implemented for targets that do not exist, but none of these four needs it.
+
+The script also moves `sangabrielmission.org` out of the legacy URL field on `organizations/mission-san-gabriel-arcangel` and into `orgWebsite`, clearing the legacy field. It leaves `orgWebsite` alone if something is already there.
+
+The two scvhistory.com links in `events/northridge-earthquake` are reported and left untouched, since a reference to the legacy site may well be deliberate. **Nathan decides.**
+
+### Verified
+
+All 151 entry pages, 16 index and route variants, and 35 community pages return 200.
+
+### Needs Nathan
+
+Two scripts to run on **MacBook**, both dry run first, then with `$APPLY = true`:
+
+```
+ddev craft exec "eval(file_get_contents('scripts/import/setup_pages_section.php'))"
+ddev craft exec "eval(file_get_contents('scripts/import/fix_bad_links.php'))"
+```
+
+Then `project-config/write` and commit `config/project/` for the first one. Write the copy for the eight pages, and decide on the two Northridge legacy links.
+
+### Still open
+
+- `recordImages`, `recordDocuments` and `wmRelatedPerson` have zero relations sitewide, so photos, documents and the war memorial badge stay wired but unfed.
+- Community terms still have empty body, aliases and type.
