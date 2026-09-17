@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block content %}
+{% set recImages = entry.recordImages is defined ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined ? entry.recordDocuments.all() : [] %}
+{% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
+{% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
+{% set img = recImages|length ? recImages|first : null %}
 {% set F = {} %}
 {% for h in ['body','placeAddress','dateEstablished','placeAliases','placeChlNumber','placeLegacyUrl','legacyUrl','culturalSensitivityNote'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
@@ -21,7 +26,7 @@
   <section class="rec-band">
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('places') }}">Places</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="rec-head rec-head--noart">
+      <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
         <div>
           <div class="rec-kick"><span class="a">PLACES</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
@@ -40,6 +45,7 @@
             </div>
           {% endif %}
         </div>
+        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
       </div>
     </div>
   </section>
@@ -48,7 +54,10 @@
     <main class="rec-main">
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
-        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body } %}</div>{% endif %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
+        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>{% endif %}
+        {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
       </article>
 
@@ -95,6 +104,8 @@
             <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
           </div>
         {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
 
         {% set links = [] %}
         {% if entry.placeWikipediaUrl is defined and entry.placeWikipediaUrl %}{% set links = links|merge([{u: entry.placeWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}

@@ -16,11 +16,16 @@
   {% endcss %}
 {% endblock %}
 {% block content %}
+{% set recImages = entry.recordImages is defined ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined ? entry.recordDocuments.all() : [] %}
+{% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
+{% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 {% set F = {} %}
 {% for h in ['body', 'burialPlace', 'deathDate', 'legacyUrl', 'wmAgeAtLoss', 'wmAwards', 'wmBase', 'wmBranch', 'wmCombatOperations', 'wmConflict', 'wmDateOfBirth', 'wmHighSchool', 'wmHomeOfRecord', 'wmIncidentDate', 'wmIncidentLocation', 'wmLengthOfService', 'wmNarrative', 'wmRank', 'wmServiceId', 'wmSpecialty', 'wmStartTour', 'wmUnit'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
 {% set img = entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null %}
+{% set img = img ?? (recImages|length ? recImages|first : null) %}
 {% set awards = F.wmAwards ? F.wmAwards|replace({',': ';'})|split(';')|map(a => a|trim)|filter(a => a) : [] %}
 {% set era = entry.historicalEra is defined ? entry.historicalEra.one() ?? null : null %}
 {% set related = entry.wmRelatedPerson is defined ? entry.wmRelatedPerson.one() ?? null : null %}
@@ -62,9 +67,12 @@
     <main class="rec-main">
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: narrative, textId: 'recText' } only %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
 
         {% if narrative %}
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative } %}</div>
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages } %}</div>
+          {% include "_partials/record/images" with { images: recImages, body: narrative } only %}
+          {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% endif %}
 
       </article>
@@ -111,6 +119,8 @@
             </a>
           </div>
         {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
 
         {% set links = [] %}
         {% if F.legacyUrl %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ F.legacyUrl, t: 'View on legacy site', ext: true}]) %}{% endif %}

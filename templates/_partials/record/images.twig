@@ -1,0 +1,92 @@
+{#
+  PHOTOS section under the prose: a gold rule, a PHOTOS label and a grid of
+  square thumbnails. Each opens the full image in a <dialog> lightbox with the
+  caption and credit beneath. No library.
+
+  Images already placed inline in the body with an [image:N] token are left out
+  here, so nothing appears twice. This partial reads the same tokens that
+  _partials/prose.twig acts on.
+
+  Caption comes from the asset title, credit from its alt text.
+
+  Params:
+    images   the recordImages assets
+    body     the prose, so inline tokens can be excluded
+#}
+{% set imgs = images is defined ? images : [] %}
+{% set used = [] %}
+{% if body is defined and body %}
+  {% for line in body|split("\n") %}
+    {% set t = line|trim %}
+    {% if t matches '/^\\[image:\\d+\\]$/' %}
+      {% set used = used|merge([(t|replace({'[image:': '', ']': ''}))|trim]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% set shown = [] %}
+{% for a in imgs %}
+  {% if (loop.index)|trim not in used %}{% set shown = shown|merge([a]) %}{% endif %}
+{% endfor %}
+
+{% if shown|length %}
+{% css %}
+.rec-photos{margin:48px 0 0;clear:both}
+.rec-photos .rule{height:3px;background:#C4A031;width:100%;margin-bottom:14px}
+.rec-photos .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.rec-photos button{padding:0;border:1px solid #E2E4E8;background:#FDF7EA;cursor:pointer;display:block;width:100%}
+.rec-photos button:hover{border-color:#C4A031}
+.rec-photos button img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.rec-lb{border:0;padding:0;background:transparent;max-width:92vw;max-height:92vh}
+.rec-lb::backdrop{background:rgba(23,37,76,.94)}
+.rec-lb .inner{background:#fff;border-top:3px solid #C4A031;padding:16px}
+.rec-lb img{max-width:86vw;max-height:72vh;width:auto;height:auto;display:block;margin:0 auto}
+.rec-lb figcaption{font-size:14px;line-height:1.6;color:#2C2C2C;margin-top:12px;max-width:720px}
+.rec-lb .cr{display:block;font-size:12.5px;color:#8A919E;margin-top:4px}
+.rec-lb .close{position:absolute;top:8px;right:12px;background:none;border:0;font-size:26px;line-height:1;color:#5B6472;cursor:pointer}
+.rec-lb .close:hover{color:#A9842B}
+{% endcss %}
+
+<section class="rec-photos">
+  <div class="rule"></div>
+  <div class="rec-lab">PHOTOS</div>
+  <div class="grid">
+    {% for a in shown %}
+      <button type="button" data-src="{{ a.url }}"
+              data-caption="{{ a.title }}" data-credit="{{ a.alt ?: '' }}">
+        <img src="{{ a.url }}" alt="{{ a.alt ?: a.title }}" loading="lazy">
+      </button>
+    {% endfor %}
+  </div>
+</section>
+
+<dialog class="rec-lb" id="recLightbox">
+  <div class="inner" style="position:relative">
+    <button type="button" class="close" aria-label="Close">&times;</button>
+    <figure style="margin:0">
+      <img id="recLbImg" src="" alt="">
+      <figcaption><span id="recLbCap"></span><span class="cr" id="recLbCredit"></span></figcaption>
+    </figure>
+  </div>
+</dialog>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var dlg = document.getElementById('recLightbox');
+  if (!dlg || typeof dlg.showModal !== 'function') { return; }
+  var img = document.getElementById('recLbImg'),
+      cap = document.getElementById('recLbCap'),
+      cr  = document.getElementById('recLbCredit');
+  document.querySelectorAll('.rec-photos button').forEach(function(b){
+    b.addEventListener('click', function(){
+      img.src = b.dataset.src;
+      img.alt = b.dataset.credit || b.dataset.caption || '';
+      cap.textContent = b.dataset.caption || '';
+      cr.textContent = b.dataset.credit || '';
+      dlg.showModal();
+    });
+  });
+  dlg.querySelector('.close').addEventListener('click', function(){ dlg.close(); });
+  dlg.addEventListener('click', function(e){ if (e.target === dlg) { dlg.close(); } });
+});
+</script>
+{% endif %}

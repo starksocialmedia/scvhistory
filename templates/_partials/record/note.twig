@@ -1,0 +1,21 @@
+{#
+  Editor's note. A cream box with a 3px gold left rule, used for the top and
+  bottom webmaster notes. Renders nothing when the text is empty.
+
+  The handle differs by entry type, so the caller passes the value rather than
+  this partial guessing: webmasterNoteTop / webmasterNoteBottom on most types,
+  personWebmasterNote* on People, obitWebmasterNote* on Obituaries and
+  mpWebmasterNote* on Military Profiles.
+
+  Params:
+    text   the note, plain text or simple HTML
+#}
+{% if text is defined and text is not empty and text|trim %}
+  {% css %}
+  .rec-note{background:#FDF7EA;border-left:3px solid #C4A031;padding:14px 18px;margin:0 0 28px;font-size:15px;line-height:1.65;color:#2C2C2C}
+  .rec-note:last-child{margin-bottom:0}
+  .rec-note a{color:#A9842B}
+  .rec-note--bottom{margin:32px 0 0}
+  {% endcss %}
+  <div class="rec-note{{ bottom is defined and bottom ? ' rec-note--bottom' : '' }}">{{ text|trim|raw }}</div>
+{% endif %}

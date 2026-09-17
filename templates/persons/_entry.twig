@@ -12,11 +12,16 @@
 {% endblock %}
 
 {% block content %}
+{% set recImages = entry.recordImages is defined ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined ? entry.recordDocuments.all() : [] %}
+{% set noteTop = entry.personWebmasterNoteTop is defined ? entry.personWebmasterNoteTop : null %}
+{% set noteBottom = entry.personWebmasterNoteBottom is defined ? entry.personWebmasterNoteBottom : null %}
 {% set F = {} %}
 {% for h in ['authorBio', 'birthDate', 'birthplace', 'body', 'burialPlace', 'culturalSensitivityNote', 'deathDate', 'occupation', 'personFinePrint', 'personLegacyUrl', 'personWebmasterNoteBottom', 'personWebmasterNoteTop'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
 {% set img = entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null %}
+{% set img = img ?? (recImages|length ? recImages|first : null) %}
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
@@ -88,13 +93,16 @@
     <main class="rec-main">
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: prose, textId: 'recText' } only %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
 
         {% if F.personWebmasterNoteTop %}<div class="rec-note">{{ F.personWebmasterNoteTop }}</div>{% endif %}
 
         {% if prose %}
           <div class="rec-body" id="recText">
-            {% include "_partials/prose" with { text: prose } %}
+            {% include "_partials/prose" with { text: prose, images: recImages } %}
           </div>
+          {% include "_partials/record/images" with { images: recImages, body: prose } only %}
+          {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% endif %}
 
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
@@ -166,6 +174,8 @@
             <div class="rec-links">{% for o in obits %}<a href="{{ o.url }}">{{ o.title }} <span>&rarr;</span></a>{% endfor %}</div>
           </div>
         {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
 
         {% set links = [] %}
         {% if entry.personWikipediaUrl is defined and entry.personWikipediaUrl %}{% set links = links|merge([{u: entry.personWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}

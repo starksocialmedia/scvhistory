@@ -1,2 +1,41 @@
-{% set paras = text|trim|split("\n") %}
-{% for p in paras %}{% if p|trim %}<p>{{ p|raw }}</p>{% endif %}{% endfor %}
+{#
+  Turns blank-line separated text into paragraphs.
+
+  A line consisting only of [image:N] is replaced by a figure floated right at
+  300px, where N is the 1-based position in the record's images. Caption comes
+  from the asset title, credit from its alt text. Images placed this way are
+  skipped by the Photos section, which reads the same tokens.
+
+  Params:
+    text     the prose
+    images   optional, the recordImages assets, needed for [image:N]
+#}
+{% if images is defined and images|length %}
+  {% css %}
+  .rec-inline{float:right;width:300px;margin:4px 0 20px 28px;max-width:45%}
+  .rec-inline img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
+  .rec-inline figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.5;margin-top:8px}
+  .rec-inline .cr{display:block;font-style:normal;font-size:12px;color:#8A919E;margin-top:3px}
+  @media(max-width:640px){.rec-inline{float:none;width:100%;max-width:none;margin:0 0 20px}}
+  {% endcss %}
+{% endif %}
+{%- set imgs = images is defined ? images : [] -%}
+{%- for p in text|trim|split("\n") -%}
+  {%- set line = p|trim -%}
+  {%- if line -%}
+    {%- set token = line matches '/^\\[image:\\d+\\]$/' ? line|replace({'[image:': '', ']': ''}) : null -%}
+    {%- set asset = token and imgs[token - 1] is defined ? imgs[token - 1] : null -%}
+    {%- if asset -%}
+      <figure class="rec-inline">
+        <img src="{{ asset.url }}" alt="{{ asset.alt ?: asset.title }}">
+        {%- if asset.title or asset.alt %}
+        <figcaption>{{ asset.title }}{% if asset.alt and asset.alt != asset.title %}<span class="cr">{{ asset.alt }}</span>{% endif %}</figcaption>
+        {%- endif %}
+      </figure>
+    {%- elseif token -%}
+      {# token points at an image that is not there; drop it rather than print it #}
+    {%- else -%}
+      <p>{{ line|raw }}</p>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}

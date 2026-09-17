@@ -1,0 +1,37 @@
+{#
+  DOCUMENTS sidebar box: each recordDocument as a link with a PDF icon, its
+  title and its file size, opening in a new tab. Renders nothing when the
+  field is empty or absent.
+
+  The label comes from the asset title, falling back to the filename.
+
+  Params:
+    docs   the recordDocuments assets
+#}
+{% if docs is defined and docs|length %}
+  {% css %}
+  .rec-docs a{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #EFE6D0;text-decoration:none;color:#2C2C2C}
+  .rec-docs a:last-child{border-bottom:0}
+  .rec-docs a:hover .t{color:#A9842B}
+  .rec-docs svg{flex:none;margin-top:2px;color:#A9842B}
+  .rec-docs .t{font-size:15px;line-height:1.4;color:#17254C;font-weight:500}
+  .rec-docs .m{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.08em;color:#8A919E;margin-top:3px;text-transform:uppercase}
+  {% endcss %}
+  <div class="rec-box">
+    <div class="rec-lab">DOCUMENTS</div>
+    <div class="rec-docs">
+      {% for d in docs %}
+        <a href="{{ d.url }}" target="_blank" rel="noopener">
+          <svg width="17" height="20" viewBox="0 0 17 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <path d="M10 1H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7z"/>
+            <path d="M10 1v6h6"/>
+          </svg>
+          <span style="min-width:0">
+            <span class="t">{{ d.title ?: d.filename }}</span>
+            <span class="m">{{ d.extension|upper }}{% if d.size %} &middot; {{ d.size|filesize(0) }}{% endif %}</span>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
