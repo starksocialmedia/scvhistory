@@ -1,61 +1,111 @@
 {% extends "_layouts/base" %}
 {% block head %}
-{% include "_partials/scv-extra-css" %}
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 {% css %}
 .hp{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
 .hp-hero{background:#FDF7EA;border-bottom:1px solid #EFE6D0;color:#17254C}
-.hp-hero-in{padding-top:72px;padding-bottom:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:end}
-.hp-eyebrow{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#C4A031;margin-bottom:20px}
+.hp-hero-in{max-width:1240px;margin:0 auto;padding:64px 40px 72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:end}
+.hp-eyebrow{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#A9842B;margin-bottom:20px}
 .hp-hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,5vw,60px);line-height:1.08;margin:0 0 22px;letter-spacing:-.005em;color:#17254C}
 .hp-hero p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:520px}
-.hp-search{display:flex;background:#fff;border:1px solid #C4A031}
+.hp-search{display:flex;background:#fff;border:1px solid #DCC98F}
 .hp-search input{flex:1;min-width:0;border:0;outline:none;padding:18px 20px;font-family:'Public Sans',sans-serif;font-size:17px;color:#2C2C2C;background:transparent}
 .hp-search button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-weight:500;font-size:16px;padding:0 28px;cursor:pointer}
 .hp-try{display:flex;gap:8px 22px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:#5B6472}
-.hp-try a{color:#C4A031;text-decoration:none}
-.hp-sec{padding-top:64px}
+.hp-try a{color:#A9842B;text-decoration:none}
+.hp-sec{max-width:1240px;margin:0 auto;padding:64px 40px 0}
+.hp-sec.last{padding-bottom:96px}
 .hp-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px}
 .hp-sec h2{font-family:'Playfair Display',serif;font-weight:500;font-size:30px;margin:0;color:#17254C}
-.hp-count{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#A9842B}
+.hp-kick{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#A9842B}
+.hp-link{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.06em;color:#A9842B;text-decoration:none}
 .hp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-.hp-card{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:22px 22px 20px;display:block;color:inherit;text-decoration:none}
-.hp-card:hover{background:#FBF1DB}
+.hp-card{background:#fff;border:1px solid #E2E4E8;border-top:3px solid #C4A031;padding:22px 22px 20px;display:block;color:inherit;text-decoration:none}
+.hp-card:hover{border-color:#C4A031}
 .hp-card .n{font-family:'Playfair Display',serif;font-size:44px;line-height:1;color:#17254C}
 .hp-card .l{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#A9842B;margin-top:12px}
 .hp-card .d{font-size:14px;line-height:1.55;color:#5B6472;margin-top:8px}
-.hp-eras{border-top:1px solid #E2E4E8;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 24px}
-.hp-era{display:block;padding:18px 0 20px;border-top:3px solid #C4A031;margin-top:-1px;color:inherit;text-decoration:none}
+.hp-tl{background:#fff;border:1px solid #E2E4E8;padding:26px 28px 40px}
+.hp-bar{display:flex;gap:2px;position:relative}
+.hp-bar a{position:relative;height:12px;display:block;text-decoration:none}
+.hp-bar a:nth-child(odd){background:#17254C}
+.hp-bar a:nth-child(even){background:#A9842B}
+.hp-bar a:hover{background:#C4A031}
+.hp-bar a span{position:absolute;top:18px;left:0;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;color:#8A919E;white-space:nowrap}
+.hp-bar .gap{background:repeating-linear-gradient(135deg,#E2E4E8 0 3px,transparent 3px 6px);height:12px}
+.hp-eras{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:0 32px;margin-top:8px}
+.hp-era{display:flex;gap:14px;padding:18px 0 20px;border-top:1px solid #E2E4E8;color:inherit;text-decoration:none;min-width:0}
+.hp-era:hover{border-top-color:#C4A031}
+.hp-era .num{font-family:'Playfair Display',serif;font-size:26px;line-height:1;color:#A9842B;flex:none;width:34px;padding-top:2px}
 .hp-era .y{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;color:#8A919E}
-.hp-era .t{font-family:'Playfair Display',serif;font-size:19px;color:#17254C;margin-top:6px;line-height:1.3}
-.hp-recent{border-top:1px solid #E2E4E8}
-.hp-item{display:flex;gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid #E2E4E8;text-decoration:none;color:inherit}
-.hp-item:hover .t{color:#A9842B}
-.hp-item .k{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.14em;color:#8A919E;flex:0 0 130px}
-.hp-item .t{font-family:'Playfair Display',serif;font-size:20px;color:#17254C}
-.hp-item .s{font-size:14px;color:#5B6472;margin-top:3px}
-.hp-pad{padding-bottom:72px}
+.hp-era .t{font-family:'Playfair Display',serif;font-weight:500;font-size:20px;color:#17254C;margin-top:6px;line-height:1.25}
+.hp-recent{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start}
+.hp-feat{display:block;background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;color:inherit;text-decoration:none}
+.hp-feat img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.hp-feat .in{padding:22px 24px 26px}
+.hp-feat .t{font-family:'Playfair Display',serif;font-weight:500;font-size:30px;line-height:1.15;color:#A9842B;margin-top:10px}
+.hp-feat .m{font-size:15px;color:#5B6472;margin-top:8px}
+.hp-feat .chip{display:inline-block;border:1px solid #C4A031;color:#A9842B;font-family:'Jost',sans-serif;font-size:13px;padding:6px 12px;border-radius:3px;margin-top:16px}
+.hp-list{display:flex;flex-direction:column;border-top:1px solid #E2E4E8}
+.hp-item{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid #E2E4E8;color:inherit;text-decoration:none}
+.hp-item .th{width:44px;height:44px;border-radius:50%;flex:none;background:#FDF7EA;border:1px solid #EFE6D0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;color:#C4A031;font-size:16px}
+.hp-item .th img{width:100%;height:100%;object-fit:cover;display:block}
+.hp-item .t{font-family:'Playfair Display',serif;font-size:18px;color:#17254C}
+.hp-item .s{font-size:13.5px;color:#5B6472;margin-top:2px}
+.hp-badge{background:#F2F3F5;border:1px solid #E2E4E8;color:#2C2C2C;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.06em;padding:4px 10px;border-radius:3px;flex:none}
+.hp-badge.dark{background:#17254C;border-color:#17254C;color:#fff}
+.hp-results{border-top:1px solid #E2E4E8}
 {% endcss %}
 {% endblock %}
 
 {% block content %}
 {% set q = craft.app.request.getParam('q') %}
 {% set cards = [
-  {handle:'warMemorials', uri:'war-memorial', label:'War Memorial', desc:'Valley residents killed in service, with unit and incident records.'},
-  {handle:'persons', uri:'persons', label:'People', desc:'Pioneers, ranchers, actors, and civic leaders.'},
-  {handle:'articles', uri:'articles', label:'Articles', desc:'Columns and histories as their authors wrote them.'},
-  {handle:'places', uri:'places', label:'Places', desc:'Sites you can still stand in, and some you cannot.'},
-  {handle:'organizations', uri:'organizations', label:'Organizations', desc:'Ranchos, companies, agencies, and institutions.'},
-  {handle:'groups', uri:'groups', label:'Groups', desc:'Families, tribes, expeditions, and military units.'},
-  {handle:'collections', uri:'collections', label:'Collections', desc:'Newspaper series kept in their original order.'},
-  {handle:'events', uri:'events', label:'Events', desc:'Floods, quakes, and the days the valley changed.'}
+  {h:'warMemorials', u:'war-memorial', l:'War Memorial', d:'Valley residents killed in service, with unit and incident records.'},
+  {h:'persons', u:'persons', l:'People', d:'Pioneers, ranchers, actors, and civic leaders.'},
+  {h:'articles', u:'articles', l:'Articles', d:'Newspaper accounts and serialized local histories.'},
+  {h:'places', u:'places', l:'Places', d:'Passes, ranchos, landmarks, and interchanges.'},
+  {h:'organizations', u:'organizations', l:'Organizations', d:'Companies, agencies, and institutions.'},
+  {h:'collections', u:'collections', l:'Collections', d:'Multi-part works, read in order.'},
+  {h:'groups', u:'groups', l:'Groups', d:'Inductees, families, and associations.'},
+  {h:'events', u:'events', l:'Events', d:'Dated happenings with places and people attached.'},
+  {h:'obituaries', u:'obituaries', l:'Obituaries', d:'Death notices as originally published.'}
 ] %}
 {% set total = 0 %}
-{% for c in cards %}{% set total = total + craft.entries().section(c.handle).status(null).count() %}{% endfor %}
+{% for c in cards %}{% set total = total + craft.entries().section(c.h).status(null).count() %}{% endfor %}
+
+{# Eras: parse "Name (YYYY–YYYY)" into spans for the timeline #}
+{% set eras = [] %}
+{% for e in craft.categories().group('historicalEra').status(null).all() %}
+  {% set parts = e.title|split('(') %}
+  {% set name = parts[0]|trim %}
+  {% set range = parts|length > 1 ? parts[1]|replace({')': ''})|trim : '' %}
+  {% set yrs = range|replace({'–': '-', '—': '-'})|split('-') %}
+  {% set start = yrs[0]|trim %}
+  {% set end = yrs|length > 1 ? yrs[1]|trim : '' %}
+  {% if end|lower == 'present' %}{% set end = now|date('Y') %}{% endif %}
+  {% set startNum = start matches '/^\\d{4}$/' ? start : null %}
+  {% set endNum = end matches '/^\\d{4}$/' ? end : null %}
+  {% set eras = eras|merge([{ cat: e, name: name, range: range, start: startNum, end: endNum }]) %}
+{% endfor %}
+{% set eras = eras|sort((a, b) => (a.start ?? 0) <=> (b.start ?? 0)) %}
+{% set bar = [] %}
+{% set cursor = null %}
+{% set first = null %}{% set last = null %}
+{% for e in eras %}{% if e.start and e.end %}{% if first is null %}{% set first = e.start %}{% endif %}{% set last = e.end %}{% endif %}{% endfor %}
+{% for e in eras %}
+  {% if e.start and e.end %}
+    {% if cursor is not null and e.start > cursor %}{% set bar = bar|merge([{ gap: true, w: e.start - cursor }]) %}{% endif %}
+    {% set bar = bar|merge([{ gap: false, w: max(e.end - e.start, 3), e: e }]) %}
+    {% set cursor = max(cursor ?? 0, e.end) %}
+  {% endif %}
+{% endfor %}
+
+{% set featCol = craft.entries().section('collections').slug('history-of-the-santa-clarita-valley').status(null).one() ?? craft.entries().section('collections').status(null).one() %}
 
 <div class="hp">
-  <div class="scv-band hp-hero">
-    <div class="scv-band-in hp-hero-in">
+  <section class="hp-hero">
+    <div class="hp-hero-in">
       <div>
         <div class="hp-eyebrow">A FREE PUBLIC ARCHIVE &middot; A SERVICE OF SCVTV</div>
         <h1>The Santa Clarita Valley, on the record.</h1>
@@ -68,24 +118,19 @@
         </form>
         <div class="hp-try">
           <span>Try</span>
-          {% for t in ["Beale's Cut", "Newhall Pass", "Rancho San Francisco", "Northridge Earthquake"] %}
-            <a href="{{ siteUrl }}?q={{ t|url_encode }}">{{ t }}</a>
-          {% endfor %}
+          {% for t in ["Beale's Cut", "Newhall Pass", "Rancho San Francisco", "Northridge Earthquake"] %}<a href="{{ siteUrl }}?q={{ t|url_encode }}">{{ t }}</a>{% endfor %}
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   {% if q %}
     {% set results = craft.entries().search(q).status(null).limit(60).all() %}
-    <section class="scv-band-in hp-sec">
+    <section class="hp-sec">
       <div class="hp-head"><h2>{{ results|length }} result{{ results|length == 1 ? '' : 's' }} for &ldquo;{{ q }}&rdquo;</h2></div>
-      <div class="hp-recent">
+      <div class="hp-list">
         {% for e in results %}
-          <a class="hp-item" href="{{ e.url ?? '#' }}">
-            <div class="k">{{ (e.section.name ?? '')|upper }}</div>
-            <div><div class="t">{{ e.title ?: e.slug }}</div></div>
-          </a>
+          <a class="hp-item" href="{{ e.url ?? '#' }}"><div style="flex:1;min-width:0"><div class="t">{{ e.title ?: e.slug }}</div></div><span class="hp-badge">{{ e.section.name ?? '' }}</span></a>
         {% else %}
           <p style="padding:16px 0;color:#5B6472">Nothing found. Try a name, a place, or a year.</p>
         {% endfor %}
@@ -93,59 +138,72 @@
     </section>
   {% endif %}
 
-  <section class="scv-band-in hp-sec">
-    <div class="hp-head">
-      <h2>In the archive</h2>
-      <div class="hp-count">{{ total }} RECORDS</div>
-    </div>
+  <section class="hp-sec">
+    <div class="hp-head"><h2>In the archive</h2><div class="hp-kick">{{ total }} RECORDS</div></div>
     <div class="hp-cards">
       {% for c in cards %}
-        {% set n = craft.entries().section(c.handle).status(null).count() %}
-        {% if n %}
-          <a class="hp-card" href="{{ url(c.uri) }}">
-            <div class="n">{{ n }}</div>
-            <div class="l">{{ c.label|upper }}</div>
-            <div class="d">{{ c.desc }}</div>
-          </a>
-        {% endif %}
+        {% set n = craft.entries().section(c.h).status(null).count() %}
+        {% if n %}<a class="hp-card" href="{{ url(c.u) }}"><div class="n">{{ n }}</div><div class="l">{{ c.l|upper }}</div><div class="d">{{ c.d }}</div></a>{% endif %}
       {% endfor %}
     </div>
   </section>
 
-  {% set eras = craft.categories().group('historicalEra').status(null).all() %}
   {% if eras|length %}
-  <section class="scv-band-in hp-sec">
-    <h2 style="margin-bottom:24px">Browse by era</h2>
+  <section class="hp-sec">
+    <div class="hp-head"><h2>Browse by era</h2><div class="hp-kick">{{ first }} — PRESENT &middot; {{ eras|length }} ERAS</div></div>
+    {% if bar|length %}
+    <div class="hp-tl">
+      <div class="hp-bar">
+        {% for seg in bar %}
+          {% if seg.gap %}<div class="gap" style="flex:{{ seg.w }} 0 0"></div>
+          {% else %}<a href="{{ url('articles', {era: seg.e.cat.slug}) }}" title="{{ seg.e.cat.title }}" style="flex:{{ seg.w }} 0 0">{% if seg.w >= 8 %}<span>{{ seg.e.start }}</span>{% endif %}</a>{% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
     <div class="hp-eras">
       {% for e in eras %}
-        {% set n = craft.entries().relatedTo(e).status(null).count() %}
-        {% if n %}
-          {% set parts = e.title|split('(') %}
-          <a class="hp-era" href="{{ url('articles', {era: e.slug}) }}">
-            <div class="y">{{ parts|length > 1 ? parts[1]|replace({')': ''}) : n ~ ' records' }}</div>
-            <div class="t">{{ parts[0]|trim }}</div>
-          </a>
-        {% endif %}
+        <a class="hp-era" href="{{ url('articles', {era: e.cat.slug}) }}">
+          <div class="num">{{ '%02d'|format(loop.index) }}</div>
+          <div style="min-width:0"><div class="y">{{ e.range ?: '' }}</div><div class="t">{{ e.name }}</div></div>
+        </a>
       {% endfor %}
     </div>
   </section>
   {% endif %}
 
-  <section class="scv-band-in hp-sec hp-pad">
-    <div class="hp-head">
-      <h2>Recently added</h2>
-      <a href="{{ url('articles') }}" style="font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.06em;color:#A9842B;text-decoration:none">ALL ARTICLES &rarr;</a>
-    </div>
+  <section class="hp-sec last">
+    <div class="hp-head"><h2>Recently added</h2><a class="hp-link" href="{{ url('articles') }}">All articles &rarr;</a></div>
     <div class="hp-recent">
-      {% for e in craft.entries().status(null).orderBy('dateUpdated desc').limit(8).all() %}
-        <a class="hp-item" href="{{ e.url ?? '#' }}">
-          <div class="k">{{ (e.section.name ?? '')|upper }}</div>
-          <div>
-            <div class="t">{{ e.title ?: e.slug }}</div>
-            {% if e.body is defined and e.body %}<div class="s">{{ e.body|striptags|slice(0, 120)|trim }}…</div>{% endif %}
+      {% if featCol %}
+        {% set fimg = featCol.featuredImage is defined ? featCol.featuredImage.one() ?? null : null %}
+        {% set fauthor = featCol.writtenBy.one() ?? null %}
+        {% set ordered = featCol.articlesInCollection.all() %}
+        <a class="hp-feat" href="{{ featCol.url }}">
+          {% if fimg %}<img src="{{ fimg.url }}" alt="">{% endif %}
+          <div class="in">
+            <div class="hp-kick">COLLECTION</div>
+            <div class="t">{{ featCol.title }}</div>
+            <div class="m">{% if fauthor %}By {{ fauthor.title }}{% endif %}{% if featCol.originalPublishDate %} &middot; {{ featCol.originalPublishDate }}{% endif %}</div>
+            {% if ordered|length > 1 %}<span class="chip">{{ ordered|first.title }} &rarr; {{ ordered|last.title }}</span>{% endif %}
           </div>
         </a>
-      {% endfor %}
+      {% endif %}
+      <div class="hp-list">
+        {% for e in craft.entries().status(null).orderBy('dateUpdated desc').limit(7).all() %}
+          {% set img = e.featuredImage is defined ? e.featuredImage.one() ?? null : null %}
+          {% set sub = '' %}
+          {% if e.section.handle == 'persons' and e.occupation is defined %}{% set sub = e.occupation %}
+          {% elseif e.section.handle == 'warMemorials' %}{% set sub = [e.wmRank, e.wmBranch]|filter(v => v)|join(' · ') %}
+          {% elseif e.section.handle == 'articles' %}{% set a = e.writtenBy.one() ?? null %}{% set sub = a ? a.title : '' %}
+          {% endif %}
+          <a class="hp-item" href="{{ e.url ?? '#' }}">
+            <div class="th">{% if img %}<img src="{{ img.url }}" alt="">{% else %}{{ (e.title ?: e.slug)|slice(0,1) }}{% endif %}</div>
+            <div style="flex:1;min-width:0"><div class="t">{{ e.title ?: e.slug }}</div>{% if sub %}<div class="s">{{ sub }}</div>{% endif %}</div>
+            <span class="hp-badge {{ e.section.handle == 'warMemorials' ? 'dark' : '' }}">{{ e.section.handle == 'persons' ? 'Person' : e.section.name }}</span>
+          </a>
+        {% endfor %}
+      </div>
     </div>
   </section>
 </div>
