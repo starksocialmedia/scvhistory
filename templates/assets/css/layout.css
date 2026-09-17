@@ -1,60 +1,80 @@
-/* SCVHistory.com — Craft CMS Layout CSS */
+/* SCVHistory.com — site chrome.
+   Header, nav, footer, page reset and the full-width band helper.
+   Record and index pages bring their own styles through
+   _partials/record/css.twig and _partials/scv-extra-css.twig.
+
+   Type:    Playfair Display (headings), Jost (labels and nav), Public Sans (body)
+   Palette: navy #17254C, gold #C4A031, deep gold #A9842B, cream #FDF7EA,
+            page #F6F7F9, borders #E2E4E8 and #EFE6D0 */
+
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; color: #1c1a17; background: #fff; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Public Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2C2C2C;
+  background: #F6F7F9;
+}
+
 img { max-width: 100%; height: auto; display: block; }
 
-.scv-site-header { background: #1a2744; padding: 1.25rem 0; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #b8860b; }
-.scv-site-header__inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.scv-site-header__logo img { height: 68px; width: auto; }
-.scv-site-nav { display: flex; align-items: center; gap: 1.75rem; }
-.scv-site-nav a { font-family: 'Inter', sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; color: rgba(245,230,192,0.85); text-decoration: none; text-transform: uppercase; transition: color 0.2s ease; }
-.scv-site-nav a:hover { color: #d4a017; }
+/* #content carries no width or padding. Sections own their own bleed and
+   inner width. See _layouts/base.twig. */
 
-/* #content carries no width or padding. Sections own their own bleed and inner width. See _layouts/base.twig and _partials/scv-extra-css.twig (.scv-band / .scv-band-in). */
+/* ── Full-width band and centred column ─────────────────────────── */
+.scv-band { display: block; width: 100%; }
+.scv-band-in { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
 
-.scv-article-wrap { display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
-@media (max-width: 900px) { .scv-article-wrap { grid-template-columns: 1fr; } .scv-article-sidebar { order: -1; } }
+/* ── Header ─────────────────────────────────────────────────────── */
+.scv-site-header { background: #17254C; position: sticky; top: 0; z-index: 100; }
+.scv-site-header__inner {
+  max-width: 1240px; margin: 0 auto; padding: 22px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.scv-site-nav {
+  display: flex; gap: 26px; flex-wrap: wrap;
+  font-family: 'Jost', sans-serif; font-size: 13px;
+  letter-spacing: .1em; font-weight: 500;
+}
+.scv-site-nav a { color: #fff; text-decoration: none; text-transform: uppercase; }
+.scv-site-nav a:hover { color: #C4A031; }
+.scv-site-nav a.on { color: #C4A031; border-bottom: 2px solid #C4A031; padding-bottom: 2px; }
 
-.scv-person-header__inner { display: flex; gap: 1.75rem; align-items: flex-start; }
-.scv-person-header__photo-wrap { flex-shrink: 0; width: 160px; }
-.scv-person-header__photo { width: 100%; height: auto; border: 1px solid #e8e0d4; }
-.scv-person-header__meta { flex: 1; }
-.scv-person-header__meta h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.25rem; font-weight: 600; color: #1a2744; margin: 0 0 0.25rem; line-height: 1.15; }
-@media (max-width: 600px) { .scv-person-header__inner { flex-direction: column; } .scv-person-header__photo-wrap { width: 120px; } }
-
-.scv-footer { background: #1a2744; color: rgba(245,230,192,0.75); margin-top: 4rem; padding: 3rem 0 0; }
-.scv-footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+/* ── Footer ─────────────────────────────────────────────────────── */
+.scv-footer { background: #17254C; color: #fff; margin-top: 0; padding: 48px 0 0; }
+.scv-footer-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 40px 32px;
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px;
+}
 @media (max-width: 900px) { .scv-footer-inner { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .scv-footer-inner { grid-template-columns: 1fr; } }
-.scv-footer-bottom { border-top: 1px solid rgba(184,134,11,0.3); padding: 1rem 2rem; max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(245,230,192,0.5); }
-.scv-footer-bottom-links a { color: rgba(245,230,192,0.5); text-decoration: none; }
-.scv-footer-bottom-links a:hover { color: #d4a017; }
 
-.scv-lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; align-items: center; justify-content: center; }
-.scv-lightbox.is-open { display: flex; }
+.scv-footer-logo img { height: 56px; width: auto; }
+.scv-footer-tagline {
+  font-family: 'Public Sans', sans-serif; font-size: 13px;
+  color: rgba(255,255,255,.72); line-height: 1.7; margin-top: 14px;
+}
+.scv-footer-heading {
+  font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; color: #C4A031;
+  margin: 0 0 10px;
+}
+.scv-footer-col a {
+  display: block; font-family: 'Public Sans', sans-serif; font-size: 14px;
+  color: rgba(255,255,255,.72); padding: 5px 0; text-decoration: none;
+}
+.scv-footer-col a:hover { color: #C4A031; }
 
-/* ── Persons Index ───────────────────────────────────────────── */
-.scv-index-wrap { max-width: 1280px; margin: 0 auto; padding: 2rem; }
-.scv-index-header { margin-bottom: 2rem; }
-.scv-index-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 600; color: #1a2744; margin: 0.5rem 0; }
-.scv-index-desc { font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6560; margin: 0; max-width: 640px; }
-.scv-index-count { font-family: 'Inter', sans-serif; font-size: 0.875rem; color: #6b6560; margin: 0 0 1.5rem; }
-.scv-index-empty { font-family: 'Inter', sans-serif; color: #6b6560; }
-
-.scv-filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; padding: 1.25rem 0; border-top: 1px solid #e8e0d4; border-bottom: 1px solid #e8e0d4; }
-.scv-filter-btn { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.35em 0.85em; border: 1px solid #e8e0d4; border-radius: 2px; color: #6b6560; text-decoration: none; transition: all 0.2s ease; white-space: nowrap; }
-.scv-filter-btn:hover { border-color: #b8860b; color: #b8860b; }
-.scv-filter-btn--active { background: #1a2744; border-color: #1a2744; color: #fff; }
-
-.scv-person-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-.scv-person-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; border: 1px solid #e8e0d4; border-radius: 2px; overflow: hidden; transition: box-shadow 0.2s ease, border-color 0.2s ease; background: #fff; }
-.scv-person-card:hover { box-shadow: 0 4px 16px rgba(26,39,68,0.1); border-color: #b8860b; }
-.scv-person-card__photo-wrap { aspect-ratio: 3/4; overflow: hidden; background: #f5f0e8; }
-.scv-person-card__photo { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.scv-person-card__placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #c8bfb0; }
-.scv-person-card__placeholder svg { width: 48px; height: 48px; }
-.scv-person-card__body { padding: 0.875rem; flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
-.scv-person-card__name { font-family: 'Cormorant Garamond', serif; font-size: 1.125rem; font-weight: 600; color: #1a2744; margin: 0; line-height: 1.2; }
-.scv-person-card__occ { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #6b6560; margin: 0; }
-.scv-person-card__dates { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #9b9591; margin: 0; }
-.scv-person-card__era { font-size: 0.65rem; margin-top: auto; padding-top: 0.5rem; }
+.scv-footer-bottom {
+  border-top: 1px solid rgba(196,160,49,.3);
+  max-width: 1240px; margin: 0 auto; padding: 16px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; flex-wrap: wrap;
+  font-size: 12.5px; color: rgba(255,255,255,.55);
+}
+.scv-footer-bottom-links a { color: rgba(255,255,255,.55); text-decoration: none; }
+.scv-footer-bottom-links a:hover { color: #C4A031; }
