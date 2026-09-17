@@ -1,507 +1,60 @@
-{% extends "_layouts/base" %}
-
+{% extends "_layout" %}
+{% block crumbs %}<div class="crumbs"><a href="/">Home</a> › <a href="/persons">People</a> › {{ entry.title }}</div>{% endblock %}
 {% block content %}
-
-{# ── Field Variables ─────────────────────────────────────────────── #}
-{% set image        = entry.featuredImage.one() %}
-{% set occupation   = entry.occupation %}
-{% set birthDate    = entry.birthDate %}
-{% set birthplace   = entry.birthplace %}
-{% set deathDate    = entry.deathDate %}
-{% set burialPlace  = entry.burialPlace %}
-{% set authorBio    = entry.authorBio %}
-{% set body         = entry.body %}
-{% set noteTop      = entry.personWebmasterNoteTop %}
-{% set noteBottom   = entry.personWebmasterNoteBottom %}
-{% set finePrint    = entry.personFinePrint %}
-{% set wikipedia    = entry.personWikipediaUrl %}
-{% set graveUrl     = entry.personGraveUrl %}
-{% set legacyUrl    = entry.personLegacyUrl %}
-{% set eras         = entry.historicalEra.all() %}
-{% set periods      = entry.historicalPeriod.all() %}
-{% set neighborhoods = entry.neighborhood.all() %}
-{% set spouse       = entry.spouseOf.all() %}
-{% set parentOf     = entry.parentOf.all() %}
-{% set childOf      = entry.childOf.all() %}
-{% set siblingOf    = entry.siblingOf.all() %}
-{% set related      = entry.relatedPersons.all() %}
-{% set organizations = entry.personOrganizations.all() %}
-{% set groups       = entry.personGroups.all() %}
-{% set personEvents = entry.personEvents.all() %}
-{% set articlesAbout = entry.articlesAbout.all() %}
-{% set obituaries   = entry.personObituaries.all() %}
-
-{# ── Word count / read time ──────────────────────────────────────── #}
-{% set wordCount = (authorBio ~ ' ' ~ body)|striptags|split(' ')|length %}
-{% set readTime  = max(1, (wordCount / 200)|round) %}
-{% set modified  = entry.dateUpdated|date('M j, Y') %}
-
-{# ── Articles written by this person ────────────────────────────── #}
-{% set articlesWritten = craft.entries()
-  .section('articles')
-  .relatedTo({ targetElement: entry, field: 'writtenBy' })
-  .orderBy('title ASC')
-  .all() %}
-
-{# ── Collections by this person ──────────────────────────────────── #}
-{% set personCollections = craft.entries()
-  .section('collections')
-  .relatedTo({ targetElement: entry, field: 'writtenBy' })
-  .all() %}
-
-<div class="scv-article-wrap">
-
-  {# ══ MAIN CONTENT ══════════════════════════════════════════════════ #}
+<div class="layout">
   <main>
-    <article class="scv-person">
-
-      {# Breadcrumb #}
-      <nav class="scv-breadcrumb">
-        <a href="{{ siteUrl }}">Home</a>
-        <span class="scv-bc-sep">›</span>
-        <a href="{{ url('persons') }}">People</a>
-        <span class="scv-bc-sep">›</span>
-        <span>{{ entry.title }}</span>
-      </nav>
-
-      {# ── Person Header ────────────────────────────────────────────── #}
-      <header class="scv-person-header">
-        <div class="scv-person-header__inner">
-
-          {# Photo #}
-          {% if image %}
-          <div class="scv-person-header__photo-wrap">
-            <img src="{{ image.url }}"
-                 alt="{{ entry.title }}"
-                 class="scv-person-header__photo">
-          </div>
-          {% endif %}
-
-          {# Name + Meta #}
-          <div class="scv-person-header__meta">
-
-            <h1>{{ entry.title }}</h1>
-
-            {% if occupation %}
-              <p class="scv-person-occupation">{{ occupation }}</p>
-            {% endif %}
-
-            {# Dates #}
-            {% if birthDate or deathDate %}
-            <div class="scv-person-dates">
-              {% if birthDate %}
-                <span class="scv-person-dates__label">Born</span>
-                <span class="scv-person-dates__val">{{ birthDate }}</span>
-                {% if birthplace %}
-                  <span class="scv-person-dates__sep">·</span>
-                  <span class="scv-person-dates__val">{{ birthplace }}</span>
-                {% endif %}
-              {% endif %}
-              {% if deathDate %}
-                {% if birthDate %}<br>{% endif %}
-                <span class="scv-person-dates__label">Died</span>
-                <span class="scv-person-dates__val">{{ deathDate }}</span>
-                {% if burialPlace %}
-                  <span class="scv-person-dates__sep">·</span>
-                  <span class="scv-person-dates__val">{{ burialPlace }}</span>
-                {% endif %}
-              {% endif %}
-            </div>
-            {% endif %}
-
-            {# Era + Period Tags #}
-            {% if eras|length or periods|length or neighborhoods|length %}
-            <div class="scv-tags">
-              {% for era in eras %}
-                <a href="{{ url('persons', { era: era.slug }) }}" class="scv-tag scv-tag--story-era">
-                  {{ era.title }}
-                </a>
-              {% endfor %}
-              {% for period in periods %}
-                <a href="{{ url('persons', { period: period.slug }) }}" class="scv-tag scv-tag--era">
-                  {{ period.title }}
-                </a>
-              {% endfor %}
-              {% for hood in neighborhoods %}
-                <a href="{{ url('persons', { neighborhood: hood.slug }) }}" class="scv-tag scv-tag--neighborhood">
-                  {{ hood.title }}
-                </a>
-              {% endfor %}
-            </div>
-            {% endif %}
-
-          </div>{# .scv-person-header__meta #}
-        </div>{# .scv-person-header__inner #}
-      </header>
-
-      <hr class="scv-header-rule">
-
-      {# Webmaster Note Top #}
-      {% if noteTop %}
-        <div class="scv-webmaster-note">{{ noteTop }}</div>
-      {% endif %}
-
-      {# Author Bio #}
-      {% if authorBio %}
-        <div class="entry-content scv-article-content">
-          <p>{{ authorBio }}</p>
-        </div>
-      {% endif %}
-
-      {# Body Content #}
-      {% if body %}
-        <div class="entry-content scv-article-content">
-          {{ body }}
-        </div>
-      {% endif %}
-
-      {# Webmaster Note Bottom #}
-      {% if noteBottom %}
-        <div class="scv-webmaster-note">{{ noteBottom }}</div>
-      {% endif %}
-
-      {# Fine Print #}
-      {% if finePrint %}
-        <div class="scv-fine-print">{{ finePrint }}</div>
-      {% endif %}
-
-      {# ── Articles Written By This Person ──────────────────────────── #}
-      {% if articlesWritten|length %}
-      <div class="scv-person-section">
-        <h2 class="scv-person-section__title">Articles Written</h2>
-        <ul class="scv-subject-persons">
-          {% for art in articlesWritten %}
-            {% set artImage = art.featuredImage.one() ?? null %}
-            {% set artColl  = art.partOfCollection.one() ?? null %}
-            <li class="scv-subject-person">
-              <a href="{{ art.url }}" class="scv-subject-person__link">
-                {% if artImage %}
-                  <img src="{{ artImage.url }}" alt="{{ art.title }}" class="scv-subject-person__photo">
-                {% else %}
-                  <div class="scv-subject-person__placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  </div>
-                {% endif %}
-                <div>
-                  <div class="scv-subject-person__name">{{ art.title }}</div>
-                  {% if artColl %}
-                    <div class="scv-subject-person__occ">{{ artColl.title }}</div>
-                  {% elseif art.originalPublishDate %}
-                    <div class="scv-subject-person__occ">{{ art.originalPublishDate }}</div>
-                  {% endif %}
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {# ── Series / Collections ─────────────────────────────────────── #}
-      {% if personCollections|length %}
-      <div class="scv-person-section">
-        <h2 class="scv-person-section__title">Series</h2>
-        <ul class="scv-subject-persons">
-          {% for col in personCollections %}
-            {% set colImage = col.featuredImage.one() ?? null %}
-            {% set colCount = craft.entries().section('articles').relatedTo({ targetElement: col, field: 'partOfCollection' }).count() %}
-            <li class="scv-subject-person">
-              <a href="{{ col.url }}" class="scv-subject-person__link">
-                {% if colImage %}
-                  <img src="{{ colImage.url }}" alt="{{ col.title }}" class="scv-subject-person__photo">
-                {% else %}
-                  <div class="scv-subject-person__placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M7 7h10M7 12h10M7 17h6"/></svg>
-                  </div>
-                {% endif %}
-                <div>
-                  <div class="scv-subject-person__name">{{ col.title }}</div>
-                  {% if colCount %}
-                    <div class="scv-subject-person__occ">{{ colCount }} articles</div>
-                  {% endif %}
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {# ── Articles About This Person ───────────────────────────────── #}
-      {% if articlesAbout|length %}
-      <div class="scv-person-section">
-        <h2 class="scv-person-section__title">Articles About {{ entry.title }}</h2>
-        <ul class="scv-subject-persons">
-          {% for art in articlesAbout %}
-            {% set artImage = art.featuredImage.one() ?? null %}
-            {% set artColl  = art.partOfCollection.one() ?? null %}
-            <li class="scv-subject-person">
-              <a href="{{ art.url }}" class="scv-subject-person__link">
-                {% if artImage %}
-                  <img src="{{ artImage.url }}" alt="{{ art.title }}" class="scv-subject-person__photo">
-                {% else %}
-                  <div class="scv-subject-person__placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  </div>
-                {% endif %}
-                <div>
-                  <div class="scv-subject-person__name">{{ art.title }}</div>
-                  {% if artColl %}
-                    <div class="scv-subject-person__occ">{{ artColl.title }}</div>
-                  {% elseif art.originalPublishDate %}
-                    <div class="scv-subject-person__occ">{{ art.originalPublishDate }}</div>
-                  {% endif %}
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
+    <h1>{{ entry.title }}</h1>
+    {% if entry.occupation %}<p class="sub">{{ entry.occupation }}</p>{% endif %}
+    <p class="byline">
+      {% if entry.birthDate %}<strong>Born</strong> {{ entry.birthDate }}{% if entry.birthplace %} · {{ entry.birthplace }}{% endif %}<br>{% endif %}
+      {% if entry.deathDate %}<strong>Died</strong> {{ entry.deathDate }}{% if entry.burialPlace %} · {{ entry.burialPlace }}{% endif %}{% endif %}
+    </p>
+    {% set era = entry.historicalEra.one() ?? null %}
+    {% if era %}<div class="era">{{ era.title }}</div>{% endif %}
+    <div class="chips">
+      {% for p in entry.historicalPeriod.all() %}<span class="chip">{{ p.title }}</span>{% endfor %}
+      {% for c in entry.neighborhood.all() %}<span class="chip solid">{{ c.title }}</span>{% endfor %}
+    </div>
+    <article class="body">
+      {{ entry.body|raw }}
+      {% if entry.authorBio and not entry.body %}<p>{{ entry.authorBio }}</p>{% endif %}
+      {% if entry.personWebmasterNoteBottom %}<div class="note">{{ entry.personWebmasterNoteBottom }}</div>{% endif %}
+      {% if entry.personFinePrint %}<p class="fine">{{ entry.personFinePrint }}</p>{% endif %}
     </article>
   </main>
-
-  {# ══ SIDEBAR ═══════════════════════════════════════════════════════ #}
-  <aside class="scv-article-sidebar">
-
-    {# 1. Utility Bar #}
-    <div class="scv-sidebar-card scv-util-card">
-      <div class="scv-sidebar-card-body">
-        <div class="scv-util-meta">
-          <span class="scv-util-meta-key">Last Updated</span>
-          <span class="scv-util-meta-val">{{ modified }}</span>
-        </div>
-        <div class="scv-util-rule"></div>
-        <div class="scv-util-reading">
-          <span class="scv-util-reading-val">{{ readTime }} Min Read</span>
-          <span class="scv-util-pipe">|</span>
-          <span class="scv-util-reading-val">{{ wordCount|number_format }} Words</span>
-        </div>
-        <div class="scv-util-btns">
-          <button class="scv-util-btn" onclick="window.print()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-            Save / Print
-          </button>
-          <button class="scv-util-btn scv-util-btn--tts" id="scv-tts-btn" onclick="scvToggleTTS()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-            <span id="scv-tts-label">Listen</span>
-          </button>
-        </div>
-        <div class="scv-util-speed" id="scv-speed-controls" style="display:none">
-          <span class="scv-util-speed-label">Speed:</span>
-          <button class="scv-speed-btn" onclick="scvSetSpeed(0.75,this)">Slow</button>
-          <button class="scv-speed-btn scv-speed-btn--active" onclick="scvSetSpeed(1.0,this)">Normal</button>
-          <button class="scv-speed-btn" onclick="scvSetSpeed(1.25,this)">Fast</button>
-        </div>
-      </div>
+  <aside>
+    <div class="box">
+      <div class="meta-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
     </div>
-
-    <script>
-    var scvTTSRate = 1.0;
-    function scvSetSpeed(rate, el) {
-      scvTTSRate = rate;
-      document.querySelectorAll('.scv-speed-btn').forEach(function(b){ b.classList.remove('scv-speed-btn--active'); });
-      el.classList.add('scv-speed-btn--active');
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        var u = new SpeechSynthesisUtterance(document.querySelector('.scv-article-content').innerText);
-        u.rate = scvTTSRate; u.onend = scvTTSEnd;
-        window.speechSynthesis.speak(u);
-      }
-    }
-    function scvTTSEnd() {
-      document.getElementById('scv-tts-btn').classList.remove('scv-util-btn--tts-active');
-      document.getElementById('scv-tts-label').textContent = 'Listen';
-      document.getElementById('scv-speed-controls').style.display = 'none';
-    }
-    function scvToggleTTS() {
-      var btn = document.getElementById('scv-tts-btn');
-      var label = document.getElementById('scv-tts-label');
-      var spd = document.getElementById('scv-speed-controls');
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel(); btn.classList.remove('scv-util-btn--tts-active');
-        label.textContent = 'Listen'; spd.style.display = 'none'; return;
-      }
-      var content = document.querySelector('.scv-article-content');
-      if (!content) return;
-      var u = new SpeechSynthesisUtterance(content.innerText);
-      u.rate = scvTTSRate; u.onend = scvTTSEnd;
-      window.speechSynthesis.speak(u);
-      btn.classList.add('scv-util-btn--tts-active');
-      label.textContent = 'Stop'; spd.style.display = 'flex';
-    }
-    </script>
-
-    {# 2. Cite This Article #}
-    {% include '_partials/cite-article' with { entry: entry } only %}
-
-    {# 3. Search #}
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        {% include '_partials/search-form' only %}
-      </div>
+    <div class="box">
+      <h3>Cite this page</h3>
+      <div class="cite">"{{ entry.title }}." SCVHistory.com. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
     </div>
-
-    {# 4. Family & Relationships #}
-    {% set relationships = {
-      'Spouse':    spouse,
-      'Parent of': parentOf,
-      'Child of':  childOf,
-      'Sibling':   siblingOf,
-      'Related':   related,
-    } %}
-    {% set hasRelationships = false %}
-    {% for label, persons in relationships %}
-      {% if persons|length %}{% set hasRelationships = true %}{% endif %}
-    {% endfor %}
-
-    {% if hasRelationships %}
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        <span class="scv-sidebar-label">Family &amp; Relationships</span>
-        {% for label, persons in relationships %}
-          {% if persons|length %}
-            <p class="scv-person-related__label">{{ label }}</p>
-            <ul class="scv-subject-persons">
-              {% for person in persons %}
-                {% set pImage = person.featuredImage.one() ?? null %}
-                <li class="scv-subject-person">
-                  <a href="{{ person.url }}" class="scv-subject-person__link">
-                    {% if pImage %}
-                      <img src="{{ pImage.url }}" alt="{{ person.title }}" class="scv-subject-person__photo">
-                    {% else %}
-                      <div class="scv-subject-person__placeholder">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                      </div>
-                    {% endif %}
-                    <div>
-                      <div class="scv-subject-person__name">{{ person.title }}</div>
-                      {% if person.occupation %}
-                        <div class="scv-subject-person__occ">{{ person.occupation }}</div>
-                      {% endif %}
-                    </div>
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-
-    {# 5. Organizations #}
-    {% if organizations|length %}
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        <span class="scv-sidebar-label">Organizations</span>
-        <ul class="scv-subject-persons">
-          {% for org in organizations %}
-            {% set orgImage = org.featuredImage.one() ?? null %}
-            <li class="scv-subject-person">
-              <a href="{{ org.url }}" class="scv-subject-person__link">
-                {% if orgImage %}
-                  <img src="{{ orgImage.url }}" alt="{{ org.title }}" class="scv-subject-person__photo">
-                {% else %}
-                  <div class="scv-subject-person__placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                  </div>
-                {% endif %}
-                <div>
-                  <div class="scv-subject-person__name">{{ org.title }}</div>
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-    {% endif %}
-
-    {# 6. Groups #}
-    {% if groups|length %}
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        <span class="scv-sidebar-label">Groups</span>
-        <ul class="scv-subject-persons">
-          {% for grp in groups %}
-            {% set grpImage = grp.featuredImage.one() ?? null %}
-            <li class="scv-subject-person">
-              <a href="{{ grp.url }}" class="scv-subject-person__link">
-                {% if grpImage %}
-                  <img src="{{ grpImage.url }}" alt="{{ grp.title }}" class="scv-subject-person__photo">
-                {% else %}
-                  <div class="scv-subject-person__placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  </div>
-                {% endif %}
-                <div>
-                  <div class="scv-subject-person__name">{{ grp.title }}</div>
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-    {% endif %}
-
-    {# 7. Related Events #}
-    {% if personEvents|length %}
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        <span class="scv-sidebar-label">Related Events</span>
-        <ul class="scv-subject-persons">
-          {% for ev in personEvents %}
-            <li class="scv-subject-person">
-              <a href="{{ ev.url }}" class="scv-subject-person__link">
-                <div class="scv-subject-person__placeholder">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                </div>
-                <div>
-                  <div class="scv-subject-person__name">{{ ev.title }}</div>
-                  {% if ev.eventDate %}
-                    <div class="scv-subject-person__occ">{{ ev.eventDate }}</div>
-                  {% endif %}
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-    {% endif %}
-
-    {# 8. External Links #}
-    {% if wikipedia or graveUrl or legacyUrl %}
-    <div class="scv-sidebar-card">
-      <div class="scv-sidebar-card-body">
-        <span class="scv-sidebar-label">External Links</span>
-        {% if wikipedia %}
-          <a href="{{ wikipedia }}" class="scv-sidebar-legacy-link" target="_blank" rel="noopener">
-            Wikipedia
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="scv-legacy-icon"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
+    {% set fam = {'Parent of': entry.parentOf.all(), 'Child of': entry.childOf.all(), 'Sibling of': entry.siblingOf.all()} %}
+    {% set hasFam = false %}
+    {% for k, v in fam %}{% if v|length %}{% set hasFam = true %}{% endif %}{% endfor %}
+    {% if hasFam %}
+    <div class="box"><h3>Family &amp; relationships</h3>
+      {% for label, people in fam %}
+        {% if people|length %}
+          <p class="small" style="margin:8px 0 2px">{{ label|upper }}</p>
+          <ul>{% for p in people %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<br><span class="small">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul>
         {% endif %}
-        {% if graveUrl %}
-          <a href="{{ graveUrl }}" class="scv-sidebar-legacy-link" target="_blank" rel="noopener">
-            Find A Grave
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="scv-legacy-icon"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-        {% endif %}
-        {% if legacyUrl %}
-          <a href="https://scvhistory.com{{ legacyUrl }}" class="scv-sidebar-legacy-link" target="_blank" rel="noopener">
-            View on Legacy Site
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="scv-legacy-icon"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-        {% endif %}
-      </div>
+      {% endfor %}
     </div>
     {% endif %}
-
+    {% set orgs = entry.personOrganizations.all() %}
+    {% if orgs|length %}<div class="box"><h3>Organizations</h3><ul>{% for o in orgs %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+    {% set grps = entry.personGroups.all() %}
+    {% if grps|length %}<div class="box"><h3>Groups</h3><ul>{% for g in grps %}<li><a href="{{ g.url }}">{{ g.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+    {% set arts = entry.articlesAbout.all() %}
+    {% set written = craft.entries().section('articles').relatedTo({targetElement: entry, field: 'writtenBy'}).status(null).all() %}
+    {% if written|length %}<div class="box"><h3>Articles by {{ entry.title }}</h3><ul>{% for a in written %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+    {% set mentions = craft.entries().section('articles').relatedTo({targetElement: entry, field: 'subjectPerson'}).status(null).all() %}
+    {% if mentions|length %}<div class="box"><h3>Articles mentioning {{ entry.title }}</h3><ul>{% for a in mentions %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+    {% if entry.personLegacyUrl %}
+    <div class="box"><h3>External</h3><ul><li><a href="https://scvhistory.com{{ entry.personLegacyUrl }}">View on legacy site ↗</a></li></ul></div>
+    {% endif %}
   </aside>
-
-</div>{# .scv-article-wrap #}
-
+</div>
 {% endblock %}

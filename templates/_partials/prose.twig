@@ -1,0 +1,2 @@
+{% set paras = text|trim|split("\n") %}
+{% for p in paras %}{% if p|trim %}<p>{{ p|raw }}</p>{% endif %}{% endfor %}

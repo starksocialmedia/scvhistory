@@ -16,6 +16,6 @@ siteSettings:
   3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
     enabledByDefault: true
     hasUrls: true
-    template: _entries/obituaries
+    template: obituaries/_entry
     uriFormat: 'obituaries/{slug}'
 type: channel

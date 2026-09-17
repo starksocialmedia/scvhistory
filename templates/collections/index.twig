@@ -1,42 +1,30 @@
 {% extends "_layouts/base" %}
-
-{% block title %}Series | SCVHistory.com{% endblock %}
-
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 {% block content %}
+{% set cols = craft.entries().section('collections').status(null).orderBy('title asc').all() %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; Collections</div>
+  <div style="padding:10px 0 60px">
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">Collections</h1>
+    <p style="max-width:660px;color:#3c3934">Newspaper series and article runs, kept together and in the order their authors intended.</p>
+    <p class="scv-small">{{ cols|length }} collection{{ cols|length == 1 ? '' : 's' }}</p>
 
-{% set series = craft.entries().section('collections').orderBy('title ASC').all() %}
-
-<div class="scv-index-wrap">
-  <header class="scv-index-header">
-    <nav class="scv-breadcrumb">
-      <a href="{{ siteUrl }}">Home</a>
-      <span class="scv-bc-sep">›</span>
-      <span>Series</span>
-    </nav>
-    <h1 class="scv-index-title">Series</h1>
-    <p class="scv-index-desc">Signal columns and Old Town Newhall runs. Articles attach later.</p>
-  </header>
-
-  <p class="scv-index-count">{{ series|length }} series</p>
-
-  {% if series|length %}
-  <ul class="scv-index-list">
-    {% for col in series %}
-      {% set artCount = craft.entries().section('articles').relatedTo({ targetElement: col, field: 'partOfCollection' }).count() %}
-      <li class="scv-index-item">
-        <a href="{{ col.url }}" class="scv-index-item__link">
-          <div class="scv-index-item__meta">
-            <div class="scv-index-item__title">{{ col.title }}</div>
-            {% if artCount %}
-              <div class="scv-index-item__sub">{{ artCount }} article{{ artCount != 1 ? 's' : '' }}</div>
-            {% endif %}
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:20px">
+      {% for c in cols %}
+        {% set n = c.articlesInCollection.count() ?: craft.entries().section('articles').relatedTo({targetElement: c, field: 'partOfCollection'}).status(null).count() %}
+        {% set img = c.featuredImage.one() ?? null %}
+        {% set author = c.writtenBy.one() ?? null %}
+        <a href="{{ c.url }}" style="text-decoration:none;color:inherit">
+          <div style="background:#fff;border:1px solid #e5ddcd;border-radius:2px;height:100%">
+            {% if img %}<img src="{{ img.url }}" alt="" style="width:100%;height:150px;object-fit:cover;display:block;border-bottom:1px solid #e5ddcd">{% endif %}
+            <div style="padding:16px 18px">
+              <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;color:#1a2744;line-height:1.2">{{ c.title ?: c.slug }}</div>
+              <div class="scv-small" style="margin-top:6px">{% if author %}{{ author.title }} &middot; {% endif %}{{ n }} article{{ n == 1 ? '' : 's' }}</div>
+            </div>
           </div>
         </a>
-      </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>No series yet.</p>
-  {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}

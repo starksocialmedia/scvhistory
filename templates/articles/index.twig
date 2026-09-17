@@ -1,0 +1,54 @@
+{% extends "_layouts/base" %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% block content %}
+{% set eraSlug = craft.app.request.getParam('era') %}
+{% set colSlug = craft.app.request.getParam('collection') %}
+{% set query = craft.entries().section('articles').status(null).orderBy('title asc') %}
+{% if eraSlug %}{% set eraTerm = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}{% if eraTerm %}{% set query = query.relatedTo(eraTerm) %}{% endif %}{% endif %}
+{% if colSlug %}{% set colEntry = craft.entries().section('collections').slug(colSlug).status(null).one() %}{% if colEntry %}{% set query = query.relatedTo({targetElement: colEntry, field: 'partOfCollection'}) %}{% endif %}{% endif %}
+{% set entries = query.all() %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; Articles</div>
+  <div style="padding:10px 0 60px">
+    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">Articles</h1>
+    <p style="max-width:660px;color:#3c3934">Columns, histories, and documents from three decades of Santa Clarita Valley research, presented as their authors wrote them.</p>
+    <div class="scv-chips" style="margin-top:22px">
+      <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('articles') }}">All eras</a>
+      {% for e in craft.categories().group('historicalEra').status(null).all() %}
+        {% set n = craft.entries().section('articles').relatedTo(e).status(null).count() %}
+        {% if n %}<a class="scv-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('articles', {era: e.slug}) }}">{{ e.title }} ({{ n }})</a>{% endif %}
+      {% endfor %}
+    </div>
+    <div class="scv-chips">
+      <a class="scv-chip {{ not colSlug ? 'on' : '' }}" href="{{ url('articles', eraSlug ? {era: eraSlug} : {}) }}">All collections</a>
+      {% for c in craft.entries().section('collections').status(null).orderBy('title asc').all() %}
+        {% set n = craft.entries().section('articles').relatedTo({targetElement: c, field: 'partOfCollection'}).status(null).count() %}
+        {% if n %}<a class="scv-chip {{ colSlug == c.slug ? 'on' : '' }}" href="{{ url('articles', eraSlug ? {collection: c.slug, era: eraSlug} : {collection: c.slug}) }}">{{ c.title }} ({{ n }})</a>{% endif %}
+      {% endfor %}
+    </div>
+    <p class="scv-small">{{ entries|length }} article{{ entries|length == 1 ? '' : 's' }}</p>
+    {% if colSlug %}
+      <ul class="scv-list">
+        {% for e in entries %}{% set a = e.writtenBy.one() ?? null %}
+          <li><a href="{{ e.url }}">{{ e.title }}</a><div class="scv-small">{% if a %}{{ a.title }}{% endif %}{% if e.originalPublishDate %} &middot; {{ e.originalPublishDate }}{% endif %}</div></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      {% set grouped = {} %}
+      {% for e in entries %}
+        {% set c = e.partOfCollection.one() ?? null %}
+        {% set key = c ? c.title : 'Other articles' %}
+        {% set grouped = grouped|merge({ (key): (grouped[key] ?? [])|merge([e]) }) %}
+      {% endfor %}
+      {% for groupName, items in grouped %}
+        <h2 class="scv-h2">{{ groupName }}</h2>
+        <ul class="scv-list">
+          {% for e in items %}{% set a = e.writtenBy.one() ?? null %}{% set era = e.historicalEra.one() ?? null %}
+            <li><a href="{{ e.url }}">{{ e.title }}</a><div class="scv-small">{% if a %}{{ a.title }}{% endif %}{% if e.originalPublishDate %} &middot; {{ e.originalPublishDate }}{% endif %}{% if era %} &middot; {{ era.title }}{% endif %}</div></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

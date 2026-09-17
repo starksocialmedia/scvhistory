@@ -1,108 +1,14 @@
-{% extends "_layouts/base" %}
-
-{% block title %}People | SCVHistory.com{% endblock %}
-
+{% extends "_layout" %}
+{% block crumbs %}<div class="crumbs"><a href="/">Home</a> › People</div>{% endblock %}
 {% block content %}
-
-{# ── Query params ────────────────────────────────────────────────── #}
-{% set activeEra  = craft.app.request.getParam('era') %}
-{% set activePeriod = craft.app.request.getParam('period') %}
-
-{# ── Build entry query ───────────────────────────────────────────── #}
-{% set query = craft.entries().section('persons').orderBy('title ASC') %}
-{% if activeEra %}
-  {% set eraCat = craft.categories().group('historicalEra').slug(activeEra).one() %}
-  {% if eraCat %}
-    {% set query = query.relatedTo(eraCat) %}
-  {% endif %}
-{% endif %}
-{% if activePeriod %}
-  {% set periodCat = craft.categories().group('historicalPeriod').slug(activePeriod).one() %}
-  {% if periodCat %}
-    {% set query = query.relatedTo(periodCat) %}
-  {% endif %}
-{% endif %}
-
-{% set persons = query.all() %}
-
-{# ── All eras for filter ─────────────────────────────────────────── #}
-{% set allEras = craft.categories().group('historicalEra').orderBy('lft ASC').all() %}
-
-<div class="scv-index-wrap">
-
-  {# ── Page Header ─────────────────────────────────────────────────── #}
-  <header class="scv-index-header">
-    <nav class="scv-breadcrumb">
-      <a href="{{ siteUrl }}">Home</a>
-      <span class="scv-bc-sep">›</span>
-      <span>People</span>
-    </nav>
-    <h1 class="scv-index-title">People of the Santa Clarita Valley</h1>
-    <p class="scv-index-desc">Historians, explorers, ranchers, outlaws, civic leaders, and artists who shaped the history of the Santa Clarita Valley.</p>
-  </header>
-
-  {# ── Era Filter ──────────────────────────────────────────────────── #}
-  <nav class="scv-filter-bar">
-    <a href="{{ url('persons') }}"
-       class="scv-filter-btn {% if not activeEra %}scv-filter-btn--active{% endif %}">
-      All Eras
-    </a>
-    {% for era in allEras %}
-      <a href="{{ url('persons', { era: era.slug }) }}"
-         class="scv-filter-btn {% if activeEra == era.slug %}scv-filter-btn--active{% endif %}">
-        {{ era.title }}
-      </a>
-    {% endfor %}
-  </nav>
-
-  {# ── Results count ───────────────────────────────────────────────── #}
-  <p class="scv-index-count">
-    {% if activeEra and eraCat is defined %}
-      {{ persons|length }} {{ persons|length == 1 ? 'person' : 'people' }} in <strong>{{ eraCat.title }}</strong>
-    {% else %}
-      {{ persons|length }} people in the archive
-    {% endif %}
-  </p>
-
-  {# ── Person Grid ─────────────────────────────────────────────────── #}
-  {% if persons|length %}
-  <div class="scv-person-grid">
-    {% for person in persons %}
-      {% set image = person.featuredImage.one() %}
-      {% set era   = person.historicalEra.one() %}
-      <a href="{{ person.url }}" class="scv-person-card">
-        <div class="scv-person-card__photo-wrap">
-          {% if image %}
-            <img src="{{ image.url }}" alt="{{ person.title }}" class="scv-person-card__photo">
-          {% else %}
-            <div class="scv-person-card__placeholder">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </div>
-          {% endif %}
-        </div>
-        <div class="scv-person-card__body">
-          <h2 class="scv-person-card__name">{{ person.title }}</h2>
-          {% if person.occupation %}
-            <p class="scv-person-card__occ">{{ person.occupation|split(';')[0]|trim }}</p>
-          {% endif %}
-          {% if person.birthDate or person.deathDate %}
-            <p class="scv-person-card__dates">
-              {% if person.birthDate %}{{ person.birthDate }}{% endif %}
-              {% if person.birthDate and person.deathDate %} – {% endif %}
-              {% if person.deathDate %}{{ person.deathDate }}{% endif %}
-            </p>
-          {% endif %}
-          {% if era %}
-            <span class="scv-tag scv-tag--story-era scv-person-card__era">{{ era.title }}</span>
-          {% endif %}
-        </div>
-      </a>
-    {% endfor %}
-  </div>
-  {% else %}
-    <p class="scv-index-empty">No people found for this filter.</p>
-  {% endif %}
-
-</div>
-
+{% set entries = craft.entries().section('persons').status(null).orderBy('title asc').all() %}
+<h1>People</h1>
+<p class="small">{{ entries|length }} in the archive</p>
+<ul class="list">
+  {% for e in entries %}
+    <li><a href="{{ e.url }}">{{ e.title }}</a>
+      <div class="small">{{ e.occupation }}{% if e.birthDate %} · b. {{ e.birthDate }}{% endif %}</div>
+    </li>
+  {% endfor %}
+</ul>
 {% endblock %}

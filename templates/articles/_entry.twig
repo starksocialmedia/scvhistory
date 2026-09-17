@@ -1,0 +1,100 @@
+{% extends "_layouts/base" %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% block content %}
+{% set collection = entry.partOfCollection.one() ?? null %}
+{% set author = entry.writtenBy.one() ?? null %}
+{% set editor = entry.editedBy.one() ?? null %}
+<div class="scv-doc">
+  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a> &rsaquo; {{ entry.title }}</div>
+  <div class="scv-grid">
+    <main>
+      <h1>{{ entry.title }}</h1>
+      {% if collection %}<p class="scv-sub"><a href="{{ collection.url }}">{{ collection.title }}</a></p>{% endif %}
+      <p class="scv-byline">
+        {% if author %}By <a href="{{ author.url }}">{{ author.title }}</a>{% endif %}
+        {% if entry.originalPublishDate %} &nbsp;&middot;&nbsp; {{ entry.originalPublishDate }}{% endif %}
+        {% if editor %}<br><span class="scv-small">Edited by <a href="{{ editor.url }}">{{ editor.title }}</a></span>{% endif %}
+      </p>
+      {% set era = entry.historicalEra.one() ?? null %}
+      {% if era %}<div class="scv-era">{{ era.title }}</div>{% endif %}
+      <div class="scv-chips">
+        {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
+        {% for c in entry.neighborhood.all() %}<span class="scv-chip solid">{{ c.title }}</span>{% endfor %}
+      </div>
+
+      {% set hero = entry.featuredImage.one() ?? null %}
+      {% if hero %}<figure class="scv-hero"><img src="{{ hero.url }}" alt="{{ hero.alt ?: entry.title }}">{% if hero.title and hero.title != entry.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}</figure>{% endif %}
+
+      <article class="scv-body">
+        {% if entry.subheadline %}<p class="scv-sub">{{ entry.subheadline }}</p>{% endif %}
+        {% include "_partials/prose" with { text: entry.body } %}
+        {% if entry.webmasterNoteBottom %}<div class="scv-note">{{ entry.webmasterNoteBottom }}</div>{% endif %}
+      </article>
+
+
+      {% if collection %}
+        {% set ordered = collection.articlesInCollection.all() %}
+        {% set idx = null %}
+        {% for a in ordered %}{% if a.id == entry.id %}{% set idx = loop.index0 %}{% endif %}{% endfor %}
+        {% if idx is not null %}
+          {% set prev = idx > 0 ? ordered[idx - 1] : null %}
+          {% set next = idx < (ordered|length - 1) ? ordered[idx + 1] : null %}
+          <nav class="scv-pager">
+            <div>{% if prev %}<span class="scv-small">Previous</span><br><a href="{{ prev.url }}">{{ prev.title }}</a>{% endif %}</div>
+            <div style="text-align:right">{% if next %}<span class="scv-small">Next</span><br><a href="{{ next.url }}">{{ next.title }}</a>{% endif %}</div>
+          </nav>
+        {% endif %}
+      {% endif %}
+
+      {% if author and author.authorBio %}
+        <h2 class="scv-h2">About the author</h2>
+        <article class="scv-body">
+          <p class="scv-sub"><a href="{{ author.url }}">{{ author.title }}</a></p>
+          {% if author.occupation %}<p class="scv-small">{{ author.occupation }}</p>{% endif %}
+          {% include "_partials/prose" with { text: author.authorBio } %}
+        </article>
+      {% endif %}
+    </main>
+
+    <aside class="scv-side">
+      <div class="scv-box">
+        <div class="scv-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
+        {% set words = entry.body|striptags|split(' ')|length %}
+        <div class="scv-row"><span>{{ (words / 200)|round(0, 'ceil') }} min read</span><span>{{ words }} words</span></div>
+      </div>
+
+      <div class="scv-box">
+        <h3>Cite this article</h3>
+        <div class="scv-cite">{% if author %}{{ author.title }}. {% endif %}"{{ entry.title }}." {{ collection ? collection.title ~ '. ' : '' }}SCVHistory.com{% if entry.originalPublishDate %}, {{ entry.originalPublishDate }}{% endif %}. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
+      </div>
+
+      {% if collection %}
+        {% set siblings = collection.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({targetElement: collection, field: 'partOfCollection'}).status(null).limit(80).all() %}
+        {% if siblings|length > 1 %}
+        <div class="scv-box">
+          <h3>In this collection</h3>
+          <ul>{% for s in siblings %}<li>{% if s.id == entry.id %}<strong>{{ s.title }}</strong>{% else %}<a href="{{ s.url }}">{{ s.title }}</a>{% endif %}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+      {% endif %}
+
+      {% set people = entry.subjectPerson.all() %}
+      {% if people|length %}<div class="scv-box"><h3>People in this article</h3><ul>{% for p in people %}<li><a href="{{ p.url }}">{{ p.title }}</a>{% if p.occupation %}<br><span class="scv-small">{{ p.occupation }}</span>{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+
+      {% set orgs = entry.subjectOrganization.all() %}
+      {% if orgs|length %}<div class="scv-box"><h3>Organizations</h3><ul>{% for o in orgs %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% set groups = entry.subjectGroup.all() %}
+      {% if groups|length %}<div class="scv-box"><h3>Groups</h3><ul>{% for g in groups %}<li><a href="{{ g.url }}">{{ g.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% set places = entry.depictsPlace.all() %}
+      {% if places|length %}<div class="scv-box"><h3>Places</h3><ul>{% for pl in places %}<li><a href="{{ pl.url }}">{{ pl.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% set pub = entry.publishedBy.all() %}
+      {% if pub|length %}<div class="scv-box"><h3>Published by</h3><ul>{% for o in pub %}<li><a href="{{ o.url }}">{{ o.title }}</a></li>{% endfor %}</ul></div>{% endif %}
+
+      {% if entry.legacyUrl %}<div class="scv-box"><h3>External</h3><ul><li><a href="https://scvhistory.com{{ entry.legacyUrl }}">View on legacy site &nearr;</a></li></ul></div>{% endif %}
+    </aside>
+  </div>
+</div>
+{% endblock %}
