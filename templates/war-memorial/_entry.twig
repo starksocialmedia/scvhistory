@@ -1,103 +1,109 @@
 {% extends "_layouts/base" %}
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
 {% block content %}
+{#
+  The warMemorial field layout has no historicalEra, historicalPeriod or
+  neighborhood, so this page carries the conflict chip only.
+#}
+{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
 {% set subject = entry.wmRelatedPerson.one() ?? null %}
 {% set narrative = entry.wmNarrative ?: entry.body %}
 {% set rankLine = [entry.wmRank, entry.wmBranch]|filter(v => v)|join(', ') %}
-<div class="scv-doc">
-  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('war-memorial') }}">War Memorial</a> &rsaquo; {{ entry.title }}</div>
-  <div class="scv-grid">
-    <main>
-      <h1>{{ entry.title }}</h1>
-      {% if rankLine %}<p class="scv-sub">{{ rankLine }}</p>{% endif %}
-      <p class="scv-byline">
-        {% if entry.wmDateOfBirth %}<strong>Born</strong> {{ entry.wmDateOfBirth }}{% if entry.wmHomeOfRecord %} &nbsp;&middot;&nbsp; {{ entry.wmHomeOfRecord }}{% endif %}<br>{% endif %}
-        {% if entry.deathDate %}<strong>Died</strong> {{ entry.deathDate }}{% if entry.wmAgeAtLoss %} &nbsp;&middot;&nbsp; age {{ entry.wmAgeAtLoss }}{% endif %}{% endif %}
-      </p>
 
-      {% if entry.wmConflict %}
-        <div class="scv-chips">
-          <a class="scv-chip" href="{{ url('war-memorial', { conflict: entry.wmConflict }) }}">{{ entry.wmConflict }}</a>
+{% set service = [] %}
+{% if entry.wmBranch %}{% set service = service|merge([{k: 'Branch', v: entry.wmBranch}]) %}{% endif %}
+{% if entry.wmRank %}{% set service = service|merge([{k: 'Rank', v: entry.wmRank}]) %}{% endif %}
+{% if entry.wmSpecialty %}{% set service = service|merge([{k: 'Specialty', v: entry.wmSpecialty}]) %}{% endif %}
+{% if entry.wmUnit %}{% set service = service|merge([{k: 'Unit', v: entry.wmUnit}]) %}{% endif %}
+{% if entry.wmBase %}{% set service = service|merge([{k: 'Base', v: entry.wmBase}]) %}{% endif %}
+{% if entry.wmCombatOperations %}{% set service = service|merge([{k: 'Operation', v: entry.wmCombatOperations}]) %}{% endif %}
+{% if entry.wmStartTour %}{% set service = service|merge([{k: 'Start of tour', v: entry.wmStartTour}]) %}{% endif %}
+{% if entry.wmLengthOfService %}{% set service = service|merge([{k: 'Length of service', v: entry.wmLengthOfService}]) %}{% endif %}
+{% if entry.wmServiceId %}{% set service = service|merge([{k: 'Service number', v: entry.wmServiceId}]) %}{% endif %}
+
+{% set incident = [] %}
+{% if entry.wmIncidentDate %}{% set incident = incident|merge([{k: 'Date', v: entry.wmIncidentDate}]) %}{% endif %}
+{% if entry.wmIncidentLocation %}{% set incident = incident|merge([{k: 'Location', v: entry.wmIncidentLocation}]) %}{% endif %}
+
+{% set life = [] %}
+{% if entry.wmDateOfBirth %}{% set life = life|merge([{k: 'Date of birth', v: entry.wmDateOfBirth}]) %}{% endif %}
+{% if entry.deathDate %}{% set life = life|merge([{k: 'Date of death', v: entry.deathDate}]) %}{% endif %}
+{% if entry.wmAgeAtLoss %}{% set life = life|merge([{k: 'Age at loss', v: entry.wmAgeAtLoss}]) %}{% endif %}
+{% if entry.wmHomeOfRecord %}{% set life = life|merge([{k: 'Home of record', v: entry.wmHomeOfRecord}]) %}{% endif %}
+{% if entry.wmHighSchool %}{% set life = life|merge([{k: 'High school', v: entry.wmHighSchool}]) %}{% endif %}
+{% if entry.burialPlace %}{% set life = life|merge([{k: 'Burial', v: entry.burialPlace}]) %}{% endif %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('war-memorial') }}">War Memorial</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="scv-kicker">War Memorial</div>
+      <h1>{{ entry.title ?: entry.slug }}</h1>
+      {% if rankLine %}<p class="scv-aka">{{ rankLine }}</p>{% endif %}
+      {% if entry.wmDateOfBirth or entry.deathDate or entry.wmHomeOfRecord %}
+        <div class="scv-facts">
+          {% if entry.wmDateOfBirth %}<div><b>Born</b>{{ entry.wmDateOfBirth }}</div>{% endif %}
+          {% if entry.deathDate %}<div><b>Died</b>{{ entry.deathDate }}{% if entry.wmAgeAtLoss %}, age {{ entry.wmAgeAtLoss }}{% endif %}</div>{% endif %}
+          {% if entry.wmHomeOfRecord %}<div><b>Home of record</b>{{ entry.wmHomeOfRecord }}</div>{% endif %}
         </div>
       {% endif %}
-
-      {% set hero = entry.featuredImage.one() ?? null %}
-      {% if hero %}<figure class="scv-hero"><img src="{{ hero.url }}" alt="{{ hero.alt ?: entry.title }}">{% if hero.title and hero.title != entry.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}</figure>{% endif %}
-
-      {% if narrative %}
-        <article class="scv-body">
-          {% include "_partials/prose" with { text: narrative } %}
-        </article>
+      {% if entry.wmConflict %}
+        <div class="scv-chips"><a class="scv-chip" href="{{ url('war-memorial', { conflict: entry.wmConflict }) }}">{{ entry.wmConflict }}</a></div>
       {% endif %}
-    </main>
+    </div>
+  </section>
 
-    <aside class="scv-side">
-      <div class="scv-box">
-        <div class="scv-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
+  <main class="scv-main">
+    <div class="scv-wrap">
+      <div class="scv-layout">
+        <div>
+          {% if hero %}
+            <figure class="scv-figure"><img src="{{ hero.url }}" alt="{{ hero.alt ?: entry.title }}">
+            {% if hero.title and hero.title != entry.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}</figure>
+          {% endif %}
+          {% if narrative %}
+            <article class="scv-card">{% include "_partials/prose" with { text: narrative } %}</article>
+          {% endif %}
+        </div>
+
+        <aside class="scv-side">
+          {% include "_partials/sidebar/meta" with { entry: entry } only %}
+
+          {% if service|length %}
+            {% embed "_partials/sidebar/box" with { title: 'Service record', rows: service } only %}
+              {% block body %}<ul>{% for r in rows %}<li><span class="scv-boxlab">{{ r.k }}</span>{{ r.v }}</li>{% endfor %}</ul>{% endblock %}
+            {% endembed %}
+          {% endif %}
+
+          {% if incident|length %}
+            {% embed "_partials/sidebar/box" with { title: 'Incident', rows: incident } only %}
+              {% block body %}<ul>{% for r in rows %}<li><span class="scv-boxlab">{{ r.k }}</span>{{ r.v }}</li>{% endfor %}</ul>{% endblock %}
+            {% endembed %}
+          {% endif %}
+
+          {% if life|length %}
+            {% embed "_partials/sidebar/box" with { title: 'Life', rows: life } only %}
+              {% block body %}<ul>{% for r in rows %}<li><span class="scv-boxlab">{{ r.k }}</span>{{ r.v }}</li>{% endfor %}</ul>{% endblock %}
+            {% endembed %}
+          {% endif %}
+
+          {% if entry.wmAwards %}
+            {% embed "_partials/sidebar/box" with { title: 'Awards', awards: entry.wmAwards } only %}
+              {% block body %}<ul><li>{{ awards }}</li></ul>{% endblock %}
+            {% endembed %}
+          {% endif %}
+
+          {% include "_partials/sidebar/cite" with { entry: entry, label: 'War Memorial' } only %}
+
+          {% if subject %}
+            {% include "_partials/sidebar/related-list" with { title: 'Person record', entries: [subject] } only %}
+          {% endif %}
+
+          {% include "_partials/sidebar/external" with { legacy: entry.legacyUrl } only %}
+        </aside>
       </div>
-
-      {% if entry.wmBranch or entry.wmRank or entry.wmSpecialty or entry.wmUnit or entry.wmBase or entry.wmCombatOperations or entry.wmServiceId or entry.wmLengthOfService or entry.wmStartTour %}
-      <div class="scv-box">
-        <h3>Service record</h3>
-        <ul>
-          {% if entry.wmBranch %}<li><span class="scv-small">Branch</span><br>{{ entry.wmBranch }}</li>{% endif %}
-          {% if entry.wmRank %}<li><span class="scv-small">Rank</span><br>{{ entry.wmRank }}</li>{% endif %}
-          {% if entry.wmSpecialty %}<li><span class="scv-small">Specialty</span><br>{{ entry.wmSpecialty }}</li>{% endif %}
-          {% if entry.wmUnit %}<li><span class="scv-small">Unit</span><br>{{ entry.wmUnit }}</li>{% endif %}
-          {% if entry.wmBase %}<li><span class="scv-small">Base</span><br>{{ entry.wmBase }}</li>{% endif %}
-          {% if entry.wmCombatOperations %}<li><span class="scv-small">Operation</span><br>{{ entry.wmCombatOperations }}</li>{% endif %}
-          {% if entry.wmStartTour %}<li><span class="scv-small">Start of tour</span><br>{{ entry.wmStartTour }}</li>{% endif %}
-          {% if entry.wmLengthOfService %}<li><span class="scv-small">Length of service</span><br>{{ entry.wmLengthOfService }}</li>{% endif %}
-          {% if entry.wmServiceId %}<li><span class="scv-small">Service number</span><br>{{ entry.wmServiceId }}</li>{% endif %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if entry.wmIncidentDate or entry.wmIncidentLocation %}
-      <div class="scv-box">
-        <h3>Incident</h3>
-        <ul>
-          {% if entry.wmIncidentDate %}<li><span class="scv-small">Date</span><br>{{ entry.wmIncidentDate }}</li>{% endif %}
-          {% if entry.wmIncidentLocation %}<li><span class="scv-small">Location</span><br>{{ entry.wmIncidentLocation }}</li>{% endif %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if entry.wmDateOfBirth or entry.deathDate or entry.wmAgeAtLoss or entry.wmHomeOfRecord or entry.wmHighSchool or entry.burialPlace %}
-      <div class="scv-box">
-        <h3>Life</h3>
-        <ul>
-          {% if entry.wmDateOfBirth %}<li><span class="scv-small">Date of birth</span><br>{{ entry.wmDateOfBirth }}</li>{% endif %}
-          {% if entry.deathDate %}<li><span class="scv-small">Date of death</span><br>{{ entry.deathDate }}</li>{% endif %}
-          {% if entry.wmAgeAtLoss %}<li><span class="scv-small">Age at loss</span><br>{{ entry.wmAgeAtLoss }}</li>{% endif %}
-          {% if entry.wmHomeOfRecord %}<li><span class="scv-small">Home of record</span><br>{{ entry.wmHomeOfRecord }}</li>{% endif %}
-          {% if entry.wmHighSchool %}<li><span class="scv-small">High school</span><br>{{ entry.wmHighSchool }}</li>{% endif %}
-          {% if entry.burialPlace %}<li><span class="scv-small">Burial</span><br>{{ entry.burialPlace }}</li>{% endif %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if entry.wmAwards %}
-      <div class="scv-box">
-        <h3>Awards</h3>
-        <ul><li>{{ entry.wmAwards }}</li></ul>
-      </div>
-      {% endif %}
-
-      <div class="scv-box">
-        <h3>Cite this page</h3>
-        <div class="scv-cite">"{{ entry.title }}." War Memorial. SCVHistory.com. Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.</div>
-      </div>
-
-      {% if subject %}<div class="scv-box"><h3>Person record</h3><ul><li><a href="{{ subject.url }}">{{ subject.title }}</a></li></ul></div>{% endif %}
-
-      {% if entry.legacyUrl %}
-      <div class="scv-box">
-        <h3>External</h3>
-        <ul><li><a href="https://scvhistory.com{{ entry.legacyUrl }}" target="_blank" rel="noopener">View on legacy site &nearr;</a></li></ul>
-      </div>
-      {% endif %}
-    </aside>
-  </div>
+    </div>
+  </main>
 </div>
 {% endblock %}
