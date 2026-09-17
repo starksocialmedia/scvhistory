@@ -13,7 +13,9 @@
     fitAllLabel   label for the "fit everything" link
     showFitValley true adds a "Fit the valley" link before it
     initialValley true fits the valley on load instead of every pin
-    polygons      optional GeoJSON FeatureCollection drawn under the pins
+    polygonsUrl   optional URL of a GeoJSON FeatureCollection, fetched at runtime
+    polygonMeta   optional map of slug -> { tooltip, url } for those polygons
+    boundaryCount optional element id whose text is set to the polygon count
     mapHeight     optional css height, defaults to the 460px in the stylesheet
 #}
 {% do craft.app.view.registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css') %}
@@ -60,13 +62,17 @@
 .leaflet-popup-content b{font-family:'Playfair Display',serif;font-weight:500;font-size:16px;color:#17254C;display:block;margin-bottom:2px}
 .leaflet-popup-content{margin:12px 16px;font-size:13px;color:#5B6472}
 .leaflet-popup-content a{color:#A9842B}
+.leaflet-tooltip{border-radius:0;border:1px solid #E2E4E8;border-top:3px solid #C4A031;font-family:'Public Sans',sans-serif;font-size:13px;color:#5B6472;padding:8px 12px;box-shadow:0 1px 4px rgba(23,37,76,.18)}
+.leaflet-tooltip b{font-family:'Playfair Display',serif;font-weight:500;font-size:15px;color:#17254C;display:block;margin-bottom:2px}
 .pl-empty{text-align:center;padding:64px 0;color:#5B6472;font-size:16px}
 {% endcss %}
 {% set hint = hint ?? 'Select an item below to locate it, or a pin to jump to its card.' %}
 {% set fitAllLabel = fitAllLabel ?? 'Fit all' %}
 {% set showFitValley = showFitValley ?? false %}
 {% set initialValley = initialValley ?? false %}
-{% set polygons = polygons ?? null %}
+{% set polygonsUrl = polygonsUrl ?? null %}
+{% set polygonMeta = polygonMeta ?? null %}
+{% set boundaryCount = boundaryCount ?? null %}
 
 <div class="pl-mapcard">
   <div id="map"{% if mapHeight is defined and mapHeight %} style="height:{{ mapHeight }}"{% endif %}></div>
@@ -84,24 +90,42 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var PINS = {{ pins|json_encode|raw }};
-  var SHAPES = {{ polygons ? polygons|json_encode|raw : 'null' }};
+  var SHAPES_URL = {{ polygonsUrl ? polygonsUrl|json_encode|raw : 'null' }};
+  var SHAPE_META = {{ polygonMeta ? polygonMeta|json_encode|raw : '{}' }};
+  var COUNT_EL = {{ boundaryCount ? boundaryCount|json_encode|raw : 'null' }};
   var HINT = {{ hint|json_encode|raw }};
   var map = L.map('map', { scrollWheelZoom: false });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
 
   var shapeLayer = null, shapesBySlug = {};
-  if (SHAPES && SHAPES.features && SHAPES.features.length) {
-    shapeLayer = L.geoJSON(SHAPES, {
-      style: function(){ return { color: '#17254C', weight: 1.5, opacity: 0.85, fillColor: '#17254C', fillOpacity: 0.12 }; },
+  var BASE = { color: '#17254C', weight: 1.5, opacity: 0.85, fillColor: '#17254C', fillOpacity: 0.12 };
+  var HOVER = { color: '#A9842B', weight: 2, opacity: 1, fillColor: '#C4A031', fillOpacity: 0.32 };
+
+  function drawShapes(geo){
+    var keep = (geo.features || []).filter(function(f){
+      return SHAPE_META[(f.properties || {}).slug];
+    });
+    if (!keep.length) { return; }
+    shapeLayer = L.geoJSON({ type: 'FeatureCollection', features: keep }, {
+      style: function(){ return BASE; },
       onEachFeature: function(feature, layer){
-        var p = feature.properties || {};
-        shapesBySlug[p.slug] = layer;
-        if (p.tooltip) { layer.bindTooltip(p.tooltip, { sticky: true, direction: 'top' }); }
-        layer.on('mouseover', function(){ layer.setStyle({ fillColor: '#C4A031', fillOpacity: 0.32, color: '#A9842B' }); });
-        layer.on('mouseout', function(){ layer.setStyle({ fillColor: '#17254C', fillOpacity: 0.12, color: '#17254C' }); });
-        if (p.url) { layer.on('click', function(){ window.location = p.url; }); }
+        var slug = (feature.properties || {}).slug;
+        var meta = SHAPE_META[slug] || {};
+        shapesBySlug[slug] = layer;
+        if (meta.tooltip) { layer.bindTooltip(meta.tooltip, { sticky: true, direction: 'top' }); }
+        layer.on('mouseover', function(){ layer.setStyle(HOVER); });
+        layer.on('mouseout', function(){ layer.setStyle(BASE); });
+        if (meta.url) { layer.on('click', function(){ window.location = meta.url; }); }
       }
     }).addTo(map);
+    Object.keys(shapesBySlug).forEach(function(slug){
+      var pin = document.getElementById('pinslug-' + slug);
+      if (pin && pin._marker) { map.removeLayer(pin._marker); }
+    });
+    if (COUNT_EL) {
+      var el = document.getElementById(COUNT_EL);
+      if (el) { el.textContent = Object.keys(shapesBySlug).length; }
+    }
   }
 
   var markers = {};
@@ -110,6 +134,14 @@ document.addEventListener('DOMContentLoaded', function(){
     m.bindPopup('<b>' + p.t + '</b>' + [p.e ? 'Est. ' + p.e : '', p.c].filter(Boolean).join(' · ') + '<br><a href="' + p.u + '">Open record →</a>');
     m.on('click', function(){ select(p.id, false); var el = document.getElementById('card' + p.id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' }); });
     m.addTo(map); markers[p.id] = m;
+    if (p.slug) {
+      var el = m.getElement && m.getElement();
+      var node = document.getElementById('pin' + p.id);
+      if (node) { node.id = 'pin' + p.id; node.setAttribute('data-slug', p.slug); }
+      var holder = document.createElement('span');
+      holder.id = 'pinslug-' + p.slug; holder.style.display = 'none'; holder._marker = m;
+      document.body.appendChild(holder);
+    }
   });
 
   function inValley(p){ return p.lat > 34.3 && p.lat < 35 && p.lng > -118.95 && p.lng < -118.25; }
@@ -147,6 +179,14 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('fitAll').addEventListener('click', function(e){ e.preventDefault(); reset(false); });
   var fv = document.getElementById('fitValley');
   if (fv) { fv.addEventListener('click', function(e){ e.preventDefault(); reset(true); }); }
-  fit({{ initialValley ? 'true' : 'false' }});
+  if (SHAPES_URL) {
+    fetch(SHAPES_URL)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(geo){ if (geo) { drawShapes(geo); } })
+      .catch(function(){})
+      .then(function(){ fit({{ initialValley ? 'true' : 'false' }}); });
+  } else {
+    fit({{ initialValley ? 'true' : 'false' }});
+  }
 });
 </script>

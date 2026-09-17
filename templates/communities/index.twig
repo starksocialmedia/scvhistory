@@ -1,0 +1,102 @@
+{% extends "_layouts/base" %}
+{% block title %}Communities | SCVHistory.com{% endblock %}
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{#
+  Communities are the `neighborhood` category group. Boundary polygons live in
+  web/data/communities.geojson and are fetched at runtime, matched to terms on
+  properties.slug, so the 55 KB file is not inlined into every render.
+
+  Communities with no official boundary fall back to a pin from communityLat and
+  communityLng, and appear on the map only once those are set.
+#}
+{% set terms = craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
+{% set sections = ['persons', 'places', 'articles', 'warMemorials'] %}
+
+{% set stats = {} %}
+{% for t in terms %}
+  {% set row = {} %}
+  {% for handle in sections %}
+    {% set row = row|merge({ (handle): craft.entries().section(handle).relatedTo(t).status(null).count() }) %}
+  {% endfor %}
+  {% set stats = stats|merge({ (t.slug): row }) %}
+{% endfor %}
+
+{% macro counts(s) %}
+  {%- set bits = [] -%}
+  {%- if s.persons -%}{%- set bits = bits|merge([s.persons ~ (s.persons == 1 ? ' person' : ' people')]) -%}{%- endif -%}
+  {%- if s.places -%}{%- set bits = bits|merge([s.places ~ (s.places == 1 ? ' place' : ' places')]) -%}{%- endif -%}
+  {%- if s.articles -%}{%- set bits = bits|merge([s.articles ~ (s.articles == 1 ? ' article' : ' articles')]) -%}{%- endif -%}
+  {%- if s.warMemorials -%}{%- set bits = bits|merge([s.warMemorials ~ (s.warMemorials == 1 ? ' war memorial record' : ' war memorial records')]) -%}{%- endif -%}
+  {{- bits|length ? bits|join(' · ') : 'No records yet' -}}
+{% endmacro %}
+{% import _self as fmt %}
+
+{% set polygonMeta = {} %}
+{% set pins = [] %}
+{% for t in terms %}
+  {% set href = t.url ?? url('communities/' ~ t.slug) %}
+  {% set tip = '<b>' ~ t.title ~ '</b>' ~ fmt.counts(stats[t.slug])|trim %}
+  {% set polygonMeta = polygonMeta|merge({ (t.slug): { tooltip: tip, url: href } }) %}
+  {% if t.communityLat is defined and t.communityLng is defined and t.communityLat and t.communityLng %}
+    {% set pins = pins|merge([{
+      id: t.id, slug: t.slug, t: t.title,
+      c: fmt.counts(stats[t.slug])|trim, e: '',
+      lat: t.communityLat, lng: t.communityLng, u: href
+    }]) %}
+  {% endif %}
+{% endfor %}
+
+<div class="pl">
+  <section class="pl-hero">
+    <div class="pl-wrap">
+      <div class="pl-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Communities</span></div>
+      <div class="pl-grid">
+        <div>
+          <div class="pl-kicker">AREAS OF THE VALLEY</div>
+          <h1>Communities</h1>
+          <p>The named areas the Santa Clarita Valley's history happens in. Communities are how content is filed and filtered; the specific sites inside them are Places.</p>
+        </div>
+        <div class="pl-stat">
+          <div><b>{{ terms|length }}</b><span>COMMUNITIES</span></div>
+          <div><b id="boundaryCount">0</b><span>WITH BOUNDARIES</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="pl-main">
+    <div class="pl-wrap">
+      {% include "_partials/map-index" with {
+        pins: pins,
+        polygonsUrl: siteUrl ~ 'data/communities.geojson',
+        polygonMeta: polygonMeta,
+        boundaryCount: 'boundaryCount',
+        hint: 'Hover a boundary for its counts, or select a community to open it.',
+        fitAllLabel: 'Fit all communities',
+        mapHeight: '520px'
+      } only %}
+
+      <div class="pl-cards">
+        {% for t in terms %}
+          <a class="pl-card" id="card{{ t.id }}" data-id="{{ t.id }}" data-slug="{{ t.slug }}" href="{{ t.url ?? url('communities/' ~ t.slug) }}">
+            <div class="pl-body">
+              <h3>{{ t.title }}</h3>
+              {% if t.communityAliases is defined and t.communityAliases %}
+                <div class="pl-meta">Also known as {{ t.communityAliases }}</div>
+              {% endif %}
+              <div class="pl-meta">{{ fmt.counts(stats[t.slug])|trim }}</div>
+              {% if t.communityType is defined and t.communityType %}
+                <div class="pl-comm">{{ t.communityType }}</div>
+              {% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

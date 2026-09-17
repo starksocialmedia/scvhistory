@@ -9,6 +9,7 @@
     collection  optional collection entry
     date        optional publication date string
     label       optional prefix before the site name (for example "War Memorial")
+    url         optional, overrides entry.url (category URLs may not be on yet)
 #}
 <div class="scv-box">
   <h3>Cite this page</h3>
@@ -18,6 +19,6 @@
     #}{% if collection is defined and collection %}{{ collection.title }}. {% endif %}{#
     #}{% if label is defined and label %}{{ label }}. {% endif %}{#
     #}SCVHistory.com{% if date is defined and date %}, {{ date }}{% endif %}. {#
-    #}Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.{#
+    #}Accessed {{ now|date('F j, Y') }}. {{ url is defined and url ? url : entry.url }}.{#
   #}</div>
 </div>

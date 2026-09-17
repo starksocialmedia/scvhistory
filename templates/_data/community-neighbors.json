@@ -1,0 +1,105 @@
+{
+ "_generated": "Derived from web/data/communities.geojson. Do not edit by hand.",
+ "_method": "properties.neighbors is derived from these simplified polygons: two communities are listed as neighbours when any boundary vertex of one lies within 250 m of a boundary segment of the other. It is a proximity test on generalised geometry, not a topological adjacency computation, so it can miss a narrow touch or include a near miss.",
+ "neighbors": {
+  "acton": [
+   "agua-dulce"
+  ],
+  "agua-dulce": [
+   "acton",
+   "canyon-country",
+   "san-francisquito-canyon",
+   "santa-clarita"
+  ],
+  "bouquet-canyon": [
+   "castaic",
+   "lake-hughes",
+   "san-francisquito-canyon"
+  ],
+  "canyon-country": [
+   "agua-dulce",
+   "santa-clarita",
+   "saugus"
+  ],
+  "castaic": [
+   "bouquet-canyon",
+   "lake-hughes",
+   "san-francisquito-canyon",
+   "santa-clarita",
+   "val-verde",
+   "valencia"
+  ],
+  "lake-hughes": [
+   "bouquet-canyon",
+   "castaic"
+  ],
+  "newhall": [
+   "santa-clarita",
+   "stevenson-ranch"
+  ],
+  "placerita-canyon": [
+   "santa-clarita"
+  ],
+  "san-francisquito-canyon": [
+   "agua-dulce",
+   "bouquet-canyon",
+   "castaic",
+   "santa-clarita",
+   "saugus",
+   "valencia"
+  ],
+  "sand-canyon": [
+   "santa-clarita"
+  ],
+  "santa-clarita": [
+   "agua-dulce",
+   "canyon-country",
+   "castaic",
+   "newhall",
+   "placerita-canyon",
+   "san-francisquito-canyon",
+   "sand-canyon",
+   "saugus",
+   "stevenson-ranch",
+   "val-verde",
+   "valencia"
+  ],
+  "saugus": [
+   "canyon-country",
+   "san-francisquito-canyon",
+   "santa-clarita"
+  ],
+  "stevenson-ranch": [
+   "newhall",
+   "santa-clarita",
+   "val-verde"
+  ],
+  "val-verde": [
+   "castaic",
+   "santa-clarita",
+   "stevenson-ranch"
+  ],
+  "valencia": [
+   "castaic",
+   "san-francisquito-canyon",
+   "santa-clarita"
+  ]
+ },
+ "withBoundary": [
+  "acton",
+  "agua-dulce",
+  "bouquet-canyon",
+  "canyon-country",
+  "castaic",
+  "lake-hughes",
+  "newhall",
+  "placerita-canyon",
+  "san-francisquito-canyon",
+  "sand-canyon",
+  "santa-clarita",
+  "saugus",
+  "stevenson-ranch",
+  "val-verde",
+  "valencia"
+ ]
+}

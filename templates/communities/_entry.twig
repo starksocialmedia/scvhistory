@@ -1,0 +1,159 @@
+{% extends "_layouts/base" %}
+{% block head %}
+  {% include "_partials/scv-extra-css" %}
+{% endblock %}
+
+{% block content %}
+{#
+  Community term page. Craft passes the term as `category` for category element
+  routes; `entry` is accepted as a fallback for previews.
+
+  Boundary geometry comes from web/data/communities.geojson, fetched at runtime
+  by _partials/map-index and matched on properties.slug. Communities with no
+  official boundary fall back to a pin from communityLat and communityLng, and
+  show no map at all until those are set.
+
+  Neighbouring communities come from templates/_data/community-neighbors.json,
+  which is generated from the same GeoJSON. See its _method note: it is a
+  proximity test on generalised geometry, not true topological adjacency.
+#}
+{% set term = category ?? (entry ?? null) %}
+{% set nbData = source('_data/community-neighbors.json', true)|json_decode(true) %}
+{% set withBoundary = nbData.withBoundary ?? [] %}
+{% set hasBoundary = term.slug in withBoundary %}
+{% set hasPin = term.communityLat is defined and term.communityLng is defined and term.communityLat and term.communityLng %}
+
+{% set groups = [
+  { handle: 'persons',      label: 'People' },
+  { handle: 'places',       label: 'Places' },
+  { handle: 'organizations', label: 'Organizations' },
+  { handle: 'groups',       label: 'Groups' },
+  { handle: 'events',       label: 'Events' },
+  { handle: 'articles',     label: 'Articles' },
+  { handle: 'warMemorials', label: 'War Memorial' },
+  { handle: 'obituaries',   label: 'Obituaries' }
+] %}
+
+{% set related = {} %}
+{% set total = 0 %}
+{% for g in groups %}
+  {% set rows = craft.entries().section(g.handle).relatedTo(term).status(null).orderBy('title asc').all() %}
+  {% set related = related|merge({ (g.handle): rows }) %}
+  {% set total = total + rows|length %}
+{% endfor %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('communities') }}">Communities</a> &rsaquo; <span>{{ term.title }}</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Community</div>
+          <h1>{{ term.title }}</h1>
+          {% if term.communityAliases is defined and term.communityAliases %}
+            <p class="scv-aka">Also known as {{ term.communityAliases }}</p>
+          {% endif %}
+          {% if term.communityType is defined and term.communityType %}
+            <div class="scv-facts"><div><b>Type</b>{{ term.communityType }}</div></div>
+          {% endif %}
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ total }}</b><span>{{ total == 1 ? 'Record' : 'Records' }}</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      <div class="scv-layout">
+        <div>
+          {% if term.body is defined and term.body %}
+            <article class="scv-card">
+              {% include "_partials/prose" with { text: term.body } %}
+              {% if term.culturalSensitivityNote is defined and term.culturalSensitivityNote %}
+                <div class="scv-note">{{ term.culturalSensitivityNote }}</div>
+              {% endif %}
+            </article>
+          {% elseif term.culturalSensitivityNote is defined and term.culturalSensitivityNote %}
+            <article class="scv-card"><div class="scv-note">{{ term.culturalSensitivityNote }}</div></article>
+          {% endif %}
+
+          {% if hasBoundary or hasPin %}
+            <div style="margin-top:{{ (term.body is defined and term.body) ? '28px' : '0' }}">
+              {% include "_partials/map-index" with {
+                pins: hasPin and not hasBoundary ? [{
+                  id: term.id, slug: term.slug, t: term.title, c: '', e: '',
+                  lat: term.communityLat, lng: term.communityLng,
+                  u: term.url ?? url('communities/' ~ term.slug)
+                }] : [],
+                polygonsUrl: hasBoundary ? siteUrl ~ 'data/communities.geojson' : null,
+                polygonMeta: hasBoundary ? { (term.slug): { tooltip: '<b>' ~ term.title ~ '</b>' ~ (total ? total ~ (total == 1 ? ' record' : ' records') : 'No records yet') } } : null,
+                hint: term.title,
+                fitAllLabel: 'Recentre',
+                mapHeight: '320px'
+              } only %}
+            </div>
+          {% endif %}
+
+          {% for g in groups %}
+            {% set rows = related[g.handle] %}
+            {% if rows|length %}
+              <h2 class="scv-h2">{{ g.label }} <span class="scv-tilefoot" style="margin:0;padding:0">{{ rows|length }}</span></h2>
+              <ul class="scv-rows">
+                {% for r in rows %}
+                  <li><a href="{{ r.url }}">
+                    <span style="min-width:0">
+                      <span class="t">{{ r.title ?: r.slug }}</span>
+                      {% set line = [] %}
+                      {% if r.occupation is defined and r.occupation %}{% set line = line|merge([r.occupation]) %}{% endif %}
+                      {% if r.dateEstablished is defined and r.dateEstablished %}{% set line = line|merge(['Est. ' ~ r.dateEstablished]) %}{% endif %}
+                      {% if r.dateFounded is defined and r.dateFounded %}{% set line = line|merge(['Founded ' ~ r.dateFounded]) %}{% endif %}
+                      {% if r.eventDate is defined and r.eventDate %}{% set line = line|merge([r.eventDate]) %}{% endif %}
+                      {% if r.originalPublishDate is defined and r.originalPublishDate %}{% set line = line|merge([r.originalPublishDate]) %}{% endif %}
+                      {% if line|length %}<span class="m" style="display:block">{{ line|join(' · ') }}</span>{% endif %}
+                    </span>
+                  </a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endfor %}
+
+          {% if not total %}
+            <div class="scv-empty">Nothing is filed under {{ term.title }} yet.</div>
+          {% endif %}
+        </div>
+
+        <aside class="scv-side">
+          {% include "_partials/sidebar/meta" with { entry: term, readTime: false } only %}
+          {% include "_partials/sidebar/cite" with { entry: term, label: 'Communities', url: term.url ?? url('communities/' ~ term.slug) } only %}
+
+          {% set nbSlugs = (nbData.neighbors ?? {})[term.slug] ?? [] %}
+          {% if nbSlugs|length %}
+            {% set nbTerms = craft.categories().group('neighborhood').slug(nbSlugs).status(null).orderBy('title asc').all() %}
+            {% if nbTerms|length %}
+              {% embed "_partials/sidebar/box" with { title: 'Neighbouring communities', nbTerms: nbTerms } only %}
+                {% block body %}
+                  <ul>{% for n in nbTerms %}<li><a href="{{ n.url ?? url('communities/' ~ n.slug) }}">{{ n.title }}</a></li>{% endfor %}</ul>
+                {% endblock %}
+              {% endembed %}
+            {% endif %}
+          {% endif %}
+
+          {% set counts = [] %}
+          {% for g in groups %}
+            {% if related[g.handle]|length %}{% set counts = counts|merge([{ k: g.label, v: related[g.handle]|length }]) %}{% endif %}
+          {% endfor %}
+          {% if counts|length %}
+            {% embed "_partials/sidebar/box" with { title: 'In this community', counts: counts } only %}
+              {% block body %}
+                {% for c in counts %}<div class="scv-row"><span>{{ c.k }}</span><span>{{ c.v }}</span></div>{% endfor %}
+              {% endblock %}
+            {% endembed %}
+          {% endif %}
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
