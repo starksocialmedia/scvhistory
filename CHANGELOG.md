@@ -566,3 +566,71 @@ No database changes were made.
 - Finish the batch 5 items listed above.
 - Populate recordImages and recordDocuments, then re-check a record page with real photos.
 - Confirm whether community terms should get recordImages and recordDocuments too; they are the only content type without them.
+
+## 2026-09-17 (Claude, batch 5 continued, on templates-batch-6)
+
+- Agent: Claude
+- Date: 2026-09-17
+- The rest of the quality pass. Stylesheet strip and Cite move had already landed.
+
+### Missing pages
+
+`military-profiles/_entry.twig` and `index.twig` on the record pattern. The section holds no entries, so the entry page renders against the 42 field layout: service record, life, awards, the four family groups behind their toggles, relation boxes, documents and External. Its note handles are `mpWebmasterNoteTop` and `mpWebmasterNoteBottom`, a third pair beyond the two the brief named. It has no featuredImage, so the hero comes from the first record image.
+
+`search/index.twig` groups results by section with a thumbnail, title and subtitle per row, and searches community terms too. **No route script was needed and none was written**: Craft resolves `templates/search/index.twig` at `/search` on its own and `config/routes.php` is empty. The homepage form now targets `/search` and no longer renders results inline.
+
+`404.twig` with the search box and a card per section with live counts. It only takes effect with devMode off; the dev environment has devMode on so Craft still shows its own debug page for a missing URL, and the template renders at `/404`.
+
+### Head and metadata
+
+`_partials/head/meta.twig`, included once from base.twig, gives every page a title of "record title | section | site name", a canonical, a meta description of the first 160 characters of the body cut at a word boundary, Open Graph and Twitter card. The OG image is featuredImage, then the first record image, then the site seal. Index pages set `metaDescription` at template top level, reusing the lede already on the page.
+
+Rewrote `_partials/jsonld/person.twig`. It was stale from April and had never been included anywhere: it referenced `person.sameAs` and a roles matrix that were never built, and `person.sameAs is defined` reported true and then threw `Calling unknown method: Entry::sameAs()`. It is now built with `json_encode` rather than hand written JSON and touches only handles that exist. Wired into persons and parses on all 33 person pages.
+
+### Link and render check
+
+Crawled all 200 pages and every internal link. Two template level defects found and fixed.
+
+**Eight footer links pointed at pages that do not exist**, so every page carried eight 404s: `/about`, `/contact`, `/permissions`, `/photo-credits`, `/newsletter`, `/submit`, `/nonprofit`, `/privacy`. Removed and the footer rebalanced. **These are pages still to build.**
+
+**Legacy URLs were concatenated blindly.** The data holds three shapes: `/scvhistory/lw3730.htm`, `scvhistory.com/scvhistory/lw3730.htm`, and, where a website landed in the legacy field by mistake, `sangabrielmission.org`. The last produced `https://scvhistory.comsangabrielmission.org` on the San Gabriel mission page. `_partials/legacy-url.twig` now resolves all three, applied in all ten places.
+
+**Left for Nathan, content level, no database changes made:**
+
+- `organizations/mission-san-gabriel-arcangel` has a website URL (`sangabrielmission.org`) sitting in its legacy URL field. The template now renders it correctly, but the value is in the wrong field.
+- One broken internal link: `/person/pedro-fages/` in the body of `articles/chapter-9-the-trail-blazer`, a WordPress era link in Leon's prose.
+- Three links to the old WordPress host `wordpress-1656314-6593552.cloudwaysapps.com`: two in `obituaries/in-memoriam-henry-clay-wiley-1829-1898` and one in `persons/remi-nadeau-i`.
+- Of 98 links to scvhistory.com, 96 are deliberate "View on legacy site" links. Two are inside body prose on `events/northridge-earthquake`.
+- `HenryMayo.com` appears as a link host with inconsistent casing.
+
+### Accessibility
+
+Measured the palette rather than assuming. **Gold `#A9842B` on cream is 3.27:1**, which fails AA for the 11 to 13px labels it was used for, so gold text on light backgrounds is now `#8F6E22` as specified. A second failure the brief did not mention: **`#8A919E`, the label column in every sidebar box, is 2.97:1 on cream**; it is now `#5B6472`, already in the palette at 5.60:1.
+
+**Worth knowing: `#8F6E22` on `#FDF7EA` measures 4.45:1, still just under the 4.5 AA threshold for text below 18.66px.** `#7A5C1B` gives 5.83:1 and clears it. Left at `#8F6E22` as instructed; say the word and it is a one line change.
+
+Every image already carried alt, with empty alt on decorative thumbnails. Every map now has `role="img"`, an accessible name and a screen-reader sentence pointing at the text equivalent below. Added a global `:focus-visible` ring, a skip link, and made `#content` focusable.
+
+### Performance
+
+The webfonts were requested **up to three times per page**, from base.twig plus two partials plus six index templates. One superset request now lives in base.twig; the eight duplicates are gone. Leaflet was already conditional and loads only on pages with a map, confirmed against the actual link and script tags: three stylesheets and one script on a record page, four and two on a map page. Removed three dead `.leaflet-popup` rules that shipped to every page without a map.
+
+### Listen player
+
+Replaced the button in `_partials/record/tools.twig`. The record is split into sentences and spoken one at a time, which is what makes progress real: the bar fills as sentences complete, the sentence being read gets a soft cream highlight and is scrolled into view, and clicking or dragging the bar restarts from that sentence. Elapsed and estimated total start from 165 words per minute, corrected against real elapsed time as sentences finish. Speed at 0.8x, 1x, 1.25x, 1.5x. Prefers an English voice, hides itself when speechSynthesis is missing, cancels on `beforeunload` and `pagehide`. The bar is a real slider: focusable, arrows seek by a sentence, space and enter toggle. Verified on a person record: 71 sentences, estimate 5:17 for 834 words, seek to half fills the bar to 49 percent and moves the highlight.
+
+### Community boundaries on the maps
+
+`map-index.twig` gained an outline mode. With `outlineUrl` set, every polygon draws as a bare navy 1px outline under the pins with no fill; hover fills at 8 percent and names the community; a click goes to `?community={slug}`, the same filter the chips use. With `activeSlug` set, that community draws gold at 2px and the map fits it rather than the pins. Communities with no polygon are absent from the file so nothing is drawn. The Communities page passes no `outlineUrl` and keeps its filled treatment.
+
+### Verified
+
+All 151 entry pages, 15 indexes and route variants, and 35 community pages return 200.
+
+### Left for Nathan
+
+- Build the eight footer pages, or confirm they should stay off the site.
+- The content level link problems listed above.
+- Five partials are now unused and can go, but AGENTS.md says ask before deleting: `_partials/cite-article.twig` (0 bytes), `_partials/search-form.twig`, `_partials/sidebar/external.twig`, `_partials/sidebar/location.twig`, `_partials/sidebar/related-list.twig`. `_partials/sidebar/box.twig`, `cite.twig` and `meta.twig` are still used by the communities page.
+- Decide on `#8F6E22` versus `#7A5C1B` for small gold text on cream.
+- `recordImages`, `recordDocuments` and `wmRelatedPerson` still have zero relations sitewide.
