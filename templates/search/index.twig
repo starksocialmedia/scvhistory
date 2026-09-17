@@ -1,6 +1,7 @@
 {% extends "_layouts/base" %}
+{% set metaDescription = 'Search people, places, organizations, groups, events, articles, collections, the war memorial and obituaries.' %}
 {% set q = craft.app.request.getParam('q')|trim %}
-{% block title %}{{ q ? 'Search: ' ~ q : 'Search' }} | SCVHistory.com{% endblock %}
+{% set metaTitle = q ? 'Search: ' ~ q : null %}
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 
 {% block content %}

@@ -1,54 +1,64 @@
 {#
-  JSON-LD Schema.org block for Person entries
+  Schema.org JSON-LD for Person entries.
   Usage: {% include '_partials/jsonld/person' with { entry: entry } only %}
-  Place inside <head> block in persons/_entry.twig
+
+  Built with json_encode rather than hand written JSON so quotes, newlines and
+  accents escape correctly and the block always parses.
+
+  Every handle here is on the person field layout. The April version of this
+  partial referenced person.sameAs and a roles matrix, neither of which was
+  ever built; person.sameAs is defined reported true and then threw
+  "Calling unknown method: Entry::sameAs()", so the whole page 500ed. Those
+  two branches are gone. External identifiers now come from the two link
+  fields that do exist.
 #}
+{% set p = entry %}
+{% set v = { '@context': 'https://schema.org', '@type': 'Person' } %}
+{% set v = v|merge({ '@id': p.url, 'url': p.url, 'name': p.title }) %}
 
-{% set person = entry %}
-{% set image = person.featuredImage.one() %}
+{% if p.fullName is defined and p.fullName %}{% set v = v|merge({ 'alternateName': p.fullName }) %}{% endif %}
+{% if p.occupation is defined and p.occupation %}{% set v = v|merge({ 'jobTitle': p.occupation }) %}{% endif %}
+{% if p.birthDate is defined and p.birthDate %}{% set v = v|merge({ 'birthDate': p.birthDate }) %}{% endif %}
+{% if p.deathDate is defined and p.deathDate %}{% set v = v|merge({ 'deathDate': p.deathDate }) %}{% endif %}
+{% if p.birthplace is defined and p.birthplace %}
+  {% set v = v|merge({ 'birthPlace': { '@type': 'Place', 'name': p.birthplace } }) %}
+{% endif %}
+{% if p.burialPlace is defined and p.burialPlace %}
+  {% set v = v|merge({ 'deathPlace': { '@type': 'Place', 'name': p.burialPlace } }) %}
+{% endif %}
 
-<script type="application/ld+json">
-{
-  "@context": {
-    "@vocab": "https://schema.org/",
-    "dcterms": "http://purl.org/dc/terms/",
-    "foaf": "http://xmlns.com/foaf/0.1/"
-  },
-  "@type": "Person",
-  "@id": "{{ siteUrl }}{{ person.uri }}",
-  "name": "{{ person.title | replace({'"': '\\"'}) }}"
-  {% if person.fullName %}, "alternateName": "{{ person.fullName | replace({'"': '\\"'}) }}"{% endif %}
-  {% if person.body %}, "description": "{{ person.body | striptags | slice(0, 300) | replace({'"': '\\"', '\n': ' '}) }}"{% endif %}
-  {% if person.birthDate %}, "birthDate": "{{ person.birthDate }}"{% endif %}
-  {% if person.deathDate %}, "deathDate": "{{ person.deathDate }}"{% endif %}
-  {% if person.birthplace %}
-  , "birthPlace": { "@type": "Place", "name": "{{ person.birthplace | replace({'"': '\\"'}) }}" }
-  {% endif %}
-  {% if image %}, "image": "{{ image.url }}"{% endif %}
-  {% set sameAsUris = [] %}
-  {% if person.personWikipediaUrl %}{% set sameAsUris = sameAsUris | merge([person.personWikipediaUrl]) %}{% endif %}
-  {% if person.personGraveUrl %}{% set sameAsUris = sameAsUris | merge([person.personGraveUrl]) %}{% endif %}
-  {% if person.sameAs is defined %}{% for uri in person.sameAs %}{% set sameAsUris = sameAsUris | merge([uri]) %}{% endfor %}{% endif %}
-  {% if sameAsUris | length %}
-  , "sameAs": [{% for uri in sameAsUris %}"{{ uri }}"{% if not loop.last %},{% endif %}{% endfor %}]
-  {% endif %}
-  {% if person.roles is defined and person.roles.all() | length %}
-  , "hasOccupation": [
-    {% for role in person.roles.all() %}
-    {
-      "@type": "Role",
-      "roleName": "{{ role.roleTitle | replace({'"': '\\"'}) }}"
-      {% if role.roleOrganization.one() %}, "memberOf": { "@type": "Organization", "name": "{{ role.roleOrganization.one().title | replace({'"': '\\"'}) }}" }{% endif %}
-      {% if role.roleStart %}, "startDate": "{{ role.roleStart }}"{% endif %}
-      {% if role.roleEnd %}, "endDate": "{{ role.roleEnd }}"{% endif %}
-    }{% if not loop.last %},{% endif %}
-    {% endfor %}
-  ]
-  {% endif %}
-  , "dcterms:modified": "{{ person.dateUpdated | date('Y-m-d') }}"
-  , "dcterms:isPartOf": "{{ siteUrl }}"
-  {% if person.culturalSensitivityNote is defined and person.culturalSensitivityNote %}
-  , "dcterms:accessRights": "{{ person.culturalSensitivityNote | replace({'"': '\\"'}) }}"
-  {% endif %}
-}
-</script>
+{% set body = (p.body is defined and p.body) ? p.body : ((p.authorBio is defined and p.authorBio) ? p.authorBio : null) %}
+{% if body %}
+  {% set flat = body|striptags|split("\n")|filter(l => l|trim)|join(' ')|trim %}
+  {% set v = v|merge({ 'description': flat|length > 300 ? flat|slice(0, 300)|trim ~ '…' : flat }) %}
+{% endif %}
+
+{% set img = null %}
+{% if p.featuredImage is defined and p.featuredImage %}{% set img = p.featuredImage.one() ?? null %}{% endif %}
+{% if img is null and p.recordImages is defined and p.recordImages %}{% set img = p.recordImages.one() ?? null %}{% endif %}
+{% if img %}{% set v = v|merge({ 'image': img.url }) %}{% endif %}
+
+{% set sameAs = [] %}
+{% if p.personWikipediaUrl is defined and p.personWikipediaUrl %}{% set sameAs = sameAs|merge([p.personWikipediaUrl|trim]) %}{% endif %}
+{% if p.personGraveUrl is defined and p.personGraveUrl %}{% set sameAs = sameAs|merge([p.personGraveUrl|trim]) %}{% endif %}
+{% if sameAs|length %}{% set v = v|merge({ 'sameAs': sameAs }) %}{% endif %}
+
+{% set orgs = p.personOrganizations.all() %}
+{% if orgs|length %}
+  {% set v = v|merge({ 'memberOf': orgs|map(o => { '@type': 'Organization', 'name': o.title, 'url': o.url }) }) %}
+{% endif %}
+
+{% set rel = [] %}
+{% for x in p.parentOf.all() %}{% set rel = rel|merge([{ '@type': 'Person', 'name': x.title, 'url': x.url }]) %}{% endfor %}
+{% if rel|length %}{% set v = v|merge({ 'children': rel }) %}{% endif %}
+{% set par = p.childOf.all() %}
+{% if par|length %}{% set v = v|merge({ 'parent': par|map(x => { '@type': 'Person', 'name': x.title, 'url': x.url }) }) %}{% endif %}
+{% set sib = p.siblingOf.all() %}
+{% if sib|length %}{% set v = v|merge({ 'sibling': sib|map(x => { '@type': 'Person', 'name': x.title, 'url': x.url }) }) %}{% endif %}
+{% set sp = p.spouseOf.all() %}
+{% if sp|length %}{% set v = v|merge({ 'spouse': sp|map(x => { '@type': 'Person', 'name': x.title, 'url': x.url }) }) %}{% endif %}
+
+{% set v = v|merge({ 'isPartOf': { '@type': 'WebSite', 'name': 'SCVHistory.com', 'url': siteUrl } }) %}
+{% set v = v|merge({ 'dateModified': p.dateUpdated|date('Y-m-d') }) %}
+
+<script type="application/ld+json">{{ v|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>

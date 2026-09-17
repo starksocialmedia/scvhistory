@@ -1,0 +1,83 @@
+{#
+  Title, meta description, Open Graph and canonical for every page.
+
+  Included once from _layouts/base.twig, so no template has to repeat it.
+
+  A record page gets its values from the element Craft passed in, `entry` for
+  sections and `category` for community terms. An index page can set
+  `metaTitle` and `metaDescription` at the top of the template, outside any
+  block, and they win.
+
+  Title is "record title, section, site name". Description is the first 160
+  characters of the body, cut at a word boundary. The image is featuredImage,
+  else the first record image, else the site seal.
+#}
+{% set SITE = 'SCVHistory.com' %}
+{% set SEAL = siteUrl ~ 'uploads/archive-media/site/scvhistory-seal.svg' %}
+{% set SEG = craft.app.request.getSegment(1) %}
+{% set LABELS = {
+  'persons': 'People', 'places': 'Places', 'communities': 'Communities',
+  'organizations': 'Organizations', 'groups': 'Groups', 'events': 'Events',
+  'articles': 'Articles', 'collections': 'Collections',
+  'war-memorial': 'War Memorial', 'military-profiles': 'Military Profiles',
+  'obituaries': 'Obituaries', 'search': 'Search'
+} %}
+
+{% set el = entry is defined ? entry : (category is defined ? category : null) %}
+{% set sectionLabel = LABELS[SEG] ?? null %}
+
+{# ── Title ─────────────────────────────────────────────────────── #}
+{% set recTitle = metaTitle is defined and metaTitle ? metaTitle : (el ? (el.title ?: el.slug) : null) %}
+{% set titleParts = [recTitle, sectionLabel, SITE]|filter(p => p) %}
+{% if el is null and sectionLabel and recTitle is null %}{% set titleParts = [sectionLabel, SITE] %}{% endif %}
+{% set pageTitle = titleParts|join(' | ') %}
+
+{# ── Description ───────────────────────────────────────────────── #}
+{% set src = null %}
+{% if metaDescription is defined and metaDescription %}
+  {% set src = metaDescription %}
+{% elseif el %}
+  {% for h in ['body', 'wmNarrative', 'mpNarrative', 'authorBio'] %}
+    {% if src is null and attribute(el, h) is defined and attribute(el, h) %}
+      {% set src = attribute(el, h) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% set desc = null %}
+{% if src %}
+  {% set flat = src|striptags|replace({'&nbsp;': ' '})|trim %}
+  {% set flat = flat|split("\n")|filter(l => l|trim)|join(' ')|trim %}
+  {% if flat|length > 160 %}
+    {% set cut = flat|slice(0, 160) %}
+    {% set words = cut|split(' ') %}
+    {% set desc = (words|length > 1 ? words|slice(0, words|length - 1)|join(' ') : cut)|trim|trim('.,;:—-') ~ '…' %}
+  {% else %}
+    {% set desc = flat %}
+  {% endif %}
+{% endif %}
+
+{# ── Image ─────────────────────────────────────────────────────── #}
+{% set ogImage = null %}
+{% if el %}
+  {% if el.featuredImage is defined and el.featuredImage %}{% set ogImage = el.featuredImage.one() ?? null %}{% endif %}
+  {% if ogImage is null and el.recordImages is defined and el.recordImages %}{% set ogImage = el.recordImages.one() ?? null %}{% endif %}
+{% endif %}
+{% set ogImageUrl = ogImage ? ogImage.url : SEAL %}
+
+{# ── Canonical ─────────────────────────────────────────────────── #}
+{% set canonical = el and el.url ? el.url : (SEG ? siteUrl ~ craft.app.request.getPathInfo() : siteUrl) %}
+
+<title>{{ pageTitle }}</title>
+<link rel="canonical" href="{{ canonical }}">
+{% if desc %}<meta name="description" content="{{ desc }}">{% endif %}
+
+<meta property="og:site_name" content="{{ SITE }}">
+<meta property="og:type" content="{{ el ? 'article' : 'website' }}">
+<meta property="og:title" content="{{ recTitle ?: (sectionLabel ?: SITE) }}">
+{% if desc %}<meta property="og:description" content="{{ desc }}">{% endif %}
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ ogImageUrl }}">
+<meta name="twitter:card" content="{{ ogImage ? 'summary_large_image' : 'summary' }}">
+<meta name="twitter:title" content="{{ recTitle ?: (sectionLabel ?: SITE) }}">
+{% if desc %}<meta name="twitter:description" content="{{ desc }}">{% endif %}
+<meta name="twitter:image" content="{{ ogImageUrl }}">

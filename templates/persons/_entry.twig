@@ -1,6 +1,7 @@
 {% extends "_layouts/base" %}
 {% block head %}
   {% include "_partials/record/css" %}
+  {% include "_partials/jsonld/person" with { entry: entry } only %}
   {% include "_partials/record/print" %}
   {% css %}
   .rec-head--left{grid-template-columns:minmax(240px,300px) minmax(0,1fr)}
