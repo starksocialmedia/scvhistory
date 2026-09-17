@@ -45,6 +45,7 @@
 {% block content %}
 {% set eraSlug = craft.app.request.getParam('era') %}
 {% set colSlug = craft.app.request.getParam('collection') %}
+{% set view = craft.app.request.getParam('view') == 'era' ? 'era' : 'collection' %}
 {% set query = craft.entries().section('articles').status(null).orderBy('title asc') %}
 {% if eraSlug %}{% set eraTerm = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}{% if eraTerm %}{% set query = query.relatedTo(eraTerm) %}{% endif %}{% endif %}
 {% if colSlug %}{% set colEntry = craft.entries().section('collections').slug(colSlug).status(null).one() %}{% if colEntry %}{% set query = query.relatedTo({targetElement: colEntry, field: 'partOfCollection'}) %}{% endif %}{% endif %}
@@ -83,6 +84,11 @@
   <div class="scv-band ap-filters">
     <div class="scv-band-in ap-filters-in">
       <div class="ap-row">
+        <div class="lab">GROUP BY</div>
+        <a class="ap-chip {{ view == 'collection' ? 'on' : '' }}" href="{{ url('articles', eraSlug or colSlug ? {era: eraSlug, collection: colSlug}|filter(v => v) : {}) }}">Collection</a>
+        <a class="ap-chip {{ view == 'era' ? 'on' : '' }}" href="{{ url('articles', {view: 'era', era: eraSlug, collection: colSlug}|filter(v => v)) }}">Era</a>
+      </div>
+      <div class="ap-row">
         <div class="lab">ERA</div>
         <a class="ap-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('articles', colSlug ? {collection: colSlug} : {}) }}">All</a>
         {% for e in craft.categories().group('historicalEra').status(null).all() %}
@@ -104,15 +110,33 @@
 
   <main class="scv-band-in ap-main">
     {% if entries|length %}
+      {#
+        Two groupings, chosen by ?view. Collection is the default and keeps each
+        series in its own order; era groups the same articles by historical era,
+        which is what the footer's "By Era" link asks for.
+      #}
       {% set grouped = {} %}
-      {% for e in entries %}
-        {% set c = e.partOfCollection.one() ?? null %}
-        {% set key = c ? c.slug : '_other' %}
-        {% set grouped = grouped|merge({ (key): (grouped[key] ?? [])|merge([e]) }) %}
-      {% endfor %}
+      {% if view == 'era' %}
+        {% for term in craft.categories().group('historicalEra').status(null).all() %}
+          {% set inEra = entries|filter(e => e.historicalEra.ids()|merge([0]) and term.id in e.historicalEra.ids()) %}
+          {% if inEra|length %}{% set grouped = grouped|merge({ ('era:' ~ term.slug): inEra }) %}{% endif %}
+        {% endfor %}
+        {% set placed = [] %}
+        {% for k, items in grouped %}{% for i in items %}{% set placed = placed|merge([i.id]) %}{% endfor %}{% endfor %}
+        {% set rest = entries|filter(e => e.id not in placed) %}
+        {% if rest|length %}{% set grouped = grouped|merge({ '_other': rest }) %}{% endif %}
+      {% else %}
+        {% for e in entries %}
+          {% set c = e.partOfCollection.one() ?? null %}
+          {% set key = c ? c.slug : '_other' %}
+          {% set grouped = grouped|merge({ (key): (grouped[key] ?? [])|merge([e]) }) %}
+        {% endfor %}
+      {% endif %}
 
       {% for key, items in grouped %}
-        {% set col = key != '_other' ? craft.entries().section('collections').slug(key).status(null).one() : null %}
+        {% set isEra = key starts with 'era:' %}
+        {% set eraTermHead = isEra ? craft.categories().group('historicalEra').slug(key|replace({'era:': ''})).status(null).one() : null %}
+        {% set col = (not isEra and key != '_other') ? craft.entries().section('collections').slug(key).status(null).one() : null %}
         {% set ordered = col ? col.articlesInCollection.all() : [] %}
         {% set list = [] %}
         {% if ordered|length %}
@@ -122,7 +146,9 @@
         {% endif %}
 
         <section>
-          {% if col %}
+          {% if eraTermHead %}
+            <div class="ap-otherhead"><h2>{{ eraTermHead.title }}</h2><div class="ap-kicker">{{ list|length }} ARTICLE{{ list|length == 1 ? '' : 'S' }}</div></div>
+          {% elseif col %}
             {% set img = col.featuredImage.one() ?? null %}
             {% set colAuthor = col.writtenBy.one() ?? null %}
             <div class="ap-colhead">

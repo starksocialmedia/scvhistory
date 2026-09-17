@@ -1,0 +1,95 @@
+{% extends "_layouts/base" %}
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
+  {% css %}
+  .pg-searchbar{display:flex;background:#fff;border:1px solid #DCC98F;margin-top:2px}
+  .pg-searchbar input{flex:1;min-width:0;border:0;outline:none;padding:11px 13px;font-family:'Public Sans',sans-serif;font-size:15px;color:#2C2C2C;background:transparent}
+  .pg-searchbar button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:0 16px;cursor:pointer}
+  .pg-searchbar button:hover{background:#7A5C1B;color:#fff}
+  {% endcss %}
+{% endblock %}
+
+{% block content %}
+{#
+  Site page. Same record shape as everything else, minus the relation boxes:
+  a page is prose, not a record with connections. The sidebar carries the
+  citation, a search box and the other pages.
+#}
+{% set F = {} %}
+{% for h in ['body','legacyUrl'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
+{% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
+{% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
+{% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
+{% set img = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
+{% set img = img ?? (recImages|length ? recImages|first : null) %}
+{% set others = craft.entries().section('pages').status(null).orderBy('title asc').all()|filter(p => p.id != entry.id) %}
+
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
+        <div>
+          <div class="rec-kick"><span class="a">SCVHISTORY.COM</span></div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+        </div>
+        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
+      </div>
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
+        {% if F.body %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>
+        {% else %}
+          <p class="rec-empty">This page has not been written yet.</p>
+        {% endif %}
+        {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+      </article>
+
+      <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, sidebar: true } only %}
+
+        <div class="rec-box">
+          <div class="rec-lab">SEARCH THE ARCHIVE</div>
+          <form class="pg-searchbar" action="{{ url('search') }}" method="get" role="search">
+            <label class="scv-sr" for="pgq">Search the archive</label>
+            <input id="pgq" type="search" name="q" placeholder="A name, a place, a year">
+            <button type="submit">Go</button>
+          </form>
+        </div>
+
+        {% if others|length %}
+          <div class="rec-box">
+            <div class="rec-lab">OTHER PAGES</div>
+            <div class="rec-rows">
+              {% for p in others %}
+                <div class="k">PAGE</div><div class="v"><a href="{{ p.url }}">{{ p.title ?: p.slug }}</a></div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
+
+        {% if F.legacyUrl %}
+          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+            <div class="rec-links">
+              <a href="{{ include('_partials/legacy-url', { value: F.legacyUrl })|trim }}" target="_blank" rel="noopener">View on legacy site <span>&nearr;</span></a>
+            </div>
+          </div>
+        {% endif %}
+      </aside>
+    </main>
+  </div>
+</div>
+{% endblock %}

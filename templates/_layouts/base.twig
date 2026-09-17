@@ -80,30 +80,38 @@
 
       <div class="scv-footer-col">
         <p class="scv-footer-heading">Browse</p>
-        <a href="{{ url('articles') }}"{% if craft.app.request.getSegment(1) == 'articles' %} class="on"{% endif %}>By Era</a>
-        <a href="{{ url('collections') }}"{% if craft.app.request.getSegment(1) == 'collections' %} class="on"{% endif %}>By Collection</a>
+        <a href="{{ url('articles', {view: 'era'}) }}">By Era</a>
+        <a href="{{ url('articles', {view: 'collection'}) }}">By Collection</a>
         <a href="{{ url('persons') }}"{% if craft.app.request.getSegment(1) == 'persons' %} class="on"{% endif %}>People</a>
         <a href="{{ url('obituaries') }}"{% if craft.app.request.getSegment(1) == 'obituaries' %} class="on"{% endif %}>Obituaries</a>
       </div>
 
       <div class="scv-footer-col">
-        <p class="scv-footer-heading">Browse</p>
-        <a href="{{ url('places') }}"{% if craft.app.request.getSegment(1) == 'places' %} class="on"{% endif %}>Places</a>
-        <a href="{{ url('communities') }}"{% if craft.app.request.getSegment(1) == 'communities' %} class="on"{% endif %}>Communities</a>
-        <a href="{{ url('war-memorial') }}"{% if craft.app.request.getSegment(1) == 'war-memorial' %} class="on"{% endif %}>War Memorial</a>
+        <p class="scv-footer-heading">About</p>
+        <a href="{{ url('about') }}">About</a>
+        <a href="{{ url('contact') }}">Contact</a>
+        <a href="{{ url('permissions') }}">Permissions</a>
+        <a href="{{ url('photo-credits') }}">Photo Credits</a>
+        <a href="https://scvhs.org" target="_blank" rel="noopener">SCV Historical Society</a>
       </div>
 
       <div class="scv-footer-col">
-        <p class="scv-footer-heading">Elsewhere</p>
-        <a href="https://scvhs.org" target="_blank" rel="noopener">SCV Historical Society</a>
+        <p class="scv-footer-heading">Connect</p>
         <a href="https://www.facebook.com/groups/scvhistory" target="_blank" rel="noopener">Facebook Group</a>
-        <a href="{{ url('search') }}">Search the archive</a>
+        <a href="{{ url('newsletter') }}">Newsletter</a>
+        <a href="{{ url('submit') }}">Submit a photo/article</a>
       </div>
-
     </div>
 
     <div class="scv-footer-bottom">
       <span>&copy; {{ now|date('Y') }} Santa Clarita Valley Historical Society</span>
+      <span class="scv-footer-bottom-links">
+        <a href="{{ url('nonprofit') }}">Nonprofit</a>
+        &bull;
+        <a href="{{ url('permissions') }}">Permissions</a>
+        &bull;
+        <a href="{{ url('privacy') }}">Privacy Policy</a>
+      </span>
     </div>
   </footer>
 
