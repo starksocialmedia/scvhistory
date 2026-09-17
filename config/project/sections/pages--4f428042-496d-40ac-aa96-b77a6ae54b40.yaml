@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 7b5da2bc-f3cd-4678-a175-6a58bd58f008 # Page
+handle: pages
+maxAuthors: 1
+minAuthors: 1
+name: Pages
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
+    enabledByDefault: true
+    hasUrls: true
+    template: pages/_entry
+    uriFormat: '{slug}'
+type: channel
