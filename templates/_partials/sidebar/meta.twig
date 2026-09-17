@@ -1,0 +1,19 @@
+{#
+  Meta box: last updated, plus read time and word count for articles.
+
+  Params:
+    entry     required
+    readTime  optional bool, defaults true for the articles section
+#}
+{% set showRead = readTime is defined ? readTime : ((entry.section.handle ?? '') == 'articles') %}
+{% set words = 0 %}
+{% if showRead and entry.body is defined and entry.body %}
+  {% set words = entry.body|striptags|split(' ')|filter(w => w|trim)|length %}
+{% endif %}
+<div class="scv-box">
+  <div class="scv-row"><span>Last updated</span><span>{{ entry.dateUpdated|date('M j, Y') }}</span></div>
+  {% if words %}
+    <div class="scv-row"><span>Read time</span><span>{{ (words / 200)|round(0, 'ceil') }} min</span></div>
+    <div class="scv-row"><span>Words</span><span>{{ words|number_format }}</span></div>
+  {% endif %}
+</div>

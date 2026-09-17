@@ -1,0 +1,40 @@
+{#
+  Location box: a Leaflet map at 200px tall, then rows for Established and
+  Address when set. Renders nothing without both coordinates.
+
+  Leaflet 1.9.4 from cdnjs. scrollWheelZoom is off. The caller must put the
+  Leaflet stylesheet in its head block:
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+
+  Params:
+    lat, lng      required, the coordinates
+    title         popup heading (defaults to the entry title)
+    address       optional address row
+    established   optional established row
+    zoom          optional, defaults to 14
+    mapId         optional DOM id, defaults to scv-map
+#}
+{% if lat is defined and lng is defined and lat and lng %}
+  {% set mapId = mapId is defined and mapId ? mapId : 'scv-map' %}
+  {% set zoom = zoom is defined and zoom ? zoom : 14 %}
+  {% set heading = title is defined and title ? title : (entry is defined ? entry.title : '') %}
+<div class="scv-box">
+  <h3>Location</h3>
+  <div id="{{ mapId }}" class="scv-map"></div>
+  {% if established is defined and established %}<div class="scv-row"><span>Established</span><span>{{ established }}</span></div>{% endif %}
+  {% if address is defined and address %}<div class="scv-row"><span>Address</span><span>{{ address }}</span></div>{% endif %}
+  <div class="scv-row"><span>Coordinates</span><span>{{ lat }}, {{ lng }}</span></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var el = document.getElementById({{ mapId|json_encode|raw }});
+  if (!el || typeof L === 'undefined') return;
+  var map = L.map(el, { scrollWheelZoom: false }).setView([{{ lat }}, {{ lng }}], {{ zoom }});
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors', maxZoom: 18
+  }).addTo(map);
+  L.marker([{{ lat }}, {{ lng }}]).addTo(map).bindPopup({{ ('<b>' ~ heading ~ '</b>' ~ (address is defined and address ? address : ''))|json_encode|raw }});
+})();
+</script>
+{% endif %}

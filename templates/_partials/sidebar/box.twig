@@ -1,0 +1,15 @@
+{#
+  Sidebar box: white card, 3px gold top rule, small uppercase Jost heading.
+
+  Use with embed so the caller supplies the body:
+
+    {% embed "_partials/sidebar/box" with { title: 'Awards' } only %}
+      {% block body %}<ul><li>...</li></ul>{% endblock %}
+    {% endembed %}
+
+  Params: title (optional heading text)
+#}
+<div class="scv-box">
+  {% if title is defined and title %}<h3>{{ title }}</h3>{% endif %}
+  {% block body %}{% endblock %}
+</div>

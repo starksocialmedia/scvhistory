@@ -1,0 +1,23 @@
+{#
+  Citation box, Chicago style:
+    Author. "Title." Collection. SCVHistory.com. Published date.
+    Accessed <today>. <url>
+
+  Params:
+    entry       required
+    author      optional person entry
+    collection  optional collection entry
+    date        optional publication date string
+    label       optional prefix before the site name (for example "War Memorial")
+#}
+<div class="scv-box">
+  <h3>Cite this page</h3>
+  <div class="scv-cite">{#
+    #}{% if author is defined and author %}{{ author.title }}. {% endif %}{#
+    #}"{{ entry.title ?: entry.slug }}." {#
+    #}{% if collection is defined and collection %}{{ collection.title }}. {% endif %}{#
+    #}{% if label is defined and label %}{{ label }}. {% endif %}{#
+    #}SCVHistory.com{% if date is defined and date %}, {{ date }}{% endif %}. {#
+    #}Accessed {{ now|date('F j, Y') }}. {{ entry.url }}.{#
+  #}</div>
+</div>
