@@ -1,7 +1,6 @@
 {% extends "_layouts/base" %}
 {% set metaDescription = 'The named areas the Santa Clarita Valley history happens in, with boundary maps and the records filed under each.' %}
 {% block head %}
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -75,6 +74,7 @@
     <div class="pl-wrap">
       {% include "_partials/map-index" with {
         pins: pins,
+        mapLabel: 'Map of Santa Clarita Valley community boundaries',
         polygonsUrl: siteUrl ~ 'data/communities.geojson',
         polygonMeta: polygonMeta,
         boundaryCount: 'boundaryCount',

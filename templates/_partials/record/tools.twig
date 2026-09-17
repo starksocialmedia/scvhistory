@@ -1,17 +1,21 @@
 {#
-  Record tools row: read time, word count, updated date, Save / Print, Listen.
+  Record tools row: read time, word count, updated date, Save / Print, and a
+  small read-aloud player.
 
-  Listen uses the browser SpeechSynthesis API and stays hidden when the API is
-  not available, so it never shows a button that cannot work. It reads the
-  element named by textId, which the caller puts on its prose wrapper.
+  The player speaks the record one sentence at a time rather than in a single
+  utterance, which is what makes progress trackable: the bar fills as sentences
+  complete, the sentence being read is highlighted and scrolled into view, and
+  clicking or dragging the bar restarts from that sentence. Estimated total
+  starts from 165 words per minute and is corrected against real elapsed time
+  as sentences complete.
 
-  Read time and word count are omitted for very short records, where a "1 min
-  read" line is noise.
+  Everything is hidden when speechSynthesis is missing, and speaking is
+  cancelled on navigation so a record does not keep talking after you leave.
 
   Params:
     entry    required, for the updated date and the spoken heading
     text     the prose the word count is measured from, defaults to entry.body
-    textId   DOM id of the prose element for Listen, defaults to recText
+    textId   DOM id of the prose element, defaults to recText
 #}
 {% set textId = textId ?? 'recText' %}
 {% set source = text is defined and text ? text : (entry.body is defined ? entry.body : '') %}
@@ -21,8 +25,22 @@
 .rec-tools .btns{margin-left:auto;display:flex;gap:10px}
 .rec-btn{background:#fff;border:1px solid #E2E4E8;font-family:'Jost',sans-serif;font-size:14px;color:#2C2C2C;padding:9px 14px;cursor:pointer}
 .rec-btn:hover{border-color:#C4A031}
+.rec-btn:focus-visible,.rec-play button:focus-visible,.rec-play .bar:focus-visible{outline:2px solid #8F6E22;outline-offset:2px}
 .rec-btn.gold{background:#C4A031;border-color:#C4A031;font-weight:500;color:#17254C;padding:9px 16px}
+
+.rec-play{display:none;width:100%;align-items:center;gap:14px;background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:12px 16px;margin:0 0 28px}
+.rec-play.on{display:flex;flex-wrap:wrap}
+.rec-play button.pp{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid #C4A031;background:#fff;color:#8F6E22;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.rec-play button.pp:hover{background:#C4A031;color:#17254C}
+.rec-play .bar{flex:1;min-width:140px;height:6px;background:#EFE6D0;border:0;padding:0;cursor:pointer;position:relative}
+.rec-play .bar .fill{display:block;height:100%;width:0;background:#C4A031}
+.rec-play .time{font-family:'Jost',sans-serif;font-size:12.5px;letter-spacing:.06em;color:#5B6472;flex:none;font-variant-numeric:tabular-nums}
+.rec-play .speed{flex:none;display:flex;gap:4px}
+.rec-play .speed button{border:1px solid #DCC98F;background:#fff;font-family:'Jost',sans-serif;font-size:12px;color:#8F6E22;padding:4px 8px;cursor:pointer}
+.rec-play .speed button[aria-pressed="true"]{background:#17254C;border-color:#17254C;color:#fff}
+.rec-speaking{background:#FDF7EA;box-shadow:0 0 0 4px #FDF7EA}
 {% endcss %}
+
 <div class="rec-tools">
   <div>
     {%- if words > 20 -%}
@@ -35,18 +53,174 @@
     <button type="button" class="rec-btn gold" id="recListen" hidden>Listen</button>
   </div>
 </div>
+
+<div class="rec-play" id="recPlayer" role="group" aria-label="Read this record aloud">
+  <button type="button" class="pp" id="recPP" aria-label="Play">
+    <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path id="recPPIcon" d="M1 1l12 7-12 7z"/></svg>
+  </button>
+  <div class="bar" id="recBar" role="slider" tabindex="0"
+       aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <span class="fill" id="recFill"></span>
+  </div>
+  <div class="time"><span id="recElapsed">0:00</span> / <span id="recTotal">0:00</span></div>
+  <div class="speed" role="group" aria-label="Reading speed">
+    <button type="button" data-rate="0.8" aria-pressed="false">0.8&times;</button>
+    <button type="button" data-rate="1" aria-pressed="true">1&times;</button>
+    <button type="button" data-rate="1.25" aria-pressed="false">1.25&times;</button>
+    <button type="button" data-rate="1.5" aria-pressed="false">1.5&times;</button>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function(){
-  var btn = document.getElementById('recListen');
+  var listen = document.getElementById('recListen');
+  var player = document.getElementById('recPlayer');
   var txt = document.getElementById({{ textId|json_encode|raw }});
-  if (!btn || !txt || !('speechSynthesis' in window)) { return; }
-  btn.hidden = false;
-  btn.addEventListener('click', function(){
-    if (speechSynthesis.speaking) { speechSynthesis.cancel(); btn.textContent = 'Listen'; return; }
-    var u = new SpeechSynthesisUtterance({{ (entry.title ?? '')|json_encode|raw }} + '. ' + txt.textContent);
-    u.onend = function(){ btn.textContent = 'Listen'; };
-    btn.textContent = 'Stop';
+  if (!player || !txt || !('speechSynthesis' in window)) { return; }
+
+  var HEADING = {{ (entry.title ?? '')|json_encode|raw }};
+  var WPM = 165;
+  var pp = document.getElementById('recPP'), ppIcon = document.getElementById('recPPIcon');
+  var bar = document.getElementById('recBar'), fill = document.getElementById('recFill');
+  var elapsedEl = document.getElementById('recElapsed'), totalEl = document.getElementById('recTotal');
+  var PLAY = 'M1 1l12 7-12 7z', PAUSE = 'M2 1h3v14H2zM9 1h3v14H9z';
+
+  // Wrap each sentence so it can be highlighted and scrolled to.
+  var sentences = [];
+  (function mark(){
+    var walker = document.createTreeWalker(txt, NodeFilter.SHOW_TEXT);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) { if (n.nodeValue.trim()) { nodes.push(n); } }
+    nodes.forEach(function(node){
+      var parts = node.nodeValue.match(/[^.!?]+[.!?]*\s*/g);
+      if (!parts) { return; }
+      var frag = document.createDocumentFragment();
+      parts.forEach(function(p){
+        if (!p.trim()) { frag.appendChild(document.createTextNode(p)); return; }
+        var span = document.createElement('span');
+        span.className = 'rec-sentence';
+        span.textContent = p;
+        frag.appendChild(span);
+        sentences.push({ el: span, text: p.trim(), words: p.trim().split(/\s+/).length });
+      });
+      node.parentNode.replaceChild(frag, node);
+    });
+  })();
+  if (!sentences.length) { return; }
+
+  if (listen) { listen.remove(); }
+  player.classList.add('on');
+
+  var totalWords = sentences.reduce(function(a, s){ return a + s.words; }, 0);
+  var cum = [], run = 0;
+  sentences.forEach(function(s){ cum.push(run); run += s.words; });
+
+  var rate = 1, idx = 0, playing = false, startedAt = 0, elapsedBefore = 0, measured = null;
+
+  function fmt(sec){
+    sec = Math.max(0, Math.round(sec));
+    return Math.floor(sec / 60) + ':' + ('0' + (sec % 60)).slice(-2);
+  }
+  function estTotal(){
+    var wps = (measured || (WPM / 60)) * rate;
+    return totalWords / wps;
+  }
+  function paint(){
+    var done = cum[idx] || 0;
+    var pct = Math.min(100, Math.round(done / totalWords * 100));
+    fill.style.width = pct + '%';
+    bar.setAttribute('aria-valuenow', pct);
+    var elapsed = elapsedBefore + (playing ? (Date.now() - startedAt) / 1000 : 0);
+    elapsedEl.textContent = fmt(elapsed);
+    totalEl.textContent = fmt(estTotal());
+  }
+  function highlight(i){
+    sentences.forEach(function(s){ s.el.classList.remove('rec-speaking'); });
+    if (i < sentences.length) {
+      var el = sentences[i].el;
+      el.classList.add('rec-speaking');
+      var r = el.getBoundingClientRect();
+      if (r.top < 80 || r.bottom > window.innerHeight - 80) {
+        window.scrollTo({ top: r.top + window.scrollY - window.innerHeight / 3, behavior: 'smooth' });
+      }
+    }
+  }
+  function speak(i){
+    if (i >= sentences.length) { stop(); return; }
+    idx = i; highlight(i); paint();
+    var u = new SpeechSynthesisUtterance((i === 0 && HEADING ? HEADING + '. ' : '') + sentences[i].text);
+    u.rate = rate;
+    var voices = speechSynthesis.getVoices();
+    var en = voices.filter(function(v){ return /^en(-|_|$)/i.test(v.lang); });
+    if (en.length) { u.voice = en.find(function(v){ return v.default; }) || en[0]; }
+    u.onend = function(){
+      if (!playing) { return; }
+      var secs = (Date.now() - startedAt) / 1000 + elapsedBefore;
+      var spoken = (cum[i] || 0) + sentences[i].words;
+      if (secs > 2) { measured = (spoken / secs) / rate; }   // words per second at 1x
+      speak(i + 1);
+    };
+    u.onerror = function(){ stop(); };
     speechSynthesis.speak(u);
+  }
+  function play(){
+    playing = true; startedAt = Date.now();
+    ppIcon.setAttribute('d', PAUSE); pp.setAttribute('aria-label', 'Pause');
+    speak(idx);
+  }
+  function pause(){
+    elapsedBefore += (Date.now() - startedAt) / 1000;
+    playing = false; speechSynthesis.cancel();
+    ppIcon.setAttribute('d', PLAY); pp.setAttribute('aria-label', 'Play');
+    paint();
+  }
+  function stop(){
+    playing = false; speechSynthesis.cancel();
+    ppIcon.setAttribute('d', PLAY); pp.setAttribute('aria-label', 'Play');
+    sentences.forEach(function(s){ s.el.classList.remove('rec-speaking'); });
+    idx = 0; elapsedBefore = 0; fill.style.width = '0'; bar.setAttribute('aria-valuenow', 0);
+    elapsedEl.textContent = '0:00'; paint();
+  }
+  function seekTo(pct){
+    var target = totalWords * pct;
+    var i = 0;
+    for (var k = 0; k < cum.length; k++) { if (cum[k] <= target) { i = k; } }
+    idx = i;
+    elapsedBefore = (cum[i] || 0) / ((measured || (WPM / 60)) * rate);
+    if (playing) { speechSynthesis.cancel(); startedAt = Date.now(); speak(i); }
+    else { highlight(i); paint(); }
+  }
+
+  pp.addEventListener('click', function(){ playing ? pause() : play(); });
+
+  function pctFrom(e){
+    var r = bar.getBoundingClientRect();
+    return Math.min(1, Math.max(0, ((e.clientX !== undefined ? e.clientX : 0) - r.left) / r.width));
+  }
+  var dragging = false;
+  bar.addEventListener('mousedown', function(e){ dragging = true; seekTo(pctFrom(e)); });
+  document.addEventListener('mousemove', function(e){ if (dragging) { seekTo(pctFrom(e)); } });
+  document.addEventListener('mouseup', function(){ dragging = false; });
+  bar.addEventListener('keydown', function(e){
+    var step = 1 / Math.max(1, sentences.length);
+    if (e.key === 'ArrowRight') { e.preventDefault(); seekTo(Math.min(1, (cum[idx] / totalWords) + step)); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); seekTo(Math.max(0, (cum[idx] / totalWords) - step)); }
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); playing ? pause() : play(); }
   });
+
+  player.querySelectorAll('.speed button').forEach(function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.dataset.rate);
+      player.querySelectorAll('.speed button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      if (playing) { speechSynthesis.cancel(); startedAt = Date.now(); speak(idx); }
+      paint();
+    });
+  });
+
+  setInterval(function(){ if (playing) { paint(); } }, 500);
+  window.addEventListener('beforeunload', function(){ speechSynthesis.cancel(); });
+  window.addEventListener('pagehide', function(){ speechSynthesis.cancel(); });
+  if (speechSynthesis.onvoiceschanged !== undefined) { speechSynthesis.onvoiceschanged = function(){}; }
+  paint();
 });
 </script>

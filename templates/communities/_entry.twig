@@ -1,7 +1,7 @@
 {% extends "_layouts/base" %}
 {% block head %}
   {% include "_partials/scv-extra-css" %}
-  {% css %}.scv-mapnote{font-size:12.5px;font-style:italic;color:#8A919E;line-height:1.5;margin:10px 0 0}{% endcss %}
+  {% css %}.scv-mapnote{font-size:12.5px;font-style:italic;color:#5B6472;line-height:1.5;margin:10px 0 0}{% endcss %}
 {% endblock %}
 
 {% block content %}
@@ -91,6 +91,7 @@
                 }] : [],
                 polygonsUrl: hasBoundary ? siteUrl ~ 'data/communities.geojson' : null,
                 polygonMeta: hasBoundary ? { (term.slug): { tooltip: '<b>' ~ term.title ~ '</b>' ~ (total ? total ~ (total == 1 ? ' record' : ' records') : 'No records yet') } } : null,
+                mapLabel: 'Map showing the boundary of ' ~ term.title,
                 hint: term.title,
                 fitAllLabel: 'Recentre',
                 mapHeight: '320px'

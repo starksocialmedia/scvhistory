@@ -124,7 +124,7 @@
           <div class="rec-box">
             <div class="rec-lab">FAMILY &amp; RELATIONSHIPS</div>
             {% for f in fam %}
-              <div class="rec-lab" style="margin:{{ loop.first ? '0' : '16px' }} 0 6px;letter-spacing:.1em;font-size:11px;color:#8A919E">{{ f.lab }}</div>
+              <div class="rec-lab" style="margin:{{ loop.first ? '0' : '16px' }} 0 6px;letter-spacing:.1em;font-size:11px;color:#5B6472">{{ f.lab }}</div>
               {% for p in f.rows %}
                 {% set wm = craft.entries().section('warMemorials').relatedTo({ targetElement: p, field: 'wmRelatedPerson' }).status(null).one() ?? null %}
                 {{ ui.person(p, false) }}

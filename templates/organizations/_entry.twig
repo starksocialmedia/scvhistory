@@ -70,7 +70,8 @@
         {% if hasMap %}
           <div class="rec-box">
             <div class="rec-lab">LOCATION</div>
-            <div id="recMap" class="rec-map"></div>
+            <div id="recMap" class="rec-map" role="img" aria-label="Map showing the location of {{ entry.title }}"></div>
+            <p class="scv-sr">The coordinates and address for this organization are listed beside the map.</p>
             {% set loc = [['FOUNDED', F.dateFounded], ['ADDRESS', F.orgAddress], ['LAT', entry.orgLat], ['LNG', entry.orgLng]]|filter(r => r[1]) %}
             <div class="rec-rows">{% for r in loc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
           </div>

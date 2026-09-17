@@ -1,7 +1,6 @@
 {% extends "_layouts/base" %}
 {% set metaDescription = 'Companies, agencies, missions, ranchos, newspapers and the institutions that governed, employed and published in the Santa Clarita Valley.' %}
 {% block head %}
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 {% endblock %}
 
@@ -63,6 +62,7 @@
     <div class="pl-wrap">
       {% include "_partials/map-index" with {
         pins: pins,
+        mapLabel: 'Map of organizations in the Santa Clarita Valley, with community boundaries',
         polygonsUrl: siteUrl ~ 'data/communities.geojson',
         outlineUrl: url('organizations'),
         activeSlug: comSlug,
@@ -88,7 +88,7 @@
         {% endfor %}
       </div>
       {% else %}
-        <div class="pl-empty">No organizations in this community yet. <a href="{{ url('organizations') }}" style="color:#A9842B">Show all</a></div>
+        <div class="pl-empty">No organizations in this community yet. <a href="{{ url('organizations') }}" style="color:#8F6E22">Show all</a></div>
       {% endif %}
     </div>
   </main>
