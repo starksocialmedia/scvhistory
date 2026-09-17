@@ -35,11 +35,14 @@
 {% endmacro %}
 {% import _self as fmt %}
 
+{% set boundaryMeta = source('_data/community-neighbors.json', true)|json_decode(true) %}
+{% set methodNote = boundaryMeta.methodNote ?? {} %}
 {% set polygonMeta = {} %}
 {% set pins = [] %}
 {% for t in terms %}
   {% set href = t.url ?? url('communities/' ~ t.slug) %}
-  {% set tip = '<b>' ~ t.title ~ '</b>' ~ fmt.counts(stats[t.slug])|trim %}
+  {% set note = methodNote[t.slug] ?? null %}
+  {% set tip = '<b>' ~ t.title ~ '</b>' ~ fmt.counts(stats[t.slug])|trim ~ (note ? '<i>' ~ note ~ '</i>' : '') %}
   {% set polygonMeta = polygonMeta|merge({ (t.slug): { tooltip: tip, url: href } }) %}
   {% if t.communityLat is defined and t.communityLng is defined and t.communityLat and t.communityLng %}
     {% set pins = pins|merge([{

@@ -1,9 +1,45 @@
 {
  "_generated": "Derived from web/data/communities.geojson. Do not edit by hand.",
- "_method": "properties.neighbors is derived from these simplified polygons: two communities are listed as neighbours when any boundary vertex of one lies within 250 m of a boundary segment of the other. It is a proximity test on generalised geometry, not a topological adjacency computation, so it can miss a narrow touch or include a near miss.",
+ "_method": "properties.neighbors is derived from these simplified polygons: two communities are listed as neighbours when any boundary vertex of one lies within 250 m of a boundary segment of the other. It is a proximity test on generalised geometry, not a topological adjacency computation, so it can miss a narrow touch or include a near miss. Recomputed after the four ZCTA shapes replaced their CSA fragments, so it now reflects the wider community outlines.",
+ "_notes": "methodNote is a one line source sentence per community, generated from properties.method in the GeoJSON.",
+ "method": {
+  "acton": "csa",
+  "agua-dulce": "csa",
+  "bouquet-canyon": "csa",
+  "canyon-country": "zcta",
+  "castaic": "csa",
+  "lake-hughes": "csa",
+  "newhall": "zcta",
+  "placerita-canyon": "csa",
+  "san-francisquito-canyon": "csa",
+  "sand-canyon": "csa",
+  "santa-clarita": "csa",
+  "saugus": "zcta",
+  "stevenson-ranch": "csa",
+  "val-verde": "csa",
+  "valencia": "zcta"
+ },
+ "methodNote": {
+  "acton": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "agua-dulce": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "bouquet-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "canyon-country": "Boundary approximated from Census ZIP Code Tabulation Areas 91351 and 91387.",
+  "castaic": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "lake-hughes": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "newhall": "Boundary approximated from Census ZIP Code Tabulation Area 91321.",
+  "placerita-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "san-francisquito-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "sand-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "santa-clarita": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "saugus": "Boundary approximated from Census ZIP Code Tabulation Area 91350.",
+  "stevenson-ranch": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "val-verde": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "valencia": "Boundary approximated from Census ZIP Code Tabulation Areas 91354 and 91355."
+ },
  "neighbors": {
   "acton": [
-   "agua-dulce"
+   "agua-dulce",
+   "canyon-country"
   ],
   "agua-dulce": [
    "acton",
@@ -17,7 +53,10 @@
    "san-francisquito-canyon"
   ],
   "canyon-country": [
+   "acton",
    "agua-dulce",
+   "newhall",
+   "placerita-canyon",
    "santa-clarita",
    "saugus"
   ],
@@ -34,10 +73,16 @@
    "castaic"
   ],
   "newhall": [
+   "canyon-country",
+   "placerita-canyon",
    "santa-clarita",
-   "stevenson-ranch"
+   "saugus",
+   "stevenson-ranch",
+   "valencia"
   ],
   "placerita-canyon": [
+   "canyon-country",
+   "newhall",
    "santa-clarita"
   ],
   "san-francisquito-canyon": [
@@ -45,7 +90,6 @@
    "bouquet-canyon",
    "castaic",
    "santa-clarita",
-   "saugus",
    "valencia"
   ],
   "sand-canyon": [
@@ -66,23 +110,30 @@
   ],
   "saugus": [
    "canyon-country",
-   "san-francisquito-canyon",
-   "santa-clarita"
+   "newhall",
+   "santa-clarita",
+   "valencia"
   ],
   "stevenson-ranch": [
    "newhall",
    "santa-clarita",
-   "val-verde"
+   "val-verde",
+   "valencia"
   ],
   "val-verde": [
    "castaic",
    "santa-clarita",
-   "stevenson-ranch"
+   "stevenson-ranch",
+   "valencia"
   ],
   "valencia": [
    "castaic",
+   "newhall",
    "san-francisquito-canyon",
-   "santa-clarita"
+   "santa-clarita",
+   "saugus",
+   "stevenson-ranch",
+   "val-verde"
   ]
  },
  "withBoundary": [

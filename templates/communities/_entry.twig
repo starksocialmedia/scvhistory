@@ -1,6 +1,7 @@
 {% extends "_layouts/base" %}
 {% block head %}
   {% include "_partials/scv-extra-css" %}
+  {% css %}.scv-mapnote{font-size:12.5px;font-style:italic;color:#8A919E;line-height:1.5;margin:10px 0 0}{% endcss %}
 {% endblock %}
 
 {% block content %}
@@ -20,6 +21,7 @@
 {% set term = category ?? (entry ?? null) %}
 {% set nbData = source('_data/community-neighbors.json', true)|json_decode(true) %}
 {% set withBoundary = nbData.withBoundary ?? [] %}
+{% set methodNote = (nbData.methodNote ?? {})[term.slug] ?? null %}
 {% set hasBoundary = term.slug in withBoundary %}
 {% set hasPin = term.communityLat is defined and term.communityLng is defined and term.communityLat and term.communityLng %}
 
@@ -93,6 +95,9 @@
                 fitAllLabel: 'Recentre',
                 mapHeight: '320px'
               } only %}
+              {% if hasBoundary and methodNote %}
+                <p class="scv-mapnote">{{ methodNote }}</p>
+              {% endif %}
             </div>
           {% endif %}
 
