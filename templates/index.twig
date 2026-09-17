@@ -112,31 +112,18 @@
         <p>People, places, events, and documents from the Tataviam through today. Every record is cited and free to read.</p>
       </div>
       <div>
-        <form class="hp-search" action="{{ siteUrl }}" method="get" role="search">
+        <form class="hp-search" action="{{ url('search') }}" method="get" role="search">
           <input type="text" name="q" value="{{ q }}" placeholder="Search people, places, articles..." aria-label="Search the archive">
           <button type="submit">Search</button>
         </form>
         <div class="hp-try">
           <span>Try</span>
-          {% for t in ["Beale's Cut", "Newhall Pass", "Rancho San Francisco", "Northridge Earthquake"] %}<a href="{{ siteUrl }}?q={{ t|url_encode }}">{{ t }}</a>{% endfor %}
+          {% for t in ["Beale's Cut", "Newhall Pass", "Rancho San Francisco", "Northridge Earthquake"] %}<a href="{{ url('search', {q: t}) }}">{{ t }}</a>{% endfor %}
         </div>
       </div>
     </div>
   </section>
 
-  {% if q %}
-    {% set results = craft.entries().search(q).status(null).limit(60).all() %}
-    <section class="hp-sec">
-      <div class="hp-head"><h2>{{ results|length }} result{{ results|length == 1 ? '' : 's' }} for &ldquo;{{ q }}&rdquo;</h2></div>
-      <div class="hp-list">
-        {% for e in results %}
-          <a class="hp-item" href="{{ e.url ?? '#' }}"><div style="flex:1;min-width:0"><div class="t">{{ e.title ?: e.slug }}</div></div><span class="hp-badge">{{ e.section.name ?? '' }}</span></a>
-        {% else %}
-          <p style="padding:16px 0;color:#5B6472">Nothing found. Try a name, a place, or a year.</p>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
 
   <section class="hp-sec">
     <div class="hp-head"><h2>In the archive</h2><div class="hp-kick">{{ total }} RECORDS</div></div>

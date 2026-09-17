@@ -1,0 +1,67 @@
+{% extends "_layouts/base" %}
+{% block title %}Page not found | SCVHistory.com{% endblock %}
+{% block head %}
+  {% include "_partials/scv-extra-css" %}
+  <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block content %}
+{% set SECTIONS = [
+  { uri: 'persons',           label: 'People',            handle: 'persons' },
+  { uri: 'places',            label: 'Places',            handle: 'places' },
+  { uri: 'communities',       label: 'Communities',       handle: null },
+  { uri: 'organizations',     label: 'Organizations',     handle: 'organizations' },
+  { uri: 'groups',            label: 'Groups',            handle: 'groups' },
+  { uri: 'events',            label: 'Events',            handle: 'events' },
+  { uri: 'articles',          label: 'Articles',          handle: 'articles' },
+  { uri: 'collections',       label: 'Collections',       handle: 'collections' },
+  { uri: 'war-memorial',      label: 'War Memorial',      handle: 'warMemorials' },
+  { uri: 'obituaries',        label: 'Obituaries',        handle: 'obituaries' }
+] %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Not found</span></div>
+      <div class="scv-kicker">404</div>
+      <h1>That page is not here</h1>
+      <p class="scv-lede">The address may have changed, or the record may not have been migrated yet. Search the archive or start from a section below.</p>
+      <form class="scv-searchbar" action="{{ url('search') }}" method="get" role="search">
+        <label class="scv-vh" for="notfoundq">Search the archive</label>
+        <input id="notfoundq" type="search" name="q" placeholder="A name, a place, a year">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      <h2 class="scv-h2">Browse the archive</h2>
+      <div class="scv-cards">
+        {% for s in SECTIONS %}
+          {% set n = s.handle ? craft.entries().section(s.handle).status(null).count() : craft.categories().group('neighborhood').status(null).count() %}
+          <a class="scv-tile" href="{{ url(s.uri) }}">
+            <div class="scv-tilebody">
+              <h3>{{ s.label }}</h3>
+              <div class="scv-tilemeta">{{ n }} record{{ n == 1 ? '' : 's' }}</div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+      <p class="scv-lede" style="margin-top:32px;font-size:15px">
+        Looking for something from the old site? Many pages moved. Try the
+        <a href="{{ url('search') }}" style="color:#A9842B">search</a>, or the section it belonged to.
+      </p>
+    </div>
+  </main>
+</div>
+
+{% css %}
+.scv-searchbar{display:flex;background:#fff;border:1px solid #DCC98F;max-width:560px;margin-top:22px}
+.scv-searchbar input{flex:1;min-width:0;border:0;outline:none;padding:15px 18px;font-family:'Public Sans',sans-serif;font-size:16px;color:#2C2C2C;background:transparent}
+.scv-searchbar input:focus-visible{outline:2px solid #A9842B;outline-offset:-2px}
+.scv-searchbar button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-weight:500;font-size:15px;padding:0 24px;cursor:pointer}
+.scv-searchbar button:hover{background:#A9842B;color:#fff}
+.scv-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+{% endcss %}
+{% endblock %}

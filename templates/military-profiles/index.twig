@@ -1,0 +1,81 @@
+{% extends "_layouts/base" %}
+{% block title %}Military Profiles | SCVHistory.com{% endblock %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
+{% block content %}
+{% set all = craft.entries().section('militaryProfiles').status(null).orderBy('title asc').all() %}
+{% set eraSlug = craft.app.request.getParam('era') %}
+{% set query = craft.entries().section('militaryProfiles').status(null).orderBy('title asc') %}
+{% if eraSlug %}
+  {% set term = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
+  {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
+{% endif %}
+{% set rows = query.all() %}
+{% set eraChips = [] %}
+{% for e in craft.categories().group('historicalEra').status(null).all() %}
+  {% set n = craft.entries().section('militaryProfiles').relatedTo(e).status(null).count() %}
+  {% if n %}{% set eraChips = eraChips|merge([{term: e, n: n}]) %}{% endif %}
+{% endfor %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Military Profiles</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Service records</div>
+          <h1>Military Profiles</h1>
+          <p class="scv-lede">Service histories of Santa Clarita Valley residents. Those who died in service are recorded separately in the <a href="{{ url('war-memorial') }}" style="color:#A9842B">War Memorial</a>.</p>
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ all|length }}</b><span>{{ all|length == 1 ? 'Profile' : 'Profiles' }}</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if eraChips|length %}
+    <section class="scv-filters">
+      <div class="scv-wrap">
+        <div class="scv-lab">Era</div>
+        <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('military-profiles') }}">All</a>
+        {% for c in eraChips %}
+          <a class="scv-chip {{ eraSlug == c.term.slug ? 'on' : '' }}" href="{{ url('military-profiles', { era: c.term.slug }) }}">{{ c.term.title }} ({{ c.n }})</a>
+        {% endfor %}
+        <div class="scv-count">{{ eraSlug ? rows|length ~ ' of ' ~ all|length : all|length }} profiles</div>
+      </div>
+    </section>
+  {% endif %}
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if rows|length %}
+        <div class="scv-cards">
+          {% for r in rows %}
+            {% set imgs = r.recordImages is defined and r.recordImages ? r.recordImages.all() : [] %}
+            {% set img = imgs|length ? imgs|first : null %}
+            {% set parts = (r.title ?: r.slug)|split(' ')|filter(x => x|trim) %}
+            {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : (r.title ?: r.slug)|slice(0,1) %}
+            <a class="scv-tile" href="{{ r.url }}">
+              <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="{{ img.alt ?: r.title }}">{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</div>
+              <div class="scv-tilebody">
+                <h3>{{ r.title ?: r.slug }}</h3>
+                {% set line = [r.mpRank is defined ? r.mpRank : null, r.mpUnit is defined ? r.mpUnit : null]|filter(x => x) %}
+                {% if line|length %}<div class="scv-tilemeta">{{ line|join(' · ') }}</div>{% endif %}
+                {% if r.mpHomeOfRecord is defined and r.mpHomeOfRecord %}<div class="scv-tilemeta">{{ r.mpHomeOfRecord }}</div>{% endif %}
+                {% set era = r.historicalEra.one() ?? null %}
+                <div class="scv-tilefoot">{{ era ? era.title : 'Service record' }}</div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="scv-empty">
+          {% if all|length %}No profiles in this era yet. <a href="{{ url('military-profiles') }}">Show all</a>
+          {% else %}No military profiles have been imported yet. Valley residents who died in service are in the <a href="{{ url('war-memorial') }}">War Memorial</a>.{% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </main>
+</div>
+{% endblock %}

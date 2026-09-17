@@ -1,0 +1,126 @@
+{% extends "_layouts/base" %}
+{% set q = craft.app.request.getParam('q')|trim %}
+{% block title %}{{ q ? 'Search: ' ~ q : 'Search' }} | SCVHistory.com{% endblock %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
+{% block content %}
+{#
+  Search results, grouped by section. Craft's own search index backs this, so
+  the ordering inside each group is Craft's relevance order.
+#}
+{% set SECTIONS = [
+  { handle: 'persons',          label: 'People' },
+  { handle: 'places',           label: 'Places' },
+  { handle: 'organizations',    label: 'Organizations' },
+  { handle: 'groups',           label: 'Groups' },
+  { handle: 'events',           label: 'Events' },
+  { handle: 'articles',         label: 'Articles' },
+  { handle: 'collections',      label: 'Collections' },
+  { handle: 'warMemorials',     label: 'War Memorial' },
+  { handle: 'militaryProfiles', label: 'Military Profiles' },
+  { handle: 'obituaries',       label: 'Obituaries' }
+] %}
+
+{% set groups = [] %}
+{% set total = 0 %}
+{% if q %}
+  {% for s in SECTIONS %}
+    {% set hits = craft.entries().section(s.handle).search(q).status(null).limit(40).all() %}
+    {% if hits|length %}
+      {% set groups = groups|merge([{ label: s.label, rows: hits }]) %}
+      {% set total = total + hits|length %}
+    {% endif %}
+  {% endfor %}
+  {% set terms = craft.categories().group('neighborhood').search(q).status(null).limit(20).all() %}
+  {% if terms|length %}
+    {% set groups = groups|merge([{ label: 'Communities', rows: terms }]) %}
+    {% set total = total + terms|length %}
+  {% endif %}
+{% endif %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Search</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Search the archive</div>
+          <h1>{% if q %}&ldquo;{{ q }}&rdquo;{% else %}Search{% endif %}</h1>
+          <form class="scv-searchbar" action="{{ url('search') }}" method="get" role="search">
+            <label class="scv-vh" for="searchq">Search the archive</label>
+            <input id="searchq" type="search" name="q" value="{{ q }}" placeholder="A name, a place, a year">
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        {% if q %}
+          <div class="scv-stat"><div><b>{{ total }}</b><span>{{ total == 1 ? 'Result' : 'Results' }}</span></div></div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if not q %}
+        <p class="scv-lede" style="margin-bottom:26px">Search people, places, organizations, groups, events, articles, collections, the war memorial and obituaries.</p>
+        <div class="scv-chips">
+          {% for s in SECTIONS %}
+            {% set n = craft.entries().section(s.handle).status(null).count() %}
+            {% if n %}<a class="scv-chip" href="{{ url(s.handle == 'warMemorials' ? 'war-memorial' : (s.handle == 'militaryProfiles' ? 'military-profiles' : s.handle)) }}">{{ s.label }} ({{ n }})</a>{% endif %}
+          {% endfor %}
+        </div>
+      {% elseif not total %}
+        <div class="scv-empty">Nothing found for &ldquo;{{ q }}&rdquo;. Try a name, a place, or a year.</div>
+      {% else %}
+        {% for g in groups %}
+          <h2 class="scv-h2">{{ g.label }} <span class="scv-tilefoot" style="margin:0;padding:0">{{ g.rows|length }}</span></h2>
+          <ul class="scv-results">
+            {% for r in g.rows %}
+              {% set imgs = r.recordImages is defined and r.recordImages ? r.recordImages.all() : [] %}
+              {% set img = (r.featuredImage is defined and r.featuredImage) ? r.featuredImage.one() ?? null : (imgs|length ? imgs|first : null) %}
+              {% set label = r.title ?: r.slug %}
+              {% set parts = label|split(' ')|filter(x => x|trim) %}
+              {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : label|slice(0,1) %}
+              {% set bits = [] %}
+              {% if r.occupation is defined and r.occupation %}{% set bits = bits|merge([r.occupation]) %}{% endif %}
+              {% if r.dateEstablished is defined and r.dateEstablished %}{% set bits = bits|merge(['Est. ' ~ r.dateEstablished]) %}{% endif %}
+              {% if r.dateFounded is defined and r.dateFounded %}{% set bits = bits|merge(['Founded ' ~ r.dateFounded]) %}{% endif %}
+              {% if r.eventDate is defined and r.eventDate %}{% set bits = bits|merge([r.eventDate]) %}{% endif %}
+              {% if r.originalPublishDate is defined and r.originalPublishDate %}{% set bits = bits|merge([r.originalPublishDate]) %}{% endif %}
+              {% if r.wmRank is defined and r.wmRank %}{% set bits = bits|merge([r.wmRank]) %}{% endif %}
+              {% if r.communityType is defined and r.communityType %}{% set bits = bits|merge([r.communityType]) %}{% endif %}
+              <li>
+                <a href="{{ r.url ?? url('communities/' ~ r.slug) }}">
+                  <span class="th">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
+                  <span style="min-width:0">
+                    <span class="t">{{ label }}</span>
+                    {% if bits|length %}<span class="m">{{ bits|join(' · ') }}</span>{% endif %}
+                  </span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </main>
+</div>
+
+{% css %}
+.scv-searchbar{display:flex;background:#fff;border:1px solid #DCC98F;max-width:560px;margin-top:20px}
+.scv-searchbar input{flex:1;min-width:0;border:0;outline:none;padding:15px 18px;font-family:'Public Sans',sans-serif;font-size:16px;color:#2C2C2C;background:transparent}
+.scv-searchbar input:focus-visible{outline:2px solid #A9842B;outline-offset:-2px}
+.scv-searchbar button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-weight:500;font-size:15px;padding:0 24px;cursor:pointer}
+.scv-searchbar button:hover{background:#A9842B;color:#fff}
+.scv-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.scv-results{list-style:none;margin:0 0 8px;padding:0;background:#fff;border:1px solid #E2E4E8}
+.scv-results li{border-bottom:1px solid #E2E4E8}
+.scv-results li:last-child{border-bottom:0}
+.scv-results a{display:flex;gap:14px;align-items:center;padding:12px 18px;text-decoration:none;color:inherit}
+.scv-results a:hover{background:#FDF7EA}
+.scv-results .th{width:44px;height:44px;flex:none;border:1px solid #E2E4E8;background:#FDF7EA;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Playfair Display',serif;font-size:15px;color:#A9842B}
+.scv-results .th img{width:100%;height:100%;object-fit:cover}
+.scv-results .t{font-family:'Playfair Display',serif;font-size:17px;color:#17254C;display:block}
+.scv-results .m{font-size:13px;color:#5B6472;display:block;margin-top:2px}
+{% endcss %}
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "_layouts/base" %}
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
+{% endblock %}
+
+{% block content %}
+{#
+  Military Profile record. The section holds no entries yet, so this renders
+  against the field layout only. The militaryProfile layout has no
+  featuredImage, so the hero comes from the first record image when there is
+  one, and its note handles are mpWebmasterNoteTop and mpWebmasterNoteBottom.
+#}
+{% set F = {} %}
+{% for h in ['body','mpNarrative','mpRank','mpSpecialty','mpUnit','mpBase','mpServiceStart','mpServiceEnd',
+             'mpCombatOperations','mpDateOfBirth','mpDateOfDeath','mpAgeAtLoss','mpHomeOfRecord','mpHighSchool',
+             'mpBurialPlace','mpAwards','mpLegacyUrl','mpFinePrint','legacyUrl'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
+{% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
+{% set noteTop = entry.mpWebmasterNoteTop is defined ? entry.mpWebmasterNoteTop : null %}
+{% set noteBottom = entry.mpWebmasterNoteBottom is defined ? entry.mpWebmasterNoteBottom : null %}
+{% set img = recImages|length ? recImages|first : null %}
+
+{% set era = entry.historicalEra.one() ?? null %}
+{% set communities = entry.neighborhood.all() %}
+{% set periods = entry.historicalPeriod.all() %}
+{% set subject = entry.mpSubject.one() ?? null %}
+{% set narrative = F.mpNarrative ?: F.body %}
+{% set awards = F.mpAwards ? F.mpAwards|replace({',': ';'})|split(';')|map(a => a|trim)|filter(a => a) : [] %}
+{% set sub = [F.mpRank, F.mpSpecialty]|filter(x => x)|join(', ') %}
+{% set kick = [F.mpUnit, F.mpCombatOperations]|filter(x => x) %}
+
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('military-profiles') }}">Military Profiles</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
+        <div>
+          <div class="rec-kick"><span class="a">MILITARY PROFILE</span>{% if kick|length %}<span class="sep"></span><span class="b">{{ kick|join(' · ')|upper }}</span>{% endif %}</div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if sub %}<div class="rec-sub">{{ sub }}</div>{% endif %}
+          {% if F.mpDateOfBirth or F.mpDateOfDeath or F.mpHomeOfRecord %}
+            <div class="rec-facts">
+              {% if F.mpDateOfBirth %}<div><div class="l">BORN</div><div class="v">{{ F.mpDateOfBirth }}</div></div>{% endif %}
+              {% if F.mpDateOfDeath %}<div><div class="l">DIED</div><div class="v">{{ F.mpDateOfDeath }}{% if F.mpAgeAtLoss %} · Age {{ F.mpAgeAtLoss }}{% endif %}</div></div>{% endif %}
+              {% if F.mpHomeOfRecord %}<div><div class="l">HOME OF RECORD</div><div class="v">{{ F.mpHomeOfRecord }}</div></div>{% endif %}
+            </div>
+          {% endif %}
+          {% if awards|length or era or periods|length or communities|length %}
+            <div class="rec-chips">
+              {% for a in awards %}<span class="rec-chip solid">{{ a }}</span>{% endfor %}
+              {% if era %}<span class="rec-chip">{{ era.title }}</span>{% endif %}
+              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in communities %}<a class="rec-chip" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
+      </div>
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: narrative, textId: 'recText' } only %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
+        {% if narrative %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages } %}</div>{% endif %}
+        {% include "_partials/record/images" with { images: recImages, body: narrative } only %}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+        {% if F.mpFinePrint %}<p class="rec-fine">{{ F.mpFinePrint }}</p>{% endif %}
+      </article>
+
+      <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'Military Profiles', sidebar: true } only %}
+
+        {% set svc = [['RANK', F.mpRank], ['SPECIALTY', F.mpSpecialty], ['UNIT', F.mpUnit], ['BASE', F.mpBase],
+                      ['FROM', F.mpServiceStart], ['TO', F.mpServiceEnd], ['OPERATION', F.mpCombatOperations]]|filter(r => r[1]) %}
+        {% if svc|length %}
+          <div class="rec-box"><div class="rec-lab">SERVICE RECORD</div>
+            <div class="rec-rows">{% for r in svc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% set life = [['BORN', F.mpDateOfBirth], ['DIED', F.mpDateOfDeath], ['AGE', F.mpAgeAtLoss],
+                       ['HOME', F.mpHomeOfRecord], ['HIGH SCHOOL', F.mpHighSchool], ['BURIAL', F.mpBurialPlace]]|filter(r => r[1]) %}
+        {% if life|length %}
+          <div class="rec-box"><div class="rec-lab">LIFE</div>
+            <div class="rec-rows">{% for r in life %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% if awards|length %}
+          <div class="rec-box"><div class="rec-lab">AWARDS</div>
+            <div class="rec-rows">{% for a in awards %}<div class="k">AWARD</div><div class="v">{{ a }}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% set family = [
+          { lab: 'SPOUSE', rows: entry.mpHasSpouse ? entry.mpSpouse.all() : [] },
+          { lab: 'CHILDREN', rows: entry.mpHasChildren ? entry.mpChildren.all() : [] },
+          { lab: 'PARENTS', rows: entry.mpHasParents ? entry.mpParents.all() : [] },
+          { lab: 'SIBLINGS', rows: entry.mpHasSiblings ? entry.mpSiblings.all() : [] }
+        ]|filter(b => b.rows|length) %}
+        {% for b in family %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            {% for p in b.rows %}
+              {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
+              {% set pp = p.title|split(' ')|filter(x => x|trim) %}
+              <a class="rec-person" href="{{ p.url }}">
+                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
+                <div style="min-width:0"><div class="n">{{ p.title }}</div>{% if p.occupation is defined and p.occupation %}<div class="r">{{ p.occupation }}</div>{% endif %}</div>
+              </a>
+            {% endfor %}
+          </div>
+        {% endfor %}
+
+        {% set boxes = [
+          { lab: 'PERSON RECORD', key: 'PERSON', rows: subject ? [subject] : [] },
+          { lab: 'RELATED PEOPLE', key: 'PERSON', rows: entry.mpRelatedPersons.all() },
+          { lab: 'PLACES', key: 'PLACE', rows: entry.mpPlaces.all() },
+          { lab: 'EVENTS', key: 'EVENT', rows: entry.mpEvents.all() },
+          { lab: 'ORGANIZATIONS', key: 'ORG', rows: entry.mpOrganizations.all() },
+          { lab: 'GROUPS', key: 'GROUP', rows: entry.mpGroups.all() },
+          { lab: 'OBITUARIES', key: 'OBITUARY', rows: entry.mpRelatedObituaries.all() }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
+
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
+
+        {% set links = [] %}
+        {% if entry.mpWikipediaUrl is defined and entry.mpWikipediaUrl %}{% set links = links|merge([{u: entry.mpWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
+        {% if entry.mpFindAGraveUrl is defined and entry.mpFindAGraveUrl %}{% set links = links|merge([{u: entry.mpFindAGraveUrl, t: 'Find a Grave'}]) %}{% endif %}
+        {% set legacy = F.mpLegacyUrl ?: F.legacyUrl %}
+        {% if legacy %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ legacy, t: 'View on legacy site'}]) %}{% endif %}
+        {% if links|length %}
+          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+      </aside>
+    </main>
+  </div>
+</div>
+{% endblock %}
