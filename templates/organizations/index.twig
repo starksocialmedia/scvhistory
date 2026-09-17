@@ -1,52 +1,7 @@
 {% extends "_layouts/base" %}
 {% block head %}
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-{% css %}
-.pl{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
-.pl-wrap{max-width:1240px;margin:0 auto;padding:0 40px}
-.pl-hero{background:#FDF7EA;border-bottom:1px solid #EFE6D0;color:#17254C}
-.pl-hero .pl-wrap{padding-top:44px;padding-bottom:48px}
-.pl-crumbs{font-size:13px;color:#5B6472;margin-bottom:22px}
-.pl-crumbs a{color:#A9842B;text-decoration:none}
-.pl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:end}
-.pl-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#A9842B;margin-bottom:14px}
-.pl-hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,4.6vw,54px);line-height:1.06;margin:0 0 16px;color:#17254C}
-.pl-hero p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:560px}
-.pl-stat{display:flex;gap:40px;flex-wrap:wrap;justify-self:end}
-.pl-stat b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:44px;line-height:1;color:#17254C}
-.pl-stat span{display:block;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#A9842B;margin-top:8px}
-.pl-filters{background:#fff;border-bottom:1px solid #E2E4E8;position:sticky;top:0;z-index:500}
-.pl-filters .pl-wrap{padding-top:16px;padding-bottom:16px;display:flex;align-items:center;gap:12px 10px;flex-wrap:wrap}
-.pl-lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#8A919E;margin-right:4px}
-.pl-chip{background:#fff;color:#A9842B;border:1px solid #C4A031;font-family:'Jost',sans-serif;font-size:13px;padding:7px 13px;border-radius:3px;text-decoration:none}
-.pl-chip:hover{background:#FDF7EA}
-.pl-chip.on{background:#17254C;color:#fff;border-color:#17254C}
-.pl-count{margin-left:auto;font-size:14px;color:#5B6472}
-.pl-main .pl-wrap{padding-top:40px;padding-bottom:96px}
-.pl-mapcard{background:#fff;border:1px solid #E2E4E8;border-top:3px solid #C4A031}
-#map{height:460px;width:100%;background:#EEF0F4}
-.pl-mapfoot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 18px;font-size:13px;color:#5B6472;border-top:1px solid #E2E4E8}
-.pl-mapfoot a{color:#A9842B;text-decoration:none}
-.pl-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:32px}
-.pl-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E2E4E8;color:inherit;min-width:0;text-decoration:none}
-.pl-card:hover,.pl-card.on{border-color:#C4A031}
-.pl-card.on{box-shadow:inset 0 3px 0 #C4A031}
-.pl-ph{aspect-ratio:4/3;background:#FDF7EA;overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #EFE6D0}
-.pl-ph img{width:100%;height:100%;object-fit:cover;display:block}
-.pl-ph span{font-family:'Playfair Display',serif;font-size:36px;color:#C4A031}
-.pl-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
-.pl-card h3{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;line-height:1.2;color:#17254C;margin:0}
-.pl-meta{font-size:13px;line-height:1.5;color:#5B6472}
-.pl-comm{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.1em;color:#8A919E;margin-top:auto;padding-top:6px;text-transform:uppercase}
-.pin{width:14px;height:14px;border-radius:50%;background:#17254C;border:2px solid #FDF7EA;box-shadow:0 0 0 1px #17254C}
-.pin.on{background:#C4A031;box-shadow:0 0 0 1px #A9842B}
-.leaflet-popup-content-wrapper{border-radius:0;border-top:3px solid #C4A031;font-family:'Public Sans',sans-serif}
-.leaflet-popup-content b{font-family:'Playfair Display',serif;font-weight:500;font-size:16px;color:#17254C;display:block;margin-bottom:2px}
-.leaflet-popup-content{margin:12px 16px;font-size:13px;color:#5B6472}
-.leaflet-popup-content a{color:#A9842B}
-.pl-empty{text-align:center;padding:64px 0;color:#5B6472;font-size:16px}
-{% endcss %}
+
 {% endblock %}
 
 {% block content %}
@@ -105,13 +60,13 @@
 
   <main class="pl-main">
     <div class="pl-wrap">
-      <div class="pl-mapcard">
-        <div id="map"></div>
-        <div class="pl-mapfoot">
-          <span id="mapHint">Select an organization below to locate it, or a pin to jump to its card.</span>
-          <span style="display:flex;gap:18px"><a href="#" id="fitValley">Fit the valley</a><a href="#" id="fitAll">Fit all organizations</a></span>
-        </div>
-      </div>
+      {% include "_partials/map-index" with {
+        pins: pins,
+        hint: 'Select an organization below to locate it, or a pin to jump to its card.',
+        fitAllLabel: 'Fit all organizations',
+        showFitValley: true,
+        initialValley: true
+      } only %}
 
       {% if places|length %}
       <div class="pl-cards">
@@ -135,39 +90,4 @@
   </main>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script>
-(function(){
-  var PINS = {{ pins|json_encode|raw }};
-  var map = L.map('map', { scrollWheelZoom: false });
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
-  var markers = {};
-  PINS.forEach(function(p){
-    var m = L.marker([p.lat, p.lng], { icon: L.divIcon({ className: '', html: '<div class="pin" id="pin' + p.id + '"></div>', iconSize: [14,14], iconAnchor: [7,7] }) });
-    m.bindPopup('<b>' + p.t + '</b>' + [p.e ? 'Est. ' + p.e : '', p.c].filter(Boolean).join(' · ') + '<br><a href="' + p.u + '">Open record →</a>');
-    m.on('click', function(){ select(p.id, false); var el = document.getElementById('card' + p.id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' }); });
-    m.addTo(map); markers[p.id] = m;
-  });
-  function inValley(p){ return p.lat > 34.3 && p.lat < 35 && p.lng > -118.95 && p.lng < -118.25; }
-  function fit(valley){ var pts = valley ? PINS.filter(inValley) : PINS; if (!pts.length) pts = PINS; if (pts.length) map.fitBounds(L.latLngBounds(pts.map(function(p){ return [p.lat, p.lng]; })), { padding: [40,40] }); else map.setView([34.42, -118.53], 10); }
-  function select(id, fly){
-    document.querySelectorAll('.pl-card').forEach(function(c){ c.classList.toggle('on', c.id === 'card' + id); });
-    document.querySelectorAll('.pin').forEach(function(x){ x.classList.toggle('on', x.id === 'pin' + id); });
-    var p = PINS.find(function(x){ return x.id == id; }); if (!p) return;
-    document.getElementById('mapHint').textContent = p.t + (p.c ? ' · ' + p.c : '');
-    if (fly) { map.flyTo([p.lat, p.lng], 13, { duration: .8 }); window.scrollTo({ top: document.getElementById('map').getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' }); }
-    markers[id].openPopup();
-  }
-  document.querySelectorAll('.pl-card').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var id = a.dataset.id;
-      if (markers[id] && !a.classList.contains('on')) { e.preventDefault(); select(id, true); }
-    });
-  });
-  function reset(valley){ map.closePopup(); document.querySelectorAll('.pl-card.on,.pin.on').forEach(function(x){ x.classList.remove('on'); }); document.getElementById('mapHint').textContent = 'Select an organization below to locate it, or a pin to jump to its card.'; fit(valley); }
-  document.getElementById('fitAll').addEventListener('click', function(e){ e.preventDefault(); reset(false); });
-  document.getElementById('fitValley').addEventListener('click', function(e){ e.preventDefault(); reset(true); });
-  fit(true);
-})();
-</script>
 {% endblock %}
