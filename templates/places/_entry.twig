@@ -1,91 +1,128 @@
 {% extends "_layouts/base" %}
 {% block head %}
-  {% include "_partials/scv-extra-css" %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
   {% if entry.placeLat and entry.placeLng %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
+  {% css %}.rec-map{height:220px;background:#EEF0F4;margin:-18px -20px 14px;width:calc(100% + 40px)}{% endcss %}
 {% endblock %}
 
 {% block content %}
-{% set communities = entry.neighborhood.all() %}
+{% set F = {} %}
+{% for h in ['body','placeAddress','dateEstablished','placeAliases','placeChlNumber','placeLegacyUrl','legacyUrl','culturalSensitivityNote'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
 {% set era = entry.historicalEra.one() ?? null %}
-{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
-{% set depicted = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'depictsPlace' }).status(null).all() %}
+{% set communities = entry.neighborhood.all() %}
+{% set periods = entry.historicalPeriod.all() %}
+{% set hasMap = entry.placeLat and entry.placeLng %}
+{% set depicted = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'depictsPlace' }).status(null).orderBy('title asc').all() %}
 
-<div class="scv-page">
-  <section class="scv-hero">
-    <div class="scv-wrap">
-      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('places') }}">Places</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="scv-kicker">Place</div>
-      <h1>{{ entry.title ?: entry.slug }}</h1>
-      {% if entry.placeAliases %}<p class="scv-aka">Also known as {{ entry.placeAliases }}</p>{% endif %}
-      {% if entry.dateEstablished or entry.placeAddress or entry.placeChlNumber %}
-        <div class="scv-facts">
-          {% if entry.dateEstablished %}<div><b>Established</b>{{ entry.dateEstablished }}</div>{% endif %}
-          {% if entry.placeAddress %}<div><b>Address</b>{{ entry.placeAddress }}</div>{% endif %}
-          {% if entry.placeChlNumber %}<div><b>Landmark</b>CHL No. {{ entry.placeChlNumber }}</div>{% endif %}
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('places') }}">Places</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="rec-head rec-head--noart">
+        <div>
+          <div class="rec-kick"><span class="a">PLACES</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if F.placeAliases %}<div class="rec-sub">Also known as {{ F.placeAliases }}</div>{% endif %}
+          {% if F.dateEstablished or F.placeAddress or F.placeChlNumber %}
+            <div class="rec-facts">
+              {% if F.dateEstablished %}<div><div class="l">ESTABLISHED</div><div class="v">{{ F.dateEstablished }}</div></div>{% endif %}
+              {% if F.placeAddress %}<div><div class="l">ADDRESS</div><div class="v">{{ F.placeAddress }}</div></div>{% endif %}
+              {% if F.placeChlNumber %}<div><div class="l">LANDMARK</div><div class="v">CHL No. {{ F.placeChlNumber }}</div></div>{% endif %}
+            </div>
+          {% endif %}
+          {% if periods|length or communities|length %}
+            <div class="rec-chips">
+              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in communities %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
         </div>
-      {% endif %}
-      {% if era or entry.historicalPeriod.all()|length or communities|length %}
-        <div class="scv-chips">
-          {% if era %}<span class="scv-chip">{{ era.title }}</span>{% endif %}
-          {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
-          {% for c in communities %}<a class="scv-chip solid" href="{{ url('places', { community: c.slug }) }}">{{ c.title }}</a>{% endfor %}
-        </div>
-      {% endif %}
+      </div>
     </div>
   </section>
 
-  <main class="scv-main">
-    <div class="scv-wrap">
-      <div class="scv-layout">
-        <div>
-          {% if hero %}
-            <figure class="scv-figure"><img src="{{ hero.url }}" alt="{{ hero.alt ?: entry.title }}">
-            {% if hero.title and hero.title != entry.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}</figure>
-          {% endif %}
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body } %}</div>{% endif %}
+        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+        {% include "_partials/record/cite" with { entry: entry, label: 'Places' } only %}
+      </article>
 
-          {% if entry.body %}
-            <article class="scv-card">
-              {% include "_partials/prose" with { text: entry.body } %}
-              {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
-            </article>
-          {% elseif entry.culturalSensitivityNote %}
-            <article class="scv-card"><div class="scv-note">{{ entry.culturalSensitivityNote }}</div></article>
-          {% endif %}
-        </div>
+      <aside class="rec-side">
+        {% if hasMap %}
+          <div class="rec-box">
+            <div class="rec-lab">LOCATION</div>
+            <div id="recMap" class="rec-map"></div>
+            {% set loc = [['ESTABLISHED', F.dateEstablished], ['ADDRESS', F.placeAddress], ['LAT', entry.placeLat], ['LNG', entry.placeLng]]|filter(r => r[1]) %}
+            <div class="rec-rows">{% for r in loc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
 
-        <aside class="scv-side">
-          {% include "_partials/sidebar/location" with {
-            lat: entry.placeLat, lng: entry.placeLng, title: entry.title,
-            address: entry.placeAddress, established: entry.dateEstablished,
-            mapId: 'scv-place-map'
-          } only %}
+        {% set people = entry.placePeople.all() %}
+        {% if people|length %}
+          <div class="rec-box"><div class="rec-lab">ASSOCIATED PEOPLE</div>
+            {% for p in people %}
+              {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
+              {% set pp = p.title|split(' ')|filter(x => x|trim) %}
+              <a class="rec-person" href="{{ p.url }}">
+                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
+                <div style="min-width:0"><div class="n">{{ p.title }}</div>{% if p.occupation is defined and p.occupation %}<div class="r">{{ p.occupation }}</div>{% endif %}</div>
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
 
-          {% include "_partials/sidebar/meta" with { entry: entry } only %}
-          {% include "_partials/sidebar/cite" with { entry: entry } only %}
+        {% set boxes = [
+          { lab: 'ORGANIZATIONS', key: 'ORG', rows: entry.placeOrganizations.all() },
+          { lab: 'EVENTS', key: 'EVENT', rows: entry.placeEvents.all() },
+          { lab: 'ARTICLES', key: 'ARTICLE', rows: entry.placeArticles.all() },
+          { lab: 'ARTICLES DEPICTING', key: 'ARTICLE', rows: depicted },
+          { lab: 'RELATED PLACES', key: 'PLACE', rows: entry.relatedPlaces.all() }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
 
-          {% include "_partials/sidebar/related-list" with { title: 'Associated people', entries: entry.placePeople.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Organizations', entries: entry.placeOrganizations.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Events', entries: entry.placeEvents.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Articles', entries: entry.placeArticles.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Articles depicting this place', entries: depicted } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Related places', entries: entry.relatedPlaces.all() } only %}
+        {% if communities|length %}
+          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
+            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
 
-          {% if communities|length %}
-            {% embed "_partials/sidebar/box" with { title: 'Communities', communities: communities } only %}
-              {% block body %}<ul>{% for c in communities %}<li><a href="{{ url('places', { community: c.slug }) }}">{{ c.title }}</a></li>{% endfor %}</ul>{% endblock %}
-            {% endembed %}
-          {% endif %}
-
-          {% include "_partials/sidebar/external" with {
-            wikipedia: entry.placeWikipediaUrl ?? null,
-            chl: entry.placeChlUrl ?? null,
-            chlNumber: entry.placeChlNumber,
-            scvhl: entry.placeScvhlUrl ?? null,
-            legacy: entry.placeLegacyUrl ?: entry.legacyUrl
-          } only %}
-        </aside>
-      </div>
-    </div>
-  </main>
+        {% set links = [] %}
+        {% if entry.placeWikipediaUrl is defined and entry.placeWikipediaUrl %}{% set links = links|merge([{u: entry.placeWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
+        {% if entry.placeChlUrl is defined and entry.placeChlUrl %}{% set links = links|merge([{u: entry.placeChlUrl, t: 'California Historical Landmark'}]) %}{% endif %}
+        {% if entry.placeScvhlUrl is defined and entry.placeScvhlUrl %}{% set links = links|merge([{u: entry.placeScvhlUrl, t: 'SCV Historical Landmark'}]) %}{% endif %}
+        {% set legacy = F.placeLegacyUrl ?: F.legacyUrl %}
+        {% if legacy %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ legacy, t: 'View on legacy site'}]) %}{% endif %}
+        {% if links|length %}
+          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+      </aside>
+    </main>
+  </div>
 </div>
+
+{% if hasMap %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var el = document.getElementById('recMap');
+  if (!el || typeof L === 'undefined') { return; }
+  var map = L.map(el, { scrollWheelZoom: false }).setView([{{ entry.placeLat }}, {{ entry.placeLng }}], 14);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+  L.marker([{{ entry.placeLat }}, {{ entry.placeLng }}]).addTo(map)
+    .bindPopup({{ ('<b>' ~ entry.title ~ '</b>' ~ F.placeAddress)|json_encode|raw }});
+});
+</script>
+{% endif %}
 {% endblock %}

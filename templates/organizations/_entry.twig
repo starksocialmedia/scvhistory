@@ -1,94 +1,136 @@
 {% extends "_layouts/base" %}
 {% block head %}
-  {% include "_partials/scv-extra-css" %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
   {% if entry.orgLat and entry.orgLng %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
+  {% css %}.rec-map{height:220px;background:#EEF0F4;margin:-18px -20px 14px;width:calc(100% + 40px)}{% endcss %}
 {% endblock %}
 
 {% block content %}
-{% set communities = entry.neighborhood.all() %}
+{% set F = {} %}
+{% for h in ['body','termNotes','orgFinePrint','dateFounded','orgAliases','orgAddress','orgLegacyUrl','legacyUrl','culturalSensitivityNote'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
+{% set img = entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null %}
 {% set era = entry.historicalEra.one() ?? null %}
-{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
+{% set communities = entry.neighborhood.all() %}
+{% set periods = entry.historicalPeriod.all() %}
+{% set hasMap = entry.orgLat and entry.orgLng %}
 {% set parent = entry.parentOrganization.one() ?? null %}
-{% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).status(null).all() %}
-{% set publishedArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).status(null).all() %}
+{% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).status(null).orderBy('title asc').all() %}
+{% set publishedArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).status(null).orderBy('title asc').all() %}
+{% set prose = [F.body, F.termNotes]|filter(x => x)|join("\n\n") %}
 
-<div class="scv-page">
-  <section class="scv-hero">
-    <div class="scv-wrap">
-      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('organizations') }}">Organizations</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="scv-kicker">Organization</div>
-      <h1>{{ entry.title ?: entry.slug }}</h1>
-      {% if entry.orgAliases %}<p class="scv-aka">Also known as {{ entry.orgAliases }}</p>{% endif %}
-      {% if entry.dateFounded or entry.orgAddress %}
-        <div class="scv-facts">
-          {% if entry.dateFounded %}<div><b>Founded</b>{{ entry.dateFounded }}</div>{% endif %}
-          {% if entry.orgAddress %}<div><b>Address</b>{{ entry.orgAddress }}</div>{% endif %}
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('organizations') }}">Organizations</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
+        <div>
+          <div class="rec-kick"><span class="a">ORGANIZATIONS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if F.orgAliases %}<div class="rec-sub">Also known as {{ F.orgAliases }}</div>{% endif %}
+          {% if F.dateFounded or F.orgAddress %}
+            <div class="rec-facts">
+              {% if F.dateFounded %}<div><div class="l">FOUNDED</div><div class="v">{{ F.dateFounded }}</div></div>{% endif %}
+              {% if F.orgAddress %}<div><div class="l">ADDRESS</div><div class="v">{{ F.orgAddress }}</div></div>{% endif %}
+            </div>
+          {% endif %}
+          {% if periods|length or communities|length %}
+            <div class="rec-chips">
+              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in communities %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
         </div>
-      {% endif %}
-      {% if era or entry.historicalPeriod.all()|length or communities|length %}
-        <div class="scv-chips">
-          {% if era %}<span class="scv-chip">{{ era.title }}</span>{% endif %}
-          {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
-          {% for c in communities %}<a class="scv-chip solid" href="{{ url('organizations', { community: c.slug }) }}">{{ c.title }}</a>{% endfor %}
-        </div>
-      {% endif %}
+        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
+      </div>
     </div>
   </section>
 
-  <main class="scv-main">
-    <div class="scv-wrap">
-      <div class="scv-layout">
-        <div>
-          {% if hero %}
-            <figure class="scv-figure"><img src="{{ hero.url }}" alt="{{ hero.alt ?: entry.title }}">
-            {% if hero.title and hero.title != entry.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}</figure>
-          {% endif %}
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: prose, textId: 'recText' } only %}
+        {% if prose %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: prose } %}</div>{% endif %}
+        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+        {% if F.orgFinePrint %}<p class="rec-fine">{{ F.orgFinePrint }}</p>{% endif %}
+        {% include "_partials/record/cite" with { entry: entry, label: 'Organizations' } only %}
+      </article>
 
-          {% if entry.body or entry.termNotes or entry.orgFinePrint or entry.culturalSensitivityNote %}
-            <article class="scv-card">
-              {% if entry.body %}{% include "_partials/prose" with { text: entry.body } %}{% endif %}
-              {% if entry.termNotes %}{% include "_partials/prose" with { text: entry.termNotes } %}{% endif %}
-              {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
-              {% if entry.orgFinePrint %}<p class="scv-fine">{{ entry.orgFinePrint }}</p>{% endif %}
-            </article>
-          {% endif %}
-        </div>
+      <aside class="rec-side">
+        {% if hasMap %}
+          <div class="rec-box">
+            <div class="rec-lab">LOCATION</div>
+            <div id="recMap" class="rec-map"></div>
+            {% set loc = [['FOUNDED', F.dateFounded], ['ADDRESS', F.orgAddress], ['LAT', entry.orgLat], ['LNG', entry.orgLng]]|filter(r => r[1]) %}
+            <div class="rec-rows">{% for r in loc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
 
-        <aside class="scv-side">
-          {% include "_partials/sidebar/meta" with { entry: entry } only %}
-          {% include "_partials/sidebar/cite" with { entry: entry } only %}
+        {% set peopleBoxes = [
+          { lab: 'FOUNDED BY', rows: entry.orgFoundedBy.all() },
+          { lab: 'ASSOCIATED PEOPLE', rows: entry.orgAssociatedPersons.all() },
+          { lab: 'BOARD MEMBERS', rows: entry.boardMembers.all() }
+        ]|filter(b => b.rows|length) %}
+        {% for b in peopleBoxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            {% for p in b.rows %}
+              {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
+              {% set pp = p.title|split(' ')|filter(x => x|trim) %}
+              <a class="rec-person" href="{{ p.url }}">
+                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
+                <div style="min-width:0"><div class="n">{{ p.title }}</div>{% if p.occupation is defined and p.occupation %}<div class="r">{{ p.occupation }}</div>{% endif %}</div>
+              </a>
+            {% endfor %}
+          </div>
+        {% endfor %}
 
-          {% include "_partials/sidebar/location" with {
-            lat: entry.orgLat, lng: entry.orgLng, title: entry.title,
-            address: entry.orgAddress, established: entry.dateFounded,
-            zoom: 15, mapId: 'scv-org-map'
-          } only %}
+        {% set boxes = [
+          { lab: 'PARENT ORGANIZATION', key: 'PARENT', rows: parent ? [parent] : [] },
+          { lab: 'BOARDS AND SUBSIDIARIES', key: 'BOARD', rows: entry.subBoards.all() },
+          { lab: 'EVENTS', key: 'EVENT', rows: entry.orgEvents.all() },
+          { lab: 'ARTICLES', key: 'ARTICLE', rows: subjectArticles },
+          { lab: 'PUBLISHED BY THIS ORGANIZATION', key: 'ARTICLE', rows: publishedArticles }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
 
-          {% include "_partials/sidebar/related-list" with { title: 'Founded by', entries: entry.orgFoundedBy.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Associated people', entries: entry.orgAssociatedPersons.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Board members', entries: entry.boardMembers.all() } only %}
-          {% if parent %}
-            {% include "_partials/sidebar/related-list" with { title: 'Parent organization', entries: [parent] } only %}
-          {% endif %}
-          {% include "_partials/sidebar/related-list" with { title: 'Boards and subsidiaries', entries: entry.subBoards.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Events', entries: entry.orgEvents.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Articles', entries: subjectArticles } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Published by this organization', entries: publishedArticles } only %}
+        {% if communities|length %}
+          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
+            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
 
-          {% if communities|length %}
-            {% embed "_partials/sidebar/box" with { title: 'Communities', communities: communities } only %}
-              {% block body %}<ul>{% for c in communities %}<li>{{ c.title }}</li>{% endfor %}</ul>{% endblock %}
-            {% endembed %}
-          {% endif %}
-
-          {% include "_partials/sidebar/external" with {
-            website: entry.orgWebsite ?? null,
-            wikipedia: entry.orgWikipediaUrl ?? null,
-            legacy: entry.orgLegacyUrl ?: entry.legacyUrl
-          } only %}
-        </aside>
-      </div>
-    </div>
-  </main>
+        {% set links = [] %}
+        {% if entry.orgWebsite is defined and entry.orgWebsite %}{% set links = links|merge([{u: entry.orgWebsite, t: 'Official website'}]) %}{% endif %}
+        {% if entry.orgWikipediaUrl is defined and entry.orgWikipediaUrl %}{% set links = links|merge([{u: entry.orgWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
+        {% set legacy = F.orgLegacyUrl ?: F.legacyUrl %}
+        {% if legacy %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ legacy, t: 'View on legacy site'}]) %}{% endif %}
+        {% if links|length %}
+          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+      </aside>
+    </main>
+  </div>
 </div>
+
+{% if hasMap %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var el = document.getElementById('recMap');
+  if (!el || typeof L === 'undefined') { return; }
+  var map = L.map(el, { scrollWheelZoom: false }).setView([{{ entry.orgLat }}, {{ entry.orgLng }}], 15);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+  L.marker([{{ entry.orgLat }}, {{ entry.orgLng }}]).addTo(map)
+    .bindPopup({{ ('<b>' ~ entry.title ~ '</b>' ~ F.orgAddress)|json_encode|raw }});
+});
+</script>
+{% endif %}
 {% endblock %}

@@ -1,117 +1,146 @@
 {% extends "_layouts/base" %}
-{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
+{% endblock %}
 
 {% block content %}
+{% set F = {} %}
+{% for h in ['body','subheadline','originalPublishDate','originallyPublishedTitle','sourceLine','webmasterNoteTop','webmasterNoteBottom','photoSources','finePrint','archiveUrl','legacyUrl','culturalSensitivityNote'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
 {% set collection = entry.partOfCollection.one() ?? null %}
 {% set author = entry.writtenBy.one() ?? null %}
 {% set editor = entry.editedBy.one() ?? null %}
-{% set communities = entry.neighborhood.all() %}
 {% set era = entry.historicalEra.one() ?? null %}
-{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
+{% set communities = entry.neighborhood.all() %}
+{% set periods = entry.historicalPeriod.all() %}
+{% set siblings = collection ? (collection.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: collection, field: 'partOfCollection' }).status(null).all()) : [] %}
 
-<div class="scv-page">
-  <section class="scv-hero">
-    <div class="scv-wrap">
-      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a>{% if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="scv-kicker">{{ collection ? collection.title : 'Article' }}</div>
-      <h1>{{ entry.title ?: entry.slug }}</h1>
-      {% if entry.subheadline %}<p class="scv-lede">{{ entry.subheadline }}</p>{% endif %}
-      {% if author or entry.originalPublishDate or editor or entry.originallyPublishedTitle %}
-        <div class="scv-facts">
-          {% if author %}<div><b>By</b>{{ author.title }}</div>{% endif %}
-          {% if editor %}<div><b>Edited by</b>{{ editor.title }}</div>{% endif %}
-          {% if entry.originalPublishDate %}<div><b>Published</b>{{ entry.originalPublishDate }}</div>{% endif %}
-          {% if entry.originallyPublishedTitle %}<div><b>Originally titled</b>{{ entry.originallyPublishedTitle }}</div>{% endif %}
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a>{% if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="rec-head rec-head--noart">
+        <div>
+          <div class="rec-kick"><span class="a">ARTICLES</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if F.subheadline %}<div class="rec-sub">{{ F.subheadline }}</div>{% endif %}
+          {% if author or editor or F.originalPublishDate or collection %}
+            <div class="rec-facts">
+              {% if author %}<div><div class="l">BY</div><div class="v">{{ author.title }}</div></div>{% endif %}
+              {% if editor %}<div><div class="l">EDITED BY</div><div class="v">{{ editor.title }}</div></div>{% endif %}
+              {% if F.originalPublishDate %}<div><div class="l">PUBLISHED</div><div class="v">{{ F.originalPublishDate }}</div></div>{% endif %}
+              {% if collection %}<div><div class="l">COLLECTION</div><div class="v">{{ collection.title }}</div></div>{% endif %}
+            </div>
+          {% endif %}
+          {% if periods|length or communities|length %}
+            <div class="rec-chips">
+              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in communities %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
         </div>
-      {% endif %}
-      {% if era or entry.historicalPeriod.all()|length or communities|length %}
-        <div class="scv-chips">
-          {% if era %}<a class="scv-chip" href="{{ url('articles', { era: era.slug }) }}">{{ era.title }}</a>{% endif %}
-          {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
-          {% for c in communities %}<span class="scv-chip solid">{{ c.title }}</span>{% endfor %}
-        </div>
-      {% endif %}
+      </div>
     </div>
   </section>
 
-  <main class="scv-main">
-    <div class="scv-wrap">
-      <div class="scv-layout">
-        <div>
-          {% if hero %}
-            <figure class="scv-figure"><img src="{{ hero.url }}" alt="{{ hero.alt ?: entry.title }}">
-            {% if hero.title and hero.title != entry.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}</figure>
-          {% endif %}
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% if F.webmasterNoteTop %}<div class="rec-note">{{ F.webmasterNoteTop }}</div>{% endif %}
+        {% if F.sourceLine %}<div class="rec-lede">{{ F.sourceLine }}</div>{% endif %}
+        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body } %}</div>{% endif %}
+        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+        {% if F.webmasterNoteBottom %}<div class="rec-note" style="margin-top:24px">{{ F.webmasterNoteBottom }}</div>{% endif %}
+        {% if F.photoSources %}<p class="rec-fine">{{ F.photoSources }}</p>{% endif %}
+        {% if F.finePrint %}<p class="rec-fine">{{ F.finePrint }}</p>{% endif %}
 
-          <article class="scv-card">
-            {% if entry.webmasterNoteTop %}<div class="scv-note">{{ entry.webmasterNoteTop }}</div>{% endif %}
-            {% if entry.sourceLine %}<p class="scv-sub">{{ entry.sourceLine }}</p>{% endif %}
-            {% if entry.body %}{% include "_partials/prose" with { text: entry.body } %}{% endif %}
-            {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
-            {% if entry.webmasterNoteBottom %}<div class="scv-note">{{ entry.webmasterNoteBottom }}</div>{% endif %}
-            {% if entry.photoSources %}<p class="scv-fine">{{ entry.photoSources }}</p>{% endif %}
-            {% if entry.finePrint %}<p class="scv-fine">{{ entry.finePrint }}</p>{% endif %}
-          </article>
-
-          {% if collection %}
-            {% set siblings = collection.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: collection, field: 'partOfCollection' }).status(null).all() %}
-            {% set idx = null %}
-            {% for a in siblings %}{% if a.id == entry.id %}{% set idx = loop.index0 %}{% endif %}{% endfor %}
-            {% if idx is not null %}
-              {% set prev = idx > 0 ? siblings[idx - 1] : null %}
-              {% set next = idx < (siblings|length - 1) ? siblings[idx + 1] : null %}
-              {% if prev or next %}
-                <nav class="scv-pager">
-                  <div>{% if prev %}<span class="l">Previous</span><a href="{{ prev.url }}">{{ prev.title }}</a>{% endif %}</div>
-                  <div style="text-align:right">{% if next %}<span class="l">Next</span><a href="{{ next.url }}">{{ next.title }}</a>{% endif %}</div>
-                </nav>
-              {% endif %}
+        {% if collection and siblings|length %}
+          {% set idx = null %}
+          {% for a in siblings %}{% if a.id == entry.id %}{% set idx = loop.index0 %}{% endif %}{% endfor %}
+          {% if idx is not null %}
+            {% set prev = idx > 0 ? siblings[idx - 1] : null %}
+            {% set next = idx < (siblings|length - 1) ? siblings[idx + 1] : null %}
+            {% if prev or next %}
+              <nav class="rec-pager">
+                <div>{% if prev %}<span class="l">PREVIOUS</span><a href="{{ prev.url }}">{{ prev.title }}</a>{% endif %}</div>
+                <div style="text-align:right">{% if next %}<span class="l">NEXT</span><a href="{{ next.url }}">{{ next.title }}</a>{% endif %}</div>
+              </nav>
             {% endif %}
           {% endif %}
+        {% endif %}
 
-          {% if author and author.authorBio is defined and author.authorBio %}
-            <h2 class="scv-h2">About the author</h2>
-            <article class="scv-card">
-              <p class="scv-sub"><a href="{{ author.url }}">{{ author.title }}</a></p>
-              {% if author.occupation %}<p class="scv-fine" style="margin-top:0">{{ author.occupation }}</p>{% endif %}
-              {% include "_partials/prose" with { text: author.authorBio } %}
-            </article>
-          {% endif %}
-        </div>
+        {% if author and author.authorBio is defined and author.authorBio %}
+          <h2 class="rec-h2">About the author</h2>
+          <div class="rec-body">
+            <p><strong><a href="{{ author.url }}">{{ author.title }}</a></strong>{% if author.occupation is defined and author.occupation %} &middot; {{ author.occupation }}{% endif %}</p>
+            {% include "_partials/prose" with { text: author.authorBio } %}
+          </div>
+        {% endif %}
 
-        <aside class="scv-side">
-          {% include "_partials/sidebar/meta" with { entry: entry } only %}
-          {% include "_partials/sidebar/cite" with { entry: entry, author: author, collection: collection, date: entry.originalPublishDate } only %}
+        {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles' } only %}
+      </article>
 
-          {% if collection %}
-            {% set siblings = collection.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: collection, field: 'partOfCollection' }).status(null).all() %}
-            {% if siblings|length > 1 %}
-              {% embed "_partials/sidebar/box" with { title: 'In this collection', siblings: siblings, currentId: entry.id } only %}
-                {% block body %}<ul>{% for s in siblings %}<li>{% if s.id == currentId %}<strong>{{ s.title }}</strong>{% else %}<a href="{{ s.url }}">{{ s.title }}</a>{% endif %}</li>{% endfor %}</ul>{% endblock %}
-              {% endembed %}
-            {% endif %}
-          {% endif %}
+      <aside class="rec-side">
+        {% set meta = [['ORIGINAL TITLE', F.originallyPublishedTitle], ['PUBLISHED', F.originalPublishDate], ['SOURCE', F.sourceLine]]|filter(r => r[1]) %}
+        {% if meta|length %}
+          <div class="rec-box"><div class="rec-lab">THIS ARTICLE</div>
+            <div class="rec-rows">{% for r in meta %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
 
-          {% if author %}{% include "_partials/sidebar/related-list" with { title: 'Written by', entries: [author] } only %}{% endif %}
-          {% if editor %}{% include "_partials/sidebar/related-list" with { title: 'Edited by', entries: [editor] } only %}{% endif %}
-          {% include "_partials/sidebar/related-list" with { title: 'People in this article', entries: entry.subjectPerson.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Organizations', entries: entry.subjectOrganization.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Groups', entries: entry.subjectGroup.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Places', entries: entry.depictsPlace.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Events', entries: entry.articleEvents.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Published by', entries: entry.publishedBy.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Related articles', entries: entry.relatedArticles.all() } only %}
+        {% if collection and siblings|length > 1 %}
+          <div class="rec-box"><div class="rec-lab">IN THIS COLLECTION</div>
+            <div class="rec-rows">{% for s in siblings %}<div class="k">{{ loop.index }}</div><div class="v">{% if s.id == entry.id %}<strong>{{ s.title }}</strong>{% else %}<a href="{{ s.url }}">{{ s.title }}</a>{% endif %}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
 
-          {% if communities|length %}
-            {% embed "_partials/sidebar/box" with { title: 'Communities', communities: communities } only %}
-              {% block body %}<ul>{% for c in communities %}<li>{{ c.title }}</li>{% endfor %}</ul>{% endblock %}
-            {% endembed %}
-          {% endif %}
+        {% set credits = [{ lab: 'WRITTEN BY', rows: author ? [author] : [] }, { lab: 'EDITED BY', rows: editor ? [editor] : [] }, { lab: 'PEOPLE IN THIS ARTICLE', rows: entry.subjectPerson.all() }]|filter(b => b.rows|length) %}
+        {% for b in credits %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            {% for p in b.rows %}
+              {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
+              {% set pp = p.title|split(' ')|filter(x => x|trim) %}
+              <a class="rec-person" href="{{ p.url }}">
+                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
+                <div style="min-width:0"><div class="n">{{ p.title }}</div>{% if p.occupation is defined and p.occupation %}<div class="r">{{ p.occupation }}</div>{% endif %}</div>
+              </a>
+            {% endfor %}
+          </div>
+        {% endfor %}
 
-          {% include "_partials/sidebar/external" with { archive: entry.archiveUrl, legacy: entry.legacyUrl } only %}
-        </aside>
-      </div>
-    </div>
-  </main>
+        {% set boxes = [
+          { lab: 'ORGANIZATIONS', key: 'ORG', rows: entry.subjectOrganization.all() },
+          { lab: 'GROUPS', key: 'GROUP', rows: entry.subjectGroup.all() },
+          { lab: 'PLACES', key: 'PLACE', rows: entry.depictsPlace.all() },
+          { lab: 'EVENTS', key: 'EVENT', rows: entry.articleEvents.all() },
+          { lab: 'PUBLISHED BY', key: 'SOURCE', rows: entry.publishedBy.all() },
+          { lab: 'RELATED ARTICLES', key: 'ARTICLE', rows: entry.relatedArticles.all() }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
+
+        {% if communities|length %}
+          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
+            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% set links = [] %}
+        {% if F.archiveUrl %}{% set links = links|merge([{u: F.archiveUrl, t: 'Archive.org'}]) %}{% endif %}
+        {% if F.legacyUrl %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ F.legacyUrl, t: 'View on legacy site'}]) %}{% endif %}
+        {% if links|length %}
+          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+      </aside>
+    </main>
+  </div>
 </div>
 {% endblock %}

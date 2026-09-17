@@ -1,74 +1,104 @@
 {% extends "_layouts/base" %}
-{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
+{% endblock %}
 
 {% block content %}
-{#
-  The obituary field layout has no featuredImage, so there is no hero here.
-#}
-{% set subject = entry.obitSubject.one() ?? null %}
-{% set communities = entry.neighborhood.all() %}
+{% set F = {} %}
+{% for h in ['body','publicationDetails','obitDateOfDeath','obitDatePublished','obitLegacyUrl','legacyUrl','obitWebmasterNoteTop','obitWebmasterNoteBottom','culturalSensitivityNote'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
 {% set era = entry.historicalEra.one() ?? null %}
+{% set communities = entry.neighborhood.all() %}
+{% set periods = entry.historicalPeriod.all() %}
+{% set subject = entry.obitSubject.one() ?? null %}
 
-<div class="scv-page">
-  <section class="scv-hero">
-    <div class="scv-wrap">
-      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('obituaries') }}">Obituaries</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="scv-kicker">Obituary</div>
-      <h1>{{ entry.title ?: entry.slug }}</h1>
-      {% if entry.obitDateOfDeath or entry.obitDatePublished or entry.publicationDetails %}
-        <div class="scv-facts">
-          {% if entry.obitDateOfDeath %}<div><b>Died</b>{{ entry.obitDateOfDeath }}</div>{% endif %}
-          {% if entry.obitDatePublished %}<div><b>Published</b>{{ entry.obitDatePublished }}</div>{% endif %}
-          {% if entry.publicationDetails %}<div><b>Publication</b>{{ entry.publicationDetails }}</div>{% endif %}
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('obituaries') }}">Obituaries</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="rec-head rec-head--noart">
+        <div>
+          <div class="rec-kick"><span class="a">OBITUARIES</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if F.publicationDetails %}<div class="rec-sub">{{ F.publicationDetails }}</div>{% endif %}
+          {% if F.obitDateOfDeath or F.obitDatePublished %}
+            <div class="rec-facts">
+              {% if F.obitDateOfDeath %}<div><div class="l">DIED</div><div class="v">{{ F.obitDateOfDeath }}</div></div>{% endif %}
+              {% if F.obitDatePublished %}<div><div class="l">PUBLISHED</div><div class="v">{{ F.obitDatePublished }}</div></div>{% endif %}
+            </div>
+          {% endif %}
+          {% if periods|length or communities|length %}
+            <div class="rec-chips">
+              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in communities %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
         </div>
-      {% endif %}
-      {% if era or entry.historicalPeriod.all()|length or communities|length %}
-        <div class="scv-chips">
-          {% if era %}<span class="scv-chip">{{ era.title }}</span>{% endif %}
-          {% for p in entry.historicalPeriod.all() %}<span class="scv-chip">{{ p.title }}</span>{% endfor %}
-          {% for c in communities %}<span class="scv-chip solid">{{ c.title }}</span>{% endfor %}
-        </div>
-      {% endif %}
+      </div>
     </div>
   </section>
 
-  <main class="scv-main">
-    <div class="scv-wrap">
-      <div class="scv-layout">
-        <div>
-          {% if entry.body or entry.obitWebmasterNoteTop or entry.obitWebmasterNoteBottom or entry.culturalSensitivityNote %}
-            <article class="scv-card">
-              {% if entry.obitWebmasterNoteTop %}<div class="scv-note">{{ entry.obitWebmasterNoteTop }}</div>{% endif %}
-              {% if entry.body %}{% include "_partials/prose" with { text: entry.body } %}{% endif %}
-              {% if entry.culturalSensitivityNote %}<div class="scv-note">{{ entry.culturalSensitivityNote }}</div>{% endif %}
-              {% if entry.obitWebmasterNoteBottom %}<div class="scv-note">{{ entry.obitWebmasterNoteBottom }}</div>{% endif %}
-            </article>
-          {% endif %}
-        </div>
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% if F.obitWebmasterNoteTop %}<div class="rec-note">{{ F.obitWebmasterNoteTop }}</div>{% endif %}
+        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body } %}</div>{% endif %}
+        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+        {% if F.obitWebmasterNoteBottom %}<div class="rec-note" style="margin-top:24px">{{ F.obitWebmasterNoteBottom }}</div>{% endif %}
+        {% include "_partials/record/cite" with { entry: entry, label: 'Obituaries', date: F.obitDatePublished } only %}
+      </article>
 
-        <aside class="scv-side">
-          {% include "_partials/sidebar/meta" with { entry: entry } only %}
-          {% include "_partials/sidebar/cite" with { entry: entry, date: entry.obitDatePublished } only %}
+      <aside class="rec-side">
+        {% if subject %}
+          {% set simg = subject.featuredImage is defined ? subject.featuredImage.one() ?? null : null %}
+          {% set sp = subject.title|split(' ')|filter(x => x|trim) %}
+          <div class="rec-box"><div class="rec-lab">SUBJECT</div>
+            <a class="rec-person" href="{{ subject.url }}">
+              <div class="th">{% if simg %}<img src="{{ simg.url }}" alt="">{% else %}{{ (sp|length > 1 ? sp|first|slice(0,1) ~ sp|last|slice(0,1) : subject.title|slice(0,1))|upper }}{% endif %}</div>
+              <div style="min-width:0"><div class="n">{{ subject.title }}</div>{% if subject.occupation is defined and subject.occupation %}<div class="r">{{ subject.occupation }}</div>{% endif %}</div>
+            </a>
+          </div>
+        {% endif %}
 
-          {% if subject %}{% include "_partials/sidebar/related-list" with { title: 'Subject', entries: [subject] } only %}{% endif %}
-          {% include "_partials/sidebar/related-list" with { title: 'Published in', entries: entry.obitPublishedIn.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Group', entries: entry.obitGroup.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'Related people', entries: entry.obitRelatedPersons.all() } only %}
-          {% include "_partials/sidebar/related-list" with { title: 'War Memorial', entries: entry.obitRelatedMilitary.all() } only %}
+        {% set pub = [['PUBLICATION', F.publicationDetails], ['DIED', F.obitDateOfDeath], ['PUBLISHED', F.obitDatePublished]]|filter(r => r[1]) %}
+        {% if pub|length %}
+          <div class="rec-box"><div class="rec-lab">PUBLICATION</div>
+            <div class="rec-rows">{% for r in pub %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+          </div>
+        {% endif %}
 
-          {% if communities|length %}
-            {% embed "_partials/sidebar/box" with { title: 'Communities', communities: communities } only %}
-              {% block body %}<ul>{% for c in communities %}<li>{{ c.title }}</li>{% endfor %}</ul>{% endblock %}
-            {% endembed %}
-          {% endif %}
+        {% set boxes = [
+          { lab: 'PUBLISHED IN', key: 'SOURCE', rows: entry.obitPublishedIn.all() },
+          { lab: 'GROUP', key: 'GROUP', rows: entry.obitGroup.all() },
+          { lab: 'RELATED PEOPLE', key: 'PERSON', rows: entry.obitRelatedPersons.all() },
+          { lab: 'WAR MEMORIAL', key: 'RECORD', rows: entry.obitRelatedMilitary.all() }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
 
-          {% include "_partials/sidebar/external" with {
-            grave: entry.obitGraveUrl ?? null,
-            legacy: entry.obitLegacyUrl ?: entry.legacyUrl
-          } only %}
-        </aside>
-      </div>
-    </div>
-  </main>
+        {% if communities|length %}
+          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
+            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% set links = [] %}
+        {% if entry.obitGraveUrl is defined and entry.obitGraveUrl %}{% set links = links|merge([{u: entry.obitGraveUrl, t: 'Find a Grave'}]) %}{% endif %}
+        {% set legacy = F.obitLegacyUrl ?: F.legacyUrl %}
+        {% if legacy %}{% set links = links|merge([{u: 'https://scvhistory.com' ~ legacy, t: 'View on legacy site'}]) %}{% endif %}
+        {% if links|length %}
+          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+      </aside>
+    </main>
+  </div>
 </div>
 {% endblock %}
