@@ -43,10 +43,96 @@ fieldLayouts:
             handle: null
             instructions: null
             label: null
+            oldFieldUid: null
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: dce2d17e-1a86-43ee-92d8-94dd3788dd51
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1f1e0b5a-e874-40b9-9a54-cf6acef1dd94 # Body
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cb634abf-64d2-4b5a-8cd7-36446b31706f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f9985d92-a139-4549-a734-787b59ea727e # Also Known As
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ccc9bfba-6fa7-4e00-b40d-01c4ffc53719
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 5c3991a3-9e32-4d91-a8ec-ef6de06542b2 # Community Type
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 91ea9741-c819-4ac8-83b1-517a8fbd7711
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 250dd588-f834-454a-88da-ebaa6a23b19b # Community Latitude
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8b19ea5c-e55a-4953-a511-c6f952ba59bd
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b0277f4b-3261-4d3a-afa8-4f102a1b2c74 # Community Longitude
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0421c41f-f2a6-44b8-ab48-ccd02cfc189f
             userCondition: null
             warning: null
             width: 100
@@ -55,7 +141,7 @@ fieldLayouts:
         userCondition: null
     thumbFieldKey: null
 handle: neighborhood
-name: Neighborhood
+name: Communities
 siteSettings:
   3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
     hasUrls: false
