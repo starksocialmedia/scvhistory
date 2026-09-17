@@ -1,47 +1,75 @@
 {% extends "_layouts/base" %}
 {% block title %}Groups | SCVHistory.com{% endblock %}
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
 {% block content %}
 {% set eraSlug = craft.app.request.getParam('era') %}
+{% set all = craft.entries().section('groups').status(null).orderBy('title asc').all() %}
 {% set query = craft.entries().section('groups').status(null).orderBy('title asc') %}
 {% if eraSlug %}
-  {% set eraTerm = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
-  {% if eraTerm %}{% set query = query.relatedTo(eraTerm) %}{% endif %}
+  {% set term = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
+  {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
 {% endif %}
 {% set groups = query.all() %}
-<div class="scv-doc">
-  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; Groups</div>
-  <div style="padding:10px 0 60px">
-    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">Groups</h1>
-    <p style="max-width:660px;color:#3c3934">Collectives that are not formal organizations: families, tribes and nations, expeditions, and military units.</p>
-    <div class="scv-chips" style="margin-top:22px">
-      <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('groups') }}">All eras</a>
+
+{% set peopleTotal = 0 %}
+{% for g in all %}{% set peopleTotal = peopleTotal + g.groupPersons.count() %}{% endfor %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Groups</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Families, tribes, expeditions</div>
+          <h1>Groups</h1>
+          <p class="scv-lede">Collectives that are not formal organizations: families, tribes and nations, expeditions, and military units.</p>
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ all|length }}</b><span>Groups</span></div>
+          {% if peopleTotal %}<div><b>{{ peopleTotal }}</b><span>People linked</span></div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scv-filters">
+    <div class="scv-wrap">
+      <div class="scv-lab">Era</div>
+      <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('groups') }}">All</a>
       {% for e in craft.categories().group('historicalEra').status(null).all() %}
         {% set n = craft.entries().section('groups').relatedTo(e).status(null).count() %}
         {% if n %}<a class="scv-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('groups', { era: e.slug }) }}">{{ e.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
+      <div class="scv-count">{{ eraSlug ? groups|length ~ ' of ' ~ all|length : all|length }} groups</div>
     </div>
-    <p class="scv-small">{{ groups|length }} group{{ groups|length == 1 ? '' : 's' }}</p>
-    {% if groups|length %}
-      <ul class="scv-list">
-        {% for g in groups %}
-          {% set era = g.historicalEra.one() ?? null %}
-          {% set n = g.groupPersons.count() %}
-          <li>
-            <a href="{{ g.url }}">{{ g.title ?: g.slug }}</a>
-            <div class="scv-small">
-              {% if g.groupDateStart %}{{ g.groupDateStart }}{% if g.groupDateEnd %} to {{ g.groupDateEnd }}{% endif %}{% endif %}
-              {% if g.groupDateStart and era %} &middot; {% endif %}
-              {% if era %}{{ era.title }}{% endif %}
-              {% if n and (g.groupDateStart or era) %} &middot; {% endif %}
-              {% if n %}{{ n }} {{ n == 1 ? 'person' : 'people' }}{% endif %}
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="scv-small">No groups match this filter.</p>
-    {% endif %}
-  </div>
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if groups|length %}
+        <div class="scv-cards">
+          {% for g in groups %}
+            {% set img = (g.featuredImage is defined and g.featuredImage) ? g.featuredImage.one() ?? null : null %}
+            {% set era = g.historicalEra.one() ?? null %}
+            {% set n = g.groupPersons.count() %}
+            <a class="scv-tile" href="{{ g.url }}">
+              <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ (g.title ?: g.slug)|slice(0,1)|upper }}</span>{% endif %}</div>
+              <div class="scv-tilebody">
+                <h3>{{ g.title ?: g.slug }}</h3>
+                {% if g.groupDateStart or g.groupDateEnd %}
+                  <div class="scv-tilemeta">{{ g.groupDateStart }}{% if g.groupDateEnd %} to {{ g.groupDateEnd }}{% endif %}</div>
+                {% endif %}
+                {% if n %}<div class="scv-tilemeta">{{ n }} {{ n == 1 ? 'person' : 'people' }}</div>{% endif %}
+                <div class="scv-tilefoot">{{ era ? era.title : 'Era not set' }}</div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="scv-empty">No groups in this era yet. <a href="{{ url('groups') }}">Show all</a></div>
+      {% endif %}
+    </div>
+  </main>
 </div>
 {% endblock %}

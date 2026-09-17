@@ -1,44 +1,78 @@
 {% extends "_layouts/base" %}
 {% block title %}Organizations | SCVHistory.com{% endblock %}
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
 {% block content %}
-{% set activeHood = craft.app.request.getParam('neighborhood') %}
+{% set comSlug = craft.app.request.getParam('community') %}
+{% set all = craft.entries().section('organizations').status(null).orderBy('title asc').all() %}
 {% set query = craft.entries().section('organizations').status(null).orderBy('title asc') %}
-{% if activeHood %}
-  {% set hoodCat = craft.categories().group('neighborhood').slug(activeHood).status(null).one() %}
-  {% if hoodCat %}{% set query = query.relatedTo(hoodCat) %}{% endif %}
+{% if comSlug %}
+  {% set term = craft.categories().group('neighborhood').slug(comSlug).status(null).one() %}
+  {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
 {% endif %}
 {% set orgs = query.all() %}
-<div class="scv-doc">
-  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; Organizations</div>
-  <div style="padding:10px 0 60px">
-    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">Organizations</h1>
-    <p style="max-width:660px;color:#3c3934">Bodies that act in the valley's history: companies, agencies, missions, ranchos, newspapers, and the institutions that governed, employed, and published.</p>
-    <div class="scv-chips" style="margin-top:22px">
-      <a class="scv-chip {{ not activeHood ? 'on' : '' }}" href="{{ url('organizations') }}">All communities</a>
-      {% for hood in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
-        {% set n = craft.entries().section('organizations').relatedTo(hood).status(null).count() %}
-        {% if n %}<a class="scv-chip {{ activeHood == hood.slug ? 'on' : '' }}" href="{{ url('organizations', { neighborhood: hood.slug }) }}">{{ hood.title }} ({{ n }})</a>{% endif %}
-      {% endfor %}
+
+{% set comIds = [] %}
+{% set earliest = null %}
+{% for o in all %}
+  {% for c in o.neighborhood.all() %}{% if c.id not in comIds %}{% set comIds = comIds|merge([c.id]) %}{% endif %}{% endfor %}
+  {% set y = o.dateFounded ? o.dateFounded|slice(-4) : '' %}
+  {% if y matches '/^\\d{4}$/' and (earliest is null or y < earliest) %}{% set earliest = y %}{% endif %}
+{% endfor %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Organizations</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Bodies that act</div>
+          <h1>Organizations</h1>
+          <p class="scv-lede">Companies, agencies, missions, ranchos, newspapers, and the institutions that governed, employed, and published in the Santa Clarita Valley.</p>
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ all|length }}</b><span>Organizations</span></div>
+          <div><b>{{ comIds|length }}</b><span>Communities</span></div>
+          {% if earliest %}<div><b>{{ earliest }}</b><span>Earliest founded</span></div>{% endif %}
+        </div>
+      </div>
     </div>
-    <p class="scv-small">{{ orgs|length }} organization{{ orgs|length == 1 ? '' : 's' }}</p>
-    {% if orgs|length %}
-      <ul class="scv-list">
-        {% for org in orgs %}
-          {% set hoods = org.neighborhood.all() %}
-          <li>
-            <a href="{{ org.url }}">{{ org.title ?: org.slug }}</a>
-            <div class="scv-small">
-              {% if org.dateFounded %}Est. {{ org.dateFounded }}{% endif %}
-              {% if org.dateFounded and hoods|length %} &middot; {% endif %}
-              {% for h in hoods %}{{ h.title }}{% if not loop.last %}, {% endif %}{% endfor %}
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="scv-small">No organizations match this filter.</p>
-    {% endif %}
-  </div>
+  </section>
+
+  <section class="scv-filters">
+    <div class="scv-wrap">
+      <div class="scv-lab">Community</div>
+      <a class="scv-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('organizations') }}">All</a>
+      {% for c in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
+        {% set n = craft.entries().section('organizations').relatedTo(c).status(null).count() %}
+        {% if n %}<a class="scv-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('organizations', { community: c.slug }) }}">{{ c.title }} ({{ n }})</a>{% endif %}
+      {% endfor %}
+      <div class="scv-count">{{ comSlug ? orgs|length ~ ' of ' ~ all|length : all|length }} organizations</div>
+    </div>
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if orgs|length %}
+        <div class="scv-cards">
+          {% for o in orgs %}
+            {% set img = (o.featuredImage is defined and o.featuredImage) ? o.featuredImage.one() ?? null : null %}
+            {% set com = o.neighborhood.one() ?? null %}
+            <a class="scv-tile" href="{{ o.url }}">
+              <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ (o.title ?: o.slug)|slice(0,1)|upper }}</span>{% endif %}</div>
+              <div class="scv-tilebody">
+                <h3>{{ o.title ?: o.slug }}</h3>
+                {% if o.dateFounded %}<div class="scv-tilemeta">Founded {{ o.dateFounded }}</div>{% endif %}
+                {% if o.orgAliases %}<div class="scv-tilemeta">{{ o.orgAliases }}</div>{% endif %}
+                <div class="scv-tilefoot">{{ com ? com.title : 'Community not set' }}</div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="scv-empty">No organizations in this community yet. <a href="{{ url('organizations') }}">Show all</a></div>
+      {% endif %}
+    </div>
+  </main>
 </div>
 {% endblock %}

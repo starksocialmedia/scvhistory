@@ -1,0 +1,82 @@
+{% extends "_layouts/base" %}
+{% block title %}Obituaries | SCVHistory.com{% endblock %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
+{% block content %}
+{% set eraSlug = craft.app.request.getParam('era') %}
+{% set all = craft.entries().section('obituaries').status(null).orderBy('title asc').all() %}
+{% set query = craft.entries().section('obituaries').status(null).orderBy('title asc') %}
+{% if eraSlug %}
+  {% set term = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
+  {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
+{% endif %}
+{% set obits = query.all() %}
+
+{% set withSubject = 0 %}
+{% for o in all %}{% if o.obitSubject.count() %}{% set withSubject = withSubject + 1 %}{% endif %}{% endfor %}
+
+{% set eraChips = [] %}
+{% for e in craft.categories().group('historicalEra').status(null).all() %}
+  {% set n = craft.entries().section('obituaries').relatedTo(e).status(null).count() %}
+  {% if n %}{% set eraChips = eraChips|merge([{term: e, n: n}]) %}{% endif %}
+{% endfor %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Obituaries</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Lives remembered</div>
+          <h1>Obituaries</h1>
+          <p class="scv-lede">Obituaries as the newspapers that ran them published them, linked to the people and records they describe.</p>
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ all|length }}</b><span>{{ all|length == 1 ? 'Obituary' : 'Obituaries' }}</span></div>
+          {% if withSubject %}<div><b>{{ withSubject }}</b><span>Linked to a person</span></div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if eraChips|length %}
+    <section class="scv-filters">
+      <div class="scv-wrap">
+        <div class="scv-lab">Era</div>
+        <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('obituaries') }}">All</a>
+        {% for c in eraChips %}
+          <a class="scv-chip {{ eraSlug == c.term.slug ? 'on' : '' }}" href="{{ url('obituaries', { era: c.term.slug }) }}">{{ c.term.title }} ({{ c.n }})</a>
+        {% endfor %}
+        <div class="scv-count">{{ eraSlug ? obits|length ~ ' of ' ~ all|length : all|length }} obituaries</div>
+      </div>
+    </section>
+  {% endif %}
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if obits|length %}
+        <div class="scv-cards">
+          {% for o in obits %}
+            {% set subject = o.obitSubject.one() ?? null %}
+            {% set img = (subject and subject.featuredImage is defined and subject.featuredImage) ? subject.featuredImage.one() ?? null : null %}
+            {% set parts = (o.title ?: o.slug)|split(' ')|filter(w => w|trim) %}
+            {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : (o.title ?: o.slug)|slice(0,1) %}
+            {% set era = o.historicalEra.one() ?? null %}
+            <a class="scv-tile" href="{{ o.url }}">
+              <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ initials|upper }}</span>{% endif %}</div>
+              <div class="scv-tilebody">
+                <h3>{{ o.title ?: o.slug }}</h3>
+                {% if o.obitDateOfDeath %}<div class="scv-tilemeta">Died {{ o.obitDateOfDeath }}</div>{% endif %}
+                {% if o.publicationDetails %}<div class="scv-tilemeta">{{ o.publicationDetails }}</div>{% endif %}
+                <div class="scv-tilefoot">{{ era ? era.title : (o.obitDatePublished ?: 'Obituary') }}</div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="scv-empty">No obituaries in this era yet. <a href="{{ url('obituaries') }}">Show all</a></div>
+      {% endif %}
+    </div>
+  </main>
+</div>
+{% endblock %}

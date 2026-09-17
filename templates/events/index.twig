@@ -1,54 +1,73 @@
 {% extends "_layouts/base" %}
 {% block title %}Events | SCVHistory.com{% endblock %}
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
 {% block content %}
 {% set eraSlug = craft.app.request.getParam('era') %}
+{% set all = craft.entries().section('events').status(null).orderBy('title asc').all() %}
 {% set query = craft.entries().section('events').status(null).orderBy('title asc') %}
 {% if eraSlug %}
-  {% set eraTerm = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
-  {% if eraTerm %}{% set query = query.relatedTo(eraTerm) %}{% endif %}
+  {% set term = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
+  {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
 {% endif %}
 {% set events = query.all() %}
-<div class="scv-doc">
-  <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; Events</div>
-  <div style="padding:10px 0 60px">
-    <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:44px;color:#b8860b;margin:6px 0 8px">Events</h1>
-    <p style="max-width:660px;color:#3c3934">Things that happened in the Santa Clarita Valley: disasters, arrivals, incidents, and the days the valley still remembers.</p>
-    <div class="scv-chips" style="margin-top:22px">
-      <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('events') }}">All eras</a>
+
+{% set periodIds = [] %}
+{% for e in all %}{% for p in e.historicalPeriod.all() %}{% if p.id not in periodIds %}{% set periodIds = periodIds|merge([p.id]) %}{% endif %}{% endfor %}{% endfor %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Events</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Days the valley changed</div>
+          <h1>Events</h1>
+          <p class="scv-lede">Things that happened in the Santa Clarita Valley: disasters, arrivals, incidents, and the days the valley still remembers.</p>
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ all|length }}</b><span>{{ all|length == 1 ? 'Event' : 'Events' }}</span></div>
+          {% if periodIds|length %}<div><b>{{ periodIds|length }}</b><span>Periods</span></div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scv-filters">
+    <div class="scv-wrap">
+      <div class="scv-lab">Era</div>
+      <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('events') }}">All</a>
       {% for e in craft.categories().group('historicalEra').status(null).all() %}
         {% set n = craft.entries().section('events').relatedTo(e).status(null).count() %}
         {% if n %}<a class="scv-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('events', { era: e.slug }) }}">{{ e.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
+      <div class="scv-count">{{ eraSlug ? events|length ~ ' of ' ~ all|length : all|length }} events</div>
     </div>
-    <p class="scv-small">{{ events|length }} event{{ events|length == 1 ? '' : 's' }}</p>
-    {% if events|length %}
-      {% set grouped = {} %}
-      {% for ev in events %}
-        {% set period = ev.historicalPeriod.one() ?? null %}
-        {% set key = period ? period.title : 'Period not recorded' %}
-        {% set grouped = grouped|merge({ (key): (grouped[key] ?? [])|merge([ev]) }) %}
-      {% endfor %}
-      {% for periodName, items in grouped %}
-        <h2 class="scv-h2">{{ periodName }}</h2>
-        <ul class="scv-list">
-          {% for ev in items %}
-            {% set era = ev.historicalEra.one() ?? null %}
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if events|length %}
+        <div class="scv-cards">
+          {% for ev in events %}
+            {% set img = (ev.featuredImage is defined and ev.featuredImage) ? ev.featuredImage.one() ?? null : null %}
+            {% set period = ev.historicalPeriod.one() ?? null %}
             {% set when = ev.eventDate ?: ev.eventDateStart %}
-            <li>
-              <a href="{{ ev.url }}">{{ ev.title ?: ev.slug }}</a>
-              <div class="scv-small">
-                {% if when %}{{ when }}{% endif %}
-                {% if when and era %} &middot; {% endif %}
-                {% if era %}{{ era.title }}{% endif %}
+            <a class="scv-tile" href="{{ ev.url }}">
+              <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ (ev.title ?: ev.slug)|slice(0,1)|upper }}</span>{% endif %}</div>
+              <div class="scv-tilebody">
+                <h3>{{ ev.title ?: ev.slug }}</h3>
+                {% if when %}<div class="scv-tilemeta">{{ when }}</div>{% endif %}
+                {% if ev.eventSignificance %}<div class="scv-tilemeta">{{ ev.eventSignificance }}</div>{% endif %}
+                <div class="scv-tilefoot">{{ period ? period.title : 'Period not set' }}</div>
               </div>
-            </li>
+            </a>
           {% endfor %}
-        </ul>
-      {% endfor %}
-    {% else %}
-      <p class="scv-small">No events match this filter.</p>
-    {% endif %}
-  </div>
+        </div>
+      {% else %}
+        <div class="scv-empty">No events in this era yet. <a href="{{ url('events') }}">Show all</a></div>
+      {% endif %}
+    </div>
+  </main>
 </div>
 {% endblock %}
