@@ -1,0 +1,52 @@
+{#
+  Record tools row: read time, word count, updated date, Save / Print, Listen.
+
+  Listen uses the browser SpeechSynthesis API and stays hidden when the API is
+  not available, so it never shows a button that cannot work. It reads the
+  element named by textId, which the caller puts on its prose wrapper.
+
+  Read time and word count are omitted for very short records, where a "1 min
+  read" line is noise.
+
+  Params:
+    entry    required, for the updated date and the spoken heading
+    text     the prose the word count is measured from, defaults to entry.body
+    textId   DOM id of the prose element for Listen, defaults to recText
+#}
+{% set textId = textId ?? 'recText' %}
+{% set source = text is defined and text ? text : (entry.body is defined ? entry.body : '') %}
+{% set words = source ? source|striptags|split(' ')|filter(w => w|trim)|length : 0 %}
+{% css %}
+.rec-tools{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding-bottom:20px;border-bottom:1px solid #E2E4E8;margin-bottom:32px;font-size:14px;color:#5B6472}
+.rec-tools .btns{margin-left:auto;display:flex;gap:10px}
+.rec-btn{background:#fff;border:1px solid #E2E4E8;font-family:'Jost',sans-serif;font-size:14px;color:#2C2C2C;padding:9px 14px;cursor:pointer}
+.rec-btn:hover{border-color:#C4A031}
+.rec-btn.gold{background:#C4A031;border-color:#C4A031;font-weight:500;color:#17254C;padding:9px 16px}
+{% endcss %}
+<div class="rec-tools">
+  <div>
+    {%- if words > 20 -%}
+      {{ (words / 200)|round(0, 'ceil') }} min read &nbsp;·&nbsp; {{ words|number_format }} words &nbsp;·&nbsp;
+    {%- endif -%}
+    Updated {{ entry.dateUpdated|date('M j, Y') }}
+  </div>
+  <div class="btns">
+    <button type="button" class="rec-btn" onclick="window.print()">Save / Print</button>
+    <button type="button" class="rec-btn gold" id="recListen" hidden>Listen</button>
+  </div>
+</div>
+<script>
+(function(){
+  var btn = document.getElementById('recListen');
+  var txt = document.getElementById({{ textId|json_encode|raw }});
+  if (!btn || !txt || !('speechSynthesis' in window)) { return; }
+  btn.hidden = false;
+  btn.addEventListener('click', function(){
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); btn.textContent = 'Listen'; return; }
+    var u = new SpeechSynthesisUtterance({{ (entry.title ?? '')|json_encode|raw }} + '. ' + txt.textContent);
+    u.onend = function(){ btn.textContent = 'Listen'; };
+    btn.textContent = 'Stop';
+    speechSynthesis.speak(u);
+  });
+})();
+</script>

@@ -1,0 +1,34 @@
+{#
+  Print stylesheet for record pages. Hides the site header, nav, footer,
+  sidebar, tools row and every button, drops the record to one column, and
+  prints the Chicago citation at the end so a printed page still carries its
+  source. Takes no params.
+#}
+{% css %}
+@media print {
+  .scv-site-header,
+  .scv-site-nav,
+  .scv-footer,
+  .rec-side,
+  .rec-tools,
+  .rec-citetabs,
+  .rec-cta,
+  .rec-map,
+  button,
+  .rec-citebox button { display: none !important; }
+
+  .rec-main, .rec-head { grid-template-columns: 1fr !important; }
+  .rec, .rec-band { background: #fff !important; }
+  .rec-band { border-bottom: 1px solid #ccc }
+  .rec-body { max-width: none }
+
+  .rec-cite { margin-top: 24px; border: 0; border-top: 1px solid #ccc; padding: 12px 0 0; background: #fff !important }
+  .rec-citebox .txt { border: 0; padding: 0; background: #fff !important }
+  .rec-citebox .txt[data-style="mla"],
+  .rec-citebox .txt[data-style="apa"] { display: none !important }
+  .rec-citebox .txt[data-style="chicago"] { display: block !important }
+
+  a[href]:after { content: "" }
+  @page { margin: 18mm }
+}
+{% endcss %}

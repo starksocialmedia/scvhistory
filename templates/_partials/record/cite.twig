@@ -1,0 +1,98 @@
+{#
+  "Cite this record" box with Chicago, MLA 9 and APA 7 toggles.
+
+  All three strings are built in Twig, so the citation is in the HTML and
+  survives with JavaScript off; the toggles only swap which one is shown.
+  Chicago is the default. Copy copies the visible citation and reads "Copied"
+  for two seconds.
+
+  Params:
+    entry       required
+    author      optional person entry
+    collection  optional collection entry, becomes the container title
+    date        optional publication date string
+    label       optional section name, for example "War Memorial"
+    url         optional, overrides entry.url
+    site        optional, defaults to SCVHistory.com
+#}
+{% set site = site ?? 'SCVHistory.com' %}
+{% set href = url is defined and url ? url : entry.url %}
+{% set title = entry.title ?: entry.slug %}
+{% set today = now|date('F j, Y') %}
+{% set todayApa = now|date('F j, Y') %}
+{% set container = [] %}
+{% if collection is defined and collection %}{% set container = container|merge([collection.title]) %}{% endif %}
+{% if label is defined and label %}{% set container = container|merge([label]) %}{% endif %}
+
+{% set aName = author is defined and author ? author.title : null %}
+{% set aParts = aName ? aName|split(' ')|filter(p => p|trim) : [] %}
+{% set aInverted = aParts|length > 1 ? aParts|last ~ ', ' ~ aParts|slice(0, aParts|length - 1)|join(' ') : aName %}
+{% set aApa = aParts|length > 1 ? aParts|last ~ ', ' ~ aParts|slice(0, aParts|length - 1)|map(p => p|slice(0,1) ~ '.')|join(' ') : aName %}
+
+{% set chicago %}
+{%- if aInverted %}{{ aInverted }}. {% endif -%}
+"{{ title }}." {% for c in container %}{{ c }}. {% endfor %}{{ site }}{% if date is defined and date %}, {{ date }}{% endif %}. Accessed {{ today }}. {{ href }}.
+{%- endset %}
+
+{% set mla %}
+{%- if aInverted %}{{ aInverted }}. {% endif -%}
+"{{ title }}." {% for c in container %}{{ c }}, {% endfor %}{{ site }}{% if date is defined and date %}, {{ date }}{% endif %}, {{ href }}. Accessed {{ today }}.
+{%- endset %}
+
+{% set apa %}
+{%- if aApa %}{{ aApa }} {% endif -%}
+({% if date is defined and date %}{{ date }}{% else %}n.d.{% endif %}). {{ title }}. {% for c in container %}{{ c }}. {% endfor %}{{ site }}. Retrieved {{ todayApa }}, from {{ href }}
+{%- endset %}
+
+{% css %}
+.rec-cite{margin-top:48px;background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:22px 24px}
+.rec-cite .rec-lab{margin-bottom:12px}
+.rec-citetabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.rec-citetab{background:transparent;border:1px solid #DCC98F;font-family:'Jost',sans-serif;font-size:13px;color:#A9842B;padding:6px 13px;cursor:pointer;border-radius:3px}
+.rec-citetab[aria-selected="true"]{background:#17254C;border-color:#17254C;color:#fff}
+.rec-citebox{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+.rec-citebox .txt{flex:1;min-width:240px;background:#fff;border:1px solid #EFE6D0;padding:14px;font-size:14.5px;line-height:1.65;word-break:break-word}
+.rec-citebox .txt[hidden]{display:none}
+.rec-citebox button.copy{border:1px solid #C4A031;background:transparent;font-family:'Jost',sans-serif;font-size:14px;color:#A9842B;padding:10px 18px;cursor:pointer;align-self:center}
+.rec-citebox button.copy:hover{background:#fff}
+{% endcss %}
+
+<div class="rec-cite">
+  <div class="rec-lab">CITE THIS RECORD</div>
+  <div class="rec-citetabs" role="tablist">
+    <button type="button" class="rec-citetab" role="tab" aria-selected="true" data-style="chicago">Chicago</button>
+    <button type="button" class="rec-citetab" role="tab" aria-selected="false" data-style="mla">MLA 9</button>
+    <button type="button" class="rec-citetab" role="tab" aria-selected="false" data-style="apa">APA 7</button>
+  </div>
+  <div class="rec-citebox">
+    <div class="txt" data-style="chicago" id="recCiteChicago">{{ chicago|trim }}</div>
+    <div class="txt" data-style="mla" hidden>{{ mla|trim }}</div>
+    <div class="txt" data-style="apa" hidden>{{ apa|trim }}</div>
+    <button type="button" class="copy" id="recCopy">Copy</button>
+  </div>
+</div>
+<script>
+(function(){
+  var box = document.querySelector('.rec-cite');
+  if (!box) { return; }
+  var tabs = box.querySelectorAll('.rec-citetab');
+  var texts = box.querySelectorAll('.rec-citebox .txt');
+  var copy = box.querySelector('#recCopy');
+  function show(style){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.style === style)); });
+    texts.forEach(function(t){ t.hidden = t.dataset.style !== style; });
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.style); }); });
+  if (copy) {
+    copy.addEventListener('click', function(){
+      var visible = null;
+      texts.forEach(function(t){ if (!t.hidden) { visible = t; } });
+      if (!visible || !navigator.clipboard) { return; }
+      navigator.clipboard.writeText(visible.textContent.trim()).then(function(){
+        copy.textContent = 'Copied';
+        setTimeout(function(){ copy.textContent = 'Copy'; }, 2000);
+      });
+    });
+  }
+})();
+</script>
