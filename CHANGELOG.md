@@ -413,3 +413,97 @@ No database changes were made.
 - Decide on the `orgLat`/`orgLng` precision fix.
 - Populate community bodies, types, aliases and coordinates. Coordinates are what unlock the remaining 20 pins.
 - Decide whether `neighborhood` should be added to the warMemorial layout.
+
+## 2026-09-17 (Claude, branch templates-batch-4)
+
+- Agent: Claude
+- Date: 2026-09-17
+- One record design across every entry page, shared record tools, sub-city community boundaries, and a community coordinates script.
+
+### Merge and push
+
+Not done. AGENTS.md says never push to main, and deploy.yml redeploys Cloudways on any push to main. There is also a gap: the workflow only runs `git pull origin main`, so production would get the community templates without the applied project config and `/communities/{slug}` would 404 there until `project-config/apply` runs on the server. Nathan chose to merge and push himself. templates-batch-4 was branched from templates-batch-3, which is identical to what main becomes, so it still merges cleanly.
+
+### Record tools as shared partials
+
+New `templates/_partials/record/`:
+
+- `css.twig`: the record design system lifted from the approved war memorial page. Cream band, kicker, h1, italic subtitle, labelled facts, chips, optional portrait, two column main, cream sidebar boxes, the `.rec-rows` label/value grid.
+- `tools.twig`: read time, word count, updated date, Save / Print, Listen. Listen uses SpeechSynthesis and stays hidden when the API is missing. Read time is omitted under 20 words.
+- `cite.twig`: Cite this record, with Chicago, MLA 9 and APA 7. All three are built in Twig so the citation survives with JavaScript off; the toggles only swap which is visible. Chicago is default. Copy reads Copied for two seconds.
+- `print.twig`: hides header, nav, footer, sidebar, tools and buttons, drops to one column, prints the Chicago citation at the end.
+
+All nine entry templates use them. War memorial was migrated onto them too and no longer carries its own tools row, cite box, copy script or print rules; it keeps only its unit seal box and its footer CTA.
+
+### Fixed a live 500 on the reference page
+
+`templates/war-memorial/_entry.twig` used `{% set v = (h) => ... %}` and then called `v('handle')`. Twig 3.21 cannot call a variable holding an arrow function, so every war memorial page was erroring with `Unknown "v" function`. It had been serving from a stale compiled template cache and broke the moment the cache cleared. Both that template and the person record now build a plain `F` dictionary of guarded field values.
+
+### Person record
+
+Portrait at left with an initials fallback, kicker PEOPLE with the era, occupation subtitle, BORN, DIED and RESIDENCE facts, chips for period, community and group. Main column is tools, prose, cite. Sidebar: Family and relationships (child of, parent of, sibling of, spouse of, each a 44px round thumb with occupation or life dates, plus a navy War Memorial badge when a memorial's `wmRelatedPerson` points at them), Organizations, Groups, Places, Written by, Articles about, Obituary, External. Every box conditional.
+
+### The other seven
+
+articles, places, organizations, groups, events, obituaries and collections rebuilt to the same pattern, keeping all batch 2 content. Places keep the location map box first. Collections keep the ordered chapter list. Articles keep the previous and next pager, the in this collection list and the author bio. Organizations are the only one of the seven whose layout has featuredImage, so they are the only one with a band portrait.
+
+### Sub-city community boundaries
+
+The City of Santa Clarita publishes no community or planning-area layer. Searched ArcGIS Hub and ArcGIS Online for city owned content, checked the one City of Santa Clarita Layers service (Oak Trees, General Plan, Zoning) and probed four likely city portal hostnames, none of which resolve. So the ZCTA fallback applies.
+
+Newhall, Saugus, Valencia and Canyon Country now come from 2020 Census ZIP Code Tabulation Areas via TIGERweb: 91321, 91350, 91354 + 91355, 91351 + 91387. They replace CSA fragments that covered only the unincorporated remnant and were 8 to 31 times smaller. The city wide santa-clarita polygon is kept.
+
+Every feature carries `properties.method`, `csa` or `zcta`, shown as a one line source note in the map tooltip and under the map on the community page. That note supersedes the fragment caveat that was planned for those four, which is no longer true of them.
+
+Check against the county shapes: Stevenson Ranch ZCTA 91381 is within 10 percent of its CSA, which supports the method. Castaic ZCTA 91384 is about a third of its CSA, because the county area sweeps in undeveloped backcountry. Both keep their CSA polygon.
+
+Adjacency recomputed on the new geometry and is markedly better. Newhall now neighbours Canyon Country, Placerita Canyon, Saugus, Stevenson Ranch and Valencia rather than only Santa Clarita and Stevenson Ranch.
+
+No boundary was hand drawn. The file is 84 KB, well under the 300 KB budget.
+
+### Community coordinates
+
+`scripts/import/set_community_coords.php`, eval style, dry run by default behind `$APPLY`. Nathan runs it.
+
+- 15 from the area weighted centroid of that community's polygon.
+- 11 from Wikipedia, with the article URL kept beside each value: camulos, castaic-junction, fillmore, frazier-park, hasley-canyon, lebec, mentryville, pico-canyon, piru, soledad-canyon, tejon.
+- 3 skipped on purpose as areas rather than points: mojave-desert, saugus-valencia, soledad-township.
+- 6 left alone with no coordinates: fair-oaks-ranch, haskell-canyon, mint-canyon, potrero-canyon, ravenna, towsley-canyon. None has a polygon, and none has a Wikipedia article carrying coordinates. The USGS GNIS site is a single page app with no public API, so it could not be queried. Nothing was estimated by hand.
+
+### Verified
+
+- All 151 entry pages, 11 indexes and 35 community pages return 200.
+- Every field handle re-audited against its entry type layout. The one out of layout read is `historicalEra` on war memorial, guarded with `is defined`.
+- In the browser: cite toggles switch between the three styles with Chicago default, tools row reads "5 min read · 834 words · Updated", Listen unhides, conditional boxes render only when they have content, 15 polygons draw with 11 csa and 4 zcta, tooltips carry the source note.
+
+### Fixed along the way
+
+- The Listen button never appeared. The tools partial renders above the prose, so its script ran before the element it reads existed. Now bound on DOMContentLoaded.
+- A rejected clipboard write no longer leaves a dangling rejection.
+
+### Blockers
+
+- None.
+
+### Needs Nathan
+
+1. Merge templates-batch-3 and templates-batch-4 to main and push, then run `project-config/apply` on Cloudways, or `/communities/{slug}` will 404 in production.
+2. Run the coordinates script on **MacBook**, dry run first:
+
+```
+ddev craft exec "eval(file_get_contents('scripts/import/set_community_coords.php'))"
+```
+
+### Data problems noticed, not touched
+
+No database changes were made.
+
+- `wmRelatedPerson` has zero relations, so no war memorial is linked to a person. The War Memorial badge on the person record is wired and tested but cannot appear until those links exist.
+- All 35 community terms still have empty body, aliases and type. The coordinates script fills coordinates only.
+- The one obituary body still carries WordPress import artifacts.
+
+### Next
+
+- Populate community bodies, aliases and types.
+- Link war memorial records to their Person records so the badge appears.
+- Find coordinates for the six unresolved communities from a source with real data, ideally the GNIS domestic names file rather than the web app.
