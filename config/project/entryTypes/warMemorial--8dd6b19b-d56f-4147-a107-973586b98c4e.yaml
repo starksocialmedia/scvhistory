@@ -516,6 +516,46 @@ fieldLayouts:
         name: 'Service Record'
         uid: 54eec9b5-9b40-40f8-a1c9-ac65433cc04b
         userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ffc2509e-669d-4339-b7de-588fb55223c0 # Images
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3f466d68-d46c-43ef-9057-b3ac828fb63f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 74e46486-c089-4cf6-9317-b5f2b8393414 # Documents
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 07d1706f-2e6b-4097-b46a-5579e2204cae
+            userCondition: null
+            warning: null
+            width: 100
+        name: Media
+        uid: cc65fee3-eb8c-45b9-8050-3ee82331f7aa
+        userCondition: null
     thumbFieldKey: null
 handle: warMemorial
 hasTitleField: true

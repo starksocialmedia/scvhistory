@@ -755,6 +755,46 @@ fieldLayouts:
         name: Taxonomy
         uid: a758dda9-6a93-49b9-b838-0105734adc6e
         userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ffc2509e-669d-4339-b7de-588fb55223c0 # Images
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ce51518c-69c3-4eab-a5c9-dd40a0163de3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 74e46486-c089-4cf6-9317-b5f2b8393414 # Documents
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 50670c3a-6bdd-44f8-baf5-75566c7ada5a
+            userCondition: null
+            warning: null
+            width: 100
+        name: Media
+        uid: a6cc2799-f7ed-4ab5-9241-12f3325abc5a
+        userCondition: null
     thumbFieldKey: null
 handle: militaryProfile
 hasTitleField: true

@@ -1,0 +1,39 @@
+columnSuffix: null
+handle: recordDocuments
+instructions: 'PDFs and scans to offer for download. Label comes from the asset title.'
+name: Documents
+searchable: false
+settings:
+  allowSelfRelations: false
+  allowSubfolders: false
+  allowUploads: true
+  allowedKinds:
+    - pdf
+    - word
+    - text
+  branchLimit: null
+  defaultPlacement: end
+  defaultUploadLocationSource: 'volume:79c1056c-85f5-4d7d-bbde-c4e8d6a19f97' # Archive Media
+  defaultUploadLocationSubpath: null
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  previewMode: full
+  restrictFiles: true
+  restrictLocation: false
+  restrictedDefaultUploadSubpath: null
+  restrictedLocationSource: null
+  restrictedLocationSubpath: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  sources:
+    - 'volume:79c1056c-85f5-4d7d-bbde-c4e8d6a19f97' # Archive Media
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: large
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Assets

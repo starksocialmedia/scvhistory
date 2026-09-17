@@ -642,6 +642,46 @@ fieldLayouts:
         name: Ingest
         uid: 59877586-03ab-41ea-b6bd-cdd342c21f6b
         userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ffc2509e-669d-4339-b7de-588fb55223c0 # Images
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 235031fe-3e73-4217-9cb2-5611d21c35a6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 74e46486-c089-4cf6-9317-b5f2b8393414 # Documents
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 16dbc985-558e-4e20-9df3-92c8d1fc0713
+            userCondition: null
+            warning: null
+            width: 100
+        name: Media
+        uid: 4a7dc13c-5f2c-4cbd-a326-159b42228a0b
+        userCondition: null
     thumbFieldKey: null
 handle: article
 hasTitleField: true
