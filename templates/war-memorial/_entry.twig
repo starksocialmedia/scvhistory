@@ -67,10 +67,10 @@
           <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative } %}</div>
         {% endif %}
 
-        {% include "_partials/record/cite" with { entry: entry, label: 'War Memorial' } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'War Memorial', sidebar: true } only %}
         {% if F.wmBranch or F.wmUnit %}
         {% set b = F.wmBranch|lower %}
         {% set seal = b matches '/marine/' ? 'marines' : (b matches '/navy/' ? 'navy' : (b matches '/air/' ? 'air-force' : (b matches '/coast/' ? 'coast-guard' : (b matches '/army/' ? 'army' : '')))) %}

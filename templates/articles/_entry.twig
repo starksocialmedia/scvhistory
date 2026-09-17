@@ -80,10 +80,10 @@
           </div>
         {% endif %}
 
-        {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles' } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles', sidebar: true } only %}
         {% set meta = [['ORIGINAL TITLE', F.originallyPublishedTitle], ['PUBLISHED', F.originalPublishDate], ['SOURCE', F.sourceLine]]|filter(r => r[1]) %}
         {% if meta|length %}
           <div class="rec-box"><div class="rec-lab">THIS ARTICLE</div>

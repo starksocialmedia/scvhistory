@@ -66,10 +66,10 @@
           </div>
         {% endif %}
 
-        {% include "_partials/record/cite" with { entry: entry, author: author, date: null, label: 'Collections' } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, author: author, date: null, label: 'Collections', sidebar: true } only %}
         {% set credits = [{ lab: 'AUTHOR', rows: author ? [author] : [] }, { lab: 'EDITOR', rows: editor ? [editor] : [] }]|filter(b => b.rows|length) %}
         {% for b in credits %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>

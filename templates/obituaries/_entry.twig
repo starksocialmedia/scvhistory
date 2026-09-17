@@ -48,10 +48,10 @@
         {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body } %}</div>{% endif %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
         {% if F.obitWebmasterNoteBottom %}<div class="rec-note" style="margin-top:24px">{{ F.obitWebmasterNoteBottom }}</div>{% endif %}
-        {% include "_partials/record/cite" with { entry: entry, label: 'Obituaries', date: F.obitDatePublished } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'Obituaries', date: F.obitDatePublished, sidebar: true } only %}
         {% if subject %}
           {% set simg = subject.featuredImage is defined ? subject.featuredImage.one() ?? null : null %}
           {% set sp = subject.title|split(' ')|filter(x => x|trim) %}

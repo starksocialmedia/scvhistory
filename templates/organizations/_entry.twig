@@ -55,10 +55,10 @@
         {% if prose %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: prose } %}</div>{% endif %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
         {% if F.orgFinePrint %}<p class="rec-fine">{{ F.orgFinePrint }}</p>{% endif %}
-        {% include "_partials/record/cite" with { entry: entry, label: 'Organizations' } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'Organizations', sidebar: true } only %}
         {% if hasMap %}
           <div class="rec-box">
             <div class="rec-lab">LOCATION</div>

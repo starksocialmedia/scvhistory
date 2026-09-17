@@ -47,10 +47,10 @@
         {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
         {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body } %}</div>{% endif %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
-        {% include "_partials/record/cite" with { entry: entry, label: 'Events', date: whenLine } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'Events', date: whenLine, sidebar: true } only %}
         {% set detail = [['DATE', F.eventDate], ['BEGAN', F.eventDateStart], ['ENDED', F.eventDateEnd], ['SIGNIFICANCE', F.eventSignificance], ['LANDMARK', F.eventChlNumber ? 'CHL No. ' ~ F.eventChlNumber : ''], ['RECURS', entry.eventRecurring ? F.eventFrequency : ''], ['NEXT', entry.eventRecurring ? F.eventNextOccurrence : '']]|filter(r => r[1]) %}
         {% if detail|length %}
           <div class="rec-box"><div class="rec-lab">THE EVENT</div>

@@ -48,10 +48,10 @@
         {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
         {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body } %}</div>{% endif %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
-        {% include "_partials/record/cite" with { entry: entry, label: 'Groups' } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'Groups', sidebar: true } only %}
         {% set peopleBoxes = [{ lab: 'PEOPLE', rows: people }, { lab: 'MEMBERS', rows: members }]|filter(b => b.rows|length) %}
         {% for b in peopleBoxes %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>

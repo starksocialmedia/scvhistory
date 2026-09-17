@@ -101,10 +101,10 @@
         {% if F.personWebmasterNoteBottom %}<div class="rec-note" style="margin-top:24px">{{ F.personWebmasterNoteBottom }}</div>{% endif %}
         {% if F.personFinePrint %}<p class="rec-fine">{{ F.personFinePrint }}</p>{% endif %}
 
-        {% include "_partials/record/cite" with { entry: entry, label: 'People' } only %}
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
         {% set fam = [
           { lab: 'CHILD OF', rows: entry.childOf.all() },
           { lab: 'PARENT OF', rows: entry.parentOf.all() },
