@@ -180,28 +180,90 @@ document.addEventListener('DOMContentLoaded', function(){
   if (listen) { listen.remove(); }
   player.classList.add('on');
 
-  var totalWords = sentences.reduce(function(a, s){ return a + s.words; }, 0);
-  var cum = [], run = 0;
-  sentences.forEach(function(s){ cum.push(run); run += s.words; });
+  /* Progress model.
 
-  var rate = 1, idx = 0, playing = false, startedAt = 0, elapsedBefore = 0, measured = null;
+     The bar used to move only when a sentence ended, so a four sentence record
+     advanced in four jumps. Progress is measured in characters now and driven by
+     an animation frame, so it moves continuously.
+
+     Within the current sentence the position comes from, in order:
+       1. the utterance's own boundary events, which carry an exact charIndex.
+          Chrome and Safari fire these per word.
+       2. elapsed wall clock time against the sentence's estimated duration, for
+          the voices that never fire a boundary, which includes some remote ones.
+
+     A boundary sets an exact floor and the timer interpolates forward from it,
+     so the two combine rather than fight, and a boundary is only accepted when
+     it moves forward. When a sentence really ends the bar snaps to its true end
+     and the characters per second estimate is recalibrated from the real
+     elapsed time.
+
+     The total to the right of the slash is computed once, from the full
+     character count at the chosen rate, and held. Recalibration changes the
+     remaining estimate, never the displayed total, so that number never moves
+     mid read. Changing speed recomputes it, since that is a deliberate change
+     by the reader. */
+  var CPS = 14.5;               // characters per second at rate 1, before calibration
+  var chars = sentences.map(function(s){ return s.text.length || 1; });
+  var cumChars = [], runC = 0;
+  chars.forEach(function(c){ cumChars.push(runC); runC += c; });
+  var totalChars = runC || 1;
+
+  var rate = 1, idx = 0, playing = false, startedAt = 0, elapsedBefore = 0;
+  var cps = CPS;                // recalibrated as sentences complete
+  var heldTotal = totalChars / (CPS * 1);
+  var markChar = 0, markAt = 0; // exact floor within the current sentence, and when
+  var markSet = false;          // whether a boundary has landed in this sentence yet
+  var heldChar = 0;             // where the bar sits while paused
+  var boundaryEver = false;
+  var ticker = null;
 
   function fmt(sec){
     sec = Math.max(0, Math.round(sec));
     return Math.floor(sec / 60) + ':' + ('0' + (sec % 60)).slice(-2);
   }
-  function estTotal(){
-    var wps = (measured || (WPM / 60)) * rate;
-    return totalWords / wps;
+  function holdTotal(){ heldTotal = totalChars / (CPS * rate); }
+  /* Position within the current sentence, from the exact floor a boundary gave
+     us plus elapsed time against the estimate for what is left.
+
+     The estimate is never trusted all the way to the sentence end. Clamping
+     hard at the end made the bar stall whenever a sentence ran longer than
+     estimated, which put the jumps straight back. It runs linear to 90 percent
+     of the remainder, then eases asymptotically toward the end, so it is always
+     moving, never overshoots into the next sentence, and the snap when the
+     sentence really ends is at most the last tenth. */
+  function charPos(){
+    if (!playing) { return heldChar; }
+    var base = cumChars[idx] || 0;
+    var remaining = Math.max(0, chars[idx] - markChar);
+    if (!remaining) { return base + chars[idx]; }
+    var t = Math.max(0, (Date.now() - markAt) / 1000);
+    var expected = Math.max(0.2, remaining / (cps * rate));
+    var lin = t / expected;
+    var eased = lin < 0.9 ? lin : 0.9 + 0.1 * (1 - Math.exp(-(lin - 0.9) * 1.5));
+    return base + markChar + remaining * Math.min(0.999, eased);
   }
   function paint(){
-    var done = cum[idx] || 0;
-    var pct = Math.min(100, Math.round(done / totalWords * 100));
-    fill.style.width = pct + '%';
-    bar.setAttribute('aria-valuenow', pct);
+    var pct = Math.min(100, Math.max(0, charPos() / totalChars * 100));
+    fill.style.width = pct.toFixed(2) + '%';
+    bar.setAttribute('aria-valuenow', Math.round(pct));
     var elapsed = elapsedBefore + (playing ? (Date.now() - startedAt) / 1000 : 0);
     elapsedEl.textContent = fmt(elapsed);
-    totalEl.textContent = fmt(estTotal());
+    totalEl.textContent = fmt(heldTotal);
+  }
+  function tick(){
+    if (!playing) { ticker = null; return; }
+    paint();
+    ticker = window.requestAnimationFrame ? requestAnimationFrame(tick) : setTimeout(tick, 100);
+  }
+  function startTicking(){
+    if (ticker !== null) { return; }
+    ticker = window.requestAnimationFrame ? requestAnimationFrame(tick) : setTimeout(tick, 100);
+  }
+  function stopTicking(){
+    if (ticker === null) { return; }
+    if (window.requestAnimationFrame) { cancelAnimationFrame(ticker); } else { clearTimeout(ticker); }
+    ticker = null;
   }
   function highlight(i){
     sentences.forEach(function(s){ s.el.classList.remove('rec-speaking'); });
@@ -216,15 +278,32 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function speak(i){
     if (i >= sentences.length) { stop(); return; }
-    idx = i; highlight(i); paint();
-    var u = new SpeechSynthesisUtterance((i === 0 && HEADING ? HEADING + '. ' : '') + sentences[i].text);
+    idx = i; highlight(i);
+    markChar = 0; markAt = Date.now(); markSet = false;
+    paint();
+    var prefix = (i === 0 && HEADING) ? HEADING + '. ' : '';
+    var u = new SpeechSynthesisUtterance(prefix + sentences[i].text);
     u.rate = rate;
     if (chosenVoice) { u.voice = chosenVoice; }
+    u.onstart = function(){ if (playing && idx === i) { markAt = Date.now(); } };
+    u.onboundary = function(ev){
+      if (!playing || idx !== i) { return; }
+      if (ev.name && ev.name !== 'word' && ev.name !== 'sentence') { return; }
+      if (typeof ev.charIndex !== 'number') { return; }
+      var ci = ev.charIndex - prefix.length;
+      /* Boundaries only ever move forward. markSet rather than markChar > 0, so
+         the first boundary of a sentence is accepted even when it reports 0. */
+      if (ci < 0 || ci > chars[i] || (markSet && ci <= markChar)) { return; }
+      boundaryEver = true; markSet = true;
+      markChar = ci; markAt = Date.now();
+    };
     u.onend = function(){
       if (!playing) { return; }
+      markChar = chars[i]; markAt = Date.now();   // snap to the true end
+      paint();
       var secs = (Date.now() - startedAt) / 1000 + elapsedBefore;
-      var spoken = (cum[i] || 0) + sentences[i].words;
-      if (secs > 2) { measured = (spoken / secs) / rate; }   // words per second at 1x
+      var doneChars = (cumChars[i] || 0) + chars[i];
+      if (secs > 1.5) { cps = (doneChars / secs) / rate; }
       speak(i + 1);
     };
     u.onerror = function(){ stop(); };
@@ -233,27 +312,33 @@ document.addEventListener('DOMContentLoaded', function(){
   function play(){
     playing = true; startedAt = Date.now();
     ppIcon.setAttribute('d', PAUSE); pp.setAttribute('aria-label', 'Pause');
+    startTicking();
     speak(idx);
   }
   function pause(){
     elapsedBefore += (Date.now() - startedAt) / 1000;
-    playing = false; speechSynthesis.cancel();
+    heldChar = charPos();
+    playing = false; stopTicking(); speechSynthesis.cancel();
     ppIcon.setAttribute('d', PLAY); pp.setAttribute('aria-label', 'Play');
     paint();
   }
   function stop(){
-    playing = false; speechSynthesis.cancel();
+    playing = false; stopTicking(); speechSynthesis.cancel();
     ppIcon.setAttribute('d', PLAY); pp.setAttribute('aria-label', 'Play');
     sentences.forEach(function(s){ s.el.classList.remove('rec-speaking'); });
-    idx = 0; elapsedBefore = 0; fill.style.width = '0'; bar.setAttribute('aria-valuenow', 0);
+    idx = 0; elapsedBefore = 0; heldChar = 0; markChar = 0; markSet = false; cps = CPS;
+    holdTotal();
+    fill.style.width = '0'; bar.setAttribute('aria-valuenow', 0);
     elapsedEl.textContent = '0:00'; paint();
   }
   function seekTo(pct){
-    var target = totalWords * pct;
+    var target = totalChars * pct;
     var i = 0;
-    for (var k = 0; k < cum.length; k++) { if (cum[k] <= target) { i = k; } }
+    for (var k = 0; k < cumChars.length; k++) { if (cumChars[k] <= target) { i = k; } }
     idx = i;
-    elapsedBefore = (cum[i] || 0) / ((measured || (WPM / 60)) * rate);
+    elapsedBefore = (cumChars[i] || 0) / (cps * rate);
+    heldChar = cumChars[i] || 0;
+    markChar = 0; markAt = Date.now(); markSet = false;
     if (playing) { speechSynthesis.cancel(); startedAt = Date.now(); speak(i); }
     else { highlight(i); paint(); }
   }
@@ -270,8 +355,8 @@ document.addEventListener('DOMContentLoaded', function(){
   document.addEventListener('mouseup', function(){ dragging = false; });
   bar.addEventListener('keydown', function(e){
     var step = 1 / Math.max(1, sentences.length);
-    if (e.key === 'ArrowRight') { e.preventDefault(); seekTo(Math.min(1, (cum[idx] / totalWords) + step)); }
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); seekTo(Math.max(0, (cum[idx] / totalWords) - step)); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); seekTo(Math.min(1, (cumChars[idx] / totalChars) + step)); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); seekTo(Math.max(0, (cumChars[idx] / totalChars) - step)); }
     if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); playing ? pause() : play(); }
   });
 
@@ -279,17 +364,21 @@ document.addEventListener('DOMContentLoaded', function(){
     b.addEventListener('click', function(){
       rate = parseFloat(b.dataset.rate);
       player.querySelectorAll('.speed button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      holdTotal();
       if (playing) { speechSynthesis.cancel(); startedAt = Date.now(); speak(idx); }
       paint();
     });
   });
 
-  setInterval(function(){ if (playing) { paint(); } }, 500);
   window.addEventListener('beforeunload', function(){ speechSynthesis.cancel(); });
   window.addEventListener('pagehide', function(){ speechSynthesis.cancel(); });
   /* Chrome populates the voice list asynchronously, so the first call above can
      come back empty. Rebuild the picker when it arrives. */
   if (speechSynthesis.onvoiceschanged !== undefined) { speechSynthesis.onvoiceschanged = loadVoices; }
+  holdTotal();
   paint();
+
+  /* for checking in the console whether this voice fires boundary events */
+  player.__boundary = function(){ return boundaryEver; };
 });
 </script>

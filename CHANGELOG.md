@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: the record player's progress bar advances continuously instead of jumping once per sentence. Progress is measured in characters and painted on an animation frame. Within a sentence the position comes from the utterance's boundary events when they arrive, and from elapsed time against an estimate when they do not. The total to the right of the slash is computed once and held, and only the remaining estimate is recalibrated.
+- Decisions: the within-sentence estimate eases asymptotically toward the sentence end rather than clamping at it. A hard clamp stalled the bar whenever a sentence ran longer than estimated, which put the jumps straight back; simulation puts stalls at 48 percent of samples for a sentence running 2x long, and at zero with the easing. Changing speed recomputes the held total, since that is a deliberate act.
+- Blockers: Google US English, the default voice, fires no boundary events at all, so the timer path is what almost every reader will get. The boundary path is confirmed to fire with Samantha but I could not confirm it drives the bar; the browser extension dropped mid-test.
+- Next: Nathan to confirm the bar moves smoothly on a Mac using a local voice such as Samantha or Alex
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: articles/_entry.twig renders the featured image in the body only when the article is not in a collection. A collection article's featured image is a title card carrying the headline, so it is now the social and index image only. bandImage washes behind the band on any article when it is set, with no fallback to featuredImage. The collection lander band is untouched.
 - Decisions: the standalone hero keeps its existing recordImages fallback, since that path is unchanged. The band image layer matches the treatment the lander settled on, one full-bleed layer with the same filter and no mask, because the fade is baked into the artwork.
 - Blockers: two of the four featuredImage consumers named in the brief do not exist. The articles index has no per-article thumbnail, only a collection thumbnail in the group header, and the collection contents list has no thumbnail at all. og:image and twitter:image do use it.
