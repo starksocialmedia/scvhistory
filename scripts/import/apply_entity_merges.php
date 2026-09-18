@@ -10,8 +10,15 @@
  *   - it skips any pair where either record no longer exists, which is what
  *     makes a second run over the same file a no-op
  *   - a title already present in the alias field is not appended twice
- *   - relations are moved one at a time and any that would duplicate an
- *     existing relation on the survivor are dropped rather than duplicated
+ *   - a source that already points at the survivor keeps a single relation
+ *     rather than gaining a duplicate
+ *
+ * Relations are moved by re-saving each source element through Craft, not by
+ * updating the relations table. Craft 5 keeps a relation field's target ids in
+ * two places, the relations table and the element's own content JSON, and a raw
+ * SQL update touches only the first. The two then disagree and Craft keeps
+ * reading the stale JSON, so the merge looks applied in the database and has no
+ * effect on the site.
  *
  * Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/apply_entity_merges.php'))"
@@ -19,11 +26,15 @@
 
 $APPLY = false;
 
+// Alias field per section, and how that field separates names. placeAliases
+// and orgAliases are single line and comma separated; personAliases is
+// multiline, one name per line. Presence is checked against each survivor's
+// own layout, so a field named here but not yet created is reported and
+// skipped rather than written to.
 $ALIAS_FIELDS = [
-    'places'        => 'placeAliases',
-    'organizations' => 'orgAliases',
-    // persons has no alias field, only fullName, which is the canonical name
-    // rather than a list, so a losing person title is reported and not stored.
+    'persons'       => ['handle' => 'personAliases', 'separator' => "\n",  'join' => "\n"],
+    'places'        => ['handle' => 'placeAliases',  'separator' => ',',   'join' => ', '],
+    'organizations' => ['handle' => 'orgAliases',    'separator' => ',',   'join' => ', '],
 ];
 
 $file = \Craft::getAlias('@webroot') . '/review/merged.json';
@@ -75,40 +86,39 @@ foreach ($data as $n => $row) {
 
     echo sprintf('  %s  <-  %s   [%s]', $keep->title, $lose->title, $keepSection) . PHP_EOL;
 
-    /* relations pointing AT the loser */
+    /* every source that points AT the loser, and through which field */
     $incoming = (new \craft\db\Query())
-        ->select(['id', 'fieldId', 'sourceId', 'sourceSiteId', 'sortOrder'])
+        ->select(['fieldId', 'sourceId'])
+        ->distinct()
         ->from('{{%relations}}')
         ->where(['targetId' => $loseId])
         ->all();
 
-    $moveIds = []; $dropIds = [];
+    // canonical elements only; Craft rewrites a revision's own relations when
+    // the canonical element is saved
+    $work = []; $fieldNames = []; $skippedSources = 0;
     foreach ($incoming as $rel) {
-        if ((int)$rel['sourceId'] === $keepId) { $dropIds[] = $rel['id']; continue; }
-        $exists = (new \craft\db\Query())
-            ->from('{{%relations}}')
-            ->where([
-                'fieldId' => $rel['fieldId'],
-                'sourceId' => $rel['sourceId'],
-                'targetId' => $keepId,
-            ])
-            ->exists();
-        if ($exists) { $dropIds[] = $rel['id']; } else { $moveIds[] = $rel['id']; }
+        $srcId = (int)$rel['sourceId'];
+        if ($srcId === $keepId) { continue; }
+        $src = \craft\elements\Entry::find()->id($srcId)->status(null)->one();
+        if (!$src) { $skippedSources++; continue; }
+        if ($src->getIsRevision() || $src->getIsDraft()) { continue; }
+        $field = Craft::$app->getFields()->getFieldById($rel['fieldId']);
+        if (!$field) { $skippedSources++; continue; }
+        $work[$srcId]['element'] = $src;
+        $work[$srcId]['fields'][$field->handle] = true;
+        $fieldNames[$field->handle] = ($fieldNames[$field->handle] ?? 0) + 1;
     }
 
-    $fieldNames = [];
-    foreach ($incoming as $rel) {
-        $f = Craft::$app->getFields()->getFieldById($rel['fieldId']);
-        $h = $f ? $f->handle : ('field ' . $rel['fieldId']);
-        $fieldNames[$h] = ($fieldNames[$h] ?? 0) + 1;
-    }
     foreach ($fieldNames as $h => $cnt) {
         echo '      via ' . str_pad($h, 26) . $cnt . PHP_EOL;
     }
-    echo '      relations to move: ' . count($moveIds) . ', to drop as duplicates: ' . count($dropIds) . PHP_EOL;
+    echo '      source records to rewrite: ' . count($work)
+       . ($skippedSources ? ', ' . $skippedSources . ' unreadable and skipped' : '') . PHP_EOL;
 
     /* alias */
-    $aliasHandle = $ALIAS_FIELDS[$keepSection] ?? null;
+    $aliasCfg = $ALIAS_FIELDS[$keepSection] ?? null;
+    $aliasHandle = $aliasCfg['handle'] ?? null;
     $aliasAction = null;
     if ($aliasHandle) {
         $layout = [];
@@ -116,24 +126,30 @@ foreach ($data as $n => $row) {
         if (in_array($aliasHandle, $layout, true)) {
             $current = '';
             try { $current = trim((string)$keep->getFieldValue($aliasHandle)); } catch (\Throwable $e) { $current = ''; }
-            $parts = array_values(array_filter(array_map('trim', explode(',', $current))));
+            // split on this field's own separator, and on newlines either way,
+            // so a comma field that has been hand edited onto several lines
+            // still compares correctly
+            $rawParts = preg_split('/[\r\n' . preg_quote($aliasCfg['separator'], '/') . ']+/u', $current);
+            $parts = array_values(array_filter(array_map('trim', $rawParts), fn($x) => $x !== ''));
             $already = false;
             foreach ($parts as $p) {
                 if (mb_strtolower($p) === mb_strtolower($lose->title)) { $already = true; break; }
             }
             if ($already) {
-                $aliasAction = 'already lists "' . $lose->title . '"';
+                $aliasAction = $aliasHandle . ' already lists "' . $lose->title . '"';
             } else {
                 $parts[] = $lose->title;
-                $aliasAction = 'set ' . $aliasHandle . ' to "' . implode(', ', $parts) . '"';
-                $newAlias = implode(', ', $parts);
+                $newAlias = implode($aliasCfg['join'], $parts);
+                $aliasAction = 'append "' . $lose->title . '" to ' . $aliasHandle
+                             . ' (' . count($parts) . ' name' . (count($parts) === 1 ? '' : 's') . ')';
             }
         } else {
-            $aliasAction = $aliasHandle . ' not on this layout, nothing recorded';
+            $aliasAction = $aliasHandle . ' is not on this layout, so "' . $lose->title . '" will not be recorded';
+            $notes[] = $aliasHandle . ' does not exist on ' . $keepSection . ' yet, so losing titles are not preserved';
         }
     } else {
-        $aliasAction = 'no alias field on ' . $keepSection . ', the losing title will not be recorded';
-        $notes[] = $keepSection . ' has no alias field, so "' . $lose->title . '" is lost on merge';
+        $aliasAction = 'no alias field mapped for ' . $keepSection . ', the losing title will not be recorded';
+        $notes[] = $keepSection . ' has no alias field, so losing titles are not preserved';
     }
     echo '      alias: ' . $aliasAction . PHP_EOL;
     echo '      then delete ' . $lose->title . ' (id ' . $loseId . ')' . PHP_EOL;
@@ -142,13 +158,26 @@ foreach ($data as $n => $row) {
 
     $tx = $db->beginTransaction();
     try {
-        if ($moveIds) {
-            $db->createCommand()->update('{{%relations}}', ['targetId' => $keepId], ['id' => $moveIds])->execute();
-            $relationsMoved += count($moveIds);
-        }
-        if ($dropIds) {
-            $db->createCommand()->delete('{{%relations}}', ['id' => $dropIds])->execute();
-            $relationsDropped += count($dropIds);
+        foreach ($work as $srcId => $info) {
+            $src = $info['element'];
+            $changed = false;
+            foreach (array_keys($info['fields']) as $handle) {
+                $ids = $src->getFieldValue($handle)->status(null)->ids();
+                if (!in_array($loseId, $ids, true)) { continue; }
+                $out = [];
+                foreach ($ids as $id) {
+                    $id = ((int)$id === $loseId) ? $keepId : (int)$id;
+                    if (!in_array($id, $out, true)) { $out[] = $id; }   // no duplicate
+                }
+                if ($out === array_map('intval', $ids)) { continue; }
+                $src->setFieldValue($handle, $out);
+                $relationsMoved++;
+                if (count($out) < count($ids)) { $relationsDropped++; }
+                $changed = true;
+            }
+            if ($changed && !$elements->saveElement($src)) {
+                throw new \Exception('could not save source ' . $src->slug . ': ' . json_encode($src->getErrors()));
+            }
         }
         if (isset($newAlias)) {
             $keep->setFieldValue($aliasHandle, $newAlias);
@@ -175,7 +204,7 @@ foreach ($data as $n => $row) {
 echo PHP_EOL . ($APPLY ? 'APPLIED' : 'DRY RUN') . ': ' . $merged . ' merge' . ($merged === 1 ? '' : 's')
    . ', ' . $skipped . ' skipped' . PHP_EOL;
 if ($APPLY) {
-    echo 'relations moved: ' . $relationsMoved . ', duplicates dropped: ' . $relationsDropped
+    echo 'relation fields rewritten: ' . $relationsMoved . ', duplicates collapsed: ' . $relationsDropped
        . ', alias fields written: ' . $aliasWrites . PHP_EOL;
 }
 foreach (array_unique($notes) as $note) { echo 'NOTE: ' . $note . PHP_EOL; }

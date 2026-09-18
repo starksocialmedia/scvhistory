@@ -120,7 +120,9 @@ function sideHtml(rec, which, keepId, cid) {
   facts.push('<div><b>Mentions</b>' + rec.mentions + '</div>');
   facts.push('<div><b>Slug</b>' + esc(rec.slug) + '</div>');
   facts.push('<div><b>Id</b>' + rec.id + '</div>');
-  if (!rec.aliasField) facts.push('<div class="warn">No alias field on this type, so the other title cannot be recorded on merge.</div>');
+  // Shown only while the type has no alias field on its layout. It disappears
+  // on its own once the field exists, because the export then fills aliasField.
+  if (!rec.aliasField) facts.push('<div class="warn">This type has no alias field yet, so merging would lose the other title.</div>');
   const on = keepId === rec.id;
   return '<div class="side' + (on ? ' keep' : '') + '">' +
     '<h3><a href="' + esc(rec.url || '#') + '" target="_blank">' + esc(rec.title) + '</a></h3>' +

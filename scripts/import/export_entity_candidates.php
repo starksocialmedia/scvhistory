@@ -18,12 +18,15 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_entity_candidates.php'))"
  */
 
-// Alias field per section. Persons deliberately map to null: the type has no
-// alias list, only fullName, which is the canonical name rather than a set of
-// other names. apply_entity_merges.php uses the same map, so the screen never
-// promises to record a title the apply step cannot store.
+// Alias field per section, shared with apply_entity_merges.php so the screen
+// never promises to record a title the apply step cannot store.
+//
+// Whether a section really carries its field is checked against each record's
+// own layout below, so naming a field here that does not exist yet is safe:
+// aliasField stays null, the screen keeps warning, and everything starts
+// working the moment the field is added.
 $SECTIONS = [
-    'persons'       => null,
+    'persons'       => 'personAliases',
     'places'        => 'placeAliases',
     'organizations' => 'orgAliases',
 ];
