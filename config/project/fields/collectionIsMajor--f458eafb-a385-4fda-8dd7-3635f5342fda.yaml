@@ -1,0 +1,13 @@
+columnSuffix: null
+handle: collectionIsMajor
+instructions: 'Tick for a landmark series that deserves its own landing page rather than the standard collection layout.'
+name: 'Major collection'
+searchable: false
+settings:
+  default: false
+  offLabel: null
+  onLabel: null
+  showLabelsInCards: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

@@ -1,0 +1,47 @@
+columnSuffix: null
+handle: wmServiceExtra
+instructions: 'Labels and values transcribed from the legacy page that have no field of their own. Kept exactly as printed.'
+name: 'Other service record fields'
+searchable: false
+settings:
+  addRowLabel: 'Add a field'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Label as printed'
+            -
+              - handle
+              - label
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Value as printed'
+            -
+              - handle
+              - value
+            -
+              - width
+              - ''
+            -
+              - type
+              - multiline
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

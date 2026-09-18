@@ -1,4 +1,4 @@
-dateModified: 1789699695
+dateModified: 1789705091
 email:
   fromEmail: nathan@starksocial.com
   fromName: 'SCV History'
@@ -37,6 +37,8 @@ meta:
     3e373788-6a9f-4f34-8d9c-37fe116dd115: 'MP Rank' # MP Rank
     3f17c1fb-9f4d-4d93-93c0-d5875c4f2910: 'Obit Subject' # Obit Subject
     3f801f56-13bb-43b7-96dc-4cdb524aa27c: Organization # Organization
+    3fb0427e-f561-4201-9759-0eccc7b802f3: 'Casualty Reason' # Casualty Reason
+    3ff211d1-48f1-4dc9-841f-e8c56c35f054: 'Other service record fields' # Other service record fields
     4b9ddc11-19f2-4c19-b079-bedd7af8656d: 'Legacy HTML' # Legacy HTML
     4c63e41a-3d70-4840-9069-fa32507828ee: 'Group Events' # Group Events
     4c744660-4a32-4290-8c1c-c63ce96860a2: Communities # Communities
@@ -143,6 +145,7 @@ meta:
     859dcc97-3458-4901-8659-37043953a91e: 'MP Date of Death' # MP Date of Death
     869c1a3c-de72-4539-9c4f-c2a66302a5ad: 'Person Legacy URL' # Person Legacy URL
     915e06ff-2663-43af-bd6b-ec40a3206421: 'Parent Organization' # Parent Organization
+    926bf40e-0b97-438f-a964-5b3bf7d19f4a: 'Vietnam Memorial Wall' # Vietnam Memorial Wall
     962f38b8-f3e6-476e-8ad4-11e0226524df: 'MP Organizations' # MP Organizations
     988b1ca1-fba1-4fc1-9cae-4ca4a4eaeda4: 'Event Organizations' # Event Organizations
     1573db5e-b99d-4ba7-80b7-f20eeeb0bc79: 'Org Events' # Org Events
@@ -164,6 +167,7 @@ meta:
     49092f2b-66bc-499b-95cd-d01ceb9d6fe1: Obituaries # Obituaries
     55816b3d-1478-46fa-8ae3-3b8bfc5792ed: 'Board Members' # Board Members
     64271c25-81d0-4aff-bba1-bf6896aa3db6: Place # Place
+    65551adf-1fcd-4c63-bc62-823f2fb5cdc8: 'Casualty Type' # Casualty Type
     65766de2-684f-443c-ae20-38ffe4c6c377: 'Org Associated Persons' # Org Associated Persons
     92124bd1-8d76-4b8e-bdce-f50fd6deeeca: 'Start of Tour' # Start of Tour
     209335f5-d0cd-48d6-97a6-643511740df6: 'Obit Webmaster Note Bottom' # Obit Webmaster Note Bottom
@@ -201,6 +205,7 @@ meta:
     b1b0dca3-29f6-44e6-99c9-c8893e8abbfa: 'WM Related Person' # WM Related Person
     b6f60f2c-09bb-43e2-ab37-f36f1544c1d4: 'Photo Source Code' # Photo Source Code
     b6ff062a-24fa-45e0-910c-a8197e59eb77: 'Photo Articles' # Photo Articles
+    b7cd4f62-4e1b-404b-abbb-be7461ca3ecd: Birthplace # Birthplace
     b9d1def6-30f2-4133-8bb0-2b222faad34e: 'Burial Place' # Burial Place
     b20e0e7d-aa77-4614-a377-46760055a3e1: 'Part of Collection' # Part of Collection
     b96081cd-d6b6-4ead-b45c-57be363c93ca: Tags # Tags
@@ -218,8 +223,10 @@ meta:
     cc6505fc-3350-4db4-97ad-e8ff3fec1d3d: 'Batch Sequence' # Batch Sequence
     cc358573-75fa-4e74-9c21-3da22a70051e: 'Group Date Start' # Group Date Start
     cd83b674-ea20-48d3-912e-1da3bb578813: 'MP Age at Loss' # MP Age at Loss
+    ce7eba0b-3c1f-4ae6-a9cb-33e8424a80f9: Notes # Notes
     cece59d4-5fe8-4b97-a384-3dd311d7836d: 'Document Files' # Document Files
     d1c29e3e-8525-4db7-87ad-de3ac738589a: 'Event Persons' # Event Persons
+    d2b024d2-8694-4b50-a0b0-995d5e2644a0: 'Grade at Loss' # Grade at Loss
     d18e03d6-ba55-488f-9ae0-6bf53e5f19a9: 'Depicts Place' # Depicts Place
     d78c1773-e157-47b4-9e4b-a7644b394685: 'WM Unit' # WM Unit
     d128c8cb-5a5c-4c17-b8ec-025770ae4070: 'Extended Caption' # Extended Caption
@@ -238,6 +245,7 @@ meta:
     e6d8d39f-eebe-4c3e-90a7-10d20899c999: 'WM Conflict' # WM Conflict
     e31f2a11-8bb9-4061-992b-119f6b2645fc: Person # Person
     e34dff31-185d-469b-9dc0-528a82120aac: Birthplace # Birthplace
+    e57a8e96-dedb-449e-a6de-361e5429da5b: 'Casualty Detail' # Casualty Detail
     e97d0827-a474-451e-aecd-c48ecd38717e: 'MP Service End' # MP Service End
     e8320e2a-0de3-4d5b-bc01-2c49eaa28486: 'MP Find A Grave URL' # MP Find A Grave URL
     e5540563-0866-4ca0-a9d8-c17225eb20a1: 'Military Profile' # Military Profile
@@ -251,6 +259,7 @@ meta:
     f5eb4908-d535-4b94-9a6c-ecc1b3828387: 'Archive URL' # Archive URL
     f32eae51-5e21-4625-9edf-19e38d4a92b7: 'Org Latitude' # Org Latitude
     f93e01ae-4939-48d8-8151-268836846a7c: 'MP Specialty MOS' # MP Specialty MOS
+    f458eafb-a385-4fda-8dd7-3635f5342fda: 'Major collection' # Major collection
     f9985d92-a139-4549-a734-787b59ea727e: 'Also Known As' # Also Known As
     f313790d-6d5c-4b50-a64b-f0103c1daf13: 'MP Groups' # MP Groups
     fa9e8a3d-1e71-4bd5-8614-61ce7dd91233: 'Place CHL Number' # Place CHL Number
