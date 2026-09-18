@@ -18,7 +18,8 @@
   an absent portrait reads as deliberate rather than broken.
 
   Other relations is whatever wmRelatedPerson, relatedPersons or mpRelatedPersons
-  held that is not already a parent, child, sibling, spouse or grandparent. The
+  held that is not already a parent, child, sibling, spouse, grandparent or
+  grandchild. The
   separate Related person box is retired: a family member is a related person,
   and two boxes for one relationship is noise.
 
@@ -37,6 +38,7 @@
     ['CHILDREN', fam.children],
     ['SIBLINGS', fam.siblings],
     ['GRANDPARENTS', fam.grandparents],
+    ['GRANDCHILDREN', fam.grandchildren ?? []],
     ['SPOUSE', fam.spouses],
     ['OTHER RELATIONS', fam.other ?? []]
   ]|filter(r => r[1]|length) %}

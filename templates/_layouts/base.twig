@@ -6,7 +6,8 @@
   {#- Family, derived once here so the sidebar box and the JSON-LD agree and the
       queries run once. childOf is the only stored direction: a person points up
       at their parents. Children are whoever points at this record, siblings are
-      the other children of its parents, grandparents are one hop further up.
+      the other children of its parents, grandparents one hop further up and
+      grandchildren one hop further down.
 
       Every hop goes through relatedTo rather than through the field on the
       element, because the related record may be a war memorial or a military
@@ -28,6 +29,13 @@
           {%- if s.id != entry.id -%}{%- set siblings = siblings|merge([s]) -%}{%- endif -%}
         {%- endfor -%}
         {%- set grandparents = grandparents|merge(craft.entries().relatedTo({ sourceElement: p, field: 'childOf' }).status(null).all()) -%}
+      {%- endfor -%}
+      {#- The same walk downwards: whoever points at one of this record's
+          children. Rodolfo Acosta reaches Rudy this way, from nothing typed
+          anywhere but childOf on Rudy and on Dante. -#}
+      {%- set grandchildren = [] -%}
+      {%- for c in children -%}
+        {%- set grandchildren = grandchildren|merge(craft.entries().relatedTo({ targetElement: c, field: 'childOf' }).status(null).all()) -%}
       {%- endfor -%}
       {#- siblingOf stays for the half-brother the parents do not reach, and it
           reads both ways so it need only be entered once. -#}
@@ -54,7 +62,7 @@
       {#- One entry can arrive twice, as a derived sibling and as a stored one. -#}
       {%- set fam = {} -%}
       {%- set seenAll = [] -%}
-      {%- for k, list in { parents: parents, children: children, siblings: siblings, grandparents: grandparents, spouses: spouses, other: other } -%}
+      {%- for k, list in { parents: parents, children: children, siblings: siblings, grandparents: grandparents, grandchildren: grandchildren, spouses: spouses, other: other } -%}
         {%- set seen = seenAll -%}
         {%- set out = [] -%}
         {%- for e in list -%}
@@ -67,7 +75,8 @@
         {%- set fam = fam|merge({ (k): out }) -%}
       {%- endfor -%}
       {%- set fam = (fam.parents|length or fam.children|length or fam.siblings|length
-          or fam.grandparents|length or fam.spouses|length or fam.other|length) ? fam : null -%}
+          or fam.grandparents|length or fam.grandchildren|length or fam.spouses|length
+          or fam.other|length) ? fam : null -%}
     {%- endif -%}
   {%- endif -%}
 

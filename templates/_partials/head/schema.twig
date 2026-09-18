@@ -110,7 +110,9 @@
 
 {#- Family, from the one derivation in _layouts/base.twig, so the graph says
     exactly what the sidebar box says. childOf is the only stored direction;
-    children, siblings and grandparents are worked out from it. -#}
+    children, siblings, grandparents and grandchildren are worked out from it.
+    Schema.org has no grandparent or grandchild property, so both go into
+    relatedTo, which is what it does define. -#}
 {% set FAM = {} %}
 {% for k, list in (fam is defined and fam ? fam : {}) %}
   {% set nodes = [] %}
@@ -198,7 +200,7 @@
     'parent': (FAM.parents ?? []),
     'children': (FAM.children ?? []),
     'sibling': (FAM.siblings ?? []),
-    'relatedTo': (FAM.grandparents ?? []),
+    'relatedTo': (FAM.grandparents ?? [])|merge(FAM.grandchildren ?? []),
     'memberOf': (N.personOrganizations ?? [])|merge((N.personGroups ?? [])),
     'subjectOf': (N.articlesAbout ?? [])|merge((N.personEvents ?? [])),
     'homeLocation': communityNode
@@ -312,7 +314,7 @@
     'parent': (FAM.parents ?? []),
     'children': (FAM.children ?? []),
     'sibling': (FAM.siblings ?? []),
-    'relatedTo': (FAM.grandparents ?? []),
+    'relatedTo': (FAM.grandparents ?? [])|merge(FAM.grandchildren ?? []),
     'subjectOf': [{ '@id': canonical ~ '#loss' }]|merge((N.wmRelatedPerson ?? []))
   } %}
 

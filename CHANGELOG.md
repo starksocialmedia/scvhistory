@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: added the downward walk to the family derivation. Grandchildren are whoever points at one of this record's children, the mirror of the grandparent walk, rendered under their own heading in the family box and emitted in the JSON-LD.
+- Decisions: Schema.org defines no grandparent or grandchild property, so grandparents and grandchildren both go into relatedTo, which it does define, rather than inventing a term. Grandchildren dedupe after grandparents and before spouses, so a cousin marriage cannot list the same person twice.
+- Blockers: none.
+- Result: Rodolfo Acosta now shows Dante under Children and Rudy under Grandchildren, from nothing typed anywhere but childOf on Rudy and on Dante. 38 URLs swept, none in error.
+- Next: pushed to origin/templates-batch-9 at Nathan's request
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: fixed the War Memorial badge, which asked which casualty record pointed at a family member rather than whether that member was one, so on Rudy Acosta's page it sat on his father and linked back to Rudy. It now renders only where the family member is themselves a war memorial record. Retired the Related person box wherever a family box renders, folding whoever it showed into that box under Other relations when they are not already a parent, child, sibling, spouse or grandparent. Rebuilt the family box in the Related person design: a 56px circular portrait, the name in Playfair, occupation or rank and dates beneath in the muted grey, with a cream and gold initials circle where a record has no featuredImage.
 - Decisions: the badge is a marker inside the row rather than a second link, because the row already goes to that person's record and an anchor inside an anchor is invalid. Other relations reads wmRelatedPerson, relatedPersons and mpRelatedPersons both ways and dedupes against every family list in order, so a person who is both a related person and a parent appears once, under Parents. The Related person box still renders on a record with no family at all, so nothing is lost where the fold has nowhere to go.
 - Blockers: none.
