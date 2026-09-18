@@ -1,0 +1,2092 @@
+{
+  "meta": {
+    "source_csv": "inventory/for-wikidata.csv (from origin/templates-batch-9 @ e744708)",
+    "generated": "2026-09-18T09:31:04",
+    "rule": "Match requires >=2 corroborating facts beyond name. Near-misses and clean noes separated. Places: also report GNIS (P590) alone when WD match fails.",
+    "counts": {
+      "input_rows": 62,
+      "matches": 30,
+      "near_misses": 18,
+      "gnis_only_places": 0,
+      "unmatched": 14
+    },
+    "pass2": "promoted place GNIS from near-misses; retried people with Father/parenthetical nickname stripped"
+  },
+  "matches": [
+    {
+      "id": "309",
+      "kind": "person",
+      "title": "Abel Stearns",
+      "qid": "Q4666626",
+      "wikidata_label": "Abel Stearns",
+      "wikidata_description": "American mayor (1798–1871)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1798",
+          "our_value": "February 9, 1798",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1871",
+          "our_value": "August 23, 1871",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "politician",
+          "our_value": "Merchant; Rancher; Politician",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Abel_Stearns",
+        "viaf": "https://viaf.org/viaf/40840149/",
+        "find_a_grave": "https://www.findagrave.com/memorial/11171151"
+      }
+    },
+    {
+      "id": "317",
+      "kind": "person",
+      "title": "Andrés Pico",
+      "qid": "Q2806243",
+      "wikidata_label": "Andrés Pico",
+      "wikidata_description": "American politician (1810-1876)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1810",
+          "our_value": "November 18, 1810",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1876",
+          "our_value": "February 14, 1876",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "politician",
+          "our_value": "Military Officer; Rancher; Politician",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "military personnel",
+          "our_value": "Military Officer; Rancher; Politician",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Andr%C3%A9s_Pico"
+      }
+    },
+    {
+      "id": "323",
+      "kind": "person",
+      "title": "Cave Johnson Couts",
+      "qid": "Q58333053",
+      "wikidata_label": "Cave Johnson Couts",
+      "wikidata_description": "US military officer and judge",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1821",
+          "our_value": "November 6, 1821",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1874",
+          "our_value": "June 10, 1874",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "military officer",
+          "our_value": "Military Officer; Rancher",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Cave_Johnson_Couts",
+        "viaf": "https://viaf.org/viaf/41737411/",
+        "find_a_grave": "https://www.findagrave.com/memorial/6156421"
+      }
+    },
+    {
+      "id": "315",
+      "kind": "person",
+      "title": "Christopher Houston Carson",
+      "qid": "Q379673",
+      "wikidata_label": "Kit Carson",
+      "wikidata_description": "American frontiersman and Union Army general (1809-1868)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1809",
+          "our_value": "December 24, 1809",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1868",
+          "our_value": "May 23, 1868",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "military officer",
+          "our_value": "Scout; Trapper; Military Officer",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Kit_Carson",
+        "viaf": "https://viaf.org/viaf/27116218/",
+        "find_a_grave": "https://www.findagrave.com/memorial/177"
+      }
+    },
+    {
+      "id": "341",
+      "kind": "person",
+      "title": "Dante Acosta",
+      "qid": "Q27916203",
+      "wikidata_label": "Dante Acosta",
+      "wikidata_description": "American politician",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1963",
+          "our_value": "January 1, 1963",
+          "note": "birth year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "politician",
+          "our_value": "Politician; Financial Advisor; City Council Member; State Assemblymember",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "medium",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Dante_Acosta"
+      }
+    },
+    {
+      "id": "327",
+      "kind": "person",
+      "title": "Edward Fitzgerald Beale",
+      "qid": "Q1292161",
+      "wikidata_label": "Edward Fitzgerald Beale",
+      "wikidata_description": "American explorer, surveyor, ambassador (1822-1893)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1822",
+          "our_value": "February 4, 1822",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1893",
+          "our_value": "April 22, 1893",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "explorer",
+          "our_value": "Naval Officer; Explorer; Surveyor; Rancher; Diplomat",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "military officer",
+          "our_value": "Naval Officer; Explorer; Surveyor; Rancher; Diplomat",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "diplomat",
+          "our_value": "Naval Officer; Explorer; Surveyor; Rancher; Diplomat",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Edward_Fitzgerald_Beale",
+        "viaf": "https://viaf.org/viaf/72295682/",
+        "find_a_grave": "https://www.findagrave.com/memorial/11558486"
+      }
+    },
+    {
+      "id": "313",
+      "kind": "person",
+      "title": "Edwin Bryant",
+      "qid": "Q5346273",
+      "wikidata_label": "Edwin Bryant",
+      "wikidata_description": "American newspaper editor and alcalde of San Francisco",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1805",
+          "our_value": "1805",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1869",
+          "our_value": "December 16, 1869",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "journalist",
+          "our_value": "Journalist; Author; Alcalde",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Edwin_Bryant_%28alcalde%29",
+        "viaf": "https://viaf.org/viaf/63994218/",
+        "find_a_grave": "https://www.findagrave.com/memorial/30145642"
+      }
+    },
+    {
+      "id": "295",
+      "kind": "person",
+      "title": "Gaspar de Portolá",
+      "qid": "Q461023",
+      "wikidata_label": "Gaspar de Portolà",
+      "wikidata_description": "explorer and soldier in New Spain",
+      "corroborating_facts": [
+        {
+          "property": "P570",
+          "wikidata_value": "1786",
+          "our_value": "c. 1786",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "military personnel",
+          "our_value": "Military Officer; Colonial Governor",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "governor",
+          "our_value": "Military Officer; Colonial Governor",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "soldier",
+          "our_value": "Military Officer; Colonial Governor",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Gaspar_de_Portol%C3%A1",
+        "viaf": "https://viaf.org/viaf/38328041/"
+      }
+    },
+    {
+      "id": "283",
+      "kind": "person",
+      "title": "Henry Mayo Newhall",
+      "qid": "Q15458611",
+      "wikidata_label": "Henry Newhall",
+      "wikidata_description": "American businessman (1825-1882)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1825",
+          "our_value": "May 13, 1825",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1882",
+          "our_value": "March 13, 1882",
+          "note": "death year"
+        },
+        {
+          "property": "P19",
+          "wikidata_value": "Saugus",
+          "our_value": "Newhall; Saugus",
+          "note": "place of birth"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Henry_Newhall",
+        "viaf": "https://viaf.org/viaf/77963130/",
+        "find_a_grave": "https://www.findagrave.com/memorial/5308"
+      }
+    },
+    {
+      "id": "319",
+      "kind": "person",
+      "title": "James Wilson Marshall",
+      "qid": "Q253373",
+      "wikidata_label": "James W. Marshall",
+      "wikidata_description": "American cabinetmaker,doctor of the California Gold Rush (1810-1885)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1810",
+          "our_value": "October 8, 1810",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1885",
+          "our_value": "August 10, 1885",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "carpenter",
+          "our_value": "Carpenter; Millwright; Miner",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/James_W._Marshall",
+        "viaf": "https://viaf.org/viaf/51573394/",
+        "find_a_grave": "https://www.findagrave.com/memorial/6649"
+      }
+    },
+    {
+      "id": "307",
+      "kind": "person",
+      "title": "John C. Frémont",
+      "qid": "Q169011",
+      "wikidata_label": "John C. Frémont",
+      "wikidata_description": "American politician, explorer and military officer (1813–1890)",
+      "corroborating_facts": [
+        {
+          "property": "P570",
+          "wikidata_value": "1890",
+          "our_value": "July 13, 1890",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "politician",
+          "our_value": "Military Officer; Explorer; Politician",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "explorer",
+          "our_value": "Military Officer; Explorer; Politician",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "military officer",
+          "our_value": "Military Officer; Explorer; Politician",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/John_C._Fr%C3%A9mont",
+        "viaf": "https://viaf.org/viaf/49265020/",
+        "find_a_grave": "https://www.findagrave.com/memorial/2615"
+      }
+    },
+    {
+      "id": "329",
+      "kind": "person",
+      "title": "José Antonio Aguirre",
+      "qid": "Q6291387",
+      "wikidata_label": "José Antonio Aguirre",
+      "wikidata_description": "early settler of San Diego",
+      "corroborating_facts": [
+        {
+          "property": "P570",
+          "wikidata_value": "1860",
+          "our_value": "June 4, 1860",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "merchant",
+          "our_value": "Merchant; Rancher; Ship Owner",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "medium",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Jos%C3%A9_Antonio_Aguirre_%28early_Californian%29"
+      }
+    },
+    {
+      "id": "325",
+      "kind": "person",
+      "title": "Juan Bandini",
+      "qid": "Q6298943",
+      "wikidata_label": "Juan Bandini",
+      "wikidata_description": "Mexican politician",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1800",
+          "our_value": "1800",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1859",
+          "our_value": "November 4, 1859",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "politician",
+          "our_value": "Rancher; Politician; Merchant",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Juan_Bandini",
+        "viaf": "https://viaf.org/viaf/308180932/",
+        "find_a_grave": "https://www.findagrave.com/memorial/11163474"
+      }
+    },
+    {
+      "id": "301",
+      "kind": "person",
+      "title": "Juan Bautista de Anza",
+      "qid": "Q727612",
+      "wikidata_label": "Juan Bautista de Anza",
+      "wikidata_description": "Basque explorer and governor (1736-1788)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1736",
+          "our_value": "July 7, 1736 Death Date: December 19, 1",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1788",
+          "our_value": "December 19, 1788",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "explorer",
+          "our_value": "Military Officer; Explorer; Colonial Governor",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "military personnel",
+          "our_value": "Military Officer; Explorer; Colonial Governor",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Juan_Bautista_de_Anza",
+        "viaf": "https://viaf.org/viaf/311148995761859750793/"
+      }
+    },
+    {
+      "id": "297",
+      "kind": "person",
+      "title": "Juan Crespí",
+      "qid": "Q2712954",
+      "wikidata_label": "Joan Crespí",
+      "wikidata_description": "Franciscan missionary and explorer of Las Californias",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1721",
+          "our_value": "March 1, 1721",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1782",
+          "our_value": "January 1, 1782",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "explorer",
+          "our_value": "Franciscan Missionary; Diarist; Explorer",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "missionary",
+          "our_value": "Franciscan Missionary; Diarist; Explorer",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Juan_Cresp%C3%AD",
+        "viaf": "https://viaf.org/viaf/60634652/",
+        "find_a_grave": "https://www.findagrave.com/memorial/21675236"
+      }
+    },
+    {
+      "id": "299",
+      "kind": "person",
+      "title": "Junípero Serra",
+      "qid": "Q522107",
+      "wikidata_label": "Junípero Serra",
+      "wikidata_description": "Christian missionary",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1713",
+          "our_value": "November 24, 1713",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1784",
+          "our_value": "August 28, 1784",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "missionary",
+          "our_value": "ranciscan Missionary; Father-Presidente",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Jun%C3%ADpero_Serra",
+        "viaf": "https://viaf.org/viaf/79057359/",
+        "find_a_grave": "https://www.findagrave.com/memorial/2832"
+      }
+    },
+    {
+      "id": "343",
+      "kind": "person",
+      "title": "Rodolfo Acosta",
+      "qid": "Q596071",
+      "wikidata_label": "Rodolfo Acosta",
+      "wikidata_description": "Mexican character actor (1920-1974)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1920",
+          "our_value": "July 29, 1920",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1974",
+          "our_value": "November 7, 1974",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "film actor",
+          "our_value": "Actor",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "television actor",
+          "our_value": "Actor",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "actor",
+          "our_value": "Actor",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Rodolfo_Acosta",
+        "viaf": "https://viaf.org/viaf/7577172/",
+        "find_a_grave": "https://www.findagrave.com/memorial/19542"
+      }
+    },
+    {
+      "id": "311",
+      "kind": "person",
+      "title": "Thomas O. Larkin",
+      "qid": "Q12061100",
+      "wikidata_label": "Thomas O. Larkin",
+      "wikidata_description": "American businessman (1802-1858)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1802",
+          "our_value": "September 16, 1802",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1858",
+          "our_value": "October 27, 1858",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "merchant",
+          "our_value": "Merchant; Diplomat; Political Agent",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Thomas_O._Larkin",
+        "viaf": "https://viaf.org/viaf/10646649/",
+        "find_a_grave": "https://www.findagrave.com/memorial/8372"
+      }
+    },
+    {
+      "id": "285",
+      "kind": "person",
+      "title": "Tiburcio Vasquez",
+      "qid": "Q6222916",
+      "wikidata_label": "Tiburcio Vásquez",
+      "wikidata_description": "Californian bandit",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1835",
+          "our_value": "April 7, 1835",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1875",
+          "our_value": "March 19, 1875",
+          "note": "death year"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Tiburcio_V%C3%A1squez",
+        "viaf": "https://viaf.org/viaf/65752308/",
+        "find_a_grave": "https://www.findagrave.com/memorial/5334"
+      }
+    },
+    {
+      "id": "321",
+      "kind": "person",
+      "title": "William Lewis Manly",
+      "qid": "Q4020072",
+      "wikidata_label": "William L. Manly",
+      "wikidata_description": "American western pioneer (1820–1903)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1820",
+          "our_value": "April 6, 1820",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1903",
+          "our_value": "February 5, 1903",
+          "note": "death year"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "writer",
+          "our_value": "Pioneer; Author",
+          "note": "occupation overlap"
+        },
+        {
+          "property": "P106",
+          "wikidata_value": "pioneer",
+          "our_value": "Pioneer; Author",
+          "note": "occupation overlap"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/William_L._Manly",
+        "viaf": "https://viaf.org/viaf/38264563/",
+        "find_a_grave": "https://www.findagrave.com/memorial/18522962"
+      }
+    },
+    {
+      "id": "293",
+      "kind": "person",
+      "title": "Ygnacio del Valle",
+      "qid": "Q8053412",
+      "wikidata_label": "Ygnacio del Valle",
+      "wikidata_description": "Mexican rancher",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1808",
+          "our_value": "July 1, 1808",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1880",
+          "our_value": "1880",
+          "note": "death year"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Ygnacio_del_Valle"
+      }
+    },
+    {
+      "id": "597",
+      "kind": "place",
+      "title": "Fort Tejon",
+      "qid": "Q49490774",
+      "wikidata_label": "Fort Tejon State Historic Park",
+      "wikidata_description": "park in Kern County, California, United States of America",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.872777777778,-118.9",
+          "our_value": "34.8735,-118.8955",
+          "note": "coordinates within 0.42 km"
+        },
+        {
+          "property": "P590",
+          "wikidata_value": "271183",
+          "our_value": "",
+          "note": "GNIS id on Wikidata item"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "gnis": "271183"
+      },
+      "gnis_id": "271183"
+    },
+    {
+      "id": "607",
+      "kind": "place",
+      "title": "Lake Hughes",
+      "qid": "Q6476239",
+      "wikidata_label": "Lake Hughes",
+      "wikidata_description": "unincorporated community in California",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.676927777778,-118.44536111111",
+          "our_value": "34.677,-118.438",
+          "note": "coordinates within 0.67 km"
+        },
+        {
+          "property": "P131",
+          "wikidata_value": "Los Angeles County",
+          "our_value": "Lake Hughes",
+          "note": "located in LA County"
+        },
+        {
+          "property": "P590",
+          "wikidata_value": "1660877",
+          "our_value": "",
+          "note": "GNIS id on Wikidata item"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Lake_Hughes%2C_California",
+        "gnis": "1660877"
+      },
+      "gnis_id": "1660877"
+    },
+    {
+      "id": "926",
+      "kind": "place",
+      "title": "Lyons Station Stagecoach Stop",
+      "qid": "Q14683228",
+      "wikidata_label": "Lyons Station Stagecoach Stop",
+      "wikidata_description": "historical site in Newhall, Santa Clarita, California",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.3627,-118.507",
+          "our_value": "34.369,-118.5225",
+          "note": "coordinates within 1.59 km"
+        },
+        {
+          "property": "P131",
+          "wikidata_value": "Los Angeles County",
+          "our_value": "Newhall",
+          "note": "located in LA County"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Lyons_Station_Stagecoach_Stop"
+      }
+    },
+    {
+      "id": "934",
+      "kind": "place",
+      "title": "Newhall Pass interchange",
+      "qid": "Q806051",
+      "wikidata_label": "Newhall Pass interchange",
+      "wikidata_description": "interchange in California",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.335,-118.508",
+          "our_value": "34.339,-118.504",
+          "note": "coordinates within 0.58 km"
+        },
+        {
+          "property": "P131",
+          "wikidata_value": "Los Angeles County",
+          "our_value": "Newhall",
+          "note": "located in LA County"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Newhall_Pass_interchange"
+      }
+    },
+    {
+      "id": "631",
+      "kind": "place",
+      "title": "Rancho Camulos",
+      "qid": "Q7290871",
+      "wikidata_label": "Rancho Camulos",
+      "wikidata_description": "human settlement in California, United States of America",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.40565,-118.756667",
+          "our_value": "34.407,-118.753",
+          "note": "coordinates within 0.37 km"
+        },
+        {
+          "property": "P590",
+          "wikidata_value": "270247",
+          "our_value": "",
+          "note": "GNIS id on Wikidata item"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Rancho_Camulos",
+        "gnis": "270247"
+      },
+      "gnis_id": "270247"
+    },
+    {
+      "id": "635",
+      "kind": "place",
+      "title": "Ridge Route",
+      "qid": "Q19195",
+      "wikidata_label": "Ridge Route",
+      "wikidata_description": "highway in California",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.632222,-118.696944",
+          "our_value": "34.62,-118.73",
+          "note": "coordinates within 3.32 km"
+        },
+        {
+          "property": "P131",
+          "wikidata_value": "Los Angeles County; Kern County",
+          "our_value": "Castaic",
+          "note": "located in LA County"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Ridge_Route"
+      }
+    },
+    {
+      "id": "613",
+      "kind": "place",
+      "title": "Six Flags Magic Mountain",
+      "qid": "Q1515080",
+      "wikidata_label": "Six Flags Magic Mountain",
+      "wikidata_description": "theme park located in Valencia, California",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.4238,-118.597",
+          "our_value": "34.425,-118.597",
+          "note": "coordinates within 0.13 km"
+        },
+        {
+          "property": "P131",
+          "wikidata_value": "Valencia; California; Los Angeles County",
+          "our_value": "Valencia",
+          "note": "located in LA County"
+        },
+        {
+          "property": "P131",
+          "wikidata_value": "Valencia",
+          "our_value": "Valencia",
+          "note": "admin/community match"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Six_Flags_Magic_Mountain"
+      }
+    },
+    {
+      "id": "659",
+      "kind": "place",
+      "title": "Vasquez Rocks",
+      "qid": "Q49574248",
+      "wikidata_label": "Vasquez Rocks Park",
+      "wikidata_description": "park in Los Angeles County, California, United States of America",
+      "corroborating_facts": [
+        {
+          "property": "P625",
+          "wikidata_value": "34.480555555556,-118.31694444444",
+          "our_value": "34.488,-118.32",
+          "note": "coordinates within 0.87 km"
+        },
+        {
+          "property": "P131",
+          "wikidata_value": "Los Angeles County",
+          "our_value": "Agua Dulce",
+          "note": "located in LA County"
+        },
+        {
+          "property": "P590",
+          "wikidata_value": "1665736",
+          "our_value": "",
+          "note": "GNIS id on Wikidata item"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "gnis": "1665736"
+      },
+      "gnis_id": "1665736"
+    },
+    {
+      "id": "289",
+      "kind": "person",
+      "title": "Father Francisco Garcés",
+      "qid": "Q3622310",
+      "wikidata_label": "Francisco Garcés",
+      "wikidata_description": "explorer, missionary (1738-1781)",
+      "corroborating_facts": [
+        {
+          "property": "P569",
+          "wikidata_value": "1738",
+          "our_value": "April 12, 1738",
+          "note": "birth year"
+        },
+        {
+          "property": "P570",
+          "wikidata_value": "1781",
+          "our_value": "July 18, 1781",
+          "note": "death year"
+        }
+      ],
+      "confidence": "high",
+      "sitelinks": {
+        "wikipedia": "https://en.wikipedia.org/wiki/Francisco_Garc%C3%A9s"
+      },
+      "search_variant": [
+        "Francisco Garcés"
+      ]
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "291",
+      "kind": "person",
+      "title": "Antonio del Valle",
+      "candidates": [
+        {
+          "id": "291",
+          "kind": "person",
+          "title": "Antonio del Valle",
+          "candidate_qid": "Q56401435",
+          "candidate_label": "Antonio del Valle",
+          "wikidata_description": "Spanish military personnel",
+          "corroborating_facts": [
+            {
+              "property": "P106",
+              "wikidata_value": "military personnel",
+              "our_value": "Military Officer; Rancho Administrator; Land Grantee",
+              "note": "occupation overlap"
+            }
+          ],
+          "failed": "fewer than 2 corroborating facts (1)",
+          "sitelinks": {}
+        },
+        {
+          "id": "291",
+          "kind": "person",
+          "title": "Antonio del Valle",
+          "candidate_qid": "Q18352675",
+          "candidate_label": "Antonio del Valle Toca",
+          "wikidata_description": "Mexican politician",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Antonio_del_Valle_Toca"
+          }
+        },
+        {
+          "id": "291",
+          "kind": "person",
+          "title": "Antonio del Valle",
+          "candidate_qid": "Q44735207",
+          "candidate_label": "Antonio del Valle Menéndez",
+          "wikidata_description": "Spanish politician",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "viaf": "https://viaf.org/viaf/86656988/"
+          }
+        },
+        {
+          "id": "291",
+          "kind": "person",
+          "title": "Antonio del Valle",
+          "candidate_qid": "Q18811020",
+          "candidate_label": "Antonio del Valle Ruiz",
+          "wikidata_description": "Mexican businessman",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Antonio_del_Valle_Ruiz"
+          }
+        },
+        {
+          "id": "291",
+          "kind": "person",
+          "title": "Antonio del Valle",
+          "candidate_qid": "Q135510308",
+          "candidate_label": "Antonio del Valle",
+          "wikidata_description": "Wikimedia disambiguation page",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Antonio_del_Valle"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "281",
+      "kind": "person",
+      "title": "Jerry Reynolds",
+      "candidates": [
+        {
+          "id": "281",
+          "kind": "person",
+          "title": "Jerry Reynolds",
+          "candidate_qid": "Q3808040",
+          "candidate_label": "Jerry Reynolds",
+          "wikidata_description": "American basketball player (born 1962)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Jerry_Reynolds_%28basketball%2C_born_1962%29"
+          }
+        },
+        {
+          "id": "281",
+          "kind": "person",
+          "title": "Jerry Reynolds",
+          "candidate_qid": "Q10484718",
+          "candidate_label": "Jerry Reynolds",
+          "wikidata_description": "British footballer (1867-1944)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Jerry_Reynolds_%28footballer%29"
+          }
+        },
+        {
+          "id": "281",
+          "kind": "person",
+          "title": "Jerry Reynolds",
+          "candidate_qid": "Q3808038",
+          "candidate_label": "Jerry Reynolds",
+          "wikidata_description": "American basketball player and coach",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Jerry_Reynolds_%28basketball%2C_born_1944%29",
+            "viaf": "https://viaf.org/viaf/41804847/"
+          }
+        },
+        {
+          "id": "281",
+          "kind": "person",
+          "title": "Jerry Reynolds",
+          "candidate_qid": "Q3808039",
+          "candidate_label": "Jerry Reynolds",
+          "wikidata_description": "Wikimedia disambiguation page",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Jerry_Reynolds"
+          }
+        },
+        {
+          "id": "281",
+          "kind": "person",
+          "title": "Jerry Reynolds",
+          "candidate_qid": "Q24006833",
+          "candidate_label": "Jerry Reynolds",
+          "wikidata_description": "American football player (born 1970)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Jerry_Reynolds_%28American_football%29"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "287",
+      "kind": "person",
+      "title": "Pedro Fages",
+      "candidates": [
+        {
+          "id": "287",
+          "kind": "person",
+          "title": "Pedro Fages",
+          "candidate_qid": "Q389243",
+          "candidate_label": "Pedro Fages",
+          "wikidata_description": "Spanish explorer",
+          "corroborating_facts": [
+            {
+              "property": "P106",
+              "wikidata_value": "military personnel",
+              "our_value": "Military Officer; Colonial Governor",
+              "note": "occupation overlap"
+            }
+          ],
+          "failed": "fewer than 2 corroborating facts (1)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Pedro_Fages",
+            "viaf": "https://viaf.org/viaf/34448783/"
+          }
+        },
+        {
+          "id": "287",
+          "kind": "person",
+          "title": "Pedro Fages",
+          "candidate_qid": "Q49540869",
+          "candidate_label": "Pedro Fages Monument",
+          "failed": "candidate looks non-person",
+          "description": "park in the United States of America"
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "339",
+      "kind": "person",
+      "title": "Remi Allen Nadeau",
+      "candidates": [
+        {
+          "id": "339",
+          "kind": "person",
+          "title": "Remi Allen Nadeau",
+          "candidate_qid": "Q7311774",
+          "candidate_label": "Remi Nadeau",
+          "wikidata_description": "American historian (1920–2016)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Remi_Nadeau",
+            "viaf": "https://viaf.org/viaf/244236348/"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "932",
+      "kind": "place",
+      "title": "Beale's Cut Stagecoach Pass",
+      "candidates": [
+        {
+          "id": "932",
+          "kind": "place",
+          "title": "Beale's Cut Stagecoach Pass",
+          "candidate_qid": "Q85845486",
+          "candidate_label": "Beale's Cut",
+          "wikidata_description": "former stagecoach pass in Santa Clarita, California",
+          "corroborating_facts": [
+            {
+              "property": "P625",
+              "wikidata_value": "34.3448,-118.50836",
+              "our_value": "34.3444,-118.5074",
+              "note": "coordinates within 0.10 km"
+            }
+          ],
+          "failed": "fewer than 2 corroborating facts (1)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Beale%27s_Cut_Stagecoach_Pass"
+          }
+        },
+        {
+          "id": "932",
+          "kind": "place",
+          "title": "Beale's Cut Stagecoach Pass",
+          "candidate_qid": "Q1455208",
+          "candidate_label": "Fremont Pass",
+          "wikidata_description": "mountain pass",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Fremont_Pass_%28Colorado%29"
+          }
+        },
+        {
+          "id": "932",
+          "kind": "place",
+          "title": "Beale's Cut Stagecoach Pass",
+          "candidate_qid": "Q5501609",
+          "candidate_label": "Fremont Pass",
+          "wikidata_description": "Wikimedia disambiguation page",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Fremont_Pass"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "609",
+      "kind": "place",
+      "title": "Lang Station",
+      "candidates": [
+        {
+          "id": "609",
+          "kind": "place",
+          "title": "Lang Station",
+          "candidate_qid": "Q56670517",
+          "candidate_label": "Láng Station",
+          "wikidata_description": "station of Hanoi Metro",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Lang_station_%28Hanoi%29"
+          }
+        },
+        {
+          "id": "609",
+          "kind": "place",
+          "title": "Lang Station",
+          "candidate_qid": "Q65247298",
+          "candidate_label": "Lang Railway Station",
+          "wikidata_description": "Wikimedia disambiguation page",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Lang_station"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "643",
+      "kind": "place",
+      "title": "Saugus Speedway",
+      "candidates": [
+        {
+          "id": "643",
+          "kind": "place",
+          "title": "Saugus Speedway",
+          "candidate_qid": "Q7427230",
+          "candidate_label": "Saugus Speedway",
+          "wikidata_description": "Race track",
+          "corroborating_facts": [
+            {
+              "property": "P625",
+              "wikidata_value": "34.4164,-118.528",
+              "our_value": "34.42,-118.545",
+              "note": "coordinates within 1.61 km"
+            }
+          ],
+          "failed": "fewer than 2 corroborating facts (1)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Saugus_Speedway"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "380",
+      "kind": "organization",
+      "title": "Henry Mayo Newhall Memorial Hospital",
+      "candidates": [
+        {
+          "id": "380",
+          "kind": "organization",
+          "title": "Henry Mayo Newhall Memorial Hospital",
+          "candidate_qid": "Q5725649",
+          "candidate_label": "Henry Mayo Newhall Memorial Hospital",
+          "wikidata_description": "hospital in California, United States",
+          "corroborating_facts": [
+            {
+              "property": "P131",
+              "wikidata_value": "Los Angeles County",
+              "our_value": "Valencia",
+              "note": "located in LA County"
+            }
+          ],
+          "failed": "fewer than 2 corroborating facts (1)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Henry_Mayo_Newhall_Memorial_Hospital"
+          }
+        },
+        {
+          "id": "380",
+          "kind": "organization",
+          "title": "Henry Mayo Newhall Memorial Hospital",
+          "candidate_qid": "Q2469262",
+          "candidate_label": "Henry T. Mayo",
+          "wikidata_description": "United States Navy admiral (1856-1937)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Henry_T._Mayo",
+            "viaf": "https://viaf.org/viaf/11514339/",
+            "find_a_grave": "https://www.findagrave.com/memorial/689"
+          }
+        },
+        {
+          "id": "380",
+          "kind": "organization",
+          "title": "Henry Mayo Newhall Memorial Hospital",
+          "candidate_qid": "Q18065205",
+          "candidate_label": "Henry Mayo",
+          "wikidata_description": "English dissenting minister, tutor, and magazine editor",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Henry_Mayo_%28minister%29",
+            "viaf": "https://viaf.org/viaf/66341851/"
+          }
+        },
+        {
+          "id": "380",
+          "kind": "organization",
+          "title": "Henry Mayo Newhall Memorial Hospital",
+          "candidate_qid": "Q28933367",
+          "candidate_label": "Hank Mayo",
+          "wikidata_description": "artist",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "380",
+          "kind": "organization",
+          "title": "Henry Mayo Newhall Memorial Hospital",
+          "candidate_qid": "Q28939115",
+          "candidate_label": "Henry Mayo",
+          "wikidata_description": "cricketer (1847-1891)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Henry_Mayo_%28cricketer%29"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "392",
+      "kind": "organization",
+      "title": "Historical Society of Southern California",
+      "candidates": [
+        {
+          "id": "392",
+          "kind": "organization",
+          "title": "Historical Society of Southern California",
+          "candidate_qid": "Q74144594",
+          "candidate_label": "Historical Society of Southern California",
+          "wikidata_description": "historical society in California",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "392",
+          "kind": "organization",
+          "title": "Historical Society of Southern California",
+          "candidate_qid": "Q136534413",
+          "candidate_label": "Historical Society of Southern California, Los Angeles",
+          "wikidata_description": "journal 1884-1887",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "392",
+          "kind": "organization",
+          "title": "Historical Society of Southern California",
+          "candidate_qid": "Q96706508",
+          "candidate_label": "Historical Society of Southern California Los Angeles (1890)",
+          "wikidata_description": "US scientific journal",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "392",
+          "kind": "organization",
+          "title": "Historical Society of Southern California",
+          "candidate_qid": "Q96706505",
+          "candidate_label": "Historical Society of Southern California Los Angeles",
+          "wikidata_description": "US scientific journal",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "390",
+      "kind": "organization",
+      "title": "Los Angeles Herald",
+      "candidates": [
+        {
+          "id": "390",
+          "kind": "organization",
+          "title": "Los Angeles Herald",
+          "candidate_qid": "Q15985081",
+          "candidate_label": "Los Angeles Herald",
+          "wikidata_description": "American newspaper (1873–1931)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Los_Angeles_Herald"
+          }
+        },
+        {
+          "id": "390",
+          "kind": "organization",
+          "title": "Los Angeles Herald",
+          "candidate_qid": "Q3837267",
+          "candidate_label": "Los Angeles Herald-Examiner",
+          "wikidata_description": "newspaper",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Los_Angeles_Herald_Examiner"
+          }
+        },
+        {
+          "id": "390",
+          "kind": "organization",
+          "title": "Los Angeles Herald",
+          "candidate_qid": "Q7748499",
+          "candidate_label": "The Los Angeles Herald-Express",
+          "wikidata_description": "newspaper in Los Angeles, California (1931–1962)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Los_Angeles_Herald-Express"
+          }
+        },
+        {
+          "id": "390",
+          "kind": "organization",
+          "title": "Los Angeles Herald",
+          "candidate_qid": "Q140397872",
+          "candidate_label": "Los Angeles Herald Examiner Building",
+          "wikidata_description": "historic commercial building in Downtown Los Angeles",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "390",
+          "kind": "organization",
+          "title": "Los Angeles Herald",
+          "candidate_qid": "Q5646015",
+          "candidate_label": "Herald",
+          "wikidata_description": "Pakistani magazine",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Herald_%28Pakistan%29",
+            "viaf": "https://viaf.org/viaf/315945732/"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "398",
+      "kind": "organization",
+      "title": "Mission San Francisco de Asís",
+      "candidates": [
+        {
+          "id": "398",
+          "kind": "organization",
+          "title": "Mission San Francisco de Asís",
+          "candidate_qid": "Q1000321",
+          "candidate_label": "Mission San Francisco de Asís",
+          "wikidata_description": "mission in San Francisco",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Mission_San_Francisco_de_As%C3%ADs",
+            "viaf": "https://viaf.org/viaf/267455573/"
+          }
+        },
+        {
+          "id": "398",
+          "kind": "organization",
+          "title": "Mission San Francisco de Asís",
+          "candidate_qid": "Q20200512",
+          "candidate_label": "Mission San Francisco de Asis",
+          "wikidata_description": "painting by Oriana Weatherbee Day",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "386",
+      "kind": "organization",
+      "title": "Mission San Gabriel Arcángel",
+      "candidates": [
+        {
+          "id": "386",
+          "kind": "organization",
+          "title": "Mission San Gabriel Arcángel",
+          "candidate_qid": "Q1939046",
+          "candidate_label": "Mission San Gabriel Arcángel",
+          "wikidata_description": "Roman Catholic mission and a historic landmark in San Gabriel, California",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Mission_San_Gabriel_Arc%C3%A1ngel",
+            "viaf": "https://viaf.org/viaf/124639927/"
+          }
+        },
+        {
+          "id": "386",
+          "kind": "organization",
+          "title": "Mission San Gabriel Arcángel",
+          "candidate_qid": "Q20200478",
+          "candidate_label": "Mission San Gabriel Arcangel",
+          "wikidata_description": "anonymous painting",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "386",
+          "kind": "organization",
+          "title": "Mission San Gabriel Arcángel",
+          "candidate_qid": "Q77013097",
+          "candidate_label": "Mission San Gabriel Arcángel",
+          "wikidata_description": "print in the National Gallery of Art (NGA 183535)",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "386",
+          "kind": "organization",
+          "title": "Mission San Gabriel Arcángel",
+          "candidate_qid": "Q104144576",
+          "candidate_label": "San Gabriel Mission Cemetery",
+          "wikidata_description": "cemetery in San Gabriel, California",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "386",
+          "kind": "organization",
+          "title": "Mission San Gabriel Arcángel",
+          "candidate_qid": "Q7414204",
+          "candidate_label": "San Gabriel Mission High School",
+          "wikidata_description": "high school in California, United States",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/San_Gabriel_Mission_High_School",
+            "gnis": "246006"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "400",
+      "kind": "organization",
+      "title": "Mission Santa Cruz",
+      "candidates": [
+        {
+          "id": "400",
+          "kind": "organization",
+          "title": "Mission Santa Cruz",
+          "candidate_qid": "Q12061892",
+          "candidate_label": "Mission Santa Cruz",
+          "wikidata_description": "mission in Santa Cruz, California",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Mission_Santa_Cruz",
+            "viaf": "https://viaf.org/viaf/139601887/"
+          }
+        },
+        {
+          "id": "400",
+          "kind": "organization",
+          "title": "Mission Santa Cruz",
+          "candidate_qid": "Q20200505",
+          "candidate_label": "Mission Santa Cruz",
+          "wikidata_description": "anonymous painting",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "400",
+          "kind": "organization",
+          "title": "Mission Santa Cruz",
+          "candidate_qid": "Q7866645",
+          "candidate_label": "USNS Mission Santa Cruz",
+          "wikidata_description": "ship built in 1943",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/USNS_Mission_Santa_Cruz"
+          }
+        },
+        {
+          "id": "400",
+          "kind": "organization",
+          "title": "Mission Santa Cruz",
+          "candidate_qid": "Q6878754",
+          "candidate_label": "Mission Santa Cruz de San Sabá",
+          "wikidata_description": "Spanish mission in Texas",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Mission_Santa_Cruz_de_San_Sab%C3%A1"
+          }
+        },
+        {
+          "id": "400",
+          "kind": "organization",
+          "title": "Mission Santa Cruz",
+          "candidate_qid": "Q117603148",
+          "candidate_label": "Mission Santa Cruz Cemetery",
+          "wikidata_description": "cemetery in Santa Cruz County, California, United States",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "384",
+      "kind": "organization",
+      "title": "Rancho Camulos",
+      "candidates": [
+        {
+          "id": "384",
+          "kind": "organization",
+          "title": "Rancho Camulos",
+          "candidate_qid": "Q7290871",
+          "candidate_label": "Rancho Camulos",
+          "wikidata_description": "human settlement in California, United States of America",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Rancho_Camulos",
+            "gnis": "270247"
+          }
+        },
+        {
+          "id": "384",
+          "kind": "organization",
+          "title": "Rancho Camulos",
+          "candidate_qid": "Q117693685",
+          "candidate_label": "Rancho Camulos Cemetery",
+          "wikidata_description": "cemetery in Ventura County, California, United States",
+          "corroborating_facts": [
+            {
+              "property": "P131",
+              "wikidata_value": "Ventura County",
+              "our_value": "Camulos; Piru",
+              "note": "located in Ventura County"
+            }
+          ],
+          "failed": "fewer than 2 corroborating facts (1)",
+          "sitelinks": {}
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "388",
+      "kind": "organization",
+      "title": "Rancho El Tejon",
+      "candidates": [
+        {
+          "id": "388",
+          "kind": "organization",
+          "title": "Rancho El Tejon",
+          "candidate_qid": "Q7290965",
+          "candidate_label": "Rancho El Tejon",
+          "wikidata_description": "land grant in California",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Rancho_El_Tej%C3%B3n",
+            "gnis": "241927"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "382",
+      "kind": "organization",
+      "title": "Rancho San Francisco",
+      "candidates": [
+        {
+          "id": "382",
+          "kind": "organization",
+          "title": "Rancho San Francisco",
+          "candidate_qid": "Q256822",
+          "candidate_label": "Rancho San Francisco",
+          "wikidata_description": "Mexican land grant in California",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Rancho_San_Francisco"
+          }
+        },
+        {
+          "id": "382",
+          "kind": "organization",
+          "title": "Rancho San Francisco",
+          "candidate_qid": "Q61304541",
+          "candidate_label": "Rancho San Francisco",
+          "wikidata_description": "",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "382",
+          "kind": "organization",
+          "title": "Rancho San Francisco",
+          "candidate_qid": "Q61270630",
+          "candidate_label": "Rancho San Francisco",
+          "wikidata_description": "",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "382",
+          "kind": "organization",
+          "title": "Rancho San Francisco",
+          "candidate_qid": "Q61303477",
+          "candidate_label": "Rancho San Francisco",
+          "wikidata_description": "",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "382",
+          "kind": "organization",
+          "title": "Rancho San Francisco",
+          "candidate_qid": "Q61312047",
+          "candidate_label": "Rancho San Francisco",
+          "wikidata_description": "",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "394",
+      "kind": "organization",
+      "title": "The City of Santa Clarita",
+      "candidates": [
+        {
+          "id": "394",
+          "kind": "organization",
+          "title": "The City of Santa Clarita",
+          "candidate_qid": "Q1303153",
+          "candidate_label": "Suceava International Airport",
+          "wikidata_description": "airport",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Suceava_%C8%98tefan_cel_Mare_International_Airport"
+          }
+        },
+        {
+          "id": "394",
+          "kind": "organization",
+          "title": "The City of Santa Clarita",
+          "candidate_qid": "Q14905220",
+          "candidate_label": "symbiont-containing vacuole",
+          "wikidata_description": "Membrane-bounded vacuole within a host cell in which a symbiont organism resides. The vacuole membrane is derived from both the host and symbiont.",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "394",
+          "kind": "organization",
+          "title": "The City of Santa Clarita",
+          "candidate_qid": "Q117566278",
+          "candidate_label": "SCV",
+          "wikidata_description": "Chinese progamer",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "394",
+          "kind": "organization",
+          "title": "The City of Santa Clarita",
+          "candidate_qid": "Q2501650",
+          "candidate_label": "Soulcalibur V",
+          "wikidata_description": "2012 video game",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Soulcalibur_V"
+          }
+        },
+        {
+          "id": "394",
+          "kind": "organization",
+          "title": "The City of Santa Clarita",
+          "candidate_qid": "Q139568934",
+          "candidate_label": "SCV Complex",
+          "wikidata_description": "Mountain cabin complex by ONA – Oficina Nómada de Arquitectura, Mendoza, Argentina",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    },
+    {
+      "id": "376",
+      "kind": "organization",
+      "title": "The Santa Clarita Valley Signal",
+      "candidates": [
+        {
+          "id": "376",
+          "kind": "organization",
+          "title": "The Santa Clarita Valley Signal",
+          "candidate_qid": "Q7762256",
+          "candidate_label": "The Santa Clarita Valley Signal",
+          "wikidata_description": "American newspaper founded in 1919",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/The_Santa_Clarita_Valley_Signal"
+          }
+        },
+        {
+          "id": "376",
+          "kind": "organization",
+          "title": "The Santa Clarita Valley Signal",
+          "candidate_qid": "Q1054807",
+          "candidate_label": "TMS Entertainment",
+          "wikidata_description": "Japanese animation studio",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/TMS_Entertainment",
+            "viaf": "https://viaf.org/viaf/154726688/"
+          }
+        },
+        {
+          "id": "376",
+          "kind": "organization",
+          "title": "The Santa Clarita Valley Signal",
+          "candidate_qid": "Q107404505",
+          "candidate_label": "The Museum System",
+          "wikidata_description": "inventory management software",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {}
+        },
+        {
+          "id": "376",
+          "kind": "organization",
+          "title": "The Santa Clarita Valley Signal",
+          "candidate_qid": "Q263962",
+          "candidate_label": "transcranial magnetic stimulation",
+          "wikidata_description": "form of brain stimulation using magnetic fields",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Transcranial_magnetic_stimulation"
+          }
+        },
+        {
+          "id": "376",
+          "kind": "organization",
+          "title": "The Santa Clarita Valley Signal",
+          "candidate_qid": "Q56276004",
+          "candidate_label": "The Masked Singer",
+          "wikidata_description": "2019 American reality singing competition television game show",
+          "corroborating_facts": [],
+          "failed": "fewer than 2 corroborating facts (0)",
+          "sitelinks": {
+            "wikipedia": "https://en.wikipedia.org/wiki/The_Masked_Singer_%28American_TV_series%29"
+          }
+        }
+      ],
+      "failed": "no candidate met two-fact rule"
+    }
+  ],
+  "gnis_only_places": [],
+  "unmatched": [
+    {
+      "id": "333",
+      "kind": "person",
+      "title": "Arthur Burnett Perkins",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "331",
+      "kind": "person",
+      "title": "Henry Clay Wiley",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "337",
+      "kind": "person",
+      "title": "John Timothy Gifford",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "305",
+      "kind": "person",
+      "title": "Juan José Francisco de Gracia (\"Chico\") Lopez",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "303",
+      "kind": "person",
+      "title": "Juventino del Valle",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "279",
+      "kind": "person",
+      "title": "Leon Worden",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "335",
+      "kind": "person",
+      "title": "Scott Thomas Wilk Sr.",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "595",
+      "kind": "place",
+      "title": "Estancia de San Francisco Xavier",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "599",
+      "kind": "place",
+      "title": "Harry Carey Ranch",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "605",
+      "kind": "place",
+      "title": "Heritage Junction Historic Park",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "615",
+      "kind": "place",
+      "title": "Melody Ranch Motion Picture Studio",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "396",
+      "kind": "organization",
+      "title": "Santa Clarita Valley Chamber of Commerce",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "402",
+      "kind": "organization",
+      "title": "Santa Clarita Valley Water",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    },
+    {
+      "id": "378",
+      "kind": "organization",
+      "title": "SCVHistory.com — Santa Clarita Valley History",
+      "status": "no_candidates",
+      "failed": "no Wikidata search hits"
+    }
+  ]
+}
