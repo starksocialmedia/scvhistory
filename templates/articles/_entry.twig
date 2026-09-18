@@ -228,7 +228,7 @@
         {% if F.sourceLine %}<div class="rec-lede">{{ F.sourceLine }}</div>{% endif %}
 
         {% if F.body %}
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages, linksFor: entry.id } %}</div>
         {% endif %}
 
         {% if signoff %}

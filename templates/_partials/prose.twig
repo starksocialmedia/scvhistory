@@ -17,9 +17,20 @@
   line, so "the eriodyction glutinosum, growing profusely" arrived as three
   lines and rendered as three paragraphs with the sentence split around it.
 
+  Mentions of related records are linked from a layer rather than from the text.
+  When linksFor is set, templates/_data/prose-links/<id>.json is read and its
+  spans are applied to the paragraphs at render time. The body itself is never
+  rewritten, so the words stay exactly as they were imported and the whole layer
+  can be regenerated or deleted without touching a record.
+
+  Every span carries the text it expects at its offset. A span whose text is not
+  there is dropped, so if this partial's rejoin rule ever changes the links go
+  quiet rather than cutting through a sentence. Re-running the linker fixes it.
+
   Params:
     text     the prose
     images   optional, the recordImages assets, needed for [image:N]
+    linksFor optional, an entry id; loads that entry's link layer
 #}
 {% if images is defined and images|length %}
   {% css %}
@@ -31,6 +42,12 @@
   {% endcss %}
 {% endif %}
 {%- set imgs = images is defined ? images : [] -%}
+
+{%- set spans = [] -%}
+{%- if linksFor is defined and linksFor -%}
+  {%- set layer = source('_data/prose-links/' ~ linksFor ~ '.json', true) -%}
+  {%- if layer|trim -%}{%- set spans = (layer|json_decode).spans ?? [] -%}{%- endif -%}
+{%- endif -%}
 
 {#- Rejoin the split footnote markers before anything is rendered. A line is
     rejoinable when it holds no letters at all, which keeps [image:N] out of it. -#}
@@ -74,7 +91,19 @@
     {%- elseif token -%}
       {# token points at an image that is not there; drop it rather than print it #}
     {%- else -%}
-      <p>{{ line|raw }}</p>
+      {#- Spans are applied from the end of the paragraph backwards, so an
+          earlier offset is still correct after a later one has been wrapped. -#}
+      {%- set out = line -%}
+      {%- if spans|length -%}
+        {%- set pi = loop.index0 -%}
+        {%- set mine = spans|filter(s => s.p == pi)|sort((a, b) => b.s <=> a.s) -%}
+        {%- for s in mine -%}
+          {%- if out|slice(s.s, s.n) == s.t -%}
+            {%- set out = out|slice(0, s.s) ~ '<a href="' ~ s.u ~ '">' ~ s.t ~ '</a>' ~ out|slice(s.s + s.n) -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      <p>{{ out|raw }}</p>
     {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
