@@ -729,3 +729,26 @@ Verified by running the dry run to completion: plans 5, writes 0.
 ### Pages verified
 
 All eight pages return 200: `/about`, `/contact`, `/permissions`, `/photo-credits`, `/newsletter`, `/submit`, `/nonprofit`, `/privacy`. All 13 internal footer links return 200, including the two grouping links `/articles?view=era` and `/articles?view=collection`. Nothing 404s. A page with an empty body renders the record shell and says "This page has not been written yet".
+
+## 2026-09-17 (Claude, branch templates-batch-8)
+
+- Agent: Claude
+- Date: 2026-09-17
+
+### Article page rebuilt to the approved layout
+
+`templates/articles/_entry.twig`, modelled on the Reynolds Prologue page.
+
+Band: breadcrumbs, title in Playfair gold, collection title beneath it in gold and linked, byline of "By X · Edited by Y · date" with both names linked, chip row of the historical period and every community term.
+
+Body column: featured image as a full-width hero with its caption beneath in italic 13.5px grey from the asset title; a previous/next bar with Jost gold labels above the chapter titles; the prose; a right-aligned author and year in small caps; the same bar again; then ABOUT THE AUTHOR with a round portrait, name, occupation, bio and a View Full Profile link.
+
+Sidebar: tools with the listen player, cite, search, PART OF COLLECTION with the collection's featured image, IN THIS COLLECTION with every chapter in order and the current one on cream behind a gold left rule, PEOPLE IN THIS ARTICLE with thumbnails and occupations, PUBLISHED BY, the remaining relation boxes, documents, and the legacy site link.
+
+Previous, next and the chapter list all read the same `articlesInCollection` order, so they cannot disagree. Every block is conditional: no hero without an image, no bars outside a collection, no author block without a bio, no sign-off without a four-digit year. Built on the existing record partials for tools, cite, note, images, documents and prose.
+
+**One block could not be built: TAGS.** There is no tags field on the article layout, and no tag or keyword field anywhere in this Craft install. The band's chips carry the historical period and the communities instead. If tags are wanted, the field has to be created first.
+
+`featuredImage` is now on the article layout, so the hero is a real featured image; it falls back to the first record image when empty. 50 of the 84 collection-linked articles carry one.
+
+Verified: all 27 article pages return 200, and on the Prologue page the hero, both prev/next bars, the sign-off, the author block, the collection card and the chapter list with the current chapter highlighted all render.
