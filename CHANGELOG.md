@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: wrote scripts/import/import_perkins.php, eval style, dry run by default. Imports the 20 wave 0 Perkins pages as Articles matched on legacyKey, wires the 13 series pages to the Story of Our Valley collection in series_position order, and writes inventory/legacy/perkins-images.json (199 images, not downloaded). Dry run reported; nothing written to the database. Verified every field write with a temporary fixture article, then hard-deleted it.
+- Decisions: match falls back to legacyUrl when legacyKey is empty, so the already-imported Birth of Newhall (#869) is adopted rather than duplicated. An existing article is only gap-filled, never clobbered, unless $OVERWRITE is set. An empty extracted value never overwrites anything.
+- Blockers: date_raw and subtitle are empty on all 20 pages, so originalPublishDate and subheadline cannot be set. Saugus-Valencia has no matching neighborhood term; Craft spells it Saugus/Valencia. body_text carries legacy site chrome.
+- Next: Nathan decides on Saugus-Valencia, on the body_text chrome, and whether to run with $APPLY
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: rebuilt the site header and mega menu in templates/_layouts/base.twig and templates/_partials/header/site-header.twig, from design/menu-source.html for markup and design/MENU-MAPPING.md for data, targets and omissions. Five menus, live counts, feature cards, active-state mapping, hover and keyboard behaviour, 980px collapse. Whole fragment cached with Craft's cache tag keyed on the active menu.
 - Decisions: items marked OMIT in MENU-MAPPING.md are absent, and a column left empty by them is dropped. Photo galleries and Documents omitted because both sections are empty. DONATE omitted because no donate page exists. Panels are all rendered and toggled rather than conditionally rendered, so the header can be cached as one fragment.
 - Blockers: none
