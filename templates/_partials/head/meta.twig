@@ -83,3 +83,8 @@
 <meta name="twitter:title" content="{{ recTitle ?: (sectionLabel ?: SITE) }}">
 {% if desc %}<meta name="twitter:description" content="{{ desc }}">{% endif %}
 <meta name="twitter:image" content="{{ ogImageUrl }}">
+
+{# JSON-LD and Dublin Core. Kept in its own file because it is long, and handed
+   the description this partial already worked out so the two agree. #}
+{% set metaDescriptionOut = desc %}
+{% include "_partials/head/schema" %}

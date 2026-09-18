@@ -49,6 +49,33 @@
 
   {% include "_partials/header/site-header" %}
 
+  {#- The sticky header and the back to top control are site wide: the homepage,
+      every index, a record, search, 404. Only the collection strip varies, and
+      only a record that sits in a collection has one.
+
+      The field is looked for in the element's own layout rather than with
+      `is defined`, which answers true for a field the entry type does not have
+      and then throws on read. -#}
+  {%- set stickyColl = null -%}
+  {%- set stickyChapter = null -%}
+  {%- if entry is defined and entry -%}
+    {%- set stickyHandles = [] -%}
+    {%- for f in (entry.fieldLayout ? entry.fieldLayout.customFields : []) -%}
+      {%- set stickyHandles = stickyHandles|merge([f.handle]) -%}
+    {%- endfor -%}
+    {%- if 'partOfCollection' in stickyHandles -%}
+      {%- set stickyColl = entry.partOfCollection.one() ?? null -%}
+      {%- if stickyColl -%}
+        {%- set stickyParts = stickyColl.articlesInCollection.all()
+            ?: craft.entries().section('articles').relatedTo({ targetElement: stickyColl, field: 'partOfCollection' }).status(null).all() -%}
+        {%- for c in stickyParts -%}
+          {%- if c.id == entry.id -%}{%- set stickyChapter = loop.index -%}{%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+  {% include "_partials/sticky" with { collection: stickyColl, chapter: stickyChapter } only %}
+
   {# ── Main Content ────────────────────────────────────────────────── #}
   <div id="content" tabindex="-1">
     {% block content %}{% endblock %}

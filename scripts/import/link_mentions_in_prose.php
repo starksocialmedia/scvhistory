@@ -33,6 +33,10 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
+/* Stamped into every layer. Raise it whenever the matching rules change, so a
+   file written by an older run is identifiable without reading its spans. */
+$VERSION = '1.0';
+
 /* Set to an article slug to print that article's layer as it would be written,
    without writing anything. Useful for checking one page before a whole run. */
 $DUMP = '';
@@ -137,6 +141,7 @@ $forbiddenRanges = function (string $p): array {
 
 $canonGroups = ['person' => [], 'place' => [], 'organization' => []];
 $canonNames  = 0;
+$canonStamp  = 'absent';
 if (file_exists($canonPath)) {
     $c = json_decode(file_get_contents($canonPath), true);
     foreach (($c['canon'] ?? []) as $kind => $groups) {
@@ -149,6 +154,7 @@ if (file_exists($canonPath)) {
             $canonNames += count($names);
         }
     }
+    $canonStamp = substr(sha1_file($canonPath), 0, 12) . '@' . date('Y-m-d', filemtime($canonPath));
     echo 'canon: ' . $canonNames . ' spellings in '
         . array_sum(array_map('count', $canonGroups)) . ' groups' . PHP_EOL;
 } else {
@@ -366,8 +372,10 @@ foreach ($plan as $id => $row) {
     $keep[$file] = true;
     $payload = json_encode([
         'meta' => [
-            'generated' => (new DateTime())->format('c'),
             'generated_by' => 'scripts/import/link_mentions_in_prose.php',
+            'version' => $VERSION,
+            'generated' => (new DateTime())->format('c'),
+            'canon' => $canonStamp,
             'entry' => (int)$id,
             'slug' => $row['entry']->slug,
             'paragraphs' => $row['paras'],
@@ -377,10 +385,16 @@ foreach ($plan as $id => $row) {
 
     /* Idempotent: an unchanged layer is not rewritten, so a second run touches
        nothing and the generated stamp does not churn. */
+    /* Idempotent on the spans and on the stamp. An unchanged layer written by
+       this version against this canon is left alone, so a second run touches
+       nothing; a layer from an older version or an older canon is rewritten
+       even where its spans happen to be identical. */
     $old = file_exists($file) ? file_get_contents($file) : null;
     if ($old !== null) {
         $a = json_decode($old, true);
-        if (($a['spans'] ?? null) === $row['spans']) { continue; }
+        if (($a['spans'] ?? null) === $row['spans']
+            && ($a['meta']['version'] ?? null) === $VERSION
+            && ($a['meta']['canon'] ?? null) === $canonStamp) { continue; }
     }
     file_put_contents($file, $payload);
     $written++;

@@ -178,7 +178,6 @@
 {% endmacro %}
 {% import _self as ui %}
 
-{% include "_partials/record/sticky" with { collection: collection, chapter: idx is not null ? idx + 1 : null } only %}
 
 <div class="rec ar{{ bandImg ? ' ar-hasband' : '' }}">
   <section class="rec-band">

@@ -1,0 +1,380 @@
+{#
+  JSON-LD and Dublin Core for every record, so the archive is readable by a
+  machine as well as by a person.
+
+  Included once from _partials/head/meta.twig, which keeps the title, the
+  description and the social cards. This file adds the graph.
+
+  Two rules run through all of it.
+
+  Every entity related in Craft appears as a linked node carrying its own
+  canonical URL as @id, so a crawler can walk from an article to the people,
+  places and organizations it is about the same way a reader can, and can tell
+  that the "Ygnacio del Valle" on one article is the same node as on another.
+
+  Nothing is invented. A property is emitted only where the field holds a
+  value, and a date only where it parses; the legacy text says "c. 1854" and
+  "1976" as often as it says a real date, and a guessed dateline in a citation
+  is worse than none. Fields are read through the element's own layout rather
+  than with `is defined`, which answers true for a field the entry type does
+  not have and then throws on read.
+
+  Params: none. Reads `entry` or `category` from the page.
+#}
+{% import _self as dt %}
+
+{#- An ISO 8601 date, or nothing. Returns '' for anything it cannot be sure of. -#}
+{% macro iso(raw) %}
+{%- set s = (raw ?? '')|trim|trim('.') -%}
+{%- if s matches '/^\\d{4}-\\d{2}-\\d{2}$/' -%}{{ s }}
+{%- elseif s matches '/^\\d{4}$/' -%}{{ s }}
+{%- elseif s matches '/^\\d{4}-\\d{2}$/' -%}{{ s }}
+{%- elseif s matches '/^(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},\\s*\\d{4}$/' -%}{{ s|date('Y-m-d') }}
+{%- elseif s matches '/^(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}$/' -%}{{ s|date('Y-m') }}
+{%- elseif s matches '/^(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,\\s+(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},\\s*\\d{4}$/' -%}{{ s|date('Y-m-d') }}
+{%- elseif s matches '/^\\d{1,2}\\/\\d{1,2}\\/\\d{4}$/' -%}{{ s|date('Y-m-d') }}
+{%- endif -%}
+{% endmacro %}
+
+{% set SITE_NAME = 'SCVHistory.com' %}
+{% set RIGHTS = 'Santa Clarita Valley Historical Society and SCVTV. Personal and research use only; other uses may be subject to rights held by third parties.' %}
+{% set PUBLISHER = { '@type': 'Organization', '@id': siteUrl ~ '#publisher', 'name': SITE_NAME, 'url': siteUrl, 'parentOrganization': { '@type': 'NGO', 'name': 'SCVTV', 'nonprofitStatus': 'Nonprofit501c3' } } %}
+
+{% set el = entry is defined ? entry : (category is defined ? category : null) %}
+
+{#- The handles this element actually has. -#}
+{% set H = [] %}
+{% for f in (el and el.fieldLayout ? el.fieldLayout.customFields : []) %}
+  {% set H = H|merge([f.handle]) %}
+{% endfor %}
+
+{#- Plain values, read only where the layout carries them. -#}
+{% set V = {} %}
+{% for h in ['fullName','birthDate','deathDate','burialPlace','birthplace','occupation','personAliases',
+             'wikidataId','viafId','personWikipediaUrl','personGraveUrl','legacyUrl','sourcePath',
+             'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','placeChlNumber',
+             'placeWikipediaUrl','placeChlUrl','placeScvhlUrl',
+             'orgAddress','orgLat','orgLng','orgAliases','dateFounded','orgWebsite','orgWikipediaUrl',
+             'groupAliases','groupDateStart','groupDateEnd','groupWebsite',
+             'eventDate','eventDateStart','eventDateEnd','eventWikipediaUrl',
+             'originalPublishDate','originallyPublishedTitle','subheadline','sourceLine','body',
+             'deathDate','wmBranch','wmRank','wmUnit','wmConflict','wmDateOfBirth','wmIncidentDate',
+             'wmIncidentLocation','wmHomeOfRecord','wmBirthplace','wmCasualtyReason',
+             'mpRank','mpUnit','mpDateOfBirth','mpDateOfDeath','mpBurialPlace','mpNarrative',
+             'mpWikipediaUrl','mpFindAGraveUrl','obitDateOfDeath','obitDatePublished','obitGraveUrl',
+             'photoDate','photoCredit','communityLat','communityLng','communityAliases','communityType',
+             'articleLat','articleLng'] %}
+  {% if h in H %}{% set V = V|merge({ (h): (attribute(el, h) ~ '')|trim }) %}{% endif %}
+{% endfor %}
+
+{#- A related-entry list, read only where the layout carries the field. -#}
+{% macro dummy() %}{% endmacro %}
+{% set REL = {} %}
+{% for h in ['writtenBy','editedBy','publishedBy','subjectPerson','subjectOrganization','depictsPlace',
+             'subjectGroup','partOfCollection','articleEvents','articlesInCollection',
+             'placePeople','placeOrganizations','placeEvents','placeArticles','relatedPlaces',
+             'orgFoundedBy','orgAssociatedPersons','orgEvents','parentOrganization','boardMembers',
+             'eventPlaces','eventPersons','eventOrganizations','eventArticles','eventGroups',
+             'groupPersons','groupEvents','personOrganizations','personGroups','personEvents',
+             'articlesAbout','spouseOf','parentOf','childOf','siblingOf','relatedPersons',
+             'wmRelatedPerson','mpSubject','mpPlaces','mpEvents','mpOrganizations',
+             'obitSubject','obitPublishedIn','photoPeople','photoPlaces','photoOrganizations'] %}
+  {% if h in H %}{% set REL = REL|merge({ (h): attribute(el, h).status(null).all() }) %}{% endif %}
+{% endfor %}
+
+{#- Section to Schema.org type for a linked node. -#}
+{% set NODE_TYPE = {
+  'persons': 'Person', 'warMemorials': 'Person', 'militaryProfiles': 'Person',
+  'places': 'Place', 'organizations': 'Organization', 'groups': 'Organization',
+  'events': 'Event', 'articles': 'Article', 'collections': 'CreativeWorkSeries',
+  'obituaries': 'Article', 'photographs': 'Photograph', 'documents': 'CreativeWork',
+  'pages': 'WebPage'
+} %}
+
+{#- Every related record becomes a node with its own canonical URL, never a
+    bare string, so the graph joins up across the site. N is keyed by field
+    handle, so each type below reads only the relations it means. -#}
+{% set N = {} %}
+{% for h, list in REL %}
+  {% set nodes = [] %}
+  {% for r in list %}
+    {% set nodes = nodes|merge([{
+      '@type': NODE_TYPE[r.section.handle] ?? 'Thing',
+      '@id': r.url,
+      'name': r.title ?: r.slug,
+      'url': r.url
+    }]) %}
+  {% endfor %}
+  {% set N = N|merge({ (h): nodes }) %}
+{% endfor %}
+
+{% set community = ('neighborhood' in H) ? (el.neighborhood.one() ?? null) : null %}
+{% set communityNode = community ? { '@type': 'Place', '@id': community.url, 'name': community.title, 'url': community.url } : null %}
+
+{% set image = null %}
+{% if 'featuredImage' in H and el.featuredImage.one() %}{% set image = el.featuredImage.one() %}
+{% elseif 'recordImages' in H and el.recordImages.one() %}{% set image = el.recordImages.one() %}
+{% endif %}
+
+{#- sameAs: only the authority files that actually hold a value. -#}
+{% set sameAs = [] %}
+{% for u in [V.personWikipediaUrl ?? '', V.placeWikipediaUrl ?? '', V.orgWikipediaUrl ?? '',
+             V.eventWikipediaUrl ?? '', V.mpWikipediaUrl ?? '',
+             V.personGraveUrl ?? '', V.mpFindAGraveUrl ?? '', V.obitGraveUrl ?? '',
+             V.placeChlUrl ?? '', V.placeScvhlUrl ?? '', V.groupWebsite ?? ''] %}
+  {% if u %}{% set sameAs = sameAs|merge([u]) %}{% endif %}
+{% endfor %}
+{% if V.wikidataId ?? '' %}{% set sameAs = sameAs|merge(['https://www.wikidata.org/wiki/' ~ V.wikidataId]) %}{% endif %}
+{% if V.viafId ?? '' %}{% set sameAs = sameAs|merge(['https://viaf.org/viaf/' ~ V.viafId]) %}{% endif %}
+{% set sameAs = sameAs|unique|values %}
+
+{% set alt = [] %}
+{% for a in ((V.personAliases ?? '') ~ "\n" ~ (V.placeAliases ?? '') ~ "\n" ~ (V.orgAliases ?? '') ~ "\n" ~ (V.groupAliases ?? '') ~ "\n" ~ (V.communityAliases ?? ''))|split("\n") %}
+  {% for b in a|split(',') %}{% if b|trim %}{% set alt = alt|merge([b|trim]) %}{% endif %}{% endfor %}
+{% endfor %}
+{% set alt = alt|unique|values %}
+
+{#- The legacy page this record was digitised from, resolved through the one
+    partial that knows the legacy host, so a citation carries a URL a reader
+    can follow rather than a stored path. -#}
+{% set legacySrc = (V.legacyUrl ?? '') ? include('_partials/legacy-url', { value: V.legacyUrl })|trim : '' %}
+
+{#- `entry.section is defined` is the same trap as a missing field: on a
+    Category it answers true and then throws on read. So the element's own
+    kind decides, not a probe. -#}
+{% set sec = (entry is defined and entry) ? entry.section.handle : null %}
+{% set canonical = el and el.url ? el.url : siteUrl ~ craft.app.request.getPathInfo() %}
+
+{#- ─────────────────────────────────────────────────────── the main node ─#}
+{% set main = null %}
+{% set extra = [] %}
+
+{% if sec == 'articles' %}
+  {% set authors = (N.writtenBy ?? []) %}
+  {% set coll = (N.partOfCollection ?? [])|first %}
+  {% set about = (N.subjectPerson ?? [])|merge((N.depictsPlace ?? []))|merge((N.subjectOrganization ?? []))|merge((N.subjectGroup ?? []))|merge((N.articleEvents ?? [])) %}
+  {% set pub = (N.publishedBy ?? [])|first %}
+  {% set main = {
+    '@type': authors|length ? 'ScholarlyArticle' : 'Article',
+    'headline': el.title,
+    'alternativeHeadline': V.originallyPublishedTitle ?? '' ?: (V.subheadline ?? ''),
+    'author': authors,
+    'editor': (N.editedBy ?? []),
+    'datePublished': dt.iso(V.originalPublishDate ?? '')|trim,
+    'isPartOf': coll ? coll|merge({ '@type': 'CreativeWorkSeries' }) : null,
+    'about': about,
+    'publisher': pub ?: ((V.sourceLine ?? '') ? { '@type': 'Organization', 'name': V.sourceLine } : PUBLISHER),
+    'spatialCoverage': communityNode,
+    'isBasedOn': legacySrc
+  } %}
+
+{% elseif sec == 'persons' %}
+  {% set main = {
+    '@type': 'Person',
+    'name': V.fullName ?? '' ?: el.title,
+    'alternateName': alt,
+    'birthDate': dt.iso(V.birthDate ?? '')|trim,
+    'deathDate': dt.iso(V.deathDate ?? '')|trim,
+    'birthPlace': (V.birthplace ?? '') ? { '@type': 'Place', 'name': V.birthplace } : null,
+    'jobTitle': (V.occupation ?? '') ? (V.occupation|split(';')|map(o => o|trim)|filter(o => o)|values) : [],
+    'sameAs': sameAs,
+    'spouse': (N.spouseOf ?? []),
+    'parent': (N.childOf ?? []),
+    'children': (N.parentOf ?? []),
+    'sibling': (N.siblingOf ?? []),
+    'memberOf': (N.personOrganizations ?? [])|merge((N.personGroups ?? [])),
+    'subjectOf': (N.articlesAbout ?? [])|merge((N.personEvents ?? [])),
+    'homeLocation': communityNode
+  } %}
+
+{% elseif sec == 'places' %}
+  {#- Numbers, not strings: a coordinate is a quantity. -#}
+  {% set geo = (V.placeLat ?? '') and (V.placeLng ?? '')
+      ? { '@type': 'GeoCoordinates', 'latitude': V.placeLat + 0, 'longitude': V.placeLng + 0 } : null %}
+  {% set main = {
+    '@type': 'Place',
+    'name': el.title,
+    'alternateName': alt,
+    'address': V.placeAddress ?? '',
+    'geo': geo,
+    'containedInPlace': communityNode,
+    'sameAs': sameAs,
+    'identifier': (V.placeChlNumber ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'California Historical Landmark', 'value': V.placeChlNumber } : null,
+    'subjectOf': (N.placeArticles ?? [])|merge((N.placeEvents ?? []))
+  } %}
+
+{% elseif sec == 'organizations' %}
+  {% set main = {
+    '@type': 'Organization',
+    'name': el.title,
+    'alternateName': alt,
+    'address': V.orgAddress ?? '',
+    'geo': (V.orgLat ?? '') and (V.orgLng ?? '')
+        ? { '@type': 'GeoCoordinates', 'latitude': V.orgLat + 0, 'longitude': V.orgLng + 0 } : null,
+    'foundingDate': dt.iso(V.dateFounded ?? '')|trim,
+    'founder': (N.orgFoundedBy ?? []),
+    'member': (N.boardMembers ?? [])|merge((N.orgAssociatedPersons ?? [])),
+    'parentOrganization': (N.parentOrganization ?? [])|first,
+    'url': V.orgWebsite ?? '',
+    'sameAs': sameAs,
+    'location': communityNode,
+    'subjectOf': (N.orgEvents ?? [])
+  } %}
+
+{% elseif sec == 'groups' %}
+  {% set main = {
+    '@type': 'Organization',
+    'name': el.title,
+    'alternateName': alt,
+    'foundingDate': dt.iso(V.groupDateStart ?? '')|trim,
+    'dissolutionDate': dt.iso(V.groupDateEnd ?? '')|trim,
+    'member': (N.groupPersons ?? []),
+    'sameAs': sameAs,
+    'location': communityNode,
+    'subjectOf': (N.groupEvents ?? [])
+  } %}
+
+{% elseif sec == 'events' %}
+  {% set main = {
+    '@type': 'Event',
+    'name': el.title,
+    'startDate': dt.iso(V.eventDateStart ?? '' ?: (V.eventDate ?? ''))|trim,
+    'endDate': dt.iso(V.eventDateEnd ?? '')|trim,
+    'location': (N.eventPlaces ?? [])|first ?: communityNode,
+    'about': (N.eventPersons ?? [])|merge((N.eventOrganizations ?? []))|merge((N.eventGroups ?? [])),
+    'subjectOf': (N.eventArticles ?? []),
+    'sameAs': sameAs
+  } %}
+
+{% elseif sec == 'collections' %}
+  {% set parts = [] %}
+  {% set inOrder = ('articlesInCollection' in H) ? (REL.articlesInCollection ?: craft.entries().section('articles').relatedTo({ targetElement: el, field: 'partOfCollection' }).status(null).all()) : [] %}
+  {% for a in inOrder %}
+    {% set parts = parts|merge([{ '@type': 'Article', '@id': a.url, 'name': a.title ?: a.slug, 'url': a.url, 'position': loop.index }]) %}
+  {% endfor %}
+  {% set main = {
+    '@type': 'CreativeWorkSeries',
+    'name': el.title,
+    'author': (N.writtenBy ?? []),
+    'publisher': (N.publishedBy ?? [])|first ?: PUBLISHER,
+    'numberOfItems': parts|length,
+    'hasPart': parts
+  } %}
+
+{% elseif sec == 'warMemorials' %}
+  {#- A casualty record is a person, and the loss is an event about that person. -#}
+  {% set personId = canonical ~ '#person' %}
+  {% set lossDate = dt.iso(V.wmIncidentDate ?? '' ?: (V.deathDate ?? ''))|trim %}
+  {% set loss = {
+    '@type': 'Event',
+    '@id': canonical ~ '#loss',
+    'name': (V.wmCasualtyReason ?? '') ?: ('Death of ' ~ el.title),
+    'startDate': lossDate,
+    'location': (V.wmIncidentLocation ?? '') ? { '@type': 'Place', 'name': V.wmIncidentLocation } : null,
+    'about': { '@id': personId },
+    'superEvent': (V.wmConflict ?? '') ? { '@type': 'Event', 'name': V.wmConflict } : null
+  }|filter(v => v is not null and v is not same as('') and v is not same as([])) %}
+  {% set extra = [loss] %}
+  {% set main = {
+    '@type': 'Person',
+    '@id': personId,
+    'name': el.title,
+    'birthDate': dt.iso(V.wmDateOfBirth ?? '')|trim,
+    'deathDate': dt.iso(V.deathDate ?? '')|trim,
+    'birthPlace': (V.wmBirthplace ?? '') ? { '@type': 'Place', 'name': V.wmBirthplace } : null,
+    'deathPlace': (V.wmIncidentLocation ?? '') ? { '@type': 'Place', 'name': V.wmIncidentLocation } : null,
+    'homeLocation': communityNode ?: ((V.wmHomeOfRecord ?? '') ? { '@type': 'Place', 'name': V.wmHomeOfRecord } : null),
+    'jobTitle': V.wmRank ?? '',
+    'memberOf': (V.wmBranch ?? '') ? { '@type': 'Organization', 'name': V.wmBranch } : null,
+    'affiliation': (V.wmUnit ?? '') ? { '@type': 'Organization', 'name': V.wmUnit } : null,
+    'sameAs': sameAs,
+    'subjectOf': [{ '@id': canonical ~ '#loss' }]|merge((N.wmRelatedPerson ?? []))
+  } %}
+
+{% elseif sec == 'militaryProfiles' %}
+  {% set main = {
+    '@type': 'Person',
+    'name': el.title,
+    'birthDate': dt.iso(V.mpDateOfBirth ?? '')|trim,
+    'deathDate': dt.iso(V.mpDateOfDeath ?? '')|trim,
+    'jobTitle': V.mpRank ?? '',
+    'affiliation': (V.mpUnit ?? '') ? { '@type': 'Organization', 'name': V.mpUnit } : null,
+    'sameAs': sameAs,
+    'homeLocation': communityNode,
+    'subjectOf': (N.mpEvents ?? [])
+  } %}
+
+{% elseif sec == 'obituaries' %}
+  {% set main = {
+    '@type': 'Article',
+    'headline': el.title,
+    'datePublished': dt.iso(V.obitDatePublished ?? '')|trim,
+    'about': (N.obitSubject ?? []),
+    'publisher': (N.obitPublishedIn ?? [])|first ?: PUBLISHER
+  } %}
+
+{% elseif sec == 'photographs' %}
+  {% set main = {
+    '@type': 'Photograph',
+    'name': el.title,
+    'dateCreated': dt.iso(V.photoDate ?? '')|trim,
+    'creditText': V.photoCredit ?? '',
+    'about': (N.photoPeople ?? [])|merge((N.photoPlaces ?? []))|merge((N.photoOrganizations ?? [])),
+    'contentLocation': communityNode
+  } %}
+
+{% elseif sec == 'documents' %}
+  {% set main = { '@type': 'CreativeWork', 'name': el.title, 'contentLocation': communityNode } %}
+
+{% elseif category is defined and category %}
+  {% set geo = (V.communityLat ?? '') and (V.communityLng ?? '')
+      ? { '@type': 'GeoCoordinates', 'latitude': V.communityLat + 0, 'longitude': V.communityLng + 0 } : null %}
+  {% set main = {
+    '@type': 'AdministrativeArea',
+    'name': el.title,
+    'alternateName': alt,
+    'geo': geo,
+    'containedInPlace': { '@type': 'AdministrativeArea', 'name': 'Santa Clarita Valley, California' }
+  } %}
+
+{% elseif sec == 'pages' %}
+  {% set main = { '@type': 'WebPage', 'name': el.title } %}
+
+{% else %}
+  {% set main = { '@type': 'WebSite', 'name': SITE_NAME, 'url': siteUrl } %}
+{% endif %}
+
+{#- Common properties. url, image, description and mainEntityOfPage belong to
+    any Thing; publisher, license and isAccessibleForFree belong to a
+    CreativeWork, so a Person or a Place does not get handed them. Emitting a
+    property a type does not define is exactly what a validator flags. -#}
+{% set CREATIVE = ['Article','ScholarlyArticle','CreativeWorkSeries','CreativeWork','Photograph','WebPage','WebSite'] %}
+{% set main = main|merge({
+  '@id': main['@id'] ?? canonical,
+  'url': main.url ?? canonical,
+  'mainEntityOfPage': canonical,
+  'description': metaDescriptionOut is defined ? metaDescriptionOut : null,
+  'image': image ? image.url : null
+}) %}
+{% if main['@type'] in CREATIVE %}
+  {% set main = main|merge({
+    'isAccessibleForFree': true,
+    'license': siteUrl ~ 'permissions',
+    'publisher': main.publisher ?? PUBLISHER
+  }) %}
+{% endif %}
+{% set main = main|filter(v => v is not null and v is not same as('') and v is not same as([])) %}
+{% set graph = [main]|merge(extra) %}
+
+<script type="application/ld+json">{{ { '@context': 'https://schema.org', '@graph': graph }|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+
+{#- ───────────────────────────────────────────────────────── Dublin Core ─#}
+{% set dcCreator = ((N.writtenBy ?? [])|first).name ?? null %}
+{% set dcDate = dt.iso(V.originalPublishDate ?? '' ?: (V.obitDatePublished ?? '') ?: (V.photoDate ?? '') ?: (V.dateEstablished ?? ''))|trim %}
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.title" content="{{ el ? (el.title ?: el.slug) : SITE_NAME }}">
+{% if dcCreator %}<meta name="DC.creator" content="{{ dcCreator }}">{% endif %}
+{% if dcDate %}<meta name="DC.date" content="{{ dcDate }}">{% endif %}
+<meta name="DC.identifier" content="{{ canonical }}">
+{% if legacySrc %}<meta name="DC.source" content="{{ legacySrc }}">{% endif %}
+<meta name="DC.rights" content="{{ RIGHTS }}">

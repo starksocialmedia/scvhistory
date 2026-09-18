@@ -1,5 +1,9 @@
 {#
-  Sticky header and back to top, for record pages.
+  Sticky header and back to top, site wide.
+
+  Included once from _layouts/base.twig, so it reaches every page: the homepage,
+  every index, a record, communities, search, on this day, tags, the pages
+  section and 404.
 
   The site header is tall by design: a seal, a wordmark, a rule, a tagline, a
   search field and a row of menus. That is right at the top of a long article
@@ -11,7 +15,8 @@
   the header by script. It shows only while the header is stuck.
 
   Params
-    collection  a collection entry, or null when the record stands alone
+    collection  a collection entry, or null on every page that is not a record
+                inside one, which is most of them
     chapter     the record's position in that collection, 1 based, or null
 
   Notes
