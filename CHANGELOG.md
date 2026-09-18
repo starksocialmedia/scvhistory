@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: scripts/import/import_legacy_images.php, dry run by default. Reads the three image inventories, resolves each src against the page it came from, prefers links_to only when it is an image, downloads at one request per second with a project User-Agent, creates assets in archiveMedia/legacy, relates them through recordImages, and places [image:N] tokens in the prose. War memorial bodies get relations only. Nothing was applied; the database is untouched.
+- Decisions: placement does not use position_in_body. That field is the image's ordinal on the page, 1..n on every page in all three inventories, not an offset; using it would stack the first n paragraphs with figures. Position is recovered instead from the text preceding each <img> in the source inventory's body_html, which locates 89 percent of them. An image with no recoverable anchor is related but not placed. Pages are matched on legacyUrl, not legacy_key, because part06 exists in both the Perkins and Reynolds inventories.
+- Blockers: the >5-pages chrome rule matches nothing; the worst offender is armylogo.png on 4 pages. Total bytes needs a paced HEAD pass against the live site, so it is behind a flag and off by default. 28 Reynolds pages have no Craft record until import_reynolds.php runs.
+- Next: run clean_legacy_bodies.php before this one, or gallery captions still in the body will attract tokens
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: two scripts, both dry run by default. backfill_provenance.php derives sourcePath, legacyKey and legacyUrl for 60 records from four evidence sources and reports 52 with nothing to derive from. clean_legacy_bodies.php strips legacy site chrome from the head and tail of article, war memorial and obituary bodies, rejoins drop caps, and moves the copyright line into finePrint; 38 records would change, 12 carry something it was not confident about and reports them instead.
 - Decisions: provenance is never guessed from a slug. A legacy reference pointing at another host cannot yield a root-relative path and is reported, which is the one case in the data, Mission San Gabriel. The cleanup walks down from the first line and up from the last and stops at the first unrecognised line, so nothing can ever be removed from the middle; a byline left stranded below an unrecognised line is reported rather than reached for.
 - Blockers: the WordPress export carries almost no scvhistory.com links in bodies, so the real source is its legacy_url meta on 41 posts. The entity_index cross-reference yields exactly one usable entry across all three inventories.
