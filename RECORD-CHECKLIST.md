@@ -104,6 +104,33 @@ not a born-digital one, and is reported as a gap.
 | collectionParts | expected | for a series long enough to have divisions |
 | bandImage | expected | clean artwork, no lettering |
 
+## Burial places needing research
+
+Four records carry a burialPlace that disagrees with the Find A Grave memorial
+for the same person. These are questions of fact, not broken links, and some may
+be reinterments: a body moved once is described correctly by two sources that
+name different cemeteries.
+
+**None of these should be changed without a source.** A Find A Grave memorial is
+a contribution, not a record of authority, and our own value may be the better
+one. scripts/import/apply_wikidata_matches.php prints this list on every run and
+never writes to any of them.
+
+| Person | Our burialPlace | Find A Grave says | Our text |
+|---|---|---|---|
+| Edward Fitzgerald Beale | Rock Creek Cemetery, Washington, D.C. | Chester Rural Cemetery, Chester | silent |
+| Edwin Bryant | Cave Hill Cemetery, Louisville, Kentucky | Spring Grove Cemetery, Cincinnati | silent |
+| William Lewis Manly | Oak Hill Cemetery, San Jose, California | Woodbridge Masonic Cemetery, Woodbridge | silent |
+| Andrés Pico | Mission San Fernando Rey de España, Mission Hills | Calvary Cemetery, East Los Angeles | asserts Mission San Fernando |
+
+Pico is the one that is not simply an open question. The body text on his record
+says "His burial at Mission San Fernando ties him permanently to the geography
+of the Santa Clarita Valley's doorstep", so the archive states a burial place in
+prose as well as in the field, and both disagree with Find A Grave. Changing the
+field alone would leave the record contradicting itself. The memorial in
+question is also not the one the record currently links to: that link points at
+a different man entirely and is a separate correction.
+
 ## Rules
 
 An importer never invents a value to satisfy this list. A missing required

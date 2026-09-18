@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: corrected Chapter 15's legacy path and re-ran the relation exporter, which attached the 10 orphaned candidates and left no page unmatched. Checked the four remaining 404s against both sitemaps and propose fixes for three. Added the burial place research list to RECORD-CHECKLIST.md and a fourth row to the research list in apply_wikidata_matches.php. Untracked web/review/audit.json, which was already in .gitignore but had been committed, so the rule was never taking effect.
+- Decisions: sourcePath carried the same missing segment as legacyUrl and was corrected with it; it is the provenance line a reader would follow, and fixing one and not the other would leave the record half right. The fix script writes each field only while it still holds exactly the broken value, and reports the shape of the evidence rather than asserting it: 70 of the 71 Reynolds chapters already carried the segment.
+- Blockers: one correction to the brief. The archive's own text is not silent on Pico's burial: his body reads "His burial at Mission San Fernando ties him permanently to the geography of the Santa Clarita Valley's doorstep". The field and the prose agree with each other and disagree with Find A Grave, so this is not a gap needing external evidence but a contradiction between us and them. The other three bodies are silent, as expected.
+- Result: relation candidates 2,251 to 2,261, articles covered 154, pages with no record in Craft 0. Beale's Cut and both Old Town Newhall collections have a clear corrected path in the sitemaps; the Northridge Earthquake source page does not exist on the legacy site at all and has no obvious replacement.
+- Next: Nathan decides the three proposed paths, the Northridge source, the Pico grave and socalhistory.org
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: added the downward walk to the family derivation. Grandchildren are whoever points at one of this record's children, the mirror of the grandparent walk, rendered under their own heading in the family box and emitted in the JSON-LD.
 - Decisions: Schema.org defines no grandparent or grandchild property, so grandparents and grandchildren both go into relatedTo, which it does define, rather than inventing a term. Grandchildren dedupe after grandparents and before spouses, so a cousin marriage cannot list the same person twice.
 - Blockers: none.

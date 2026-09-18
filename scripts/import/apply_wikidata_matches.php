@@ -123,6 +123,10 @@ $NEEDS_RESEARCH = [
     ['Edward Fitzgerald Beale', 'Rock Creek Cemetery, Washington, D.C.', 'Chester Rural Cemetery, Chester'],
     ['Edwin Bryant', 'Cave Hill Cemetery, Louisville, Kentucky', 'Spring Grove Cemetery, Cincinnati'],
     ['William Lewis Manly', 'Oak Hill Cemetery, San Jose, California', 'Woodbridge Masonic Cemetery, Woodbridge'],
+    ['Andr\u{00E9}s Pico', 'Mission San Fernando Rey de Espa\u{00F1}a, Mission Hills, California',
+        'Calvary Cemetery, East Los Angeles, on memorial 75969079. The body text on this'
+      . ' record also says Mission San Fernando, so the field and the prose agree with'
+      . ' each other and disagree with Find A Grave.'],
 ];
 
 $root = \Craft::getAlias('@root');
