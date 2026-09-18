@@ -11,7 +11,16 @@
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
-{% set img = recImages|length ? recImages|first : null %}
+{# bandImage first: artwork with no lettering, composed with its subject at the
+   right. featuredImage is only a fallback, and where it is a title card it may
+   show lettering. The field-layout check is the only reliable test: a custom
+   field reads as defined on an element whose type does not have it. #}
+{% set hasBandImage = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
+{% endfor %}
+{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+{% set img = bandImg ?? (recImages|length ? recImages|first : null) %}
 {% set F = {} %}
 {% for h in ['body','placeAddress','dateEstablished','placeAliases','placeChlNumber','placeLegacyUrl','legacyUrl','culturalSensitivityNote'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}

@@ -15,6 +15,10 @@
   Era ordering there comes from the historicalEra structure's own order (lft),
   which is chronological. Sorting those titles alphabetically would put American
   Frontier before Spanish Colonial.
+
+  The band image is bandImage, artwork with no lettering composed with its
+  subject at the right. featuredImage is only a fallback, and where it is a
+  title card the masked layer will show its lettering beside the h1.
 #}
 {% set F = {} %}
 {% for h in ['body','archiveUrl','legacyUrl','culturalSensitivityNote'] %}
@@ -25,7 +29,14 @@
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 
-{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
+{# bandImage first. The field-layout check is the only reliable test: a custom
+   field reads as defined on an element whose type does not have it. #}
+{% set hasBandImage = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
+{% endfor %}
+{% set hero = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+{% set hero = hero ?? ((entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null) %}
 {% set hero = hero ?? (recImages|length ? recImages|first : null) %}
 {% set author = entry.writtenBy.one() ?? null %}
 {% set editor = entry.editedBy.one() ?? null %}
@@ -92,18 +103,41 @@
   {% set groups = [{ label: '', note: '', rows: chapters }] %}
 {% endif %}
 
-{# band stats: facts about the collection, not filters #}
-{% set years = [] %}
+{# Band stats: facts about the collection, not filters.
+   Chapters are titles that begin with "Chapter". A publication run is a cluster
+   of originalPublishDate years, split wherever five or more years separate one
+   from the next. Eras covered counts distinct historicalEra terms. A block that
+   computes to zero is omitted, and so is a run or era count of one, which is not
+   a statistic worth printing. #}
+{% set chapterCount = 0 %}
+{% set pubYears = [] %}
+{% set eraSeen = {} %}
 {% for a in chapters %}
+  {% if (a.title|trim) starts with 'Chapter' %}{% set chapterCount = chapterCount + 1 %}{% endif %}
   {% set y = (a.originalPublishDate is defined and a.originalPublishDate) ? a.originalPublishDate|trim|slice(-4) : '' %}
-  {% if y matches '/^\\d{4}$/' %}{% set years = years|merge([y]) %}{% endif %}
+  {% if y matches '/^\\d{4}$/' and y not in pubYears %}{% set pubYears = pubYears|merge([y]) %}{% endif %}
+  {% for e in a.historicalEra.all() %}{% set eraSeen = eraSeen|merge({ ('e' ~ e.id): true }) %}{% endfor %}
 {% endfor %}
-{% set stats = [{ n: chapters|length, l: chapters|length == 1 ? 'Article' : 'Articles' }] %}
-{% if parts|length %}
-  {% set stats = stats|merge([{ n: parts|length, l: parts|length == 1 ? 'Part' : 'Parts' }]) %}
+
+{% set runs = 0 %}
+{% set prevYear = null %}
+{% for y in pubYears|sort %}
+  {% if prevYear is null or (y - prevYear) >= 5 %}{% set runs = runs + 1 %}{% endif %}
+  {% set prevYear = y %}
+{% endfor %}
+
+{% set stats = [] %}
+{% if chapters|length %}
+  {% set stats = stats|merge([{ n: chapters|length, l: chapters|length == 1 ? 'Article' : 'Articles' }]) %}
 {% endif %}
-{% if years|length %}
-  {% set stats = stats|merge([{ n: min(years) == max(years) ? min(years) : min(years) ~ '–' ~ max(years), l: 'Published' }]) %}
+{% if chapterCount %}
+  {% set stats = stats|merge([{ n: chapterCount, l: chapterCount == 1 ? 'Chapter' : 'Chapters' }]) %}
+{% endif %}
+{% if runs > 1 %}
+  {% set stats = stats|merge([{ n: runs, l: 'Publication runs' }]) %}
+{% endif %}
+{% if eraSeen|length > 1 %}
+  {% set stats = stats|merge([{ n: eraSeen|length, l: 'Eras covered' }]) %}
 {% endif %}
 
 {% set first = chapters|length ? chapters|first : null %}

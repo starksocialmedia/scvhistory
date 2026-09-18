@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: band artwork now comes from bandImage first with featuredImage only as a fallback, in collections/_lander.twig and in the six other entry templates whose band carries an image. Each carries a one-line note that the fallback may show lettering. Lander stat blocks rebuilt: articles, chapters, publication runs and eras covered, each derived from the collection's own articles.
+- Decisions: articles/_entry.twig is untouched because its band has no image; pages/_entry.twig is untouched because the page entry type has no bandImage field. A run or era count of one is omitted rather than printed, since one is not a statistic.
+- Blockers: the stats compute to 23 articles, 21 chapters, 3 publication runs and 3 eras covered, not the 2 runs and 4 eras expected. The six portrait bands use a 4:5 frame with object-position top, so a wide right-composed band image will crop to its top strip there.
+- Next: Nathan uploads the CD artwork to bandImage on the Reynolds collection, and decides on the run gap threshold and the era count
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: wrote scripts/import/import_warmemorial.php, eval style, dry run by default. 54 casualty pages: 18 created, 36 gap-filled on legacyKey. service_record labels mapped to the wm fields; the 45 unmapped labels go to wmServiceExtra as label and value verbatim, 69 rows, nothing dropped. wmConflict set from the legacy_key prefix. Also wrote inventory/legacy/warmemorial-images.json, 133 images, none downloaded. Verified every field write with a temporary fixture record, then hard-deleted it.
 - Decisions: a trailing period is trimmed from a title only when the last word is not an abbreviation or an initial, so the four transcription artifacts are fixed and the six Jr. names are left intact. Where two labels hit one field the first in the map wins and the other overflows, the rule the brief sets for College. No value corrected: the three "Amry of the United States" pages import verbatim.
 - Blockers: neighborhood is not on the warMemorial entry type, so communities_mentioned is dropped on 51 pages. Craft holds a duplicate Rudy Alexander Acosta, #877 and #526, sharing one legacy URL. The war-memorial template renders none of the eight new wm fields.

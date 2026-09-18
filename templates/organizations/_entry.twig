@@ -15,7 +15,16 @@
 {% for h in ['body','termNotes','orgFinePrint','dateFounded','orgAliases','orgAddress','orgLegacyUrl','legacyUrl','culturalSensitivityNote'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
-{% set img = entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null %}
+{# bandImage first: artwork with no lettering, composed with its subject at the
+   right. featuredImage is only a fallback, and where it is a title card it may
+   show lettering. The field-layout check is the only reliable test: a custom
+   field reads as defined on an element whose type does not have it. #}
+{% set hasBandImage = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
+{% endfor %}
+{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+{% set img = bandImg ?? (entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null) %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
