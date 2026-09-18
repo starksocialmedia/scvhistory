@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: added Same as as a fourth choice on the relation review screen. It links a candidate to another name of the same kind on the same article; apply_relations.php appends the spelling to the surviving record's alias field and creates nothing. Also made the dry run show what a create leads to, by giving pending creates a placeholder id so the relation and alias plans are visible before applying.
+- Decisions: alias separators follow the existing convention, a newline for personAliases which is multiline and a comma for the single line place and organization fields. A placeholder id is negative and is filtered out before any write, so it can never reach the database.
+- Blockers: none. Tested end to end on the Audubon pair: created John James Audubon, folded John Woodhouse Audubon into its aliases, related the survivor to the article, created no second record, then reverted.
+- Next: Nathan reviews at /review/relations.html
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: built the relation adjudication trio. export_relation_candidates.php emits 1,964 candidates across 99 articles, joining entity_index to articles on the page URL. web/review/relations.html shows one article at a time with Link, Create and Tag per candidate, Grok's flags inline, and keyboard control. apply_relations.php sets subjectPerson, depictsPlace and subjectOrganization, creating only what was approved. Tested end to end with a synthetic decision file, then reverted.
 - Decisions: the flags named in the brief do not exist in the data. Grok set possible_same_person and possible_place_variant, not split_given_name or honorific_variant, so those are surfaced instead, and a near_match_in_craft signal is derived here by comparing surnames against existing records. That is what puts "Anne Darcy" beside a record for a fuller form of the name.
 - Blockers: has_legacy_page is false on all but one entity across all three inventories, so the strongest promotion rule never fires. inventory/legacy/sitemap.json and sitemap-2.json, which HANDOFF says the re-derivation used, are not in the repo.
