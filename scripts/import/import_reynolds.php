@@ -207,30 +207,51 @@ $bodyReport = [];
 $unmatchedCommunities = []; $offListCommunities = [];
 $unparsedDates = []; $dateStats = ['parsed' => 0, 'skipped' => 0, 'rows' => 0, 'deduped' => 0];
 $noteStats = ['top' => 0, 'bottom' => 0, 'other' => 0];
+$crossCollection = [];
 
 foreach ($pages as $p) {
     $key = trim((string)$p['legacy_key']);
     if ($key === '') { echo 'SKIP page with no legacy_key: ' . $p['source_url'] . PHP_EOL; continue; }
 
-    $entry = \craft\elements\Entry::find()->section('articles')->status(null)->legacyKey($key)->one();
-    $matchedBy = 'legacyKey';
+    /* legacyUrl first, because legacy_key is not unique across inventories:
+       notes and part01 through part06 all exist in both the Perkins and the
+       Reynolds series. Matching on the key alone reached across collections and
+       proposed writing a Reynolds page over a Perkins article.
 
-    if (!$entry) {
-        $entry = \craft\elements\Entry::find()->section('articles')->status(null)->legacyUrl($p['legacy_path'])->one();
-        if ($entry) { $matchedBy = 'legacyUrl'; }
-    }
-    if (!$entry) {
-        /* one WordPress row stored /signal/reynolds/part15.html without the /scvhistory prefix */
-        $tail = preg_replace('~^/scvhistory~', '', $p['legacy_path']);
-        if ($tail !== $p['legacy_path'] && $tail !== '') {
-            $entry = \craft\elements\Entry::find()->section('articles')->status(null)->legacyUrl($tail)->one();
-            if ($entry) { $matchedBy = 'legacyUrl-tail'; }
+       Every candidate is then checked against the target collection. An article
+       already in another collection is never accepted, whatever matched it. */
+    $inTargetOrFree = function ($e) use ($collection) {
+        if (!$e) { return false; }
+        try { $c = $e->partOfCollection->one(); }
+        catch (\Throwable $ex) { return false; }
+        return $c === null || $c->id === $collection->id;
+    };
+
+    $entry = null; $matchedBy = null;
+    $rejected = null;
+
+    foreach ([
+        ['legacyUrl', fn() => \craft\elements\Entry::find()->section('articles')->status(null)->legacyUrl($p['legacy_path'])->one()],
+        ['legacyUrl-tail', function () use ($p) {
+            $tail = preg_replace('~^/scvhistory~', '', $p['legacy_path']);
+            if ($tail === $p['legacy_path'] || $tail === '') { return null; }
+            return \craft\elements\Entry::find()->section('articles')->status(null)->legacyUrl($tail)->one();
+        }],
+        ['legacyKey', fn() => \craft\elements\Entry::find()->section('articles')->status(null)->legacyKey($key)->one()],
+        ['title', fn() => $byTitle[$normTitle((string)$p['title'])] ?? null],
+    ] as [$how, $find]) {
+        if ($entry) { break; }
+        $cand = $find();
+        if (!$cand) { continue; }
+        if ($inTargetOrFree($cand)) { $entry = $cand; $matchedBy = $how; }
+        else {
+            $other = null;
+            try { $other = $cand->partOfCollection->one(); } catch (\Throwable $ex) {}
+            $rejected = $how . ' matched #' . $cand->id . ' "' . $cand->title . '", which belongs to '
+                . ($other ? $other->title : 'another collection');
         }
     }
-    if (!$entry) {
-        $cand = $byTitle[$normTitle((string)$p['title'])] ?? null;
-        if ($cand) { $entry = $cand; $matchedBy = 'title'; }
-    }
+    if ($rejected !== null && !$entry) { $crossCollection[$key] = $rejected; }
 
     $isNew = ($entry === null);
     if ($isNew) {
@@ -451,6 +472,11 @@ foreach ($bodyReport as $b) {
         echo '    craft:  ' . $b['craftCtx'] . ' ...' . PHP_EOL;
         echo '    legacy: ' . $b['legacyCtx'] . ' ...' . PHP_EOL;
     }
+}
+
+if ($crossCollection) {
+    echo '=== candidates rejected for belonging to another collection ===' . PHP_EOL;
+    foreach ($crossCollection as $k => $why) { echo '  ' . str_pad($k, 16) . $why . PHP_EOL; }
 }
 
 echo '=== summary ===' . PHP_EOL;
