@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+{% set recTags = entry.recordTags is defined and entry.recordTags ? entry.recordTags.all() : [] %}
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.obitWebmasterNoteTop is defined ? entry.obitWebmasterNoteTop : null %}
@@ -96,6 +97,8 @@
         {% endif %}
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
+
+        {% include "_partials/record/tags" with { tags: recTags } only %}
 
         {% set links = [] %}
         {% if entry.obitGraveUrl is defined and entry.obitGraveUrl %}{% set links = links|merge([{u: entry.obitGraveUrl, t: 'Find a Grave'}]) %}{% endif %}

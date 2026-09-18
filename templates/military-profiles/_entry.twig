@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+{% set recTags = entry.recordTags is defined and entry.recordTags ? entry.recordTags.all() : [] %}
 {#
   Military Profile record. The section holds no entries yet, so this renders
   against the field layout only. The militaryProfile layout has no
@@ -133,6 +134,8 @@
         {% endfor %}
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
+
+        {% include "_partials/record/tags" with { tags: recTags } only %}
 
         {% set links = [] %}
         {% if entry.mpWikipediaUrl is defined and entry.mpWikipediaUrl %}{% set links = links|merge([{u: entry.mpWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}

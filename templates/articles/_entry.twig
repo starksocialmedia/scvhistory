@@ -62,6 +62,7 @@
 {% endblock %}
 
 {% block content %}
+{% set recTags = entry.recordTags is defined and entry.recordTags ? entry.recordTags.all() : [] %}
 {#
   Article record, built to the approved layout of the Reynolds Prologue page.
 
@@ -271,6 +272,8 @@
         {% endfor %}
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
+
+        {% include "_partials/record/tags" with { tags: recTags } only %}
 
         {% set links = [] %}
         {% if F.archiveUrl %}{% set links = links|merge([{u: F.archiveUrl, t: 'Archive.org'}]) %}{% endif %}

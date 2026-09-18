@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block content %}
+{% set recTags = entry.recordTags is defined and entry.recordTags ? entry.recordTags.all() : [] %}
 {#
   Site page. Same record shape as everything else, minus the relation boxes:
   a page is prose, not a record with connections. The sidebar carries the
@@ -80,6 +81,8 @@
         {% endif %}
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
+
+        {% include "_partials/record/tags" with { tags: recTags } only %}
 
         {% if F.legacyUrl %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>

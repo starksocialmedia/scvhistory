@@ -1,0 +1,24 @@
+{#
+  TAGS sidebar box: plain chips linking to each tag page.
+
+  Renders nothing when the record has no tags, and nothing at all until
+  scripts/import/setup_tags.php has been run, since recordTags does not exist
+  before that. The guard tests both "is defined" and truthiness, because on
+  some element types an absent field reports as defined and returns null.
+
+  Params:
+    tags   the recordTags terms
+#}
+{% if tags is defined and tags|length %}
+  {% css %}
+  .rec-tags{display:flex;flex-wrap:wrap;gap:7px}
+  .rec-tags a{background:#fff;border:1px solid #DCC98F;color:#7A5C1B;font-family:'Jost',sans-serif;font-size:12.5px;padding:5px 11px;border-radius:3px;text-decoration:none}
+  .rec-tags a:hover{background:#FDF7EA;border-color:#C4A031}
+  {% endcss %}
+  <div class="rec-box">
+    <div class="rec-lab">TAGS</div>
+    <div class="rec-tags">
+      {% for t in tags %}<a href="{{ t.url ?? url('tags/' ~ t.slug) }}">{{ t.title }}</a>{% endfor %}
+    </div>
+  </div>
+{% endif %}

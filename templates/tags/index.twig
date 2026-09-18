@@ -1,0 +1,74 @@
+{% extends "_layouts/base" %}
+{% set metaDescription = 'Every tag in the Santa Clarita Valley archive: people, events, concepts and works that are worth noting but do not have a record of their own.' %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+
+{% block content %}
+{#
+  Tag cloud, sized by how many records carry each tag.
+
+  The group does not exist until setup_tags.php has been run, so everything
+  here is guarded and the page reads as empty rather than erroring.
+#}
+{% set group = craft.app.categories.getGroupByHandle('tag') %}
+{% set terms = group ? craft.categories().group('tag').status(null).orderBy('title asc').all() : [] %}
+
+{% set rows = [] %}
+{% set maxCount = 0 %}
+{% for t in terms %}
+  {% set n = craft.entries().relatedTo(t).status(null).count() %}
+  {% set rows = rows|merge([{ term: t, n: n }]) %}
+  {% if n > maxCount %}{% set maxCount = n %}{% endif %}
+{% endfor %}
+{% set used = rows|filter(r => r.n > 0) %}
+
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Tags</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Below the record threshold</div>
+          <h1>Tags</h1>
+          <p class="scv-lede">Things worth noting that do not have a record of their own: people mentioned once, concepts, themes, referenced works. Anything with its own record is linked, not tagged.</p>
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ terms|length }}</b><span>{{ terms|length == 1 ? 'Tag' : 'Tags' }}</span></div>
+          {% if used|length %}<div><b>{{ used|length }}</b><span>In use</span></div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if not group %}
+        <div class="scv-empty">The tag taxonomy has not been created yet. Run <code>scripts/import/setup_tags.php</code> first.</div>
+      {% elseif not terms|length %}
+        <div class="scv-empty">No tags yet. They are added in the control panel, or by an import.</div>
+      {% else %}
+        <div class="tag-cloud">
+          {% for r in rows %}
+            {# five steps, so one very common tag cannot flatten the rest #}
+            {% set step = maxCount > 0 ? (r.n / maxCount * 4)|round(0, 'ceil') : 0 %}
+            <a class="t s{{ step }}" href="{{ r.term.url ?? url('tags/' ~ r.term.slug) }}">
+              {{ r.term.title }}<span class="n">{{ r.n }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </main>
+</div>
+
+{% css %}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:12px 14px;align-items:baseline;background:#fff;border:1px solid #E2E4E8;padding:28px 30px}
+.tag-cloud .t{text-decoration:none;color:#17254C;font-family:'Playfair Display',serif;line-height:1.25;display:inline-flex;align-items:baseline;gap:5px}
+.tag-cloud .t:hover{color:#7A5C1B}
+.tag-cloud .n{font-family:'Jost',sans-serif;font-size:11px;color:#5B6472;letter-spacing:.06em}
+.tag-cloud .s0{font-size:15px;color:#5B6472}
+.tag-cloud .s1{font-size:17px}
+.tag-cloud .s2{font-size:21px}
+.tag-cloud .s3{font-size:26px}
+.tag-cloud .s4{font-size:32px;color:#7A5C1B}
+{% endcss %}
+{% endblock %}
