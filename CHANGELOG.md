@@ -801,3 +801,40 @@ ddev craft exec "eval(file_get_contents('scripts/import/add_community_media.php'
 ```
 
 Then `project-config/write` and commit `config/project/`. After that, add tag terms and start filling community bodies, aliases and types.
+
+## 2026-09-17 (Claude, templates-batch-9, On This Day)
+
+- Agent: Claude
+- Date: 2026-09-17
+
+### Calendar index
+
+`scripts/import/build_calendar_index.php` walks every record's `recordDates`, keeps only rows ticked Confirmed whose precision is `day` or `month`, and writes `templates/_data/calendar.json` keyed by MM-DD. Each entry holds title, a root-relative url, section, ISO and printed dates, label, and the featuredImage url where one exists. Same generated-file pattern as `community-neighbors.json`, read with `source()` rather than queried per request.
+
+Year and circa rows are left out deliberately: a year has no day to file it under, and an approximate date would place a record on a calendar day the source does not claim.
+
+It reads only. It never writes to the database and never modifies a `recordDates` row. Rerun after each round of confirmations; it rewrites the file whole.
+
+**A trap worth recording:** Craft returns the table's date column in the site timezone, and for a date-only value that rolls the day backwards. June 19, 1874 came back as `1874-06-18 16:07:02 America/Los_Angeles`. The builder converts to UTC before taking MM-DD, so the day matches what is printed in the source.
+
+### The page
+
+`templates/on-this-day/index.twig` shows today by default and any day via `?d=MM-DD`, with a month strip and a day strip marking which days hold entries. An empty day says so plainly and offers the nearest day that has entries, wrapping around the year end. Cards carry the image, the date as printed, the label, the section and a link; with no image the year stands in.
+
+The homepage gains an "On this day" block of up to three of today's entries, hidden entirely when there are none. On This Day joins the footer Browse column.
+
+### Current state, as asked
+
+**Zero confirmed rows.** 111 records carry 432 proposal rows: 167 day, 36 month, 228 year, 1 circa. None is ticked Confirmed, so `calendar.json` is valid and empty, `/on-this-day` says no dates have been confirmed yet, and the homepage block does not render. Once rows are confirmed, rerun the builder and both appear.
+
+### Verified
+
+Rendering was checked against a temporary fixture: a populated day rendered four cards oldest-first with image and year fallbacks, a month-precision row rendered, an empty day offered the nearest, and the homepage block appeared with its "All 4 records for today" link. The fixture was deleted and the real generated file restored before committing.
+
+All 158 record pages, 18 index and route variants including `/on-this-day` and bogus `?d` values, and all 35 community pages return 200.
+
+`/places/sleepy-valley` now 404s because the entry was deleted from the database, which resolves one of the data problems flagged in batch 1. My URL list was stale, not the site.
+
+### Note
+
+`git add -A` briefly swept four of Nathan's untracked files into my commit: `apply_confirmed_dates.php`, `export_unconfirmed_dates.php` and `web/review/dates.{html,json}`. The commit was undone and remade with only my five files; his remain untracked and untouched.
