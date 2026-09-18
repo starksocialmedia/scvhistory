@@ -14,6 +14,17 @@
 .hp-try{display:flex;gap:8px 22px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:#5B6472}
 .hp-try a{color:#7A5C1B;text-decoration:none}
 .hp-sec{max-width:1240px;margin:0 auto;padding:64px 40px 0}
+.otd-home{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.otd-home-card{display:flex;gap:14px;background:#fff;border:1px solid #E2E4E8;padding:14px 16px;text-decoration:none;color:inherit}
+.otd-home-card:hover{border-color:#C4A031;background:#FDF7EA}
+.otd-home-card .ph{width:64px;height:64px;flex:none;border:1px solid #E2E4E8;background:#FDF7EA;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.otd-home-card .ph img{width:100%;height:100%;object-fit:cover}
+.otd-home-card .yr{font-family:'Playfair Display',serif;font-size:17px;color:#7A5C1B}
+.otd-home-card .dt{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;color:#7A5C1B;display:block;text-transform:uppercase}
+.otd-home-card .t{font-family:'Playfair Display',serif;font-size:17px;line-height:1.25;color:#17254C;display:block;margin-top:3px}
+.otd-home-card .lb{font-size:13px;line-height:1.5;color:#5B6472;display:block;margin-top:4px}
+.otd-home-more{margin:14px 0 0}
+.otd-home-more a{font-family:'Jost',sans-serif;font-size:14px;color:#7A5C1B;text-decoration:none}
 .hp-sec.last{padding-bottom:96px}
 .hp-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px}
 .hp-sec h2{font-family:'Playfair Display',serif;font-weight:500;font-size:30px;margin:0;color:#17254C}
@@ -59,6 +70,10 @@
 {% endblock %}
 
 {% block content %}
+{# On This Day, from the generated calendar index. Hidden when today has nothing. #}
+{% set otdRaw = source('_data/calendar.json', true) %}
+{% set otdDays = otdRaw ? (otdRaw|json_decode(true)).days ?? {} : {} %}
+{% set otdToday = otdDays[now|date('m-d')] ?? [] %}
 {% set q = craft.app.request.getParam('q') %}
 {% set cards = [
   {h:'warMemorials', u:'war-memorial', l:'War Memorial', d:'Valley residents killed in service, with unit and incident records.'},
@@ -126,6 +141,32 @@
     </div>
   </section>
 
+
+  {% if otdToday|length %}
+  <section class="hp-sec">
+    <div class="hp-head">
+      <h2>On this day</h2>
+      <div class="hp-kick">{{ now|date('F j')|upper }}</div>
+    </div>
+    <div class="otd-home">
+      {% for e in otdToday|slice(0, 3) %}
+        <a class="otd-home-card" href="{{ e.url }}">
+          <span class="ph">{% if e.image %}<img src="{{ e.image }}" alt="">{% else %}<span class="yr" aria-hidden="true">{{ e.year }}</span>{% endif %}</span>
+          <span style="min-width:0">
+            <span class="dt">{{ e.printed ?: e.iso }}</span>
+            <span class="t">{{ e.title }}</span>
+            {% if e.label %}<span class="lb">{{ e.label }}</span>{% endif %}
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+    {% if otdToday|length > 3 %}
+      <p class="otd-home-more"><a href="{{ url('on-this-day') }}">All {{ otdToday|length }} records for today &rarr;</a></p>
+    {% else %}
+      <p class="otd-home-more"><a href="{{ url('on-this-day') }}">Browse On This Day &rarr;</a></p>
+    {% endif %}
+  </section>
+  {% endif %}
 
   <section class="hp-sec">
     <div class="hp-head"><h2>In the archive</h2><div class="hp-kick">{{ total }} RECORDS</div></div>

@@ -84,6 +84,7 @@
         <a href="{{ url('articles', {view: 'collection'}) }}">By Collection</a>
         <a href="{{ url('persons') }}"{% if craft.app.request.getSegment(1) == 'persons' %} class="on"{% endif %}>People</a>
         <a href="{{ url('obituaries') }}"{% if craft.app.request.getSegment(1) == 'obituaries' %} class="on"{% endif %}>Obituaries</a>
+        <a href="{{ url('on-this-day') }}"{% if craft.app.request.getSegment(1) == 'on-this-day' %} class="on"{% endif %}>On This Day</a>
       </div>
 
       <div class="scv-footer-col">
