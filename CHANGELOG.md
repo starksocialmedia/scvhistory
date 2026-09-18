@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: _partials/record/tools.twig picks a better reading voice. Preference order is Siri, then Samantha/Alex/Daniel/Karen, then any remote voice, then en-US, then the first English voice. Added a voice picker listing the English voices by name, defaulting to the best match and remembering the choice in localStorage. The picker rebuilds on voiceschanged, since Chrome populates the list asynchronously.
+- Decisions: the picker hides itself when fewer than two English voices exist. Changing voice mid-read restarts the current sentence so the change is audible.
+- Blockers: uploads/reynolds-map-hero.jpg does not exist. It is not in this repo and not in the linked design project; the mirrored crop there is a CSS treatment of existing artwork, not an exported file. No image was produced.
+- Next: Nathan supplies the source panorama if he wants a real 2400x1000 crop cut from it
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: scripts/import/add_wm_community.php adds neighborhood, wmFamily and wmSelectiveServiceDate to the warMemorial entry type. import_warmemorial.php maps the two new labels and skips five letter fragments as noise. war-memorial/_entry.twig renders all eight new fields. war-memorial/index.twig rebuilt: cream band, grouped by conflict chronologically, no filter and no sort, and a nameplate card face where there is no portrait.
 - Decisions: the #877 duplicate is reported by the pre-flight and otherwise left alone. The external box label changed from RELATED to EXTERNAL, matching every other entry template, because that is where wmWallReference belongs. On a nameplate card the face carries the name and rank, so the strip beneath carries only branch and year; both card types still convey the same four facts.
 - Blockers: the F loop in war-memorial/_entry.twig used `is defined`, which reads true for a field the entry type does not have and then throws on read. It 500ed every casualty page once wmFamily was referenced. Rewritten to read the entry's own field layout.

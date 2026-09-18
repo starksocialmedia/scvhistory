@@ -35,6 +35,9 @@
 .rec-play .bar{flex:1;min-width:140px;height:6px;background:#EFE6D0;border:0;padding:0;cursor:pointer;position:relative}
 .rec-play .bar .fill{display:block;height:100%;width:0;background:#C4A031}
 .rec-play .time{font-family:'Jost',sans-serif;font-size:12.5px;letter-spacing:.06em;color:#5B6472;flex:none;font-variant-numeric:tabular-nums}
+.rec-play .voice{flex:none;display:flex;align-items:center}
+.rec-play .voice select{border:1px solid #DCC98F;background:#fff;font-family:'Jost',sans-serif;font-size:12px;color:#7A5C1B;padding:4px 6px;max-width:170px;cursor:pointer}
+.rec-play .voice .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .rec-play .speed{flex:none;display:flex;gap:4px}
 .rec-play .speed button{border:1px solid #DCC98F;background:#fff;font-family:'Jost',sans-serif;font-size:12px;color:#7A5C1B;padding:4px 8px;cursor:pointer}
 .rec-play .speed button[aria-pressed="true"]{background:#17254C;border-color:#17254C;color:#fff}
@@ -63,6 +66,10 @@
     <span class="fill" id="recFill"></span>
   </div>
   <div class="time"><span id="recElapsed">0:00</span> / <span id="recTotal">0:00</span></div>
+  <label class="voice" hidden>
+    <span class="vh">Voice</span>
+    <select id="recVoice"></select>
+  </label>
   <div class="speed" role="group" aria-label="Reading speed">
     <button type="button" data-rate="0.8" aria-pressed="false">0.8&times;</button>
     <button type="button" data-rate="1" aria-pressed="true">1&times;</button>
@@ -81,6 +88,78 @@ document.addEventListener('DOMContentLoaded', function(){
   var HEADING = {{ (entry.title ?? '')|json_encode|raw }};
   var WPM = 165;
   var pp = document.getElementById('recPP'), ppIcon = document.getElementById('recPPIcon');
+
+  /* Voice selection.
+
+     Taking the first English voice gave whatever the platform happened to list
+     first, which on macOS is one of the old compact voices and sounds like a
+     1990s screen reader. Preference order:
+
+       1. anything named Siri, the modern Apple neural voices
+       2. the good named macOS voices: Samantha, Alex, Daniel, Karen
+       3. any voice with localService false, since remote voices are the
+          neural ones on Chrome and Edge
+       4. any en-US voice
+       5. the first English voice
+
+     The reader can override with the picker, and the choice is remembered. */
+  var VOICE_KEY = 'scvVoiceName';
+  var NAMED = ['siri', 'samantha', 'alex', 'daniel', 'karen'];
+  var englishVoices = [];
+  var chosenVoice = null;
+  var voiceSel = document.getElementById('recVoice');
+  var voiceWrap = voiceSel ? voiceSel.closest('.voice') : null;
+
+  function bestVoice(list) {
+    if (!list.length) { return null; }
+    var byName = function (needle) {
+      return list.find(function (v) { return v.name.toLowerCase().indexOf(needle) !== -1; });
+    };
+    var hit = byName('siri');
+    if (hit) { return hit; }
+    for (var i = 0; i < NAMED.length; i++) {
+      hit = byName(NAMED[i]);
+      if (hit) { return hit; }
+    }
+    hit = list.find(function (v) { return v.localService === false; });
+    if (hit) { return hit; }
+    hit = list.find(function (v) { return /^en[-_]US$/i.test(v.lang); });
+    if (hit) { return hit; }
+    return list[0];
+  }
+
+  function loadVoices() {
+    var all = speechSynthesis.getVoices() || [];
+    englishVoices = all.filter(function (v) { return /^en(-|_|$)/i.test(v.lang); });
+    if (!englishVoices.length) { chosenVoice = null; return; }
+
+    var saved = null;
+    try { saved = localStorage.getItem(VOICE_KEY); } catch (e) {}
+    chosenVoice = (saved && englishVoices.find(function (v) { return v.name === saved; })) || bestVoice(englishVoices);
+
+    if (!voiceSel) { return; }
+    voiceSel.textContent = '';
+    englishVoices.forEach(function (v) {
+      var o = document.createElement('option');
+      o.value = v.name;
+      o.textContent = v.name + (v.lang ? ' (' + v.lang + ')' : '');
+      if (chosenVoice && v.name === chosenVoice.name) { o.selected = true; }
+      voiceSel.appendChild(o);
+    });
+    if (voiceWrap) { voiceWrap.hidden = englishVoices.length < 2; }
+  }
+
+  if (voiceSel) {
+    voiceSel.addEventListener('change', function () {
+      chosenVoice = englishVoices.find(function (v) { return v.name === voiceSel.value; }) || chosenVoice;
+      try { localStorage.setItem(VOICE_KEY, voiceSel.value); } catch (e) {}
+      /* restart the current sentence so the change is audible straight away */
+      if (playing) { speechSynthesis.cancel(); startedAt = Date.now(); speak(idx); }
+    });
+  }
+
+  loadVoices();
+
   var bar = document.getElementById('recBar'), fill = document.getElementById('recFill');
   var elapsedEl = document.getElementById('recElapsed'), totalEl = document.getElementById('recTotal');
   var PLAY = 'M1 1l12 7-12 7z', PAUSE = 'M2 1h3v14H2zM9 1h3v14H9z';
@@ -150,9 +229,7 @@ document.addEventListener('DOMContentLoaded', function(){
     idx = i; highlight(i); paint();
     var u = new SpeechSynthesisUtterance((i === 0 && HEADING ? HEADING + '. ' : '') + sentences[i].text);
     u.rate = rate;
-    var voices = speechSynthesis.getVoices();
-    var en = voices.filter(function(v){ return /^en(-|_|$)/i.test(v.lang); });
-    if (en.length) { u.voice = en.find(function(v){ return v.default; }) || en[0]; }
+    if (chosenVoice) { u.voice = chosenVoice; }
     u.onend = function(){
       if (!playing) { return; }
       var secs = (Date.now() - startedAt) / 1000 + elapsedBefore;
@@ -220,7 +297,9 @@ document.addEventListener('DOMContentLoaded', function(){
   setInterval(function(){ if (playing) { paint(); } }, 500);
   window.addEventListener('beforeunload', function(){ speechSynthesis.cancel(); });
   window.addEventListener('pagehide', function(){ speechSynthesis.cancel(); });
-  if (speechSynthesis.onvoiceschanged !== undefined) { speechSynthesis.onvoiceschanged = function(){}; }
+  /* Chrome populates the voice list asynchronously, so the first call above can
+     come back empty. Rebuild the picker when it arrives. */
+  if (speechSynthesis.onvoiceschanged !== undefined) { speechSynthesis.onvoiceschanged = loadVoices; }
   paint();
 });
 </script>
