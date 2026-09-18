@@ -826,6 +826,23 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c863b608-9f47-45c9-8606-39a27567d86d # Dates in this record
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 652c979e-e179-4b60-97fd-454732fd7b06
+            userCondition: null
+            warning: null
+            width: 100
         name: Media
         uid: a6cc2799-f7ed-4ab5-9241-12f3325abc5a
         userCondition: null

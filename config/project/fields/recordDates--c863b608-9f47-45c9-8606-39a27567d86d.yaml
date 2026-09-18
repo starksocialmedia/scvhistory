@@ -1,0 +1,142 @@
+columnSuffix: null
+handle: recordDates
+instructions: 'Dates this record is about, for the on-this-day index. Enter the date as it is printed in the source, then the ISO date and how precise it is. Tick Confirmed once a person has checked the row.'
+name: 'Dates in this record'
+searchable: false
+settings:
+  addRowLabel: 'Add a date'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - 'As printed'
+            -
+              - handle
+              - printed
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - 'ISO date'
+            -
+              - handle
+              - iso
+            -
+              - width
+              - ''
+            -
+              - type
+              - date
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - Precision
+            -
+              - handle
+              - granularity
+            -
+              - width
+              - ''
+            -
+              - type
+              - select
+            -
+              - options
+              -
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - Day
+                    -
+                      - value
+                      - day
+                    -
+                      - default
+                      - true
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - Month
+                    -
+                      - value
+                      - month
+                    -
+                      - default
+                      - false
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - Year
+                    -
+                      - value
+                      - year
+                    -
+                      - default
+                      - false
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - Approximate
+                    -
+                      - value
+                      - circa
+                    -
+                      - default
+                      - false
+      -
+        - col4
+        -
+          __assoc__:
+            -
+              - heading
+              - 'What happened'
+            -
+              - handle
+              - label
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col5
+        -
+          __assoc__:
+            -
+              - heading
+              - Confirmed
+            -
+              - handle
+              - confirmed
+            -
+              - width
+              - ''
+            -
+              - type
+              - checkbox
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table
