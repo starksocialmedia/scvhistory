@@ -2824,12 +2824,12 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Dear Tom",
+          "name_raw": "Tom",
           "count": 1,
           "linked_to": ""
         },
         {
-          "name_raw": "Dear Walt",
+          "name_raw": "Walt",
           "count": 1,
           "linked_to": ""
         },
@@ -16385,12 +16385,12 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Dear Tom",
+          "name_raw": "Tom",
           "count": 1,
           "linked_to": ""
         },
         {
-          "name_raw": "Dear Walt",
+          "name_raw": "Walt",
           "count": 1,
           "linked_to": ""
         },
@@ -30716,28 +30716,6 @@
         "legacy_page_url": ""
       },
       {
-        "name_raw": "Dear Tom",
-        "name_variants": [],
-        "mention_count": 2,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/worden/lw101597.htm",
-          "https://scvhistory.com/scvhistory/signal/worden/old/lw101597.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Dear Walt",
-        "name_variants": [],
-        "mention_count": 2,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/worden/lw101597.htm",
-          "https://scvhistory.com/scvhistory/signal/worden/old/lw101597.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
         "name_raw": "Dee Dee Myers",
         "name_variants": [],
         "mention_count": 2,
@@ -36489,6 +36467,18 @@
         "mention_count": 1,
         "pages": [
           "https://scvhistory.com/scvhistory/signal/worden/old/lw050698.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Kimberly Anderson",
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/worden/old/lw052897.htm"
+        ],
+        "name_variants": [
+          "Dear Kimberly Anderson"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -43028,23 +43018,32 @@
         ]
       },
       {
+        "name_raw": "Tom",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/worden/lw101597.htm",
+          "https://scvhistory.com/scvhistory/signal/worden/old/lw101597.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Walt",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/worden/lw101597.htm",
+          "https://scvhistory.com/scvhistory/signal/worden/old/lw101597.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
         "name_raw": "Community Calendar",
         "mention_count": 1,
         "pages": [
           "https://scvhistory.com/scvhistory/signal/worden/old/lw061798.htm"
-        ],
-        "needs_review": [
-          {
-            "reason": "unclassified_nonperson",
-            "detail": "product_brand_or_thing"
-          }
-        ]
-      },
-      {
-        "name_raw": "Dear Kimberly Anderson",
-        "mention_count": 1,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/worden/old/lw052897.htm"
         ],
         "needs_review": [
           {
