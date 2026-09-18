@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: reading voice order now puts Google US English first, then Siri, then any remote voice, then Samantha/Alex/Daniel/Karen, then en-US, then the first English voice. The macOS novelty voices are filtered out of the picker entirely, so they can be neither chosen nor defaulted to. The picker lists remote voices first, then the named system voices, then the rest alphabetically.
+- Decisions: 15 names filtered, the 13 Nathan listed plus Albert and Superstar, both part of the same macOS novelty set. Fred, Junior, Kathy and Ralph are kept: they are old and poor but they are real reading voices, not sound effects.
+- Blockers: none
+- Next: say the word if the old MacinTalk voices should go too
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: _partials/record/tools.twig picks a better reading voice. Preference order is Siri, then Samantha/Alex/Daniel/Karen, then any remote voice, then en-US, then the first English voice. Added a voice picker listing the English voices by name, defaulting to the best match and remembering the choice in localStorage. The picker rebuilds on voiceschanged, since Chrome populates the list asynchronously.
 - Decisions: the picker hides itself when fewer than two English voices exist. Changing voice mid-read restarts the current sentence so the change is audible.
 - Blockers: uploads/reynolds-map-hero.jpg does not exist. It is not in this repo and not in the linked design project; the mirrored crop there is a CSS treatment of existing artwork, not an exported file. No image was produced.

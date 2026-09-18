@@ -95,42 +95,81 @@ document.addEventListener('DOMContentLoaded', function(){
      first, which on macOS is one of the old compact voices and sounds like a
      1990s screen reader. Preference order:
 
-       1. anything named Siri, the modern Apple neural voices
-       2. the good named macOS voices: Samantha, Alex, Daniel, Karen
+       1. Google US English, the best of the remote neural voices
+       2. anything named Siri, the modern Apple neural voices
        3. any voice with localService false, since remote voices are the
           neural ones on Chrome and Edge
-       4. any en-US voice
-       5. the first English voice
+       4. the good named macOS voices: Samantha, Alex, Daniel, Karen
+       5. any en-US voice
+       6. the first English voice
+
+     The macOS novelty voices are filtered out of the list entirely, so they can
+     be neither chosen nor defaulted to. The picker lists the remote voices
+     first, then the named system voices, then the rest alphabetically.
 
      The reader can override with the picker, and the choice is remembered. */
   var VOICE_KEY = 'scvVoiceName';
-  var NAMED = ['siri', 'samantha', 'alex', 'daniel', 'karen'];
+  var NAMED = ['samantha', 'alex', 'daniel', 'karen'];
+  /* The macOS "novelty" set. These are sound effects with a voice attached, not
+     reading voices, and they crowd out the real ones in a 45-entry list. */
+  var NOVELTY = [
+    'albert', 'bad news', 'bahh', 'bells', 'boing', 'bubbles', 'cellos',
+    'good news', 'jester', 'organ', 'superstar', 'trinoids', 'whisper',
+    'wobble', 'zarvox'
+  ];
   var englishVoices = [];
   var chosenVoice = null;
   var voiceSel = document.getElementById('recVoice');
   var voiceWrap = voiceSel ? voiceSel.closest('.voice') : null;
+
+  function isNovelty(v) {
+    var n = v.name.toLowerCase();
+    return NOVELTY.some(function (bad) { return n === bad || n.indexOf(bad + ' (') === 0; });
+  }
+
+  function namedRank(v) {
+    var n = v.name.toLowerCase();
+    for (var i = 0; i < NAMED.length; i++) {
+      if (n === NAMED[i] || n.indexOf(NAMED[i] + ' (') === 0) { return i; }
+    }
+    return -1;
+  }
 
   function bestVoice(list) {
     if (!list.length) { return null; }
     var byName = function (needle) {
       return list.find(function (v) { return v.name.toLowerCase().indexOf(needle) !== -1; });
     };
-    var hit = byName('siri');
+    var hit = byName('google us english');
     if (hit) { return hit; }
-    for (var i = 0; i < NAMED.length; i++) {
-      hit = byName(NAMED[i]);
-      if (hit) { return hit; }
-    }
+    hit = byName('siri');
+    if (hit) { return hit; }
     hit = list.find(function (v) { return v.localService === false; });
+    if (hit) { return hit; }
+    hit = list.find(function (v) { return namedRank(v) !== -1; });
     if (hit) { return hit; }
     hit = list.find(function (v) { return /^en[-_]US$/i.test(v.lang); });
     if (hit) { return hit; }
     return list[0];
   }
 
+  /* remote first, then the named system voices in preference order, then the
+     rest alphabetically */
+  function sortForPicker(list) {
+    return list.slice().sort(function (a, b) {
+      var ga = a.localService === false ? 0 : (namedRank(a) !== -1 ? 1 : 2);
+      var gb = b.localService === false ? 0 : (namedRank(b) !== -1 ? 1 : 2);
+      if (ga !== gb) { return ga - gb; }
+      if (ga === 1) { return namedRank(a) - namedRank(b); }
+      return a.name.localeCompare(b.name);
+    });
+  }
+
   function loadVoices() {
     var all = speechSynthesis.getVoices() || [];
-    englishVoices = all.filter(function (v) { return /^en(-|_|$)/i.test(v.lang); });
+    englishVoices = sortForPicker(all.filter(function (v) {
+      return /^en(-|_|$)/i.test(v.lang) && !isNovelty(v);
+    }));
     if (!englishVoices.length) { chosenVoice = null; return; }
 
     var saved = null;
