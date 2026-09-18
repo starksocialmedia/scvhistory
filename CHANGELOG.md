@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: extended settle_family_relations.php to retire mpParents, mpChildren, mpSiblings and mpSpouse alongside parentOf, table driven with a mirror rule per field, and to add childOf, siblingOf and spouseOf to the military profile layout as well as the war memorial one. Added two rules to the skills: never touch state you did not create, in scv-import-script, and never read or clear the live localStorage key while testing a review screen, in scv-review-screen. Checked all eight disputed Find A Grave memorials against the live site.
+- Decisions: the retirement step now takes a table of handle, entry type, replacing field and direction, so each field is checked against the convention that actually replaces it: mpParents against childOf the same way round, mpChildren and parentOf against childOf inverted, mpSiblings and mpSpouse against siblingOf and spouseOf either way. All four mp fields hold nothing, so all four retire cleanly.
+- Blockers: seven of the eight Find A Grave URLs in the archive point at the wrong person entirely, not merely a different memorial for the same man. Find A Grave resolves by number and ignores the slug, so a URL reading christopher-houston-carson served Harry Chapin's grave. Kit Carson, Cave Johnson Couts, Edward Fitzgerald Beale, Edwin Bryant, James Wilson Marshall, John C. Frémont and Juan Bandini are all wrong; William Lewis Manly is right in ours and wrong in Wikidata's. Two data errors also surfaced: John C. Frémont's birthDate holds his own name, and Juan Bandini's burialPlace reads "l Campo Santo".
+- Result: curl cannot reach Find A Grave, which serves a Cloudflare challenge, so the sixteen pages were read in a real browser session.
+- Next: Nathan decides the eight grave links, then runs settle_family_relations.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: added Spouse of as a fifth choice on the entity screen, key W, with probable_spouse detection in export_entity_candidates.php and a spouses block written by apply_entity_merges.php rather than a merge. Added source links to both review screens: our record and the legacy page beside it, both opening in a new tab. Wrote scripts/import/apply_wikidata_matches.php, dry run by default.
 - Decisions: the married-name shape as specified catches two different things, so the card carries the exact warning asked for plus one line telling the reviewer which they are looking at. A relation candidate whose page is not an article now renders with its buttons off and a note saying why, because a decision that could never be applied is worse than no decision. The Wikidata script never overwrites a non-empty field and classifies a Find A Grave conflict by whether the memorial number differs.
 - Blockers: the 297 candidates described as having no record in Craft are not that. 287 are war memorial casualty records that have been in Craft all along; the exporter was only indexing the articles section. It now indexes every section carrying a legacy URL. Exactly one legacy page is genuinely unmatched, /scvhistory/signal/reynolds/part15.html, carrying 10 candidates. Separately, 8 of the Find A Grave URLs already in the archive point at a different memorial number from the one Wikidata gives, so one of each pair is the wrong grave.
