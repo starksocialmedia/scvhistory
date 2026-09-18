@@ -44,6 +44,20 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
 .acts button.same.on{background:var(--green);border-color:var(--green)}
 .ask{font-size:13px;color:var(--gold-d);margin-top:10px}
 .empty{text-align:center;padding:60px 0;color:var(--muted)}
+.side .blk{font-size:12px;color:#8A919E;margin-top:6px;line-height:1.6}
+.side .blk b{font-family:'Jost',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px}
+.side .blk span{display:inline-block;background:var(--grey);border:1px solid var(--bord);padding:1px 6px;margin:2px 4px 0 0;color:#5B6472}
+.ctxbar{margin-top:10px;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);background:none;border:0;padding:0;cursor:pointer}
+.ctxbar:hover{color:var(--navy)}
+.ctx{margin-top:10px;border-top:1px dashed var(--bord);padding-top:10px}
+.ctx .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.ctx .cols{grid-template-columns:1fr}}
+.ctx .q{margin:0 0 10px;font-size:13.5px;line-height:1.65;color:#2C2C2C}
+.ctx .q .src{display:block;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#8A919E;margin-bottom:3px}
+.ctx .q.shared .src{color:var(--gold-d)}
+.ctx .q.shared{background:var(--cream);border-left:2px solid var(--gold);padding:8px 10px}
+.ctx mark{background:#F6E7B8;color:inherit;padding:0 1px}
+.ctx .none{font-size:13px;color:var(--muted);font-style:italic}
 </style>
 </head>
 <body>
@@ -64,7 +78,7 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
       the other becomes one of its variants. <b>Different people</b> records that they are not the same, so nothing asks again.
       <b>Skip</b> leaves it undecided.
       <kbd>S</kbd> same, <kbd>X</kbd> different, <kbd>K</kbd> skip, <kbd>1</kbd><kbd>2</kbd> choose the survivor,
-      <kbd>&darr;</kbd><kbd>&uarr;</kbd> move.
+      <kbd>C</kbd> show the sentences either name appears in, <kbd>&darr;</kbd><kbd>&uarr;</kbd> move.
       This is the extraction index, not Craft. Nothing here writes to the database.
     </p>
 
@@ -101,10 +115,18 @@ let decisions = {};
 try { decisions = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { decisions = {}; }
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const open = new Set();
+let byName = new Map();
 const idOf = p => p.kind + '|' + p.a + '|' + p.b;
 const STRONG = ['honorific', 'initials', 'suffix', 'spelling'];
 
-fetch('entities.json').then(r => r.json()).then(d => { data = d; pairs = d.pairs || []; render(); })
+fetch('entities.json').then(r => r.json()).then(d => {
+  data = d; pairs = d.pairs || [];
+  for (const kind of Object.keys(d.entities || {})) {
+    for (const row of d.entities[kind]) byName.set(kind + '|' + row.name, row);
+  }
+  render();
+})
   .catch(() => { document.getElementById('stage').innerHTML = '<p class="empty">Could not load entities.json. Run the export script first.</p>'; });
 
 function save() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
@@ -136,6 +158,50 @@ function counts() {
     same + ' merged, ' + diff + ' kept apart, ' + pairs.length + ' pairs' + (need ? '  ·  ' + need + ' need a survivor' : '');
 }
 
+/* Up to three sentences for one side. A shared article leads, because two
+   names used in one piece is the strongest signal on the card. */
+function contextFor(p, which) {
+  const shared = which === 'a' ? p.aShared : p.bShared;
+  const row = byName.get(p.kind + '|' + (which === 'a' ? p.a : p.b));
+  const rest = (row && row.context) || [];
+  const out = [];
+  if (shared) out.push(Object.assign({ shared: true }, shared));
+  for (const c of rest) {
+    if (out.length >= 3) break;
+    if (shared && c.path === shared.path) continue;
+    out.push(c);
+  }
+  return out;
+}
+
+/* The name is emphasised inside its own sentence, on the text that matched. */
+function markup(c) {
+  const t = esc(c.text);
+  const m = esc(c.match || '');
+  if (!m) return t;
+  const re = new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+  return t.replace(re, x => '<mark>' + x + '</mark>');
+}
+
+function ctxColumn(p, which) {
+  const list = contextFor(p, which);
+  if (!list.length) return '<p class="none">No sentence in the extraction carries this name.</p>';
+  let h = '';
+  for (const c of list) {
+    h += '<p class="q' + (c.shared ? ' shared' : '') + '">' +
+         '<span class="src">' + (c.shared ? 'both names appear here &middot; ' : '') + esc(c.title) + '</span>' +
+         markup(c) + '</p>';
+  }
+  return h;
+}
+
+function blockHtml(mates) {
+  if (!mates || !mates.length) return '';
+  let h = '<div class="blk"><b>also in play</b>';
+  for (const m of mates) h += '<span>' + esc(m.name) + ' &middot; ' + m.mentions + '</span>';
+  return h + '</div>';
+}
+
 function sideHtml(p, which) {
   const name = which === 'a' ? p.a : p.b;
   const men = which === 'a' ? p.aMentions : p.bMentions;
@@ -148,6 +214,7 @@ function sideHtml(p, which) {
   h += '<div class="st">' + men + ' mention' + (men === 1 ? '' : 's') + ' across ' + arts + ' article' + (arts === 1 ? '' : 's') + '</div>';
   if (rec) h += '<div class="rec">record exists: <a href="' + esc(rec.url) + '" target="_blank" rel="noopener">' + esc(rec.title) + ' &nearr;</a></div>';
   if (win) h += '<div class="keep">keeps this name</div>';
+  h += blockHtml(which === 'a' ? p.aBlock : p.bBlock);
   h += '</div>';
   return h;
 }
@@ -170,6 +237,13 @@ function render() {
     if (p.shared) html += '<span class="tagr">' + p.shared + ' article' + (p.shared === 1 ? '' : 's') + ' in common</span>';
     html += '</div>';
     html += '<div class="sides">' + sideHtml(p, 'a') + sideHtml(p, 'b') + '</div>';
+    const isOpen = open.has(id);
+    html += '<button type="button" class="ctxbar" data-ctx="1">' +
+            (isOpen ? '&minus; hide context' : '+ show context') + '</button>';
+    if (isOpen) {
+      html += '<div class="ctx"><div class="cols"><div>' + ctxColumn(p, 'a') + '</div>' +
+              '<div>' + ctxColumn(p, 'b') + '</div></div></div>';
+    }
     if (d && d.choice === 'same' && !d.survivor) html += '<div class="ask">Which name survives? Click one, or press <kbd>1</kbd> or <kbd>2</kbd>.</div>';
     html += '<div class="acts">' +
       '<button class="same' + (d && d.choice === 'same' ? ' on' : '') + '" data-choice="same">Same person</button>' +
@@ -183,6 +257,8 @@ function render() {
   stage.querySelectorAll('.pair').forEach(el => {
     el.querySelectorAll('.acts button').forEach(b => b.addEventListener('click', () => choose(el.dataset.id, b.dataset.choice)));
     el.querySelectorAll('.side').forEach(s => s.addEventListener('click', () => survivor(el.dataset.id, s.dataset.side)));
+    const cb = el.querySelector('[data-ctx]');
+    if (cb) cb.addEventListener('click', e => { e.stopPropagation(); toggleCtx(el.dataset.id); });
   });
 }
 
@@ -201,6 +277,13 @@ function choose(id, choice) {
     else decisions[id].survivor = ta === tb ? (p.aMentions >= p.bMentions ? p.a : p.b) : (ta > tb ? p.a : p.b);
   }
   save(); render();
+}
+
+function toggleCtx(id) {
+  if (open.has(id)) open.delete(id); else open.add(id);
+  render();
+  const el = [...document.querySelectorAll('.pair')].find(x => x.dataset.id === id);
+  if (el) el.focus();
 }
 
 function survivor(id, which) {
@@ -222,6 +305,7 @@ document.addEventListener('keydown', e => {
   const k = e.key.toLowerCase();
   if (k === 'arrowdown') { e.preventDefault(); (cards[here + 1] || cards[0])?.focus(); }
   else if (k === 'arrowup') { e.preventDefault(); (cards[here - 1] || cards[cards.length - 1])?.focus(); }
+  else if (here >= 0 && k === 'c') { e.preventDefault(); toggleCtx(cards[here].dataset.id); }
   else if (here >= 0 && ['s', 'x', 'k'].includes(k)) {
     e.preventDefault();
     const id = cards[here].dataset.id;

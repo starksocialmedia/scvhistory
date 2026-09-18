@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+{% include "_partials/record/sticky" with { collection: null, chapter: null } only %}
+
 {#
   A major collection gets the landing page; everything else keeps the standard
   record layout below. The flag is read off the layout rather than trusted to

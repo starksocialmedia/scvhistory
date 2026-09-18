@@ -75,6 +75,53 @@ $isByline = function (string $l): bool {
     return false;
 };
 
+/* "For The Signal", the publication line of a byline block. */
+$isForPublication = function (string $l): bool {
+    return (bool)preg_match('~^For\s+(The\s+)?[A-Z][A-Za-z.\x{2019}\' -]{2,44}\.?$~u', $l);
+};
+
+/* An extraction marker left behind with the series heading attached:
+   "START:BYLINE-->HISTORY OF THE SANTA CLARITA VALLEY BY JERRY REYNOLDS". */
+$isExtractionMarker = function (string $l): bool {
+    return (bool)preg_match('~(START|END):(BYLINE|CONTENT|STORY)~u', $l)
+        || (bool)preg_match('~^<!--|-->$~u', $l);
+};
+
+/* A publication or a bare month and year, but only read inside a byline block:
+   "The Santa Clarita Sentinel", "June 1986.", "Vol. 11 No. 6". Short, opens
+   like a heading, and carries no sentence. */
+$isBlockLine = function (string $l): bool {
+    if (mb_strlen($l) > 90) { return false; }
+    if (!preg_match('~^[\(\x{201C}"A-Z0-9]~u', $l)) { return false; }
+    if (preg_match('~[.!?]\s+\p{Lu}~u', $l)) { return false; }
+    return str_word_count(preg_replace('~[^A-Za-z ]~', ' ', $l)) <= 14;
+};
+
+/* A stray opening quote or bracket left by the extraction. */
+$isStrayMark = function (string $l): bool {
+    return (bool)preg_match('~^[\x{201C}\x{201D}"\x{2018}\x{2019}\'\[\]]{1,2}$~u', $l);
+};
+
+$MONTHS = '(January|February|March|April|May|June|July|August|September|October|November|December)';
+
+$isMonthYear = function (string $l) use ($MONTHS): bool {
+    return (bool)preg_match('~^' . $MONTHS . '\s+\d{4}\.?$~u', $l);
+};
+
+/* The date carried by a head line, which is often a publication and a date
+   sharing one line: "The Santa Clarita Sentinel | April 28, 1965". */
+$pickDate = function (string $l) use ($MONTHS): string {
+    $part = $l;
+    if (mb_strpos($l, '|') !== false) {
+        $bits = explode('|', $l);
+        $part = trim(end($bits));
+    }
+    if (preg_match('~' . $MONTHS . '\s+\d{1,2},?\s+\d{4}~u', $part, $m)) { return rtrim($m[0], '.'); }
+    if (preg_match('~' . $MONTHS . '\s+\d{4}~u', $part, $m))               { return rtrim($m[0], '.'); }
+    if (preg_match('~' . $MONTHS . '\s+\d{1,2},?\s+\d{4}~u', $l, $m))    { return rtrim($m[0], '.'); }
+    return '';
+};
+
 $isDateline = function (string $l): bool {
     $M = '(January|February|March|April|May|June|July|August|September|October|November|December)';
     if (preg_match('~^' . $M . '\s+\d{1,2},?\s+\d{4}\.?$~u', $l)) { return true; }
@@ -139,6 +186,7 @@ $changed = 0; $unchanged = 0; $failed = 0;
 $uncertain = [];        /* slug => [lines] */
 $galleryCut = [];       /* slug => [what was cut] */
 $movedToFinePrint = 0;
+$filledDate = []; $filledAuthor = []; $noAuthorRecord = [];
 $patternCounts = [];
 
 foreach ($SECTIONS as $sectionHandle) {
@@ -157,22 +205,91 @@ foreach ($SECTIONS as $sectionHandle) {
         $keepFine = [];
         $hit = function (string $what) use (&$patternCounts) { $patternCounts[$what] = ($patternCounts[$what] ?? 0) + 1; };
 
-        /* ---- head: walk down, stop at the first line we are not sure about ---- */
+        /* ---- head: walk down, stop at the first line we are not sure about ----
+           A byline block carries a date and an author that never reached the
+           fields. Take them before the block is removed, and only where the
+           field is empty; nothing already recorded is overwritten. */
         $start = 0;
         $titleSeen = false;
+        $foundDate = ''; $foundAuthor = '';
+        $bylineSeen = false; $blockTail = 0;
         while ($start < $n) {
             $raw = $lines[$start];
             $l = trim($raw);
             if ($l === '') { $start++; continue; }
 
             if ($isBreadcrumb($l))    { $hit('breadcrumb');     $start++; continue; }
+            if ($isExtractionMarker($l)) {
+                $hit('extraction-marker');
+                if ($foundAuthor === '' && preg_match('~\bBY\s+([A-Z][A-Z. \x{2019}\'-]{3,40})$~u', $l, $m)) {
+                    $foundAuthor = trim($m[1]);
+                }
+                $start++; continue;
+            }
             if ($isBracketNav($l))    { $hit('bracket-nav');    $start++; continue; }
+            if ($isStrayMark($l))     { $hit('stray-mark');     $start++; continue; }
+
+            /* A bracketed index link whose opening bracket has already gone:
+               an all caps label whose next non-empty line is a lone "]". */
+            if (preg_match('~^[A-Z][A-Z0-9 .&\x{2019}\'-]{4,60}$~u', $l)) {
+                $peekIdx = $start + 1;
+                while ($peekIdx < $n && trim($lines[$peekIdx]) === '') { $peekIdx++; }
+                if ($peekIdx < $n && trim($lines[$peekIdx]) === ']') {
+                    $hit('index-link');
+                    $start = $peekIdx + 1;
+                    continue;
+                }
+            }
+
+            if ($isForPublication($l)) { $hit('publication'); $start++; continue; }
+            /* A placeholder the extraction left where the date should be. */
+            if (preg_match('~^date\?$~iu', $l)) { $hit('date-placeholder'); $start++; continue; }
             if ($isSeriesHeading($l)) { $hit('series-heading'); $start++; continue; }
             if (!$titleSeen && $norm($l) !== '' && $norm($l) === $norm((string)$e->title)) {
                 $hit('own-title'); $titleSeen = true; $start++; continue;
             }
-            if ($isByline($l))        { $hit('byline');   $start++; continue; }
-            if ($isDateline($l))      { $hit('dateline'); $start++; continue; }
+            /* The shape the newly imported pages carry: one or more title lines,
+               then "By X", then the publication, then the date. A title line on
+               its own is indistinguishable from an opening sentence, so it is
+               only taken when a byline follows it within four lines. */
+            if (!$bylineSeen && $isBlockLine($l)) {
+                $peekIdx = $start + 1; $seen = 0; $bylineAhead = false;
+                while ($peekIdx < $n && $seen < 4) {
+                    $pl = trim($lines[$peekIdx]);
+                    if ($pl === '') { $peekIdx++; continue; }
+                    if ($isByline($pl)) { $bylineAhead = true; break; }
+                    if (!$isBlockLine($pl)) { break; }
+                    $seen++; $peekIdx++;
+                }
+                if ($bylineAhead) { $hit('block-title'); $start++; continue; }
+            }
+
+            /* Below the byline, the publication and the date. Bounded at three
+               lines so an unrecognised publication cannot run into the prose. */
+            if ($bylineSeen && $blockTail < 3 && $isBlockLine($l) && !$isDateline($l)) {
+                $hit('block-publication');
+                if ($foundDate === '') { $foundDate = $pickDate($l); }
+                $blockTail++; $start++; continue;
+            }
+
+            if ($isByline($l)) {
+                $hit('byline');
+                $bylineSeen = true;
+                if ($foundAuthor === '' && preg_match('~^By\s+(.+?)[,.]?$~u', $l, $m)) {
+                    $a = $m[1];
+                    $a = preg_replace('~,?\s*[A-Za-z. ]*\b(Curator|Historian|Historical Society|Editor|Staff Writer|Publisher|Archivist)\b\.?$~iu', '', $a);
+                    $foundAuthor = trim($a, " \t,.");
+                }
+                $start++; continue;
+            }
+            if ($isDateline($l)) {
+                $hit('dateline');
+                if ($foundDate === '') {
+                    $picked = $pickDate($l);
+                    $foundDate = ($picked !== '' && mb_strpos($l, '|') !== false) ? $picked : rtrim($l, '.');
+                }
+                $start++; continue;
+            }
             break;
         }
 
@@ -304,6 +421,44 @@ foreach ($SECTIONS as $sectionHandle) {
             $uncertain[$e->slug][] = 'no finePrint field on this type, so the copyright line would be lost: ' . mb_substr($keepFine[0], 0, 70);
         }
 
+        /* Fields the head block carried, where nothing is there already. */
+        $fieldSets = [];
+        if ($foundDate !== '' && isset($has['originalPublishDate'])) {
+            $cur = '';
+            try { $cur = trim((string)$e->getFieldValue('originalPublishDate')); } catch (\Throwable $ex) {}
+            if ($cur === '') { $fieldSets['originalPublishDate'] = $foundDate; }
+        }
+        if ($foundAuthor !== '' && isset($has['writtenBy'])) {
+            $curCount = -1;
+            try { $curCount = $e->writtenBy->count(); } catch (\Throwable $ex) {}
+            if ($curCount === 0) {
+                $person = \craft\elements\Entry::find()->section('persons')->status(null)->title($foundAuthor)->one();
+                $how = 'exact';
+                /* "By A.B. Perkins" against the record "Arthur Burnett Perkins":
+                   same surname, and every initial in the byline opens a given
+                   name on the record, in order. Reported apart from an exact
+                   match so the inference stays visible. */
+                if (!$person && preg_match('~^((?:[A-Z]\.?\s*){1,3})([A-Z][a-z\x{2019}\'-]+)$~u', $foundAuthor, $m2)) {
+                    $initials = preg_replace('~[^A-Z]~', '', $m2[1]);
+                    $surname  = $m2[2];
+                    foreach (\craft\elements\Entry::find()->section('persons')->status(null)->limit(null)->all() as $cand) {
+                        $parts = preg_split('~\s+~u', trim((string)$cand->title));
+                        if (count($parts) < 2 || array_pop($parts) !== $surname) { continue; }
+                        $candInitials = '';
+                        foreach ($parts as $g) { $candInitials .= mb_strtoupper(mb_substr($g, 0, 1)); }
+                        if (mb_strpos($candInitials, $initials) === 0) { $person = $cand; $how = 'initials'; break; }
+                    }
+                }
+                if ($person) {
+                    $fieldSets['writtenBy'] = [$person->id];
+                    $filledAuthor[] = $e->slug . '  "' . $foundAuthor . '" -> ' . $person->title . '  #' . $person->id
+                        . ($how === 'initials' ? '  (matched on initials and surname)' : '');
+                }
+                else { $noAuthorRecord[] = $e->slug . '  "' . $foundAuthor . '" has no person record, writtenBy left empty'; }
+            }
+        }
+        if (isset($fieldSets['originalPublishDate'])) { $filledDate[] = $e->slug . '  ' . $foundDate; }
+
         $changed++;
         $removed = mb_strlen(trim($original)) - mb_strlen($cleaned);
         $flat = function (string $s): string { return preg_replace('~\s+~', ' ', trim($s)); };
@@ -315,6 +470,9 @@ foreach ($SECTIONS as $sectionHandle) {
         echo '  tail before: ' . mb_substr($flat($original), -120) . PHP_EOL;
         echo '  tail after : ' . mb_substr($flat($cleaned), -120) . PHP_EOL;
         if ($fineSet !== null) { echo '  finePrint  : ' . mb_substr($flat($fineSet), 0, 120) . PHP_EOL; }
+        foreach ($fieldSets as $h => $v) {
+            echo '  ' . str_pad($h, 11) . ': ' . (is_array($v) ? 'person #' . $v[0] . ' (' . $foundAuthor . ')' : $v) . PHP_EOL;
+        }
 
         if ($APPLY) {
             try { $e->setFieldValue('body', $cleaned); }
@@ -322,6 +480,10 @@ foreach ($SECTIONS as $sectionHandle) {
             if ($fineSet !== null) {
                 try { $e->setFieldValue('finePrint', $fineSet); }
                 catch (\Throwable $ex) { echo '  set finePrint failed: ' . $ex->getMessage() . PHP_EOL; }
+            }
+            foreach ($fieldSets as $h => $v) {
+                try { $e->setFieldValue($h, $v); }
+                catch (\Throwable $ex) { echo '  set ' . $h . ' failed: ' . $ex->getMessage() . PHP_EOL; }
             }
             if (!$elements->saveElement($e)) {
                 echo '  SAVE FAILED: ' . json_encode($e->getErrors()) . PHP_EOL;
@@ -336,6 +498,16 @@ echo 'records that would change: ' . $changed . PHP_EOL;
 echo 'records already clean:     ' . $unchanged . PHP_EOL;
 if ($failed) { echo 'saves failed:              ' . $failed . PHP_EOL; }
 echo 'lines moved to finePrint:  ' . $movedToFinePrint . PHP_EOL;
+
+if ($filledDate || $filledAuthor) {
+    echo '=== fields filled from the byline block ===' . PHP_EOL;
+    foreach ($filledDate as $r) { echo '  originalPublishDate  ' . $r . PHP_EOL; }
+    foreach ($filledAuthor as $r) { echo '  writtenBy            ' . $r . PHP_EOL; }
+}
+if ($noAuthorRecord) {
+    echo 'authors named in a byline with no person record:' . PHP_EOL;
+    foreach ($noAuthorRecord as $r) { echo '  ' . $r . PHP_EOL; }
+}
 
 echo '=== patterns matched ===' . PHP_EOL;
 ksort($patternCounts);

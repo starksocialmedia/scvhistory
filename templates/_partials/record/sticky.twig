@@ -1,0 +1,136 @@
+{#
+  Sticky header and back to top, for record pages.
+
+  The site header is tall by design: a seal, a wordmark, a rule, a tagline, a
+  search field and a row of menus. That is right at the top of a long article
+  and wrong 4,000 words in, so once the header has scrolled away it comes back
+  fixed and compact, carrying only the wordmark, the search and the menus.
+
+  The header markup itself is cached globally and cannot carry anything that
+  varies per record, so the collection crumb is rendered here and moved into
+  the header by script. It shows only while the header is stuck.
+
+  Params
+    collection  a collection entry, or null when the record stands alone
+    chapter     the record's position in that collection, 1 based, or null
+
+  Notes
+  - The compact state is driven by a sentinel and an IntersectionObserver, not
+    by a scroll offset, so it engages exactly when the real header leaves.
+  - A spacer takes the header's height while it is fixed, so nothing jumps.
+  - Both controls are hidden on print, where there is nothing to scroll.
+#}
+
+{% css %}
+.scv-hdr.scv-stuck {
+  position: fixed !important; top: 0; left: 0; right: 0; z-index: 300;
+  box-shadow: 0 2px 14px rgba(23,37,76,.28);
+}
+.scv-hdr.scv-stuck .scv-hdr-top { padding-top: 9px !important; padding-bottom: 2px !important; }
+.scv-hdr.scv-stuck .scv-hdr-brand img { width: 34px !important; height: 34px !important; }
+.scv-hdr.scv-stuck .scv-hdr-brand > div > div:first-child { font-size: 18px !important; }
+.scv-hdr.scv-stuck .scv-hdr-brand > div > div:nth-child(2),
+.scv-hdr.scv-stuck .scv-hdr-brand > div > div:nth-child(3),
+.scv-hdr.scv-stuck .scv-hdr-links { display: none !important; }
+.scv-hdr.scv-stuck .scv-hdr-search label { padding: 6px 12px !important; min-width: 200px !important; }
+.scv-hdr.scv-stuck .scv-hdr-row2 { margin-top: 8px !important; }
+.scv-hdr.scv-stuck .scv-mbtn, .scv-hdr.scv-stuck .scv-mtoggle { padding-top: 9px !important; padding-bottom: 9px !important; }
+.scv-hdr.scv-stuck .scv-panel { max-height: calc(100vh - 110px); overflow-y: auto; }
+
+.scv-stickcrumb { display: none; }
+.scv-hdr.scv-stuck .scv-stickcrumb {
+  display: block; border-top: 1px solid rgba(196,160,49,.32); background: #121D3D;
+}
+.scv-stickcrumb-in {
+  max-width: 1240px; margin: 0 auto; padding: 7px 40px;
+  display: flex; align-items: baseline; gap: 10px;
+  font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.scv-stickcrumb-in a { color: #C4A031; text-decoration: none; }
+.scv-stickcrumb-in a:hover { color: #fff; }
+.scv-stickcrumb-in .ch { color: rgba(255,255,255,.62); letter-spacing: .1em; }
+
+.scv-top {
+  position: fixed; right: 26px; bottom: 26px; z-index: 250;
+  width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
+  background: #FDF7EA; color: #17254C; border: 1px solid #C4A031; border-radius: 0;
+  cursor: pointer; opacity: 0; visibility: hidden;
+  transition: opacity .18s ease, visibility .18s ease, background .15s ease, color .15s ease;
+  box-shadow: 0 2px 10px rgba(23,37,76,.18);
+}
+.scv-top.on { opacity: 1; visibility: visible; }
+.scv-top:hover { background: #17254C; color: #C4A031; }
+.scv-top svg { width: 16px; height: 16px; }
+@media (max-width: 700px) { .scv-top { right: 16px; bottom: 16px; width: 42px; height: 42px; } }
+@media (prefers-reduced-motion: reduce) { .scv-top { transition: none; } }
+@media print {
+  .scv-top, .scv-stickcrumb { display: none !important; }
+  .scv-hdr.scv-stuck { position: static !important; box-shadow: none !important; }
+}
+{% endcss %}
+
+{% if collection %}
+  <div class="scv-stickcrumb" data-scv-crumb>
+    <div class="scv-stickcrumb-in">
+      <a href="{{ collection.url }}">{{ collection.title ?: collection.slug }}</a>
+      {% if chapter %}<span class="ch">Chapter {{ chapter }}</span>{% endif %}
+    </div>
+  </div>
+{% endif %}
+
+<button type="button" class="scv-top" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+    <line x1="8" y1="13.5" x2="8" y2="3"></line>
+    <polyline points="3.2,7.8 8,3 12.8,7.8"></polyline>
+  </svg>
+</button>
+
+{% js %}
+(function () {
+  var hdr = document.querySelector('header.scv-hdr');
+  var top = document.querySelector('.scv-top');
+  if (!hdr) { return; }
+
+  var crumb = document.querySelector('[data-scv-crumb]');
+  if (crumb) { hdr.appendChild(crumb); }
+
+  var spacer = document.createElement('div');
+  spacer.setAttribute('aria-hidden', 'true');
+  hdr.parentNode.insertBefore(spacer, hdr.nextSibling);
+
+  var sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px';
+  hdr.parentNode.insertBefore(sentinel, hdr);
+
+  function stick(on) {
+    if (on === hdr.classList.contains('scv-stuck')) { return; }
+    if (on) {
+      spacer.style.height = hdr.offsetHeight + 'px';
+      hdr.classList.add('scv-stuck');
+    } else {
+      hdr.classList.remove('scv-stuck');
+      spacer.style.height = '0px';
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { stick(!es[0].isIntersecting); }).observe(sentinel);
+  } else {
+    window.addEventListener('scroll', function () { stick(window.pageYOffset > 220); }, { passive: true });
+  }
+
+  if (top) {
+    var shown = false;
+    window.addEventListener('scroll', function () {
+      var want = window.pageYOffset > 1200;
+      if (want !== shown) { shown = want; top.classList.toggle('on', want); }
+    }, { passive: true });
+    top.addEventListener('click', function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
+}());
+{% endjs %}

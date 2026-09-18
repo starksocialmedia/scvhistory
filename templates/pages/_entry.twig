@@ -11,6 +11,8 @@
 {% endblock %}
 
 {% block content %}
+{% include "_partials/record/sticky" with { collection: null, chapter: null } only %}
+
 {#
   Site page. Same record shape as everything else, minus the relation boxes:
   a page is prose, not a record with connections. The sidebar carries the

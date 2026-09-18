@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: three body fixes, a sticky record header, and context on the entity screen. _partials/prose.twig now rejoins a line that does not end in sentence punctuation when the next line opens lowercase or with a comma, so an italicised species name no longer splits a sentence into three paragraphs: 46 of 158 records affected, 510 lines rejoined. clean_legacy_bodies.php now strips a bracketed index link and a byline block of the shape title, By X, publication, date, and takes the date and the author out of that block before removing it. Added the sticky compact header and the back to top control to every record template, reordered the mega menu to ARTICLES, COLLECTIONS, PEOPLE, PLACES, BY ERA, and updated design/MENU-MAPPING.md to match. export_entity_candidates.php now carries up to three sentences per name from body_text, a shared-article sentence on both sides of a pair, and the other names in play around each one; entities.html shows them behind a show context toggle on key C.
+- Decisions: the title line of a byline block is only taken when a byline follows it within four lines, because a title on its own line is indistinguishable from an opening sentence. Below the byline the walk takes at most three more lines, so an unrecognised publication cannot run into the prose. On the entity screen the surname block alone was too narrow, since Don Ygnacio blocks on ygnacio and Ygnacio del Valle on valle and the two never meet, so names sharing a rare word are pulled in as well and common words like John pull in nobody.
+- Blockers: nothing applied. $APPLY is false in the committed script and the cleanup has not been run against the database.
+- Result: dry run over all 103 articles, 54 war memorials and 1 obituary, 158 records: 8 would change, 150 already clean. Five would gain originalPublishDate, six would gain writtenBy.
+- Next: Nathan reads the dry run, then applies clean_legacy_bodies.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: repointed the entity reconciliation trio at the extraction index. export_entity_candidates.php emits 1,435 distinct names across the four inventory files with 2,081 proposed pairs from five tests; entities.html offers Same person, Different people and Skip, and asks which name survives; apply_entity_merges.php writes inventory/legacy/entity-canon.json and does not touch Craft. export_relation_candidates.php reads that canon and collapses variants into one candidate per entity per article. Added Discard as a fifth choice on the relations screen, written to inventory/legacy/discarded-entities.json.
 - Decisions: the canon lives in the repository rather than in Craft because almost nothing has been promoted yet; there is nothing to merge there. Pair blocking is the surname plus the surname with one character removed, which lets Herrington meet Harrington without comparing everything to everything.
 - Blockers: I reported earlier that has_legacy_page was false on all but one entity. That was wrong: 133 entities carry one, which matches the re-derivation HANDOFF describes. The relations export now shows 162 candidates promoted by that rule.

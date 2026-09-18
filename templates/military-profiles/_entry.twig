@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+{% include "_partials/record/sticky" with { collection: null, chapter: null } only %}
+
 {#
   Military Profile record. The section holds no entries yet, so this renders
   against the field layout only. The militaryProfile layout has no

@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+{% include "_partials/record/sticky" with { collection: null, chapter: null } only %}
+
 {#
   Community term page. Craft passes the term as `category` for category element
   routes; `entry` is accepted as a fallback for previews.

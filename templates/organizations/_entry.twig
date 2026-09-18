@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+{% include "_partials/record/sticky" with { collection: null, chapter: null } only %}
+
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}

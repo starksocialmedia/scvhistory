@@ -11,6 +11,12 @@
   split footnote markers across lines, so a reference printed as [21] arrived as
   three lines and rendered as three paragraphs.
 
+  So does a line that continues the sentence above it: one starting with a
+  lowercase letter or a comma, and one that does not end in sentence punctuation
+  whose next line starts that way. An italicised species name sat on its own
+  line, so "the eriodyction glutinosum, growing profusely" arrived as three
+  lines and rendered as three paragraphs with the sentence split around it.
+
   Params:
     text     the prose
     images   optional, the recordImages assets, needed for [image:N]
@@ -30,18 +36,26 @@
     rejoinable when it holds no letters at all, which keeps [image:N] out of it. -#}
 {%- set TOKEN = '/^\\[image:\\d+\\]$/' -%}
 {%- set lines = [] -%}
+{%- set raw = [] -%}
 {%- for p in text|trim|split("\n") -%}
-  {%- set l = p|trim -%}
-  {%- if l -%}
-    {%- set joinable = lines|length
-        and l matches '/^[^\\p{L}]+$/u'
-        and not (l matches TOKEN)
-        and not (lines|last matches TOKEN) -%}
-    {%- if joinable -%}
-      {%- set lines = lines|slice(0, lines|length - 1)|merge([lines|last ~ l]) -%}
-    {%- else -%}
-      {%- set lines = lines|merge([l]) -%}
-    {%- endif -%}
+  {%- if p|trim -%}{%- set raw = raw|merge([p|trim]) -%}{%- endif -%}
+{%- endfor -%}
+{%- set ENDS = '/[.!?:;\u0022\u201D\u2019)\u2014-]$/u' -%}
+{%- set CONT = '/^[a-z,;:)]/u' -%}
+{%- for i, l in raw -%}
+  {%- set nxt = raw[i + 1] ?? '' -%}
+  {%- set isTok = l matches TOKEN -%}
+  {%- set afterTok = lines|length and (lines|last matches TOKEN) -%}
+  {%- set letterless = l matches '/^[^\\p{L}]+$/u' -%}
+  {%- set continues = l matches CONT -%}
+  {%- set dangling = not (l matches ENDS) and (nxt matches CONT) -%}
+  {%- set joinable = lines|length and not isTok and not afterTok
+      and (letterless or continues or dangling) -%}
+  {%- if joinable -%}
+    {%- set glue = (letterless or l matches '/^[,;:)]/') ? '' : ' ' -%}
+    {%- set lines = lines|slice(0, lines|length - 1)|merge([lines|last ~ glue ~ l]) -%}
+  {%- else -%}
+    {%- set lines = lines|merge([l]) -%}
   {%- endif -%}
 {%- endfor -%}
 

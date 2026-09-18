@@ -8,6 +8,41 @@ Rule: if the Target column says OMIT, leave the item out entirely, both the
 title and the number. Do not invent a page and do not show a placeholder count.
 Report every item you omitted.
 
+The menus appear in the bar in the order the sections below appear: ARTICLES,
+COLLECTIONS, PEOPLE, PLACES, BY ERA. This file sets that order; the `menus`
+array in `templates/_partials/header/site-header.twig` follows it.
+
+## ARTICLES — kicker "SINGLE PIECES & EVENTS"
+
+| Column | Item | Target | Count |
+|---|---|---|---|
+| WRITING | All articles | /articles | articles count |
+| WRITING | Newspaper archive | OMIT until a source field distinguishes them | |
+| WRITING | Essays & research | OMIT | |
+| EVENTS | All events | /events | events count |
+| EVENTS | Disasters | OMIT until tags exist | |
+| EVENTS | Openings & dedications | OMIT until tags exist | |
+| MEDIA | Photo galleries | /photographs, only if the section has entries | photographs count |
+| MEDIA | Maps | OMIT | |
+| MEDIA | Documents | /documents, only if the section has entries | documents count |
+
+Feature: the most recently updated article. Kicker RECENTLY PUBLISHED, title its
+name, meta its author and original publish date, cta "Read the article".
+
+## COLLECTIONS — kicker "MULTI-PART WORKS, READ IN ORDER"
+
+| Column | Item | Target | Count |
+|---|---|---|---|
+| MAJOR WORKS | every collection flagged collectionIsMajor, by title | its url | its article count |
+| SERIES | the three largest collections not flagged major | its url | its article count |
+| BROWSE | All collections | /collections | collections count |
+| BROWSE | By author | OMIT until an author index exists | |
+| BROWSE | By era | /articles?view=era | historicalEra term count |
+
+Feature: the major collection with the most articles. Kicker NOW READING, title
+its name, meta "{author} · {n} articles · {earliest era} to {latest era}", cta
+"Start at the {first article title}", linking to that first article.
+
 ## PEOPLE — kicker "BIOGRAPHY & FAMILY RECORDS"
 
 | Column | Item | Target | Count |
@@ -43,37 +78,6 @@ meta their occupation, cta "Open the record", link to the record.
 Feature: Beale's Cut Stagecoach Pass if it exists, otherwise any place with both
 coordinates and a featured image. Kicker FEATURED PLACE, title the place name,
 meta the first sentence of its body or its community, cta "Visit the place".
-
-## COLLECTIONS — kicker "MULTI-PART WORKS, READ IN ORDER"
-
-| Column | Item | Target | Count |
-|---|---|---|---|
-| MAJOR WORKS | every collection flagged collectionIsMajor, by title | its url | its article count |
-| SERIES | the three largest collections not flagged major | its url | its article count |
-| BROWSE | All collections | /collections | collections count |
-| BROWSE | By author | OMIT until an author index exists | |
-| BROWSE | By era | /articles?view=era | historicalEra term count |
-
-Feature: the major collection with the most articles. Kicker NOW READING, title
-its name, meta "{author} · {n} articles · {earliest era} to {latest era}", cta
-"Start at the {first article title}", linking to that first article.
-
-## ARTICLES — kicker "SINGLE PIECES & EVENTS"
-
-| Column | Item | Target | Count |
-|---|---|---|---|
-| WRITING | All articles | /articles | articles count |
-| WRITING | Newspaper archive | OMIT until a source field distinguishes them | |
-| WRITING | Essays & research | OMIT | |
-| EVENTS | All events | /events | events count |
-| EVENTS | Disasters | OMIT until tags exist | |
-| EVENTS | Openings & dedications | OMIT until tags exist | |
-| MEDIA | Photo galleries | /photographs, only if the section has entries | photographs count |
-| MEDIA | Maps | OMIT | |
-| MEDIA | Documents | /documents, only if the section has entries | documents count |
-
-Feature: the most recently updated article. Kicker RECENTLY PUBLISHED, title its
-name, meta its author and original publish date, cta "Read the article".
 
 ## BY ERA — kicker "BROWSE THE TIMELINE"
 

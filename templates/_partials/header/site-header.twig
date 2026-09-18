@@ -21,7 +21,7 @@
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v2-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v3-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -258,10 +258,10 @@
 } %}
 
 {% set menus = [
+  { id: 'articles',    label: 'ARTICLES',    kicker: 'SINGLE PIECES & EVENTS',          columns: colsArticles, feature: featArticles },
+  { id: 'collections', label: 'COLLECTIONS', kicker: 'MULTI-PART WORKS, READ IN ORDER', columns: colsColls,    feature: featColls },
   { id: 'people',      label: 'PEOPLE',      kicker: 'BIOGRAPHY & FAMILY RECORDS',      columns: colsPeople,   feature: featPeople },
   { id: 'places',      label: 'PLACES',      kicker: 'LAND, SITES & COMMUNITIES',       columns: colsPlaces,   feature: featPlaces },
-  { id: 'collections', label: 'COLLECTIONS', kicker: 'MULTI-PART WORKS, READ IN ORDER', columns: colsColls,    feature: featColls },
-  { id: 'articles',    label: 'ARTICLES',    kicker: 'SINGLE PIECES & EVENTS',          columns: colsArticles, feature: featArticles },
   { id: 'era',         label: 'BY ERA',      kicker: 'BROWSE THE TIMELINE',             columns: colsEra,      feature: featEra }
 ] %}
 
