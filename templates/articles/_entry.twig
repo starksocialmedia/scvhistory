@@ -2,42 +2,137 @@
 {% block head %}
   {% include "_partials/record/css" %}
   {% include "_partials/record/print" %}
+  {% css %}
+  /* ── Article band ─────────────────────────────────────────────── */
+  .ar h1{color:#7A5C1B}
+  .ar-coll{font-family:'Playfair Display',serif;font-size:21px;line-height:1.3;margin:0 0 14px}
+  .ar-coll a{color:#7A5C1B;text-decoration:none}
+  .ar-coll a:hover{text-decoration:underline}
+  .ar-byline{font-size:15.5px;color:#5B6472;line-height:1.7}
+  .ar-byline a{color:#17254C;text-decoration:none}
+  .ar-byline a:hover{color:#7A5C1B}
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .ar-hero{margin:0 0 30px}
+  .ar-hero img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
+  .ar-hero figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.55;margin-top:9px}
+
+  /* ── Previous / next ──────────────────────────────────────────── */
+  .ar-pn{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:1px solid #E2E4E8;border-bottom:1px solid #E2E4E8;padding:16px 0;margin:0 0 32px}
+  .ar-pn.after{margin:40px 0 0}
+  .ar-pn .l{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B;display:block;margin-bottom:5px}
+  .ar-pn a{font-family:'Playfair Display',serif;font-size:17px;line-height:1.3;color:#17254C;text-decoration:none;display:block}
+  .ar-pn a:hover{color:#7A5C1B}
+  .ar-pn .nx{text-align:right}
+  @media(max-width:600px){.ar-pn{grid-template-columns:1fr}.ar-pn .nx{text-align:left}}
+
+  /* ── Sign-off ─────────────────────────────────────────────────── */
+  .ar-signoff{text-align:right;margin:34px 0 0;font-variant-caps:small-caps;font-size:16px;letter-spacing:.06em;color:#5B6472}
+
+  /* ── About the author ─────────────────────────────────────────── */
+  .ar-author{margin:48px 0 0;border-top:3px solid #C4A031;background:#FDF7EA;padding:26px 28px}
+  .ar-author .lab{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#7A5C1B;margin-bottom:16px}
+  .ar-author .in{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+  .ar-author .ph{width:96px;height:96px;border-radius:50%;flex:none;overflow:hidden;background:#fff;border:1px solid #EFE6D0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:30px;color:#C4A031}
+  .ar-author .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .ar-author .nm{font-family:'Playfair Display',serif;font-size:23px;color:#17254C;line-height:1.2}
+  .ar-author .oc{font-size:14px;color:#5B6472;margin-top:4px}
+  .ar-author .bio{font-size:15.5px;line-height:1.7;color:#2C2C2C;margin-top:12px}
+  .ar-author .bio p{margin:0 0 12px}
+  .ar-author .more{display:inline-block;margin-top:10px;font-family:'Jost',sans-serif;font-size:14px;color:#7A5C1B;text-decoration:none}
+  .ar-author .more:hover{text-decoration:underline}
+
+  /* ── Sidebar extras ───────────────────────────────────────────── */
+  .ar-collcard img{width:100%;height:auto;display:block;border:1px solid #EFE6D0;margin-bottom:10px}
+  .ar-collcard a{font-family:'Playfair Display',serif;font-size:18px;line-height:1.3;color:#17254C;text-decoration:none;display:block}
+  .ar-collcard a:hover{color:#7A5C1B}
+  .ar-chapters{list-style:none;margin:0;padding:0;counter-reset:ch}
+  .ar-chapters li{border-bottom:1px solid #EFE6D0}
+  .ar-chapters li:last-child{border-bottom:0}
+  .ar-chapters a,.ar-chapters span.cur{display:flex;gap:10px;padding:9px 0;font-size:14.5px;line-height:1.4;color:#17254C;text-decoration:none}
+  .ar-chapters a:hover{color:#7A5C1B}
+  .ar-chapters .n{font-family:'Jost',sans-serif;font-size:11.5px;color:#5B6472;flex:none;width:20px;padding-top:2px}
+  .ar-chapters li.on{background:#FDF7EA;border-left:3px solid #C4A031;margin-left:-20px;padding-left:17px}
+  .ar-chapters li.on span.cur{font-weight:500}
+  .ar-searchbar{display:flex;background:#fff;border:1px solid #DCC98F}
+  .ar-searchbar input{flex:1;min-width:0;border:0;outline:none;padding:11px 13px;font-family:'Public Sans',sans-serif;font-size:15px;color:#2C2C2C;background:transparent}
+  .ar-searchbar button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:0 16px;cursor:pointer}
+  .ar-searchbar button:hover{background:#7A5C1B;color:#fff}
+  {% endcss %}
 {% endblock %}
 
 {% block content %}
+{#
+  Article record, built to the approved layout of the Reynolds Prologue page.
+
+  Notes on what the data does and does not carry:
+  - No tags field exists anywhere in this Craft install, so the TAGS block in
+    the design has nothing to render and is left out. Communities and the
+    historical period are the chips in the band.
+  - featuredImage is on the article layout, so the hero is a real featured
+    image; it falls back to the first record image when that is empty.
+  - Prev and next come from the collection's articlesInCollection order, which
+    is the order the chapter list uses too, so the two always agree.
+#}
+{% set F = {} %}
+{% for h in ['body','subheadline','originalPublishDate','originallyPublishedTitle','sourceLine',
+             'photoSources','finePrint','archiveUrl','legacyUrl','culturalSensitivityNote'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
-{% set img = recImages|length ? recImages|first : null %}
-{% set F = {} %}
-{% for h in ['body','subheadline','originalPublishDate','originallyPublishedTitle','sourceLine','webmasterNoteTop','webmasterNoteBottom','photoSources','finePrint','archiveUrl','legacyUrl','culturalSensitivityNote'] %}
-  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
-{% endfor %}
+
+{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
+{% set hero = hero ?? (recImages|length ? recImages|first : null) %}
+
 {% set collection = entry.partOfCollection.one() ?? null %}
 {% set author = entry.writtenBy.one() ?? null %}
 {% set editor = entry.editedBy.one() ?? null %}
-{% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
-{% set siblings = collection ? (collection.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: collection, field: 'partOfCollection' }).status(null).all()) : [] %}
+{% set era = entry.historicalEra.one() ?? null %}
+{% set people = entry.subjectPerson.all() %}
+{% set publishers = entry.publishedBy.all() %}
 
-<div class="rec">
+{% set chapters = collection
+  ? (collection.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: collection, field: 'partOfCollection' }).status(null).all())
+  : [] %}
+{% set idx = null %}
+{% for c in chapters %}{% if c.id == entry.id %}{% set idx = loop.index0 %}{% endif %}{% endfor %}
+{% set prev = idx is not null and idx > 0 ? chapters[idx - 1] : null %}
+{% set next = idx is not null and idx < (chapters|length - 1) ? chapters[idx + 1] : null %}
+
+{% set year = F.originalPublishDate ? F.originalPublishDate|slice(-4) : '' %}
+{% set signoff = (year matches '/^\\d{4}$/') and author %}
+
+{% macro pn(prev, next) %}
+  {% if prev or next %}
+    <nav class="ar-pn{{ after is defined and after ? ' after' : '' }}">
+      <div>{% if prev %}<span class="l">&larr; PREVIOUS</span><a href="{{ prev.url }}">{{ prev.title ?: prev.slug }}</a>{% endif %}</div>
+      <div class="nx">{% if next %}<span class="l">NEXT &rarr;</span><a href="{{ next.url }}">{{ next.title ?: next.slug }}</a>{% endif %}</div>
+    </nav>
+  {% endif %}
+{% endmacro %}
+{% import _self as ui %}
+
+<div class="rec ar">
   <section class="rec-band">
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a>{% if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
+      <div class="rec-head rec-head--noart">
         <div>
           <div class="rec-kick"><span class="a">ARTICLES</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if collection %}<div class="ar-coll"><a href="{{ collection.url }}">{{ collection.title }}</a></div>{% endif %}
           {% if F.subheadline %}<div class="rec-sub">{{ F.subheadline }}</div>{% endif %}
-          {% if author or editor or F.originalPublishDate or collection %}
-            <div class="rec-facts">
-              {% if author %}<div><div class="l">BY</div><div class="v">{{ author.title }}</div></div>{% endif %}
-              {% if editor %}<div><div class="l">EDITED BY</div><div class="v">{{ editor.title }}</div></div>{% endif %}
-              {% if F.originalPublishDate %}<div><div class="l">PUBLISHED</div><div class="v">{{ F.originalPublishDate }}</div></div>{% endif %}
-              {% if collection %}<div><div class="l">COLLECTION</div><div class="v">{{ collection.title }}</div></div>{% endif %}
-            </div>
+          {% if author or editor or F.originalPublishDate %}
+            <p class="ar-byline">
+              {%- if author %}By <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
+              {%- if editor %}{% if author %} &middot; {% endif %}Edited by <a href="{{ editor.url }}">{{ editor.title }}</a>{% endif -%}
+              {%- if F.originalPublishDate %}{% if author or editor %} &middot; {% endif %}{{ F.originalPublishDate }}{% endif -%}
+            </p>
           {% endif %}
           {% if periods|length or communities|length %}
             <div class="rec-chips">
@@ -46,7 +141,6 @@
             </div>
           {% endif %}
         </div>
-        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
       </div>
     </div>
   </section>
@@ -54,63 +148,100 @@
   <div class="rec-wrap">
     <main class="rec-main">
       <article style="min-width:0">
-        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% if hero %}
+          <figure class="ar-hero">
+            <img src="{{ hero.url }}" alt="{{ hero.alt ?: (hero.title ?: entry.title) }}">
+            {% if hero.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}
+          </figure>
+        {% endif %}
+
+        {{ ui.pn(prev, next) }}
+
         {% include "_partials/record/note" with { text: noteTop } only %}
-        {% if F.webmasterNoteTop %}<div class="rec-note">{{ F.webmasterNoteTop }}</div>{% endif %}
         {% if F.sourceLine %}<div class="rec-lede">{{ F.sourceLine }}</div>{% endif %}
-        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>{% endif %}
+
+        {% if F.body %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>
+        {% endif %}
+
+        {% if signoff %}
+          <div class="ar-signoff">{{ author.title }} &middot; {{ year }}</div>
+        {% endif %}
+
         {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
-        {% if F.webmasterNoteBottom %}<div class="rec-note" style="margin-top:24px">{{ F.webmasterNoteBottom }}</div>{% endif %}
         {% if F.photoSources %}<p class="rec-fine">{{ F.photoSources }}</p>{% endif %}
         {% if F.finePrint %}<p class="rec-fine">{{ F.finePrint }}</p>{% endif %}
 
-        {% if collection and siblings|length %}
-          {% set idx = null %}
-          {% for a in siblings %}{% if a.id == entry.id %}{% set idx = loop.index0 %}{% endif %}{% endfor %}
-          {% if idx is not null %}
-            {% set prev = idx > 0 ? siblings[idx - 1] : null %}
-            {% set next = idx < (siblings|length - 1) ? siblings[idx + 1] : null %}
-            {% if prev or next %}
-              <nav class="rec-pager">
-                <div>{% if prev %}<span class="l">PREVIOUS</span><a href="{{ prev.url }}">{{ prev.title }}</a>{% endif %}</div>
-                <div style="text-align:right">{% if next %}<span class="l">NEXT</span><a href="{{ next.url }}">{{ next.title }}</a>{% endif %}</div>
-              </nav>
-            {% endif %}
-          {% endif %}
+        {% if prev or next %}
+          <nav class="ar-pn after">
+            <div>{% if prev %}<span class="l">&larr; PREVIOUS</span><a href="{{ prev.url }}">{{ prev.title ?: prev.slug }}</a>{% endif %}</div>
+            <div class="nx">{% if next %}<span class="l">NEXT &rarr;</span><a href="{{ next.url }}">{{ next.title ?: next.slug }}</a>{% endif %}</div>
+          </nav>
         {% endif %}
 
         {% if author and author.authorBio is defined and author.authorBio %}
-          <h2 class="rec-h2">About the author</h2>
-          <div class="rec-body">
-            <p><strong><a href="{{ author.url }}">{{ author.title }}</a></strong>{% if author.occupation is defined and author.occupation %} &middot; {{ author.occupation }}{% endif %}</p>
-            {% include "_partials/prose" with { text: author.authorBio } %}
-          </div>
+          {% set aimg = (author.featuredImage is defined and author.featuredImage) ? author.featuredImage.one() ?? null : null %}
+          {% set ap = author.title|split(' ')|filter(x => x|trim) %}
+          <section class="ar-author">
+            <div class="lab">ABOUT THE AUTHOR</div>
+            <div class="in">
+              <div class="ph">{% if aimg %}<img src="{{ aimg.url }}" alt="">{% else %}{{ (ap|length > 1 ? ap|first|slice(0,1) ~ ap|last|slice(0,1) : author.title|slice(0,1))|upper }}{% endif %}</div>
+              <div style="flex:1;min-width:220px">
+                <div class="nm">{{ author.title }}</div>
+                {% if author.occupation is defined and author.occupation %}<div class="oc">{{ author.occupation }}</div>{% endif %}
+                <div class="bio">{% include "_partials/prose" with { text: author.authorBio } %}</div>
+                <a class="more" href="{{ author.url }}">View Full Profile &rarr;</a>
+              </div>
+            </div>
+          </section>
         {% endif %}
-
       </article>
 
       <aside class="rec-side">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
         {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles', sidebar: true } only %}
-        {% set meta = [['ORIGINAL TITLE', F.originallyPublishedTitle], ['PUBLISHED', F.originalPublishDate], ['SOURCE', F.sourceLine]]|filter(r => r[1]) %}
-        {% if meta|length %}
-          <div class="rec-box"><div class="rec-lab">THIS ARTICLE</div>
-            <div class="rec-rows">{% for r in meta %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+
+        <div class="rec-box">
+          <div class="rec-lab">SEARCH THE ARCHIVE</div>
+          <form class="ar-searchbar" action="{{ url('search') }}" method="get" role="search">
+            <label class="scv-sr" for="arq">Search the archive</label>
+            <input id="arq" type="search" name="q" placeholder="A name, a place, a year">
+            <button type="submit">Go</button>
+          </form>
+        </div>
+
+        {% if collection %}
+          {% set cimg = (collection.featuredImage is defined and collection.featuredImage) ? collection.featuredImage.one() ?? null : null %}
+          <div class="rec-box ar-collcard">
+            <div class="rec-lab">PART OF COLLECTION</div>
+            {% if cimg %}<img src="{{ cimg.url }}" alt="">{% endif %}
+            <a href="{{ collection.url }}">{{ collection.title ?: collection.slug }}</a>
           </div>
         {% endif %}
 
-        {% if collection and siblings|length > 1 %}
-          <div class="rec-box"><div class="rec-lab">IN THIS COLLECTION</div>
-            <div class="rec-rows">{% for s in siblings %}<div class="k">{{ loop.index }}</div><div class="v">{% if s.id == entry.id %}<strong>{{ s.title }}</strong>{% else %}<a href="{{ s.url }}">{{ s.title }}</a>{% endif %}</div>{% endfor %}</div>
+        {% if chapters|length %}
+          <div class="rec-box">
+            <div class="rec-lab">IN THIS COLLECTION</div>
+            <ul class="ar-chapters">
+              {% for c in chapters %}
+                <li class="{{ c.id == entry.id ? 'on' : '' }}">
+                  {% if c.id == entry.id %}
+                    <span class="cur"><span class="n">{{ loop.index }}</span><span>{{ c.title ?: c.slug }}</span></span>
+                  {% else %}
+                    <a href="{{ c.url }}"><span class="n">{{ loop.index }}</span><span>{{ c.title ?: c.slug }}</span></a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
           </div>
         {% endif %}
 
-        {% set credits = [{ lab: 'WRITTEN BY', rows: author ? [author] : [] }, { lab: 'EDITED BY', rows: editor ? [editor] : [] }, { lab: 'PEOPLE IN THIS ARTICLE', rows: entry.subjectPerson.all() }]|filter(b => b.rows|length) %}
-        {% for b in credits %}
-          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
-            {% for p in b.rows %}
-              {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
+        {% if people|length %}
+          <div class="rec-box"><div class="rec-lab">PEOPLE IN THIS ARTICLE</div>
+            {% for p in people %}
+              {% set pimg = (p.featuredImage is defined and p.featuredImage) ? p.featuredImage.one() ?? null : null %}
               {% set pp = p.title|split(' ')|filter(x => x|trim) %}
               <a class="rec-person" href="{{ p.url }}">
                 <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
@@ -118,27 +249,26 @@
               </a>
             {% endfor %}
           </div>
-        {% endfor %}
+        {% endif %}
 
-        {% set boxes = [
+        {% if publishers|length %}
+          <div class="rec-box"><div class="rec-lab">PUBLISHED BY</div>
+            <div class="rec-rows">{% for o in publishers %}<div class="k">SOURCE</div><div class="v"><a href="{{ o.url }}">{{ o.title ?: o.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% set others = [
           { lab: 'ORGANIZATIONS', key: 'ORG', rows: entry.subjectOrganization.all() },
           { lab: 'GROUPS', key: 'GROUP', rows: entry.subjectGroup.all() },
           { lab: 'PLACES', key: 'PLACE', rows: entry.depictsPlace.all() },
           { lab: 'EVENTS', key: 'EVENT', rows: entry.articleEvents.all() },
-          { lab: 'PUBLISHED BY', key: 'SOURCE', rows: entry.publishedBy.all() },
           { lab: 'RELATED ARTICLES', key: 'ARTICLE', rows: entry.relatedArticles.all() }
         ]|filter(b => b.rows|length) %}
-        {% for b in boxes %}
+        {% for b in others %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
             <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
           </div>
         {% endfor %}
-
-        {% if communities|length %}
-          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
-            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
-          </div>
-        {% endif %}
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
