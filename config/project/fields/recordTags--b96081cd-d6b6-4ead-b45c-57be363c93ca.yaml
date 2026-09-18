@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: recordTags
+instructions: 'Anything worth noting that does not have its own record. Never tag something that already has a record.'
+name: Tags
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  source: 'group:8196ea33-c950-4b3a-9e50-dfad735224b5' # Tags
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Categories

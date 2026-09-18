@@ -12,7 +12,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/add_community_media.php'))"
  */
 
-$APPLY = false;
+$APPLY = true;
 
 $GROUP_HANDLE = 'neighborhood';
 $WANTED = ['recordImages', 'recordDocuments'];
