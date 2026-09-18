@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entity review — SCVHistory.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#17254C;--gold:#C4A031;--gold-d:#7A5C1B;--cream:#FDF7EA;--cream-b:#EFE6D0;--grey:#F6F7F9;--bord:#E2E4E8;--muted:#5B6472;--red:#B4453C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--grey);color:#2C2C2C;font-family:'Public Sans',system-ui,sans-serif}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:10}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+header .wrap{padding-top:18px;padding-bottom:18px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+h1{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0}
+.counts{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--gold)}
+.tools{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button,select,input[type=text]{font:inherit}
+.btn{background:var(--gold);color:var(--navy);border:0;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:9px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+main .wrap{padding-top:24px;padding-bottom:80px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;font-size:14px;color:var(--muted)}
+.filters select,.filters input{padding:8px 10px;border:1px solid var(--bord);background:#fff}
+.hint{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6}
+kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bord);padding:1px 5px;font-size:12px}
+.pair{background:#fff;border:1px solid var(--bord);border-left:3px solid var(--bord);padding:16px 18px;margin-bottom:10px}
+.pair.merge{border-left-color:var(--gold);background:var(--cream)}
+.pair.notsame{border-left-color:var(--red);opacity:.55}
+.pair.skip{opacity:.55}
+.pair.done{display:none}
+.phead{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+.why{font-size:13.5px;color:var(--muted)}
+.conf{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--bord);color:var(--gold-d)}
+.conf.high{background:var(--navy);border-color:var(--navy);color:#fff}
+.conf.medium{background:var(--cream);border-color:var(--cream-b)}
+.sec{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.sides{grid-template-columns:1fr}}
+.side{border:1px solid var(--bord);padding:12px 14px;background:#fff}
+.side.keep{border-color:var(--gold);background:var(--cream)}
+.side h3{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;margin:0 0 6px;color:var(--navy)}
+.side h3 a{color:inherit;text-decoration:none}
+.side h3 a:hover{color:var(--gold-d)}
+.facts{font-size:13px;color:var(--muted);line-height:1.7}
+.facts b{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.1em;color:var(--gold-d);text-transform:uppercase;margin-right:5px}
+.keepbtn{margin-top:9px;font-family:'Jost',sans-serif;font-size:12.5px;border:1px solid var(--bord);background:#fff;padding:5px 10px;cursor:pointer;width:100%}
+.keepbtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.acts{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.acts button{border:1px solid var(--bord);background:#fff;font-family:'Jost',sans-serif;font-size:13px;padding:7px 13px;cursor:pointer}
+.acts button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.acts button.no.on{background:var(--red);border-color:var(--red)}
+.warn{font-size:12.5px;color:var(--red);margin-top:8px}
+.empty{text-align:center;padding:60px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Entity review</h1>
+    <div class="counts" id="counts">loading</div>
+    <div class="tools">
+      <button class="btn ghost" id="hideDecided">Hide decided</button>
+      <button class="btn" id="download">Download merged.json</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <p class="hint">
+      Nothing here is merged until you download the file and Nathan runs the apply script.
+      Pick which title survives, then decide.
+      <kbd>M</kbd> merge, <kbd>N</kbd> not the same, <kbd>S</kbd> skip, <kbd>1</kbd>/<kbd>2</kbd> choose the survivor, <kbd>J</kbd>/<kbd>K</kbd> move.
+      Decisions stay in this browser until you download.
+    </p>
+    <div class="filters">
+      <label>Section <select id="fSec"><option value="">all</option></select></label>
+      <label>Confidence
+        <select id="fConf"><option value="">all</option><option value="high">high</option><option value="medium">medium</option><option value="low">low</option></select>
+      </label>
+      <label>Search <input type="text" id="fText" placeholder="title"></label>
+      <span id="showing"></span>
+    </div>
+    <div id="list"></div>
+  </div>
+</main>
+<script>
+const KEY = 'scv-entity-review';
+let data = { records: [], candidates: [] }, byId = {}, decisions = JSON.parse(localStorage.getItem(KEY) || '{}');
+let cursor = 0;
+
+const pid = c => c.aId + '-' + c.bId;
+
+fetch('entities.json').then(r => r.json()).then(d => {
+  data = d;
+  (d.records || []).forEach(r => { byId[r.id] = r; });
+  const secs = [...new Set((d.candidates || []).map(c => c.sectionName))].sort();
+  const sel = document.getElementById('fSec');
+  secs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
+  render();
+}).catch(() => {
+  document.getElementById('list').innerHTML = '<div class="empty">Could not load entities.json. Run export_entity_candidates.php first.</div>';
+});
+
+function visible() {
+  const s = document.getElementById('fSec').value;
+  const cf = document.getElementById('fConf').value;
+  const t = document.getElementById('fText').value.toLowerCase().trim();
+  return (data.candidates || []).filter(c =>
+    (!s || c.sectionName === s) &&
+    (!cf || c.confidence === cf) &&
+    (!t || (c.aTitle + ' ' + c.bTitle).toLowerCase().includes(t))
+  );
+}
+
+function sideHtml(rec, which, keepId, cid) {
+  if (!rec) return '<div class="side"><div class="facts">record missing</div></div>';
+  const facts = [];
+  if (rec.alias) facts.push('<div><b>Also known as</b>' + esc(rec.alias) + '</div>');
+  if (rec.fullName) facts.push('<div><b>Full name</b>' + esc(rec.fullName) + '</div>');
+  facts.push('<div><b>Mentions</b>' + rec.mentions + '</div>');
+  facts.push('<div><b>Slug</b>' + esc(rec.slug) + '</div>');
+  facts.push('<div><b>Id</b>' + rec.id + '</div>');
+  if (!rec.aliasField) facts.push('<div class="warn">No alias field on this type, so the other title cannot be recorded on merge.</div>');
+  const on = keepId === rec.id;
+  return '<div class="side' + (on ? ' keep' : '') + '">' +
+    '<h3><a href="' + esc(rec.url || '#') + '" target="_blank">' + esc(rec.title) + '</a></h3>' +
+    '<div class="facts">' + facts.join('') + '</div>' +
+    '<button class="keepbtn' + (on ? ' on' : '') + '" data-keep="' + rec.id + '" data-cid="' + cid + '">' +
+      (on ? 'Keeping this title' : 'Keep this title') + '</button>' +
+    '</div>';
+}
+
+function render() {
+  const list = document.getElementById('list');
+  const vis = visible();
+  list.innerHTML = '';
+  if (!vis.length) { list.innerHTML = '<div class="empty">Nothing matches these filters.</div>'; counts(); return; }
+  vis.forEach((c, idx) => {
+    const id = pid(c);
+    const dec = decisions[id] || {};
+    const keepId = dec.keepId !== undefined ? dec.keepId : c.aId;
+    const el = document.createElement('div');
+    el.className = 'pair' + (dec.action ? ' ' + dec.action : '') + (idx === cursor ? ' cur' : '');
+    el.dataset.id = id;
+    el.dataset.idx = idx;
+    el.innerHTML =
+      '<div class="phead"><span class="sec">' + esc(c.sectionName) + '</span>' +
+      '<span class="conf ' + esc(c.confidence) + '">' + esc(c.confidence) + '</span>' +
+      '<span class="why">' + esc(c.reason) + '</span></div>' +
+      '<div class="sides">' + sideHtml(byId[c.aId], 'a', keepId, id) + sideHtml(byId[c.bId], 'b', keepId, id) + '</div>' +
+      '<div class="acts">' +
+      '<button class="mg' + (dec.action === 'merge' ? ' on' : '') + '">Merge</button>' +
+      '<button class="no' + (dec.action === 'notsame' ? ' on' : '') + '">Not the same</button>' +
+      '<button class="sk' + (dec.action === 'skip' ? ' on' : '') + '">Skip</button>' +
+      '</div>';
+    el.querySelectorAll('.keepbtn').forEach(b => {
+      b.onclick = () => { setKeep(c, parseInt(b.dataset.keep, 10)); render(); };
+    });
+    el.querySelector('.mg').onclick = () => decide(c, 'merge');
+    el.querySelector('.no').onclick = () => decide(c, 'notsame');
+    el.querySelector('.sk').onclick = () => decide(c, 'skip');
+    list.appendChild(el);
+  });
+  document.getElementById('showing').textContent = vis.length + ' shown';
+  counts();
+}
+
+function setKeep(c, keepId) {
+  const id = pid(c);
+  decisions[id] = Object.assign({}, decisions[id], { keepId: keepId });
+  save();
+}
+
+function decide(c, action) {
+  const id = pid(c);
+  const cur = decisions[id] || {};
+  const keepId = cur.keepId !== undefined ? cur.keepId : c.aId;
+  const loseId = keepId === c.aId ? c.bId : c.aId;
+  decisions[id] = {
+    action: action,
+    keepId: keepId,
+    loseId: loseId,
+    keepTitle: (byId[keepId] || {}).title || '',
+    loseTitle: (byId[loseId] || {}).title || '',
+    section: c.section,
+    reason: c.reason,
+    confidence: c.confidence
+  };
+  save();
+  render();
+}
+
+function save() { localStorage.setItem(KEY, JSON.stringify(decisions)); }
+
+function counts() {
+  const v = Object.values(decisions);
+  const m = v.filter(x => x.action === 'merge').length;
+  const n = v.filter(x => x.action === 'notsame').length;
+  document.getElementById('counts').textContent =
+    (data.candidates || []).length + ' PAIRS · ' + m + ' TO MERGE · ' + n + ' NOT THE SAME';
+}
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+document.getElementById('fSec').onchange = () => { cursor = 0; render(); };
+document.getElementById('fConf').onchange = () => { cursor = 0; render(); };
+document.getElementById('fText').oninput = () => { cursor = 0; render(); };
+document.getElementById('hideDecided').onclick = () => {
+  document.querySelectorAll('.pair.merge,.pair.notsame,.pair.skip').forEach(el => el.classList.add('done'));
+};
+document.getElementById('download').onclick = () => {
+  const out = Object.values(decisions).filter(v => v.action === 'merge');
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'merged.json';
+  a.click();
+};
+
+document.addEventListener('keydown', e => {
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) { return; }
+  const vis = visible();
+  if (!vis.length) { return; }
+  cursor = Math.max(0, Math.min(cursor, vis.length - 1));
+  const c = vis[cursor];
+  const k = e.key.toLowerCase();
+  if (k === 'j') { cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
+  else if (k === 'k') { cursor = Math.max(0, cursor - 1); render(); scrollToCur(); e.preventDefault(); }
+  else if (k === 'm') { decide(c, 'merge'); cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
+  else if (k === 'n') { decide(c, 'notsame'); cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
+  else if (k === 's') { decide(c, 'skip'); cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
+  else if (k === '1') { setKeep(c, c.aId); render(); e.preventDefault(); }
+  else if (k === '2') { setKeep(c, c.bId); render(); e.preventDefault(); }
+});
+
+function scrollToCur() {
+  const el = document.querySelector('.pair.cur');
+  if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+}
+</script>
+<style>.pair.cur{outline:2px solid var(--gold);outline-offset:2px}</style>
+</body>
+</html>
