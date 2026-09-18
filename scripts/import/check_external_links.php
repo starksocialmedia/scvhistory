@@ -36,8 +36,10 @@ $RECHECK_AFTER_DAYS = 7;
 $DELAY_SECONDS      = 1;
 /* Find A Grave answers 429 under a steady one-a-second, and a run that reports
    twelve throttled requests as twelve broken links is worse than useless. Hosts
-   that ask for room get it. */
-$HOST_DELAY = ['www.findagrave.com' => 6];
+   that ask for room get it. Six seconds still drew a 429 on half of them, so it
+   is fifteen; there are only eighteen memorial links in the archive, and a run
+   that has to come back for a few of them next week is no disaster either. */
+$HOST_DELAY = ['www.findagrave.com' => 15];
 $TIMEOUT            = 25;
 $MAX                = 0;   /* 0 for all; set a number to sample while testing */
 $UA = 'SCVHistory-LinkCheck/1.0 (+https://scvhistory.com; contact: nathan@starksocial.com)';
@@ -210,8 +212,13 @@ foreach ($links as $l) {
     if ($MAX > 0 && $n > $MAX) { break; }
     $key = $l['url'] . '|' . $l['id'];
 
-    /* A result is only worth carrying over if it was actually a result. */
-    if (isset($previous[$key]) && $cutoff !== null && !($previous[$key]['unchecked'] ?? false)) {
+    /* A result is only worth carrying over if it was actually a result. The
+       status is read rather than the unchecked flag, because a file written by
+       an older version of this script has no flag and would otherwise carry a
+       throttled row forward for ever. */
+    $prevStatus = (int)($previous[$key]['status'] ?? 0);
+    $prevUsable = isset($previous[$key]) && $prevStatus !== 0 && $prevStatus !== 429 && $prevStatus < 500;
+    if ($prevUsable && $cutoff !== null) {
         $when = \DateTime::createFromFormat(DateTime::ATOM, $previous[$key]['checked']) ?: null;
         if ($when && $when > $cutoff) { $results[] = $previous[$key]; $carried++; continue; }
     }
