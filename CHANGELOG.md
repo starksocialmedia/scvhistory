@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: settled the family convention on childOf as the single stored direction and rendered it. _layouts/base.twig derives parents, children, siblings, grandparents and spouses once per page and hands the same structure to the new _partials/record/family.twig sidebar box and to the JSON-LD, so the box and the graph cannot disagree. Every hop goes through relatedTo rather than through a field on the element, because the other end may be a casualty whose layout does not carry childOf. Added scripts/import/settle_family_relations.php to widen the relation sources, add the three fields to the war memorial layout, write instructions on all four and take parentOf off the person layout.
+- Decisions: the script refuses to remove parentOf unless every one of its relations is already stored the other way, so a layout change cannot take a fact off the site. The field and its rows stay in the database either way; only the layout entry goes. siblingOf survives for the half-brother the parents do not reach and now reads both ways, so it need only be typed once. The War Memorial badge from the old box is kept.
+- Blockers: the brief said the four fields are unused. Counting the relations table directly says 13 parentOf and 12 childOf, but that table carries a row per revision; against canonical, undeleted entries it is 2 childOf, 1 parentOf, 1 siblingOf and no spouseOf. The one parentOf relation is already stored as childOf, so nothing is stranded. Separately, the person record for Ygnacio del Valle lists Antonio del Valle as a sibling while its own body text says Antonio was his father; the box now shows that, so it is worth a look.
+- Result: query count per person page went down, 115 to 112 on Ygnacio and 106 to 104 on Jerry Reynolds, because the old box ran four field reads and a war memorial lookup per name where the derivation runs one set.
+- Next: Nathan runs settle_family_relations.php, which supersedes add_family_to_wm.php in his working tree, then link_acosta_family.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: suppressed the rest of SEOmatic's head output with the same template-level pattern, so the site emits one title, one set of Open Graph and Twitter tags and one JSON-LD block. Also fixed og:type, which said "article" for every element and so said it on a privacy page and on a place.
 - Decisions: SEOmatic keeps its meta tags in four containers, not one. Switching off `general` alone left every og: and twitter: tag in place, so `opengraph`, `twitter` and `miscellaneous` are named too, along with the title, link and script containers. og:type now maps by section: article for articles and obituaries, profile for people, war memorials and military profiles, and website for everything else, which is what the Open Graph specification gives as the fallback. og:locale moved into meta.twig because it was the one tag SEOmatic emitted that we did not; robots and referrer policy did not need moving, since they are sent as HTTP headers.
 - Blockers: none.

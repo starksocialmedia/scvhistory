@@ -76,6 +76,7 @@
 
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'Military Profiles', sidebar: true } only %}
+        {% include "_partials/record/family" with { fam: fam } only %}
 
         {% set svc = [['RANK', F.mpRank], ['SPECIALTY', F.mpSpecialty], ['UNIT', F.mpUnit], ['BASE', F.mpBase],
                       ['FROM', F.mpServiceStart], ['TO', F.mpServiceEnd], ['OPERATION', F.mpCombatOperations]]|filter(r => r[1]) %}

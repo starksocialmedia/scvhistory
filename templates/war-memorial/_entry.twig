@@ -112,6 +112,9 @@
 
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'War Memorial', sidebar: true } only %}
+        {# Renders nothing until the casualty record carries childOf; see
+           scripts/import/settle_family_relations.php. #}
+        {% include "_partials/record/family" with { fam: fam } only %}
         {% if F.wmBranch or F.wmUnit %}
         {% set b = F.wmBranch|lower %}
         {% set seal = b matches '/marine/' ? 'marines' : (b matches '/navy/' ? 'navy' : (b matches '/air/' ? 'air-force' : (b matches '/coast/' ? 'coast-guard' : (b matches '/army/' ? 'army' : '')))) %}

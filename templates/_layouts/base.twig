@@ -3,6 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {#- Family, derived once here so the sidebar box and the JSON-LD agree and the
+      queries run once. childOf is the only stored direction: a person points up
+      at their parents. Children are whoever points at this record, siblings are
+      the other children of its parents, grandparents are one hop further up.
+
+      Every hop goes through relatedTo rather than through the field on the
+      element, because the related record may be a war memorial or a military
+      profile whose layout does not carry childOf, and reading a field a type
+      does not have throws. -#}
+  {%- set fam = null -%}
+  {%- if entry is defined and entry -%}
+    {%- set famH = [] -%}
+    {%- for f in (entry.fieldLayout ? entry.fieldLayout.customFields : []) -%}
+      {%- set famH = famH|merge([f.handle]) -%}
+    {%- endfor -%}
+    {%- if 'childOf' in famH -%}
+      {%- set parents = craft.entries().relatedTo({ sourceElement: entry, field: 'childOf' }).status(null).all() -%}
+      {%- set children = craft.entries().relatedTo({ targetElement: entry, field: 'childOf' }).status(null).all() -%}
+      {%- set siblings = [] -%}
+      {%- set grandparents = [] -%}
+      {%- for p in parents -%}
+        {%- for s in craft.entries().relatedTo({ targetElement: p, field: 'childOf' }).status(null).all() -%}
+          {%- if s.id != entry.id -%}{%- set siblings = siblings|merge([s]) -%}{%- endif -%}
+        {%- endfor -%}
+        {%- set grandparents = grandparents|merge(craft.entries().relatedTo({ sourceElement: p, field: 'childOf' }).status(null).all()) -%}
+      {%- endfor -%}
+      {#- siblingOf stays for the half-brother the parents do not reach, and it
+          reads both ways so it need only be entered once. -#}
+      {%- if 'siblingOf' in famH -%}
+        {%- set siblings = siblings
+            |merge(craft.entries().relatedTo({ sourceElement: entry, field: 'siblingOf' }).status(null).all())
+            |merge(craft.entries().relatedTo({ targetElement: entry, field: 'siblingOf' }).status(null).all()) -%}
+      {%- endif -%}
+      {%- set spouses = [] -%}
+      {%- if 'spouseOf' in famH -%}
+        {%- set spouses = craft.entries().relatedTo({ sourceElement: entry, field: 'spouseOf' }).status(null).all()
+            |merge(craft.entries().relatedTo({ targetElement: entry, field: 'spouseOf' }).status(null).all()) -%}
+      {%- endif -%}
+      {#- One entry can arrive twice, as a derived sibling and as a stored one. -#}
+      {%- set fam = {} -%}
+      {%- for k, list in { parents: parents, children: children, siblings: siblings, grandparents: grandparents, spouses: spouses } -%}
+        {%- set seen = [] -%}
+        {%- set out = [] -%}
+        {%- for e in list -%}
+          {%- if e.id not in seen and e.id != entry.id -%}
+            {%- set seen = seen|merge([e.id]) -%}
+            {%- set out = out|merge([e]) -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- set fam = fam|merge({ (k): out }) -%}
+      {%- endfor -%}
+      {%- set fam = (fam.parents|length or fam.children|length or fam.siblings|length
+          or fam.grandparents|length or fam.spouses|length) ? fam : null -%}
+    {%- endif -%}
+  {%- endif -%}
+
   {% include "_partials/head/meta" %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

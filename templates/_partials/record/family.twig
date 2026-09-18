@@ -1,0 +1,70 @@
+{#
+  Family box for the record sidebar.
+
+  childOf is the only stored direction: a person points up at their parents.
+  Everything else is derived, in _layouts/base.twig, which hands this partial a
+  `fam` of parents, children, siblings, grandparents and spouses, already
+  de-duplicated and with the record itself removed. That derivation is shared
+  with the JSON-LD, so the box and the graph can never disagree.
+
+  The box renders only when something resolves, and each row renders only when
+  that relation has someone in it, so an unrecorded family costs nothing on the
+  page. Same two conditional rules as every other box on a record.
+
+  Dates come from whichever handles the related record's own layout carries: a
+  person keeps birthDate and deathDate, a casualty keeps wmDateOfBirth and
+  deathDate. The handle is looked for in the layout rather than probed with
+  `is defined`, which answers true for a field the type does not have.
+
+  Params
+    fam  the derived family, or null
+#}
+{% if fam %}
+  {% set rows = [
+    ['PARENTS', fam.parents],
+    ['CHILDREN', fam.children],
+    ['SIBLINGS', fam.siblings],
+    ['GRANDPARENTS', fam.grandparents],
+    ['SPOUSE', fam.spouses]
+  ]|filter(r => r[1]|length) %}
+
+  {% if rows|length %}
+    {% css %}
+    .rec-fam dt{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8A919E;margin:12px 0 4px}
+    .rec-fam dt:first-of-type{margin-top:0}
+    .rec-fam dd{margin:0 0 3px;font-size:14px;line-height:1.5}
+    .rec-fam dd a{color:#17254C;text-decoration:none;border-bottom:1px solid #EFE6D0}
+    .rec-fam dd a:hover{color:#7A5C1B;border-bottom-color:#C4A031}
+    .rec-fam dd .yr{color:#8A919E;font-size:12.5px;margin-left:5px;white-space:nowrap}
+    .rec-fam dd .wm{display:inline-block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7A5C1B;background:#FDF7EA;border:1px solid #EFE6D0;padding:1px 6px;margin-left:6px;border-bottom-width:1px;white-space:nowrap}
+    .rec-fam dd .wm:hover{background:#C4A031;color:#fff;border-color:#C4A031}
+    {% endcss %}
+
+    <div class="rec-box">
+      <div class="rec-lab">FAMILY</div>
+      <dl class="rec-fam">
+        {% for row in rows %}
+          <dt>{{ row[0] }}</dt>
+          {% for p in row[1] %}
+            {% set ph = [] %}
+            {% for f in (p.fieldLayout ? p.fieldLayout.customFields : []) %}{% set ph = ph|merge([f.handle]) %}{% endfor %}
+            {% set born = 'birthDate' in ph ? p.birthDate : ('wmDateOfBirth' in ph ? p.wmDateOfBirth : '') %}
+            {% set died = 'deathDate' in ph ? p.deathDate : ('mpDateOfDeath' in ph ? p.mpDateOfDeath : '') %}
+            {% set b = born|trim ? born|trim|slice(-4) : '' %}
+            {% set d = died|trim ? died|trim|slice(-4) : '' %}
+            {% set span = (b matches '/^\\d{4}$/' or d matches '/^\\d{4}$/')
+              ? ((b matches '/^\\d{4}$/' ? b : '') ~ '–' ~ (d matches '/^\\d{4}$/' ? d : '')) : '' %}
+            {#- A person who also has a casualty record keeps the badge the old
+                box carried, so the two halves of one life stay joined. -#}
+            {% set wm = craft.entries().section('warMemorials').relatedTo({ targetElement: p, field: 'wmRelatedPerson' }).status(null).one() ?? null %}
+            <dd>
+              <a href="{{ p.url }}">{{ p.title ?: p.slug }}</a>
+              {%- if span %}<span class="yr">{{ span }}</span>{% endif -%}
+              {%- if wm %} <a class="wm" href="{{ wm.url }}">War Memorial</a>{% endif -%}
+            </dd>
+          {% endfor %}
+        {% endfor %}
+      </dl>
+    </div>
+  {% endif %}
+{% endif %}

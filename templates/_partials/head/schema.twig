@@ -76,7 +76,7 @@
              'orgFoundedBy','orgAssociatedPersons','orgEvents','parentOrganization','boardMembers',
              'eventPlaces','eventPersons','eventOrganizations','eventArticles','eventGroups',
              'groupPersons','groupEvents','personOrganizations','personGroups','personEvents',
-             'articlesAbout','spouseOf','parentOf','childOf','siblingOf','relatedPersons',
+             'articlesAbout','relatedPersons',
              'wmRelatedPerson','mpSubject','mpPlaces','mpEvents','mpOrganizations',
              'obitSubject','obitPublishedIn','photoPeople','photoPlaces','photoOrganizations'] %}
   {% if h in H %}{% set REL = REL|merge({ (h): attribute(el, h).status(null).all() }) %}{% endif %}
@@ -106,6 +106,18 @@
     }]) %}
   {% endfor %}
   {% set N = N|merge({ (h): nodes }) %}
+{% endfor %}
+
+{#- Family, from the one derivation in _layouts/base.twig, so the graph says
+    exactly what the sidebar box says. childOf is the only stored direction;
+    children, siblings and grandparents are worked out from it. -#}
+{% set FAM = {} %}
+{% for k, list in (fam is defined and fam ? fam : {}) %}
+  {% set nodes = [] %}
+  {% for r in list %}
+    {% set nodes = nodes|merge([{ '@type': 'Person', '@id': r.url, 'name': r.title ?: r.slug, 'url': r.url }]) %}
+  {% endfor %}
+  {% set FAM = FAM|merge({ (k): nodes }) %}
 {% endfor %}
 
 {% set community = ('neighborhood' in H) ? (el.neighborhood.one() ?? null) : null %}
@@ -182,10 +194,11 @@
     'deathPlace': (V.burialPlace ?? '') ? { '@type': 'Place', 'name': V.burialPlace } : null,
     'jobTitle': (V.occupation ?? '') ? (V.occupation|split(';')|map(o => o|trim)|filter(o => o)|values) : [],
     'sameAs': sameAs,
-    'spouse': (N.spouseOf ?? []),
-    'parent': (N.childOf ?? []),
-    'children': (N.parentOf ?? []),
-    'sibling': (N.siblingOf ?? []),
+    'spouse': (FAM.spouses ?? []),
+    'parent': (FAM.parents ?? []),
+    'children': (FAM.children ?? []),
+    'sibling': (FAM.siblings ?? []),
+    'relatedTo': (FAM.grandparents ?? []),
     'memberOf': (N.personOrganizations ?? [])|merge((N.personGroups ?? [])),
     'subjectOf': (N.articlesAbout ?? [])|merge((N.personEvents ?? [])),
     'homeLocation': communityNode
@@ -295,6 +308,11 @@
     'memberOf': (V.wmBranch ?? '') ? { '@type': 'Organization', 'name': V.wmBranch } : null,
     'affiliation': (V.wmUnit ?? '') ? { '@type': 'Organization', 'name': V.wmUnit } : null,
     'sameAs': sameAs,
+    'spouse': (FAM.spouses ?? []),
+    'parent': (FAM.parents ?? []),
+    'children': (FAM.children ?? []),
+    'sibling': (FAM.siblings ?? []),
+    'relatedTo': (FAM.grandparents ?? []),
     'subjectOf': [{ '@id': canonical ~ '#loss' }]|merge((N.wmRelatedPerson ?? []))
   } %}
 

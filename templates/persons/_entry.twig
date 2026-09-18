@@ -120,25 +120,9 @@
 
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
-        {% set fam = [
-          { lab: 'CHILD OF', rows: entry.childOf.all() },
-          { lab: 'PARENT OF', rows: entry.parentOf.all() },
-          { lab: 'SIBLING OF', rows: entry.siblingOf.all() },
-          { lab: 'SPOUSE OF', rows: entry.spouseOf.all() }
-        ]|filter(f => f.rows|length) %}
-        {% if fam|length %}
-          <div class="rec-box">
-            <div class="rec-lab">FAMILY &amp; RELATIONSHIPS</div>
-            {% for f in fam %}
-              <div class="rec-lab" style="margin:{{ loop.first ? '0' : '16px' }} 0 6px;letter-spacing:.1em;font-size:11px;color:#5B6472">{{ f.lab }}</div>
-              {% for p in f.rows %}
-                {% set wm = craft.entries().section('warMemorials').relatedTo({ targetElement: p, field: 'wmRelatedPerson' }).status(null).one() ?? null %}
-                {{ ui.person(p, false) }}
-                {% if wm %}<a class="rec-badge" href="{{ wm.url }}" style="margin:-6px 0 8px 56px">War Memorial</a>{% endif %}
-              {% endfor %}
-            {% endfor %}
-          </div>
-        {% endif %}
+        {# Family is derived from childOf in _layouts/base.twig and handed here
+           and to the JSON-LD, so the box and the graph cannot disagree. #}
+        {% include "_partials/record/family" with { fam: fam } only %}
 
         {% if orgs|length %}
           <div class="rec-box"><div class="rec-lab">ORGANIZATIONS</div>
