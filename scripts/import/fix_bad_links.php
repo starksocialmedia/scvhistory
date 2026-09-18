@@ -40,6 +40,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $WP = 'https://wordpress-1656314-6593552.cloudwaysapps.com';
 

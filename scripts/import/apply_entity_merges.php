@@ -25,6 +25,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 // Alias field per section, and how that field separates names. placeAliases
 // and orgAliases are single line and comma separated; personAliases is

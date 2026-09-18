@@ -14,6 +14,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $TYPE_HANDLE = 'warMemorial';
 

@@ -6,6 +6,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $picks = [
     'fort-tejon' => ['Castaic Fort Tejon Rancho Castac Castec San Jose Public Library CALIFORNIA ROOM 1862 United States Survey.jpg', 'United States Survey map showing Fort Tejon and Rancho Castac, 1862.'],

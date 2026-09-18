@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: every import script that has an $APPLY flag now prints "APPLY IS ON, this will write to the database" as its first line when the flag is true; 32 scripts, all currently false. The scv-import-script skill now states that $APPLY is false in the committed file always, that the flip is local and never committed, and that the flag is checked before running rather than assumed. Article band cap tightened to 52 percent below 1000px, 60 percent at full width.
+- Decisions: the guard sits immediately under the flag, which is safe because no script prints before that line. Measured the artwork rather than eyeballing it: the dense figure begins at 55.6 percent of the band, mid tone at 53.2, faintest hair at 44.9, and those fractions hold at any width because the image is wider in aspect than the band.
+- Blockers: 60 percent at full width is 4.4 points inside the dense figure. It only looks clear because the text does not fill the column there; the longest line reaches 43.3 percent.
+- Next: Nathan reads the image dry run before anything is applied
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: capped the article band content to 60 percent of the wrapper when a band image is present, full width when not, with text-wrap balance on the h1. The breadcrumb, kicker, title, collection, byline and chips all share the capped column, so none of them runs under the artwork. Below 640px the text takes the full width and the artwork drops to a 0.22 wash.
 - Decisions: the cap holds at 60 percent all the way down rather than loosening at 900px. background-size cover scales the artwork up as the band narrows, so the subject takes more of the width, not less; 68 percent at 900px put the breadcrumb back under the hair. The other six sections were not changed: none of them renders a background artwork layer, their image sits in the portrait grid column, and the grid already holds the text to 66.6 percent.
 - Blockers: at a 900px band the breadcrumb's first line still grazes the light hair at the right. The title, subtitle, byline and chips are fully clear.

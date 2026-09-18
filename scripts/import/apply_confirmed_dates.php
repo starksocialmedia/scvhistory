@@ -6,6 +6,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $file = \Craft::getAlias('@webroot') . '/review/confirmed.json';
 if (!file_exists($file)) { echo 'ERROR: web/review/confirmed.json not found. Download it from the review screen first.' . PHP_EOL; return; }

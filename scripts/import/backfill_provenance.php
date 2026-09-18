@@ -28,6 +28,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $root = \Craft::getAlias('@root');
 $elements = Craft::$app->getElements();

@@ -6,6 +6,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $coords = [
     'sleepy-valley' => [34.489, -118.355],

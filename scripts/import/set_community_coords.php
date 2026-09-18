@@ -18,6 +18,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $COORDS = [
     // slug => [lat, lng, source, reference]

@@ -8,6 +8,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $OK = ['cc0', 'cc-by', 'cc-by-sa', 'public domain', 'pd-us', 'pd-old'];
 
 $elements = Craft::$app->getElements();

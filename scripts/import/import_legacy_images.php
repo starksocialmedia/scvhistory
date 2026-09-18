@@ -39,6 +39,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $PROBE_SIZES = false;
 /* Set to a slug to print that record's planned body, for reading before applying. */
 $SHOW_BODY_FOR = '';

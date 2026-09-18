@@ -22,6 +22,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $OVERWRITE = false;          /* fills only empty fields on an existing article; body is excluded either way */
 $INCLUDE_ALSO_BY = true;     /* the four Also-by essays the TOC lists but meta calls separate works */
 

@@ -1,4 +1,5 @@
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $el = Craft::$app->getElements();
 $map = [
   'story-of-our-valley' => 'arthur-b-perkins',

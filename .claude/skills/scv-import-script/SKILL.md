@@ -33,8 +33,24 @@ not you.
 
 ## Rules that are not negotiable
 
-**Dry run by default.** `$APPLY = false` at the top. A second flag such as
-`$OVERWRITE` may exist, also defaulting to false.
+**`$APPLY` is false in the committed file. Always.** A script is run by flipping
+the flag locally; the flip is never committed. A second flag such as
+`$OVERWRITE` may exist, also false.
+
+Immediately under the flag, every script carries this line, so an accidental
+write shows up in the first line of output rather than being discovered after
+the fact:
+
+```php
+$APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
+```
+
+**Before running any import script, check the flag. Do not assume it is false.**
+A `true` left in a committed file has already caused one unintended write: a run
+meant as a preview wrote to 8 records before anyone had read the report. Check
+with `grep -n '^\$APPLY' scripts/import/NAME.php`, and when a script you did not
+write reports `APPLYING`, stop and say so rather than carrying on.
 
 **Report the whole plan before writing.** One line per record showing what would
 change, then a summary with counts by category. A number with no list behind it

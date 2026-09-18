@@ -6,6 +6,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $elements = Craft::$app->getElements();
 $categoriesService = Craft::$app->getCategories();

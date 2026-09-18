@@ -13,6 +13,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $GROUP_HANDLE = 'neighborhood';
 $WANTED = ['recordImages', 'recordDocuments'];

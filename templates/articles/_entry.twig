@@ -28,13 +28,17 @@
      kicker, title, collection, byline and chips, so none of them can run under
      the drawing. Without artwork the band is full width as before.
 
-     The cap holds at 60 percent all the way down to the phone breakpoint,
-     because background-size cover scales the artwork up as the band narrows, so
-     the subject takes more of the width rather than less. 68 percent at 900px
-     put the breadcrumb back under the hair. */
+     The cap tightens rather than loosens as the band narrows, because
+     background-size cover scales the artwork up, so the subject takes more of
+     the width, not less. 60 percent leaves the title room to spare at 1240;
+     below 1000 it drops to 52 so the breadcrumb clears too. */
   .ar-hasband .rec-band .rec-crumbs,
   .ar-hasband .rec-band .rec-head>div:first-child{max-width:60%}
   .ar h1{text-wrap:balance}
+  @media(max-width:1000px){
+    .ar-hasband .rec-band .rec-crumbs,
+    .ar-hasband .rec-band .rec-head>div:first-child{max-width:52%}
+  }
   @media(max-width:640px){
     /* 60 percent of a phone is unreadable, so the text takes the full width and
        the artwork drops back to a wash behind it. */

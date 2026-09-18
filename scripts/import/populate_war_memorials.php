@@ -5,6 +5,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $path = \Craft::getAlias('@storage') . '/war_memorials_parsed.json';
 if (!file_exists($path)) {

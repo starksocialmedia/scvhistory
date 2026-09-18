@@ -7,6 +7,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $SHOW = 40;
 
 $months = 'January|February|March|April|May|June|July|August|September|October|November|December';

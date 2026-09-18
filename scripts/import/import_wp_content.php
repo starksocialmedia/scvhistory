@@ -7,6 +7,7 @@
  */
 
 $APPLY = false;
+if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $path = \Craft::getAlias('@root') . '/inventory/wp_content.json';
 if (!file_exists($path)) {
