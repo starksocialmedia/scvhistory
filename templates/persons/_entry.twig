@@ -96,8 +96,6 @@
         {% include "_partials/record/tools" with { entry: entry, text: prose, textId: 'recText' } only %}
         {% include "_partials/record/note" with { text: noteTop } only %}
 
-        {% if F.personWebmasterNoteTop %}<div class="rec-note">{{ F.personWebmasterNoteTop }}</div>{% endif %}
-
         {% if prose %}
           <div class="rec-body" id="recText">
             {% include "_partials/prose" with { text: prose, images: recImages } %}
@@ -107,7 +105,6 @@
         {% endif %}
 
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
-        {% if F.personWebmasterNoteBottom %}<div class="rec-note" style="margin-top:24px">{{ F.personWebmasterNoteBottom }}</div>{% endif %}
         {% if F.personFinePrint %}<p class="rec-fine">{{ F.personFinePrint }}</p>{% endif %}
 
       </article>
