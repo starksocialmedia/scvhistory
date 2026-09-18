@@ -93,6 +93,8 @@
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
+        {% include "_partials/record/tags" with { el: entry } only %}
+
         {% set links = [] %}
         {% if entry.groupWebsite is defined and entry.groupWebsite %}{% set links = links|merge([{u: entry.groupWebsite, t: 'Official website'}]) %}{% endif %}
         {% set legacy = F.groupLegacyUrl ?: F.legacyUrl %}

@@ -103,6 +103,8 @@
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
+        {% include "_partials/record/tags" with { el: entry } only %}
+
         {% set links = [] %}
         {% if entry.eventWikipediaUrl is defined and entry.eventWikipediaUrl %}{% set links = links|merge([{u: entry.eventWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
         {% set legacy = F.eventLegacyUrl ?: F.legacyUrl %}

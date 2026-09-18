@@ -111,6 +111,8 @@
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
+        {% include "_partials/record/tags" with { el: entry } only %}
+
         {% set links = [] %}
         {% if F.archiveUrl %}{% set links = links|merge([{u: F.archiveUrl, t: 'Archive.org'}]) %}{% endif %}
         {% if F.legacyUrl %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: F.legacyUrl })|trim, t: 'View on legacy site'}]) %}{% endif %}

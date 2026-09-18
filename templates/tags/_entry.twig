@@ -1,0 +1,100 @@
+{% extends "_layouts/base" %}
+{% block head %}{% include "_partials/record/css" %}{% include "_partials/record/print" %}{% endblock %}
+
+{% block content %}
+{#
+  Tag page: every record carrying this tag, grouped by section.
+
+  Craft passes the term as `category`; `entry` is accepted as a fallback for
+  previews and for the harness used to render this before any terms exist.
+#}
+{% set term = category ?? (entry ?? null) %}
+
+{% set GROUPS = [
+  { handle: 'persons',          label: 'People' },
+  { handle: 'places',           label: 'Places' },
+  { handle: 'organizations',    label: 'Organizations' },
+  { handle: 'groups',           label: 'Groups' },
+  { handle: 'events',           label: 'Events' },
+  { handle: 'articles',         label: 'Articles' },
+  { handle: 'collections',      label: 'Collections' },
+  { handle: 'warMemorials',     label: 'War Memorial' },
+  { handle: 'militaryProfiles', label: 'Military Profiles' },
+  { handle: 'obituaries',       label: 'Obituaries' },
+  { handle: 'pages',            label: 'Pages' }
+] %}
+
+{% set found = [] %}
+{% set total = 0 %}
+{% for g in GROUPS %}
+  {% set rows = craft.entries().section(g.handle).relatedTo(term).status(null).orderBy('title asc').all() %}
+  {% if rows|length %}
+    {% set found = found|merge([{ label: g.label, rows: rows }]) %}
+    {% set total = total + rows|length %}
+  {% endif %}
+{% endfor %}
+
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('tags') }}">Tags</a> &rsaquo; <span>{{ term.title }}</span></div>
+      <div class="rec-head rec-head--noart">
+        <div>
+          <div class="rec-kick"><span class="a">TAG</span></div>
+          <h1>{{ term.title }}</h1>
+          {% if term.body is defined and term.body %}<div class="rec-sub">{{ term.body|striptags }}</div>{% endif %}
+          <div class="rec-facts">
+            <div><div class="l">RECORDS</div><div class="v">{{ total }}</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main rec-main--wide">
+      <article style="min-width:0">
+        {% if not total %}
+          <div class="rec-empty">Nothing is tagged {{ term.title }} yet.</div>
+        {% endif %}
+
+        {% for g in found %}
+          <h2 class="rec-h2">{{ g.label }} <span class="scv-tilefoot" style="margin:0;padding:0">{{ g.rows|length }}</span></h2>
+          <div class="tag-grid">
+            {% for r in g.rows %}
+              {% set imgs = r.recordImages is defined and r.recordImages ? r.recordImages.all() : [] %}
+              {% set img = (r.featuredImage is defined and r.featuredImage) ? r.featuredImage.one() ?? null : (imgs|length ? imgs|first : null) %}
+              {% set label = r.title ?: r.slug %}
+              {% set parts = label|split(' ')|filter(x => x|trim) %}
+              {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : label|slice(0,1) %}
+              {% set bits = [] %}
+              {% if r.occupation is defined and r.occupation %}{% set bits = bits|merge([r.occupation]) %}{% endif %}
+              {% if r.dateEstablished is defined and r.dateEstablished %}{% set bits = bits|merge(['Est. ' ~ r.dateEstablished]) %}{% endif %}
+              {% if r.dateFounded is defined and r.dateFounded %}{% set bits = bits|merge(['Founded ' ~ r.dateFounded]) %}{% endif %}
+              {% if r.eventDate is defined and r.eventDate %}{% set bits = bits|merge([r.eventDate]) %}{% endif %}
+              {% if r.originalPublishDate is defined and r.originalPublishDate %}{% set bits = bits|merge([r.originalPublishDate]) %}{% endif %}
+              <a class="tag-card" href="{{ r.url }}">
+                <span class="th">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
+                <span style="min-width:0">
+                  <span class="t">{{ label }}</span>
+                  {% if bits|length %}<span class="m">{{ bits|join(' · ') }}</span>{% endif %}
+                </span>
+              </a>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </article>
+    </main>
+  </div>
+</div>
+
+{% css %}
+.tag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:8px}
+.tag-card{display:flex;gap:13px;align-items:center;background:#fff;border:1px solid #E2E4E8;padding:12px 14px;text-decoration:none;color:inherit}
+.tag-card:hover{border-color:#C4A031;background:#FDF7EA}
+.tag-card .th{width:46px;height:46px;flex:none;border:1px solid #E2E4E8;background:#FDF7EA;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Playfair Display',serif;font-size:15px;color:#7A5C1B}
+.tag-card .th img{width:100%;height:100%;object-fit:cover}
+.tag-card .t{font-family:'Playfair Display',serif;font-size:16.5px;line-height:1.25;color:#17254C;display:block}
+.tag-card .m{font-size:13px;color:#5B6472;display:block;margin-top:2px}
+{% endcss %}
+{% endblock %}

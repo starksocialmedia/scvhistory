@@ -81,6 +81,8 @@
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
+        {% include "_partials/record/tags" with { el: entry } only %}
+
         {% if F.legacyUrl %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
             <div class="rec-links">

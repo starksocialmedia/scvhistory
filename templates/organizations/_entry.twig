@@ -116,6 +116,8 @@
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
+        {% include "_partials/record/tags" with { el: entry } only %}
+
         {% set links = [] %}
         {% if entry.orgWebsite is defined and entry.orgWebsite %}{% set links = links|merge([{u: entry.orgWebsite, t: 'Official website'}]) %}{% endif %}
         {% if entry.orgWikipediaUrl is defined and entry.orgWikipediaUrl %}{% set links = links|merge([{u: entry.orgWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}

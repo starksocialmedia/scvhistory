@@ -175,6 +175,8 @@
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
+        {% include "_partials/record/tags" with { el: entry } only %}
+
         {% set links = [] %}
         {% if entry.personWikipediaUrl is defined and entry.personWikipediaUrl %}{% set links = links|merge([{u: entry.personWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
         {% if entry.personGraveUrl is defined and entry.personGraveUrl %}{% set links = links|merge([{u: entry.personGraveUrl, t: 'Find a Grave'}]) %}{% endif %}

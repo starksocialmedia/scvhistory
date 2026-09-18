@@ -752,3 +752,52 @@ Previous, next and the chapter list all read the same `articlesInCollection` ord
 `featuredImage` is now on the article layout, so the hero is a real featured image; it falls back to the first record image when empty. 50 of the 84 collection-linked articles carry one.
 
 Verified: all 27 article pages return 200, and on the Prologue page the hero, both prev/next bars, the sign-off, the author block, the collection card and the chapter list with the current chapter highlighted all render.
+
+## 2026-09-17 (Claude, branch templates-batch-9)
+
+- Agent: Claude
+- Date: 2026-09-17
+- Two briefs landed under this batch number: tags, and community editing support. Both are here.
+
+### Tags
+
+`scripts/import/setup_tags.php`, eval style, dry run behind `$APPLY`, safe to run twice. **Nathan runs it.** It creates the `tag` category group (name Tags, uriFormat `tags/{slug}`, template `tags/_entry`, on every site), a Categories field `recordTags` pointing at it, and adds that field to the Content tab of all thirteen entry types. It creates no terms.
+
+`templates/tags/index.twig` is a cloud sized by record count in five steps, so one very common tag cannot flatten the rest. `templates/tags/_entry.twig` lists every record carrying the tag, grouped by section, each row a thumbnail with title and subtitle.
+
+`_partials/record/tags.twig` is the sidebar box: plain chips linking to the tag page, wired into all eleven entry templates that have a sidebar plus the community page, sitting after the relation and document boxes and before External. `documents/_entry.twig` and `photographs/_entry.twig` are still bare fifteen-line stubs with no sidebar, so they were left alone.
+
+Nothing here needs the taxonomy to exist. `/tags` renders and says the taxonomy has not been created yet.
+
+### I broke the site and committed it
+
+The first version of the tags box used `entry.recordTags is defined`. That is not a safe test on an Entry: it reports true even when the field does not exist, Twig then calls `recordTags()`, and Craft throws `Calling unknown method`. Since `recordTags` does not exist until the script runs, **that took out all 151 entry pages and the eight site pages, and I committed it before the sweep finished.**
+
+Fixed in the next commit. The only reliable test is the element's own field layout, which is what the import scripts already do, so the partial now takes the element and does that check itself. This is the third time this exact trap has bitten: `person.sameAs` in the JSON-LD partial, `recordImages` on Category elements, and now this. **`is defined` is not a safe guard for a Craft custom field. Check the field layout.**
+
+### Community editing support
+
+`scripts/import/add_community_media.php`, eval style, dry run behind `$APPLY`. **Nathan runs it.** It puts `recordImages` and `recordDocuments` on the Communities category group, which is the only content type in the archive without them. Both fields already exist, so it only touches the group's field layout.
+
+`templates/communities/_entry.twig` now renders like an entry page: it pulls in `_partials/record/css` alongside `scv-extra-css`, passes `recordImages` to the prose so `[image:N]` resolves, and adds the Photos section, both editor note partials, the documents box and the tags box. `communityType` moves out of the facts row and becomes a chip in the band.
+
+### Community field coverage, as asked
+
+Of the 35 terms, **26 carry coordinates and nothing else**. Not one has a body, an alias, a type or a cultural sensitivity note. So the new type chip and the note partials have nothing to show yet, and the map is still the only thing on those pages besides the related records.
+
+The nine with no field content at all: `fair-oaks-ranch`, `haskell-canyon`, `mint-canyon`, `mojave-desert`, `potrero-canyon`, `ravenna`, `saugus-valencia`, `soledad-township`, `towsley-canyon`. Those are the six that had no coordinate source in batch 4 plus the three skipped as areas rather than points.
+
+### Verified
+
+All 151 entry pages, 22 index and route variants including `/tags`, the eight site pages, and all 35 community pages return 200.
+
+### Needs Nathan
+
+Two scripts on **MacBook**, dry run first, then `$APPLY = true`:
+
+```
+ddev craft exec "eval(file_get_contents('scripts/import/setup_tags.php'))"
+ddev craft exec "eval(file_get_contents('scripts/import/add_community_media.php'))"
+```
+
+Then `project-config/write` and commit `config/project/`. After that, add tag terms and start filling community bodies, aliases and types.
