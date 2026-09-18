@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: fixed the War Memorial badge, which asked which casualty record pointed at a family member rather than whether that member was one, so on Rudy Acosta's page it sat on his father and linked back to Rudy. It now renders only where the family member is themselves a war memorial record. Retired the Related person box wherever a family box renders, folding whoever it showed into that box under Other relations when they are not already a parent, child, sibling, spouse or grandparent. Rebuilt the family box in the Related person design: a 56px circular portrait, the name in Playfair, occupation or rank and dates beneath in the muted grey, with a cream and gold initials circle where a record has no featuredImage.
+- Decisions: the badge is a marker inside the row rather than a second link, because the row already goes to that person's record and an anchor inside an anchor is invalid. Other relations reads wmRelatedPerson, relatedPersons and mpRelatedPersons both ways and dedupes against every family list in order, so a person who is both a related person and a parent appears once, under Parents. The Related person box still renders on a record with no family at all, so nothing is lost where the fold has nowhere to go.
+- Blockers: none.
+- Result: verified on Rudy Acosta, who shows Dante under Parents with no badge and Rodolfo under Grandparents; Dante, who shows Rudy under Children with the badge linking to Rudy's own record; Ygnacio del Valle, where Antonio del Valle has no portrait and renders as AV in the initials circle; and Jerry Reynolds, who has no family and no box. 38 URLs swept, none in error.
+- Next: Nathan runs apply_wikidata_matches.php, settle_family_relations.php and add_gnis_field.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: added $FORCE_GRAVE to apply_wikidata_matches.php, false by default, which replaces personGraveUrl on the eight records whose stored URL resolves to a different person. Both ends of all eight are recorded in the script with the name, dates and cemetery each one actually serves, so the correction reads without opening anything. Also corrected two broken values, John C. Frémont's birthDate and Juan Bandini's burialPlace, and added the three disputed burial places to the output as needing research.
 - Decisions: the override touches the eight listed ids only, only the personGraveUrl handle, and only while the stored URL is still the one that was checked, so it is not a general "trust Wikidata" switch and cannot fire on a value someone has since corrected. The two field fixes work the same way: each is written only while the field still holds exactly the broken string, and reports a skip with the current value otherwise. The three cemetery disagreements are printed every run and never written, because a reinterment is a question of fact rather than a broken link.
 - Blockers: none. One correction to my earlier report: I wrote that William Lewis Manly was right in ours and wrong in Wikidata's. It is the other way round, as the table in the same message showed. Our URL serves Queen Anne.

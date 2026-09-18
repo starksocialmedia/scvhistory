@@ -41,10 +41,21 @@
         {%- set spouses = craft.entries().relatedTo({ sourceElement: entry, field: 'spouseOf' }).status(null).all()
             |merge(craft.entries().relatedTo({ targetElement: entry, field: 'spouseOf' }).status(null).all()) -%}
       {%- endif -%}
+      {#- The loose relation fields, read both ways. A family member is a related
+          person, so anyone already placed above is dropped below and only the
+          rest reaches the Other heading. That retires the separate Related
+          person box: two boxes for one relationship is noise. -#}
+      {%- set other = [] -%}
+      {%- for h in ['wmRelatedPerson', 'relatedPersons', 'mpRelatedPersons'] -%}
+        {%- set other = other
+            |merge(craft.entries().relatedTo({ sourceElement: entry, field: h }).status(null).all())
+            |merge(craft.entries().relatedTo({ targetElement: entry, field: h }).status(null).all()) -%}
+      {%- endfor -%}
       {#- One entry can arrive twice, as a derived sibling and as a stored one. -#}
       {%- set fam = {} -%}
-      {%- for k, list in { parents: parents, children: children, siblings: siblings, grandparents: grandparents, spouses: spouses } -%}
-        {%- set seen = [] -%}
+      {%- set seenAll = [] -%}
+      {%- for k, list in { parents: parents, children: children, siblings: siblings, grandparents: grandparents, spouses: spouses, other: other } -%}
+        {%- set seen = seenAll -%}
         {%- set out = [] -%}
         {%- for e in list -%}
           {%- if e.id not in seen and e.id != entry.id -%}
@@ -52,10 +63,11 @@
             {%- set out = out|merge([e]) -%}
           {%- endif -%}
         {%- endfor -%}
+        {%- set seenAll = seen -%}
         {%- set fam = fam|merge({ (k): out }) -%}
       {%- endfor -%}
       {%- set fam = (fam.parents|length or fam.children|length or fam.siblings|length
-          or fam.grandparents|length or fam.spouses|length) ? fam : null -%}
+          or fam.grandparents|length or fam.spouses|length or fam.other|length) ? fam : null -%}
     {%- endif -%}
   {%- endif -%}
 

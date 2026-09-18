@@ -146,7 +146,11 @@
         </div>
         {% endif %}
 
-        {% if related %}
+        {# The Related person box is retired where a family box renders: whoever
+           it showed is folded into that box, under their relationship where one
+           is recorded and under Other relations otherwise. It still renders on
+           a record with no family at all, so nothing is lost. #}
+        {% if related and not fam %}
           {% set rimg = related.featuredImage is defined ? related.featuredImage.one() ?? null : null %}
           <div class="rec-box"><div class="rec-lab">RELATED PERSON</div>
             <a class="rec-person" href="{{ related.url }}">

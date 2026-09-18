@@ -11,10 +11,22 @@
   that relation has someone in it, so an unrecorded family costs nothing on the
   page. Same two conditional rules as every other box on a record.
 
-  Dates come from whichever handles the related record's own layout carries: a
-  person keeps birthDate and deathDate, a casualty keeps wmDateOfBirth and
-  deathDate. The handle is looked for in the layout rather than probed with
-  `is defined`, which answers true for a field the type does not have.
+  Each row is built like the Related person box it replaces: a 56px circular
+  portrait, the name in Playfair, and the occupation or the dates beneath in the
+  muted grey. Where a record has no featuredImage the circle is cream with a
+  gold border and the person's initials, so every row has the same footprint and
+  an absent portrait reads as deliberate rather than broken.
+
+  Other relations is whatever wmRelatedPerson, relatedPersons or mpRelatedPersons
+  held that is not already a parent, child, sibling, spouse or grandparent. The
+  separate Related person box is retired: a family member is a related person,
+  and two boxes for one relationship is noise.
+
+  Dates and occupation come from whichever handles the related record's own
+  layout carries: a person keeps birthDate, deathDate and occupation, a casualty
+  keeps wmDateOfBirth and wmRank. The handle is looked for in the layout rather
+  than probed with `is defined`, which answers true for a field the type does
+  not have.
 
   Params
     fam  the derived family, or null
@@ -25,46 +37,71 @@
     ['CHILDREN', fam.children],
     ['SIBLINGS', fam.siblings],
     ['GRANDPARENTS', fam.grandparents],
-    ['SPOUSE', fam.spouses]
+    ['SPOUSE', fam.spouses],
+    ['OTHER RELATIONS', fam.other ?? []]
   ]|filter(r => r[1]|length) %}
 
   {% if rows|length %}
     {% css %}
-    .rec-fam dt{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8A919E;margin:12px 0 4px}
-    .rec-fam dt:first-of-type{margin-top:0}
-    .rec-fam dd{margin:0 0 3px;font-size:14px;line-height:1.5}
-    .rec-fam dd a{color:#17254C;text-decoration:none;border-bottom:1px solid #EFE6D0}
-    .rec-fam dd a:hover{color:#7A5C1B;border-bottom-color:#C4A031}
-    .rec-fam dd .yr{color:#8A919E;font-size:12.5px;margin-left:5px;white-space:nowrap}
-    .rec-fam dd .wm{display:inline-block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7A5C1B;background:#FDF7EA;border:1px solid #EFE6D0;padding:1px 6px;margin-left:6px;border-bottom-width:1px;white-space:nowrap}
-    .rec-fam dd .wm:hover{background:#C4A031;color:#fff;border-color:#C4A031}
+    .rec-fam{margin:0}
+    .rec-fam .lab{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7A5C1B;margin:14px 0 2px}
+    .rec-fam .lab:first-child{margin-top:0}
+    .rec-fam a.p{display:flex;gap:12px;align-items:center;color:inherit;text-decoration:none;padding:9px 0;border-bottom:1px solid #EFE6D0}
+    .rec-fam a.p:last-child{border-bottom:0}
+    .rec-fam .th{width:56px;height:56px;border-radius:50%;flex:none;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#EEF0F4}
+    .rec-fam .th img{width:100%;height:100%;object-fit:cover}
+    .rec-fam .th.ini{background:#FDF7EA;border:1px solid #C4A031;font-family:'Jost',sans-serif;font-size:16px;letter-spacing:.06em;color:#7A5C1B}
+    .rec-fam .n{font-family:'Playfair Display',serif;font-size:16px;line-height:1.3;color:#17254C}
+    .rec-fam a.p:hover .n{color:#7A5C1B}
+    .rec-fam .r{font-size:13px;line-height:1.5;color:#5B6472;margin-top:2px}
+    .rec-fam .wm{display:inline-block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7A5C1B;background:#FDF7EA;border:1px solid #EFE6D0;padding:1px 6px;margin-top:4px}
     {% endcss %}
 
     <div class="rec-box">
       <div class="rec-lab">FAMILY</div>
-      <dl class="rec-fam">
+      <div class="rec-fam">
         {% for row in rows %}
-          <dt>{{ row[0] }}</dt>
+          <div class="lab">{{ row[0] }}</div>
           {% for p in row[1] %}
             {% set ph = [] %}
             {% for f in (p.fieldLayout ? p.fieldLayout.customFields : []) %}{% set ph = ph|merge([f.handle]) %}{% endfor %}
-            {% set born = 'birthDate' in ph ? p.birthDate : ('wmDateOfBirth' in ph ? p.wmDateOfBirth : '') %}
+
+            {% set born = 'birthDate' in ph ? p.birthDate : ('wmDateOfBirth' in ph ? p.wmDateOfBirth : ('mpDateOfBirth' in ph ? p.mpDateOfBirth : '')) %}
             {% set died = 'deathDate' in ph ? p.deathDate : ('mpDateOfDeath' in ph ? p.mpDateOfDeath : '') %}
             {% set b = born|trim ? born|trim|slice(-4) : '' %}
             {% set d = died|trim ? died|trim|slice(-4) : '' %}
             {% set span = (b matches '/^\\d{4}$/' or d matches '/^\\d{4}$/')
               ? ((b matches '/^\\d{4}$/' ? b : '') ~ '–' ~ (d matches '/^\\d{4}$/' ? d : '')) : '' %}
-            {#- A person who also has a casualty record keeps the badge the old
-                box carried, so the two halves of one life stay joined. -#}
-            {% set wm = craft.entries().section('warMemorials').relatedTo({ targetElement: p, field: 'wmRelatedPerson' }).status(null).one() ?? null %}
-            <dd>
-              <a href="{{ p.url }}">{{ p.title ?: p.slug }}</a>
-              {%- if span %}<span class="yr">{{ span }}</span>{% endif -%}
-              {%- if wm %} <a class="wm" href="{{ wm.url }}">War Memorial</a>{% endif -%}
-            </dd>
+
+            {# Occupation where the record keeps one, the dates otherwise, so the
+               second line says whatever that record actually knows. #}
+            {% set role = 'occupation' in ph ? p.occupation|trim : ('wmRank' in ph ? p.wmRank|trim : ('mpRank' in ph ? p.mpRank|trim : '')) %}
+            {% set sub = role ?: span %}
+            {% if role and span %}{% set sub = role ~ ' · ' ~ span %}{% endif %}
+
+            {% set img = 'featuredImage' in ph ? p.featuredImage.one() ?? null : null %}
+            {% set words = (p.title ?: p.slug)|trim|split(' ')|filter(w => w|trim) %}
+            {% set ini = (words|first|slice(0, 1) ~ (words|length > 1 ? words|last|slice(0, 1) : ''))|upper %}
+
+            <a class="p" href="{{ p.url }}">
+              {% if img %}
+                <div class="th"><img src="{{ img.url }}" alt=""></div>
+              {% else %}
+                <div class="th ini" aria-hidden="true">{{ ini }}</div>
+              {% endif %}
+              <div style="min-width:0">
+                <div class="n">{{ p.title ?: p.slug }}</div>
+                {% if sub %}<div class="r">{{ sub }}</div>{% endif %}
+                {#- The badge marks a family member who is themselves a casualty
+                    record. It used to ask which war memorial pointed AT them,
+                    which on a casualty's own page found that page and put a
+                    badge on their father linking back to the son. -#}
+                {% if p.section.handle == 'warMemorials' %}<div class="wm">War Memorial</div>{% endif %}
+              </div>
+            </a>
           {% endfor %}
         {% endfor %}
-      </dl>
+      </div>
     </div>
   {% endif %}
 {% endif %}
