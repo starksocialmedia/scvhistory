@@ -838,3 +838,61 @@ All 158 record pages, 18 index and route variants including `/on-this-day` and b
 ### Note
 
 `git add -A` briefly swept four of Nathan's untracked files into my commit: `apply_confirmed_dates.php`, `export_unconfirmed_dates.php` and `web/review/dates.{html,json}`. The commit was undone and remade with only my five files; his remain untracked and untouched.
+
+## 2026-09-17 (Claude, templates-batch-9, entity reconciliation)
+
+- Agent: Claude
+- Date: 2026-09-17
+- Built to the shape of the date workflow already in the repo: a read-only export to `web/review`, a standalone screen with localStorage and a download, and an apply script that is dry run by default.
+
+### export_entity_candidates.php
+
+Read only. Emits every Person, Place and Organization with id, section, title, slug, alias, mention count (from the relations table) and url, then pairs them **within a section** four ways:
+
+- **normalised** — titles match once punctuation, accents, honorifics and a leading "the" are stripped
+- **initials** — same surname, one side's initials expand to the other's given names, so "H.M. Newhall" meets "Henry Mayo Newhall"
+- **substring** — one title inside the other at a word boundary, so "Newhall" meets "Henry Mayo Newhall"
+- **surname** — same surname, different given names
+
+Each pair carries both ids, both titles, the reason and a confidence of high, medium or low. It merges nothing and writes nothing to the database. The better-attested record is offered as the survivor first.
+
+### Counts against the current data
+
+33 Persons, 15 Places, 14 Organizations. **4 candidate pairs, all medium, all "same surname, different given names":**
+
+| | |
+|---|---|
+| Juventino del Valle | Antonio del Valle |
+| Ygnacio del Valle | Juventino del Valle |
+| Ygnacio del Valle | Antonio del Valle |
+| Rodolfo Acosta | Dante Acosta |
+
+**All four are genuinely different people** — del Valle relatives and an Acosta father and son. That is the workflow behaving correctly: it proposes, a person rejects. There are no high-confidence pairs in the current data, which is expected at 62 hand-curated records; the matching earns its keep against thousands of extracted candidates.
+
+### entities.html
+
+Each pair side by side with facts and links, asks which title survives, offers Merge, Not the same and Skip. Filters by section and confidence. Keyboard: `M` merge, `N` not the same, `S` skip, `1`/`2` choose the survivor, `J`/`K` move. Decisions in localStorage, downloads `merged.json`.
+
+### apply_entity_merges.php
+
+Moves every relation pointing at the loser onto the survivor, appends the losing title to the survivor's alias field where the type has one, and deletes the loser, inside a transaction per pair. Dry run by default behind `$APPLY`.
+
+Guards, since this is the destructive half: it refuses to merge a record with itself; it skips a pair where either record is gone, which is what makes a second run a no-op; it drops rather than duplicates a relation the survivor already holds; and it will not append an alias twice. The dry run prints which fields the relations come through, with counts, before anything moves.
+
+### Persons have no alias field
+
+The type carries only `fullName`, which is the canonical name rather than a list of other names. Export, screen and apply script all use the same section-to-alias map, so the screen never offers to record a title the apply step cannot store, and the card says so. **Merging two people therefore loses the losing title.** If that matters, a `personAliases` field would need creating first.
+
+### Verified
+
+A temporary fixture covered a place merge, an organization merge, a person merge with no alias field, a self-merge, a missing record and a `notsame` row. The dry run reported 3 merges and 2 skipped, named the relation fields and counts (for example Rancho Camulos would take 61 relations through `placeOrganizations`, `personOrganizations` and `subjectOrganization`, dropping 6 duplicates), moved nothing, and the record counts were identical afterwards. Fixture deleted.
+
+`web/review/entities.json` and `merged.json` are added to `.gitignore`, matching `dates.json` and `confirmed.json`.
+
+### Needs Nathan
+
+```
+ddev craft exec "eval(file_get_contents('scripts/import/export_entity_candidates.php'))"
+```
+
+then open `https://scvhistory.ddev.site/review/entities.html`, decide, download `merged.json` into `web/review/`, and run `apply_entity_merges.php` dry first.
