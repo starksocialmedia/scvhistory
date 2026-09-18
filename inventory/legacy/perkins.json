@@ -4,7 +4,7 @@
     "crawled": "2026-09-17",
     "index_url": "https://scvhistory.com/scvhistory/signal/perkins/contents.html",
     "page_count": 20,
-    "crawler_notes": "Crawled 20 articles linked from contents.html TOC in series_position order; 1.0s delay between requests; User-Agent SCVHistory-Legacy-Extract/1.0; robots.txt respected (Disallow paths avoided). Followed meta-refresh on signal/perkins/032361.html -> /scvhistory/perkins032361.htm. body_text/body_html from XWP content region; images src_raw not absolutized; no image downloads. | 2026-09-17 entity rebuild + series_pages/related_pages split. body_text/dates_mentioned/images unchanged.",
+    "crawler_notes": "Crawled 20 articles linked from contents.html TOC in series_position order; 1.0s delay between requests; User-Agent SCVHistory-Legacy-Extract/1.0; robots.txt respected (Disallow paths avoided). Followed meta-refresh on signal/perkins/032361.html -> /scvhistory/perkins032361.htm. body_text/body_html from XWP content region; images src_raw not absolutized; no image downloads. | 2026-09-17 entity rebuild + series_pages/related_pages split. body_text/dates_mentioned/images unchanged. | 2026-09-17: closed-list names moved to entity_index.community_mentions; bare short place forms folded into longer names or flagged possible_place_variant.",
     "series_page_count": 13,
     "related_page_count": 7,
     "person_rule": "A person is recorded only when the mention looks like a person: (1) a historical English/Spanish given name followed by a surname, or (2) an honorific (Mr., Mrs., Miss, Ms., Don, Doña, Señor, Father, Fr., Judge, Col., Capt., Dr., Gen., Lt., Rev., Major, Mayor, Governor, General, Captain, Colonel, Lieutenant, Reverend, Sister, Brother) followed by a name. Bare capitalized words are not people. Possessives, truncated forms, and common-noun tails (Dam, Party, Library, Cave, Crossing, etc.) are rejected. Surname-only tokens are not recorded.",
@@ -194,23 +194,8 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 13,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Soledad",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Acton",
-          "count": 1,
+          "count": 2,
           "linked_to": ""
         },
         {
@@ -225,26 +210,6 @@
         },
         {
           "name_raw": "Lyon's Station",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Ravenna",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "San Francisquito",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "San Francisquito Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Canyon",
           "count": 1,
           "linked_to": ""
         }
@@ -290,7 +255,16 @@
         "Soledad Canyon"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 2 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lang' appears 1 time(s) standing alone; possible variant of Lang Station"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "Los Angeles",
@@ -402,11 +376,6 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 7,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Newhall Ranch",
           "count": 2,
           "linked_to": ""
@@ -418,16 +387,6 @@
         },
         {
           "name_raw": "Rancho San Francisco",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
           "count": 1,
           "linked_to": ""
         }
@@ -631,31 +590,6 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Piru",
-          "count": 7,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
-          "count": 6,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 6,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic Junction",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Mint Canyon",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Pico",
           "count": 2,
           "linked_to": ""
@@ -671,37 +605,12 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Grapevine",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Grapevine Canyon",
           "count": 1,
           "linked_to": ""
         },
         {
           "name_raw": "San Francisquito",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Township",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Tejon",
           "count": 1,
           "linked_to": ""
         }
@@ -724,7 +633,16 @@
         "Tejon"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 2 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 1 time(s) standing alone; possible variant of San Francisquito Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -1167,31 +1085,6 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Newhall",
-          "count": 6,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Camulos",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic Junction",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Piru",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Santa Clara River",
           "count": 2,
           "linked_to": ""
@@ -1242,7 +1135,12 @@
         "Piru"
       ],
       "fine_print_raw": "©1954, SANTA CLARITA VALLEY HISTORICAL SOCIETY • RIGHTS RESERVED.",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 1 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "Mission San Fernando",
@@ -1659,11 +1557,6 @@
       "places_mentioned": [
         {
           "name_raw": "Placerita",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
           "count": 3,
           "linked_to": ""
         },
@@ -1674,26 +1567,6 @@
         },
         {
           "name_raw": "San Francisquito",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Grapevine",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Placerita Canyon",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
           "count": 2,
           "linked_to": ""
         },
@@ -1703,22 +1576,17 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Castaic Junction",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Fremont Pass",
           "count": 1,
           "linked_to": ""
         },
         {
-          "name_raw": "Grapevine Canyon",
+          "name_raw": "Grapevine",
           "count": 1,
           "linked_to": ""
         },
         {
-          "name_raw": "Hart High",
+          "name_raw": "Grapevine Canyon",
           "count": 1,
           "linked_to": ""
         },
@@ -1739,11 +1607,6 @@
         },
         {
           "name_raw": "San Fernando Road",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "San Francisquito Canyon",
           "count": 1,
           "linked_to": ""
         },
@@ -1769,7 +1632,24 @@
         "Saugus"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 1 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 2 time(s) standing alone; possible variant of San Francisquito Canyon"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Placerita' appears 3 time(s) standing alone; possible variant of Placerita Canyon"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Grapevine' appears 1 time(s) standing alone; possible variant of Grapevine Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -2487,37 +2367,12 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 17,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Rancho San Francisco",
           "count": 9,
           "linked_to": ""
         },
         {
-          "name_raw": "Grapevine",
-          "count": 8,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "San Francisquito",
-          "count": 6,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad",
-          "count": 6,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Grapevine Canyon",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Tejon",
           "count": 5,
           "linked_to": ""
         },
@@ -2527,8 +2382,8 @@
           "linked_to": ""
         },
         {
-          "name_raw": "San Francisquito Canyon",
-          "count": 4,
+          "name_raw": "Grapevine",
+          "count": 3,
           "linked_to": ""
         },
         {
@@ -2537,7 +2392,7 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Soledad Canyon",
+          "name_raw": "Soledad",
           "count": 3,
           "linked_to": ""
         },
@@ -2552,12 +2407,12 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Santa Clara River",
+          "name_raw": "San Francisquito",
           "count": 2,
           "linked_to": ""
         },
         {
-          "name_raw": "Saugus",
+          "name_raw": "Santa Clara River",
           "count": 2,
           "linked_to": ""
         },
@@ -2682,7 +2537,28 @@
         "Tejon"
       ],
       "fine_print_raw": "©1954, SANTA CLARITA VALLEY HISTORICAL SOCIETY • RIGHTS RESERVED.",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 1 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 3 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lang' appears 1 time(s) standing alone; possible variant of Lang Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 2 time(s) standing alone; possible variant of San Francisquito Canyon"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Grapevine' appears 3 time(s) standing alone; possible variant of Grapevine Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -3373,32 +3249,7 @@
       "places_mentioned": [
         {
           "name_raw": "Soledad",
-          "count": 69,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Ravenna",
-          "count": 17,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Acton",
-          "count": 16,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 13,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "San Francisquito",
-          "count": 10,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Canyon",
-          "count": 10,
+          "count": 58,
           "linked_to": ""
         },
         {
@@ -3407,28 +3258,13 @@
           "linked_to": ""
         },
         {
-          "name_raw": "San Francisquito Canyon",
-          "count": 6,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Piru",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Rancho San Francisco",
           "count": 4,
           "linked_to": ""
         },
         {
-          "name_raw": "Bouquet Canyon",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
-          "count": 3,
+          "name_raw": "San Francisquito",
+          "count": 4,
           "linked_to": ""
         },
         {
@@ -3437,32 +3273,17 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Grapevine",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Placerita",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Santa Clara River",
           "count": 2,
           "linked_to": ""
         },
         {
-          "name_raw": "Saugus",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Tejon",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Beale's Cut",
+          "count": 1,
+          "linked_to": ""
+        },
+        {
+          "name_raw": "Grapevine",
           "count": 1,
           "linked_to": ""
         },
@@ -3477,22 +3298,12 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Placerita Canyon",
+          "name_raw": "Placerita",
           "count": 1,
           "linked_to": ""
         },
         {
           "name_raw": "Railroad Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Sand Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Township",
           "count": 1,
           "linked_to": ""
         }
@@ -3580,7 +3391,28 @@
         "Tejon"
       ],
       "fine_print_raw": "©1954, SANTA CLARITA VALLEY HISTORICAL SOCIETY • RIGHTS RESERVED.",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 58 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lang' appears 6 time(s) standing alone; possible variant of Lang Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 4 time(s) standing alone; possible variant of San Francisquito Canyon"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Placerita' appears 1 time(s) standing alone; possible variant of Placerita Canyon"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Grapevine' appears 1 time(s) standing alone; possible variant of Grapevine Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "Los Angeles",
@@ -4394,16 +4226,6 @@
       "places_mentioned": [
         {
           "name_raw": "Pico",
-          "count": 36,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 31,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Pico Canyon",
           "count": 18,
           "linked_to": ""
         },
@@ -4413,23 +4235,8 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Castaic",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Mentryville",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
           "name_raw": "San Fernando Road",
           "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic Junction",
-          "count": 2,
           "linked_to": ""
         },
         {
@@ -4445,26 +4252,6 @@
         {
           "name_raw": "Wiley Canyon",
           "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Bouquet Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Camulos",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Mint Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Piru",
-          "count": 1,
           "linked_to": ""
         },
         {
@@ -4489,11 +4276,6 @@
         },
         {
           "name_raw": "Soledad",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Towsley Canyon",
           "count": 1,
           "linked_to": ""
         }
@@ -4553,7 +4335,20 @@
         "Towsley Canyon"
       ],
       "fine_print_raw": "©1954/1975, SANTA CLARITA VALLEY HISTORICAL SOCIETY • RIGHTS RESERVED.",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 18 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 1 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Placerita' appears 1 time(s) standing alone; possible variant of Placerita Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -4943,22 +4738,7 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 11,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Beale's Cut",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Mentryville",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
           "count": 5,
           "linked_to": ""
         },
@@ -4968,38 +4748,18 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Placerita",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Rancho San Francisco",
           "count": 3,
           "linked_to": ""
         },
         {
+          "name_raw": "Placerita",
+          "count": 2,
+          "linked_to": ""
+        },
+        {
           "name_raw": "San Fernando Road",
           "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Bouquet Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Canyon Country",
-          "count": 1,
           "linked_to": ""
         },
         {
@@ -5018,27 +4778,7 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Piru",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Placerita Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Towsley Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Valencia",
+          "name_raw": "Soledad",
           "count": 1,
           "linked_to": ""
         }
@@ -5069,7 +4809,24 @@
         "Valencia"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 1 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 1 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lang' appears 1 time(s) standing alone; possible variant of Lang Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Placerita' appears 2 time(s) standing alone; possible variant of Placerita Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "Los Angeles",
@@ -7294,42 +7051,7 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Camulos",
-          "count": 24,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 21,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
-          "count": 13,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "San Francisquito",
-          "count": 12,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic Junction",
-          "count": 10,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Lyons",
-          "count": 10,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Lyons Station",
-          "count": 10,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad",
           "count": 10,
           "linked_to": ""
         },
@@ -7339,38 +7061,18 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Pico",
-          "count": 8,
+          "name_raw": "San Francisquito",
+          "count": 7,
           "linked_to": ""
         },
         {
-          "name_raw": "Piru",
+          "name_raw": "Pico",
           "count": 6,
           "linked_to": ""
         },
         {
-          "name_raw": "San Francisquito Canyon",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Tejon",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Canyon",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Grapevine",
-          "count": 3,
+          "name_raw": "Soledad",
+          "count": 6,
           "linked_to": ""
         },
         {
@@ -7385,16 +7087,6 @@
         },
         {
           "name_raw": "Newhall Pass",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Pico Canyon",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
           "count": 2,
           "linked_to": ""
         },
@@ -7505,7 +7197,24 @@
         "Tejon"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 6 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 6 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lang' appears 1 time(s) standing alone; possible variant of Lang Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 7 time(s) standing alone; possible variant of San Francisquito Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -8190,33 +7899,8 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Camulos",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Tunnel Station",
           "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic Junction",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 2,
           "linked_to": ""
         },
         {
@@ -8245,7 +7929,12 @@
         "Santa Clarita"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Castac' appears 1 time(s) standing alone; possible variant of Castaic, Castaic Junction, Castaic Creek"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -8976,27 +8665,12 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 56,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Pico",
-          "count": 9,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad",
-          "count": 6,
+          "count": 8,
           "linked_to": ""
         },
         {
           "name_raw": "Beale's Cut",
-          "count": 5,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
           "count": 5,
           "linked_to": ""
         },
@@ -9006,13 +8680,13 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Lyons",
-          "count": 3,
+          "name_raw": "Soledad",
+          "count": 4,
           "linked_to": ""
         },
         {
-          "name_raw": "Castaic",
-          "count": 2,
+          "name_raw": "Lyons",
+          "count": 3,
           "linked_to": ""
         },
         {
@@ -9021,48 +8695,8 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Mint Canyon",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Newhall Ranch",
           "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Canyon",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Acton",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Bouquet Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Camulos",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Haskell Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Pico Canyon",
-          "count": 1,
           "linked_to": ""
         },
         {
@@ -9117,7 +8751,28 @@
         "Soledad Canyon"
       ],
       "fine_print_raw": "©Historical Society of Southern California | Presentation and original content ©2013 SCVHistory.com",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 8 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 4 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lyons' appears 3 time(s) standing alone; possible variant of Lyons Station, Lyon's Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lang' appears 2 time(s) standing alone; possible variant of Lang Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 1 time(s) standing alone; possible variant of San Francisquito Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "Los Angeles",
@@ -9780,27 +9435,7 @@
       "places_mentioned": [
         {
           "name_raw": "Pico",
-          "count": 54,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 30,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Pico Canyon",
-          "count": 10,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Lyons",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 4,
+          "count": 44,
           "linked_to": ""
         },
         {
@@ -9814,12 +9449,12 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Lyons Station",
+          "name_raw": "Lyons",
           "count": 2,
           "linked_to": ""
         },
         {
-          "name_raw": "Mentryville",
+          "name_raw": "Lyons Station",
           "count": 2,
           "linked_to": ""
         },
@@ -9839,11 +9474,6 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Grapevine",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Grapevine Canyon",
           "count": 1,
           "linked_to": ""
@@ -9855,16 +9485,6 @@
         },
         {
           "name_raw": "Santa Clara River",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Tejon",
           "count": 1,
           "linked_to": ""
         }
@@ -9950,7 +9570,20 @@
         "Tejon"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 44 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 2 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lyons' appears 2 time(s) standing alone; possible variant of Lyons Station, Lyon's Station"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -10343,17 +9976,7 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 7,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Hart High",
-          "count": 4,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
           "count": 2,
           "linked_to": ""
         },
@@ -10363,37 +9986,7 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Saugus",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Honby",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Mint Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Township",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Val Verde",
           "count": 1,
           "linked_to": ""
         }
@@ -10409,7 +10002,12 @@
         "Val Verde"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Hart High' appears 2 time(s) standing alone; possible variant of Hart High School"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -10895,57 +10493,17 @@
       "places_mentioned": [
         {
           "name_raw": "Soledad",
-          "count": 21,
+          "count": 17,
           "linked_to": ""
         },
         {
           "name_raw": "Lang",
-          "count": 10,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 3,
+          "count": 9,
           "linked_to": ""
         },
         {
           "name_raw": "San Francisquito",
           "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Canyon",
-          "count": 3,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Sand Canyon",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Acton",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Agua Dulce",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Castaic Junction",
-          "count": 1,
           "linked_to": ""
         },
         {
@@ -10959,22 +10517,7 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Ravenna",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
           "name_raw": "San Fernando Road",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Township",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Tejon",
           "count": 1,
           "linked_to": ""
         }
@@ -11000,7 +10543,20 @@
         "Tejon"
       ],
       "fine_print_raw": "©1998 SANTA CLARITA VALLEY HISTORICAL SOCIETY | RIGHTS RESERVED.",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 17 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lang' appears 9 time(s) standing alone; possible variant of Lang Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 3 time(s) standing alone; possible variant of San Francisquito Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -11879,22 +11435,7 @@
       "places_mentioned": [
         {
           "name_raw": "Pico",
-          "count": 48,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Newhall",
-          "count": 16,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Mentryville",
-          "count": 6,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 2,
+          "count": 46,
           "linked_to": ""
         },
         {
@@ -11923,17 +11464,7 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Pico Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Rancho San Francisco",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
           "count": 1,
           "linked_to": ""
         }
@@ -11983,7 +11514,20 @@
         "Saugus"
       ],
       "fine_print_raw": "©A.B. Perkins/Santa Clarita Valley Historical Society Collection | Presentation ©SCVHistory.com",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 46 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Lyons' appears 1 time(s) standing alone; possible variant of Lyons Station, Lyon's Station"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Hart High' appears 1 time(s) standing alone; possible variant of Hart High School"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -12249,17 +11793,7 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 17,
-          "linked_to": ""
-        },
-        {
           "name_raw": "San Fernando Road",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
           "count": 2,
           "linked_to": ""
         },
@@ -12311,7 +11845,12 @@
         "Saugus"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Soledad' appears 1 time(s) standing alone; possible variant of Soledad Canyon, Soledad Township"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -12546,17 +12085,7 @@
           "linked_to": ""
         },
         {
-          "name_raw": "Newhall",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Beale's Cut",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Grapevine",
           "count": 1,
           "linked_to": ""
         },
@@ -12591,7 +12120,16 @@
         "Newhall"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Pico' appears 1 time(s) standing alone; possible variant of Pico Canyon, Pico Camp"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'San Francisquito' appears 1 time(s) standing alone; possible variant of San Francisquito Canyon"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "San Fernando",
@@ -12896,43 +12434,8 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 8,
-          "linked_to": ""
-        },
-        {
           "name_raw": "San Fernando Road",
           "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 2,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Canyon Country",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Mint Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Pico",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Pico Canyon",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
-          "count": 1,
           "linked_to": ""
         }
       ],
@@ -13173,47 +12676,12 @@
       ],
       "places_mentioned": [
         {
-          "name_raw": "Newhall",
-          "count": 16,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus",
-          "count": 7,
-          "linked_to": ""
-        },
-        {
           "name_raw": "Hart High",
           "count": 1,
           "linked_to": ""
         },
         {
           "name_raw": "Placerita",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Santa Clarita",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Saugus-Valencia",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Soledad Township",
-          "count": 1,
-          "linked_to": ""
-        },
-        {
-          "name_raw": "Valencia",
           "count": 1,
           "linked_to": ""
         }
@@ -13239,7 +12707,16 @@
         "Valencia"
       ],
       "fine_print_raw": "",
-      "needs_review": [],
+      "needs_review": [
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Placerita' appears 1 time(s) standing alone; possible variant of Placerita Canyon"
+        },
+        {
+          "reason": "possible_place_variant",
+          "detail": "'Hart High' appears 1 time(s) standing alone; possible variant of Hart High School"
+        }
+      ],
       "external_places_mentioned": [
         {
           "name_raw": "California",
@@ -17117,38 +16594,9 @@
     ],
     "places": [
       {
-        "name_raw": "Newhall",
-        "name_variants": [],
-        "mention_count": 285,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/intro.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm",
-          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
-          "https://scvhistory.com/scvhistory/sg19630117depot.htm",
-          "https://scvhistory.com/scvhistory/perkins-fremont.htm",
-          "https://scvhistory.com/scvhistory/sentinel042865.htm",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
         "name_raw": "Pico",
         "name_variants": [],
-        "mention_count": 162,
+        "mention_count": 128,
         "pages": [
           "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
           "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
@@ -17159,8 +16607,7 @@
           "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
           "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
           "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
-          "https://scvhistory.com/scvhistory/perkins-fremont.htm",
-          "https://scvhistory.com/scvhistory/sentinel042865.htm"
+          "https://scvhistory.com/scvhistory/perkins-fremont.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17168,10 +16615,9 @@
       {
         "name_raw": "Soledad",
         "name_variants": [],
-        "mention_count": 125,
+        "mention_count": 96,
         "pages": [
           "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
           "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
           "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
           "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
@@ -17180,10 +16626,8 @@
           "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
           "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
           "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
           "https://scvhistory.com/scvhistory/perkins032361.htm",
-          "https://scvhistory.com/scvhistory/sg19630117depot.htm",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+          "https://scvhistory.com/scvhistory/sg19630117depot.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17208,179 +16652,6 @@
         "legacy_page_url": ""
       },
       {
-        "name_raw": "Saugus",
-        "name_variants": [],
-        "mention_count": 40,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/intro.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
-          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
-          "https://scvhistory.com/scvhistory/sg19630117depot.htm",
-          "https://scvhistory.com/scvhistory/sentinel042865.htm",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Castaic",
-        "name_variants": [],
-        "mention_count": 39,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "San Francisquito",
-        "name_variants": [],
-        "mention_count": 38,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm",
-          "https://scvhistory.com/scvhistory/perkins-fremont.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Camulos",
-        "name_variants": [],
-        "mention_count": 34,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Pico Canyon",
-        "name_variants": [],
-        "mention_count": 33,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
-          "https://scvhistory.com/scvhistory/sentinel042865.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Soledad Canyon",
-        "name_variants": [],
-        "mention_count": 24,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Castaic Junction",
-        "name_variants": [],
-        "mention_count": 23,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Piru",
-        "name_variants": [],
-        "mention_count": 23,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Santa Clarita",
-        "name_variants": [],
-        "mention_count": 23,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/intro.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm",
-          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
-          "https://scvhistory.com/scvhistory/sentinel042865.htm",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Lang",
-        "name_variants": [],
-        "mention_count": 22,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
         "name_raw": "Santa Clara River",
         "name_variants": [],
         "mention_count": 22,
@@ -17394,6 +16665,39 @@
           "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
           "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
           "https://scvhistory.com/scvhistory/perkins-pico-1958.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Lang",
+        "name_variants": [],
+        "mention_count": 21,
+        "pages": [
+          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "San Francisquito",
+        "name_variants": [],
+        "mention_count": 21,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm",
+          "https://scvhistory.com/scvhistory/perkins-fremont.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17418,19 +16722,6 @@
         "legacy_page_url": ""
       },
       {
-        "name_raw": "Acton",
-        "name_variants": [],
-        "mention_count": 19,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
         "name_raw": "Beale's Cut",
         "name_variants": [],
         "mention_count": 19,
@@ -17443,89 +16734,6 @@
           "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
           "https://scvhistory.com/scvhistory/sg19630117depot.htm",
           "https://scvhistory.com/scvhistory/perkins-fremont.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Ravenna",
-        "name_variants": [],
-        "mention_count": 19,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Grapevine",
-        "name_variants": [],
-        "mention_count": 18,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-fremont.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Lyons",
-        "name_variants": [],
-        "mention_count": 18,
-        "pages": [
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-picocamp.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "San Francisquito Canyon",
-        "name_variants": [],
-        "mention_count": 17,
-        "pages": [
-          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Mentryville",
-        "name_variants": [],
-        "mention_count": 16,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins-picocamp.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Tejon",
-        "name_variants": [],
-        "mention_count": 15,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
-          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17553,20 +16761,6 @@
         "pages": [
           "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
           "https://scvhistory.com/scvhistory/perkins-pico-1958.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Placerita",
-        "name_variants": [],
-        "mention_count": 12,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17602,6 +16796,20 @@
         "legacy_page_url": ""
       },
       {
+        "name_raw": "Placerita",
+        "name_variants": [],
+        "mention_count": 8,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
         "name_raw": "Fremont Pass",
         "name_variants": [],
         "mention_count": 7,
@@ -17612,46 +16820,6 @@
           "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
           "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
           "https://scvhistory.com/scvhistory/perkins-fremont.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Hart High",
-        "name_variants": [],
-        "mention_count": 7,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
-          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Mint Canyon",
-        "name_variants": [],
-        "mention_count": 7,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
-          "https://scvhistory.com/scvhistory/sentinel042865.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Bouquet Canyon",
-        "name_variants": [],
-        "mention_count": 6,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17670,6 +16838,18 @@
         "legacy_page_url": ""
       },
       {
+        "name_raw": "Lyons",
+        "name_variants": [],
+        "mention_count": 6,
+        "pages": [
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-picocamp.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
         "name_raw": "Railroad Canyon",
         "name_variants": [],
         "mention_count": 6,
@@ -17679,6 +16859,18 @@
           "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
           "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
           "https://scvhistory.com/scvhistory/perkins-pico-1958.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Grapevine",
+        "name_variants": [],
+        "mention_count": 5,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17710,27 +16902,13 @@
         "legacy_page_url": ""
       },
       {
-        "name_raw": "Soledad Township",
-        "name_variants": [],
-        "mention_count": 5,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
-          "https://scvhistory.com/scvhistory/perkins032361.htm",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Placerita Canyon",
+        "name_raw": "Hart High",
         "name_variants": [],
         "mention_count": 4,
         "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html"
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
+          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17770,34 +16948,12 @@
         "legacy_page_url": ""
       },
       {
-        "name_raw": "Sand Canyon",
-        "name_variants": [],
-        "mention_count": 3,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
         "name_raw": "Wiley Canyon",
         "name_variants": [],
         "mention_count": 3,
         "pages": [
           "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
           "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Canyon Country",
-        "name_variants": [],
-        "mention_count": 2,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/sentinel042865.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17835,38 +16991,6 @@
         "legacy_page_url": ""
       },
       {
-        "name_raw": "Towsley Canyon",
-        "name_variants": [],
-        "mention_count": 2,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Valencia",
-        "name_variants": [],
-        "mention_count": 2,
-        "pages": [
-          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Agua Dulce",
-        "name_variants": [],
-        "mention_count": 1,
-        "pages": [
-          "https://scvhistory.com/scvhistory/perkins032361.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
         "name_raw": "Castac",
         "name_variants": [],
         "mention_count": 1,
@@ -17882,16 +17006,6 @@
         "mention_count": 1,
         "pages": [
           "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Haskell Canyon",
-        "name_variants": [],
-        "mention_count": 1,
-        "pages": [
-          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -17922,26 +17036,6 @@
         "mention_count": 1,
         "pages": [
           "https://scvhistory.com/scvhistory/signal/perkins/part06.html"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Saugus-Valencia",
-        "name_variants": [],
-        "mention_count": 1,
-        "pages": [
-          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
-        ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
-      },
-      {
-        "name_raw": "Val Verde",
-        "name_variants": [],
-        "mention_count": 1,
-        "pages": [
-          "https://scvhistory.com/scvhistory/harthigh_may1952.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
@@ -19097,6 +18191,390 @@
         "mention_count": 1,
         "pages": [
           "https://scvhistory.com/scvhistory/signal/perkins/part05.html"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      }
+    ],
+    "community_mentions": [
+      {
+        "name_raw": "Newhall",
+        "name_variants": [],
+        "mention_count": 285,
+        "pages": [
+          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+          "https://scvhistory.com/scvhistory/signal/perkins/intro.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm",
+          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
+          "https://scvhistory.com/scvhistory/sg19630117depot.htm",
+          "https://scvhistory.com/scvhistory/perkins-fremont.htm",
+          "https://scvhistory.com/scvhistory/sentinel042865.htm",
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Saugus",
+        "name_variants": [],
+        "mention_count": 40,
+        "pages": [
+          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+          "https://scvhistory.com/scvhistory/signal/perkins/intro.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
+          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
+          "https://scvhistory.com/scvhistory/sg19630117depot.htm",
+          "https://scvhistory.com/scvhistory/sentinel042865.htm",
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Castaic",
+        "name_variants": [],
+        "mention_count": 39,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Camulos",
+        "name_variants": [],
+        "mention_count": 34,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Pico Canyon",
+        "name_variants": [],
+        "mention_count": 33,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
+          "https://scvhistory.com/scvhistory/sentinel042865.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Soledad Canyon",
+        "name_variants": [],
+        "mention_count": 24,
+        "pages": [
+          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Castaic Junction",
+        "name_variants": [],
+        "mention_count": 23,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Piru",
+        "name_variants": [],
+        "mention_count": 23,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Santa Clarita",
+        "name_variants": [],
+        "mention_count": 23,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/intro.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm",
+          "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
+          "https://scvhistory.com/scvhistory/sentinel042865.htm",
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Acton",
+        "name_variants": [],
+        "mention_count": 19,
+        "pages": [
+          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Ravenna",
+        "name_variants": [],
+        "mention_count": 19,
+        "pages": [
+          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "San Francisquito Canyon",
+        "name_variants": [],
+        "mention_count": 17,
+        "pages": [
+          "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Mentryville",
+        "name_variants": [],
+        "mention_count": 16,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins-picocamp.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Tejon",
+        "name_variants": [],
+        "mention_count": 15,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+          "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Mint Canyon",
+        "name_variants": [],
+        "mention_count": 7,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
+          "https://scvhistory.com/scvhistory/sentinel042865.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Bouquet Canyon",
+        "name_variants": [],
+        "mention_count": 6,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Soledad Township",
+        "name_variants": [],
+        "mention_count": 5,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm",
+          "https://scvhistory.com/scvhistory/perkins032361.htm",
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Placerita Canyon",
+        "name_variants": [],
+        "mention_count": 4,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Sand Canyon",
+        "name_variants": [],
+        "mention_count": 3,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Canyon Country",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/sentinel042865.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Towsley Canyon",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Valencia",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Agua Dulce",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/perkins032361.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Haskell Canyon",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Mojave Desert",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/perkins_manuscript_ch2.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Saugus-Valencia",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/hs_parade19680704book.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": ""
+      },
+      {
+        "name_raw": "Val Verde",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/harthigh_may1952.htm"
         ],
         "has_legacy_page": false,
         "legacy_page_url": ""
