@@ -706,3 +706,26 @@ Then `project-config/write` and commit `config/project/` for the first one. Writ
 
 - `recordImages`, `recordDocuments` and `wmRelatedPerson` have zero relations sitewide, so photos, documents and the war memorial badge stay wired but unfed.
 - Community terms still have empty body, aliases and type.
+
+## 2026-09-17 (Claude, templates-batch-7 follow-up)
+
+- Agent: Claude
+- Date: 2026-09-17
+
+### fix_bad_links.php crashed; guarded and re-verified
+
+It threw from `Element->normalizeFieldValue()` and died before applying anything. It walked a fixed list of ten text handles and called `getFieldValue()` for each on every entry, so the first entry whose layout did not carry one of them killed the run.
+
+Field access is now guarded twice, the way `import_wp_media.php` and `clean_bodies.php` do it: the handle is checked against that entry's own field layout first, and every get and set is still wrapped in try/catch. `setFieldValues` and `saveElement` are wrapped too, so a failure on one entry reports and moves on.
+
+The dry run prints all five planned changes, the two Northridge links it leaves alone, and a per entry list of handles skipped for not being on that layout. Those skipped handles are exactly what crashed the first version: `wmNarrative`, `mpNarrative`, `authorBio` and the three note variants belonging to other entry types.
+
+**Also fixed a hazard that was not reported:** replacements used `$target->getUrl()`, which bakes the current environment's hostname into stored content. Run locally, it would have written `scvhistory.ddev.site` links into bodies that then sync to production. Replacements are now root relative.
+
+Idempotent on a second run, which matters because `$APPLY` is already true in Nathan's copy: each rewrite is anchored on the exact stored URL, so once fixed the pattern no longer matches, and once the legacy field is cleared there is no bare domain to move. A second run plans zero and says so.
+
+Verified by running the dry run to completion: plans 5, writes 0.
+
+### Pages verified
+
+All eight pages return 200: `/about`, `/contact`, `/permissions`, `/photo-credits`, `/newsletter`, `/submit`, `/nonprofit`, `/privacy`. All 13 internal footer links return 200, including the two grouping links `/articles?view=era` and `/articles?view=collection`. Nothing 404s. A page with an empty body renders the record shell and says "This page has not been written yet".
