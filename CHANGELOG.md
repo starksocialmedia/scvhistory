@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: suppressed the rest of SEOmatic's head output with the same template-level pattern, so the site emits one title, one set of Open Graph and Twitter tags and one JSON-LD block. Also fixed og:type, which said "article" for every element and so said it on a privacy page and on a place.
+- Decisions: SEOmatic keeps its meta tags in four containers, not one. Switching off `general` alone left every og: and twitter: tag in place, so `opengraph`, `twitter` and `miscellaneous` are named too, along with the title, link and script containers. og:type now maps by section: article for articles and obituaries, profile for people, war memorials and military profiles, and website for everything else, which is what the Open Graph specification gives as the fallback. og:locale moved into meta.twig because it was the one tag SEOmatic emitted that we did not; robots and referrer policy did not need moving, since they are sent as HTTP headers.
+- Blockers: none.
+- Result: 38 pages checked for exactly one title, one og:type with the right value for its section, one og:url, one og:site_name reading SCVHistory.com, one twitter:card, one canonical and one JSON-LD block, with no twitter:creator. No failures. Sitemaps still serve, x-robots-tag and referrer-policy headers still send, sitemapsEnabled and headersEnabled untouched.
+- Next: Nathan runs add_gnis_field.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: switched SEOmatic's JSON-LD container off and added scripts/import/add_gnis_field.php, which creates a plain text gnisId on the place entry type and wires it into sameAs and identifier in the schema partial. Also retired _partials/jsonld/person.twig, which predated the rebuild and emitted a second, conflicting Person block on every person page.
 - Decisions: SEOmatic is switched off from the template rather than from its settings. `{% do seomatic.jsonLd.container().include(false) %}` sits in _partials/head/schema.twig next to the block that replaces it, so the reason travels with the change, it is in git rather than in the database, and sitemaps, redirects and headers are untouched. A GNIS feature ID is stored as plain text, not a number, because it is an opaque identifier and a number field would eat a leading zero.
 - Blockers: SEOmatic still emits a second <title> and duplicate og:site_name, og:type, og:url, og:title, twitter:card and twitter:title, plus twitter:creator with an empty handle. Its og:site_name says "SCV History" where ours says "SCVHistory.com". That is a separate decision from the one asked for, so it is reported, not changed.

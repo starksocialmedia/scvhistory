@@ -374,14 +374,40 @@
 {% set main = main|filter(v => v is not null and v is not same as('') and v is not same as([])) %}
 {% set graph = [main]|merge(extra) %}
 
-{#- SEOmatic emits its own JSON-LD block, a WebPage whose author, creator and
-    copyrightHolder point at Organization nodes carrying nothing but an @id.
-    That is the only thing on these pages a validator objects to, and this file
-    replaces what it was for, so its JSON-LD container is switched off here,
-    next to the thing that supersedes it. SEOmatic keeps doing sitemaps and
-    redirects, which is why it is installed. -#}
+{#- SEOmatic's head output is switched off here, next to the partials that
+    replace it, so the reason travels with the change and it lives in git
+    rather than in the database.
+
+    Its JSON-LD emitted a WebPage whose author, creator and copyrightHolder
+    pointed at Organization nodes carrying nothing but an @id. Its title, tag
+    and link containers then duplicated what meta.twig already emits, and
+    contradicted it: a second <title>, og:site_name reading "SCV History"
+    against our "SCVHistory.com", og:type reading "website" on an article, and
+    twitter:creator with an empty handle. Two answers that disagree are worse
+    than either alone.
+
+    Sitemaps, redirects and headers are untouched, which is what SEOmatic is
+    installed for. robots and referrer policy were the only things worth
+    keeping out of the tag container and they are sent as HTTP headers anyway,
+    as x-robots-tag and referrer-policy. og:locale was not, so meta.twig emits
+    it now. -#}
+{#- SEOmatic keeps its meta tags in four containers, not one: general,
+    opengraph, twitter and miscellaneous. Switching off only the first leaves
+    every og: and twitter: tag in place, so all four are named here. A handle
+    that does not exist returns null, hence the guard. -#}
 {% if craft.app.plugins.isPluginEnabled('seomatic') and seomatic is defined %}
-  {% do seomatic.jsonLd.container().include(false) %}
+  {% for c in [
+    seomatic.jsonLd.container(),
+    seomatic.title.container(),
+    seomatic.tag.container('general'),
+    seomatic.tag.container('opengraph'),
+    seomatic.tag.container('twitter'),
+    seomatic.tag.container('miscellaneous'),
+    seomatic.link.container('general'),
+    seomatic.script.container('general')
+  ] %}
+    {% if c %}{% do c.include(false) %}{% endif %}
+  {% endfor %}
 {% endif %}
 
 <script type="application/ld+json">{{ { '@context': 'https://schema.org', '@graph': graph }|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>

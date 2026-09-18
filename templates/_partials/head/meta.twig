@@ -66,6 +66,18 @@
 {% endif %}
 {% set ogImageUrl = ogImage ? ogImage.url : SEAL %}
 
+{# ── Open Graph type ───────────────────────────────────────────────
+   Open Graph has a short vocabulary, and "article" for every element was
+   wrong on most of them: a privacy page is not an article and neither is a
+   place. article covers the pieces that were written, profile covers the
+   people, and the specification's own fallback for everything else is
+   website. #}
+{% set OG_TYPE = {
+  'articles': 'article', 'obituaries': 'article',
+  'persons': 'profile', 'militaryProfiles': 'profile', 'warMemorials': 'profile'
+} %}
+{% set ogType = (entry is defined and entry) ? (OG_TYPE[entry.section.handle] ?? 'website') : 'website' %}
+
 {# ── Canonical ─────────────────────────────────────────────────── #}
 {% set canonical = el and el.url ? el.url : (SEG ? siteUrl ~ craft.app.request.getPathInfo() : siteUrl) %}
 
@@ -73,8 +85,9 @@
 <link rel="canonical" href="{{ canonical }}">
 {% if desc %}<meta name="description" content="{{ desc }}">{% endif %}
 
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="{{ SITE }}">
-<meta property="og:type" content="{{ el ? 'article' : 'website' }}">
+<meta property="og:type" content="{{ ogType }}">
 <meta property="og:title" content="{{ recTitle ?: (sectionLabel ?: SITE) }}">
 {% if desc %}<meta property="og:description" content="{{ desc }}">{% endif %}
 <meta property="og:url" content="{{ canonical }}">
