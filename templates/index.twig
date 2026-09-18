@@ -93,8 +93,10 @@
 {% set cursor = null %}
 {% set first = null %}{% set last = null %}
 {% for e in eras %}{% if e.start and e.end %}{% if first is null %}{% set first = e.start %}{% endif %}{% set last = e.end %}{% endif %}{% endfor %}
+{% set contained = [] %}
+{% for e in eras %}{% for o in eras %}{% if e.start and e.end and o.start and o.end and o.cat.id != e.cat.id and e.start >= o.start and e.end <= o.end and (o.end - o.start) > (e.end - e.start) %}{% set contained = contained|merge([e.cat.id]) %}{% endif %}{% endfor %}{% endfor %}
 {% for e in eras %}
-  {% if e.start and e.end %}
+  {% if e.start and e.end and e.cat.id not in contained %}
     {% if cursor is not null and e.start > cursor %}{% set bar = bar|merge([{ gap: true, w: e.start - cursor }]) %}{% endif %}
     {% set bar = bar|merge([{ gap: false, w: max(e.end - e.start, 3), e: e }]) %}
     {% set cursor = max(cursor ?? 0, e.end) %}
