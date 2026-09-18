@@ -72,6 +72,7 @@ not a born-digital one, and is reported as a gap.
 | dateEstablished | expected | |
 | placeAddress | optional | |
 | placeChlNumber | optional | California Historical Landmark |
+| neighborhood | expected | the community it stands in, from evidence in the source |
 
 ## Organization
 
@@ -80,6 +81,7 @@ not a born-digital one, and is reported as a gap.
 | orgLat, orgLng | expected | |
 | dateFounded | expected | |
 | orgWebsite | optional | |
+| neighborhood | expected | the community it operated in, from evidence in the source |
 
 ## War memorial
 
@@ -103,6 +105,32 @@ not a born-digital one, and is reported as a gap.
 | articlesInCollection | required | in reading order |
 | collectionParts | expected | for a series long enough to have divisions |
 | bandImage | expected | clean artwork, no lettering |
+
+## Community from evidence, never from the name
+
+neighborhood is expected on articles, places and organizations alike. It is the
+one field that makes containment work: a community page gathers what belongs to
+it, and a record without one is missing from that gathering.
+
+**It must come from evidence in the source, not from the name.** Saugus Cafe is
+in Valencia. Placerita Canyon Road runs out of Newhall. A name that carries a
+community is a name, not a citation, and the legacy text almost always says
+where a thing actually stood. Where the source does not say, the field stays
+empty and the audit reports it; a guess dressed as a fact is worse than a gap,
+because the gap is visible and the guess is not.
+
+## Legacy sources that could not be located
+
+| Record | Stored path | Status |
+|---|---|---|
+| Northridge Earthquake (event) | `/scvhistory/newhallpass.htm` | 404 on the live site, and in neither sitemap |
+
+Checked against sitemap.json and sitemap-2.json, which together hold 5,751
+distinct paths, and requested directly. Nothing on the legacy site is a
+plausible substitute: the closest pages are photographs of the earthquake and
+articles about Newhall Pass, none of which is the source this record was made
+from. The path is left as it stands rather than replaced with a guess, and a
+record may carry no legacy URL sooner than a wrong one.
 
 ## Burial places needing research
 

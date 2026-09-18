@@ -1,0 +1,381 @@
+{% extends "_layouts/base" %}
+
+{#
+  Data overview. Where is this archive thin.
+
+  Unlisted: not in the mega menu, not in any index, noindex on the page and in
+  robots. It is a status board for Nathan and whoever he shows it to, not a
+  control panel and not a report. Nothing here writes, and nothing here is
+  hand-maintained: every number is counted at request time from the database,
+  or read from the review screens' own JSON in the browser.
+
+  Relation coverage is discovered rather than listed. Every entry type's field
+  layout is walked for relation fields, so a field added in the CP appears here
+  on the next request and a field removed disappears. The denominator is the
+  number of records whose entry type actually carries that field, which is why
+  it reads "22 of 103" rather than "22": a bare count cannot tell you whether
+  the gap is large.
+
+  Relations are counted from the relations table in one query, against canonical
+  undeleted elements only. That table carries a row per revision, which turns
+  one real relation into thirteen if you count it naively.
+#}
+
+{% set metaTitle = 'Data overview' %}
+{% set metaDescription = 'Where the archive is thin. Unlisted status board.' %}
+
+{% block head %}
+  <meta name="robots" content="noindex,nofollow">
+  {% css %}
+  .ov{max-width:1180px;margin:0 auto;padding:36px 40px 90px}
+  .ov h1{font-family:'Playfair Display',serif;font-weight:500;font-size:34px;color:#17254C;margin:0 0 6px}
+  .ov .sub{color:#5B6472;font-size:14.5px;line-height:1.6;margin:0 0 30px;max-width:66ch}
+  .ov h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin:40px 0 12px;padding-bottom:7px;border-bottom:1px solid #EFE6D0}
+  .ov h2:first-of-type{margin-top:0}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .tile{background:#fff;border:1px solid #E2E4E8;border-top:3px solid #C4A031;padding:14px 15px}
+  .tile .n{font-family:'Playfair Display',serif;font-size:30px;line-height:1;color:#17254C}
+  .tile .l{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#5B6472;margin-top:6px}
+  .tile.zero{border-top-color:#E2E4E8;opacity:.6}
+
+  table.cov{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8}
+  table.cov th{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#8A919E;text-align:left;padding:9px 12px;border-bottom:1px solid #E2E4E8;font-weight:500}
+  table.cov td{padding:7px 12px;border-bottom:1px solid #F1F2F4;font-size:14px;vertical-align:middle}
+  table.cov tr:last-child td{border-bottom:0}
+  table.cov .fld{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#17254C}
+  table.cov .num{white-space:nowrap;color:#5B6472;font-size:13px;width:110px}
+  table.cov .barw{width:46%;min-width:160px}
+
+  .bar{position:relative;height:10px;background:#EEF0F4;overflow:hidden}
+  .bar i{position:absolute;inset:0 auto 0 0;display:block}
+  .bar i.good{background:#2E7D5B}
+  .bar i.part{background:#C4A031}
+  .bar i.thin{background:#B4453C}
+  .pct{font-family:'Jost',sans-serif;font-size:11.5px;color:#8A919E;width:48px;text-align:right;white-space:nowrap}
+  tr.thin td{background:#FDF6F5}
+  tr.empty td{background:#FBFBFC;color:#8A919E}
+  tr.empty .fld{color:#8A919E}
+
+  .note{font-size:13px;color:#5B6472;line-height:1.65;margin:10px 0 0}
+  details.sec{background:#fff;border:1px solid #E2E4E8;margin-bottom:8px}
+  details.sec>summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  details.sec>summary::-webkit-details-marker{display:none}
+  details.sec>summary::before{content:'+';font-family:'Jost',sans-serif;color:#C4A031;width:11px;flex:none}
+  details.sec[open]>summary::before{content:'\2212'}
+  details.sec>summary:hover{background:#FDFCF8}
+  details.sec .nm{font-family:'Jost',sans-serif;font-size:13.5px;letter-spacing:.04em;color:#17254C;min-width:150px}
+  details.sec .meta{font-size:12.5px;color:#8A919E;min-width:150px}
+  details.sec .bar.mini{width:120px;height:8px;flex:none}
+  details.sec .tally{font-size:12.5px;color:#5B6472;margin-left:auto}
+  details.sec .tally b{color:#B4453C;font-weight:500}
+  details.sec table.cov{border:0;border-top:1px solid #E2E4E8}
+  .pend{font-size:13.5px;color:#8A919E}
+  @media(max-width:760px){.ov{padding:24px 16px 70px}table.cov .barw{display:none}}
+  {% endcss %}
+{% endblock %}
+
+{% block content %}
+
+{#- ─────────────────────────────────────────────── counted from the database -#}
+
+{% set SECTIONS = craft.app.entries.getAllSections() %}
+
+{#- One query for every relation in the archive, revisions and drafts excluded. -#}
+{#- Grouped by entry type as well as field, because one field is shared by many
+    types: neighborhood alone sits on twelve. Grouping by field id only counts
+    the whole archive against each section in turn and reads over 100%. -#}
+{% set relSql = "SELECT r.fieldId AS fieldId, en.typeId AS typeId, COUNT(DISTINCT r.sourceId) AS n
+  FROM {{%relations}} r
+  INNER JOIN {{%elements}} se ON se.id = r.sourceId
+  INNER JOIN {{%elements}} te ON te.id = r.targetId
+  INNER JOIN {{%entries}} en ON en.id = r.sourceId
+  WHERE se.draftId IS NULL AND se.revisionId IS NULL AND se.dateDeleted IS NULL
+    AND te.draftId IS NULL AND te.revisionId IS NULL AND te.dateDeleted IS NULL
+  GROUP BY r.fieldId, en.typeId" %}
+{#- Keyed "f123", not 123. Twig's merge filter is array_merge, which renumbers
+    integer keys, so a map keyed by field id silently becomes 0,1,2,… and every
+    lookup misses. Every count on this page read zero until this was found. -#}
+{% set relCount = {} %}
+{% for row in craft.app.db.createCommand(relSql).queryAll() %}
+  {% set relCount = relCount|merge({ ('f' ~ row.fieldId ~ 't' ~ row.typeId): row.n }) %}
+{% endfor %}
+
+{% set RELATION_CLASSES = ['craft\\fields\\Entries', 'craft\\fields\\Categories', 'craft\\fields\\Assets'] %}
+
+{% set SECTION_TOTALS = {} %}
+{% for s in SECTIONS %}
+  {% set SECTION_TOTALS = SECTION_TOTALS|merge({ (s.handle): craft.entries().section(s.handle).status(null).count() }) %}
+{% endfor %}
+
+<div class="ov">
+  <h1>Data overview</h1>
+  <p class="sub">
+    Where the archive is thin. Every number is counted from the database as this page loads;
+    the review figures are read from the screens' own files. Nothing here is written by hand,
+    so nothing here can quietly go out of date. Counted {{ now|date('j F Y, g:ia') }}.
+  </p>
+
+  {#- ───────────────────────────────────────────────────────────── the shape -#}
+  <h2>Records</h2>
+  <div class="tiles">
+    {% set grand = 0 %}
+    {% for s in SECTIONS %}
+      {% set n = craft.entries().section(s.handle).status(null).count() %}
+      {% set grand = grand + n %}
+      <div class="tile{{ n == 0 ? ' zero' : '' }}">
+        <div class="n">{{ n }}</div>
+        <div class="l">{{ s.name }}</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <h2>Category groups</h2>
+  <div class="tiles">
+    {% for g in craft.app.categories.getAllGroups() %}
+      {% set n = craft.categories().group(g.handle).status(null).count() %}
+      <div class="tile{{ n == 0 ? ' zero' : '' }}">
+        <div class="n">{{ n }}</div>
+        <div class="l">{{ g.name }}</div>
+      </div>
+    {% endfor %}
+    <div class="tile"><div class="n">{{ grand }}</div><div class="l">records in all</div></div>
+  </div>
+
+  {#- ──────────────────────────────────────────── community coverage, first -#}
+  <h2>Community coverage</h2>
+  <p class="note">
+    neighborhood sits on articles, places and organizations alike, and containment is part of
+    the model: a place belongs to a community the same way an article concerns one. A record
+    without it cannot be found by community and does not appear in that community's page.
+  </p>
+  {% set COMMUNITY_OF = [] %}
+  {% for s in SECTIONS %}
+    {% for t in s.getEntryTypes() %}
+      {% for f in t.getFieldLayout().getCustomFields() %}
+        {% if f.handle == 'neighborhood' %}
+          {% set COMMUNITY_OF = COMMUNITY_OF|merge([{ section: s, type: t, field: f }]) %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endfor %}
+  <table class="cov">
+    <tr><th>Section</th><th>With a community</th><th class="barw"></th><th></th></tr>
+    {% for row in COMMUNITY_OF %}
+      {% set total = craft.entries().section(row.section.handle).type(row.type.handle).status(null).count() %}
+      {% set have = relCount['f' ~ row.field.id ~ 't' ~ row.type.id] ?? 0 %}
+      {% set pct = total ? (have / total * 100)|round : 0 %}
+      <tr class="{{ total == 0 ? 'empty' : (pct < 35 ? 'thin' : '') }}">
+        <td>{{ row.section.name }}</td>
+        <td class="num">{{ have }} of {{ total }}</td>
+        <td class="barw"><div class="bar"><i class="{{ pct >= 80 ? 'good' : (pct >= 35 ? 'part' : 'thin') }}" style="width:{{ pct }}%"></i></div></td>
+        <td class="pct">{{ pct }}%</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {#- ─────────────────────────────────────────────────── relation coverage -#}
+  <h2>Relation coverage</h2>
+  <p class="note">
+    For each relation field, the records that carry at least one relation against the records
+    whose entry type has that field at all. A field nothing uses is not necessarily wrong, but
+    it is worth knowing which they are.
+  </p>
+
+  {% for s in SECTIONS %}
+    {% for t in s.getEntryTypes() %}
+      {% set total = craft.entries().section(s.handle).type(t.handle).status(null).count() %}
+      {%- set fields = [] -%}
+      {% for f in t.getFieldLayout().getCustomFields() %}
+        {% if className(f) in RELATION_CLASSES and f.handle != 'neighborhood' %}
+          {% set fields = fields|merge([f]) %}
+        {% endif %}
+      {% endfor %}
+
+      {#- A section with no records has nothing to say about coverage, and a
+          fourteen-table page cannot be read at a glance. Each section collapses
+          to one line carrying its own summary; the detail is a click away. -#}
+      {% if fields|length and total %}
+        {% set nEmpty = 0 %}{% set nThin = 0 %}
+        {% for f in fields %}
+          {% set have = relCount['f' ~ f.id ~ 't' ~ t.id] ?? 0 %}
+          {% if have == 0 %}{% set nEmpty = nEmpty + 1 %}
+          {% elseif (have / total * 100) < 20 %}{% set nThin = nThin + 1 %}{% endif %}
+        {% endfor %}
+        {% set used = fields|length - nEmpty %}
+        {% set pct = fields|length ? (used / fields|length * 100)|round : 0 %}
+
+        {#- Collapsed, all of them. Opening the thin ones by default opened seven
+            of ten, because the archive genuinely is thin, and a page that is
+            mostly open is the long page again. The summary line is the glance. -#}
+        <details class="sec">
+          <summary>
+            <span class="nm">{{ s.name }}{% if s.getEntryTypes()|length > 1 %} · {{ t.name }}{% endif %}</span>
+            <span class="meta">{{ total }} records · {{ fields|length }} relation fields</span>
+            <span class="bar mini"><i class="{{ pct >= 80 ? 'good' : (pct >= 40 ? 'part' : 'thin') }}" style="width:{{ pct }}%"></i></span>
+            <span class="tally">{{ used }} in use{% if nEmpty %}, <b>{{ nEmpty }} empty</b>{% endif %}{% if nThin %}, {{ nThin }} thin{% endif %}</span>
+          </summary>
+          <table class="cov">
+            <tr><th>Field</th><th>Carrying one</th><th class="barw"></th><th></th></tr>
+            {% for f in fields|sort((a, b) => ((relCount['f' ~ b.id ~ 't' ~ t.id] ?? 0)) <=> ((relCount['f' ~ a.id ~ 't' ~ t.id] ?? 0))) %}
+              {% set have = relCount['f' ~ f.id ~ 't' ~ t.id] ?? 0 %}
+              {% set fpct = total ? (have / total * 100)|round : 0 %}
+              <tr class="{{ have == 0 ? 'empty' : (fpct < 20 ? 'thin' : '') }}">
+                <td class="fld">{{ f.handle }}</td>
+                <td class="num">{{ have }} of {{ total }}</td>
+                <td class="barw"><div class="bar"><i class="{{ fpct >= 80 ? 'good' : (fpct >= 20 ? 'part' : 'thin') }}" style="width:{{ fpct }}%"></i></div></td>
+                <td class="pct">{{ have ? fpct ~ '%' : 'none' }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </details>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  {#- ──────────────────────────────────────────── authority identifiers -#}
+  <h2>Authority identifiers</h2>
+  <p class="note">
+    What lets a scholar leave this archive and land somewhere citable. Counted against the
+    records whose entry type carries the field.
+  </p>
+  {% set AUTH = ['wikidataId','viafId','gnisId','personWikipediaUrl','placeWikipediaUrl',
+                 'orgWikipediaUrl','eventWikipediaUrl','mpWikipediaUrl','personGraveUrl',
+                 'mpFindAGraveUrl','obitGraveUrl','placeChlNumber','archiveUrl'] %}
+  <table class="cov">
+    <tr><th>Identifier</th><th>Filled</th><th class="barw"></th><th></th></tr>
+    {% for handle in AUTH %}
+      {% set total = 0 %}
+      {% set have = 0 %}
+      {% for s in SECTIONS %}
+        {% for t in s.getEntryTypes() %}
+          {% set onType = false %}
+          {% for f in t.getFieldLayout().getCustomFields() %}
+            {% if f.handle == handle %}{% set onType = true %}{% endif %}
+          {% endfor %}
+          {% if onType %}
+            {% set rows = craft.entries().section(s.handle).type(t.handle).status(null).all() %}
+            {% set total = total + rows|length %}
+            {% for e in rows %}
+              {% if attribute(e, handle)|trim %}{% set have = have + 1 %}{% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% if total %}
+        {% set pct = (have / total * 100)|round %}
+        <tr class="{{ have == 0 ? 'empty' : (pct < 20 ? 'thin' : '') }}">
+          <td class="fld">{{ handle }}</td>
+          <td class="num">{{ have }} of {{ total }}</td>
+          <td class="barw"><div class="bar"><i class="{{ pct >= 80 ? 'good' : (pct >= 20 ? 'part' : 'thin') }}" style="width:{{ pct }}%"></i></div></td>
+          <td class="pct">{{ have ? pct ~ '%' : 'none' }}</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+
+  {#- ───────────────────────────────── read from the review screens' own files -#}
+  <h2>Checklist compliance</h2>
+  <p class="note">
+    From <span class="fld">web/review/audit.json</span>, written by audit_records.php.
+    Provenance is not counted against a born-digital record.
+  </p>
+  <div id="audit"><p class="pend">reading audit.json…</p></div>
+
+  <h2>Review screens</h2>
+  <p class="note">
+    What is still undecided. From the exports the screens themselves read, so these are the
+    same numbers the screens show.
+  </p>
+  <div id="review"><p class="pend">reading the review exports…</p></div>
+</div>
+
+{% js %}
+(function () {
+  /* Section totals come from the server; audit.json holds only the records with
+     a gap, so it cannot supply its own denominator. */
+  window.SECTION_TOTALS = {{ SECTION_TOTALS|json_encode|raw }};
+
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (m) {
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[m]; }); };
+
+  function bar(have, total, lowIsBad) {
+    var pct = total ? Math.round(have / total * 100) : 0;
+    var cls = lowIsBad ? (pct >= 80 ? 'good' : (pct >= 20 ? 'part' : 'thin'))
+                       : (pct <= 5 ? 'good' : (pct <= 40 ? 'part' : 'thin'));
+    return '<td class="num">' + have + ' of ' + total + '</td>' +
+      '<td class="barw"><div class="bar"><i class="' + cls + '" style="width:' + pct + '%"></i></div></td>' +
+      '<td class="pct">' + pct + '%</td>';
+  }
+
+  function missing(el, what, how) {
+    el.innerHTML = '<p class="pend">' + esc(what) + ' has not been generated yet. Run ' +
+      '<span class="fld">' + esc(how) + '</span>.</p>';
+  }
+
+  fetch('/review/audit.json').then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (rows) {
+      var bySection = {};
+      rows.forEach(function (r) {
+        var b = bySection[r.section] = bySection[r.section] || { req: 0, exp: 0, born: 0, fields: {} };
+        if ((r.missing_required || []).length) { b.req++; }
+        if ((r.missing_expected || []).length) { b.exp++; }
+        if (r.born_digital) { b.born++; }
+        (r.missing_required || []).forEach(function (h) { b.fields[h] = (b.fields[h] || 0) + 1; });
+      });
+      var h = '<table class="cov"><tr><th>Section</th><th>Missing a required field</th>' +
+              '<th class="barw"></th><th></th><th>Most missed</th></tr>';
+      Object.keys(bySection).sort().forEach(function (k) {
+        var b = bySection[k];
+        var total = (window.SECTION_TOTALS || {})[k] || 0;
+        var worst = Object.keys(b.fields).sort(function (x, y) { return b.fields[y] - b.fields[x]; })[0];
+        h += '<tr class="' + (b.req === 0 ? '' : (total && b.req / total > 0.4 ? 'thin' : '')) + '">' +
+          '<td>' + esc(k) + '</td>' + bar(b.req, total, false) +
+          '<td style="font-size:13px;color:#5B6472">' +
+          (worst ? '<span class="fld">' + esc(worst) + '</span> on ' + b.fields[worst] : '—') +
+          (b.born ? '<span style="color:#8A919E"> · ' + b.born + ' born digital</span>' : '') +
+          '</td></tr>';
+      });
+      document.getElementById('audit').innerHTML = h + '</table>';
+    })
+    .catch(function () { missing(document.getElementById('audit'), 'audit.json', 'audit_records.php'); });
+
+  var screens = [
+    { file: '/review/relations.json', name: 'Relations', key: 'scvRelationDecisions',
+      rows: function (d) { return (d.candidates || []).filter(function (c) { return c.canLink !== false; }); },
+      id: function (c) { return c.entryId + '|' + c.kind + '|' + c.name; },
+      run: 'export_relation_candidates.php' },
+    { file: '/review/entities.json', name: 'Entities', key: 'scvEntityMerges',
+      rows: function (d) { return d.pairs || []; },
+      id: function (p) { return p.kind + '|' + p.a + '|' + p.b; },
+      run: 'export_entity_candidates.php' }
+  ];
+
+  var out = document.getElementById('review');
+  out.innerHTML = '<table class="cov"><tr><th>Screen</th><th>Still undecided</th>' +
+                  '<th class="barw"></th><th></th><th></th></tr><tbody id="revbody"></tbody></table>';
+
+  screens.forEach(function (s) {
+    fetch(s.file).then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) {
+        var rows = s.rows(d);
+        var decided = {};
+        try { decided = JSON.parse(localStorage.getItem(s.key) || '{}'); } catch (e) { decided = {}; }
+        var undecided = rows.filter(function (r) { return !decided[s.id(r)]; }).length;
+        var tr = document.createElement('tr');
+        if (rows.length && undecided / rows.length > 0.6) { tr.className = 'thin'; }
+        tr.innerHTML = '<td>' + esc(s.name) + '</td>' + bar(undecided, rows.length, false) +
+          '<td style="font-size:13px;color:#8A919E">decisions counted in this browser</td>';
+        document.getElementById('revbody').appendChild(tr);
+      })
+      .catch(function () {
+        var tr = document.createElement('tr');
+        tr.className = 'empty';
+        tr.innerHTML = '<td>' + esc(s.name) + '</td><td colspan="4" style="font-size:13px">' +
+          'not generated yet, run <span class="fld">' + esc(s.run) + '</span></td>';
+        document.getElementById('revbody').appendChild(tr);
+      });
+  });
+}());
+{% endjs %}
+{% endblock %}
