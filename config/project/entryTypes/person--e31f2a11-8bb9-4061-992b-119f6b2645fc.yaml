@@ -195,6 +195,40 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c941538f-c133-4227-a8e9-43590d255db7 # Wikidata ID
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 55fd0b75-0d2f-4db4-8e56-cc36d54fcc44
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 130ff87e-48c1-4635-b347-425b1774eb8e # VIAF ID
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f15233ca-341b-4ef0-9079-b5806f6a457d
+            userCondition: null
+            warning: null
+            width: 100
         name: Identity
         uid: 87408374-03db-4515-bd4a-8ee312ccd9ff
         userCondition: null

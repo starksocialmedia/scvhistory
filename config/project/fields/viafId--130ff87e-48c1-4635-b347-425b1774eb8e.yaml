@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: viafId
+instructions: 'Virtual International Authority File identifier, for people who appear in library catalogues.'
+name: 'VIAF ID'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
