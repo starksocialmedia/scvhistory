@@ -27,7 +27,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/import_warmemorial.php'))"
  */
 
-$APPLY = false;
+$APPLY = true;
 
 $root = \Craft::getAlias('@root');
 $path = $root . '/inventory/legacy/warmemorial.json';

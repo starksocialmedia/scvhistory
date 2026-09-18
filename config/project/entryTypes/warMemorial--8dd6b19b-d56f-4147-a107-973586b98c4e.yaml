@@ -155,6 +155,57 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a9d40f84-91b6-40fe-b6c1-14b3a4315c67 # Neighborhood
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: be8d9b50-2f28-4e7d-b3f7-c36a3e414a9a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 5bc9f443-fe94-4f95-aba0-8b9e648eaa4a # Family
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 277b576f-f88a-41ea-8eae-a96543ffc2e7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ca24c668-ce42-4bcc-a502-8cdd3a03d66e # Selective Service registration date
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 334af966-64f0-4544-a233-e14326ed1f8a
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: d342f0a0-4ef1-4bb8-830f-fb7b3bfb105c
         userCondition: null

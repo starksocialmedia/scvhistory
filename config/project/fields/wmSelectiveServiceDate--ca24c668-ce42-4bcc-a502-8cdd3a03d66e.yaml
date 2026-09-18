@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: wmSelectiveServiceDate
+instructions: 'Draft registration date exactly as printed, including any qualifier such as "(draft card undated; ~1941)".'
+name: 'Selective Service registration date'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
