@@ -9133,8 +9133,14 @@
         "pages": [
           "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
+          }
+        ]
       },
       {
         "name_raw": "Tricia Lemon Putnam",
@@ -9149,7 +9155,13 @@
           "https://scvhistory.com/scvhistory/ww2_williamernestpineau.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/tlp090714.htm"
+          }
+        ]
       },
       {
         "name_raw": "Albert Lee Moore",
@@ -9219,7 +9231,13 @@
           "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
+          }
+        ]
       },
       {
         "name_raw": "Robert Fose",
@@ -9239,7 +9257,13 @@
           "https://scvhistory.com/warmemorial/ww2_edwardcontreras.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_edwardcontreras.htm"
+          }
+        ]
       },
       {
         "name_raw": "Tom Ross",
@@ -9264,7 +9288,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_auroraflores.htm; https://scvhistory.com/scvhistory/obituary_generososandovalflores.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_auroraflores.htm; https://scvhistory.com/scvhistory/obituary_generososandovalflores.htm; https://scvhistory.com/warmemorial/terror_josefloresmejia.htm"
           }
         ]
       },
@@ -9285,14 +9309,8 @@
         "pages": [
           "https://scvhistory.com/warmemorial/terror_deantodd.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/bealeafb.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/bealeafb.htm"
       },
       {
         "name_raw": "Arch Beall",
@@ -9378,7 +9396,13 @@
           "https://scvhistory.com/warmemorial/ww2_johnnycordova.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/ap2211.htm"
+          }
+        ]
       },
       {
         "name_raw": "Combat Infantryman",
@@ -9448,7 +9472,13 @@
           "https://scvhistory.com/warmemorial/ww2_johnward.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/terror_robertwilson.htm"
+          }
+        ]
       },
       {
         "name_raw": "Eva Carrillo",
@@ -9462,7 +9492,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_garethkennethcarrillo.htm; https://scvhistory.com/scvhistory/obituary_maryloucarrillo.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_maryloucarrillo.htm; https://scvhistory.com/scvhistory/obituary_garethkennethcarrillo.htm"
           }
         ]
       },
@@ -9608,7 +9638,11 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_feliciamartinez_ivanramirez.htm; https://scvhistory.com/scvhistory/obituary_georgecmartin.htm; https://scvhistory.com/scvhistory/obituary_martinianocuriel.htm; https://scvhistory.com/scvhistory/obituary_robertmartinez.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_martinianocuriel.htm; https://scvhistory.com/scvhistory/obituary_georgecmartin.htm; https://scvhistory.com/scvhistory/obituary_feliciamartinez_ivanramirez.htm; https://scvhistory.com/scvhistory/obituary_robertmartinez.htm"
+          },
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Mrs. Jack Martin"
           }
         ]
       },
@@ -9620,7 +9654,13 @@
           "https://scvhistory.com/warmemorial/ww2_ozalsmart.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Lt. Jack Nims"
+          }
+        ]
       },
       {
         "name_raw": "Jake Suter",
@@ -9660,7 +9700,13 @@
           "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
+          }
+        ]
       },
       {
         "name_raw": "Joseph Samuel Godwin",
@@ -9700,7 +9746,13 @@
           "https://scvhistory.com/warmemorial/ww2_johnnycordova.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Rev. Louis Buechner"
+          }
+        ]
       },
       {
         "name_raw": "Lt. Jack Nims",
@@ -9710,7 +9762,13 @@
           "https://scvhistory.com/warmemorial/ww2_ozalsmart.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Jack Nims"
+          }
+        ]
       },
       {
         "name_raw": "Maggie Mae Harris",
@@ -9724,7 +9782,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/harris_mackhouse.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/normharris.htm; https://scvhistory.com/scvhistory/harris_mackhouse.htm; https://scvhistory.com/scvhistory/harrisonscott2004.htm"
           }
         ]
       },
@@ -9780,7 +9838,11 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_feliciamartinez_ivanramirez.htm; https://scvhistory.com/scvhistory/obituary_georgecmartin.htm; https://scvhistory.com/scvhistory/obituary_martinianocuriel.htm; https://scvhistory.com/scvhistory/obituary_robertmartinez.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_martinianocuriel.htm; https://scvhistory.com/scvhistory/obituary_georgecmartin.htm; https://scvhistory.com/scvhistory/obituary_feliciamartinez_ivanramirez.htm; https://scvhistory.com/scvhistory/obituary_robertmartinez.htm"
+          },
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Jack Martin"
           }
         ]
       },
@@ -9791,8 +9853,8 @@
         "pages": [
           "https://scvhistory.com/warmemorial/ww2_johnward.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/signal/worden/lw013196.htm"
       },
       {
         "name_raw": "Newhall Dairy Farms",
@@ -9801,8 +9863,14 @@
         "pages": [
           "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/scvhistory/bf4801.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/hs1903.htm; https://scvhistory.com/scvhistory/bf4801.htm; https://scvhistory.com/scvhistory/jb4001a.htm; https://scvhistory.com/scvhistory/lw2894.htm"
+          }
+        ]
       },
       {
         "name_raw": "Ozal Smart",
@@ -9882,7 +9950,13 @@
           "https://scvhistory.com/warmemorial/ww2_johnnycordova.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Louis Buechner"
+          }
+        ]
       },
       {
         "name_raw": "Richard Patrick Slocum",
@@ -9912,13 +9986,7 @@
           "https://scvhistory.com/warmemorial/ww2_archibaldbeall.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/obituary_armidagomezburns.htm"
-          }
-        ]
+        "legacy_page_url": ""
       },
       {
         "name_raw": "Robert Cone",
@@ -10001,16 +10069,6 @@
         "legacy_page_url": ""
       },
       {
-        "name_raw": "Saugus Cafe",
-        "name_variants": [],
-        "mention_count": 2,
-        "pages": [
-          "https://scvhistory.com/warmemorial/ww2_robertcone.htm"
-        ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/scvhistory/lw3760.htm"
-      },
-      {
         "name_raw": "Saugus Post",
         "name_variants": [],
         "mention_count": 2,
@@ -10052,7 +10110,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/obituary_simoncordova.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_simoncordova.htm; https://scvhistory.com/warmemorial/ww2_johnnycordova.htm"
           }
         ]
       },
@@ -10068,7 +10126,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_raymondgeorgebroderick.htm; https://scvhistory.com/scvhistory/obituary_raymondsidneyhill.htm; https://scvhistory.com/scvhistory/obituary_robertraymondmatista.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_raymondgeorgebroderick.htm; https://scvhistory.com/scvhistory/obituary_raymondsidneyhill.htm; https://scvhistory.com/scvhistory/obituary_robertraymondmatista.htm; https://scvhistory.com/warmemorial/korea_raymondkelly.htm"
           }
         ]
       },
@@ -10140,7 +10198,13 @@
           "https://scvhistory.com/warmemorial/ww2_edwardcontreras.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_edwardcontreras.htm"
+          }
+        ]
       },
       {
         "name_raw": "William Ernest Pineau",
@@ -10160,7 +10224,13 @@
           "https://scvhistory.com/warmemorial/terror_colelarsen.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/oldtownnewhall/gazette/gazette1403-projects.htm"
+          }
+        ]
       },
       {
         "name_raw": "Aircraft Components Inc",
@@ -10190,13 +10260,7 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_catherinelouisespeirs.htm; https://scvhistory.com/scvhistory/obituary_joannelouisehider.htm; https://scvhistory.com/scvhistory/obituary_marielouiseostrom.htm; https://scvhistory.com/scvhistory/obituary_marionlouisebohn.htm; https://scvhistory.com/scvhistory/obituary_patricialouisemiller.htm; https://scvhistory.com/scvhistory/obituary_scripturelouisea.htm; https://scvhistory.com/scvhistory/obituary_susanlouiseciari.htm"
-          }
-        ]
+        "legacy_page_url": ""
       },
       {
         "name_raw": "Archibald K. Beall",
@@ -10230,7 +10294,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_cindynewhallweyant.htm; https://scvhistory.com/scvhistory/obituary_robertnewhallchesebroughiii.htm; https://scvhistory.com/scvhistory/newhall-historic-structures.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/newhalldt.htm; https://scvhistory.com/scvhistory/newhall4th.htm; https://scvhistory.com/scvhistory/newhallsch.htm; https://scvhistory.com/scvhistory/obituary_robertnewhallchesebroughiii.htm; https://scvhistory.com/scvhistory/obituary_cindynewhallweyant.htm; https://scvhistory.com/scvhistory/sanborn_newhall_1892.htm; https://scvhistory.com/scvhistory/newhallsaugussun19630321.htm; https://scvhistory.com/scvhistory/newhall-historic-structures.htm; https://scvhistory.com/scvhistory/sc_newhallredevelopment19972012.htm; https://scvhistory.com/scvhistory/aouwnewhall.htm"
           }
         ]
       },
@@ -10262,7 +10326,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Mrs. Bert Balsz"
+          }
+        ]
       },
       {
         "name_raw": "Bill Reynolds",
@@ -10276,7 +10346,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/reynolds_firstpresbyterian_0686.htm; https://scvhistory.com/scvhistory/signal/reynolds/reynolds-castaicethnography.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/signal/reynolds/; https://scvhistory.com/scvhistory/signal/reynolds/reynolds-castaicethnography.htm; https://scvhistory.com/scvhistory/signal/reynolds/reynolds121484.htm; https://scvhistory.com/scvhistory/reynolds_firstpresbyterian_0686.htm"
           }
         ]
       },
@@ -10298,7 +10368,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Mrs. Bob Snyder"
+          }
+        ]
       },
       {
         "name_raw": "Bruce Wayne St. Louis",
@@ -10308,13 +10384,7 @@
           "https://scvhistory.com/scvhistory/vietnam_brucestlouis.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_catherinelouisespeirs.htm; https://scvhistory.com/scvhistory/obituary_joannelouisehider.htm; https://scvhistory.com/scvhistory/obituary_marielouiseostrom.htm; https://scvhistory.com/scvhistory/obituary_marionlouisebohn.htm; https://scvhistory.com/scvhistory/obituary_patricialouisemiller.htm; https://scvhistory.com/scvhistory/obituary_scripturelouisea.htm; https://scvhistory.com/scvhistory/obituary_susanlouiseciari.htm"
-          }
-        ]
+        "legacy_page_url": ""
       },
       {
         "name_raw": "Cadet William Ernest",
@@ -10363,8 +10433,8 @@
         "legacy_page_url": "",
         "needs_review": [
           {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_aubreyfsmithjr.htm; https://scvhistory.com/scvhistory/obituary_jamesralphsmithjr.htm; https://scvhistory.com/scvhistory/obituary_lucillerosesmith.htm; https://scvhistory.com/scvhistory/obituary_margueriteangelasmith.htm"
+            "reason": "honorific_variant",
+            "detail": "paired_name: Mrs. Charles Smith"
           }
         ]
       },
@@ -10405,8 +10475,14 @@
         "pages": [
           "https://scvhistory.com/warmemorial/terror_deantodd.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/warmemorial/terror_deantodd.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/terror_deantodd.htm"
+          }
+        ]
       },
       {
         "name_raw": "Dennis Lee Sellen Jr",
@@ -10415,8 +10491,14 @@
         "pages": [
           "https://scvhistory.com/warmemorial/terror_dennissellen.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/warmemorial/terror_dennissellen.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/terror_dennissellen.htm"
+          }
+        ]
       },
       {
         "name_raw": "Department Commander Bob",
@@ -10522,7 +10604,13 @@
           "https://scvhistory.com/scvhistory/ww2_williamernestpineau.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "split_given_name",
+            "detail": "longer_form: William Ernest Pineau"
+          }
+        ]
       },
       {
         "name_raw": "Eugene Darr",
@@ -10596,7 +10684,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/obituary_alyceleamitchell.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_alyceleamitchell.htm; https://scvhistory.com/scvhistory/mitchellofsoledad_1of4.htm; https://scvhistory.com/scvhistory/pollack1113tfmitchell.htm"
           }
         ]
       },
@@ -10608,7 +10696,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Mrs. Frank Weston"
+          }
+        ]
       },
       {
         "name_raw": "Frank Williams",
@@ -10617,8 +10711,14 @@
         "pages": [
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/scvhistory/obituary_jamesfranklinwilliams.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_williamshartjr.htm; https://scvhistory.com/scvhistory/obituary_doloreshohaleywilliams.htm; https://scvhistory.com/scvhistory/obituary_jamesfranklinwilliams.htm; https://scvhistory.com/scvhistory/obituary_ralphrosswilliams.htm; https://scvhistory.com/scvhistory/prtexwilliams.htm; https://scvhistory.com/scvhistory/williamson1853.htm"
+          }
+        ]
       },
       {
         "name_raw": "Fred Reed",
@@ -10638,7 +10738,13 @@
           "https://scvhistory.com/warmemorial/ww2_garrywingfield.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/soledad.htm; https://scvhistory.com/scvhistory/sg19760709soledadsands.htm; https://scvhistory.com/scvhistory/mitchellofsoledad_1of4.htm"
+          }
+        ]
       },
       {
         "name_raw": "General Hospital",
@@ -10648,7 +10754,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_florencemeihochan.htm; https://scvhistory.com/scvhistory/obituary_johnstevensfuller.htm; https://scvhistory.com/scvhistory/obituary_peterhansen.htm; https://scvhistory.com/scvhistory/obituary_bernielazarhoffman.htm; https://scvhistory.com/scvhistory/obituary_melanielynnwileman.htm"
+          }
+        ]
       },
       {
         "name_raw": "General Pershing",
@@ -10668,7 +10780,13 @@
           "https://scvhistory.com/scvhistory/vietnam_stephenpeterson.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Mrs. George Peterson"
+          }
+        ]
       },
       {
         "name_raw": "George Shaefer",
@@ -10698,7 +10816,13 @@
           "https://scvhistory.com/warmemorial/korea_henryacuna.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/saugus.htm; https://scvhistory.com/scvhistory/newhallsaugussun19630321.htm; https://scvhistory.com/scvhistory/jeffhosford2018sauguslocal.htm"
+          }
+        ]
       },
       {
         "name_raw": "Henry Benjamin Bass",
@@ -10777,8 +10901,14 @@
         "pages": [
           "https://scvhistory.com/warmemorial/ww2_jimbartlett.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/warmemorial/ww2_jimbartlett.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_jimbartlett.htm"
+          }
+        ]
       },
       {
         "name_raw": "James Howie",
@@ -10797,8 +10927,14 @@
         "pages": [
           "https://scvhistory.com/warmemorial/ww2_jamesredman.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/warmemorial/ww2_jamesredman.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_jamesredman.htm"
+          }
+        ]
       },
       {
         "name_raw": "James Robert Ball",
@@ -10848,7 +10984,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/sg021506-warmuth.htm"
+          }
+        ]
       },
       {
         "name_raw": "John Christensen",
@@ -10858,7 +11000,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Rev. John Christensen"
+          }
+        ]
       },
       {
         "name_raw": "John William Borders Jr",
@@ -10882,7 +11030,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/castaic-feud-041501.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/castaic.htm; https://scvhistory.com/scvhistory/sg19720626castaiclake.htm; https://scvhistory.com/scvhistory/signal/reynolds/reynolds-castaicethnography.htm; https://scvhistory.com/scvhistory/castaic-feud-041501.htm; https://scvhistory.com/scvhistory/mines1954july_castaicoil.htm; https://scvhistory.com/scvhistory/castaichighschooldeir0712.htm; https://scvhistory.com/scvhistory/castaichighschoolSEIR0714.htm; https://scvhistory.com/scvhistory/laco_castaiclake111869.htm"
           }
         ]
       },
@@ -10974,7 +11122,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_cindynewhallweyant.htm; https://scvhistory.com/scvhistory/obituary_robertnewhallchesebroughiii.htm; https://scvhistory.com/scvhistory/newhall-historic-structures.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/newhalldt.htm; https://scvhistory.com/scvhistory/newhall4th.htm; https://scvhistory.com/scvhistory/newhallsch.htm; https://scvhistory.com/scvhistory/obituary_robertnewhallchesebroughiii.htm; https://scvhistory.com/scvhistory/obituary_cindynewhallweyant.htm; https://scvhistory.com/scvhistory/sanborn_newhall_1892.htm; https://scvhistory.com/scvhistory/newhallsaugussun19630321.htm; https://scvhistory.com/scvhistory/newhall-historic-structures.htm; https://scvhistory.com/scvhistory/sc_newhallredevelopment19972012.htm; https://scvhistory.com/scvhistory/aouwnewhall.htm"
           }
         ]
       },
@@ -10986,7 +11134,13 @@
           "https://scvhistory.com/warmemorial/ww2_augustrubel.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_antoniomadrigalmercado.htm; https://scvhistory.com/scvhistory/obituary_tonymercado.htm"
+          }
+        ]
       },
       {
         "name_raw": "Lyons Press",
@@ -11076,7 +11230,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Bert Balsz"
+          }
+        ]
       },
       {
         "name_raw": "Mrs. Bob Snyder",
@@ -11086,7 +11246,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Bob Snyder"
+          }
+        ]
       },
       {
         "name_raw": "Mrs. Charles Smith",
@@ -11099,8 +11265,8 @@
         "legacy_page_url": "",
         "needs_review": [
           {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_aubreyfsmithjr.htm; https://scvhistory.com/scvhistory/obituary_jamesralphsmithjr.htm; https://scvhistory.com/scvhistory/obituary_lucillerosesmith.htm; https://scvhistory.com/scvhistory/obituary_margueriteangelasmith.htm"
+            "reason": "honorific_variant",
+            "detail": "paired_name: Charles Smith"
           }
         ]
       },
@@ -11112,7 +11278,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Frank Weston"
+          }
+        ]
       },
       {
         "name_raw": "Mrs. George Peterson",
@@ -11122,7 +11294,13 @@
           "https://scvhistory.com/scvhistory/vietnam_stephenpeterson.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: George Peterson"
+          }
+        ]
       },
       {
         "name_raw": "Mrs. Ruth Jones",
@@ -11132,7 +11310,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Ruth Jones"
+          }
+        ]
       },
       {
         "name_raw": "National Anthem",
@@ -11151,14 +11335,8 @@
         "pages": [
           "https://scvhistory.com/scvhistory/vietnam_stephenpeterson.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/dn112503.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/dn112503.htm"
       },
       {
         "name_raw": "Newhall Saugus Post",
@@ -11167,14 +11345,8 @@
         "pages": [
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/brunner1940newhallpostoffice.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/brunner1940newhallpostoffice.htm"
       },
       {
         "name_raw": "Ozal R. Smart",
@@ -11250,7 +11422,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: John Christensen"
+          }
+        ]
       },
       {
         "name_raw": "Robert Huff",
@@ -11300,7 +11478,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "honorific_variant",
+            "detail": "paired_name: Mrs. Ruth Jones"
+          }
+        ]
       },
       {
         "name_raw": "Saugus John",
@@ -11324,7 +11508,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/biscailuz_genealogy.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/lw3288.htm; https://scvhistory.com/scvhistory/biscailuz_genealogy.htm"
           }
         ]
       },
@@ -11360,7 +11544,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_brucerobertkrudis.htm; https://scvhistory.com/scvhistory/obituary_clyderobertwidrig.htm; https://scvhistory.com/scvhistory/obituary_conniewordenroberts.htm; https://scvhistory.com/scvhistory/obituary_edwardrobertvilla.htm; https://scvhistory.com/scvhistory/obituary_hansrobertwolf.htm; https://scvhistory.com/scvhistory/obituary_michaelrobertiljin.htm; https://scvhistory.com/scvhistory/obituary_patrickrobertrobbie.htm; https://scvhistory.com/scvhistory/obituary_robertdanis.htm; https://scvhistory.com/scvhistory/obituary_robertebloom.htm; https://scvhistory.com/scvhistory/obituary_robertfrancisball.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_robertfrancisball.htm; https://scvhistory.com/scvhistory/obituary_robertjosephbasini.htm; https://scvhistory.com/scvhistory/obituary_robertebloom.htm; https://scvhistory.com/scvhistory/obituary_robertnewhallchesebroughiii.htm; https://scvhistory.com/scvhistory/obituary_robertloweclarkjr.htm; https://scvhistory.com/scvhistory/obituary_robertdanis.htm; https://scvhistory.com/scvhistory/obituary_robertfrancisgiblin.htm; https://scvhistory.com/scvhistory/obituary_robertgarcesicamen.htm; https://scvhistory.com/scvhistory/obituary_michaelrobertiljin.htm; https://scvhistory.com/scvhistory/obituary_robertljackson.htm"
           }
         ]
       },
@@ -11381,8 +11565,14 @@
         "pages": [
           "https://scvhistory.com/warmemorial/ww2_tomross.htm"
         ],
-        "has_legacy_page": true,
-        "legacy_page_url": "https://scvhistory.com/warmemorial/ww2_tomross.htm"
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/ww2_tomross.htm"
+          }
+        ]
       },
       {
         "name_raw": "Van Nuys",
@@ -11396,7 +11586,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/vannuysnews091364a.htm; https://scvhistory.com/scvhistory/vannuysnews091364b.htm; https://scvhistory.com/scvhistory/vannuysnews123163.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/vannuysnews123163.htm; https://scvhistory.com/scvhistory/jb_vannuysnews053071.htm; https://scvhistory.com/scvhistory/vannuysnews091364b.htm; https://scvhistory.com/scvhistory/sw_vannuysnews052030.htm; https://scvhistory.com/scvhistory/vannuysnews091364a.htm"
           }
         ]
       },
@@ -11442,7 +11632,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_stephenhillenburg.htm; https://scvhistory.com/scvhistory/stephenbowersbio_aps.htm; https://scvhistory.com/scvhistory/stephenhillenburgbio.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/stephenhillenburgbio.htm; https://scvhistory.com/scvhistory/stephenbowersbio_aps.htm"
           }
         ]
       },
@@ -11478,14 +11668,8 @@
           "https://scvhistory.com/scvhistory/vietnam_stephenpeterson.htm",
           "https://scvhistory.com/scvhistory/vietnam_terrygemas.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/hs_vtc_art_1992.htm; https://scvhistory.com/scvhistory/lw2157a.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/hs_vtc_art_1992.htm"
       },
       {
         "name_raw": "Westfield Valencia Town Center",
@@ -11508,7 +11692,13 @@
           "https://scvhistory.com/scvhistory/vietnam_terrygemas.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/cadot2005commercecenterinterchange.htm"
+          }
+        ]
       },
       {
         "name_raw": "Hart High",
@@ -11525,7 +11715,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_robertloweclarkjr.htm; https://scvhistory.com/scvhistory/harthigh_may1952.htm; https://scvhistory.com/scvhistory/hb6601.htm; https://scvhistory.com/scvhistory/lw2708.htm; https://scvhistory.com/scvhistory/lw6601.htm; https://scvhistory.com/scvhistory/lw6602.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_robertloweclarkjr.htm; https://scvhistory.com/scvhistory/hb6601.htm; https://scvhistory.com/scvhistory/lw2712.htm; https://scvhistory.com/scvhistory/lw2708.htm; https://scvhistory.com/scvhistory/lw6601.htm; https://scvhistory.com/scvhistory/lw6602.htm; https://scvhistory.com/scvhistory/obituary_galenleebaldwin.htm; https://scvhistory.com/scvhistory/obituary_annlucilebercaw.htm; https://scvhistory.com/scvhistory/obituary_jerrydeanbloom.htm; https://scvhistory.com/scvhistory/obituary_marlenejanecrivello.htm"
           }
         ]
       },
@@ -11543,7 +11733,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/ap0815.htm; https://scvhistory.com/scvhistory/ap1422.htm; https://scvhistory.com/scvhistory/dm6801.htm; https://scvhistory.com/scvhistory/ga4501.htm; https://scvhistory.com/scvhistory/ga4502.htm; https://scvhistory.com/scvhistory/ga4503.htm; https://scvhistory.com/scvhistory/ga4601.htm; https://scvhistory.com/scvhistory/ga4602.htm; https://scvhistory.com/scvhistory/ga4603.htm; https://scvhistory.com/scvhistory/ga4801.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/tr6102.htm; https://scvhistory.com/scvhistory/tr6101.htm; https://scvhistory.com/scvhistory/hart1988commencement.htm; https://scvhistory.com/scvhistory/gf6001.htm; https://scvhistory.com/scvhistory/hart1979yearbook.htm; https://scvhistory.com/scvhistory/ga4501.htm; https://scvhistory.com/scvhistory/ga4502.htm; https://scvhistory.com/scvhistory/ga4503.htm; https://scvhistory.com/scvhistory/ga4601.htm; https://scvhistory.com/scvhistory/ga4602.htm"
           }
         ]
       },
@@ -11559,7 +11749,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/hb3801.htm; https://scvhistory.com/scvhistory/hb3902.htm; https://scvhistory.com/scvhistory/hb6001.htm; https://scvhistory.com/scvhistory/ox7401.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/hb3801.htm; https://scvhistory.com/scvhistory/hb3902.htm; https://scvhistory.com/scvhistory/hb6001.htm; https://scvhistory.com/scvhistory/ox7401.htm; https://scvhistory.com/scvhistory/dm6801.htm"
           }
         ]
       },
@@ -11594,7 +11784,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/earle-mining-0103.htm; https://scvhistory.com/scvhistory/soledad.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/earle-mining-0103.htm; https://scvhistory.com/scvhistory/soledad.htm; https://scvhistory.com/scvhistory/obituary_minnieannemurphy.htm; https://scvhistory.com/scvhistory/mrca_robinsnest_2018.htm; https://scvhistory.com/scvhistory/mitchellofsoledad_1of4.htm; https://scvhistory.com/scvhistory/pollack1113tfmitchell.htm; https://scvhistory.com/scvhistory/jm4901a.htm; https://scvhistory.com/scvhistory/fresnomorningrepublican020298.htm"
           }
         ]
       },
@@ -11606,7 +11796,13 @@
           "https://scvhistory.com/scvhistory/ww2_jamesrobertball.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/lyonsdockweilerdeir081617.htm; https://scvhistory.com/scvhistory/sw_pacificruralpress011873.htm; https://scvhistory.com/scvhistory/lw2304a.htm; https://scvhistory.com/scvhistory/sw3302.htm; https://scvhistory.com/scvhistory/sw_sfchronicle052877.htm; https://scvhistory.com/scvhistory/sw_krayzinski111674.htm; https://scvhistory.com/scvhistory/herald032875.htm; https://scvhistory.com/scvhistory/ap2311.htm; https://scvhistory.com/scvhistory/ap1037.htm; https://scvhistory.com/scvhistory/lyonsave_19680209sg.htm"
+          }
+        ]
       },
       {
         "name_raw": "Newhall Ranch",
@@ -11620,7 +11816,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw2603b.htm; https://scvhistory.com/scvhistory/nlf1954smog.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/nlf1954smog.htm; https://scvhistory.com/scvhistory/lw2603b.htm; https://scvhistory.com/scvhistory/obituary_lorrainecarolinefinch.htm; https://scvhistory.com/scvhistory/margaretroutledge.htm; https://scvhistory.com/scvhistory/signal/worden/lw081496.htm; https://scvhistory.com/scvhistory/hs7901.htm; https://scvhistory.com/scvhistory/signal/worden/old/lw082698.htm; https://scvhistory.com/scvhistory/signal/worden/old/lw052197.htm; https://scvhistory.com/scvhistory/signal/worden/lw062195.htm"
           }
         ]
       },
@@ -11636,7 +11832,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/herald032875.htm; https://scvhistory.com/scvhistory/hs7001.htm; https://scvhistory.com/scvhistory/hs7401.htm; https://scvhistory.com/scvhistory/lastar18640514wolfskill.htm; https://scvhistory.com/scvhistory/robinson_storyofvalencia_1967.htm; https://scvhistory.com/scvhistory/signal/perkins/part02.html"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/robinson_storyofvalencia_1967.htm; https://scvhistory.com/scvhistory/lastar18640514wolfskill.htm; https://scvhistory.com/scvhistory/perkins-rsf-1957.htm; https://scvhistory.com/scvhistory/hs7001.htm; https://scvhistory.com/scvhistory/hs7401.htm; https://scvhistory.com/scvhistory/herald032875.htm; https://scvhistory.com/scvhistory/signal/perkins/part02.html; https://scvhistory.com/gif/galleries/lw2706/"
           }
         ]
       }
@@ -11656,7 +11852,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/ap0815.htm; https://scvhistory.com/scvhistory/ap1422.htm; https://scvhistory.com/scvhistory/dm6801.htm; https://scvhistory.com/scvhistory/ga4501.htm; https://scvhistory.com/scvhistory/ga4502.htm; https://scvhistory.com/scvhistory/ga4503.htm; https://scvhistory.com/scvhistory/ga4601.htm; https://scvhistory.com/scvhistory/ga4602.htm; https://scvhistory.com/scvhistory/ga4603.htm; https://scvhistory.com/scvhistory/ga4801.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/tr6102.htm; https://scvhistory.com/scvhistory/tr6101.htm; https://scvhistory.com/scvhistory/hart1988commencement.htm; https://scvhistory.com/scvhistory/gf6001.htm; https://scvhistory.com/scvhistory/hart1979yearbook.htm; https://scvhistory.com/scvhistory/ga4501.htm; https://scvhistory.com/scvhistory/ga4502.htm; https://scvhistory.com/scvhistory/ga4503.htm; https://scvhistory.com/scvhistory/ga4601.htm; https://scvhistory.com/scvhistory/ga4602.htm"
           }
         ]
       },
@@ -11669,14 +11865,8 @@
           "https://scvhistory.com/warmemorial/ww2_johnnycordova.htm",
           "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/sg19680421bonnett.htm; https://scvhistory.com/scvhistory/sg1924.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/sg19680421bonnett.htm"
       },
       {
         "name_raw": "Newhall Signal and Saugus Enterprise",
@@ -11696,14 +11886,8 @@
         "pages": [
           "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/hs3022.htm; https://scvhistory.com/scvhistory/ap0605.htm; https://scvhistory.com/scvhistory/lw2726.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/hs3022.htm"
       },
       {
         "name_raw": "Military Police Company",
@@ -11753,7 +11937,13 @@
           "https://scvhistory.com/warmemorial/terror_brianprosser.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/schoolyearbooks.htm; https://scvhistory.com/scvhistory/hartschoolsiteacquisition.htm; https://scvhistory.com/scvhistory/actonschool1968yearbook.htm; https://scvhistory.com/scvhistory/actonschool1969yearbook.htm; https://scvhistory.com/scvhistory/castaichighschooldeir0712.htm; https://scvhistory.com/scvhistory/castaichighschoolSEIR0714.htm; https://scvhistory.com/scvhistory/hartschoolboardmembers.htm; https://scvhistory.com/scvhistory/sg1973ooschool.htm; https://scvhistory.com/scvhistory/pinecrestschools.htm; https://scvhistory.com/scvhistory/brunner1940newhallschool.htm"
+          }
+        ]
       },
       {
         "name_raw": "Newhall Community Church",
@@ -11763,7 +11953,13 @@
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/to8701.htm"
+          }
+        ]
       },
       {
         "name_raw": "Newhall School",
@@ -11777,7 +11973,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/hg5601.htm; https://scvhistory.com/scvhistory/newhallschool.htm; https://scvhistory.com/scvhistory/pc3201.htm; https://scvhistory.com/scvhistory/pc3501.htm; https://scvhistory.com/scvhistory/pc3502.htm; https://scvhistory.com/scvhistory/pc3601.htm; https://scvhistory.com/scvhistory/pc3602.htm; https://scvhistory.com/scvhistory/pc3702.htm; https://scvhistory.com/scvhistory/pc3801.htm; https://scvhistory.com/scvhistory/pc3901a.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/tlp_signal082025.htm; https://scvhistory.com/scvhistory/tlp_signal091025.htm; https://scvhistory.com/scvhistory/tlp_signal082025b.htm; https://scvhistory.com/scvhistory/tlp_signal052726.htm; https://scvhistory.com/scvhistory/pc3201.htm; https://scvhistory.com/scvhistory/pc3501.htm; https://scvhistory.com/scvhistory/pc3502.htm; https://scvhistory.com/scvhistory/pc3601.htm; https://scvhistory.com/scvhistory/pc3602.htm; https://scvhistory.com/scvhistory/pc3702.htm"
           }
         ]
       },
@@ -11799,7 +11995,13 @@
           "https://scvhistory.com/warmemorial/terror_rudyacosta.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/schoolyearbooks.htm; https://scvhistory.com/scvhistory/hartschoolsiteacquisition.htm; https://scvhistory.com/scvhistory/actonschool1968yearbook.htm; https://scvhistory.com/scvhistory/actonschool1969yearbook.htm; https://scvhistory.com/scvhistory/castaichighschooldeir0712.htm; https://scvhistory.com/scvhistory/castaichighschoolSEIR0714.htm; https://scvhistory.com/scvhistory/hartschoolboardmembers.htm; https://scvhistory.com/scvhistory/sg1973ooschool.htm; https://scvhistory.com/scvhistory/pinecrestschools.htm; https://scvhistory.com/scvhistory/brunner1940newhallschool.htm"
+          }
+        ]
       },
       {
         "name_raw": "Saugus High School",
@@ -11813,7 +12015,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_jennifermarystift.htm; https://scvhistory.com/scvhistory/hs7904.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_constancearleneanderson.htm; https://scvhistory.com/scvhistory/obituary_sallydixon.htm; https://scvhistory.com/scvhistory/obituary_jennifermarystift.htm"
           }
         ]
       },
@@ -11825,7 +12027,23 @@
           "https://scvhistory.com/warmemorial/terror_jakesuter.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/schoolyearbooks.htm; https://scvhistory.com/scvhistory/hartschoolsiteacquisition.htm; https://scvhistory.com/scvhistory/actonschool1968yearbook.htm; https://scvhistory.com/scvhistory/actonschool1969yearbook.htm; https://scvhistory.com/scvhistory/castaichighschooldeir0712.htm; https://scvhistory.com/scvhistory/castaichighschoolSEIR0714.htm; https://scvhistory.com/scvhistory/hartschoolboardmembers.htm; https://scvhistory.com/scvhistory/sg1973ooschool.htm; https://scvhistory.com/scvhistory/pinecrestschools.htm; https://scvhistory.com/scvhistory/brunner1940newhallschool.htm"
+          }
+        ]
+      },
+      {
+        "name_raw": "Saugus Cafe",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/warmemorial/ww2_robertcone.htm"
+        ],
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/lw3760.htm"
       }
     ],
     "external_places": [
@@ -11891,7 +12109,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/heizer1972.htm; https://scvhistory.com/scvhistory/lw2152a.htm; https://scvhistory.com/scvhistory/lw2208.htm"
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/lw2152a.htm; https://scvhistory.com/scvhistory/lw2208.htm; https://scvhistory.com/scvhistory/heizer1972.htm"
           }
         ]
       },
@@ -11916,7 +12134,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary-benctruman.htm; https://scvhistory.com/scvhistory/lw2427.htm; https://scvhistory.com/scvhistory/lw3109.htm; https://scvhistory.com/scvhistory/sg081502.html; https://scvhistory.com/scvhistory/al1301.htm; https://scvhistory.com/scvhistory/al1887.htm; https://scvhistory.com/scvhistory/al1915.htm; https://scvhistory.com/scvhistory/al1918.htm; https://scvhistory.com/scvhistory/al1951.htm; https://scvhistory.com/scvhistory/al2059.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/al1301.htm; https://scvhistory.com/scvhistory/mcgroarty1923aqueduct.htm; https://scvhistory.com/scvhistory/mw0901.htm; https://scvhistory.com/scvhistory/ec1801.htm; https://scvhistory.com/scvhistory/lw2418.htm; https://scvhistory.com/scvhistory/lw2419.htm; https://scvhistory.com/scvhistory/lw2420.htm; https://scvhistory.com/scvhistory/al2092.htm; https://scvhistory.com/scvhistory/al1915.htm; https://scvhistory.com/scvhistory/al1918.htm"
           }
         ]
       },
@@ -11938,7 +12156,13 @@
           "https://scvhistory.com/warmemorial/terror_iangelig.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/al2035.htm; https://scvhistory.com/scvhistory/obituary_rogerleemoody.htm; https://scvhistory.com/scvhistory/al1882.htm; https://scvhistory.com/scvhistory/dpi05161874.htm; https://scvhistory.com/scvhistory/times111101.htm; https://scvhistory.com/scvhistory/autoclubhistory_huntington.htm; https://scvhistory.com/scvhistory/califbusiness1989july.htm; https://scvhistory.com/scvhistory/lw3356.htm; https://scvhistory.com/scvhistory/hb3802.htm; https://scvhistory.com/scvhistory/chp-newhall-incident.htm"
+          }
+        ]
       },
       {
         "name_raw": "France",
@@ -11952,7 +12176,13 @@
           "https://scvhistory.com/warmemorial/ww2_johnward.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_josephinefranceschambers.htm; https://scvhistory.com/scvhistory/obituary_francesnadinelswick.htm; https://scvhistory.com/scvhistory/obituary_lynnefrancesgorman.htm"
+          }
+        ]
       },
       {
         "name_raw": "South Vietnam",
@@ -11974,7 +12204,13 @@
           "https://scvhistory.com/scvhistory/vietnam_terrygemas.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/vietnamcasualties-index.htm"
+          }
+        ]
       },
       {
         "name_raw": "Iraq",
@@ -12003,13 +12239,7 @@
           "https://scvhistory.com/warmemorial/terror_deantodd.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/warmemorial/korea_albertthomas.htm; https://scvhistory.com/warmemorial/korea_donaldmorissett.htm; https://scvhistory.com/warmemorial/korea_gilbertmontenegro.htm; https://scvhistory.com/warmemorial/korea_henryacuna.htm; https://scvhistory.com/warmemorial/korea_raymondkelly.htm; https://scvhistory.com/warmemorial/korea_robertwhisler.htm"
-          }
-        ]
+        "legacy_page_url": ""
       },
       {
         "name_raw": "Italy",
@@ -12034,7 +12264,13 @@
           "https://scvhistory.com/warmemorial/terror_rudyacosta.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/terrorcasualties-index.htm"
+          }
+        ]
       },
       {
         "name_raw": "Germany",
@@ -12049,7 +12285,13 @@
           "https://scvhistory.com/warmemorial/terror_rudyacosta.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/lw3578.htm"
+          }
+        ]
       },
       {
         "name_raw": "Honolulu",
@@ -12062,7 +12304,13 @@
           "https://scvhistory.com/warmemorial/terror_johnconant.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/signal/manzer/sg070206-manzer.htm"
+          }
+        ]
       },
       {
         "name_raw": "Korea",
@@ -12077,7 +12325,13 @@
           "https://scvhistory.com/warmemorial/korea_robertwhisler.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_chesterarthurallen.htm; https://scvhistory.com/scvhistory/obituary_robertdanis.htm; https://scvhistory.com/scvhistory/obituary_richardgeneekstrom.htm; https://scvhistory.com/scvhistory/obituary_robertroutolo.htm"
+          }
+        ]
       },
       {
         "name_raw": "Vietnam",
@@ -12088,7 +12342,13 @@
           "https://scvhistory.com/scvhistory/vietnam_stephenpeterson.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_patrickjosephaquino.htm; https://scvhistory.com/scvhistory/obituary_markmeleisenberg.htm; https://scvhistory.com/scvhistory/obituary_lyledavidgerber.htm; https://scvhistory.com/scvhistory/obituary_williamjacksonhays.htm; https://scvhistory.com/scvhistory/obituary_paulallanlevine.htm"
+          }
+        ]
       },
       {
         "name_raw": "Honolulu Memorial",
@@ -12100,7 +12360,13 @@
           "https://scvhistory.com/warmemorial/korea_raymondkelly.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/warmemorial/"
+          }
+        ]
       },
       {
         "name_raw": "San Fernando",
@@ -12117,7 +12383,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_johnwvalenzuela.htm; https://scvhistory.com/oldtownnewhall/news/sg062705.htm; https://scvhistory.com/oldtownnewhall/news/sg082501a.htm; https://scvhistory.com/oldtownnewhall/news/sg101701a.htm; https://scvhistory.com/scvhistory/ahnert_stations_20200101.htm; https://scvhistory.com/scvhistory/al2502a.htm; https://scvhistory.com/scvhistory/ap0930.htm; https://scvhistory.com/scvhistory/engelhardt_camulosbell.htm; https://scvhistory.com/scvhistory/engelhardt_sanfernando56.htm; https://scvhistory.com/scvhistory/hs2101.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_johnwvalenzuela.htm; https://scvhistory.com/scvhistory/engelhardt_sanfernando56.htm; https://scvhistory.com/scvhistory/lw3050.htm; https://scvhistory.com/oldtownnewhall/news/sg101701a.htm; https://scvhistory.com/oldtownnewhall/news/sg082501a.htm"
           }
         ]
       },
@@ -12143,7 +12409,13 @@
           "https://scvhistory.com/warmemorial/terror_richardslocum.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/lw3010.htm"
+          }
+        ]
       },
       {
         "name_raw": "Kandahar",
@@ -12179,8 +12451,8 @@
           "https://scvhistory.com/warmemorial/ww2_ekenaston.htm",
           "https://scvhistory.com/warmemorial/ww2_leoncherry.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/lw3119.htm"
       },
       {
         "name_raw": "Arizona",
@@ -12190,7 +12462,13 @@
           "https://scvhistory.com/warmemorial/ww2_edwardcontreras.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/jw4401.htm; https://scvhistory.com/scvhistory/lw3107.htm; https://scvhistory.com/scvhistory/lw3145.htm"
+          }
+        ]
       },
       {
         "name_raw": "Camp Kearny",
@@ -12212,7 +12490,13 @@
           "https://scvhistory.com/warmemorial/terror_dennissellen.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obit-nadeauremi.htm; https://scvhistory.com/scvhistory/obituary_donaldverrilli.htm"
+          }
+        ]
       },
       {
         "name_raw": "Guadalcanal",
@@ -12233,8 +12517,8 @@
         "pages": [
           "https://scvhistory.com/warmemorial/terror_stephencolley.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/gif/galleries/lw2728/"
       },
       {
         "name_raw": "Belgium",
@@ -12254,8 +12538,8 @@
           "https://scvhistory.com/warmemorial/ww2_edwardcontreras.htm",
           "https://scvhistory.com/scvhistory/ww2_josephbbalsz.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/brewer_vr02_2018.htm"
       },
       {
         "name_raw": "Forest Lawn",
@@ -12278,7 +12562,13 @@
           "https://scvhistory.com/warmemorial/korea_albertthomas.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/barnes_ito2013.htm; https://scvhistory.com/scvhistory/lw2621a.htm; https://scvhistory.com/scvhistory/lw2948.htm"
+          }
+        ]
       },
       {
         "name_raw": "Nevada",
@@ -12288,7 +12578,13 @@
           "https://scvhistory.com/scvhistory/ww1_edwardguynorth.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/jb_nevadajournal091524.htm"
+          }
+        ]
       },
       {
         "name_raw": "Normandy",
@@ -12325,7 +12621,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/ah1901.htm; https://scvhistory.com/scvhistory/sdw010374.htm; https://scvhistory.com/scvhistory/sdw051574.htm; https://scvhistory.com/scvhistory/sdw051874.htm; https://scvhistory.com/scvhistory/sdw092073.htm; https://scvhistory.com/scvhistory/tlp_sandiegounion100635.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/sdw092073.htm; https://scvhistory.com/scvhistory/tlp_sandiegounion100635.htm"
           }
         ]
       },
@@ -12357,8 +12653,8 @@
           "https://scvhistory.com/warmemorial/ww2_augustrubel.htm",
           "https://scvhistory.com/warmemorial/ww2_ekenaston.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/ra_vfp18990728_piru08.htm"
       },
       {
         "name_raw": "Virginia",
@@ -12369,7 +12665,13 @@
           "https://scvhistory.com/warmemorial/terror_brianprosser.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/obituary_virginiaaiello.htm; https://scvhistory.com/scvhistory/obituary_virginiacasarezgurule.htm; https://scvhistory.com/scvhistory/obituary_virginialeehimmel.htm"
+          }
+        ]
       },
       {
         "name_raw": "Arlington",
@@ -12389,7 +12691,13 @@
           "https://scvhistory.com/warmemorial/terror_brianprosser.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/scvhs_ruizcemeterycensus1992.htm; https://scvhistory.com/scvhistory/ruiz-cemetery-census.htm"
+          }
+        ]
       },
       {
         "name_raw": "Fresno",
@@ -12399,8 +12707,8 @@
           "https://scvhistory.com/scvhistory/ww2_williamernestpineau.htm",
           "https://scvhistory.com/warmemorial/terror_dennissellen.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/fresnobee011737.htm"
       },
       {
         "name_raw": "Highway 99",
@@ -12414,7 +12722,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/al2051.htm; https://scvhistory.com/scvhistory/al2080.htm; https://scvhistory.com/scvhistory/al2081.htm; https://scvhistory.com/scvhistory/al2082.htm; https://scvhistory.com/scvhistory/al2083.htm; https://scvhistory.com/scvhistory/al2084.htm; https://scvhistory.com/scvhistory/al2088.htm; https://scvhistory.com/scvhistory/al2089.htm; https://scvhistory.com/scvhistory/al2097.htm; https://scvhistory.com/scvhistory/di3701.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw2413.htm; https://scvhistory.com/scvhistory/al2089.htm; https://scvhistory.com/scvhistory/al2097.htm; https://scvhistory.com/scvhistory/al2088.htm; https://scvhistory.com/scvhistory/lw2025.htm; https://scvhistory.com/scvhistory/al2083.htm; https://scvhistory.com/scvhistory/al2084.htm; https://scvhistory.com/scvhistory/al2080.htm; https://scvhistory.com/scvhistory/al2081.htm; https://scvhistory.com/scvhistory/al2082.htm"
           }
         ]
       },
@@ -12436,13 +12744,7 @@
           "https://scvhistory.com/warmemorial/korea_raymondkelly.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/warmemorial/korea_albertthomas.htm; https://scvhistory.com/warmemorial/korea_donaldmorissett.htm; https://scvhistory.com/warmemorial/korea_gilbertmontenegro.htm; https://scvhistory.com/warmemorial/korea_henryacuna.htm; https://scvhistory.com/warmemorial/korea_raymondkelly.htm; https://scvhistory.com/warmemorial/korea_robertwhisler.htm"
-          }
-        ]
+        "legacy_page_url": ""
       },
       {
         "name_raw": "Pacific Theater",
@@ -12468,7 +12770,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/obituary_franciscofelixcruz.htm; https://scvhistory.com/scvhistory/obituary_franciscognogales.htm; https://scvhistory.com/scvhistory/obituary_franciscolopez.htm; https://scvhistory.com/gif/galleries/lw2706/; https://scvhistory.com/scvhistory/ap3204.htm; https://scvhistory.com/scvhistory/herald032875.htm; https://scvhistory.com/scvhistory/hs7001.htm; https://scvhistory.com/scvhistory/hs7401.htm; https://scvhistory.com/scvhistory/lastar18640514wolfskill.htm; https://scvhistory.com/scvhistory/lj7301.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/sfch031328.htm; https://scvhistory.com/scvhistory/henrygage_bubonicplague20200421.htm; https://scvhistory.com/scvhistory/sfc051574.htm; https://scvhistory.com/scvhistory/sfc052174.htm"
           }
         ]
       },
@@ -12490,8 +12792,8 @@
         "pages": [
           "https://scvhistory.com/scvhistory/ww2_williamernestpineau.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/bak090473.htm"
       },
       {
         "name_raw": "Camp Lewis",
@@ -12501,13 +12803,7 @@
           "https://scvhistory.com/scvhistory/ww1_edwardguynorth.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "loose_match: https://scvhistory.com/scvhistory/obituary_leonardlewislong.htm"
-          }
-        ]
+        "legacy_page_url": ""
       },
       {
         "name_raw": "England",
@@ -12516,8 +12812,8 @@
         "pages": [
           "https://scvhistory.com/scvhistory/ww1_edwardguynorth.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/signal/iraq/sg051805-iraq.htm"
       },
       {
         "name_raw": "Ft. Campbell",
@@ -12527,7 +12823,13 @@
           "https://scvhistory.com/warmemorial/terror_brianprosser.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "loose_match: https://scvhistory.com/scvhistory/colossus1977scottcampbell.htm"
+          }
+        ]
       },
       {
         "name_raw": "Iwo Jima",
@@ -12551,7 +12853,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/lw2427.htm; https://scvhistory.com/scvhistory/lw3109.htm; https://scvhistory.com/scvhistory/sg081502.html; https://scvhistory.com/scvhistory/al1887.htm; https://scvhistory.com/scvhistory/brown_powerhouseproclamation.htm; https://scvhistory.com/scvhistory/dp4901.htm; https://scvhistory.com/scvhistory/lac_reportcard08.htm; https://scvhistory.com/scvhistory/laco100317.htm; https://scvhistory.com/scvhistory/laconservancy2014.htm; https://scvhistory.com/scvhistory/lacountysheriffs.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/sg081502.html; https://scvhistory.com/scvhistory/lasdhistory2011.htm; https://scvhistory.com/scvhistory/lacountysheriffs.htm; https://scvhistory.com/scvhistory/thompsonwest_lacountyvote1849-1879.htm; https://scvhistory.com/scvhistory/lw2427.htm; https://scvhistory.com/scvhistory/lw3109.htm"
           }
         ]
       },
@@ -12563,7 +12865,13 @@
           "https://scvhistory.com/warmemorial/terror_brianprosser.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/schoolyearbooks.htm; https://scvhistory.com/scvhistory/hartschoolsiteacquisition.htm; https://scvhistory.com/scvhistory/actonschool1968yearbook.htm; https://scvhistory.com/scvhistory/actonschool1969yearbook.htm; https://scvhistory.com/scvhistory/castaichighschooldeir0712.htm; https://scvhistory.com/scvhistory/castaichighschoolSEIR0714.htm; https://scvhistory.com/scvhistory/hartschoolboardmembers.htm; https://scvhistory.com/scvhistory/sg1973ooschool.htm; https://scvhistory.com/scvhistory/pinecrestschools.htm; https://scvhistory.com/scvhistory/brunner1940newhallschool.htm"
+          }
+        ]
       },
       {
         "name_raw": "Mexico",
@@ -12602,8 +12910,8 @@
         "pages": [
           "https://scvhistory.com/scvhistory/ww2_williamernestpineau.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": ""
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/obituary_markgregoryaletky.htm"
       },
       {
         "name_raw": "Pacific Ocean",
@@ -12633,7 +12941,13 @@
           "https://scvhistory.com/scvhistory/ww1_edwardguynorth.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_loose: https://scvhistory.com/scvhistory/lp_sbcountysun081022.htm; https://scvhistory.com/scvhistory/buffalo-county-letters.htm; https://scvhistory.com/scvhistory/kerncounty1952caltech.htm; https://scvhistory.com/scvhistory/lacountysheriffs.htm; https://scvhistory.com/scvhistory/lp_sanberdocountysun011937.htm; https://scvhistory.com/scvhistory/countydigest2009_41_9.htm; https://scvhistory.com/scvhistory/thompsonwest_lacountyvote1849-1879.htm"
+          }
+        ]
       },
       {
         "name_raw": "Santa Monica",
@@ -12658,14 +12972,8 @@
         "pages": [
           "https://scvhistory.com/warmemorial/terror_iangelig.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/autoclubhistory_huntington.htm; https://scvhistory.com/scvhistory/bell1978fishes.htm; https://scvhistory.com/scvhistory/kessel1950.htm; https://scvhistory.com/scvhistory/laedc_scrra_score_20191031.htm; https://scvhistory.com/scvhistory/lw2316.htm; https://scvhistory.com/scvhistory/sce_history.htm; https://scvhistory.com/scvhistory/westways0799a.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/autoclubhistory_huntington.htm"
       }
     ],
     "community_mentions": [
@@ -12701,7 +13009,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/gif/galleries/lw041615/; https://scvhistory.com/gif/galleries/lw2638/; https://scvhistory.com/gif/galleries/lw2744/; https://scvhistory.com/gif/galleries/tv1501/; https://scvhistory.com/oldtownnewhall/newhall/; https://scvhistory.com/scvhistory/al1883.htm; https://scvhistory.com/scvhistory/al1910.htm; https://scvhistory.com/scvhistory/al1911.htm; https://scvhistory.com/scvhistory/al1914.htm; https://scvhistory.com/scvhistory/al1916.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw2137a.htm; https://scvhistory.com/scvhistory/ov1001.htm; https://scvhistory.com/scvhistory/lw3745.htm; https://scvhistory.com/scvhistory/fr2801.htm; https://scvhistory.com/scvhistory/lw3799.htm; https://scvhistory.com/scvhistory/lw3782.htm; https://scvhistory.com/scvhistory/lw3777.htm; https://scvhistory.com/scvhistory/lw3776.htm; https://scvhistory.com/scvhistory/lw3774.htm; https://scvhistory.com/scvhistory/lw3772.htm"
           }
         ]
       },
@@ -12737,7 +13045,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/gif/galleries/lw2730/; https://scvhistory.com/scvhistory/al0431.htm; https://scvhistory.com/scvhistory/al2031.htm; https://scvhistory.com/scvhistory/ap1925.htm; https://scvhistory.com/scvhistory/bc1974a.htm; https://scvhistory.com/scvhistory/cn3601.htm; https://scvhistory.com/scvhistory/greenhornet101466.htm; https://scvhistory.com/scvhistory/hm7502.htm; https://scvhistory.com/scvhistory/hs19380104a.htm; https://scvhistory.com/scvhistory/laco_gvbridge_0906.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/st0901.htm; https://scvhistory.com/scvhistory/ap1925.htm; https://scvhistory.com/scvhistory/lw3052.htm; https://scvhistory.com/scvhistory/lw3682.htm; https://scvhistory.com/scvhistory/lw3787.htm; https://scvhistory.com/scvhistory/cn3601.htm; https://scvhistory.com/scvhistory/lw3764.htm; https://scvhistory.com/scvhistory/sg19681018seco.htm; https://scvhistory.com/scvhistory/lw3759.htm; https://scvhistory.com/scvhistory/ox6404.htm"
           }
         ]
       },
@@ -12768,7 +13076,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/aa7402.htm; https://scvhistory.com/scvhistory/ap1606.htm; https://scvhistory.com/scvhistory/co1301.htm; https://scvhistory.com/scvhistory/co1310a.htm; https://scvhistory.com/scvhistory/co7501.htm; https://scvhistory.com/scvhistory/coc122612demo.htm; https://scvhistory.com/scvhistory/di7201.htm; https://scvhistory.com/scvhistory/di_valleynews012971pg17.htm; https://scvhistory.com/scvhistory/gt8602a.htm; https://scvhistory.com/scvhistory/gt8610b.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/tl6403.htm; https://scvhistory.com/scvhistory/lw7601.htm; https://scvhistory.com/scvhistory/lw3633.htm; https://scvhistory.com/scvhistory/tn7702.htm; https://scvhistory.com/scvhistory/hb7104.htm; https://scvhistory.com/scvhistory/sunkist081214.htm; https://scvhistory.com/scvhistory/lw3548.htm; https://scvhistory.com/scvhistory/scdiet101_hammond.htm; https://scvhistory.com/scvhistory/gt8610b.htm; https://scvhistory.com/scvhistory/hb7401.htm"
           }
         ]
       },
@@ -12789,7 +13097,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/gif/galleries/romerohomesteadcabin/; https://scvhistory.com/gif/galleries/winklerhomestead1921/; https://scvhistory.com/scvhistory/al2098.htm; https://scvhistory.com/scvhistory/ap2205.htm; https://scvhistory.com/scvhistory/ap2211.htm; https://scvhistory.com/scvhistory/ap2219.htm; https://scvhistory.com/scvhistory/ap2221.htm; https://scvhistory.com/scvhistory/castaic.htm; https://scvhistory.com/scvhistory/castaichighschooldeir0712.htm; https://scvhistory.com/scvhistory/catcbylaws07192000.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw3761.htm; https://scvhistory.com/scvhistory/lw3749.htm; https://scvhistory.com/scvhistory/laherald18891130csd.htm; https://scvhistory.com/scvhistory/sg082901b.htm; https://scvhistory.com/scvhistory/tlp_laherald052190pg2.htm; https://scvhistory.com/scvhistory/lw3396.htm; https://scvhistory.com/scvhistory/lw2660.htm; https://scvhistory.com/scvhistory/northlake2007deir.htm; https://scvhistory.com/scvhistory/northlakenop032415.htm; https://scvhistory.com/scvhistory/northlakehills_deir_0517.htm"
           }
         ]
       },
@@ -12807,14 +13115,8 @@
           "https://scvhistory.com/warmemorial/ww2_robertcone.htm",
           "https://scvhistory.com/warmemorial/ww2_tomross.htm"
         ],
-        "has_legacy_page": false,
-        "legacy_page_url": "",
-        "needs_review": [
-          {
-            "reason": "possible_legacy_page",
-            "detail": "multiple_loose: https://scvhistory.com/scvhistory/al1928.htm; https://scvhistory.com/scvhistory/sg030803.htm"
-          }
-        ]
+        "has_legacy_page": true,
+        "legacy_page_url": "https://scvhistory.com/scvhistory/al1928.htm"
       },
       {
         "name_raw": "Camulos",
@@ -12828,7 +13130,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/camulos.htm; https://scvhistory.com/scvhistory/carter-ramona1902.htm; https://scvhistory.com/scvhistory/lat18981024train.htm; https://scvhistory.com/scvhistory/lp_oxnardcourier111716.htm; https://scvhistory.com/scvhistory/lw2520a.htm; https://scvhistory.com/scvhistory/lw2554a.htm; https://scvhistory.com/scvhistory/lw2761.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/camulos.htm; https://scvhistory.com/scvhistory/carter-ramona1902.htm; https://scvhistory.com/scvhistory/lp_oxnardcourier111716.htm; https://scvhistory.com/scvhistory/lat18981024train.htm; https://scvhistory.com/scvhistory/lw2554a.htm; https://scvhistory.com/scvhistory/lw2761.htm; https://scvhistory.com/scvhistory/lw2520a.htm; https://scvhistory.com/scvhistory/obituary_ysabelvareladelvalle.htm; https://scvhistory.com/scvhistory/obituary_lorrainecarolinefinch.htm; https://scvhistory.com/scvhistory/readingeagle052472.htm"
           }
         ]
       },
@@ -12848,7 +13150,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/georgepederson0110.htm; https://scvhistory.com/scvhistory/boyer2015book.htm; https://scvhistory.com/scvhistory/city081715.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/city081715.htm; https://scvhistory.com/scvhistory/boyer2015book.htm; https://scvhistory.com/scvhistory/lw3551.htm; https://scvhistory.com/scvhistory/georgepederson0110.htm; https://scvhistory.com/scvhistory/signal/worden/old/lw070299.htm; https://scvhistory.com/warmemorial/home.htm; https://scvhistory.com/scvhistory/scvhistoryring.htm; https://scvhistory.com/scvhistory/city.htm; https://scvhistory.com/scvhistory/people.htm; https://scvhistory.com/scvhistory/obituary_conzueloaltamirano.htm"
           }
         ]
       },
@@ -12865,7 +13167,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/al2086.htm; https://scvhistory.com/scvhistory/ap1815.htm; https://scvhistory.com/scvhistory/ap1819.htm; https://scvhistory.com/scvhistory/ap2406.htm; https://scvhistory.com/scvhistory/bb7000.htm; https://scvhistory.com/scvhistory/bb7001.htm; https://scvhistory.com/scvhistory/bb7401.htm; https://scvhistory.com/scvhistory/cc.htm; https://scvhistory.com/scvhistory/cc6302.htm; https://scvhistory.com/scvhistory/fw5601.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/cc.htm; https://scvhistory.com/scvhistory/hs9908.htm; https://scvhistory.com/scvhistory/ox6601.htm; https://scvhistory.com/scvhistory/lw3744.htm; https://scvhistory.com/scvhistory/hb7801.htm; https://scvhistory.com/scvhistory/lw3683.htm; https://scvhistory.com/scvhistory/tr8401.htm; https://scvhistory.com/scvhistory/tr7701.htm; https://scvhistory.com/scvhistory/sk4701.htm; https://scvhistory.com/scvhistory/sg19680421mint.htm"
           }
         ]
       },
@@ -12882,7 +13184,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/hb1813.htm; https://scvhistory.com/scvhistory/lw2435c.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw2435c.htm; https://scvhistory.com/scvhistory/hb1813.htm; https://scvhistory.com/scvhistory/obituary_virginiaaiello.htm; https://scvhistory.com/scvhistory/obituary_estherberrenson.htm; https://scvhistory.com/scvhistory/obituary_joecocker.htm; https://scvhistory.com/scvhistory/obituary_ralphwholdridge.htm; https://scvhistory.com/scvhistory/obituary_salvadorjosephlopez.htm; https://scvhistory.com/scvhistory/obituary_stevenbenedictmoss.htm; https://scvhistory.com/scvhistory/obituary_inocenciogonzalesparasjr.htm; https://scvhistory.com/scvhistory/obituary_dalemaggiepoe1993.htm"
           }
         ]
       },
@@ -12898,7 +13200,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/gif/galleries/asher030914/; https://scvhistory.com/gif/galleries/lo2808/; https://scvhistory.com/scvhistory/aguadulce.htm; https://scvhistory.com/scvhistory/aguadulcetowncouncil080105.htm; https://scvhistory.com/scvhistory/al2001.htm; https://scvhistory.com/scvhistory/ap1935.htm; https://scvhistory.com/scvhistory/ap3114.htm; https://scvhistory.com/scvhistory/countryjournal031514.htm; https://scvhistory.com/scvhistory/cu1950.htm; https://scvhistory.com/scvhistory/hb1808.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/aguadulce.htm; https://scvhistory.com/scvhistory/al2001.htm; https://scvhistory.com/scvhistory/sg19670705callahan.htm; https://scvhistory.com/scvhistory/lw3690.htm; https://scvhistory.com/scvhistory/ks062112c.htm; https://scvhistory.com/scvhistory/ks062112d.htm; https://scvhistory.com/scvhistory/sg102900b.htm; https://scvhistory.com/scvhistory/lw9550.htm; https://scvhistory.com/scvhistory/lw9551.htm; https://scvhistory.com/scvhistory/lw9552.htm"
           }
         ]
       },
@@ -12910,7 +13212,13 @@
           "https://scvhistory.com/warmemorial/ww2_johnward.htm"
         ],
         "has_legacy_page": false,
-        "legacy_page_url": ""
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/fillmore_1928floodfilm.htm; https://scvhistory.com/scvhistory/obituary_lucyrodriguezalverdi.htm; https://scvhistory.com/scvhistory/obituary_martinianocuriel.htm; https://scvhistory.com/scvhistory/obituary_jesusgonzalesmolina.htm; https://scvhistory.com/scvhistory/fwry1991-2010.htm"
+          }
+        ]
       },
       {
         "name_raw": "Frazier Park",
@@ -12924,7 +13232,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw2269a.htm; https://scvhistory.com/scvhistory/lw3554.htm; https://scvhistory.com/scvhistory/lw3746.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw3746.htm; https://scvhistory.com/scvhistory/lw3554.htm; https://scvhistory.com/scvhistory/lw2269a.htm"
           }
         ]
       },
@@ -12940,7 +13248,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lat121222bank.htm; https://scvhistory.com/scvhistory/lw2258g.htm; https://scvhistory.com/scvhistory/lw2462a.htm; https://scvhistory.com/scvhistory/lw2832.htm; https://scvhistory.com/scvhistory/lw3613.htm; https://scvhistory.com/scvhistory/lw3687.htm; https://scvhistory.com/scvhistory/lw3721.htm; https://scvhistory.com/scvhistory/mckinley_piru_history_2022.htm; https://scvhistory.com/scvhistory/ra_vfp18990728_piru08.htm; https://scvhistory.com/scvhistory/signal/worden/lw071598.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/mckinley_piru_history_2022.htm; https://scvhistory.com/scvhistory/lw3721.htm; https://scvhistory.com/scvhistory/lw3687.htm; https://scvhistory.com/scvhistory/lw3613.htm; https://scvhistory.com/scvhistory/ra_vfp18990728_piru08.htm; https://scvhistory.com/scvhistory/lw2832.htm; https://scvhistory.com/scvhistory/lw2462a.htm; https://scvhistory.com/scvhistory/lw2258g.htm; https://scvhistory.com/scvhistory/lat121222bank.htm; https://scvhistory.com/scvhistory/signal/worden/lw071598.htm"
           }
         ]
       },
@@ -12956,7 +13264,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/gif/galleries/simeontucker050514/; https://scvhistory.com/scvhistory/al2091a.htm; https://scvhistory.com/scvhistory/anf2016copper.htm; https://scvhistory.com/scvhistory/ap2320.htm; https://scvhistory.com/scvhistory/ap2321.htm; https://scvhistory.com/scvhistory/ap2322.htm; https://scvhistory.com/scvhistory/as2801.htm; https://scvhistory.com/scvhistory/copperfire060602.htm; https://scvhistory.com/scvhistory/dannysullivan031217.htm; https://scvhistory.com/scvhistory/desmond-dam0706.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/stfrancis.htm; https://scvhistory.com/scvhistory/scvhs_ruizcemeterycensus1992.htm; https://scvhistory.com/scvhistory/ruiz-cemetery-census.htm; https://scvhistory.com/scvhistory/ts1915.htm; https://scvhistory.com/scvhistory/lw2077.htm; https://scvhistory.com/scvhistory/ts1964.htm; https://scvhistory.com/scvhistory/copperfire060602.htm; https://scvhistory.com/scvhistory/lw3471.htm; https://scvhistory.com/scvhistory/lw2430.htm; https://scvhistory.com/scvhistory/lp2401.htm"
           }
         ]
       },
@@ -12972,7 +13280,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/scvhistory/fresnomorningrepublican020298.htm; https://scvhistory.com/scvhistory/jm4901a.htm; https://scvhistory.com/scvhistory/mrca_robinsnest_2018.htm; https://scvhistory.com/scvhistory/pollack1113tfmitchell.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/mrca_robinsnest_2018.htm; https://scvhistory.com/scvhistory/pollack1113tfmitchell.htm; https://scvhistory.com/scvhistory/jm4901a.htm; https://scvhistory.com/scvhistory/fresnomorningrepublican020298.htm; https://scvhistory.com/scvhistory/obituary_minnieannemurphy.htm; https://scvhistory.com/scvhistory/ap1316.htm"
           }
         ]
       },
@@ -12988,7 +13296,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/gif/galleries/lw2829/; https://scvhistory.com/scvhistory/acton.htm; https://scvhistory.com/scvhistory/al2033.htm; https://scvhistory.com/scvhistory/al_laherald012503.htm; https://scvhistory.com/scvhistory/ap0605.htm; https://scvhistory.com/scvhistory/ap1836.htm; https://scvhistory.com/scvhistory/ap2217.htm; https://scvhistory.com/scvhistory/ap2218.htm; https://scvhistory.com/scvhistory/ap3101.htm; https://scvhistory.com/scvhistory/ap3103.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/hb1301.htm; https://scvhistory.com/scvhistory/hs9910.htm; https://scvhistory.com/scvhistory/lw3802.htm; https://scvhistory.com/scvhistory/pt9001.htm; https://scvhistory.com/scvhistory/bb6001.htm; https://scvhistory.com/scvhistory/lw3801.htm; https://scvhistory.com/scvhistory/lw3800.htm; https://scvhistory.com/scvhistory/lw3700.htm; https://scvhistory.com/scvhistory/hs19770817meryladams.htm; https://scvhistory.com/scvhistory/lw3676.htm"
           }
         ]
       },
@@ -13004,7 +13312,7 @@
         "needs_review": [
           {
             "reason": "possible_legacy_page",
-            "detail": "multiple_pages: https://scvhistory.com/gif/galleries/santaclarariverbridge050514/; https://scvhistory.com/scvhistory/al2301.htm; https://scvhistory.com/scvhistory/cadot2005commercecenterinterchange.htm; https://scvhistory.com/scvhistory/hs2811.htm; https://scvhistory.com/scvhistory/lw2148.htm; https://scvhistory.com/scvhistory/lw2579.htm; https://scvhistory.com/scvhistory/lw2709.htm; https://scvhistory.com/scvhistory/lw2817a.htm; https://scvhistory.com/scvhistory/lw2820.htm; https://scvhistory.com/scvhistory/lw2975.htm"
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/hs2811.htm; https://scvhistory.com/scvhistory/ro2801a.htm; https://scvhistory.com/scvhistory/sg093005-dean.htm; https://scvhistory.com/scvhistory/cadot2005commercecenterinterchange.htm; https://scvhistory.com/scvhistory/lw2709.htm; https://scvhistory.com/scvhistory/al2301.htm; https://scvhistory.com/scvhistory/lw2579.htm; https://scvhistory.com/scvhistory/lw2975.htm; https://scvhistory.com/scvhistory/lw2817a.htm; https://scvhistory.com/scvhistory/lw2148.htm"
           }
         ]
       }
