@@ -1,0 +1,313 @@
+{#
+  Landing page for a major collection, rendered from collections/_entry.twig
+  when collectionIsMajor is on. An unflagged collection keeps the standard
+  record layout.
+
+  Era ordering everywhere comes from the historicalEra structure's own order
+  (lft), which is chronological. Sorting those titles alphabetically would put
+  American Frontier before Spanish Colonial.
+
+  Reading order everywhere comes from articlesInCollection. Articles with no era
+  still appear in Contents, under their own heading, but do not get a stat block
+  because "no era recorded" is not an era.
+
+  Contents filters by ?era=slug, a plain link, so it works without JavaScript
+  like every other filter on the site.
+#}
+{% set F = {} %}
+{% for h in ['body','archiveUrl','legacyUrl','culturalSensitivityNote'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
+{% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
+{% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
+{% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
+
+{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
+{% set hero = hero ?? (recImages|length ? recImages|first : null) %}
+{% set author = entry.writtenBy.one() ?? null %}
+{% set editor = entry.editedBy.one() ?? null %}
+{% set publishers = entry.publishedBy.all() %}
+
+{# reading order #}
+{% set chapters = entry.articlesInCollection.all()
+   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).status(null).all() %}
+
+{# era order, straight from the structure #}
+{% set eraOrder = craft.categories().group('historicalEra').status(null).all() %}
+
+{# bucket the chapters by era, keeping reading order inside each bucket #}
+{% set buckets = {} %}
+{% set seq = {} %}
+{% for a in chapters %}
+  {% set e = a.historicalEra.one() ?? null %}
+  {% set k = e ? e.slug : '_none' %}
+  {% set buckets = buckets|merge({ (k): (buckets[k] ?? [])|merge([a]) }) %}
+  {# string key: merge reindexes integer keys, which would lose the mapping #}
+  {% set seq = seq|merge({ ('a' ~ a.id): loop.index }) %}
+{% endfor %}
+
+{% set erasPresent = [] %}
+{% for t in eraOrder %}
+  {% if buckets[t.slug] is defined %}{% set erasPresent = erasPresent|merge([t]) %}{% endif %}
+{% endfor %}
+
+{% set eraSlug = craft.app.request.getParam('era') %}
+{% set activeEra = null %}
+{% for t in erasPresent %}{% if t.slug == eraSlug %}{% set activeEra = t %}{% endif %}{% endfor %}
+{% if eraSlug == 'none' and buckets['_none'] is defined %}{% set activeEra = 'none' %}{% endif %}
+
+{% set shownCount = 0 %}
+{% if activeEra == 'none' %}{% set shownCount = buckets['_none']|length %}
+{% elseif activeEra %}{% set shownCount = buckets[activeEra.slug]|length %}
+{% else %}{% set shownCount = chapters|length %}{% endif %}
+
+{% set first = chapters|length ? chapters|first : null %}
+{% set kick = ['COLLECTION', chapters|length ~ ' ARTICLE' ~ (chapters|length == 1 ? '' : 'S')] %}
+{% if erasPresent|length %}
+  {% set kick = kick|merge([(erasPresent|first).title|upper ~ (erasPresent|length > 1 ? ' TO ' ~ (erasPresent|last).title|upper : '')]) %}
+{% endif %}
+
+<div class="rec cl{{ hero ? ' cl--img' : '' }}">
+  <section class="cl-band">
+    {% if hero %}<div class="cl-bg" style="background-image:url('{{ hero.url }}')" role="presentation"></div><div class="cl-veil" role="presentation"></div>{% endif %}
+    <div class="rec-wrap cl-in">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('collections') }}">Collections</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="cl-kick">{{ kick|join(' · ') }}</div>
+      <h1>{{ entry.title ?: entry.slug }}</h1>
+      {% if author or editor %}
+        <p class="cl-by">
+          {%- if author %}by <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
+          {%- if editor %}{% if author %} &nbsp;·&nbsp; {% endif %}edited by <a href="{{ editor.url }}">{{ editor.title }}</a>{% endif -%}
+        </p>
+      {% endif %}
+
+      {% if first or F.body %}
+        <div class="cl-ctas">
+          {% if first %}
+            <a class="cl-cta gold" href="{{ first.url }}">Start reading <span>&rarr;</span> {{ first.title ?: first.slug }}</a>
+          {% endif %}
+          {% if F.body %}
+            <a class="cl-cta ghost" href="#recPlayer" id="clListen">Listen to the collection</a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if erasPresent|length %}
+        <div class="cl-stats">
+          {% for t in erasPresent %}
+            <a class="cl-stat" href="{{ url(entry.uri, { era: t.slug }) }}">
+              <b>{{ buckets[t.slug]|length }}</b>
+              <span>{{ t.title }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
+
+        {% if F.body %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>
+        {% endif %}
+        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+
+        {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+
+        {% if chapters|length %}
+          <section class="cl-contents">
+            <div class="cl-chead">
+              <h2 class="rec-h2" style="margin:0">Contents</h2>
+              <div class="cl-showing">Showing {{ shownCount }} of {{ chapters|length }}</div>
+            </div>
+
+            {% if erasPresent|length > 1 or buckets['_none'] is defined %}
+              <div class="cl-chips">
+                <a class="rec-chip {{ not activeEra ? 'solid' : '' }}" href="{{ url(entry.uri) }}">All {{ chapters|length }}</a>
+                {% for t in erasPresent %}
+                  <a class="rec-chip {{ activeEra and activeEra != 'none' and activeEra.slug == t.slug ? 'solid' : '' }}"
+                     href="{{ url(entry.uri, { era: t.slug }) }}">{{ t.title }} ({{ buckets[t.slug]|length }})</a>
+                {% endfor %}
+                {% if buckets['_none'] is defined %}
+                  <a class="rec-chip {{ activeEra == 'none' ? 'solid' : '' }}"
+                     href="{{ url(entry.uri, { era: 'none' }) }}">No era recorded ({{ buckets['_none']|length }})</a>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% set groupsToShow = [] %}
+            {% if activeEra == 'none' %}
+              {% set groupsToShow = [{ label: 'No era recorded', rows: buckets['_none'] }] %}
+            {% elseif activeEra %}
+              {% set groupsToShow = [{ label: activeEra.title, rows: buckets[activeEra.slug] }] %}
+            {% else %}
+              {% for t in erasPresent %}
+                {% set groupsToShow = groupsToShow|merge([{ label: t.title, rows: buckets[t.slug] }]) %}
+              {% endfor %}
+              {% if buckets['_none'] is defined %}
+                {% set groupsToShow = groupsToShow|merge([{ label: 'No era recorded', rows: buckets['_none'] }]) %}
+              {% endif %}
+            {% endif %}
+
+            {% for g in groupsToShow %}
+              <h3 class="cl-era">{{ g.label }}</h3>
+              <ol class="cl-list">
+                {% for a in g.rows %}
+                  {% set aw = a.writtenBy.one() ?? null %}
+                  {% set meta = [aw ? aw.title : null, (a.originalPublishDate is defined and a.originalPublishDate) ? a.originalPublishDate : null]|filter(x => x) %}
+                  {% set ae = a.historicalEra.one() ?? null %}
+                  <li>
+                    <a href="{{ a.url }}">
+                      <span class="n">{{ seq['a' ~ a.id] }}</span>
+                      <span class="c">
+                        <span class="t">{{ a.title ?: a.slug }}</span>
+                        {% if meta|length %}<span class="m">{{ meta|join(' · ') }}</span>{% endif %}
+                      </span>
+                      <span class="e">{{ ae ? ae.title : '' }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ol>
+            {% endfor %}
+          </section>
+        {% endif %}
+      </article>
+
+      <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, author: author, label: 'Collections', sidebar: true } only %}
+
+        {% set people = [{ lab: 'AUTHOR', p: author }, { lab: 'EDITOR', p: editor }]|filter(x => x.p) %}
+        {% for x in people %}
+          {% set pimg = (x.p.featuredImage is defined and x.p.featuredImage) ? x.p.featuredImage.one() ?? null : null %}
+          {% set pp = x.p.title|split(' ')|filter(w => w|trim) %}
+          <div class="rec-box"><div class="rec-lab">{{ x.lab }}</div>
+            <a class="rec-person" href="{{ x.p.url }}">
+              <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : x.p.title|slice(0,1))|upper }}{% endif %}</div>
+              <div style="min-width:0"><div class="n">{{ x.p.title }}</div>{% if x.p.occupation is defined and x.p.occupation %}<div class="r">{{ x.p.occupation }}</div>{% endif %}</div>
+            </a>
+          </div>
+        {% endfor %}
+
+        {% if publishers|length or F.archiveUrl %}
+          <div class="rec-box"><div class="rec-lab">PUBLISHED BY</div>
+            <div class="rec-rows">
+              {% for o in publishers %}<div class="k">SOURCE</div><div class="v"><a href="{{ o.url }}">{{ o.title ?: o.slug }}</a></div>{% endfor %}
+              {% if F.archiveUrl %}<div class="k">ARCHIVE</div><div class="v"><a href="{{ F.archiveUrl }}" target="_blank" rel="noopener">Archive.org &nearr;</a></div>{% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+        {# other collections sharing this one's author or any of its eras #}
+        {% set eraIds = erasPresent|map(t => t.id) %}
+        {% set related = [] %}
+        {% for c in craft.entries().section('collections').status(null).orderBy('title asc').all() %}
+          {% if c.id != entry.id %}
+            {% set ca = c.writtenBy.one() ?? null %}
+            {% set rows = c.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).all() %}
+            {% set share = author and ca and ca.id == author.id %}
+            {% set years = [] %}
+            {% for a in rows %}
+              {% set ae = a.historicalEra.one() ?? null %}
+              {% if ae and ae.id in eraIds %}{% set share = true %}{% endif %}
+              {% set y = (a.originalPublishDate is defined and a.originalPublishDate) ? a.originalPublishDate|slice(-4) : '' %}
+              {% if y matches '/^\\d{4}$/' %}{% set years = years|merge([y]) %}{% endif %}
+            {% endfor %}
+            {% if share %}
+              {% set related = related|merge([{ c: c, n: rows|length, from: years|length ? min(years) : null, to: years|length ? max(years) : null, by: ca }]) %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if related|length %}
+          <div class="rec-box"><div class="rec-lab">RELATED COLLECTIONS</div>
+            <div class="rec-rows">
+              {% for r in related %}
+                <div class="k">{{ r.n }}{{ r.n == 1 ? ' ART' : ' ARTS' }}</div>
+                <div class="v"><a href="{{ r.c.url }}">{{ r.c.title ?: r.c.slug }}</a>
+                  {% if r.from %}<span class="rec-itemsub">{{ r.from }}{{ r.to != r.from ? '–' ~ r.to : '' }}{% if r.by %} · {{ r.by.title }}{% endif %}</span>
+                  {% elseif r.by %}<span class="rec-itemsub">{{ r.by.title }}</span>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
+        {% include "_partials/record/tags" with { el: entry } only %}
+
+        {% set links = [] %}
+        {% if F.archiveUrl %}{% set links = links|merge([{u: F.archiveUrl, t: 'Archive.org'}]) %}{% endif %}
+        {% if F.legacyUrl %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: F.legacyUrl })|trim, t: 'View on legacy site'}]) %}{% endif %}
+        {% if links|length %}
+          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+      </aside>
+    </main>
+  </div>
+</div>
+
+<script>
+/* The band button just starts the player the tools partial already rendered.
+   Without JavaScript the link still jumps to it. */
+document.addEventListener('DOMContentLoaded', function () {
+  var b = document.getElementById('clListen');
+  var pp = document.getElementById('recPP');
+  if (!b || !pp) { return; }
+  b.addEventListener('click', function () { setTimeout(function () { pp.click(); }, 300); });
+});
+</script>
+
+{% css %}
+.cl-band{position:relative;background:#FDF7EA;border-bottom:1px solid #EFE6D0;overflow:hidden}
+.cl--img .cl-band{border-bottom:0}
+.cl-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.cl-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,37,76,.78) 0%,rgba(23,37,76,.92) 100%);z-index:1}
+.cl-in{position:relative;z-index:2;padding-top:52px;padding-bottom:52px}
+.cl-kick{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:16px}
+.cl h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,5vw,60px);line-height:1.04;margin:0 0 14px;color:#17254C}
+.cl-by{font-size:17px;color:#5B6472;margin:0 0 26px}
+.cl-by a{color:#17254C;text-decoration:none}
+.cl--img .cl-kick{color:#C4A031}
+.cl--img h1,.cl--img .rec-crumbs span{color:#fff}
+.cl--img .cl-by{color:rgba(255,255,255,.82)}
+.cl--img .cl-by a{color:#fff}
+.cl--img .rec-crumbs{color:rgba(255,255,255,.72)}
+.cl--img .rec-crumbs a{color:#C4A031}
+.cl-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.cl-cta{font-family:'Jost',sans-serif;font-size:15px;padding:13px 22px;text-decoration:none;display:inline-block}
+.cl-cta.gold{background:#C4A031;color:#17254C;font-weight:500}
+.cl-cta.gold:hover{background:#7A5C1B;color:#fff}
+.cl-cta.gold span{margin:0 4px}
+.cl-cta.ghost{border:1px solid #C4A031;color:#7A5C1B}
+.cl-cta.ghost:hover{background:#FDF7EA}
+.cl--img .cl-cta.ghost{border-color:rgba(255,255,255,.55);color:#fff}
+.cl--img .cl-cta.ghost:hover{background:rgba(255,255,255,.12)}
+.cl-stats{display:flex;gap:10px;flex-wrap:wrap}
+.cl-stat{background:rgba(255,255,255,.9);border:1px solid #EFE6D0;padding:12px 16px;min-width:120px;text-decoration:none;display:block}
+.cl-stat:hover{border-color:#C4A031}
+.cl-stat b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:30px;line-height:1;color:#17254C}
+.cl-stat span{display:block;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;color:#7A5C1B;margin-top:6px;text-transform:uppercase}
+.cl--img .cl-stat{background:rgba(255,255,255,.94)}
+.cl-contents{margin-top:48px}
+.cl-chead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:3px solid #C4A031;padding-top:14px}
+.cl-showing{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;color:#5B6472;text-transform:uppercase}
+.cl-chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}
+.cl-era{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B;text-transform:uppercase;margin:26px 0 8px}
+.cl-list{list-style:none;margin:0;padding:0;border:1px solid #E2E4E8;background:#fff}
+.cl-list li{border-bottom:1px solid #E2E4E8}
+.cl-list li:last-child{border-bottom:0}
+.cl-list a{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;padding:13px 18px;text-decoration:none;color:inherit}
+.cl-list a:hover{background:#FDF7EA}
+.cl-list .n{font-family:'Playfair Display',serif;font-size:20px;color:#7A5C1B}
+.cl-list .t{font-family:'Playfair Display',serif;font-size:17.5px;line-height:1.25;color:#17254C;display:block}
+.cl-list .m{font-size:13px;color:#5B6472;display:block;margin-top:2px}
+.cl-list .e{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;color:#8A919E;text-transform:uppercase;text-align:right}
+@media(max-width:700px){.cl-list a{grid-template-columns:34px minmax(0,1fr)}.cl-list .e{display:none}}
+{% endcss %}

@@ -5,6 +5,17 @@
 {% endblock %}
 
 {% block content %}
+{#
+  A major collection gets the landing page; everything else keeps the standard
+  record layout below. The flag is read off the layout rather than trusted to
+  exist, so this is safe on an install where collectionIsMajor has not been
+  created.
+#}
+{% set isMajor = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'collectionIsMajor' and entry.collectionIsMajor %}{% set isMajor = true %}{% endif %}
+{% endfor %}
+{% if isMajor %}{% include "collections/_lander" %}{% else %}
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
@@ -125,4 +136,5 @@
     </main>
   </div>
 </div>
+{% endif %}
 {% endblock %}
