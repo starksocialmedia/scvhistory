@@ -12,6 +12,13 @@
  * record already exists in Craft by title or alias, which promotion rule from
  * GROK-CONTRACT.md it satisfies, and the flags the extraction set.
  *
+ * Variants are collapsed first. inventory/legacy/entity-canon.json, written by
+ * the reconciliation screen, says which names are the same thing. Where it does,
+ * the spellings become one candidate under the canonical name, carrying the sum
+ * of their mentions and the union of their pages, and listing the variants it
+ * absorbed. Without that, "Dr. Cephas R. Bard", "Cephas R. Bard" and "Dr. Bard"
+ * are three decisions on every article they share.
+ *
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_relation_candidates.php'))"
  */
 
@@ -23,6 +30,29 @@ $KINDS = ['people' => 'person', 'places' => 'place', 'organizations' => 'organiz
 $SECTION_FOR = ['person' => 'persons', 'place' => 'places', 'organization' => 'organizations'];
 $ALIAS_FOR = ['person' => 'personAliases', 'place' => 'placeAliases', 'organization' => 'orgAliases'];
 $FIELD_FOR = ['person' => 'subjectPerson', 'place' => 'depictsPlace', 'organization' => 'subjectOrganization'];
+
+/* The canon, if it has been written. Absent is fine: every name is then its own
+   entity and the screen behaves as it did before reconciliation existed. */
+$canonOf = [];      /* kind => [variant key => canonical name] */
+$absorbed = [];     /* kind => [canonical name => [variants]] */
+$canonPath = $root . '/inventory/legacy/entity-canon.json';
+if (file_exists($canonPath)) {
+    $c = json_decode(file_get_contents($canonPath), true);
+    foreach (($c['canon'] ?? []) as $kind => $groups) {
+        foreach ($groups as $g) {
+            $canonical = (string)($g['canonical'] ?? '');
+            if ($canonical === '') { continue; }
+            foreach (($g['variants'] ?? []) as $v) {
+                $canonOf[$kind][mb_strtolower(trim($v))] = $canonical;
+            }
+            $absorbed[$kind][$canonical] = $g['variants'] ?? [];
+        }
+    }
+    echo 'canon: ' . array_sum(array_map('count', $absorbed)) . ' entities absorbing '
+       . array_sum(array_map(fn($k) => array_sum(array_map('count', $k)), $absorbed)) . ' variants' . PHP_EOL;
+} else {
+    echo 'no entity-canon.json yet, so every spelling is its own candidate' . PHP_EOL;
+}
 
 $norm = function (string $s): string {
     $s = mb_strtolower(trim($s));
@@ -103,7 +133,8 @@ foreach ($INVENTORIES as $inv) {
 /* ---- walk the entity index and build a row per article and candidate ---- */
 
 $rows = [];
-$stats = ['candidates' => 0, 'matched' => 0, 'unmatched' => 0, 'noArticle' => 0];
+$bucket = [];
+$stats = ['candidates' => 0, 'matched' => 0, 'unmatched' => 0, 'noArticle' => 0, 'collapsed' => 0];
 $byKind = []; $byRule = []; $byFlag = [];
 
 foreach ($INVENTORIES as $inv) {
@@ -146,6 +177,10 @@ foreach ($INVENTORIES as $inv) {
                 }
             }
 
+            /* Fold this spelling into its canonical name where the canon says so. */
+            $canonical = $canonOf[$kind][mb_strtolower($name)] ?? $name;
+            $isVariant = $canonical !== $name;
+
             foreach ($pages as $pageUrl) {
                 $path = parse_url((string)$pageUrl, PHP_URL_PATH) ?: '';
                 $article = $articleByUrl[$path] ?? null;
@@ -161,35 +196,66 @@ foreach ($INVENTORIES as $inv) {
                 }
                 if ($near) { $byFlag['near_match_in_craft'] = ($byFlag['near_match_in_craft'] ?? 0) + 1; }
 
-                $rows[] = [
-                    'entryId' => $article->id,
-                    'articleTitle' => (string)$article->title,
-                    'articleSlug' => $article->slug,
-                    'articleUrl' => (string)$article->url,
-                    'inventory' => $inv,
-                    'kind' => $kind,
-                    'field' => $FIELD_FOR[$kind],
-                    'name' => $name,
-                    'variants' => $variants,
-                    'mentionCount' => (int)($ent['mention_count'] ?? 0),
-                    'pageCount' => count($pages),
-                    'pages' => array_slice($pages, 0, 12),
-                    'hasLegacyPage' => $hasLegacy,
-                    'legacyPageUrl' => $legacyUrl,
-                    'rule' => $rule,
-                    'promote' => $promote,
-                    'existing' => $match,
-                    'nearMatches' => $near,
-                    'flags' => $flags,
-                ];
-                $stats['candidates']++;
-                if ($match) { $stats['matched']++; } else { $stats['unmatched']++; }
-                $byKind[$kind] = ($byKind[$kind] ?? 0) + 1;
-                $byRule[$rule === 'has its own legacy page' ? 'legacy page' : ($promote ? 'three or more pages' : 'one or two pages')] =
-                    ($byRule[$rule === 'has its own legacy page' ? 'legacy page' : ($promote ? 'three or more pages' : 'one or two pages')] ?? 0) + 1;
+                $ck = $article->id . '|' . $kind . '|' . mb_strtolower($canonical);
+                if (!isset($bucket[$ck])) {
+                    $bucket[$ck] = [
+                        'entryId' => $article->id,
+                        'articleTitle' => (string)$article->title,
+                        'articleSlug' => $article->slug,
+                        'articleUrl' => (string)$article->url,
+                        'inventory' => $inv,
+                        'kind' => $kind,
+                        'field' => $FIELD_FOR[$kind],
+                        'name' => $canonical,
+                        'spellings' => [],
+                        'variants' => [],
+                        'mentionCount' => 0,
+                        'pageCount' => 0,
+                        'pages' => [],
+                        'hasLegacyPage' => false,
+                        'legacyPageUrl' => '',
+                        'rule' => $rule,
+                        'promote' => $promote,
+                        'existing' => null,
+                        'nearMatches' => [],
+                        'flags' => [],
+                    ];
+                }
+                $b =& $bucket[$ck];
+                if ($isVariant || $name !== $canonical) { $b['spellings'][$name] = true; }
+                foreach ($variants as $v) { $b['variants'][$v] = true; }
+                $b['mentionCount'] += (int)($ent['mention_count'] ?? 0);
+                foreach ($pages as $pg) { $b['pages'][$pg] = true; }
+                if ($hasLegacy) { $b['hasLegacyPage'] = true; $b['legacyPageUrl'] = $legacyUrl; }
+                if (!$b['existing'] && $match) { $b['existing'] = $match; }
+                foreach ($near as $nn) { $b['nearMatches'][$nn['id']] = $nn; }
+                foreach ($flags as $fl) { $b['flags'][$fl['reason'] . '|' . $fl['detail']] = $fl; }
+                /* the strongest rule any spelling satisfies wins */
+                if ($promote && !$b['promote']) { $b['promote'] = true; $b['rule'] = $rule; }
+                unset($b);
             }
         }
     }
+}
+
+/* Materialise the buckets. */
+foreach ($bucket as $b) {
+    $b['spellings'] = array_keys($b['spellings']);
+    $b['variants'] = array_keys($b['variants']);
+    $b['pageCount'] = count($b['pages']);
+    $b['pages'] = array_slice(array_keys($b['pages']), 0, 12);
+    $b['nearMatches'] = array_values($b['nearMatches']);
+    $b['flags'] = array_values($b['flags']);
+    if ($b['hasLegacyPage']) { $b['rule'] = 'has its own legacy page'; $b['promote'] = true; }
+    elseif ($b['pageCount'] >= 3) { $b['rule'] = 'named on ' . $b['pageCount'] . ' pages'; $b['promote'] = true; }
+    else { $b['rule'] = 'named on ' . $b['pageCount'] . ' page' . ($b['pageCount'] === 1 ? '' : 's') . ', stays a tag'; $b['promote'] = false; }
+    $rows[] = $b;
+    $stats['candidates']++;
+    if ($b['existing']) { $stats['matched']++; } else { $stats['unmatched']++; }
+    $byKind[$b['kind']] = ($byKind[$b['kind']] ?? 0) + 1;
+    $rk = $b['hasLegacyPage'] ? 'legacy page' : ($b['promote'] ? 'three or more pages' : 'one or two pages');
+    $byRule[$rk] = ($byRule[$rk] ?? 0) + 1;
+    if ($b['spellings']) { $stats['collapsed'] += count($b['spellings']); }
 }
 
 /* Group by article, in reading order, so the screen can page through them. */
@@ -216,6 +282,7 @@ echo 'articles covered:      ' . count($articles) . PHP_EOL;
 echo 'already match a record: ' . $stats['matched'] . PHP_EOL;
 echo 'no record yet:         ' . $stats['unmatched'] . PHP_EOL;
 echo 'on a page with no article in Craft: ' . $stats['noArticle'] . PHP_EOL;
+echo 'spellings folded into a canonical name: ' . $stats['collapsed'] . PHP_EOL;
 echo 'by kind:' . PHP_EOL;
 foreach ($byKind as $k => $n) { echo '  ' . str_pad($k, 16) . $n . PHP_EOL; }
 echo 'by promotion rule:' . PHP_EOL;

@@ -1,216 +1,158 @@
 /**
- * Reads web/review/merged.json produced by the entity review screen and merges
- * each approved pair: every relation pointing at the losing record is moved
- * onto the survivor, the losing title is appended to the survivor's alias field
- * where the type has one, and the loser is deleted.
+ * Reads web/review/entity-merges.json from the reconciliation screen and writes
+ * a canonical name table to inventory/legacy/entity-canon.json.
  *
- * This is the destructive half of the workflow, so:
- *   - dry run by default; it prints exactly what it would move before moving it
- *   - it refuses to merge a record with itself
- *   - it skips any pair where either record no longer exists, which is what
- *     makes a second run over the same file a no-op
- *   - a title already present in the alias field is not appended twice
- *   - a source that already points at the survivor keeps a single relation
- *     rather than gaining a duplicate
+ * It does not touch Craft. Almost nothing has been promoted to a record yet, so
+ * there is nothing to merge there; what the archive needs first is a decision
+ * about which names are the same thing. The canon is that decision, and it lives
+ * in the repository beside the extraction it reconciles.
  *
- * Relations are moved by re-saving each source element through Craft, not by
- * updating the relations table. Craft 5 keeps a relation field's target ids in
- * two places, the relations table and the element's own content JSON, and a raw
- * SQL update touches only the first. The two then disagree and Craft keeps
- * reading the stale JSON, so the merge looks applied in the database and has no
- * effect on the site.
+ * Merges are transitive: "Dr. Bard" = "Cephas R. Bard" and "Cephas R. Bard" =
+ * "Dr. Cephas R. Bard" makes one person with three names. The survivor of the
+ * group is the one the reviewer kept; when a group has been given more than one
+ * survivor the conflict is reported and the group is left out.
  *
- * Set $APPLY = true to write.
+ * Dry run by default. Set $APPLY = true to write the canon file.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/apply_entity_merges.php'))"
  */
 
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-// Alias field per section, and how that field separates names. placeAliases
-// and orgAliases are single line and comma separated; personAliases is
-// multiline, one name per line. Presence is checked against each survivor's
-// own layout, so a field named here but not yet created is reported and
-// skipped rather than written to.
-$ALIAS_FIELDS = [
-    'persons'       => ['handle' => 'personAliases', 'separator' => "\n",  'join' => "\n"],
-    'places'        => ['handle' => 'placeAliases',  'separator' => ',',   'join' => ', '],
-    'organizations' => ['handle' => 'orgAliases',    'separator' => ',',   'join' => ', '],
-];
+$root = \Craft::getAlias('@root');
+$file = \Craft::getAlias('@webroot') . '/review/entity-merges.json';
+$canonPath = $root . '/inventory/legacy/entity-canon.json';
 
-$file = \Craft::getAlias('@webroot') . '/review/merged.json';
 if (!file_exists($file)) {
-    echo 'ERROR: web/review/merged.json not found. Download it from the review screen first.' . PHP_EOL;
+    echo 'ERROR: web/review/entity-merges.json not found. Download it from the review screen first.' . PHP_EOL;
     return;
 }
 $data = json_decode(file_get_contents($file), true);
-if (!is_array($data)) { echo 'ERROR: merged.json is not valid JSON' . PHP_EOL; return; }
+if (!is_array($data)) { echo 'ERROR: entity-merges.json is not valid JSON' . PHP_EOL; return; }
 
-$elements = Craft::$app->getElements();
-$db = Craft::$app->getDb();
+echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL;
+echo 'decisions in the file: ' . count($data) . PHP_EOL;
 
-$merged = 0; $skipped = 0; $relationsMoved = 0; $relationsDropped = 0; $aliasWrites = 0;
-$notes = [];
+/* ---- union find over the merged pairs, per kind ---- */
 
-echo ($APPLY ? '=== APPLYING, this deletes records ===' : '=== DRY RUN, set $APPLY = true to write ===') . PHP_EOL . PHP_EOL;
+$parent = [];
+$find = function (string $x) use (&$parent, &$find): string {
+    if (!isset($parent[$x])) { $parent[$x] = $x; return $x; }
+    while ($parent[$x] !== $x) { $parent[$x] = $parent[$parent[$x]]; $x = $parent[$x]; }
+    return $x;
+};
+$union = function (string $a, string $b) use (&$parent, $find) {
+    $ra = $find($a); $rb = $find($b);
+    if ($ra !== $rb) { $parent[$ra] = $rb; }
+};
 
-foreach ($data as $n => $row) {
-    if (($row['action'] ?? '') !== 'merge') { continue; }
+$survivorOf = [];   /* name key => the name the reviewer kept */
+$apart = [];        /* pairs explicitly kept apart */
+$merges = 0; $noSurvivor = 0; $bad = [];
 
-    $keepId = (int)($row['keepId'] ?? 0);
-    $loseId = (int)($row['loseId'] ?? 0);
+foreach ($data as $d) {
+    $kind = (string)($d['kind'] ?? '');
+    $a = trim((string)($d['a'] ?? ''));
+    $b = trim((string)($d['b'] ?? ''));
+    $choice = (string)($d['choice'] ?? '');
+    if ($kind === '' || $a === '' || $b === '') { $bad[] = json_encode($d); continue; }
 
-    if (!$keepId || !$loseId) {
-        echo '  row ' . $n . ': missing keepId or loseId, skipping' . PHP_EOL; $skipped++; continue;
-    }
-    if ($keepId === $loseId) {
-        echo '  row ' . $n . ': keepId equals loseId, refusing to merge a record with itself' . PHP_EOL; $skipped++; continue;
-    }
+    $ka = $kind . '|' . $a; $kb = $kind . '|' . $b;
 
-    $keep = \craft\elements\Entry::find()->id($keepId)->status(null)->one();
-    $lose = \craft\elements\Entry::find()->id($loseId)->status(null)->one();
+    if ($choice === 'diff') { $apart[] = [$kind, $a, $b]; continue; }
+    if ($choice !== 'same') { $bad[] = 'unknown choice "' . $choice . '" for ' . $a . ' / ' . $b; continue; }
 
-    if (!$keep || !$lose) {
-        echo sprintf('  %s <- %s: %s no longer exists, skipping (already merged?)',
-            $row['keepTitle'] ?? $keepId, $row['loseTitle'] ?? $loseId,
-            !$keep ? 'survivor' : 'loser') . PHP_EOL;
-        $skipped++; continue;
-    }
+    $s = trim((string)($d['survivor'] ?? ''));
+    if ($s === '') { $noSurvivor++; continue; }
 
-    $keepSection = $keep->getSection()->handle;
-    $loseSection = $lose->getSection()->handle;
-    if ($keepSection !== $loseSection) {
-        echo sprintf('  %s <- %s: different sections (%s, %s), skipping',
-            $keep->title, $lose->title, $keepSection, $loseSection) . PHP_EOL;
-        $skipped++; continue;
-    }
-
-    echo sprintf('  %s  <-  %s   [%s]', $keep->title, $lose->title, $keepSection) . PHP_EOL;
-
-    /* every source that points AT the loser, and through which field */
-    $incoming = (new \craft\db\Query())
-        ->select(['fieldId', 'sourceId'])
-        ->distinct()
-        ->from('{{%relations}}')
-        ->where(['targetId' => $loseId])
-        ->all();
-
-    // canonical elements only; Craft rewrites a revision's own relations when
-    // the canonical element is saved
-    $work = []; $fieldNames = []; $skippedSources = 0;
-    foreach ($incoming as $rel) {
-        $srcId = (int)$rel['sourceId'];
-        if ($srcId === $keepId) { continue; }
-        $src = \craft\elements\Entry::find()->id($srcId)->status(null)->one();
-        if (!$src) { $skippedSources++; continue; }
-        if ($src->getIsRevision() || $src->getIsDraft()) { continue; }
-        $field = Craft::$app->getFields()->getFieldById($rel['fieldId']);
-        if (!$field) { $skippedSources++; continue; }
-        $work[$srcId]['element'] = $src;
-        $work[$srcId]['fields'][$field->handle] = true;
-        $fieldNames[$field->handle] = ($fieldNames[$field->handle] ?? 0) + 1;
-    }
-
-    foreach ($fieldNames as $h => $cnt) {
-        echo '      via ' . str_pad($h, 26) . $cnt . PHP_EOL;
-    }
-    echo '      source records to rewrite: ' . count($work)
-       . ($skippedSources ? ', ' . $skippedSources . ' unreadable and skipped' : '') . PHP_EOL;
-
-    /* alias */
-    $aliasCfg = $ALIAS_FIELDS[$keepSection] ?? null;
-    $aliasHandle = $aliasCfg['handle'] ?? null;
-    $aliasAction = null;
-    if ($aliasHandle) {
-        $layout = [];
-        foreach ($keep->getFieldLayout()->getCustomFields() as $f) { $layout[] = $f->handle; }
-        if (in_array($aliasHandle, $layout, true)) {
-            $current = '';
-            try { $current = trim((string)$keep->getFieldValue($aliasHandle)); } catch (\Throwable $e) { $current = ''; }
-            // split on this field's own separator, and on newlines either way,
-            // so a comma field that has been hand edited onto several lines
-            // still compares correctly
-            $rawParts = preg_split('/[\r\n' . preg_quote($aliasCfg['separator'], '/') . ']+/u', $current);
-            $parts = array_values(array_filter(array_map('trim', $rawParts), fn($x) => $x !== ''));
-            $already = false;
-            foreach ($parts as $p) {
-                if (mb_strtolower($p) === mb_strtolower($lose->title)) { $already = true; break; }
-            }
-            if ($already) {
-                $aliasAction = $aliasHandle . ' already lists "' . $lose->title . '"';
-            } else {
-                $parts[] = $lose->title;
-                $newAlias = implode($aliasCfg['join'], $parts);
-                $aliasAction = 'append "' . $lose->title . '" to ' . $aliasHandle
-                             . ' (' . count($parts) . ' name' . (count($parts) === 1 ? '' : 's') . ')';
-            }
-        } else {
-            $aliasAction = $aliasHandle . ' is not on this layout, so "' . $lose->title . '" will not be recorded';
-            $notes[] = $aliasHandle . ' does not exist on ' . $keepSection . ' yet, so losing titles are not preserved';
-        }
-    } else {
-        $aliasAction = 'no alias field mapped for ' . $keepSection . ', the losing title will not be recorded';
-        $notes[] = $keepSection . ' has no alias field, so losing titles are not preserved';
-    }
-    echo '      alias: ' . $aliasAction . PHP_EOL;
-    echo '      then delete ' . $lose->title . ' (id ' . $loseId . ')' . PHP_EOL;
-
-    if (!$APPLY) { $merged++; continue; }
-
-    $tx = $db->beginTransaction();
-    try {
-        foreach ($work as $srcId => $info) {
-            $src = $info['element'];
-            $changed = false;
-            foreach (array_keys($info['fields']) as $handle) {
-                $ids = $src->getFieldValue($handle)->status(null)->ids();
-                if (!in_array($loseId, $ids, true)) { continue; }
-                $out = [];
-                foreach ($ids as $id) {
-                    $id = ((int)$id === $loseId) ? $keepId : (int)$id;
-                    if (!in_array($id, $out, true)) { $out[] = $id; }   // no duplicate
-                }
-                if ($out === array_map('intval', $ids)) { continue; }
-                $src->setFieldValue($handle, $out);
-                $relationsMoved++;
-                if (count($out) < count($ids)) { $relationsDropped++; }
-                $changed = true;
-            }
-            if ($changed && !$elements->saveElement($src)) {
-                throw new \Exception('could not save source ' . $src->slug . ': ' . json_encode($src->getErrors()));
-            }
-        }
-        if (isset($newAlias)) {
-            $keep->setFieldValue($aliasHandle, $newAlias);
-            if (!$elements->saveElement($keep)) {
-                throw new \Exception('could not save survivor: ' . json_encode($keep->getErrors()));
-            }
-            $aliasWrites++;
-            unset($newAlias);
-        }
-        if (!$elements->deleteElement($lose)) {
-            throw new \Exception('could not delete loser');
-        }
-        $tx->commit();
-        $merged++;
-        echo '      done' . PHP_EOL;
-    } catch (\Throwable $e) {
-        $tx->rollBack();
-        echo '      FAILED, rolled back: ' . $e->getMessage() . PHP_EOL;
-        $skipped++;
-    }
-    unset($newAlias);
+    $union($ka, $kb);
+    $merges++;
+    $survivorOf[$kind . '|' . $s] = true;
 }
 
-echo PHP_EOL . ($APPLY ? 'APPLIED' : 'DRY RUN') . ': ' . $merged . ' merge' . ($merged === 1 ? '' : 's')
-   . ', ' . $skipped . ' skipped' . PHP_EOL;
+/* ---- groups ---- */
+
+$groups = [];
+foreach (array_keys($parent) as $k) { $groups[$find($k)][] = $k; }
+
+$canon = [];        /* kind => [ ['canonical'=>, 'variants'=>[]] ] */
+$conflicts = [];
+
+foreach ($groups as $root_ => $members) {
+    if (count($members) < 2) { continue; }
+    $kind = explode('|', $members[0], 2)[0];
+    $names = array_map(fn($m) => explode('|', $m, 2)[1], $members);
+    sort($names);
+
+    $kept = array_values(array_filter($names, fn($n) => isset($survivorOf[$kind . '|' . $n])));
+    if (count($kept) > 1) {
+        $conflicts[] = $kind . ': ' . implode(' / ', $names) . '  survivors chosen: ' . implode(', ', $kept);
+        continue;
+    }
+    $canonical = $kept[0] ?? null;
+    if ($canonical === null) {
+        /* every member was only ever the losing side; take the longest name */
+        usort($names, fn($x, $y) => mb_strlen($y) <=> mb_strlen($x));
+        $canonical = $names[0];
+    }
+    $canon[$kind][] = [
+        'canonical' => $canonical,
+        'variants' => array_values(array_filter($names, fn($n) => $n !== $canonical)),
+    ];
+}
+
+foreach ($canon as $kind => &$list) {
+    usort($list, fn($a, $b) => strcmp($a['canonical'], $b['canonical']));
+}
+unset($list);
+
+/* ---- report ---- */
+
+echo '=== canon ===' . PHP_EOL;
+$totalNames = 0; $totalPeople = 0;
+foreach ($canon as $kind => $list) {
+    $names = 0;
+    foreach ($list as $g) { $names += 1 + count($g['variants']); }
+    $totalNames += $names; $totalPeople += count($list);
+    echo str_pad($kind, 16) . str_pad((string)$names, 6) . 'names collapse to ' . count($list) . PHP_EOL;
+    foreach (array_slice($list, 0, 8) as $g) {
+        echo '  ' . str_pad($g['canonical'], 34) . '<- ' . implode(', ', $g['variants']) . PHP_EOL;
+    }
+    if (count($list) > 8) { echo '  ... and ' . (count($list) - 8) . ' more groups' . PHP_EOL; }
+}
+
+echo '=== summary ===' . PHP_EOL;
+echo 'merges accepted:       ' . $merges . PHP_EOL;
+echo 'pairs kept apart:      ' . count($apart) . PHP_EOL;
+echo 'merges with no survivor chosen, ignored: ' . $noSurvivor . PHP_EOL;
+echo 'names in the canon:    ' . $totalNames . PHP_EOL;
+echo 'they collapse to:      ' . $totalPeople . PHP_EOL;
+if ($conflicts) {
+    echo 'groups given more than one survivor, left out:' . PHP_EOL;
+    foreach ($conflicts as $c) { echo '  ' . $c . PHP_EOL; }
+}
+if ($bad) {
+    echo 'rows that could not be read:' . PHP_EOL;
+    foreach (array_slice($bad, 0, 10) as $b) { echo '  ' . $b . PHP_EOL; }
+}
+
+$out = [
+    'meta' => [
+        'generated' => (new DateTime())->format('c'),
+        'generated_by' => 'scripts/import/apply_entity_merges.php',
+        'source' => 'web/review/entity-merges.json',
+        'names' => $totalNames,
+        'entities' => $totalPeople,
+        'note' => 'Canonical names for the legacy extraction. export_relation_candidates.php reads this to collapse variants into one candidate per entity per article.',
+    ],
+    'canon' => $canon,
+    'keptApart' => array_map(fn($p) => ['kind' => $p[0], 'a' => $p[1], 'b' => $p[2]], $apart),
+];
+
 if ($APPLY) {
-    echo 'relation fields rewritten: ' . $relationsMoved . ', duplicates collapsed: ' . $relationsDropped
-       . ', alias fields written: ' . $aliasWrites . PHP_EOL;
-}
-foreach (array_unique($notes) as $note) { echo 'NOTE: ' . $note . PHP_EOL; }
-if (!$APPLY) {
-    echo PHP_EOL . 'Nothing was changed. Set $APPLY = true and run again.' . PHP_EOL;
+    file_put_contents($canonPath, json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+    echo 'wrote inventory/legacy/entity-canon.json' . PHP_EOL;
 } else {
-    echo 'Re-run export_entity_candidates.php to refresh the review screen.' . PHP_EOL;
+    echo 'would write inventory/legacy/entity-canon.json' . PHP_EOL;
 }
+echo 'Craft is not touched. The canon is a file in the repository, and the relations export reads it.' . PHP_EOL;

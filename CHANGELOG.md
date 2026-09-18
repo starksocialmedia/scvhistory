@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: repointed the entity reconciliation trio at the extraction index. export_entity_candidates.php emits 1,435 distinct names across the four inventory files with 2,081 proposed pairs from five tests; entities.html offers Same person, Different people and Skip, and asks which name survives; apply_entity_merges.php writes inventory/legacy/entity-canon.json and does not touch Craft. export_relation_candidates.php reads that canon and collapses variants into one candidate per entity per article. Added Discard as a fifth choice on the relations screen, written to inventory/legacy/discarded-entities.json.
+- Decisions: the canon lives in the repository rather than in Craft because almost nothing has been promoted yet; there is nothing to merge there. Pair blocking is the surname plus the surname with one character removed, which lets Herrington meet Harrington without comparing everything to everything.
+- Blockers: I reported earlier that has_legacy_page was false on all but one entity. That was wrong: 133 entities carry one, which matches the re-derivation HANDOFF describes. The relations export now shows 162 candidates promoted by that rule.
+- Next: Nathan reconciles at /review/entities.html, runs apply_entity_merges.php, then re-runs export_relation_candidates.php before reviewing relations
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: added Same as as a fourth choice on the relation review screen. It links a candidate to another name of the same kind on the same article; apply_relations.php appends the spelling to the surviving record's alias field and creates nothing. Also made the dry run show what a create leads to, by giving pending creates a placeholder id so the relation and alias plans are visible before applying.
 - Decisions: alias separators follow the existing convention, a newline for personAliases which is multiline and a comma for the single line place and organization fields. A placeholder id is negative and is filtered out before any write, so it can never reach the database.
 - Blockers: none. Tested end to end on the Audubon pair: created John James Audubon, folded John Woodhouse Audubon into its aliases, related the survivor to the article, created no second record, then reverted.

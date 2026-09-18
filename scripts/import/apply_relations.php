@@ -2,12 +2,16 @@
  * Reads web/review/relations-decided.json produced by the review screen and wires
  * the approved relations onto the articles.
  *
- * Four decisions come back per candidate. "link" relates an existing record.
+ * Five decisions come back per candidate. "link" relates an existing record.
  * "create" makes the record, then relates it. "same" says this spelling is a
  * variant of another name on the same article: nothing is created, and the
  * spelling is appended to the surviving record's alias field instead. "tag"
  * creates nothing and relates nothing; it is recorded so a second pass does not
- * ask again.
+ * ask again. "discard" says the candidate is not an entity at all but something
+ * the extraction misread, a carriage read as a place or a line break read as a
+ * name; it does nothing in Craft and is written to
+ * inventory/legacy/discarded-entities.json instead, so a later crawl does not
+ * propose it again and the patterns show what the extraction rules get wrong.
  *
  * "same" is the common case, not an edge case. The extraction raises
  * possible_same_person 155 times, and without it every one of those is two
@@ -62,6 +66,7 @@ echo 'decisions in the file: ' . count($data) . PHP_EOL;
 $byEntry = [];   /* entryId => field => [ids] */
 $toCreate = [];  /* kind|normalised name => ['kind','name','entries'=>[]] */
 $sameAs = [];    /* the variants, resolved after creates so a new record can take one */
+$discards = [];  /* kind|name => ['kind','name','reasons','articles'] */
 $tags = 0; $bad = [];
 
 foreach ($data as $d) {
@@ -72,6 +77,22 @@ foreach ($data as $d) {
     if (!$entryId || !isset($SECTION_FOR[$kind]) || $name === '') { $bad[] = json_encode($d); continue; }
 
     if ($choice === 'tag') { $tags++; continue; }
+
+    if ($choice === 'discard') {
+        $dk = $kind . '|' . $norm($name);
+        if (!isset($discards[$dk])) {
+            $discards[$dk] = ['kind' => $kind, 'name' => $name, 'reasons' => [], 'articles' => []];
+        }
+        $r = trim((string)($d['reason'] ?? ''));
+        if ($r !== '') { $discards[$dk]['reasons'][$r] = true; }
+        $discards[$dk]['articles'][$entryId] = [
+            'entryId' => $entryId,
+            'title' => (string)($d['articleTitle'] ?? ''),
+            'slug' => (string)($d['articleSlug'] ?? ''),
+            'mentions' => (int)($d['mentionCount'] ?? 0),
+        ];
+        continue;
+    }
 
     if ($choice === 'link') {
         $targetId = (int)($d['targetId'] ?? 0);
@@ -147,6 +168,37 @@ foreach ($toCreate as $key => $c) {
     foreach (array_unique($c['entries']) as $entryId) {
         $byEntry[$entryId][$FIELD_FOR[$c['kind']]][] = $createdIds[$key];
     }
+}
+
+/* ---- discards: not entities, written out as feedback to the crawler ---- */
+
+$discardPath = \Craft::getAlias('@root') . '/inventory/legacy/discarded-entities.json';
+echo '=== discarded, not entities ===' . PHP_EOL;
+$discardRows = [];
+if ($discards) {
+    /* Merge with anything a previous pass discarded, so the file accumulates. */
+    $existing = [];
+    if (file_exists($discardPath)) {
+        $prev = json_decode(file_get_contents($discardPath), true);
+        foreach (($prev['discarded'] ?? []) as $row) {
+            $existing[$row['kind'] . '|' . $norm((string)$row['name'])] = $row;
+        }
+    }
+    foreach ($discards as $dk => $dd) {
+        $row = $existing[$dk] ?? ['kind' => $dd['kind'], 'name' => $dd['name'], 'reasons' => [], 'articles' => []];
+        $row['reasons'] = array_values(array_unique(array_merge($row['reasons'] ?? [], array_keys($dd['reasons']))));
+        $seen = [];
+        foreach (array_merge($row['articles'] ?? [], array_values($dd['articles'])) as $a) { $seen[$a['entryId']] = $a; }
+        $row['articles'] = array_values($seen);
+        $existing[$dk] = $row;
+        echo '  ' . str_pad($dd['kind'], 14) . str_pad($dd['name'], 38)
+            . count($dd['articles']) . ' article(s)'
+            . (count($dd['reasons']) ? '  "' . implode('; ', array_keys($dd['reasons'])) . '"' : '') . PHP_EOL;
+    }
+    $discardRows = array_values($existing);
+    usort($discardRows, fn($a, $b) => [$a['kind'], $a['name']] <=> [$b['kind'], $b['name']]);
+} else {
+    echo '  none' . PHP_EOL;
 }
 
 /* ---- variants: append to the survivor's aliases, create nothing ---- */
@@ -263,6 +315,7 @@ foreach ($byEntry as $entryId => $fields) {
 echo '=== summary ===' . PHP_EOL;
 echo 'decisions read:        ' . count($data) . PHP_EOL;
 echo 'left as tags:          ' . $tags . ' (nothing created, nothing related)' . PHP_EOL;
+echo 'discarded:             ' . count($discards) . ' name(s), nothing created, nothing related' . PHP_EOL;
 echo 'folded as spellings:   ' . count($sameAs) . ', adding ' . $aliasAdded . ' alias(es)' . PHP_EOL;
 echo 'records to create:     ' . count($toCreate) . PHP_EOL;
 echo 'articles to touch:     ' . $touched . PHP_EOL;
@@ -285,5 +338,22 @@ if ($bad) {
     foreach (array_slice($bad, 0, 20) as $b) { echo '  ' . $b . PHP_EOL; }
 }
 if ($failedAlias) { echo 'alias saves failed:    ' . $failedAlias . PHP_EOL; }
+
+if ($discardRows) {
+    if ($APPLY) {
+        file_put_contents($discardPath, json_encode([
+            'meta' => [
+                'generated' => (new DateTime())->format('c'),
+                'generated_by' => 'scripts/import/apply_relations.php',
+                'count' => count($discardRows),
+                'note' => 'Names the extraction proposed that are not entities. Feedback for the crawler: do not propose these again, and look at what the rules got wrong.',
+            ],
+            'discarded' => $discardRows,
+        ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n", LOCK_EX);
+        echo 'wrote inventory/legacy/discarded-entities.json, ' . count($discardRows) . ' name(s)' . PHP_EOL;
+    } else {
+        echo 'would write inventory/legacy/discarded-entities.json, ' . count($discardRows) . ' name(s)' . PHP_EOL;
+    }
+}
 echo 'A relation already present is never added twice, and an alias already held is' . PHP_EOL;
 echo 'never appended again, so a second run is a no-op.' . PHP_EOL;

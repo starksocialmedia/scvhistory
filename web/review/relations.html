@@ -31,6 +31,10 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
 .cand.create{border-left-color:#2E7D5B;background:#F2FAF6}
 .cand.same{border-left-color:#5B6472;background:#F4F6F8}
 .cand.tag{border-left-color:var(--bord);opacity:.5}
+.cand.discard{border-left-color:var(--red);background:#FBF3F2;opacity:.75}
+.why{margin-top:8px}
+.why input{width:100%;max-width:420px;padding:6px 9px;border:1px solid var(--bord);font-size:13px}
+.why label{font-size:12.5px;color:var(--muted);display:block;margin-bottom:4px}
 .sameas{margin-top:8px;font-size:13px;color:var(--muted)}
 .sameas select{padding:6px 8px;border:1px solid var(--bord);background:#fff;max-width:100%}
 .sameas .chosen{color:var(--navy);font-weight:500}
@@ -76,8 +80,9 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
       One article at a time, with every entity the extraction found on its legacy page.
       Four choices each: <b>Link</b> to the record that already exists, <b>Create</b> a record and link it,
       <b>Same as</b> another name on this article, which adds this spelling to that record's aliases and creates nothing,
-      or <b>Tag</b>, which leaves it as body text and creates nothing.
-      <kbd>L</kbd> link, <kbd>C</kbd> create, <kbd>S</kbd> same as, <kbd>T</kbd> tag, <kbd>&darr;</kbd><kbd>&uarr;</kbd> move, <kbd>&rarr;</kbd> next article, <kbd>&larr;</kbd> previous.
+      <b>Tag</b>, which leaves it as body text and creates nothing,
+      or <b>Discard</b>, which says this is not an entity at all but something the extraction misread.
+      <kbd>L</kbd> link, <kbd>C</kbd> create, <kbd>S</kbd> same as, <kbd>T</kbd> tag, <kbd>D</kbd> discard, <kbd>&darr;</kbd><kbd>&uarr;</kbd> move, <kbd>&rarr;</kbd> next article, <kbd>&larr;</kbd> previous.
       Decisions stay in this browser until you download. Nothing here writes to the database.
     </p>
 
@@ -89,6 +94,7 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
           <option value="promote">only those a rule would promote</option>
           <option value="flagged">only flagged or near matches</option>
           <option value="sameperson">only those flagged as possibly the same person</option>
+          <option value="discarded">only those discarded</option>
           <option value="matched">only those with a record already</option>
         </select>
       </label>
@@ -140,6 +146,7 @@ function visible(items) {
     if (f === 'promote') return c.promote;
     if (f === 'flagged') return (c.flags && c.flags.length) || (c.nearMatches && c.nearMatches.length);
     if (f === 'sameperson') return (c.flags || []).some(x => x.reason === 'possible_same_person');
+    if (f === 'discarded') return d && d.choice === 'discard';
     if (f === 'matched') return !!c.existing;
     return true;
   });
@@ -152,8 +159,10 @@ function counts() {
   const create = Object.values(decisions).filter(d => d.choice === 'create').length;
   const same = Object.values(decisions).filter(d => d.choice === 'same').length;
   const tag = Object.values(decisions).filter(d => d.choice === 'tag').length;
+  const disc = Object.values(decisions).filter(d => d.choice === 'discard').length;
   document.getElementById('counts').textContent =
-    decided + ' of ' + all.length + ' decided  ·  ' + link + ' link, ' + create + ' create, ' + same + ' same as, ' + tag + ' tag';
+    decided + ' of ' + all.length + ' decided  ·  ' + link + ' link, ' + create + ' create, ' +
+    same + ' same as, ' + tag + ' tag, ' + disc + ' discard';
   document.getElementById('progress').textContent =
     articles.length ? 'article ' + (idx + 1) + ' of ' + articles.length : '';
 }
@@ -202,7 +211,6 @@ function render() {
       if (c.pages && c.pages.length > 1) {
         html += '<div class="pages">also on ' + (c.pageCount - 1) + ' other page' + (c.pageCount === 2 ? '' : 's') + '</div>';
       }
-      html += '</div>';
       /* Same as: pick another name of the same kind on this article. The
          siblings come from the full candidate list for the article, not the
          filtered view, so a filter cannot hide the survivor. */
@@ -225,6 +233,11 @@ function render() {
         }
         html += '</div>';
       }
+      if (cls === 'discard') {
+        html += '<div class="why"><label>Why is this not an entity? Optional, and it goes to the crawler as feedback.</label>' +
+                '<input type="text" data-reason="' + esc(id) + '" value="' + esc((d && d.reason) || '') + '" ' +
+                'placeholder="a carriage, a line break read as a name, a heading fragment"></div>';
+      }
       html += '</div>';
 
       html += '<div class="acts">' +
@@ -232,6 +245,7 @@ function render() {
         '<button class="create' + (cls === 'create' ? ' on' : '') + '" data-choice="create">Create</button>' +
         '<button class="same' + (cls === 'same' ? ' on' : '') + '" data-choice="same"' + (siblings.length ? '' : ' disabled title="no other name of this kind on this article"') + '>Same as</button>' +
         '<button class="tag' + (cls === 'tag' ? ' on' : '') + '" data-choice="tag">Tag</button>' +
+        '<button class="discard' + (cls === 'discard' ? ' on' : '') + '" data-choice="discard">Discard</button>' +
         '</div>';
       html += '</div>';
     }
@@ -247,6 +261,12 @@ function render() {
   stage.querySelectorAll('select[data-sameas]').forEach(sel => {
     sel.addEventListener('change', () => setSameAs(sel.dataset.sameas, sel.value));
   });
+  stage.querySelectorAll('input[data-reason]').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const d = decisions[inp.dataset.reason];
+      if (d) { d.reason = inp.value; save(); counts(); }
+    });
+  });
 }
 
 function decide(id, choice) {
@@ -261,6 +281,15 @@ function decide(id, choice) {
     };
     /* "same" is not a complete decision until a survivor is chosen. */
     if (choice === 'same') { decisions[id].sameAs = null; decisions[id].sameAsTargetId = null; }
+    /* Discard says the extraction was wrong: not an entity at all. Distinct from
+       Tag, which says it is real but does not deserve a record. It carries the
+       articles it was found on, so the crawler can learn from the pattern. */
+    if (choice === 'discard') {
+      decisions[id].reason = '';
+      decisions[id].articleTitle = c.articleTitle;
+      decisions[id].articleSlug = c.articleSlug;
+      decisions[id].mentionCount = c.mentionCount;
+    }
   }
   save();
   render();
@@ -301,9 +330,9 @@ document.addEventListener('keydown', e => {
   else if (k === 'arrowleft') { e.preventDefault(); go(-1); }
   else if (k === 'arrowdown') { e.preventDefault(); (cards[here + 1] || cards[0])?.focus(); }
   else if (k === 'arrowup') { e.preventDefault(); (cards[here - 1] || cards[cards.length - 1])?.focus(); }
-  else if (['l', 'c', 's', 't'].includes(k) && here >= 0) {
+  else if (['l', 'c', 's', 't', 'd'].includes(k) && here >= 0) {
     e.preventDefault();
-    decide(cards[here].dataset.id, k === 'l' ? 'link' : k === 'c' ? 'create' : k === 's' ? 'same' : 'tag');
+    decide(cards[here].dataset.id, k === 'l' ? 'link' : k === 'c' ? 'create' : k === 's' ? 'same' : k === 't' ? 'tag' : 'discard');
     const again = [...document.querySelectorAll('.cand')];
     (again[here] || again[0])?.focus();
   }

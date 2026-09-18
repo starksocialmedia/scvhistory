@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Entity review — SCVHistory.com</title>
+<title>Entity reconciliation — SCVHistory.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#17254C;--gold:#C4A031;--gold-d:#7A5C1B;--cream:#FDF7EA;--cream-b:#EFE6D0;--grey:#F6F7F9;--bord:#E2E4E8;--muted:#5B6472;--red:#B4453C}
+:root{--navy:#17254C;--gold:#C4A031;--gold-d:#7A5C1B;--cream:#FDF7EA;--grey:#F6F7F9;--bord:#E2E4E8;--muted:#5B6472;--red:#B4453C;--green:#2E7D5B}
 *{box-sizing:border-box}
 body{margin:0;background:var(--grey);color:#2C2C2C;font-family:'Public Sans',system-ui,sans-serif}
 header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:10}
@@ -15,231 +15,239 @@ header .wrap{padding-top:18px;padding-bottom:18px;display:flex;align-items:cente
 h1{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0}
 .counts{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--gold)}
 .tools{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-button,select,input[type=text]{font:inherit}
+button,select,input{font:inherit}
 .btn{background:var(--gold);color:var(--navy);border:0;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:9px 16px;cursor:pointer}
 .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
-main .wrap{padding-top:24px;padding-bottom:80px}
+main .wrap{padding-top:24px;padding-bottom:90px}
+.hint{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7}
+kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bord);padding:1px 5px;font-size:12px}
 .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;font-size:14px;color:var(--muted)}
 .filters select,.filters input{padding:8px 10px;border:1px solid var(--bord);background:#fff}
-.hint{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6}
-kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bord);padding:1px 5px;font-size:12px}
 .pair{background:#fff;border:1px solid var(--bord);border-left:3px solid var(--bord);padding:16px 18px;margin-bottom:10px}
-.pair.merge{border-left-color:var(--gold);background:var(--cream)}
-.pair.notsame{border-left-color:var(--red);opacity:.55}
-.pair.skip{opacity:.55}
-.pair.done{display:none}
-.phead{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
-.why{font-size:13.5px;color:var(--muted)}
-.conf{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--bord);color:var(--gold-d)}
-.conf.high{background:var(--navy);border-color:var(--navy);color:#fff}
-.conf.medium{background:var(--cream);border-color:var(--cream-b)}
-.sec{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.sides{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:760px){.sides{grid-template-columns:1fr}}
-.side{border:1px solid var(--bord);padding:12px 14px;background:#fff}
-.side.keep{border-color:var(--gold);background:var(--cream)}
-.side h3{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;margin:0 0 6px;color:var(--navy)}
-.side h3 a{color:inherit;text-decoration:none}
-.side h3 a:hover{color:var(--gold-d)}
-.facts{font-size:13px;color:var(--muted);line-height:1.7}
-.facts b{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.1em;color:var(--gold-d);text-transform:uppercase;margin-right:5px}
-.keepbtn{margin-top:9px;font-family:'Jost',sans-serif;font-size:12.5px;border:1px solid var(--bord);background:#fff;padding:5px 10px;cursor:pointer;width:100%}
-.keepbtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pair.same{border-left-color:var(--green);background:#F2FAF6}
+.pair.diff{border-left-color:var(--muted);opacity:.55}
+.pair:focus{outline:2px solid var(--gold);outline-offset:2px}
+.why{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px}
+.why .tagr{background:var(--cream);border:1px solid #EFE6D0;padding:2px 7px;margin-right:5px;display:inline-block}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.sides{grid-template-columns:1fr}}
+.side{border:1px solid var(--bord);padding:12px 14px;background:#fff;cursor:pointer}
+.side.win{border-color:var(--green);background:#EFF8F3;box-shadow:inset 0 0 0 1px var(--green)}
+.side .nm{font-family:'Jost',sans-serif;font-size:15.5px;font-weight:500;color:var(--navy)}
+.side .st{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+.side .rec{font-size:12.5px;color:var(--green);margin-top:4px}
+.side .arts{font-size:12px;color:#8A919E;margin-top:5px;line-height:1.5}
+.side .keep{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-top:6px}
 .acts{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
-.acts button{border:1px solid var(--bord);background:#fff;font-family:'Jost',sans-serif;font-size:13px;padding:7px 13px;cursor:pointer}
+.acts button{border:1px solid var(--bord);background:#fff;font-family:'Jost',sans-serif;font-size:13px;padding:7px 12px;cursor:pointer}
 .acts button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.acts button.no.on{background:var(--red);border-color:var(--red)}
-.warn{font-size:12.5px;color:var(--red);margin-top:8px}
+.acts button.same.on{background:var(--green);border-color:var(--green)}
+.ask{font-size:13px;color:var(--gold-d);margin-top:10px}
 .empty{text-align:center;padding:60px 0;color:var(--muted)}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <h1>Entity review</h1>
+    <h1>Entity reconciliation</h1>
     <div class="counts" id="counts">loading</div>
     <div class="tools">
-      <button class="btn ghost" id="hideDecided">Hide decided</button>
-      <button class="btn" id="download">Download merged.json</button>
+      <button class="btn" id="download">Download entity-merges.json</button>
     </div>
   </div>
 </header>
+
 <main>
   <div class="wrap">
     <p class="hint">
-      Nothing here is merged until you download the file and Nathan runs the apply script.
-      Pick which title survives, then decide.
-      <kbd>M</kbd> merge, <kbd>N</kbd> not the same, <kbd>S</kbd> skip, <kbd>1</kbd>/<kbd>2</kbd> choose the survivor, <kbd>J</kbd>/<kbd>K</kbd> move.
-      Decisions stay in this browser until you download.
+      Two names from the extraction that may be one thing. <b>Same person</b>, then click the name that should survive;
+      the other becomes one of its variants. <b>Different people</b> records that they are not the same, so nothing asks again.
+      <b>Skip</b> leaves it undecided.
+      <kbd>S</kbd> same, <kbd>X</kbd> different, <kbd>K</kbd> skip, <kbd>1</kbd><kbd>2</kbd> choose the survivor,
+      <kbd>&darr;</kbd><kbd>&uarr;</kbd> move.
+      This is the extraction index, not Craft. Nothing here writes to the database.
     </p>
+
     <div class="filters">
-      <label>Section <select id="fSec"><option value="">all</option></select></label>
-      <label>Confidence
-        <select id="fConf"><option value="">all</option><option value="high">high</option><option value="medium">medium</option><option value="low">low</option></select>
+      <label>Kind
+        <select id="kind"><option value="person">people</option><option value="place">places</option><option value="organization">organizations</option></select>
       </label>
-      <label>Search <input type="text" id="fText" placeholder="title"></label>
-      <span id="showing"></span>
+      <label>Evidence
+        <select id="why">
+          <option value="strong">strong only: honorific, initials, suffix, spelling</option>
+          <option value="all">every pair, including surname alone</option>
+          <option value="honorific">honorific</option>
+          <option value="initials">initials</option>
+          <option value="suffix">suffix</option>
+          <option value="spelling">spelling</option>
+          <option value="surname">surname alone</option>
+        </select>
+      </label>
+      <label>Show
+        <select id="state"><option value="undecided">undecided</option><option value="all">all</option><option value="same">merged</option><option value="diff">kept apart</option></select>
+      </label>
+      <label>Find <input type="text" id="q" placeholder="a name" size="18"></label>
+      <span id="shown"></span>
     </div>
-    <div id="list"></div>
+
+    <div id="stage"></div>
   </div>
 </main>
+
 <script>
-const KEY = 'scv-entity-review';
-let data = { records: [], candidates: [] }, byId = {}, decisions = JSON.parse(localStorage.getItem(KEY) || '{}');
-let cursor = 0;
+const KEY = 'scvEntityMerges';
+let data = null, pairs = [];
+let decisions = {};
+try { decisions = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { decisions = {}; }
 
-const pid = c => c.aId + '-' + c.bId;
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const idOf = p => p.kind + '|' + p.a + '|' + p.b;
+const STRONG = ['honorific', 'initials', 'suffix', 'spelling'];
 
-fetch('entities.json').then(r => r.json()).then(d => {
-  data = d;
-  (d.records || []).forEach(r => { byId[r.id] = r; });
-  const secs = [...new Set((d.candidates || []).map(c => c.sectionName))].sort();
-  const sel = document.getElementById('fSec');
-  secs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
-  render();
-}).catch(() => {
-  document.getElementById('list').innerHTML = '<div class="empty">Could not load entities.json. Run export_entity_candidates.php first.</div>';
-});
+fetch('entities.json').then(r => r.json()).then(d => { data = d; pairs = d.pairs || []; render(); })
+  .catch(() => { document.getElementById('stage').innerHTML = '<p class="empty">Could not load entities.json. Run the export script first.</p>'; });
+
+function save() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
 
 function visible() {
-  const s = document.getElementById('fSec').value;
-  const cf = document.getElementById('fConf').value;
-  const t = document.getElementById('fText').value.toLowerCase().trim();
-  return (data.candidates || []).filter(c =>
-    (!s || c.sectionName === s) &&
-    (!cf || c.confidence === cf) &&
-    (!t || (c.aTitle + ' ' + c.bTitle).toLowerCase().includes(t))
-  );
+  const kind = document.getElementById('kind').value;
+  const why = document.getElementById('why').value;
+  const state = document.getElementById('state').value;
+  const q = document.getElementById('q').value.toLowerCase().trim();
+  return pairs.filter(p => {
+    if (p.kind !== kind) return false;
+    if (why === 'strong' && !p.reasons.some(r => STRONG.includes(r))) return false;
+    if (why === 'surname' && !(p.reasons.length === 1 && p.reasons[0] === 'surname')) return false;
+    if (!['strong', 'all', 'surname'].includes(why) && !p.reasons.includes(why)) return false;
+    const d = decisions[idOf(p)];
+    if (state === 'undecided' && d) return false;
+    if (state === 'same' && (!d || d.choice !== 'same')) return false;
+    if (state === 'diff' && (!d || d.choice !== 'diff')) return false;
+    if (q && !(p.a + ' ' + p.b).toLowerCase().includes(q)) return false;
+    return true;
+  });
 }
 
-function sideHtml(rec, which, keepId, cid) {
-  if (!rec) return '<div class="side"><div class="facts">record missing</div></div>';
-  const facts = [];
-  if (rec.alias) facts.push('<div><b>Also known as</b>' + esc(rec.alias) + '</div>');
-  if (rec.fullName) facts.push('<div><b>Full name</b>' + esc(rec.fullName) + '</div>');
-  facts.push('<div><b>Mentions</b>' + rec.mentions + '</div>');
-  facts.push('<div><b>Slug</b>' + esc(rec.slug) + '</div>');
-  facts.push('<div><b>Id</b>' + rec.id + '</div>');
-  // Shown only while the type has no alias field on its layout. It disappears
-  // on its own once the field exists, because the export then fills aliasField.
-  if (!rec.aliasField) facts.push('<div class="warn">This type has no alias field yet, so merging would lose the other title.</div>');
-  const on = keepId === rec.id;
-  return '<div class="side' + (on ? ' keep' : '') + '">' +
-    '<h3><a href="' + esc(rec.url || '#') + '" target="_blank">' + esc(rec.title) + '</a></h3>' +
-    '<div class="facts">' + facts.join('') + '</div>' +
-    '<button class="keepbtn' + (on ? ' on' : '') + '" data-keep="' + rec.id + '" data-cid="' + cid + '">' +
-      (on ? 'Keeping this title' : 'Keep this title') + '</button>' +
-    '</div>';
+function counts() {
+  const same = Object.values(decisions).filter(d => d.choice === 'same').length;
+  const diff = Object.values(decisions).filter(d => d.choice === 'diff').length;
+  const need = Object.values(decisions).filter(d => d.choice === 'same' && !d.survivor).length;
+  document.getElementById('counts').textContent =
+    same + ' merged, ' + diff + ' kept apart, ' + pairs.length + ' pairs' + (need ? '  ·  ' + need + ' need a survivor' : '');
+}
+
+function sideHtml(p, which) {
+  const name = which === 'a' ? p.a : p.b;
+  const men = which === 'a' ? p.aMentions : p.bMentions;
+  const arts = which === 'a' ? p.aArticles : p.bArticles;
+  const rec = which === 'a' ? p.aExisting : p.bExisting;
+  const d = decisions[idOf(p)];
+  const win = d && d.choice === 'same' && d.survivor === name;
+  let h = '<div class="side' + (win ? ' win' : '') + '" data-side="' + which + '">';
+  h += '<div class="nm">' + esc(name) + '</div>';
+  h += '<div class="st">' + men + ' mention' + (men === 1 ? '' : 's') + ' across ' + arts + ' article' + (arts === 1 ? '' : 's') + '</div>';
+  if (rec) h += '<div class="rec">record exists: <a href="' + esc(rec.url) + '" target="_blank" rel="noopener">' + esc(rec.title) + ' &nearr;</a></div>';
+  if (win) h += '<div class="keep">keeps this name</div>';
+  h += '</div>';
+  return h;
 }
 
 function render() {
-  const list = document.getElementById('list');
-  const vis = visible();
-  list.innerHTML = '';
-  if (!vis.length) { list.innerHTML = '<div class="empty">Nothing matches these filters.</div>'; counts(); return; }
-  vis.forEach((c, idx) => {
-    const id = pid(c);
-    const dec = decisions[id] || {};
-    const keepId = dec.keepId !== undefined ? dec.keepId : c.aId;
-    const el = document.createElement('div');
-    el.className = 'pair' + (dec.action ? ' ' + dec.action : '') + (idx === cursor ? ' cur' : '');
-    el.dataset.id = id;
-    el.dataset.idx = idx;
-    el.innerHTML =
-      '<div class="phead"><span class="sec">' + esc(c.sectionName) + '</span>' +
-      '<span class="conf ' + esc(c.confidence) + '">' + esc(c.confidence) + '</span>' +
-      '<span class="why">' + esc(c.reason) + '</span></div>' +
-      '<div class="sides">' + sideHtml(byId[c.aId], 'a', keepId, id) + sideHtml(byId[c.bId], 'b', keepId, id) + '</div>' +
-      '<div class="acts">' +
-      '<button class="mg' + (dec.action === 'merge' ? ' on' : '') + '">Merge</button>' +
-      '<button class="no' + (dec.action === 'notsame' ? ' on' : '') + '">Not the same</button>' +
-      '<button class="sk' + (dec.action === 'skip' ? ' on' : '') + '">Skip</button>' +
-      '</div>';
-    el.querySelectorAll('.keepbtn').forEach(b => {
-      b.onclick = () => { setKeep(c, parseInt(b.dataset.keep, 10)); render(); };
-    });
-    el.querySelector('.mg').onclick = () => decide(c, 'merge');
-    el.querySelector('.no').onclick = () => decide(c, 'notsame');
-    el.querySelector('.sk').onclick = () => decide(c, 'skip');
-    list.appendChild(el);
-  });
-  document.getElementById('showing').textContent = vis.length + ' shown';
   counts();
+  const list = visible();
+  document.getElementById('shown').textContent = list.length + ' shown';
+  const stage = document.getElementById('stage');
+  if (!list.length) { stage.innerHTML = '<p class="empty">Nothing matches these filters.</p>'; return; }
+
+  let html = '';
+  for (const p of list.slice(0, 300)) {
+    const id = idOf(p);
+    const d = decisions[id];
+    const cls = d ? (d.choice === 'same' ? 'same' : 'diff') : '';
+    html += '<div class="pair ' + cls + '" data-id="' + esc(id) + '" tabindex="0">';
+    html += '<div class="why">';
+    for (const r of p.reasons) html += '<span class="tagr">' + esc(r) + '</span>';
+    if (p.shared) html += '<span class="tagr">' + p.shared + ' article' + (p.shared === 1 ? '' : 's') + ' in common</span>';
+    html += '</div>';
+    html += '<div class="sides">' + sideHtml(p, 'a') + sideHtml(p, 'b') + '</div>';
+    if (d && d.choice === 'same' && !d.survivor) html += '<div class="ask">Which name survives? Click one, or press <kbd>1</kbd> or <kbd>2</kbd>.</div>';
+    html += '<div class="acts">' +
+      '<button class="same' + (d && d.choice === 'same' ? ' on' : '') + '" data-choice="same">Same person</button>' +
+      '<button class="diff' + (d && d.choice === 'diff' ? ' on' : '') + '" data-choice="diff">Different people</button>' +
+      '<button data-choice="skip">Skip</button>' +
+      '</div></div>';
+  }
+  if (list.length > 300) html += '<p class="empty">Showing the first 300 of ' + list.length + '. Narrow the filters to see the rest.</p>';
+  stage.innerHTML = html;
+
+  stage.querySelectorAll('.pair').forEach(el => {
+    el.querySelectorAll('.acts button').forEach(b => b.addEventListener('click', () => choose(el.dataset.id, b.dataset.choice)));
+    el.querySelectorAll('.side').forEach(s => s.addEventListener('click', () => survivor(el.dataset.id, s.dataset.side)));
+  });
 }
 
-function setKeep(c, keepId) {
-  const id = pid(c);
-  decisions[id] = Object.assign({}, decisions[id], { keepId: keepId });
-  save();
+function choose(id, choice) {
+  const p = pairs.find(x => idOf(x) === id);
+  if (!p) return;
+  if (choice === 'skip') { delete decisions[id]; save(); render(); return; }
+  if (decisions[id] && decisions[id].choice === choice) { delete decisions[id]; save(); render(); return; }
+  decisions[id] = { kind: p.kind, a: p.a, b: p.b, choice: choice, survivor: null, reasons: p.reasons };
+  if (choice === 'same') {
+    /* Default the survivor to the fuller name, which is usually the right one:
+       "Dr. Cephas R. Bard" over "Dr. Bard". The reviewer can click the other. */
+    const ta = p.a.split(/\s+/).length, tb = p.b.split(/\s+/).length;
+    if (p.aExisting && !p.bExisting) decisions[id].survivor = p.a;
+    else if (p.bExisting && !p.aExisting) decisions[id].survivor = p.b;
+    else decisions[id].survivor = ta === tb ? (p.aMentions >= p.bMentions ? p.a : p.b) : (ta > tb ? p.a : p.b);
+  }
+  save(); render();
 }
 
-function decide(c, action) {
-  const id = pid(c);
-  const cur = decisions[id] || {};
-  const keepId = cur.keepId !== undefined ? cur.keepId : c.aId;
-  const loseId = keepId === c.aId ? c.bId : c.aId;
-  decisions[id] = {
-    action: action,
-    keepId: keepId,
-    loseId: loseId,
-    keepTitle: (byId[keepId] || {}).title || '',
-    loseTitle: (byId[loseId] || {}).title || '',
-    section: c.section,
-    reason: c.reason,
-    confidence: c.confidence
-  };
-  save();
-  render();
+function survivor(id, which) {
+  const p = pairs.find(x => idOf(x) === id);
+  const d = decisions[id];
+  if (!p || !d || d.choice !== 'same') return;
+  d.survivor = which === 'a' ? p.a : p.b;
+  save(); render();
 }
 
-function save() { localStorage.setItem(KEY, JSON.stringify(decisions)); }
-
-function counts() {
-  const v = Object.values(decisions);
-  const m = v.filter(x => x.action === 'merge').length;
-  const n = v.filter(x => x.action === 'notsame').length;
-  document.getElementById('counts').textContent =
-    (data.candidates || []).length + ' PAIRS · ' + m + ' TO MERGE · ' + n + ' NOT THE SAME';
-}
-
-function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
-
-document.getElementById('fSec').onchange = () => { cursor = 0; render(); };
-document.getElementById('fConf').onchange = () => { cursor = 0; render(); };
-document.getElementById('fText').oninput = () => { cursor = 0; render(); };
-document.getElementById('hideDecided').onclick = () => {
-  document.querySelectorAll('.pair.merge,.pair.notsame,.pair.skip').forEach(el => el.classList.add('done'));
-};
-document.getElementById('download').onclick = () => {
-  const out = Object.values(decisions).filter(v => v.action === 'merge');
-  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'merged.json';
-  a.click();
-};
+['kind', 'why', 'state'].forEach(i => document.getElementById(i).addEventListener('change', render));
+document.getElementById('q').addEventListener('input', render);
 
 document.addEventListener('keydown', e => {
-  if (/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) { return; }
-  const vis = visible();
-  if (!vis.length) { return; }
-  cursor = Math.max(0, Math.min(cursor, vis.length - 1));
-  const c = vis[cursor];
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+  const cards = [...document.querySelectorAll('.pair')];
+  const here = document.activeElement.classList && document.activeElement.classList.contains('pair')
+    ? cards.indexOf(document.activeElement) : -1;
   const k = e.key.toLowerCase();
-  if (k === 'j') { cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
-  else if (k === 'k') { cursor = Math.max(0, cursor - 1); render(); scrollToCur(); e.preventDefault(); }
-  else if (k === 'm') { decide(c, 'merge'); cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
-  else if (k === 'n') { decide(c, 'notsame'); cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
-  else if (k === 's') { decide(c, 'skip'); cursor = Math.min(vis.length - 1, cursor + 1); render(); scrollToCur(); e.preventDefault(); }
-  else if (k === '1') { setKeep(c, c.aId); render(); e.preventDefault(); }
-  else if (k === '2') { setKeep(c, c.bId); render(); e.preventDefault(); }
+  if (k === 'arrowdown') { e.preventDefault(); (cards[here + 1] || cards[0])?.focus(); }
+  else if (k === 'arrowup') { e.preventDefault(); (cards[here - 1] || cards[cards.length - 1])?.focus(); }
+  else if (here >= 0 && ['s', 'x', 'k'].includes(k)) {
+    e.preventDefault();
+    const id = cards[here].dataset.id;
+    choose(id, k === 's' ? 'same' : k === 'x' ? 'diff' : 'skip');
+    const again = [...document.querySelectorAll('.pair')];
+    (again[here] || again[again.length - 1])?.focus();
+  }
+  else if (here >= 0 && (k === '1' || k === '2')) {
+    e.preventDefault();
+    const id = cards[here].dataset.id;
+    survivor(id, k === '1' ? 'a' : 'b');
+    const again = [...document.querySelectorAll('.pair')];
+    (again[here] || again[0])?.focus();
+  }
 });
 
-function scrollToCur() {
-  const el = document.querySelector('.pair.cur');
-  if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
-}
+document.getElementById('download').onclick = () => {
+  const need = Object.values(decisions).filter(d => d.choice === 'same' && !d.survivor);
+  if (need.length && !confirm(need.length + ' merge(s) have no surviving name chosen and will be ignored. Download anyway?')) return;
+  const blob = new Blob([JSON.stringify(Object.values(decisions), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'entity-merges.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
 </script>
-<style>.pair.cur{outline:2px solid var(--gold);outline-offset:2px}</style>
 </body>
 </html>
