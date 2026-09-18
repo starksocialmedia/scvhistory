@@ -105,13 +105,37 @@ echo PHP_EOL;
 
 /* ---- articles, indexed by the absolute legacy URL of their source page ---- */
 
+/* The legacy host comes from the one place the site reads it, so the reviewer's
+   "check the original" link cannot drift from the site's own legacy links. */
+$LEGACY_HOST = rtrim((string)(Craft::$app->getConfig()->getCustom()->legacyHost ?? 'https://scvhistory.com'), '/');
+$legacyAbs = function (string $v) use ($LEGACY_HOST): string {
+    $v = trim($v);
+    if ($v === '') { return ''; }
+    if (str_starts_with($v, 'http://') || str_starts_with($v, 'https://')) { return $v; }
+    if (str_starts_with($v, '//')) { return 'https:' . $v; }
+    return $LEGACY_HOST . '/' . ltrim($v, '/');
+};
+
+/* Indexed across every section that carries a legacy URL, not articles alone.
+   54 of the pages that looked unimported are war memorial casualty records that
+   have been in Craft all along; the exporter simply was not looking at them. */
 $articleByUrl = [];
-foreach (\craft\elements\Entry::find()->section('articles')->status(null)->all() as $e) {
-    $lu = $hasField($e, 'legacyUrl') ? trim((string)$e->legacyUrl) : '';
-    if ($lu === '') { continue; }
-    $path = parse_url($lu, PHP_URL_PATH) ?: $lu;
-    $articleByUrl[$path] = $e;
+$LEGACY_HANDLES = ['legacyUrl', 'wmLegacyUrl', 'mpLegacyUrl', 'obitLegacyUrl', 'personLegacyUrl'];
+foreach (['articles', 'warMemorials', 'obituaries', 'militaryProfiles', 'collections'] as $sec) {
+    foreach (\craft\elements\Entry::find()->section($sec)->status(null)->limit(null)->all() as $e) {
+        foreach ($LEGACY_HANDLES as $h) {
+            if (!$hasField($e, $h)) { continue; }
+            $lu = trim((string)$e->getFieldValue($h));
+            if ($lu === '') { continue; }
+            $path = parse_url($lu, PHP_URL_PATH) ?: $lu;
+            if (!isset($articleByUrl[$path])) { $articleByUrl[$path] = $e; }
+        }
+    }
 }
+
+/* Titles for the legacy pages that have no record yet, taken from the
+   extraction, so a card for one is not headed by a bare path. */
+$legacyTitleByPath = [];
 echo 'articles with a legacy path: ' . count($articleByUrl) . PHP_EOL;
 
 /* ---- flags the extraction set, keyed by the page they were raised on ---- */
@@ -124,6 +148,9 @@ foreach ($INVENTORIES as $inv) {
     $pages = $d['pages'] ?? array_merge($d['series_pages'] ?? [], $d['related_pages'] ?? []);
     foreach ($pages as $page) {
         $path = parse_url((string)$page['source_url'], PHP_URL_PATH) ?: '';
+        if (!isset($legacyTitleByPath[$path])) {
+            $legacyTitleByPath[$path] = trim((string)($page['title'] ?? '')) ?: $path;
+        }
         foreach (($page['needs_review'] ?? []) as $nr) {
             $flagsByPage[$path][] = ['reason' => (string)($nr['reason'] ?? ''), 'detail' => (string)($nr['detail'] ?? '')];
         }
@@ -183,8 +210,13 @@ foreach ($INVENTORIES as $inv) {
 
             foreach ($pages as $pageUrl) {
                 $path = parse_url((string)$pageUrl, PHP_URL_PATH) ?: '';
+                /* A legacy page with no record in Craft still gets a card. Nothing
+                   can be applied against it, because there is no entry to set a
+                   field on, but hiding it hid an import gap: these are pages the
+                   archive names people on and has not brought across yet. The
+                   card is marked and its actions are off. */
                 $article = $articleByUrl[$path] ?? null;
-                if (!$article) { $stats['noArticle']++; continue; }
+                if (!$article) { $stats['noArticle']++; }
 
                 /* Flags raised on this page that name this entity. */
                 $flags = [];
@@ -196,13 +228,21 @@ foreach ($INVENTORIES as $inv) {
                 }
                 if ($near) { $byFlag['near_match_in_craft'] = ($byFlag['near_match_in_craft'] ?? 0) + 1; }
 
-                $ck = $article->id . '|' . $kind . '|' . mb_strtolower($canonical);
+                $ck = ($article ? $article->id : 'legacy:' . $path) . '|' . $kind . '|' . mb_strtolower($canonical);
                 if (!isset($bucket[$ck])) {
                     $bucket[$ck] = [
-                        'entryId' => $article->id,
-                        'articleTitle' => (string)$article->title,
-                        'articleSlug' => $article->slug,
-                        'articleUrl' => (string)$article->url,
+                        'entryId' => $article ? $article->id : null,
+                        'articleTitle' => $article ? (string)$article->title : ($legacyTitleByPath[$path] ?? $path),
+                        'articleSlug' => $article ? $article->slug : null,
+                        'articleUrl' => $article ? (string)$article->url : null,
+                        'articleLegacy' => $legacyAbs($path),
+                        'inCraft' => (bool)$article,
+                        'articleSection' => $article ? $article->section->handle : null,
+                        /* Only an article carries subjectPerson, depictsPlace and
+                           subjectOrganization. A casualty record has none of them,
+                           so a decision made here could never be applied and the
+                           screen says so rather than taking one. */
+                        'canLink' => $article && $article->section->handle === 'articles',
                         'inventory' => $inv,
                         'kind' => $kind,
                         'field' => $FIELD_FOR[$kind],

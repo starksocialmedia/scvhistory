@@ -24,6 +24,13 @@
  * can see that "Don Ygnacio", "Senor Ygnacio", "Ygnacio del Valle" and "Don
  * Ygnacio del Valle" are all in play rather than deciding one pair blind.
  *
+ * One shape is detected the other way round, as a reason NOT to merge.
+ * "Mrs. George LeBrun" beside "George LeBrun" is a married woman named by her
+ * husband's name, which is how nineteenth century sources name most women. The
+ * two are identical once the honorific is stripped, so every similarity test
+ * proposes them as one person, and accepting that erases her from the archive.
+ * Those pairs carry probable_spouse and say so on the card.
+ *
  * Pairs are proposed five ways, within one kind only:
  *   honorific  the names match once an honorific is removed
  *   initials   same surname, and one side's initials expand to the other's
@@ -96,12 +103,25 @@ foreach ($SECTION_FOR as $kind => $section) {
 
 /* ---------------------------------------------------------- articles by page */
 
+/* The legacy host comes from the one place the site reads it, so a reviewer's
+   "check the original" link cannot drift from the site's own legacy links. */
+$LEGACY_HOST = rtrim((string)(Craft::$app->getConfig()->getCustom()->legacyHost ?? 'https://scvhistory.com'), '/');
+$legacyAbs = function (string $v) use ($LEGACY_HOST): string {
+    $v = trim($v);
+    if ($v === '') { return ''; }
+    if (str_starts_with($v, 'http://') || str_starts_with($v, 'https://')) { return $v; }
+    if (str_starts_with($v, '//')) { return 'https:' . $v; }
+    return $LEGACY_HOST . '/' . ltrim($v, '/');
+};
+
 $articleByPath = [];
 foreach (\craft\elements\Entry::find()->section('articles')->status(null)->all() as $e) {
     $lu = $hasField($e, 'legacyUrl') ? trim((string)$e->legacyUrl) : '';
     if ($lu === '') { continue; }
-    $articleByPath[parse_url($lu, PHP_URL_PATH) ?: $lu] =
-        ['id' => $e->id, 'title' => (string)$e->title, 'slug' => $e->slug, 'url' => (string)$e->url];
+    $articleByPath[parse_url($lu, PHP_URL_PATH) ?: $lu] = [
+        'id' => $e->id, 'title' => (string)$e->title, 'slug' => $e->slug,
+        'url' => (string)$e->url, 'legacy' => $legacyAbs($lu),
+    ];
 }
 
 /* ---------------------------------------------------------- gather the names */
@@ -203,8 +223,10 @@ $rows = ['person' => [], 'place' => [], 'organization' => []];
 foreach ($entities as $kind => $set) {
     foreach ($set as $name => $e) {
         $articles = [];
+        $orphanPages = [];
         foreach (array_keys($e['pages']) as $path) {
             if (isset($articleByPath[$path])) { $articles[$articleByPath[$path]['id']] = $articleByPath[$path]; }
+            elseif ($path !== '') { $orphanPages[$legacyAbs($path)] = true; }
         }
         $flags = [];
         foreach (array_keys($e['pages']) as $path) {
@@ -230,6 +252,7 @@ foreach ($entities as $kind => $set) {
             'pageCount' => count($e['pages']),
             'articles' => array_values($articles),
             'articleCount' => count($articles),
+            'orphanPages' => array_slice(array_keys($orphanPages), 0, 6),
             'inventories' => array_keys($e['inventories']),
             'variants' => array_keys($e['variants']),
             'hasLegacyPage' => $e['hasLegacyPage'],
@@ -252,6 +275,19 @@ $blocks = function (array $t): array {
     $keys = [$sn];
     for ($i = 0; $i < strlen($sn); $i++) { $keys[] = substr($sn, 0, $i) . substr($sn, $i + 1); }
     return array_unique($keys);
+};
+
+/* "Mrs. George LeBrun", "Mrs. J. LeBrun", "Sra. Ygnacio del Valle": a woman
+   named by her husband's name. Returns what follows the honorific, or ''. */
+$wifeOf = function (string $raw): string {
+    $s = trim($raw);
+    if (!preg_match('~^(Mrs\.?|Mme\.?|Madame|Se\x{00F1}ora|Senora|Sra\.?)\s+(.+)$~ui', $s, $m)) { return ''; }
+    $rest = trim($m[2]);
+    /* Needs a given name or an initial as well as a surname. "Mrs. LeBrun" on
+       its own may well be her own name and is left alone. */
+    $parts = preg_split('~\s+~u', $rest, -1, PREG_SPLIT_NO_EMPTY);
+    if (count($parts) < 2) { return ''; }
+    return $rest;
 };
 
 $initialsMatch = function (array $a, array $b): bool {
@@ -328,7 +364,16 @@ foreach ($rows as $kind => $list) {
                 $ka = implode(' ', $ta); $kb = implode(' ', $tb);
                 if ($ka === $kb && $A['name'] === $B['name']) { continue; }
 
+                /* Checked before the similarity tests, because when it fires the
+                   answer is the opposite of what they are about to say. */
+                $spouse = false;
+                $wifeA = $wifeOf($A['name']);
+                $wifeB = $wifeOf($B['name']);
+                if ($wifeA !== '' && $fold($wifeA) === $fold($B['name'])) { $spouse = true; }
+                if ($wifeB !== '' && $fold($wifeB) === $fold($A['name'])) { $spouse = true; }
+
                 $reasons = [];
+                if ($spouse) { $reasons[] = 'probable_spouse'; }
                 if ($ka === $kb) { $reasons[] = 'honorific'; }
                 if ($initialsMatch($ta, $tb)) { $reasons[] = 'initials'; }
                 $n = min(count($ta), count($tb));
@@ -350,6 +395,11 @@ foreach ($rows as $kind => $list) {
                 $pairs[] = [
                     'kind' => $kind,
                     'a' => $A['name'], 'b' => $B['name'],
+                    'spouseNote' => $spouse
+                        ? 'A married woman named by her husband\'s name. These are two people. '
+                        . 'Link them as spouses rather than merging.' : null,
+                    'wife' => $spouse ? ($wifeA !== '' ? $A['name'] : $B['name']) : null,
+                    'husband' => $spouse ? ($wifeA !== '' ? $B['name'] : $A['name']) : null,
                     'aShared' => $aShared, 'bShared' => $bShared,
                     'sharedPages' => count($sharedPaths),
                     'aBlock' => $blockMates($x, [$y]), 'bBlock' => $blockMates($y, [$x]),
@@ -366,7 +416,7 @@ foreach ($rows as $kind => $list) {
 }
 
 /* Strongest evidence first, then the ones that share an article. */
-$weight = ['honorific' => 5, 'initials' => 4, 'suffix' => 3, 'spelling' => 3, 'surname' => 1];
+$weight = ['probable_spouse' => 9, 'honorific' => 5, 'initials' => 4, 'suffix' => 3, 'spelling' => 3, 'surname' => 1];
 usort($pairs, function ($a, $b) use ($weight) {
     $wa = 0; foreach ($a['reasons'] as $r) { $wa = max($wa, $weight[$r] ?? 0); }
     $wb = 0; foreach ($b['reasons'] as $r) { $wb = max($wb, $weight[$r] ?? 0); }

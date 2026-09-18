@@ -58,6 +58,18 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
 .ctx .q.shared{background:var(--cream);border-left:2px solid var(--gold);padding:8px 10px}
 .ctx mark{background:#F6E7B8;color:inherit;padding:0 1px}
 .ctx .none{font-size:13px;color:var(--muted);font-style:italic}
+.pair.spouse{border-left-color:var(--gold);background:#FFFDF7}
+.warn{background:var(--cream);border:1px solid #EFE6D0;border-left:3px solid var(--gold);padding:9px 12px;margin:0 0 12px;font-size:13.5px;line-height:1.6;color:#2C2C2C}
+.warn b{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--gold-d);display:block;margin-bottom:3px}
+.warn .ask{display:block;margin-top:5px;color:var(--muted);font-size:12.5px}
+.side .srcs{font-size:12px;color:#8A919E;margin-top:6px;line-height:1.7}
+.side .srcs a{color:#5B6472;text-decoration:none;border-bottom:1px solid var(--bord)}
+.side .srcs a:hover{color:var(--gold-d);border-bottom-color:var(--gold)}
+.side .srcs .leg{margin-left:5px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A919E;border-bottom:0}
+.side .srcs .leg:hover{color:var(--gold-d)}
+.side .srcs .row{margin-bottom:2px}
+.side .srcs .noRec{color:#8A919E;font-style:italic}
+.acts button.spouseb.on{background:var(--gold-d);border-color:var(--gold-d);color:#fff}
 </style>
 </head>
 <body>
@@ -77,7 +89,10 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
       Two names from the extraction that may be one thing. <b>Same person</b>, then click the name that should survive;
       the other becomes one of its variants. <b>Different people</b> records that they are not the same, so nothing asks again.
       <b>Skip</b> leaves it undecided.
-      <kbd>S</kbd> same, <kbd>X</kbd> different, <kbd>K</kbd> skip, <kbd>1</kbd><kbd>2</kbd> choose the survivor,
+      <b>Spouse of</b> records them as two people married to each other, which is the right answer for
+      "Mrs. George LeBrun" beside "George LeBrun".
+      <kbd>S</kbd> same, <kbd>W</kbd> spouse of, <kbd>X</kbd> different, <kbd>K</kbd> skip,
+      <kbd>1</kbd><kbd>2</kbd> choose the survivor,
       <kbd>C</kbd> show the sentences either name appears in, <kbd>&darr;</kbd><kbd>&uarr;</kbd> move.
       This is the extraction index, not Craft. Nothing here writes to the database.
     </p>
@@ -89,6 +104,7 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
       <label>Evidence
         <select id="why">
           <option value="strong">strong only: honorific, initials, suffix, spelling</option>
+          <option value="probable_spouse">probable spouse, a married woman named by her husband</option>
           <option value="all">every pair, including surname alone</option>
           <option value="honorific">honorific</option>
           <option value="initials">initials</option>
@@ -98,7 +114,7 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
         </select>
       </label>
       <label>Show
-        <select id="state"><option value="undecided">undecided</option><option value="all">all</option><option value="same">merged</option><option value="diff">kept apart</option></select>
+        <select id="state"><option value="undecided">undecided</option><option value="all">all</option><option value="same">merged</option><option value="spouse">married</option><option value="diff">kept apart</option></select>
       </label>
       <label>Find <input type="text" id="q" placeholder="a name" size="18"></label>
       <span id="shown"></span>
@@ -118,7 +134,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;
 const open = new Set();
 let byName = new Map();
 const idOf = p => p.kind + '|' + p.a + '|' + p.b;
-const STRONG = ['honorific', 'initials', 'suffix', 'spelling'];
+const STRONG = ['honorific', 'initials', 'suffix', 'spelling', 'probable_spouse'];
 
 fetch('entities.json').then(r => r.json()).then(d => {
   data = d; pairs = d.pairs || [];
@@ -144,6 +160,7 @@ function visible() {
     const d = decisions[idOf(p)];
     if (state === 'undecided' && d) return false;
     if (state === 'same' && (!d || d.choice !== 'same')) return false;
+    if (state === 'spouse' && (!d || d.choice !== 'spouse')) return false;
     if (state === 'diff' && (!d || d.choice !== 'diff')) return false;
     if (q && !(p.a + ' ' + p.b).toLowerCase().includes(q)) return false;
     return true;
@@ -153,9 +170,11 @@ function visible() {
 function counts() {
   const same = Object.values(decisions).filter(d => d.choice === 'same').length;
   const diff = Object.values(decisions).filter(d => d.choice === 'diff').length;
+  const wed  = Object.values(decisions).filter(d => d.choice === 'spouse').length;
   const need = Object.values(decisions).filter(d => d.choice === 'same' && !d.survivor).length;
   document.getElementById('counts').textContent =
-    same + ' merged, ' + diff + ' kept apart, ' + pairs.length + ' pairs' + (need ? '  ·  ' + need + ' need a survivor' : '');
+    same + ' merged, ' + wed + ' married, ' + diff + ' kept apart, ' + pairs.length + ' pairs'
+    + (need ? '  ·  ' + need + ' need a survivor' : '');
 }
 
 /* Up to three sentences for one side. A shared article leads, because two
@@ -202,8 +221,31 @@ function blockHtml(mates) {
   return h + '</div>';
 }
 
+/* Where this name shows up: our article page, and the legacy page beside it so
+   a reviewer can read it as Leon published it. Both open in a new tab, so a
+   decision in progress is never lost. */
+function srcHtml(row) {
+  const arts = (row && row.articles) || [];
+  const orphans = (row && row.orphanPages) || [];
+  if (!arts.length && !orphans.length) return '';
+  let h = '<div class="srcs">';
+  for (const a of arts.slice(0, 5)) {
+    h += '<div class="row"><a href="' + esc(a.url) + '" target="_blank" rel="noopener">' + esc(a.title) + '</a>';
+    if (a.legacy) h += '<a class="leg" href="' + esc(a.legacy) + '" target="_blank" rel="noopener">legacy &nearr;</a>';
+    h += '</div>';
+  }
+  for (const u of orphans.slice(0, 3)) {
+    h += '<div class="row"><span class="noRec">not imported yet</span>' +
+         '<a class="leg" href="' + esc(u) + '" target="_blank" rel="noopener">legacy &nearr;</a></div>';
+  }
+  const more = (arts.length - 5) + (orphans.length - 3);
+  if (arts.length > 5 || orphans.length > 3) h += '<div class="row">and more</div>';
+  return h + '</div>';
+}
+
 function sideHtml(p, which) {
   const name = which === 'a' ? p.a : p.b;
+  const row = byName.get(p.kind + '|' + name);
   const men = which === 'a' ? p.aMentions : p.bMentions;
   const arts = which === 'a' ? p.aArticles : p.bArticles;
   const rec = which === 'a' ? p.aExisting : p.bExisting;
@@ -214,6 +256,7 @@ function sideHtml(p, which) {
   h += '<div class="st">' + men + ' mention' + (men === 1 ? '' : 's') + ' across ' + arts + ' article' + (arts === 1 ? '' : 's') + '</div>';
   if (rec) h += '<div class="rec">record exists: <a href="' + esc(rec.url) + '" target="_blank" rel="noopener">' + esc(rec.title) + ' &nearr;</a></div>';
   if (win) h += '<div class="keep">keeps this name</div>';
+  h += srcHtml(row);
   h += blockHtml(which === 'a' ? p.aBlock : p.bBlock);
   h += '</div>';
   return h;
@@ -230,12 +273,19 @@ function render() {
   for (const p of list.slice(0, 300)) {
     const id = idOf(p);
     const d = decisions[id];
-    const cls = d ? (d.choice === 'same' ? 'same' : 'diff') : '';
+    const cls = (d ? (d.choice === 'same' ? 'same' : (d.choice === 'spouse' ? 'same' : 'diff')) : '')
+      + (p.spouseNote && !d ? ' spouse' : '');
     html += '<div class="pair ' + cls + '" data-id="' + esc(id) + '" tabindex="0">';
     html += '<div class="why">';
     for (const r of p.reasons) html += '<span class="tagr">' + esc(r) + '</span>';
     if (p.shared) html += '<span class="tagr">' + p.shared + ' article' + (p.shared === 1 ? '' : 's') + ' in common</span>';
     html += '</div>';
+    if (p.spouseNote) {
+      html += '<div class="warn"><b>probable spouse</b>' + esc(p.spouseNote) +
+        '<span class="ask">Check the given name first. A woman\'s given name here means the ' +
+        'honorific is on her own name and the two are one person, so Same person is right. ' +
+        'A man\'s given name means she is his wife.</span></div>';
+    }
     html += '<div class="sides">' + sideHtml(p, 'a') + sideHtml(p, 'b') + '</div>';
     const isOpen = open.has(id);
     html += '<button type="button" class="ctxbar" data-ctx="1">' +
@@ -247,6 +297,7 @@ function render() {
     if (d && d.choice === 'same' && !d.survivor) html += '<div class="ask">Which name survives? Click one, or press <kbd>1</kbd> or <kbd>2</kbd>.</div>';
     html += '<div class="acts">' +
       '<button class="same' + (d && d.choice === 'same' ? ' on' : '') + '" data-choice="same">Same person</button>' +
+      '<button class="spouseb' + (d && d.choice === 'spouse' ? ' on' : '') + '" data-choice="spouse">Spouse of</button>' +
       '<button class="diff' + (d && d.choice === 'diff' ? ' on' : '') + '" data-choice="diff">Different people</button>' +
       '<button data-choice="skip">Skip</button>' +
       '</div></div>';
@@ -268,6 +319,13 @@ function choose(id, choice) {
   if (choice === 'skip') { delete decisions[id]; save(); render(); return; }
   if (decisions[id] && decisions[id].choice === choice) { delete decisions[id]; save(); render(); return; }
   decisions[id] = { kind: p.kind, a: p.a, b: p.b, choice: choice, survivor: null, reasons: p.reasons };
+  if (choice === 'spouse') {
+    /* Which one is the wife is already worked out by the shape of the name;
+       where the flag did not fire, fall back to whichever carries the honorific. */
+    const mrs = /^(mrs\.?|mme\.?|madame|se\u00f1ora|senora|sra\.?)\s/i;
+    decisions[id].wife = p.wife || (mrs.test(p.a) ? p.a : (mrs.test(p.b) ? p.b : null));
+    decisions[id].husband = p.husband || (decisions[id].wife === p.a ? p.b : p.a);
+  }
   if (choice === 'same') {
     /* Default the survivor to the fuller name, which is usually the right one:
        "Dr. Cephas R. Bard" over "Dr. Bard". The reviewer can click the other. */
@@ -306,10 +364,10 @@ document.addEventListener('keydown', e => {
   if (k === 'arrowdown') { e.preventDefault(); (cards[here + 1] || cards[0])?.focus(); }
   else if (k === 'arrowup') { e.preventDefault(); (cards[here - 1] || cards[cards.length - 1])?.focus(); }
   else if (here >= 0 && k === 'c') { e.preventDefault(); toggleCtx(cards[here].dataset.id); }
-  else if (here >= 0 && ['s', 'x', 'k'].includes(k)) {
+  else if (here >= 0 && ['s', 'w', 'x', 'k'].includes(k)) {
     e.preventDefault();
     const id = cards[here].dataset.id;
-    choose(id, k === 's' ? 'same' : k === 'x' ? 'diff' : 'skip');
+    choose(id, k === 's' ? 'same' : k === 'w' ? 'spouse' : k === 'x' ? 'diff' : 'skip');
     const again = [...document.querySelectorAll('.pair')];
     (again[here] || again[again.length - 1])?.focus();
   }

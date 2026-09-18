@@ -2,6 +2,13 @@
  * Reads web/review/entity-merges.json from the reconciliation screen and writes
  * a canonical name table to inventory/legacy/entity-canon.json.
  *
+ * A Spouse of decision is written to the same file under `spouses` rather than
+ * as a merge. "Mrs. George LeBrun" beside "George LeBrun" is a married woman
+ * named by her husband's name, standard in nineteenth century sources: two
+ * people, not one, and merging them erases her from the archive. Both names
+ * stay distinct in the canon and the pair is recorded, so the relation screen
+ * creates a record for each and apply_relations.php sets spouseOf on both.
+ *
  * It does not touch Craft. Almost nothing has been promoted to a record yet, so
  * there is nothing to merge there; what the archive needs first is a decision
  * about which names are the same thing. The canon is that decision, and it lives
@@ -48,6 +55,7 @@ $union = function (string $a, string $b) use (&$parent, $find) {
 
 $survivorOf = [];   /* name key => the name the reviewer kept */
 $apart = [];        /* pairs explicitly kept apart */
+$spouses = [];      /* kind => [ ['wife'=>, 'husband'=>] ], two people, married */
 $merges = 0; $noSurvivor = 0; $bad = [];
 
 foreach ($data as $d) {
@@ -60,6 +68,21 @@ foreach ($data as $d) {
     $ka = $kind . '|' . $a; $kb = $kind . '|' . $b;
 
     if ($choice === 'diff') { $apart[] = [$kind, $a, $b]; continue; }
+
+    /* "Mrs. George LeBrun" beside "George LeBrun" is two people, married, and
+       merging them would erase her. This records the marriage instead: both
+       names stay distinct in the canon, and the relation screen creates two
+       records and sets spouseOf on each. The union-find below is never called,
+       so neither name can be folded into the other later by another decision. */
+    if ($choice === 'spouse') {
+        $wife = trim((string)($d['wife'] ?? ''));
+        $husband = trim((string)($d['husband'] ?? ''));
+        if ($wife === '' || $husband === '') { $wife = $a; $husband = $b; }
+        $spouses[$kind][] = ['wife' => $wife, 'husband' => $husband];
+        $apart[] = [$kind, $a, $b];
+        continue;
+    }
+
     if ($choice !== 'same') { $bad[] = 'unknown choice "' . $choice . '" for ' . $a . ' / ' . $b; continue; }
 
     $s = trim((string)($d['survivor'] ?? ''));
@@ -125,6 +148,17 @@ echo '=== summary ===' . PHP_EOL;
 echo 'merges accepted:       ' . $merges . PHP_EOL;
 echo 'pairs kept apart:      ' . count($apart) . PHP_EOL;
 echo 'merges with no survivor chosen, ignored: ' . $noSurvivor . PHP_EOL;
+
+if ($spouses) {
+    echo PHP_EOL . '=== married, not merged ===' . PHP_EOL;
+    foreach ($spouses as $kind => $list) {
+        foreach ($list as $pair) {
+            echo '  ' . str_pad($pair['wife'], 34) . 'wife of  ' . $pair['husband'] . PHP_EOL;
+        }
+    }
+    echo 'Both names stay in the canon. The relation screen creates a record for each' . PHP_EOL;
+    echo 'and apply_relations.php sets spouseOf on both.' . PHP_EOL;
+}
 echo 'names in the canon:    ' . $totalNames . PHP_EOL;
 echo 'they collapse to:      ' . $totalPeople . PHP_EOL;
 if ($conflicts) {
@@ -146,6 +180,7 @@ $out = [
         'note' => 'Canonical names for the legacy extraction. export_relation_candidates.php reads this to collapse variants into one candidate per entity per article.',
     ],
     'canon' => $canon,
+    'spouses' => $spouses,
     'keptApart' => array_map(fn($p) => ['kind' => $p[0], 'a' => $p[1], 'b' => $p[2]], $apart),
 ];
 
