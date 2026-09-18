@@ -159,6 +159,22 @@ A place name that is not on this list is a place, not a community. Do not add to
 this list. If a page names an area that seems like a community and is not listed,
 put it in `needs_review`.
 
+A place or organization's name never implies its community. Saugus Cafe is in
+Valencia; it is named for the Saugus rail station, not its location. Newhall Land
+and Farming was headquartered in Valencia. Castaic Lake is in Castaic but Castaic
+Junction is a separate community, and several canyons carry names that belong to
+other communities entirely.
+
+Never infer `community_mentions` from a name. Record a community only where the
+text places the subject there (as a place the prose locates something in or talks
+about as a community). Where the text does not, leave `communities_mentioned`
+empty rather than guessing. A community word that appears only as part of a longer
+proper name (Saugus Cafe, Newhall Land, Newhall Pass, Castaic Creek, Piru Creek,
+Tejon Ranch, Hyatt Valencia, and the like) is not a community mention. Prefer the
+longest closed-list community match; do not also record a shorter community that
+is only a prefix of a longer one on the list (e.g. do not add Castaic solely
+because the text says Castaic Junction).
+
 ## Crawl conduct
 
 One request at a time, one second apart, with a descriptive User-Agent naming the
