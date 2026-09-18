@@ -13,7 +13,6 @@
 {% endblock %}
 
 {% block content %}
-{% set recTags = entry.recordTags is defined and entry.recordTags ? entry.recordTags.all() : [] %}
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.personWebmasterNoteTop is defined ? entry.personWebmasterNoteTop : null %}
@@ -176,7 +175,7 @@
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
-        {% include "_partials/record/tags" with { tags: recTags } only %}
+        {% include "_partials/record/tags" with { el: entry } only %}
 
         {% set links = [] %}
         {% if entry.personWikipediaUrl is defined and entry.personWikipediaUrl %}{% set links = links|merge([{u: entry.personWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}

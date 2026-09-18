@@ -1,15 +1,28 @@
 {#
   TAGS sidebar box: plain chips linking to each tag page.
 
-  Renders nothing when the record has no tags, and nothing at all until
-  scripts/import/setup_tags.php has been run, since recordTags does not exist
-  before that. The guard tests both "is defined" and truthiness, because on
-  some element types an absent field reports as defined and returns null.
+  Takes the element, not a list, because the guard has to happen here.
+  `entry.recordTags is defined` is NOT safe: on an Entry it reports true even
+  when the field does not exist, and Twig then calls recordTags() and Craft
+  throws "Calling unknown method". The only reliable test is the element's own
+  field layout, which is what the import scripts do too.
+
+  So this renders nothing at all until scripts/import/setup_tags.php has been
+  run, and nothing on a record with no tags.
 
   Params:
-    tags   the recordTags terms
+    el   the entry or category
 #}
-{% if tags is defined and tags|length %}
+{% set hasField = false %}
+{% if el is defined and el %}
+  {% for f in el.fieldLayout.customFields %}
+    {% if f.handle == 'recordTags' %}{% set hasField = true %}{% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set tags = hasField ? el.recordTags.all() : [] %}
+
+{% if tags|length %}
   {% css %}
   .rec-tags{display:flex;flex-wrap:wrap;gap:7px}
   .rec-tags a{background:#fff;border:1px solid #DCC98F;color:#7A5C1B;font-family:'Jost',sans-serif;font-size:12.5px;padding:5px 11px;border-radius:3px;text-decoration:none}
