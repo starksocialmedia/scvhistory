@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: ran the legacy image import. 325 images downloaded at one request per second, 113.9 MB, no failed fetches. 370 new recordImages relations across 60 records, 49 [image:N] tokens placed in 17 article bodies, no token in any war memorial body. Article band cap now 52 percent at every width. Also stripped placement tokens out of the meta description, where they had started appearing in og:description.
+- Decisions: none beyond those already agreed.
+- Blockers: none. A second run reports 0 to download, 326 already in the volume, 0 bodies to change.
+- Next: the 28 Reynolds pages still have no Craft record, so their images wait on import_reynolds.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: every import script that has an $APPLY flag now prints "APPLY IS ON, this will write to the database" as its first line when the flag is true; 32 scripts, all currently false. The scv-import-script skill now states that $APPLY is false in the committed file always, that the flip is local and never committed, and that the flag is checked before running rather than assumed. Article band cap tightened to 52 percent below 1000px, 60 percent at full width.
 - Decisions: the guard sits immediately under the flag, which is safe because no script prints before that line. Measured the artwork rather than eyeballing it: the dense figure begins at 55.6 percent of the band, mid tone at 53.2, faintest hair at 44.9, and those fractions hold at any width because the image is wider in aspect than the band.
 - Blockers: 60 percent at full width is 4.4 points inside the dense figure. It only looks clear because the text does not fill the column there; the longest line reaches 43.3 percent.

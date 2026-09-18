@@ -46,7 +46,9 @@
 {% set desc = null %}
 {% if src %}
   {% set flat = src|striptags|replace({'&nbsp;': ' '})|trim %}
-  {% set flat = flat|split("\n")|filter(l => l|trim)|join(' ')|trim %}
+  {# [image:N] is a placement token for _partials/prose, not prose. Drop it
+     rather than letting it into og:description and the meta description. #}
+  {% set flat = flat|split("\n")|filter(l => l|trim and not (l|trim matches '/^\\[image:\\d+\\]$/'))|join(' ')|trim %}
   {% if flat|length > 160 %}
     {% set cut = flat|slice(0, 160) %}
     {% set words = cut|split(' ') %}
