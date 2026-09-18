@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: added three skills under .claude/skills/ so the repo's conventions stop being restated in every prompt. scv-import-script covers the eval-style script pattern, the dry run and idempotency rules, the field-layout guard and the traps that have actually cost time here. scv-record-template covers the band, the design tokens, the shared partials and the two conditional rules. scv-review-screen covers the export, review, apply trio.
+- Decisions: each skill is written from the code in this repo rather than from general practice, and names the reference file to read first. Kept each under 700 words so it can be read in full every time.
+- Blockers: none
+- Next: none
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: scripts/import/import_legacy_images.php, dry run by default. Reads the three image inventories, resolves each src against the page it came from, prefers links_to only when it is an image, downloads at one request per second with a project User-Agent, creates assets in archiveMedia/legacy, relates them through recordImages, and places [image:N] tokens in the prose. War memorial bodies get relations only. Nothing was applied; the database is untouched.
 - Decisions: placement does not use position_in_body. That field is the image's ordinal on the page, 1..n on every page in all three inventories, not an offset; using it would stack the first n paragraphs with figures. Position is recovered instead from the text preceding each <img> in the source inventory's body_html, which locates 89 percent of them. An image with no recoverable anchor is related but not placed. Pages are matched on legacyUrl, not legacy_key, because part06 exists in both the Perkins and Reynolds inventories.
 - Blockers: the >5-pages chrome rule matches nothing; the worst offender is armylogo.png on 4 pages. Total bytes needs a paced HEAD pass against the live site, so it is behind a flag and off by default. 28 Reynolds pages have no Craft record until import_reynolds.php runs.
