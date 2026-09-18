@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: removed the voice picker from the record player. No select, no localStorage preference, no list. The player is back to play/pause, progress bar, elapsed and total time, and the four speed buttons. Voice selection is now silent and automatic, keeping the existing chain: Google US English, then Siri, then any remote voice, then Samantha/Alex/Daniel/Karen, then en-US, then the first English voice.
+- Decisions: the novelty filter is kept even without a picker, so a machine with little else installed still does not read in Bad News or Zarvox. The onvoiceschanged rebuild is kept, since Chrome populates the voice list asynchronously and the first call comes back empty.
+- Blockers: none
+- Next: none
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: reading voice order now puts Google US English first, then Siri, then any remote voice, then Samantha/Alex/Daniel/Karen, then en-US, then the first English voice. The macOS novelty voices are filtered out of the picker entirely, so they can be neither chosen nor defaulted to. The picker lists remote voices first, then the named system voices, then the rest alphabetically.
 - Decisions: 15 names filtered, the 13 Nathan listed plus Albert and Superstar, both part of the same macOS novelty set. Fred, Junior, Kathy and Ralph are kept: they are old and poor but they are real reading voices, not sound effects.
 - Blockers: none

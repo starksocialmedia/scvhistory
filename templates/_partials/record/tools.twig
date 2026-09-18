@@ -35,9 +35,6 @@
 .rec-play .bar{flex:1;min-width:140px;height:6px;background:#EFE6D0;border:0;padding:0;cursor:pointer;position:relative}
 .rec-play .bar .fill{display:block;height:100%;width:0;background:#C4A031}
 .rec-play .time{font-family:'Jost',sans-serif;font-size:12.5px;letter-spacing:.06em;color:#5B6472;flex:none;font-variant-numeric:tabular-nums}
-.rec-play .voice{flex:none;display:flex;align-items:center}
-.rec-play .voice select{border:1px solid #DCC98F;background:#fff;font-family:'Jost',sans-serif;font-size:12px;color:#7A5C1B;padding:4px 6px;max-width:170px;cursor:pointer}
-.rec-play .voice .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .rec-play .speed{flex:none;display:flex;gap:4px}
 .rec-play .speed button{border:1px solid #DCC98F;background:#fff;font-family:'Jost',sans-serif;font-size:12px;color:#7A5C1B;padding:4px 8px;cursor:pointer}
 .rec-play .speed button[aria-pressed="true"]{background:#17254C;border-color:#17254C;color:#fff}
@@ -66,10 +63,6 @@
     <span class="fill" id="recFill"></span>
   </div>
   <div class="time"><span id="recElapsed">0:00</span> / <span id="recTotal">0:00</span></div>
-  <label class="voice" hidden>
-    <span class="vh">Voice</span>
-    <select id="recVoice"></select>
-  </label>
   <div class="speed" role="group" aria-label="Reading speed">
     <button type="button" data-rate="0.8" aria-pressed="false">0.8&times;</button>
     <button type="button" data-rate="1" aria-pressed="true">1&times;</button>
@@ -103,98 +96,56 @@ document.addEventListener('DOMContentLoaded', function(){
        5. any en-US voice
        6. the first English voice
 
-     The macOS novelty voices are filtered out of the list entirely, so they can
-     be neither chosen nor defaulted to. The picker lists the remote voices
-     first, then the named system voices, then the rest alphabetically.
+     There is no picker. The reader gets the best available voice and never has
+     to think about it, and the chain falls through silently, so a machine
+     without the Google voices still reads in the best thing it has.
 
-     The reader can override with the picker, and the choice is remembered. */
-  var VOICE_KEY = 'scvVoiceName';
+     The macOS novelty voices are filtered out first, so a machine that has
+     little else still does not read in Bad News or Zarvox. */
   var NAMED = ['samantha', 'alex', 'daniel', 'karen'];
-  /* The macOS "novelty" set. These are sound effects with a voice attached, not
-     reading voices, and they crowd out the real ones in a 45-entry list. */
+  /* The macOS "novelty" set: sound effects with a voice attached, not reading
+     voices. */
   var NOVELTY = [
     'albert', 'bad news', 'bahh', 'bells', 'boing', 'bubbles', 'cellos',
     'good news', 'jester', 'organ', 'superstar', 'trinoids', 'whisper',
     'wobble', 'zarvox'
   ];
-  var englishVoices = [];
   var chosenVoice = null;
-  var voiceSel = document.getElementById('recVoice');
-  var voiceWrap = voiceSel ? voiceSel.closest('.voice') : null;
 
-  function isNovelty(v) {
+  function matchesName(v, want) {
     var n = v.name.toLowerCase();
-    return NOVELTY.some(function (bad) { return n === bad || n.indexOf(bad + ' (') === 0; });
+    return n === want || n.indexOf(want + ' (') === 0;
   }
 
-  function namedRank(v) {
-    var n = v.name.toLowerCase();
-    for (var i = 0; i < NAMED.length; i++) {
-      if (n === NAMED[i] || n.indexOf(NAMED[i] + ' (') === 0) { return i; }
-    }
-    return -1;
+  function isNovelty(v) {
+    return NOVELTY.some(function (bad) { return matchesName(v, bad); });
   }
 
   function bestVoice(list) {
     if (!list.length) { return null; }
-    var byName = function (needle) {
+    var contains = function (needle) {
       return list.find(function (v) { return v.name.toLowerCase().indexOf(needle) !== -1; });
     };
-    var hit = byName('google us english');
+    var hit = contains('google us english');
     if (hit) { return hit; }
-    hit = byName('siri');
+    hit = contains('siri');
     if (hit) { return hit; }
     hit = list.find(function (v) { return v.localService === false; });
     if (hit) { return hit; }
-    hit = list.find(function (v) { return namedRank(v) !== -1; });
+    hit = list.find(function (v) {
+      return NAMED.some(function (want) { return matchesName(v, want); });
+    });
     if (hit) { return hit; }
     hit = list.find(function (v) { return /^en[-_]US$/i.test(v.lang); });
     if (hit) { return hit; }
     return list[0];
   }
 
-  /* remote first, then the named system voices in preference order, then the
-     rest alphabetically */
-  function sortForPicker(list) {
-    return list.slice().sort(function (a, b) {
-      var ga = a.localService === false ? 0 : (namedRank(a) !== -1 ? 1 : 2);
-      var gb = b.localService === false ? 0 : (namedRank(b) !== -1 ? 1 : 2);
-      if (ga !== gb) { return ga - gb; }
-      if (ga === 1) { return namedRank(a) - namedRank(b); }
-      return a.name.localeCompare(b.name);
-    });
-  }
-
   function loadVoices() {
-    var all = speechSynthesis.getVoices() || [];
-    englishVoices = sortForPicker(all.filter(function (v) {
+    var english = (speechSynthesis.getVoices() || []).filter(function (v) {
       return /^en(-|_|$)/i.test(v.lang) && !isNovelty(v);
-    }));
-    if (!englishVoices.length) { chosenVoice = null; return; }
-
-    var saved = null;
-    try { saved = localStorage.getItem(VOICE_KEY); } catch (e) {}
-    chosenVoice = (saved && englishVoices.find(function (v) { return v.name === saved; })) || bestVoice(englishVoices);
-
-    if (!voiceSel) { return; }
-    voiceSel.textContent = '';
-    englishVoices.forEach(function (v) {
-      var o = document.createElement('option');
-      o.value = v.name;
-      o.textContent = v.name + (v.lang ? ' (' + v.lang + ')' : '');
-      if (chosenVoice && v.name === chosenVoice.name) { o.selected = true; }
-      voiceSel.appendChild(o);
     });
-    if (voiceWrap) { voiceWrap.hidden = englishVoices.length < 2; }
-  }
-
-  if (voiceSel) {
-    voiceSel.addEventListener('change', function () {
-      chosenVoice = englishVoices.find(function (v) { return v.name === voiceSel.value; }) || chosenVoice;
-      try { localStorage.setItem(VOICE_KEY, voiceSel.value); } catch (e) {}
-      /* restart the current sentence so the change is audible straight away */
-      if (playing) { speechSynthesis.cancel(); startedAt = Date.now(); speak(idx); }
-    });
+    chosenVoice = bestVoice(english);
   }
 
   loadVoices();
