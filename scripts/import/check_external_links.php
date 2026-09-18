@@ -21,14 +21,23 @@
  * pass, or set $RECHECK_AFTER_DAYS to 0.
  *
  * One request a second, one at a time, with a User-Agent naming the project and
- * a contact address. Nothing here is a crawl; it is a few hundred requests
- * against pages we already link to.
+ * a contact address, and slower still for a host that asks for room. Nothing
+ * here is a crawl; it is a few hundred requests against pages we already link
+ * to.
+ *
+ * A 429 or a 5xx is not a verdict on the link, it is the far end declining to
+ * answer today. Those are counted as "could not check", reported apart from
+ * broken links, and never carried over, so the next run tries them again.
  *
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/check_external_links.php'))"
  */
 
 $RECHECK_AFTER_DAYS = 7;
 $DELAY_SECONDS      = 1;
+/* Find A Grave answers 429 under a steady one-a-second, and a run that reports
+   twelve throttled requests as twelve broken links is worse than useless. Hosts
+   that ask for room get it. */
+$HOST_DELAY = ['www.findagrave.com' => 6];
 $TIMEOUT            = 25;
 $MAX                = 0;   /* 0 for all; set a number to sample while testing */
 $UA = 'SCVHistory-LinkCheck/1.0 (+https://scvhistory.com; contact: nathan@starksocial.com)';
@@ -201,7 +210,8 @@ foreach ($links as $l) {
     if ($MAX > 0 && $n > $MAX) { break; }
     $key = $l['url'] . '|' . $l['id'];
 
-    if (isset($previous[$key]) && $cutoff !== null) {
+    /* A result is only worth carrying over if it was actually a result. */
+    if (isset($previous[$key]) && $cutoff !== null && !($previous[$key]['unchecked'] ?? false)) {
         $when = \DateTime::createFromFormat(DateTime::ATOM, $previous[$key]['checked']) ?: null;
         if ($when && $when > $cutoff) { $results[] = $previous[$key]; $carried++; continue; }
     }
@@ -217,6 +227,9 @@ foreach ($links as $l) {
     $row['checked'] = (new DateTime())->format(DateTime::ATOM);
     $row['page'] = null;
     $row['mismatch'] = null;
+    /* 429 is the host declining, 5xx is the host failing. Neither says anything
+       about whether our link is right. */
+    $row['unchecked'] = $res['status'] === 429 || $res['status'] >= 500 || $res['status'] === 0;
 
     /* Does the page look like the record it is attached to? A status code alone
        cannot answer that, and on Find A Grave it has already been wrong eight
@@ -264,22 +277,26 @@ foreach ($links as $l) {
     $results[] = $row;
     echo str_pad((string)$row['status'], 5) . str_pad($l['kind'], 12) . str_pad(mb_substr($l['title'], 0, 30), 32)
         . mb_substr($l['url'], 0, 62)
-        . ($row['mismatch'] ? '   MISMATCH' : ($row['redirected'] ? '   redirected' : '')) . PHP_EOL;
+        . ($row['mismatch'] ? '   MISMATCH'
+            : ($row['unchecked'] ? '   not checked, try again'
+            : ($row['redirected'] ? '   redirected' : ''))) . PHP_EOL;
 
-    if ($DELAY_SECONDS > 0) { sleep($DELAY_SECONDS); }
+    $host = parse_url($l['url'], PHP_URL_HOST) ?: '';
+    $wait = $HOST_DELAY[$host] ?? $DELAY_SECONDS;
+    if ($wait > 0) { sleep($wait); }
 }
 
 /* ---------------------------------------------------------------- report */
 
 $ok = $notFound = $gone = $other = $failed = $redirects = 0;
-$mismatches = []; $broken = []; $movedOff = [];
+$mismatches = []; $broken = []; $movedOff = []; $unchecked = [];
 
 foreach ($results as $r) {
     $s = (int)$r['status'];
-    if ($s === 200) { $ok++; }
+    if (!empty($r['unchecked'])) { $unchecked[] = $r; $failed++; }
+    elseif ($s === 200) { $ok++; }
     elseif ($s === 404) { $notFound++; $broken[] = $r; }
     elseif ($s === 410) { $gone++; $broken[] = $r; }
-    elseif ($s === 0) { $failed++; $broken[] = $r; }
     else { $other++; $broken[] = $r; }
     if (!empty($r['redirected'])) {
         $redirects++;
@@ -296,7 +313,7 @@ echo '  resolve (200):        ' . $ok . PHP_EOL;
 echo '  not found (404):      ' . $notFound . PHP_EOL;
 echo '  gone (410):           ' . $gone . PHP_EOL;
 echo '  other status:         ' . $other . PHP_EOL;
-echo '  no answer at all:     ' . $failed . PHP_EOL;
+echo '  could not check:      ' . $failed . '  (throttled or failing at the far end, not a verdict)' . PHP_EOL;
 echo '  redirected:           ' . $redirects . ', of which ' . count($movedOff) . ' to another host' . PHP_EOL;
 echo '  page is about someone else: ' . count($mismatches) . PHP_EOL;
 
@@ -309,6 +326,14 @@ if ($mismatches) {
         echo PHP_EOL . $r['title'] . '  (' . $r['section'] . ' #' . $r['id'] . ', ' . $r['field'] . ')' . PHP_EOL;
         echo '   link:  ' . $r['url'] . PHP_EOL;
         echo '   says:  ' . $r['mismatch'] . PHP_EOL;
+    }
+}
+
+if ($unchecked) {
+    echo PHP_EOL . 'COULD NOT CHECK, ' . count($unchecked) . '. The far end declined or failed; these say' . PHP_EOL;
+    echo 'nothing about the link and are not carried over, so the next run tries again:' . PHP_EOL;
+    foreach ($unchecked as $r) {
+        echo '  ' . str_pad((string)$r['status'], 5) . str_pad(mb_substr($r['title'], 0, 28), 30) . $r['url'] . PHP_EOL;
     }
 }
 
@@ -340,7 +365,7 @@ $payload = [
         'carried_over' => $carried,
         'counts' => [
             'links' => count($results), 'ok' => $ok, 'not_found' => $notFound, 'gone' => $gone,
-            'other' => $other, 'failed' => $failed, 'redirected' => $redirects,
+            'other' => $other, 'could_not_check' => $failed, 'redirected' => $redirects,
             'redirected_off_host' => count($movedOff), 'mismatch' => count($mismatches),
         ],
     ],

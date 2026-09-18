@@ -18,6 +18,10 @@ $common = [
     'expected' => ['neighborhood', 'historicalEra'],
 ];
 
+/* A page is a page of the site, not a record of the valley, so the taxonomy
+   fields that place a record in the archive do not apply to it. */
+$noCommonExpected = ['pages'];
+
 $bySection = [
     'articles' => [
         'required' => ['writtenBy', 'originalPublishDate'],
@@ -43,6 +47,18 @@ $bySection = [
         'required' => ['writtenBy', 'articlesInCollection'],
         'expected' => ['collectionParts', 'bandImage'],
     ],
+    /* Both are almost entirely born digital, which is why they were not audited
+       before: against the old rule they would have been nothing but false
+       provenance gaps. They are worth measuring now that provenance is scoped
+       to migrated records. */
+    'groups' => [
+        'required' => [],
+        'expected' => ['groupDateStart', 'groupPersons'],
+    ],
+    'pages' => [
+        'required' => [],
+        'expected' => [],
+    ],
 ];
 
 $out = [];
@@ -50,7 +66,9 @@ $tally = [];
 
 foreach (array_keys($bySection) as $handle) {
     $req = array_merge($common['required'], $bySection[$handle]['required']);
-    $exp = array_merge($common['expected'], $bySection[$handle]['expected']);
+    $exp = in_array($handle, $noCommonExpected, true)
+        ? $bySection[$handle]['expected']
+        : array_merge($common['expected'], $bySection[$handle]['expected']);
     $entries = \craft\elements\Entry::find()->section($handle)->status(null)->orderBy('title asc')->all();
     if (!count($entries)) { continue; }
 
