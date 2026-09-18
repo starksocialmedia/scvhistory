@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
+- Done: rebuilt the site header and mega menu in templates/_layouts/base.twig and templates/_partials/header/site-header.twig, from design/menu-source.html for markup and design/MENU-MAPPING.md for data, targets and omissions. Five menus, live counts, feature cards, active-state mapping, hover and keyboard behaviour, 980px collapse. Whole fragment cached with Craft's cache tag keyed on the active menu.
+- Decisions: items marked OMIT in MENU-MAPPING.md are absent, and a column left empty by them is dropped. Photo galleries and Documents omitted because both sections are empty. DONATE omitted because no donate page exists. Panels are all rendered and toggled rather than conditionally rendered, so the header can be cached as one fragment.
+- Blockers: none
+- Next: Nathan reviews the header, decides on DONATE and on showing a zero count for Newsmaker of the Week
+
 2026-09-16
 
 - Agent: Grok Build

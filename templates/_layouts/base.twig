@@ -11,17 +11,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     body{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
-    .scv-site-header{background:#17254C}
-    .scv-site-header__inner{max-width:1240px;margin:0 auto;padding:22px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-    .scv-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-    .scv-brand img{width:64px;height:64px;flex:none}
-    .scv-brand .wm{font-family:'Playfair Display',serif;font-weight:600;font-size:27px;line-height:1;color:#fff}
-    .scv-brand .rule{height:1px;background:#C4A031;margin:5px 0 4px}
-    .scv-brand .tag{font-family:'Jost',sans-serif;font-size:8.5px;letter-spacing:.2em;color:#C4A031}
-    .scv-site-nav{display:flex;gap:26px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;font-weight:500}
-    .scv-site-nav a{color:#fff;text-decoration:none;text-transform:uppercase}
-    .scv-site-nav a:hover{color:#C4A031}
-    .scv-site-nav a.on{color:#C4A031;border-bottom:2px solid #C4A031;padding-bottom:2px}
+    a{color:inherit}
+    .scv-hdr a{text-decoration:none}
+    .scv-hdr-search{margin:0}
+    .scv-hdr-links a:hover{color:#C4A031}
+    .scv-mtoggle-wrap{display:none}
+    .scv-mlabel{display:none}
+    .scv-mbtn:hover,.scv-mbtn[aria-expanded="true"]{background:rgba(255,255,255,.07)!important;color:#fff!important;border-bottom-color:#C4A031!important}
+    .scv-mbtn:hover .scv-caret,.scv-mbtn[aria-expanded="true"] .scv-caret{color:#C4A031!important}
+    .scv-caret{display:inline-block;transition:transform .15s ease}
+    .scv-mbtn[aria-expanded="true"] .scv-caret,.scv-mtoggle[aria-expanded="true"] .scv-caret{transform:rotate(180deg)}
+    .scv-mbtn:focus-visible,.scv-mtoggle:focus-visible,.scv-hdr-links a:focus-visible,.scv-hdr-brand:focus-visible{outline:2px solid #C4A031;outline-offset:2px}
+    .scv-panel-link:hover span{color:#A9842B}
+    .scv-panel-link:focus-visible,.scv-feat-cta:focus-visible{outline:2px solid #A9842B;outline-offset:3px}
+    .scv-feat-cta:hover{color:#7A5C1B;border-bottom-color:#7A5C1B}
+    @media (max-width:980px){
+      .scv-hdr-top{flex-direction:column;align-items:stretch!important;gap:16px!important}
+      .scv-hdr-util{width:100%;flex-direction:column;align-items:stretch!important;gap:12px!important}
+      .scv-hdr-search label{min-width:0!important}
+      .scv-hdr-links{justify-content:flex-start}
+      .scv-nav{display:none!important}
+      .scv-mtoggle-wrap{display:block}
+      .scv-panel{position:static!important;box-shadow:none!important;border-bottom:1px solid #E2E4E8!important}
+      .scv-panel-in{grid-template-columns:minmax(0,1fr)!important;gap:28px!important;padding:20px!important}
+      .scv-panel-cols{grid-template-columns:minmax(0,1fr)!important;gap:24px!important}
+      .scv-mlabel{display:block}
+    }
     html,body{overflow-x:hidden}
     #content{max-width:none;margin:0;padding:0}
     .scv-footer{background:#17254C;color:#fff}
@@ -32,31 +47,7 @@
 
   <a class="scv-skip" href="#content">Skip to content</a>
 
-  {# ── Header ─────────────────────────────────────────────────────── #}
-  <header class="scv-site-header">
-    <div class="scv-site-header__inner">
-      <a href="{{ siteUrl }}" class="scv-brand">
-        <img src="{{ siteUrl }}uploads/archive-media/site/scvhistory-seal.svg" alt="">
-        <span>
-          <span class="wm">SCVHistory.com</span>
-          <span class="rule" style="display:block"></span>
-          <span class="tag">SANTA CLARITA VALLEY HISTORY ARCHIVES</span>
-        </span>
-      </a>
-      <nav class="scv-site-nav">
-        <a href="{{ url('persons') }}"{% if craft.app.request.getSegment(1) == 'persons' %} class="on"{% endif %}>People</a>
-        <a href="{{ url('places') }}"{% if craft.app.request.getSegment(1) == 'places' %} class="on"{% endif %}>Places</a>
-        <a href="{{ url('communities') }}"{% if craft.app.request.getSegment(1) == 'communities' %} class="on"{% endif %}>Communities</a>
-        <a href="{{ url('organizations') }}"{% if craft.app.request.getSegment(1) == 'organizations' %} class="on"{% endif %}>Organizations</a>
-        <a href="{{ url('collections') }}"{% if craft.app.request.getSegment(1) == 'collections' %} class="on"{% endif %}>Collections</a>
-        <a href="{{ url('articles') }}"{% if craft.app.request.getSegment(1) == 'articles' %} class="on"{% endif %}>Articles</a>
-        <a href="{{ url('groups') }}"{% if craft.app.request.getSegment(1) == 'groups' %} class="on"{% endif %}>Groups</a>
-        <a href="{{ url('events') }}"{% if craft.app.request.getSegment(1) == 'events' %} class="on"{% endif %}>Events</a>
-        <a href="{{ url('war-memorial') }}"{% if craft.app.request.getSegment(1) == 'war-memorial' %} class="on"{% endif %}>War Memorial</a>
-        <a href="{{ url('obituaries') }}"{% if craft.app.request.getSegment(1) == 'obituaries' %} class="on"{% endif %}>Obituaries</a>
-      </nav>
-    </div>
-  </header>
+  {% include "_partials/header/site-header" %}
 
   {# ── Main Content ────────────────────────────────────────────────── #}
   <div id="content" tabindex="-1">
@@ -131,6 +122,99 @@
   </div>
 
   <script src="{{ siteUrl }}assets/js/main"></script>
+  <script>
+  (function () {
+    function init() {
+      var hdr = document.querySelector('.scv-hdr');
+      if (!hdr) { return; }
+      var btns = Array.prototype.slice.call(hdr.querySelectorAll('.scv-mbtn'));
+      var panels = Array.prototype.slice.call(hdr.querySelectorAll('.scv-panel'));
+      var toggle = hdr.querySelector('.scv-mtoggle');
+      var row2 = hdr.querySelector('.scv-hdr-row2');
+      var open = null;
+
+      function isNarrow() { return window.matchMedia('(max-width: 980px)').matches; }
+
+      function close() {
+        btns.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+        panels.forEach(function (p) { p.hidden = true; });
+        open = null;
+      }
+
+      function show(id) {
+        if (isNarrow()) { return; }
+        open = id;
+        btns.forEach(function (b) {
+          b.setAttribute('aria-expanded', String(b.getAttribute('data-menu') === id));
+        });
+        panels.forEach(function (p) {
+          p.hidden = p.getAttribute('data-menu') !== id;
+        });
+      }
+
+      btns.forEach(function (b) {
+        var id = b.getAttribute('data-menu');
+        b.addEventListener('mouseenter', function () { show(id); });
+        b.addEventListener('focus', function () { show(id); });
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (open === id) { close(); } else { show(id); }
+        });
+      });
+
+      if (row2) {
+        row2.addEventListener('mouseleave', function () { if (!isNarrow()) { close(); } });
+      }
+
+      function setDrawer(state) {
+        hdr.classList.toggle('mopen', state);
+        if (toggle) { toggle.setAttribute('aria-expanded', String(state)); }
+        panels.forEach(function (p) { p.hidden = !state; });
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          setDrawer(!hdr.classList.contains('mopen'));
+        });
+      }
+
+      var narrow = window.matchMedia('(max-width: 980px)');
+      var onWidthChange = function () { setDrawer(false); close(); };
+      if (narrow.addEventListener) {
+        narrow.addEventListener('change', onWidthChange);
+      } else if (narrow.addListener) {
+        narrow.addListener(onWidthChange);
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') { return; }
+        if (open) {
+          var btn = hdr.querySelector('.scv-mbtn[data-menu="' + open + '"]');
+          close();
+          if (btn) { btn.focus(); }
+        } else if (hdr.classList.contains('mopen')) {
+          setDrawer(false);
+          if (toggle) { toggle.focus(); }
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!hdr.contains(e.target)) { close(); }
+      });
+
+      document.addEventListener('focusin', function (e) {
+        if (open && !hdr.contains(e.target)) { close(); }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+
   {% block foot %}{% endblock %}
 
 </body>

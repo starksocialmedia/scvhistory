@@ -1,0 +1,348 @@
+{#
+  Site header and mega menu.
+
+  Markup, inline styles and structure are reproduced from design/menu-source.html.
+  Data, targets, omissions, counts and active state come from design/MENU-MAPPING.md.
+
+  The whole fragment is cached. The cache key carries the active menu because the
+  gold bottom border on the nav button is the only part of the header that varies
+  from page to page, so there are six variants at most. Craft invalidates the
+  cache automatically when any element the queries below touch is saved.
+#}
+
+{% set seg1 = craft.app.request.getSegment(1) %}
+{% set activeMap = {
+  'persons': 'people', 'groups': 'people', 'obituaries': 'people',
+  'war-memorial': 'people', 'military-profiles': 'people',
+  'places': 'places', 'communities': 'places', 'organizations': 'places',
+  'collections': 'collections',
+  'articles': 'articles', 'events': 'articles',
+  'photographs': 'articles', 'documents': 'articles'
+} %}
+{% set activeMenu = activeMap[seg1] ?? '' %}
+
+{% cache globally using key "scv-header-v2-" ~ (activeMenu ?: "none") %}
+{#
+  Menu data for the header mega menu.
+
+  Structure and wording come from design/menu-source.html. Targets, counts and
+  omissions come from design/MENU-MAPPING.md. Items whose Target column says
+  OMIT are absent here, and a column that ends up empty is dropped so the
+  auto-fit grid lays the rest out correctly.
+
+  Sets one variable: `menus`, a list of
+    { id, label, kicker, columns: [{ label, items: [{t, n, u}] }], feature }
+#}
+
+{% set cPersons   = craft.entries().section('persons').count() %}
+{% set cGroups    = craft.entries().section('groups').count() %}
+{% set cObits     = craft.entries().section('obituaries').count() %}
+{% set cWar       = craft.entries().section('warMemorials').count() %}
+{% set cPlaces    = craft.entries().section('places').count() %}
+{% set cOrgs      = craft.entries().section('organizations').count() %}
+{% set cColls     = craft.entries().section('collections').count() %}
+{% set cArticles  = craft.entries().section('articles').count() %}
+{% set cEvents    = craft.entries().section('events').count() %}
+{% set cPhotos    = craft.entries().section('photographs').count() %}
+{% set cDocs      = craft.entries().section('documents').count() %}
+{% set cEraTerms  = craft.categories().group('historicalEra').count() %}
+
+{# PEOPLE #}
+{% set colsPeople = [
+  { label: 'RECORDS', items: [
+    { t: 'All people',       n: cPersons, u: url('persons') },
+    { t: 'Pioneer families', n: cGroups,  u: url('groups') }
+  ] },
+  { label: 'MEMORIAL', items: [
+    { t: 'Obituaries',   n: cObits, u: url('obituaries') },
+    { t: 'War Memorial', n: cWar,   u: url('war-memorial') }
+  ] }
+] %}
+
+{% set fPerson = craft.entries().section('persons').orderBy('dateUpdated DESC').one() %}
+{% set featPeople = fPerson ? {
+  kicker: 'RECENTLY ADDED',
+  title:  fPerson.title,
+  meta:   fPerson.occupation ?: 'Biographical record',
+  cta:    'Open the record',
+  u:      fPerson.url
+} : null %}
+
+{# PLACES #}
+{% set nbhdRows = [] %}
+{% for c in craft.categories().group('neighborhood').all() %}
+  {% set n = craft.entries().relatedTo(c).count() %}
+  {% if n > 0 %}
+    {% set nbhdRows = nbhdRows|merge([{ t: c.title, n: n, u: c.url }]) %}
+  {% endif %}
+{% endfor %}
+{% set nbhdRows = nbhdRows|sort((a, b) => b.n - a.n)|slice(0, 3) %}
+
+{% set colsPlaces = [{ label: 'GEOGRAPHY', items: [
+  { t: 'All places', n: cPlaces, u: url('places') }
+] }] %}
+{% if nbhdRows|length %}
+  {% set colsPlaces = colsPlaces|merge([{ label: 'COMMUNITIES', items: nbhdRows }]) %}
+{% endif %}
+{% set colsPlaces = colsPlaces|merge([{ label: 'INSTITUTIONS', items: [
+  { t: 'Organizations', n: cOrgs, u: url('organizations') }
+] }]) %}
+
+{% set fPlace = craft.entries().section('places').slug('beales-cut-stagecoach-pass').one() %}
+{% if not fPlace %}
+  {% for p in craft.entries().section('places').all() %}
+    {% if not fPlace and p.placeLat and p.featuredImage.one() %}{% set fPlace = p %}{% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set placeMeta = '' %}
+{% if fPlace %}
+  {% set raw = fPlace.body|striptags|replace({'&nbsp;': ' '})|trim %}
+  {% if raw %}
+    {% set parts = raw|split('. ') %}
+    {% set sent = '' %}
+    {% set done = false %}
+    {% for p in parts %}
+      {% if not done %}
+        {% if sent == '' %}
+          {% set sent = p %}
+        {% elseif sent|split(' ')|last|trim|length <= 2 %}
+          {% set sent = sent ~ '. ' ~ p %}
+        {% else %}
+          {% set done = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% set sent = sent|trim %}
+    {% set placeMeta = sent ~ (sent ends with '.' ? '' : '.') %}
+  {% else %}
+    {% set com = fPlace.neighborhood.one() %}
+    {% set placeMeta = com ? com.title : 'A place in the Santa Clarita Valley.' %}
+  {% endif %}
+{% endif %}
+
+{% set featPlaces = fPlace ? {
+  kicker: 'FEATURED PLACE',
+  title:  fPlace.title,
+  meta:   placeMeta,
+  cta:    'Visit the place',
+  u:      fPlace.url
+} : null %}
+
+{# COLLECTIONS #}
+{% set majorRows  = [] %}
+{% set seriesRows = [] %}
+{% set topMajor   = null %}
+{% set topMajorN  = -1 %}
+{% for c in craft.entries().section('collections').all() %}
+  {% set isMajor = false %}
+  {% for f in c.fieldLayout.customFields %}
+    {% if f.handle == 'collectionIsMajor' and c.collectionIsMajor %}{% set isMajor = true %}{% endif %}
+  {% endfor %}
+  {% set n = c.articlesInCollection.count() %}
+  {% if c.title|trim %}
+    {% if isMajor %}
+      {% set majorRows = majorRows|merge([{ t: c.title, n: n, u: c.url }]) %}
+      {% if n > topMajorN %}{% set topMajor = c %}{% set topMajorN = n %}{% endif %}
+    {% else %}
+      {% set seriesRows = seriesRows|merge([{ t: c.title, n: n, u: c.url }]) %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% set majorRows  = majorRows|sort((a, b) => b.n - a.n) %}
+{% set seriesRows = seriesRows|sort((a, b) => b.n - a.n)|slice(0, 3) %}
+
+{% set colsColls = [] %}
+{% if majorRows|length %}
+  {% set colsColls = colsColls|merge([{ label: 'MAJOR WORKS', items: majorRows }]) %}
+{% endif %}
+{% if seriesRows|length %}
+  {% set colsColls = colsColls|merge([{ label: 'SERIES', items: seriesRows }]) %}
+{% endif %}
+{% set colsColls = colsColls|merge([{ label: 'BROWSE', items: [
+  { t: 'All collections', n: cColls,    u: url('collections') },
+  { t: 'By era',          n: cEraTerms, u: url('articles', { view: 'era' }) }
+] }]) %}
+
+{% set featColls = null %}
+{% if topMajor %}
+  {% set author = topMajor.writtenBy.one() %}
+  {% set firstArticle = topMajor.articlesInCollection.one() %}
+  {% set eraMap = {} %}
+  {% for a in topMajor.articlesInCollection.all() %}
+    {% for e in a.historicalEra.all() %}
+      {% set eraMap = eraMap|merge({ ('e' ~ e.id): { t: e.title, lft: e.lft } }) %}
+    {% endfor %}
+  {% endfor %}
+  {% set eraList = eraMap|sort((a, b) => a.lft - b.lft)|map(e => e.t)|values %}
+  {% set span = eraList|length > 1 ? eraList|first ~ ' to ' ~ eraList|last : (eraList|length == 1 ? eraList|first : '') %}
+  {% set bits = [
+    author ? author.title : null,
+    topMajorN ~ ' article' ~ (topMajorN == 1 ? '' : 's'),
+    span ?: null
+  ]|filter(v => v) %}
+  {% set featColls = {
+    kicker: 'NOW READING',
+    title:  topMajor.title,
+    meta:   bits|join(' · '),
+    cta:    firstArticle ? 'Start at the ' ~ firstArticle.title : 'Open the collection',
+    u:      firstArticle ? firstArticle.url : topMajor.url
+  } %}
+{% endif %}
+
+{# ARTICLES #}
+{% set mediaItems = [] %}
+{% if cPhotos > 0 %}
+  {% set mediaItems = mediaItems|merge([{ t: 'Photo galleries', n: cPhotos, u: url('photographs') }]) %}
+{% endif %}
+{% if cDocs > 0 %}
+  {% set mediaItems = mediaItems|merge([{ t: 'Documents', n: cDocs, u: url('documents') }]) %}
+{% endif %}
+
+{% set colsArticles = [
+  { label: 'WRITING', items: [{ t: 'All articles', n: cArticles, u: url('articles') }] },
+  { label: 'EVENTS',  items: [{ t: 'All events',   n: cEvents,   u: url('events') }] }
+] %}
+{% if mediaItems|length %}
+  {% set colsArticles = colsArticles|merge([{ label: 'MEDIA', items: mediaItems }]) %}
+{% endif %}
+
+{% set fArticle = craft.entries().section('articles').orderBy('dateUpdated DESC').one() %}
+{% set featArticles = null %}
+{% if fArticle %}
+  {% set aAuthor = fArticle.writtenBy.one() %}
+  {% set aBits = [
+    aAuthor ? aAuthor.title : null,
+    fArticle.originalPublishDate ?: null
+  ]|filter(v => v) %}
+  {% set featArticles = {
+    kicker: 'RECENTLY PUBLISHED',
+    title:  fArticle.title,
+    meta:   aBits|join(' · ') ?: 'From the article archive',
+    cta:    'Read the article',
+    u:      fArticle.url
+  } %}
+{% endif %}
+
+{# BY ERA #}
+{% set eraBuckets = { 'BEFORE STATEHOOD': [], 'THE AMERICAN VALLEY': [], 'MODERN': [] } %}
+{% for c in craft.categories().group('historicalEra').orderBy('lft asc').all() %}
+  {% set n = craft.entries().relatedTo(c).count() %}
+  {% if n > 0 %}
+    {% set inner = c.title|split('(')|last|split(')')|first|trim %}
+    {% set ys = inner|replace({'–': '|', '—': '|', 'Pre-': '|'})|split('|') %}
+    {% set sy = (ys[0] ?? '')|trim %}
+    {% set ey = (ys[1] ?? sy)|trim %}
+    {% set syn = sy matches '/^[0-9]{3,4}$/' ? sy + 0 : 0 %}
+    {% set eyn = ey matches '/^[0-9]{3,4}$/' ? ey + 0 : 9999 %}
+    {% set key = eyn < 1850 ? 'BEFORE STATEHOOD' : (syn < 1930 ? 'THE AMERICAN VALLEY' : 'MODERN') %}
+    {% set eraBuckets = eraBuckets|merge({ (key): eraBuckets[key]|merge([
+      { t: c.title, n: n, u: url('articles', { view: 'era', era: c.slug }) }
+    ]) }) %}
+  {% endif %}
+{% endfor %}
+
+{% set colsEra = [] %}
+{% for label, items in eraBuckets %}
+  {% if items|length %}
+    {% set colsEra = colsEra|merge([{ label: label, items: items }]) %}
+  {% endif %}
+{% endfor %}
+
+{% set featEra = {
+  kicker: 'TIMELINE',
+  title:  'Every record, in order',
+  meta:   'Walk the archive decade by decade, from the Tataviam villages to the city of Santa Clarita.',
+  cta:    'Open the timeline',
+  u:      url('articles', { view: 'era' })
+} %}
+
+{% set menus = [
+  { id: 'people',      label: 'PEOPLE',      kicker: 'BIOGRAPHY & FAMILY RECORDS',      columns: colsPeople,   feature: featPeople },
+  { id: 'places',      label: 'PLACES',      kicker: 'LAND, SITES & COMMUNITIES',       columns: colsPlaces,   feature: featPlaces },
+  { id: 'collections', label: 'COLLECTIONS', kicker: 'MULTI-PART WORKS, READ IN ORDER', columns: colsColls,    feature: featColls },
+  { id: 'articles',    label: 'ARTICLES',    kicker: 'SINGLE PIECES & EVENTS',          columns: colsArticles, feature: featArticles },
+  { id: 'era',         label: 'BY ERA',      kicker: 'BROWSE THE TIMELINE',             columns: colsEra,      feature: featEra }
+] %}
+
+<header class="scv-hdr" style="background: #17254C; position: relative; z-index: 5">
+
+  <div class="scv-hdr-top" style="max-width: 1240px; margin: 0 auto; padding: 20px 40px 0; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap">
+    <a class="scv-hdr-brand" href="{{ siteUrl }}" style="display: flex; align-items: center; gap: 14px; text-decoration: none">
+      <img src="{{ siteUrl }}uploads/archive-media/site/scvhistory-seal.svg" alt="" style="width: 60px; height: 60px; flex: none">
+      <div style="min-width: 0">
+        <div style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 26px; line-height: 1; color: #fff">SCVHistory.com</div>
+        <div style="height: 1px; background: #C4A031; margin: 5px 0 4px"></div>
+        <div style="font-family: 'Jost', sans-serif; font-size: 8.5px; letter-spacing: .2em; color: #C4A031">SANTA CLARITA VALLEY HISTORY ARCHIVES</div>
+      </div>
+    </a>
+    <div class="scv-hdr-util" style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap">
+      <form class="scv-hdr-search" action="{{ url('search') }}" method="get" role="search">
+        <label style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); padding: 9px 14px; min-width: 240px">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="#C4A031" stroke-width="1.6" style="flex: none" aria-hidden="true"><circle cx="6.8" cy="6.8" r="4.6"></circle><line x1="10.4" y1="10.4" x2="14.4" y2="14.4"></line></svg>
+          <input type="search" name="q" value="{{ craft.app.request.getParam('q') }}" aria-label="Search the archive" placeholder="Search the archive" style="background: transparent; border: 0; outline: none; color: #fff; font-family: 'Public Sans', sans-serif; font-size: 14.5px; width: 100%">
+        </label>
+      </form>
+      <div class="scv-hdr-links" style="display: flex; gap: 18px; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .1em">
+        <a href="{{ url('about') }}" style="color: rgba(255,255,255,.72)">ABOUT</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scv-hdr-row2" style="position: relative; margin-top: 18px; border-top: 1px solid rgba(255,255,255,.12)">
+
+    <div class="scv-mtoggle-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 40px">
+      <button type="button" class="scv-mtoggle" aria-expanded="false" aria-controls="scv-panels" style="background: transparent; border: 0; border-bottom: 3px solid transparent; color: #fff; font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .09em; font-weight: 500; padding: 16px 0; cursor: pointer; display: flex; align-items: center; gap: 9px">MENU<span class="scv-caret" style="font-size: 8px; color: #C4A031">&#9662;</span></button>
+    </div>
+
+    <nav class="scv-nav" aria-label="Main" style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; gap: 4px; flex-wrap: wrap">
+      {% for m in menus %}
+        {% set on = activeMenu == m.id %}
+        <button type="button" class="scv-mbtn" id="scv-btn-{{ m.id }}" data-menu="{{ m.id }}" aria-haspopup="true" aria-expanded="false" aria-controls="scv-panel-{{ m.id }}" style="background: transparent; border: 0; border-bottom: 3px solid {{ on ? '#C4A031' : 'transparent' }}; color: {{ on ? '#fff' : 'rgba(255,255,255,.78)' }}; font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .09em; font-weight: 500; padding: 16px 18px; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 9px">{{ m.label }}<span class="scv-caret" style="font-size: 8px; color: {{ on ? '#C4A031' : 'rgba(255,255,255,.45)' }}">&#9662;</span></button>
+      {% endfor %}
+    </nav>
+
+    <div id="scv-panels">
+    {% for m in menus %}
+      <div class="scv-panel" id="scv-panel-{{ m.id }}" data-menu="{{ m.id }}" hidden style="position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid #E2E4E8; box-shadow: 0 26px 50px rgba(23,37,76,.22)">
+        <div style="height: 3px; background: linear-gradient(90deg, #C4A031 0%, #C4A031 36%, #EFE6D0 36%, #EFE6D0 100%)"></div>
+        <div class="scv-mlabel" style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .12em; color: #17254C; padding: 16px 20px 0">{{ m.label }}</div>
+        <div class="scv-panel-in" style="max-width: 1240px; margin: 0 auto; padding: 34px 40px 36px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: start">
+          <div style="min-width: 0">
+            <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px">
+              <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .18em; color: #A9842B; white-space: nowrap">{{ m.kicker }}</div>
+              <div style="flex: 1; height: 1px; background: #EDEFF2"></div>
+            </div>
+            <div class="scv-panel-cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 32px 40px">
+              {% for col in m.columns %}
+                <div style="min-width: 0">
+                  <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .14em; color: #8A919E; padding-bottom: 10px; border-bottom: 1px solid #EDEFF2">{{ col.label }}</div>
+                  <div style="display: flex; flex-direction: column">
+                    {% for it in col.items %}
+                      <a class="scv-panel-link" href="{{ it.u }}" style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; color: inherit; padding: 11px 0 10px; border-bottom: 1px solid #F4F5F7">
+                        <span style="font-family: 'Playfair Display', serif; font-size: 17.5px; line-height: 1.25; color: #17254C">{{ it.t }}</span>
+                        <span style="font-family: ui-monospace, monospace; font-size: 11.5px; color: #9AA1AD">{{ it.n|number_format }}</span>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {% if m.feature %}
+            <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 20px 22px 22px">
+              <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .16em; color: #A9842B">{{ m.feature.kicker }}</div>
+              <div style="font-family: 'Playfair Display', serif; font-size: 25px; line-height: 1.18; color: #17254C; margin-top: 12px; text-wrap: pretty">{{ m.feature.title }}</div>
+              <div style="font-size: 14px; line-height: 1.6; color: #5B6472; margin-top: 10px">{{ m.feature.meta }}</div>
+              <a class="scv-feat-cta" href="{{ m.feature.u }}" style="display: inline-block; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .06em; color: #A9842B; border-bottom: 1px solid #C4A031; margin-top: 18px; padding-bottom: 2px">{{ m.feature.cta }} &rarr;</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+  </div>
+</header>
+{% endcache %}
