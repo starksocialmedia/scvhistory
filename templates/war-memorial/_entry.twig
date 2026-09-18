@@ -20,24 +20,45 @@
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
+{# The element's own field layout is the only reliable test. A custom field reads
+   as defined on an element whose type does not have it, and then throws when it is
+   read, so wmFamily and wmSelectiveServiceDate 500 this page until
+   scripts/import/add_wm_community.php has been run. #}
+{% set present = {} %}
+{% for f in entry.fieldLayout.customFields %}
+  {% set present = present|merge({ (f.handle): true }) %}
+{% endfor %}
 {% set F = {} %}
-{% for h in ['body', 'burialPlace', 'deathDate', 'legacyUrl', 'wmAgeAtLoss', 'wmAwards', 'wmBase', 'wmBranch', 'wmCombatOperations', 'wmConflict', 'wmDateOfBirth', 'wmHighSchool', 'wmHomeOfRecord', 'wmIncidentDate', 'wmIncidentLocation', 'wmLengthOfService', 'wmNarrative', 'wmRank', 'wmServiceId', 'wmSpecialty', 'wmStartTour', 'wmUnit'] %}
-  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% for h in ['body', 'burialPlace', 'deathDate', 'legacyUrl', 'wmAgeAtLoss', 'wmAwards', 'wmBase', 'wmBirthplace', 'wmBranch', 'wmCasualtyDetail', 'wmCasualtyReason', 'wmCasualtyType', 'wmCombatOperations', 'wmConflict', 'wmDateOfBirth', 'wmFamily', 'wmGradeAtLoss', 'wmHighSchool', 'wmHomeOfRecord', 'wmIncidentDate', 'wmIncidentLocation', 'wmLengthOfService', 'wmNarrative', 'wmNotes', 'wmRank', 'wmSelectiveServiceDate', 'wmServiceId', 'wmSpecialty', 'wmStartTour', 'wmUnit', 'wmWallReference'] %}
+  {% set v = present[h] is defined ? attribute(entry, h) : null %}
+  {% set F = F|merge({ (h): v is not empty ? v|trim : '' }) %}
 {% endfor %}
 {# bandImage first: artwork with no lettering, composed with its subject at the
    right. featuredImage is only a fallback, and where it is a title card it may
    show lettering. The field-layout check is the only reliable test: a custom
    field reads as defined on an element whose type does not have it. #}
-{% set hasBandImage = false %}
-{% for f in entry.fieldLayout.customFields %}
-  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
-{% endfor %}
-{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+{% set bandImg = present['bandImage'] is defined and entry.bandImage ? entry.bandImage.one() ?? null : null %}
 {% set img = bandImg ?? (entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null) %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
 {% set awards = F.wmAwards ? F.wmAwards|replace({',': ';'})|split(';')|map(a => a|trim)|filter(a => a) : [] %}
 {% set era = entry.historicalEra is defined ? entry.historicalEra.one() ?? null : null %}
 {% set related = entry.wmRelatedPerson is defined ? entry.wmRelatedPerson.one() ?? null : null %}
+
+{# Overflow rows from the legacy service record: labels with no field of their own.
+   The field-layout check is the only reliable test, since a custom field reads as
+   defined on an element whose type does not have it. #}
+{% set serviceExtra = [] %}
+{% if present['wmServiceExtra'] is defined and entry.wmServiceExtra %}
+  {% for r in entry.wmServiceExtra %}
+    {% if (r.label ?? '')|trim or (r.value ?? '')|trim %}
+      {% set serviceExtra = serviceExtra|merge([{ label: (r.label ?? '')|trim, value: (r.value ?? '')|trim }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# The wall reference is a panel and line on current data, never a URL, but the
+   legacy pages are inconsistent enough that a URL has to render as a link. #}
+{% set wallIsUrl = F.wmWallReference starts with 'http://' or F.wmWallReference starts with 'https://' %}
 {% set narrative = F.wmNarrative ?: F.body %}
 {% set died = F.wmIncidentDate ?: F.deathDate %}
 {% set kick = [F.wmBranch, F.wmCombatOperations ?: F.wmConflict]|filter(x => x) %}
@@ -81,8 +102,10 @@
         {% if narrative %}
           <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages } %}</div>
           {% include "_partials/record/images" with { images: recImages, body: narrative } only %}
-          {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% endif %}
+
+        {% include "_partials/record/note" with { text: F.wmNotes, bottom: true } only %}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
 
       </article>
 
@@ -98,21 +121,21 @@
         </div>
         {% endif %}
 
-        {% set svc = [['BRANCH', F.wmBranch], ['RANK', F.wmRank], ['SPECIALTY', F.wmSpecialty], ['SERVICE ID', F.wmServiceId], ['UNIT', F.wmUnit], ['BASE', F.wmBase], ['TOUR', F.wmStartTour], ['SERVICE', F.wmLengthOfService], ['OPERATION', F.wmCombatOperations], ['CONFLICT', F.wmConflict]]|filter(r => r[1]) %}
+        {% set svc = [['BRANCH', F.wmBranch], ['RANK', F.wmRank], ['GRADE AT LOSS', F.wmGradeAtLoss], ['SPECIALTY', F.wmSpecialty], ['SERVICE ID', F.wmServiceId], ['UNIT', F.wmUnit], ['BASE', F.wmBase], ['TOUR', F.wmStartTour], ['SERVICE', F.wmLengthOfService], ['OPERATION', F.wmCombatOperations], ['CONFLICT', F.wmConflict], ['BIRTHPLACE', F.wmBirthplace]]|filter(r => r[1]) %}
         {% if svc|length %}
         <div class="rec-box"><div class="rec-lab">SERVICE RECORD</div>
           <div class="rec-rows">{% for r in svc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
         </div>
         {% endif %}
 
-        {% set inc = [['DATE', F.wmIncidentDate], ['LOCATION', F.wmIncidentLocation], ['AGE', F.wmAgeAtLoss]]|filter(r => r[1]) %}
+        {% set inc = [['DATE', F.wmIncidentDate], ['LOCATION', F.wmIncidentLocation], ['AGE', F.wmAgeAtLoss], ['REASON', F.wmCasualtyReason], ['TYPE', F.wmCasualtyType], ['DETAIL', F.wmCasualtyDetail]]|filter(r => r[1]) %}
         {% if inc|length %}
         <div class="rec-box"><div class="rec-lab">INCIDENT</div>
           <div class="rec-rows">{% for r in inc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
         </div>
         {% endif %}
 
-        {% set life = [['HOME', F.wmHomeOfRecord], ['BORN', F.wmDateOfBirth], ['HIGH SCHOOL', F.wmHighSchool], ['BURIAL', F.burialPlace]]|filter(r => r[1]) %}
+        {% set life = [['HOME', F.wmHomeOfRecord], ['BORN', F.wmDateOfBirth], ['HIGH SCHOOL', F.wmHighSchool], ['FAMILY', F.wmFamily], ['DRAFT REGISTERED', F.wmSelectiveServiceDate], ['BURIAL', F.burialPlace]]|filter(r => r[1]) %}
         {% if life|length %}
         <div class="rec-box"><div class="rec-lab">LIFE</div>
           <div class="rec-rows">{% for r in life %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
@@ -129,15 +152,31 @@
           </div>
         {% endif %}
 
+        {% if serviceExtra|length %}
+          <div class="rec-box"><div class="rec-lab">FROM THE SERVICE RECORD</div>
+            <div class="rec-rows">
+              {% for r in serviceExtra %}
+                <div class="k">{{ r.label|upper }}</div><div class="v">{{ r.value }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
         {% include "_partials/record/tags" with { el: entry } only %}
 
         {% set links = [] %}
+        {% if F.wmWallReference and wallIsUrl %}{% set links = links|merge([{u: F.wmWallReference, t: 'Memorial wall entry', ext: true}]) %}{% endif %}
         {% if F.legacyUrl %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: F.legacyUrl })|trim, t: 'View on legacy site', ext: true}]) %}{% endif %}
-        {% if links|length %}
-        <div class="rec-box"><div class="rec-lab">RELATED</div>
-          <div class="rec-links">{% for l in links %}<a href="{{ l.u }}"{% if l.ext %} target="_blank" rel="noopener"{% endif %}>{{ l.t }} <span>{{ l.ext ? '↗' : '→' }}</span></a>{% endfor %}</div>
+        {% if links|length or (F.wmWallReference and not wallIsUrl) %}
+        <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
+          {% if F.wmWallReference and not wallIsUrl %}
+            <div class="rec-rows"><div class="k">MEMORIAL WALL</div><div class="v">{{ F.wmWallReference }}</div></div>
+          {% endif %}
+          {% if links|length %}
+            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}"{% if l.ext %} target="_blank" rel="noopener"{% endif %}>{{ l.t }} <span>{{ l.ext ? '↗' : '→' }}</span></a>{% endfor %}</div>
+          {% endif %}
         </div>
         {% endif %}
       </aside>

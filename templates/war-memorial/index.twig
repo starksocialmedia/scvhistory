@@ -1,85 +1,170 @@
 {% extends "_layouts/base" %}
-{% set metaDescription = 'Santa Clarita Valley service members who died in war, each with their service history, the incident and the account as it was written.' %}
-{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% set metaDescription = 'Santa Clarita Valley service members who died in war, from World War I to Afghanistan, each with their service history, the incident and the account as it was written.' %}
+
+{#
+  War Memorial index.
+
+  A memorial is read in order, not queried, so there is no filter and no sort
+  control. Casualties are grouped by conflict in chronological order and, inside
+  a conflict, by the year of death and then by name.
+
+  Most records have no portrait, and a grid of initials placeholders looks
+  broken. A card with no portrait instead uses the name itself as its face, in
+  Playfair, navy on cream, at a size chosen from the length of the name so it
+  settles on two lines. It keeps the same 4:5 footprint as a portrait, so a
+  conflict with no photographs at all still reads as a wall of names.
+
+  Either way the card carries the same four facts: name, rank, branch and the
+  year of death. On a nameplate card the face supplies the name and rank, so the
+  strip beneath carries the branch and the year.
+
+  The year of death is pulled out of deathDate, which is plain text holding
+  shapes like 04/27/1919, January 2, 1947 and 1945.
+#}
 
 {% block content %}
-{% set activeConflict = craft.app.request.getParam('conflict') %}
-{% set all = craft.entries().section('warMemorials').status(null).orderBy('title asc').all() %}
 
-{% set counts = {} %}
+{% set all = craft.entries().section('warMemorials').status('live').all() %}
+{% set CONFLICT_ORDER = ['World War I', 'World War II', 'Korean War', 'Vietnam War', 'War on Terror'] %}
+
+{# year of death, and the four card facts #}
+{% set rows = [] %}
 {% for e in all %}
-  {% set key = e.wmConflict ?: 'Conflict not recorded' %}
-  {% set counts = counts|merge({ (key): (counts[key] ?? 0) + 1 }) %}
+  {% set year = '' %}
+  {% set raw = (e.deathDate is defined and e.deathDate) ? e.deathDate|trim : '' %}
+  {% for tok in raw|replace({'/': ' ', '-': ' ', ',': ' ', '.': ' '})|split(' ') %}
+    {% if year == '' and tok matches '/^[0-9]{4}$/' %}{% set year = tok %}{% endif %}
+  {% endfor %}
+  {% set rows = rows|merge([{
+    e: e,
+    name: e.title ?: e.slug,
+    rank: (e.wmRank is defined and e.wmRank) ? e.wmRank|trim : '',
+    branch: (e.wmBranch is defined and e.wmBranch) ? e.wmBranch|trim : '',
+    conflict: (e.wmConflict is defined and e.wmConflict) ? e.wmConflict|trim : '',
+    place: (e.wmIncidentLocation is defined and e.wmIncidentLocation) ? e.wmIncidentLocation|trim : '',
+    year: year,
+    img: (e.featuredImage is defined and e.featuredImage) ? e.featuredImage.one() ?? null : null
+  }]) %}
 {% endfor %}
-{% set conflictOrder = ['World War I', 'World War II', 'Korean War', 'Vietnam War', 'War on Terror'] %}
-{% set ordered = [] %}
-{% for c in conflictOrder %}{% if counts[c] is defined %}{% set ordered = ordered|merge([c]) %}{% endif %}{% endfor %}
-{% for c, n in counts %}{% if c not in ordered %}{% set ordered = ordered|merge([c]) %}{% endif %}{% endfor %}
 
-{% set shown = activeConflict ? all|filter(e => (e.wmConflict ?: 'Conflict not recorded') == activeConflict) : all %}
+{# conflicts present, chronological, with anything unrecognised last #}
+{% set conflicts = [] %}
+{% for c in CONFLICT_ORDER %}
+  {% if rows|filter(r => r.conflict == c)|length %}{% set conflicts = conflicts|merge([c]) %}{% endif %}
+{% endfor %}
+{% for r in rows %}
+  {% set c = r.conflict ?: 'Conflict not recorded' %}
+  {% if c not in conflicts and c not in CONFLICT_ORDER %}{% set conflicts = conflicts|merge([c]) %}{% endif %}
+{% endfor %}
 
-{% set branchIds = [] %}
-{% for e in all %}{% if e.wmBranch and e.wmBranch not in branchIds %}{% set branchIds = branchIds|merge([e.wmBranch]) %}{% endif %}{% endfor %}
+{# band line: the total, the first conflict, and where the last casualty fell #}
+{% set allYears = rows|filter(r => r.year)|map(r => r.year)|values %}
+{% set lastRow = null %}
+{% for r in rows %}
+  {% if r.year and (lastRow is null or r.year >= lastRow.year) %}{% set lastRow = r %}{% endif %}
+{% endfor %}
+{% set lastPlace = '' %}
+{% if lastRow and lastRow.place %}
+  {% set lastPlace = lastRow.place|split(',')|last|trim %}
+{% endif %}
+{% set spanFrom = conflicts|length ? conflicts|first : '' %}
+{% set spanTo = lastPlace ?: (conflicts|length ? conflicts|last : '') %}
 
-<div class="scv-page">
-  <section class="scv-hero">
-    <div class="scv-wrap">
-      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>War Memorial</span></div>
-      <div class="scv-herogrid">
-        <div>
-          <div class="scv-kicker">In memoriam</div>
-          <h1>War Memorial</h1>
-          <p class="scv-lede">Santa Clarita Valley service members who died in war. Each record carries the service history, the incident, and the account as it was written.</p>
-        </div>
-        <div class="scv-stat">
-          <div><b>{{ all|length }}</b><span>Names</span></div>
-          <div><b>{{ ordered|length }}</b><span>Conflicts</span></div>
-          {% if branchIds|length %}<div><b>{{ branchIds|length }}</b><span>Branches</span></div>{% endif %}
-        </div>
-      </div>
+<div class="wm">
+  <section class="wm-band">
+    <div class="wm-wrap wm-bandin">
+      <div class="wm-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>War Memorial</span></div>
+      <div class="wm-kick">SANTA CLARITA VALLEY WAR MEMORIAL</div>
+      <h1>The Fallen</h1>
+      <p class="wm-lede">
+        {{ rows|length }} name{{ rows|length == 1 ? '' : 's' }}{% if spanFrom and spanTo %}, from {{ spanFrom }} to {{ spanTo }}{% endif %}{% if allYears|length %}, {{ min(allYears) }} to {{ max(allYears) }}{% endif %}.
+      </p>
     </div>
   </section>
 
-  <section class="scv-filters">
-    <div class="scv-wrap">
-      <div class="scv-lab">Conflict</div>
-      <a class="scv-chip {{ not activeConflict ? 'on' : '' }}" href="{{ url('war-memorial') }}">All</a>
-      {% for c in ordered %}
-        <a class="scv-chip {{ activeConflict == c ? 'on' : '' }}" href="{{ url('war-memorial', { conflict: c }) }}">{{ c }} ({{ counts[c] }})</a>
-      {% endfor %}
-      <div class="scv-count">{{ activeConflict ? shown|length ~ ' of ' ~ all|length : all|length }} names</div>
-    </div>
-  </section>
+  <main class="wm-wrap wm-main">
+    {% for c in conflicts %}
+      {% set items = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c)|values %}
+      {% set items = items|sort((a, b) => (a.year ?: '9999') != (b.year ?: '9999')
+          ? ((a.year ?: '9999') < (b.year ?: '9999') ? -1 : 1)
+          : (a.name < b.name ? -1 : 1))|values %}
+      {% set years = items|filter(r => r.year)|map(r => r.year)|values %}
 
-  <main class="scv-main">
-    <div class="scv-wrap">
-      {% for c in ordered %}
-        {% set items = shown|filter(e => (e.wmConflict ?: 'Conflict not recorded') == c) %}
-        {% if items|length %}
-          <h2 class="scv-h2">{{ c }}</h2>
-          <div class="scv-cards">
-            {% for e in items %}
-              {% set img = (e.featuredImage is defined and e.featuredImage) ? e.featuredImage.one() ?? null : null %}
-              {% set parts = (e.title ?: e.slug)|split(' ')|filter(w => w|trim) %}
-              {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : (e.title ?: e.slug)|slice(0,1) %}
-              <a class="scv-tile" href="{{ e.url }}">
-                <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ initials|upper }}</span>{% endif %}</div>
-                <div class="scv-tilebody">
-                  <h3>{{ e.title ?: e.slug }}</h3>
-                  {% set rankLine = [e.wmRank, e.wmBranch]|filter(v => v)|join(', ') %}
-                  {% if rankLine %}<div class="scv-tilemeta">{{ rankLine }}</div>{% endif %}
-                  {% if e.deathDate %}<div class="scv-tilemeta">Died {{ e.deathDate }}</div>{% endif %}
-                  <div class="scv-tilefoot">{{ e.wmIncidentLocation ?: c }}</div>
-                </div>
-              </a>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endfor %}
-      {% if not shown|length %}
-        <div class="scv-empty">No memorial entries for this conflict. <a href="{{ url('war-memorial') }}">Show all</a></div>
-      {% endif %}
-    </div>
+      <section class="wm-conflict">
+        <h2>{{ c }}</h2>
+        <div class="wm-grid">
+          {% for r in items %}
+            {% set len = r.name|length %}
+            {% set size = len <= 13 ? 30 : (len <= 18 ? 26 : (len <= 23 ? 22 : 19)) %}
+            <a class="wm-card" href="{{ r.e.url }}">
+              <div class="wm-face{{ r.img ? '' : ' wm-face--plate' }}">
+                {% if r.img %}
+                  <img src="{{ r.img.url }}" alt="{{ r.name }}">
+                {% else %}
+                  <span class="nm" style="font-size:{{ size }}px">{{ r.name }}</span>
+                  {% if r.rank %}<span class="rk">{{ r.rank }}</span>{% endif %}
+                {% endif %}
+              </div>
+              <div class="wm-meta">
+                {% if r.img %}
+                  <div class="nm">{{ r.name }}</div>
+                  {% if r.rank %}<div class="rk">{{ r.rank }}</div>{% endif %}
+                {% endif %}
+                {% if r.branch %}<div class="br">{{ r.branch }}</div>{% endif %}
+                {% if r.year %}<div class="yr">{{ r.year }}</div>{% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+        <p class="wm-count">
+          {{ items|length }} name{{ items|length == 1 ? '' : 's' }}{% if years|length %}
+             ·  {{ min(years) == max(years) ? min(years) : min(years) ~ '–' ~ max(years) }}
+          {% endif %}
+        </p>
+      </section>
+    {% endfor %}
+
+    {% if not rows|length %}
+      <p class="wm-count">No memorial records yet.</p>
+    {% endif %}
   </main>
 </div>
+
+{% css %}
+.wm{background:#F6F7F9}
+.wm-wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.wm-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}
+.wm-bandin{padding:30px 40px 44px}
+.wm-crumbs{font-size:13.5px;color:#5B6472;margin-bottom:22px}
+.wm-crumbs a{color:#7A5C1B;text-decoration:none}
+.wm-crumbs a:hover{text-decoration:underline}
+.wm-kick{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#A9842B;margin-bottom:16px}
+.wm h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,4.8vw,62px);line-height:1.04;margin:0 0 14px;color:#17254C;max-width:15em;text-wrap:balance}
+.wm-lede{font-family:'Playfair Display',serif;font-style:italic;font-size:23px;line-height:1.35;color:#5B6472;margin:0;max-width:34em}
+.wm-main{padding-top:44px;padding-bottom:64px}
+.wm-conflict{margin-bottom:52px}
+.wm-conflict h2{font-family:'Playfair Display',serif;font-weight:500;font-size:28px;line-height:1.15;color:#17254C;margin:0 0 18px;padding-top:14px;border-top:3px solid #C4A031}
+.wm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:22px}
+.wm-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;border:1px solid #E2E4E8}
+.wm-card:hover{border-color:#C4A031}
+/* flex:none keeps the face at exactly 4:5 when a row mixes a portrait card with
+   a nameplate card, whose meta strip is shorter. Without it the grid stretches
+   the nameplate face and the two footprints stop matching. */
+.wm-face{flex:none;aspect-ratio:4/5;background:#FDF7EA;overflow:hidden}
+.wm-face img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.wm-face--plate{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:18px 16px;text-align:center;border-bottom:1px solid #EFE6D0}
+.wm-face--plate .nm{font-family:'Playfair Display',serif;font-weight:500;line-height:1.08;color:#17254C;text-wrap:balance}
+.wm-face--plate .rk{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#7E6118}
+.wm-meta{padding:12px 14px 14px}
+.wm-meta .nm{font-family:'Playfair Display',serif;font-size:17px;line-height:1.22;color:#17254C}
+.wm-meta .rk{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#7E6118;margin-top:4px}
+.wm-meta .br{font-size:13.5px;color:#5B6472;margin-top:6px}
+.wm-meta .yr{font-family:ui-monospace,monospace;font-size:12px;color:#9AA1AD;margin-top:6px}
+.wm-count{font-family:'Jost',sans-serif;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#5B6472;margin:16px 0 0;padding-top:12px;border-top:1px solid #E2E4E8}
+@media(max-width:700px){
+  .wm-wrap{padding:0 16px}
+  .wm-bandin{padding:24px 16px 32px}
+  .wm-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+}
+{% endcss %}
 {% endblock %}

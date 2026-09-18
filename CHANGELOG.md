@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: scripts/import/add_wm_community.php adds neighborhood, wmFamily and wmSelectiveServiceDate to the warMemorial entry type. import_warmemorial.php maps the two new labels and skips five letter fragments as noise. war-memorial/_entry.twig renders all eight new fields. war-memorial/index.twig rebuilt: cream band, grouped by conflict chronologically, no filter and no sort, and a nameplate card face where there is no portrait.
+- Decisions: the #877 duplicate is reported by the pre-flight and otherwise left alone. The external box label changed from RELATED to EXTERNAL, matching every other entry template, because that is where wmWallReference belongs. On a nameplate card the face carries the name and rank, so the strip beneath carries only branch and year; both card types still convey the same four facts.
+- Blockers: the F loop in war-memorial/_entry.twig used `is defined`, which reads true for a field the entry type does not have and then throws on read. It 500ed every casualty page once wmFamily was referenced. Rewritten to read the entry's own field layout.
+- Next: Nathan runs add_wm_community.php then import_warmemorial.php
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: band artwork now comes from bandImage first with featuredImage only as a fallback, in collections/_lander.twig and in the six other entry templates whose band carries an image. Each carries a one-line note that the fallback may show lettering. Lander stat blocks rebuilt: articles, chapters, publication runs and eras covered, each derived from the collection's own articles.
 - Decisions: articles/_entry.twig is untouched because its band has no image; pages/_entry.twig is untouched because the page entry type has no bandImage field. A run or era count of one is omitted rather than printed, since one is not a statistic.
 - Blockers: the stats compute to 23 articles, 21 chapters, 3 publication runs and 3 eras covered, not the 2 runs and 4 eras expected. The six portrait bands use a 4:5 frame with object-position top, so a wide right-composed band image will crop to its top strip there.

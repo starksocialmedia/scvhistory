@@ -16,6 +16,9 @@
  * Values are never corrected. "Amry of the United States" is a typo on the legacy
  * site and imports verbatim; the affected records are reported.
  *
+ * The pre-flight reports any duplicate in Craft but touches nothing: a row with no
+ * legacyKey is never matched, so a duplicate stays exactly as it is for a human.
+ *
  * Pass 2 writes inventory/legacy/warmemorial-images.json. No image is downloaded.
  *
  * No Person, Place or Organization is created. entity_index needs adjudication.
@@ -85,7 +88,13 @@ $LABEL_MAP = [
     'Notes' => 'wmNotes',
     'Note' => 'wmNotes',
     'U.S. Awards' => 'wmAwards',
+    'Family' => 'wmFamily',
+    'Selective Service Registration Date' => 'wmSelectiveServiceDate',
 ];
+
+/* Letter fragments the extractor read as labels. Noise, not data: skipped rather
+   than written to the overflow table, and reported. */
+$NOISE_LABELS = ['ALSO', 'BELOW', 'RE', 'Dear Mrs. Ward', 'Dear Recipient'];
 
 $CONFLICT = [
     'ww1' => 'World War I',
@@ -229,6 +238,7 @@ $unmatchedCommunities = []; $offListCommunities = [];
 $unparsedDates = []; $dateStats = ['parsed' => 0, 'skipped' => 0, 'rows' => 0, 'deduped' => 0];
 $typoRecords = [];
 $missingFields = [];
+$noiseSkipped = [];
 
 foreach ($pages as $p) {
     $key = trim((string)$p['legacy_key']);
@@ -282,6 +292,10 @@ foreach ($pages as $p) {
     $extra = [];
     foreach ($record as $label => $value) {
         if (isset($usedLabels[$label])) { continue; }
+        if (in_array((string)$label, $NOISE_LABELS, true)) {
+            $noiseSkipped[(string)$label][] = $key;
+            continue;
+        }
         $v = trim((string)$value);
         $extra[] = ['label' => (string)$label, 'value' => $v];
         $overflowLabels[(string)$label][] = $key;
@@ -427,6 +441,13 @@ if ($displaced) {
     echo 'labels that overflowed because the field was already taken:' . PHP_EOL;
     foreach ($displaced as $what => $keys) {
         echo '  ' . str_pad((string)count($keys), 4) . str_pad($what, 44) . implode(', ', array_slice($keys, 0, 4)) . PHP_EOL;
+    }
+}
+
+if ($noiseSkipped) {
+    echo 'skipped as noise, not written anywhere:' . PHP_EOL;
+    foreach ($noiseSkipped as $lab => $keys) {
+        echo '  ' . str_pad((string)count($keys), 4) . str_pad($lab, 22) . implode(', ', array_unique($keys)) . PHP_EOL;
     }
 }
 
