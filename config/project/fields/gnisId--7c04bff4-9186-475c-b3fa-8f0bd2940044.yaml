@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: gnisId
+instructions: 'The USGS Geographic Names Information System feature ID, digits only, e.g. 1652814. Find it at https://edits.nationalmap.gov/apps/gaz-domestic/public/search. GNIS is the federal authority for canyons, creeks, passes, springs and settlements, and covers the small features Wikidata does not. Leave empty where no GNIS feature matches; a wrong identifier is worse than none.'
+name: 'GNIS ID'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
