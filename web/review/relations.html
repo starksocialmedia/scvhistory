@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relation review — SCVHistory.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#17254C;--gold:#C4A031;--gold-d:#7A5C1B;--cream:#FDF7EA;--cream-b:#EFE6D0;--grey:#F6F7F9;--bord:#E2E4E8;--muted:#5B6472;--red:#B4453C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--grey);color:#2C2C2C;font-family:'Public Sans',system-ui,sans-serif}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:10}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+header .wrap{padding-top:18px;padding-bottom:18px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+h1{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0}
+.counts{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--gold)}
+.tools{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button,select,input{font:inherit}
+.btn{background:var(--gold);color:var(--navy);border:0;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:9px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+main .wrap{padding-top:24px;padding-bottom:90px}
+.hint{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7}
+kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bord);padding:1px 5px;font-size:12px}
+.art{background:#fff;border:1px solid var(--bord);border-top:3px solid var(--gold);padding:18px 20px;margin-bottom:18px}
+.art h2{font-family:'Playfair Display',serif;font-weight:500;font-size:22px;margin:0 0 4px;color:var(--navy)}
+.art .meta{font-size:13px;color:var(--muted);margin-bottom:4px}
+.art .meta a{color:var(--gold-d)}
+.grp{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d);margin:18px 0 8px;padding-top:10px;border-top:1px solid var(--bord)}
+.cand{border:1px solid var(--bord);border-left:3px solid var(--bord);padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:start;background:#fff}
+.cand.link{border-left-color:var(--gold);background:var(--cream)}
+.cand.create{border-left-color:#2E7D5B;background:#F2FAF6}
+.cand.tag{border-left-color:var(--bord);opacity:.5}
+@media(max-width:760px){.cand{grid-template-columns:1fr}}
+.nm{font-family:'Jost',sans-serif;font-size:15.5px;font-weight:500;color:var(--navy)}
+.sub{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.6}
+.rule{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-top:4px}
+.hit{font-size:12.5px;color:#2E7D5B;margin-top:5px}
+.hit a{color:#2E7D5B}
+.flag{display:block;font-size:12.5px;color:#8A4B00;background:#FDF3E3;border-left:2px solid #E0A253;padding:5px 9px;margin-top:6px;line-height:1.5}
+.near{font-size:12.5px;color:#8A4B00;margin-top:5px}
+.near b{font-weight:500}
+.acts{display:flex;gap:6px;align-items:flex-start;flex-wrap:wrap}
+.acts button{border:1px solid var(--bord);background:#fff;font-family:'Jost',sans-serif;font-size:13px;padding:7px 11px;cursor:pointer;white-space:nowrap}
+.acts button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.acts button.create.on{background:#2E7D5B;border-color:#2E7D5B}
+.acts button.tag.on{background:var(--muted);border-color:var(--muted)}
+.pages{font-size:12px;color:#8A919E;margin-top:5px;line-height:1.5}
+.pages a{color:#8A919E}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;font-size:14px;color:var(--muted)}
+.filters select,.filters input{padding:8px 10px;border:1px solid var(--bord);background:#fff}
+.nav{display:flex;gap:10px;align-items:center;margin:16px 0 22px}
+.empty{text-align:center;padding:60px 0;color:var(--muted)}
+.done{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Relation review</h1>
+    <div class="counts" id="counts">loading</div>
+    <div class="tools">
+      <button class="btn ghost" id="prev">&larr; Previous</button>
+      <button class="btn ghost" id="next">Next article &rarr;</button>
+      <button class="btn" id="download">Download relations-decided.json</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="hint">
+      One article at a time, with every entity the extraction found on its legacy page.
+      Three choices each: <b>Link</b> to the record that already exists, <b>Create</b> a record and link it,
+      or <b>Tag</b>, which leaves it as body text and creates nothing.
+      <kbd>L</kbd> link, <kbd>C</kbd> create, <kbd>T</kbd> tag, <kbd>&darr;</kbd><kbd>&uarr;</kbd> move, <kbd>&rarr;</kbd> next article, <kbd>&larr;</kbd> previous.
+      Decisions stay in this browser until you download. Nothing here writes to the database.
+    </p>
+
+    <div class="filters">
+      <label>Show
+        <select id="filter">
+          <option value="all">every candidate</option>
+          <option value="undecided">only undecided</option>
+          <option value="promote">only those a rule would promote</option>
+          <option value="flagged">only flagged or near matches</option>
+          <option value="matched">only those with a record already</option>
+        </select>
+      </label>
+      <label>Jump to <input type="text" id="jump" placeholder="article title" size="26"></label>
+      <span id="progress"></span>
+    </div>
+
+    <div id="stage"></div>
+
+    <div class="nav">
+      <button class="btn ghost" style="color:var(--navy);border-color:var(--bord)" id="prev2">&larr; Previous</button>
+      <button class="btn" id="next2">Next article &rarr;</button>
+    </div>
+  </div>
+</main>
+
+<script>
+const KEY = 'scvRelationDecisions';
+let all = [], articles = [], idx = 0;
+let decisions = {};
+try { decisions = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { decisions = {}; }
+
+const idOf = c => c.entryId + '|' + c.kind + '|' + c.name;
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+
+fetch('relations.json')
+  .then(r => r.json())
+  .then(d => {
+    all = d.candidates || [];
+    const byArticle = new Map();
+    for (const c of all) {
+      if (!byArticle.has(c.entryId)) {
+        byArticle.set(c.entryId, { entryId: c.entryId, title: c.articleTitle, slug: c.articleSlug, url: c.articleUrl, items: [] });
+      }
+      byArticle.get(c.entryId).items.push(c);
+    }
+    articles = [...byArticle.values()].sort((a, b) => a.title.localeCompare(b.title));
+    render();
+  })
+  .catch(e => { document.getElementById('stage').innerHTML = '<p class="empty">Could not load relations.json. Run the export script first.</p>'; });
+
+function save() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
+
+function visible(items) {
+  const f = document.getElementById('filter').value;
+  return items.filter(c => {
+    const d = decisions[idOf(c)];
+    if (f === 'undecided') return !d;
+    if (f === 'promote') return c.promote;
+    if (f === 'flagged') return (c.flags && c.flags.length) || (c.nearMatches && c.nearMatches.length);
+    if (f === 'matched') return !!c.existing;
+    return true;
+  });
+}
+
+function counts() {
+  let decided = 0;
+  for (const c of all) { if (decisions[idOf(c)]) decided++; }
+  const link = Object.values(decisions).filter(d => d.choice === 'link').length;
+  const create = Object.values(decisions).filter(d => d.choice === 'create').length;
+  const tag = Object.values(decisions).filter(d => d.choice === 'tag').length;
+  document.getElementById('counts').textContent =
+    decided + ' of ' + all.length + ' decided  ·  ' + link + ' link, ' + create + ' create, ' + tag + ' tag';
+  document.getElementById('progress').textContent =
+    articles.length ? 'article ' + (idx + 1) + ' of ' + articles.length : '';
+}
+
+function render() {
+  counts();
+  const stage = document.getElementById('stage');
+  if (!articles.length) { stage.innerHTML = '<p class="empty">Nothing to review.</p>'; return; }
+  const a = articles[Math.max(0, Math.min(idx, articles.length - 1))];
+  const items = visible(a.items);
+
+  let html = '<div class="art"><h2>' + esc(a.title) + '</h2>' +
+    '<div class="meta"><a href="' + esc(a.url) + '" target="_blank" rel="noopener">' + esc(a.slug) + ' &nearr;</a>' +
+    '  ·  ' + a.items.length + ' candidate' + (a.items.length === 1 ? '' : 's') + '</div></div>';
+
+  for (const kind of ['person', 'place', 'organization']) {
+    const group = items.filter(c => c.kind === kind);
+    if (!group.length) continue;
+    html += '<div class="grp">' + kind + 's  ·  ' + group.length + '</div>';
+    for (const c of group) {
+      const id = idOf(c);
+      const d = decisions[id];
+      const cls = d ? d.choice : '';
+      html += '<div class="cand ' + cls + '" data-id="' + esc(id) + '" tabindex="0">';
+      html += '<div><div class="nm">' + esc(c.name) + '</div>';
+      html += '<div class="sub">' + c.mentionCount + ' mention' + (c.mentionCount === 1 ? '' : 's') +
+              ' on ' + c.pageCount + ' page' + (c.pageCount === 1 ? '' : 's');
+      if (c.variants && c.variants.length) html += '  ·  also written ' + esc(c.variants.join(', '));
+      html += '</div>';
+      html += '<div class="rule">' + esc(c.rule) + '</div>';
+      if (c.existing) {
+        html += '<div class="hit">record exists: <a href="' + esc(c.existing.url) + '" target="_blank" rel="noopener">' +
+                esc(c.existing.title) + ' &nearr;</a>' +
+                (c.existing.matchedOn && c.existing.matchedOn !== c.existing.title ? ' (matched on the alias "' + esc(c.existing.matchedOn) + '")' : '') +
+                '</div>';
+      }
+      for (const n of (c.nearMatches || [])) {
+        html += '<div class="near">near match in Craft: <b>' + esc(n.title) + '</b> — same surname, different given name. Check before creating a second record.</div>';
+      }
+      for (const f of (c.flags || [])) {
+        html += '<div class="flag">' + esc(f.reason) + ': ' + esc(f.detail) + '</div>';
+      }
+      if (c.hasLegacyPage && c.legacyPageUrl) {
+        html += '<div class="sub">has its own legacy page: <a href="' + esc(c.legacyPageUrl) + '" target="_blank" rel="noopener">' + esc(c.legacyPageUrl) + ' &nearr;</a></div>';
+      }
+      if (c.pages && c.pages.length > 1) {
+        html += '<div class="pages">also on ' + (c.pageCount - 1) + ' other page' + (c.pageCount === 2 ? '' : 's') + '</div>';
+      }
+      html += '</div>';
+      html += '<div class="acts">' +
+        '<button class="link' + (cls === 'link' ? ' on' : '') + '" data-choice="link"' + (c.existing ? '' : ' disabled title="no record to link to"') + '>Link</button>' +
+        '<button class="create' + (cls === 'create' ? ' on' : '') + '" data-choice="create">Create</button>' +
+        '<button class="tag' + (cls === 'tag' ? ' on' : '') + '" data-choice="tag">Tag</button>' +
+        '</div>';
+      html += '</div>';
+    }
+  }
+  if (!items.length) html += '<p class="empty">Nothing matches the filter on this article.</p>';
+  stage.innerHTML = html;
+
+  stage.querySelectorAll('.cand').forEach(el => {
+    el.querySelectorAll('.acts button').forEach(b => {
+      b.addEventListener('click', () => decide(el.dataset.id, b.dataset.choice));
+    });
+  });
+}
+
+function decide(id, choice) {
+  const c = all.find(x => idOf(x) === id);
+  if (!c) return;
+  if (choice === 'link' && !c.existing) return;
+  if (decisions[id] && decisions[id].choice === choice) { delete decisions[id]; }
+  else {
+    decisions[id] = {
+      entryId: c.entryId, kind: c.kind, field: c.field, name: c.name,
+      choice: choice, targetId: choice === 'link' && c.existing ? c.existing.id : null
+    };
+  }
+  save();
+  render();
+}
+
+document.getElementById('filter').addEventListener('change', render);
+document.getElementById('jump').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  if (!q) return;
+  const i = articles.findIndex(a => a.title.toLowerCase().includes(q));
+  if (i >= 0) { idx = i; render(); }
+});
+function go(n) { idx = Math.max(0, Math.min(articles.length - 1, idx + n)); window.scrollTo(0, 0); render(); }
+['next', 'next2'].forEach(id => document.getElementById(id).addEventListener('click', () => go(1)));
+['prev', 'prev2'].forEach(id => document.getElementById(id).addEventListener('click', () => go(-1)));
+
+document.addEventListener('keydown', e => {
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+  const cards = [...document.querySelectorAll('.cand')];
+  const here = document.activeElement.classList && document.activeElement.classList.contains('cand')
+    ? cards.indexOf(document.activeElement) : -1;
+  const k = e.key.toLowerCase();
+  if (k === 'arrowright') { e.preventDefault(); go(1); }
+  else if (k === 'arrowleft') { e.preventDefault(); go(-1); }
+  else if (k === 'arrowdown') { e.preventDefault(); (cards[here + 1] || cards[0])?.focus(); }
+  else if (k === 'arrowup') { e.preventDefault(); (cards[here - 1] || cards[cards.length - 1])?.focus(); }
+  else if (['l', 'c', 't'].includes(k) && here >= 0) {
+    e.preventDefault();
+    decide(cards[here].dataset.id, k === 'l' ? 'link' : k === 'c' ? 'create' : 'tag');
+    const again = [...document.querySelectorAll('.cand')];
+    (again[here] || again[0])?.focus();
+  }
+});
+
+document.getElementById('download').onclick = () => {
+  const out = Object.values(decisions).filter(d => d.choice !== 'tag' || true);
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'relations-decided.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+</script>
+</body>
+</html>

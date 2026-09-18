@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: built the relation adjudication trio. export_relation_candidates.php emits 1,964 candidates across 99 articles, joining entity_index to articles on the page URL. web/review/relations.html shows one article at a time with Link, Create and Tag per candidate, Grok's flags inline, and keyboard control. apply_relations.php sets subjectPerson, depictsPlace and subjectOrganization, creating only what was approved. Tested end to end with a synthetic decision file, then reverted.
+- Decisions: the flags named in the brief do not exist in the data. Grok set possible_same_person and possible_place_variant, not split_given_name or honorific_variant, so those are surfaced instead, and a near_match_in_craft signal is derived here by comparing surnames against existing records. That is what puts "Anne Darcy" beside a record for a fuller form of the name.
+- Blockers: has_legacy_page is false on all but one entity across all three inventories, so the strongest promotion rule never fires. inventory/legacy/sitemap.json and sitemap-2.json, which HANDOFF says the re-derivation used, are not in the repo.
+- Next: Nathan reviews at /review/relations.html, downloads, then apply_relations.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: fixed the Reynolds matching bug and applied the import. 57 articles created, 23 gap-filled, no existing body touched; the collection now holds all 80 in TOC order. Added PART FIVE to collectionParts at position 24, and made add_collection_parts.php extend a collection that already has rows instead of skipping it. Cleaned the 57 new bodies, then re-ran the image import.
 - Decisions: the bug was in the legacyKey step, not the title fallback. notes and part01 to part06 exist in both the Perkins and Reynolds inventories, so legacyUrl is now tried first and every candidate is rejected when it already belongs to a different collection. The cleanup was run before the image import rather than after, because the 57 new bodies carried raw legacy chrome; doing it in the order asked would have placed 136 tokens in text about to be stripped, against 31 afterwards.
 - Blockers: PART FIVE has no subtitle. Naming a section of Leon's work is Nathan's call, so the label is deliberately bare.
