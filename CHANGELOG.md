@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: added $FORCE_GRAVE to apply_wikidata_matches.php, false by default, which replaces personGraveUrl on the eight records whose stored URL resolves to a different person. Both ends of all eight are recorded in the script with the name, dates and cemetery each one actually serves, so the correction reads without opening anything. Also corrected two broken values, John C. Frémont's birthDate and Juan Bandini's burialPlace, and added the three disputed burial places to the output as needing research.
+- Decisions: the override touches the eight listed ids only, only the personGraveUrl handle, and only while the stored URL is still the one that was checked, so it is not a general "trust Wikidata" switch and cannot fire on a value someone has since corrected. The two field fixes work the same way: each is written only while the field still holds exactly the broken string, and reports a skip with the current value otherwise. The three cemetery disagreements are printed every run and never written, because a reinterment is a question of fact rather than a broken link.
+- Blockers: none. One correction to my earlier report: I wrote that William Lewis Manly was right in ours and wrong in Wikidata's. It is the other way round, as the table in the same message showed. Our URL serves Queen Anne.
+- Result: with both flags off, the dry run reports 8 grave links pointing at the wrong person, 2 broken values to correct and 3 burial places needing research. With $FORCE_GRAVE on it plans 8 replacements and nothing else.
+- Next: Nathan runs it with $APPLY and $FORCE_GRAVE, then settle_family_relations.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: extended settle_family_relations.php to retire mpParents, mpChildren, mpSiblings and mpSpouse alongside parentOf, table driven with a mirror rule per field, and to add childOf, siblingOf and spouseOf to the military profile layout as well as the war memorial one. Added two rules to the skills: never touch state you did not create, in scv-import-script, and never read or clear the live localStorage key while testing a review screen, in scv-review-screen. Checked all eight disputed Find A Grave memorials against the live site.
 - Decisions: the retirement step now takes a table of handle, entry type, replacing field and direction, so each field is checked against the convention that actually replaces it: mpParents against childOf the same way round, mpChildren and parentOf against childOf inverted, mpSiblings and mpSpouse against siblingOf and spouseOf either way. All four mp fields hold nothing, so all four retire cleanly.
 - Blockers: seven of the eight Find A Grave URLs in the archive point at the wrong person entirely, not merely a different memorial for the same man. Find A Grave resolves by number and ignores the slug, so a URL reading christopher-houston-carson served Harry Chapin's grave. Kit Carson, Cave Johnson Couts, Edward Fitzgerald Beale, Edwin Bryant, James Wilson Marshall, John C. Frémont and Juan Bandini are all wrong; William Lewis Manly is right in ours and wrong in Wikidata's. Two data errors also surfaced: John C. Frémont's birthDate holds his own name, and Juan Bandini's burialPlace reads "l Campo Santo".
