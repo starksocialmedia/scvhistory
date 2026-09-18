@@ -24,7 +24,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/clean_legacy_bodies.php'))"
  */
 
-$APPLY = false;
+$APPLY = true;
 
 $SECTIONS = ['articles', 'warMemorials', 'obituaries'];
 
