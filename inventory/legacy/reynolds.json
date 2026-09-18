@@ -34,7 +34,30 @@
     "found_pages": 23,
     "missing_from_expected": [],
     "person_rule": "A person is recorded only when the mention looks like a person: (1) a historical English/Spanish given name followed by a surname, or (2) an honorific (Mr., Mrs., Miss, Ms., Don, Doña, Señor, Father, Fr., Judge, Col., Capt., Dr., Gen., Lt., Rev., Major, Mayor, Governor, General, Captain, Colonel, Lieutenant, Reverend, Sister, Brother) followed by a name. Bare capitalized words are not people. Possessives, truncated forms, and common-noun tails (Dam, Party, Library, Cave, Crossing, Street, etc.) are rejected. Surname-only tokens are not recorded.",
-    "place_rule": "A place is recorded only if it lies within or immediately adjacent to the Santa Clarita Valley (roughly Piru/Fillmore west, Lake Hughes/Elizabeth Lake north, Acton/Agua Dulce east, San Fernando Pass south, plus Fort Tejon and the Ridge Route corridor). Geography outside that bound goes in external_places. Closed-list community names go in communities_mentioned / entity_index.community_mentions, not places. Capitalized common nouns (e.g. Surrey the carriage) are not places. Bare short forms (Pico, Soledad, Lyons, Lang, San Francisquito, Placerita, Grapevine, Hart High, Castac) kept only when standalone; otherwise folded into longer names."
+    "place_rule": "A place is recorded only if it lies within or immediately adjacent to the Santa Clarita Valley (roughly Piru/Fillmore west, Lake Hughes/Elizabeth Lake north, Acton/Agua Dulce east, San Fernando Pass south, plus Fort Tejon and the Ridge Route corridor). Geography outside that bound goes in external_places. Closed-list community names go in communities_mentioned / entity_index.community_mentions, not places. Capitalized common nouns (e.g. Surrey the carriage) are not places. Bare short forms (Pico, Soledad, Lyons, Lang, San Francisquito, Placerita, Grapevine, Hart High, Castac) kept only when standalone; otherwise folded into longer names.",
+    "series_run_raw": [
+      {
+        "source_page": "preface",
+        "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/preface.html",
+        "text_raw": "Jerry Reynolds wrote for The Signal, the Santa Clarita Valley's daily newspaper, off and on for two decades, producing a complete series of historical \"columns\" in the mid-1970s and again in the mid-1980s, with additional works in subsequent years."
+      },
+      {
+        "source_page": "preface",
+        "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/preface.html",
+        "text_raw": "The outline of this book follows the format Reynolds typically used when telling his story in The Signal. The reader should be aware that the author penned the prologue and epilogue used herein in 1985, and therefore they predate some of the material included in this volume — such as the 1987 incorporation of the City of Santa Clarita and other updated information that has been woven throughout the text."
+      },
+      {
+        "source_page": "bibliography",
+        "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+        "text_raw": "Reynolds, Gerald G. \"History of the Santa Clarita Valley.\" The Signal, Various dates, 1976-1994."
+      }
+    ],
+    "prologue_signed_raw": {
+      "source_page": "prologue",
+      "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/prologue.html",
+      "text_raw": "JERRY REYNOLDS\n1985"
+    },
+    "note": "Publication years are not per-chapter; see meta.series_run_raw (preface/bibliography quotes) and meta.prologue_signed_raw. No index_date_raw."
   },
   "pages": [
     {

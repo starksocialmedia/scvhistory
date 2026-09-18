@@ -4,7 +4,7 @@
     "crawled": "2026-09-17",
     "index_url": "https://scvhistory.com/scvhistory/signal/reynolds/contents.html",
     "page_count": 80,
-    "note": "Overlapping legacy_keys with reynolds.json (copied intact, not re-crawled): preface, prologue, part01, part02, part03, part04, part05, part06, part07, part08, part09, part10, part11, part12, part13, part14, part15, part16, part17, part18, part19, part20, part21 (23 pages). One-work title finding: TOC heading is 'HISTORY OF THE SANTA CLARITA VALLEY BY JERRY REYNOLDS'; chapters run part01 'A Valley Takes Shape' through part71 'Requiem' as one work; Also-by essays (Ethnography of Castaic, Bowers Cave, First Presbyterian Church, About the Namesakes of the Kingsburry House) are separate from the main work.",
+    "note": "Overlapping legacy_keys with reynolds.json (copied intact, not re-crawled): preface, prologue, part01, part02, part03, part04, part05, part06, part07, part08, part09, part10, part11, part12, part13, part14, part15, part16, part17, part18, part19, part20, part21 (23 pages). One-work title finding: TOC heading is 'HISTORY OF THE SANTA CLARITA VALLEY BY JERRY REYNOLDS'; chapters run part01 'A Valley Takes Shape' through part71 'Requiem' as one work; Also-by essays (Ethnography of Castaic, Bowers Cave, First Presbyterian Church, About the Namesakes of the Kingsburry House) are separate from the main work. Publication years are not per-chapter; see meta.series_run_raw (preface/bibliography quotes) and meta.prologue_signed_raw. No index_date_raw.",
     "crawler_notes": "Wave 1b reynolds-full: COPIED 23 pages from inventory/legacy/reynolds.json (preface, prologue, part01–part21) without re-crawl. NEWLY CRAWLED 57 pages: part22–part71, epilogue, bibliography, notes, plus Also-by: reynolds-castaicethnography, reynolds121484, reynolds_firstpresbyterian_0686, dispatch1501reynolds. UA SCVHistory-Legacy-Extract/1.0 (+https://github.com/starksocialmedia/scvhistory; contact: nathan@starksocial.com); 1.0s between requests; robots.txt / DISALLOWED_PREFIXES respected; meta-refresh followed; HTML decoded via charset/latin-1. Entity rules match accepted Perkins / reynolds.json Wave 1. entity_index rebuilt across ALL pages (copied + new). Index fetched OK for reynolds-full.",
     "missing_from_toc_remainder": [],
     "copied_from_reynolds_json": [
@@ -93,7 +93,29 @@
     ],
     "failures": [],
     "person_rule": "A person is recorded only when the mention looks like a person: (1) a historical English/Spanish given name followed by a surname, or (2) an honorific (Mr., Mrs., Miss, Ms., Don, Doña, Señor, Father, Fr., Judge, Col., Capt., Dr., Gen., Lt., Rev., Major, Mayor, Governor, General, Captain, Colonel, Lieutenant, Reverend, Sister, Brother) followed by a name. Bare capitalized words are not people. Possessives, truncated forms, and common-noun tails (Dam, Party, Library, Cave, Crossing, Street, etc.) are rejected. Surname-only tokens are not recorded.",
-    "place_rule": "A place is recorded only if it lies within or immediately adjacent to the Santa Clarita Valley (roughly Piru/Fillmore west, Lake Hughes/Elizabeth Lake north, Acton/Agua Dulce east, San Fernando Pass south, plus Fort Tejon and the Ridge Route corridor). Geography outside that bound goes in external_places. Closed-list community names go in communities_mentioned / entity_index.community_mentions, not places. Capitalized common nouns (e.g. Surrey the carriage) are not places. Bare short forms (Pico, Soledad, Lyons, Lang, San Francisquito, Placerita, Grapevine, Hart High, Castac) kept only when standalone; otherwise folded into longer names."
+    "place_rule": "A place is recorded only if it lies within or immediately adjacent to the Santa Clarita Valley (roughly Piru/Fillmore west, Lake Hughes/Elizabeth Lake north, Acton/Agua Dulce east, San Fernando Pass south, plus Fort Tejon and the Ridge Route corridor). Geography outside that bound goes in external_places. Closed-list community names go in communities_mentioned / entity_index.community_mentions, not places. Capitalized common nouns (e.g. Surrey the carriage) are not places. Bare short forms (Pico, Soledad, Lyons, Lang, San Francisquito, Placerita, Grapevine, Hart High, Castac) kept only when standalone; otherwise folded into longer names.",
+    "series_run_raw": [
+      {
+        "source_page": "preface",
+        "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/preface.html",
+        "text_raw": "Jerry Reynolds wrote for The Signal, the Santa Clarita Valley's daily newspaper, off and on for two decades, producing a complete series of historical \"columns\" in the mid-1970s and again in the mid-1980s, with additional works in subsequent years."
+      },
+      {
+        "source_page": "preface",
+        "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/preface.html",
+        "text_raw": "The outline of this book follows the format Reynolds typically used when telling his story in The Signal. The reader should be aware that the author penned the prologue and epilogue used herein in 1985, and therefore they predate some of the material included in this volume — such as the 1987 incorporation of the City of Santa Clarita and other updated information that has been woven throughout the text."
+      },
+      {
+        "source_page": "bibliography",
+        "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+        "text_raw": "Reynolds, Gerald G. \"History of the Santa Clarita Valley.\" The Signal, Various dates, 1976-1994."
+      }
+    ],
+    "prologue_signed_raw": {
+      "source_page": "prologue",
+      "source_url": "https://scvhistory.com/scvhistory/signal/reynolds/prologue.html",
+      "text_raw": "JERRY REYNOLDS\n1985"
+    }
   },
   "pages": [
     {
