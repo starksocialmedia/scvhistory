@@ -139,7 +139,7 @@ Acton, Agua Dulce, Bouquet Canyon, Camulos, Canyon Country, Castaic,
 Castaic Junction, Fair Oaks Ranch, Fillmore, Frazier Park, Haskell Canyon,
 Hasley Canyon, Lake Hughes, Lebec, Mentryville, Mint Canyon, Mojave Desert,
 Newhall, Pico Canyon, Piru, Placerita Canyon, Potrero Canyon, Ravenna,
-San Francisquito Canyon, Sand Canyon, Santa Clarita, Saugus, Saugus-Valencia,
+San Francisquito Canyon, Sand Canyon, Santa Clarita, Saugus, Saugus/Valencia,
 Soledad Canyon, Soledad Township, Stevenson Ranch, Tejon, Towsley Canyon,
 Val Verde, Valencia
 
