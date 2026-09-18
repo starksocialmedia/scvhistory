@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: wrote scripts/import/import_warmemorial.php, eval style, dry run by default. 54 casualty pages: 18 created, 36 gap-filled on legacyKey. service_record labels mapped to the wm fields; the 45 unmapped labels go to wmServiceExtra as label and value verbatim, 69 rows, nothing dropped. wmConflict set from the legacy_key prefix. Also wrote inventory/legacy/warmemorial-images.json, 133 images, none downloaded. Verified every field write with a temporary fixture record, then hard-deleted it.
+- Decisions: a trailing period is trimmed from a title only when the last word is not an abbreviation or an initial, so the four transcription artifacts are fixed and the six Jr. names are left intact. Where two labels hit one field the first in the map wins and the other overflows, the rule the brief sets for College. No value corrected: the three "Amry of the United States" pages import verbatim.
+- Blockers: neighborhood is not on the warMemorial entry type, so communities_mentioned is dropped on 51 pages. Craft holds a duplicate Rudy Alexander Acosta, #877 and #526, sharing one legacy URL. The war-memorial template renders none of the eight new wm fields.
+- Next: Nathan runs the script, resolves the Acosta duplicate, and decides on a neighborhood field and template rows for the new fields
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: collection lander rebuilt to the cream band spec with two masked image layers; Contents now groups by the collection's own parts in articlesInCollection order and the era chips and "No era recorded" group are gone. Added scripts/import/add_collection_parts.php (collectionParts table field, four parts for the Reynolds work). Added scripts/import/import_reynolds.php for the 80 page reynolds-full.json. Added LEGACY_HOST to .env and a new .env.example, config/custom.php exposing legacyHost, and scripts/import/normalise_legacy_urls.php. templates/_partials/legacy-url.twig now reads the host from config.
 - Decisions: custom config lives in config/custom.php because Craft 5 GeneralConfig has no slot for it; general.php points at it. The normaliser leaves a legacy URL pointing at another host alone rather than stripping it to a path that would resolve against the wrong site. Reynolds matching falls back to the legacyUrl tail and then to the normalised title, because five WordPress rows have a wrong or missing legacyUrl.
 - Blockers: 14 of the 23 existing Reynolds bodies differ from the legacy text and were left alone pending a call on which is authoritative. The four collectionParts rows only cover positions 1 to 23, so once all 80 land, PART FOUR swallows everything from Chapter 22 on.
