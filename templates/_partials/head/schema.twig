@@ -52,7 +52,7 @@
 {% set V = {} %}
 {% for h in ['fullName','birthDate','deathDate','burialPlace','birthplace','occupation','personAliases',
              'wikidataId','viafId','personWikipediaUrl','personGraveUrl','legacyUrl','sourcePath',
-             'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','placeChlNumber',
+             'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','placeChlNumber','gnisId',
              'placeWikipediaUrl','placeChlUrl','placeScvhlUrl',
              'orgAddress','orgLat','orgLng','orgAliases','dateFounded','orgWebsite','orgWikipediaUrl',
              'groupAliases','groupDateStart','groupDateEnd','groupWebsite',
@@ -126,6 +126,9 @@
 {% endfor %}
 {% if V.wikidataId ?? '' %}{% set sameAs = sameAs|merge(['https://www.wikidata.org/wiki/' ~ V.wikidataId]) %}{% endif %}
 {% if V.viafId ?? '' %}{% set sameAs = sameAs|merge(['https://viaf.org/viaf/' ~ V.viafId]) %}{% endif %}
+{#- GNIS, the federal authority for the canyons, creeks, passes and stations
+    that make up most of the place list, which Wikidata does not reach. -#}
+{% if V.gnisId ?? '' %}{% set sameAs = sameAs|merge(['https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' ~ V.gnisId]) %}{% endif %}
 {% set sameAs = sameAs|unique|values %}
 
 {% set alt = [] %}
@@ -176,6 +179,7 @@
     'birthDate': dt.iso(V.birthDate ?? '')|trim,
     'deathDate': dt.iso(V.deathDate ?? '')|trim,
     'birthPlace': (V.birthplace ?? '') ? { '@type': 'Place', 'name': V.birthplace } : null,
+    'deathPlace': (V.burialPlace ?? '') ? { '@type': 'Place', 'name': V.burialPlace } : null,
     'jobTitle': (V.occupation ?? '') ? (V.occupation|split(';')|map(o => o|trim)|filter(o => o)|values) : [],
     'sameAs': sameAs,
     'spouse': (N.spouseOf ?? []),
@@ -199,7 +203,10 @@
     'geo': geo,
     'containedInPlace': communityNode,
     'sameAs': sameAs,
-    'identifier': (V.placeChlNumber ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'California Historical Landmark', 'value': V.placeChlNumber } : null,
+    'identifier': [
+      (V.placeChlNumber ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'California Historical Landmark', 'value': V.placeChlNumber } : null,
+      (V.gnisId ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'GNIS', 'value': V.gnisId, 'url': 'https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' ~ V.gnisId } : null
+    ]|filter(v => v)|values,
     'subjectOf': (N.placeArticles ?? [])|merge((N.placeEvents ?? []))
   } %}
 
@@ -360,11 +367,22 @@
   {% set main = main|merge({
     'isAccessibleForFree': true,
     'license': siteUrl ~ 'permissions',
-    'publisher': main.publisher ?? PUBLISHER
+    'publisher': main.publisher ?? PUBLISHER,
+    'dateModified': el ? el.dateUpdated|date('Y-m-d') : null
   }) %}
 {% endif %}
 {% set main = main|filter(v => v is not null and v is not same as('') and v is not same as([])) %}
 {% set graph = [main]|merge(extra) %}
+
+{#- SEOmatic emits its own JSON-LD block, a WebPage whose author, creator and
+    copyrightHolder point at Organization nodes carrying nothing but an @id.
+    That is the only thing on these pages a validator objects to, and this file
+    replaces what it was for, so its JSON-LD container is switched off here,
+    next to the thing that supersedes it. SEOmatic keeps doing sitemaps and
+    redirects, which is why it is installed. -#}
+{% if craft.app.plugins.isPluginEnabled('seomatic') and seomatic is defined %}
+  {% do seomatic.jsonLd.container().include(false) %}
+{% endif %}
 
 <script type="application/ld+json">{{ { '@context': 'https://schema.org', '@graph': graph }|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
 
