@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: widened the trailing gallery rule in clean_legacy_bodies.php. A caption run is now cut when the line above it is clear prose, a copyright line, an exhibit heading or another caption, and a run can absorb a short caption that ends in punctuation when three or more captions sit above it. The copyright and gallery walks now loop until neither moves, so a copyright line exposed by cutting a gallery still reaches finePrint. Applied: 10 records cleaned across two passes. The image token count falls from 170 to 49.
+- Decisions: the look-ahead is what separates a caption from prose. "New Boiler 1893?" has gallery above it and goes; "R.I.P." and the lettered footnote "k. Meaning the Newhall School District." have prose above them and stay. The four byline cases were left alone as instructed.
+- Blockers: $APPLY was left true in the committed copy of clean_legacy_bodies.php, so the first run of this session wrote rather than previewed. Set back to false, which is what the file's own header documents.
+- Next: none
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: an article's band now falls back to the bandImage of the collection it belongs to, so a Perkins chapter wears the Perkins band and a Reynolds chapter the Reynolds band. A standalone article with no artwork stays plain cream. Two layers, matching the collection lander exactly.
 - Decisions: still no fallback to featuredImage at either step, since those are title cards with lettering. The chain walks [entry, collection] and stops at the first bandImage it finds, guarding each element against its own field layout.
 - Blockers: the Perkins band artwork carries legible pseudo-text on the map at the right edge, away from the headline but readable.

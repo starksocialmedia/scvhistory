@@ -24,7 +24,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/clean_legacy_bodies.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $SECTIONS = ['articles', 'warMemorials', 'obituaries'];
 
@@ -110,6 +110,25 @@ $isCaptionish = function (string $l): bool {
     return true;
 };
 
+/* An exhibit or section heading sitting above a gallery, all caps. */
+$isExhibitHeading = function (string $l): bool {
+    if (mb_strlen($l) < 10 || mb_strlen($l) > 120) { return false; }
+    if (preg_match('~\p{Ll}~u', $l)) { return false; }
+    return (bool)preg_match('~\p{Lu}~u', $l);
+};
+
+/* What may sit immediately above a trailing gallery and still let it be cut.
+   The line itself is never removed; this only decides whether the run below it
+   is furniture. Clear prose, a copyright line, an exhibit heading, or another
+   caption, which is any short line whatever its punctuation. */
+$isRunTerminator = function (string $l) use ($isCopyright, $isExhibitHeading): string {
+    if (mb_strlen($l) >= 70 && preg_match('~[.!?"\x{201D}]$~u', $l)) { return 'prose'; }
+    if ($isCopyright($l)) { return 'copyright line'; }
+    if ($isExhibitHeading($l)) { return 'exhibit heading'; }
+    if (mb_strlen($l) <= 90) { return 'another caption'; }
+    return '';
+};
+
 /* ---------------------------------------------------------------- report */
 
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL;
@@ -117,6 +136,7 @@ echo 'sections: ' . implode(', ', $SECTIONS) . PHP_EOL;
 
 $changed = 0; $unchanged = 0; $failed = 0;
 $uncertain = [];        /* slug => [lines] */
+$galleryCut = [];       /* slug => [what was cut] */
 $movedToFinePrint = 0;
 $patternCounts = [];
 
@@ -174,43 +194,69 @@ foreach ($SECTIONS as $sectionHandle) {
             }
         }
 
-        /* ---- tail: walk up, same discipline ---- */
+        /* ---- tail ----
+           The copyright and footer walk and the gallery run feed each other: once
+           a gallery is cut, the copyright line that sat above it is at the end and
+           can be moved. So the two run in a loop until neither moves. Both only
+           ever walk up from the last line, so the middle stays unreachable. */
         $end = $n - 1;
-        while ($end > $start) {
-            $l = trim($lines[$end]);
-            if ($l === '') { $end--; continue; }
+        do {
+            $moved = false;
 
-            if ($isCopyright($l) || $isRights($l) || $isNonprofit($l)) {
-                $hit($isCopyright($l) ? 'copyright' : ($isRights($l) ? 'rights' : 'nonprofit'));
-                $keepFine[] = $l;
-                $end--; continue;
-            }
-            if ($isFooterLink($l)) { $hit('footer-link'); $end--; continue; }
-            break;
-        }
+            while ($end > $start) {
+                $l = trim($lines[$end]);
+                if ($l === '') { $end--; $moved = true; continue; }
 
-        /* ---- tail: an unrelated gallery caption run ----
-           Only a run of four or more consecutive short non-sentence lines sitting
-           at the very end, immediately after a line that reads as real prose. A
-           shorter or mixed run is reported instead of cut. */
-        $runStart = null; $run = 0; $probe = $end;
-        while ($probe > $start) {
-            $l = trim($lines[$probe]);
-            if ($l === '') { $probe--; continue; }
-            if (!$isCaptionish($l)) { break; }
-            $run++; $runStart = $probe; $probe--;
-        }
-        if ($run >= 4 && $probe > $start) {
-            $prose = trim($lines[$probe]);
-            if (mb_strlen($prose) >= 70 && preg_match('~[.!?"\x{201D}]$~u', $prose)) {
-                $hit('gallery-captions');
-                $end = $probe;
-            } else {
-                $uncertain[$e->slug][] = 'possible caption run of ' . $run . ' lines, but the line above it is not clearly prose: ' . mb_substr($prose, 0, 80);
+                if ($isCopyright($l) || $isRights($l) || $isNonprofit($l)) {
+                    $hit($isCopyright($l) ? 'copyright' : ($isRights($l) ? 'rights' : 'nonprofit'));
+                    $keepFine[] = $l;
+                    $end--; $moved = true; continue;
+                }
+                if ($isFooterLink($l)) { $hit('footer-link'); $end--; $moved = true; continue; }
+                break;
             }
-        } elseif ($run > 0 && $run < 4) {
-            $uncertain[$e->slug][] = 'short trailing run of ' . $run . ' non-sentence line(s), left alone: ' . mb_substr(trim($lines[$runStart] ?? ''), 0, 80);
-        }
+
+            /* A trailing run of four or more short non-sentence lines is the
+               thumbnail gallery's captions. The line above it must be something
+               the run can hang off; that line is kept either way. */
+            $run = 0; $runStart = null; $probe = $end;
+            while ($probe > $start) {
+                $l = trim($lines[$probe]);
+                if ($l === '') { $probe--; continue; }
+                if ($isCaptionish($l)) { $run++; $runStart = $probe; $probe--; continue; }
+
+                /* A short line that ends in punctuation is still part of the
+                   gallery when what sits above it is more gallery. "New Boiler
+                   1893?" and an all caps exhibit heading are captions; "R.I.P."
+                   and a lettered footnote are not, because prose sits above
+                   them. Look up three lines to tell the two apart. */
+                if (mb_strlen($l) <= 90 && !$isCopyright($l)) {
+                    $ahead = 0; $peek2 = $probe - 1;
+                    while ($peek2 > $start && $ahead < 3) {
+                        $pl2 = trim($lines[$peek2]);
+                        if ($pl2 === '') { $peek2--; continue; }
+                        if (!$isCaptionish($pl2)) { break; }
+                        $ahead++; $peek2--;
+                    }
+                    if ($ahead >= 3) { $run++; $runStart = $probe; $probe--; continue; }
+                }
+                break;
+            }
+            if ($run >= 4 && $probe > $start) {
+                $above = trim($lines[$probe]);
+                $why = $isRunTerminator($above);
+                if ($why !== '') {
+                    $hit('gallery-captions');
+                    $galleryCut[$e->slug][] = $run . ' caption line(s), kept the ' . $why . ' above: ' . mb_substr($above, 0, 60);
+                    $end = $probe;
+                    $moved = true;
+                } else {
+                    $uncertain[$e->slug][] = 'possible caption run of ' . $run . ' lines, but the line above it is none of prose, a copyright line, an exhibit heading or another caption: ' . mb_substr($above, 0, 80);
+                }
+            } elseif ($run > 0 && $run < 4) {
+                $uncertain[$e->slug][] = 'short trailing run of ' . $run . ' non-sentence line(s), left alone: ' . mb_substr(trim($lines[$runStart] ?? ''), 0, 80);
+            }
+        } while ($moved);
 
         $kept = array_slice($lines, $start, $end - $start + 1);
 
@@ -294,6 +340,14 @@ echo '=== patterns matched ===' . PHP_EOL;
 ksort($patternCounts);
 foreach ($patternCounts as $k => $v) { echo '  ' . str_pad($k, 20) . $v . PHP_EOL; }
 if (!count($patternCounts)) { echo '  none' . PHP_EOL; }
+
+if ($galleryCut) {
+    echo '=== trailing galleries cut ===' . PHP_EOL;
+    foreach ($galleryCut as $slug => $notes) {
+        echo '  ' . $slug . PHP_EOL;
+        foreach ($notes as $note) { echo '      ' . $note . PHP_EOL; }
+    }
+}
 
 echo '=== not confident, nothing removed ===' . PHP_EOL;
 if (!count($uncertain)) {
