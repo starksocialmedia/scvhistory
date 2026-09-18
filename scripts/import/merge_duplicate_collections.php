@@ -5,7 +5,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/merge_duplicate_collections.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $elements = Craft::$app->getElements();
 $cols = \craft\elements\Entry::find()->section('collections')->status(null)->all();

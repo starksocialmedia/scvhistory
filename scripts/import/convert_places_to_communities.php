@@ -5,7 +5,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/convert_places_to_communities.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $elements = Craft::$app->getElements();
 $categoriesService = Craft::$app->getCategories();

@@ -6,7 +6,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/clean_bodies.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 $FIELDS = ['body', 'authorBio', 'wmNarrative'];
 
 $elements = Craft::$app->getElements();

@@ -39,7 +39,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/fix_bad_links.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $WP = 'https://wordpress-1656314-6593552.cloudwaysapps.com';
 

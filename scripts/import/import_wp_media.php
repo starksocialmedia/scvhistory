@@ -6,7 +6,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/import_wp_media.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 $VOLUME = null;
 
 $path = \Craft::getAlias('@root') . '/inventory/wp_media_order.json';

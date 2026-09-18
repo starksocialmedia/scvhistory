@@ -6,7 +6,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/import_wp_content.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $path = \Craft::getAlias('@root') . '/inventory/wp_content.json';
 if (!file_exists($path)) {

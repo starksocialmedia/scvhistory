@@ -17,7 +17,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/set_community_coords.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $COORDS = [
     // slug => [lat, lng, source, reference]

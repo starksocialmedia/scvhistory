@@ -17,7 +17,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/setup_pages_section.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $PAGES = [
     ['About',                     'about'],

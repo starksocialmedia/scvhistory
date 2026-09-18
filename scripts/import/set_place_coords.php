@@ -5,7 +5,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/set_place_coords.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $coords = [
     'sleepy-valley' => [34.489, -118.355],

@@ -6,7 +6,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/propose_record_dates.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 $SHOW = 40;
 
 $months = 'January|February|March|April|May|June|July|August|September|October|November|December';

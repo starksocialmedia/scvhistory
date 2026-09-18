@@ -5,7 +5,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/apply_confirmed_dates.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $file = \Craft::getAlias('@webroot') . '/review/confirmed.json';
 if (!file_exists($file)) { echo 'ERROR: web/review/confirmed.json not found. Download it from the review screen first.' . PHP_EOL; return; }

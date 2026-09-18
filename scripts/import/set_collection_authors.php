@@ -1,4 +1,4 @@
-$APPLY = true;
+$APPLY = false;
 $el = Craft::$app->getElements();
 $map = [
   'story-of-our-valley' => 'arthur-b-perkins',

@@ -15,7 +15,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/setup_tags.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $GROUP_HANDLE = 'tag';
 $FIELD_HANDLE = 'recordTags';

@@ -1,4 +1,4 @@
-$APPLY = true;
+$APPLY = false;
 $el = Craft::$app->getElements();
 $keep = \craft\elements\Entry::find()->id(526)->status(null)->one();
 $drop = \craft\elements\Entry::find()->id(877)->status(null)->one();

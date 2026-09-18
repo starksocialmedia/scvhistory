@@ -4,7 +4,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/populate_war_memorials.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $path = \Craft::getAlias('@storage') . '/war_memorials_parsed.json';
 if (!file_exists($path)) {

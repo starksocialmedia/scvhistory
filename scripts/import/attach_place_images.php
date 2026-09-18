@@ -5,7 +5,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/attach_place_images.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $picks = [
     'fort-tejon' => ['Castaic Fort Tejon Rancho Castac Castec San Jose Public Library CALIFORNIA ROOM 1862 United States Survey.jpg', 'United States Survey map showing Fort Tejon and Rancho Castac, 1862.'],

@@ -13,7 +13,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/add_wm_community.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $TYPE_HANDLE = 'warMemorial';
 

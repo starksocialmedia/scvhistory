@@ -5,7 +5,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/clean_notes.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $pairs = [
     ['webmasterNoteTop', 'obitWebmasterNoteTop', 'personWebmasterNoteTop', 'mpWebmasterNoteTop'],

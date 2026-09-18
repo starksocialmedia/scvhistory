@@ -6,7 +6,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/setup_record_dates.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $fieldsSvc = Craft::$app->getFields();
 $entriesSvc = Craft::$app->getEntries();

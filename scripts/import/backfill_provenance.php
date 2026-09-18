@@ -27,7 +27,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/backfill_provenance.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 
 $root = \Craft::getAlias('@root');
 $elements = Craft::$app->getElements();

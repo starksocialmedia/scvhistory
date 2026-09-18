@@ -6,7 +6,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/paragraph_bios.php'))"
  */
 
-$APPLY = true;
+$APPLY = false;
 $MIN_LEN = 700;
 $TARGET = 550;
 
