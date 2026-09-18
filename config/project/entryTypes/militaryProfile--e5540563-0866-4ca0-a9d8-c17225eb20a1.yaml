@@ -376,23 +376,6 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 9e2abb25-a5c6-4256-8607-9a6ff6ef1a8e # MP Spouse
-            handle: null
-            instructions: null
-            label: null
-            oldFieldUid: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: e54a19c6-5f88-4bc3-b4f0-6eed47945373
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: null
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
             fieldUid: 447a484a-adde-421a-aea6-2819d46b9b8c # MP Has Children
             handle: null
             instructions: null
@@ -402,23 +385,6 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 3be7cae2-d8e2-41ea-af48-c06f710cfae6
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: null
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
-            fieldUid: b07de159-f475-4937-98ce-db9b4d8c5855 # MP Children
-            handle: null
-            instructions: null
-            label: null
-            oldFieldUid: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 3b0e4f11-a027-4552-a667-919d87523920
             userCondition: null
             warning: null
             width: 100
@@ -444,23 +410,6 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: ad257040-ace0-4010-a707-3b9ce99a248f # MP Parents
-            handle: null
-            instructions: null
-            label: null
-            oldFieldUid: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 7796281e-45e5-4a58-b446-299a2790fcf8
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: null
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
             fieldUid: a7d29285-f1cd-4793-8d5a-9f83c09cab99 # MP Has Siblings
             handle: null
             instructions: null
@@ -478,23 +427,6 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: 3ca8c98c-5420-4133-96da-4f21f9f566e3 # MP Siblings
-            handle: null
-            instructions: null
-            label: null
-            oldFieldUid: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 436fc27f-62d0-4642-bec1-de755c7dd09b
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: null
-            editCondition: null
-            elementCondition: null
-            elementEditCondition: null
             fieldUid: eca3a22b-ede0-47d3-89bb-8fda28ebfe83 # MP Related Persons
             handle: null
             instructions: null
@@ -504,6 +436,57 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 275c9b91-47c2-445e-a8c1-c6b4b465bf94
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0043c112-7178-4dd3-a3ee-602d9127ed84 # Child Of
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 67411b0b-e13a-425b-ab43-9b61fd5f64ff
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 19daf868-e058-424b-ad9f-d24eba29d9b7 # Sibling Of
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c838a311-0249-4d46-9842-1ffae9f92dff
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fdb7f91f-2ca8-4df3-b40b-ed08f4227c9f # Spouse Of
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1a81ed1e-9bce-4e32-ad8b-8a71c715715b
             userCondition: null
             warning: null
             width: 100

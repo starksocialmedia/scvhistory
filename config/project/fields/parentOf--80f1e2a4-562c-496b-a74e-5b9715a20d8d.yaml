@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: parentOf
-instructions: null
+instructions: "Not in use. Children are derived from the childOf field on the child: open the child's record and point it at this person. This field is kept only so its old data is not lost, and is off the layout."
 name: 'Parent Of'
 searchable: false
 settings:

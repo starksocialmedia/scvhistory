@@ -845,6 +845,63 @@ fieldLayouts:
         name: Media
         uid: cc65fee3-eb8c-45b9-8050-3ee82331f7aa
         userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0043c112-7178-4dd3-a3ee-602d9127ed84 # Child Of
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d594dcf5-b541-4390-85ad-d69528ad663f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 19daf868-e058-424b-ad9f-d24eba29d9b7 # Sibling Of
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f9ad32ec-92cd-4f30-a315-b2fafa03931b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: fdb7f91f-2ca8-4df3-b40b-ed08f4227c9f # Spouse Of
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 72d59276-39eb-4a8f-a346-eb21e3dc3890
+            userCondition: null
+            warning: null
+            width: 100
+        name: Family
+        uid: e328e2fc-ad9c-4ced-a3fd-69aa88af347f
+        userCondition: null
     thumbFieldKey: null
 handle: warMemorial
 hasTitleField: true

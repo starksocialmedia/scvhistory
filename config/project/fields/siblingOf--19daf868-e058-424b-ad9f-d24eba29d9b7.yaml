@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: siblingOf
-instructions: null
+instructions: 'Only for a sibling the parents do not reach, such as a half-brother where no parent record exists. Siblings who share a recorded parent appear by themselves. Reads both ways, so enter it once, on either record.'
 name: 'Sibling Of'
 searchable: false
 settings:
@@ -17,6 +17,8 @@ settings:
   showUnpermittedSections: false
   sources:
     - 'section:9d0087fe-8a7b-4f5e-941b-b7e89febe4e9' # Persons
+    - 'section:47acf174-5c11-495d-bb94-0f9e2dc637a2' # War Memorials
+    - 'section:15e98910-53c8-4cbc-9d54-06bdd1c492b2' # Military Profiles
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list
