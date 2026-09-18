@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Date review — SCVHistory.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#17254C;--gold:#C4A031;--gold-d:#7A5C1B;--cream:#FDF7EA;--cream-b:#EFE6D0;--grey:#F6F7F9;--bord:#E2E4E8;--muted:#5B6472}
+*{box-sizing:border-box}
+body{margin:0;background:var(--grey);color:#2C2C2C;font-family:'Public Sans',system-ui,sans-serif}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:10}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+header .wrap{padding-top:18px;padding-bottom:18px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+h1{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0}
+.counts{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--gold)}
+.tools{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button,select,input[type=text]{font:inherit}
+.btn{background:var(--gold);color:var(--navy);border:0;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:9px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+main .wrap{padding-top:24px;padding-bottom:80px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;font-size:14px;color:var(--muted)}
+.filters select,.filters input{padding:8px 10px;border:1px solid var(--bord);background:#fff}
+.row{background:#fff;border:1px solid var(--bord);border-left:3px solid var(--bord);padding:14px 16px;margin-bottom:8px;display:grid;grid-template-columns:120px 90px minmax(0,1fr) auto;gap:14px;align-items:start}
+.row.confirm{border-left-color:var(--gold);background:var(--cream)}
+.row.delete{border-left-color:#B4453C;opacity:.55}
+.row.done{display:none}
+@media(max-width:820px){.row{grid-template-columns:1fr}}
+.printed{font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:500}
+.iso{font-family:ui-monospace,monospace;font-size:13px;color:var(--muted)}
+.gran{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-top:3px}
+.rec{font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.rec a{color:var(--gold-d)}
+.label{width:100%;padding:8px 10px;border:1px solid var(--bord);font-size:15px}
+.ctx{font-size:12.5px;color:#8A919E;margin-top:6px;line-height:1.5}
+.acts{display:flex;gap:6px}
+.acts button{border:1px solid var(--bord);background:#fff;font-family:'Jost',sans-serif;font-size:13px;padding:7px 11px;cursor:pointer}
+.acts button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.acts button.del.on{background:#B4453C;border-color:#B4453C}
+.empty{text-align:center;padding:60px 0;color:var(--muted)}
+.hint{font-size:13px;color:var(--muted);margin-bottom:14px}
+kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bord);padding:1px 5px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Date review</h1>
+    <div class="counts" id="counts">loading</div>
+    <div class="tools">
+      <button class="btn ghost" id="skipAll">Hide decided</button>
+      <button class="btn" id="download">Download confirmed.json</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <p class="hint">Trim each label to a short phrase, then confirm. <kbd>C</kbd> confirm, <kbd>D</kbd> delete, <kbd>S</kbd> skip, <kbd>Tab</kbd> next. Decisions are kept in this browser until you download.</p>
+    <div class="filters">
+      <label>Precision
+        <select id="fGran"><option value="">all</option><option value="day" selected>day</option><option value="month">month</option><option value="year">year</option><option value="circa">circa</option></select>
+      </label>
+      <label>Section <select id="fSec"><option value="">all</option></select></label>
+      <label>Search <input type="text" id="fText" placeholder="title or label"></label>
+      <span id="showing"></span>
+    </div>
+    <div id="list"></div>
+  </div>
+</main>
+<script>
+const KEY = 'scv-date-review';
+let rows = [], decisions = JSON.parse(localStorage.getItem(KEY) || '{}');
+
+const rid = r => r.entryId + ':' + r.rowIndex;
+
+fetch('dates.json').then(r => r.json()).then(d => {
+  rows = d;
+  const secs = [...new Set(rows.map(r => r.section))].sort();
+  const sel = document.getElementById('fSec');
+  secs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
+  render();
+}).catch(() => { document.getElementById('list').innerHTML = '<div class="empty">Could not load dates.json. Run the export script first.</div>'; });
+
+function visible() {
+  const g = document.getElementById('fGran').value;
+  const s = document.getElementById('fSec').value;
+  const t = document.getElementById('fText').value.toLowerCase().trim();
+  return rows.filter(r =>
+    (!g || r.granularity === g) &&
+    (!s || r.section === s) &&
+    (!t || (r.title + ' ' + r.label + ' ' + r.printed).toLowerCase().includes(t))
+  );
+}
+
+function render() {
+  const list = document.getElementById('list');
+  const vis = visible();
+  list.innerHTML = '';
+  vis.forEach(r => {
+    const id = rid(r);
+    const dec = decisions[id] || {};
+    const el = document.createElement('div');
+    el.className = 'row' + (dec.action === 'confirm' ? ' confirm' : dec.action === 'delete' ? ' delete' : '');
+    el.dataset.id = id;
+    el.innerHTML =
+      '<div><div class="printed">' + esc(r.printed) + '</div><div class="iso">' + esc(r.iso) + '</div><div class="gran">' + esc(r.granularity) + '</div></div>' +
+      '<div class="iso">' + esc(r.section) + '</div>' +
+      '<div><div class="rec"><a href="' + esc(r.url || '#') + '" target="_blank">' + esc(r.title) + '</a></div>' +
+      '<input class="label" value="' + esc(dec.label !== undefined ? dec.label : shorten(r.label)) + '" placeholder="What happened">' +
+      '<div class="ctx">' + esc(r.label.slice(0, 180)) + '</div></div>' +
+      '<div class="acts">' +
+      '<button class="cf' + (dec.action === 'confirm' ? ' on' : '') + '">Confirm</button>' +
+      '<button class="sk' + (dec.action === 'skip' ? ' on' : '') + '">Skip</button>' +
+      '<button class="del' + (dec.action === 'delete' ? ' on' : '') + '">Delete</button>' +
+      '</div>';
+    el.querySelector('.cf').onclick = () => decide(r, 'confirm', el);
+    el.querySelector('.sk').onclick = () => decide(r, 'skip', el);
+    el.querySelector('.del').onclick = () => decide(r, 'delete', el);
+    el.querySelector('.label').addEventListener('input', e => {
+      decisions[id] = Object.assign({}, decisions[id], { label: e.target.value });
+      save();
+    });
+    el.querySelector('.label').addEventListener('keydown', e => {
+      if (e.key.toLowerCase() === 'c' && e.ctrlKey) { decide(r, 'confirm', el); }
+    });
+    list.appendChild(el);
+  });
+  document.getElementById('showing').textContent = vis.length + ' shown';
+  counts();
+}
+
+function shorten(s) {
+  if (!s) return '';
+  const parts = s.split(/(?<=\.)\s+/);
+  const best = parts.find(p => p.length > 25) || parts[0] || '';
+  return best.trim().slice(0, 90);
+}
+
+function decide(r, action, el) {
+  const id = rid(r);
+  const cur = decisions[id] || {};
+  decisions[id] = Object.assign({}, cur, {
+    entryId: r.entryId, rowIndex: r.rowIndex, action: action,
+    printed: r.printed, iso: r.iso, granularity: r.granularity,
+    label: cur.label !== undefined ? cur.label : shorten(r.label)
+  });
+  save();
+  el.className = 'row' + (action === 'confirm' ? ' confirm' : action === 'delete' ? ' delete' : '');
+  el.querySelectorAll('.acts button').forEach(b => b.classList.remove('on'));
+  el.querySelector(action === 'confirm' ? '.cf' : action === 'delete' ? '.del' : '.sk').classList.add('on');
+  counts();
+  const next = el.nextElementSibling;
+  if (next) { const inp = next.querySelector('.label'); if (inp) inp.focus(); }
+}
+
+function save() { localStorage.setItem(KEY, JSON.stringify(decisions)); }
+
+function counts() {
+  const vals = Object.values(decisions);
+  const c = vals.filter(v => v.action === 'confirm').length;
+  const d = vals.filter(v => v.action === 'delete').length;
+  document.getElementById('counts').textContent = rows.length + ' TOTAL · ' + c + ' CONFIRMED · ' + d + ' TO DELETE';
+}
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+document.getElementById('fGran').onchange = render;
+document.getElementById('fSec').onchange = render;
+document.getElementById('fText').oninput = render;
+document.getElementById('skipAll').onclick = () => {
+  document.querySelectorAll('.row.confirm,.row.delete').forEach(el => el.classList.add('done'));
+};
+document.getElementById('download').onclick = () => {
+  const out = Object.values(decisions).filter(v => v.action === 'confirm' || v.action === 'delete');
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'confirmed.json';
+  a.click();
+};
+</script>
+</body>
+</html>
