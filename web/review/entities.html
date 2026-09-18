@@ -59,6 +59,13 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
 .ctx mark{background:#F6E7B8;color:inherit;padding:0 1px}
 .ctx .none{font-size:13px;color:var(--muted);font-style:italic}
 .pair.spouse{border-left-color:var(--gold);background:#FFFDF7}
+.pair.stated{border-left-color:var(--green);background:#F6FBF8}
+.fact{background:#fff;border:1px solid #CBE5D8;border-left:3px solid var(--green);padding:10px 13px;margin:0 0 12px;font-size:14px;line-height:1.65}
+.fact b{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--green);display:block;margin-bottom:4px}
+.fact .q{display:block;margin:6px 0;color:#2C2C2C;font-style:italic;border-left:2px solid var(--bord);padding-left:10px}
+.fact .q cite{font-style:normal;display:block;font-size:12px;color:#8A919E;margin-top:3px}
+.fact .plan{display:block;margin-top:7px;font-size:13px;color:#5B6472}
+.fact .new{display:inline-block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--gold-d);background:var(--cream);border:1px solid #EFE6D0;padding:1px 6px;margin-left:5px}
 .warn{background:var(--cream);border:1px solid #EFE6D0;border-left:3px solid var(--gold);padding:9px 12px;margin:0 0 12px;font-size:13.5px;line-height:1.6;color:#2C2C2C}
 .warn b{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--gold-d);display:block;margin-bottom:3px}
 .warn .ask{display:block;margin-top:5px;color:var(--muted);font-size:12.5px}
@@ -91,6 +98,8 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
       <b>Skip</b> leaves it undecided.
       <b>Spouse of</b> records them as two people married to each other, which is the right answer for
       "Mrs. George LeBrun" beside "George LeBrun".
+      Where the source states a married name outright, <b>Same person</b> is the answer it gives:
+      her own name survives, the married form becomes an alias, and the husband is recorded as her spouse.
       <kbd>S</kbd> same, <kbd>W</kbd> spouse of, <kbd>X</kbd> different, <kbd>K</kbd> skip,
       <kbd>1</kbd><kbd>2</kbd> choose the survivor,
       <kbd>C</kbd> show the sentences either name appears in, <kbd>&darr;</kbd><kbd>&uarr;</kbd> move.
@@ -104,6 +113,7 @@ kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bo
       <label>Evidence
         <select id="why">
           <option value="strong">strong only: honorific, initials, suffix, spelling</option>
+          <option value="stated_married_name">stated married name, the source says who she is</option>
           <option value="probable_spouse">probable spouse, a married woman named by her husband</option>
           <option value="all">every pair, including surname alone</option>
           <option value="honorific">honorific</option>
@@ -134,9 +144,9 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;
 const open = new Set();
 let byName = new Map();
 const idOf = p => p.kind + '|' + p.a + '|' + p.b;
-const STRONG = ['honorific', 'initials', 'suffix', 'spelling', 'probable_spouse'];
+const STRONG = ['honorific', 'initials', 'suffix', 'spelling', 'probable_spouse', 'stated_married_name'];
 
-fetch('entities.json').then(r => r.json()).then(d => {
+fetch('entities.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.json()).then(d => {
   data = d; pairs = d.pairs || [];
   for (const kind of Object.keys(d.entities || {})) {
     for (const row of d.entities[kind]) byName.set(kind + '|' + row.name, row);
@@ -274,12 +284,25 @@ function render() {
     const id = idOf(p);
     const d = decisions[id];
     const cls = (d ? (d.choice === 'same' ? 'same' : (d.choice === 'spouse' ? 'same' : 'diff')) : '')
-      + (p.spouseNote && !d ? ' spouse' : '');
+      + (p.spouseNote && !d ? ' spouse' : '') + (p.statedMarriage && !d ? ' stated' : '');
     html += '<div class="pair ' + cls + '" data-id="' + esc(id) + '" tabindex="0">';
     html += '<div class="why">';
     for (const r of p.reasons) html += '<span class="tagr">' + esc(r) + '</span>';
     if (p.shared) html += '<span class="tagr">' + p.shared + ' article' + (p.shared === 1 ? '' : 's') + ' in common</span>';
     html += '</div>';
+    if (p.statedMarriage) {
+      var m = p.statedMarriage;
+      html += '<div class="fact"><b>the source states this</b>' +
+        'The source names her as ' + esc(m.phrase) + '. ' +
+        'Same person as ' + esc(m.wife) + '; married to ' + esc(m.husband) + '.' +
+        '<span class="q">' + esc(m.sentence) + '<cite>' + esc(m.page) + '</cite></span>' +
+        '<span class="plan">Same person keeps <b style="display:inline;font-family:inherit;font-size:inherit;' +
+        'letter-spacing:0;text-transform:none;color:inherit">' + esc(m.wife) + '</b> as the record, ' +
+        'files ' + esc(m.marriedForm) + ' as her alias, and records ' + esc(m.husband) + ' as her spouse.' +
+        (m.wifeIndexed ? '' : '<span class="new">her name is not in the extraction index</span>') +
+        (m.husbandIndexed ? '' : '<span class="new">his name is not in the index either</span>') +
+        '</span></div>';
+    }
     if (p.spouseNote) {
       html += '<div class="warn"><b>probable spouse</b>' + esc(p.spouseNote) +
         '<span class="ask">Check the given name first. A woman\'s given name here means the ' +
@@ -319,6 +342,16 @@ function choose(id, choice) {
   if (choice === 'skip') { delete decisions[id]; save(); render(); return; }
   if (decisions[id] && decisions[id].choice === choice) { delete decisions[id]; save(); render(); return; }
   decisions[id] = { kind: p.kind, a: p.a, b: p.b, choice: choice, survivor: null, reasons: p.reasons };
+
+  /* The source already answered this one. Same person keeps her own name and
+     carries the marriage with it, so one keystroke records all three facts. */
+  if (p.statedMarriage) {
+    decisions[id].statedMarriage = true;
+    decisions[id].marriedTo = p.statedMarriage.husband;
+    decisions[id].alias = p.statedMarriage.marriedForm;
+    if (choice === 'same') { decisions[id].survivor = p.statedMarriage.wife; save(); render(); return; }
+  }
+
   if (choice === 'spouse') {
     /* Which one is the wife is already worked out by the shape of the name;
        where the flag did not fire, fall back to whichever carries the honorific. */

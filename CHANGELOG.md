@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: detect the married name the source states outright. export_entity_candidates.php reads "Barbara Sitzman (Mrs. Paul Cook)" and "Russell (nee Pearl Pardee)" out of body_text and emits them as stated_married_name pairs carrying the sentence and the page. The card presents them as fact rather than judgement, Same person keeps her own name and records the marriage in the same keystroke, and apply_entity_merges.php writes the merge and the spouse together.
+- Decisions: the pair is emitted even where a name is not in the extraction index, because that is the case that matters most: two of the four women are indexed only as their husband's name, and one husband is not indexed at all. Four separate defects had to be fixed to get the four pairs out cleanly: a name pattern that required every word capitalised dropped "Henry de Moss"; PREG_OFFSET_CAPTURE returns byte offsets and mb_substr sliced mid-character; splitting on a full stop cut every sentence at the "Mrs." it was about; and the same marriage written twice needed the fuller husband name to win.
+- Blockers: none. Both review screens were serving a cached JSON, so a re-export did not reach the browser; both now fetch with no-store, which would have bitten Nathan after every export.
+- Result: four stated marriages across the five inventory files, 396 pages. Barbara Sitzman and Paul Cook, Lois Cheney and Henry de Moss, Nicolene Cheney and Wayne Graham, Pearl Pardee and H.B. Russell. Tested end to end with a synthetic decision: the canon collapses Mrs. Paul Cook into Barbara Sitzman and records the marriage as stated by the source.
+- Next: Nathan reviews entities, starting with the four stated marriages
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: applied the Beale's Cut legacy path fix, built the data overview at /admin-overview, added the community-from-evidence rule and the unlocatable-source list to RECORD-CHECKLIST.md, and re-ran the relation exporter.
 - Decisions: the overview discovers relation fields from each entry type's layout rather than from a list, so a field added in the CP appears on the next request and nothing here can go stale. Relation counts come from one query against the relations table, grouped by field and entry type and filtered to canonical undeleted elements. Each section collapses to a summary line; opening the thin ones by default opened seven of ten, because the archive genuinely is thin, and a page that is mostly open is the long page again. The page reads a review screen's localStorage and never writes it.
 - Blockers: two of the three 404 fixes could not be applied. otn-patti and otn-whyte have no title at all, and Craft will not save an entry without one; saving without validation to get around it would write an invalid record on purpose. Ten collections are untitled. The script reports the block and is re-runnable once they are named. Also: Beale's Cut's 404 was on placeLegacyUrl, not legacyUrl, so there was no sourcePath to correct alongside it.

@@ -2,6 +2,11 @@
  * Reads web/review/entity-merges.json from the reconciliation screen and writes
  * a canonical name table to inventory/legacy/entity-canon.json.
  *
+ * A stated married name is not a judgement and is not adjudicated: where the
+ * source writes "Barbara Sitzman (Mrs. Paul Cook)" the reviewer's Same person
+ * keeps her own name, folds the married form into her variants, and records the
+ * marriage in the same step. Those appear under `spouses` marked stated.
+ *
  * A Spouse of decision is written to the same file under `spouses` rather than
  * as a merge. "Mrs. George LeBrun" beside "George LeBrun" is a married woman
  * named by her husband's name, standard in nineteenth century sources: two
@@ -83,6 +88,18 @@ foreach ($data as $d) {
         continue;
     }
 
+    /* A stated married name carries three facts at once, because the source
+       gave all three: the woman's own name survives, the married form becomes
+       one of her variants through the merge below, and the marriage is recorded
+       as well. "Barbara Sitzman (Mrs. Paul Cook)" needs no adjudication. */
+    if ($choice === 'same' && !empty($d['statedMarriage'])) {
+        $husband = trim((string)($d['marriedTo'] ?? ''));
+        $survivor = trim((string)($d['survivor'] ?? ''));
+        if ($husband !== '' && $survivor !== '') {
+            $spouses[$kind][] = ['wife' => $survivor, 'husband' => $husband, 'stated' => true];
+        }
+    }
+
     if ($choice !== 'same') { $bad[] = 'unknown choice "' . $choice . '" for ' . $a . ' / ' . $b; continue; }
 
     $s = trim((string)($d['survivor'] ?? ''));
@@ -153,7 +170,8 @@ if ($spouses) {
     echo PHP_EOL . '=== married, not merged ===' . PHP_EOL;
     foreach ($spouses as $kind => $list) {
         foreach ($list as $pair) {
-            echo '  ' . str_pad($pair['wife'], 34) . 'wife of  ' . $pair['husband'] . PHP_EOL;
+            echo '  ' . str_pad($pair['wife'], 34) . 'wife of  ' . str_pad($pair['husband'], 24)
+                . (empty($pair['stated']) ? '' : 'stated by the source') . PHP_EOL;
         }
     }
     echo 'Both names stay in the canon. The relation screen creates a record for each' . PHP_EOL;

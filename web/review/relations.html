@@ -125,7 +125,7 @@ try { decisions = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { d
 const idOf = c => c.entryId + '|' + c.kind + '|' + c.name;
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
-fetch('relations.json')
+fetch('relations.json?t=' + Date.now(), { cache: 'no-store' })
   .then(r => r.json())
   .then(d => {
     all = d.candidates || [];

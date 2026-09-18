@@ -24,6 +24,17 @@
  * can see that "Don Ygnacio", "Senor Ygnacio", "Ygnacio del Valle" and "Don
  * Ygnacio del Valle" are all in play rather than deciding one pair blind.
  *
+ * One shape is not a guess at all: the source states it. Leon's text writes
+ * "Barbara Sitzman (Mrs. Paul Cook)" and "Nicolene Cheney (Mrs. Wayne Graham)",
+ * the maiden name followed by the married form. That names three things at
+ * once: the woman, her alias, and her husband. Those are recorded as
+ * stated_married_name pairs with the sentence they came from, so the screen can
+ * present them as fact rather than as a judgement, and so a woman who would
+ * otherwise appear only as her husband's name gets a record under her own.
+ *
+ * "Russell (nee Pearl Pardee)" is the same fact written the other way round and
+ * is read the same way.
+ *
  * One shape is detected the other way round, as a reason NOT to merge.
  * "Mrs. George LeBrun" beside "George LeBrun" is a married woman named by her
  * husband's name, which is how nineteenth century sources name most women. The
@@ -170,6 +181,117 @@ foreach ($INVENTORIES as $inv) {
             unset($e);
         }
     }
+}
+
+/* ------------------------------------------- married names the source states
+
+   "Barbara Sitzman (Mrs. Paul Cook)". A name token is a capitalised word or one
+   of the lowercase particles, so "Henry de Moss" is read whole; requiring every
+   word to be capitalised silently dropped one of the three. */
+
+$NM  = "[A-Z][A-Za-z'\x{2019}.\-]*(?:\s+(?:[A-Z][A-Za-z'\x{2019}.\-]*|de|del|la|van|von|di|du|den|der))" . '{0,3}';
+$HON = 'Mrs\.?|Mme\.?|Madame|Se\x{00F1}ora|Senora|Sra\.?';
+
+$statedMarriages = [];
+$seenMarriage = [];
+foreach ($bodyByPath as $path => $bodyRaw) {
+    $flat = preg_replace('~\s+~u', ' ', $bodyRaw);
+
+    /* maiden name first: Barbara Sitzman (Mrs. Paul Cook) */
+    $shapes = [
+        ['~\b(' . $NM . ')\s*,?\s*\((?:' . $HON . ')\s+(' . $NM . ')\)~u', 'wife-first'],
+        /* married form first: Mrs. Cook (Barbara Sitzman) */
+        ['~\b(?:' . $HON . ')\s+(' . $NM . ')\s*\((' . $NM . ')\)~u', 'husband-first'],
+        /* Russell (nee Pearl Pardee) */
+        ['~\b(' . $NM . ')\s*\(n[e\x{00E9}]e\s+(' . $NM . ')\)~u', 'nee'],
+    ];
+
+    foreach ($shapes as [$re, $shape]) {
+        if (!preg_match_all($re, $flat, $ms, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) { continue; }
+        foreach ($ms as $m) {
+            $whole = $m[0][0];
+            $at = $m[0][1];
+
+            if ($shape === 'wife-first')   { $wife = trim($m[1][0]); $husbandForm = trim($m[2][0]); }
+            elseif ($shape === 'husband-first') { $wife = trim($m[2][0]); $husbandForm = trim($m[1][0]); }
+            else { $wife = trim($m[2][0]); $husbandForm = trim($m[1][0]); }
+
+            /* A sentence can start on the match: "To Nicolene Cheney, (Mrs.
+               Graham)" and "Informant, Mrs. H.B. Russell (nee Pearl Pardee)". */
+            $wife = trim(preg_replace('~^(?:To|And|Of|But|In|At|For|With|Informant|The|Her|His)\s+~u', '', $wife));
+            $husbandForm = trim(preg_replace('~^(?:' . $HON . ')\s+~u', '', $husbandForm));
+
+            /* "the ranch house, nee the Asistencia" and "Lillie (named for Mrs.
+               Needham)" both match the shape and are not marriages. A person's
+               name here is two words or more on the woman's side. */
+            if (count(preg_split('~\s+~u', $wife)) < 2) { continue; }
+            if (preg_match('~\b(the|a|an|his|her|named|house|ranch)\b~i', $wife)) { continue; }
+
+            $key = $fold($wife) . '|' . $fold($husbandForm);
+            if (isset($seenMarriage[$key])) { continue; }
+            $seenMarriage[$key] = true;
+
+            /* The sentence it sits in, for the card.
+
+               Two traps here, both of which produced nonsense first time.
+               PREG_OFFSET_CAPTURE returns a byte offset, so every cut below is
+               byte based; mixing in mb_substr sliced mid-character. And the
+               phrase itself contains "Mrs.", so splitting on a full stop cut
+               the sentence in half at the very word it is about. Abbreviations
+               are masked before the split and restored after. */
+            $winFrom = max(0, $at - 320);
+            $win = substr($flat, $winFrom, 320 + strlen($whole) + 220);
+            $rel = $at - $winFrom;
+
+            $ABBR = ['Mrs.', 'Mr.', 'Dr.', 'Jr.', 'Sr.', 'St.', 'Col.', 'Gen.', 'Capt.',
+                     'Rev.', 'Hon.', 'Lt.', 'Sgt.', 'Maj.', 'Prof.', 'Ave.', 'No.'];
+            $masked = $win;
+            foreach ($ABBR as $i => $a) { $masked = str_replace($a, rtrim($a, '.') . "\x01", $masked); }
+            /* A lone initial, "H.B. Russell". */
+            $masked = preg_replace('~\b([A-Z])\.~', '$1' . "\x01", $masked);
+
+            $before = substr($masked, 0, $rel);
+            $start = 0;
+            foreach (['. ', '! ', '? '] as $mark) {
+                $e = strrpos($before, $mark);
+                if ($e !== false && $e + 2 > $start) { $start = $e + 2; }
+            }
+            $tail = substr($masked, $start);
+            $cut = preg_split('~(?<=[.!?])\s~u', $tail);
+            $sent = trim($cut[0] ?? $tail);
+            $sent = str_replace("\x01", '.', $sent);
+
+            $statedMarriages[] = [
+                'wife' => $wife,
+                'husband' => $husbandForm,
+                'marriedName' => $shape === 'nee' ? '' : 'Mrs. ' . $husbandForm,
+                'shape' => $shape,
+                'phrase' => $whole,
+                'sentence' => $sent,
+                'path' => $path,
+                'page' => $pageTitleByPath[$path] ?? $path,
+            ];
+        }
+    }
+}
+
+/* The same marriage is often written twice, once in full and once short:
+   "Nicolene Cheney (Mrs. Wayne Graham)" and later "(Mrs. Graham)". Keep the
+   fullest husband name per woman; the short form adds nothing. */
+$byWife = [];
+foreach ($statedMarriages as $sm) {
+    $k = $fold($sm['wife']);
+    if (!isset($byWife[$k]) || mb_strlen($sm['husband']) > mb_strlen($byWife[$k]['husband'])) {
+        $byWife[$k] = $sm;
+    }
+}
+$statedMarriages = array_values($byWife);
+usort($statedMarriages, fn($a, $b) => strcmp($a['wife'], $b['wife']));
+
+echo 'married names the source states outright: ' . count($statedMarriages) . PHP_EOL;
+foreach ($statedMarriages as $sm) {
+    echo '  ' . str_pad($sm['shape'], 14) . str_pad($sm['wife'], 24) . 'wife of ' . $sm['husband']
+        . '   on ' . mb_substr($sm['page'], 0, 30) . PHP_EOL;
 }
 
 /* ------------------------------------------------------- sentences in body */
@@ -415,8 +537,57 @@ foreach ($rows as $kind => $list) {
     }
 }
 
+/* ---------------------------------- the stated marriages become their own pairs
+
+   These are not proposals. The source says who she is, so the pair carries the
+   sentence and the screen presents it as fact. The woman's own name is the
+   survivor, the married form becomes her alias, and the husband is recorded as
+   a separate person she is married to.
+
+   A name the extraction never indexed is still emitted. Two of the four women
+   are in that position, which is the whole point: without this they exist only
+   as their husband's name. */
+
+$knownNames = [];
+foreach ($rows['person'] as $r) { $knownNames[$fold($r['name'])] = $r['name']; }
+
+foreach ($statedMarriages as $sm) {
+    $marriedForm = $sm['marriedName'] !== '' ? $sm['marriedName'] : 'Mrs. ' . $sm['husband'];
+    $wife = $knownNames[$fold($sm['wife'])] ?? $sm['wife'];
+    $alias = $knownNames[$fold($marriedForm)] ?? $marriedForm;
+
+    $pairs[] = [
+        'kind' => 'person',
+        'a' => $alias,
+        'b' => $wife,
+        'statedMarriage' => [
+            'wife' => $wife,
+            'husband' => $sm['husband'],
+            'marriedForm' => $marriedForm,
+            'phrase' => $sm['phrase'],
+            'sentence' => $sm['sentence'],
+            'page' => $sm['page'],
+            'wifeIndexed' => isset($knownNames[$fold($sm['wife'])]),
+            'husbandIndexed' => isset($knownNames[$fold($sm['husband'])]),
+            'aliasIndexed' => isset($knownNames[$fold($marriedForm)]),
+        ],
+        'spouseNote' => null,
+        'wife' => $wife,
+        'husband' => $sm['husband'],
+        'aMentions' => 0, 'bMentions' => 0,
+        'aArticles' => 0, 'bArticles' => 0,
+        'aExisting' => $records['person'][$stripHon($alias)] ?? null,
+        'bExisting' => $records['person'][$stripHon($wife)] ?? null,
+        'reasons' => ['stated_married_name'],
+        'shared' => 0,
+        'sharedPages' => 0,
+        'aShared' => null, 'bShared' => null,
+        'aBlock' => [], 'bBlock' => [],
+    ];
+}
+
 /* Strongest evidence first, then the ones that share an article. */
-$weight = ['probable_spouse' => 9, 'honorific' => 5, 'initials' => 4, 'suffix' => 3, 'spelling' => 3, 'surname' => 1];
+$weight = ['stated_married_name' => 10, 'probable_spouse' => 9, 'honorific' => 5, 'initials' => 4, 'suffix' => 3, 'spelling' => 3, 'surname' => 1];
 usort($pairs, function ($a, $b) use ($weight) {
     $wa = 0; foreach ($a['reasons'] as $r) { $wa = max($wa, $weight[$r] ?? 0); }
     $wb = 0; foreach ($b['reasons'] as $r) { $wb = max($wb, $weight[$r] ?? 0); }
