@@ -1,6 +1,7 @@
 {% extends "_layouts/base" %}
 {% block head %}
   {% include "_partials/scv-extra-css" %}
+  {% include "_partials/record/css" %}
   {% css %}.scv-mapnote{font-size:12.5px;font-style:italic;color:#5B6472;line-height:1.5;margin:10px 0 0}{% endcss %}
 {% endblock %}
 
@@ -22,6 +23,8 @@
 {% set nbData = source('_data/community-neighbors.json', true)|json_decode(true) %}
 {% set withBoundary = nbData.withBoundary ?? [] %}
 {% set methodNote = (nbData.methodNote ?? {})[term.slug] ?? null %}
+{% set recImages = term.recordImages is defined and term.recordImages ? term.recordImages.all() : [] %}
+{% set recDocs = term.recordDocuments is defined and term.recordDocuments ? term.recordDocuments.all() : [] %}
 {% set hasBoundary = term.slug in withBoundary %}
 {% set hasPin = term.communityLat is defined and term.communityLng is defined and term.communityLat and term.communityLng %}
 
@@ -56,7 +59,7 @@
             <p class="scv-aka">Also known as {{ term.communityAliases }}</p>
           {% endif %}
           {% if term.communityType is defined and term.communityType %}
-            <div class="scv-facts"><div><b>Type</b>{{ term.communityType }}</div></div>
+            <div class="scv-chips"><span class="scv-chip">{{ term.communityType }}</span></div>
           {% endif %}
         </div>
         <div class="scv-stat">
@@ -70,9 +73,11 @@
     <div class="scv-wrap">
       <div class="scv-layout">
         <div>
+          {% include "_partials/record/note" with { text: term.webmasterNoteTop is defined ? term.webmasterNoteTop : null } only %}
+
           {% if term.body is defined and term.body %}
             <article class="scv-card">
-              {% include "_partials/prose" with { text: term.body } %}
+              <div id="recText">{% include "_partials/prose" with { text: term.body, images: recImages } %}</div>
               {% if term.culturalSensitivityNote is defined and term.culturalSensitivityNote %}
                 <div class="scv-note">{{ term.culturalSensitivityNote }}</div>
               {% endif %}
@@ -80,6 +85,9 @@
           {% elseif term.culturalSensitivityNote is defined and term.culturalSensitivityNote %}
             <article class="scv-card"><div class="scv-note">{{ term.culturalSensitivityNote }}</div></article>
           {% endif %}
+
+          {% include "_partials/record/images" with { images: recImages, body: term.body is defined ? term.body : '' } only %}
+          {% include "_partials/record/note" with { text: term.webmasterNoteBottom is defined ? term.webmasterNoteBottom : null, bottom: true } only %}
 
           {% if hasBoundary or hasPin %}
             <div style="margin-top:{{ (term.body is defined and term.body) ? '28px' : '0' }}">
@@ -145,6 +153,9 @@
               {% endembed %}
             {% endif %}
           {% endif %}
+
+          {% include "_partials/record/documents" with { docs: recDocs } only %}
+          {% include "_partials/record/tags" with { el: term } only %}
 
           {% set counts = [] %}
           {% for g in groups %}
