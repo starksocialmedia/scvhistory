@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: fixed the Reynolds matching bug and applied the import. 57 articles created, 23 gap-filled, no existing body touched; the collection now holds all 80 in TOC order. Added PART FIVE to collectionParts at position 24, and made add_collection_parts.php extend a collection that already has rows instead of skipping it. Cleaned the 57 new bodies, then re-ran the image import.
+- Decisions: the bug was in the legacyKey step, not the title fallback. notes and part01 to part06 exist in both the Perkins and Reynolds inventories, so legacyUrl is now tried first and every candidate is rejected when it already belongs to a different collection. The cleanup was run before the image import rather than after, because the 57 new bodies carried raw legacy chrome; doing it in the order asked would have placed 136 tokens in text about to be stripped, against 31 afterwards.
+- Blockers: PART FIVE has no subtitle. Naming a section of Leon's work is Nathan's call, so the label is deliberately bare.
+- Next: relation adjudication, item 3 in HANDOFF.md
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: ran the legacy image import. 325 images downloaded at one request per second, 113.9 MB, no failed fetches. 370 new recordImages relations across 60 records, 49 [image:N] tokens placed in 17 article bodies, no token in any war memorial body. Article band cap now 52 percent at every width. Also stripped placement tokens out of the meta description, where they had started appearing in og:description.
 - Decisions: none beyond those already agreed.
 - Blockers: none. A second run reports 0 to download, 326 already in the volume, 0 bodies to change.

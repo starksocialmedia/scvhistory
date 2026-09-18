@@ -31,6 +31,11 @@ $ROWS = [
     ['label' => "PART TWO \u{00B7} MISSION AND RANCHO",   'note' => "Chapters 6\u{2013}13",  'start' => 8],
     ['label' => "PART THREE \u{00B7} THE AMERICAN RANCHO", 'note' => "Chapters 14\u{2013}18", 'start' => 16],
     ['label' => "PART FOUR \u{00B7} A VALLEY DISCOVERED",  'note' => "Chapters 19\u{2013}21", 'start' => 21],
+    /* The first four describe the 23 chapters the archive held before the full
+       series landed. This one carries the remaining 57 pages. Its subtitle is
+       left off deliberately: naming a section of Leon's work is Nathan's call,
+       not a guess from a script. */
+    ['label' => 'PART FIVE', 'note' => "Chapters 22\u{2013}71, epilogue and end matter", 'start' => 24],
 ];
 
 $COLUMNS = [
@@ -115,8 +120,28 @@ foreach ($ROWS as $i => $r) {
     }
 }
 
-if (count($existing)) {
-    echo 'rows: collection already has ' . count($existing) . ', left alone' . PHP_EOL;
+/* Rows already written are left exactly as they are; only a start position that
+   is missing gets added, so the script stays idempotent while still being able
+   to extend the series. */
+$haveStarts = [];
+foreach ($existing as $r) { $haveStarts[(int)($r['start'] ?? 0)] = true; }
+$missing = [];
+foreach ($ROWS as $r) { if (!isset($haveStarts[(int)$r['start']])) { $missing[] = $r; } }
+
+if (count($existing) && !count($missing)) {
+    echo 'rows: collection already has all ' . count($existing) . ', nothing to add' . PHP_EOL;
+} elseif (count($existing) && count($missing)) {
+    echo 'rows: collection has ' . count($existing) . ', adding ' . count($missing) . ':' . PHP_EOL;
+    foreach ($missing as $r) { echo '  + ' . str_pad($r['label'], 38) . $r['note'] . '  at position ' . $r['start'] . PHP_EOL; }
+    if ($APPLY) {
+        $merged = array_merge($existing, $missing);
+        usort($merged, function ($a, $b) { return (int)($a['start'] ?? 0) <=> (int)($b['start'] ?? 0); });
+        try { $entry->setFieldValue($HANDLE, $merged); }
+        catch (\Throwable $e) { echo 'FAILED to set rows: ' . $e->getMessage() . PHP_EOL; return; }
+        echo Craft::$app->getElements()->saveElement($entry)
+            ? 'rows: added ' . count($missing) . ', collection now has ' . count($merged) . PHP_EOL
+            : 'FAILED to save collection: ' . json_encode($entry->getErrors()) . PHP_EOL;
+    }
 } elseif (!$APPLY) {
     echo 'rows: would write ' . count($ROWS) . PHP_EOL;
 } else {
