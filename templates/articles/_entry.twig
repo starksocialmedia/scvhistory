@@ -17,6 +17,10 @@
   .ar-hero img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
   .ar-hero figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.55;margin-top:9px}
 
+  .ar .rec-band{position:relative;overflow:hidden}
+  .ar-bg{position:absolute;inset:0;background-size:cover;background-position:right center;filter:contrast(1.16) brightness(.92);z-index:0}
+  .ar .rec-band .rec-wrap{position:relative;z-index:1}
+
   /* ── Previous / next ──────────────────────────────────────────── */
   .ar-pn{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:1px solid #E2E4E8;border-bottom:1px solid #E2E4E8;padding:16px 0;margin:0 0 32px}
   .ar-pn.after{margin:40px 0 0}
@@ -69,8 +73,16 @@
   - No tags field exists anywhere in this Craft install, so the TAGS block in
     the design has nothing to render and is left out. Communities and the
     historical period are the chips in the band.
-  - featuredImage is on the article layout, so the hero is a real featured
-    image; it falls back to the first record image when that is empty.
+  - What featuredImage means depends on whether the article is in a collection.
+    A collection article's featured image is a title card with the headline
+    lettered into it, so rendering it in the body would print the headline
+    twice; there it is the social and index image only, feeding og:image,
+    twitter:image, the articles index thumbnail and the collection contents
+    thumbnail. A standalone article's featured image is a real photograph, so
+    it still opens the body as the hero figure with its caption.
+  - bandImage washes behind the band in either case. There is no fallback from
+    bandImage to featuredImage, because that would put a title card back in the
+    band on exactly the articles this avoids.
   - Prev and next come from the collection's articlesInCollection order, which
     is the order the chapter list uses too, so the two always agree.
 #}
@@ -84,10 +96,22 @@
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 
-{% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
-{% set hero = hero ?? (recImages|length ? recImages|first : null) %}
+{# The field-layout check is the only reliable test: a custom field reads as
+   defined on an element whose type does not have it, then throws when read. #}
+{% set hasBandImage = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
+{% endfor %}
+{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
 
 {% set collection = entry.partOfCollection.one() ?? null %}
+
+{# The body hero is for standalone articles only. See the note above. #}
+{% set hero = null %}
+{% if not collection %}
+  {% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
+  {% set hero = hero ?? (recImages|length ? recImages|first : null) %}
+{% endif %}
 {% set author = entry.writtenBy.one() ?? null %}
 {% set editor = entry.editedBy.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
@@ -119,6 +143,7 @@
 
 <div class="rec ar">
   <section class="rec-band">
+    {% if bandImg %}<div class="ar-bg" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>{% endif %}
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a>{% if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
       <div class="rec-head rec-head--noart">

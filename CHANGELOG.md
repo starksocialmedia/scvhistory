@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: articles/_entry.twig renders the featured image in the body only when the article is not in a collection. A collection article's featured image is a title card carrying the headline, so it is now the social and index image only. bandImage washes behind the band on any article when it is set, with no fallback to featuredImage. The collection lander band is untouched.
+- Decisions: the standalone hero keeps its existing recordImages fallback, since that path is unchanged. The band image layer matches the treatment the lander settled on, one full-bleed layer with the same filter and no mask, because the fade is baked into the artwork.
+- Blockers: two of the four featuredImage consumers named in the brief do not exist. The articles index has no per-article thumbnail, only a collection thumbnail in the group header, and the collection contents list has no thumbnail at all. og:image and twitter:image do use it.
+- Next: Nathan decides whether the articles index and the collection contents should gain per-article thumbnails
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: removed the voice picker from the record player. No select, no localStorage preference, no list. The player is back to play/pause, progress bar, elapsed and total time, and the four speed buttons. Voice selection is now silent and automatic, keeping the existing chain: Google US English, then Siri, then any remote voice, then Samantha/Alex/Daniel/Karen, then en-US, then the first English voice.
 - Decisions: the novelty filter is kept even without a picker, so a machine with little else installed still does not read in Bad News or Zarvox. The onvoiceschanged rebuild is kept, since Chrome populates the voice list asynchronously and the first call comes back empty.
 - Blockers: none
