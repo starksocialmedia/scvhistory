@@ -1,0 +1,122 @@
+<!--
+  SOURCE OF TRUTH for the SCVHistory.com header and mega menu.
+  This is the design exactly as drawn. Reproduce the markup, the inline styles
+  and the structure precisely. Replace the sc-for / sc-if placeholders with Twig
+  loops and the placeholder numbers with live Craft counts.
+  Where a menu item has no real target in Craft yet, omit that item; do not
+  invent a page for it and do not keep the placeholder number.
+-->
+
+<!-- ===== HEADER MARKUP, AS DRAWN ===== -->
+<header style="background: #17254C; position: relative; z-index: 5">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 20px 40px 0; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 14px">
+        <img src="5a92ebb3-a9af-4bf8-a611-4a62aaca0ddb" alt="" style="width: 60px; height: 60px; flex: none">
+        <div style="min-width: 0">
+          <div style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 26px; line-height: 1; color: #fff">SCVHistory.com</div>
+          <div style="height: 1px; background: #C4A031; margin: 5px 0 4px"></div>
+          <div style="font-family: 'Jost', sans-serif; font-size: 8.5px; letter-spacing: .2em; color: #C4A031">SANTA CLARITA VALLEY HISTORY ARCHIVES</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap">
+        <label style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); padding: 9px 14px; min-width: 240px">
+          <svg sc-camel-view-box="0 0 16 16" width="16" height="16" fill="none" stroke="#C4A031" stroke-width="1.6" style="flex: none"><circle cx="6.8" cy="6.8" r="4.6"></circle><line x1="10.4" y1="10.4" x2="14.4" y2="14.4"></line></svg>
+          <input placeholder="Search the archive" style="background: transparent; border: 0; outline: none; color: #fff; font-family: 'Public Sans', sans-serif; font-size: 14.5px; width: 100%">
+        </label>
+        <div style="display: flex; gap: 18px; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .1em">
+          <a href="#" style="color: rgba(255,255,255,.72)">ABOUT</a>
+          <a href="#" style="color: rgba(255,255,255,.72)">DONATE</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="position: relative; margin-top: 18px; border-top: 1px solid rgba(255,255,255,.12)">
+      <nav style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; gap: 4px; flex-wrap: wrap">
+        <sc-for list="{{ menu }}" as="m" hint-placeholder-count="5">
+          <button sc-camel-on-click="{{ m.on }}" sc-camel-on-mouse-enter="{{ m.hover }}" style="background: {{ m.bg }}; border: 0; border-bottom: 3px solid {{ m.mark }}; color: {{ m.fg }}; font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .09em; font-weight: 500; padding: 16px 18px; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 9px">{{ m.label }}<span style="font-size: 8px; color: {{ m.caret }}">{{ m.arrow }}</span></button>
+        </sc-for>
+      </nav>
+
+      <sc-if value="{{ panel }}" hint-placeholder-val="{{ false }}">
+        <div sc-camel-on-mouse-leave="{{ closeMenu }}" style="position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid #E2E4E8; box-shadow: 0 26px 50px rgba(23,37,76,.22)">
+          <div style="height: 3px; background: linear-gradient(90deg, #C4A031 0%, #C4A031 36%, #EFE6D0 36%, #EFE6D0 100%)"></div>
+          <div style="max-width: 1240px; margin: 0 auto; padding: 34px 40px 36px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: start">
+            <div style="min-width: 0">
+              <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px">
+                <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .18em; color: #A9842B; white-space: nowrap">{{ panelKicker }}</div>
+                <div style="flex: 1; height: 1px; background: #EDEFF2"></div>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 32px 40px">
+                <sc-for list="{{ panelColumns }}" as="col" hint-placeholder-count="3">
+                  <div style="min-width: 0">
+                    <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .14em; color: #8A919E; padding-bottom: 10px; border-bottom: 1px solid #EDEFF2">{{ col.label }}</div>
+                    <div style="display: flex; flex-direction: column">
+                      <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="3">
+                        <a href="#" style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; color: inherit; padding: 11px 0 10px; border-bottom: 1px solid #F4F5F7" style-hover="text-decoration: none; color: #A9842B">
+                          <span style="font-family: 'Playfair Display', serif; font-size: 17.5px; line-height: 1.25; color: #17254C">{{ it.t }}</span>
+                          <span style="font-family: ui-monospace, monospace; font-size: 11.5px; color: #9AA1AD">{{ it.n }}</span>
+                        </a>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 20px 22px 22px">
+              <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .16em; color: #A9842B">{{ panelFeatureKicker }}</div>
+              <div style="font-family: 'Playfair Display', serif; font-size: 25px; line-height: 1.18; color: #17254C; margin-top: 12px; text-wrap: pretty">{{ panelFeatureTitle }}</div>
+              <div style="font-size: 14px; line-height: 1.6; color: #5B6472; margin-top: 10px">{{ panelFeatureMeta }}</div>
+              <a href="#" style="display: inline-block; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .06em; color: #A9842B; border-bottom: 1px solid #C4A031; margin-top: 18px; padding-bottom: 2px">{{ panelFeatureCta }} →</a>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </header>
+
+<!-- ===== MENU DATA, AS DRAWN =====
+  Five menus. Column labels and item titles are the design's own wording and
+  should be kept where a real target exists. The numbers below are the
+  designer's illustrative figures for a finished archive; replace every one
+  with a live count.
+-->
+<script type="text/plain" id="menu-data">
+const MENU = [
+  { id: 'people', label: 'PEOPLE', kicker: 'BIOGRAPHY & FAMILY RECORDS',
+    columns: [
+      { label: 'RECORDS', items: [{ t: 'All people', n: '1,480' }, { t: 'Pioneer families', n: '210' }, { t: 'Groups & rosters', n: '38' }] },
+      { label: 'MEMORIAL', items: [{ t: 'Obituaries', n: '620' }, { t: 'War Memorial', n: '94' }, { t: 'Cemeteries', n: '16' }] },
+      { label: 'BY ROLE', items: [{ t: 'Ranchers & landowners', n: '180' }, { t: 'Civic leaders', n: '145' }, { t: 'Film & television', n: '260' }] }
+    ],
+    feature: { kicker: 'RECENTLY ADDED', title: 'Dante Acosta', meta: 'Politician; Financial Advisor; City Council Member; State Assemblymember', cta: 'Open the record' } },
+  { id: 'places', label: 'PLACES', kicker: 'LAND, SITES & COMMUNITIES',
+    columns: [
+      { label: 'GEOGRAPHY', items: [{ t: 'All places', n: '740' }, { t: 'Ranchos & land grants', n: '48' }, { t: 'Canyons & waterways', n: '92' }] },
+      { label: 'COMMUNITIES', items: [{ t: 'Newhall', n: '310' }, { t: 'Saugus', n: '185' }, { t: 'Castaic', n: '120' }] },
+      { label: 'INSTITUTIONS', items: [{ t: 'Organizations', n: '210' }, { t: 'Schools', n: '64' }, { t: 'Landmarks', n: '57' }] }
+    ],
+    feature: { kicker: 'FEATURED PLACE', title: "Beale's Cut", meta: 'The 1863 pass through the Newhall hills, cut by hand and later filmed by John Ford.', cta: 'Visit the place' } },
+  { id: 'collections', label: 'COLLECTIONS', kicker: 'MULTI-PART WORKS, READ IN ORDER',
+    columns: [
+      { label: 'MAJOR WORKS', items: [{ t: 'History of the Santa Clarita Valley', n: '23' }, { t: 'Stories of Old Ozark Valley', n: '4' }, { t: 'In Memoriam', n: '31' }] },
+      { label: 'SERIES', items: [{ t: 'Signal columns', n: '9' }, { t: 'Oral histories', n: '12' }, { t: 'Newhall Land papers', n: '6' }] },
+      { label: 'BROWSE', items: [{ t: 'All collections', n: '13' }, { t: 'By author', n: '22' }, { t: 'By era', n: '5' }] }
+    ],
+    feature: { kicker: 'NOW READING', title: 'History of the Santa Clarita Valley', meta: 'Jerry Reynolds · 23 articles · Pre-1850 to 1929', cta: 'Start at the Preface' } },
+  { id: 'articles', label: 'ARTICLES', kicker: 'SINGLE PIECES & EVENTS',
+    columns: [
+      { label: 'WRITING', items: [{ t: 'All articles', n: '2,310' }, { t: 'Newspaper archive', n: '1,140' }, { t: 'Essays & research', n: '288' }] },
+      { label: 'EVENTS', items: [{ t: 'All events', n: '175' }, { t: 'Disasters', n: '34' }, { t: 'Openings & dedications', n: '61' }] },
+      { label: 'MEDIA', items: [{ t: 'Photo galleries', n: '640' }, { t: 'Maps', n: '118' }, { t: 'Documents', n: '395' }] }
+    ],
+    feature: { kicker: 'MOST READ', title: 'The St. Francis Dam Disaster', meta: 'March 12, 1928 — the night the valley changed.', cta: 'Read the article' } },
+  { id: 'era', label: 'BY ERA', kicker: 'BROWSE THE TIMELINE',
+    columns: [
+      { label: 'BEFORE STATEHOOD', items: [{ t: 'Pre-1850', n: '210' }, { t: 'Spanish & Mexican period', n: '96' }] },
+      { label: 'THE AMERICAN VALLEY', items: [{ t: '1850–1899', n: '480' }, { t: '1900–1919', n: '390' }, { t: '1920–1929', n: '265' }] },
+      { label: 'MODERN', items: [{ t: '1930–1969', n: '720' }, { t: '1970–2009', n: '840' }, { t: '2010–present', n: '340' }] }
+    ],
+    feature: { kicker: 'TIMELINE', title: 'Every record, in order', meta: 'Walk the archive decade by decade, from the Tataviam villages to the city of Santa Clarita.', cta: 'Open the timeline' } }
+];
+</script>
