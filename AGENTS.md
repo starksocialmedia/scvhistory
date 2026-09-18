@@ -63,3 +63,8 @@ Nathan makes all decisions. Leon Worden has preapproved the project, so nothing 
 ## End of every session
 
 Add a dated entry to `CHANGELOG.md` with: agent name, what was done, decisions made, blockers, next steps. Log any errors and fixes in `ERRORLOG.md`. Propose (do not make) BUILDPLAN.md checkbox updates. Commit.
+
+## Twig traps in this project
+- `entry.someHandle is defined` is NOT a safe existence test on an Element. It returns true for fields that do not exist, then Craft throws "Calling unknown method" when the value is read. Check the element's field layout instead, the way scripts/import/*.php do. This has broken the site three times: person.sameAs, recordImages on Category elements, recordTags.
+- Twig 3.21 cannot call a variable holding an arrow function. `{% set v = (h) => ... %}` then `v('x')` fails. Build a plain dictionary.
+- Craft caches compiled templates, so a broken template can keep serving from cache and only fail later. Clear caches before trusting a "before" snapshot.
