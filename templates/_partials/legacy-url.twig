@@ -1,20 +1,28 @@
 {#
   Normalises a stored legacy URL into something linkable.
 
-  The data holds three shapes, so prefixing every value with the host produced
+  Every legacy link on the site resolves through this one partial, so the host
+  changes in one place when the legacy archive moves. The host comes from
+  LEGACY_HOST in .env, exposed as craft.app.config.custom.legacyHost.
+
+  The data holds several shapes, so prefixing every value with the host produced
   broken links: /scvhistory/lw3730.htm, scvhistory.com/scvhistory/lw3730.htm
   and, where a website landed in the legacy field by mistake,
   sangabrielmission.org. That last one rendered as
   https://scvhistory.comsangabrielmission.org.
 
-  Rules: an absolute URL is used as is; a value starting with / is resolved
-  against scvhistory.com; anything else is treated as its own host.
+  Rules: an absolute URL is used as is; a protocol-relative value gains https;
+  a value starting with / is resolved against the legacy host; anything else is
+  treated as its own host.
+
+  sourcePath is provenance, keeps its full stored host and does not come here.
 
   Usage: {% set href = include('_partials/legacy-url', { value: legacy })|trim %}
 #}
 {%- set v = value|trim -%}
+{%- set host = craft.app.config.custom.legacyHost|default('https://scvhistory.com')|trim('/') -%}
 {%- if v starts with 'http://' or v starts with 'https://' -%}{{ v }}
 {%- elseif v starts with '//' -%}https:{{ v }}
-{%- elseif v starts with '/' -%}https://scvhistory.com{{ v }}
+{%- elseif v starts with '/' -%}{{ host }}{{ v }}
 {%- else -%}https://{{ v }}
 {%- endif -%}

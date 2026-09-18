@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: collection lander rebuilt to the cream band spec with two masked image layers; Contents now groups by the collection's own parts in articlesInCollection order and the era chips and "No era recorded" group are gone. Added scripts/import/add_collection_parts.php (collectionParts table field, four parts for the Reynolds work). Added scripts/import/import_reynolds.php for the 80 page reynolds-full.json. Added LEGACY_HOST to .env and a new .env.example, config/custom.php exposing legacyHost, and scripts/import/normalise_legacy_urls.php. templates/_partials/legacy-url.twig now reads the host from config.
+- Decisions: custom config lives in config/custom.php because Craft 5 GeneralConfig has no slot for it; general.php points at it. The normaliser leaves a legacy URL pointing at another host alone rather than stripping it to a path that would resolve against the wrong site. Reynolds matching falls back to the legacyUrl tail and then to the normalised title, because five WordPress rows have a wrong or missing legacyUrl.
+- Blockers: 14 of the 23 existing Reynolds bodies differ from the legacy text and were left alone pending a call on which is authoritative. The four collectionParts rows only cover positions 1 to 23, so once all 80 land, PART FOUR swallows everything from Chapter 22 on.
+- Next: Nathan runs add_collection_parts.php, normalise_legacy_urls.php and import_reynolds.php, and decides on the Reynolds body differences
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: wrote scripts/import/import_perkins.php, eval style, dry run by default. Imports the 20 wave 0 Perkins pages as Articles matched on legacyKey, wires the 13 series pages to the Story of Our Valley collection in series_position order, and writes inventory/legacy/perkins-images.json (199 images, not downloaded). Dry run reported; nothing written to the database. Verified every field write with a temporary fixture article, then hard-deleted it.
 - Decisions: match falls back to legacyUrl when legacyKey is empty, so the already-imported Birth of Newhall (#869) is adopted rather than duplicated. An existing article is only gap-filled, never clobbered, unless $OVERWRITE is set. An empty extracted value never overwrites anything.
 - Blockers: date_raw and subtitle are empty on all 20 pages, so originalPublishDate and subheadline cannot be set. Saugus-Valencia has no matching neighborhood term; Craft spells it Saugus/Valencia. body_text carries legacy site chrome.

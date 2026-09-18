@@ -5,6 +5,10 @@
  * All of your system's general configuration settings go in here. You can see a
  * list of the available settings in vendor/craftcms/cms/src/config/GeneralConfig.php.
  *
+ * Custom values (legacyHost and anything else the site needs) live in
+ * config/custom.php, because GeneralConfig has no slot for them. Read them as
+ * craft.app.config.custom.legacyHost.
+ *
  * @see \craft\config\GeneralConfig
  * @link https://craftcms.com/docs/5.x/reference/config/general.html
  */

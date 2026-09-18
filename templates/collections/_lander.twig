@@ -3,16 +3,18 @@
   when collectionIsMajor is on. An unflagged collection keeps the standard
   record layout.
 
-  Era ordering everywhere comes from the historicalEra structure's own order
-  (lft), which is chronological. Sorting those titles alphabetically would put
-  American Frontier before Spanish Colonial.
+  Reading order everywhere comes from articlesInCollection and is never
+  reordered. Contents groups by the collection's own parts, read from the
+  collectionParts table field; a collection with no parts renders one ungrouped
+  list in sequence order.
 
-  Reading order everywhere comes from articlesInCollection. Articles with no era
-  still appear in Contents, under their own heading, but do not get a stat block
-  because "no era recorded" is not an era.
+  Era is not how a reader moves through a serialised history, so there is no era
+  grouping and no era filter. Era still feeds the kicker and the related
+  collections box, where it is context rather than navigation.
 
-  Contents filters by ?era=slug, a plain link, so it works without JavaScript
-  like every other filter on the site.
+  Era ordering there comes from the historicalEra structure's own order (lft),
+  which is chronological. Sorting those titles alphabetically would put American
+  Frontier before Spanish Colonial.
 #}
 {% set F = {} %}
 {% for h in ['body','archiveUrl','legacyUrl','culturalSensitivityNote'] %}
@@ -52,15 +54,57 @@
   {% if buckets[t.slug] is defined %}{% set erasPresent = erasPresent|merge([t]) %}{% endif %}
 {% endfor %}
 
-{% set eraSlug = craft.app.request.getParam('era') %}
-{% set activeEra = null %}
-{% for t in erasPresent %}{% if t.slug == eraSlug %}{% set activeEra = t %}{% endif %}{% endfor %}
-{% if eraSlug == 'none' and buckets['_none'] is defined %}{% set activeEra = 'none' %}{% endif %}
+{# the collection's own parts, positions into articlesInCollection #}
+{% set hasParts = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'collectionParts' %}{% set hasParts = true %}{% endif %}
+{% endfor %}
+{% set parts = [] %}
+{% if hasParts and entry.collectionParts %}
+  {% for r in entry.collectionParts %}
+    {% if (r.label ?? '')|trim %}
+      {% set parts = parts|merge([{
+        label: r.label|trim,
+        note: (r.note ?? '')|trim,
+        start: (r.start ?? 1) > 0 ? (r.start + 0) : 1
+      }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% set parts = parts|sort((a, b) => a.start - b.start)|values %}
 
-{% set shownCount = 0 %}
-{% if activeEra == 'none' %}{% set shownCount = buckets['_none']|length %}
-{% elseif activeEra %}{% set shownCount = buckets[activeEra.slug]|length %}
-{% else %}{% set shownCount = chapters|length %}{% endif %}
+{# groups in sequence order. Anything sitting before the first part keeps its
+   place in an unlabelled group so no article can disappear from Contents. #}
+{% set groups = [] %}
+{% for i, p in parts %}
+  {% set from = p.start %}
+  {% set to = parts[i + 1] is defined ? parts[i + 1].start - 1 : chapters|length %}
+  {% set rows = chapters|slice(from - 1, to - from + 1) %}
+  {% if rows|length %}
+    {% set groups = groups|merge([{ label: p.label, note: p.note, rows: rows }]) %}
+  {% endif %}
+{% endfor %}
+{% set firstStart = parts|length ? (parts|first).start : 1 %}
+{% if firstStart > 1 %}
+  {% set groups = [{ label: '', note: '', rows: chapters|slice(0, firstStart - 1) }]|merge(groups) %}
+{% endif %}
+{% if not groups|length and chapters|length %}
+  {% set groups = [{ label: '', note: '', rows: chapters }] %}
+{% endif %}
+
+{# band stats: facts about the collection, not filters #}
+{% set years = [] %}
+{% for a in chapters %}
+  {% set y = (a.originalPublishDate is defined and a.originalPublishDate) ? a.originalPublishDate|trim|slice(-4) : '' %}
+  {% if y matches '/^\\d{4}$/' %}{% set years = years|merge([y]) %}{% endif %}
+{% endfor %}
+{% set stats = [{ n: chapters|length, l: chapters|length == 1 ? 'Article' : 'Articles' }] %}
+{% if parts|length %}
+  {% set stats = stats|merge([{ n: parts|length, l: parts|length == 1 ? 'Part' : 'Parts' }]) %}
+{% endif %}
+{% if years|length %}
+  {% set stats = stats|merge([{ n: min(years) == max(years) ? min(years) : min(years) ~ '–' ~ max(years), l: 'Published' }]) %}
+{% endif %}
 
 {% set first = chapters|length ? chapters|first : null %}
 {% set kick = ['COLLECTION', chapters|length ~ ' ARTICLE' ~ (chapters|length == 1 ? '' : 'S')] %}
@@ -68,9 +112,12 @@
   {% set kick = kick|merge([(erasPresent|first).title|upper ~ (erasPresent|length > 1 ? ' TO ' ~ (erasPresent|last).title|upper : '')]) %}
 {% endif %}
 
-<div class="rec cl{{ hero ? ' cl--img' : '' }}">
+<div class="rec cl">
   <section class="cl-band">
-    {% if hero %}<div class="cl-bg" style="background-image:url('{{ hero.url }}')" role="presentation"></div><div class="cl-veil" role="presentation"></div>{% endif %}
+    {% if hero %}
+      <div class="cl-bg" style="background-image:url('{{ hero.url }}')" role="presentation"></div>
+      <div class="cl-bg2" style="background-image:url('{{ hero.url }}')" role="presentation"></div>
+    {% endif %}
     <div class="rec-wrap cl-in">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('collections') }}">Collections</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
       <div class="cl-kick">{{ kick|join(' · ') }}</div>
@@ -93,13 +140,10 @@
         </div>
       {% endif %}
 
-      {% if erasPresent|length %}
+      {% if stats|length %}
         <div class="cl-stats">
-          {% for t in erasPresent %}
-            <a class="cl-stat" href="{{ url(entry.uri, { era: t.slug }) }}">
-              <b>{{ buckets[t.slug]|length }}</b>
-              <span>{{ t.title }}</span>
-            </a>
+          {% for s in stats %}
+            <div class="cl-stat"><b>{{ s.n }}</b><span>{{ s.l }}</span></div>
           {% endfor %}
         </div>
       {% endif %}
@@ -124,39 +168,17 @@
           <section class="cl-contents">
             <div class="cl-chead">
               <h2 class="rec-h2" style="margin:0">Contents</h2>
-              <div class="cl-showing">Showing {{ shownCount }} of {{ chapters|length }}</div>
+              <div class="cl-showing">{{ chapters|length }} article{{ chapters|length == 1 ? '' : 's' }} in reading order</div>
             </div>
 
-            {% if erasPresent|length > 1 or buckets['_none'] is defined %}
-              <div class="cl-chips">
-                <a class="rec-chip {{ not activeEra ? 'solid' : '' }}" href="{{ url(entry.uri) }}">All {{ chapters|length }}</a>
-                {% for t in erasPresent %}
-                  <a class="rec-chip {{ activeEra and activeEra != 'none' and activeEra.slug == t.slug ? 'solid' : '' }}"
-                     href="{{ url(entry.uri, { era: t.slug }) }}">{{ t.title }} ({{ buckets[t.slug]|length }})</a>
-                {% endfor %}
-                {% if buckets['_none'] is defined %}
-                  <a class="rec-chip {{ activeEra == 'none' ? 'solid' : '' }}"
-                     href="{{ url(entry.uri, { era: 'none' }) }}">No era recorded ({{ buckets['_none']|length }})</a>
-                {% endif %}
-              </div>
-            {% endif %}
-
-            {% set groupsToShow = [] %}
-            {% if activeEra == 'none' %}
-              {% set groupsToShow = [{ label: 'No era recorded', rows: buckets['_none'] }] %}
-            {% elseif activeEra %}
-              {% set groupsToShow = [{ label: activeEra.title, rows: buckets[activeEra.slug] }] %}
-            {% else %}
-              {% for t in erasPresent %}
-                {% set groupsToShow = groupsToShow|merge([{ label: t.title, rows: buckets[t.slug] }]) %}
-              {% endfor %}
-              {% if buckets['_none'] is defined %}
-                {% set groupsToShow = groupsToShow|merge([{ label: 'No era recorded', rows: buckets['_none'] }]) %}
+            {% for g in groups %}
+              {% if g.label %}
+                <div class="cl-part">
+                  <span class="l">{{ g.label }}</span>
+                  <span class="r" role="presentation"></span>
+                  {% if g.note %}<span class="n">{{ g.note }}</span>{% endif %}
+                </div>
               {% endif %}
-            {% endif %}
-
-            {% for g in groupsToShow %}
-              <h3 class="cl-era">{{ g.label }}</h3>
               <ol class="cl-list">
                 {% for a in g.rows %}
                   {% set aw = a.writtenBy.one() ?? null %}
@@ -266,40 +288,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 {% css %}
 .cl-band{position:relative;background:#FDF7EA;border-bottom:1px solid #EFE6D0;overflow:hidden}
-.cl--img .cl-band{border-bottom:0}
-.cl-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
-.cl-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,37,76,.78) 0%,rgba(23,37,76,.92) 100%);z-index:1}
-.cl-in{position:relative;z-index:2;padding-top:52px;padding-bottom:52px}
-.cl-kick{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:16px}
-.cl h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,5vw,60px);line-height:1.04;margin:0 0 14px;color:#17254C}
-.cl-by{font-size:17px;color:#5B6472;margin:0 0 26px}
+.cl-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.16;z-index:0}
+.cl-bg2{position:absolute;inset:0;background-size:cover;background-position:right center;filter:contrast(1.16) brightness(.92);-webkit-mask-image:linear-gradient(to left,#000 0px,#000 430px,rgba(0,0,0,.5) 490px,transparent 560px);mask-image:linear-gradient(to left,#000 0px,#000 430px,rgba(0,0,0,.5) 490px,transparent 560px);z-index:1}
+.cl-band .cl-in{position:relative;z-index:2;padding:30px 40px 56px}
+.cl-kick{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#A9842B;margin-bottom:16px}
+.cl h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,4.8vw,62px);line-height:1.04;margin:0 0 14px;color:#17254C;max-width:15em;text-wrap:balance}
+.cl-by{font-family:'Playfair Display',serif;font-style:italic;font-size:23px;line-height:1.35;color:#5B6472;margin:0 0 26px}
 .cl-by a{color:#17254C;text-decoration:none}
-.cl--img .cl-kick{color:#C4A031}
-.cl--img h1,.cl--img .rec-crumbs span{color:#fff}
-.cl--img .cl-by{color:rgba(255,255,255,.82)}
-.cl--img .cl-by a{color:#fff}
-.cl--img .rec-crumbs{color:rgba(255,255,255,.72)}
-.cl--img .rec-crumbs a{color:#C4A031}
+.cl-by a:hover{color:#7A5C1B}
 .cl-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
 .cl-cta{font-family:'Jost',sans-serif;font-size:15px;padding:13px 22px;text-decoration:none;display:inline-block}
 .cl-cta.gold{background:#C4A031;color:#17254C;font-weight:500}
 .cl-cta.gold:hover{background:#7A5C1B;color:#fff}
 .cl-cta.gold span{margin:0 4px}
 .cl-cta.ghost{border:1px solid #C4A031;color:#7A5C1B}
-.cl-cta.ghost:hover{background:#FDF7EA}
-.cl--img .cl-cta.ghost{border-color:rgba(255,255,255,.55);color:#fff}
-.cl--img .cl-cta.ghost:hover{background:rgba(255,255,255,.12)}
-.cl-stats{display:flex;gap:10px;flex-wrap:wrap}
-.cl-stat{background:rgba(255,255,255,.9);border:1px solid #EFE6D0;padding:12px 16px;min-width:120px;text-decoration:none;display:block}
-.cl-stat:hover{border-color:#C4A031}
+.cl-cta.ghost:hover{background:#fff}
+.cl-stats{display:flex;gap:38px;flex-wrap:wrap;border-top:1px solid #EFE6D0;padding-top:22px;max-width:560px}
 .cl-stat b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:30px;line-height:1;color:#17254C}
-.cl-stat span{display:block;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;color:#7A5C1B;margin-top:6px;text-transform:uppercase}
-.cl--img .cl-stat{background:rgba(255,255,255,.94)}
+.cl-stat span{display:block;font-family:'Jost',sans-serif;font-weight:500;font-size:11.5px;letter-spacing:.12em;color:#7E6118;margin-top:6px;text-transform:uppercase}
 .cl-contents{margin-top:48px}
 .cl-chead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:3px solid #C4A031;padding-top:14px}
 .cl-showing{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;color:#5B6472;text-transform:uppercase}
-.cl-chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}
-.cl-era{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B;text-transform:uppercase;margin:26px 0 8px}
+.cl-part{display:flex;align-items:center;gap:16px;margin:30px 0 10px}
+.cl-part .l{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#A9842B;white-space:nowrap}
+.cl-part .r{flex:1;height:1px;background:#E2E4E8}
+.cl-part .n{font-size:13px;color:#8A919E;white-space:nowrap}
+.cl-contents .cl-part:first-of-type{margin-top:22px}
 .cl-list{list-style:none;margin:0;padding:0;border:1px solid #E2E4E8;background:#fff}
 .cl-list li{border-bottom:1px solid #E2E4E8}
 .cl-list li:last-child{border-bottom:0}
