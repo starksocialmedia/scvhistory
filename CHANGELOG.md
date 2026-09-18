@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: an article's band now falls back to the bandImage of the collection it belongs to, so a Perkins chapter wears the Perkins band and a Reynolds chapter the Reynolds band. A standalone article with no artwork stays plain cream. Two layers, matching the collection lander exactly.
+- Decisions: still no fallback to featuredImage at either step, since those are title cards with lettering. The chain walks [entry, collection] and stops at the first bandImage it finds, guarding each element against its own field layout.
+- Blockers: the Perkins band artwork carries legible pseudo-text on the map at the right edge, away from the headline but readable.
+- Next: Nathan looks at the lettering on the Story of Our Valley artwork
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: import_legacy_images.php now carries a real contact address and skips the service seals by name and by the *logo.* shape rather than by a lower page threshold. _partials/prose.twig rejoins a line with no letters in it to the line above, fixing the split footnote markers that rendered as three paragraphs; 30 records were affected.
 - Decisions: the seals are named rather than caught by a threshold of 3, which would take real content off a short series. The rejoin test is "no letters at all", which keeps [image:N] out of it by construction, with explicit guards either side.
 - Blockers: the token count did not fall after the body cleanup. The three records carrying most of the tokens are the same three whose caption runs the cleanup reported as not confident and left in place, so the anchors still resolve into them.

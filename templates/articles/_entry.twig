@@ -17,9 +17,11 @@
   .ar-hero img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
   .ar-hero figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.55;margin-top:9px}
 
+  /* Two layers, exactly as the collection lander has them. */
   .ar .rec-band{position:relative;overflow:hidden}
-  .ar-bg{position:absolute;inset:0;background-size:cover;background-position:right center;filter:contrast(1.16) brightness(.92);z-index:0}
-  .ar .rec-band .rec-wrap{position:relative;z-index:1}
+  .ar-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;z-index:0}
+  .ar-bg2{position:absolute;inset:0;background-size:cover;background-position:right center;filter:contrast(1.16) brightness(.92);z-index:1}
+  .ar .rec-band .rec-wrap{position:relative;z-index:2}
 
   /* ── Previous / next ──────────────────────────────────────────── */
   .ar-pn{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:1px solid #E2E4E8;border-bottom:1px solid #E2E4E8;padding:16px 0;margin:0 0 32px}
@@ -96,15 +98,27 @@
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 
-{# The field-layout check is the only reliable test: a custom field reads as
-   defined on an element whose type does not have it, then throws when read. #}
-{% set hasBandImage = false %}
-{% for f in entry.fieldLayout.customFields %}
-  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
-{% endfor %}
-{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
-
 {% set collection = entry.partOfCollection.one() ?? null %}
+
+{# Band artwork: this article's own bandImage, then the bandImage of the
+   collection it belongs to, then nothing. A Perkins chapter therefore wears the
+   Perkins band and a Reynolds chapter the Reynolds band, while a standalone
+   article with no artwork stays plain cream. There is no fallback to
+   featuredImage at either step; those are title cards with the headline
+   lettered into them.
+
+   The field-layout check is the only reliable test: a custom field reads as
+   defined on an element whose type does not have it, then throws when read. #}
+{% set bandImg = null %}
+{% for el in [entry, collection]|filter(x => x) %}
+  {% if bandImg is null %}
+    {% set can = false %}
+    {% for f in el.fieldLayout.customFields %}
+      {% if f.handle == 'bandImage' %}{% set can = true %}{% endif %}
+    {% endfor %}
+    {% if can and el.bandImage %}{% set bandImg = el.bandImage.one() ?? null %}{% endif %}
+  {% endif %}
+{% endfor %}
 
 {# The body hero is for standalone articles only. See the note above. #}
 {% set hero = null %}
@@ -143,7 +157,10 @@
 
 <div class="rec ar">
   <section class="rec-band">
-    {% if bandImg %}<div class="ar-bg" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>{% endif %}
+    {% if bandImg %}
+      <div class="ar-bg" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
+      <div class="ar-bg2" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
+    {% endif %}
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a>{% if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
       <div class="rec-head rec-head--noart">
