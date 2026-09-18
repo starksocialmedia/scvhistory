@@ -6,6 +6,11 @@
   from the asset title, credit from its alt text. Images placed this way are
   skipped by the Photos section, which reads the same tokens.
 
+  A line with no letters in it, only punctuation or a bare number, rejoins the
+  line above rather than becoming a paragraph of its own. The legacy extraction
+  split footnote markers across lines, so a reference printed as [21] arrived as
+  three lines and rendered as three paragraphs.
+
   Params:
     text     the prose
     images   optional, the recordImages assets, needed for [image:N]
@@ -20,7 +25,27 @@
   {% endcss %}
 {% endif %}
 {%- set imgs = images is defined ? images : [] -%}
+
+{#- Rejoin the split footnote markers before anything is rendered. A line is
+    rejoinable when it holds no letters at all, which keeps [image:N] out of it. -#}
+{%- set TOKEN = '/^\\[image:\\d+\\]$/' -%}
+{%- set lines = [] -%}
 {%- for p in text|trim|split("\n") -%}
+  {%- set l = p|trim -%}
+  {%- if l -%}
+    {%- set joinable = lines|length
+        and l matches '/^[^\\p{L}]+$/u'
+        and not (l matches TOKEN)
+        and not (lines|last matches TOKEN) -%}
+    {%- if joinable -%}
+      {%- set lines = lines|slice(0, lines|length - 1)|merge([lines|last ~ l]) -%}
+    {%- else -%}
+      {%- set lines = lines|merge([l]) -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- for p in lines -%}
   {%- set line = p|trim -%}
   {%- if line -%}
     {%- set token = line matches '/^\\[image:\\d+\\]$/' ? line|replace({'[image:': '', ']': ''}) : null -%}

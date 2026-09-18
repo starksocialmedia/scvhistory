@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: import_legacy_images.php now carries a real contact address and skips the service seals by name and by the *logo.* shape rather than by a lower page threshold. _partials/prose.twig rejoins a line with no letters in it to the line above, fixing the split footnote markers that rendered as three paragraphs; 30 records were affected.
+- Decisions: the seals are named rather than caught by a threshold of 3, which would take real content off a short series. The rejoin test is "no letters at all", which keeps [image:N] out of it by construction, with explicit guards either side.
+- Blockers: the token count did not fall after the body cleanup. The three records carrying most of the tokens are the same three whose caption runs the cleanup reported as not confident and left in place, so the anchors still resolve into them.
+- Next: Nathan decides on the caption runs in rancho-san-francisco-a-study, the-pico-ghost-camp and manuscript-colonization-1940s; that resolves both the cleanup report and the token clustering
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: added three skills under .claude/skills/ so the repo's conventions stop being restated in every prompt. scv-import-script covers the eval-style script pattern, the dry run and idempotency rules, the field-layout guard and the traps that have actually cost time here. scv-record-template covers the band, the design tokens, the shared partials and the two conditional rules. scv-review-screen covers the export, review, apply trio.
 - Decisions: each skill is written from the code in this repo rather than from general practice, and names the reference file to read first. Kept each under 700 words so it can be read in full every time.
 - Blockers: none

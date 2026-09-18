@@ -46,8 +46,8 @@ $SHOW_BODY_FOR = '';
 /* Crawl conduct, per GROK-CONTRACT.md: one request at a time, one second apart,
    a User-Agent naming the project and a contact address. Put a real mailbox in
    $CONTACT before running this against the live site. */
-$CONTACT = 'https://github.com/starksocialmedia/scvhistory';
-$USER_AGENT = 'SCVHistory-Legacy-Images/1.0 (+' . $CONTACT . ')';
+$CONTACT = 'nathan@starksocial.com';
+$USER_AGENT = 'SCVHistory-Legacy-Images/1.0 (+https://scvhistory.com; contact: ' . $CONTACT . ')';
 $DELAY_MS = 1000;
 
 $INVENTORIES = ['perkins-images', 'reynolds-images', 'warmemorial-images'];
@@ -60,6 +60,15 @@ $SOURCE_OF = [
 $VOLUME = 'archiveMedia';
 $SUBFOLDER = 'legacy';
 $CHROME_PAGE_THRESHOLD = 5;      /* more than this many pages means navigation */
+/* The service seals on the war memorial pages are chrome however few pages carry
+   them. Named rather than caught by a lower page threshold, because a threshold
+   of 3 would take real content off a short series. */
+$CHROME_FILENAMES = [
+    'armylogo', 'navylogo', 'marinelogo', 'marineslogo', 'airforcelogo',
+    'coastguardlogo', 'nationalguardlogo', 'merchantmarinelogo',
+];
+/* And anything else of that shape: a word, then "logo", and nothing else. */
+$CHROME_SHAPE = '~^[a-z][a-z0-9-]*logo\.(png|gif|jpe?g)$~i';
 $NO_TOKENS_IN = ['warMemorials'];
 $IMAGE_EXT = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
@@ -114,8 +123,8 @@ $filenameOf = function (string $url): string {
 
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . ($PROBE_SIZES ? ' (probing sizes)' : '') . PHP_EOL;
 echo 'user agent: ' . $USER_AGENT . PHP_EOL;
-if ($CONTACT === 'https://github.com/starksocialmedia/scvhistory') {
-    echo 'NOTE: $CONTACT is the repository URL. Put a mailbox there before running this for real.' . PHP_EOL;
+if (strpos($CONTACT, '@') === false) {
+    echo 'NOTE: $CONTACT is not a mailbox. Put one there before running this against the live site.' . PHP_EOL;
 }
 
 $volume = Craft::$app->volumes->getVolumeByHandle($VOLUME);
@@ -176,9 +185,17 @@ foreach ($INVENTORIES as $inv) {
     foreach ($rows as $r) { $pagesPerSrc[$r['src_raw']][$r['legacy_key']] = true; }
     $chrome = [];
     foreach ($pagesPerSrc as $src => $pages) {
-        if (count($pages) > $CHROME_PAGE_THRESHOLD) { $chrome[$src] = count($pages); }
+        $base = basename(parse_url($src, PHP_URL_PATH) ?: $src);
+        $stem = strtolower(pathinfo($base, PATHINFO_FILENAME));
+        if (count($pages) > $CHROME_PAGE_THRESHOLD) {
+            $chrome[$src] = count($pages) . ' pages';
+        } elseif (in_array($stem, $CHROME_FILENAMES, true)) {
+            $chrome[$src] = 'named service seal, on ' . count($pages) . ' page(s)';
+        } elseif (preg_match($CHROME_SHAPE, $base)) {
+            $chrome[$src] = 'matches the logo shape, on ' . count($pages) . ' page(s)';
+        }
     }
-    foreach ($chrome as $src => $n) { $chromeSkipped[$inv . '  ' . $src] = $n; }
+    foreach ($chrome as $src => $why) { $chromeSkipped[$inv . '  ' . $src] = $why; }
 
     foreach ($rows as $r) {
         if (isset($chrome[$r['src_raw']])) { continue; }
@@ -467,8 +484,8 @@ if ($PROBE_SIZES || $APPLY) {
 }
 
 if ($chromeSkipped) {
-    echo '=== navigation, more than ' . $CHROME_PAGE_THRESHOLD . ' pages ===' . PHP_EOL;
-    foreach ($chromeSkipped as $src => $n) { echo '  ' . str_pad((string)$n, 4) . $src . PHP_EOL; }
+    echo '=== skipped as navigation ===' . PHP_EOL;
+    foreach ($chromeSkipped as $src => $why) { echo '  ' . str_pad($why, 34) . $src . PHP_EOL; }
 }
 if ($unresolvedPages) {
     echo '=== no Craft record for these pages, images left alone ===' . PHP_EOL;
