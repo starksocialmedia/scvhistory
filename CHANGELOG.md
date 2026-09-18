@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
+- Done: capped the article band content to 60 percent of the wrapper when a band image is present, full width when not, with text-wrap balance on the h1. The breadcrumb, kicker, title, collection, byline and chips all share the capped column, so none of them runs under the artwork. Below 640px the text takes the full width and the artwork drops to a 0.22 wash.
+- Decisions: the cap holds at 60 percent all the way down rather than loosening at 900px. background-size cover scales the artwork up as the band narrows, so the subject takes more of the width, not less; 68 percent at 900px put the breadcrumb back under the hair. The other six sections were not changed: none of them renders a background artwork layer, their image sits in the portrait grid column, and the grid already holds the text to 66.6 percent.
+- Blockers: at a 900px band the breadcrumb's first line still grazes the light hair at the right. The title, subtitle, byline and chips are fully clear.
+- Next: Nathan decides whether the other six should gain the layered band treatment, which is what would make the cap meaningful there
+
 2026-09-17
 
 - Agent: Claude Code

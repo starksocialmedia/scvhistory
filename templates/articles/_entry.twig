@@ -23,6 +23,26 @@
   .ar-bg2{position:absolute;inset:0;background-size:cover;background-position:right center;filter:contrast(1.16) brightness(.92);z-index:1}
   .ar .rec-band .rec-wrap{position:relative;z-index:2}
 
+  /* The artwork is composed with its subject at the right, so the band content
+     is capped to the left of it. Everything in the band shares one column:
+     kicker, title, collection, byline and chips, so none of them can run under
+     the drawing. Without artwork the band is full width as before.
+
+     The cap holds at 60 percent all the way down to the phone breakpoint,
+     because background-size cover scales the artwork up as the band narrows, so
+     the subject takes more of the width rather than less. 68 percent at 900px
+     put the breadcrumb back under the hair. */
+  .ar-hasband .rec-band .rec-crumbs,
+  .ar-hasband .rec-band .rec-head>div:first-child{max-width:60%}
+  .ar h1{text-wrap:balance}
+  @media(max-width:640px){
+    /* 60 percent of a phone is unreadable, so the text takes the full width and
+       the artwork drops back to a wash behind it. */
+    .ar-hasband .rec-band .rec-crumbs,
+    .ar-hasband .rec-band .rec-head>div:first-child{max-width:none}
+    .ar-bg2{opacity:.22}
+  }
+
   /* ── Previous / next ──────────────────────────────────────────── */
   .ar-pn{display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:1px solid #E2E4E8;border-bottom:1px solid #E2E4E8;padding:16px 0;margin:0 0 32px}
   .ar-pn.after{margin:40px 0 0}
@@ -155,7 +175,7 @@
 {% endmacro %}
 {% import _self as ui %}
 
-<div class="rec ar">
+<div class="rec ar{{ bandImg ? ' ar-hasband' : '' }}">
   <section class="rec-band">
     {% if bandImg %}
       <div class="ar-bg" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
