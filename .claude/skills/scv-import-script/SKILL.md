@@ -52,6 +52,24 @@ meant as a preview wrote to 8 records before anyone had read the report. Check
 with `grep -n '^\$APPLY' scripts/import/NAME.php`, and when a script you did not
 write reports `APPLYING`, stop and say so rather than carrying on.
 
+**Never touch state you did not create. Ask first, every time.** This covers the
+working tree above all: `git stash`, `git checkout`, `git reset`, discarding or
+reordering uncommitted changes, and anything else that moves files Nathan has
+edited and not committed. Uncommitted work is the one thing in this repo that
+cannot be recovered, and a clean `git stash pop` is luck, not safety. It has
+already happened once: a stash and pop, to measure a query count before and
+after a change, on a tree holding three unfinished scripts and an unstaged data
+file. It popped cleanly and it should not have been run.
+
+The same applies to anything else holding someone's work: a database, a review
+screen's `localStorage`, a downloaded decisions file, a branch that is not
+yours. Noticing and restoring afterwards is not the rule. Not touching it is.
+
+To measure a before and after, copy the file, edit the copy, and point the test
+at that; or make the change, measure, and measure again after reverting your own
+edit with the editor rather than with git; or ask Nathan to stash it himself.
+Tell him before, not after.
+
 **Report the whole plan before writing.** One line per record showing what would
 change, then a summary with counts by category. A number with no list behind it
 is not a report.

@@ -54,6 +54,23 @@ network beyond fetching its own JSON. Served at
 
 Nothing is written back from the browser. The download is the handoff.
 
+**Never read, clear or overwrite the real `localStorage` key while testing.**
+That key holds hours of someone's judgement, one decision at a time, and nothing
+reconstructs it. It is the review-screen equivalent of applying an import script
+to the live database, and it has already happened once: a `localStorage
+.removeItem` during a check wiped 27 recorded decisions, restored only because
+the page still had them in memory.
+
+Test against a key that is not the real one. Append a suffix in the URL, for
+example read the key as `'scvEntityMerges' + (location.search.includes('test')
+? '-test' : '')`, and drive the screen with `?test`; or use a separate browser
+profile; or copy the HTML file to a second name that fetches the same JSON and
+stores under its own key. Any of those. Never the live key.
+
+When a check genuinely needs the real decisions, read them and print them.
+Reading is fine. Writing, clearing and `JSON.parse` round-trips that save back
+are not.
+
 ## 3. The apply script
 
 Reads the downloaded file out of `web/review/`, not the export.

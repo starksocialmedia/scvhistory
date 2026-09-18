@@ -12,19 +12,23 @@
  *   1. Widens childOf, siblingOf and spouseOf to accept people, war memorial
  *      casualties and military profiles. Today they accept people only, so a
  *      casualty cannot be recorded as anyone's son.
- *   2. Adds childOf, siblingOf and spouseOf to the war memorial layout, in a
- *      Family tab, so the casualty end of the relation can be typed at all.
- *   3. Removes parentOf from the person layout. The field and its data are left
- *      in place; only the layout entry goes, so nothing is destroyed and the
- *      step is reversible from the CP.
- *   4. Writes instructions on all four, saying which way round to type and that
- *      children are derived.
+ *   2. Adds childOf, siblingOf and spouseOf to the war memorial and military
+ *      profile layouts, in a Family tab, so both ends of the relation can be
+ *      typed at all.
+ *   3. Retires the fields that say the same thing a second way: parentOf on the
+ *      person type, and mpParents, mpChildren, mpSiblings and mpSpouse on the
+ *      military profile type, which were a parallel convention of their own.
+ *      The fields and their data are left in place; only the layout entries go,
+ *      so nothing is destroyed and every step is reversible from the CP.
+ *   4. Writes instructions on all of them, saying which way round to type, that
+ *      children are derived, and where a retired field's job has gone.
  *
- * Before removing parentOf it checks that every parentOf relation is already
- * present the other way as childOf, and refuses to remove it if any is not, so
- * a fact cannot disappear from the site because a layout changed. Revisions and
- * drafts are excluded from that check: the relations table carries a row per
- * revision, which makes 1 real relation look like 13.
+ * Before retiring any field it checks that every relation that field holds is
+ * already present the other way round under the convention that replaces it,
+ * and refuses to retire it if any is not, so a fact cannot disappear from the
+ * site because a layout changed. Revisions and drafts are excluded from that
+ * check: the relations table carries a row per revision, which makes 1 real
+ * relation look like 13.
  *
  * Idempotent. A second run reports every step as already done.
  *
@@ -40,6 +44,23 @@ $svc = Craft::$app->getEntries();
 
 $SECTIONS = ['persons', 'warMemorials', 'militaryProfiles'];
 $WIDEN = ['childOf', 'siblingOf', 'spouseOf'];
+/* handle => [entry type it sits on, the field that now holds this fact,
+   how to read one against the other] */
+$RETIRE = [
+    'parentOf'    => ['person',          'childOf',   'inverse',
+        'Children are derived from the childOf field on the child: open the child\'s '
+      . 'record and point it at this person.'],
+    'mpParents'   => ['militaryProfile', 'childOf',   'same',
+        'Use childOf, which every person-like record now shares.'],
+    'mpChildren'  => ['militaryProfile', 'childOf',   'inverse',
+        'Children are derived from childOf on the child.'],
+    'mpSiblings'  => ['militaryProfile', 'siblingOf', 'either',
+        'Siblings who share a recorded parent appear by themselves; use siblingOf only '
+      . 'for one the parents do not reach.'],
+    'mpSpouse'    => ['militaryProfile', 'spouseOf',  'either',
+        'Use spouseOf, which every person-like record now shares.'],
+];
+
 $INSTRUCTIONS = [
     'childOf'   => 'This person\'s parents. This is the only direction anyone types: '
                  . 'point up at the parents and the site works out the rest. Children, '
@@ -50,10 +71,11 @@ $INSTRUCTIONS = [
                  . 'where no parent record exists. Siblings who share a recorded parent '
                  . 'appear by themselves. Reads both ways, so enter it once, on either record.',
     'spouseOf'  => 'Spouse. Reads both ways, so enter it once, on either record.',
-    'parentOf'  => 'Not in use. Children are derived from the childOf field on the child: '
-                 . 'open the child\'s record and point it at this person. This field is '
-                 . 'kept only so its old data is not lost.',
 ];
+foreach ($RETIRE as $h => [$onType, $replacedBy, $dir, $where]) {
+    $INSTRUCTIONS[$h] = 'Not in use. ' . $where . ' This field is kept only so its old '
+        . 'data is not lost, and is off the layout.';
+}
 
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL;
 echo str_repeat('=', 74) . PHP_EOL;
@@ -79,8 +101,8 @@ $name = function ($id) {
 };
 
 echo 'relations in use, canonical entries only, revisions excluded:' . PHP_EOL;
-foreach (['childOf', 'parentOf', 'siblingOf', 'spouseOf'] as $h) {
-    echo '  ' . str_pad($h, 12) . count($canonical($h)) . PHP_EOL;
+foreach (array_merge($WIDEN, array_keys($RETIRE)) as $h) {
+    echo '  ' . str_pad($h, 14) . count($canonical($h)) . PHP_EOL;
 }
 echo PHP_EOL;
 
@@ -129,99 +151,108 @@ foreach ($INSTRUCTIONS as $h => $text) {
 
 /* ------------------------- 3. the casualty end of the relation needs fields */
 
-echo PHP_EOL . '--- 3. war memorial layout ---' . PHP_EOL;
-$type = $svc->getEntryTypeByHandle('warMemorial');
-if (!$type) {
-    echo 'entry type warMemorial: NOT FOUND' . PHP_EOL;
-} else {
+echo PHP_EOL . '--- 3. layouts that need the shared fields ---' . PHP_EOL;
+foreach (['warMemorial', 'militaryProfile'] as $th) {
+    $type = $svc->getEntryTypeByHandle($th);
+    if (!$type) { echo str_pad($th, 18) . 'NOT FOUND' . PHP_EOL; continue; }
     $layout = $type->getFieldLayout();
     $present = [];
     foreach ($layout->getCustomFields() as $c) { $present[] = $c->handle; }
     $missing = array_values(array_diff($WIDEN, $present));
-    if (!$missing) { echo 'already carries ' . implode(', ', $WIDEN) . PHP_EOL; }
-    else {
-        echo 'would add ' . implode(', ', $missing) . ' to a new "Family" tab' . PHP_EOL;
-        if ($APPLY) {
-            $tabs = $layout->getTabs();
-            $tab = null;
-            foreach ($tabs as $t) { if ($t->name === 'Family') { $tab = $t; break; } }
-            if ($tab === null) {
-                $tab = new \craft\models\FieldLayoutTab(['name' => 'Family', 'layout' => $layout]);
-                $tab->setElements([]);
-                $tabs[] = $tab;
-            }
-            $els = $tab->getElements();
-            foreach ($missing as $h) {
-                $f = $fs->getFieldByHandle($h);
-                if ($f) { $els[] = new \craft\fieldlayoutelements\CustomField($f); }
-            }
-            $tab->setElements($els);
-            $layout->setTabs($tabs);
-            $type->setFieldLayout($layout);
-            echo '  ' . ($svc->saveEntryType($type) ? 'added' : 'FAILED: ' . implode('; ', $type->getFirstErrors())) . PHP_EOL;
-        }
+    if (!$missing) { echo str_pad($th, 18) . 'already carries ' . implode(', ', $WIDEN) . PHP_EOL; continue; }
+
+    echo str_pad($th, 18) . 'would add ' . implode(', ', $missing) . ' to a "Family" tab' . PHP_EOL;
+    if (!$APPLY) { continue; }
+
+    $tabs = $layout->getTabs();
+    $tab = null;
+    foreach ($tabs as $t) { if ($t->name === 'Family') { $tab = $t; break; } }
+    if ($tab === null) {
+        $tab = new \craft\models\FieldLayoutTab(['name' => 'Family', 'layout' => $layout]);
+        $tab->setElements([]);
+        $tabs[] = $tab;
     }
+    $els = $tab->getElements();
+    foreach ($missing as $h) {
+        $f = $fs->getFieldByHandle($h);
+        if ($f) { $els[] = new \craft\fieldlayoutelements\CustomField($f); }
+    }
+    $tab->setElements($els);
+    $layout->setTabs($tabs);
+    $type->setFieldLayout($layout);
+    echo '  ' . ($svc->saveEntryType($type) ? 'added' : 'FAILED: ' . implode('; ', $type->getFirstErrors())) . PHP_EOL;
 }
 
 /* ------------------------------------------- 4. parentOf comes off the layout */
 
-echo PHP_EOL . '--- 4. parentOf ---' . PHP_EOL;
-$parentRows = $canonical('parentOf');
-$childRows  = $canonical('childOf');
-$childPairs = [];
-foreach ($childRows as $r) { $childPairs[$r['sourceId'] . '|' . $r['targetId']] = true; }
+echo PHP_EOL . '--- 4. fields that say the same thing a second way ---' . PHP_EOL;
 
-$unmirrored = [];
-foreach ($parentRows as $r) {
-    /* A is parentOf B means B is childOf A. */
-    if (!isset($childPairs[$r['targetId'] . '|' . $r['sourceId']])) { $unmirrored[] = $r; }
-}
+foreach ($RETIRE as $handle => [$onType, $replacedBy, $dir, $where]) {
+    $rows = $canonical($handle);
+    $mirror = $canonical($replacedBy);
 
-if ($parentRows) {
-    echo count($parentRows) . ' parentOf relation' . (count($parentRows) === 1 ? '' : 's') . ' in use:' . PHP_EOL;
-    foreach ($parentRows as $r) {
-        $mirrored = isset($childPairs[$r['targetId'] . '|' . $r['sourceId']]);
-        echo '  ' . $name($r['sourceId']) . ' is parent of ' . $name($r['targetId'])
-            . ($mirrored ? '  (already stored as childOf, nothing lost)' : '  (NOT mirrored)') . PHP_EOL;
+    /* Index the replacement both ways so any direction can be checked. */
+    $fwd = []; $rev = [];
+    foreach ($mirror as $r) {
+        $fwd[$r['sourceId'] . '|' . $r['targetId']] = true;
+        $rev[$r['targetId'] . '|' . $r['sourceId']] = true;
     }
-} else {
-    echo 'no parentOf relations in use' . PHP_EOL;
-}
 
-$personType = $svc->getEntryTypeByHandle('person');
-$onLayout = false;
-if ($personType) {
-    foreach ($personType->getFieldLayout()->getCustomFields() as $c) {
-        if ($c->handle === 'parentOf') { $onLayout = true; break; }
+    $unmirrored = [];
+    foreach ($rows as $r) {
+        $ok = match ($dir) {
+            'same'    => isset($fwd[$r['sourceId'] . '|' . $r['targetId']]),
+            'inverse' => isset($fwd[$r['targetId'] . '|' . $r['sourceId']]),
+            default   => isset($fwd[$r['sourceId'] . '|' . $r['targetId']])
+                      || isset($rev[$r['sourceId'] . '|' . $r['targetId']]),
+        };
+        if (!$ok) { $unmirrored[] = $r; }
     }
-}
 
-if (!$onLayout) {
-    echo 'parentOf is already off the person layout' . PHP_EOL;
-} elseif ($unmirrored) {
-    echo PHP_EOL . 'REFUSING to remove parentOf from the layout: ' . count($unmirrored)
-        . ' relation(s) above are not stored the other way, so removing it would' . PHP_EOL;
-    echo 'take a fact off the site. Add the matching childOf on the child first, then' . PHP_EOL;
-    echo 'run this again.' . PHP_EOL;
-} else {
-    echo 'would remove parentOf from the person layout. The field and every row it' . PHP_EOL;
-    echo 'holds stay in the database; only the layout entry goes.' . PHP_EOL;
-    if ($APPLY) {
-        $layout = $personType->getFieldLayout();
-        $tabs = $layout->getTabs();
-        foreach ($tabs as $t) {
-            $els = [];
-            foreach ($t->getElements() as $el) {
-                if ($el instanceof \craft\fieldlayoutelements\CustomField
-                    && $el->getField()->handle === 'parentOf') { continue; }
-                $els[] = $el;
-            }
-            $t->setElements($els);
+    $type = $svc->getEntryTypeByHandle($onType);
+    $onLayout = false;
+    if ($type) {
+        foreach ($type->getFieldLayout()->getCustomFields() as $c) {
+            if ($c->handle === $handle) { $onLayout = true; break; }
         }
-        $layout->setTabs($tabs);
-        $personType->setFieldLayout($layout);
-        echo '  ' . ($svc->saveEntryType($personType) ? 'removed' : 'FAILED: ' . implode('; ', $personType->getFirstErrors())) . PHP_EOL;
     }
+
+    echo PHP_EOL . str_pad($handle, 14) . 'on ' . $onType . ', ' . count($rows)
+        . ' relation' . (count($rows) === 1 ? '' : 's') . ' in use, replaced by ' . $replacedBy . PHP_EOL;
+    foreach ($rows as $r) {
+        $ok = !in_array($r, $unmirrored, true);
+        echo '   ' . $name($r['sourceId']) . '  ->  ' . $name($r['targetId'])
+            . ($ok ? '  (already stored as ' . $replacedBy . ', nothing lost)' : '  (NOT mirrored)') . PHP_EOL;
+    }
+
+    if (!$type) { echo '   entry type ' . $onType . ' NOT FOUND' . PHP_EOL; continue; }
+    if (!$onLayout) { echo '   already off the ' . $onType . ' layout' . PHP_EOL; continue; }
+
+    if ($unmirrored) {
+        echo '   REFUSING to remove it: ' . count($unmirrored) . ' relation(s) above are not' . PHP_EOL;
+        echo '   stored as ' . $replacedBy . ', so removing it would take a fact off the site.' . PHP_EOL;
+        echo '   Record them as ' . $replacedBy . ' first, then run this again.' . PHP_EOL;
+        continue;
+    }
+
+    echo '   would remove it from the ' . $onType . ' layout. The field and every row it' . PHP_EOL;
+    echo '   holds stay in the database; only the layout entry goes.' . PHP_EOL;
+    if (!$APPLY) { continue; }
+
+    $layout = $type->getFieldLayout();
+    $tabs = $layout->getTabs();
+    foreach ($tabs as $t) {
+        $els = [];
+        foreach ($t->getElements() as $el) {
+            if ($el instanceof \craft\fieldlayoutelements\CustomField
+                && $el->getField()->handle === $handle) { continue; }
+            $els[] = $el;
+        }
+        $t->setElements($els);
+    }
+    $layout->setTabs($tabs);
+    $type->setFieldLayout($layout);
+    echo '   ' . ($svc->saveEntryType($type) ? 'removed' : 'FAILED: ' . implode('; ', $type->getFirstErrors())) . PHP_EOL;
 }
 
 echo PHP_EOL . str_repeat('=', 74) . PHP_EOL;
