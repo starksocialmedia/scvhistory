@@ -15,7 +15,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/add_collection_parts.php'))"
  */
 
-$APPLY = false;
+$APPLY = true;
 
 $HANDLE = 'collectionParts';
 $SLUG = 'history-of-the-santa-clarita-valley';

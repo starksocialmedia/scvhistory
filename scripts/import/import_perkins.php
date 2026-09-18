@@ -19,7 +19,7 @@
  * contract an empty string means "not found", not "blank".
  */
 
-$APPLY = false;
+$APPLY = true;
 $OVERWRITE = false;
 
 $root = \Craft::getAlias('@root');

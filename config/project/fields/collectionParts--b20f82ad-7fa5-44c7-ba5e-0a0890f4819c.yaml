@@ -1,0 +1,63 @@
+columnSuffix: null
+handle: collectionParts
+instructions: 'Optional. Groups the Contents of a major collection. "Starts at #" is the position in Articles in Collection where the part begins; a part runs until the next one starts. Leave empty for one ungrouped list.'
+name: Parts
+searchable: false
+settings:
+  addRowLabel: 'Add a part'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Part label'
+            -
+              - handle
+              - label
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Note
+            -
+              - handle
+              - note
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Starts at #'
+            -
+              - handle
+              - start
+            -
+              - width
+              - ''
+            -
+              - type
+              - number
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table
