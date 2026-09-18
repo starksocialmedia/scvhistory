@@ -28,19 +28,18 @@
      kicker, title, collection, byline and chips, so none of them can run under
      the drawing. Without artwork the band is full width as before.
 
-     The cap tightens rather than loosens as the band narrows, because
-     background-size cover scales the artwork up, so the subject takes more of
-     the width, not less. 60 percent leaves the title room to spare at 1240;
-     below 1000 it drops to 52 so the breadcrumb clears too. */
+     52 percent at every width, not a wider cap that narrows on small screens.
+     Measured on the artwork: the dense figure begins at 55.6 percent of the
+     band, mid tone at 53.2, the faintest hair at 44.9, and those fractions hold
+     at any width because the image is wider in aspect than the band, so cover
+     matches the band width exactly. A 60 percent column therefore sits inside
+     the figure at every width and only looks clear while the title happens to
+     be short. Reynolds has 71 chapters whose titles we have not seen. */
   .ar-hasband .rec-band .rec-crumbs,
-  .ar-hasband .rec-band .rec-head>div:first-child{max-width:60%}
+  .ar-hasband .rec-band .rec-head>div:first-child{max-width:52%}
   .ar h1{text-wrap:balance}
-  @media(max-width:1000px){
-    .ar-hasband .rec-band .rec-crumbs,
-    .ar-hasband .rec-band .rec-head>div:first-child{max-width:52%}
-  }
   @media(max-width:640px){
-    /* 60 percent of a phone is unreadable, so the text takes the full width and
+    /* 52 percent of a phone is unreadable, so the text takes the full width and
        the artwork drops back to a wash behind it. */
     .ar-hasband .rec-band .rec-crumbs,
     .ar-hasband .rec-band .rec-head>div:first-child{max-width:none}
