@@ -4,6 +4,15 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-17
+- Done: two scripts, both dry run by default. backfill_provenance.php derives sourcePath, legacyKey and legacyUrl for 60 records from four evidence sources and reports 52 with nothing to derive from. clean_legacy_bodies.php strips legacy site chrome from the head and tail of article, war memorial and obituary bodies, rejoins drop caps, and moves the copyright line into finePrint; 38 records would change, 12 carry something it was not confident about and reports them instead.
+- Decisions: provenance is never guessed from a slug. A legacy reference pointing at another host cannot yield a root-relative path and is reported, which is the one case in the data, Mission San Gabriel. The cleanup walks down from the first line and up from the last and stops at the first unrecognised line, so nothing can ever be removed from the middle; a byline left stranded below an unrecognised line is reported rather than reached for.
+- Blockers: the WordPress export carries almost no scvhistory.com links in bodies, so the real source is its legacy_url meta on 41 posts. The entity_index cross-reference yields exactly one usable entry across all three inventories.
+- Next: Nathan reads the cleanup report, then runs both scripts
+
+2026-09-17
+
+- Agent: Claude Code
+- Date: 2026-09-17
 - Done: the record player's progress bar advances continuously instead of jumping once per sentence. Progress is measured in characters and painted on an animation frame. Within a sentence the position comes from the utterance's boundary events when they arrive, and from elapsed time against an estimate when they do not. The total to the right of the slash is computed once and held, and only the remaining estimate is recalibrated.
 - Decisions: the within-sentence estimate eases asymptotically toward the sentence end rather than clamping at it. A hard clamp stalled the bar whenever a sentence ran longer than estimated, which put the jumps straight back; simulation puts stalls at 48 percent of samples for a sentence running 2x long, and at zero with the easing. Changing speed recomputes the held total, since that is a deliberate act.
 - Blockers: Google US English, the default voice, fires no boundary events at all, so the timer path is what almost every reader will get. The boundary path is confirmed to fire with Samantha but I could not confirm it drives the bar; the browser extension dropped mid-test.
