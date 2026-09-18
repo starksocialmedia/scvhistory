@@ -1,0 +1,136 @@
+{#
+  The archive's relation graph, as JSON, for /graph.
+
+  Built here rather than in the browser so the page makes one request instead of
+  hundreds. Four queries, all of them against the relations table joined to
+  elements, with drafts, revisions and deleted rows excluded: that table carries
+  a row per revision, which multiplies every count if you read it naively.
+
+  Nodes are the six kinds a reader thinks of as subjects: person, place,
+  organization, group, event, collection. War memorials and military profiles
+  are deliberately not nodes; they are a second record of a person the archive
+  already has, and drawing both would double the people.
+
+  Articles are edges, not nodes, because an article is the thing that connects
+  subjects to each other. Two subjects of one article get an edge labelled with
+  that article. A collection reaches a subject the same way, through the
+  articles in it, drawn fainter so the collections do not swamp the people.
+
+  An edge is deduplicated across directions: persons and organizations point at
+  each other through two different fields, and that is one relationship.
+#}
+{% header "Content-Type: application/json; charset=utf-8" %}
+{% header "X-Robots-Tag: noindex, nofollow" %}
+
+{% set NODE_SECTIONS = ['persons', 'places', 'organizations', 'groups', 'events', 'collections'] %}
+{% set inList = "'" ~ NODE_SECTIONS|join("','") ~ "'" %}
+
+{% set CANON = "se.draftId IS NULL AND se.revisionId IS NULL AND se.dateDeleted IS NULL
+  AND te.draftId IS NULL AND te.revisionId IS NULL AND te.dateDeleted IS NULL" %}
+{% set JOINS = "INNER JOIN {{%elements}} se ON se.id = r.sourceId
+  INNER JOIN {{%elements}} te ON te.id = r.targetId
+  INNER JOIN {{%entries}} sen ON sen.id = r.sourceId
+  INNER JOIN {{%entries}} ten ON ten.id = r.targetId
+  INNER JOIN {{%sections}} ss ON ss.id = sen.sectionId
+  INNER JOIN {{%sections}} ts ON ts.id = ten.sectionId" %}
+
+{#- 1. the nodes -#}
+{% set nodes = [] %}
+{% set nodeIndex = {} %}
+{% for handle in NODE_SECTIONS %}
+  {% for e in craft.entries().section(handle).status(null).limit(null).orderBy('title asc').all() %}
+    {% set nodes = nodes|merge([{
+      id: e.id, name: (e.title ?: e.slug), type: handle, url: e.url, degree: 0
+    }]) %}
+    {% set nodeIndex = nodeIndex|merge({ ('n' ~ e.id): true }) %}
+  {% endfor %}
+{% endfor %}
+
+{#- 2. direct relations, both ends a node -#}
+{% set directSql = "SELECT DISTINCT r.sourceId AS a, r.targetId AS b, f.handle AS field
+  FROM {{%relations}} r " ~ JOINS ~ "
+  LEFT JOIN {{%fields}} f ON f.id = r.fieldId
+  WHERE " ~ CANON ~ " AND ss.handle IN (" ~ inList ~ ") AND ts.handle IN (" ~ inList ~ ")
+    AND r.sourceId <> r.targetId" %}
+
+{#- 3. what each article is about, in either direction -#}
+{% set subjSql = "SELECT DISTINCT
+    CASE WHEN ss.handle = 'articles' THEN r.sourceId ELSE r.targetId END AS articleId,
+    CASE WHEN ss.handle = 'articles' THEN r.targetId ELSE r.sourceId END AS nodeId
+  FROM {{%relations}} r " ~ JOINS ~ "
+  WHERE " ~ CANON ~ "
+    AND ((ss.handle = 'articles' AND ts.handle IN (" ~ inList ~ "))
+      OR (ts.handle = 'articles' AND ss.handle IN (" ~ inList ~ ")))" %}
+
+{% set articleTitle = {} %}
+{% for a in craft.entries().section('articles').status(null).limit(null).all() %}
+  {% set articleTitle = articleTitle|merge({ ('a' ~ a.id): (a.title ?: a.slug) }) %}
+{% endfor %}
+
+{#- Edges, keyed low-high so a reciprocal pair counts once. The key is prefixed
+    because Twig's merge is array_merge, which renumbers integer keys. -#}
+{% set edges = {} %}
+
+{% for row in craft.app.db.createCommand(directSql).queryAll() %}
+  {% set lo = min(row.a, row.b) %}{% set hi = max(row.a, row.b) %}
+  {% set k = 'e' ~ lo ~ '_' ~ hi %}
+  {% if edges[k] is not defined %}
+    {% set edges = edges|merge({ (k): { source: lo, target: hi, via: 'direct', label: row.field } }) %}
+  {% endif %}
+{% endfor %}
+
+{#- Article cliques. An article about many subjects would make a dense ball on
+    its own, so a very broad one is left out of the clique rather than allowed
+    to invent structure; 14 subjects is already 91 edges. -#}
+{% set byArticle = {} %}
+{% for row in craft.app.db.createCommand(subjSql).queryAll() %}
+  {% set key = 'a' ~ row.articleId %}
+  {% set byArticle = byArticle|merge({ (key): (byArticle[key] ?? [])|merge([row.nodeId]) }) %}
+{% endfor %}
+
+{% set skippedBroad = 0 %}
+{% for key, ids in byArticle %}
+  {% if ids|length > 14 %}
+    {% set skippedBroad = skippedBroad + 1 %}
+  {% else %}
+    {% for i, a in ids %}
+      {% for b in ids|slice(i + 1) %}
+        {% if a != b and nodeIndex['n' ~ a] is defined and nodeIndex['n' ~ b] is defined %}
+          {% set lo = min(a, b) %}{% set hi = max(a, b) %}
+          {% set k = 'e' ~ lo ~ '_' ~ hi %}
+          {% if edges[k] is not defined %}
+            {% set edges = edges|merge({ (k): {
+              source: lo, target: hi, via: 'article', label: articleTitle[key] ?? ''
+            } }) %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{#- Degree, counted from the edges that survived. -#}
+{% set deg = {} %}
+{% for e in edges %}
+  {% set deg = deg|merge({ ('n' ~ e.source): (deg['n' ~ e.source] ?? 0) + 1 }) %}
+  {% set deg = deg|merge({ ('n' ~ e.target): (deg['n' ~ e.target] ?? 0) + 1 }) %}
+{% endfor %}
+{% set out = [] %}
+{% for n in nodes %}
+  {% set out = out|merge([n|merge({ degree: deg['n' ~ n.id] ?? 0 })]) %}
+{% endfor %}
+
+{% set isolated = out|filter(n => n.degree == 0)|length %}
+
+{{- {
+  meta: {
+    generated: now|date('c'),
+    nodes: out|length,
+    edges: edges|length,
+    isolated: isolated,
+    articlesTooBroadForAClique: skippedBroad,
+    note: 'Articles are edges, not nodes. War memorials and military profiles are not drawn.'
+  },
+  nodes: out,
+  links: edges|values
+}|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw -}}

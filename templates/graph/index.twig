@@ -1,0 +1,254 @@
+{% extends "_layouts/base" %}
+
+{#
+  Graph explorer. The archive's actual relation graph, not an idealised one.
+
+  Unlisted, like /admin-overview: not in the menu, not in any index, noindex on
+  the page. The data comes from /graph/data as one JSON, computed server side,
+  so the page makes a single request rather than a query per node.
+
+  d3 is loaded from cdnjs for its force simulation. The standalone d3-force
+  build is not served there, so this is the full bundle; nothing else is loaded
+  and everything drawn here is hand-written SVG.
+
+  Articles are edges. That is the whole idea: an article is the thing that
+  connects one subject to another, so two subjects of the same piece are joined
+  and the article's title is what the edge is called.
+#}
+
+{% set metaTitle = 'Graph explorer' %}
+{% set metaDescription = 'The archive relation graph. Unlisted.' %}
+
+{% block head %}
+  <meta name="robots" content="noindex,nofollow">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"
+          integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  {% css %}
+  body{background:#0E1730}
+  .gwrap{position:fixed;inset:0;top:0;display:flex;flex-direction:column}
+  .gbar{background:#17254C;border-bottom:1px solid rgba(196,160,49,.28);padding:10px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;z-index:5}
+  .gbar h1{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;color:#fff;margin:0}
+  .gbar .st{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.09em;color:#C4A031}
+  .gbar label{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:7px}
+  .gbar select,.gbar input{font:inherit;font-size:13.5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff;padding:6px 10px;font-family:'Public Sans',sans-serif}
+  .gbar input::placeholder{color:rgba(255,255,255,.4)}
+  .gbar .right{margin-left:auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .key{display:flex;gap:12px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.72)}
+  .key i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  .key span{cursor:pointer}
+  .key span.off{opacity:.3}
+  #stage{flex:1;min-height:0}
+  svg{width:100%;height:100%;display:block;cursor:grab}
+  svg:active{cursor:grabbing}
+  .lnk{stroke:#6E7FA6;stroke-opacity:.30}
+  .lnk.direct{stroke:#C4A031;stroke-opacity:.55}
+  .nd{cursor:pointer;stroke:#0E1730;stroke-width:1.2}
+  .nd.dim{opacity:.10}
+  .nd.hit{stroke:#fff;stroke-width:2.4}
+  .lbl{font-family:'Jost',sans-serif;font-size:10.5px;fill:rgba(255,255,255,.82);pointer-events:none;paint-order:stroke;stroke:#0E1730;stroke-width:3px;stroke-linejoin:round}
+  .tip{position:fixed;pointer-events:none;background:#fff;border:1px solid #C4A031;padding:7px 11px;font-size:13px;color:#17254C;z-index:20;max-width:280px;line-height:1.45;display:none}
+  .tip b{font-family:'Playfair Display',serif;font-weight:500;display:block;font-size:15px}
+  .tip i{font-style:normal;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#7A5C1B}
+  .note{position:fixed;left:20px;bottom:16px;font-size:12px;color:rgba(255,255,255,.5);max-width:44ch;line-height:1.6;z-index:5}
+  .scv-hdr,.scv-footer,.scv-top{display:none!important}
+  {% endcss %}
+{% endblock %}
+
+{% block content %}
+<div class="gwrap">
+  <div class="gbar">
+    <h1>Graph explorer</h1>
+    <span class="st" id="stat">loading…</span>
+    <label>Show
+      <select id="type">
+        <option value="">everything</option>
+        <option value="persons">people</option>
+        <option value="places">places</option>
+        <option value="organizations">organizations</option>
+        <option value="groups">groups</option>
+        <option value="events">events</option>
+        <option value="collections">collections</option>
+      </select>
+    </label>
+    <label>Find <input type="search" id="q" placeholder="a name" size="18"></label>
+    <div class="right"><div class="key" id="key"></div></div>
+  </div>
+  <div id="stage"><svg id="svg"></svg></div>
+</div>
+<div class="tip" id="tip"></div>
+<p class="note" id="note"></p>
+
+{% js %}
+(function () {
+  var COLOUR = {
+    persons: '#FDF7EA', places: '#5FB08A', organizations: '#C4A031',
+    groups: '#8FA8CF', events: '#D9705F', collections: '#7FD1C4'
+  };
+  var LABEL = {
+    persons: 'people', places: 'places', organizations: 'organizations',
+    groups: 'groups', events: 'events', collections: 'collections'
+  };
+
+  var svg = d3.select('#svg'), tip = document.getElementById('tip');
+  var gLink, gNode, gLabel, sim, nodes = [], links = [], hidden = {};
+
+  function size(d) { return 4 + Math.sqrt(d.degree) * 2.6; }
+
+  fetch('/graph/data?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(start)
+    .catch(function () { document.getElementById('stat').textContent = 'could not load the graph data'; });
+
+  function start(data) {
+    nodes = data.nodes;
+    links = data.links.map(function (l) { return { source: l.source, target: l.target, via: l.via, label: l.label }; });
+
+    document.getElementById('stat').textContent =
+      data.meta.nodes + ' nodes · ' + data.meta.edges + ' edges · ' + data.meta.isolated + ' with no connection at all';
+    document.getElementById('note').textContent =
+      'Articles are edges, not nodes: two subjects of one piece are joined and the edge is that article. ' +
+      'Gold edges are relations recorded directly on a record. ' + data.meta.isolated +
+      ' of ' + data.meta.nodes + ' nodes sit alone, which is the archive as it is until the relation review runs.';
+
+    var counts = {};
+    nodes.forEach(function (n) { counts[n.type] = (counts[n.type] || 0) + 1; });
+    document.getElementById('key').innerHTML = Object.keys(COLOUR).map(function (t) {
+      return '<span data-t="' + t + '"><i style="background:' + COLOUR[t] + '"></i>' +
+             LABEL[t] + ' ' + (counts[t] || 0) + '</span>';
+    }).join('');
+    document.querySelectorAll('.key span').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var t = el.dataset.t;
+        hidden[t] = !hidden[t];
+        el.classList.toggle('off', !!hidden[t]);
+        draw();
+      });
+    });
+
+    root = svg.append('g');
+    zoom = d3.zoom().scaleExtent([0.15, 6]).on('zoom', function (ev) { root.attr('transform', ev.transform); });
+    svg.call(zoom);
+    gLink = root.append('g');
+    gNode = root.append('g');
+    gLabel = root.append('g');
+
+    /* Spread hard. The interesting thing about this graph today is how much of
+       it is not connected, and a tight ball hides that. */
+    sim = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(function (d) { return d.id; }).distance(95).strength(0.30))
+      .force('charge', d3.forceManyBody().strength(-520).distanceMax(900))
+      .force('collide', d3.forceCollide().radius(function (d) { return size(d) + 12; }).iterations(2))
+      .force('x', d3.forceX().strength(0.018))
+      .force('y', d3.forceY().strength(0.018));
+
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+    sim.on('tick', tick);
+    sim.on('end', fit);
+    setTimeout(fit, 2600);
+  }
+
+  /* Frame whatever the simulation settled on, rather than trusting the centre
+     to be where the graph ended up. */
+  var zoom = null, root = null, fitted = false;
+  function fit() {
+    if (!root || !zoom || fitted || !nodes.length) { return; }
+    var vis = nodes.filter(visibleNode).filter(function (d) { return isFinite(d.x) && isFinite(d.y); });
+    if (!vis.length) { return; }
+    var xs = vis.map(function (d) { return d.x; }), ys = vis.map(function (d) { return d.y; });
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+    var y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+    var st = document.getElementById('stage').getBoundingClientRect();
+    var w = Math.max(1, x1 - x0), h = Math.max(1, y1 - y0);
+    var k = Math.min(3, 0.86 / Math.max(w / st.width, h / st.height));
+    var cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+    fitted = true;
+    svg.transition().duration(600).call(zoom.transform,
+      d3.zoomIdentity.scale(k).translate(-cx, -cy));
+  }
+
+  function resize() {
+    var st = document.getElementById('stage').getBoundingClientRect();
+    svg.attr('viewBox', [-st.width / 2, -st.height / 2, st.width, st.height]);
+    if (sim) { sim.alpha(0.4).restart(); }
+  }
+
+  function visibleNode(d) {
+    var only = document.getElementById('type').value;
+    if (only) { return d.type === only; }
+    return !hidden[d.type];
+  }
+
+  function draw() {
+    var ln = links.filter(function (l) { return visibleNode(l.source) && visibleNode(l.target); });
+    var nd = nodes.filter(visibleNode);
+
+    gLink.selectAll('line').data(ln, function (l) { return l.source.id + '-' + l.target.id; })
+      .join('line').attr('class', function (l) { return 'lnk ' + l.via; })
+      .attr('stroke-width', function (l) { return l.via === 'direct' ? 1.5 : 1; });
+
+    gNode.selectAll('circle').data(nd, function (d) { return d.id; })
+      .join('circle')
+        .attr('class', 'nd')
+        .attr('r', size)
+        .attr('fill', function (d) { return COLOUR[d.type] || '#888'; })
+        .on('click', function (ev, d) { if (d.url) { window.open(d.url, '_blank', 'noopener'); } })
+        .on('mousemove', function (ev, d) {
+          tip.style.display = 'block';
+          tip.style.left = Math.min(ev.clientX + 14, window.innerWidth - 300) + 'px';
+          tip.style.top = (ev.clientY + 14) + 'px';
+          tip.innerHTML = '<b></b><i></i>';
+          tip.querySelector('b').textContent = d.name;
+          tip.querySelector('i').textContent = LABEL[d.type] + ' · ' +
+            (d.degree === 0 ? 'no relations' : d.degree + (d.degree === 1 ? ' relation' : ' relations'));
+        })
+        .on('mouseleave', function () { tip.style.display = 'none'; })
+        .call(d3.drag()
+          .on('start', function (ev, d) { if (!ev.active) { sim.alphaTarget(0.25).restart(); } d.fx = d.x; d.fy = d.y; })
+          .on('drag', function (ev, d) { d.fx = ev.x; d.fy = ev.y; })
+          .on('end', function (ev, d) { if (!ev.active) { sim.alphaTarget(0); } d.fx = null; d.fy = null; }));
+
+    /* Only the well-connected carry a label unasked; the rest would be a wall
+       of text at this density. */
+    gLabel.selectAll('text').data(nd.filter(function (d) { return d.degree >= 6; }), function (d) { return d.id; })
+      .join('text').attr('class', 'lbl').attr('dy', function (d) { return -size(d) - 4; })
+      .attr('text-anchor', 'middle').text(function (d) { return d.name; });
+
+    if (sim) { sim.nodes(nodes); sim.force('link').links(ln); sim.alpha(0.5).restart(); }
+    highlight();
+  }
+
+  function tick() {
+    gLink.selectAll('line')
+      .attr('x1', function (l) { return l.source.x; }).attr('y1', function (l) { return l.source.y; })
+      .attr('x2', function (l) { return l.target.x; }).attr('y2', function (l) { return l.target.y; });
+    gNode.selectAll('circle').attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; });
+    gLabel.selectAll('text').attr('x', function (d) { return d.x; }).attr('y', function (d) { return d.y; });
+  }
+
+  function highlight() {
+    var q = document.getElementById('q').value.trim().toLowerCase();
+    var hits = 0;
+    gNode.selectAll('circle')
+      .classed('dim', function (d) {
+        if (!q) { return false; }
+        var hit = d.name.toLowerCase().indexOf(q) !== -1;
+        if (hit) { hits++; }
+        return !hit;
+      })
+      .classed('hit', function (d) { return !!q && d.name.toLowerCase().indexOf(q) !== -1; });
+    gLabel.selectAll('text').attr('opacity', function (d) {
+      return !q || d.name.toLowerCase().indexOf(q) !== -1 ? 1 : 0.12;
+    });
+    if (q) {
+      document.getElementById('stat').textContent = hits + (hits === 1 ? ' node matches' : ' nodes match') + ' "' + q + '"';
+    }
+  }
+
+  document.getElementById('type').addEventListener('change', function () { fitted = false; draw(); setTimeout(fit, 1400); });
+  document.getElementById('q').addEventListener('input', highlight);
+}());
+{% endjs %}
+{% endblock %}

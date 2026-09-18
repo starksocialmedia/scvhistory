@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: built the graph explorer at /graph, unlisted like the overview. /graph/data computes the whole graph server side in three queries and the page fetches it once. Force-directed SVG with d3-force, node size by degree, colour by type, click to open the record, hover for name and relation count, a filter per type and a search that highlights by name.
+- Decisions: articles are edges rather than nodes, so two subjects of one piece are joined and the edge is that article; a collection sits in the same clique, which is what makes a series read as a cluster. War memorials and military profiles are not drawn, because each is a second record of a person the archive already has and drawing both would double the people. Edges are keyed low-high so a reciprocal pair counts once: persons and organizations point at each other through two different fields and that is one relationship. The layout spreads hard and frames itself after settling, because the interesting thing about this graph today is how much of it is not connected and a tight ball hides that.
+- Blockers: I put an invented SRI hash on the d3 script tag rather than computing one, so the browser blocked it and the page rendered empty. Replaced with the hash of the actual file. The standalone d3-force build is not served by cdnjs at any path I could find, so this is the full d3 bundle.
+- Result: 85 nodes, 172 edges, 28 with no connection at all. The del Valles are the dense centre the prose suggests: Ygnacio 13, Juventino 9, Antonio 7, del Valle Family 9. The Newhalls are thinner, Henry Mayo Newhall 11 but the family group only 1. Filtering to places alone draws 15 nodes and no edges: no place in the archive is related to another place.
+- Next: the relation review, then re-render this and compare
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: detect the married name the source states outright. export_entity_candidates.php reads "Barbara Sitzman (Mrs. Paul Cook)" and "Russell (nee Pearl Pardee)" out of body_text and emits them as stated_married_name pairs carrying the sentence and the page. The card presents them as fact rather than judgement, Same person keeps her own name and records the marriage in the same keystroke, and apply_entity_merges.php writes the merge and the spouse together.
 - Decisions: the pair is emitted even where a name is not in the extraction index, because that is the case that matters most: two of the four women are indexed only as their husband's name, and one husband is not indexed at all. Four separate defects had to be fixed to get the four pairs out cleanly: a name pattern that required every word capitalised dropped "Henry de Moss"; PREG_OFFSET_CAPTURE returns byte offsets and mb_substr sliced mid-character; splitting on a full stop cut every sentence at the "Mrs." it was about; and the same marriage written twice needed the fuller husband name to win.
 - Blockers: none. Both review screens were serving a cached JSON, so a re-export did not reach the browser; both now fetch with no-store, which would have bitten Nathan after every export.
