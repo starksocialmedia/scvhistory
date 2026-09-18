@@ -42,7 +42,7 @@
             {% set author = c.writtenBy.one() ?? null %}
             {% set era = c.historicalEra.one() ?? null %}
             <a class="scv-tile" href="{{ c.url }}">
-              <div class="scv-ph scv-ph--square">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ (c.title ?: c.slug)|slice(0,1)|upper }}</span>{% endif %}</div>
+              <div class="scv-ph scv-ph--wide">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ (c.title ?: c.slug)|slice(0,1)|upper }}</span>{% endif %}</div>
               <div class="scv-tilebody">
                 <h3>{{ c.title ?: c.slug }}</h3>
                 {% if author %}<div class="scv-tilemeta">{{ author.title }}</div>{% endif %}
