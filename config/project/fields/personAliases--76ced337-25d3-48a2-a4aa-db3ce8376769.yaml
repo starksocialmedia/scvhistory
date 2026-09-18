@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: personAliases
+instructions: 'Other spellings and forms this person appears under, one per line. Merged records add their titles here.'
+name: 'Other names'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 3
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
