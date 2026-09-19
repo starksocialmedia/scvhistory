@@ -35,11 +35,27 @@
 #}
 {% if images is defined and images|length %}
   {% css %}
-  .rec-inline{float:right;width:300px;margin:4px 0 20px 28px;max-width:45%}
+  .rec-inline{float:right;width:40%;margin:4px 0 22px 30px;clear:right}
+  .rec-inline button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;font:inherit;text-align:inherit}
   .rec-inline img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
+  .rec-inline button:hover img{border-color:#C4A031}
   .rec-inline figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.5;margin-top:8px}
   .rec-inline .cr{display:block;font-style:normal;font-size:12px;color:#5B6472;margin-top:3px}
-  @media(max-width:640px){.rec-inline{float:none;width:100%;max-width:none;margin:0 0 20px}}
+
+  {#- A picture too tall to sit beside a paragraph, and one whose paragraph is
+      too short to wrap around it, take the column instead of floating. A tall
+      portrait floated at 40% pushes text past the end of its own paragraph and
+      leaves a channel of white down the page. -#}
+  .rec-inline.full{float:none;width:100%;margin:26px 0}
+  .rec-inline.full figcaption{max-width:34em}
+
+  {#- Nothing structural may start beside a float. A heading, the signature
+      rule, the photographs and the foot of the piece all begin again at the
+      full width of the column. -#}
+  .rec-body h2,.rec-body h3,.rec-body h4,.rec-body hr,.rec-sig,.rec-photos,.rec-foot{clear:both}
+
+  {#- Below the point where 40% of the column stops being a usable picture. -#}
+  @media(max-width:700px){.rec-inline,.rec-inline.full{float:none;width:100%;margin:0 0 22px}}
   {% endcss %}
 {% endif %}
 {%- set imgs = images is defined ? images : [] -%}
@@ -83,7 +99,29 @@
     {%- set token = line matches '/^\\[image:\\d+\\]$/' ? line|replace({'[image:': '', ']': ''}) : null -%}
     {%- set asset = token and imgs[token - 1] is defined ? imgs[token - 1] : null -%}
     {%- if asset -%}
-      <figure class="rec-inline">
+      {#- Two reasons to take the whole column rather than float. A portrait
+          taller than it is wide by a fifth, because the text beside it runs out
+          long before the picture does. And a paragraph under about 260
+          characters, because there is not enough of it to wrap. Where the
+          dimensions are unknown the image floats, which is the common case. -#}
+      {%- set nextPara = '' -%}
+      {%- for j in 1..3 -%}
+        {%- set cand = lines[loop.parent.loop.index0 + j] is defined ? lines[loop.parent.loop.index0 + j]|trim : '' -%}
+        {%- if nextPara == '' and cand and not (cand matches '/^\[image:\d+\]$/') -%}
+          {%- set nextPara = cand -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- set tall = asset.height and asset.width and asset.height > asset.width * 1.2 -%}
+      {%- set thin = nextPara == '' or nextPara|striptags|length < 260 -%}
+      {#- A great many of the legacy images are 120px thumbnails standing in for
+          a full scan that was never fetched. Neither 40% of the column nor the
+          whole of it is a width one of those can carry, so nothing is ever
+          drawn wider than the pixels it actually has. A small image stays
+          floated whatever the paragraph does, because taking the column for a
+          120px picture is the worst of both. -#}
+      {%- set small = asset.width and asset.width < 300 -%}
+      <figure class="rec-inline{{ (tall or thin) and not small ? ' full' : '' }}"
+        {%- if asset.width %} style="max-width: {{ asset.width }}px{{ small ? '; width: ' ~ asset.width ~ 'px' : '' }}"{% endif %}>
         {#- The caption is photoCaptionExt, the field the asset carries for it,
             written from the legacy extraction by
             scripts/import/apply_extracted_captions.php.
@@ -105,7 +143,11 @@
         {%- set realTitle = (asset.title|trim and norm != stemNorm) ? asset.title|trim : '' -%}
         {%- set cap = asset.photoCaptionExt|default('')|trim ?: realTitle -%}
         {%- set credit = asset.photoCredit|default('')|trim -%}
-        <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}">
+        <button type="button" data-lightbox data-src="{{ asset.url }}"
+                data-caption="{{ cap }}" data-credit="{{ credit }}"
+                aria-label="{{ cap ? 'Open: ' ~ cap : 'Open the full image' }}">
+          <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
+        </button>
         {%- if cap or credit %}
         <figcaption>{{ cap }}{% if credit %}<span class="cr">{{ credit }}</span>{% endif %}</figcaption>
         {%- endif %}

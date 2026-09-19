@@ -351,6 +351,11 @@
   })();
   </script>
 
+  {#- One lightbox for every page. It used to be emitted by the PHOTOS section,
+      so a record without that section could not open an image at all and every
+      picture placed inline in the prose was a dead end. -#}
+  {% include '_partials/record/lightbox' ignore missing %}
+
   {#- The fix list's capture form. Renders nothing for anyone but a logged-in
       admin, and nothing at all until the fixes section exists. -#}
   {% include '_partials/fix-note' ignore missing %}

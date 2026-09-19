@@ -1,0 +1,61 @@
+{#
+  One lightbox for the whole site.
+
+  It used to live inside record/images.twig, which meant a record with no PHOTOS
+  section had no lightbox at all and an image placed inline in the prose could
+  not be opened. The dialog and its script are now included once from
+  _layouts/base.twig, and anything anywhere that carries data-lightbox opens it.
+
+  A control opts in with:
+    <button type="button" data-lightbox
+            data-src="..." data-caption="..." data-credit="...">
+
+  The script binds by delegation rather than by walking the buttons at load, so
+  a figure rendered by a partial that runs after this one still works, and so
+  does anything added to the page later.
+
+  No library. <dialog> does the modal, the backdrop and the escape key.
+#}
+{% css %}
+.rec-lb{border:0;padding:0;background:transparent;max-width:92vw;max-height:92vh}
+.rec-lb::backdrop{background:rgba(23,37,76,.94)}
+.rec-lb .inner{background:#fff;border-top:3px solid #C4A031;padding:16px}
+.rec-lb img{max-width:86vw;max-height:72vh;width:auto;height:auto;display:block;margin:0 auto}
+.rec-lb figcaption{font-size:14px;line-height:1.6;color:#2C2C2C;margin-top:12px;max-width:720px}
+.rec-lb .cr{display:block;font-size:12.5px;color:#5B6472;margin-top:4px}
+.rec-lb .close{position:absolute;top:8px;right:12px;background:none;border:0;font-size:26px;line-height:1;color:#5B6472;cursor:pointer}
+.rec-lb .close:hover{color:#7A5C1B}
+.rec-lb figcaption:empty{display:none}
+{% endcss %}
+
+<dialog class="rec-lb" id="recLightbox">
+  <div class="inner" style="position:relative">
+    <button type="button" class="close" aria-label="Close">&times;</button>
+    <figure style="margin:0">
+      <img id="recLbImg" src="" alt="">
+      <figcaption><span id="recLbCap"></span><span class="cr" id="recLbCredit"></span></figcaption>
+    </figure>
+  </div>
+</dialog>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var dlg = document.getElementById('recLightbox');
+  if (!dlg || typeof dlg.showModal !== 'function') { return; }
+  var img = document.getElementById('recLbImg'),
+      cap = document.getElementById('recLbCap'),
+      cr  = document.getElementById('recLbCredit');
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-lightbox]') : null;
+    if (!b || !b.dataset.src) { return; }
+    e.preventDefault();
+    img.src = b.dataset.src;
+    img.alt = b.dataset.caption || '';
+    cap.textContent = b.dataset.caption || '';
+    cr.textContent  = b.dataset.credit  || '';
+    dlg.showModal();
+  });
+  dlg.querySelector('.close').addEventListener('click', function(){ dlg.close(); });
+  dlg.addEventListener('click', function(e){ if (e.target === dlg) { dlg.close(); } });
+});
+</script>

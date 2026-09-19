@@ -12,6 +12,14 @@
   .ar-byline a{color:#17254C;text-decoration:none}
   .ar-byline a:hover{color:#7A5C1B}
 
+  /* The body was a flex column with a 22px gap, which read correctly and
+     silently disabled every float in it: a flex item does not float, so each
+     picture the prose placed inline took the full column instead of sitting
+     beside the text. Ordinary block flow, and the 22px kept as a margin. */
+  .ar .rec-body{display:block}
+  .ar .rec-body>p{margin:0 0 22px}
+  .ar .rec-body>p:last-child{margin-bottom:0}
+
   /* ── Hero ─────────────────────────────────────────────────────── */
   .ar-hero{margin:0 0 30px}
   .ar-hero img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
@@ -227,7 +235,7 @@
       <p style="font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.48; color: #17254C; margin: 34px 0 0; max-width: 34em; text-wrap: pretty">{{ lead }}</p>
     {% endif %}
 
-    <div class="rec-body" id="recText" style="max-width: 34em; margin-top: 30px; font-size: 17.5px; line-height: 1.78; display: flex; flex-direction: column; gap: 22px">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id } %}</div>
+    <div class="rec-body" id="recText" style="max-width: 34em; margin-top: 30px; font-size: 17.5px; line-height: 1.78">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id } %}</div>
 
     {% if author and year matches '/^[0-9]{4}$/' %}
       <div style="max-width: 34em; margin-top: 34px; display: flex; align-items: center; gap: 16px">
