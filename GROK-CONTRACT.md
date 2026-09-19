@@ -98,6 +98,15 @@ Output: `inventory/legacy/perkins.json`
       ],
       "communities_mentioned": ["Newhall", "Saugus"],
       "fine_print_raw": "",
+      "footnotes": [
+        {
+          "number": "1",
+          "text": "",
+          "resolution": "same_page|shared_notes_page|orphan",
+          "notes_page_url": ""
+        }
+      ],
+      "footnotes_notes_page_url": "",
       "needs_review": [
         { "reason": "", "detail": "" }
       ]
@@ -195,6 +204,32 @@ must not be strained.
 - `entity_index` counts reconcile with the per-page mention arrays
 - a short report: page count, entity counts, how many entities each promotion rule
   would select, and every distinct reason appearing in `needs_review`
+
+## Footnotes (`footnotes`, `footnotes_notes_page_url`)
+
+Recoverable footnote markers and note text. Do not invent note text. Keep
+`body_text` markers exactly as printed (do not strip superscripts).
+
+Resolutions:
+
+- `same_page` — note text recovered from a NOTES / Notes / `#notes` block on the
+  same page (e.g. Perkins RSF; lw2045 / lw2045b / lw2104). Omit
+  `notes_page_url` on the footnote object or leave it empty. Set page-level
+  `footnotes_notes_page_url` to `""`.
+- `shared_notes_page` — chapter markers link to a sibling `notes.html#N`
+  (Reynolds and Perkins series). Attach only notes the chapter references.
+  Set `notes_page_url` on each footnote and page-level
+  `footnotes_notes_page_url` to the absolute `https://` notes page URL.
+- `orphan` — a `<sup>[n]</sup>` (or similar) marker with no recoverable note
+  text on the page and no `notes.html` link. Record
+  `{ "number": "n", "text": "", "resolution": "orphan" }`. Never invent text.
+
+```json
+"footnotes": [
+  { "number": "1", "text": "", "resolution": "same_page|shared_notes_page|orphan", "notes_page_url": "" }
+],
+"footnotes_notes_page_url": ""
+```
 
 ## Related-reading sidebars (`links_out`)
 
