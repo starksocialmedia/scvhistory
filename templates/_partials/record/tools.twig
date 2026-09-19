@@ -21,90 +21,51 @@
 {% set source = text is defined and text ? text : (entry.body is defined ? entry.body : '') %}
 {% set words = source ? source|striptags|split(' ')|filter(w => w|trim)|length : 0 %}
 {% css %}
-/* One tools block. The meta line, Save / Print and the player used to be three
-   fragments stacked with their own spacing, which read as three unrelated
-   things above the prose. They are the record's tools, so they are one block
-   with one rule under it. */
-.rec-tools{border-bottom:1px solid #E2E4E8;margin:0 0 32px;padding:0 0 16px}
-.rec-tools-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;font-size:14px;color:#5B6472;padding:0 0 12px}
-.rec-tools .btns{margin-left:auto;display:flex;gap:10px}
-.rec-btn{background:#fff;border:1px solid #E2E4E8;font-family:'Jost',sans-serif;font-size:14px;color:#2C2C2C;padding:8px 14px;cursor:pointer}
-.rec-btn:hover{border-color:#C4A031}
-.rec-btn:focus-visible,.rec-play button:focus-visible,.rec-play .bar:focus-visible{outline:2px solid #7A5C1B;outline-offset:2px}
-.rec-btn.gold{background:#C4A031;border-color:#C4A031;font-weight:500;color:#17254C;padding:8px 16px}
-
-/* The player: one row, full width, nothing stacked. The band above and below
-   is gone; the block sits inside the tools rule rather than floating between
-   two margins of its own. */
-.rec-play{display:none;align-items:center;gap:14px;background:#FDF7EA;border:1px solid #EFE6D0;border-left:3px solid #C4A031;padding:9px 14px}
-.rec-play.on{display:flex}
-.rec-play .lab{flex:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B}
-
-/* Smaller than it was, and still the circle. */
-.rec-play button.pp{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid #C4A031;background:#fff;color:#7A5C1B;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .12s,color .12s}
-.rec-play button.pp:hover{background:#C4A031;color:#17254C}
-.rec-play button.pp svg{display:block}
-
-/* Weight enough to see: a cream track with a gold fill, and a hover state so
-   it reads as something you can click rather than as decoration. */
-.rec-play .bar{flex:1;min-width:120px;height:10px;background:#F5ECD6;border:1px solid #E7D9AE;border-radius:5px;padding:0;cursor:pointer;position:relative;overflow:hidden;transition:border-color .12s}
-.rec-play .bar:hover{border-color:#C4A031}
-.rec-play .bar .fill{display:block;height:100%;width:0;background:#C4A031;transition:width .18s linear}
+/* Only what cannot be an inline style: the hover states, the focus ring and
+   the speaking highlight. Everything else is inline, reproduced from
+   design/article-source.html. */
+.rec-tools-btn:hover{border-color:#C4A031}
+.rec-listen:hover{background:#C4A031;color:#17254C}
+.rec-tools-btn:focus-visible,.rec-listen:focus-visible,.rec-play button:focus-visible,.rec-play .bar:focus-visible{outline:2px solid #7A5C1B;outline-offset:2px}
 .rec-play .bar:hover .fill{background:#B3902A}
-
-/* Inside the row, in the mono face, small. */
-.rec-play .time{flex:none;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:#7A5C1B;font-variant-numeric:tabular-nums;white-space:nowrap}
-
-/* One segmented pill with dividers, not four boxes. */
-.rec-play .speed{flex:none;display:flex;border:1px solid #DCC98F;border-radius:3px;overflow:hidden;background:#fff}
-.rec-play .speed button{border:0;border-left:1px solid #E7D9AE;background:transparent;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.02em;color:#7A5C1B;padding:5px 9px;cursor:pointer;line-height:1.2}
-.rec-play .speed button:first-child{border-left:0}
-.rec-play .speed button:hover{background:#FDF7EA}
-.rec-play .speed button[aria-pressed="true"]{background:#17254C;color:#fff}
-.rec-play .speed button[aria-pressed="true"]:hover{background:#17254C}
-
-/* Narrow: the bar takes its own line so nothing is squeezed to nothing, but
-   the row order is unchanged. */
-@media(max-width:620px){
-  .rec-play{flex-wrap:wrap;gap:10px}
-  .rec-play .bar{order:5;flex-basis:100%;min-width:0}
-}
-
 .rec-speaking{background:#FDF7EA;box-shadow:0 0 0 4px #FDF7EA}
 {% endcss %}
 
-<div class="rec-tools">
-  <div class="rec-tools-meta">
-    <div>
-      {%- if words > 20 -%}
-        {{ (words / 200)|round(0, 'ceil') }} min read &nbsp;·&nbsp; {{ words|number_format }} words &nbsp;·&nbsp;
-      {%- endif -%}
-      Updated {{ entry.dateUpdated|date('M j, Y') }}
-    </div>
-    <div class="btns">
-      <button type="button" class="rec-btn" onclick="window.print()">Save / Print</button>
-      <button type="button" class="rec-btn gold" id="recListen" hidden>Listen</button>
-    </div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; padding-bottom: 16px; border-bottom: 1px solid #E2E4E8">
+  {#- Listen is hidden until the script has found sentences to read, so a record
+      the browser cannot speak never offers the button. -#}
+  <button type="button" class="rec-listen" id="recListen" hidden aria-expanded="false" aria-controls="recPlayer"
+    style="display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #C4A031; color: #A9842B; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; padding: 8px 14px; cursor: pointer; flex: none">
+    <svg viewBox="0 0 12 12" width="10" height="10" fill="currentColor" aria-hidden="true"><polygon points="2,1 11,6 2,11"></polygon></svg>Listen
+  </button>
+  <div style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #5B6472; flex: 1; min-width: 190px">
+    {%- if words > 20 -%}{{ (words / 200)|round(0, 'ceil') }} min read<span style="color: #C4A031; padding: 0 8px">&middot;</span>{{ words|number_format }} words<span style="color: #C4A031; padding: 0 8px">&middot;</span>{%- endif -%}
+    Updated {{ entry.dateUpdated|date('M j, Y') }}
   </div>
+  <div style="display: flex; gap: 8px; flex: none">
+    <button type="button" class="rec-tools-btn" onclick="window.print()" style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer">Print</button>
+    <button type="button" class="rec-tools-btn" id="recShare" style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer">Share</button>
+  </div>
+</div>
 
-  {#- The player. Nothing here says what it is without the label: a circle, a
-      bar and four numbers is not self-explanatory. -#}
-  <div class="rec-play" id="recPlayer" role="group" aria-label="Read this record aloud">
-    <span class="lab" aria-hidden="true">Listen</span>
-    <button type="button" class="pp" id="recPP" aria-label="Play">
-      <svg width="12" height="14" viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path id="recPPIcon" d="M1 1l12 7-12 7z"/></svg>
-    </button>
-    <div class="bar" id="recBar" role="slider" tabindex="0"
-         aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <span class="fill" id="recFill"></span>
-    </div>
-    <div class="time"><span id="recElapsed">0:00</span>&thinsp;/&thinsp;<span id="recTotal">0:00</span></div>
-    <div class="speed" role="group" aria-label="Reading speed">
-      <button type="button" data-rate="0.8" aria-pressed="false">0.8&times;</button>
-      <button type="button" data-rate="1" aria-pressed="true">1&times;</button>
-      <button type="button" data-rate="1.25" aria-pressed="false">1.25&times;</button>
-      <button type="button" data-rate="1.5" aria-pressed="false">1.5&times;</button>
-    </div>
+{#- The player, hidden until Listen is pressed. It used to be always visible,
+    which put the heaviest control on the page above the prose. -#}
+<div class="rec-play" id="recPlayer" role="group" aria-label="Read this record aloud" hidden
+  style="background: #FDF7EA; border: 1px solid #EFE6D0; border-left: 3px solid #C4A031; padding: 14px 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 18px">
+  <button type="button" class="pp" id="recPP" aria-label="Play"
+    style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid #C4A031; background: #fff; color: #A9842B; cursor: pointer; flex: none; display: flex; align-items: center; justify-content: center; padding: 0">
+    <svg viewBox="0 0 12 12" width="11" height="11" fill="currentColor" aria-hidden="true"><polygon id="recPPIcon" points="2,1 11,6 2,11"></polygon></svg>
+  </button>
+  <div class="bar" id="recBar" role="slider" tabindex="0" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+    style="flex: 1; min-width: 140px; height: 4px; background: #EFE6D0; border: 0; padding: 0; cursor: pointer; position: relative">
+    <span class="fill" id="recFill" style="display: block; width: 0; height: 4px; background: #C4A031"></span>
+  </div>
+  <div style="font-family: ui-monospace, monospace; font-size: 12.5px; color: #5B6472"><span id="recElapsed">0:00</span> / <span id="recTotal">0:00</span></div>
+  <div class="speed" role="group" aria-label="Reading speed" style="display: flex; gap: 5px; font-family: 'Jost', sans-serif; font-size: 12.5px">
+    <button type="button" data-rate="0.8" aria-pressed="false" style="border: 1px solid #E8E0CC; background: #fff; padding: 4px 8px; color: #5B6472; cursor: pointer">0.8&times;</button>
+    <button type="button" data-rate="1" aria-pressed="true" style="border: 1px solid #17254C; background: #17254C; padding: 4px 8px; color: #fff; cursor: pointer">1&times;</button>
+    <button type="button" data-rate="1.25" aria-pressed="false" style="border: 1px solid #E8E0CC; background: #fff; padding: 4px 8px; color: #5B6472; cursor: pointer">1.25&times;</button>
+    <button type="button" data-rate="1.5" aria-pressed="false" style="border: 1px solid #E8E0CC; background: #fff; padding: 4px 8px; color: #5B6472; cursor: pointer">1.5&times;</button>
   </div>
 </div>
 
@@ -214,8 +175,17 @@ document.addEventListener('DOMContentLoaded', function(){
   })();
   if (!sentences.length) { return; }
 
-  if (listen) { listen.remove(); }
-  player.classList.add('on');
+  /* The player is offered, not shown. Listen reveals it and plays; pressing it
+     again hides it and stops. */
+  if (listen) {
+    listen.hidden = false;
+    listen.addEventListener('click', function () {
+      var open = !player.hidden;
+      if (open) { if (playing) { pause(); } player.hidden = true; }
+      else { player.hidden = false; if (!playing) { play(); } }
+      listen.setAttribute('aria-expanded', String(!open));
+    });
+  }
 
   /* Progress model.
 
@@ -382,6 +352,22 @@ document.addEventListener('DOMContentLoaded', function(){
 
   pp.addEventListener('click', function(){ playing ? pause() : play(); });
 
+  /* Share: the browser's own sheet where there is one, the clipboard where
+     there is not, and the button says which happened. */
+  var share = document.getElementById('recShare');
+  if (share) {
+    share.addEventListener('click', function(){
+      var data = { title: document.title, url: location.href };
+      if (navigator.share) { navigator.share(data).catch(function(){}); return; }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(location.href).then(function(){
+          var was = share.textContent; share.textContent = 'Link copied';
+          setTimeout(function(){ share.textContent = was; }, 1600);
+        });
+      }
+    });
+  }
+
   function pctFrom(e){
     var r = bar.getBoundingClientRect();
     return Math.min(1, Math.max(0, ((e.clientX !== undefined ? e.clientX : 0) - r.left) / r.width));
@@ -400,7 +386,13 @@ document.addEventListener('DOMContentLoaded', function(){
   player.querySelectorAll('.speed button').forEach(function(b){
     b.addEventListener('click', function(){
       rate = parseFloat(b.dataset.rate);
-      player.querySelectorAll('.speed button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      player.querySelectorAll('.speed button').forEach(function(x){
+        var on = x === b;
+        x.setAttribute('aria-pressed', String(on));
+        x.style.background = on ? '#17254C' : '#fff';
+        x.style.borderColor = on ? '#17254C' : '#E8E0CC';
+        x.style.color = on ? '#fff' : '#5B6472';
+      });
       holdTotal();
       if (playing) { speechSynthesis.cancel(); startedAt = Date.now(); speak(idx); }
       paint();

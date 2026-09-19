@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: rebuilt templates/articles/_entry.twig from design/article-source.html, with the tools row and player reworked to match and the fix button restyled. Report at web/review/article-design-reproduction.md.
+- Decisions: inline styles kept rather than translated to classes, because that is how site-header.twig reproduces menu-source.html and the design file says to reproduce the inline styles precisely. The lead falls back from subheadline to the first paragraph promoted, and where it is promoted the body starts at the second paragraph so the same words are not read twice. The cite box keeps its existing partial rather than being rebuilt to the design's markup, because its JavaScript is shared with eleven other record templates that are not being redesigned.
+- Blockers: none. The account menu and the Save button are left out entirely as placeholders.
+- Result: the design's own illustrative numbers come out as live values on chapter 9: YOU ARE ON 11 OF 80, 14%, 11 items, the gap labels 4 earlier articles and 63 more articles, and the legacy path. Article column 760px, sidebar 344px, body 595px at 34em. Listen toggles the player and its aria-expanded follows. check_render.php reports no failures.
+- Next: whether the cite box should be forked to the design's markup or the shared partial changed for every record type
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: reconciled the uncertainty report's vocabulary, applied the bracketed BACK rule, added editorNotes with its box rendering, moved the listen player below the cite box on articles, and taught export_article_links.php to keep a reference whose target we do not hold. Full report at web/review/chapter-review-findings.md.
 - Decisions: the uncertainty report names what it found, so "a short trailing run of non-sentence lines" now reads "CONTAINING 1 image token". Bracketed BACK is the one rule that reaches past the head and the tail, and the header says so. editorNotes and the two webmaster fields coexist rather than migrating, because the extraction records a position and never a heading, so every migrated row would arrive untitled.
 - Blockers: two, both reported rather than worked around. The three scan credits cannot move to creditRaw because no entry type but photograph has that field, so it is a schema decision. And chapter 6's cross-references are not in links_out at all, so the exporter cannot reach them; that is a gap for Grok.

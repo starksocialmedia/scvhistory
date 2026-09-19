@@ -21,12 +21,12 @@
   {% set aboutId = (entry is defined and entry and entry.id) ? entry.id : null %}
 
   {% css %}
-  .fixw{position:fixed;right:18px;bottom:18px;z-index:60;font-family:'Jost',sans-serif}
-  .fixw summary{list-style:none;cursor:pointer;background:#17254C;color:#fff;border:0;
-    padding:9px 15px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-    box-shadow:0 2px 10px rgba(0,0,0,.22);display:inline-block}
+  .fixw{position:fixed;right:20px;bottom:20px;z-index:30;font-family:'Jost',sans-serif}
+  .fixw summary{list-style:none;cursor:pointer;background:#17254C;border:1px solid #C4A031;color:#fff;
+    font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;padding:11px 17px;
+    display:inline-block}
   .fixw summary::-webkit-details-marker{display:none}
-  .fixw summary:hover{background:#243a73}
+  .fixw summary:hover{background:#22346B}
   .fixw[open] summary{background:#C4A031;color:#17254C}
   .fixw form{background:#fff;border:1px solid #E2E4E8;box-shadow:0 6px 26px rgba(0,0,0,.2);
     padding:14px;width:330px;margin-top:8px}
@@ -41,7 +41,7 @@
   {% endcss %}
 
   <details class="fixw">
-    <summary>Note a fix</summary>
+    <summary>NOTE A FIX</summary>
     <form method="post" accept-charset="UTF-8">
       {{ csrfInput() }}
       {{ actionInput('entries/save-entry') }}

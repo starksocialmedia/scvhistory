@@ -100,24 +100,25 @@
 
 {% block content %}
 {#
-  Article record, built to the approved layout of the Reynolds Prologue page.
+  Article record.
 
-  Notes on what the data does and does not carry:
-  - No tags field exists anywhere in this Craft install, so the TAGS block in
-    the design has nothing to render and is left out. Communities and the
-    historical period are the chips in the band.
-  - What featuredImage means depends on whether the article is in a collection.
-    A collection article's featured image is a title card with the headline
-    lettered into it, so rendering it in the body would print the headline
-    twice; there it is the social and index image only, feeding og:image,
-    twitter:image, the articles index thumbnail and the collection contents
-    thumbnail. A standalone article's featured image is a real photograph, so
-    it still opens the body as the hero figure with its caption.
-  - bandImage washes behind the band in either case. There is no fallback from
-    bandImage to featuredImage, because that would put a title card back in the
-    band on exactly the articles this avoids.
-  - Prev and next come from the collection's articlesInCollection order, which
-    is the order the chapter list uses too, so the two always agree.
+  Markup, inline styles and structure are reproduced from
+  design/article-source.html, which governs appearance. Data comes from the
+  record. sc-for and sc-if are replaced by Twig; the illustrative numbers in the
+  design are live values here.
+
+  Two things in the design are placeholders and are deliberately absent: the
+  account menu in the header, and the Save button in the tools row.
+
+  What the data does and does not carry:
+  - No tags field exists in this install. The chips are the historical era,
+    outlined gold, and the communities, solid navy, as drawn.
+  - featuredImage on a collection article is a title card with the headline
+    lettered into it, so it never opens the body; it feeds og:image and the
+    index thumbnails only. bandImage washes behind the band, with no fallback
+    from one to the other.
+  - Prev and next come from the collection's own order, which the chapter
+    window uses too, so the two always agree.
 #}
 {% set F = {} %}
 {% for h in ['body','subheadline','originalPublishDate','originallyPublishedTitle','sourceLine',
@@ -130,9 +131,8 @@
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 
 {#- The annotations table, read through the layout rather than with "is
-    defined". On an entry, someHandle is defined answers true for a field the
-    entry type does not have and then throws when it is read, which is exactly
-    what happens before add_editor_notes_field.php has been run. -#}
+    defined", which answers true for a field the entry type does not have and
+    then throws when it is read. -#}
 {% set edNotes = [] %}
 {% for f in entry.fieldLayout.customFields %}
   {% if f.handle == 'editorNotes' %}{% set edNotes = entry.editorNotes ?? [] %}{% endif %}
@@ -140,15 +140,6 @@
 
 {% set collection = entry.partOfCollection.one() ?? null %}
 
-{# Band artwork: this article's own bandImage, then the bandImage of the
-   collection it belongs to, then nothing. A Perkins chapter therefore wears the
-   Perkins band and a Reynolds chapter the Reynolds band, while a standalone
-   article with no artwork stays plain cream. There is no fallback to
-   featuredImage at either step; those are title cards with the headline
-   lettered into them.
-
-   The field-layout check is the only reliable test: a custom field reads as
-   defined on an element whose type does not have it, then throws when read. #}
 {% set bandImg = null %}
 {% for el in [entry, collection]|filter(x => x) %}
   {% if bandImg is null %}
@@ -160,19 +151,14 @@
   {% endif %}
 {% endfor %}
 
-{# The body hero is for standalone articles only. See the note above. #}
-{% set hero = null %}
-{% if not collection %}
-  {% set hero = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
-  {% set hero = hero ?? (recImages|length ? recImages|first : null) %}
-{% endif %}
 {% set author = entry.writtenBy.one() ?? null %}
 {% set editor = entry.editedBy.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
-{% set periods = entry.historicalPeriod.all() %}
 {% set era = entry.historicalEra.one() ?? null %}
+{% set periods = entry.historicalPeriod.all() %}
 {% set people = entry.subjectPerson.all() %}
 {% set publishers = entry.publishedBy.all() %}
+{% set year = F.originalPublishDate ? F.originalPublishDate|slice(-4) : '' %}
 
 {% set chapters = collection
   ? (collection.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: collection, field: 'partOfCollection' }).status(null).all())
@@ -182,228 +168,245 @@
 {% set prev = idx is not null and idx > 0 ? chapters[idx - 1] : null %}
 {% set next = idx is not null and idx < (chapters|length - 1) ? chapters[idx + 1] : null %}
 
-{% set year = F.originalPublishDate ? F.originalPublishDate|slice(-4) : '' %}
-{% set signoff = (year matches '/^\\d{4}$/') and author %}
-
-{% macro pn(prev, next) %}
-  {% if prev or next %}
-    <nav class="ar-pn{{ after is defined and after ? ' after' : '' }}">
-      <div>{% if prev %}<span class="l">&larr; PREVIOUS</span><a href="{{ prev.url }}">{{ prev.title ?: prev.slug }}</a>{% endif %}</div>
-      <div class="nx">{% if next %}<span class="l">NEXT &rarr;</span><a href="{{ next.url }}">{{ next.title ?: next.slug }}</a>{% endif %}</div>
-    </nav>
+{#- The lead. subheadline where one exists, else the first paragraph promoted
+    out of the body, else nothing. Promoting means the body starts at the
+    second paragraph, or the same words would be read twice. -#}
+{% set bodyText = F.body %}
+{% set lead = F.subheadline %}
+{% if lead == '' and bodyText %}
+  {% set paras = bodyText|split('\n\n')|filter(p => p|trim != '')|values %}
+  {% if paras|length > 1 %}
+    {% set lead = paras|first|striptags|trim %}
+    {% set bodyText = paras|slice(1)|join('\n\n') %}
   {% endif %}
-{% endmacro %}
-{% import _self as ui %}
+{% endif %}
 
+{% set words = F.body ? F.body|striptags|split(' ')|filter(w => w|trim)|length : 0 %}
+{% set media = recImages|merge(recDocs) %}
 
-<div class="rec ar{{ bandImg ? ' ar-hasband' : '' }}">
-  <section class="rec-band">
-    {% if bandImg %}
-      <div class="ar-bg" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
-      <div class="ar-bg2" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
+<section style="position: relative; overflow: hidden; background: #FDF7EA; border-bottom: 1px solid #E8E0CC">
+  {% if bandImg %}
+    <div style="position: absolute; inset: 0; background-image: url('{{ bandImg.url }}'); background-size: cover; background-position: right center"></div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(253,247,234,.97) 0%, rgba(253,247,234,.95) 44%, rgba(253,247,234,.5) 64%, rgba(253,247,234,0) 80%)"></div>
+  {% endif %}
+  <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 26px 40px 46px">
+    <div style="font-size: 13px; color: #5B6472; margin-bottom: 34px"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a>{% if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+    <div style="max-width: 560px">
+      <div style="display: flex; align-items: center; gap: 14px; font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .18em; color: #7E6118; margin-bottom: 18px">
+        <span>ARTICLES</span>{% if era %}<span style="width: 22px; height: 1px; background: #C4A031"></span><span>{{ era.title|upper }}</span>{% endif %}
+      </div>
+      <h1 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(36px, 4vw, 54px); line-height: 1.05; margin: 0; color: #17254C; text-wrap: balance">{{ entry.title ?: entry.slug }}</h1>
+      {% if collection %}<div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: #5B6472; margin-top: 14px"><a href="{{ collection.url }}" style="color: #5B6472">{{ collection.title }}</a></div>{% endif %}
+      {% if author or editor or F.originalPublishDate %}
+        <div style="font-size: 15px; color: #4A5260; margin-top: 16px">
+          {%- if author %}By <a href="{{ author.url }}" style="font-weight: 600">{{ author.title }}</a>{% endif -%}
+          {%- if editor %}{% if author %} &middot; {% endif %}Edited by <a href="{{ editor.url }}" style="font-weight: 600">{{ editor.title }}</a>{% endif -%}
+          {%- if F.originalPublishDate %}{% if author or editor %} &middot; {% endif %}{{ F.originalPublishDate }}{% endif -%}
+        </div>
+      {% endif %}
+      {% if periods|length or communities|length %}
+        <div style="display: flex; gap: 9px; flex-wrap: wrap; margin-top: 26px">
+          {% for p in periods %}<a href="{{ p.url ?? '#' }}" style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #7E6118; border: 1px solid #C4A031; background: rgba(255,255,255,.55); padding: 7px 13px">{{ p.title }}</a>{% endfor %}
+          {% for c in communities %}<a href="{{ c.url ?? url('communities/' ~ c.slug) }}" style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #fff; background: #17254C; padding: 7px 13px">{{ c.title }}</a>{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<main style="max-width: 1240px; margin: 0 auto; padding: 40px 40px 90px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 344px); gap: 56px; align-items: start">
+
+  <article style="min-width: 0">
+
+    {% include "_partials/record/note" with { text: noteTop } only %}
+    {% include "_partials/record/editor-notes" with { rows: edNotes, position: 'top' } only %}
+
+    {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText', words: words } only %}
+
+    {% if lead %}
+      <p style="font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.48; color: #17254C; margin: 34px 0 0; max-width: 34em; text-wrap: pretty">{{ lead }}</p>
     {% endif %}
-    <div class="rec-wrap">
-      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('articles') }}">Articles</a>{% if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="rec-head rec-head--noart">
-        <div>
-          <div class="rec-kick"><span class="a">ARTICLES</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
-          <h1>{{ entry.title ?: entry.slug }}</h1>
-          {% if collection %}<div class="ar-coll"><a href="{{ collection.url }}">{{ collection.title }}</a></div>{% endif %}
-          {% if F.subheadline %}<div class="rec-sub">{{ F.subheadline }}</div>{% endif %}
-          {% if author or editor or F.originalPublishDate %}
-            <p class="ar-byline">
-              {%- if author %}By <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
-              {%- if editor %}{% if author %} &middot; {% endif %}Edited by <a href="{{ editor.url }}">{{ editor.title }}</a>{% endif -%}
-              {%- if F.originalPublishDate %}{% if author or editor %} &middot; {% endif %}{{ F.originalPublishDate }}{% endif -%}
-            </p>
-          {% endif %}
-          {% if periods|length or communities|length %}
-            <div class="rec-chips">
-              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
-              {% for c in communities %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
-            </div>
-          {% endif %}
+
+    <div class="rec-body" id="recText" style="max-width: 34em; margin-top: 30px; font-size: 17.5px; line-height: 1.78; display: flex; flex-direction: column; gap: 22px">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id } %}</div>
+
+    {% if author and year matches '/^[0-9]{4}$/' %}
+      <div style="max-width: 34em; margin-top: 34px; display: flex; align-items: center; gap: 16px">
+        <div style="flex: 1; height: 1px; background: #E2E4E8"></div>
+        <div style="font-family: 'Playfair Display', serif; font-variant: small-caps; letter-spacing: .06em; font-size: 17px; color: #17254C; white-space: nowrap">{{ author.title }} &middot; {{ year }}</div>
+      </div>
+    {% endif %}
+
+    {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+    {% include "_partials/record/editor-notes" with { rows: edNotes, position: 'bottom' } only %}
+    {% include "_partials/record/fine-print" with { value: F.finePrint } only %}
+
+    {% if media|length %}
+      <div style="margin-top: 52px">
+        <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 3px solid #C4A031; padding-bottom: 12px">
+          <div style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .16em; color: #A9842B">PHOTOS &amp; DOCUMENTS</div>
+          <div style="flex: 1"></div>
+          <div style="font-size: 13px; color: #8A919E">{{ media|length }} item{{ media|length == 1 ? '' : 's' }}</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin-top: 20px">
+          {% for a in media %}
+            <a href="{{ a.url }}" data-scv-lightbox style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px; display: block">
+              <img src="{{ a.getUrl({ width: 400, height: 500, mode: 'crop' }) ?: a.url }}" alt="{{ a.title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
+            </a>
+          {% endfor %}
         </div>
       </div>
-    </div>
-  </section>
+    {% endif %}
 
-  <div class="rec-wrap">
-    <main class="rec-main">
-      <article style="min-width:0">
-        {% if hero %}
-          <figure class="ar-hero">
-            <img src="{{ hero.url }}" alt="{{ hero.alt ?: (hero.title ?: entry.title) }}">
-            {% if hero.title %}<figcaption>{{ hero.title }}</figcaption>{% endif %}
-          </figure>
+    {% if prev or next %}
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 52px">
+        {% if prev %}
+          <a href="{{ prev.url }}" style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px; color: inherit; display: block">
+            <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">&larr; PREVIOUS</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.25; color: #17254C; margin-top: 8px">{{ prev.title ?: prev.slug }}</div>
+          </a>
         {% endif %}
-
-        {{ ui.pn(prev, next) }}
-
-        {% include "_partials/record/note" with { text: noteTop } only %}
-        {% include "_partials/record/editor-notes" with { rows: edNotes, position: 'top' } only %}
-        {% if F.sourceLine %}<div class="rec-lede">{{ F.sourceLine }}</div>{% endif %}
-
-        {% if F.body %}
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages, linksFor: entry.id } %}</div>
+        {% if next %}
+          <a href="{{ next.url }}" style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px; color: inherit; display: block; text-align: right">
+            <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">NEXT &rarr;</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.25; color: #17254C; margin-top: 8px">{{ next.title ?: next.slug }}</div>
+          </a>
         {% endif %}
+      </div>
+    {% endif %}
 
-        {% if signoff %}
-          <div class="ar-signoff">{{ author.title }} &middot; {{ year }}</div>
-        {% endif %}
+    {% if author %}
+      {% set aimg = (author.featuredImage is defined and author.featuredImage) ? author.featuredImage.one() ?? null : null %}
+      <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 26px 28px 28px; margin-top: 44px">
+        <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 20px">ABOUT THE AUTHOR</div>
+        <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px; align-items: start">
+          <div style="width: 96px; height: 96px; border-radius: 50%; border: 2px solid #C4A031; overflow: hidden; position: relative">
+            {% if aimg %}<img src="{{ aimg.getUrl({ width: 192, height: 192, mode: 'crop', position: 'center-top' }) ?: aimg.url }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">{% endif %}
+          </div>
+          <div style="min-width: 0">
+            <div style="font-family: 'Playfair Display', serif; font-size: 25px; color: #17254C">{{ author.title }}</div>
+            {% if author.occupation is defined and author.occupation %}<div style="font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #7E6118; margin-top: 4px">{{ author.occupation }}</div>{% endif %}
+            {% set abio = (author.authorBio is defined and author.authorBio) ? author.authorBio : (author.body is defined ? author.body : '') %}
+            {% if abio|trim %}<div style="font-size: 16px; line-height: 1.72; color: #2C2C2C; margin: 14px 0 0; max-width: 46em">{% include "_partials/prose" with { text: abio } %}</div>{% endif %}
+            <a href="{{ author.url }}" style="display: inline-block; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .06em; color: #A9842B; border-bottom: 1px solid #C4A031; margin-top: 18px; padding-bottom: 2px">VIEW FULL PROFILE &rarr;</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </article>
 
-        {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
-        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
-        {% include "_partials/record/editor-notes" with { rows: edNotes, position: 'bottom' } only %}
-        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
-        {% if F.photoSources %}<p class="rec-fine">{{ F.photoSources }}</p>{% endif %}
-        {% include "_partials/record/fine-print" with { value: F.finePrint } only %}
+  <aside style="min-width: 0; position: sticky; top: 20px; display: flex; flex-direction: column; gap: 18px">
 
-        {% if prev or next %}
-          <nav class="ar-pn after">
-            <div>{% if prev %}<span class="l">&larr; PREVIOUS</span><a href="{{ prev.url }}">{{ prev.title ?: prev.slug }}</a>{% endif %}</div>
-            <div class="nx">{% if next %}<span class="l">NEXT &rarr;</span><a href="{{ next.url }}">{{ next.title ?: next.slug }}</a>{% endif %}</div>
-          </nav>
-        {% endif %}
+    {% if collection %}
+      {% set total = chapters|length %}
+      {% set pos = idx is not null ? idx + 1 : 0 %}
+      {% set pct = total ? (pos / total * 100)|round : 0 %}
+      {% set cAuthor = collection.writtenBy is defined ? collection.writtenBy.one() ?? null : null %}
+      {% set cBand = null %}
+      {% for f in collection.fieldLayout.customFields %}{% if f.handle == 'bandImage' %}{% set cBand = collection.bandImage.one() ?? null %}{% endif %}{% endfor %}
 
-        {% if author and author.authorBio is defined and author.authorBio %}
-          {% set aimg = (author.featuredImage is defined and author.featuredImage) ? author.featuredImage.one() ?? null : null %}
-          {% set ap = author.title|split(' ')|filter(x => x|trim) %}
-          <section class="ar-author">
-            <div class="lab">ABOUT THE AUTHOR</div>
-            <div class="in">
-              <div class="ph">{% if aimg %}<img src="{{ aimg.url }}" alt="">{% else %}{{ (ap|length > 1 ? ap|first|slice(0,1) ~ ap|last|slice(0,1) : author.title|slice(0,1))|upper }}{% endif %}</div>
-              <div style="flex:1;min-width:220px">
-                <div class="nm">{{ author.title }}</div>
-                {% if author.occupation is defined and author.occupation %}<div class="oc">{{ author.occupation }}</div>{% endif %}
-                <div class="bio">{% include "_partials/prose" with { text: author.authorBio } %}</div>
-                <a class="more" href="{{ author.url }}">View Full Profile &rarr;</a>
-              </div>
+      <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031">
+        <div style="padding: 18px 20px 16px; border-bottom: 1px solid #EFE6D0">
+          <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">PART OF COLLECTION</div>
+          {% if cBand %}
+            <a href="{{ collection.url }}" style="display: block; margin-top: 14px; border: 1px solid #E8E0CC; background: #fff; padding: 5px">
+              <img src="{{ cBand.url }}" alt="" style="width: 100%; height: 92px; object-fit: cover; object-position: 72% center; display: block">
+            </a>
+          {% endif %}
+          <a href="{{ collection.url }}" style="display: block; font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.25; color: #17254C; margin-top: 12px">{{ collection.title }}</a>
+          <div style="font-size: 13.5px; color: #5B6472; margin-top: 4px">{% if cAuthor %}{{ cAuthor.title }} &middot; {% endif %}{{ total }} article{{ total == 1 ? '' : 's' }}</div>
+          {% if pos %}
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 16px">
+              <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .12em; color: #7E6118">YOU ARE ON {{ pos }} OF {{ total }}</div>
+              <div style="font-family: ui-monospace, monospace; font-size: 11.5px; color: #8A919E">{{ pct }}%</div>
             </div>
-          </section>
-        {% endif %}
-      </article>
-
-      <aside class="rec-side">
-        {#- The tools block sits under the citation on an article, not above it.
-            It is the only template that puts it in the sidebar, where at 340px
-            the player is the heaviest thing on the page and was the first
-            thing the eye met. The citation is what a reader wants first. -#}
-        {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles', sidebar: true } only %}
-        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
-
-        <div class="rec-box">
-          <div class="rec-lab">SEARCH THE ARCHIVE</div>
-          <form class="ar-searchbar" action="{{ url('search') }}" method="get" role="search">
-            <label class="scv-sr" for="arq">Search the archive</label>
-            <input id="arq" type="search" name="q" placeholder="A name, a place, a year">
-            <button type="submit">Go</button>
-          </form>
+            <div style="height: 4px; background: #EFE6D0; margin-top: 7px"><div style="width: {{ pct }}%; height: 4px; background: #C4A031"></div></div>
+          {% endif %}
         </div>
 
-        {% include "_partials/record/source-link" with { el: entry } only %}
+        <div style="padding: 16px 20px 6px; display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
+          <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">IN THIS COLLECTION</div>
+          <a href="{{ collection.url }}" style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .06em">ALL {{ total }} &rarr;</a>
+        </div>
 
-        {% if collection %}
-          {% set cimg = (collection.featuredImage is defined and collection.featuredImage) ? collection.featuredImage.one() ?? null : null %}
-          <div class="rec-box ar-collcard">
-            <div class="rec-lab">PART OF COLLECTION</div>
-            {% if cimg %}<img src="{{ cimg.url }}" alt="">{% endif %}
-            <a href="{{ collection.url }}">{{ collection.title ?: collection.slug }}</a>
-          </div>
-        {% endif %}
+        {#- The window as drawn: the first, a gap label, the five either side of
+            the current one, another gap label, and the last. Under sixteen the
+            whole list fits and is more useful whole. -#}
+        {% set WINDOW = 5 %}
+        {% set showAll = total <= 15 or idx is null %}
+        {% set from = showAll ? 0 : max(0, idx - WINDOW) %}
+        {% set to = showAll ? total - 1 : min(total - 1, idx + WINDOW) %}
+        {% set shown = [] %}
+        {% if not showAll and from > 0 %}{% set shown = shown|merge([0]) %}{% endif %}
+        {% for i in from..to %}{% set shown = shown|merge([i]) %}{% endfor %}
+        {% if not showAll and to < total - 1 %}{% set shown = shown|merge([total - 1]) %}{% endif %}
 
-        {#- The neighbours in the series, not the series.
-
-            Reynolds has 80 chapters and the whole list made the sidebar
-            unusable: the thing a reader wants, where they are and what is
-            either side, was eight screens from the top. So: the five before
-            and the five after, with the first and the last kept because they
-            are the two a reader navigates to by name, and the lander for the
-            rest.
-
-            Under sixteen the whole list still fits and is more useful whole,
-            so a short collection is unchanged. -#}
-        {% if chapters|length %}
-          {% set total = chapters|length %}
-          {% set WINDOW = 5 %}
-          {% set showAll = total <= 15 or idx is null %}
-          {% set from = showAll ? 0 : max(0, idx - WINDOW) %}
-          {% set to = showAll ? total - 1 : min(total - 1, idx + WINDOW) %}
-
-          <div class="rec-box">
-            <div class="rec-lab">IN THIS COLLECTION</div>
-            <ul class="ar-chapters">
-              {%- set shown = [] -%}
-              {%- if not showAll and from > 0 -%}{% set shown = shown|merge([0]) %}{%- endif -%}
-              {%- for i in from..to -%}{% set shown = shown|merge([i]) %}{%- endfor -%}
-              {%- if not showAll and to < total - 1 -%}{% set shown = shown|merge([total - 1]) %}{%- endif -%}
-
-              {% set last = null %}
-              {% for i in shown %}
-                {% if last is not null and i > last + 1 %}
-                  <li class="gap"><span>&hellip; {{ i - last - 1 }} more</span></li>
-                {% endif %}
-                {% set c = chapters[i] %}
-                <li class="{{ c.id == entry.id ? 'on' : '' }}">
-                  {% if c.id == entry.id %}
-                    <span class="cur"><span class="n">{{ i + 1 }}</span><span>{{ c.title ?: c.slug }}</span></span>
-                  {% else %}
-                    <a href="{{ c.url }}"><span class="n">{{ i + 1 }}</span><span>{{ c.title ?: c.slug }}</span></a>
-                  {% endif %}
-                </li>
-                {% set last = i %}
-              {% endfor %}
-            </ul>
-            {% if not showAll %}
-              <a class="ar-allch" href="{{ collection.url }}">All {{ total }} in this collection &rarr;</a>
+        <div style="padding: 0 20px 8px; display: flex; flex-direction: column">
+          {% set last = null %}
+          {% for i in shown %}
+            {% if last is not null and i > last + 1 %}
+              {% set n = i - last - 1 %}
+              <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .1em; color: #A9A08A; padding: 9px 0 9px 36px; border-bottom: 1px solid #F1E9D6">{{ n }} {{ last == 0 ? 'earlier' : 'more' }} article{{ n == 1 ? '' : 's' }}</div>
             {% endif %}
+            {% set c = chapters[i] %}
+            {% set here = c.id == entry.id %}
+            <a href="{{ c.url }}" style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: baseline; color: inherit; padding: {{ here ? '11px 0' : '9px 0' }}; border-bottom: 1px solid #F1E9D6; border-left: 3px solid {{ here ? '#C4A031' : 'transparent' }}; background: {{ here ? '#FFFBF1' : 'transparent' }}; margin-left: -20px; padding-left: {{ here ? '17px' : '20px' }}">
+              <span style="font-family: ui-monospace, monospace; font-size: 11.5px; color: {{ here ? '#A9842B' : '#A9A08A' }}; text-align: right">{{ i + 1 }}</span>
+              <span style="font-family: {{ here ? "'Playfair Display', serif" : "'Public Sans', sans-serif" }}; font-size: {{ here ? '16px' : '14px' }}; line-height: 1.35; color: {{ here ? '#17254C' : '#4A5260' }}">{{ c.title ?: c.slug }}</span>
+            </a>
+            {% set last = i %}
+          {% endfor %}
+          <div style="display: flex; gap: 10px; padding: 12px 0 14px">
+            {% if prev %}<a href="{{ prev.url }}" style="flex: 1; text-align: center; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .06em; border: 1px solid #E8E0CC; background: #fff; padding: 9px 4px; color: #17254C">&larr; Previous</a>{% endif %}
+            {% if next %}<a href="{{ next.url }}" style="flex: 1; text-align: center; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .06em; border: 1px solid #C4A031; background: #C4A031; padding: 9px 4px; color: #17254C; font-weight: 600">Next &rarr;</a>{% endif %}
           </div>
-        {% endif %}
+        </div>
+      </div>
+    {% endif %}
 
-        {% if people|length %}
-          <div class="rec-box"><div class="rec-lab">PEOPLE IN THIS ARTICLE</div>
-            {% for p in people %}
-              {% set pimg = (p.featuredImage is defined and p.featuredImage) ? p.featuredImage.one() ?? null : null %}
-              {% set pp = p.title|split(' ')|filter(x => x|trim) %}
-              <a class="rec-person" href="{{ p.url }}">
-                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
-                <div style="min-width:0"><div class="n">{{ p.title }}</div>{% if p.occupation is defined and p.occupation %}<div class="r">{{ p.occupation }}</div>{% endif %}</div>
-              </a>
-            {% endfor %}
-          </div>
-        {% endif %}
-
-        {% include "_partials/record/publisher" with { orgs: publishers } only %}
-
-        {% set others = [
-          { lab: 'ORGANIZATIONS', key: 'ORG', rows: entry.subjectOrganization.all() },
-          { lab: 'GROUPS', key: 'GROUP', rows: entry.subjectGroup.all() },
-          { lab: 'PLACES', key: 'PLACE', rows: entry.depictsPlace.all() },
-          { lab: 'EVENTS', key: 'EVENT', rows: entry.articleEvents.all() },
-          { lab: 'RELATED ARTICLES', key: 'ARTICLE', rows: entry.relatedArticles.all() }
-        ]|filter(b => b.rows|length) %}
-        {% for b in others %}
-          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
-            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
-          </div>
+    {% if people|length %}
+      <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 20px">
+        <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 14px">PEOPLE IN THIS ARTICLE</div>
+        {% for p in people %}
+          {% set pimg = (p.featuredImage is defined and p.featuredImage) ? p.featuredImage.one() ?? null : null %}
+          <a href="{{ p.url }}" style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: center; color: inherit{{ not loop.first ? '; margin-top: 14px' : '' }}">
+            <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #C4A031; overflow: hidden; position: relative">
+              {% if pimg %}<img src="{{ pimg.getUrl({ width: 88, height: 88, mode: 'crop', position: 'center-top' }) ?: pimg.url }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">{% endif %}
+            </div>
+            <div style="min-width: 0">
+              <div style="font-family: 'Playfair Display', serif; font-size: 17px; color: #17254C">{{ p.title }}</div>
+              {% if p.occupation is defined and p.occupation %}<div style="font-size: 13px; color: #5B6472; margin-top: 1px">{{ p.occupation }}</div>{% endif %}
+            </div>
+          </a>
         {% endfor %}
+      </div>
+    {% endif %}
 
-        {% include "_partials/record/documents" with { docs: recDocs } only %}
+    {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles', sidebar: true } only %}
 
-        {% include "_partials/record/tags" with { el: entry } only %}
+    {#- Record facts, as drawn: the label column in small Jost, the value beside
+        it, then the legacy link and the legacy path in mono beneath. -#}
+    {% set facts = [] %}
+    {% if F.originalPublishDate %}{% set facts = facts|merge([{ k: 'PUBLISHED', v: F.originalPublishDate }]) %}{% endif %}
+    {% if F.originallyPublishedTitle %}{% set facts = facts|merge([{ k: 'AS PRINTED', v: F.originallyPublishedTitle }]) %}{% endif %}
+    {% if publishers|length %}{% set facts = facts|merge([{ k: 'PUBLISHER', v: publishers|map(o => o.title)|join('; ') }]) %}{% endif %}
+    {% if F.sourceLine %}{% set facts = facts|merge([{ k: 'SOURCE', v: F.sourceLine }]) %}{% endif %}
+    {% if era %}{% set facts = facts|merge([{ k: 'ERA', v: era.title }]) %}{% endif %}
+    {% set facts = facts|merge([{ k: 'UPDATED', v: entry.dateUpdated|date('M j, Y') }]) %}
 
-        {% set links = [] %}
-        {% if F.archiveUrl %}{% set links = links|merge([{u: F.archiveUrl, t: 'Archive.org'}]) %}{% endif %}
-        {# The legacy link moved to the top of the sidebar, in record/source-link.twig.
-           A reader comparing our version with Leon's was having to scroll past the
-           whole sidebar to reach it. It is not repeated here. #}
-        {% if links|length %}
-          <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
-            <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
-          </div>
-        {% endif %}
-      </aside>
-    </main>
-  </div>
-</div>
+    <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 14px">
+      <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 12px">RECORD</div>
+      {% for f in facts %}
+        <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; padding: 9px 0; border-bottom: 1px solid #F1F2F5; align-items: baseline">
+          <div style="font-family: 'Jost', sans-serif; font-size: 10.5px; letter-spacing: .12em; color: #8A919E">{{ f.k }}</div>
+          <div style="font-size: 14.5px; line-height: 1.5; color: #2C2C2C">{{ f.v }}</div>
+        </div>
+      {% endfor %}
+      {% if F.legacyUrl %}
+        {% set legacyHref = include('_partials/legacy-url', { value: F.legacyUrl })|trim %}
+        <a href="{{ legacyHref }}" target="_blank" rel="noopener" style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 0 4px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em">Read the original page <span>&nearr;</span></a>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; color: #9AA1AD; word-break: break-all; padding-bottom: 8px">{{ F.legacyUrl }}</div>
+      {% endif %}
+    </div>
+  </aside>
+</main>
 {% endblock %}
