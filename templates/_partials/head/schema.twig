@@ -53,6 +53,7 @@
 {% for h in ['fullName','birthDate','deathDate','burialPlace','birthplace','occupation','personAliases',
              'wikidataId','viafId','personWikipediaUrl','personGraveUrl','legacyUrl','sourcePath',
              'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','placeChlNumber','gnisId',
+             'scvhlNumber','nrhpReference','nrhpListedDate','placeScvhlCheckbox',
              'placeWikipediaUrl','placeChlUrl','placeScvhlUrl',
              'orgAddress','orgLat','orgLng','orgAliases','dateFounded','orgWebsite','orgWikipediaUrl',
              'groupAliases','groupDateStart','groupDateEnd','groupWebsite',
@@ -143,6 +144,11 @@
 {#- GNIS, the federal authority for the canyons, creeks, passes and stations
     that make up most of the place list, which Wikidata does not reach. -#}
 {% if V.gnisId ?? '' %}{% set sameAs = sameAs|merge(['https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' ~ V.gnisId]) %}{% endif %}
+{#- The National Register, whose reference number resolves to a record a scholar
+    can cite. A Santa Clarita Historic Landmark has no public register with a
+    per-landmark URL, so it is emitted as an identifier and not as a sameAs:
+    an identifier says which one it is without pretending to link somewhere. -#}
+{% if V.nrhpReference ?? '' %}{% set sameAs = sameAs|merge(['https://npgallery.nps.gov/GetAsset/' ~ V.nrhpReference ~ '_text']) %}{% endif %}
 {% set sameAs = sameAs|unique|values %}
 
 {% set alt = [] %}
@@ -206,6 +212,9 @@
     'homeLocation': communityNode
   } %}
 
+{#- A listing date belongs to the listing rather than to the ground, so it is
+    said as an award below instead of being smuggled into a date property of
+    the Place, which would claim the place itself dates from 1971. -#}
 {% elseif sec == 'places' %}
   {#- Numbers, not strings: a coordinate is a quantity. -#}
   {% set geo = (V.placeLat ?? '') and (V.placeLng ?? '')
@@ -220,8 +229,12 @@
     'sameAs': sameAs,
     'identifier': [
       (V.placeChlNumber ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'California Historical Landmark', 'value': V.placeChlNumber } : null,
-      (V.gnisId ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'GNIS', 'value': V.gnisId, 'url': 'https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' ~ V.gnisId } : null
+      (V.gnisId ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'GNIS', 'value': V.gnisId, 'url': 'https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' ~ V.gnisId } : null,
+      (V.scvhlNumber ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'Santa Clarita Historic Landmark', 'value': V.scvhlNumber } : null,
+      (V.nrhpReference ?? '') ? { '@type': 'PropertyValue', 'propertyID': 'NRHP Reference Number', 'value': V.nrhpReference, 'url': 'https://npgallery.nps.gov/GetAsset/' ~ V.nrhpReference ~ '_text' } : null
     ]|filter(v => v)|values,
+    'award': (V.nrhpReference ?? '') and (V.nrhpListedDate ?? '')
+        ? 'Listed on the National Register of Historic Places, ' ~ V.nrhpListedDate : null,
     'subjectOf': (N.placeArticles ?? [])|merge((N.placeEvents ?? []))
   } %}
 

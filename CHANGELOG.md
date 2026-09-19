@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: add_place_landmark_fields.php adds scvhlNumber, nrhpReference and nrhpListedDate to the place type, all plain text, beside placeChlNumber and gnisId. _partials/head/schema.twig reads all three: the NRHP reference goes into sameAs and identifier, the SCVHL number into identifier only, and the listed date is said as an award. recover_wp_landmarks.php walks the WordPress export onto the place records and then audits all 77 meta keys for anything with no home.
+- Decisions: the SCVHL number is an identifier and not a sameAs, because there is no public register with a per-landmark URL and a sameAs that links nowhere is a claim the archive cannot keep. The listed date is an award rather than a date property on the Place, which would say the ground itself dates from 1971.
+- Blockers: two corrections to the brief. placeScvhlCheckbox is not missing from Craft; it exists as a lightswitch named "Place SCV Landmark", on the Identity tab, alongside placeScvhlUrl. And all three place_scvhl_checkbox values in the export are "0", so nothing was dropped at import: the designation was never set in WordPress either, and Craft already matches it exactly. The import is still worth having, since it recovers two placeChlUrl values that genuinely did not land.
+- Result: 2 fields would be set, both placeChlUrl. Of 77 meta keys with a value, 6 have no home: four are all-zero WordPress toggles, and two carry real content that was lost, residence "Valencia, Ca" on Leon Worden and source "The Signal / Santa Clarita Valley Chamber of Commerce" on the Reynolds collection.
+- Next: Nathan runs add_place_landmark_fields.php then recover_wp_landmarks.php, and decides on residence and the collection source line
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: proposed place relationships from the coordinates, the community terms and the bodies. export_place_links.php writes web/review/place-links.json with the evidence for each pair, place-links.html is the review screen on the same pattern, apply_place_links.php writes the confirmed ones. Also wrote design/PLACE-SUCCESSION-PROPOSAL.md for precededBy and succeededBy, as a proposal rather than a build.
 - Decisions: a mention outranks proximity and proximity outranks a shared community, because somebody writing it down is evidence and nearness is not. The distance is reported on every pair whatever proposed it, since "these two are named together and are sixty-eight kilometres apart" is exactly what a reviewer should see. The succession proposal recommends storing one direction only, succeededBy, and deriving precededBy, which is the childOf lesson applied again.
 - Blockers: none. The review screen reads a suffixed localStorage key when loaded with ?test, so it can be driven without touching a real review.
