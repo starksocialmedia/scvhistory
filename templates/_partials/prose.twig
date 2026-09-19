@@ -3,7 +3,8 @@
 
   A line consisting only of [image:N] is replaced by a figure floated right at
   300px, where N is the 1-based position in the record's images. Caption comes
-  from the asset title, credit from its alt text. Images placed this way are
+  from photoCaptionExt, falling back to the title only when the title is not
+  just the filename; credit comes from photoCredit. Images placed this way are
   skipped by the Photos section, which reads the same tokens.
 
   A line with no letters in it, only punctuation or a bare number, rejoins the
@@ -83,21 +84,30 @@
     {%- set asset = token and imgs[token - 1] is defined ? imgs[token - 1] : null -%}
     {%- if asset -%}
       <figure class="rec-inline">
-        {#- Craft gives an untitled asset a title made from its filename, so
-            garcesbakersfield.jpg becomes "Garcesbakersfield". That is a
-            fallback, not a caption, and a filename presented as a caption on an
-            archive is worse than no caption at all. A title that matches the
-            filename once punctuation and case are removed is treated as absent.
+        {#- The caption is photoCaptionExt, the field the asset carries for it,
+            written from the legacy extraction by
+            scripts/import/apply_extracted_captions.php.
 
-            562 of the 568 assets are in that state today. The extraction holds
-            5,220 captions that have never been applied to them. -#}
+            Where that is empty the title is tried, but a title is only a
+            caption when someone set it. Craft names an untitled asset after its
+            own file, so garcesbakersfield.jpg becomes "Garcesbakersfield", and
+            a filename presented as a caption on an archive is worse than no
+            caption at all. A title matching the filename once punctuation and
+            case are removed is treated as absent and nothing is printed.
+
+            The credit is photoCredit. It used to be read from alt, which was
+            wrong even before the caption script began writing the caption into
+            alt for the screen reader: alt and the credit are different things
+            and the archive was printing one as the other. -#}
         {%- set stem = asset.filename|split('.')|slice(0, -1)|join('.') -%}
         {%- set norm = asset.title|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
         {%- set stemNorm = stem|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
         {%- set realTitle = (asset.title|trim and norm != stemNorm) ? asset.title|trim : '' -%}
-        <img src="{{ asset.url }}" alt="{{ asset.alt ?: realTitle }}">
-        {%- if realTitle or asset.alt %}
-        <figcaption>{{ realTitle }}{% if asset.alt and asset.alt != realTitle %}<span class="cr">{{ asset.alt }}</span>{% endif %}</figcaption>
+        {%- set cap = asset.photoCaptionExt|default('')|trim ?: realTitle -%}
+        {%- set credit = asset.photoCredit|default('')|trim -%}
+        <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}">
+        {%- if cap or credit %}
+        <figcaption>{{ cap }}{% if credit %}<span class="cr">{{ credit }}</span>{% endif %}</figcaption>
         {%- endif %}
       </figure>
     {%- elseif token -%}

@@ -50,10 +50,21 @@
   <div class="rule"></div>
   <div class="rec-lab">PHOTOS</div>
   <div class="grid">
+    {#- Caption from photoCaptionExt, the field the asset carries for it. The
+        title is only a caption when someone set one: Craft names an untitled
+        asset after its own file, and a filename under a photograph is worse
+        than no caption. Credit from photoCredit, not from alt, which is the
+        screen reader's text and not a credit line. -#}
     {% for a in shown %}
+      {%- set stem = a.filename|split('.')|slice(0, -1)|join('.') -%}
+      {%- set nrm = a.title|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
+      {%- set stemNrm = stem|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
+      {%- set realTitle = (a.title|trim and nrm != stemNrm) ? a.title|trim : '' -%}
+      {%- set cap = a.photoCaptionExt|default('')|trim ?: realTitle -%}
+      {%- set credit = a.photoCredit|default('')|trim -%}
       <button type="button" data-src="{{ a.url }}"
-              data-caption="{{ a.title }}" data-credit="{{ a.alt ?: '' }}">
-        <img src="{{ a.url }}" alt="{{ a.alt ?: a.title }}" loading="lazy">
+              data-caption="{{ cap }}" data-credit="{{ credit }}">
+        <img src="{{ a.url }}" alt="{{ a.alt ?: cap }}" loading="lazy">
       </button>
     {% endfor %}
   </div>
