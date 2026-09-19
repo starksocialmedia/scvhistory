@@ -1,0 +1,46 @@
+columnSuffix: null
+handle: hauntedStatus
+instructions: 'Whether a haunting has been reported at this site. The archive records the claim, not the phenomenon.'
+name: 'Reported haunted'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Not reported'
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - 'Reported haunted'
+        -
+          - value
+          - reported
+    -
+      __assoc__:
+        -
+          - label
+          - 'Local legend'
+        -
+          - value
+          - legend
+    -
+      __assoc__:
+        -
+          - label
+          - 'Claim investigated or disputed'
+        -
+          - value
+          - disputed
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

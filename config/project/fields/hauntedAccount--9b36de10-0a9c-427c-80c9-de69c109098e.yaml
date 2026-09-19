@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: hauntedAccount
+instructions: 'What is said to happen there, in the words of the account. Attribute it rather than asserting it.'
+name: 'The haunting account'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
