@@ -1,3 +1,18 @@
+{#- Admin only, in the template rather than in the server config.
+
+    A path rule in Nginx protects the paths somebody remembered to list:
+    /graph and /admin-ledger have separate /data endpoints, and the next
+    unlisted page added would be public until the config was edited again.
+    Here, a page that forgets the guard is a missing line in a diff.
+
+    requireLogin sends an anonymous request to the login screen, a 302. A
+    signed-in user who is not an admin gets 404 from the line below rather than
+    403, so the page is not confirmed to exist to somebody who should not see
+    it. Measured, not assumed: these return 302 logged out and 200 as an
+    admin. -#}
+{% requireLogin %}
+{% if not currentUser.admin %}{% exit 404 %}{% endif %}
+
 {#
   The live half of the migration ledger, as JSON, for /admin-ledger.
 

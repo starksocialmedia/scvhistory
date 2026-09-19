@@ -353,11 +353,7 @@
           </div>
         {% endif %}
 
-        {% if publishers|length %}
-          <div class="rec-box"><div class="rec-lab">PUBLISHED BY</div>
-            <div class="rec-rows">{% for o in publishers %}<div class="k">SOURCE</div><div class="v"><a href="{{ o.url }}">{{ o.title ?: o.slug }}</a></div>{% endfor %}</div>
-          </div>
-        {% endif %}
+        {% include "_partials/record/publisher" with { orgs: publishers } only %}
 
         {% set others = [
           { lab: 'ORGANIZATIONS', key: 'ORG', rows: entry.subjectOrganization.all() },

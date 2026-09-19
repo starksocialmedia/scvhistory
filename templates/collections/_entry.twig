@@ -106,8 +106,12 @@
           </div>
         {% endfor %}
 
+        {#- PUBLISHED BY left the label-and-link boxes and became the author
+            treatment, because the body that published a series is not a field
+            value. PART OF stays a row: a series is not a person. -#}
+        {% include "_partials/record/publisher" with { orgs: entry.publishedBy.all() } only %}
+
         {% set boxes = [
-          { lab: 'PUBLISHED BY', key: 'SOURCE', rows: entry.publishedBy.all() },
           { lab: 'PART OF', key: 'SERIES', rows: entry.collectionGroups.all() }
         ]|filter(b => b.rows|length) %}
         {% for b in boxes %}

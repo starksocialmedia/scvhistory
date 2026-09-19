@@ -187,8 +187,9 @@ The last line must find nothing, or a robots tag without `noindex`. If it says
 
 ## 5. What is reachable that should not be
 
-Measured against the live staging site on 19 September 2026. **The webroot is
-right**, which is the thing that mattered most. Nothing outside `web/` is served:
+Measured against the live staging site on 19 September 2026, then again after
+HTTP basic auth was put in front of it. **The webroot is right**, which is the
+thing that mattered most. Nothing outside `web/` is served:
 
 | URL | | |
 |---|---|---|
@@ -228,45 +229,81 @@ Block `/review/` before the next pull, not after.
 
 ### The block
 
-Two layers, because Cloudways puts Nginx in front of Apache and Nginx wins for
-static files. `.htaccess` alone will not stop `/review/ledger-index.json`.
+**`.htaccess` is not read.** Cloudways serves this stack with Nginx in front of
+Apache, and Nginx answers for a static file like `/review/ledger-index.json`
+without Apache ever seeing the request. The `<LocationMatch>` block in
+`web/.htaccess` is inert. It is left in place for a future host that does read
+it, and it is not the control here.
 
-**Nginx**, in the Cloudways panel under Application → Application Settings, or
-`~/conf/server.nginx`:
+The control is one Nginx location block.
+
+**Where it goes on a Cloudways PHP stack.** Each application has its own Nginx
+include, and the file to edit is:
+
+```
+Server
+/home/master/applications/<APP>/conf/server.nginx
+```
+
+`<APP>` is the application folder name, the one in the path to `public_html`.
+That file is included inside the `server { }` block for this application, so a
+bare `location` directive is what belongs in it, with no wrapper.
+
+Add:
 
 ```nginx
-location ^~ /review/ { deny all; return 404; }
+# The review screens, the built ledger index, the fidelity files and the
+# correspondence CSV. All of it is working material: legacy URLs, record
+# titles, reconciliation queues, and in the fidelity files the full text of
+# the archive. None of it is for the public.
+location ^~ /review/ {
+    deny all;
+    return 404;
+}
 ```
 
-**Apache**, in `web/.htaccess`, before the existing rewrite block:
+`^~` matters. Without it a later regex `location` for static files can win on a
+`.json` or `.csv` and serve the file anyway; `^~` stops Nginx considering
+regex locations at all once the prefix matches. `return 404` rather than `403`
+so the directory is not advertised.
 
-```apache
-<IfModule mod_authz_core.c>
-    <LocationMatch "^/review">
-        Require all denied
-    </LocationMatch>
-</IfModule>
+Then, from the panel, **Application → Application Settings → Restart Nginx**, or:
+
+```
+Server
+sudo service nginx reload
 ```
 
-**The four unlisted pages** are Craft templates, and a path rule is the wrong
-tool for them: `/graph/data` and `/admin-ledger/data` are separate paths, and a
-fifth page added later would be public until somebody remembered this file.
-Guard them in the templates, where a missing guard shows up in a diff.
+Cloudways also exposes this through **Application → Application Settings →
+Nginx Settings** in the panel, which writes the same file. Editing it there
+survives a Cloudways stack update; editing the file directly may not, so the
+panel is the safer of the two.
 
-At the top of `templates/admin-overview/index.twig`, `templates/graph/index.twig`,
-`templates/graph/data.twig`, `templates/admin-ledger/index.twig` and
-`templates/admin-ledger/data.twig`:
+### The admin pages are guarded in the template, and that has landed
+
+`/admin-overview`, `/graph`, `/graph/data`, `/admin-ledger`, `/admin-ledger/data`
+and `/admin-fixes` now carry, at the top of each template:
 
 ```twig
 {% requireLogin %}
 {% if not currentUser.admin %}{% exit 404 %}{% endif %}
 ```
 
-Tested locally on a throwaway template: a request with no session cookie gets
-404 rather than a redirect, because no front-end `loginPath` is configured. That
-is the better outcome, since it does not confirm the page exists. The browser
-fetches inside `/admin-ledger` carry the session cookie, so the data endpoints
-keep working for an admin and stop working for everyone else.
+Anonymous requests get 302 to the login screen; a signed-in non-admin gets 404
+rather than 403, so the page is not confirmed to exist to somebody who should
+not see it. `check_render.php` asserts the guard on all six, so a template that
+loses it fails the standing check rather than going quietly public.
+
+This lives in the code, so it holds whatever the server config says, and a
+seventh unlisted page that forgets the guard shows up as a missing line in a
+diff rather than as an open URL. The Nginx block above is still wanted for
+`/review/`, which is files rather than templates and cannot be guarded this way.
+
+**On the basic auth.** Staging currently answers 401 to everything including
+`/`, so the whole application sits behind HTTP basic auth. That is a blunt block
+and an effective one, but it is not a substitute for either control above: it
+protects the site while it is staging and it comes off the day the site goes
+live, at which point the Nginx block and the template guards are what remain.
 
 ### Verifying the block
 

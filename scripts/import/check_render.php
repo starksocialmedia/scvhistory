@@ -59,9 +59,13 @@ foreach ([
     '' => 'home', 'articles' => 'index', 'persons' => 'index', 'places' => 'index',
     'collections' => 'index', 'war-memorial' => 'index', 'obituaries' => 'index',
     'on-this-day' => 'index', 'search?q=newhall' => 'search',
-    'admin-overview' => 'unlisted', 'graph' => 'unlisted', 'graph/data' => 'json',
-    'admin-ledger' => 'unlisted', 'admin-ledger/data' => 'json',
-    'admin-fixes' => 'unlisted',
+    /* The unlisted pages are admin-only now, so an anonymous request gets a
+       302 to the login screen. Checking them as 200 would fail every run; not
+       checking them at all would miss a template that throws before the guard.
+       So they are checked for the redirect, which proves the guard is there. */
+    'admin-overview' => 'guarded', 'graph' => 'guarded', 'graph/data' => 'guarded',
+    'admin-ledger' => 'guarded', 'admin-ledger/data' => 'guarded',
+    'admin-fixes' => 'guarded',
 ] as $path => $what) {
     $urls[$base . '/' . $path] = $what;
 }
@@ -89,15 +93,26 @@ foreach ($urls as $url => $what) {
     $checked++;
 
     $problems = [];
-    if ($status !== 200) { $problems[] = 'status ' . $status; }
+    /* A guarded page is checked for the guard. An anonymous request must be
+       turned away, and a 200 here would mean the guard is gone. A 500 still
+       fails, because a template that throws before the guard throws for
+       everybody. */
+    $isGuarded = $what === 'guarded';
+    if ($isGuarded) {
+        if (!in_array($status, [302, 403, 404], true)) {
+            $problems[] = 'status ' . $status . ', expected the guard to turn an anonymous request away';
+        }
+    } elseif ($status !== 200) { $problems[] = 'status ' . $status; }
     foreach ($ERRORS as $sig) {
         if (str_contains($body, $sig)) { $problems[] = 'body contains "' . $sig . '"'; break; }
     }
 
     $isJson = $what === 'json';
-    if (!$isJson && $status === 200 && !preg_match('~<title>~i', $body)) { $problems[] = 'no <title>'; }
+    if (!$isJson && !$isGuarded && $status === 200 && !preg_match('~<title>~i', $body)) { $problems[] = 'no <title>'; }
 
-    if ($isJson) {
+    if ($isGuarded) {
+        /* nothing else to assert: there is no body to read */
+    } elseif ($isJson) {
         if (json_decode($body, true) === null) { $problems[] = 'the response is not valid JSON'; }
     } else {
         if (preg_match_all('~<script type="application/ld\+json">(.*?)</script>~s', $body, $m)) {
