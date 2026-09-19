@@ -68,6 +68,25 @@ $FOOTER_LINKS = [
 
 $elements = Craft::$app->getElements();
 
+/* Name what is in a run rather than describing its shape.
+
+   The uncertainty report used to say "a short trailing run of non-sentence
+   lines" and "a possible caption run". Both are true and neither says that the
+   run contains [image:2], which is the illustration layer and must not be
+   touched. Three decisions were made on those descriptions and all three would
+   have orphaned pictures. So the report names what it found. */
+$describe = function (array $run): string {
+    $text = implode("\n", $run);
+    $found = [];
+    if (($n = preg_match_all('~\[image:\d+\]~', $text))) { $found[] = $n . ' image token' . ($n > 1 ? 's' : ''); }
+    if (preg_match('~\[sic[:\s]~i', $text)) { $found[] = 'an editor bracket'; }
+    if (preg_match('~^\s*\[?\s*\d{1,3}\s*\]?\s*$~mu', $text)) { $found[] = 'a footnote marker'; }
+    if (preg_match('~^\s*[A-Z][A-Z0-9 .,\x{2019}\'&()-]{6,}$~mu', $text)) { $found[] = 'an all-capitals line'; }
+    if (preg_match('~</?[a-z][^>]*>~i', $text)) { $found[] = 'inline markup'; }
+    if (!$found) { return ' (nothing the archive marks as its own)'; }
+    return ' CONTAINING ' . implode(', ', $found);
+};
+
 /* ---------------------------------------------------------------- matchers */
 
 /* The matchers live in their own file so a dry run against an inventory uses
@@ -84,7 +103,7 @@ $changed = 0; $unchanged = 0; $failed = 0;
 $uncertain = [];        /* slug => [lines] */
 $galleryCut = [];       /* slug => [what was cut] */
 $movedToFinePrint = 0;
-$filledDate = []; $filledAuthor = []; $noAuthorRecord = []; $signatures = [];
+$filledDate = []; $filledAuthor = []; $noAuthorRecord = []; $signatures = []; $backLinks = [];
 $patternCounts = [];
 
 /* Either the database, or an inventory file loaded into unsaved entries. */
@@ -133,6 +152,16 @@ foreach ($batches as $sectionHandle => $batchEntries) {
         if (trim($original) === '') { continue; }
 
         $lines = preg_split("~\r\n|\n|\r~", $original);
+
+        /* The one rule that reaches into the middle. See the note on
+           stripBackLinks in _legacy_chrome_matchers.php. */
+        $backDrop = $stripBackLinks($lines);
+        if ($backDrop) {
+            $hit('back-link');
+            $backLinks[$e->slug] = count($backDrop);
+            $lines = array_values(array_filter($lines, fn($i) => !isset($backDrop[$i]), ARRAY_FILTER_USE_KEY));
+        }
+
         $n = count($lines);
         $keepFine = [];
         $hit = function (string $what) use (&$patternCounts) { $patternCounts[$what] = ($patternCounts[$what] ?? 0) + 1; };
@@ -329,10 +358,14 @@ foreach ($batches as $sectionHandle => $batchEntries) {
                     $end = $probe;
                     $moved = true;
                 } else {
-                    $uncertain[$e->slug][] = 'possible caption run of ' . $run . ' lines, but the line above it is none of prose, a copyright line, an exhibit heading or another caption: ' . mb_substr($above, 0, 80);
+                    $uncertain[$e->slug][] = 'run of ' . $run . ' lines at the end'
+                        . $describe(array_slice($lines, $probe + 1, $end - $probe))
+                        . ', and the line above is none of prose, a copyright line, an exhibit heading or another caption: ' . mb_substr($above, 0, 70);
                 }
             } elseif ($run > 0 && $run < 4) {
-                $uncertain[$e->slug][] = 'short trailing run of ' . $run . ' non-sentence line(s), left alone: ' . mb_substr(trim($lines[$runStart] ?? ''), 0, 80);
+                $uncertain[$e->slug][] = 'short trailing run of ' . $run . ' line(s), left alone'
+                    . $describe(array_slice($lines, $runStart ?? $end, ($end - ($runStart ?? $end)) + 1))
+                    . ': ' . mb_substr(trim($lines[$runStart] ?? ''), 0, 70);
             }
         } while ($moved);
 
@@ -458,6 +491,15 @@ echo 'records that would change: ' . $changed . PHP_EOL;
 echo 'records already clean:     ' . $unchanged . PHP_EOL;
 if ($failed) { echo 'saves failed:              ' . $failed . PHP_EOL; }
 echo 'lines moved to finePrint:  ' . $movedToFinePrint . PHP_EOL;
+
+if ($backLinks) {
+    echo PHP_EOL . '=== bracketed BACK links removed, ' . count($backLinks) . ' records ===' . PHP_EOL;
+    echo 'The one rule that reaches into the middle of a body. A return link after every' . PHP_EOL;
+    echo 'numbered note is navigation wherever it sits, and removing only the last would' . PHP_EOL;
+    echo 'leave the rest.' . PHP_EOL;
+    arsort($backLinks);
+    foreach ($backLinks as $slug => $n) { echo '  ' . str_pad($slug, 44) . $n . ' line(s)' . PHP_EOL; }
+}
 
 if ($signatures) {
     echo PHP_EOL . '=== signatures taken out of the body, ' . count($signatures) . ' ===' . PHP_EOL;

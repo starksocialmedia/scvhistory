@@ -1,0 +1,46 @@
+{#
+  The archive's own annotations, rendered as boxes.
+
+  Distinct from record/note.twig, which is the single webmaster note and keeps
+  its cream ground and gold left rule. These are boxes with a gold top rule,
+  the same construction as the sidebar boxes, because they are the archive
+  speaking about the piece rather than a note attached to the side of it. A
+  reader should be able to tell at a glance that this is not Reynolds, and that
+  it is not a pull quote either: a pull quote is the author's words made larger,
+  and these are somebody else's words made separate.
+
+  The note column allows HTML, so a link sits inside the text. It is printed
+  raw, which is safe here because the field is only writable in the control
+  panel by an admin.
+
+  Params:
+    rows      the editorNotes table value
+    position  top, bottom or inline; only rows at this position render
+#}
+{%- set at = position|default('bottom') -%}
+{%- set notes = (rows ?? [])|filter(r => (r.note ?? '')|trim != '' and (r.position ?? 'inline') == at) -%}
+
+{% if notes|length %}
+  {% css %}
+  .rec-ed{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:16px 20px;margin:0 0 20px}
+  .rec-ed:last-child{margin-bottom:0}
+  .rec-ed .h{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin:0 0 8px}
+  .rec-ed .t{font-size:15.5px;line-height:1.7;color:#2C2C2C}
+  .rec-ed .t p{margin:0 0 12px}
+  .rec-ed .t p:last-child{margin-bottom:0}
+  .rec-ed .t a{color:#7A5C1B}
+  .rec-eds--top{margin:0 0 30px}
+  .rec-eds--bottom{margin:36px 0 0}
+  {% endcss %}
+  <div class="rec-eds rec-eds--{{ at }}">
+    {% for n in notes %}
+      <div class="rec-ed">
+        {#- The extraction records a position and never a heading, so a migrated
+            row has none until somebody writes one. The box reads perfectly well
+            without it, and a placeholder would be worse than a gap. -#}
+        {% if (n.heading ?? '')|trim %}<p class="h">{{ n.heading }}</p>{% endif %}
+        <div class="t">{{ n.note|trim|raw }}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

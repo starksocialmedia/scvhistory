@@ -228,3 +228,45 @@ $readSignature = function (array $lines, int $end, int $floor) use ($SIGNATURE_N
     }
     return null;
 };
+
+/* [ BACK ] anywhere in a body, including the middle of the prose.
+
+   This is the one place the cleaner reaches past the head and the tail, and it
+   is deliberate. Everywhere else the rule is that nothing is removed from the
+   middle, because a line in the middle is prose until proved otherwise. A
+   bracketed BACK is proved otherwise: it is the return link the legacy notes
+   pages put after every numbered note, and editors-notes carries 34 of them.
+   Stripping only the trailing one would leave 33 and make the body worse.
+
+   Matched as a whole line, with or without its brackets on their own lines, so
+   the shape
+
+       [
+       BACK
+       ]
+
+   goes as a unit and does not leave an orphan bracket behind. Nothing else on
+   the line, ever: a sentence containing the word back is untouched. */
+$BACK_LINE = '~^\s*\[?\s*BACK\s*\]?\s*$~iu';
+$BRACKET_ONLY = '~^\s*[\[\]]\s*$~u';
+
+$stripBackLinks = function (array $lines) use ($BACK_LINE, $BRACKET_ONLY): array {
+    $drop = [];
+    foreach ($lines as $i => $l) {
+        if (!preg_match($BACK_LINE, $l)) { continue; }
+        $drop[$i] = true;
+        /* the bracket above, if it is alone on its line */
+        for ($j = $i - 1; $j >= 0; $j--) {
+            if (trim($lines[$j]) === '') { continue; }
+            if (preg_match($BRACKET_ONLY, $lines[$j])) { $drop[$j] = true; }
+            break;
+        }
+        /* and the one below */
+        for ($j = $i + 1; $j < count($lines); $j++) {
+            if (trim($lines[$j]) === '') { continue; }
+            if (preg_match($BRACKET_ONLY, $lines[$j])) { $drop[$j] = true; }
+            break;
+        }
+    }
+    return $drop;
+};

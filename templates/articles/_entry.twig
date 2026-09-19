@@ -129,6 +129,15 @@
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 
+{#- The annotations table, read through the layout rather than with "is
+    defined". On an entry, someHandle is defined answers true for a field the
+    entry type does not have and then throws when it is read, which is exactly
+    what happens before add_editor_notes_field.php has been run. -#}
+{% set edNotes = [] %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'editorNotes' %}{% set edNotes = entry.editorNotes ?? [] %}{% endif %}
+{% endfor %}
+
 {% set collection = entry.partOfCollection.one() ?? null %}
 
 {# Band artwork: this article's own bandImage, then the bandImage of the
@@ -232,6 +241,7 @@
         {{ ui.pn(prev, next) }}
 
         {% include "_partials/record/note" with { text: noteTop } only %}
+        {% include "_partials/record/editor-notes" with { rows: edNotes, position: 'top' } only %}
         {% if F.sourceLine %}<div class="rec-lede">{{ F.sourceLine }}</div>{% endif %}
 
         {% if F.body %}
@@ -244,6 +254,7 @@
 
         {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+        {% include "_partials/record/editor-notes" with { rows: edNotes, position: 'bottom' } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
         {% if F.photoSources %}<p class="rec-fine">{{ F.photoSources }}</p>{% endif %}
         {% include "_partials/record/fine-print" with { value: F.finePrint } only %}
@@ -274,8 +285,12 @@
       </article>
 
       <aside class="rec-side">
-        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {#- The tools block sits under the citation on an article, not above it.
+            It is the only template that puts it in the sidebar, where at 340px
+            the player is the heaviest thing on the page and was the first
+            thing the eye met. The citation is what a reader wants first. -#}
         {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles', sidebar: true } only %}
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
 
         <div class="rec-box">
           <div class="rec-lab">SEARCH THE ARCHIVE</div>

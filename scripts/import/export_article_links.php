@@ -115,6 +115,9 @@ $stats = ['links' => 0, 'nav' => 0, 'noAnchor' => 0, 'offHost' => 0, 'notAPage' 
           'self' => 0, 'noRecord' => 0, 'sourceNotHeld' => 0, 'kept' => 0];
 $cand = [];
 $unresolvedTargets = [];
+/* One row per (source record, unheld target), with the anchor and the sentence.
+   Keyed so the same reference made twice on a page is one reference. */
+$legacyRefs = [];
 
 foreach ($INVENTORIES as $inv) {
     $p = $root . '/inventory/legacy/' . $inv . '.json';
@@ -161,6 +164,27 @@ foreach ($INVENTORIES as $inv) {
                 if (!preg_match('~^\[?\s*\d{1,3}\s*\]?$~u', $anchor)) {
                     $unresolvedTargets[$tgtPath]['anchors'][$anchor] =
                         ($unresolvedTargets[$tgtPath]['anchors'][$anchor] ?? 0) + 1;
+
+                    /* A cross-reference from a record we hold. The far end is
+                       not imported, and that is the point: the reference is
+                       Leon's and it is worth keeping whether or not we have
+                       caught up with him. A bare footnote number is excluded,
+                       because "7" pointing at the notes page says nothing a
+                       reader can use. */
+                    if ($source) {
+                        $k = $source['id'] . '|' . $tgtPath . '|' . mb_strtolower($anchor);
+                        if (!isset($legacyRefs[$k])) {
+                            $legacyRefs[$k] = [
+                                'source' => $source,
+                                'targetPath' => $tgtPath,
+                                'targetUrl' => 'https://scvhistory.com' . $tgtPath,
+                                'anchor' => $anchor,
+                                'sentence' => $sentenceFor($body, $anchor),
+                                'times' => 0,
+                            ];
+                        }
+                        $legacyRefs[$k]['times']++;
+                    }
                 }
                 continue;
             }
@@ -291,7 +315,35 @@ file_put_contents($out, json_encode([
     'pairs' => $rows,
     'unheldTargets' => $unresolvedTargets,
     'unheldTargetCount' => count($unresolvedTargets),
+    /* Legacy references: a link from a record we hold to a page we do not.
+       Leon's cross-references are the archive's scholarly apparatus and
+       dropping them because the far end is not imported yet loses the fact
+       that he made the connection at all. Proposed as a reference with its
+       anchor text, so a record can say "Leon linked this to X" before X
+       exists. */
+    'legacyReferences' => array_values($legacyRefs),
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+
+/* ------------------------------------------------- legacy references */
+
+$bySource = [];
+foreach ($legacyRefs as $r) { $bySource[$r['source']['slug']][] = $r; }
+ksort($bySource);
+echo PHP_EOL . str_repeat('=', 78) . PHP_EOL;
+echo 'LEGACY REFERENCES: ' . count($legacyRefs) . ' from ' . count($bySource) . ' records' . PHP_EOL;
+echo str_repeat('=', 78) . PHP_EOL;
+echo 'A link from a record we hold to a legacy page we do not. Leon made the' . PHP_EOL;
+echo 'connection and we drop it because we have not caught up with him. Recorded' . PHP_EOL;
+echo 'here with the anchor text, so a record can show "Leon linked this to X"' . PHP_EOL;
+echo 'before X is imported, and so the reference survives until it can be made' . PHP_EOL;
+echo 'into a real relation.' . PHP_EOL;
+foreach ($bySource as $slug => $refs) {
+    echo PHP_EOL . $slug . '  (' . count($refs) . ')' . PHP_EOL;
+    foreach ($refs as $r) {
+        echo '   "' . mb_substr($r['anchor'], 0, 62) . '"' . ($r['times'] > 1 ? '  x' . $r['times'] : '') . PHP_EOL;
+        echo '      -> ' . $r['targetPath'] . PHP_EOL;
+    }
+}
 
 echo PHP_EOL . 'wrote web/review/article-links.json' . PHP_EOL;
 echo 'Nothing in Craft was changed. Decide at /review/article-links.html' . PHP_EOL;

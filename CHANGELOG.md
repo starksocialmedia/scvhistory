@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: reconciled the uncertainty report's vocabulary, applied the bracketed BACK rule, added editorNotes with its box rendering, moved the listen player below the cite box on articles, and taught export_article_links.php to keep a reference whose target we do not hold. Full report at web/review/chapter-review-findings.md.
+- Decisions: the uncertainty report names what it found, so "a short trailing run of non-sentence lines" now reads "CONTAINING 1 image token". Bracketed BACK is the one rule that reaches past the head and the tail, and the header says so. editorNotes and the two webmaster fields coexist rather than migrating, because the extraction records a position and never a heading, so every migrated row would arrive untitled.
+- Blockers: two, both reported rather than worked around. The three scan credits cannot move to creditRaw because no entry type but photograph has that field, so it is a schema decision. And chapter 6's cross-references are not in links_out at all, so the exporter cannot reach them; that is a gap for Grok.
+- Result: the fused caption is not in our data. Chapter 6 renders 9 paragraphs, longest 100 words, and "The Legend of Califa" is not in the stored body; what is being looked at is staging, whose database predates this session's cleaning. 13 lines of 300 or more words do exist, almost all in the new photographs. 1650-calif-map.jpg is asset #42, downloaded and attached to nothing, and 25 of 568 assets are in that state. Bracketed BACK removed from 40 records, 84 lines on the two notes pages alone. 100 legacy references from 41 records, chapter 9's two among them. webmasterNoteTop is used by 0 records and webmasterNoteBottom by 65; nine pages in the corpus carry more than one annotation.
+- Next: Nathan runs add_editor_notes_field.php, decides the scan credit question, and the attach step of import_legacy_images.php needs looking at
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: elevated the signature and moved the rights line out of the record body into the site footer.
 - Decisions: the fine print rendering was not removed wholesale, because finePrint does not only hold the site-wide rights line. 51 of the 57 non-empty values are that line and are now suppressed; the other six still print, and two of those six are rights held by somebody else, A.B. Perkins and the Historical Society of Southern California, which the footer's line does not cover and must not be taken to cover. The other four are a credit to Stan Walker and three scan lines that belong in creditRaw and have not moved yet. So the partial suppresses one known shape rather than the field.
 - Blockers: none.
