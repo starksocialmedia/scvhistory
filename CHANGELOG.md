@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: the five faults against design/article-source.html, the cite fork for articles, the attach-step fix in import_legacy_images.php, and the caption fallback. Reports and counts in web/review/article-faults-and-findings.md.
+- Decisions: the cite partial is forked to cite-article.twig rather than changed, so eleven other templates are untouched. The drive guard now fires only when there is something to fetch, because relating a file already in the volume needs no drive; $RELATE_ONLY does that and nothing else. A caption whose text matches the filename is treated as absent.
+- Blockers: fault 2 is not a fault. The main grid is byte-identical to the design and measures 1240 wide, 760 and 344 columns, 56px gap. Rendered standalone the design file gives 1320 and 840 because it has no box-sizing reset; ours inherits border-box from the site. Either way the gap is 56px and the space after the prose is the 34em measure, which is in the design.
+- Result: band resolves to collection-band-2400x1000.png and renders; the file is gitignored so only rsync can put it on the server. Search moved to the nav row with SEARCH and CLOSE and focus landing in the field. The account placeholder is drawn, static, as a div. The player was visible because hidden is beaten by an inline display; it is display none now. The attach fix added 548 relations. 562 of 568 assets have the filename as their title and the extraction holds 5,220 unapplied captions.
+- Next: a great deal, listed under WAITING ON NATHAN and NOT STARTED in the report
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: rebuilt templates/articles/_entry.twig from design/article-source.html, with the tools row and player reworked to match and the fix button restyled. Report at web/review/article-design-reproduction.md.
 - Decisions: inline styles kept rather than translated to classes, because that is how site-header.twig reproduces menu-source.html and the design file says to reproduce the inline styles precisely. The lead falls back from subheadline to the first paragraph promoted, and where it is promoted the body starts at the second paragraph so the same words are not read twice. The cite box keeps its existing partial rather than being rebuilt to the design's markup, because its JavaScript is shared with eleven other record templates that are not being redesigned.
 - Blockers: none. The account menu and the Save button are left out entirely as placeholders.

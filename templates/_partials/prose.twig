@@ -83,9 +83,21 @@
     {%- set asset = token and imgs[token - 1] is defined ? imgs[token - 1] : null -%}
     {%- if asset -%}
       <figure class="rec-inline">
-        <img src="{{ asset.url }}" alt="{{ asset.alt ?: asset.title }}">
-        {%- if asset.title or asset.alt %}
-        <figcaption>{{ asset.title }}{% if asset.alt and asset.alt != asset.title %}<span class="cr">{{ asset.alt }}</span>{% endif %}</figcaption>
+        {#- Craft gives an untitled asset a title made from its filename, so
+            garcesbakersfield.jpg becomes "Garcesbakersfield". That is a
+            fallback, not a caption, and a filename presented as a caption on an
+            archive is worse than no caption at all. A title that matches the
+            filename once punctuation and case are removed is treated as absent.
+
+            562 of the 568 assets are in that state today. The extraction holds
+            5,220 captions that have never been applied to them. -#}
+        {%- set stem = asset.filename|split('.')|slice(0, -1)|join('.') -%}
+        {%- set norm = asset.title|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
+        {%- set stemNorm = stem|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
+        {%- set realTitle = (asset.title|trim and norm != stemNorm) ? asset.title|trim : '' -%}
+        <img src="{{ asset.url }}" alt="{{ asset.alt ?: realTitle }}">
+        {%- if realTitle or asset.alt %}
+        <figcaption>{{ realTitle }}{% if asset.alt and asset.alt != realTitle %}<span class="cr">{{ asset.alt }}</span>{% endif %}</figcaption>
         {%- endif %}
       </figure>
     {%- elseif token -%}

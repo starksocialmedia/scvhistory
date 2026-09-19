@@ -241,6 +241,28 @@
     function init() {
       var hdr = document.querySelector('.scv-hdr');
       if (!hdr) { return; }
+      /* The search button expands the field beside it and renames itself.
+         Reproduced from design/article-source.html, which supersedes
+         menu-source.html here: search used to be a permanent box in the top
+         row. Closed it is SEARCH; open it is CLOSE, and the field takes focus
+         so the keyboard lands where the eye does. */
+      var sBtn = hdr.querySelector('.scv-searchbtn');
+      var sForm = hdr.querySelector('.scv-searchform');
+      var sLabel = hdr.querySelector('.scv-searchlabel');
+      if (sBtn && sForm && sLabel) {
+        sBtn.addEventListener('click', function () {
+          var open = sForm.style.display !== 'none';
+          sForm.style.display = open ? 'none' : 'block';
+          sForm.hidden = open;
+          sBtn.setAttribute('aria-expanded', String(!open));
+          sLabel.textContent = open ? 'SEARCH' : 'CLOSE';
+          sBtn.style.borderBottomColor = open ? 'transparent' : '#C4A031';
+          sLabel.style.color = open ? 'rgba(255,255,255,.78)' : '#fff';
+          sBtn.querySelector('svg').setAttribute('stroke', open ? 'rgba(255,255,255,.55)' : '#C4A031');
+          if (!open) { var i = sForm.querySelector('input'); if (i) { i.focus(); } }
+        });
+      }
+
       var btns = Array.prototype.slice.call(hdr.querySelectorAll('.scv-mbtn'));
       var panels = Array.prototype.slice.call(hdr.querySelectorAll('.scv-panel'));
       var toggle = hdr.querySelector('.scv-mtoggle');

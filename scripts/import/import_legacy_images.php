@@ -78,6 +78,9 @@ $BATCH = 0;          /* 0 means no limit, which is the old behaviour */
 $MAX_TRIES = 3;
 $LEDGER = \Craft::getAlias('@storage') . '/legacy-images-progress.json';
 $RESET_LEDGER = false;   /* true forgets everything and starts over */
+/* Relate what is already in the volume and fetch nothing. This is what repairs
+   an asset that was downloaded on one run and left related to nothing. */
+$RELATE_ONLY = false;
 
 /* --------------------------------------------------------------- the drive
 
@@ -227,12 +230,10 @@ if (!$driveReadable) {
         echo 'It is not mounted. Plug it in, or point $DRIVE somewhere else.' . PHP_EOL;
     }
 
-    if ($DRIVE_REQUIRED && $APPLY) {
-        echo PHP_EOL . 'Stopping. $DRIVE_REQUIRED is true, and it is true so that a missing drive' . PHP_EOL;
-        echo 'cannot quietly turn into thousands of requests to Leon\'s server. Set it false' . PHP_EOL;
-        echo 'only if fetching from the live site is what you mean to do.' . PHP_EOL;
-        return;
-    }
+    /* The decision is deferred until the plan is built. Relating a file that is
+       already in the volume needs no drive and no network, and stopping the
+       whole run here would block that too. The guard fires below, only if there
+       is something to fetch. */
     if (!$APPLY) {
         echo PHP_EOL . 'Planning anyway, because a dry run fetches nothing. Every file below will be' . PHP_EOL;
         echo 'reported as "drive unknown" rather than as present or missing.' . PHP_EOL;
@@ -368,6 +369,9 @@ $dupSkipped = [];
 $unresolvedPages = [];
 $railSkipped = []; $railFollowed = []; $railOnlyCopy = [];
 $badRows = [];
+/* Filled by the plan for a file already in the volume, and by the download loop
+   for one that is not. Either way it is what the relation is built from. */
+$assetIdByUrl = [];
 $seenUrl = [];       /* absolute url => first filename, so one file downloads once */
 
 foreach ($INVENTORIES as $inv) {
@@ -446,8 +450,19 @@ foreach ($INVENTORIES as $inv) {
         if ($filename === '') { $badRows[] = $inv . '  ' . $r['legacy_key'] . '  empty filename from ' . $url; continue; }
 
         if (isset($existingFilenames[strtolower($filename)])) {
+            /* Already in the volume, so nothing to download. It still belongs
+               in the plan.
+
+               This was `continue`, and that is why 25 assets sit in the volume
+               related to nothing. The relation is built from $assetIdByUrl,
+               which was filled only by the download loop, so a file fetched on
+               one run and not attached on that run could never be attached by
+               any later run: the second run saw the filename, skipped the row,
+               and the picture stayed orphaned. Downloading and relating are
+               two different jobs and only one of them is done when the file
+               is already here. */
             $dupSkipped[$filename] = true;
-            continue;
+            $assetIdByUrl[$url] = $existingFilenames[strtolower($filename)];
         }
 
         $plan[$pageKey]['rows'][] = [
@@ -501,6 +516,18 @@ foreach (array_keys($toDownload) as $u) {
     elseif (isset($ledger['urls'][$u])) { $retrying++; }
 }
 $outstanding = count($toDownload);
+
+if (!$driveReadable && $DRIVE_REQUIRED && $APPLY && $outstanding > 0) {
+    echo PHP_EOL . 'Stopping. ' . $outstanding . ' file(s) would be fetched and the drive is not' . PHP_EOL;
+    echo 'readable, so they would come from Leon\'s server. $DRIVE_REQUIRED is true so that' . PHP_EOL;
+    echo 'cannot happen by accident. Set it false only if that is what you mean to do.' . PHP_EOL;
+    echo PHP_EOL . 'Relating files already in the volume does not need the drive. To do only' . PHP_EOL;
+    echo 'that, set $RELATE_ONLY = true.' . PHP_EOL;
+    if (!$RELATE_ONLY) { return; }
+    echo PHP_EOL . '$RELATE_ONLY is on: nothing will be fetched, relations only.' . PHP_EOL;
+    $toDownload = [];
+    $outstanding = 0;
+}
 $deferred = [];
 if ($BATCH > 0 && $outstanding > $BATCH) {
     $deferred = array_slice($toDownload, $BATCH, null, true);
@@ -555,7 +582,6 @@ if ($PROBE_SIZES && !$APPLY) {
 
 /* ---------------------------------------------------------------- download */
 
-$assetIdByUrl = [];
 $fromDrive = []; $fromNetwork = []; $fellBack = [];
 if ($APPLY) {
     if (!$folder) {

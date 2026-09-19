@@ -50,8 +50,11 @@
 
 {#- The player, hidden until Listen is pressed. It used to be always visible,
     which put the heaviest control on the page above the prose. -#}
-<div class="rec-play" id="recPlayer" role="group" aria-label="Read this record aloud" hidden
-  style="background: #FDF7EA; border: 1px solid #EFE6D0; border-left: 3px solid #C4A031; padding: 14px 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 18px">
+{#- display: none inline, not the hidden attribute. [hidden] is a UA rule and
+    an inline display beats it, so hidden plus display: flex renders the player
+    while every script reading .hidden is told it is closed. -#}
+<div class="rec-play" id="recPlayer" role="group" aria-label="Read this record aloud"
+  style="background: #FDF7EA; border: 1px solid #EFE6D0; border-left: 3px solid #C4A031; padding: 14px 18px; display: none; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 18px">
   <button type="button" class="pp" id="recPP" aria-label="Play"
     style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid #C4A031; background: #fff; color: #A9842B; cursor: pointer; flex: none; display: flex; align-items: center; justify-content: center; padding: 0">
     <svg viewBox="0 0 12 12" width="11" height="11" fill="currentColor" aria-hidden="true"><polygon id="recPPIcon" points="2,1 11,6 2,11"></polygon></svg>
@@ -180,9 +183,9 @@ document.addEventListener('DOMContentLoaded', function(){
   if (listen) {
     listen.hidden = false;
     listen.addEventListener('click', function () {
-      var open = !player.hidden;
-      if (open) { if (playing) { pause(); } player.hidden = true; }
-      else { player.hidden = false; if (!playing) { play(); } }
+      var open = player.style.display !== 'none';
+      if (open) { if (playing) { pause(); } player.style.display = 'none'; }
+      else { player.style.display = 'flex'; if (!playing) { play(); } }
       listen.setAttribute('aria-expanded', String(!open));
     });
   }

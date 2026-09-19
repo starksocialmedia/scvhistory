@@ -381,7 +381,7 @@
       </div>
     {% endif %}
 
-    {% include "_partials/record/cite" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles', sidebar: true } only %}
+    {% include "_partials/record/cite-article" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles' } only %}
 
     {#- Record facts, as drawn: the label column in small Jost, the value beside
         it, then the legacy link and the legacy path in mono beneath. -#}

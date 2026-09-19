@@ -1,0 +1,113 @@
+{#
+  "Cite this record" box with Chicago, MLA 9 and APA 7 toggles.
+
+  All three strings are built in Twig, so the citation is in the HTML and
+  survives with JavaScript off; the toggles only swap which one is shown.
+  Chicago is the default. Copy copies the visible citation and reads "Copied"
+  for two seconds.
+
+  Params:
+    entry       required
+    author      optional person entry
+    collection  optional collection entry, becomes the container title
+    source      optional source line, who originally published it. It sits ahead
+                of the section label in all three styles, because that is where
+                the original publisher belongs in a citation: the reader is
+                being told where the work first appeared, not only where this
+                copy of it lives.
+    date        optional publication date string
+    label       optional section name, for example "War Memorial"
+    url         optional, overrides entry.url
+    site        optional, defaults to SCVHistory.com
+    sidebar     true renders it as a sidebar .rec-box instead of the wide main column box
+#}
+{% set site = site ?? 'SCVHistory.com' %}
+{% set sidebar = sidebar ?? false %}
+{% set href = url is defined and url ? url : entry.url %}
+{% set title = entry.title ?: entry.slug %}
+{% set today = now|date('F j, Y') %}
+{% set todayApa = now|date('F j, Y') %}
+{% set container = [] %}
+{% if collection is defined and collection %}{% set container = container|merge([collection.title]) %}{% endif %}
+{% if source is defined and source|trim %}{% set container = container|merge([source|trim]) %}{% endif %}
+{% if label is defined and label %}{% set container = container|merge([label]) %}{% endif %}
+
+{% set aName = author is defined and author ? author.title : null %}
+{% set aParts = aName ? aName|split(' ')|filter(p => p|trim) : [] %}
+{% set aInverted = aParts|length > 1 ? aParts|last ~ ', ' ~ aParts|slice(0, aParts|length - 1)|join(' ') : aName %}
+{% set aApa = aParts|length > 1 ? aParts|last ~ ', ' ~ aParts|slice(0, aParts|length - 1)|map(p => p|slice(0,1) ~ '.')|join(' ') : aName %}
+
+{% set chicago %}
+{%- if aInverted %}{{ aInverted }}. {% endif -%}
+"{{ title }}." {% for c in container %}{{ c }}. {% endfor %}{{ site }}{% if date is defined and date %}, {{ date }}{% endif %}. Accessed {{ today }}. {{ href }}.
+{%- endset %}
+
+{% set mla %}
+{%- if aInverted %}{{ aInverted }}. {% endif -%}
+"{{ title }}." {% for c in container %}{{ c }}, {% endfor %}{{ site }}{% if date is defined and date %}, {{ date }}{% endif %}, {{ href }}. Accessed {{ today }}.
+{%- endset %}
+
+{% set apa %}
+{%- if aApa %}{{ aApa }} {% endif -%}
+({% if date is defined and date %}{{ date }}{% else %}n.d.{% endif %}). {{ title }}. {% for c in container %}{{ c }}. {% endfor %}{{ site }}. Retrieved {{ todayApa }}, from {{ href }}
+{%- endset %}
+
+
+
+{#- ------------------------------------------------------------------------
+    Forked for the article record, from design/article-source.html.
+
+    The shared partial renders the same three tabs and the same copy
+    behaviour in different markup, and it is used by eleven other record
+    templates that are not being redesigned. Changing it there to suit one
+    redesign would move every other record page, so this is a copy with the
+    design's markup and inline styles and the same script.
+
+    When the other eleven are redesigned, this and record/cite.twig should
+    become one again.
+-------------------------------------------------------------------------- -#}
+<div class="rec-cite-art" style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 20px">
+  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 14px">
+    <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">CITE THIS RECORD</div>
+    <div style="display: flex; gap: 2px">
+      <button type="button" class="rec-citetab" data-style="chicago" aria-selected="true" style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .04em; padding: 4px 9px; cursor: pointer; border: 1px solid #17254C; background: #17254C; color: #fff">Chicago</button>
+      <button type="button" class="rec-citetab" data-style="mla" aria-selected="false" style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .04em; padding: 4px 9px; cursor: pointer; border: 1px solid #E8E0CC; background: #fff; color: #5B6472">MLA 9</button>
+      <button type="button" class="rec-citetab" data-style="apa" aria-selected="false" style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .04em; padding: 4px 9px; cursor: pointer; border: 1px solid #E8E0CC; background: #fff; color: #5B6472">APA 7</button>
+    </div>
+  </div>
+  <div class="rec-citebox" style="background: #FBFAF6; border-left: 3px solid #C4A031; padding: 13px 15px; font-size: 13.5px; line-height: 1.62; color: #2C2C2C; word-break: break-word">
+    <div class="txt" data-style="chicago">{{ chicago|trim }}</div>
+    <div class="txt" data-style="mla" hidden>{{ mla|trim }}</div>
+    <div class="txt" data-style="apa" hidden>{{ apa|trim }}</div>
+  </div>
+  <button type="button" class="copy" style="border: 1px solid #C4A031; background: transparent; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .06em; color: #A9842B; padding: 8px 16px; cursor: pointer; margin-top: 12px">Copy</button>
+</div>
+<script>
+(function(){
+  var box = document.querySelector('.rec-cite-art');
+  if (!box) { return; }
+  var tabs = box.querySelectorAll('.rec-citetab');
+  var texts = box.querySelectorAll('.rec-citebox .txt');
+  var copy = box.querySelector('.copy');
+  function show(style){
+    tabs.forEach(function(t){
+      var on = t.dataset.style === style;
+      t.setAttribute('aria-selected', String(on));
+      t.style.background = on ? '#17254C' : '#fff';
+      t.style.borderColor = on ? '#17254C' : '#E8E0CC';
+      t.style.color = on ? '#fff' : '#5B6472';
+    });
+    texts.forEach(function(t){ t.hidden = t.dataset.style !== style; });
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.style); }); });
+  copy.addEventListener('click', function(){
+    var visible = null;
+    texts.forEach(function(t){ if (!t.hidden) { visible = t; } });
+    if (!visible || !navigator.clipboard) { return; }
+    navigator.clipboard.writeText(visible.textContent.trim()).then(function(){
+      copy.textContent = 'Copied';
+      setTimeout(function(){ copy.textContent = 'Copy'; }, 2000);
+    }).catch(function(){});
+  });
+})();
+</script>
