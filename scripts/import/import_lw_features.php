@@ -61,24 +61,36 @@ $SECTION  = 'photographs';
 $TYPE     = 'photograph';
 $SHOW     = 25;     /* how many pages to print in full in the dry run */
 
+/* Relations are off, and the dry run says why every time it runs. Matching a
+   mention against a record title exactly catches 1,339 of 29,842 person
+   mentions, 263 of 2,325 places and 0 of 3,378 organizations, and the person
+   list is largely not people: "Hart Films", "Publicity Photos", "Drone Video".
+   Wiring that up writes a few hundred right relations and leaves 34,000
+   mentions looking handled when they are not. The archive already has a
+   reconciliation pipeline with alias fields and a review screen, and that is
+   where these belong. Set it true to see the numbers, not to apply them. */
+$RELATE = false;
+
 /* Every incoming key, and where it goes. This array is the mapping: the report
    below prints it rather than describing it, so the two cannot drift apart. */
 $MAP = [
-    'title'            => ['title, photoSourceCode, neighborhood', 'Split on the bars: the code, the topic, the caption. See the title parser.'],
-    'subtitle'         => ['photoCaptionExt', 'The second line under a picture, where the page carries one.'],
+    'title'            => ['title, photoSourceCode, neighborhood', 'Masthead off, then the code, the topic, the caption. title_topic is preferred where the file gives it.'],
+    'title_topic'      => ['neighborhood, where it names one', '126 of the topics are not communities: they are places, people and events the archive holds. See the list in the run.'],
+    'lw_kind'          => ['(not used)', 'illustrated_place_feature on all 1,661. It is why this file exists, not a field.'],
+    'subtitle'         => ['photoCaptionExt', 'Empty on all 1,661 pages, so nothing is written. Kept in the map so its absence is visible.'],
     'body_text'        => ['body', 'Verbatim, as every other importer here. Cleanup is clean_legacy_bodies.php\'s job.'],
     'date_raw'         => ['photoDate', 'As printed. Plain text, because "~1926" and "n.d." are both common and both true.'],
     'scan_credit_raw'  => ['creditRaw + creditDpi, creditProcess, creditKind, creditName', 'Raw always; the four parts where the line parses.'],
-    'source_note_raw'  => ['photoCredit', 'NEEDS A DECISION. See the note under the table.'],
+    'source_note_raw'  => ['photoCredit, where it is a credit', '204 of 389 are body prose the extraction picked up by mistake and are written nowhere.'],
     'byline_raw'       => ['(dropped)', 'These pages are not bylined pieces. Reported if any page carries one.'],
     'fine_print_raw'   => ['webmasterNoteBottom', 'The rights and reuse line at the foot of the page.'],
     'editor_notes'     => ['webmasterNoteTop, webmasterNoteBottom', 'By position, as import_perkins.php splits them.'],
     'legacy_key'       => ['legacyKey', ''],
     'legacy_path'      => ['legacyUrl', 'The join to the migration ledger, so an imported page stops reading as missing.'],
     'source_url'       => ['sourcePath', ''],
-    'people_mentioned' => ['photoPeople', 'Only where the name matches a person record exactly. The rest are reported.'],
-    'places_mentioned' => ['photoPlaces', 'Same rule.'],
-    'orgs_mentioned'   => ['photoOrganizations', 'Same rule.'],
+    'people_mentioned' => ['(counted, not written)', 'Exact title matching catches 1,339 of 29,842. Left to the reconciliation pipeline.'],
+    'places_mentioned' => ['(counted, not written)', '263 of 2,325. Same.'],
+    'orgs_mentioned'   => ['(counted, not written)', '0 of 3,378, because the org names live in orgAliases. Same.'],
     'communities_mentioned' => ['neighborhood', 'Merged with the community read out of the title.'],
     'community_inferred'    => ['neighborhood', 'Used only where the title and the mentions give nothing.'],
     'dates_mentioned'  => ['recordDates', 'printed, iso, granularity, unconfirmed. Same shape as the articles.'],
@@ -89,12 +101,11 @@ $MAP = [
 ];
 
 $UNDECIDED =
-    "source_note_raw -> photoCredit is the one mapping here that is a guess. creditRaw and its four\n"
-    . "parts are the scan: resolution, format, what was scanned, where it came from. photoCredit is the\n"
-    . "other kind of credit, the one that belongs to the picture rather than to the scanner. If\n"
-    . "source_note_raw turns out to be the museum or collection line, photoCredit is right. If it is a\n"
-    . "webmaster's aside about the page, webmasterNoteBottom is right and this should change before it\n"
-    . "runs. One look at a real value settles it.";
+    "source_note_raw was the open question and the real file answers it: the key holds two different\n"
+    . "things. Some are credits, \"Source: City of Santa Clarita\", \"(H. Carey Collection)\". 204 begin\n"
+    . "mid-sentence, \"at 5675 W. Washington Blvd. in Culver City...\", which is body prose the\n"
+    . "extraction's selector caught. Only the first kind is written, to photoCredit. The second kind is\n"
+    . "listed at the end of this run and is a bug to send back to the extraction, not data to massage.";
 
 /* ------------------------------------------------------------ the parsers */
 
@@ -103,9 +114,18 @@ $UNDECIDED =
  * and the caller keeps the raw line regardless.
  */
 $readCredit = function (string $raw): array {
-    $out = ['dpi' => '', 'process' => '', 'kind' => '', 'name' => '', 'left' => '', 'shape' => ''];
+    $out = ['code' => '', 'dpi' => '', 'process' => '', 'kind' => '', 'name' => '', 'left' => '', 'shape' => ''];
     $line = trim(preg_replace('~\s+~u', ' ', $raw));
     if ($line === '') { return $out; }
+
+    /* The real lines all open with the accession code and a colon, in whatever
+       case Leon typed it that day: "LW0070:", "lw2278:", "Lw2107:". It is not
+       part of the credit, and it is a free cross-check against the code read
+       out of the title, so it is taken off and kept. */
+    if (preg_match('~^([A-Za-z]{2,4}\d{3,6}[a-z]?)\s*:\s*(.*)$~', $line, $m)) {
+        $out['code'] = strtoupper(substr($m[1], 0, 2)) . substr($m[1], 2);
+        $line = trim($m[2]);
+    }
 
     /* The bar separates the scan from where the thing came from. Only the last
        bar, so a source note with a bar in it survives on the right. */
@@ -143,9 +163,42 @@ $readCredit = function (string $raw): array {
     }
 
     $out['left'] = $left;
-    $out['shape'] = ($out['dpi'] !== '' ? 'D' : '-') . ($out['process'] !== '' ? 'P' : '-')
+    $out['shape'] = ($out['code'] !== '' ? 'C' : '-') . ($out['dpi'] !== '' ? 'D' : '-')
+                  . ($out['process'] !== '' ? 'P' : '-')
                   . ($out['kind'] !== '' ? 'K' : '-') . ($out['name'] !== '' ? 'N' : '-');
     return $out;
+};
+
+/**
+ * source_note_raw is two different things in one key, and only one of them is a
+ * credit. 389 pages carry it. Some are what the name promises, "Source: City of
+ * Santa Clarita", "(H. Carey Collection)", "News story courtesy of Tricia Lemon
+ * Putnam." Others begin mid-sentence, "at 5675 W. Washington Blvd. in Culver
+ * City...", "The hotel fell into disrepair and was officially closed on...",
+ * which is body prose the extraction's selector picked up by mistake.
+ *
+ * Writing the second kind into photoCredit would put a sentence fragment in a
+ * credit field on a couple of hundred records, so the two are told apart here
+ * and only the first is mapped. The rest are reported, because they are an
+ * extraction bug to send back rather than data to massage.
+ */
+$readSourceNote = function (string $raw): array {
+    $s = trim(preg_replace('~\s+~u', ' ', $raw));
+    if ($s === '') { return ['', '']; }
+
+    /* A credit names a source. It opens with one of the words people use to do
+       that, or is a parenthetical collection, and it is short. */
+    $credit = preg_match('~^(source\b|courtesy\b|photo(graph)? (by|courtesy)\b|collection of\b|from the\b|[\x{2022}\-]\s*\S)~iu', $s)
+        || preg_match('~^\(.*\)\.?$~u', $s)
+        || preg_match('~\b(collection|archives?|courtesy of|society)\b~i', $s);
+
+    /* And a fragment gives itself away by starting mid-sentence: a lowercase
+       word that is not a known opener, or no terminal stop at all. */
+    $fragment = preg_match('~^[a-z]~u', $s) && !preg_match('~^(source|courtesy|from|photo)~i', $s);
+
+    if ($fragment || mb_strlen($s) > 240) { return ['', $s]; }
+    if ($credit) { return [$s, '']; }
+    return ['', $s];
 };
 
 /* The communities the archive actually has, matched loosely enough to let
@@ -167,6 +220,8 @@ $PLACEHOLDER = '~^santa clarita valley history in pictures\b~i';
 $readTitle = function (string $raw, string $legacyKey) use ($communities, $PLACEHOLDER): array {
     $out = ['code' => '', 'sequence' => '', 'community' => null, 'topic' => '', 'title' => '', 'problem' => ''];
     $t = trim(preg_replace('~\s+~u', ' ', $raw));
+    /* Every title in the file opens with the site's masthead. */
+    $t = preg_replace('~^[A-Za-z0-9][A-Za-z0-9.\-]*\.(?:com|net|org)\s*\|?\s*~i', '', $t, 1);
 
     /* The pages whose title was never written. The code is still in there, and
        the filename has it too, but there is no caption to use as a name. */
@@ -317,7 +372,7 @@ if ($missingKeys) {
     echo 'WARNING: ' . implode(' and ', $missingKeys) . ' is on no page. The credit fields would all be empty.' . PHP_EOL;
 }
 
-$byShape = []; $noTitle = []; $topics = []; $unmatched = ['people' => [], 'places' => [], 'orgs' => []];
+$byShape = []; $noTitle = []; $topics = []; $noteFragments = []; $codeMismatch = []; $matched = []; $unmatched = ['people' => [], 'places' => [], 'orgs' => []];
 $existingByKey = [];
 foreach (\craft\elements\Entry::find()->section($SECTION)->status(null)->limit(null)->all() as $e) {
     $existingByKey[(string)$e->legacyKey] = $e;
@@ -335,21 +390,47 @@ $plan = []; $shown = 0;
 foreach ($pages as $p) {
     $key = (string)($p['legacy_key'] ?? '');
     $t = $readTitle((string)($p['title'] ?? ''), $key);
+    /* The extraction already split the topic out. Prefer its answer to ours. */
+    if (array_key_exists('title_topic', $p) && trim((string)$p['title_topic']) !== '') {
+        $t['topic'] = trim((string)$p['title_topic']);
+        $tk = preg_replace('~[^a-z0-9]~', '', mb_strtolower($t['topic']));
+        $t['community'] = $communities[$tk] ?? null;
+    }
     if ($t['problem'] !== '') { $noTitle[] = $key . '  ' . ($p['title'] ?? ''); continue; }
 
     if ($t['topic'] !== '' && !$t['community']) { $topics[$t['topic']] = ($topics[$t['topic']] ?? 0) + 1; }
     $credit = $readCredit((string)($p['scan_credit_raw'] ?? ''));
     $byShape[$credit['shape'] ?: '(no credit line)'][] = $key;
+    $srcNote = $readSourceNote((string)($p['source_note_raw'] ?? ''));
+    if ($srcNote[1] !== '') { $noteFragments[$key] = mb_substr($srcNote[1], 0, 110); }
+    if ($credit['code'] !== '' && $t['code'] !== '' && strcasecmp($credit['code'], $t['code']) !== 0) {
+        $codeMismatch[$key] = $t['code'] . ' in the title, ' . $credit['code'] . ' in the credit';
+    }
 
     $rel = [];
     foreach ([['people_mentioned', $people, 'photoPeople', 'people'],
               ['places_mentioned', $places, 'photoPlaces', 'places'],
               ['orgs_mentioned', $orgs, 'photoOrganizations', 'orgs']] as [$src, $idx, $handle, $bucket]) {
+        if (!$RELATE) {
+            foreach (($p[$src] ?? []) as $name) {
+                $n = is_array($name) ? ($name['name_raw'] ?? '') : $name;
+                if (trim((string)$n) !== '') {
+                    $k = mb_strtolower(trim((string)$n));
+                    if (isset($idx[$k])) { $matched[$bucket] = ($matched[$bucket] ?? 0) + 1; }
+                    else { $unmatched[$bucket][$n] = ($unmatched[$bucket][$n] ?? 0) + 1; }
+                }
+            }
+            continue;
+        }
         foreach (($p[$src] ?? []) as $name) {
-            $n = is_array($name) ? ($name['name'] ?? '') : $name;
+            /* The entity lists hold objects keyed name_raw, not name, and a
+               plain string in communities_mentioned. Reading the wrong key is
+               silent: every mention becomes an empty string and the whole
+               relation pass reports nothing at all rather than failing. */
+            $n = is_array($name) ? ($name['name_raw'] ?? $name['name'] ?? '') : $name;
             $k = mb_strtolower(trim((string)$n));
             if ($k === '') { continue; }
-            if (isset($idx[$k])) { $rel[$handle][] = $idx[$k]; }
+            if (isset($idx[$k])) { $rel[$handle][] = $idx[$k]; $matched[$bucket] = ($matched[$bucket] ?? 0) + 1; }
             else { $unmatched[$bucket][$n] = ($unmatched[$bucket][$n] ?? 0) + 1; }
         }
     }
@@ -365,7 +446,7 @@ foreach ($pages as $p) {
         'creditProcess' => $credit['process'],
         'creditKind' => $credit['kind'],
         'creditName' => $credit['name'],
-        'photoCredit' => (string)($p['source_note_raw'] ?? ''),
+        'photoCredit' => $srcNote[0],
         'webmasterNoteBottom' => (string)($p['fine_print_raw'] ?? ''),
         'legacyKey' => $key,
         'legacyUrl' => (string)($p['legacy_path'] ?? ''),
@@ -412,10 +493,27 @@ if ($topics) {
     foreach ($topics as $t => $c) { echo '   ' . str_pad((string)$c, 6) . $t . PHP_EOL; if (++$i >= 20) { break; } }
 }
 
+if ($noteFragments) {
+    echo PHP_EOL . 'source_note_raw that is body prose rather than a credit: ' . count($noteFragments)
+        . ' of ' . (count($plan) + count($noTitle)) . PHP_EOL;
+    echo 'Not written anywhere. This is an extraction bug to send back, not data to massage.' . PHP_EOL;
+    $i = 0;
+    foreach ($noteFragments as $k => $frag) { echo '   ' . str_pad($k, 14) . $frag . PHP_EOL; if (++$i >= 8) { break; } }
+    if (count($noteFragments) > 8) { echo '   and ' . (count($noteFragments) - 8) . ' more' . PHP_EOL; }
+}
+
+if ($codeMismatch) {
+    echo PHP_EOL . 'accession code disagrees between the title and the scan credit: ' . count($codeMismatch) . PHP_EOL;
+    $i = 0;
+    foreach ($codeMismatch as $k => $why) { echo '   ' . str_pad($k, 14) . $why . PHP_EOL; if (++$i >= 10) { break; } }
+    if (count($codeMismatch) > 10) { echo '   and ' . (count($codeMismatch) - 10) . ' more' . PHP_EOL; }
+}
+
 foreach ($unmatched as $bucket => $names) {
     if (!$names) { continue; }
     arsort($names);
-    echo PHP_EOL . 'named on a page and not a record, ' . $bucket . ': ' . count($names) . ' distinct' . PHP_EOL;
+    echo PHP_EOL . 'mentions of ' . $bucket . ': ' . ($matched[$bucket] ?? 0) . ' matched a record, '
+        . array_sum($names) . ' did not (' . count($names) . ' distinct names)' . PHP_EOL;
     $i = 0;
     foreach ($names as $n => $c) { echo '   ' . str_pad((string)$c, 5) . $n . PHP_EOL; if (++$i >= 12) { break; } }
 }
