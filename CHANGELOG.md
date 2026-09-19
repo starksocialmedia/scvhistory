@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: investigated the 79 added lines against inventory/wp_content.json. Full report at web/review/fidelity-investigation.md.
+- Decisions: the test matches a record to its WordPress post by slug and compares on words alone against the whole WP body flattened, because WordPress wraps paragraphs differently from the extraction; a line over fourteen words is probed on its first fourteen so a lightly edited line still matches. Reports go to a file from now on, at Nathan's request, with a short summary in the terminal.
+- Blockers: none.
+- Result: both answers are true, and the split is 71 lines to 8. 71 of 79 are in the WordPress body, across 21 records, so they are content written in WordPress before the Craft migration and the question is who wrote them. The remaining 8 are on three war memorials that have no WordPress post at all, so the test is inconclusive rather than damning, and reading them settles it: Rudy Acosta's six lines are a composed biography and Robert Cone's one line is an editor's note, both content; Augustus Rubel's one line is the legacy navigation trail sitting in the body, and that is the bug. It survived because clean_legacy_bodies.php matches a breadcrumb with ^> at the start of a line, and this trail sits after the page title on the same line. The census misses it for the same reason. 317 of the 1,661 LW pages carry that shape, and 1,340 carry the catchable one, but the larger point is that clean_legacy_bodies.php runs over articles, warMemorials and obituaries only, and the LW features import as photographs.
+- Next: Nathan decides who wrote the WordPress additions, and whether the cleaner covers photographs before the 1,544 import
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: ran the fidelity audit across all four inventories, 373 pages, 38 files. Reported the corpus-wide count of text present in the record and absent from the page it came from.
 - Decisions: the 38 text files are gitignored and the summary JSON is committed. 3.3 MB of generated text regenerated on every corpus change is churn a repository should not carry, and the finding is in the summary; the files themselves are on disk and over HTTP for the reviewer. Easy to reverse if they should be committed after all.
 - Blockers: none, but the corpus is only two thirds tested. All 219 Worden pages have no Craft record, so B is empty for every one of them and they can contribute nothing to this count. Whatever is happening in Reynolds cannot be ruled in or out for Worden until those pages are imported.
