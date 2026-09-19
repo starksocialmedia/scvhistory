@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: fixSeenOn
+instructions: 'The page you were reading when you noticed. Filled in by the capture form; there is no need to type it.'
+name: 'Fix Seen On'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

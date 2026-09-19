@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: fixLegacyUrl
+instructions: 'The legacy page this is about, where there is no record yet. Leave empty when the note is about a record, which Fix Record holds.'
+name: 'Fix Legacy URL'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -1,0 +1,44 @@
+columnSuffix: null
+handle: fixStatus
+instructions: 'Open until somebody has dealt with it. "Not a problem" is a real answer and closes the note without pretending work was done.'
+name: 'Fix Status'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Open
+        -
+          - value
+          - open
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - Done
+        -
+          - value
+          - done
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Not a problem'
+        -
+          - value
+          - wontfix
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: false
+entryTypes:
+  -
+    uid: 4d825e5a-ad47-4085-a9dd-47a4387e3fda # Fix
+handle: fixes
+maxAuthors: 1
+minAuthors: 1
+name: Fixes
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: null
+type: channel
