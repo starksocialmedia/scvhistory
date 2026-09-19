@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: wrote the remaining eleven place bodies into fill_place_stub_bodies.php, in the order given, each naming the articles it draws on. Also answered the placeholder question: the pattern is not on organizations, groups, events or persons, but a parallel one is on collections.
+- Decisions: length follows the corpus rather than a house style. Rancho Camulos runs 1,274 characters because Reynolds gives it a chapter; Lake Hughes gets 160, one sentence, because one sentence is what Reynolds wrote. The Estancia entry carries the 2006 webmaster's note that modern archaeologists do not believe it was ever raised to asistencia status, because the archive's own correction belongs in the record rather than only in the article it corrects.
+- Blockers: none. Three of my slugs were wrong, estancia rather than estancia-de-san-francisco-xavier, lang rather than lang-station, magic-mountain rather than six-flags-magic-mountain, and the dry run said so by leaving them in the still-placeholder list. The guard also blocked Heritage Junction, whose body Nathan has already applied, which is the guard doing its job.
+- Result: 11 bodies would be filled, 1 blocked as already written. Eleven of thirteen collections carry the same generator's other placeholder, "X is a series in the Santa Clarita Valley historical archive", and all eleven are untitled collections. check_render.php reports no failures.
+- Next: Nathan applies fill_place_stub_bodies.php, and decides on the collection placeholders, which need titles first
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: made the render check part of the standing workflow rather than a schema-partial special case, in the scv-record-template skill and in my own memory, together with pulling before reporting on tree state. Wrote fill_place_stub_bodies.php and filled the fourth of the four places: Heritage Junction Historic Park existed already but carried a generated placeholder body.
 - Decisions: the fill script only ever overwrites a body that still matches the placeholder exactly, and the guard is the point of it rather than a precaution around it. The other eleven placeholders are listed rather than filled, because composing those paragraphs is reading and judgement; a script can refuse to invent them but cannot write them.
 - Blockers: none, and a correction to my own last report. add_missing_places.php has been applied: Ruiz Cemetery #2536, Newhall Ranch House #2538 and Felton School #2540 all exist with their bodies, communities and haunted fields as briefed. I described them as pending.
