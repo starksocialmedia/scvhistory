@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: imported the 1,544 LW features and ran the second clean. Did not apply three of the four cleaning decisions, because the lines they name are not what my report implied.
+- Decisions: the import ran because it is independent of those four article records. On the four: 39-ribbons-of-steel stays, as decided. The other three I have left alone and reported instead. In notes and editors-notes, BACK is navigation as decided, but it is not a trailing line: editors-notes carries 34 of them, one after every numbered note, so the tail walk would strip the last and leave 33. Stripping them all means removing from the middle of the prose, which is the rule the cleaner is built on, and that is a decision rather than an implementation detail. On the other two, the trailing runs contain image tokens: the parade record's run of three holds [image:1] and the record has one related image, and rancho-san-francisco's run of six holds [image:2], [image:1] and a footnote marker across three lines, against two related images. Stripping either orphans the pictures.
+- Blockers: none for the import. The three cleaning cases are waiting on a second look.
+- Result: 262 entries before, 1,806 after, photographs 0 to 1,544, none failed. The second clean changed all 1,544: 1,699 breadcrumbs, 1,427 gallery caption runs, 270 repeated titles, 64 block titles, 56 block publications, 42 bracket-nav, 42 bylines, 9 datelines, one copyright. A third run changes nothing and reports 1,702 clean. 282 records carry something the walk stopped at, which is the residue by design. check_render.php covers 27 pages including a photograph and reports no failures.
+- Next: Nathan re-decides the three cleaning cases now that the lines are visible, and the images import needs the drive bound into DDEV
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: reworked the reading player into one tools block, and built export_fixes.php and import_fixes.php. Diagnosed the fix button: the condition and the include are both correct and it renders locally on every page type.
 - Decisions: the player keeps every DOM hook the script uses, so not a line of the JavaScript changed; only the markup around it and the CSS. The import matches on the note text, because ids are not stable across two databases and the note is what a person typed. A note already present locally is left completely alone including its status: if it was marked done here and is still open in the export, the local judgement is the later one and the import has no business overruling it. Exported records are identified by legacy URL and slug rather than id, for the same reason.
 - Blockers: none, but one thing could not be verified. Clicking play does not start speech in this browser, with a real mouse click or a synthetic one. The committed version behaves identically, so it is the environment and not the rework, but audio itself is unverified. Everything observable was checked: the seek bar, the arrow keys, the four speeds and the estimate recalculating.
