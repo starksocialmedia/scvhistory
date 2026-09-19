@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: nrhpListedDate
+instructions: 'The date this place was listed on the National Register, as the source gives it: "May 13, 1971", or just "1971" where that is all that is known. Only meaningful alongside a reference number.'
+name: 'NRHP Listed Date'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

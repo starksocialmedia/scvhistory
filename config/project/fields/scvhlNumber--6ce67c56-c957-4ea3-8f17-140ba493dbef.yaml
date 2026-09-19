@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: scvhlNumber
+instructions: 'Santa Clarita Historic Landmark designation number, digits only, e.g. 12. The Place SCV Landmark switch says a place is one; this says which. Leave empty where the designation is not known, rather than guessing from the switch.'
+name: 'SCVHL Number'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

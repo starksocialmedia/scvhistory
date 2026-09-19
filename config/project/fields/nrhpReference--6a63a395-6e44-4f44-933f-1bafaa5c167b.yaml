@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: nrhpReference
+instructions: 'National Register of Historic Places reference number, e.g. 75000426. Eight digits, leading zeros kept. Find it at https://npgallery.nps.gov/NRHP. Leave empty where the place is not listed; not every landmark is on the National Register.'
+name: 'NRHP Reference Number'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

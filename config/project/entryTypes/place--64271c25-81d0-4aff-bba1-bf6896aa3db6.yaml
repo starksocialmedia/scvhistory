@@ -308,6 +308,57 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6ce67c56-c957-4ea3-8f17-140ba493dbef # SCVHL Number
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a4d11ad6-eab1-4218-bdca-4d8ca7cce797
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6a63a395-6e44-4f44-933f-1bafaa5c167b # NRHP Reference Number
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 656b224e-5804-4117-862a-49ca753de679
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 74f392c8-3e14-451b-8fdd-db774e0f4a04 # NRHP Listed Date
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8e0f638b-3215-4f44-ba32-bd054f1629b8
+            userCondition: null
+            warning: null
+            width: 100
         name: Identity
         uid: 8564a6bf-e641-442c-a738-e58150c8eabb
         userCondition: null
