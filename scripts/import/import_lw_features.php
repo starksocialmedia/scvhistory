@@ -66,9 +66,13 @@ $SHOW     = 25;     /* how many pages to print in full in the dry run */
    mentions, 263 of 2,325 places and 0 of 3,378 organizations, and the person
    list is largely not people: "Hart Films", "Publicity Photos", "Drone Video".
    Wiring that up writes a few hundred right relations and leaves 34,000
-   mentions looking handled when they are not. The archive already has a
-   reconciliation pipeline with alias fields and a review screen, and that is
-   where these belong. Set it true to see the numbers, not to apply them. */
+   mentions looking handled when they are not.
+
+   They stay off until the entity canon exists. The canon plus orgAliases is
+   what makes "Southern Pacific", "Southern Pacific Railroad", "Newhall Land"
+   and "Newhall Land and Farming" resolve to one record each; exact title
+   matching never will, which is why it scores zero on organizations today.
+   Set it true to see the numbers, not to apply them. */
 $RELATE = false;
 
 /* Every incoming key, and where it goes. This array is the mapping: the report
@@ -81,7 +85,7 @@ $MAP = [
     'body_text'        => ['body', 'Verbatim, as every other importer here. Cleanup is clean_legacy_bodies.php\'s job.'],
     'date_raw'         => ['photoDate', 'As printed. Plain text, because "~1926" and "n.d." are both common and both true.'],
     'scan_credit_raw'  => ['creditRaw + creditDpi, creditProcess, creditKind, creditName', 'Raw always; the four parts where the line parses.'],
-    'source_note_raw'  => ['photoCredit, where it is a credit', '204 of 389 are body prose the extraction picked up by mistake and are written nowhere.'],
+    'source_note_raw'  => ['photoCredit', 'Confirmed. The real values are collection lines. A guard holds back the prose that leaked from the early batches.'],
     'byline_raw'       => ['(dropped)', 'These pages are not bylined pieces. Reported if any page carries one.'],
     'fine_print_raw'   => ['webmasterNoteBottom', 'The rights and reuse line at the foot of the page.'],
     'editor_notes'     => ['webmasterNoteTop, webmasterNoteBottom', 'By position, as import_perkins.php splits them.'],
@@ -101,11 +105,14 @@ $MAP = [
 ];
 
 $UNDECIDED =
-    "source_note_raw was the open question and the real file answers it: the key holds two different\n"
-    . "things. Some are credits, \"Source: City of Santa Clarita\", \"(H. Carey Collection)\". 204 begin\n"
-    . "mid-sentence, \"at 5675 W. Washington Blvd. in Culver City...\", which is body prose the\n"
-    . "extraction's selector caught. Only the first kind is written, to photoCredit. The second kind is\n"
-    . "listed at the end of this run and is a bug to send back to the extraction, not data to massage.";
+    "source_note_raw -> photoCredit is settled. The real values are collection lines that credit the\n"
+    . "picture rather than comment on the page: \"\u{2022} Harry Carey Jr. Photo Collection\",\n"
+    . "\"(H. Carey Collection)\", \"Source: City of Santa Clarita\".\n\n"
+    . "The prose fragments the early batches leaked are being cleaned up in the extraction, so the\n"
+    . "guard below is a net rather than a classification. It holds back anything that starts\n"
+    . "mid-sentence or runs past 240 characters, and prints what it held. Once the cleanup pass has\n"
+    . "run, that list should be empty or close to it; if it is not, the run has found what the cleanup\n"
+    . "missed. Nothing is discarded from the file, only from this import.";
 
 /* ------------------------------------------------------------ the parsers */
 

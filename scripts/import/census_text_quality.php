@@ -142,11 +142,15 @@ $CLASSES = [
         'U+2026 in a corpus that otherwise writes three full stops.',
         'Pick one. Whichever it is, one instance against two hundred is the odd one.'],
 
-    'unicode-bullet' => ['outlier', '~[•]~u',
-        'A round bullet where the same line elsewhere uses a middle dot. The rights '
-        . 'line reads "SANTA CLARITA VALLEY HISTORICAL SOCIETY · RIGHTS RESERVED" on '
-        . 'most records and with a bullet on a few.',
-        'Normalise to the majority character.'],
+    'rights-line-separator' => ['outlier', '~SOCIETY[ ]?[\x{2022}\x{00AD}\x{007C}][ ]?RIGHTS RESERVED~u',
+        'The rights line reads "SANTA CLARITA VALLEY HISTORICAL SOCIETY · RIGHTS '
+        . 'RESERVED" on most records, and the one character slot between SOCIETY and '
+        . 'RIGHTS held four different characters across 43 of them: a middle dot on 28, '
+        . 'a bullet on 7, a soft hyphen on 6 and a vertical bar on 2.',
+        'Normalise to the middle dot, the majority. Scoped to this line rather than to '
+        . 'the bullet character, because a bullet is a legitimate separator in prose: '
+        . 'the del Valle record uses one in a list and must not be touched. '
+        . 'clean_text_mechanical.php does this.'],
 ];
 
 /* ------------------------------------------------------------------ the read */

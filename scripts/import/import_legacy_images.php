@@ -51,6 +51,34 @@ $CONTACT = 'nathan@starksocial.com';
 $USER_AGENT = 'SCVHistory-Legacy-Images/1.0 (+https://scvhistory.com; contact: ' . $CONTACT . ')';
 $DELAY_MS = 1000;
 
+/* ------------------------------------------------------- batching and resume
+
+   The three inventories here are 583 images. lw-features-images.json is
+   expected to be around 40,000, and at the one request per second the crawl
+   contract requires that is eleven hours of downloading. A run that either
+   finishes or does not is no use at that length: a dropped connection, a
+   laptop lid or a restart loses the whole thing.
+
+   So the work is batched and the progress is on disk. $BATCH caps how many
+   files one run fetches. Every outcome is written to the ledger as it happens,
+   not at the end, so an interruption costs at most the one file in flight.
+   The next run reads the ledger, subtracts what is done, and carries on.
+
+   Outcomes are remembered separately because they are not the same:
+     done       fetched and saved. Never attempted again.
+     skipped    already in the volume, or navigation furniture. Same.
+     gone       404 or 410. Permanent, and retrying it forty times is rude.
+     failed     a timeout, a 5xx, a short read. Transient, retried next run
+                until $MAX_TRIES, then left alone and reported.
+
+   A page is only tokenised once every image it needs is in hand. Half a page's
+   pictures placed and the rest waiting for the next batch would leave a body
+   that the next run cannot safely add to. */
+$BATCH = 0;          /* 0 means no limit, which is the old behaviour */
+$MAX_TRIES = 3;
+$LEDGER = \Craft::getAlias('@storage') . '/legacy-images-progress.json';
+$RESET_LEDGER = false;   /* true forgets everything and starts over */
+
 $INVENTORIES = ['perkins-images', 'reynolds-images', 'warmemorial-images'];
 /* Where the page HTML lives, for recovering where each image actually sat. */
 $SOURCE_OF = [
@@ -75,6 +103,47 @@ $IMAGE_EXT = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
 $root = \Craft::getAlias('@root');
 $elements = Craft::$app->getElements();
+
+/* ------------------------------------------------------------ the ledger */
+
+$ledger = ['meta' => [], 'urls' => []];
+if (!$RESET_LEDGER && file_exists($LEDGER)) {
+    $decoded = json_decode(file_get_contents($LEDGER), true);
+    if (is_array($decoded) && isset($decoded['urls'])) { $ledger = $decoded; }
+}
+$ledgerDirty = false;
+
+$ledgerWrite = function () use (&$ledger, &$ledgerDirty, $LEDGER, $APPLY) {
+    if (!$APPLY || !$ledgerDirty) { return; }
+    $ledger['meta']['updated'] = (new DateTime())->format('c');
+    $ledger['meta']['written_by'] = 'scripts/import/import_legacy_images.php';
+    $ledger['meta']['counts'] = array_count_values(array_column($ledger['urls'], 'state'));
+    /* Written whole and renamed, so a kill in the middle cannot leave half a
+       ledger, which would be worse than none. */
+    $tmp = $LEDGER . '.tmp';
+    file_put_contents($tmp, json_encode($ledger, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
+    rename($tmp, $LEDGER);
+    $ledgerDirty = false;
+};
+
+$ledgerNote = function (string $url, string $state, string $detail = '') use (&$ledger, &$ledgerDirty) {
+    $prev = $ledger['urls'][$url] ?? null;
+    $ledger['urls'][$url] = [
+        'state' => $state,
+        'tries' => ($state === 'failed') ? (($prev['tries'] ?? 0) + 1) : ($prev['tries'] ?? 0),
+        'at' => (new DateTime())->format('c'),
+        'detail' => $detail,
+    ];
+    $ledgerDirty = true;
+};
+
+/** Has this url been settled, so a later run need not look at it again? */
+$ledgerSettled = function (string $url) use (&$ledger, $MAX_TRIES): bool {
+    $r = $ledger['urls'][$url] ?? null;
+    if (!$r) { return false; }
+    if (in_array($r['state'], ['done', 'skipped', 'gone'], true)) { return true; }
+    return ($r['tries'] ?? 0) >= $MAX_TRIES;
+};
 
 /* ---------------------------------------------------------------- helpers */
 
@@ -270,6 +339,43 @@ echo 'skipped, already in volume:  ' . count($dupSkipped) . PHP_EOL;
 echo 'skipped as navigation:       ' . count($chromeSkipped) . PHP_EOL;
 echo 'rows with no usable url:     ' . count($badRows) . PHP_EOL;
 
+/* ------------------------------------------------- subtract what is settled */
+
+$alreadySettled = 0; $retrying = 0;
+foreach (array_keys($toDownload) as $u) {
+    if ($ledgerSettled($u)) { unset($toDownload[$u]); $alreadySettled++; }
+    elseif (isset($ledger['urls'][$u])) { $retrying++; }
+}
+$outstanding = count($toDownload);
+$deferred = [];
+if ($BATCH > 0 && $outstanding > $BATCH) {
+    $deferred = array_slice($toDownload, $BATCH, null, true);
+    $toDownload = array_slice($toDownload, 0, $BATCH, true);
+}
+
+if ($ledger['urls']) {
+    echo PHP_EOL . '=== resume ===' . PHP_EOL;
+    echo 'ledger: ' . basename($LEDGER) . ', ' . count($ledger['urls']) . ' urls remembered' . PHP_EOL;
+    foreach (array_count_values(array_column($ledger['urls'], 'state')) as $st => $n) {
+        echo '   ' . str_pad($st, 12) . $n . PHP_EOL;
+    }
+    echo 'settled and skipped this run: ' . $alreadySettled . PHP_EOL;
+    if ($retrying) { echo 'retrying after an earlier failure: ' . $retrying . PHP_EOL; }
+}
+echo 'outstanding:                 ' . $outstanding . PHP_EOL;
+if ($BATCH > 0) {
+    echo 'this run will fetch:         ' . count($toDownload) . ' (batch limit ' . $BATCH . ')' . PHP_EOL;
+    echo 'left for the next run:       ' . count($deferred) . PHP_EOL;
+    $secs = count($toDownload) * ($DELAY_MS / 1000);
+    echo 'at ' . $DELAY_MS . 'ms apart that is about ' . gmdate('H:i:s', (int)$secs) . PHP_EOL;
+} elseif ($outstanding > 1000) {
+    $secs = $outstanding * ($DELAY_MS / 1000);
+    echo PHP_EOL . 'WARNING: ' . $outstanding . ' images at ' . $DELAY_MS . 'ms apart is about '
+        . round($secs / 3600, 1) . ' hours in one run, and $BATCH is 0.' . PHP_EOL;
+    echo 'Set $BATCH to something that finishes inside a sitting. The ledger makes a' . PHP_EOL;
+    echo 'stopped run cost nothing; an unbatched one that dies at hour nine costs nine hours.' . PHP_EOL;
+}
+
 /* ---------------------------------------------------------------- sizes */
 
 $client = Craft::createGuzzleClient(['timeout' => 20, 'headers' => ['User-Agent' => $USER_AGENT]]);
@@ -315,12 +421,18 @@ if ($APPLY) {
             $code = $res->getStatusCode();
             if ($code !== 200) {
                 $notFound[] = $url . '  (HTTP ' . $code . ')';
+                /* 404 and 410 are answers, not failures. Asking again tomorrow
+                   is both pointless and impolite. */
+                $ledgerNote($url, in_array($code, [404, 410], true) ? 'gone' : 'failed', 'HTTP ' . $code);
+                $ledgerWrite();
                 @unlink($tmp);
                 usleep($DELAY_MS * 1000);
                 continue;
             }
         } catch (\Throwable $e) {
             $notFound[] = $url . '  (' . $e->getMessage() . ')';
+            $ledgerNote($url, 'failed', mb_substr($e->getMessage(), 0, 120));
+            $ledgerWrite();
             @unlink($tmp);
             usleep($DELAY_MS * 1000);
             continue;
@@ -338,8 +450,14 @@ if ($APPLY) {
         if ($elements->saveElement($asset)) {
             $assetIdByUrl[$url] = $asset->id;
             $existingFilenames[strtolower($asset->filename)] = $asset->id;
+            /* Written now, not at the end of the loop. An interruption then
+               costs the one file in flight instead of the whole run. */
+            $ledgerNote($url, 'done', $asset->filename);
+            $ledgerWrite();
             echo '  ' . str_pad($asset->filename, 46) . number_format($bytes) . ' bytes' . PHP_EOL;
         } else {
+            $ledgerNote($url, 'failed', 'save: ' . mb_substr(json_encode($asset->getErrors()), 0, 120));
+            $ledgerWrite();
             echo '  SAVE FAILED ' . $filename . ': ' . json_encode($asset->getErrors()) . PHP_EOL;
         }
         usleep($DELAY_MS * 1000);
@@ -352,9 +470,29 @@ echo '=== records ===' . PHP_EOL;
 $bodiesChanged = 0; $tokensInserted = 0; $relatedTotal = 0; $skippedHero = 0;
 $noAnchor = []; $notLocated = [];
 
+$heldForNextRun = [];
+
 foreach ($plan as $pageKey => $p) {
     $entry = $p['entry'];
     if (!$entry || !count($p['rows'])) { continue; }
+
+    /* A page is placed only once every picture it needs is in hand. Tokenising
+       three of a page's eight and leaving the rest for the next batch gives a
+       body the next run cannot safely add to: the anchors it matched against
+       have moved, and a second pass would either duplicate tokens or miss the
+       positions. So a page with anything still outstanding waits, whole. */
+    $waiting = 0;
+    foreach ($p['rows'] as $r) {
+        $u = $r['url'] ?? '';
+        if ($u === '') { continue; }
+        if (isset($assetIdByUrl[$u])) { continue; }
+        if (isset($existingFilenames[strtolower($r['filename'] ?? '')])) { continue; }
+        if (!$ledgerSettled($u)) { $waiting++; }
+    }
+    if ($waiting > 0) {
+        $heldForNextRun[$entry->section->handle . '/' . $entry->slug] = $waiting;
+        continue;
+    }
     if (!$hasField($entry, 'recordImages')) {
         echo '  no recordImages field on ' . $entry->section->handle . '/' . $entry->slug . PHP_EOL;
         continue;
@@ -477,6 +615,27 @@ echo 'relations to add:            ' . ($APPLY ? $relatedTotal : 'known once dow
 echo 'bodies to change:            ' . $bodiesChanged . PHP_EOL;
 echo 'tokens to insert:            ' . $tokensInserted . PHP_EOL;
 echo 'skipped, hero or band image: ' . $skippedHero . PHP_EOL;
+
+if ($heldForNextRun) {
+    echo PHP_EOL . 'pages held whole until their pictures are all in: ' . count($heldForNextRun) . PHP_EOL;
+    $i = 0;
+    foreach ($heldForNextRun as $slug => $n) {
+        echo '   ' . str_pad($slug, 52) . $n . ' still outstanding' . PHP_EOL;
+        if (++$i >= 10) { echo '   and ' . (count($heldForNextRun) - 10) . ' more' . PHP_EOL; break; }
+    }
+}
+
+$ledgerWrite();
+if ($APPLY && ($deferred || $heldForNextRun)) {
+    echo PHP_EOL . str_repeat('-', 70) . PHP_EOL;
+    echo 'NOT FINISHED, AND THAT IS THE DESIGN.' . PHP_EOL;
+    echo '   images left to fetch: ' . count($deferred) . PHP_EOL;
+    echo '   pages left to place:  ' . count($heldForNextRun) . PHP_EOL;
+    echo 'Run this again. It reads ' . basename($LEDGER) . ', subtracts what is done and' . PHP_EOL;
+    echo 'carries on. Nothing already fetched is fetched twice.' . PHP_EOL;
+} elseif ($APPLY) {
+    echo PHP_EOL . 'Nothing outstanding. The ledger can be deleted, or left as a record of what was fetched.' . PHP_EOL;
+}
 if ($PROBE_SIZES || $APPLY) {
     echo 'total bytes:                 ' . number_format($totalBytes) . PHP_EOL;
     if ($sizeUnknown) { echo '  (' . $sizeUnknown . ' gave no Content-Length)' . PHP_EOL; }
