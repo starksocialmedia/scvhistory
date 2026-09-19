@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: export_fidelity_audit.php writes side-by-side audit files for a reviewer with no access to either site. One plain text file per batch of ten articles: the legacy URL, the fields set from the page, then the extracted body_text and the stored Craft body, both verbatim. First ten Perkins articles written to web/review/fidelity/.
+- Decisions: /mnt/user-data/outputs does not exist on this machine, so the files go to web/review/fidelity/, which is where every other review artefact lives and is downloadable over HTTP. It is inside the directory the deployment runbook blocks in production, which is correct: these files are for a named reviewer, not the public. Each pair carries a line-level comparison, on words alone with case, spacing and punctuation ignored, because the import changes all three on purpose. The comparison counts and lists in both directions. Lines only in A are mostly furniture removed by design; lines only in B are the direction worth reading, because the import adds almost nothing.
+- Blockers: none.
+- Result: one file, 588 KB, ten articles, every one of them matched to a record. Nine of the ten lose two to four lines, all of them the series heading and the repeated headline. Rancho San Francisco 1957 loses 72, all of them the caption list under the thumbnail rail. The Birth of Newhall (Cont.) is the one that goes the other way: two sentences of real prose are in the record and not on the legacy page, about Mill Canyon and an 1876 Ventura Free Press report, and that wants a human. Also visible across the batch: originalPublishDate and publishedBy are empty on nine of ten, and subheadline on all ten.
+- Next: Nathan reads the file, decides on the two Mill Canyon sentences, and says whether the remaining ten Perkins pages and the other inventories follow
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: taught import_legacy_images.php the drive and the gallery rail. It resolves every file against Reggie first and reports each fall back to the network; it skips a rail thumbnail whose links_to is a page, follows one whose links_to is a picture, and keeps one with no link at all. Scoped to lw-features-images, batched and resumable as before.
 - Decisions: the rail rule is scoped to the inventory it was written for. Applied to the three earlier inventories it skipped 286 files that are already in the volume and were judged content at the time under the chrome rules, and a new rule belongs to the data it was written for. The drive guard stops an apply run when the mirror is unreadable but lets a dry run plan, because a dry run fetches nothing and refusing to plan is no protection. $DRIVE is a list of candidates now, the host path and the container path, so the same script works run either way.
 - Blockers: two, and they are separate. The DDEV container has no /Volumes at all, so nothing run through ddev can see the drive however the Mac is configured; it needs a bind mount in .ddev/docker-compose.drive.yaml and the script prints the four lines to write. And the host shell cannot read /Volumes/Reggie either: it answers stat and mount but refuses to be listed, which is macOS withholding a removable volume and needs Full Disk Access. Until one of those is fixed nothing can be read from the mirror.
