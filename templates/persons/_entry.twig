@@ -114,7 +114,7 @@
         {% endif %}
 
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
-        {% if F.personFinePrint %}<p class="rec-fine">{{ F.personFinePrint }}</p>{% endif %}
+        {% include "_partials/record/fine-print" with { value: F.personFinePrint } only %}
 
       </article>
 

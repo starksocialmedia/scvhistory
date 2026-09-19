@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: elevated the signature and moved the rights line out of the record body into the site footer.
+- Decisions: the fine print rendering was not removed wholesale, because finePrint does not only hold the site-wide rights line. 51 of the 57 non-empty values are that line and are now suppressed; the other six still print, and two of those six are rights held by somebody else, A.B. Perkins and the Historical Society of Southern California, which the footer's line does not cover and must not be taken to cover. The other four are a credit to Stan Walker and three scan lines that belong in creditRaw and have not moved yet. So the partial suppresses one known shape rather than the field.
+- Blockers: none.
+- Result: the signature is Playfair at the body's 17px, navy, small caps, with 52px above it instead of 34. The footer carries the rights line once with the year derived, 2026 rather than 1998. The stored value is untouched, so DC.rights and the JSON-LD still read it. Verified on four records: the Preface prints nothing in the body, the Pico Ghost Camp keeps the Perkins rights, Henry Clay Wiley keeps the Stan Walker credit, and Tiburcio Vasquez keeps its scan line. check_render.php reports no failures.
+- Next: the three scan lines sitting in finePrint want moving to creditRaw
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: imported the 1,544 LW features and ran the second clean. Did not apply three of the four cleaning decisions, because the lines they name are not what my report implied.
 - Decisions: the import ran because it is independent of those four article records. On the four: 39-ribbons-of-steel stays, as decided. The other three I have left alone and reported instead. In notes and editors-notes, BACK is navigation as decided, but it is not a trailing line: editors-notes carries 34 of them, one after every numbered note, so the tail walk would strip the last and leave 33. Stripping them all means removing from the middle of the prose, which is the rule the cleaner is built on, and that is a decision rather than an implementation detail. On the other two, the trailing runs contain image tokens: the parade record's run of three holds [image:1] and the record has one related image, and rancho-san-francisco's run of six holds [image:2], [image:1] and a footnote marker across three lines, against two related images. Stripping either orphans the pictures.
 - Blockers: none for the import. The three cleaning cases are waiting on a second look.

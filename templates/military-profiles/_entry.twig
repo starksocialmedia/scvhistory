@@ -71,7 +71,7 @@
         {% if narrative %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages } %}</div>{% endif %}
         {% include "_partials/record/images" with { images: recImages, body: narrative } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
-        {% if F.mpFinePrint %}<p class="rec-fine">{{ F.mpFinePrint }}</p>{% endif %}
+        {% include "_partials/record/fine-print" with { value: F.mpFinePrint } only %}
       </article>
 
       <aside class="rec-side">

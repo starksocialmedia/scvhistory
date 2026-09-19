@@ -1,0 +1,33 @@
+{#
+  Fine print on a record, minus the site-wide rights line.
+
+  "©1998 SCVTV/SCVHistory.com & SANTA CLARITA VALLEY HISTORICAL SOCIETY ·
+  RIGHTS RESERVED." is true of every page on the site, so printing it under
+  every record said the same thing 51 times and read as part of the article.
+  It is in the footer now, once, with the year derived.
+
+  The value stays in finePrint on the record because it is provenance and the
+  JSON-LD and the Dublin Core rights tag both read it. Only the printing stops.
+
+  What does not stop is everything else in that field. Six records carry
+  something that is not the site-wide line and each of them still prints:
+
+    ©A.B. Perkins/Santa Clarita Valley Historical Society Collection
+    ©Historical Society of Southern California | Presentation ©2013 SCVHistory.com
+    Obituary courtesy of Stan Walker.
+    and three scan credit lines that belong in creditRaw and have not moved yet
+
+  The first two are rights held by somebody else, which the footer's line does
+  not cover and must not be taken to cover.
+
+  Usage: {% include "_partials/record/fine-print" with { value: F.finePrint } only %}
+#}
+{%- set v = value|default('')|trim -%}
+{%- set flat = v|replace({'\n': ' '})|trim -%}
+{#- The standard line in all the spellings the corpus holds: with and without
+    SCVTV, with and without SCVHistory.com, a year or two years or none, a
+    middle dot or a full stop, "Rights reserved" or "All rights reserved". -#}
+{%- set STANDARD = '~^\\s*\\x{00a9}\\s*[\\d/,\\s]*\\s*(SCVTV\\s*/\\s*)?(SCVHistory\\.com\\s*&\\s*)?SANTA CLARITA VALLEY HISTORICAL SOCIETY\\s*[\\x{00b7}\\x{2022}|.,]?\\s*(ALL )?RIGHTS RESERVED\\.?\\s*$~iu' -%}
+{%- if v != '' and not (flat matches STANDARD) -%}
+  <p class="rec-fine">{{ v }}</p>
+{%- endif -%}

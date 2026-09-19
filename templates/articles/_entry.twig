@@ -56,7 +56,12 @@
   @media(max-width:600px){.ar-pn{grid-template-columns:1fr}.ar-pn .nx{text-align:left}}
 
   /* ── Sign-off ─────────────────────────────────────────────────── */
-  .ar-signoff{text-align:right;margin:34px 0 0;font-variant-caps:small-caps;font-size:16px;letter-spacing:.06em;color:#5B6472}
+  /* The author signing the piece, not a caption on it. It was 16px grey, a
+     shade smaller than the prose and the same colour as the furniture, which
+     read as a label. It is the last thing before the citation and it belongs
+     to the text: Playfair at the body's 17px, navy, small caps, and enough
+     space above it to be a signature rather than a trailing line. */
+  .ar-signoff{text-align:right;margin:52px 0 0;font-family:'Playfair Display',serif;font-size:17px;font-variant-caps:small-caps;letter-spacing:.07em;color:#17254C}
 
   /* ── About the author ─────────────────────────────────────────── */
   .ar-author{margin:48px 0 0;border-top:3px solid #C4A031;background:#FDF7EA;padding:26px 28px}
@@ -241,7 +246,7 @@
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
         {% if F.photoSources %}<p class="rec-fine">{{ F.photoSources }}</p>{% endif %}
-        {% if F.finePrint %}<p class="rec-fine">{{ F.finePrint }}</p>{% endif %}
+        {% include "_partials/record/fine-print" with { value: F.finePrint } only %}
 
         {% if prev or next %}
           <nav class="ar-pn after">

@@ -117,6 +117,7 @@
     html,body{overflow-x:hidden}
     #content{max-width:none;margin:0;padding:0}
     .scv-footer{background:#17254C;color:#fff}
+    .scv-rights{display:block}
   </style>
   {% block head %}{% endblock %}
 </head>
@@ -199,8 +200,17 @@
       </div>
     </div>
 
+    {#- The rights line, once, for the whole site.
+
+        It used to print under every record from finePrint, where it is still
+        stored as provenance. It is true of every page, so it said the same
+        thing 51 times and read as the last line of the article rather than as
+        a notice about the site.
+
+        The year is derived. It was fixed at 1998 in the stored values, which
+        was the year of the Reynolds book and not the year of anything else. -#}
     <div class="scv-footer-bottom">
-      <span>&copy; {{ now|date('Y') }} Santa Clarita Valley Historical Society</span>
+      <span class="scv-rights">&copy; {{ now|date('Y') }} SCVTV/SCVHistory.com &amp; Santa Clarita Valley Historical Society &middot; Rights reserved.</span>
       <span class="scv-footer-bottom-links">
         <a href="{{ url('nonprofit') }}">Nonprofit</a>
         &bull;
