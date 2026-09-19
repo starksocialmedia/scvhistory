@@ -184,3 +184,47 @@ $isRunTerminator = function (string $l) use ($isCopyright, $isExhibitHeading): s
     if (mb_strlen($l) <= 90) { return 'another caption'; }
     return '';
 };
+
+/* A signature block at the foot of a piece.
+
+   Reynolds signs the Prologue "JERRY REYNOLDS" on one line and "1985" on the
+   next; Worden signs the Preface "— LEON WORDEN, 1998" on one. Both arrive
+   wrapped in <strong>. It is the author and the date, which the record already
+   has fields for, so it belongs in those and not in the prose. Left in the body
+   it renders twice, once as the last paragraph and once as the record's own
+   signature line.
+
+   The year is required. Without it the pattern matches any short line of
+   capitals at the end of a body, and across the inventories that is "MANY MORE"
+   and "SEE HI JOLLY\'S TOMB", which are navigation. With the year required it
+   matches two pages in 2,036 and both are real signatures.
+
+   Returns [name, year, lines consumed] or null. */
+$SIGNATURE_NAME = '~^[\x{2014}\x{2013}-]?\s*([A-Z][A-Z.\x{2019}\'-]*(?:\s+[A-Z][A-Z.\x{2019}\'-]*){0,4})\s*(?:,\s*((?:18|19|20)\d{2}))?\.?$~u';
+$SIGNATURE_YEAR = '~^((?:18|19|20)\d{2})\.?$~';
+
+$readSignature = function (array $lines, int $end, int $floor) use ($SIGNATURE_NAME, $SIGNATURE_YEAR): ?array {
+    $text = fn(int $i): string => trim(html_entity_decode(strip_tags($lines[$i])));
+
+    /* the last non-empty line, and the one above it */
+    $last = null; $prev = null;
+    for ($i = $end; $i >= $floor; $i--) {
+        if (trim($lines[$i]) === '') { continue; }
+        if ($last === null) { $last = $i; continue; }
+        $prev = $i; break;
+    }
+    if ($last === null) { return null; }
+
+    /* name on one line, year on the next */
+    if ($prev !== null
+        && preg_match($SIGNATURE_YEAR, $text($last), $y)
+        && preg_match($SIGNATURE_NAME, $text($prev), $n)
+        && empty($n[2])) {
+        return [$n[1], $y[1], ($end - $prev) + 1];
+    }
+    /* name and year on one line */
+    if (preg_match($SIGNATURE_NAME, $text($last), $n) && !empty($n[2])) {
+        return [$n[1], $n[2], ($end - $last) + 1];
+    }
+    return null;
+};

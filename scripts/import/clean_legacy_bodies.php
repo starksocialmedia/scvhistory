@@ -84,7 +84,7 @@ $changed = 0; $unchanged = 0; $failed = 0;
 $uncertain = [];        /* slug => [lines] */
 $galleryCut = [];       /* slug => [what was cut] */
 $movedToFinePrint = 0;
-$filledDate = []; $filledAuthor = []; $noAuthorRecord = [];
+$filledDate = []; $filledAuthor = []; $noAuthorRecord = []; $signatures = [];
 $patternCounts = [];
 
 /* Either the database, or an inventory file loaded into unsaved entries. */
@@ -263,6 +263,21 @@ foreach ($batches as $sectionHandle => $batchEntries) {
            can be moved. So the two run in a loop until neither moves. Both only
            ever walk up from the last line, so the middle stays unreachable. */
         $end = $n - 1;
+
+        /* The signature, before anything else touches the tail: it is the very
+           last thing on the page and the copyright walk above it would not know
+           what to make of a bare year. Taken once, into the fields that already
+           exist for it. */
+        $sig = $readSignature($lines, $end, $start);
+        if ($sig !== null) {
+            [$sigName, $sigYear, $sigLines] = $sig;
+            $hit('signature');
+            $end -= $sigLines;
+            $signatures[] = $e->slug . '  ' . $sigName . ', ' . $sigYear;
+            if ($foundAuthor === '') { $foundAuthor = $sigName; }
+            if ($foundDate === '') { $foundDate = $sigYear; }
+        }
+
         do {
             $moved = false;
 
@@ -443,6 +458,13 @@ echo 'records that would change: ' . $changed . PHP_EOL;
 echo 'records already clean:     ' . $unchanged . PHP_EOL;
 if ($failed) { echo 'saves failed:              ' . $failed . PHP_EOL; }
 echo 'lines moved to finePrint:  ' . $movedToFinePrint . PHP_EOL;
+
+if ($signatures) {
+    echo PHP_EOL . '=== signatures taken out of the body, ' . count($signatures) . ' ===' . PHP_EOL;
+    echo 'Each is the author and the year. They render beneath the prose from the record\'s' . PHP_EOL;
+    echo 'own fields, so leaving them in the body showed them twice.' . PHP_EOL;
+    foreach ($signatures as $r) { echo '  ' . $r . PHP_EOL; }
+}
 
 if ($filledDate || $filledAuthor) {
     echo '=== fields filled from the byline block ===' . PHP_EOL;

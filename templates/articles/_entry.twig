@@ -83,6 +83,9 @@
   .ar-chapters .n{font-family:'Jost',sans-serif;font-size:11.5px;color:#5B6472;flex:none;width:20px;padding-top:2px}
   .ar-chapters li.on{background:#FDF7EA;border-left:3px solid #C4A031;margin-left:-20px;padding-left:17px}
   .ar-chapters li.on span.cur{font-weight:500}
+  .ar-chapters li.gap span{display:block;padding:6px 0 6px 30px;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.05em;color:#A8AEB8}
+  .ar-allch{display:block;margin-top:10px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#7A5C1B;text-decoration:none}
+  .ar-allch:hover{color:#17254C}
   .ar-searchbar{display:flex;background:#fff;border:1px solid #DCC98F}
   .ar-searchbar input{flex:1;min-width:0;border:0;outline:none;padding:11px 13px;font-family:'Public Sans',sans-serif;font-size:15px;color:#2C2C2C;background:transparent}
   .ar-searchbar button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:0 16px;cursor:pointer}
@@ -278,6 +281,8 @@
           </form>
         </div>
 
+        {% include "_partials/record/source-link" with { el: entry } only %}
+
         {% if collection %}
           {% set cimg = (collection.featuredImage is defined and collection.featuredImage) ? collection.featuredImage.one() ?? null : null %}
           <div class="rec-box ar-collcard">
@@ -287,20 +292,51 @@
           </div>
         {% endif %}
 
+        {#- The neighbours in the series, not the series.
+
+            Reynolds has 80 chapters and the whole list made the sidebar
+            unusable: the thing a reader wants, where they are and what is
+            either side, was eight screens from the top. So: the five before
+            and the five after, with the first and the last kept because they
+            are the two a reader navigates to by name, and the lander for the
+            rest.
+
+            Under sixteen the whole list still fits and is more useful whole,
+            so a short collection is unchanged. -#}
         {% if chapters|length %}
+          {% set total = chapters|length %}
+          {% set WINDOW = 5 %}
+          {% set showAll = total <= 15 or idx is null %}
+          {% set from = showAll ? 0 : max(0, idx - WINDOW) %}
+          {% set to = showAll ? total - 1 : min(total - 1, idx + WINDOW) %}
+
           <div class="rec-box">
             <div class="rec-lab">IN THIS COLLECTION</div>
             <ul class="ar-chapters">
-              {% for c in chapters %}
+              {%- set shown = [] -%}
+              {%- if not showAll and from > 0 -%}{% set shown = shown|merge([0]) %}{%- endif -%}
+              {%- for i in from..to -%}{% set shown = shown|merge([i]) %}{%- endfor -%}
+              {%- if not showAll and to < total - 1 -%}{% set shown = shown|merge([total - 1]) %}{%- endif -%}
+
+              {% set last = null %}
+              {% for i in shown %}
+                {% if last is not null and i > last + 1 %}
+                  <li class="gap"><span>&hellip; {{ i - last - 1 }} more</span></li>
+                {% endif %}
+                {% set c = chapters[i] %}
                 <li class="{{ c.id == entry.id ? 'on' : '' }}">
                   {% if c.id == entry.id %}
-                    <span class="cur"><span class="n">{{ loop.index }}</span><span>{{ c.title ?: c.slug }}</span></span>
+                    <span class="cur"><span class="n">{{ i + 1 }}</span><span>{{ c.title ?: c.slug }}</span></span>
                   {% else %}
-                    <a href="{{ c.url }}"><span class="n">{{ loop.index }}</span><span>{{ c.title ?: c.slug }}</span></a>
+                    <a href="{{ c.url }}"><span class="n">{{ i + 1 }}</span><span>{{ c.title ?: c.slug }}</span></a>
                   {% endif %}
                 </li>
+                {% set last = i %}
               {% endfor %}
             </ul>
+            {% if not showAll %}
+              <a class="ar-allch" href="{{ collection.url }}">All {{ total }} in this collection &rarr;</a>
+            {% endif %}
           </div>
         {% endif %}
 
@@ -342,7 +378,9 @@
 
         {% set links = [] %}
         {% if F.archiveUrl %}{% set links = links|merge([{u: F.archiveUrl, t: 'Archive.org'}]) %}{% endif %}
-        {% if F.legacyUrl %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: F.legacyUrl })|trim, t: 'View on legacy site'}]) %}{% endif %}
+        {# The legacy link moved to the top of the sidebar, in record/source-link.twig.
+           A reader comparing our version with Leon's was having to scroll past the
+           whole sidebar to reach it. It is not repeated here. #}
         {% if links|length %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
             <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>

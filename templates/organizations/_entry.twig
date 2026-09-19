@@ -77,6 +77,7 @@
 
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'Organizations', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
         {% if hasMap %}
           <div class="rec-box">
             <div class="rec-lab">LOCATION</div>
@@ -132,7 +133,9 @@
         {% if entry.orgWebsite is defined and entry.orgWebsite %}{% set links = links|merge([{u: entry.orgWebsite, t: 'Official website'}]) %}{% endif %}
         {% if entry.orgWikipediaUrl is defined and entry.orgWikipediaUrl %}{% set links = links|merge([{u: entry.orgWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
         {% set legacy = F.orgLegacyUrl ?: F.legacyUrl %}
-        {% if legacy %}{% set links = links|merge([{u: include('_partials/legacy-url', { value: legacy })|trim, t: 'View on legacy site'}]) %}{% endif %}
+        {# The legacy link moved to the top of the sidebar, in record/source-link.twig.
+           A reader comparing our version with Leon's was having to scroll past the
+           whole sidebar to reach it. It is not repeated here. #}
         {% if links|length %}
           <div class="rec-box"><div class="rec-lab">EXTERNAL</div>
             <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>

@@ -1,0 +1,48 @@
+{#
+  The legacy page this record came from, near the top of the sidebar.
+
+  A reader checking our version against Leon's should not have to scroll past
+  the whole sidebar to find it. It used to sit in EXTERNAL at the foot, below
+  the collection list, the people, the tags and the documents, which on a
+  Reynolds chapter is several screens down.
+
+  The field holding the legacy URL is named differently on almost every type:
+  legacyUrl on an article, placeLegacyUrl on a place, mpLegacyUrl on a military
+  profile. The layout is walked rather than guessed, because a custom field
+  reads as defined on an element whose type does not have it and then throws
+  when it is read.
+
+  Renders nothing for a born-digital record, which is 66 of them and correct:
+  there is no legacy page to check against.
+
+  Usage: {% include "_partials/record/source-link" with { el: entry } only %}
+#}
+{% set CANDIDATES = ['legacyUrl', 'placeLegacyUrl', 'personLegacyUrl', 'orgLegacyUrl',
+                     'groupLegacyUrl', 'eventLegacyUrl', 'obitLegacyUrl', 'mpLegacyUrl'] %}
+{% set handles = [] %}
+{% for f in el.fieldLayout.customFields %}{% set handles = handles|merge([f.handle]) %}{% endfor %}
+
+{% set legacy = '' %}
+{% for h in CANDIDATES %}
+  {% if legacy == '' and h in handles %}
+    {% set v = attribute(el, h) %}
+    {% if v is not empty %}{% set legacy = v|trim %}{% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if legacy != '' %}
+  {% set href = include('_partials/legacy-url', { value: legacy })|trim %}
+  {% css %}
+  .rec-src a{display:block;font-size:13.5px;line-height:1.45;color:#17254C;text-decoration:none;word-break:break-all}
+  .rec-src a:hover{color:#7A5C1B}
+  .rec-src a span{font-family:'Jost',sans-serif;font-size:11px;color:#8A919E;margin-left:4px}
+  .rec-src .p{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:#5B6472;display:block;margin-top:3px;word-break:break-all}
+  {% endcss %}
+  <div class="rec-box rec-src">
+    <div class="rec-lab">ON THE LEGACY SITE</div>
+    <a href="{{ href }}" target="_blank" rel="noopener">
+      Read the original page <span>&nearr;</span>
+      <span class="p">{{ legacy }}</span>
+    </a>
+  </div>
+{% endif %}
