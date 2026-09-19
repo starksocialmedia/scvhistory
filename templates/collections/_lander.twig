@@ -236,7 +236,7 @@
       </article>
 
       <aside class="rec-side">
-        {% include "_partials/record/cite" with { entry: entry, author: author, label: 'Collections', sidebar: true } only %}
+        {% include "_partials/record/cite" with { entry: entry, author: author, source: (entry.sourceLine is defined ? entry.sourceLine : null), label: 'Collections', sidebar: true } only %}
 
         {% set people = [{ lab: 'AUTHOR', p: author }, { lab: 'EDITOR', p: editor }]|filter(x => x.p) %}
         {% for x in people %}

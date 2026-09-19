@@ -10,6 +10,11 @@
     entry       required
     author      optional person entry
     collection  optional collection entry, becomes the container title
+    source      optional source line, who originally published it. It sits ahead
+                of the section label in all three styles, because that is where
+                the original publisher belongs in a citation: the reader is
+                being told where the work first appeared, not only where this
+                copy of it lives.
     date        optional publication date string
     label       optional section name, for example "War Memorial"
     url         optional, overrides entry.url
@@ -24,6 +29,7 @@
 {% set todayApa = now|date('F j, Y') %}
 {% set container = [] %}
 {% if collection is defined and collection %}{% set container = container|merge([collection.title]) %}{% endif %}
+{% if source is defined and source|trim %}{% set container = container|merge([source|trim]) %}{% endif %}
 {% if label is defined and label %}{% set container = container|merge([label]) %}{% endif %}
 
 {% set aName = author is defined and author ? author.title : null %}

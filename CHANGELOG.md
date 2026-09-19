@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: put the existing sourceLine field on the collection entry type and recovered "The Signal / Santa Clarita Valley Chamber of Commerce" onto the Reynolds collection from the WordPress export. Applied. The citation partial takes a source param and renders it in all three styles, and the JSON-LD emits it as the publisher of the series. Residence skipped as asked.
+- Decisions: sourceLine outranks the linked publishedBy record on a collection, which is the only place in the schema partial where a text line beats a record. The two answer different questions: The Signal published the series, SCVHistory.com republished it. So sourceLine is the publisher, the linked record becomes the provider, and the archive is the publisher of last resort. The source sits ahead of the section label in a citation, because a reader is being told where the work first appeared and not only where this copy lives.
+- Blockers: none, but I made the same mistake twice in one session. A Twig comment cannot sit inside a hash literal, and putting one there took every record page down with a syntax error, exactly as it had an hour earlier on the NRHP listing date. The comment now sits above the branch and says why it is there.
+- Result: the lander citation reads "Reynolds, Jerry. 'History of the Santa Clarita Valley.' The Signal / Santa Clarita Valley Chamber of Commerce. Collections. SCVHistory.com." in Chicago, and the equivalent in MLA and APA. 38 URLs swept, none in error.
+- Next: Nathan runs add_place_landmark_fields.php and recover_wp_landmarks.php
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: add_place_landmark_fields.php adds scvhlNumber, nrhpReference and nrhpListedDate to the place type, all plain text, beside placeChlNumber and gnisId. _partials/head/schema.twig reads all three: the NRHP reference goes into sameAs and identifier, the SCVHL number into identifier only, and the listed date is said as an award. recover_wp_landmarks.php walks the WordPress export onto the place records and then audits all 77 meta keys for anything with no home.
 - Decisions: the SCVHL number is an identifier and not a sameAs, because there is no public register with a per-landmark URL and a sameAs that links nowhere is a claim the archive cannot keep. The listed date is an award rather than a date property on the Place, which would say the ground itself dates from 1971.
 - Blockers: two corrections to the brief. placeScvhlCheckbox is not missing from Craft; it exists as a lightswitch named "Place SCV Landmark", on the Identity tab, alongside placeScvhlUrl. And all three place_scvhl_checkbox values in the export are "0", so nothing was dropped at import: the designation was never set in WordPress either, and Craft already matches it exactly. The import is still worth having, since it recovers two placeChlUrl values that genuinely did not land.

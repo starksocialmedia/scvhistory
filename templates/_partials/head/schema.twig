@@ -281,6 +281,19 @@
     'sameAs': sameAs
   } %}
 
+{#- Who published the series, and who hosts it, are two different answers.
+
+    sourceLine holds the first: "The Signal / Santa Clarita Valley Chamber of
+    Commerce" is where the Reynolds history actually appeared. publishedBy on
+    that record points at SCVHistory.com, which did not publish the series, it
+    republished it. So sourceLine is the publisher where it exists, the linked
+    record is the publisher where it does not, and the archive is the publisher
+    of last resort.
+
+    This is the one place a text line outranks a linked record, and it does so
+    because the two are answering different questions. A Twig comment cannot sit
+    inside a hash literal, which is why this is here rather than beside the line
+    it describes. -#}
 {% elseif sec == 'collections' %}
   {% set parts = [] %}
   {% set inOrder = ('articlesInCollection' in H) ? (REL.articlesInCollection ?: craft.entries().section('articles').relatedTo({ targetElement: el, field: 'partOfCollection' }).status(null).all()) : [] %}
@@ -291,7 +304,10 @@
     '@type': 'CreativeWorkSeries',
     'name': el.title,
     'author': (N.writtenBy ?? []),
-    'publisher': (N.publishedBy ?? [])|first ?: PUBLISHER,
+    'publisher': (V.sourceLine ?? '')
+        ? { '@type': 'Organization', 'name': V.sourceLine }
+        : ((N.publishedBy ?? [])|first ?: PUBLISHER),
+    'provider': (V.sourceLine ?? '') ? ((N.publishedBy ?? [])|first ?: PUBLISHER) : null,
     'numberOfItems': parts|length,
     'hasPart': parts
   } %}
