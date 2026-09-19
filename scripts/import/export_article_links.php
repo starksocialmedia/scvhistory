@@ -31,6 +31,9 @@
 $root = \Craft::getAlias('@root');
 $out  = \Craft::getAlias('@webroot') . '/review/article-links.json';
 $INVENTORIES = ['perkins', 'reynolds-full', 'reynolds', 'warmemorial', 'worden'];
+/* How many of the linked-to-but-not-held pages to print with their linking
+   articles. The whole set goes into the JSON regardless of this. */
+$TOP_UNHELD = 40;
 
 $hasField = function (\craft\base\ElementInterface $el, string $handle): bool {
     $layout = $el->getFieldLayout();
@@ -143,7 +146,22 @@ foreach ($INVENTORIES as $inv) {
             $target = $byPath[$tgtPath] ?? null;
             if (!$target) {
                 $stats['noRecord']++;
-                $unresolvedTargets[$tgtPath] = ($unresolvedTargets[$tgtPath] ?? 0) + 1;
+                /* A link to a page the archive has not imported is not waste.
+                   It is a writer saying this one matters, and the pages they
+                   point at most often are a better reading order for the next
+                   extraction wave than any filename prefix. So the count, who
+                   pointed, and the words they used are all kept. */
+                if (!isset($unresolvedTargets[$tgtPath])) {
+                    $unresolvedTargets[$tgtPath] = ['n' => 0, 'from' => [], 'anchors' => []];
+                }
+                $unresolvedTargets[$tgtPath]['n']++;
+                $fromLabel = $source ? $source['title'] : ($pg['title'] ?? $srcPath);
+                $unresolvedTargets[$tgtPath]['from'][$fromLabel] =
+                    ($unresolvedTargets[$tgtPath]['from'][$fromLabel] ?? 0) + 1;
+                if (!preg_match('~^\[?\s*\d{1,3}\s*\]?$~u', $anchor)) {
+                    $unresolvedTargets[$tgtPath]['anchors'][$anchor] =
+                        ($unresolvedTargets[$tgtPath]['anchors'][$anchor] ?? 0) + 1;
+                }
                 continue;
             }
             if (!$source) { $stats['sourceNotHeld']++; continue; }
@@ -219,12 +237,47 @@ foreach ($rows as $r) {
     else { echo '   (the anchor text does not appear in the page body, so no sentence)' . PHP_EOL; }
 }
 
-arsort($unresolvedTargets);
-$topMissing = array_slice($unresolvedTargets, 0, 12, true);
+/* The ledger index knows the title of every crawled legacy page, which turns a
+   list of filenames into a list anybody can read. It is optional: without it the
+   report still runs and simply shows paths. */
+$ledgerTitles = [];
+$ledgerPath = $root . '/web/review/ledger-index.json';
+if (file_exists($ledgerPath)) {
+    foreach ((json_decode(file_get_contents($ledgerPath), true)['pages'] ?? []) as $lr) {
+        if (!empty($lr['t'])) { $ledgerTitles[strtolower($lr['p'])] = $lr['t']; }
+    }
+    echo PHP_EOL . 'titles for unheld pages read from the ledger index: ' . count($ledgerTitles) . PHP_EOL;
+} else {
+    echo PHP_EOL . 'no ledger index, so unheld pages are listed by path only.' . PHP_EOL;
+    echo 'Build it with: python3 scripts/import/build_ledger_index.py' . PHP_EOL;
+}
+
+uasort($unresolvedTargets, fn($a, $b) => $b['n'] <=> $a['n']);
+$topMissing = array_slice($unresolvedTargets, 0, $TOP_UNHELD, true);
 if ($topMissing) {
-    echo PHP_EOL . 'MOST LINKED PAGES WE DO NOT HOLD, ' . count($unresolvedTargets) . ' distinct.' . PHP_EOL;
-    echo 'These are what the writers pointed at most often and the archive has not imported:' . PHP_EOL;
-    foreach ($topMissing as $p => $n) { echo '  ' . str_pad((string)$n, 4, ' ', STR_PAD_LEFT) . '  ' . $p . PHP_EOL; }
+    echo PHP_EOL . str_repeat('=', 78) . PHP_EOL;
+    echo 'A READING LIST THE WRITERS MADE. ' . count($unresolvedTargets) . ' pages are linked to and not held.' . PHP_EOL;
+    echo 'Top ' . count($topMissing) . ' by how often they are pointed at:' . PHP_EOL;
+    echo str_repeat('=', 78) . PHP_EOL;
+    $rank = 0;
+    foreach ($topMissing as $tp => $info) {
+        $rank++;
+        $title = $ledgerTitles[strtolower($tp)] ?? '';
+        arsort($info['from']);
+        arsort($info['anchors']);
+        echo PHP_EOL . str_pad($rank . '.', 5) . str_pad((string)$info['n'], 4, ' ', STR_PAD_LEFT)
+            . ' link' . ($info['n'] === 1 ? '' : 's') . '   ' . $tp . PHP_EOL;
+        if ($title !== '') { echo '      ' . mb_substr($title, 0, 110) . PHP_EOL; }
+        else { echo '      (not in the ledger index either: beyond the crawl)' . PHP_EOL; }
+        $froms = [];
+        foreach ($info['from'] as $f => $n) { $froms[] = $f . ($n > 1 ? ' (x' . $n . ')' : ''); }
+        echo '      linked from: ' . implode('; ', array_slice($froms, 0, 6))
+            . (count($froms) > 6 ? ' and ' . (count($froms) - 6) . ' more' : '') . PHP_EOL;
+        if ($info['anchors']) {
+            $as = array_slice(array_keys($info['anchors']), 0, 3);
+            echo '      anchors: "' . implode('", "', $as) . '"' . PHP_EOL;
+        }
+    }
 }
 
 file_put_contents($out, json_encode([
@@ -236,7 +289,8 @@ file_put_contents($out, json_encode([
         'pairs' => count($rows),
     ],
     'pairs' => $rows,
-    'unheldTargets' => $topMissing,
+    'unheldTargets' => $unresolvedTargets,
+    'unheldTargetCount' => count($unresolvedTargets),
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 
 echo PHP_EOL . 'wrote web/review/article-links.json' . PHP_EOL;
