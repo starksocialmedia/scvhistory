@@ -19,33 +19,47 @@
 .rec{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
 .rec-wrap{max-width:1240px;margin:0 auto;padding:0 40px}
 
-.rec-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}
-.rec-band .rec-wrap{padding-top:36px}
-.rec-crumbs{font-size:13px;color:#5B6472;margin-bottom:28px}
+/* The band, the kicker, the type, the chips and the grid below are the article
+   page's values, read off templates/articles/_entry.twig, which was built from
+   design/article-source.html. They were set here from a written brief before
+   that design existed, and every record type was a little different from it.
+   Changing them here brings all eleven into line at once. */
+.rec-band{position:relative;overflow:hidden;background:#FDF7EA;border-bottom:1px solid #E8E0CC}
+/* Artwork behind the band: one image layer and one gradient, never two image
+   layers. The gradient carries the words and lets the drawing fall away to the
+   right, which is how the artwork is composed. */
+.rec-bandart{position:absolute;inset:0;background-size:cover;background-position:right center;z-index:0}
+.rec-bandfade{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(253,247,234,.97) 0%,rgba(253,247,234,.95) 44%,rgba(253,247,234,.5) 64%,rgba(253,247,234,0) 80%)}
+.rec-band>.rec-wrap{position:relative;z-index:2}
+/* With artwork, everything in the band shares one column to the left of it. */
+.rec-band--art .rec-head{grid-template-columns:1fr}
+.rec-band--art .rec-head>div:first-child{max-width:560px}
+.rec-band .rec-wrap{padding-top:26px}
+.rec-crumbs{font-size:13px;color:#5B6472;margin-bottom:34px}
 .rec-crumbs a{color:#7A5C1B;text-decoration:none}
 .rec-crumbs a:hover{text-decoration:underline}
 .rec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,340px);gap:48px;align-items:end}
 @media(max-width:800px){.rec-head{grid-template-columns:1fr}}
-.rec-head>div:first-child{padding-bottom:44px}
+.rec-head>div:first-child{padding-bottom:46px}
 .rec-head--noart{grid-template-columns:1fr}
-.rec-kick{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em}
-.rec-kick .a{color:#7A5C1B}
-.rec-kick .sep{width:1px;height:14px;background:#DCC98F}
-.rec-kick .b{color:#5B6472}
-.rec h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,4.6vw,56px);line-height:1.04;margin:0 0 12px;color:#17254C}
-.rec-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:#5B6472;margin-bottom:28px}
-.rec-facts{display:flex;gap:12px 40px;flex-wrap:wrap}
+.rec-kick{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.18em;color:#7E6118}
+.rec-kick .a,.rec-kick .b{color:#7E6118}
+/* A short gold rule between the parts, not a vertical tick. */
+.rec-kick .sep{width:22px;height:1px;background:#C4A031;flex:0 0 auto}
+.rec h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(36px,4vw,54px);line-height:1.05;margin:0;color:#17254C;text-wrap:balance}
+.rec-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;line-height:1.35;color:#5B6472;margin:14px 0 0}
+.rec-facts{display:flex;gap:12px 40px;flex-wrap:wrap;margin-top:22px}
 .rec-facts .l{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B}
 .rec-facts .v{font-size:17px;color:#17254C;margin-top:4px}
-.rec-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-.rec-chip{border:1px solid #C4A031;color:#7A5C1B;font-family:'Jost',sans-serif;font-size:13px;padding:6px 12px;border-radius:3px;text-decoration:none}
+.rec-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:26px}
+.rec-chip{border:1px solid #C4A031;color:#7E6118;background:rgba(255,255,255,.55);font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.04em;padding:7px 13px;text-decoration:none}
 .rec-chip:hover{background:#fff}
 .rec-chip.solid{background:#17254C;border-color:#17254C;color:#fff}
 .rec-portrait{align-self:end;margin-bottom:-1px;border:1px solid #EFE6D0;border-bottom:0;background:#fff;padding:8px 8px 0}
 .rec-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;display:block}
 .rec-portrait .ph{width:100%;aspect-ratio:4/5;background:#FDF7EA;border:1px solid #EFE6D0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:64px;color:#C4A031}
 
-.rec-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,340px);gap:48px;align-items:start;padding:48px 0 96px}
+.rec-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,344px);gap:56px;align-items:start;padding:40px 0 90px}
 @media(max-width:900px){.rec-main{grid-template-columns:1fr}}
 .rec-main--wide{grid-template-columns:1fr}
 .rec-lede{font-family:'Playfair Display',serif;font-size:23px;line-height:1.5;color:#17254C;margin:0 0 32px}

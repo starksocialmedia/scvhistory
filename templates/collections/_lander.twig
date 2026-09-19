@@ -141,26 +141,58 @@
 {% endif %}
 
 {% set first = chapters|length ? chapters|first : null %}
-{% set kick = ['COLLECTION', chapters|length ~ ' ARTICLE' ~ (chapters|length == 1 ? '' : 'S')] %}
-{% if erasPresent|length %}
-  {% set kick = kick|merge([(erasPresent|first).title|upper ~ (erasPresent|length > 1 ? ' TO ' ~ (erasPresent|last).title|upper : '')]) %}
-{% endif %}
 
 <div class="rec cl">
   <section class="cl-band">
+    {#- One image layer and one gradient, exactly as the article band has them.
+        It used to be two image layers: a dead one at opacity 0 and a second
+        carrying a contrast filter, with no gradient at all, so the artwork ran
+        the full width behind the words instead of falling away to the right. -#}
     {% if hero %}
       <div class="cl-bg" style="background-image:url('{{ hero.url }}')" role="presentation"></div>
-      <div class="cl-bg2" style="background-image:url('{{ hero.url }}')" role="presentation"></div>
+      <div class="cl-fade" role="presentation"></div>
     {% endif %}
     <div class="rec-wrap cl-in">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('collections') }}">Collections</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="cl-kick">{{ kick|join(' · ') }}</div>
+      <div class="cl-col">
+      {#- The kicker is a row, not a list joined with dots: label, a short gold
+          rule, then the era. -#}
+      <div class="cl-kick">
+        <span>COLLECTION</span>
+        <span class="r"></span>
+        <span>{{ chapters|length }} ARTICLE{{ chapters|length == 1 ? '' : 'S' }}</span>
+        {% if erasPresent|length %}
+          <span class="r"></span>
+          <span>{{ (erasPresent|first).title|upper }}{{ erasPresent|length > 1 ? ' TO ' ~ (erasPresent|last).title|upper : '' }}</span>
+        {% endif %}
+      </div>
       <h1>{{ entry.title ?: entry.slug }}</h1>
       {% if author or editor %}
         <p class="cl-by">
           {%- if author %}by <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
           {%- if editor %}{% if author %} &nbsp;·&nbsp; {% endif %}edited by <a href="{{ editor.url }}">{{ editor.title }}</a>{% endif -%}
         </p>
+      {% endif %}
+
+      {#- Chips, as the article draws them: era gold-outlined, community navy.
+          A collection has no era of its own, so these are the eras its chapters
+          cover and the communities they are about, which is what a reader is
+          choosing between. -#}
+      {% set clComs = [] %}
+      {% set clComIds = [] %}
+      {% for a in chapters %}
+        {% for c in a.neighborhood.all() %}
+          {% if c.id not in clComIds %}
+            {% set clComIds = clComIds|merge([c.id]) %}
+            {% set clComs = clComs|merge([c]) %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% if erasPresent|length or clComs|length %}
+        <div class="cl-chips">
+          {% for e in erasPresent %}<a class="cl-chip" href="{{ e.url ?? '#' }}">{{ e.title }}</a>{% endfor %}
+          {% for c in clComs|slice(0, 8) %}<a class="cl-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+        </div>
       {% endif %}
 
       {% if first or F.body %}
@@ -181,6 +213,7 @@
           {% endfor %}
         </div>
       {% endif %}
+      </div>
     </div>
   </section>
 
@@ -325,23 +358,40 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 {% css %}
-.cl-band{position:relative;background:#FDF7EA;border-bottom:1px solid #EFE6D0;overflow:hidden}
-.cl-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;z-index:0}
-.cl-bg2{position:absolute;inset:0;background-size:cover;background-position:right center;filter:contrast(1.16) brightness(.92);z-index:1}
-.cl-band .cl-in{position:relative;z-index:2;padding:30px 40px 56px}
-.cl-kick{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#A9842B;margin-bottom:16px}
-.cl h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,4.8vw,62px);line-height:1.04;margin:0 0 14px;color:#17254C;max-width:15em;text-wrap:balance}
-.cl-by{font-family:'Playfair Display',serif;font-style:italic;font-size:23px;line-height:1.35;color:#5B6472;margin:0 0 26px}
+/* The band, the type and the chips are the article page's, to the pixel. The
+   values below are not chosen here; they are read off templates/articles/
+   _entry.twig, which was built from design/article-source.html. */
+.cl-band{position:relative;background:#FDF7EA;border-bottom:1px solid #E8E0CC;overflow:hidden}
+.cl-bg{position:absolute;inset:0;background-size:cover;background-position:right center;z-index:0}
+.cl-fade{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(253,247,234,.97) 0%,rgba(253,247,234,.95) 44%,rgba(253,247,234,.5) 64%,rgba(253,247,234,0) 80%)}
+.cl-band .cl-in{position:relative;z-index:2;padding:26px 40px 46px}
+.cl-band .rec-crumbs{margin-bottom:34px}
+/* The artwork is composed with its subject at the right, so everything in the
+   band shares one column to the left of it. The stats were already capped here;
+   now the title, byline, chips and buttons are too, and none of them can run
+   under the drawing. */
+.cl-col{max-width:560px}
+.cl-kick{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.18em;color:#7E6118;margin-bottom:18px}
+.cl-kick .r{width:22px;height:1px;background:#C4A031;flex:0 0 auto}
+.cl h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(36px,4vw,54px);line-height:1.05;margin:0;color:#17254C;text-wrap:balance}
+.cl-by{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;line-height:1.35;color:#5B6472;margin:14px 0 0}
+.cl-chips{display:flex;gap:9px;flex-wrap:wrap;margin:26px 0 0}
+.cl-chip{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.04em;color:#7E6118;border:1px solid #C4A031;background:rgba(255,255,255,.55);padding:7px 13px;text-decoration:none}
+.cl-chip.solid{color:#fff;background:#17254C;border-color:#17254C}
+/* The grid the article uses: a wider sidebar and a wider gutter than the shared
+   record layout, which the other templates keep. */
+.cl .rec-main{grid-template-columns:minmax(0,1fr) minmax(300px,344px);gap:56px;padding:40px 0 90px}
+@media(max-width:900px){.cl .rec-main{grid-template-columns:1fr}}
 .cl-by a{color:#17254C;text-decoration:none}
 .cl-by a:hover{color:#7A5C1B}
-.cl-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.cl-ctas{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 30px}
 .cl-cta{font-family:'Jost',sans-serif;font-size:15px;padding:13px 22px;text-decoration:none;display:inline-block}
 .cl-cta.gold{background:#C4A031;color:#17254C;font-weight:500}
 .cl-cta.gold:hover{background:#7A5C1B;color:#fff}
 .cl-cta.gold span{margin:0 4px}
 .cl-cta.ghost{border:1px solid #C4A031;color:#7A5C1B}
 .cl-cta.ghost:hover{background:#fff}
-.cl-stats{display:flex;gap:38px;flex-wrap:wrap;border-top:1px solid #EFE6D0;padding-top:22px;max-width:560px}
+.cl-stats{display:flex;gap:38px;flex-wrap:wrap;border-top:1px solid #EFE6D0;padding-top:22px}
 .cl-stat b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:30px;line-height:1;color:#17254C}
 .cl-stat span{display:block;font-family:'Jost',sans-serif;font-weight:500;font-size:11.5px;letter-spacing:.12em;color:#7E6118;margin-top:6px;text-transform:uppercase}
 .cl-contents{margin-top:48px}

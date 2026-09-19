@@ -33,11 +33,26 @@
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
 
+{#- The band artwork, on the same terms as the article page and the lander: one
+    image layer and one gradient. A collection that is not flagged major used to
+    render a third way again, with no band image at all and a 4:5 thumbnail
+    pinned to the right of the title instead. Where there is artwork it takes
+    the band; where there is not, the thumbnail stays as it was. -#}
+{% set hasBandImage = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
+{% endfor %}
+{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+
 <div class="rec">
-  <section class="rec-band">
+  <section class="rec-band{{ bandImg ? ' rec-band--art' : '' }}">
+    {% if bandImg %}
+      <div class="rec-bandart" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
+      <div class="rec-bandfade" role="presentation"></div>
+    {% endif %}
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('collections') }}">Collections</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
+      <div class="rec-head{{ (img and not bandImg) ? '' : ' rec-head--noart' }}">
         <div>
           <div class="rec-kick"><span class="a">COLLECTIONS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
@@ -53,7 +68,7 @@
             </div>
           {% endif %}
         </div>
-        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
+        {% if img and not bandImg %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
       </div>
     </div>
   </section>
