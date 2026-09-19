@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
+- Done: wrote fill_collection_stub_bodies.php, bodies for all eleven collection placeholders, on the same pattern and guard as the place fill. Each names the evidence it draws on and the counts are re-derived rather than remembered.
+- Decisions: figures come from the crawl where the crawl is complete and from the index page where it is not, and the entry says which. sitemap.json stopped at its 5,000 page limit, so it reached 37 of the coins tree against 218 dated links on the index; using the crawl figure there would have understated the series by a factor of six. Date ranges come from the datestamp in each article's filename, which is the only per-article date the crawl carries.
+- Blockers: the collections are not titled. title_collections.php has $APPLY = false and has not been run; ten of the eleven are still untitled in the database and only Newsmaker of the Week carries a name, which it already had. There is also a bug in that script: it sets a body only where the body is empty, and none of these is empty, so running it as written would set the titles and legacy URLs and leave every placeholder in place.
+- Result: 11 bodies would be filled, 0 blocked. Worden is the longest at 596 characters, the Old Town Newhall Gazette the shortest real one at 203, and Newsmaker of the Week is 382 and says plainly that the archive holds almost none of the series. check_render.php reports no failures.
+- Next: Nathan runs title_collections.php with the flag on, then this
+
 2026-09-18
 
 - Agent: Claude Code
