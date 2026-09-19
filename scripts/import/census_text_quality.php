@@ -90,6 +90,14 @@ $CLASSES = [
         'Decide whether these become headings in the body or are dropped. They are '
         . 'the same problem as fused-subheading, caught before the break was lost.'],
 
+    'breadcrumb-trail-inline' => ['review', '~\S[^\n>]*(?:>[ \t]*[A-Z][^\n>]{2,40}){2,}~',
+        'A navigation trail sitting after something else on the same line, rather than '
+        . 'starting one: "Augustus A. Rubel, 1899-1943. > WAR MEMORIAL HOME > WORLD WAR I > ...". '
+        . 'The legacy-nav-in-body class above cannot see this, because it anchors on > at '
+        . 'the start of a line, and that is how ww2-augustrubel #518 went unreported.',
+        'Cut the trail and keep what is on either side. clean_legacy_bodies.php now does '
+        . 'this during the head walk.'],
+
     'date-placeholder' => ['review', '~^\s*date\?\s*$~imu',
         'The literal word "Date?" left where a date was not known.',
         'Fill it or remove the line. clean_legacy_bodies.php strips this at the head '

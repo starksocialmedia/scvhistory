@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: both pre-import fixes, the augustrubel repair, the pre-import audit at web/review/pre-import-audit.md, and the runbook rewritten around the real deployment with a measured exposure report.
+- Decisions: the cleaner's matchers moved to _legacy_chrome_matchers.php so a dry run against an inventory uses the same code as a real run against the database. The inventory dry run loads pages into unsaved entries of the target type; they need a sectionId as well as a typeId or the field layout comes back null, every body reads as empty and the pass cheerfully reports that 1,661 pages are clean. #518 is fixed by setting its body from wmNotes rather than by the cleaner, because stripping its furniture leaves nothing.
+- Blockers: none, but a correction I owe. The mid-line breadcrumb count of 317 was wrong: the regex I measured with let \s match a newline, so it was counting ordinary line-start breadcrumbs whose previous line ended in a non-space. Measured within a line the count is zero in every inventory. The rule is still in, as a guard rather than a repair, and its first version ate "Augustus" off a name, so segments are now bounded by a following marker and it cannot touch prose.
+- Result: all 1,661 LW bodies would arrive dirty, none clean, 1,170,682 characters of chrome, 1,699 breadcrumbs and 1,427 gallery caption runs. 345 bodies have something the walk stops at. On the live staging site the webroot is right and nothing outside web/ is served, but six things are open: ledger-index.json at 1.5 MB, audit.json, the five review screens, /admin-overview, /graph and /admin-ledger with both data endpoints. The fidelity files are absent only because they are gitignored and the server has not pulled the commit carrying the summary; they arrive public on the next pull.
+- Next: Nathan blocks /review/ before the next pull, adds the template guards, then cleans, imports the LW features and cleans again
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: investigated the 79 added lines against inventory/wp_content.json. Full report at web/review/fidelity-investigation.md.
 - Decisions: the test matches a record to its WordPress post by slug and compares on words alone against the whole WP body flattened, because WordPress wraps paragraphs differently from the extraction; a line over fourteen words is probed on its first fourteen so a lightly edited line still matches. Reports go to a file from now on, at Nathan's request, with a short summary in the terminal.
 - Blockers: none.

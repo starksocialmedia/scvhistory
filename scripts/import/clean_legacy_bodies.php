@@ -27,7 +27,32 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-$SECTIONS = ['articles', 'warMemorials', 'obituaries'];
+/* The LW features import as photographs, and documents carry the same legacy
+   chrome. A cleaner that covers three sections out of thirteen leaves the
+   chrome wherever it is not looking. */
+$SECTIONS = ['articles', 'warMemorials', 'obituaries', 'photographs', 'documents'];
+
+/* ------------------------------------------------- dry run against a file
+
+   Set this to an inventory name and the pass reads its bodies from
+   inventory/legacy/<name>.json instead of from the database, and reports what
+   it would do to them. Nothing is written whatever $APPLY says: there is
+   nothing in Craft to write to yet, which is the point.
+
+   The pages are loaded into unsaved Entry objects of the given type, so every
+   matcher and both walks run on exactly the code path a real run uses. A
+   prediction made with a copy of the rules is worth much less than one made
+   with the rules.
+
+   For the 1,544 LW features this answers the only question worth asking before
+   they land: how much of the legacy page arrives with them. */
+$FROM_INVENTORY = '';          /* e.g. 'lw-features' */
+$FROM_TYPE      = 'photograph';
+/* The section as well as the type: an unsaved entry with only a typeId returns
+   a null field layout, so every body reads back empty and the pass reports that
+   1,661 pages are clean. It took a run of zeroes to notice. */
+$FROM_SECTION   = 'photographs';
+$FROM_LIMIT     = 0;           /* 0 for all */
 
 /* Series or section headings that appear as a line of body text. */
 $SERIES_HEADINGS = [
@@ -45,137 +70,10 @@ $elements = Craft::$app->getElements();
 
 /* ---------------------------------------------------------------- matchers */
 
-$norm = function (string $s): string {
-    $s = mb_strtolower(trim($s));
-    $s = str_replace(["\u{2019}", "\u{2018}", "\u{201C}", "\u{201D}", "\u{2013}", "\u{2014}"], ["'", "'", '"', '"', '-', '-'], $s);
-    $s = preg_replace('~\((cont|cont\.|continued)\)~u', '', $s);
-    $s = preg_replace('~[^a-z0-9 ]+~u', ' ', $s);
-    return trim(preg_replace('~\s+~', ' ', $s));
-};
+/* The matchers live in their own file so a dry run against an inventory uses
+   the same code as a real run against the database. */
+require \Craft::getAlias('@root') . '/scripts/import/_legacy_chrome_matchers.php';
 
-$isBreadcrumb = function (string $l): bool {
-    return (bool)preg_match('~^>\s*\S~u', $l);
-};
-
-$isBracketNav = function (string $l): bool {
-    if (preg_match('~^[\[\]\s]+$~u', $l)) { return true; }                 // residue: [ ]  ][
-    return (bool)preg_match('~^(\[\s*(NEXT|PREVIOUS|PREV|CONTENTS|INDEX|SEARCH|HOME|BACK)\s*\]\s*)+$~iu', $l);
-};
-
-$isSeriesHeading = function (string $l) use ($SERIES_HEADINGS, $norm): bool {
-    $n = $norm($l);
-    foreach ($SERIES_HEADINGS as $h) { if ($n === $norm($h)) { return true; } }
-    return false;
-};
-
-$isByline = function (string $l): bool {
-    if (preg_match('~^By\s+[A-Z(]~u', $l)) { return true; }
-    if (preg_match('~^Originally published\b~iu', $l)) { return true; }
-    if (preg_match('~^[A-Z][A-Za-z .\'\x{2019}-]{2,40}\s(Historian|Historical Society)\.?$~u', $l)) { return true; }
-    return false;
-};
-
-/* "For The Signal", the publication line of a byline block. */
-$isForPublication = function (string $l): bool {
-    return (bool)preg_match('~^For\s+(The\s+)?[A-Z][A-Za-z.\x{2019}\' -]{2,44}\.?$~u', $l);
-};
-
-/* An extraction marker left behind with the series heading attached:
-   "START:BYLINE-->HISTORY OF THE SANTA CLARITA VALLEY BY JERRY REYNOLDS". */
-$isExtractionMarker = function (string $l): bool {
-    return (bool)preg_match('~(START|END):(BYLINE|CONTENT|STORY)~u', $l)
-        || (bool)preg_match('~^<!--|-->$~u', $l);
-};
-
-/* A publication or a bare month and year, but only read inside a byline block:
-   "The Santa Clarita Sentinel", "June 1986.", "Vol. 11 No. 6". Short, opens
-   like a heading, and carries no sentence. */
-$isBlockLine = function (string $l): bool {
-    if (mb_strlen($l) > 90) { return false; }
-    if (!preg_match('~^[\(\x{201C}"A-Z0-9]~u', $l)) { return false; }
-    if (preg_match('~[.!?]\s+\p{Lu}~u', $l)) { return false; }
-    return str_word_count(preg_replace('~[^A-Za-z ]~', ' ', $l)) <= 14;
-};
-
-/* A stray opening quote or bracket left by the extraction. */
-$isStrayMark = function (string $l): bool {
-    return (bool)preg_match('~^[\x{201C}\x{201D}"\x{2018}\x{2019}\'\[\]]{1,2}$~u', $l);
-};
-
-$MONTHS = '(January|February|March|April|May|June|July|August|September|October|November|December)';
-
-$isMonthYear = function (string $l) use ($MONTHS): bool {
-    return (bool)preg_match('~^' . $MONTHS . '\s+\d{4}\.?$~u', $l);
-};
-
-/* The date carried by a head line, which is often a publication and a date
-   sharing one line: "The Santa Clarita Sentinel | April 28, 1965". */
-$pickDate = function (string $l) use ($MONTHS): string {
-    $part = $l;
-    if (mb_strpos($l, '|') !== false) {
-        $bits = explode('|', $l);
-        $part = trim(end($bits));
-    }
-    if (preg_match('~' . $MONTHS . '\s+\d{1,2},?\s+\d{4}~u', $part, $m)) { return rtrim($m[0], '.'); }
-    if (preg_match('~' . $MONTHS . '\s+\d{4}~u', $part, $m))               { return rtrim($m[0], '.'); }
-    if (preg_match('~' . $MONTHS . '\s+\d{1,2},?\s+\d{4}~u', $l, $m))    { return rtrim($m[0], '.'); }
-    return '';
-};
-
-$isDateline = function (string $l): bool {
-    $M = '(January|February|March|April|May|June|July|August|September|October|November|December)';
-    if (preg_match('~^' . $M . '\s+\d{1,2},?\s+\d{4}\.?$~u', $l)) { return true; }
-    if (preg_match('~^(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,?\s+' . $M . '\s+\d{1,2},?\s+\d{4}\b~u', $l)) { return true; }
-    /* "The Newhall Signal and Saugus Enterprise | January 2, 1947." */
-    if (preg_match('~\|\s*' . $M . '\s+\d{1,2},?\s+\d{4}\.?$~u', $l)) { return true; }
-    return false;
-};
-
-$isCopyright = function (string $l): bool {
-    return mb_strpos($l, "\u{00A9}") !== false
-        || preg_match('~\bRIGHTS RESERVED\b~iu', $l)
-        || preg_match('~^\(c\)\s*\d{4}~iu', $l);
-};
-
-$isRights = function (string $l): bool {
-    return (bool)preg_match('~^The site owner makes no assertions~iu', $l);
-};
-
-$isNonprofit = function (string $l): bool {
-    return (bool)preg_match('~501\s*\(\s*c\s*\)~iu', $l)
-        || (preg_match('~\bSCVTV\b~u', $l) && preg_match('~\bnon-?profit\b~iu', $l));
-};
-
-$isFooterLink = function (string $l) use ($FOOTER_LINKS): bool {
-    $n = mb_strtoupper(trim($l, " \t.\u{2022}\u{00B7}"));
-    return in_array($n, $FOOTER_LINKS, true);
-};
-
-/* A caption from the thumbnail gallery: short, and not a sentence. */
-$isCaptionish = function (string $l): bool {
-    if (mb_strlen($l) > 60) { return false; }
-    if (preg_match('~[.!?]$~u', $l)) { return false; }
-    return true;
-};
-
-/* An exhibit or section heading sitting above a gallery, all caps. */
-$isExhibitHeading = function (string $l): bool {
-    if (mb_strlen($l) < 10 || mb_strlen($l) > 120) { return false; }
-    if (preg_match('~\p{Ll}~u', $l)) { return false; }
-    return (bool)preg_match('~\p{Lu}~u', $l);
-};
-
-/* What may sit immediately above a trailing gallery and still let it be cut.
-   The line itself is never removed; this only decides whether the run below it
-   is furniture. Clear prose, a copyright line, an exhibit heading, or another
-   caption, which is any short line whatever its punctuation. */
-$isRunTerminator = function (string $l) use ($isCopyright, $isExhibitHeading): string {
-    if (mb_strlen($l) >= 70 && preg_match('~[.!?"\x{201D}]$~u', $l)) { return 'prose'; }
-    if ($isCopyright($l)) { return 'copyright line'; }
-    if ($isExhibitHeading($l)) { return 'exhibit heading'; }
-    if (mb_strlen($l) <= 90) { return 'another caption'; }
-    return '';
-};
 
 /* ---------------------------------------------------------------- report */
 
@@ -189,8 +87,42 @@ $movedToFinePrint = 0;
 $filledDate = []; $filledAuthor = []; $noAuthorRecord = [];
 $patternCounts = [];
 
-foreach ($SECTIONS as $sectionHandle) {
-    foreach (\craft\elements\Entry::find()->section($sectionHandle)->status(null)->all() as $e) {
+/* Either the database, or an inventory file loaded into unsaved entries. */
+$batches = [];
+if ($FROM_INVENTORY !== '') {
+    $APPLY = false;
+    $p = \Craft::getAlias('@root') . '/inventory/legacy/' . $FROM_INVENTORY . '.json';
+    if (!file_exists($p)) { echo 'not found: ' . $p . PHP_EOL; return; }
+    $d = json_decode(file_get_contents($p), true);
+    $type = Craft::$app->entries->getEntryTypeByHandle($FROM_TYPE);
+    if (!$type) { echo 'entry type ' . $FROM_TYPE . ' not found' . PHP_EOL; return; }
+    $sec = Craft::$app->entries->getSectionByHandle($FROM_SECTION);
+    if (!$sec) { echo 'section ' . $FROM_SECTION . ' not found' . PHP_EOL; return; }
+    $pages = [];
+    foreach (['pages', 'series_pages', 'related_pages'] as $list) {
+        foreach ($d[$list] ?? [] as $pg) { $pages[] = $pg; }
+    }
+    if ($FROM_LIMIT > 0) { $pages = array_slice($pages, 0, $FROM_LIMIT); }
+    $made = [];
+    foreach ($pages as $pg) {
+        $x = new \craft\elements\Entry();
+        $x->sectionId = $sec->id;
+        $x->setTypeId($type->id);
+        $x->title = (string)($pg['title'] ?? $pg['legacy_key']);
+        $x->slug = (string)($pg['legacy_key'] ?? '');
+        $x->setFieldValue('body', (string)($pg['body_text'] ?? ''));
+        $made[] = $x;
+    }
+    $batches[$FROM_INVENTORY . ' (' . $FROM_TYPE . ', not imported)'] = $made;
+    echo 'reading ' . count($made) . ' bodies from ' . $FROM_INVENTORY . '.json, writing nothing' . PHP_EOL;
+} else {
+    foreach ($SECTIONS as $sectionHandle) {
+        $batches[$sectionHandle] = \craft\elements\Entry::find()->section($sectionHandle)->status(null)->all();
+    }
+}
+
+foreach ($batches as $sectionHandle => $batchEntries) {
+    foreach ($batchEntries as $e) {
         $layout = $e->getFieldLayout();
         if (!$layout) { continue; }
         $has = [];
@@ -217,6 +149,19 @@ foreach ($SECTIONS as $sectionHandle) {
             $raw = $lines[$start];
             $l = trim($raw);
             if ($l === '') { $start++; continue; }
+
+            /* A trail that does not start the line. Excised here rather than in
+               the body at large, because the head is where the walk is already
+               entitled to judge a line; nothing is removed from the middle of
+               the prose. What survives the excision is judged by the rules
+               below, exactly as if it had arrived that way. */
+            $stripped = $stripTrail($l);
+            if ($stripped !== $l) {
+                $hit('breadcrumb-trail');
+                if ($stripped === '') { $start++; continue; }
+                $lines[$start] = $stripped;
+                $l = $stripped;
+            }
 
             if ($isBreadcrumb($l))    { $hit('breadcrumb');     $start++; continue; }
             if ($isExtractionMarker($l)) {
