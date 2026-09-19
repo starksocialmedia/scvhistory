@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: wrote scripts/import/add_missing_places.php, dry run by default. It creates three places rather than four: Heritage Junction already exists as "Heritage Junction Historic Park". Bodies are assembled from corpus sentences with the source named, communities come from the text or the legacy page titles, coordinates are left empty, and the haunted fields are set on Ruiz Cemetery and the Newhall Ranch House with the claim attributed rather than asserted.
+- Decisions: legacyUrl is left empty on all three, which is a decision rather than an omission. legacyUrl means the page a record was migrated from; these are made from mentions inside other people's articles, and the legacy site has no page that stands for any of them. The candidates are listed in the script so the choice can be made rather than lost. Ruiz Cemetery is "reported" rather than "legend" because named witnesses describe specific incidents, and the owner's own disavowal is carried in the account.
+- Blockers: the Newhall Ranch House has two locations in the sources. The legacy titles read both "Heritage Junction | Newhall Ranch House in Valencia" and "Newhall Ranch House (Original Location)", so the house stood on the ranch in what is now Valencia and was later moved to Heritage Junction in Newhall. I set Newhall, where it stands, and the community note on the record says so; one building across two communities is the succession problem again.
+- Result: 3 records would be created, 0 already present. check_render.php reports no failures.
+- Next: Nathan reads the passages, decides the legacy URLs and the Newhall Ranch House community, then applies
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: wrote the rule, and something for it to point at. scv-record-template gains the Twig-comment trap, the requirement to load one record page of every type after any edit to the schema partial, and a note naming the class of error a diff cannot catch. scripts/import/check_render.php makes that runnable: it clears the template cache, discovers one page per section, entry type and category group from Craft, and asserts on what the server sent. The review-screen and import skills point at the same lesson.
 - Decisions: the check discovers its pages from Craft rather than from a list, because a list of URLs goes stale exactly when a new entry type is added, which is when it is most needed. It asserts on the body as well as the status, since a Twig error renders inside a 200 on some routes and a status code alone would pass it.
 - Blockers: none. I proved the check by injecting the exact fault I had made twice, a Twig comment inside a hash literal in the Place branch: it failed 8 pages by name. Then restored the file and confirmed no failures. Building it also turned up a fourth instance of the same class in my own code: @web is empty on the command line, so every constructed URL failed to connect while the entry URLs passed.
