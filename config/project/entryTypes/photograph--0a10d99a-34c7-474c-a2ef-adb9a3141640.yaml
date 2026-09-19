@@ -206,6 +206,40 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 15bb5c1e-5a5d-4e85-b466-44e187b9a1d4 # Band image
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 22d6704b-0b0c-4922-b531-76e72a303092
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b20e0e7d-aa77-4614-a377-46760055a3e1 # Part of Collection
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c72a3e86-6aec-41a0-90fd-a19f4a87989d
+            userCondition: null
+            warning: null
+            width: 100
         name: Content
         uid: ff71b0b9-81bd-41bc-95b2-36801d25d1e8
         userCondition: null

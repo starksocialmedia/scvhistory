@@ -10,7 +10,6 @@
         ],
         "missing_expected": [
             "historicalEra",
-            "subjectPerson",
             "depictsPlace",
             "publishedBy"
         ]
@@ -1639,6 +1638,20 @@
     },
     {
         "section": "persons",
+        "id": 2532,
+        "title": "Cephas L. Bard",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/persons/2532-cephas-l-bard",
+        "born_digital": true,
+        "missing_required": [
+            "body"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra"
+        ]
+    },
+    {
+        "section": "persons",
         "id": 341,
         "title": "Dante Acosta",
         "url": "https://scvhistory.ddev.site/admin/content/entries/persons/341-dante-acosta",
@@ -1883,6 +1896,21 @@
     },
     {
         "section": "places",
+        "id": 2540,
+        "title": "Felton School",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/places/2540-felton-school",
+        "born_digital": true,
+        "missing_required": [
+            "placeLat",
+            "placeLng"
+        ],
+        "missing_expected": [
+            "historicalEra",
+            "dateEstablished"
+        ]
+    },
+    {
+        "section": "places",
         "id": 597,
         "title": "Fort Tejon",
         "url": "https://scvhistory.ddev.site/admin/content/entries/places/597-fort-tejon",
@@ -1955,6 +1983,21 @@
     },
     {
         "section": "places",
+        "id": 2538,
+        "title": "Newhall Ranch House",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/places/2538-newhall-ranch-house",
+        "born_digital": true,
+        "missing_required": [
+            "placeLat",
+            "placeLng"
+        ],
+        "missing_expected": [
+            "historicalEra",
+            "dateEstablished"
+        ]
+    },
+    {
+        "section": "places",
         "id": 631,
         "title": "Rancho Camulos",
         "url": "https://scvhistory.ddev.site/admin/content/entries/places/631-rancho-camulos",
@@ -1972,6 +2015,21 @@
         "url": "https://scvhistory.ddev.site/admin/content/entries/places/635-ridge-route",
         "born_digital": false,
         "missing_required": [],
+        "missing_expected": [
+            "historicalEra",
+            "dateEstablished"
+        ]
+    },
+    {
+        "section": "places",
+        "id": 2536,
+        "title": "Ruiz Cemetery",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/places/2536-ruiz-cemetery",
+        "born_digital": true,
+        "missing_required": [
+            "placeLat",
+            "placeLng"
+        ],
         "missing_expected": [
             "historicalEra",
             "dateEstablished"
@@ -2078,30 +2136,7 @@
             "legacyUrl"
         ],
         "missing_expected": [
-            "neighborhood",
             "dateFounded"
-        ]
-    },
-    {
-        "section": "organizations",
-        "id": 378,
-        "title": "SCVHistory.com \u2014 Santa Clarita Valley History",
-        "url": "https://scvhistory.ddev.site/admin/content/entries/organizations/378-scvhistory-com-santa-clarita-valley-history",
-        "born_digital": true,
-        "missing_required": [],
-        "missing_expected": [
-            "neighborhood"
-        ]
-    },
-    {
-        "section": "organizations",
-        "id": 394,
-        "title": "The City of Santa Clarita",
-        "url": "https://scvhistory.ddev.site/admin/content/entries/organizations/394-city-of-santa-clarita",
-        "born_digital": true,
-        "missing_required": [],
-        "missing_expected": [
-            "neighborhood"
         ]
     },
     {
@@ -2113,9 +2148,7 @@
         "missing_required": [
             "body"
         ],
-        "missing_expected": [
-            "neighborhood"
-        ]
+        "missing_expected": []
     },
     {
         "section": "warMemorials",
@@ -2475,81 +2508,8 @@
     },
     {
         "section": "collections",
-        "id": 665,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/665-worden",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
-        "id": 667,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/667-boston",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
-        "id": 669,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/669-manzer",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
-        "id": 673,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/673-coins",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "legacyUrl",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
         "id": 675,
-        "title": null,
+        "title": "Abu Ghraib Prison Abuse Scandal Hits the Santa Clarita Valley",
         "url": "https://scvhistory.ddev.site/admin/content/entries/collections/675-iraq",
         "born_digital": false,
         "missing_required": [
@@ -2566,81 +2526,8 @@
     },
     {
         "section": "collections",
-        "id": 677,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/677-otn-gazette",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "legacyUrl",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
-        "id": 679,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/679-otn-patti",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
-        "id": 681,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/681-otn-pauline",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
-        "id": 683,
-        "title": null,
-        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/683-otn-rioux",
-        "born_digital": false,
-        "missing_required": [
-            "legacyKey",
-            "writtenBy",
-            "articlesInCollection"
-        ],
-        "missing_expected": [
-            "neighborhood",
-            "historicalEra",
-            "collectionParts",
-            "bandImage"
-        ]
-    },
-    {
-        "section": "collections",
         "id": 685,
-        "title": null,
+        "title": "Black 'N' Whyte",
         "url": "https://scvhistory.ddev.site/admin/content/entries/collections/685-otn-whyte",
         "born_digital": false,
         "missing_required": [
@@ -2669,11 +2556,155 @@
     },
     {
         "section": "collections",
+        "id": 673,
+        "title": "Making Cents",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/673-coins",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
         "id": 671,
         "title": "Newsmaker of the Week",
         "url": "https://scvhistory.ddev.site/admin/content/entries/collections/671-newsmaker",
         "born_digital": false,
         "missing_required": [
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
+        "id": 669,
+        "title": "Now and Then in the Santa Clarita Valley",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/669-manzer",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
+        "id": 677,
+        "title": "Old Town Newhall Gazette",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/677-otn-gazette",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
+        "id": 679,
+        "title": "Open Book",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/679-otn-patti",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
+        "id": 681,
+        "title": "Pauline Harte",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/681-otn-pauline",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
+        "id": 683,
+        "title": "Richard 'Doc' Rioux At Large",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/683-otn-rioux",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
+        "id": 667,
+        "title": "Santa Clarita Valley History by John Boston",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/667-boston",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
+            "writtenBy",
+            "articlesInCollection"
+        ],
+        "missing_expected": [
+            "neighborhood",
+            "historicalEra",
+            "collectionParts",
+            "bandImage"
+        ]
+    },
+    {
+        "section": "collections",
+        "id": 665,
+        "title": "Selections from Leon Worden",
+        "url": "https://scvhistory.ddev.site/admin/content/entries/collections/665-worden",
+        "born_digital": false,
+        "missing_required": [
+            "legacyKey",
             "writtenBy",
             "articlesInCollection"
         ],
