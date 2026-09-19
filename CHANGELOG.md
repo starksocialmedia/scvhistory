@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: proposed place relationships from the coordinates, the community terms and the bodies. export_place_links.php writes web/review/place-links.json with the evidence for each pair, place-links.html is the review screen on the same pattern, apply_place_links.php writes the confirmed ones. Also wrote design/PLACE-SUCCESSION-PROPOSAL.md for precededBy and succeededBy, as a proposal rather than a build.
+- Decisions: a mention outranks proximity and proximity outranks a shared community, because somebody writing it down is evidence and nearness is not. The distance is reported on every pair whatever proposed it, since "these two are named together and are sixty-eight kilometres apart" is exactly what a reviewer should see. The succession proposal recommends storing one direction only, succeededBy, and deriving precededBy, which is the childOf lesson applied again.
+- Blockers: none. The review screen reads a suffixed localStorage key when loaded with ?test, so it can be driven without touching a real review.
+- Result: 14 pairs from 105 possible. 2 by mention, 3 by proximity within 2 km, 11 by shared community. The two mention pairs are the best of them and neither is near: Beale's Cut and Lyons Station both name Fort Tejon, 68 and 66 km away, because that is the stage road rather than the neighbourhood.
+- Next: Nathan decides the 14 pairs, then apply_place_links.php, then re-render /graph
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: built the graph explorer at /graph, unlisted like the overview. /graph/data computes the whole graph server side in three queries and the page fetches it once. Force-directed SVG with d3-force, node size by degree, colour by type, click to open the record, hover for name and relation count, a filter per type and a search that highlights by name.
 - Decisions: articles are edges rather than nodes, so two subjects of one piece are joined and the edge is that article; a collection sits in the same clique, which is what makes a series read as a cluster. War memorials and military profiles are not drawn, because each is a second record of a person the archive already has and drawing both would double the people. Edges are keyed low-high so a reciprocal pair counts once: persons and organizations point at each other through two different fields and that is one relationship. The layout spreads hard and frames itself after settling, because the interesting thing about this graph today is how much of it is not connected and a tight ball hides that.
 - Blockers: I put an invented SRI hash on the d3 script tag rather than computing one, so the browser blocked it and the page rendered empty. Replaced with the hash of the actual file. The standalone d3-force build is not served by cdnjs at any path I could find, so this is the full d3 bundle.
