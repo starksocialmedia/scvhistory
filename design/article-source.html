@@ -1,0 +1,423 @@
+<!--
+  SOURCE OF TRUTH for the SCVHistory.com article record page.
+  This is the design exactly as drawn. Reproduce the markup, the inline styles
+  and the structure precisely. Replace the sc-for / sc-if placeholders with Twig
+  and the illustrative numbers with live data.
+  Where this file and the mapping notes disagree, this file governs appearance
+  and the notes govern data.
+-->
+
+<div style="font-family: 'Public Sans', system-ui, sans-serif; color: #2C2C2C; background: #F6F7F9">
+
+  <header style="background: #17254C; position: relative; z-index: 20">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 20px 40px 0; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 14px">
+        <img src="36712b72-c69d-4b5c-9e95-aa33aae25c51" alt="" style="width: 60px; height: 60px; flex: none">
+        <div style="min-width: 0">
+          <div style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 26px; line-height: 1; color: #fff">SCVHistory.com</div>
+          <div style="height: 1px; background: #C4A031; margin: 5px 0 4px"></div>
+          <div style="font-family: 'Jost', sans-serif; font-size: 8.5px; letter-spacing: .2em; color: #C4A031">SANTA CLARITA VALLEY HISTORY ARCHIVES</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap">
+        
+        <div style="display: flex; gap: 18px; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .1em">
+          <a href="#" style="color: rgba(255,255,255,.72)">ABOUT</a>
+          <a href="#" style="color: rgba(255,255,255,.72)">DONATE</a>
+        </div>
+        <div style="position: relative">
+          <button sc-camel-on-click="{{ toggleAccount }}" style="display: flex; align-items: center; gap: 11px; background: {{ accountBg }}; border: 1px solid {{ accountBd }}; padding: 7px 12px 7px 8px; cursor: pointer; text-align: left">
+            <span style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid #C4A031; overflow: hidden; position: relative; flex: none; display: block"><image-slot id="acct-avatar" shape="circle" placeholder="You"></image-slot></span>
+            <span style="display: block; min-width: 0">
+              <span style="display: block; font-family: 'Public Sans', sans-serif; font-size: 13.5px; font-weight: 600; color: #fff; line-height: 1.2; white-space: nowrap">Leon Worden</span>
+              <span style="display: block; font-family: 'Jost', sans-serif; font-size: 9.5px; letter-spacing: .14em; color: #C4A031; margin-top: 2px">EDITOR</span>
+            </span>
+            <span style="font-size: 8px; color: rgba(255,255,255,.55)">{{ accountArrow }}</span>
+          </button>
+          <sc-if value="{{ accountOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; top: calc(100% + 8px); right: 0; z-index: 40; background: #fff; border: 1px solid #E2E4E8; border-top: 3px solid #C4A031; box-shadow: 0 20px 44px rgba(23,37,76,.24); min-width: 252px; padding: 16px 18px 12px">
+              <div style="font-family: 'Jost', sans-serif; font-size: 10.5px; letter-spacing: .16em; color: #A9842B">SIGNED IN AS</div>
+              <div style="font-family: 'Playfair Display', serif; font-size: 18px; color: #17254C; margin-top: 7px">leon@scvhistory.com</div>
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 16px 0 14px; padding: 12px 0; border-top: 1px solid #F1F2F5; border-bottom: 1px solid #F1F2F5">
+                <sc-for list="{{ accountStats }}" as="s" hint-placeholder-count="3">
+                  <div>
+                    <div style="font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1; color: #17254C">{{ s.n }}</div>
+                    <div style="font-family: 'Jost', sans-serif; font-size: 9.5px; letter-spacing: .1em; color: #8A919E; margin-top: 5px">{{ s.k }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column">
+                <sc-for list="{{ accountLinks }}" as="l" hint-placeholder-count="5">
+                  <a href="#" style="font-size: 14.5px; color: #2C2C2C; padding: 9px 0; border-bottom: 1px solid #F6F7F9" style-hover="text-decoration: none; color: #A9842B">{{ l }}</a>
+                </sc-for>
+                <a href="#" style="font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .08em; color: #8A919E; padding: 12px 0 4px">SIGN OUT</a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+    <div style="position: relative; margin-top: 18px; border-top: 1px solid rgba(255,255,255,.12)">
+      <nav style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; gap: 4px; flex-wrap: wrap; align-items: stretch">
+        <sc-for list="{{ menu }}" as="m" hint-placeholder-count="5">
+          <button sc-camel-on-click="{{ m.on }}" sc-camel-on-mouse-enter="{{ m.hover }}" style="background: {{ m.bg }}; border: 0; border-bottom: 3px solid {{ m.mark }}; color: {{ m.fg }}; font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .09em; font-weight: 500; padding: 16px 18px; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 9px">{{ m.label }}<span style="font-size: 8px; color: {{ m.caret }}">{{ m.arrow }}</span></button>
+        </sc-for>
+
+        <div style="margin-left: auto; display: flex; align-items: center; gap: 0; min-width: 0">
+          <sc-if value="{{ searchOpen }}" hint-placeholder-val="{{ false }}">
+            <label style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.1); border: 1px solid rgba(196,160,49,.7); padding: 8px 14px; width: 300px; max-width: 46vw">
+              <input placeholder="A name, a place, a year" sc-camel-auto-focus="{{ true }}" style="background: transparent; border: 0; outline: none; color: #fff; font-family: 'Public Sans', sans-serif; font-size: 14.5px; width: 100%; min-width: 0">
+              <span style="font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: .1em; color: rgba(255,255,255,.45); white-space: nowrap">ENTER</span>
+            </label>
+          </sc-if>
+          <button sc-camel-on-click="{{ toggleSearch }}" aria-label="Search the archive" style="background: {{ searchBtnBg }}; border: 0; border-bottom: 3px solid {{ searchBtnMark }}; cursor: pointer; padding: 16px 18px; display: flex; align-items: center; gap: 9px; align-self: stretch">
+            <svg sc-camel-view-box="0 0 16 16" width="16" height="16" fill="none" stroke="{{ searchIconStroke }}" stroke-width="1.7" style="flex: none"><circle cx="6.8" cy="6.8" r="4.6"></circle><line x1="10.4" y1="10.4" x2="14.4" y2="14.4"></line></svg>
+            <span style="font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .09em; font-weight: 500; color: {{ searchLabelFg }}">{{ searchLabel }}</span>
+          </button>
+        </div>
+      </nav>
+
+      <sc-if value="{{ panel }}" hint-placeholder-val="{{ false }}">
+        <div sc-camel-on-mouse-leave="{{ closeMenu }}" style="position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid #E2E4E8; box-shadow: 0 26px 50px rgba(23,37,76,.22)">
+          <div style="height: 3px; background: linear-gradient(90deg, #C4A031 0%, #C4A031 36%, #EFE6D0 36%, #EFE6D0 100%)"></div>
+          <div style="max-width: 1240px; margin: 0 auto; padding: 34px 40px 36px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: start">
+            <div style="min-width: 0">
+              <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px">
+                <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .18em; color: #A9842B; white-space: nowrap">{{ panelKicker }}</div>
+                <div style="flex: 1; height: 1px; background: #EDEFF2"></div>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 32px 40px">
+                <sc-for list="{{ panelColumns }}" as="col" hint-placeholder-count="3">
+                  <div style="min-width: 0">
+                    <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .14em; color: #8A919E; padding-bottom: 10px; border-bottom: 1px solid #EDEFF2">{{ col.label }}</div>
+                    <div style="display: flex; flex-direction: column">
+                      <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="3">
+                        <a href="#" style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; color: inherit; padding: 11px 0 10px; border-bottom: 1px solid #F4F5F7" style-hover="text-decoration: none; color: #A9842B">
+                          <span style="font-family: 'Playfair Display', serif; font-size: 17.5px; line-height: 1.25; color: #17254C">{{ it.t }}</span>
+                          <span style="font-family: ui-monospace, monospace; font-size: 11.5px; color: #9AA1AD">{{ it.n }}</span>
+                        </a>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 20px 22px 22px">
+              <div style="font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .16em; color: #A9842B">{{ panelFeatureKicker }}</div>
+              <div style="font-family: 'Playfair Display', serif; font-size: 25px; line-height: 1.18; color: #17254C; margin-top: 12px; text-wrap: pretty">{{ panelFeatureTitle }}</div>
+              <div style="font-size: 14px; line-height: 1.6; color: #5B6472; margin-top: 10px">{{ panelFeatureMeta }}</div>
+              <a href="#" style="display: inline-block; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .06em; color: #A9842B; border-bottom: 1px solid #C4A031; margin-top: 18px; padding-bottom: 2px">{{ panelFeatureCta }} →</a>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </header>
+
+  <section style="position: relative; overflow: hidden; background: #FDF7EA; border-bottom: 1px solid #E8E0CC">
+    <div style="position: absolute; inset: 0; background-image: url(&quot;ff09d4e3-034f-4048-8e67-80f049fa733e&quot;); background-size: cover; background-position: right center"></div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(253,247,234,.97) 0%, rgba(253,247,234,.95) 44%, rgba(253,247,234,.5) 64%, rgba(253,247,234,0) 80%)"></div>
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 26px 40px 46px">
+      <div style="font-size: 13px; color: #5B6472; margin-bottom: 34px"><a href="#">Home</a> › <a href="#">Articles</a> › <a href="#">History of the Santa Clarita Valley</a> › <span>Chapter 9. The Trail Blazer</span></div>
+      <div style="max-width: 560px">
+        <div style="display: flex; align-items: center; gap: 14px; font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .18em; color: #7E6118; margin-bottom: 18px">
+          <span>ARTICLES</span><span style="width: 22px; height: 1px; background: #C4A031"></span><span>MEXICAN RANCHO ERA (1821–1848)</span>
+        </div>
+        <h1 style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(36px, 4vw, 54px); line-height: 1.05; margin: 0; color: #17254C; text-wrap: balance">Chapter 9. The Trail Blazer</h1>
+        <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: #5B6472; margin-top: 14px"><a href="#" style="color: #5B6472">History of the Santa Clarita Valley</a></div>
+        <div style="font-size: 15px; color: #4A5260; margin-top: 16px">By <a href="#" style="font-weight: 600">Jerry Reynolds</a> · Edited by <a href="#" style="font-weight: 600">Leon Worden</a> · 1976</div>
+        <div style="display: flex; gap: 9px; flex-wrap: wrap; margin-top: 26px">
+          <a href="#" style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #7E6118; border: 1px solid #C4A031; background: rgba(255,255,255,.55); padding: 7px 13px" style-hover="background: #fff; text-decoration: none">Pre-1850</a>
+          <a href="#" style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #fff; background: #17254C; padding: 7px 13px" style-hover="background: #22346B; text-decoration: none">Agua Dulce</a>
+          <a href="#" style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #fff; background: #17254C; padding: 7px 13px" style-hover="background: #22346B; text-decoration: none">Castaic</a>
+          <a href="#" style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #fff; background: #17254C; padding: 7px 13px" style-hover="background: #22346B; text-decoration: none">Lebec</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main style="max-width: 1240px; margin: 0 auto; padding: 40px 40px 90px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 344px); gap: 56px; align-items: start">
+
+    <article style="min-width: 0">
+
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; padding-bottom: 16px; border-bottom: 1px solid #E2E4E8">
+        <sc-if value="{{ showAudio }}" hint-placeholder-val="{{ true }}">
+          <button sc-camel-on-click="{{ toggleAudio }}" style="display: flex; align-items: center; gap: 8px; background: {{ audioBtnBg }}; border: 1px solid #C4A031; color: {{ audioBtnFg }}; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; padding: 8px 14px; cursor: pointer; flex: none">
+            <svg sc-camel-view-box="0 0 12 12" width="10" height="10" fill="currentColor"><polygon points="2,1 11,6 2,11"></polygon></svg>Listen
+          </button>
+        </sc-if>
+        <div style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #5B6472; flex: 1; min-width: 190px">3 min read<span style="color: #C4A031; padding: 0 8px">·</span>537 words<span style="color: #C4A031; padding: 0 8px">·</span>Updated Sep 18, 2026</div>
+        <div style="display: flex; gap: 8px; flex: none">
+          <button style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer" style-hover="border-color: #C4A031">Save</button>
+          <button style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer" style-hover="border-color: #C4A031">Print</button>
+          <button style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer" style-hover="border-color: #C4A031">Share</button>
+        </div>
+      </div>
+
+      <sc-if value="{{ audioOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-left: 3px solid #C4A031; padding: 14px 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 18px">
+          <button style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid #C4A031; background: #fff; color: #A9842B; cursor: pointer; flex: none; display: flex; align-items: center; justify-content: center">
+            <svg sc-camel-view-box="0 0 12 12" width="11" height="11" fill="currentColor"><polygon points="2,1 11,6 2,11"></polygon></svg>
+          </button>
+          <div style="flex: 1; min-width: 140px; height: 4px; background: #EFE6D0"><div style="width: 6%; height: 4px; background: #C4A031"></div></div>
+          <div style="font-family: ui-monospace, monospace; font-size: 12.5px; color: #5B6472">0:00 / 3:43</div>
+          <div style="display: flex; gap: 5px; font-family: 'Jost', sans-serif; font-size: 12.5px">
+            <span style="border: 1px solid #E8E0CC; background: #fff; padding: 4px 8px; color: #5B6472">0.8×</span>
+            <span style="background: #17254C; color: #fff; padding: 4px 8px">1×</span>
+            <span style="border: 1px solid #E8E0CC; background: #fff; padding: 4px 8px; color: #5B6472">1.25×</span>
+            <span style="border: 1px solid #E8E0CC; background: #fff; padding: 4px 8px; color: #5B6472">1.5×</span>
+          </div>
+        </div>
+      </sc-if>
+
+      <p style="font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.48; color: #17254C; margin: 34px 0 0; max-width: 34em; text-wrap: pretty">Captain Pedro Fages (c. 1734–1796), Catalonian soldier and governor of Alta California. He named Agua Dulce and Soledad during his 1772 expedition through the Santa Clarita Valley.</p>
+
+      <div style="max-width: 34em; margin-top: 30px; font-size: 17.5px; line-height: 1.78; display: flex; flex-direction: column; gap: 22px">
+        <p style="margin: 0"><a href="#" style="font-weight: 600; border-bottom: 1px solid #C4A031">Capt. Pedro Fages</a> was the commanding officer of the Presidio of San Diego before heading to Monterey in 1770 to assume command as governor of Alta California. In that capacity, he made several expeditions into the hinterland, one of which brought him along the banks of the Santa Clara River. Several of his place names, such as Soledad and Agua Dulce, are still with us.</p>
+        <p style="margin: 0">A tall, aristocratic Spaniard in his early thirties, Fages was a lieutenant in charge of the twenty-five Catalonian soldiers during the Portolá march to Monterey. He was considered a trailblazer, possessed of an inquisitive mind and a definite wanderlust.</p>
+        <p style="margin: 0">He must have had mixed feelings that spring morning in 1772 when it was discovered that six of his <em>soldados de cuero</em> had deserted with an equal number of comely young Indian maidens. Fages was upset by the loss of his lancers, but he welcomed the excuse to go off exploring.</p>
+        <p style="margin: 0">An expeditionary force was quickly assembled. It headed east into the Imperial Valley. Sometimes following a trail left by the mutineers and sometimes following reports from Indians, Fages pressed on along the base of the towering San Gabriels, across the wide, reedy banks of the Mojave River, up into the Antelope Valley, then plunging into the Sierra Pelonas to emerge at the headwaters of the Rio Santa Clara.</p>
+        <p style="margin: 0">The party's first camp in this valley was probably made near Agua Dulce Springs, which Fages named for its supply of "sweet water."</p>
+        <p style="margin: 0">At the point where Castaic Creek joins the Santa Clara River, Fages was back on familiar ground. Three years earlier, he had stood in this spot with Governor Portolá and Father Juan Crespí.</p>
+        <p style="margin: 0">Don Pedro renewed his acquaintance with the venerable <em>kika</em>, or chief, of the Tataviam community and was led to believe that the men he was looking for were somewhere up in Castaic Canyon.</p>
+        <p style="margin: 0">After resting men and animals for two days, the party mounted up and ascended the canyon, following the brook which was teeming with trout. They camped at Cienaga ("swamp"), where Fish Creek joins Castaic, then at Laguna (Lake Elizabeth), passed by the original Castaic Lake (across from modern Lebec), and stood at last on the crest of Tejon ("badger") Pass, which Fages had called "Cañada de las Uvas" for the wild grapes growing in the canyon. Gazing out over the vast expanses of the San Joaquin Valley, Pedro Fages made the notation "buena vista," or "beautiful view," in his journal.</p>
+        <p style="margin: 0">He never found the deserters, who probably hid out somewhere in the rocky vastness of the Tehachapi Mountains. One is tempted to compare them with Fletcher Christian and the refugees on Pitcairn Island, revolting against Captain Bligh, though this might be unfair to the indomitable Fages.</p>
+        <p style="margin: 0">Capt. Fages returned to San Diego after the epic trek and filed a detailed account of his pursuit, adding thousands of acres to previously blank maps. In 1777, he fought Apaches on the Sonoran frontier, returning as a lieutenant colonel to serve again as governor until 1791. Alternate accounts have him retiring to Mexico or returning to his estate in Seville, Spain.</p>
+      </div>
+
+      <div style="max-width: 34em; margin-top: 34px; display: flex; align-items: center; gap: 16px">
+        <div style="flex: 1; height: 1px; background: #E2E4E8"></div>
+        <div style="font-family: 'Playfair Display', serif; font-variant: small-caps; letter-spacing: .06em; font-size: 17px; color: #17254C; white-space: nowrap">Jerry Reynolds · 1976</div>
+      </div>
+
+      <sc-if value="{{ showPhotos }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 52px">
+          <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 3px solid #C4A031; padding-bottom: 12px">
+            <div style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .16em; color: #A9842B">PHOTOS &amp; DOCUMENTS</div>
+            <div style="flex: 1"></div>
+            <div style="font-size: 13px; color: #8A919E">11 items</div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin-top: 20px">
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p1" shape="rect" placeholder="Fages portrait engraving"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p2" shape="rect" placeholder="Polychrome bust"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p3" shape="rect" placeholder="Bronze head"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p4" shape="rect" placeholder="Helmet detail"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p5" shape="rect" placeholder="Expedition map"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p6" shape="rect" placeholder="Journal binding"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p7" shape="rect" placeholder="Soldado armor"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p8" shape="rect" placeholder="Portolá engraving"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p9" shape="rect" placeholder="Commemorative plaque"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p10" shape="rect" placeholder="Mission statue"></image-slot></div>
+            <div style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px"><image-slot id="art9-p11" shape="rect" placeholder="Fages bust, Seville"></image-slot></div>
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 52px">
+        <a href="#" style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px; color: inherit; display: block" style-hover="border-color: #C4A031; text-decoration: none">
+          <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">← PREVIOUS</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.25; color: #17254C; margin-top: 8px">Chapter 8. The Feast</div>
+        </a>
+        <a href="#" style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px; color: inherit; display: block; text-align: right" style-hover="border-color: #C4A031; text-decoration: none">
+          <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">NEXT →</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.25; color: #17254C; margin-top: 8px">Chapter 10. Solitary Hiker</div>
+        </a>
+      </div>
+
+      <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 26px 28px 28px; margin-top: 44px">
+        <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 20px">ABOUT THE AUTHOR</div>
+        <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px; align-items: start">
+          <div style="width: 96px; height: 96px; border-radius: 50%; border: 2px solid #C4A031; overflow: hidden; position: relative"><image-slot id="art9-author" shape="circle" placeholder="Jerry Reynolds"></image-slot></div>
+          <div style="min-width: 0">
+            <div style="font-family: 'Playfair Display', serif; font-size: 25px; color: #17254C">Jerry Reynolds</div>
+            <div style="font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #7E6118; margin-top: 4px">Historian, Author, Museum Curator, Private Investigator</div>
+            <p style="font-size: 16px; line-height: 1.72; color: #2C2C2C; margin: 14px 0 0; max-width: 46em">Gerald G. "Jerry" Reynolds (1937–1996) was the Santa Clarita Valley's preeminent local historian, whose decades of research and writing established the documentary foundation for all subsequent study of the valley's history. A longtime Newhall resident, he helped organize the Santa Clarita Valley Historical Society, served as its founding museum curator, and contributed historical columns to The Signal newspaper for over two decades. His landmark 1992 volume, <em>Santa Clarita: Valley of the Golden Dream</em>, remains the most comprehensive history of the Santa Clarita Valley ever written.</p>
+            <a href="#" style="display: inline-block; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .06em; color: #A9842B; border-bottom: 1px solid #C4A031; margin-top: 18px; padding-bottom: 2px">VIEW FULL PROFILE →</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside style="min-width: 0; position: sticky; top: 20px; display: flex; flex-direction: column; gap: 18px">
+
+      <div style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031">
+        <div style="padding: 18px 20px 16px; border-bottom: 1px solid #EFE6D0">
+          <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">PART OF COLLECTION</div>
+          <a href="#" style="display: block; margin-top: 14px; border: 1px solid #E8E0CC; background: #fff; padding: 5px" style-hover="border-color: #C4A031; text-decoration: none">
+            <img src="ff09d4e3-034f-4048-8e67-80f049fa733e" alt="" style="width: 100%; height: 92px; object-fit: cover; object-position: 72% center; display: block">
+          </a>
+          <a href="#" style="display: block; font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.25; color: #17254C; margin-top: 12px" style-hover="text-decoration: none; color: #A9842B">History of the Santa Clarita Valley</a>
+          <div style="font-size: 13.5px; color: #5B6472; margin-top: 4px">Jerry Reynolds · 80 articles</div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 16px">
+            <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .12em; color: #7E6118">YOU ARE ON 11 OF 80</div>
+            <div style="font-family: ui-monospace, monospace; font-size: 11.5px; color: #8A919E">14%</div>
+          </div>
+          <div style="height: 4px; background: #EFE6D0; margin-top: 7px"><div style="width: 14%; height: 4px; background: #C4A031"></div></div>
+        </div>
+
+        <div style="padding: 16px 20px 6px; display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
+          <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">IN THIS COLLECTION</div>
+          <a href="#" style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .06em">ALL 80 →</a>
+        </div>
+
+        <div style="padding: 0 20px 8px; display: flex; flex-direction: column">
+          <sc-for list="{{ chapters }}" as="ch" hint-placeholder-count="14">
+            <a href="#" style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: baseline; color: inherit; padding: {{ ch.pad }}; border-bottom: 1px solid #F1E9D6; border-left: 3px solid {{ ch.rule }}; background: {{ ch.bg }}; margin-left: -20px; padding-left: {{ ch.padLeft }}" style-hover="text-decoration: none; background: #FFFBF1">
+              <span style="font-family: ui-monospace, monospace; font-size: 11.5px; color: {{ ch.numFg }}; text-align: right">{{ ch.n }}</span>
+              <span style="font-family: {{ ch.font }}; font-size: {{ ch.size }}; line-height: 1.35; color: {{ ch.fg }}">{{ ch.t }}</span>
+            </a>
+          </sc-for>
+          <div style="display: flex; gap: 10px; padding: 12px 0 14px">
+            <a href="#" style="flex: 1; text-align: center; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .06em; border: 1px solid #E8E0CC; background: #fff; padding: 9px 4px; color: #17254C" style-hover="border-color: #C4A031; text-decoration: none">← Previous</a>
+            <a href="#" style="flex: 1; text-align: center; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .06em; border: 1px solid #C4A031; background: #C4A031; padding: 9px 4px; color: #17254C; font-weight: 600" style-hover="background: #D9B448; text-decoration: none">Next →</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 20px">
+        <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 14px">PEOPLE IN THIS ARTICLE</div>
+        <a href="#" style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: center; color: inherit" style-hover="text-decoration: none">
+          <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #C4A031; overflow: hidden; position: relative"><image-slot id="art9-person1" shape="circle" placeholder="Fages"></image-slot></div>
+          <div style="min-width: 0">
+            <div style="font-family: 'Playfair Display', serif; font-size: 17px; color: #17254C">Pedro Fages</div>
+            <div style="font-size: 13px; color: #5B6472; margin-top: 1px">Military Officer; Colonial Governor</div>
+          </div>
+        </a>
+      </div>
+
+      <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 20px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 14px">
+          <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">CITE THIS RECORD</div>
+          <div style="display: flex; gap: 2px">
+            <sc-for list="{{ citeTabs }}" as="t" hint-placeholder-count="3">
+              <button sc-camel-on-click="{{ t.on }}" style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .04em; padding: 4px 9px; cursor: pointer; border: 1px solid {{ t.bd }}; background: {{ t.bg }}; color: {{ t.fg }}">{{ t.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #FBFAF6; border-left: 3px solid #C4A031; padding: 13px 15px; font-size: 13.5px; line-height: 1.62; color: #2C2C2C; word-break: break-word">{{ citation }}</div>
+        <button sc-camel-on-click="{{ copyCite }}" style="border: 1px solid #C4A031; background: transparent; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .06em; color: #A9842B; padding: 8px 16px; cursor: pointer; margin-top: 12px" style-hover="background: #FDF7EA">{{ copyLabel }}</button>
+      </div>
+
+      <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 14px">
+        <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 12px">RECORD</div>
+        <sc-for list="{{ facts }}" as="f" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; padding: 9px 0; border-bottom: 1px solid #F1F2F5; align-items: baseline">
+            <div style="font-family: 'Jost', sans-serif; font-size: 10.5px; letter-spacing: .12em; color: #8A919E">{{ f.k }}</div>
+            <div style="font-size: 14.5px; line-height: 1.5; color: #2C2C2C">{{ f.v }}</div>
+          </div>
+        </sc-for>
+        <a href="#" style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 0 4px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em">Read the original page <span>↗</span></a>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; color: #9AA1AD; word-break: break-all; padding-bottom: 8px">/scvhistory/signal/reynolds/part09.html</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer style="background: #17254C; color: #fff">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 56px 40px 28px">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px">
+        <div style="min-width: 0">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <img src="36712b72-c69d-4b5c-9e95-aa33aae25c51" alt="" style="width: 48px; height: 48px; flex: none">
+            <div style="min-width: 0">
+              <div style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 20px; line-height: 1; color: #fff">SCVHistory.com</div>
+              <div style="height: 1px; background: #C4A031; margin: 4px 0 3px"></div>
+              <div style="font-family: 'Jost', sans-serif; font-size: 7px; letter-spacing: .2em; color: #C4A031">SANTA CLARITA VALLEY HISTORY ARCHIVES</div>
+            </div>
+          </div>
+          <div style="font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.72); margin-top: 20px; max-width: 300px">A free public archive of Santa Clarita Valley History. A service of SCVTV, a 501(c)(3) nonprofit.</div>
+        </div>
+        <div>
+          <div style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .14em; color: #C4A031; border-bottom: 1px solid rgba(196,160,49,.5); padding-bottom: 10px">BROWSE</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 15px"><a href="#" style="color: rgba(255,255,255,.88)">By Era</a><a href="#" style="color: rgba(255,255,255,.88)">By Collection</a><a href="#" style="color: rgba(255,255,255,.88)">People</a><a href="#" style="color: rgba(255,255,255,.88)">Obituaries</a><a href="#" style="color: rgba(255,255,255,.88)">On This Day</a></div>
+        </div>
+        <div>
+          <div style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .14em; color: #C4A031; border-bottom: 1px solid rgba(196,160,49,.5); padding-bottom: 10px">ABOUT</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 15px"><a href="#" style="color: rgba(255,255,255,.88)">About</a><a href="#" style="color: rgba(255,255,255,.88)">Contact</a><a href="#" style="color: rgba(255,255,255,.88)">Permissions</a><a href="#" style="color: rgba(255,255,255,.88)">Photo Credits</a><a href="#" style="color: rgba(255,255,255,.88)">SCV Historical Society</a></div>
+        </div>
+        <div>
+          <div style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .14em; color: #C4A031; border-bottom: 1px solid rgba(196,160,49,.5); padding-bottom: 10px">CONNECT</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 15px"><a href="#" style="color: rgba(255,255,255,.88)">Facebook Group</a><a href="#" style="color: rgba(255,255,255,.88)">Newsletter</a><a href="#" style="color: rgba(255,255,255,.88)">Submit a photo/article</a></div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 40px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: 13.5px; color: rgba(255,255,255,.6)">
+        <span>© 2026 SCVTV/SCVHistory.com &amp; Santa Clarita Valley Historical Society · Rights reserved.</span>
+        <span>Nonprofit · Permissions · Privacy Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <button style="position: fixed; right: 20px; bottom: 20px; z-index: 30; background: #17254C; border: 1px solid #C4A031; color: #fff; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .14em; padding: 11px 17px; cursor: pointer" style-hover="background: #22346B">NOTE A FIX</button>
+</div>
+
+
+
+<!-- ===== SIDEBAR CHAPTER WINDOW DATA, AS DRAWN =====
+  Shows how the collection list is windowed: first, a gap label, the five before
+  and after the current chapter, another gap label, and the last.
+-->
+<script type="text/plain" id="chapter-window">
+const CHAPTERS = [
+  { n: 1, t: 'Preface' },
+  { gap: '4 earlier articles' },
+  { n: 6, t: 'Chapter 4: Children of Nature' },
+  { n: 7, t: 'Chapter 5: Tribal Relics' },
+  { n: 8, t: 'Chapter 6: Winds of Change' },
+  { n: 9, t: 'Chapter 7: Spain Reconnoiters' },
+  { n: 10, t: 'Chapter 8: The Feast' },
+  { n: 11, t: 'Chapter 9: The Trail Blazer', here: true },
+  { n: 12, t: 'Chapter 10: Solitary Hiker' },
+  { n: 13, t: "Chapter 11: Ferdinand's Grasp" },
+  { n: 14, t: 'Chapter 12: Staking Claim' },
+  { n: 15, t: 'Chapter 13: Insurrection' },
+  { n: 16, t: 'Chapter 14: Lord and Master' },
+  { gap: '63 more articles' },
+  { n: 80, t: 'About the Namesakes of the Kingsbury House' }
+];
+
+const CITES = {
+  'Chicago': 'Reynolds, Jerry. "Chapter 9. The Trail Blazer." History of the Santa Clarita Valley. Articles. SCVHistory.com, 1976. Accessed September 19, 2026. https://scvhistory.ddev.site/articles/chapter-9-the-trail-blazer.',
+  'MLA 9': 'Reynolds, Jerry. "Chapter 9. The Trail Blazer." History of the Santa Clarita Valley, SCVHistory.com, 1976, scvhistory.ddev.site/articles/chapter-9-the-trail-blazer. Accessed 19 Sept. 2026.',
+  'APA 7': 'Reynolds, J. (1976). Chapter 9. The Trail Blazer. In History of the Santa Clarita Valley. SCVHistory.com. https://scvhistory.ddev.site/articles/chapter-9-the-trail-blazer'
+};
+
+const MENU = [
+  { id: 'articles', label: 'ARTICLES', kicker: 'SINGLE PIECES & EVENTS',
+    columns: [
+      { label: 'WRITING', items: [{ t: 'All articles', n: '2,310' }, { t: 'Newspaper archive', n: '1,140' }, { t: 'Essays & research', n: '288' }] },
+      { label: 'EVENTS', items: [{ t: 'All events', n: '175' }, { t: 'Disasters', n: '34' }, { t: 'Openings & dedications', n: '61' }] },
+      { label: 'MEDIA', items: [{ t: 'Photo galleries', n: '640' }, { t: 'Maps', n: '118' }, { t: 'Documents', n: '395' }] }
+    ],
+    feature: { kicker: 'YOU ARE READING', title: 'Chapter 9. The Trail Blazer', meta: 'Jerry Reynolds · 1976 · History of the Santa Clarita Valley', cta: 'Back to the collection' } },
+  { id: 'collections', label: 'COLLECTIONS', kicker: 'MULTI-PART WORKS, READ IN ORDER',
+    columns: [
+      { label: 'MAJOR WORKS', items: [{ t: 'History of the Santa Clarita Valley', n: '80' }, { t: 'Story of Our Valley', n: '42' }, { t: 'In Memoriam', n: '31' }] },
+      { label: 'SERIES', items: [{ t: 'Signal columns', n: '9' }, { t: 'Oral histories', n: '12' }, { t: 'Newhall Land papers', n: '6' }] },
+      { label: 'BROWSE', items: [{ t: 'All collections', n: '13' }, { t: 'By author', n: '22' }, { t: 'By era', n: '5' }] }
+    ],
+    feature: { kicker: 'NOW READING', title: 'History of the Santa Clarita Valley', meta: 'Jerry Reynolds · 80 articles · Pre-1850 to 1929', cta: 'Open the collection' } },
+  { id: 'people', label: 'PEOPLE', kicker: 'BIOGRAPHY & FAMILY RECORDS',
+    columns: [
+      { label: 'RECORDS', items: [{ t: 'All people', n: '1,480' }, { t: 'Pioneer families', n: '210' }, { t: 'Groups & rosters', n: '38' }] },
+      { label: 'MEMORIAL', items: [{ t: 'Obituaries', n: '620' }, { t: 'War Memorial', n: '94' }, { t: 'Cemeteries', n: '16' }] },
+      { label: 'BY ROLE', items: [{ t: 'Ranchers & landowners', n: '180' }, { t: 'Civic leaders', n: '145' }, { t: 'Film & television', n: '260' }] }
+    ],
+    feature: { kicker: 'IN THIS ARTICLE', title: 'Pedro Fages', meta: 'Military Officer; Colonial Governor · c. 1734–1796', cta: 'Open the record' } },
+  { id: 'places', label: 'PLACES', kicker: 'LAND, SITES & COMMUNITIES',
+    columns: [
+      { label: 'GEOGRAPHY', items: [{ t: 'All places', n: '740' }, { t: 'Ranchos & land grants', n: '48' }, { t: 'Canyons & waterways', n: '92' }] },
+      { label: 'COMMUNITIES', items: [{ t: 'Newhall', n: '310' }, { t: 'Saugus', n: '185' }, { t: 'Castaic', n: '120' }] },
+      { label: 'INSTITUTIONS', items: [{ t: 'Organizations', n: '210' }, { t: 'Schools', n: '64' }, { t: 'Landmarks', n: '57' }] }
+    ],
+    feature: { kicker: 'MENTIONED HERE', title: 'Agua Dulce', meta: 'Named by Fages in 1772 for its supply of sweet water.', cta: 'Visit the place' } },
+  { id: 'era', label: 'BY ERA', kicker: 'BROWSE THE TIMELINE',
+    columns: [
+      { label: 'BEFORE STATEHOOD', items: [{ t: 'Pre-1850', n: '210' }, { t: 'Spanish & Mexican period', n: '96' }] },
+      { label: 'THE AMERICAN VALLEY', items: [{ t: '1850–1899', n: '480' }, { t: '1900–1919', n: '390' }, { t: '1920–1929', n: '265' }] },
+      { label: 'MODERN', items: [{ t: '1930–1969', n: '720' }, { t: '1970–2009', n: '840' }, { t: '2010–present', n: '340' }] }
+    ],
+    feature: { kicker: 'THIS ARTICLE SITS IN', title: 'Mexican Rancho Era', meta: '1821–1848 · 96 records', cta: 'Open the era' } }
+];
+
+
+</script>
