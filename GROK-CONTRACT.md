@@ -81,8 +81,9 @@ Output: `inventory/legacy/perkins.json`
         }
       ],
       "links_out": [
-        { "href_raw": "", "anchor_text": "", "is_internal": true }
+        { "href_raw": "", "anchor_text": "", "is_internal": true, "role": "related_reading" }
       ],
+      "related_block_header_raw": "",
       "dates_mentioned": [
         { "text_raw": "March 9, 1842", "context": "sentence it appeared in" }
       ],
@@ -194,3 +195,7 @@ must not be strained.
 - `entity_index` counts reconcile with the per-page mention arrays
 - a short report: page count, entity counts, how many entities each promotion rule
   would select, and every distinct reason appearing in `needs_review`
+
+## Related-reading sidebars (`links_out`)
+
+Many legacy pages carry a narrow right-hand column headed with `inversecaption` / `thumbcaption` (Leon's related-reading apparatus: diaries, companion stories, index galleries). Those links belong in `links_out` even when they sit outside the main prose column. Extractors that narrow to the main column must still merge them. Tag merged sidebar links with `"role": "related_reading"` and, when present, record the sidebar heading in `related_block_header_raw`. Do not treat site chrome (NEXT/PREVIOUS/PHOTO CREDITS/BIBLIOGRAPHY) as related reading.
