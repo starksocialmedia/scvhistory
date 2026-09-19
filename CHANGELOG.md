@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: ran the fidelity audit across all four inventories, 373 pages, 38 files. Reported the corpus-wide count of text present in the record and absent from the page it came from.
+- Decisions: the 38 text files are gitignored and the summary JSON is committed. 3.3 MB of generated text regenerated on every corpus change is churn a repository should not carry, and the finding is in the summary; the files themselves are on disk and over HTTP for the reviewer. Easy to reverse if they should be committed after all.
+- Blockers: none, but the corpus is only two thirds tested. All 219 Worden pages have no Craft record, so B is empty for every one of them and they can contribute nothing to this count. Whatever is happening in Reynolds cannot be ruled in or out for Worden until those pages are imported.
+- Result: 24 records of the 154 that have one carry text in B and not in A: 79 lines, 4,495 words. The distribution is not scattered. 20 are Reynolds chapters, and they are 20 of the 23 pages that appear in both Reynolds extractions; the three clean ones are part01, part02 and part03, the first three chapters. The other four are three war memorials and the Perkins page found last time. Checked that this is not an artefact of comparing against the wrong extraction: reynolds.json and reynolds-full.json differ by fifteen to twenty five characters per page, whitespace, so the text is in neither.
+- Next: Nathan decides what to do about the Reynolds chapters, and whether Worden imports before or after that
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: export_fidelity_audit.php writes side-by-side audit files for a reviewer with no access to either site. One plain text file per batch of ten articles: the legacy URL, the fields set from the page, then the extracted body_text and the stored Craft body, both verbatim. First ten Perkins articles written to web/review/fidelity/.
 - Decisions: /mnt/user-data/outputs does not exist on this machine, so the files go to web/review/fidelity/, which is where every other review artefact lives and is downloadable over HTTP. It is inside the directory the deployment runbook blocks in production, which is correct: these files are for a named reviewer, not the public. Each pair carries a line-level comparison, on words alone with case, spacing and punctuation ignored, because the import changes all three on purpose. The comparison counts and lists in both directions. Lines only in A are mostly furniture removed by design; lines only in B are the direction worth reading, because the import adds almost nothing.
 - Blockers: none.

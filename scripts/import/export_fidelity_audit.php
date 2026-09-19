@@ -19,11 +19,16 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_fidelity_audit.php'))"
  */
 
-$INVENTORY = 'perkins';
-$LISTS     = ['series_pages', 'related_pages'];   /* in order */
-$LIMIT     = 10;      /* how many articles in total; 0 for all */
+/* Every inventory, in the order a reviewer would work through them. The lists
+   inside each file differ: perkins splits its pages into a series and the
+   related pages around it, the rest keep one list called pages. Both shapes are
+   walked, in the order given, so the files come out in reading order. */
+$INVENTORIES = ['perkins', 'reynolds-full', 'warmemorial', 'worden'];
+$LISTS     = ['series_pages', 'related_pages', 'pages'];
+$LIMIT     = 0;       /* how many articles per inventory; 0 for all */
 $PER_FILE  = 10;      /* articles per file */
 $OUT_DIR   = \Craft::getAlias('@webroot') . '/review/fidelity';
+$SUMMARY   = \Craft::getAlias('@webroot') . '/review/fidelity-summary.json';
 
 /* The fields set from the legacy page, in the order a reviewer would check
    them. Each is [label, how to read it]. */
@@ -62,8 +67,18 @@ $readable = function ($value) {
 
 /* ------------------------------------------------------------------ read */
 
+/* Across every inventory, because one instance of text appearing from nowhere
+   means there may be more, and the pattern is only visible whole. */
+$written = [];
+$missing = [];
+$appeared = [];      /* record => lines in B that are in no A */
+$scanned = 0;
+$noRecord = 0;
+
+foreach ($INVENTORIES as $INVENTORY) {
+
 $path = $root . '/inventory/legacy/' . $INVENTORY . '.json';
-if (!file_exists($path)) { echo 'not found: ' . $path . PHP_EOL; return; }
+if (!file_exists($path)) { echo 'not found: ' . $path . PHP_EOL; continue; }
 $doc = json_decode(file_get_contents($path), true);
 
 $pages = [];
@@ -87,8 +102,6 @@ if (!is_dir($OUT_DIR)) { mkdir($OUT_DIR, 0775, true); }
 
 $batches = array_chunk($pages, $PER_FILE);
 $total = count($pages);
-$written = [];
-$missing = [];
 $n = 0;
 
 foreach ($batches as $bi => $batch) {
@@ -145,8 +158,10 @@ foreach ($batches as $bi => $batch) {
         $out[] = 'INVENTORY     ' . $INVENTORY . '.json -> ' . $p['_list']
             . ', series_position ' . (string)($p['series_position'] ?? '-');
 
+        $scanned++;
         if (!$entry) {
-            $missing[] = $key . '  ' . $legacyPath;
+            $noRecord++;
+            $missing[] = $INVENTORY . '  ' . $key . '  ' . $legacyPath;
             $out[] = 'CRAFT RECORD  NONE. This page has not been imported.';
             $out[] = '';
             $out[] = str_repeat('-', 80);
@@ -200,6 +215,19 @@ foreach ($batches as $bi => $batch) {
         $aSet = array_flip($aLines);
         $onlyA = array_values(array_filter($aLines, fn($l) => !isset($bSet[$l])));
         $onlyB = array_values(array_filter($bLines, fn($l) => !isset($aSet[$l])));
+        if ($onlyB) {
+            $appeared[$entry->section->handle . '/' . $entry->slug] = [
+                'id' => $entry->id,
+                'title' => (string)$entry->title,
+                'inventory' => $INVENTORY,
+                'legacyKey' => $key,
+                'legacyPath' => $legacyPath,
+                'lines' => count($onlyB),
+                'words' => array_sum(array_map(fn($l) => str_word_count($l), $onlyB)),
+                'file' => $name,
+                'sample' => array_map(fn($l) => mb_substr($l, 0, 110), array_slice($onlyB, 0, 3)),
+            ];
+        }
 
         $out[] = '';
         $out[] = str_repeat('-', 80);
@@ -267,13 +295,54 @@ foreach ($batches as $bi => $batch) {
     $written[$name] = strlen($body);
 }
 
+}   /* every inventory */
+
 echo PHP_EOL . 'wrote to ' . str_replace(\Craft::getAlias('@webroot'), 'web', $OUT_DIR) . '/' . PHP_EOL;
 foreach ($written as $name => $bytes) {
     echo '   ' . str_pad($name, 42) . number_format($bytes) . ' bytes' . PHP_EOL;
 }
-if ($missing) {
-    echo PHP_EOL . 'pages with no Craft record, written with an empty B: ' . count($missing) . PHP_EOL;
-    foreach ($missing as $m) { echo '   ' . $m . PHP_EOL; }
+echo PHP_EOL . 'pages read: ' . $scanned . ', of which ' . $noRecord . ' have no Craft record'
+    . ' and were written with an empty B.' . PHP_EOL;
+
+/* ------------------------------------------------- text that came from nowhere */
+
+echo PHP_EOL . str_repeat('=', 88) . PHP_EOL;
+echo 'IN B AND NOT IN A, ACROSS THE WHOLE CORPUS' . PHP_EOL;
+echo str_repeat('=', 88) . PHP_EOL;
+echo 'The import removes page furniture by design and adds almost nothing, so a line' . PHP_EOL;
+echo 'here is text in the record that is not on the page it came from. Stripping cannot' . PHP_EOL;
+echo 'explain it. Reflowing can, and so can an editor, a second page folded in, or an' . PHP_EOL;
+echo 'extraction that missed part of a page.' . PHP_EOL . PHP_EOL;
+
+uasort($appeared, fn($a, $b) => $b['lines'] <=> $a['lines']);
+$totalLines = array_sum(array_column($appeared, 'lines'));
+echo 'records affected: ' . count($appeared) . ' of ' . ($scanned - $noRecord) . ' with a record' . PHP_EOL;
+echo 'lines in total:   ' . $totalLines . PHP_EOL . PHP_EOL;
+
+if ($appeared) {
+    printf("%-46s %6s %6s  %s\n", 'record', 'lines', 'words', 'inventory / legacy key');
+    echo str_repeat('-', 88) . PHP_EOL;
+    foreach ($appeared as $slug => $a) {
+        printf("%-46s %6d %6d  %s / %s\n", mb_substr($slug, 0, 46), $a['lines'], $a['words'],
+            $a['inventory'], $a['legacyKey']);
+    }
+    echo str_repeat('-', 88) . PHP_EOL;
+    echo 'Every one of these is in a file under review/fidelity/, with both texts in full.' . PHP_EOL;
 }
+
+file_put_contents($SUMMARY, json_encode([
+    'meta' => [
+        'generated' => (new DateTime())->format('c'),
+        'generated_by' => 'scripts/import/export_fidelity_audit.php',
+        'inventories' => $INVENTORIES,
+        'pages_read' => $scanned,
+        'pages_with_no_record' => $noRecord,
+        'records_with_text_in_b_only' => count($appeared),
+        'lines_in_b_only' => $totalLines,
+    ],
+    'appeared' => $appeared,
+    'noRecord' => $missing,
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+echo PHP_EOL . 'wrote web/review/fidelity-summary.json' . PHP_EOL;
 echo PHP_EOL . 'Readable at ' . Craft::$app->getSites()->getPrimarySite()->getBaseUrl()
     . 'review/fidelity/ , or straight off disk. Nothing in Craft was changed.' . PHP_EOL;
