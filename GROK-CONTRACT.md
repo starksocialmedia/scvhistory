@@ -174,6 +174,12 @@ Tejon Ranch, Hyatt Valencia, and the like) is not a community mention. Prefer th
 longest closed-list community match; do not also record a shorter community that
 is only a prefix of a longer one on the list (e.g. do not add Castaic solely
 because the text says Castaic Junction).
+When a closed-list community word appears only as part of a longer place or
+organization name, do not put it in `communities_mentioned`. Record it instead
+in `community_inferred` with: the short community name, the longer name it was
+drawn from, a count, and the pages. A human confirms any that are correct by
+coincidence. Do not drop these hits.
+
 
 ## Crawl conduct
 
