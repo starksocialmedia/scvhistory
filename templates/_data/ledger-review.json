@@ -1,0 +1,5 @@
+{
+  "note": "Migration ledger review flags. One entry per legacy page path, set by a person on /admin-ledger. This file is the store: it is read at request time and it is the only part of the ledger not computed. Committed to git on purpose, because it is hours of judgement and nothing can reconstruct it.",
+  "updated": "",
+  "pages": {}
+}

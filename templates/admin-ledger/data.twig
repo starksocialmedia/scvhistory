@@ -1,0 +1,190 @@
+{#
+  The live half of the migration ledger, as JSON, for /admin-ledger.
+
+  The ledger has two halves and they are built differently on purpose.
+
+  The legacy half, web/review/ledger-index.json, is one row per legacy page
+  drawn from the two crawls, every extraction, every image inventory and the
+  drive manifest. It is built by scripts/import/build_ledger_index.py, because
+  reading a 96 MB manifest on every page load is not a thing to do. It is also
+  the half that cannot go stale by itself: a crawl from last week does not
+  change while nobody is looking.
+
+  This half is everything that can. Whether a record exists, what its body is
+  in, whether pictures are attached, which files are in the volume: all of it
+  counted here, as the page loads, from the database. Nothing about Craft is
+  written into the built file, so no number here can be left behind by an
+  import that ran afterwards.
+
+  The review flag is the exception in the other direction. It is a judgement a
+  person made and no query can derive it, so it is stored, in
+  templates/_data/ledger-review.json, and read here.
+
+  Field handles are read from the entry type's field layout rather than tested
+  with "is defined". On an entry, someHandle is defined answers true for a field
+  the entry type does not have and then throws when it is read.
+#}
+{% header "Content-Type: application/json; charset=utf-8" %}
+{% header "X-Robots-Tag: noindex, nofollow" %}
+{% apply trim %}
+
+{#- Every field that holds a legacy path, in the order we trust them. legacyUrl
+    is the shared one and sits on nearly every type; the rest are the per-type
+    fields added before it existed, and a few records still carry only those. -#}
+{% set URL_FIELDS = [
+  'legacyUrl', 'placeLegacyUrl', 'personLegacyUrl', 'orgLegacyUrl',
+  'groupLegacyUrl', 'eventLegacyUrl', 'obitLegacyUrl', 'mpLegacyUrl'
+] %}
+
+{% set IMAGE_FIELDS = ['featuredImage', 'recordImages', 'bandImage'] %}
+
+{#- Legacy chrome still sitting in a stored body. These are the shapes
+    clean_legacy_bodies.php removes, so a body matching one of them was
+    imported and never passed through the cleanup.
+
+    [image:2] and [sic: ...] are deliberately not in here. They are the token
+    layer and the editor's own brackets, they appear in 36 articles, and a
+    naive bracketed-line rule reports every one of them as dirty. -#}
+{% set CHROME = {
+  'breadcrumb': '~^>\\s*\\S~mu',
+  'footer link row': '~^\\s*(RETURN TO TOP|RETURN TO MAIN INDEX|MAIN INDEX|PHOTO CREDITS|BIBLIOGRAPHY|BOOKS FOR SALE)\\s*$~imu',
+  'copyright line': '~^\\s*(©|\\(c\\)\\s*copyright|copyright\\s+[12]\\d{3})~imu',
+  'series heading': '~^\\s*(THE STORY OF OUR VALLEY BY A\\.B\\. PERKINS|HISTORY OF THE SANTA CLARITA VALLEY BY JERRY REYNOLDS)\\s*$~mu',
+  'navigation row': '~^\\s*\\[\\s*(BACK|NEXT|PREVIOUS|CONTENTS|MAIN INDEX|RETURN TO TOP|HOME)\\b[^\\]]*\\]\\s*$~imu'
+} %}
+
+{#- The bodies the fill scripts write over. Nothing matches these today, which
+    is the point of keeping the test: a stub reappearing is worth seeing. -#}
+{% set STUBS = {
+  'place stub': '~is a named place in the Santa Clarita Valley historical archive~u',
+  'series stub': '~is a series in the Santa Clarita Valley historical archive~u'
+} %}
+
+{#- ─────────────────────────────────────────────────────── path normalising -#}
+{#- Must agree exactly with norm_path() in build_ledger_index.py, or a row and
+    its record never meet. Host and query are dropped, case is folded, and
+    nothing else: Chapter 15's legacyUrl was wrong because it had lost the
+    /scvhistory/ segment, and a normaliser that forgave that would have hidden
+    it rather than surfaced it. -#}
+{% macro normPath(raw) %}{% apply spaceless %}
+  {%- set v = raw|trim -%}
+  {%- if v starts with '//' -%}{% set v = 'https:' ~ v %}{%- endif -%}
+  {%- if v matches '~^https?://~i' -%}{% set v = '/' ~ v|split('/')|slice(3)|join('/') %}{%- endif -%}
+  {%- set v = v|split('#')|first|split('?')|first -%}
+  {%- if v != '' and not (v starts with '/') -%}{% set v = '/' ~ v %}{%- endif -%}
+  {{- v|replace({'//': '/'})|lower -}}
+{% endapply %}{% endmacro %}
+{% import _self as u %}
+
+{#- ───────────────────────────────────────────────────────── the Craft state -#}
+{% set records = {} %}
+{% set bornDigital = [] %}
+{% set duplicates = [] %}
+{% set bodyTally = { 'clean': 0, 'raw': 0, 'stub': 0, 'none': 0, 'no field': 0 } %}
+
+{% for section in craft.app.entries.getAllSections() %}
+  {% for e in craft.entries().section(section.handle).status(null).limit(null).all() %}
+
+    {%- set handles = [] -%}
+    {%- for f in e.getFieldLayout().getCustomFields() -%}
+      {%- set handles = handles|merge([f.handle]) -%}
+    {%- endfor -%}
+
+    {#- the legacy path, and which field gave it -#}
+    {%- set path = '' -%}
+    {%- set fromField = '' -%}
+    {%- for fh in URL_FIELDS -%}
+      {%- if path == '' and fh in handles and (attribute(e, fh) ?? '')|trim != '' -%}
+        {%- set path = u.normPath(attribute(e, fh))|trim -%}
+        {%- set fromField = fh -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {#- the state of the body -#}
+    {%- set body = 'no field' -%}
+    {%- set dirt = [] -%}
+    {%- if 'body' in handles -%}
+      {%- set raw = (e.body ?? '')|trim -%}
+      {%- if raw == '' -%}
+        {%- set body = 'none' -%}
+      {%- else -%}
+        {%- set body = 'clean' -%}
+        {%- for label, pattern in STUBS -%}
+          {%- if raw matches pattern -%}{% set body = 'stub' %}{% set dirt = dirt|merge([label]) %}{%- endif -%}
+        {%- endfor -%}
+        {%- if body != 'stub' -%}
+          {%- for label, pattern in CHROME -%}
+            {%- if raw matches pattern -%}{% set body = 'raw' %}{% set dirt = dirt|merge([label]) %}{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- set bodyTally = bodyTally|merge({ (body): bodyTally[body] + 1 }) -%}
+
+    {#- pictures actually attached to this record -#}
+    {%- set images = 0 -%}
+    {%- for fh in IMAGE_FIELDS -%}
+      {%- if fh in handles -%}{% set images = images + attribute(e, fh).count() %}{%- endif -%}
+    {%- endfor -%}
+
+    {%- set row = {
+      id: e.id,
+      t: e.title ?: e.slug,
+      sec: section.handle,
+      url: e.url,
+      cp: e.cpEditUrl,
+      body: body,
+      dirt: dirt,
+      img: images,
+      key: ('legacyKey' in handles) ? (attribute(e, 'legacyKey') ?? '')|trim : '',
+      f: fromField
+    } -%}
+
+    {%- if path == '' -%}
+      {%- set bornDigital = bornDigital|merge([row]) -%}
+    {%- elseif records[path] is defined -%}
+      {#- two records claiming one legacy page: a real fault, not a display
+          problem, so it is reported rather than silently overwritten -#}
+      {%- set duplicates = duplicates|merge([{ p: path, a: records[path].id, b: e.id, t: row.t }]) -%}
+    {%- else -%}
+      {%- set records = records|merge({ (path): row }) -%}
+    {%- endif -%}
+
+  {% endfor %}
+{% endfor %}
+
+{#- ──────────────────────────────────────────────── what is in the volume -#}
+{#- Filenames only, lowercased. import_legacy_images.php names an imported file
+    after the basename of the src it came from and skips a name already in the
+    volume, so the basename is the join between a legacy src and an asset. -#}
+{% set assets = [] %}
+{% for a in craft.assets().volume('archiveMedia').status(null).limit(null).all() %}
+  {% set assets = assets|merge([a.filename|lower]) %}
+{% endfor %}
+
+{#- ─────────────────────────────────────────────────── the stored judgement -#}
+{% set reviewRaw = source('_data/ledger-review.json', true) %}
+{% set review = reviewRaw|trim ? (reviewRaw|json_decode(true)) : {} %}
+
+{% set output = {
+  generated: now|date('c'),
+  records: records,
+  bornDigital: bornDigital,
+  duplicates: duplicates,
+  assets: assets,
+  review: review.pages|default({}),
+  reviewMeta: {
+    note: review.note|default(''),
+    updated: review.updated|default(''),
+    count: (review.pages|default({}))|length
+  },
+  tally: {
+    records: records|length + bornDigital|length,
+    withLegacyPath: records|length,
+    bornDigital: bornDigital|length,
+    body: bodyTally,
+    assets: assets|length
+  }
+} %}
+{{ output|json_encode|raw }}
+{% endapply %}

@@ -60,6 +60,7 @@ foreach ([
     'collections' => 'index', 'war-memorial' => 'index', 'obituaries' => 'index',
     'on-this-day' => 'index', 'search?q=newhall' => 'search',
     'admin-overview' => 'unlisted', 'graph' => 'unlisted', 'graph/data' => 'json',
+    'admin-ledger' => 'unlisted', 'admin-ledger/data' => 'json',
 ] as $path => $what) {
     $urls[$base . '/' . $path] = $what;
 }

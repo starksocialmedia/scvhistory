@@ -1,0 +1,701 @@
+{% extends "_layouts/base" %}
+
+{#
+  The migration ledger. One row per legacy page, and what has become of it.
+
+  Unlisted, like /admin-overview and /graph: not in the mega menu, not in any
+  index, noindex on the page. It answers one question, for a legacy site with
+  more pages than anyone can hold in their head: what is left. And it answers a
+  second one that a count of records cannot, which is what was imported and then
+  never looked at again.
+
+  Two halves, joined in the browser.
+
+    web/review/ledger-index.json   the legacy side. One row per page from the
+                                   two crawls, every extraction, every image
+                                   inventory and the drive manifest. Built by
+                                   scripts/import/build_ledger_index.py, because
+                                   a 96 MB manifest is not something to read on
+                                   a page load, and static between builds.
+
+    /admin-ledger/data             everything about Craft, counted as this page
+                                   loads. Whether a record exists and which,
+                                   what state its body is in, how many pictures
+                                   are attached, what is in the volume. None of
+                                   it is written down anywhere, so none of it
+                                   can be left behind by an import that ran
+                                   after the last build.
+
+  The review flag is the one stored thing, because it is a judgement and no
+  query can derive it. It lives in templates/_data/ledger-review.json, is read
+  server side so everyone sees the same flags, and is written by hand: marks
+  made here are held in this browser until they are saved down and the file is
+  replaced. The page shows saved and unsaved marks differently so the difference
+  is never in doubt.
+
+  Marks are kept under a key of this page's own. Two review screens sharing a
+  localStorage key would be one screen quietly deleting the other's work.
+#}
+
+{% set metaTitle = 'Migration ledger' %}
+{% set metaDescription = 'One row per legacy page and what has become of it. Unlisted.' %}
+
+{% block head %}
+  <meta name="robots" content="noindex,nofollow">
+  {% css %}
+  .lg{max-width:1500px;margin:0 auto;padding:34px 34px 120px}
+  .lg h1{font-family:'Playfair Display',serif;font-weight:500;font-size:34px;color:#17254C;margin:0 0 6px}
+  .lg .sub{color:#5B6472;font-size:14.5px;line-height:1.65;margin:0 0 8px;max-width:78ch}
+  .lg .sub b{color:#17254C;font-weight:500}
+  .lg h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin:34px 0 12px;padding-bottom:7px;border-bottom:1px solid #EFE6D0}
+  .caveat{background:#FDF7EA;border:1px solid #EFE6D0;border-left:3px solid #C4A031;padding:11px 14px;font-size:13.5px;color:#5B6472;line-height:1.6;margin:16px 0 0;max-width:92ch}
+  .caveat b{color:#17254C;font-weight:500}
+  .stale{border-left-color:#B4453C;background:#FDF6F5}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;margin-top:4px}
+  .tile{background:#fff;border:1px solid #E2E4E8;border-top:3px solid #C4A031;padding:13px 14px;text-align:left;font:inherit;cursor:pointer;display:block;width:100%}
+  .tile:hover{background:#FDFCF8}
+  .tile[aria-pressed=true]{border-color:#17254C;border-top-color:#17254C;background:#F4F6FB}
+  .tile .n{display:block;font-family:'Playfair Display',serif;font-size:29px;line-height:1;color:#17254C}
+  .tile .l{display:block;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#5B6472;margin-top:6px;line-height:1.35}
+  .tile.zero{opacity:.45;border-top-color:#E2E4E8}
+  .tile.warn{border-top-color:#B4453C}
+  .tile.warn .n{color:#B4453C}
+  .tile.good{border-top-color:#2E7D5B}
+
+  .bars{display:flex;gap:2px;height:12px;margin:14px 0 0;background:#EEF0F4}
+  .bars span{display:block}
+  .bars .b-none{background:#CFD4DC}
+  .bars .b-unchecked{background:#C4A031}
+  .bars .b-reviewed{background:#2E7D5B}
+  .bars .b-skipped{background:#8A919E}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#5B6472;margin-top:7px;font-family:'Jost',sans-serif;letter-spacing:.03em}
+  .legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+
+  .controls{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:18px 0 10px;position:sticky;top:64px;z-index:5;background:#F6F7F9;padding:9px 0}
+  .controls input[type=search],.controls select{font:inherit;font-size:13.5px;padding:7px 9px;border:1px solid #D7DBE2;background:#fff;color:#17254C}
+  .controls input[type=search]{min-width:290px}
+  .controls label.chk{font-size:13px;color:#5B6472;display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+  .controls .spacer{flex:1}
+  .controls button{font:inherit;font-size:13px;padding:7px 12px;border:1px solid #D7DBE2;background:#fff;color:#17254C;cursor:pointer}
+  .controls button:hover{border-color:#C4A031}
+  .controls button.primary{background:#17254C;color:#fff;border-color:#17254C}
+  .controls button.primary[disabled]{opacity:.4;cursor:default}
+  .shown{font-size:13px;color:#5B6472;white-space:nowrap}
+  .shown b{color:#17254C;font-weight:500}
+
+  table.lgr{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;table-layout:fixed}
+  table.lgr th{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#8A919E;text-align:left;padding:8px 9px;border-bottom:1px solid #E2E4E8;font-weight:500;background:#fff;position:sticky;top:112px;z-index:4}
+  table.lgr td{padding:6px 9px;border-bottom:1px solid #F1F2F4;font-size:13px;vertical-align:top;overflow:hidden;text-overflow:ellipsis}
+  table.lgr tr:last-child td{border-bottom:0}
+  table.lgr tr.on td{background:#F4F6FB}
+  table.lgr tr.dirty td{background:#FDF6F5}
+  table.lgr tr.on.dirty td{background:#F8EEF0}
+  .c-path{width:24%}.c-title{width:22%}.c-kind{width:82px}.c-sec{width:120px}
+  .c-rec{width:19%}.c-img{width:108px}.c-body{width:92px}.c-rev{width:126px}
+  a.lpath{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:#5B6472;text-decoration:none;word-break:break-all}
+  a.lpath:hover{color:#A9842B;text-decoration:underline}
+  .ttl{color:#17254C;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ttl.none{color:#A8AEB8;font-style:italic}
+  .rec a{color:#17254C;text-decoration:none;border-bottom:1px solid #E2E4E8}
+  .rec a:hover{border-bottom-color:#C4A031}
+  .rec .cp{font-size:11px;color:#8A919E;margin-left:6px;text-decoration:none}
+  .rec .no{color:#A8AEB8}
+  .rec .sec{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A919E;display:block}
+
+  .pill{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border:1px solid #E2E4E8;color:#5B6472;white-space:nowrap;display:inline-block}
+  .pill.ok{color:#2E7D5B;border-color:#BFE0D0}
+  .pill.warn{color:#B4453C;border-color:#F0CFCB;background:#FDF6F5}
+  .pill.mid{color:#7A5C1B;border-color:#EFE6D0;background:#FDF7EA}
+  .pill.dim{color:#A8AEB8}
+  .tag{font-size:11px;color:#B4453C;display:block;margin-top:2px}
+
+  .revbtn{font:inherit;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border:1px solid #D7DBE2;background:#fff;color:#5B6472;cursor:pointer;width:100%;text-align:left}
+  .revbtn:hover{border-color:#C4A031}
+  .revbtn.r{background:#EAF4EF;border-color:#BFE0D0;color:#2E7D5B}
+  .revbtn.s{background:#F2F3F5;border-color:#D7DBE2;color:#5B6472}
+  .revbtn.unsaved{box-shadow:inset 3px 0 0 #C4A031}
+  .who{font-size:10.5px;color:#A8AEB8;display:block;margin-top:2px}
+
+  .more{margin:14px 0 0;text-align:center}
+  .more button{font:inherit;font-size:13px;padding:9px 20px;border:1px solid #D7DBE2;background:#fff;color:#17254C;cursor:pointer}
+  .more button:hover{border-color:#C4A031}
+
+  table.imgs{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8}
+  table.imgs th{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#8A919E;text-align:left;padding:8px 10px;border-bottom:1px solid #E2E4E8;font-weight:500}
+  table.imgs td{padding:6px 10px;border-bottom:1px solid #F1F2F4;font-size:13px;vertical-align:top}
+  table.imgs td.u{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;word-break:break-all}
+  table.imgs tr:last-child td{border-bottom:0}
+
+  .savebar{position:fixed;left:0;right:0;bottom:0;background:#17254C;color:#fff;padding:11px 20px;display:none;align-items:center;gap:16px;z-index:40;font-size:13.5px}
+  .savebar.on{display:flex}
+  .savebar b{font-weight:500}
+  .savebar .spacer{flex:1}
+  .savebar button{font:inherit;font-size:13px;padding:7px 14px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;cursor:pointer}
+  .savebar button.primary{background:#C4A031;border-color:#C4A031;color:#17254C}
+  .savebar small{color:#B9C2D6;font-size:12px}
+
+  .keys{font-size:12.5px;color:#8A919E;margin-top:12px;font-family:'Jost',sans-serif;letter-spacing:.02em}
+  .keys kbd{font-family:ui-monospace,Menlo,monospace;background:#fff;border:1px solid #D7DBE2;padding:1px 5px;font-size:11px;color:#17254C}
+  .loading{padding:40px 0;color:#8A919E;font-size:14px}
+  @media(max-width:1100px){.c-kind,.c-sec{display:none}}
+  @media(max-width:760px){.lg{padding:22px 14px 120px}.c-img,.c-body{display:none}.controls{position:static}table.lgr th{position:static}}
+  {% endcss %}
+{% endblock %}
+
+{% block content %}
+<div class="lg">
+  <h1>Migration ledger</h1>
+  <p class="sub">
+    One row per legacy page, and what has become of it. Everything about Craft is counted
+    as this page loads, so nothing here can quietly go out of date. The legacy side comes
+    from the crawls and the drive manifest, and is rebuilt on demand.
+  </p>
+
+  <div id="freshness"></div>
+
+  <div id="tiles" class="tiles"></div>
+  <div class="bars" id="bars" aria-hidden="true"></div>
+  <div class="legend" id="legend"></div>
+
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search a URL or a title" autocomplete="off" spellcheck="false">
+    <select id="fSection"><option value="">Every legacy section</option></select>
+    <select id="fKind"><option value="">Every kind</option></select>
+    <select id="fRecord"><option value="">Every record type</option></select>
+    <select id="fState">
+      <option value="">Every state</option>
+      <option value="none">No record</option>
+      <option value="unchecked">Imported, unchecked</option>
+      <option value="reviewed">Reviewed</option>
+      <option value="skipped">Skipped</option>
+    </select>
+    <select id="fSort">
+      <option value="path">Sort by path</option>
+      <option value="title">Sort by title</option>
+      <option value="words">Longest first</option>
+      <option value="images">Most pictures first</option>
+    </select>
+    <label class="chk"><input type="checkbox" id="fFlag"> Needs attention only</label>
+    <span class="spacer"></span>
+    <span class="shown" id="shown"></span>
+    <button type="button" id="reset">Clear filters</button>
+  </div>
+
+  <div id="table" class="loading">Reading the ledger.</div>
+  <div class="more" id="more"></div>
+
+  <p class="keys">
+    <kbd>j</kbd> <kbd>k</kbd> move &nbsp; <kbd>r</kbd> reviewed &nbsp; <kbd>s</kbd> skipped &nbsp;
+    <kbd>u</kbd> unmark &nbsp; <kbd>o</kbd> open the legacy page &nbsp; <kbd>/</kbd> search &nbsp;
+    <kbd>Esc</kbd> clear
+  </p>
+
+  <h2>Pictures</h2>
+  <p class="sub" id="imgsum"></p>
+  <div id="imgtable"></div>
+</div>
+
+<div class="savebar" id="savebar">
+  <b id="savecount"></b>
+  <small>Held in this browser only. Save the file down and replace templates/_data/ledger-review.json to make them everyone's.</small>
+  <span class="spacer"></span>
+  <button type="button" id="discard">Discard marks</button>
+  <button type="button" class="primary" id="save">Save ledger-review.json</button>
+</div>
+
+{% verbatim %}
+<script>
+(function () {
+  'use strict';
+
+  /* A key of this page's own. A review screen's localStorage is hours of
+     somebody's judgement, and two screens sharing a key is one of them
+     deleting the other's work. ?test moves to a key nothing else reads, so
+     the screen can be exercised without touching real marks. */
+  var TEST = new URLSearchParams(location.search).has('test');
+  var LS = 'scvLedgerReview' + (TEST ? '-test' : '');
+
+  var IX = null, LIVE = null;
+  var rows = [], view = [], marks = {}, assetSet = null;
+  var shownCount = 0, PAGE = 250, cursor = -1;
+
+  var el = function (id) { return document.getElementById(id); };
+  var esc = function (s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  };
+
+  function loadMarks() {
+    try { marks = JSON.parse(localStorage.getItem(LS) || '{}') || {}; }
+    catch (e) { marks = {}; }
+  }
+  function saveMarks() {
+    try { localStorage.setItem(LS, JSON.stringify(marks)); } catch (e) {}
+  }
+
+  /* The same picture at another size. The legacy site names a thumbnail by
+     appending t to the stem and a full-size by appending _large, and the
+     importer prefers the larger file, so an asset named for the sibling is
+     this picture imported. */
+  function siblings(name) {
+    var dot = name.lastIndexOf('.');
+    var stem = dot < 0 ? name : name.slice(0, dot);
+    var ext = dot < 0 ? '' : name.slice(dot);
+    var out = [];
+    if (stem.slice(-1) === 't') { out.push(stem.slice(0, -1), stem.slice(0, -1) + '_large'); }
+    if (stem.slice(-6) === '_large') { out.push(stem.slice(0, -6)); }
+    out.push(stem + '_large');
+    return out.map(function (s) { return s + ext; });
+  }
+
+  function imported(basename) {
+    if (assetSet.has(basename)) { return true; }
+    var sib = siblings(basename);
+    for (var i = 0; i < sib.length; i++) { if (assetSet.has(sib[i])) { return true; } }
+    return false;
+  }
+
+  function build() {
+    assetSet = new Set(LIVE.assets.map(function (f) { return String(f).toLowerCase(); }));
+    var dupPaths = new Set((LIVE.duplicates || []).map(function (d) { return d.p; }));
+
+    rows = IX.pages.map(function (p) {
+      var rec = LIVE.records[p.p] || null;
+      /* Service seals, logos and the navigation rail are furniture, and
+         import_legacy_images.php deliberately leaves them behind. Counting
+         them here would send somebody looking for a file nobody wants. */
+      var imgs = (p.img || []).filter(function (im) { return !im.c; });
+      var nChrome = (p.img || []).length - imgs.length;
+      var nImp = 0, nGone = 0, nAlt = 0;
+      imgs.forEach(function (im) {
+        if (imported(im.b)) { nImp++; }
+        if (im.d === 'nowhere') { nGone++; }
+        if (im.d === 'other size on drive') { nAlt++; }
+      });
+      var flags = [];
+      if (rec && rec.body === 'raw') { flags.push('body not cleaned'); }
+      if (rec && rec.body === 'stub') { flags.push('body still a stub'); }
+      if (rec && rec.body === 'none') { flags.push('body empty'); }
+      if (rec && imgs.length && nImp < imgs.length) { flags.push('pictures not imported'); }
+      if (nGone) { flags.push(nGone + ' picture' + (nGone > 1 ? 's' : '') + ' on no drive'); }
+      if (!rec && p.x) { flags.push('extracted, never imported'); }
+      if (dupPaths.has(p.p)) { flags.push('two records claim this page'); }
+      return {
+        p: p.p, u: p.u, t: p.t || '', k: p.k || '', s: p.s || '',
+        x: p.x || '', w: p.w == null ? -1 : p.w,
+        nImg: imgs.length, nImp: nImp, nGone: nGone, nAlt: nAlt, nChrome: nChrome,
+        ic: p.ic == null ? null : p.ic,
+        rec: rec, flags: flags,
+        hay: (p.p + ' ' + (p.t || '') + ' ' + (rec ? rec.t : '')).toLowerCase()
+      };
+    });
+
+    /* A Craft record whose legacy path is in no crawl and no extraction. Either
+       the index predates it or the path is wrong, and both are worth seeing. */
+    var known = new Set(rows.map(function (r) { return r.p; }));
+    var strays = Object.keys(LIVE.records).filter(function (p) { return !known.has(p); });
+
+    fillSelect('fSection', rows.map(function (r) { return r.s; }));
+    fillSelect('fKind', rows.map(function (r) { return r.k; }));
+    fillSelect('fRecord', rows.map(function (r) { return r.rec ? r.rec.sec : ''; }).concat(['']));
+    freshness(strays);
+    pictures();
+    apply();
+  }
+
+  function fillSelect(id, values) {
+    var seen = {}, out = [];
+    values.forEach(function (v) { if (v && !seen[v]) { seen[v] = 1; out.push(v); } });
+    out.sort();
+    var sel = el(id);
+    out.forEach(function (v) {
+      var o = document.createElement('option');
+      o.value = v; o.textContent = v;
+      sel.appendChild(o);
+    });
+  }
+
+  function state(r) {
+    var m = marks[r.p] || LIVE.review[r.p];
+    if (m && m.state === 'reviewed') { return 'reviewed'; }
+    if (m && m.state === 'skipped') { return 'skipped'; }
+    return r.rec ? 'unchecked' : 'none';
+  }
+  function unsaved(r) {
+    var m = marks[r.p];
+    if (!m) { return false; }
+    var saved = LIVE.review[r.p];
+    return !saved || saved.state !== m.state;
+  }
+
+  /* ------------------------------------------------------------- the top */
+
+  function freshness(strays) {
+    var m = IX.meta, bits = [];
+    var crawls = Object.keys(m.crawls || {}).map(function (k) {
+      return k + ' ' + m.crawls[k].page_count + ' pages, crawled ' + m.crawls[k].crawled;
+    });
+    var truncated = Object.keys(m.crawls || {}).filter(function (k) { return m.crawls[k].truncated; });
+    var html = '';
+    if (truncated.length) {
+      html += '<div class="caveat"><b>This ledger is not the whole site.</b> ' +
+        'The crawl stopped at ' + m.crawls[truncated[0]].page_count.toLocaleString() +
+        ' pages on its own limit (' + esc(m.crawls[truncated[0]].stop_reason) + '), and the legacy site is larger. ' +
+        'What follows is ' + m.page_count.toLocaleString() + ' pages that have been crawled or extracted. ' +
+        'Pages beyond the crawl are not counted anywhere on this page, as missing or as anything else.</div>';
+    }
+    bits.push('Legacy side built ' + esc(String(m.built).slice(0, 16).replace('T', ' ')) + ' from ' + crawls.join('; ') + '.');
+    bits.push(m.drive.read
+      ? 'Drive manifest ' + esc(m.drive.file) + ', ' + m.drive.entries.toLocaleString() + ' files.'
+      : '<b>No drive manifest was read</b>, so the drive column reads unknown rather than missing.');
+    bits.push('Craft counted ' + esc(String(LIVE.generated).slice(0, 16).replace('T', ' ')) + '.');
+    bits.push('Rebuild the legacy side with <code>python3 scripts/import/build_ledger_index.py</code>.');
+    html += '<div class="caveat">' + bits.join(' ') + '</div>';
+
+    if (strays.length) {
+      html += '<div class="caveat stale"><b>' + strays.length + ' record' + (strays.length > 1 ? 's' : '') +
+        ' point at a legacy page this ledger has never seen.</b> Most often the crawl simply never reached ' +
+        'it, since the crawl stopped at its own limit. The other two readings are that the index is older ' +
+        'than the import, or that the path on the record is wrong, and only reading the page tells them apart. ' +
+        strays.slice(0, 8).map(function (p) {
+          return '<a href="' + esc(LIVE.records[p].cp) + '">' + esc(LIVE.records[p].t) + '</a> <code>' + esc(p) + '</code>';
+        }).join('; ') + (strays.length > 8 ? ' and ' + (strays.length - 8) + ' more.' : '.') + '</div>';
+    }
+    if (LIVE.duplicates && LIVE.duplicates.length) {
+      html += '<div class="caveat stale"><b>' + LIVE.duplicates.length + ' legacy page' +
+        (LIVE.duplicates.length > 1 ? 's are' : ' is') + ' claimed by two records.</b> ' +
+        LIVE.duplicates.map(function (d) {
+          return '<code>' + esc(d.p) + '</code> by #' + d.a + ' and #' + d.b + ' (' + esc(d.t) + ')';
+        }).join('; ') + '. Only the first is joined to its row below.</div>';
+    }
+    el('freshness').innerHTML = html;
+  }
+
+  var TILES = [
+    { k: 'total', l: 'Legacy pages', cls: '' },
+    { k: 'none', l: 'No record yet', cls: '' },
+    { k: 'unchecked', l: 'Imported, unchecked', cls: 'warn' },
+    { k: 'reviewed', l: 'Reviewed', cls: 'good' },
+    { k: 'skipped', l: 'Skipped', cls: '' },
+    { k: 'extracted', l: 'Extracted, never imported', cls: 'warn' },
+    { k: 'dirty', l: 'Body not cleaned', cls: 'warn' },
+    { k: 'imgmissing', l: 'Pictures not imported', cls: 'warn' },
+    { k: 'imggone', l: 'Pictures on no drive', cls: 'warn' },
+    { k: 'born', l: 'Records not from a legacy page', cls: '' }
+  ];
+
+  function counts() {
+    var c = { total: rows.length, none: 0, unchecked: 0, reviewed: 0, skipped: 0,
+              extracted: 0, dirty: 0, imgmissing: 0, imggone: 0,
+              born: LIVE.bornDigital.length };
+    rows.forEach(function (r) {
+      c[state(r)]++;
+      if (!r.rec && r.x) { c.extracted++; }
+      if (r.rec && (r.rec.body === 'raw' || r.rec.body === 'stub')) { c.dirty++; }
+      if (r.rec && r.nImg && r.nImp < r.nImg) { c.imgmissing++; }
+      if (r.nGone) { c.imggone++; }
+    });
+    return c;
+  }
+
+  var tileFilter = '';
+
+  function drawTop() {
+    var c = counts();
+    el('tiles').innerHTML = TILES.map(function (t) {
+      var n = c[t.k] || 0;
+      var pressed = tileFilter === t.k;
+      var clickable = ['none', 'unchecked', 'reviewed', 'skipped', 'extracted', 'dirty', 'imgmissing', 'imggone'].indexOf(t.k) >= 0;
+      return '<button type="button" class="tile ' + t.cls + (n === 0 ? ' zero' : '') + '"' +
+        ' data-tile="' + (clickable ? t.k : '') + '" aria-pressed="' + (pressed ? 'true' : 'false') + '">' +
+        '<span class="n">' + n.toLocaleString() + '</span><span class="l">' + t.l + '</span></button>';
+    }).join('');
+
+    var seg = [['none', c.none], ['unchecked', c.unchecked], ['reviewed', c.reviewed], ['skipped', c.skipped]];
+    el('bars').innerHTML = seg.map(function (s) {
+      return '<span class="b-' + s[0] + '" style="width:' + (s[1] / rows.length * 100) + '%"></span>';
+    }).join('');
+    el('legend').innerHTML = seg.map(function (s) {
+      return '<span><i class="b-' + s[0] + '" style="background:var(--x)"></i>' + s[0] + ' ' + s[1].toLocaleString() + '</span>';
+    }).join('').replace(/style="background:var\(--x\)"/g, '');
+    el('legend').querySelectorAll('i').forEach(function (i, n) {
+      i.className = 'b-' + seg[n][0];
+      i.style.background = ['#CFD4DC', '#C4A031', '#2E7D5B', '#8A919E'][n];
+    });
+  }
+
+  /* ---------------------------------------------------------- the filters */
+
+  function apply() {
+    var q = el('q').value.trim().toLowerCase();
+    var fs = el('fSection').value, fk = el('fKind').value;
+    var fr = el('fRecord').value, fst = el('fState').value || tileFilter;
+    var onlyFlag = el('fFlag').checked;
+    var sort = el('fSort').value;
+
+    view = rows.filter(function (r) {
+      if (q && r.hay.indexOf(q) < 0) { return false; }
+      if (fs && r.s !== fs) { return false; }
+      if (fk && r.k !== fk) { return false; }
+      if (fr && (!r.rec || r.rec.sec !== fr)) { return false; }
+      if (onlyFlag && !r.flags.length) { return false; }
+      if (fst === 'extracted') { return !r.rec && !!r.x; }
+      if (fst === 'dirty') { return !!r.rec && (r.rec.body === 'raw' || r.rec.body === 'stub'); }
+      if (fst === 'imgmissing') { return !!r.rec && r.nImg > 0 && r.nImp < r.nImg; }
+      if (fst === 'imggone') { return r.nGone > 0; }
+      if (fst && state(r) !== fst) { return false; }
+      return true;
+    });
+
+    view.sort(function (a, b) {
+      if (sort === 'title') { return (a.t || a.p).localeCompare(b.t || b.p); }
+      if (sort === 'words') { return b.w - a.w; }
+      if (sort === 'images') { return b.nImg - a.nImg || a.p.localeCompare(b.p); }
+      return a.p.localeCompare(b.p);
+    });
+
+    shownCount = Math.min(PAGE, view.length);
+    cursor = -1;
+    draw();
+    drawTop();
+  }
+
+  function pill(cls, text) { return '<span class="pill ' + cls + '">' + text + '</span>'; }
+
+  function rowHtml(r, i) {
+    var st = state(r);
+    var m = marks[r.p] || LIVE.review[r.p] || null;
+    var rec = r.rec;
+
+    var recCell = rec
+      ? '<span class="rec"><a href="' + esc(rec.url || rec.cp) + '" target="_blank" rel="noopener">' + esc(rec.t) + '</a>' +
+        '<a class="cp" href="' + esc(rec.cp) + '" target="_blank" rel="noopener">edit</a>' +
+        '<span class="sec">' + esc(rec.sec) + '</span></span>'
+      : '<span class="rec no">' + (r.x ? 'none, but extracted from ' + esc(r.x) : 'none') + '</span>';
+
+    var imgCell;
+    if (!r.nImg) {
+      imgCell = r.ic ? pill('dim', r.ic + ' on the page') : '<span class="pill dim">none</span>';
+    } else if (!rec) {
+      imgCell = pill('dim', r.nImg + ' known');
+    } else if (r.nImp >= r.nImg) {
+      imgCell = pill('ok', r.nImp + ' of ' + r.nImg);
+    } else {
+      imgCell = pill('warn', r.nImp + ' of ' + r.nImg);
+    }
+    if (r.nGone) { imgCell += '<span class="tag">' + r.nGone + ' on no drive</span>'; }
+    else if (r.nAlt) { imgCell += '<span class="tag" style="color:#7A5C1B">' + r.nAlt + ' only at another size</span>'; }
+
+    var bodyCell = !rec ? '<span class="pill dim">&mdash;</span>'
+      : rec.body === 'clean' ? pill('ok', 'clean')
+      : rec.body === 'raw' ? pill('warn', 'not cleaned')
+      : rec.body === 'stub' ? pill('warn', 'stub')
+      : rec.body === 'none' ? pill('mid', 'empty')
+      : pill('dim', rec.body);
+
+    var lbl = st === 'reviewed' ? 'Reviewed' : st === 'skipped' ? 'Skipped' : 'Mark';
+    var cls = st === 'reviewed' ? 'r' : st === 'skipped' ? 's' : '';
+    var who = m && m.at ? '<span class="who">' + esc(String(m.at).slice(0, 10)) + (m.by ? ' ' + esc(m.by) : '') + '</span>' : '';
+
+    return '<tr data-i="' + i + '" class="' + (r.flags.length ? 'dirty' : '') + '">' +
+      '<td class="c-path"><a class="lpath" href="' + esc(r.u) + '" target="_blank" rel="noopener">' + esc(r.p) + '</a></td>' +
+      '<td class="c-title"><span class="ttl' + (r.t ? '' : ' none') + '">' + esc(r.t || 'untitled') + '</span>' +
+        (r.flags.length ? '<span class="tag">' + esc(r.flags.join(' &middot; ')).replace(/&amp;middot;/g, '&middot;') + '</span>' : '') + '</td>' +
+      '<td class="c-kind">' + esc(r.k) + '</td>' +
+      '<td class="c-sec">' + esc(r.s) + '</td>' +
+      '<td class="c-rec">' + recCell + '</td>' +
+      '<td class="c-img">' + imgCell + '</td>' +
+      '<td class="c-body">' + bodyCell + '</td>' +
+      '<td class="c-rev"><button type="button" class="revbtn ' + cls + (unsaved(r) ? ' unsaved' : '') +
+        '" data-mark="' + i + '">' + lbl + '</button>' + who + '</td>' +
+      '</tr>';
+  }
+
+  function draw() {
+    if (!view.length) {
+      el('table').className = '';
+      el('table').innerHTML = '<p class="loading">Nothing matches.</p>';
+      el('more').innerHTML = '';
+      el('shown').innerHTML = '<b>0</b> of ' + rows.length.toLocaleString();
+      return;
+    }
+    var body = view.slice(0, shownCount).map(rowHtml).join('');
+    el('table').className = '';
+    el('table').innerHTML =
+      '<table class="lgr"><thead><tr>' +
+      '<th class="c-path">Legacy page</th><th class="c-title">Title</th><th class="c-kind">Kind</th>' +
+      '<th class="c-sec">Section</th><th class="c-rec">Craft record</th><th class="c-img">Pictures</th>' +
+      '<th class="c-body">Body</th><th class="c-rev">Reviewed</th>' +
+      '</tr></thead><tbody>' + body + '</tbody></table>';
+    el('shown').innerHTML = '<b>' + Math.min(shownCount, view.length).toLocaleString() + '</b> shown of <b>' +
+      view.length.toLocaleString() + '</b> matching, ' + rows.length.toLocaleString() + ' in all';
+    el('more').innerHTML = shownCount < view.length
+      ? '<button type="button" id="moreb">Show ' + Math.min(PAGE, view.length - shownCount) + ' more</button>'
+      : '';
+    if (el('moreb')) {
+      el('moreb').onclick = function () { shownCount = Math.min(shownCount + PAGE, view.length); draw(); };
+    }
+    savebar();
+  }
+
+  /* ------------------------------------------------------------ the marks */
+
+  function cycle(i, want) {
+    var r = view[i];
+    if (!r) { return; }
+    var cur = state(r);
+    var next = want !== undefined ? want
+      : cur === 'reviewed' ? 'skipped' : cur === 'skipped' ? '' : 'reviewed';
+    if (next === '') {
+      /* An unmark is recorded, not deleted, so it overrides a saved flag
+         rather than falling back to it. */
+      marks[r.p] = { state: 'open', at: new Date().toISOString().slice(0, 19) };
+      if (!LIVE.review[r.p]) { delete marks[r.p]; }
+    } else {
+      marks[r.p] = { state: next, at: new Date().toISOString().slice(0, 19) };
+    }
+    saveMarks();
+    var tr = el('table').querySelector('tr[data-i="' + i + '"]');
+    if (tr) { tr.outerHTML = rowHtml(r, i); }
+    var again = el('table').querySelector('tr[data-i="' + i + '"]');
+    if (again && cursor === i) { again.classList.add('on'); }
+    drawTop();
+    savebar();
+  }
+
+  function savebar() {
+    var n = Object.keys(marks).length;
+    el('savebar').className = 'savebar' + (n ? ' on' : '');
+    el('savecount').textContent = n + ' mark' + (n === 1 ? '' : 's') + ' made here and not saved';
+  }
+
+  function saveFile() {
+    var merged = {};
+    Object.keys(LIVE.review).forEach(function (p) { merged[p] = LIVE.review[p]; });
+    Object.keys(marks).forEach(function (p) {
+      if (marks[p].state === 'open') { delete merged[p]; } else { merged[p] = marks[p]; }
+    });
+    var out = {
+      note: LIVE.reviewMeta.note ||
+        'Migration ledger review flags. One entry per legacy page path, set by a person on /admin-ledger.',
+      updated: new Date().toISOString().slice(0, 19),
+      pages: merged
+    };
+    var blob = new Blob([JSON.stringify(out, null, 2) + '\n'], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ledger-review.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  }
+
+  /* --------------------------------------------------------- the pictures */
+
+  function pictures() {
+    var all = IX.images || [];
+    var furniture = all.filter(function (i) { return !!i.c; });
+    var imgs = all.filter(function (i) { return !i.c; });
+    var gone = imgs.filter(function (i) { return i.d === 'nowhere'; });
+    var alt = imgs.filter(function (i) { return i.d === 'other size on drive'; });
+    var onDrive = imgs.filter(function (i) { return i.d === 'on drive'; });
+    var imp = imgs.filter(function (i) { return imported(i.b); });
+
+    el('imgsum').innerHTML =
+      '<b>' + imgs.length + '</b> distinct pictures are referenced by a page in the extractions. ' +
+      '<b>' + onDrive.length + '</b> are on the drive at the path the page asks for, ' +
+      '<b>' + alt.length + '</b> only at another size, and <b>' + gone.length +
+      '</b> are on no drive at all. <b>' + imp.length + '</b> have been imported into the volume. ' +
+      'The crawl counted pictures on every page it saw, but only the extracted pages carry the actual sources, ' +
+      'which is why most rows above read a bare number rather than a ratio. ' +
+      'A further <b>' + furniture.length + '</b> are page furniture, the service seals and the navigation rail, ' +
+      'set aside here exactly as the importer sets them aside.';
+
+    if (!gone.length && !alt.length) { el('imgtable').innerHTML = ''; return; }
+    var list = gone.concat(alt);
+    el('imgtable').innerHTML =
+      '<table class="imgs"><thead><tr><th style="width:44%">Picture</th><th style="width:18%">On the drive</th>' +
+      '<th style="width:12%">Imported</th><th>Referenced by</th></tr></thead><tbody>' +
+      list.map(function (i) {
+        return '<tr><td class="u"><a href="' + esc(i.u) + '" target="_blank" rel="noopener">' + esc(i.u) + '</a></td>' +
+          '<td>' + (i.d === 'nowhere' ? pill('warn', 'nowhere') : pill('mid', esc(i.alt || 'another size'))) + '</td>' +
+          '<td>' + (imported(i.b) ? pill('ok', 'yes') : pill('dim', 'no')) + '</td>' +
+          '<td>' + i.pages.map(function (p) {
+            return '<a class="lpath" href="https://scvhistory.com' + esc(p) + '" target="_blank" rel="noopener">' + esc(p) + '</a>';
+          }).join('<br>') + '</td></tr>';
+      }).join('') + '</tbody></table>';
+  }
+
+  /* ------------------------------------------------------------- the wire */
+
+  function moveCursor(d) {
+    var max = Math.min(shownCount, view.length) - 1;
+    if (max < 0) { return; }
+    var was = el('table').querySelector('tr.on');
+    if (was) { was.classList.remove('on'); }
+    cursor = Math.max(0, Math.min(max, cursor + d));
+    var tr = el('table').querySelector('tr[data-i="' + cursor + '"]');
+    if (tr) { tr.classList.add('on'); tr.scrollIntoView({ block: 'nearest' }); }
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-mark]');
+    if (t) { cursor = +t.getAttribute('data-mark'); cycle(cursor); return; }
+    var tile = e.target.closest('[data-tile]');
+    if (tile && tile.getAttribute('data-tile')) {
+      var k = tile.getAttribute('data-tile');
+      tileFilter = tileFilter === k ? '' : k;
+      el('fState').value = '';
+      apply();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (e.key === '/' && tag !== 'input') { e.preventDefault(); el('q').focus(); el('q').select(); return; }
+    if (e.key === 'Escape') { el('q').value = ''; el('q').blur(); apply(); return; }
+    if (tag === 'input' || tag === 'select' || e.metaKey || e.ctrlKey || e.altKey) { return; }
+    if (e.key === 'j') { e.preventDefault(); moveCursor(1); }
+    else if (e.key === 'k') { e.preventDefault(); moveCursor(-1); }
+    else if (e.key === 'r' && cursor >= 0) { cycle(cursor, 'reviewed'); }
+    else if (e.key === 's' && cursor >= 0) { cycle(cursor, 'skipped'); }
+    else if (e.key === 'u' && cursor >= 0) { cycle(cursor, ''); }
+    else if (e.key === 'o' && cursor >= 0 && view[cursor]) { window.open(view[cursor].u, '_blank', 'noopener'); }
+  });
+
+  ['q', 'fSection', 'fKind', 'fRecord', 'fState', 'fSort', 'fFlag'].forEach(function (id) {
+    el(id).addEventListener(id === 'q' ? 'input' : 'change', function () {
+      if (id === 'fState') { tileFilter = ''; }
+      apply();
+    });
+  });
+  el('reset').onclick = function () {
+    ['q', 'fSection', 'fKind', 'fRecord', 'fState', 'fSort'].forEach(function (id) { el(id).value = id === 'fSort' ? 'path' : ''; });
+    el('fFlag').checked = false; tileFilter = ''; apply();
+  };
+  el('save').onclick = saveFile;
+  el('discard').onclick = function () {
+    /* Only this page's own key, and only after it is said out loud how many
+       judgements are about to go. */
+    if (!confirm('Discard ' + Object.keys(marks).length + ' mark(s) made in this browser? Saved flags are untouched.')) { return; }
+    marks = {}; saveMarks(); apply();
+  };
+
+  loadMarks();
+  Promise.all([
+    fetch('/review/ledger-index.json', { cache: 'no-store' }).then(function (r) { return r.json(); }),
+    fetch('/admin-ledger/data', { cache: 'no-store' }).then(function (r) { return r.json(); })
+  ]).then(function (res) {
+    IX = res[0]; LIVE = res[1];
+    build();
+  }).catch(function (err) {
+    el('table').innerHTML = '<p class="loading">Could not read the ledger: ' + esc(err.message) +
+      '. If ledger-index.json is missing, build it with <code>python3 scripts/import/build_ledger_index.py</code>.</p>';
+  });
+})();
+</script>
+{% endverbatim %}
+{% endblock %}
