@@ -6,8 +6,36 @@
 
 {% block content %}
 {#
-  Search results, grouped by section. Craft's own search index backs this, so
-  the ordering inside each group is Craft's relevance order.
+  Search, with facets beside the results.
+
+  One box, as before. Craft's own search index finds the records; everything
+  after that is done here, on the found set, because the facts a reader wants to
+  narrow by live in relations and a table field rather than in the index.
+
+  How the facets behave, and why:
+
+    OR inside a facet, AND across them. Choosing two eras widens the result;
+    choosing an era and a community narrows it. That is what a reader means by
+    ticking two things in the same list and two things in different lists.
+
+    Counts are live and are computed against the other facets, not against the
+    whole found set. So with an era chosen, the community counts show how many
+    records are in that era and that community. A facet's own selection is left
+    out of its own counts, or ticking one option would zero every other option
+    in the same list and the list could never be widened.
+
+    A facet with one option does not render. There is nothing to choose.
+
+    People, places and organizations are not facets. They are records in their
+    own right and are found by searching for them; listing them here would be a
+    second, worse way of reaching the same page.
+
+  Every state is a URL. Each control is a link, not a script, so a narrowed
+  search can be sent to someone or kept.
+
+  Dates are read from recordDates, which holds a printed form and an ISO date
+  per row. The range matches on the year of the ISO column, and a record with no
+  parsed date is not excluded unless a range is actually set.
 #}
 {% set SECTIONS = [
   { handle: 'persons',          label: 'People' },
@@ -17,27 +45,199 @@
   { handle: 'events',           label: 'Events' },
   { handle: 'articles',         label: 'Articles' },
   { handle: 'collections',      label: 'Collections' },
+  { handle: 'photographs',      label: 'Photographs' },
+  { handle: 'documents',        label: 'Documents' },
   { handle: 'warMemorials',     label: 'War Memorial' },
   { handle: 'militaryProfiles', label: 'Military Profiles' },
   { handle: 'obituaries',       label: 'Obituaries' }
 ] %}
+{% set LABEL = {} %}
+{% for s in SECTIONS %}{% set LABEL = LABEL|merge({ (s.handle): s.label }) %}{% endfor %}
 
-{% set groups = [] %}
-{% set total = 0 %}
+{#- Selections. Always lists, so one value and five behave the same. -#}
+{% set selType   = craft.app.request.getParam('type')   ?? [] %}
+{% set selEra    = craft.app.request.getParam('era')    ?? [] %}
+{% set selCom    = craft.app.request.getParam('com')    ?? [] %}
+{% set selAuthor = craft.app.request.getParam('author') ?? [] %}
+{% set selType   = selType   is iterable ? selType|values   : [selType] %}
+{% set selEra    = selEra    is iterable ? selEra|values    : [selEra] %}
+{% set selCom    = selCom    is iterable ? selCom|values    : [selCom] %}
+{% set selAuthor = selAuthor is iterable ? selAuthor|values : [selAuthor] %}
+{% set fromY = craft.app.request.getParam('from')|trim %}
+{% set toY   = craft.app.request.getParam('to')|trim %}
+{% set fromY = fromY matches '/^[0-9]{3,4}$/' ? fromY + 0 : null %}
+{% set toY   = toY   matches '/^[0-9]{3,4}$/' ? toY   + 0 : null %}
+
+{#- ------------------------------------------------------------- the found set -#}
+
+{#- The facets are counted on the found set, so the found set has to be the
+    whole of it or the counts are wrong. The cap is above the size of the
+    archive and exists only so a one-letter query cannot walk every relation on
+    every record. When it is reached the page says so instead of quietly
+    reporting counts for a slice. -#}
+{% set CAP = 1200 %}
+{% set rows = [] %}
 {% if q %}
-  {% for s in SECTIONS %}
-    {% set hits = craft.entries().section(s.handle).search(q).status(null).limit(40).all() %}
-    {% if hits|length %}
-      {% set groups = groups|merge([{ label: s.label, rows: hits }]) %}
-      {% set total = total + hits|length %}
+  {% set hits = craft.entries()
+      .section(SECTIONS|column('handle'))
+      .search(q).status(null).limit(CAP).all() %}
+
+  {#- Which handles each entry type actually carries. A custom field reads as
+      defined on an element whose type does not have it and then throws when it
+      is read, so the layout is the only safe test. Cached per type, because
+      walking it for every one of 400 hits is the same answer 400 times. -#}
+  {% set layoutCache = {} %}
+
+  {% for r in hits %}
+    {% set tk = 't' ~ r.type.id %}
+    {% if layoutCache[tk] is not defined %}
+      {% set hs = [] %}
+      {% for f in r.type.fieldLayout.customFields %}{% set hs = hs|merge([f.handle]) %}{% endfor %}
+      {% set layoutCache = layoutCache|merge({ (tk): hs }) %}
     {% endif %}
+    {% set has = layoutCache[tk] %}
+
+    {% set era = 'historicalEra' in has ? (r.historicalEra.one() ?? null) : null %}
+    {% set coms = 'neighborhood' in has ? r.neighborhood.all() : [] %}
+    {% set auth = 'writtenBy' in has ? (r.writtenBy.one() ?? null) : null %}
+
+    {% set years = [] %}
+    {% if 'recordDates' in has and r.recordDates %}
+      {% for d in r.recordDates %}
+        {% if d.iso %}{% set years = years|merge([d.iso|date('Y') + 0]) %}{% endif %}
+      {% endfor %}
+    {% endif %}
+    {% for h in ['originalPublishDate', 'eventDate', 'dateFounded', 'dateEstablished'] %}
+      {% if years|length == 0 and h in has %}
+        {% set v = attribute(r, h) %}
+        {% if v and v|trim matches '/([0-9]{4})/' %}
+          {% set digits = v|trim|split('')|filter(c => c matches '/[0-9]/')|join('') %}
+          {% if digits|length >= 4 %}{% set years = years|merge([digits|slice(0, 4) + 0]) %}{% endif %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% set rows = rows|merge([{
+      e: r,
+      kind: r.section.handle,
+      era: era ? era.slug : null,
+      eraT: era ? era.title : null,
+      coms: coms,
+      author: auth ? auth.id : null,
+      authorT: auth ? auth.title : null,
+      years: years
+    }]) %}
   {% endfor %}
-  {% set terms = craft.categories().group('neighborhood').search(q).status(null).limit(20).all() %}
-  {% if terms|length %}
-    {% set groups = groups|merge([{ label: 'Communities', rows: terms }]) %}
-    {% set total = total + terms|length %}
-  {% endif %}
 {% endif %}
+
+{#- --------------------------------------------------------------- the filters -#}
+
+{#- A row passes a facet when nothing is chosen in it, or when it carries one of
+    the chosen values. Written out four times rather than made generic, because
+    a generic version in Twig costs more to read than it saves. -#}
+{% macro nothing() %}{% endmacro %}
+
+{% set passType = [] %}{% set passEra = [] %}{% set passCom = [] %}{% set passAuth = [] %}{% set passDate = [] %}
+{% for r in rows %}
+  {% set pT = selType|length == 0 or r.kind in selType %}
+  {% set pE = selEra|length == 0 or (r.era and r.era in selEra) %}
+  {% set pC = selCom|length == 0 %}
+  {% if not pC %}{% for c in r.coms %}{% if c.slug in selCom %}{% set pC = true %}{% endif %}{% endfor %}{% endif %}
+  {% set pA = selAuthor|length == 0 or (r.author and (r.author ~ '') in selAuthor) %}
+  {% set pD = true %}
+  {% if fromY or toY %}
+    {% set pD = false %}
+    {% for y in r.years %}
+      {% if (fromY is null or y >= fromY) and (toY is null or y <= toY) %}{% set pD = true %}{% endif %}
+    {% endfor %}
+  {% endif %}
+  {% set passType = passType|merge([pT]) %}
+  {% set passEra  = passEra|merge([pE]) %}
+  {% set passCom  = passCom|merge([pC]) %}
+  {% set passAuth = passAuth|merge([pA]) %}
+  {% set passDate = passDate|merge([pD]) %}
+{% endfor %}
+
+{#- Counts for a facet ignore that facet's own selection. -#}
+{% set cType = {} %}{% set cEra = {} %}{% set cCom = {} %}{% set cAuth = {} %}
+{% set eraTitle = {} %}{% set comTitle = {} %}{% set authTitle = {} %}
+{% set results = [] %}
+
+{% for r in rows %}
+  {% set i = loop.index0 %}
+  {% set others = passEra[i] and passCom[i] and passAuth[i] and passDate[i] %}
+  {% if others %}
+    {% set k = 'k' ~ r.kind %}
+    {% set cType = cType|merge({ (k): (cType[k] ?? 0) + 1 }) %}
+  {% endif %}
+  {% if passType[i] and passCom[i] and passAuth[i] and passDate[i] and r.era %}
+    {% set k = 'k' ~ r.era %}
+    {% set cEra = cEra|merge({ (k): (cEra[k] ?? 0) + 1 }) %}
+    {% set eraTitle = eraTitle|merge({ (k): r.eraT }) %}
+  {% endif %}
+  {% if passType[i] and passEra[i] and passAuth[i] and passDate[i] %}
+    {% for c in r.coms %}
+      {% set k = 'k' ~ c.slug %}
+      {% set cCom = cCom|merge({ (k): (cCom[k] ?? 0) + 1 }) %}
+      {% set comTitle = comTitle|merge({ (k): c.title }) %}
+    {% endfor %}
+  {% endif %}
+  {% if passType[i] and passEra[i] and passCom[i] and passDate[i] and r.author %}
+    {% set k = 'k' ~ r.author %}
+    {% set cAuth = cAuth|merge({ (k): (cAuth[k] ?? 0) + 1 }) %}
+    {% set authTitle = authTitle|merge({ (k): r.authorT }) %}
+  {% endif %}
+  {% if passType[i] and passEra[i] and passCom[i] and passAuth[i] and passDate[i] %}
+    {% set results = results|merge([r]) %}
+  {% endif %}
+{% endfor %}
+
+{#- ------------------------------------------------------- facets, as link lists -#}
+
+{% set base = { q: q } %}
+{% if fromY %}{% set base = base|merge({ from: fromY }) %}{% endif %}
+{% if toY %}{% set base = base|merge({ to: toY }) %}{% endif %}
+
+{% macro facet(title, param, counts, titles, selected, base, selType, selEra, selCom, selAuthor) %}
+  {% set opts = [] %}
+  {% for k, n in counts %}
+    {% set v = k|slice(1) %}
+    {% set opts = opts|merge([{ v: v, t: titles[k] ?? v, n: n }]) %}
+  {% endfor %}
+  {#- A facet with one option is not a choice. Unless something in it is already
+      ticked, in which case it has to render or it could not be unticked. -#}
+  {% if opts|length > 1 or selected|length %}
+    {% set opts = opts|sort((a, b) => b.n <=> a.n ?: (a.t <=> b.t)) %}
+    <div class="fx-box">
+      <div class="fx-lab">{{ title }}</div>
+      <ul class="fx-list">
+        {% for o in opts|slice(0, 14) %}
+          {% set on = o.v in selected %}
+          {% set next = on ? selected|filter(x => x != o.v)|values : selected|merge([o.v]) %}
+          {% set p = base|merge({
+            type:   param == 'type'   ? next : selType,
+            era:    param == 'era'    ? next : selEra,
+            com:    param == 'com'    ? next : selCom,
+            author: param == 'author' ? next : selAuthor
+          })|filter(v => v is not empty or v == 0) %}
+          <li>
+            <a href="{{ url('search', p) }}" class="{{ on ? 'on' : '' }}" rel="nofollow">
+              <span class="bx" aria-hidden="true">{{ on ? '&#10003;' : '' }}</span>
+              <span class="t">{{ o.t }}</span>
+              <span class="n">{{ o.n }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endmacro %}
+{% import _self as fx %}
+
+{% set typeTitles = {} %}
+{% for k, n in cType %}{% set typeTitles = typeTitles|merge({ (k): LABEL[k|slice(1)] ?? k|slice(1) }) %}{% endfor %}
+
+{% set anyFacet = selType|length or selEra|length or selCom|length or selAuthor|length or fromY or toY %}
 
 <div class="scv-page">
   <section class="scv-hero">
@@ -54,7 +254,7 @@
           </form>
         </div>
         {% if q %}
-          <div class="scv-stat"><div><b>{{ total }}</b><span>{{ total == 1 ? 'Result' : 'Results' }}</span></div></div>
+          <div class="scv-stat"><div><b>{{ results|length }}</b><span>{{ results|length == 1 ? 'Result' : 'Results' }}</span></div></div>
         {% endif %}
       </div>
     </div>
@@ -70,38 +270,86 @@
             {% if n %}<a class="scv-chip" href="{{ url(s.handle == 'warMemorials' ? 'war-memorial' : (s.handle == 'militaryProfiles' ? 'military-profiles' : s.handle)) }}">{{ s.label }} ({{ n }})</a>{% endif %}
           {% endfor %}
         </div>
-      {% elseif not total %}
-        <div class="scv-empty">Nothing found for &ldquo;{{ q }}&rdquo;. Try a name, a place, or a year.</div>
       {% else %}
-        {% for g in groups %}
-          <h2 class="scv-h2">{{ g.label }} <span class="scv-tilefoot" style="margin:0;padding:0">{{ g.rows|length }}</span></h2>
-          <ul class="scv-results">
-            {% for r in g.rows %}
-              {% set imgs = r.recordImages is defined and r.recordImages ? r.recordImages.all() : [] %}
-              {% set img = (r.featuredImage is defined and r.featuredImage) ? r.featuredImage.one() ?? null : (imgs|length ? imgs|first : null) %}
-              {% set label = r.title ?: r.slug %}
-              {% set parts = label|split(' ')|filter(x => x|trim) %}
-              {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : label|slice(0,1) %}
-              {% set bits = [] %}
-              {% if r.occupation is defined and r.occupation %}{% set bits = bits|merge([r.occupation]) %}{% endif %}
-              {% if r.dateEstablished is defined and r.dateEstablished %}{% set bits = bits|merge(['Est. ' ~ r.dateEstablished]) %}{% endif %}
-              {% if r.dateFounded is defined and r.dateFounded %}{% set bits = bits|merge(['Founded ' ~ r.dateFounded]) %}{% endif %}
-              {% if r.eventDate is defined and r.eventDate %}{% set bits = bits|merge([r.eventDate]) %}{% endif %}
-              {% if r.originalPublishDate is defined and r.originalPublishDate %}{% set bits = bits|merge([r.originalPublishDate]) %}{% endif %}
-              {% if r.wmRank is defined and r.wmRank %}{% set bits = bits|merge([r.wmRank]) %}{% endif %}
-              {% if r.communityType is defined and r.communityType %}{% set bits = bits|merge([r.communityType]) %}{% endif %}
-              <li>
-                <a href="{{ r.url ?? url('communities/' ~ r.slug) }}">
-                  <span class="th">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
-                  <span style="min-width:0">
-                    <span class="t">{{ label }}</span>
-                    {% if bits|length %}<span class="m">{{ bits|join(' · ') }}</span>{% endif %}
-                  </span>
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% endfor %}
+
+        <div class="fx-grid">
+          <div class="fx-results">
+            {% if rows|length >= CAP %}
+              <div class="fx-note">That search matches more of the archive than this page will count at once. The first {{ CAP }} are shown and the counts beside them are for those. A more specific term will give exact ones.</div>
+            {% endif %}
+            {% if anyFacet %}
+              <div class="fx-applied">
+                <span class="l">Narrowed by</span>
+                {% for v in selType %}<a href="{{ url('search', base|merge({ type: selType|filter(x => x != v)|values, era: selEra, com: selCom, author: selAuthor })|filter(x => x is not empty)) }}" rel="nofollow">{{ LABEL[v] ?? v }} &times;</a>{% endfor %}
+                {% for v in selEra %}<a href="{{ url('search', base|merge({ type: selType, era: selEra|filter(x => x != v)|values, com: selCom, author: selAuthor })|filter(x => x is not empty)) }}" rel="nofollow">{{ eraTitle['k' ~ v] ?? v }} &times;</a>{% endfor %}
+                {% for v in selCom %}<a href="{{ url('search', base|merge({ type: selType, era: selEra, com: selCom|filter(x => x != v)|values, author: selAuthor })|filter(x => x is not empty)) }}" rel="nofollow">{{ comTitle['k' ~ v] ?? v }} &times;</a>{% endfor %}
+                {% for v in selAuthor %}<a href="{{ url('search', base|merge({ type: selType, era: selEra, com: selCom, author: selAuthor|filter(x => x != v)|values })|filter(x => x is not empty)) }}" rel="nofollow">{{ authTitle['k' ~ v] ?? v }} &times;</a>{% endfor %}
+                {% if fromY or toY %}<a href="{{ url('search', { q: q, type: selType, era: selEra, com: selCom, author: selAuthor }|filter(x => x is not empty)) }}" rel="nofollow">{{ fromY ?: 'earliest' }} to {{ toY ?: 'latest' }} &times;</a>{% endif %}
+                <a class="clear" href="{{ url('search', { q: q }) }}" rel="nofollow">Clear all</a>
+              </div>
+            {% endif %}
+
+            {% if not results|length %}
+              <div class="scv-empty">
+                {% if rows|length %}
+                  Nothing matches those filters. <a href="{{ url('search', { q: q }) }}">Clear them</a> to see all {{ rows|length }} result{{ rows|length == 1 ? '' : 's' }} for &ldquo;{{ q }}&rdquo;.
+                {% else %}
+                  Nothing found for &ldquo;{{ q }}&rdquo;. Try a name, a place, or a year.
+                {% endif %}
+              </div>
+            {% else %}
+              <ul class="scv-results">
+                {% for r in results %}
+                  {% set e = r.e %}
+                  {% set imgs = e.recordImages is defined and e.recordImages ? e.recordImages.all() : [] %}
+                  {% set img = (e.featuredImage is defined and e.featuredImage) ? e.featuredImage.one() ?? null : (imgs|length ? imgs|first : null) %}
+                  {% set label = e.title ?: e.slug %}
+                  {% set parts = label|split(' ')|filter(x => x|trim) %}
+                  {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : label|slice(0,1) %}
+                  {% set bits = [r.authorT, r.eraT]|filter(x => x) %}
+                  {% if r.years|length %}{% set bits = bits|merge([r.years|first]) %}{% endif %}
+                  <li>
+                    <a href="{{ e.url }}">
+                      <span class="th">{% if img %}<img src="{{ img.url }}" alt="" loading="lazy">{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
+                      <span style="min-width:0">
+                        <span class="k">{{ LABEL[r.kind] ?? r.kind }}</span>
+                        <span class="t">{{ label }}</span>
+                        {% if bits|length %}<span class="m">{{ bits|join(' &middot; ')|raw }}</span>{% endif %}
+                      </span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+
+          <aside class="fx-side">
+            {{ fx.facet('RECORD TYPE', 'type', cType, typeTitles, selType, base, selType, selEra, selCom, selAuthor) }}
+            {{ fx.facet('ERA', 'era', cEra, eraTitle, selEra, base, selType, selEra, selCom, selAuthor) }}
+            {{ fx.facet('COMMUNITY', 'com', cCom, comTitle, selCom, base, selType, selEra, selCom, selAuthor) }}
+            {{ fx.facet('AUTHOR', 'author', cAuth, authTitle, selAuthor, base, selType, selEra, selCom, selAuthor) }}
+
+            {#- The date range is a form rather than a link list, because a year
+                is typed and not chosen. It still resolves to a URL. -#}
+            <div class="fx-box">
+              <div class="fx-lab">DATE RANGE</div>
+              <form class="fx-dates" action="{{ url('search') }}" method="get">
+                <input type="hidden" name="q" value="{{ q }}">
+                {% for v in selType %}<input type="hidden" name="type[]" value="{{ v }}">{% endfor %}
+                {% for v in selEra %}<input type="hidden" name="era[]" value="{{ v }}">{% endfor %}
+                {% for v in selCom %}<input type="hidden" name="com[]" value="{{ v }}">{% endfor %}
+                {% for v in selAuthor %}<input type="hidden" name="author[]" value="{{ v }}">{% endfor %}
+                <label class="scv-vh" for="fxFrom">From year</label>
+                <input id="fxFrom" type="text" inputmode="numeric" name="from" value="{{ fromY }}" placeholder="From" maxlength="4">
+                <span class="d">to</span>
+                <label class="scv-vh" for="fxTo">To year</label>
+                <input id="fxTo" type="text" inputmode="numeric" name="to" value="{{ toY }}" placeholder="To" maxlength="4">
+                <button type="submit">Go</button>
+              </form>
+              <div class="fx-hint">Matched against the dates recorded on each record.</div>
+            </div>
+          </aside>
+        </div>
       {% endif %}
     </div>
   </main>
@@ -114,6 +362,34 @@
 .scv-searchbar button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-weight:500;font-size:15px;padding:0 24px;cursor:pointer}
 .scv-searchbar button:hover{background:#A9842B;color:#fff}
 .scv-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Results and facets side by side, on the record page's grid. */
+.fx-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,300px);gap:56px;align-items:start}
+@media(max-width:900px){.fx-grid{grid-template-columns:1fr;gap:28px}.fx-side{order:-1}}
+.fx-side{display:flex;flex-direction:column;gap:18px;min-width:0}
+.fx-box{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:16px 18px 18px}
+.fx-lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B;margin-bottom:10px}
+.fx-list{list-style:none;margin:0;padding:0}
+.fx-list a{display:flex;align-items:center;gap:9px;padding:5px 0;text-decoration:none;color:#2C2C2C;font-size:14.5px;line-height:1.35}
+.fx-list a:hover .t{color:#7A5C1B;text-decoration:underline}
+.fx-list .bx{flex:0 0 auto;width:15px;height:15px;border:1px solid #C4A031;background:#fff;font-size:11px;line-height:13px;text-align:center;color:#7A5C1B}
+.fx-list a.on .bx{background:#C4A031;color:#fff}
+.fx-list a.on .t{font-weight:600;color:#17254C}
+.fx-list .t{flex:1;min-width:0}
+.fx-list .n{flex:0 0 auto;font-family:'Jost',sans-serif;font-size:12px;color:#5B6472}
+.fx-dates{display:flex;align-items:center;gap:7px}
+.fx-dates input{width:100%;min-width:0;border:1px solid #DCC98F;background:#fff;padding:7px 8px;font-family:'Public Sans',sans-serif;font-size:14px;color:#2C2C2C}
+.fx-dates .d{font-size:13px;color:#5B6472}
+.fx-dates button{border:0;background:#C4A031;color:#17254C;font-family:'Jost',sans-serif;font-size:13px;padding:8px 12px;cursor:pointer}
+.fx-dates button:hover{background:#A9842B;color:#fff}
+.fx-hint{font-size:12px;color:#5B6472;margin-top:8px;line-height:1.5}
+.fx-note{background:#FDF7EA;border-left:3px solid #C4A031;padding:11px 15px;margin-bottom:16px;font-size:14px;line-height:1.6;color:#2C2C2C}
+.fx-applied{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:16px}
+.fx-applied .l{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#5B6472}
+.fx-applied a{font-family:'Jost',sans-serif;font-size:13px;background:#17254C;color:#fff;padding:5px 10px;text-decoration:none}
+.fx-applied a:hover{background:#7A5C1B}
+.fx-applied a.clear{background:none;color:#7A5C1B;text-decoration:underline;padding:5px 2px}
+
 .scv-results{list-style:none;margin:0 0 8px;padding:0;background:#fff;border:1px solid #E2E4E8}
 .scv-results li{border-bottom:1px solid #E2E4E8}
 .scv-results li:last-child{border-bottom:0}
@@ -121,6 +397,7 @@
 .scv-results a:hover{background:#FDF7EA}
 .scv-results .th{width:44px;height:44px;flex:none;border:1px solid #E2E4E8;background:#FDF7EA;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Playfair Display',serif;font-size:15px;color:#7A5C1B}
 .scv-results .th img{width:100%;height:100%;object-fit:cover}
+.scv-results .k{display:block;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7E6118;margin-bottom:2px}
 .scv-results .t{font-family:'Playfair Display',serif;font-size:17px;color:#17254C;display:block}
 .scv-results .m{font-size:13px;color:#5B6472;display:block;margin-top:2px}
 {% endcss %}
