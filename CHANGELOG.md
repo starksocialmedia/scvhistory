@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: the fix list, proposed as a section rather than a field, with add_fixes_section.php, a capture form in the footer of every page and the list at /admin-fixes. And export_correspondence.php, which writes the legacy-to-archive correspondence as CSV. Proposal at web/review/fix-list-proposal.md.
+- Decisions: a field cannot hold a note about a record that does not exist, and 5,606 of the 5,791 legacy pages have no record, so most of what there is to say is out of a field's reach. It also holds one note, needs a second field for a done flag, and can only be edited in the control panel, which is the opposite of noting something in five seconds while reading. So one entry per note, with the record and the legacy URL both optional. The capture form posts to Craft's own entries/save-entry rather than an endpoint of ours, so there is no module. The CSV is regenerated on demand and gitignored: a stored copy of "what is in this archive and where did it come from" would be wrong within a day, and a wrong answer to that question is worse than none.
+- Blockers: none, but two things to say plainly. The capture form is not tested end to end, because that needs the section to exist and creating it is a project config change that is Nathan's to run. And a note written while browsing staging is content, so it is lost at the next content refresh; the proposal sets out three ways round that and recommends the export-before-refresh one.
+- Result: the CSV is 5,857 rows and twenty columns: 5,791 legacy pages plus 66 records with no legacy page of their own. 5,606 have no record, 185 are imported and unchecked. author, date and publication are only carried by the article, collection and photograph types, so a has_byline_fields column says whether a blank means no field or an empty field. body_cleaned is detected rather than stored. check_render.php covers /admin-fixes and reports no failures.
+- Next: Nathan runs add_fixes_section.php, tries the button, and decides how fixes survive a content refresh
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: both pre-import fixes, the augustrubel repair, the pre-import audit at web/review/pre-import-audit.md, and the runbook rewritten around the real deployment with a measured exposure report.
 - Decisions: the cleaner's matchers moved to _legacy_chrome_matchers.php so a dry run against an inventory uses the same code as a real run against the database. The inventory dry run loads pages into unsaved entries of the target type; they need a sectionId as well as a typeId or the field layout comes back null, every body reads as empty and the pass cheerfully reports that 1,661 pages are clean. #518 is fixed by setting its body from wmNotes rather than by the cleaner, because stripping its furniture leaves nothing.
 - Blockers: none, but a correction I owe. The mid-line breadcrumb count of 317 was wrong: the regex I measured with let \s match a newline, so it was counting ordinary line-start breadcrumbs whose previous line ended in a non-space. Measured within a line the count is zero in every inventory. The rule is still in, as a guard rather than a repair, and its first version ate "Augustus" off a name, so segments are now bounded by a following marker and it cannot touch prose.

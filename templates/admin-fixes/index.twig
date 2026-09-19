@@ -1,0 +1,140 @@
+{% extends "_layouts/base" %}
+
+{#
+  The fix list. Every note taken while reading, and what became of it.
+
+  Unlisted like the overview, the graph and the ledger, and to be guarded the
+  same way once the guards go in.
+
+  A note is an entry rather than a field on a record, because the most useful
+  note is often about something that has no record. Those appear here with their
+  legacy URL, or with nothing attached at all, and they are the rows that matter
+  most: a field could not have held them.
+#}
+
+{% set metaTitle = 'Fix list' %}
+{% set metaDescription = 'Notes taken while reading. Unlisted.' %}
+
+{% block head %}
+  <meta name="robots" content="noindex,nofollow">
+  {% css %}
+  .fx{max-width:1120px;margin:0 auto;padding:36px 34px 120px}
+  .fx h1{font-family:'Playfair Display',serif;font-weight:500;font-size:34px;color:#17254C;margin:0 0 6px}
+  .fx .sub{color:#5B6472;font-size:14.5px;line-height:1.65;margin:0 0 24px;max-width:72ch}
+  .fx h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin:34px 0 12px;padding-bottom:7px;border-bottom:1px solid #EFE6D0}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:8px}
+  .tile{background:#fff;border:1px solid #E2E4E8;border-top:3px solid #C4A031;padding:13px 14px}
+  .tile .n{display:block;font-family:'Playfair Display',serif;font-size:29px;line-height:1;color:#17254C}
+  .tile .l{display:block;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#5B6472;margin-top:6px}
+  .tile.zero{opacity:.45;border-top-color:#E2E4E8}
+  table.fxl{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8}
+  table.fxl th{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#8A919E;text-align:left;padding:9px 11px;border-bottom:1px solid #E2E4E8;font-weight:500}
+  table.fxl td{padding:9px 11px;border-bottom:1px solid #F1F2F4;font-size:14px;vertical-align:top;line-height:1.5}
+  table.fxl tr:last-child td{border-bottom:0}
+  table.fxl tr.closed td{background:#FBFCFB;color:#8A919E}
+  .note{color:#17254C}
+  tr.closed .note{color:#8A919E}
+  .meta{font-size:11.5px;color:#8A919E;margin-top:4px;line-height:1.5}
+  .meta a{color:#5B6472}
+  .meta code{font-family:ui-monospace,Menlo,monospace;font-size:11px;word-break:break-all}
+  .pill{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border:1px solid #E2E4E8;color:#5B6472;white-space:nowrap}
+  .pill.open{color:#B4453C;border-color:#F0CFCB;background:#FDF6F5}
+  .pill.done{color:#2E7D5B;border-color:#BFE0D0;background:#EAF4EF}
+  .rec a{color:#17254C;text-decoration:none;border-bottom:1px solid #E2E4E8}
+  .rec a:hover{border-bottom-color:#C4A031}
+  .rec .none{color:#A8AEB8;font-style:italic}
+  .cp{font-size:11px;color:#8A919E;margin-left:8px}
+  .empty{background:#fff;border:1px solid #E2E4E8;padding:26px;color:#5B6472;font-size:14.5px;line-height:1.7}
+  .empty code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;word-break:break-all}
+  @media(max-width:720px){.fx{padding:22px 14px 110px}}
+  {% endcss %}
+{% endblock %}
+
+{% block content %}
+{% set fixSection = craft.app.entries.getSectionByHandle('fixes') %}
+
+<div class="fx">
+  <h1>Fix list</h1>
+
+  {% if not fixSection %}
+    <p class="sub">Notes taken while reading, and what became of them.</p>
+    <div class="empty">
+      <p>The fixes section does not exist yet. Create it with:</p>
+      <p><code>ddev craft exec "eval(file_get_contents('scripts/import/add_fixes_section.php'))"</code></p>
+      <p>with <code>$APPLY = true</code>. After that a <b>Note a fix</b> button appears in the
+      corner of every page for a logged-in admin, and what it writes appears here.</p>
+    </div>
+  {% else %}
+    {% set all = craft.entries().section('fixes').status(null).limit(null).orderBy('dateCreated asc').all() %}
+    {% set open = [] %}{% set done = [] %}{% set wont = [] %}{% set orphan = [] %}
+    {% for f in all %}
+      {% set st = f.fixStatus ? f.fixStatus.value : 'open' %}
+      {% if st == 'done' %}{% set done = done|merge([f]) %}
+      {% elseif st == 'wontfix' %}{% set wont = wont|merge([f]) %}
+      {% else %}
+        {% set open = open|merge([f]) %}
+        {% if f.fixRecord.count() == 0 %}{% set orphan = orphan|merge([f]) %}{% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <p class="sub">
+      Notes taken while reading, and what became of them. Write one with the
+      <b>Note a fix</b> button in the corner of any page; it attaches the record you are
+      looking at and the page you are on, without asking. Close one by changing its
+      status in the control panel.
+    </p>
+
+    <div class="tiles">
+      <div class="tile{{ open|length ? '' : ' zero' }}"><span class="n">{{ open|length }}</span><span class="l">Open</span></div>
+      <div class="tile{{ orphan|length ? '' : ' zero' }}"><span class="n">{{ orphan|length }}</span><span class="l">Open, no record</span></div>
+      <div class="tile{{ done|length ? '' : ' zero' }}"><span class="n">{{ done|length }}</span><span class="l">Done</span></div>
+      <div class="tile{{ wont|length ? '' : ' zero' }}"><span class="n">{{ wont|length }}</span><span class="l">Not a problem</span></div>
+    </div>
+
+    {% if not all %}
+      <div class="empty" style="margin-top:20px">
+        <p>Nothing noted yet. The <b>Note a fix</b> button is in the bottom right of every page.</p>
+      </div>
+    {% endif %}
+
+    {% for g in [{k:'open', t:'Open', rows:open}, {k:'done', t:'Done', rows:done}, {k:'wontfix', t:'Not a problem', rows:wont}] %}
+      {% if g.rows|length %}
+        <h2>{{ g.t }} &mdash; {{ g.rows|length }}</h2>
+        <table class="fxl">
+          <thead><tr>
+            <th style="width:46%">Note</th><th style="width:30%">About</th>
+            <th style="width:110px">Status</th><th style="width:140px">Noted</th>
+          </tr></thead>
+          <tbody>
+          {% for f in g.rows %}
+            {% set rec = f.fixRecord.one() %}
+            <tr class="{{ g.k == 'open' ? '' : 'closed' }}">
+              <td>
+                <div class="note">{{ f.fixNote|nl2br }}</div>
+                {% if f.fixSeenOn %}<div class="meta">seen on <code>{{ f.fixSeenOn }}</code></div>{% endif %}
+              </td>
+              <td class="rec">
+                {% if rec %}
+                  <a href="{{ rec.url ?: rec.cpEditUrl }}">{{ rec.title }}</a>
+                  <a class="cp" href="{{ rec.cpEditUrl }}">edit</a>
+                  <div class="meta">{{ rec.section.handle }}
+                    {%- if f.fixLegacyUrl %}<br><code>{{ f.fixLegacyUrl }}</code>{% endif %}</div>
+                {% elseif f.fixLegacyUrl %}
+                  <span class="none">no record</span>
+                  <div class="meta"><code>{{ f.fixLegacyUrl }}</code></div>
+                {% else %}
+                  <span class="none">nothing attached</span>
+                {% endif %}
+              </td>
+              <td><span class="pill {{ g.k }}">{{ g.t }}</span>
+                  <div class="meta"><a href="{{ f.cpEditUrl }}">change</a></div></td>
+              <td><div class="meta">{{ f.dateCreated|date('j M Y, g:ia') }}</div></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}

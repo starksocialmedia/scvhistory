@@ -319,6 +319,10 @@
   })();
   </script>
 
+  {#- The fix list's capture form. Renders nothing for anyone but a logged-in
+      admin, and nothing at all until the fixes section exists. -#}
+  {% include '_partials/fix-note' ignore missing %}
+
   {% block foot %}{% endblock %}
 
 </body>
