@@ -366,8 +366,11 @@
     if (LIVE.duplicates && LIVE.duplicates.length) {
       html += '<div class="caveat stale"><b>' + LIVE.duplicates.length + ' legacy page' +
         (LIVE.duplicates.length > 1 ? 's are' : ' is') + ' claimed by two records.</b> ' +
+        'Two records naming one legacy page are not necessarily the same thing: one page can be the ' +
+        'source for a record about the event and another about who ran it. Both titles are given. ' +
         LIVE.duplicates.map(function (d) {
-          return '<code>' + esc(d.p) + '</code> by #' + d.a + ' and #' + d.b + ' (' + esc(d.t) + ')';
+          return '<code>' + esc(d.p) + '</code> by #' + d.a + ' ' + esc(d.at) + ' (' + esc(d.asec) +
+            ') and #' + d.b + ' ' + esc(d.bt) + ' (' + esc(d.bsec) + ')';
         }).join('; ') + '. Only the first is joined to its row below.</div>';
     }
     el('freshness').innerHTML = html;

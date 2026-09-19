@@ -145,7 +145,14 @@
     {%- elseif records[path] is defined -%}
       {#- two records claiming one legacy page: a real fault, not a display
           problem, so it is reported rather than silently overwritten -#}
-      {%- set duplicates = duplicates|merge([{ p: path, a: records[path].id, b: e.id, t: row.t }]) -%}
+      {#- Both titles, not just the second one. Reporting one title made two
+          quite different records read as one duplicated thing: /scvhistory/lw2102.htm
+          is claimed by a group and an organization with different names. -#}
+      {%- set duplicates = duplicates|merge([{
+        p: path,
+        a: records[path].id, at: records[path].t, asec: records[path].sec,
+        b: e.id, bt: row.t, bsec: section.handle
+      }]) -%}
     {%- else -%}
       {%- set records = records|merge({ (path): row }) -%}
     {%- endif -%}
