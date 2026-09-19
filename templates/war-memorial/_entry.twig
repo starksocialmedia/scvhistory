@@ -101,7 +101,8 @@
         {% include "_partials/record/note" with { text: noteTop } only %}
 
         {% if narrative %}
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages } %}</div>
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages , footnotesFor: entry } %}</div>
+{% include "_partials/record/footnotes" with { entry: entry } only %}
           {% include "_partials/record/images" with { images: recImages, body: narrative } only %}
         {% endif %}
 

@@ -62,7 +62,8 @@
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
         {% include "_partials/record/note" with { text: noteTop } only %}
-        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>{% endif %}
+        {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages , footnotesFor: entry } %}</div>
+{% include "_partials/record/footnotes" with { entry: entry } only %}{% endif %}
         {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}

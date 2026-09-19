@@ -78,7 +78,8 @@
 
           {% if term.body is defined and term.body %}
             <article class="scv-card">
-              <div id="recText">{% include "_partials/prose" with { text: term.body, images: recImages } %}</div>
+              <div id="recText">{% include "_partials/prose" with { text: term.body, images: recImages, footnotesFor: term } %}</div>
+{% include "_partials/record/footnotes" with { entry: term } only %}
               {% if term.culturalSensitivityNote is defined and term.culturalSensitivityNote %}
                 <div class="scv-note">{{ term.culturalSensitivityNote }}</div>
               {% endif %}

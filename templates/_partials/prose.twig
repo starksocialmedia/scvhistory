@@ -29,9 +29,11 @@
   quiet rather than cutting through a sentence. Re-running the linker fixes it.
 
   Params:
-    text     the prose
-    images   optional, the recordImages assets, needed for [image:N]
-    linksFor optional, an entry id; loads that entry's link layer
+    text         the prose
+    images       optional, the recordImages assets, needed for [image:N]
+    linksFor     optional, an entry id; loads that entry's link layer
+    footnotesFor optional, the entry; turns [N] into a marker in one of three
+                 states. Omit it and [N] prints as it always did.
 #}
 {% if images is defined and images|length %}
   {% css %}
@@ -58,7 +60,36 @@
   @media(max-width:700px){.rec-inline,.rec-inline.full{float:none;width:100%;margin:0 0 22px}}
   {% endcss %}
 {% endif %}
+{% css %}
+.rec-body sup.fn{font-size:.68em;line-height:0;vertical-align:super;font-family:Jost,sans-serif;margin-left:1px}
+.rec-body sup.fn a{color:#7A5C1B;text-decoration:none}
+.rec-body sup.fn a:hover{text-decoration:underline}
+{#- An orphan marker is not a link and must not look like one. It is the
+    author's own numbering, kept because it is evidence that something was
+    cited, and greyed because there is nothing at the end of it. -#}
+.rec-body sup.fn:not(:has(a)){color:#5B6472;cursor:help}
+{% endcss %}
 {%- set imgs = images is defined ? images : [] -%}
+
+{#- Which of the three footnote states this record is in. Read through the
+    layout, because entry.footnotes is "defined" on a type that has no such
+    field and throws the moment it is read. -#}
+{%- set fnMode = 'off' -%}
+{%- set fnHref = '' -%}
+{%- if footnotesFor is defined and footnotesFor -%}
+  {%- set fnHandles = [] -%}
+  {%- for f in footnotesFor.fieldLayout.customFields -%}{%- set fnHandles = fnHandles|merge([f.handle]) -%}{%- endfor -%}
+  {%- set fnRows = 'footnotes' in fnHandles ? (footnotesFor.footnotes ?? []) : [] -%}
+  {%- set fnOn = 'footnotesOn' in fnHandles ? (footnotesFor.footnotesOn.one() ?? null) : null -%}
+  {%- if fnRows|length -%}
+    {%- set fnMode = 'here' -%}
+  {%- elseif fnOn -%}
+    {%- set fnMode = 'away' -%}
+    {%- set fnHref = fnOn.url -%}
+  {%- else -%}
+    {%- set fnMode = 'orphan' -%}
+  {%- endif -%}
+{%- endif -%}
 
 {%- set spans = [] -%}
 {%- if linksFor is defined and linksFor -%}
@@ -166,6 +197,39 @@
             {%- set out = out|slice(0, s.s) ~ '<a href="' ~ s.u ~ '">' ~ s.t ~ '</a>' ~ out|slice(s.s + s.n) -%}
           {%- endif -%}
         {%- endfor -%}
+      {%- endif -%}
+      {#- Footnote markers. A marker is [N] with no word character before it and
+          no digit after the bracket, because the extraction broke years across
+          lines and "In December [18]54" is a date, not a note.
+
+          There is no regex replace in this Twig, and a plain replace of every
+          [N] would wrap that date. So the paragraph is cut on the opening
+          bracket and put back together, which is the only way to look at what
+          is on either side of the match. -#}
+      {%- if fnMode != 'off' -%}
+        {%- set chunks = out|split('[') -%}
+        {%- set built = chunks|first -%}
+        {%- for ch in chunks|slice(1) -%}
+          {%- set num = ch|split(']')|first -%}
+          {%- set ok = num matches '/^[0-9]{1,3}$/'
+                       and ch|slice(num|length, 1) == ']'
+                       and not (built|slice(-1) matches '/[A-Za-z0-9]/')
+                       and not (ch|slice(num|length + 1, 1) matches '/[0-9]/') -%}
+          {%- if ok -%}
+            {%- set rest = ch|slice(num|length + 1) -%}
+            {%- if fnMode == 'here' -%}
+              {%- set mark = '<sup class="fn" id="fnref-' ~ num ~ '"><a href="#fn-' ~ num ~ '">' ~ num ~ '</a></sup>' -%}
+            {%- elseif fnMode == 'away' -%}
+              {%- set mark = '<sup class="fn"><a href="' ~ fnHref ~ '#fn-' ~ num ~ '">' ~ num ~ '</a></sup>' -%}
+            {%- else -%}
+              {%- set mark = '<sup class="fn" title="The note is not in the source">' ~ num ~ '</sup>' -%}
+            {%- endif -%}
+            {%- set built = built ~ mark ~ rest -%}
+          {%- else -%}
+            {%- set built = built ~ '[' ~ ch -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- set out = built -%}
       {%- endif -%}
       <p>{{ out|raw }}</p>
     {%- endif -%}

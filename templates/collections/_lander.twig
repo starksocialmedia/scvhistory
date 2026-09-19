@@ -191,7 +191,8 @@
         {% include "_partials/record/note" with { text: noteTop } only %}
 
         {% if F.body %}
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages , footnotesFor: entry } %}</div>
+{% include "_partials/record/footnotes" with { entry: entry } only %}
         {% endif %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
 

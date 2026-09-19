@@ -107,8 +107,9 @@
 
         {% if prose %}
           <div class="rec-body" id="recText">
-            {% include "_partials/prose" with { text: prose, images: recImages } %}
+            {% include "_partials/prose" with { text: prose, images: recImages , footnotesFor: entry } %}
           </div>
+{% include "_partials/record/footnotes" with { entry: entry } only %}
           {% include "_partials/record/images" with { images: recImages, body: prose } only %}
           {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% endif %}

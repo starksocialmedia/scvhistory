@@ -49,7 +49,8 @@
         {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
         {% include "_partials/record/note" with { text: noteTop } only %}
         {% if F.body %}
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages } %}</div>
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages , footnotesFor: entry } %}</div>
+{% include "_partials/record/footnotes" with { entry: entry } only %}
         {% else %}
           <p class="rec-empty">This page has not been written yet.</p>
         {% endif %}
