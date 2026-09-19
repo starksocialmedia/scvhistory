@@ -79,13 +79,65 @@ $MAX_TRIES = 3;
 $LEDGER = \Craft::getAlias('@storage') . '/legacy-images-progress.json';
 $RESET_LEDGER = false;   /* true forgets everything and starts over */
 
-$INVENTORIES = ['perkins-images', 'reynolds-images', 'warmemorial-images'];
+/* --------------------------------------------------------------- the drive
+
+   DRIVE.md: read images from the drive, not from the live site. Leon's server
+   is thirty years old and on someone else's hosting, and Reggie is the archival
+   copy. The network is the exception and every use of it is reported, so the
+   gap between the mirror and the pages is visible rather than papered over.
+
+   $DRIVE_REQUIRED is the guard that makes that real. With the drive unmounted
+   or unreadable, a run would otherwise fetch every file over the network and
+   look like it worked. It refuses instead. Set it false only when fetching from
+   the live site is what you actually mean to do. */
+/* Where the mirror is, on the host and inside the container. The first of
+   these that can actually be listed wins, so the same script works run either
+   way and nobody has to remember to edit a path. */
+$DRIVE_CANDIDATES = ['/Volumes/Reggie/SCVHistory', '/mnt/reggie', '/mnt/reggie/SCVHistory'];
+$DRIVE = $DRIVE_CANDIDATES[0];
+$DRIVE_REQUIRED = true;
+/* Reported when the drive is missing a file the pages ask for, which is a hole
+   in the mirror and belongs in the ledger. */
+$FALLBACK_LIMIT = 0;   /* 0 means no cap on network fallbacks; set it to stop early */
+
+$INVENTORIES = ['perkins-images', 'reynolds-images', 'warmemorial-images', 'lw-features-images'];
 /* Where the page HTML lives, for recovering where each image actually sat. */
 $SOURCE_OF = [
     'perkins-images' => 'perkins',
     'reynolds-images' => 'reynolds-full',
     'warmemorial-images' => 'warmemorial',
+    'lw-features-images' => 'lw-features',
 ];
+
+/* ------------------------------------------------------- the gallery rail
+
+   lw-features-images.json carries 29,056 references to 5,973 distinct files,
+   and 3,507 of those files end in t.jpg for 26,004 of the references. They are
+   a gallery rail: the same strip of thumbnails repeated down the side of page
+   after page.
+
+   The rail's links_to does not point at the full-size picture. On 25,430 of
+   25,992 thumbnail references it points at a page, an .htm, and on 83 more at
+   an .html. Only 38 distinct thumbnails link to an image. So following the link
+   recovers the picture on those 38 and on nothing else; the rest are navigation
+   to other records and the picture they advertise belongs to the page they
+   point at, not to this one.
+
+   The rule, then:
+     a thumbnail whose links_to is a page       skipped, it is furniture
+     a thumbnail whose links_to is an image     the target is taken instead
+     a thumbnail with no links_to at all        kept, because it is the only
+                                                copy of that picture here
+
+   That last case is six files. They are listed every run.
+
+   Scoped to the inventories that actually have a rail. The three earlier ones
+   were imported under the chrome rules above, which caught their furniture a
+   different way, and applying this one to them retroactively would skip 286
+   files that are already in the volume and were judged content at the time.
+   A new rule belongs to the data it was written for. */
+$THUMB_SHAPE = '~t\.jpe?g$~i';
+$RAIL_INVENTORIES = ['lw-features-images'];
 $VOLUME = 'archiveMedia';
 $SUBFOLDER = 'legacy';
 $CHROME_PAGE_THRESHOLD = 5;      /* more than this many pages means navigation */
@@ -135,6 +187,78 @@ $ledgerNote = function (string $url, string $state, string $detail = '') use (&$
         'detail' => $detail,
     ];
     $ledgerDirty = true;
+};
+
+/* ----------------------------------------------------------- the drive */
+
+$driveReadable = false;
+foreach ($DRIVE_CANDIDATES as $cand) {
+    if (is_dir($cand) && is_readable($cand) && @scandir($cand) !== false) {
+        $DRIVE = $cand; $driveReadable = true; break;
+    }
+}
+$driveMountRoot = '/Volumes';
+echo 'drive: ' . ($driveReadable ? $DRIVE . '  readable'
+    : implode(', ', $DRIVE_CANDIDATES) . '  NONE READABLE') . PHP_EOL;
+
+if (!$driveReadable) {
+    /* Three different causes, and they need three different fixes, so the
+       diagnosis is worth getting right rather than saying "mount it". */
+    echo PHP_EOL . 'The archive drive is not readable from here.' . PHP_EOL;
+    if (!is_dir($driveMountRoot)) {
+        echo PHP_EOL . 'There is no ' . $driveMountRoot . ' at all, so this is running inside the DDEV' . PHP_EOL;
+        echo 'container, which only sees the project directory. Host volumes are not passed' . PHP_EOL;
+        echo 'through by default and no amount of permission on the Mac changes that.' . PHP_EOL;
+        echo PHP_EOL . 'Bind the drive in, in .ddev/docker-compose.drive.yaml:' . PHP_EOL;
+        echo PHP_EOL . '  services:' . PHP_EOL;
+        echo '    web:' . PHP_EOL;
+        echo '      volumes:' . PHP_EOL;
+        echo '        - "/Volumes/Reggie/SCVHistory:/mnt/reggie:ro"' . PHP_EOL;
+        echo PHP_EOL . 'then ddev restart, and set $DRIVE = \'/mnt/reggie\' here. Read-only on purpose:' . PHP_EOL;
+        echo 'nothing in this repository has any business writing to the archive drive.' . PHP_EOL;
+        echo 'Or run this on the host with the plain php binary instead of through ddev.' . PHP_EOL;
+    } elseif (is_dir(dirname($DRIVE)) || @stat($DRIVE) !== false) {
+        echo PHP_EOL . 'The mount point exists but its contents cannot be listed. On macOS that is' . PHP_EOL;
+        echo 'the privacy system withholding a removable volume, not a broken disk: a drive' . PHP_EOL;
+        echo 'in that state still answers stat and mount while refusing to be read.' . PHP_EOL;
+        echo PHP_EOL . 'System Settings, Privacy and Security, Full Disk Access, and add the program' . PHP_EOL;
+        echo 'running this. Then check with: ls /Volumes/Reggie' . PHP_EOL;
+    } else {
+        echo 'It is not mounted. Plug it in, or point $DRIVE somewhere else.' . PHP_EOL;
+    }
+
+    if ($DRIVE_REQUIRED && $APPLY) {
+        echo PHP_EOL . 'Stopping. $DRIVE_REQUIRED is true, and it is true so that a missing drive' . PHP_EOL;
+        echo 'cannot quietly turn into thousands of requests to Leon\'s server. Set it false' . PHP_EOL;
+        echo 'only if fetching from the live site is what you mean to do.' . PHP_EOL;
+        return;
+    }
+    if (!$APPLY) {
+        echo PHP_EOL . 'Planning anyway, because a dry run fetches nothing. Every file below will be' . PHP_EOL;
+        echo 'reported as "drive unknown" rather than as present or missing.' . PHP_EOL;
+    }
+}
+
+/** Where a page's image would sit on the mirror, or null if it is not there. */
+$onDrive = function (string $url) use ($DRIVE, $driveReadable): ?string {
+    if (!$driveReadable) { return null; }
+    $p = parse_url($url);
+    if (!$p || empty($p['path'])) { return null; }
+    /* The mirror is the site root, so the url path is the path on the drive.
+       Only scvhistory.com is mirrored; scvleon.com and scvtv.com are not. */
+    $host = strtolower($p['host'] ?? '');
+    if ($host !== '' && !str_ends_with($host, 'scvhistory.com')) { return null; }
+    $file = $DRIVE . '/' . ltrim(rawurldecode($p['path']), '/');
+    if (is_file($file)) { return $file; }
+    /* HFS+ is case-insensitive, but the mount may not be, so try the folder. */
+    $dir = dirname($file);
+    if (is_dir($dir)) {
+        $want = strtolower(basename($file));
+        foreach (@scandir($dir) ?: [] as $f) {
+            if (strtolower($f) === $want && is_file($dir . '/' . $f)) { return $dir . '/' . $f; }
+        }
+    }
+    return null;
 };
 
 /** Has this url been settled, so a later run need not look at it again? */
@@ -242,6 +366,7 @@ $plan = [];          /* pageKey => ['entry'=>Entry, 'rows'=>[...]] */
 $chromeSkipped = []; /* src => pages */
 $dupSkipped = [];
 $unresolvedPages = [];
+$railSkipped = []; $railFollowed = []; $railOnlyCopy = [];
 $badRows = [];
 $seenUrl = [];       /* absolute url => first filename, so one file downloads once */
 
@@ -279,6 +404,21 @@ foreach ($INVENTORIES as $inv) {
         $url = $src;
         if ($linkAbs && in_array($extOf($linkAbs), $IMAGE_EXT, true) && $linkAbs !== $src) {
             $url = $linkAbs; $useLarger = true;
+        }
+
+        /* The gallery rail. A thumbnail that links to a page is furniture and
+           the picture it advertises belongs to that page. A thumbnail with no
+           link at all is the only copy here and is kept. */
+        if ($src && in_array($inv, $RAIL_INVENTORIES, true)
+            && preg_match($THUMB_SHAPE, parse_url($src, PHP_URL_PATH) ?: '')) {
+            if ($useLarger) {
+                $railFollowed[$src] = $url;
+            } elseif ($link !== '') {
+                $railSkipped[$src] = ($railSkipped[$src] ?? 0) + 1;
+                continue;
+            } else {
+                $railOnlyCopy[$src][$r['legacy_key']] = true;
+            }
         }
         if (!$url || !in_array($extOf($url), $IMAGE_EXT, true)) {
             $badRows[] = $inv . '  ' . $r['legacy_key'] . '  no usable image url from ' . $r['src_raw'];
@@ -338,6 +478,20 @@ echo 'images to download:          ' . count($toDownload) . PHP_EOL;
 echo 'skipped, already in volume:  ' . count($dupSkipped) . PHP_EOL;
 echo 'skipped as navigation:       ' . count($chromeSkipped) . PHP_EOL;
 echo 'rows with no usable url:     ' . count($badRows) . PHP_EOL;
+
+if ($railSkipped || $railFollowed || $railOnlyCopy) {
+    echo PHP_EOL . '=== the gallery rail ===' . PHP_EOL;
+    echo 'thumbnails skipped as furniture:   ' . count($railSkipped)
+        . ' files, ' . array_sum($railSkipped) . ' references' . PHP_EOL;
+    echo 'thumbnails whose link is a picture: ' . count($railFollowed)
+        . ', the target taken instead' . PHP_EOL;
+    echo 'thumbnails with no link at all:     ' . count($railOnlyCopy)
+        . ', kept because they are the only copy here' . PHP_EOL;
+    foreach ($railOnlyCopy as $u => $pages) {
+        echo '   ' . str_pad(basename(parse_url($u, PHP_URL_PATH) ?: $u), 34)
+            . 'on ' . implode(', ', array_keys($pages)) . PHP_EOL;
+    }
+}
 
 /* ------------------------------------------------- subtract what is settled */
 
@@ -402,6 +556,7 @@ if ($PROBE_SIZES && !$APPLY) {
 /* ---------------------------------------------------------------- download */
 
 $assetIdByUrl = [];
+$fromDrive = []; $fromNetwork = []; $fellBack = [];
 if ($APPLY) {
     if (!$folder) {
         $folder = new \craft\models\VolumeFolder([
@@ -416,6 +571,31 @@ if ($APPLY) {
     echo '=== downloading, one per second ===' . PHP_EOL;
     foreach ($toDownload as $url => $filename) {
         $tmp = \craft\helpers\Assets::tempFilePath(pathinfo($filename, PATHINFO_EXTENSION) ?: 'jpg');
+
+        /* The drive first, always. A copy from the mirror costs nothing and
+           asks nobody's server for anything, so there is no pause after it. */
+        $local = $onDrive($url);
+        if ($local !== null) {
+            if (@copy($local, $tmp)) {
+                $fromDrive[] = $url;
+                $bytes = @filesize($tmp) ?: 0;
+                $totalBytes += $bytes;
+                goto saveAsset;
+            }
+            $fellBack[$url] = 'on the drive but could not be read';
+        } elseif ($driveReadable) {
+            /* A file the pages ask for and the mirror does not have. DRIVE.md
+               calls that a hole in the mirror, and it is reported as one. */
+            $fellBack[$url] = 'not on the drive';
+        } else {
+            $fellBack[$url] = 'drive unreadable';
+        }
+        if ($FALLBACK_LIMIT > 0 && count($fromNetwork) >= $FALLBACK_LIMIT) {
+            $deferred[$url] = $filename;
+            continue;
+        }
+        $fromNetwork[] = $url;
+
         try {
             $res = $client->get($url, ['sink' => $tmp, 'http_errors' => false]);
             $code = $res->getStatusCode();
@@ -440,6 +620,7 @@ if ($APPLY) {
         $bytes = @filesize($tmp) ?: 0;
         $totalBytes += $bytes;
 
+        saveAsset:
         $asset = new \craft\elements\Asset();
         $asset->tempFilePath = $tmp;
         $asset->setFilename($filename);
@@ -454,13 +635,15 @@ if ($APPLY) {
                costs the one file in flight instead of the whole run. */
             $ledgerNote($url, 'done', $asset->filename);
             $ledgerWrite();
-            echo '  ' . str_pad($asset->filename, 46) . number_format($bytes) . ' bytes' . PHP_EOL;
+            echo '  ' . ($local !== null ? 'drive  ' : 'network')
+                . ' ' . str_pad($asset->filename, 44) . number_format($bytes) . ' bytes' . PHP_EOL;
         } else {
             $ledgerNote($url, 'failed', 'save: ' . mb_substr(json_encode($asset->getErrors()), 0, 120));
             $ledgerWrite();
             echo '  SAVE FAILED ' . $filename . ': ' . json_encode($asset->getErrors()) . PHP_EOL;
         }
-        usleep($DELAY_MS * 1000);
+        /* Only the network gets paced. */
+        if ($local === null) { usleep($DELAY_MS * 1000); }
     }
 }
 
@@ -611,6 +794,20 @@ echo '=== summary ===' . PHP_EOL;
 echo 'images to download:          ' . count($toDownload) . PHP_EOL;
 echo 'skipped, already in volume:  ' . count($dupSkipped) . PHP_EOL;
 echo 'skipped as navigation:       ' . count($chromeSkipped) . PHP_EOL;
+if ($APPLY) {
+    echo 'read from the drive:         ' . count($fromDrive) . PHP_EOL;
+    echo 'fetched over the network:    ' . count($fromNetwork) . PHP_EOL;
+    if ($fellBack) {
+        $why = array_count_values($fellBack);
+        foreach ($why as $reason => $n) { echo '   ' . str_pad($reason, 32) . $n . PHP_EOL; }
+        $gaps = array_keys(array_filter($fellBack, fn($r) => $r === 'not on the drive'));
+        if ($gaps) {
+            echo PHP_EOL . 'ASKED FOR BY A PAGE AND NOT ON THE MIRROR, ' . count($gaps) . ':' . PHP_EOL;
+            foreach (array_slice($gaps, 0, 20) as $g) { echo '   ' . $g . PHP_EOL; }
+            if (count($gaps) > 20) { echo '   and ' . (count($gaps) - 20) . ' more' . PHP_EOL; }
+        }
+    }
+}
 echo 'relations to add:            ' . ($APPLY ? $relatedTotal : 'known once downloaded') . PHP_EOL;
 echo 'bodies to change:            ' . $bodiesChanged . PHP_EOL;
 echo 'tokens to insert:            ' . $tokensInserted . PHP_EOL;
