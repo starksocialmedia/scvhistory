@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Article links — SCVHistory.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Jost:wght@400;500&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#17254C;--gold:#C4A031;--gold-d:#7A5C1B;--cream:#FDF7EA;--grey:#F6F7F9;--bord:#E2E4E8;--muted:#5B6472;--red:#B4453C;--green:#2E7D5B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--grey);color:#2C2C2C;font-family:'Public Sans',system-ui,sans-serif}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:10}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px}
+header .wrap{padding-top:18px;padding-bottom:18px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+h1{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0}
+.counts{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--gold)}
+.tools{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button,select,input{font:inherit}
+.btn{background:var(--gold);color:var(--navy);border:0;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:9px 16px;cursor:pointer}
+main .wrap{padding-top:24px;padding-bottom:90px}
+.hint{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7}
+kbd{font-family:ui-monospace,monospace;background:#fff;border:1px solid var(--bord);padding:1px 5px;font-size:12px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;font-size:14px;color:var(--muted)}
+.filters select{padding:8px 10px;border:1px solid var(--bord);background:#fff}
+.pair{background:#fff;border:1px solid var(--bord);border-left:3px solid var(--bord);padding:16px 18px;margin-bottom:10px}
+.pair.yes{border-left-color:var(--green);background:#F2FAF6}
+.pair.no{border-left-color:var(--muted);opacity:.55}
+.pair:focus{outline:2px solid var(--gold);outline-offset:2px}
+.why{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px}
+.why .t{background:var(--cream);border:1px solid #EFE6D0;padding:2px 7px;margin-right:5px;display:inline-block}
+.why .t.mention{background:#EFF8F3;border-color:#CBE5D8;color:var(--green)}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.sides{grid-template-columns:1fr}}
+.side{border:1px solid var(--bord);padding:12px 14px}
+.side .nm{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy)}
+.side .st{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+.side a{color:var(--gold-d);font-size:12px;font-family:'Jost',sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--bord)}
+.side a:hover{border-bottom-color:var(--gold)}
+.ev{margin:12px 0 0;font-size:13.5px;line-height:1.7;color:#2C2C2C}
+.ev div{margin-bottom:3px}
+.ev b{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:7px}
+.ev q{font-style:italic;color:#5B6472;display:block;margin:4px 0 0 0;border-left:2px solid var(--bord);padding-left:10px}
+.acts{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.acts button{border:1px solid var(--bord);background:#fff;font-family:'Jost',sans-serif;font-size:13px;padding:7px 12px;cursor:pointer}
+.acts button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.acts button.yes.on{background:var(--green);border-color:var(--green)}
+.empty{text-align:center;padding:60px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Article links</h1>
+    <div class="counts" id="counts">loading</div>
+    <div class="tools"><button class="btn" id="download">Download article-links-decided.json</button></div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="hint">
+      Links the writers put in the text themselves. <b>This is the strongest evidence in the archive:
+      somebody wrote it on purpose.</b> A cross-reference is a phrase pointing at the piece that explains
+      it; a footnote marker is a number pointing at the notes page, which is a different apparatus and is
+      separated out so it does not bury the rest.
+      <kbd>C</kbd> confirm, <kbd>R</kbd> reject, <kbd>K</kbd> skip, <kbd>&darr;</kbd><kbd>&uarr;</kbd> move.
+      Nothing here writes to the database.
+    </p>
+
+    <div class="filters">
+      <label>Kind
+        <select id="kind">
+          <option value="crossref">cross-references</option>
+          <option value="">everything</option>
+          <option value="footnote">footnote markers</option>
+        </select>
+      </label>
+      <label>Show
+        <select id="state"><option value="undecided">undecided</option><option value="all">all</option><option value="yes">confirmed</option><option value="no">rejected</option></select>
+      </label>
+      <span id="shown"></span>
+    </div>
+
+    <div id="stage"></div>
+  </div>
+</main>
+
+<script>
+/* A test key keeps a real review safe while this screen is being worked on:
+   load with ?test and nothing touches the decisions already recorded. */
+const KEY = 'scvArticleLinks' + (location.search.indexOf('test') !== -1 ? '-test' : '');
+let data = null, pairs = [];
+let decisions = {};
+try { decisions = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { decisions = {}; }
+
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const idOf = p => p.source.id + '-' + p.target.id;
+
+fetch('article-links.json?t=' + Date.now(), { cache: 'no-store' })
+  .then(r => r.json())
+  .then(d => { data = d; pairs = d.pairs || []; render(); })
+  .catch(() => { document.getElementById('stage').innerHTML =
+    '<p class="empty">Could not load article-links.json. Run export_article_links.php first.</p>'; });
+
+function save() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
+
+function visible() {
+  const kind = document.getElementById('kind').value;
+  const state = document.getElementById('state').value;
+  return pairs.filter(p => {
+    if (kind && p.kind !== kind) return false;
+    const d = decisions[idOf(p)];
+    if (state === 'undecided' && d) return false;
+    if (state === 'yes' && (!d || d.choice !== 'yes')) return false;
+    if (state === 'no' && (!d || d.choice !== 'no')) return false;
+    return true;
+  });
+}
+
+function counts() {
+  const yes = Object.values(decisions).filter(d => d.choice === 'yes').length;
+  const no = Object.values(decisions).filter(d => d.choice === 'no').length;
+  document.getElementById('counts').textContent =
+    yes + ' confirmed, ' + no + ' rejected, ' + pairs.length + ' proposed';
+}
+
+function sideHtml(s, role) {
+  return '<div class="side"><div class="st" style="margin:0 0 4px">' + role + '</div>' +
+    '<div class="nm">' + esc(s.title) + '</div>' +
+    '<div style="margin-top:7px"><a href="' + esc(s.url) + '" target="_blank" rel="noopener">record &nearr;</a></div></div>';
+}
+
+function render() {
+  counts();
+  const list = visible();
+  document.getElementById('shown').textContent = list.length + ' shown';
+  const stage = document.getElementById('stage');
+  if (!list.length) { stage.innerHTML = '<p class="empty">Nothing matches these filters.</p>'; return; }
+
+  let html = '';
+  for (const p of list) {
+    const id = idOf(p);
+    const d = decisions[id];
+    html += '<div class="pair ' + (d ? (d.choice === 'yes' ? 'yes' : 'no') : '') + '" data-id="' + esc(id) + '" tabindex="0">';
+    html += '<div class="why">';
+    html += '<span class="t ' + (p.kind === 'crossref' ? 'mention' : '') + '">' + esc(p.kind) + '</span>';
+    if (p.mutual) html += '<span class="t">links both ways</span>';
+    if (p.times > 1) html += '<span class="t">' + p.times + ' times</span>';
+    html += '<span class="t">' + esc(p.inventory) + '</span>';
+    html += '</div>';
+    html += '<div class="sides">' + sideHtml(p.source, 'links from') + sideHtml(p.target, 'links to') + '</div>';
+    html += '<div class="ev"><div><b>anchor</b>' + esc(p.anchor) +
+      (p.sentence ? '<q>' + esc(p.sentence) + '</q>'
+                  : '<q style="color:#8A919E">the anchor text does not appear in the page body, so there is no sentence</q>') +
+      '</div></div>';
+    html += '<div class="acts">' +
+      '<button class="yes' + (d && d.choice === 'yes' ? ' on' : '') + '" data-choice="yes">Related</button>' +
+      '<button class="no' + (d && d.choice === 'no' ? ' on' : '') + '" data-choice="no">Not related</button>' +
+      '<button data-choice="skip">Skip</button>' +
+      '</div></div>';
+  }
+  stage.innerHTML = html;
+
+  stage.querySelectorAll('.pair').forEach(el => {
+    el.querySelectorAll('.acts button').forEach(b =>
+      b.addEventListener('click', () => choose(el.dataset.id, b.dataset.choice)));
+  });
+}
+
+function choose(id, choice) {
+  const p = pairs.find(x => idOf(x) === id);
+  if (!p) return;
+  if (choice === 'skip' || (decisions[id] && decisions[id].choice === choice)) {
+    delete decisions[id];
+  } else {
+    decisions[id] = {
+      source: p.source.id, target: p.target.id,
+      sourceTitle: p.source.title, targetTitle: p.target.title,
+      choice: choice, kind: p.kind, anchor: p.anchor, mutual: !!p.mutual
+    };
+  }
+  save(); render();
+}
+
+['kind', 'state'].forEach(i => document.getElementById(i).addEventListener('change', render));
+
+document.addEventListener('keydown', e => {
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+  const cards = [...document.querySelectorAll('.pair')];
+  const here = document.activeElement.classList && document.activeElement.classList.contains('pair')
+    ? cards.indexOf(document.activeElement) : -1;
+  const k = e.key.toLowerCase();
+  if (k === 'arrowdown') { e.preventDefault(); (cards[here + 1] || cards[0])?.focus(); }
+  else if (k === 'arrowup') { e.preventDefault(); (cards[here - 1] || cards[cards.length - 1])?.focus(); }
+  else if (here >= 0 && ['c', 'r', 'k'].includes(k)) {
+    e.preventDefault();
+    choose(cards[here].dataset.id, k === 'c' ? 'yes' : k === 'r' ? 'no' : 'skip');
+    const again = [...document.querySelectorAll('.pair')];
+    (again[here] || again[again.length - 1])?.focus();
+  }
+});
+
+document.getElementById('download').onclick = () => {
+  const blob = new Blob([JSON.stringify(Object.values(decisions), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'article-links-decided.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+</script>
+</body>
+</html>

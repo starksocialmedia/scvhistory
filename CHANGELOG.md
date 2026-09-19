@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-19
+- Done: import_loose_pages.php creates the Routledge account and the 1992 Ruiz census as articles, relates each to its place through depictsPlace, and extends the Newhall Ranch House hauntedSource to cite Routledge alongside Reynolds. Also built the article-to-article trio: export_article_links.php, /review/article-links.html and apply_article_links.php.
+- Decisions: links_out carries href, anchor and a flag and no context at all, so the sentence is derived from the page body with the same abbreviation masking the married-name detector needed. Relative hrefs are resolved against the page they sit on; reading them literally loses 489 of the 1,329 links. Footnote markers are separated from cross-references, because a bare number pointing at the notes page is a different apparatus from a phrase pointing at the piece that explains it, and 49 of the 63 usable links are footnotes.
+- Blockers: inventory/legacy/loose-pages.json is not on this branch. It is on origin/grok-bot at 676f000 and the import says so and gives the command. I rehearsed the run against a copy through a $SOURCE override rather than bringing the file across, since that is Nathan's branch to merge.
+- Result: 2 articles would be created. 1,329 links yield 63 usable, 20 distinct pairs, 10 of them cross-references and 10 footnote pairs. The best is Chapter 18. The Pathfinder and Enemy Confirms Fremont's Trek Through SCV, which link to each other. 165 links point at legacy pages the archive does not hold, and the export lists the most-linked of those.
+- Next: Nathan brings loose-pages.json across, runs the import, then reviews the article links
+
+2026-09-19
+
+- Agent: Claude Code
+- Date: 2026-09-19
 - Done: wrote fill_collection_stub_bodies.php, bodies for all eleven collection placeholders, on the same pattern and guard as the place fill. Each names the evidence it draws on and the counts are re-derived rather than remembered.
 - Decisions: figures come from the crawl where the crawl is complete and from the index page where it is not, and the entry says which. sitemap.json stopped at its 5,000 page limit, so it reached 37 of the coins tree against 218 dated links on the index; using the crawl figure there would have understated the series by a factor of six. Date ranges come from the datestamp in each article's filename, which is the only per-article date the crawl carries.
 - Blockers: the collections are not titled. title_collections.php has $APPLY = false and has not been run; ten of the eleven are still untitled in the database and only Newsmaker of the Week carries a name, which it already had. There is also a bug in that script: it sets a body only where the body is empty, and none of these is empty, so running it as written would set the titles and legacy URLs and leave every placeholder in place.
