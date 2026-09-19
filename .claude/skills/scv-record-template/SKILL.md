@@ -104,13 +104,68 @@ the result is non-empty.
 scvhistory.com in a template. `sourcePath` is provenance and keeps its full host,
 so it does not go through that helper.
 
+## A Twig comment cannot go inside a hash literal
+
+This is a syntax error, and it takes down every page that uses the partial:
+
+```twig
+{% set main = {
+  '@type': 'Place',
+  {#- explaining the next line -#}
+  'name': el.title,
+} %}
+```
+
+Comments go **above the branch**, never between a key and a value. The compiler
+does not complain until something renders, `php -l` cannot see it because the
+file is not PHP, and the diff reads perfectly well. It has taken the whole site
+down twice in one session, both times in `_partials/head/schema.twig`, both
+times while adding a comment that explained a correct change.
+
+**After any edit to `_partials/head/schema.twig`, load one record page of every
+type before reporting.** That partial is included by every record on the site,
+so a fault in it is never local. Run the check below; do not do it by eye.
+
 ## Before you say it works
 
 Craft serves compiled templates from cache, so a broken template can keep
 rendering and fail later. Clear `storage/runtime/compiled_templates` before
-trusting any before-and-after check. Then load a real page of every type you
-touched and confirm a 200, not just that the file parses.
+trusting any before-and-after check.
+
+Then run:
+
+```
+ddev craft exec "eval(file_get_contents('scripts/import/check_render.php'))"
+```
+
+It clears the template cache, discovers one page per section, entry type and
+category group from Craft rather than from a list that can go stale, adds the
+indexes and the unlisted pages, and asserts on what the server actually sent: a
+200, no error signature in the body, a `<title>`, and that every JSON-LD block
+parses. It ends in `no failures` or it names each page and what was wrong.
 
 Twig 3.21 cannot call a variable holding an arrow function. Build a plain
 dictionary instead. `merge` reindexes integer keys, so use string keys when
 building a lookup.
+
+## The class of error a diff cannot catch
+
+Three times in one session a change was committed that read correctly and was
+wrong at render:
+
+| What was written | What the diff showed | What the output did |
+|---|---|---|
+| An SRI hash typed from memory rather than computed | a plausible `sha512-…` | the browser blocked the script and the page came up empty |
+| A lookup keyed by field id, built with `merge` | a correct-looking map | `merge` renumbered the integer keys, so every number read zero |
+| A Twig comment inside a hash literal | a helpful comment | a syntax error, every record page a 500 |
+
+The common thread is that **the code reads correctly and the output is wrong**,
+so the check has to be on the output. Reading the diff again does not help;
+neither does `php -l`, which only proves a PHP file parses. A value that was not
+computed, a structure the language quietly reshaped, and a construct the parser
+rejects all look fine on the page you are editing.
+
+The rule that follows: when a change touches something every page uses, or
+carries a value that came from anywhere but a computation you just ran, the last
+step before reporting is to fetch the thing and read what came back. Never
+report work as done on the strength of the diff alone.

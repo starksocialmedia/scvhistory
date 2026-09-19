@@ -54,6 +54,15 @@ network beyond fetching its own JSON. Served at
 
 Nothing is written back from the browser. The download is the handoff.
 
+**Load the screen and use it before reporting it.** A review screen is
+JavaScript, so nothing about it is proved by the file parsing. Two faults this
+session were invisible in the diff and total at render: an SRI hash written from
+memory rather than computed, which made the browser block the script and show an
+empty page, and a lookup keyed by an integer that Twig's `merge` renumbered, so
+every count read zero. Click the buttons, press the keys, and read the numbers
+against one you already know. See the class-of-error note in
+`scv-record-template`.
+
 **Never read, clear or overwrite the real `localStorage` key while testing.**
 That key holds hours of someone's judgement, one decision at a time, and nothing
 reconstructs it. It is the review-screen equivalent of applying an import script

@@ -99,6 +99,13 @@ GROK-CONTRACT.md an empty string means "not found", not "blank".
 linked-data URI made up. If the evidence is not there, report the record and
 move on. "Nothing was invented for them" belongs in the summary.
 
+**Check the output, not the diff.** A script that parses and runs can still be
+wrong in a way no review of the code will show: a value typed from memory rather
+than computed, a structure the language quietly reshaped, a count read from the
+wrong column. Before reporting, compare at least one number against something
+already known to be true. Three faults this session read correctly and rendered
+wrong; the note in `scv-record-template` lists them.
+
 **Report anything unmatched.** Communities with no matching term, labels with no
 field, pages with no record, URLs that 404. List them with their keys so Nathan
 can act. Never drop a row silently.
