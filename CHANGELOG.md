@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: wrote the rule, and something for it to point at. scv-record-template gains the Twig-comment trap, the requirement to load one record page of every type after any edit to the schema partial, and a note naming the class of error a diff cannot catch. scripts/import/check_render.php makes that runnable: it clears the template cache, discovers one page per section, entry type and category group from Craft, and asserts on what the server sent. The review-screen and import skills point at the same lesson.
+- Decisions: the check discovers its pages from Craft rather than from a list, because a list of URLs goes stale exactly when a new entry type is added, which is when it is most needed. It asserts on the body as well as the status, since a Twig error renders inside a 200 on some routes and a status code alone would pass it.
+- Blockers: none. I proved the check by injecting the exact fault I had made twice, a Twig comment inside a hash literal in the Place branch: it failed 8 pages by name. Then restored the file and confirmed no failures. Building it also turned up a fourth instance of the same class in my own code: @web is empty on the command line, so every constructed URL failed to connect while the entry URLs passed.
+- Result: 23 pages, 22 JSON-LD blocks, no failures.
+- Next: Nathan commits the project config from the landmark field run
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: put the existing sourceLine field on the collection entry type and recovered "The Signal / Santa Clarita Valley Chamber of Commerce" onto the Reynolds collection from the WordPress export. Applied. The citation partial takes a source param and renders it in all three styles, and the JSON-LD emits it as the publisher of the series. Residence skipped as asked.
 - Decisions: sourceLine outranks the linked publishedBy record on a collection, which is the only place in the schema partial where a text line beats a record. The two answer different questions: The Signal published the series, SCVHistory.com republished it. So sourceLine is the publisher, the linked record becomes the provider, and the archive is the publisher of last resort. The source sits ahead of the section label in a citation, because a reader is being told where the work first appeared and not only where this copy lives.
 - Blockers: none, but I made the same mistake twice in one session. A Twig comment cannot sit inside a hash literal, and putting one there took every record page down with a syntax error, exactly as it had an hour earlier on the NRHP listing date. The comment now sits above the branch and says why it is there.
