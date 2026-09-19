@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-18
+- Done: made the render check part of the standing workflow rather than a schema-partial special case, in the scv-record-template skill and in my own memory, together with pulling before reporting on tree state. Wrote fill_place_stub_bodies.php and filled the fourth of the four places: Heritage Junction Historic Park existed already but carried a generated placeholder body.
+- Decisions: the fill script only ever overwrites a body that still matches the placeholder exactly, and the guard is the point of it rather than a precaution around it. The other eleven placeholders are listed rather than filled, because composing those paragraphs is reading and judgement; a script can refuse to invent them but cannot write them.
+- Blockers: none, and a correction to my own last report. add_missing_places.php has been applied: Ruiz Cemetery #2536, Newhall Ranch House #2538 and Felton School #2540 all exist with their bodies, communities and haunted fields as briefed. I described them as pending.
+- Result: twelve of eighteen places carried the placeholder body "X is a named place in the Santa Clarita Valley historical archive". One is now written, eleven are named. check_render.php reports no failures.
+- Next: Nathan applies fill_place_stub_bodies.php, and decides whether the other eleven are worth writing
+
+2026-09-18
+
+- Agent: Claude Code
+- Date: 2026-09-18
 - Done: wrote scripts/import/add_missing_places.php, dry run by default. It creates three places rather than four: Heritage Junction already exists as "Heritage Junction Historic Park". Bodies are assembled from corpus sentences with the source named, communities come from the text or the legacy page titles, coordinates are left empty, and the haunted fields are set on Ruiz Cemetery and the Newhall Ranch House with the claim attributed rather than asserted.
 - Decisions: legacyUrl is left empty on all three, which is a decision rather than an omission. legacyUrl means the page a record was migrated from; these are made from mentions inside other people's articles, and the legacy site has no page that stands for any of them. The candidates are listed in the script so the choice can be made rather than lost. Ruiz Cemetery is "reported" rather than "legend" because named witnesses describe specific incidents, and the owner's own disavowal is carried in the account.
 - Blockers: the Newhall Ranch House has two locations in the sources. The legacy titles read both "Heritage Junction | Newhall Ranch House in Valencia" and "Newhall Ranch House (Original Location)", so the house stood on the ranch in what is now Valencia and was later moved to Heritage Junction in Newhall. I set Newhall, where it stands, and the community note on the record says so; one building across two communities is the succession problem again.

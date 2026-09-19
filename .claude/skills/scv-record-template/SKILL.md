@@ -122,9 +122,13 @@ file is not PHP, and the diff reads perfectly well. It has taken the whole site
 down twice in one session, both times in `_partials/head/schema.twig`, both
 times while adding a comment that explained a correct change.
 
-**After any edit to `_partials/head/schema.twig`, load one record page of every
-type before reporting.** That partial is included by every record on the site,
-so a fault in it is never local. Run the check below; do not do it by eye.
+**Run `check_render.php` before reporting any change that touches a template.**
+Not only the schema partial, and not only when something feels risky. It is the
+last step of the job, in the same breath as the commit. A partial is shared by
+more pages than the one you were looking at, a base layout is shared by all of
+them, and the failure is total at render and invisible in the diff. The command
+is under "Before you say it works" below; it takes seconds and it has already
+caught a fault that two careful readings of the diff did not.
 
 ## Before you say it works
 
