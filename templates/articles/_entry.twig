@@ -232,21 +232,23 @@
     {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText', words: words } only %}
 
     {% if lead %}
-      {#- 700px, not 40em. An em in max-width resolves against the element's own
-          font size, so 40em on 24px Playfair is 960px and on 17.5px body text is
-          700px. The design writes 34em on both and they come out 816 and 595,
-          which is the 221px step between the lead and the body that reads as a
-          hole down the right of the page. The measure is one measure, so it is
-          stated once, in the pixels the body text makes of it. -#}
-      <p style="font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.48; color: #17254C; margin: 34px 0 0; max-width: 700px; text-wrap: pretty">{{ lead }}</p>
+      {#- No measure. The prose takes the column, the way the tools row, the
+          rule above it and the photographs already do.
+
+          The design caps the lead and the body at 34em, which renders 816 and
+          595 because an em in max-width resolves against the element's own font
+          size. Reproducing that faithfully put two ragged right edges inside a
+          column whose other blocks reach the gutter, and that step is the fault
+          in every screenshot. A narrower measure reads better in the abstract
+          and reads as a hole here, because nothing else in the column stops
+          where the paragraphs stop. -#}
+      <p style="font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.48; color: #17254C; margin: 34px 0 0; text-wrap: pretty">{{ lead }}</p>
     {% endif %}
 
-    <div class="rec-body" id="recText" style="max-width: 40em; margin-top: 30px; font-size: 17.5px; line-height: 1.78">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id , footnotesFor: entry } %}</div>
+    <div class="rec-body" id="recText" style="margin-top: 30px; font-size: 17.5px; line-height: 1.78">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id , footnotesFor: entry } %}</div>
 
     {% if author and year matches '/^[0-9]{4}$/' %}
-      {#- The same again: 34em at the 16px this row inherits is 544px, a third
-          right edge. It takes the one measure. -#}
-      <div style="max-width: 700px; margin-top: 34px; display: flex; align-items: center; gap: 16px">
+      <div style="margin-top: 34px; display: flex; align-items: center; gap: 16px">
         <div style="flex: 1; height: 1px; background: #E2E4E8"></div>
         <div style="font-family: 'Playfair Display', serif; font-variant: small-caps; letter-spacing: .06em; font-size: 17px; color: #17254C; white-space: nowrap">{{ author.title }} &middot; {{ year }}</div>
       </div>
