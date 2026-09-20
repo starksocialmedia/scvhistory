@@ -763,6 +763,32 @@ if ($noteNeeded) {
 if ($elements->saveElement($place)) {
     echo 'place #' . $place->id . ' saved: ' . ($hasTable ? count($tableRows) . ' census rows' : 'no table')
         . ($noteNeeded ? ', provenance note appended' : '') . PHP_EOL;
+
+/* Read the write back. A save that reports success and changes nothing is worse
+ * than one that fails. add_footnote_source_column.php printed "saved: 5" twice
+ * and persisted nothing, because it set a Table row's handle key while Craft
+ * stores the column key, and the column key was null so it won at serialisation.
+ *
+ * Rows built here are keyed by handle alone and never carry a col key, which is
+ * the safe case: with nothing to lose to, the handle is used. The check is here
+ * because "it should be fine" is what the last one said. */
+    if ($hasTable) {
+        $fresh = \craft\elements\Entry::find()->id($place->id)->status(null)->one();
+        $got = $fresh ? $fresh->getFieldValue($CENSUS_FIELD) : null;
+        $n = is_array($got) ? count($got) : 0;
+        $filled = 0;
+        foreach ((is_array($got) ? $got : []) as $r) {
+            if (trim((string)($r['col1'] ?? $r['map'] ?? '')) !== '') { $filled++; }
+        }
+        echo 'read back: ' . $n . ' rows, ' . $filled . ' carrying a map number' . PHP_EOL;
+        if ($n !== count($tableRows) || $filled !== $n) {
+            echo PHP_EOL . 'THE WRITE DID NOT PERSIST: wrote ' . count($tableRows)
+               . ' rows, read back ' . $n . ' with ' . $filled . ' filled.' . PHP_EOL;
+            echo 'Do not re-run until this is understood.' . PHP_EOL;
+            return;
+        }
+        echo 'verified.' . PHP_EOL;
+    }
 } else {
     echo 'FAILED to save the place: ' . json_encode($place->getErrors()) . PHP_EOL;
 }

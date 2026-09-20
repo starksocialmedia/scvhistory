@@ -267,7 +267,35 @@ echo '  title set: ' . $setTitle . PHP_EOL;
 echo '  alt set: ' . $setAlt . PHP_EOL;
 echo '  photoCredit set: ' . $setCredit . PHP_EOL;
 echo 'variant conflicts resolved by length: ' . count($conflicts) . PHP_EOL;
-if ($APPLY) { echo 'saved: ' . $saved . PHP_EOL; }
+if ($APPLY) {
+    echo 'saved: ' . $saved . PHP_EOL;
+
+/* ------------------------------------------------- read the writes back -----
+ *
+ * A save that reports success and changes nothing is worse than one that fails,
+ * because the counter says the work is done. add_footnote_source_column.php
+ * printed "saved: 5" on every run and persisted nothing for two runs: it wrote a
+ * Table row keyed by handle when Craft stores it keyed by column, so the value
+ * was discarded at serialisation and the element still reported success.
+ *
+ * So every script that saves now reads its own writes back from a freshly
+ * loaded element and fails loudly when the count does not match. */
+    $back = 0; $short = [];
+    foreach ($applied as $a) {
+        $fresh = \craft\elements\Asset::find()->id($a['id'])->one();
+        if (!$fresh) { $short[] = $a['file'] . ': gone after save'; continue; }
+        if (trim((string)$fresh->getFieldValue('photoCaptionExt')) !== '') { $back++; }
+        else { $short[] = $a['file'] . ': photoCaptionExt empty after save'; }
+    }
+    echo 'read back: ' . $back . ' of ' . count($applied) . ' assets carry a caption' . PHP_EOL;
+    if ($short) {
+        echo PHP_EOL . 'THE WRITE DID NOT PERSIST' . PHP_EOL;
+        foreach (array_slice($short, 0, 10) as $m) { echo '  ' . $m . PHP_EOL; }
+        echo 'Do not re-run until this is understood.' . PHP_EOL;
+        return;
+    }
+    echo 'verified.' . PHP_EOL;
+}
 foreach ($failed as $f) { echo '  FAILED ' . $f . PHP_EOL; }
 
 /* ------------------------------------------------------------------ report */

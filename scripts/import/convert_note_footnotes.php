@@ -97,7 +97,40 @@ foreach ($plan as $p) {
         else { $failed[] = $p['e']->slug . ': ' . json_encode($p['e']->getErrors()); }
     }
 }
-if ($APPLY) { echo PHP_EOL . 'saved: ' . $written . PHP_EOL; }
+if ($APPLY) {
+    echo PHP_EOL . 'saved: ' . $written . PHP_EOL;
+
+/* ------------------------------------------------- read the writes back -----
+ *
+ * A save that reports success and changes nothing is worse than one that fails,
+ * because the counter says the work is done. add_footnote_source_column.php
+ * printed "saved: 5" on every run and persisted nothing for two runs: it wrote a
+ * Table row keyed by handle when Craft stores it keyed by column, so the value
+ * was discarded at serialisation and the element still reported success.
+ *
+ * So every script that saves now reads its own writes back from a freshly
+ * loaded element and fails loudly when the count does not match. */
+    $back = 0; $short = [];
+    foreach ($plan as $p) {
+        $fresh = \craft\elements\Entry::find()->id($p['e']->id)->status(null)->one();
+        if (!$fresh) { $short[] = $p['e']->slug . ': gone after save'; continue; }
+        $got = $fresh->getFieldValue('footnotes');
+        $n = is_array($got) ? count($got) : 0;
+        if ($n !== count($p['rows'])) { $short[] = $p['e']->slug . ': wrote ' . count($p['rows']) . ' rows, read back ' . $n; }
+        if (trim((string)$fresh->getFieldValue($p['field'])) !== '') {
+            $short[] = $p['e']->slug . ': ' . $p['field'] . ' was not cleared';
+        }
+        $back += $n;
+    }
+    echo 'read back: ' . $back . ' footnote rows' . PHP_EOL;
+    if ($short) {
+        echo PHP_EOL . 'THE WRITE DID NOT PERSIST' . PHP_EOL;
+        foreach ($short as $m) { echo '  ' . $m . PHP_EOL; }
+        echo 'Do not re-run until this is understood.' . PHP_EOL;
+        return;
+    }
+    echo 'verified.' . PHP_EOL;
+}
 foreach ($failed as $f) { echo 'FAILED ' . $f . PHP_EOL; }
 
 $out = ['# Webmaster notes that are footnote lists', '',

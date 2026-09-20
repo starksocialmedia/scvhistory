@@ -95,6 +95,40 @@ if (isset($have[$COLUMN])) {
 
 /* ---------------------------------------------------------- the backfill */
 
+/* WHY THIS WRITES col3 AND NOT source.
+ *
+ * A Table field stores its rows keyed by column, col1, col2, col3. The element
+ * hands them back keyed BOTH ways, so a row read from Craft looks like
+ *
+ *   {"col1":"1","col2":"the note","col3":null,
+ *    "number":"1","note":"the note","source":null}
+ *
+ * Setting only the handle and saving looks like it works. The element reports
+ * success, the script prints "saved: 5", and nothing persists, because Craft's
+ * normalisation prefers the column key and col3 is still null. The run before
+ * this one wrote the handle five times and the database kept five nulls.
+ *
+ * So rows are reduced to column keys before they go back, and the write is read
+ * back from the database afterwards and counted. */
+$COLKEY = null;
+foreach (($field->columns ?? []) as $k => $c) {
+    if (($c['handle'] ?? null) === $COLUMN) { $COLKEY = $k; }
+}
+if ($COLKEY === null && !$APPLY) { $COLKEY = 'col' . (count($field->columns ?? []) + 1); }
+if ($COLKEY === null) { echo 'could not find the column key for ' . $COLUMN . PHP_EOL; return; }
+echo 'the ' . $COLUMN . ' column is stored as ' . $COLKEY . PHP_EOL;
+
+/* Column keys only. Handle keys in the same row are what caused the silent
+   discard, so they are dropped rather than sent alongside. */
+$rowToCols = function (array $r) use ($field): array {
+    $out = [];
+    foreach (($field->columns ?? []) as $k => $c) {
+        $h = $c['handle'] ?? null;
+        $out[$k] = $r[$k] ?? ($h !== null ? ($r[$h] ?? null) : null);
+    }
+    return $out;
+};
+
 echo PHP_EOL;
 $records = 0; $rowsSeen = 0; $rowsToSet = 0; $already = 0;
 $plan = [];
@@ -113,10 +147,13 @@ foreach (\craft\elements\Entry::find()->limit(null)->status(null)->all() as $e) 
     $new = []; $changed = false;
     foreach ($rows as $r) {
         $rowsSeen++;
-        $val = trim((string)($r['source'] ?? ''));
-        if ($val !== '') { $already++; $new[] = $r; continue; }
-        $r['source'] = $DEFAULT;
-        $new[] = $r;
+        /* Read either key. A Table row comes back from the element carrying
+           both, col3 and source, for the same cell. */
+        $val = trim((string)($r[$COLKEY] ?? $r[$COLUMN] ?? ''));
+        if ($val !== '') { $already++; $new[] = $rowToCols($r); continue; }
+        $r[$COLUMN] = $DEFAULT;
+        $r[$COLKEY]  = $DEFAULT;
+        $new[] = $rowToCols($r);
         $rowsToSet++;
         $changed = true;
     }
@@ -138,6 +175,33 @@ if ($APPLY && $plan) {
     }
     echo PHP_EOL . 'saved: ' . $saved . PHP_EOL;
     foreach ($failed as $f) { echo '  FAILED ' . $f . PHP_EOL; }
+
+    /* ------------------------------------------------- read the writes back */
+
+    /* A save that reports success and changes nothing is worse than a save that
+       fails, because the counter says the work is done. Every row is read back
+       from a freshly loaded element and counted. */
+    $back = 0; $short = [];
+    foreach ($plan as $p) {
+        $fresh = \craft\elements\Entry::find()->id($p['e']->id)->status(null)->one();
+        if (!$fresh) { $short[] = $p['e']->slug . ': gone after save'; continue; }
+        $got = $fresh->getFieldValue($HANDLE);
+        $set = 0;
+        foreach ((is_array($got) ? $got : []) as $r) {
+            if (trim((string)($r[$COLKEY] ?? $r[$COLUMN] ?? '')) !== '') { $set++; }
+        }
+        $want = count($p['rows']);
+        if ($set < $want) { $short[] = $p['e']->slug . ': wrote ' . $want . ', read back ' . $set; }
+        $back += $set;
+    }
+    echo 'read back: ' . $back . ' of ' . $rowsSeen . ' rows carry a ' . $COLUMN . PHP_EOL;
+    if ($short) {
+        echo PHP_EOL . 'THE WRITE DID NOT PERSIST' . PHP_EOL;
+        foreach ($short as $m) { echo '  ' . $m . PHP_EOL; }
+        echo 'Nothing further has been done. Do not re-run until this is understood.' . PHP_EOL;
+        return;
+    }
+    echo 'verified: every row read back carries its value.' . PHP_EOL;
 }
 
 echo PHP_EOL . str_repeat('=', 74) . PHP_EOL;

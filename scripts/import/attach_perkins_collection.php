@@ -156,6 +156,34 @@ if ($APPLY) {
     }
     echo PHP_EOL . 'records changed: ' . $written . ', reading order now ' . count($order) . PHP_EOL;
     foreach ($failed as $f) { echo '  FAILED ' . $f . PHP_EOL; }
+
+/* Read the write back. A save that reports success and changes nothing is worse
+ * than one that fails. add_footnote_source_column.php printed "saved: 5" twice
+ * and persisted nothing, because it set a Table row's handle key while Craft
+ * stores the column key, and the column key was null so it won at serialisation.
+ *
+ * Rows built here are keyed by handle alone and never carry a col key, which is
+ * the safe case: with nothing to lose to, the handle is used. The check is here
+ * because "it should be fine" is what the last one said. */
+    $back = 0; $short = [];
+    foreach ($rows as $r) {
+        $fresh = \craft\elements\Entry::find()->id($r['e']->id)->status(null)->one();
+        if (!$fresh) { $short[] = $r['e']->slug . ': gone after save'; continue; }
+        $c = $fresh->partOfCollection->one();
+        if ($c && $c->id === $coll->id) { $back++; }
+        else { $short[] = $r['e']->slug . ': partOfCollection is ' . ($c ? $c->slug : 'empty'); }
+    }
+    $freshColl = \craft\elements\Entry::find()->id($coll->id)->status(null)->one();
+    $orderBack = $freshColl ? $freshColl->articlesInCollection->count() : 0;
+    echo 'read back: ' . $back . ' of ' . count($rows) . ' in the collection, reading order holds ' . $orderBack . PHP_EOL;
+    if ($short || $orderBack < count($rows)) {
+        echo PHP_EOL . 'THE WRITE DID NOT PERSIST' . PHP_EOL;
+        foreach (array_slice($short, 0, 10) as $m) { echo '  ' . $m . PHP_EOL; }
+        if ($orderBack < count($rows)) { echo '  reading order holds ' . $orderBack . ', expected at least ' . count($rows) . PHP_EOL; }
+        echo 'Do not re-run until this is understood.' . PHP_EOL;
+        return;
+    }
+    echo 'verified.' . PHP_EOL;
 }
 
 /* ---------------------------------------------------------------- report */

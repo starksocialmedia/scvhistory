@@ -214,6 +214,33 @@ if ($APPLY) {
     }
     echo 'relations added: ' . $added . PHP_EOL;
     foreach ($failed as $f) { echo 'FAILED ' . $f . PHP_EOL; }
+
+/* Read the write back. A save that reports success and changes nothing is worse
+ * than one that fails. add_footnote_source_column.php printed "saved: 5" twice
+ * and persisted nothing, because it set a Table row's handle key while Craft
+ * stores the column key, and the column key was null so it won at serialisation.
+ *
+ * Rows built here are keyed by handle alone and never carry a col key, which is
+ * the safe case: with nothing to lose to, the handle is used. The check is here
+ * because "it should be fine" is what the last one said. */
+    $back = 0; $short = [];
+    foreach ($relPlan as $eid => $byField) {
+        $fresh = \craft\elements\Entry::find()->id($eid)->status(null)->one();
+        if (!$fresh) { $short[] = '#' . $eid . ': gone after save'; continue; }
+        $have = $fresh->getFieldValue($FIELD)->ids();
+        $want = array_keys($byField[$FIELD] ?? []);
+        $miss = array_diff($want, $have);
+        if ($miss) { $short[] = $fresh->slug . ': ' . count($miss) . ' of ' . count($want) . ' not stored'; }
+        $back += count(array_intersect($want, $have));
+    }
+    echo 'read back: ' . $back . ' relations present on their records' . PHP_EOL;
+    if ($short) {
+        echo PHP_EOL . 'THE WRITE DID NOT PERSIST' . PHP_EOL;
+        foreach (array_slice($short, 0, 10) as $m) { echo '  ' . $m . PHP_EOL; }
+        echo 'Do not re-run until this is understood.' . PHP_EOL;
+        return;
+    }
+    echo 'verified.' . PHP_EOL;
 }
 
 $out = [];

@@ -23,6 +23,30 @@ foreach ($moves as $h => $v) {
 if (!$APPLY) { echo PHP_EOL . 'DRY RUN' . PHP_EOL; return; }
 foreach ($moves as $h => $v) { $keep->setFieldValue($h, $v); }
 echo 'keep saved: ' . ($el->saveElement($keep) ? 'ok' : 'FAILED') . PHP_EOL;
+
+/* Read the write back before deleting the other record, because a delete is not
+ * reversible and a save that reported success is not proof that anything moved.
+ * add_footnote_source_column.php printed "saved: 5" twice and persisted nothing.
+ * Here that would have meant losing the only copy. */
+$fresh = \craft\elements\Entry::find()->id($keep->id)->status(null)->one();
+$short = [];
+foreach ($moves as $h => $v) {
+    $got = $fresh ? $fresh->getFieldValue($h) : null;
+    if (is_array($v)) {
+        $have = is_object($got) && method_exists($got, 'ids') ? $got->ids() : [];
+        if (array_diff($v, $have)) { $short[] = $h . ': ' . count(array_diff($v, $have)) . ' of ' . count($v) . ' not stored'; }
+    } else {
+        if (trim((string)$got) !== trim((string)$v)) { $short[] = $h . ': stored value does not match'; }
+    }
+}
+if ($short) {
+    echo PHP_EOL . 'THE WRITE DID NOT PERSIST' . PHP_EOL;
+    foreach ($short as $m) { echo '  ' . $m . PHP_EOL; }
+    echo 'NOT deleting the other record. Nothing has been lost.' . PHP_EOL;
+    return;
+}
+echo 'verified: every moved field reads back.' . PHP_EOL;
+
 $el->deleteElement($drop);
 echo 'dropped 877' . PHP_EOL;
 echo 'war memorial count: ' . \craft\elements\Entry::find()->section('warMemorials')->status(null)->count() . PHP_EOL;
