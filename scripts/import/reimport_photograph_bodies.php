@@ -33,10 +33,13 @@
  *                               it are the author's and not the reflow's
  *   <li>                        a line prefixed "- "; consecutive items are one
  *                               list. Rare, 565 items on 31 pages, but real
- *   <div> <table> <tr> <td>     unwrapped. 1,553 of the 1,661 pages are built
- *   <center> <font> <span>      on layout tables, and representing those as
- *                               tables would invent 1,553 tables that are not
- *                               tables
+ *   <tr> with two or more cells a table row: one tab separated line inside a
+ *                               [table] ... [/table] fence. Row width is a fact
+ *                               about the source, not a guess about the content
+ *   <tr> with one cell,         unwrapped. 1,553 of the 1,661 pages sit inside
+ *   <div> <center> <font>       a single-cell layout table, and representing
+ *   <span>                      those as tables would invent 1,553 tables that
+ *                               are not tables
  *
  * A separate field was rejected because it cannot hold position: lw2575c is
  * prose, then a transcribed letter, then prose again, and a field beside the
@@ -104,7 +107,15 @@ $isNav = function (string $line) use ($NAV): bool {
 
 $BLOCK = 'p|h1|h2|h3|h4|h5|h6|blockquote|li|div|tr|table|center|ul|ol';
 
-$toBlocks = function (string $html) use ($BLOCK): array {
+/* A row with more than one cell is a table. A row with one cell is the layout
+   the legacy pages are built on, and unwrapping it is right. That distinction
+   is a fact about the source and not a guess about the content: 1,553 of the
+   1,661 pages sit inside a single-cell table, and the 1923 Newhall telephone
+   directory is a genuine two-column one. */
+$ROW = '#<tr\b[^>]*>(.*?)(?=</tr>|<tr\b)#is';
+$CELL = '#<t[dh]\b[^>]*>(.*?)(?=</t[dh]>|<t[dh]\b|$)#is';
+
+$toBlocks = function (string $html) use ($BLOCK, $ROW, $CELL): array {
     /* Anything that is not text. */
     $html = preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is', ' ', $html);
     $html = preg_replace('/<!--.*?-->/s', ' ', $html);
@@ -121,6 +132,23 @@ $toBlocks = function (string $html) use ($BLOCK): array {
     /* List items are marked before the block split so the marker survives. */
     $html = preg_replace('#<li\b[^>]*>#i', "\x02", $html);
 
+    /* Multi-cell rows are lifted out first and rewritten as a single tab
+       separated line inside a fence, so the generic block pass cannot split a
+       name away from its telephone number. A cell that itself holds paragraphs
+       is left alone: that is a layout cell whatever the row looks like. */
+    $html = preg_replace_callback($ROW, function ($m) use ($CELL) {
+        preg_match_all($CELL, $m[1], $cm);
+        $cells = [];
+        foreach ($cm[1] as $c) {
+            if (preg_match('#<(p|div|table|ul|ol|h[1-6])\b#i', $c)) { return $m[0]; }
+            $t = trim(preg_replace('/\s+/u', ' ', strip_tags(str_replace("\x01", ' ', $c))));
+            $cells[] = $t;
+        }
+        $filled = array_filter($cells, fn($c) => $c !== '');
+        if (count($filled) < 2) { return $m[0]; }
+        return "\x03\x04" . implode("\x05", $cells) . "\x03";
+    }, $html);
+
     /* Every block boundary becomes a sentinel of its own. Opening and closing
        both, because the legacy markup opens a <p> and closes it around the next
        one as often as it nests properly. */
@@ -133,6 +161,13 @@ $toBlocks = function (string $html) use ($BLOCK): array {
 
     $out = [];
     foreach (explode("\x03", $html) as $chunk) {
+        if (str_contains($chunk, "\x04")) {
+            $cells = explode("\x05", str_replace("\x04", '', $chunk));
+            $cells = array_map(fn($c) => trim(html_entity_decode($c, ENT_QUOTES | ENT_HTML5, 'UTF-8')), $cells);
+            if (implode('', $cells) === '') { continue; }
+            $out[] = ['lines' => [implode("\t", $cells)], 'item' => false, 'row' => true];
+            continue;
+        }
         $isItem = str_contains($chunk, "\x02");
         $chunk = str_replace("\x02", '', $chunk);
 
@@ -144,7 +179,7 @@ $toBlocks = function (string $html) use ($BLOCK): array {
             if ($piece !== '') { $lines[] = $piece; }
         }
         if (!$lines) { continue; }
-        $out[] = ['lines' => $lines, 'item' => $isItem];
+        $out[] = ['lines' => $lines, 'item' => $isItem, 'row' => false];
     }
     return $out;
 };
@@ -177,10 +212,18 @@ foreach ($entries as $e) {
        first line of its own body. */
     $titleNorm = preg_replace('/[^a-z0-9]/', '', mb_strtolower((string)$e->title, 'UTF-8'));
 
-    $parts = []; $pendingList = [];
+    $parts = []; $pendingList = []; $pendingRows = [];
+    $flushRows = function () use (&$parts, &$pendingRows) {
+        if (!$pendingRows) { return; }
+        $parts[] = "[table]\n" . implode("\n", $pendingRows) . "\n[/table]";
+        $pendingRows = [];
+    };
     foreach ($blocks as $b) {
         $lines = array_values(array_filter($b['lines'], fn($l) => !$isNav($l)));
         if (!$lines) { continue; }
+
+        if (!empty($b['row'])) { $pendingRows[] = $lines[0]; continue; }
+        $flushRows();
 
         if ($b['item']) {
             foreach ($lines as $l) { $pendingList[] = '- ' . $l; }
@@ -200,6 +243,7 @@ foreach ($entries as $e) {
             $parts[] = $lines[0];
         }
     }
+    $flushRows();
     if ($pendingList) { $parts[] = implode("\n", $pendingList); }
 
     $new = trim(implode("\n\n", $parts));

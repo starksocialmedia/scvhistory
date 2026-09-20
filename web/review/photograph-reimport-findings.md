@@ -144,3 +144,128 @@ record: winifred-westover-hoover-art-co-photograph-1918-1919, five citations in
 `webmasterNoteBottom`. `convert_note_footnotes.php` dry-runs it. The converter
 does not add markers to the prose, because there are no `[N]` to anchor them to
 and inventing positions would be guessing.
+
+---
+
+# The residue, named
+
+Written after the re-import was applied. The database now holds the rebuilt
+bodies; lw2717 is 2,332 characters and 93 lines.
+
+## The 7 records still under a third of their source by line
+
+They are not losing content. Every one of them loses between 0 and 7 words, and
+three lose none at all.
+
+| record | source lines | ours | source words | our words | words missing |
+|---|---:|---:|---:|---:|---:|
+| lw3677 Hoot Gibson's Saugus Rodeo programme | 113 | 26 | 1,303 | 1,299 | 4 |
+| lw2884 Chatsworth Neighborhood Destroyed | 112 | 30 | 1,544 | 1,537 | 7 |
+| lw2414 Hart Promotes 5th Liberty Loan | 109 | 32 | 758 | 754 | 4 |
+| lw3365 Borax 20 Mule Team instructions | 98 | 28 | 860 | 860 | **0** |
+| lw1917 Hart Promotes Liberty Loan | 99 | 30 | 610 | 610 | **0** |
+| lw3689 Clint Walker British lobby card | 63 | 15 | 377 | 377 | **0** |
+| lw3107 Arizona Bushwhackers lobby card | 35 | 7 | 173 | 169 | 4 |
+
+The line count fell because the rebuild puts each source paragraph on one line
+and the legacy `body_text` keeps its hard wrapping. This is the metric measuring
+wrapping, not the archive losing anything. The line figure should be read as a
+pointer and never as a verdict.
+
+## What the 5,820 missing words are
+
+Aggregated across all 1,543, every missing word counted:
+
+| word | count |
+|---|---:|
+| click | 1,326 |
+| to | 1,326 |
+| enlarge | 1,325 |
+| image | 1,071 |
+| everything else | 772 |
+
+**5,048 of 5,820, or 87%, is "click to enlarge" and "click image to enlarge"**,
+which the importer removes on purpose. It is not loss; it is the navigation
+leaving.
+
+The remaining **738 words sit on 132 records**, and almost all of it is one
+thing: **the page headline, dropped because it repeats the record's own title.**
+`mrs-andersons-3rd-grade-class-1984` is missing "mrs anderson s 3rd grade class
+1984"; `switch-tie-plate-from-saugus` is missing "switch tie plate from saugus".
+Printing the title twice would be worse than dropping it once.
+
+Two records are not that:
+
+- **lw030597, 52 words.** The one record the importer skips, because its body
+  carries `[image:N]` tokens and a rebuild cannot know where they belonged. It
+  still holds the old importer's body. It needs doing by hand.
+- **lw3562, 42 words.** Real, and recoverable. See below.
+
+## Something the importer could still get, and now does
+
+The 1923 Newhall Telephone Directory was coming out as
+
+```
+Abbott, Ed S., general merchandise7-W
+American Auto Works, Spruce St.14-W
+```
+
+Two faults. **`<td>` was not in my block list**, so table cells were glued
+together with no separator. And the brief asked for `<table>` as tables while I
+had unwrapped every one of them.
+
+The distinction that makes this safe is a fact about the source rather than a
+guess about the content: **a `<tr>` with two or more cells is a table row; a
+`<tr>` with one cell is the layout 1,553 of the 1,661 pages sit inside.** A cell
+that itself contains paragraphs is layout whatever the row looks like.
+
+Rows now become tab-separated lines inside a `[table]` ... `[/table]` fence, and
+`prose.twig` renders them as a table. **16 records change. No words are lost in
+any of them**; the four that shrink in characters do so because a `[lines]`
+fence became a `[table]` fence.
+
+| record | what it is |
+|---|---|
+| lw3562 | the 1923 telephone directory, 35 rows, name and number |
+| lw3550 | a library catalogue: call number, author, title |
+| lw2534 | a superintendent's career: year and post |
+| lw3337 | Winifred Westover's vital statistics |
+| + 12 more | mostly single-row caption tables |
+
+Rendered check on lw3562: one table, 35 rows, 2 cells in every row, 840px wide,
+first row "Abbott, Ed S., general merchandise" and "7-W", no fence or tab
+leaking into the text.
+
+Missing words after the fix: **5,778**, of which 5,048 is the navigation. The
+true residue is **730 words across 1.59 million, 0.046%**, and it is the
+duplicated headline.
+
+## Re-running is safe
+
+Asked, and answered by running it rather than by reading it.
+
+The script rebuilds from `body_html`, which does not change, and compares its
+output against the stored body before writing. Three consecutive dry runs after
+the apply:
+
+```
+records to rebuild: 16   already identical: 1527   md5 80e5495d16dbfa624e2eac9ca3e9324a
+records to rebuild: 16   already identical: 1527   md5 80e5495d16dbfa624e2eac9ca3e9324a
+records to rebuild: 16   already identical: 1527   md5 80e5495d16dbfa624e2eac9ca3e9324a
+```
+
+**1,527 of the 1,543 already-applied records come back "already identical" and
+are skipped.** The 16 are the ones the table fix changes. The output is
+byte-identical across runs.
+
+Two things that would make a later run not a no-op, and both are wanted:
+
+- **A record that gains `[image:N]` tokens is skipped from then on**, not
+  rebuilt. So running this after the images land will not undo the tokens.
+- **A body edited by hand in the control panel would be overwritten**, because
+  the script's authority is the source HTML. Nothing has been hand-edited yet.
+  If that changes, the script needs a "leave modified records alone" rule before
+  it runs again.
+
+So captions and `derivedImageLinks` can both follow it safely: neither touches
+the body, and a later re-run will skip every record it has already written.

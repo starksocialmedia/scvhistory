@@ -80,6 +80,12 @@
 .rec-body .rec-lines{line-height:1.5}
 .rec-body .rec-list{margin:0 0 22px;padding-left:1.35em}
 .rec-body .rec-list li{margin:0 0 5px}
+{#- A directory, a catalogue, a list of dates and roles. Ruled rather than
+    boxed, because these are reference tables inside a piece of prose. -#}
+.rec-body .rec-table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15.5px}
+.rec-body .rec-table td{border-bottom:1px solid #E2E4E8;padding:7px 12px 7px 0;vertical-align:top;line-height:1.5}
+.rec-body .rec-table td:last-child{padding-right:0}
+.rec-body .rec-table tr:last-child td{border-bottom:0}
 .rec-body sup.fn{font-size:.7em;line-height:0;vertical-align:super;font-family:Jost,sans-serif;margin-left:1px}
 .rec-body .fn-ref{font:inherit;color:#7A5C1B;background:none;border:0;padding:0 1px;cursor:pointer}
 .rec-body .fn-ref:hover{text-decoration:underline}
@@ -147,6 +153,8 @@
 {%- set inLines = false -%}
 {%- set lineBuf = [] -%}
 {%- set inList = false -%}
+{%- set inTable = false -%}
+{%- set tableBuf = [] -%}
 
 {#- Which of the three footnote states this record is in. Read through the
     layout, because entry.footnotes is "defined" on a type that has no such
@@ -322,6 +330,27 @@
     {#- A run the author broke themselves: an address block, a transcribed
         letter, a stack of dates. The importer fences it so that nothing here or
         anywhere else can reflow it back into a sentence. -#}
+    {#- A table the source actually marked as one: a row with two or more cells.
+        Cells arrive tab separated. Rendered as a table when every row has the
+        same number of cells, which is the only case where a header and columns
+        mean anything, and as plain rows when they do not. -#}
+    {%- elseif line == '[table]' -%}
+      {%- set inTable = true -%}
+      {%- set tableBuf = [] -%}
+    {%- elseif line == '[/table]' -%}
+      {%- set inTable = false -%}
+      {%- set widths = [] -%}
+      {%- for r in tableBuf %}{% set widths = widths|merge([r|split("\t")|length]) %}{% endfor -%}
+      {%- set even = widths|length and widths|first == widths|last and widths|first > 1 -%}
+      <table class="rec-table">
+        {%- for r in tableBuf -%}
+          <tr>{% for c in r|split("\t") %}<td>{{ c|trim|raw }}</td>{% endfor %}</tr>
+        {%- endfor -%}
+      </table>
+      {%- set tableBuf = [] -%}
+    {%- elseif inTable -%}
+      {%- set tableBuf = tableBuf|merge([line]) -%}
+
     {%- elseif line == '[lines]' -%}
       {%- set inLines = true -%}
       {%- set lineBuf = [] -%}

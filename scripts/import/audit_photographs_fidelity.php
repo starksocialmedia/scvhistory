@@ -159,7 +159,20 @@ foreach ($entries as $e) {
     if ($added || $lost) {
         $rows[] = ['e' => $e, 'key' => $key, 'added' => $added, 'lost' => $lost,
                    'short' => $lostShort, 'prose' => $lostProse, 'sample' => $lostSample,
-                   'chrome' => $chrome, 'aCount' => count($aLines), 'bCount' => count($bLines)];
+                   'chrome' => $chrome, 'aCount' => count($aLines), 'bCount' => count($bLines),
+                   'wLost' => $wLost, 'wAdded' => $wAdded,
+                   'srcWords' => $srcWords, 'ourWords' => $ourWords,
+                   /* The actual missing words, so the residue can be named
+                      rather than guessed at. */
+                   'missing' => (function () use ($aw, $bw) {
+                       $out = [];
+                       foreach ($aw as $w => $n) {
+                           $d = $n - ($bw[$w] ?? 0);
+                           if ($d > 0) { $out[$w] = $d; }
+                       }
+                       arsort($out);
+                       return array_slice($out, 0, 25, true);
+                   })()];
     }
 }
 
@@ -225,7 +238,42 @@ $out[] = '| **source words missing from ours** | **' . number_format($totalWords
 $out[] = '| our words not in the source | ' . number_format($totalWordsAdded) . ' |';
 $out[] = '| **records holding under a third of the source words** | **' . $wordGutted . '** |';
 $out[] = '';
-$out[] = '## The ' . min($LIST_TOP, count($rows)) . ' worst, added first';
+/* Under a third by line, and the worst by missing words. Both named, because
+   "5,820 words missing" is a number and not an answer. */
+$thin = array_values(array_filter($rows, fn($r) => $r['aCount'] > 20 && $r['bCount'] < $r['aCount'] / 3));
+usort($thin, fn($x, $y) => ($y['aCount'] - $y['bCount']) <=> ($x['aCount'] - $x['bCount']));
+$out[] = '## Still under a third of their source, by line (' . count($thin) . ')';
+$out[] = '';
+$out[] = '| record | source lines | ours | source words | our words | words missing |';
+$out[] = '|---|---:|---:|---:|---:|---:|';
+foreach ($thin as $r) {
+    $out[] = '| [' . $r['e']->title . '](' . $r['e']->url . ') `' . $r['key'] . '` | '
+           . $r['aCount'] . ' | ' . $r['bCount'] . ' | ' . $r['srcWords'] . ' | '
+           . $r['ourWords'] . ' | ' . $r['wLost'] . ' |';
+}
+$out[] = '';
+
+$byWords = $rows;
+usort($byWords, fn($x, $y) => $y['wLost'] <=> $x['wLost']);
+$out[] = '## The 20 records missing the most words';
+$out[] = '';
+foreach (array_slice($byWords, 0, 20) as $r) {
+    $out[] = '### ' . $r['e']->title . ' (' . $r['wLost'] . ' words missing of ' . $r['srcWords'] . ')';
+    $out[] = '';
+    $out[] = '- ' . $r['e']->url . ' `' . $r['key'] . '`';
+    $out[] = '- source ' . $r['aCount'] . ' lines / ' . $r['srcWords'] . ' words, ours '
+           . $r['bCount'] . ' lines / ' . $r['ourWords'] . ' words';
+    $out[] = '- missing words, most frequent first: `'
+           . implode('`, `', array_map(fn($w, $n) => $w . ' x' . $n,
+                                       array_keys($r['missing']), array_values($r['missing']))) . '`';
+    if ($r['sample']) {
+        $out[] = '- lost lines, a sample:';
+        foreach (array_slice($r['sample'], 0, 5) as $l) { $out[] = '  - `' . str_replace('`', "'", mb_substr($l, 0, 140)) . '`'; }
+    }
+    $out[] = '';
+}
+
+$out[] = '## The ' . min($LIST_TOP, count($rows)) . ' worst by line, added first';
 $out[] = '';
 foreach (array_slice($rows, 0, $LIST_TOP) as $r) {
     $out[] = '### ' . $r['e']->title;
