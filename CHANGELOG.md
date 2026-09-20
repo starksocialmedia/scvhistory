@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-09-20
+
+- Agent: Claude Code
+- Date: 2026-09-20
+- Done: signature enlarged to 20px with more space above the rule, templates/photographs/_entry.twig rebuilt from a stub onto the shared record chrome, the long-paragraph report, and the fidelity audit across the 1,544 photographs. Reports at web/review/long-paragraphs.md and web/review/photographs-fidelity.md.
+- Decisions: the photograph plate resolves by photoSourceCode against the volume by filename stem, so an image appears the moment it lands, and until then the page says the image is not held rather than showing an empty frame. Navigation is dropped at render on that template only; the stored bodies are untouched because cleaning them is a separate script. The long-paragraph verdict turns on the source's p count rather than its block count, because blocks include table cells.
+- Blockers: both audits imply rewriting 1,544 bodies and neither was applied. The meta description is still built from the raw body, so the navigation text is in the page description on all 1,544; that argues for cleaning the bodies rather than filtering at render.
+- Result: 3 of 1,544 photographs resolve to an image we hold. 32 of 33 paragraphs over 300 words lost their breaks in our import, not upstream, so this is ours and not Grok's. The import invented nothing across the whole section, one record has added lines and they are its own image tokens, but 1,517 records lost lines, 28,256 in all, 26,125 of them one-line list entries; 99 records hold under a third of their source. lw2717, the Camulos Cemetery Census, is 93 lines on the legacy page and 218 characters here.
+- Next: a decision on re-importing the photograph bodies, and the body cleaning pass that would take the navigation out of the stored text.
+
 2026-09-19
 
 - Agent: Claude Code
