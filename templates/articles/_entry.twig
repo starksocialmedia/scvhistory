@@ -232,13 +232,21 @@
     {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText', words: words } only %}
 
     {% if lead %}
-      <p style="font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.48; color: #17254C; margin: 34px 0 0; max-width: 34em; text-wrap: pretty">{{ lead }}</p>
+      {#- 700px, not 40em. An em in max-width resolves against the element's own
+          font size, so 40em on 24px Playfair is 960px and on 17.5px body text is
+          700px. The design writes 34em on both and they come out 816 and 595,
+          which is the 221px step between the lead and the body that reads as a
+          hole down the right of the page. The measure is one measure, so it is
+          stated once, in the pixels the body text makes of it. -#}
+      <p style="font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.48; color: #17254C; margin: 34px 0 0; max-width: 700px; text-wrap: pretty">{{ lead }}</p>
     {% endif %}
 
-    <div class="rec-body" id="recText" style="max-width: 34em; margin-top: 30px; font-size: 17.5px; line-height: 1.78">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id , footnotesFor: entry } %}</div>
+    <div class="rec-body" id="recText" style="max-width: 40em; margin-top: 30px; font-size: 17.5px; line-height: 1.78">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id , footnotesFor: entry } %}</div>
 
     {% if author and year matches '/^[0-9]{4}$/' %}
-      <div style="max-width: 34em; margin-top: 34px; display: flex; align-items: center; gap: 16px">
+      {#- The same again: 34em at the 16px this row inherits is 544px, a third
+          right edge. It takes the one measure. -#}
+      <div style="max-width: 700px; margin-top: 34px; display: flex; align-items: center; gap: 16px">
         <div style="flex: 1; height: 1px; background: #E2E4E8"></div>
         <div style="font-family: 'Playfair Display', serif; font-variant: small-caps; letter-spacing: .06em; font-size: 17px; color: #17254C; white-space: nowrap">{{ author.title }} &middot; {{ year }}</div>
       </div>

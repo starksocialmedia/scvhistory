@@ -252,6 +252,35 @@ prose measure or the column split, not the wrapper. 40em would put the prose at
 correction to our copy of it, so it is not made here. Say which and it is one
 line.
 
+### The lead and the body did not share a right edge, and that is the step
+
+Raised three times, and twice I answered the wrong question. The measurement I
+kept giving was the article column against the sidebar, which did match. The
+defect was inside the column.
+
+`max-width` in `em` resolves against the element's **own** font size. The design
+writes `34em` on the lead, on the body and on the signature row, and those three
+elements are 24px, 17.5px and 16px, so they render at **816, 595 and 544**. Three
+right edges, the widest 272px past the narrowest, stepping down the page. That is
+the ragged channel, and it is in the design file itself rather than in our copy
+of it.
+
+One measure, stated once, in the pixels the body text makes of it:
+
+| | before | now |
+|---|---:|---:|
+| lead paragraph | 816 | 700 |
+| body | 595 | 700 |
+| signature row | 544 | 700 |
+| right edge of all three | 1156 / 935 / 884 | 1040 |
+| **prose right edge to sidebar card** | 221 | **196** |
+
+The measure is 40em of body text, on Nathan's instruction, because 34em left a
+301px channel that read as a hole. 40em at 17.5px is 700px. The lead is set in
+px rather than em, because 40em on 24px Playfair would be 960 and the step would
+come straight back. The inline image captions and the footnote blocks take the
+same 700.
+
 ---
 
 ## Not done
