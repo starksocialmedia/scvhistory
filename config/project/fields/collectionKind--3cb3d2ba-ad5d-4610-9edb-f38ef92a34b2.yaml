@@ -1,0 +1,55 @@
+columnSuffix: null
+handle: collectionKind
+instructions: 'What shape of thing this collection is, which decides how it is listed and which controls it offers. Book: written to be read in order, so it has chapters and a first page, and it is the only kind that offers "Start reading". Column: a run by one author over time, listed by year, with no beginning. Catalogue: discrete numbered items such as issues of a periodical. Topic: pieces by different hands gathered because they share a subject.'
+name: 'Collection Kind'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Book, read in order'
+        -
+          - value
+          - book
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Column, one author over time'
+        -
+          - value
+          - column
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Catalogue, numbered items'
+        -
+          - value
+          - catalogue
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Topic, gathered by subject'
+        -
+          - value
+          - topic
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown
