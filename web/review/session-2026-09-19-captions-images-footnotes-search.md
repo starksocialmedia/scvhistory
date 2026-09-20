@@ -318,3 +318,94 @@ nothing else in the column stops where the paragraphs stop.
 - Several legacy bodies carry a caption as a body paragraph, ending "Click image
   to enlarge." The caption cleaner handles the asset side; the body side is
   untouched and is a candidate for the fix list.
+
+---
+
+## 7. The photograph record, the long paragraphs, and the fidelity audit
+
+### templates/photographs/_entry.twig
+
+It was an h1, a `featuredImage` that is never set, and the body through
+`nl2br`. 1,544 records, the largest section in the archive, rendering as raw
+text. It now uses the same chrome as the other twelve types: band, kicker,
+chips, tools row, prose partial with footnotes and inline images, photographs
+grid, cite, source link, relations, tags.
+
+Two measured facts shaped it.
+
+**The records are feature pages, not bare photographs.** They carry prose, often
+several hundred words, one of them 3,202. So the body goes through
+`_partials/prose` like anything else rather than being treated as a caption.
+
+**We hold the page and not the picture. 3 of 1,544 resolve to an asset.** The
+plate resolves by `photoSourceCode` against the volume by filename stem, so an
+image appears the moment it lands. Until then the page says so, with the legacy
+code and the original URL. An empty frame would read as a broken page rather
+than as a known gap.
+
+Navigation is dropped at render: "Click image to enlarge" is the instruction
+under a thumbnail on a page that had one. Whole lines only, plus the bare `|`
+the removed control hung off, which `prose.twig`'s rejoin rule would otherwise
+glue to the line above. **The stored bodies are untouched.** A cleaning pass is
+a separate script.
+
+One thing the template cannot fix: the `<meta name="description">` is still
+built from the raw body, so the navigation text is in the page description on
+all 1,544. That is `_partials/head/meta.twig` reading the stored field, and it
+argues for cleaning the bodies rather than filtering at render.
+
+### The long paragraphs: the breaks are ours, not Grok's
+
+The brief was to report the shape and stop if the loss was upstream. It is not
+upstream.
+
+`legacyHtml` is empty on every record that carries a long paragraph, so Craft
+cannot answer the question. The crawl can: `body_html` is in the inventories.
+`build_legacy_html_index.py` reduces 55MB of it to four numbers a page.
+
+| | |
+|---|---:|
+| paragraphs of 300+ words | 33 |
+| **breaks lost in our import** | **32** |
+| never had breaks upstream | 0 |
+| genuinely one paragraph | 0 |
+| not in the crawl, cannot judge | 1 |
+
+The test is conservative: the source's `<p>` count against our paragraph count,
+not the block count, because blocks include table cells and a page built on a
+table would look like it had lost breaks it never had. A 505-word "paragraph"
+with 26 sentence ends, from a source with 33 `<p>` where we stored 16
+paragraphs, is not a long paragraph.
+
+This is an importer fault and a body rewrite, so it is not applied here.
+
+### The fidelity audit: nothing invented, a great deal dropped
+
+All 1,544 matched a legacy page. The direction that matters is clean.
+
+| | |
+|---|---:|
+| identical line for line | 27 |
+| **records with added lines** | **1** |
+| added lines in total | **2** |
+| records with lost lines | 1,517 |
+| lost lines in total | 28,256 |
+| of those, list entries under 6 words | 26,125 |
+| of those, prose lines | 2,131 |
+| **records holding under a third of their source** | **99** |
+
+**The import invented nothing.** The only two added lines are `[image:1]` and
+`[image:2]`, which are the import's own tokens.
+
+**It dropped a great deal.** `lw2717`, the Camulos Cemetery Census, has 93 lines
+on the legacy page and 218 characters in our database. The roughly eighty names
+on that census are not in the archive. `lw2575c`, a transcribed 1934 letter, has
+137 source lines and 59 of ours.
+
+The shape is consistent: lines were dropped, not merged. A merge would show as
+an added line and there is one added line in the whole section. What the
+importer lost is one-line-per-item content, which on this section means census
+rows, name lists and transcribed correspondence.
+
+Both of these are re-import work on 1,544 records and need a decision before
+anything is written.
