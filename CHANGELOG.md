@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-20
+- Done: derivedImageLinks as its own field with the graph and JSON-LD taught to tell it from a curated relation, inline images reduced to one floated treatment, the Photos and Documents grid rebuilt as record tiles, four sidebar name lists merging curated and derived, the footnote block moved out of the author box and split into Editor's and Author's Notes, and a source column for the footnotes table. Report at web/review/derived-links-and-article-layout.md.
+- Decisions: the field is the provenance, so no extra column and no parallel table. A curated edge wins over a derived one when a pair is joined both ways. JSON-LD never publishes a derived relation, because it is an assertion to the rest of the web. The inline image rule is the size and the size is fixed, since on chapter 14 the full-column branch took the column for the 1001px picture and left the correct 400px one floated. Emphasis is rendered, never rewritten.
+- Blockers: the footnotes table had only number and note, so the source value is a schema change; the column and a backfill of 12 rows on 5 records to editor are written and not applied. Chapter 6 carries no webmaster note, so there is nothing on it to judge.
+- Result: the Notes block had been rendering inside the About the Author box, from my own script matching the last prose include on the page, which is the biography; the other twelve templates were placed correctly. Chapter 5 now has notes as a child of article, the author box holding only its heading and the name block, and the bio rendering em rather than asterisks. 1 people record carries unrendered markdown, 27 across the corpus.
+- Next: Nathan applies the field, the linker and the source column, then judges the note box on a record that has one.
+
+2026-09-20
+
+- Agent: Claude Code
+- Date: 2026-09-20
 - Done: the photograph body re-import written and dry-run against all 1,544, the fidelity audit and the long-paragraph report re-run against the dry-run output, /admin-preview added to render a rebuilt body without writing it, and a converter for the one webmaster note that is a footnote list. Reports at web/review/photograph-reimport-findings.md and photograph-reimport.md.
 - Decisions: transcribe the source HTML's own structure and infer nothing, because every census name is already its own p in the source. A separate field was rejected for not holding position, a render-time rule for being the same class of heuristic that caused the loss. Navigation is stripped at import rather than at render because it reaches the meta description. Fidelity is measured in words rather than lines, because the fix reflows and the line metric cannot see through that.
 - Blockers: link_images_to_records.php writes to relatedArticles and relatedPlaces, the curated entity review's own fields, and to the photo* fields the JSON-LD publishes. Not applied. It needs a derivedImageLinks field first; no migration, because it has never been run.

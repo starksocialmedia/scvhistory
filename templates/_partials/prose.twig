@@ -37,7 +37,12 @@
 #}
 {% if images is defined and images|length %}
   {% css %}
-  .rec-inline{float:right;width:40%;margin:4px 0 22px 30px;clear:right}
+  {#- Always floated, never the full column. 280px in an 840px measure leaves
+      about 520px of text beside it, which is a readable line, and the picture
+      is large enough to see. Two in one paragraph stack down the right rather
+      than sitting side by side, which is what float does on its own once
+      neither of them clears. -#}
+  .rec-inline{float:right;width:280px;margin:4px 0 22px 30px}
   .rec-inline button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;font:inherit;text-align:inherit}
   .rec-inline img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
   .rec-inline button:hover img{border-color:#C4A031}
@@ -48,19 +53,10 @@
   .rec-inline figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.5;margin-top:8px}
   .rec-inline .cr{display:block;font-style:normal;font-size:12px;color:#5B6472;margin-top:3px}
 
-  {#- A picture too tall to sit beside a paragraph, and one whose paragraph is
-      too short to wrap around it, take the column instead of floating. A tall
-      portrait floated at 40% pushes text past the end of its own paragraph and
-      leaves a channel of white down the page. -#}
-  .rec-inline.full{float:none;width:100%;margin:30px auto;text-align:center}
-  .rec-inline.full figcaption{max-width:none;text-align:left}
-  {#- Capped against the window, not just the column. A full-column picture in
-      an 840px measure is 840px tall as well when it is square, which fills the
-      screen and pushes the sentence that introduced it out of view. Height is
-      the dimension that matters, because width is already bounded by the
-      column and height is not. -#}
-  .rec-inline.full img{max-height:70vh;width:auto;max-width:100%;margin:0 auto}
-  @media(max-height:700px){.rec-inline.full img{max-height:62vh}}
+  {#- Tall pictures are capped by height rather than allowed to run down the
+      page. The width is the same 280px whatever the shape. -#}
+  .rec-inline img{max-height:460px;object-fit:contain;object-position:top}
+  .rec-inline figcaption{font-size:12.5px}
 
   {#- Nothing structural may start beside a float. A heading, the signature
       rule, the photographs and the foot of the piece all begin again at the
@@ -68,7 +64,8 @@
   .rec-body h2,.rec-body h3,.rec-body h4,.rec-body hr,.ar-sig,.rec-sig,.rec-photos,.rec-foot{clear:both}
 
   {#- Below the point where 40% of the column stops being a usable picture. -#}
-  @media(max-width:700px){.rec-inline,.rec-inline.full{float:none;width:100%;margin:0 0 22px}}
+  {#- Below the point where 280px beside text leaves a usable line. -#}
+  @media(max-width:700px){.rec-inline{float:none;width:100%;max-width:420px;margin:0 auto 22px}}
   {% endcss %}
 {% endif %}
 {% css %}
@@ -258,29 +255,20 @@
       {%- endif -%}
     {%- endif -%}
     {%- if asset -%}
-      {#- Two reasons to take the whole column rather than float. A portrait
-          taller than it is wide by a fifth, because the text beside it runs out
-          long before the picture does. And a paragraph under about 260
-          characters, because there is not enough of it to wrap. Where the
-          dimensions are unknown the image floats, which is the common case. -#}
-      {%- set nextPara = '' -%}
-      {%- for j in 1..3 -%}
-        {%- set cand = lines[loop.parent.loop.index0 + j] is defined ? lines[loop.parent.loop.index0 + j]|trim : '' -%}
-        {%- if nextPara == '' and cand and not (cand matches '/^\[image:\d+\]$/') -%}
-          {%- set nextPara = cand -%}
-        {%- endif -%}
-      {%- endfor -%}
-      {%- set tall = asset.height and asset.width and asset.height > asset.width * 1.2 -%}
-      {%- set thin = nextPara == '' or nextPara|striptags|length < 260 -%}
-      {#- A great many of the legacy images are 120px thumbnails standing in for
-          a full scan that was never fetched. Neither 40% of the column nor the
-          whole of it is a width one of those can carry, so nothing is ever
-          drawn wider than the pixels it actually has. A small image stays
-          floated whatever the paragraph does, because taking the column for a
-          120px picture is the worst of both. -#}
-      {%- set small = asset.width and asset.width < 300 -%}
-      <figure class="rec-inline{{ (tall or thin) and not small ? ' full' : '' }}"
-        {%- if asset.width %} style="max-width: {{ asset.width }}px{{ small ? '; width: ' ~ asset.width ~ 'px' : '' }}"{% endif %}>
+      {#- One treatment. The picture floats right at 280px and the text wraps,
+          whatever its shape and whatever follows it.
+
+          There used to be a full-column branch for tall pictures and short
+          paragraphs. It was wrong in both directions: on chapter 14 it took the
+          column for a 1001px picture and left the 400px one floated, and the
+          floated one was the one that read correctly. The rule is the size, and
+          the size is fixed.
+
+          The only thing still read off the asset is its own pixel width, so a
+          120px thumbnail standing in for a scan that was never fetched is not
+          blown up to 280 and turned to mush. -#}
+      {%- set natural = asset.width and asset.width < 280 ? asset.width : null -%}
+      <figure class="rec-inline"{% if natural %} style="width: {{ natural }}px"{% endif %}>
         {#- The caption is photoCaptionExt, the field the asset carries for it,
             written from the legacy extraction by
             scripts/import/apply_extracted_captions.php.
@@ -383,6 +371,35 @@
           {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
+      {#- Emphasis the migration left as characters. A bio reads "*Santa Clarita:
+          Valley of the Golden Dream*" with the asterisks showing, because the
+          previous site stored markdown and nothing here renders it.
+
+          Rendered, not rewritten: the stored text keeps its asterisks and this
+          is a display decision that can be changed or removed. Conservative on
+          purpose, because an asterisk is also a footnote marker and a
+          multiplication sign. The paragraph must contain an even number of
+          them and no more than eight, and each span must have no space against
+          the asterisks and must contain a letter. 37 markers on 27 records, all
+          single asterisk; there is no bold in the corpus to handle. -#}
+      {%- set stars = out|split('*')|length - 1 -%}
+      {%- if stars > 0 and stars % 2 == 0 and stars <= 8 -%}
+        {%- set bits = out|split('*') -%}
+        {%- set rebuilt = '' -%}
+        {%- for bit in bits -%}
+          {%- if loop.index0 % 2 == 1
+                 and bit|trim != '' and bit == bit|trim
+                 and bit|length <= 200 and bit matches '/[A-Za-z]/' -%}
+            {%- set rebuilt = rebuilt ~ '<em>' ~ bit ~ '</em>' -%}
+          {%- elseif loop.index0 % 2 == 1 -%}
+            {%- set rebuilt = rebuilt ~ '*' ~ bit ~ '*' -%}
+          {%- else -%}
+            {%- set rebuilt = rebuilt ~ bit -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- set out = rebuilt -%}
+      {%- endif -%}
+
       {#- ── Footnotes ────────────────────────────────────────────────
 
           Two shapes arrive in the body and both become the same thing.

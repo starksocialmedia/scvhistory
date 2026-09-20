@@ -14,9 +14,9 @@
  *
  * Two outputs, and they are deliberately separate.
  *
- *   The relation. Written onto the record through whichever relation field the
- *   pair of types actually has. This is a database change and is what $APPLY
- *   governs.
+ *   The relation. Written to derivedImageLinks and to nothing else, so a
+ *   derived relation is never mistaken for one the archive confirmed. This is a
+ *   database change and is what $APPLY governs.
  *
  *   The render layer, templates/_data/image-links/<id>.json, one file per
  *   record, mapping an asset filename to the URL it should link to. This is
@@ -39,17 +39,38 @@ $root     = \Craft::getAlias('@root');
 $LAYER_DIR = $root . '/templates/_data/image-links';
 $REPORT    = \Craft::getAlias('@webroot') . '/review/image-links.md';
 
-/* Which relation field to use for a target, in order of preference. The first
-   one the source record actually carries wins. */
-$FIELDS_BY_SECTION = [
-    'photographs'   => ['relatedPhotographs', 'photoArticles', 'relatedArticles'],
-    'articles'      => ['relatedArticles', 'photoArticles'],
-    'persons'       => ['photoPeople', 'relatedPersons'],
-    'places'        => ['photoPlaces', 'relatedPlaces'],
-    'organizations' => ['photoOrganizations'],
-    'events'        => ['photoEvents', 'relatedEvents'],
-    'groups'        => ['photoGroups'],
-];
+/* One field, derivedImageLinks, whatever the target is.
+ *
+ * This used to choose among relatedArticles, relatedPlaces, photoPeople and the
+ * rest, which are the fields the curated entity review writes and the JSON-LD
+ * publishes. A relation somebody confirmed and a relation inferred from an href
+ * would have been indistinguishable in the control panel, in the graph and in
+ * the structured data, with no way back. The field is the provenance now:
+ * anything here came from a legacy image link and nothing else writes to it. */
+$FIELD = 'derivedImageLinks';
+
+/* The chip a tile prints. A photograph record is not always a photograph: the
+   legacy section holds clippings, maps, documents and programmes, and the title
+   is where the archive says which. Read from the record, not invented. */
+$KIND = function (\craft\elements\Entry $t): string {
+    $section = $t->section->handle;
+    if ($section !== 'photographs') {
+        return rtrim(ucfirst($section), 's') === 'Person' ? 'Person' : ucfirst(rtrim($section, 's'));
+    }
+    $title = mb_strtolower((string)$t->title, 'UTF-8');
+    foreach ([
+        'Map'       => ['map', 'diseño', 'diseno', 'survey', 'plat'],
+        'Clipping'  => ['signal', 'times', 'herald', 'dispatch', 'newspaper', 'clipping', 'headline'],
+        'Postcard'  => ['postcard'],
+        'Letter'    => ['letter', 'correspondence', 'envelope', 'telegram'],
+        'Document'  => ['directory', 'programme', 'program book', 'deed', 'census', 'certificate',
+                        'report', 'brochure', 'catalog', 'ledger', 'roster', 'menu', 'ticket'],
+        'Poster'    => ['lobby card', 'poster', 'press kit', 'handbill'],
+    ] as $label => $words) {
+        foreach ($words as $w) { if (str_contains($title, $w)) { return $label; } }
+    }
+    return 'Photograph';
+};
 
 /* ------------------------------------------------- the legacy link graph */
 
@@ -119,7 +140,29 @@ foreach ($links as $srcKey => $map) {
         if (!isset($byKey[$targetKey])) { $missingTarget++; continue; }
         $t = $byKey[$targetKey];
         if ($t->id === $e->id) { continue; }
-        $layer[$filename] = ['url' => $t->url, 'title' => $t->title];
+
+        /* Enough for the templates to route and label the target without a
+           query per tile: which side of the page it belongs on, what chip to
+           print, and the date as the source printed it. */
+        $th = [];
+        foreach ($t->getFieldLayout()->getCustomFields() as $tf) { $th[] = $tf->handle; }
+        $date = '';
+        foreach (['photoDate', 'originalPublishDate', 'eventDate', 'dateEstablished', 'dateFounded'] as $dh) {
+            if (in_array($dh, $th, true)) {
+                $v = trim((string)$t->getFieldValue($dh));
+                if ($v !== '') { $date = $v; break; }
+            }
+        }
+
+        $layer[$filename] = [
+            'id'      => $t->id,
+            'url'     => $t->url,
+            'title'   => $t->title,
+            'section' => $t->section->handle,
+            'type'    => $t->type->handle,
+            'kind'    => $KIND($t),
+            'date'    => $date,
+        ];
         $targets[$t->id] = $t;
     }
     if (!$layer) { continue; }
@@ -129,15 +172,11 @@ foreach ($links as $srcKey => $map) {
     $layerFiles++;
     $layerLinks += count($layer);
 
-    /* Group the targets by the field that can hold them. */
-    foreach ($targets as $t) {
-        $section = $t->section->handle;
-        $candidates = $FIELDS_BY_SECTION[$section] ?? [];
-        $field = null;
-        foreach ($candidates as $c) { if (in_array($c, $have, true)) { $field = $c; break; } }
-        if ($field === null) { $noField[$section . ' on ' . $e->section->handle] = true; continue; }
-        $relPlan[$e->id][$field][$t->id] = true;
+    if (!in_array($FIELD, $have, true)) {
+        $noField[$e->section->handle] = true;
+        continue;
     }
+    foreach ($targets as $t) { $relPlan[$e->id][$FIELD][$t->id] = true; }
 }
 
 echo 'render layer files written: ' . $layerFiles . PHP_EOL;
@@ -152,7 +191,11 @@ foreach ($relPlan as $eid => $byField) {
 }
 echo 'records with relations to write: ' . $recCount . PHP_EOL;
 echo 'relations to write: ' . $relCount . PHP_EOL;
-if ($noField) { echo 'no relation field for: ' . implode('; ', array_keys($noField)) . PHP_EOL; }
+if ($noField) {
+    echo 'these sections have no ' . $FIELD . ' field yet, so their relations are not planned: '
+       . implode(', ', array_keys($noField)) . PHP_EOL;
+    echo 'Run scripts/import/add_derived_image_links_field.php first.' . PHP_EOL;
+}
 
 if ($APPLY) {
     foreach ($relPlan as $eid => $byField) {

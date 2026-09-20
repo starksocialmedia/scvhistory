@@ -86,11 +86,30 @@
     because Twig's merge is array_merge, which renumbers integer keys. -#}
 {% set edges = {} %}
 
+{#- derivedImageLinks is not a relationship the archive asserts. It says the
+    legacy page had an image that linked one record to the other, which is worth
+    drawing and is not the same claim as a curated relation. It is marked so the
+    explorer can weight it, style it or drop it, and so a reader is never shown
+    an inferred edge as a confirmed one.
+
+    A pair joined both ways keeps the curated edge: a confirmed relation that
+    also happens to have been linked from a picture is confirmed. -#}
+{% set derivedCount = 0 %}
 {% for row in craft.app.db.createCommand(directSql).queryAll() %}
   {% set lo = min(row.a, row.b) %}{% set hi = max(row.a, row.b) %}
   {% set k = 'e' ~ lo ~ '_' ~ hi %}
+  {% set isDerived = row.field == 'derivedImageLinks' %}
   {% if edges[k] is not defined %}
-    {% set edges = edges|merge({ (k): { source: lo, target: hi, via: 'direct', label: row.field } }) %}
+    {% set edges = edges|merge({ (k): {
+      source: lo, target: hi,
+      via: isDerived ? 'derived' : 'direct',
+      derived: isDerived,
+      label: row.field
+    } }) %}
+    {% if isDerived %}{% set derivedCount = derivedCount + 1 %}{% endif %}
+  {% elseif not isDerived and edges[k].derived %}
+    {% set edges = edges|merge({ (k): edges[k]|merge({ via: 'direct', derived: false, label: row.field }) }) %}
+    {% set derivedCount = derivedCount - 1 %}
   {% endif %}
 {% endfor %}
 
@@ -142,9 +161,12 @@
     generated: now|date('c'),
     nodes: out|length,
     edges: edges|length,
+    derivedEdges: derivedCount,
     isolated: isolated,
     articlesTooBroadForAClique: skippedBroad,
-    note: 'Articles are edges, not nodes. War memorials and military profiles are not drawn.'
+    note: 'Articles are edges, not nodes. War memorials and military profiles are not drawn. '
+        ~ 'An edge marked derived was inferred from a legacy image link and is not a relationship '
+        ~ 'the archive has confirmed.'
   },
   nodes: out,
   links: edges|values

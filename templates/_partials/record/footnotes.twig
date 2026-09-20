@@ -25,6 +25,9 @@
 
   Params:
     entry   the record
+    editor  optional, the record's editor, for the attribution line
+    source  which notes to render, editor or author. Default editor. A page can
+            call this twice and get both sections.
 #}
 {%- set handles = [] -%}
 {%- for f in entry.fieldLayout.customFields -%}{%- set handles = handles|merge([f.handle]) -%}{%- endfor -%}
@@ -44,12 +47,22 @@
 
 {#- Shortcode notes, in document order. Only where the table is empty: once the
     conversion has run, the rows are the authority and the body holds [N]. -#}
+{#- Which source this call renders. An empty cell reads as editor, so a row
+    written before the source column existed behaves, and so the control panel
+    only has to be filled in for the exception. -#}
+{%- set want = source|default('editor') -%}
+
 {%- set notes = [] -%}
 {%- if rows|length -%}
   {%- for r in rows -%}
-    {%- set notes = notes|merge([{ n: (r.number ?? '')|trim ?: loop.index, t: (r.note ?? '')|trim }]) -%}
+    {%- set rs = (r.source ?? '')|trim ?: 'editor' -%}
+    {%- if rs == want -%}
+      {%- set notes = notes|merge([{ n: (r.number ?? '')|trim ?: loop.index, t: (r.note ?? '')|trim }]) -%}
+    {%- endif -%}
   {%- endfor -%}
-{%- elseif prose|lower|split('[mfn')|length > 1 -%}
+{%- elseif want == 'editor' and prose|lower|split('[mfn')|length > 1 -%}
+  {#- Shortcode notes are Leon's annotations on the previous site, so they are
+      the editor's by definition and never appear in the author's section. -#}
   {%- for part in prose|split('[mfn')|slice(1) -%}
     {%- set afterOpen = part|split(']')|length > 1 ? part|slice(part|split(']')|first|length + 1) : '' -%}
     {%- if afterOpen and afterOpen|split('[/mfn]')|length > 1 -%}
@@ -58,19 +71,23 @@
   {%- endfor -%}
 {%- endif -%}
 
-{%- set hasMarker = prose matches '/(?<![A-Za-z0-9])\\[\\s*\\d{1,3}\\s*\\](?!\\d)/' -%}
+{%- set hasMarker = want == 'editor' and prose matches '/(?<![A-Za-z0-9])\\[\\s*\\d{1,3}\\s*\\](?!\\d)/' -%}
+{%- set notesOn = want == 'editor' ? notesOn : null -%}
 
 {% if notes|length or notesOn or hasMarker %}
 {% css %}
 .rec-fn{margin:44px 0 0;clear:both}
 .rec-fn .rule{height:1px;background:#E2E4E8;margin-bottom:16px}
-.rec-fn .lab{font-family:Jost,sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#5B6472;margin-bottom:13px}
+.rec-fn .lab{font-family:Jost,sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin-bottom:4px}
+.rec-fn .by{font-size:13.5px;color:#5B6472;margin-bottom:14px}
 .rec-fn ol{list-style:none;margin:0;padding:0}
 .rec-fn li{display:flex;gap:11px;font-size:15px;line-height:1.65;color:#2C2C2C;margin-bottom:11px}
 .rec-fn li .n{flex:0 0 auto;font-family:Jost,sans-serif;font-size:13px;color:#7A5C1B;min-width:1.6em;padding-top:2px}
 .rec-fn li:target{background:#FDF7EA}
 .rec-fn .back{margin-left:7px;color:#7A5C1B;text-decoration:none;font-size:13px}
 .rec-fn .back:hover{text-decoration:underline}
+.rec-fn--author{margin:22px 0 0}
+.rec-fn--author .lab{color:#7A5C1B}
 .rec-fn-away{margin:44px 0 0;clear:both;font-size:14.5px;line-height:1.7;color:#5B6472}
 .rec-fn-away a{color:#7A5C1B}
 {#- On paper the arrow back to the text is meaningless. -#}
@@ -79,9 +96,21 @@
 {% endif %}
 
 {% if notes|length %}
-  <section class="rec-fn" id="footnotes">
-    <div class="rule"></div>
-    <div class="lab">NOTES</div>
+  {#- "Editor's Notes", not "Notes". On this archive a footnote is almost always
+      Leon Worden annotating a reprinted piece, not the original author writing
+      about their own text. Reynolds wrote chapter 5 in 1976; the note correcting
+      Fustero's date of death from the county death certificate is the editor's.
+      Calling it "Notes" under a piece bylined Reynolds attributes it to him.
+
+      The attribution names the record's own editor where one is set, and falls
+      back to the archive. It cannot yet name a per-note source, because the
+      footnotes table has only number and note; see the report. -#}
+  <section class="rec-fn{{ want == 'author' ? ' rec-fn--author' : '' }}" id="footnotes{{ want == 'author' ? '-author' : '' }}">
+    {%- if want != 'author' %}<div class="rule"></div>{% endif %}
+    <div class="lab">{{ want == 'author' ? 'AUTHOR&rsquo;S NOTES' : 'EDITOR&rsquo;S NOTES' }}</div>
+    {%- if want != 'author' %}
+    <div class="by">Notes by {{ editor is defined and editor ? editor.title : 'Leon Worden' }}, SCVHistory.com</div>
+    {%- endif %}
     <ol>
       {% for note in notes %}
         <li id="fn-{{ note.n }}">

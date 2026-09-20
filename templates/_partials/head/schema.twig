@@ -68,7 +68,13 @@
   {% if h in H %}{% set V = V|merge({ (h): (attribute(el, h) ~ '')|trim }) %}{% endif %}
 {% endfor %}
 
-{#- A related-entry list, read only where the layout carries the field. -#}
+{#- A related-entry list, read only where the layout carries the field.
+
+    derivedImageLinks is deliberately absent from this list and must stay
+    absent. Those relations were inferred from an image's link target on the
+    legacy page, not confirmed by anybody, and JSON-LD is an assertion to the
+    rest of the web. Publishing them would put the archive's name behind a
+    guess. They render on the page, labelled, which is a different thing. -#}
 {% macro dummy() %}{% endmacro %}
 {% set REL = {} %}
 {% for h in ['writtenBy','editedBy','publishedBy','subjectPerson','subjectOrganization','depictsPlace',
