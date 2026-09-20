@@ -1,0 +1,4 @@
+services:
+  web:
+    volumes:
+      - "/Volumes/Reggie/SCVHistory:/mnt/reggie:ro"
