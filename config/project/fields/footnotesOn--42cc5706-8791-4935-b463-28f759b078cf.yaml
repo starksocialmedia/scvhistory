@@ -1,0 +1,24 @@
+columnSuffix: null
+handle: footnotesOn
+instructions: "The record that holds this piece's notes, where they were published apart from it. The legacy site kept one notes page for a whole series. Setting this makes every marker in the prose link there. Leave it empty if the notes are on this record, or if they are not in the archive at all."
+name: 'Notes Are On'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources: '*'
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

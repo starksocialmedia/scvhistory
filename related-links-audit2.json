@@ -1,0 +1,584 @@
+{
+  "totals": {
+    "pages_with_related_block": 2202,
+    "pages_missing_related_links": 118,
+    "missing_link_count": 863
+  },
+  "by_file": [
+    {
+      "file": "reynolds.json",
+      "pages": 23,
+      "no_html": 1,
+      "with_block": 3,
+      "miss_pages": 0,
+      "miss_links": 0,
+      "examples": []
+    },
+    {
+      "file": "reynolds-full.json",
+      "pages": 80,
+      "no_html": 1,
+      "with_block": 17,
+      "miss_pages": 1,
+      "miss_links": 1,
+      "examples": [
+        {
+          "legacy_key": "part33",
+          "header": "SULPHUR SPRINGS SCHOOL",
+          "related": 8,
+          "missing": 1,
+          "links_out": 10,
+          "sample": [
+            [
+              "\u2022 Sulphur Springs School",
+              "/scvhistory/signal/worden/lw030597.htm"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "file": "worden.json",
+      "pages": 219,
+      "no_html": 16,
+      "with_block": 1,
+      "miss_pages": 1,
+      "miss_links": 1,
+      "examples": [
+        {
+          "legacy_key": "lw030597",
+          "header": "SULPHUR SPRINGS SCHOOL",
+          "related": 8,
+          "missing": 1,
+          "links_out": 14,
+          "sample": [
+            [
+              "\u2022 Sulphur Springs School",
+              "/scvhistory/signal/worden/lw030597.htm"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "file": "oldtownnewhall.json",
+      "pages": 231,
+      "no_html": 1,
+      "with_block": 4,
+      "miss_pages": 4,
+      "miss_links": 14,
+      "examples": [
+        {
+          "legacy_key": "gazette1202-jacobs",
+          "header": "SHELBY JACOBS 1953 Hart Class President",
+          "related": 4,
+          "missing": 2,
+          "links_out": 8,
+          "sample": [
+            [
+              "",
+              "/scvhistory/hart1953yearbook.htm"
+            ],
+            [
+              "",
+              "/scvhistory/hb1902.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "gazette1201-commctr",
+          "header": "CITY'S SECONDDECADE 1997-2006",
+          "related": 6,
+          "missing": 6,
+          "links_out": 11,
+          "sample": [
+            [
+              "",
+              "/scvhistory/lw3117.htm"
+            ],
+            [
+              "",
+              "/scvhistory/sc9902.htm"
+            ],
+            [
+              "",
+              "/scvhistory/sc2001.htm"
+            ],
+            [
+              "",
+              "/oldtownnewhall/gazette/gazette1201-commctr.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "winger997",
+          "header": "NEWHALL SCHOOL DISTRICT LEADERSHIP",
+          "related": 3,
+          "missing": 1,
+          "links_out": 8,
+          "sample": [
+            [
+              "Introducing Marc Winger 1997",
+              "/oldtownnewhall/newhall/winger997.htm"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "file": "warmemorial.json",
+      "pages": 54,
+      "no_html": 0,
+      "with_block": 54,
+      "miss_pages": 54,
+      "miss_links": 747,
+      "examples": [
+        {
+          "legacy_key": "ww1_edwardguynorth",
+          "header": "SCV's WORLD WAR 1 CASUALTIES",
+          "related": 1,
+          "missing": 1,
+          "links_out": 11,
+          "sample": [
+            [
+              "SCV's WORLD WAR 1 CASUALTIES",
+              "/scvhistory/ww1casualties-index.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "ww2_albertmoore",
+          "header": "SCV's WORLD WAR II CASUALTIES",
+          "related": 23,
+          "missing": 23,
+          "links_out": 0,
+          "sample": [
+            [
+              "SCV's WORLD WAR II CASUALTIES",
+              "/warmemorial/ww2casualties-index.htm"
+            ],
+            [
+              "",
+              "/scvhistory/ww2_jamesrobertball.htm"
+            ],
+            [
+              "",
+              "/scvhistory/ww2_josephbbalsz.htm"
+            ],
+            [
+              "James A. Barlett",
+              "/warmemorial/ww2_jimbartlett.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "ww2_archibaldbeall",
+          "header": "SCV's WORLD WAR II CASUALTIES",
+          "related": 23,
+          "missing": 23,
+          "links_out": 3,
+          "sample": [
+            [
+              "SCV's WORLD WAR II CASUALTIES",
+              "/warmemorial/ww2casualties-index.htm"
+            ],
+            [
+              "",
+              "/scvhistory/ww2_jamesrobertball.htm"
+            ],
+            [
+              "",
+              "/scvhistory/ww2_josephbbalsz.htm"
+            ],
+            [
+              "James A. Barlett",
+              "/warmemorial/ww2_jimbartlett.htm"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "file": "mentryville.json",
+      "pages": 44,
+      "no_html": 36,
+      "with_block": 0,
+      "miss_pages": 0,
+      "miss_links": 0,
+      "examples": []
+    },
+    {
+      "file": "media.json",
+      "pages": 63,
+      "no_html": 9,
+      "with_block": 40,
+      "miss_pages": 5,
+      "miss_links": 38,
+      "examples": [
+        {
+          "legacy_key": "bonelli123056",
+          "header": "BONELLI STADIUM",
+          "related": 21,
+          "missing": 1,
+          "links_out": 22,
+          "sample": [
+            [
+              "",
+              "/gif/galleries/lw2703.html"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "hs7801",
+          "header": "50th ANNIVERSARY& State Landmark 1978/79",
+          "related": 3,
+          "missing": 3,
+          "links_out": 9,
+          "sample": [
+            [
+              "",
+              "/scvhistory/rs7801.htm"
+            ],
+            [
+              "",
+              "/gif/galleries/hs7801"
+            ],
+            [
+              "",
+              "/scvhistory/sg19780522dam.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "lp2014fossils",
+          "header": "FOSSILS",
+          "related": 12,
+          "missing": 12,
+          "links_out": 15,
+          "sample": [
+            [
+              "\u2022 Fault Zones",
+              "/gif/scvhistory/muehlberger1954.htm"
+            ],
+            [
+              "",
+              "/gif/scvhistory/maxson1928.htm"
+            ],
+            [
+              "",
+              "/gif/scvhistory/gs5801.htm"
+            ],
+            [
+              "",
+              "/gif/scvhistory/lw3749.htm"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "file": "coins.json",
+      "pages": 259,
+      "no_html": 222,
+      "with_block": 0,
+      "miss_pages": 0,
+      "miss_links": 0,
+      "examples": []
+    },
+    {
+      "file": "loose-pages.json",
+      "pages": 2,
+      "no_html": 0,
+      "with_block": 2,
+      "miss_pages": 0,
+      "miss_links": 0,
+      "examples": []
+    },
+    {
+      "file": "lw-features.json",
+      "pages": 1661,
+      "no_html": 10,
+      "with_block": 1223,
+      "miss_pages": 49,
+      "miss_links": 55,
+      "examples": [
+        {
+          "legacy_key": "lw0060",
+          "header": "FOSSILS",
+          "related": 12,
+          "missing": 1,
+          "links_out": 14,
+          "sample": [
+            [
+              "",
+              "/gif/galleries/lp2014fossils.html"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "lw030597",
+          "header": "SULPHUR SPRINGS SCHOOL",
+          "related": 8,
+          "missing": 1,
+          "links_out": 14,
+          "sample": [
+            [
+              "\u2022 Sulphur Springs School",
+              "/scvhistory/signal/worden/lw030597.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "lw2032",
+          "header": "SANDBERG'S SUMMIT HOTEL",
+          "related": 5,
+          "missing": 1,
+          "links_out": 7,
+          "sample": [
+            [
+              "",
+              "/scvhistory/lw2214a.htm"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "file": "lw-film.json",
+      "pages": 563,
+      "no_html": 0,
+      "with_block": 483,
+      "miss_pages": 0,
+      "miss_links": 0,
+      "examples": []
+    },
+    {
+      "file": "lw-disaster.json",
+      "pages": 226,
+      "no_html": 0,
+      "with_block": 172,
+      "miss_pages": 1,
+      "miss_links": 1,
+      "examples": [
+        {
+          "legacy_key": "lw3608",
+          "header": "50th ANNIVERSARY& State Landmark 1978/79",
+          "related": 3,
+          "missing": 1,
+          "links_out": 11,
+          "sample": [
+            [
+              "",
+              "/gif/galleries/hs7801"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "file": "lw-remainder.json",
+      "pages": 272,
+      "no_html": 10,
+      "with_block": 203,
+      "miss_pages": 3,
+      "miss_links": 6,
+      "examples": [
+        {
+          "legacy_key": "lw2551",
+          "header": "LOPEZ GOLD DISCOVERY",
+          "related": 23,
+          "missing": 1,
+          "links_out": 31,
+          "sample": [
+            [
+              "",
+              "/pico/prudhomme1922hssc.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "lw2575a",
+          "header": "A. RIVERA LETTERS",
+          "related": 19,
+          "missing": 4,
+          "links_out": 28,
+          "sample": [
+            [
+              "",
+              "/pico/ap9011.htm"
+            ],
+            [
+              "",
+              "/pico/ap9010.htm"
+            ],
+            [
+              "",
+              "/pico/ap9012.htm"
+            ],
+            [
+              "",
+              "/pico/ap9013.htm"
+            ]
+          ]
+        },
+        {
+          "legacy_key": "lw2732",
+          "header": "NEEDHAM RANCH",
+          "related": 22,
+          "missing": 1,
+          "links_out": 25,
+          "sample": [
+            [
+              "Appellate Ruling 2009",
+              "/scvhistory/gateking051309.pdf.html"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "file": "reynolds-full.json",
+      "legacy_key": "part33",
+      "header": "SULPHUR SPRINGS SCHOOL",
+      "missing": 1,
+      "links_out": 10,
+      "sample": [
+        "\u2022 Sulphur Springs School"
+      ]
+    },
+    {
+      "file": "worden.json",
+      "legacy_key": "lw030597",
+      "header": "SULPHUR SPRINGS SCHOOL",
+      "missing": 1,
+      "links_out": 14,
+      "sample": [
+        "\u2022 Sulphur Springs School"
+      ]
+    },
+    {
+      "file": "oldtownnewhall.json",
+      "legacy_key": "gazette1202-jacobs",
+      "header": "SHELBY JACOBS 1953 Hart Class President",
+      "missing": 2,
+      "links_out": 8,
+      "sample": [
+        "/scvhistory/hart1953yearbook.htm",
+        "/scvhistory/hb1902.htm"
+      ]
+    },
+    {
+      "file": "oldtownnewhall.json",
+      "legacy_key": "gazette1201-commctr",
+      "header": "CITY'S SECONDDECADE 1997-2006",
+      "missing": 6,
+      "links_out": 11,
+      "sample": [
+        "/scvhistory/lw3117.htm",
+        "/scvhistory/sc9902.htm",
+        "/scvhistory/sc2001.htm",
+        "/oldtownnewhall/gazette/gazette1201-commctr.htm"
+      ]
+    },
+    {
+      "file": "oldtownnewhall.json",
+      "legacy_key": "winger997",
+      "header": "NEWHALL SCHOOL DISTRICT LEADERSHIP",
+      "missing": 1,
+      "links_out": 8,
+      "sample": [
+        "Introducing Marc Winger 1997"
+      ]
+    },
+    {
+      "file": "oldtownnewhall.json",
+      "legacy_key": "sg121105-parade",
+      "header": "CHRISTMAS IN NEWHALL",
+      "missing": 5,
+      "links_out": 10,
+      "sample": [
+        "/scvhistory/ap1531.htm",
+        "/scvhistory/ap1532.htm",
+        "/scvhistory/gz0404.htm",
+        "/scvhistory/hb7501.htm"
+      ]
+    },
+    {
+      "file": "warmemorial.json",
+      "legacy_key": "ww1_edwardguynorth",
+      "header": "SCV's WORLD WAR 1 CASUALTIES",
+      "missing": 1,
+      "links_out": 11,
+      "sample": [
+        "SCV's WORLD WAR 1 CASUALTIES"
+      ]
+    },
+    {
+      "file": "warmemorial.json",
+      "legacy_key": "ww2_albertmoore",
+      "header": "SCV's WORLD WAR II CASUALTIES",
+      "missing": 23,
+      "links_out": 0,
+      "sample": [
+        "SCV's WORLD WAR II CASUALTIES",
+        "/scvhistory/ww2_jamesrobertball.htm",
+        "/scvhistory/ww2_josephbbalsz.htm",
+        "James A. Barlett"
+      ]
+    },
+    {
+      "file": "warmemorial.json",
+      "legacy_key": "ww2_archibaldbeall",
+      "header": "SCV's WORLD WAR II CASUALTIES",
+      "missing": 23,
+      "links_out": 3,
+      "sample": [
+        "SCV's WORLD WAR II CASUALTIES",
+        "/scvhistory/ww2_jamesrobertball.htm",
+        "/scvhistory/ww2_josephbbalsz.htm",
+        "James A. Barlett"
+      ]
+    },
+    {
+      "file": "warmemorial.json",
+      "legacy_key": "ww2_augustrubel",
+      "header": "RUBEL FAMILY of RANCHO CAMULOS",
+      "missing": 23,
+      "links_out": 30,
+      "sample": [
+        "SCV's WORLD WAR II CASUALTIES",
+        "/scvhistory/ww2_jamesrobertball.htm",
+        "/scvhistory/ww2_josephbbalsz.htm",
+        "James A. Barlett"
+      ]
+    },
+    {
+      "file": "warmemorial.json",
+      "legacy_key": "ww2_edwardcontreras",
+      "header": "SCV's WORLD WAR II CASUALTIES",
+      "missing": 23,
+      "links_out": 12,
+      "sample": [
+        "SCV's WORLD WAR II CASUALTIES",
+        "/scvhistory/ww2_jamesrobertball.htm",
+        "/scvhistory/ww2_josephbbalsz.htm",
+        "James A. Barlett"
+      ]
+    },
+    {
+      "file": "warmemorial.json",
+      "legacy_key": "ww2_ekenaston",
+      "header": "SCV's WORLD WAR II CASUALTIES",
+      "missing": 23,
+      "links_out": 0,
+      "sample": [
+        "SCV's WORLD WAR II CASUALTIES",
+        "/scvhistory/ww2_jamesrobertball.htm",
+        "/scvhistory/ww2_josephbbalsz.htm",
+        "James A. Barlett"
+      ]
+    }
+  ]
+}

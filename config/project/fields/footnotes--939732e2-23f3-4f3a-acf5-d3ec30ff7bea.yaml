@@ -1,0 +1,47 @@
+columnSuffix: null
+handle: footnotes
+instructions: 'The notes for this piece, where we hold the text. Number must match the marker in the prose exactly, including a letter if the source used one: a marker reading [12a] needs a row numbered 12a. Leave the table empty where the notes live on another record and set "Notes are on" instead, and leave both empty where the note text is not in the archive. An empty table is not a claim that the piece has no notes.'
+name: Footnotes
+searchable: false
+settings:
+  addRowLabel: 'Add a note'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - No.
+            -
+              - handle
+              - number
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 8%
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Note
+            -
+              - handle
+              - note
+            -
+              - type
+              - multiline
+            -
+              - width
+              - 92%
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

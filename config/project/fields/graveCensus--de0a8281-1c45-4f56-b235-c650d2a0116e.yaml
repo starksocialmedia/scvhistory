@@ -1,0 +1,191 @@
+columnSuffix: null
+handle: graveCensus
+instructions: 'A transcribed cemetery census, one row per plot, in the order the original gives them. Map # ties the row to the cemetery map. Enter the date columns in pairs: "as printed" is what the source actually says, "parsed" is the ISO date only where it can be read without guessing. Leave parsed empty rather than repairing a damaged reading, and say what is wrong in Note. Precision may be a year (1794), a month (1928-03) or a day (1928-03-13). Comments sheet records whether the original has a separate comments page for that grave.'
+name: 'Grave Census'
+searchable: false
+settings:
+  addRowLabel: 'Add a grave'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Map #'
+            -
+              - handle
+              - map
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 6%
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Last name'
+            -
+              - handle
+              - last
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 11%
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - 'First name'
+            -
+              - handle
+              - first
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 10%
+      -
+        - col4
+        -
+          __assoc__:
+            -
+              - heading
+              - Middle
+            -
+              - handle
+              - middle
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 6%
+      -
+        - col5
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Birth, as printed'
+            -
+              - handle
+              - birthPrinted
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 12%
+      -
+        - col6
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Birth, parsed'
+            -
+              - handle
+              - birthIso
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 9%
+      -
+        - col7
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Death, as printed'
+            -
+              - handle
+              - deathPrinted
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 12%
+      -
+        - col8
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Death, parsed'
+            -
+              - handle
+              - deathIso
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 9%
+      -
+        - col9
+        -
+          __assoc__:
+            -
+              - heading
+              - Spouse
+            -
+              - handle
+              - spouse
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 10%
+      -
+        - col10
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Comments sheet'
+            -
+              - handle
+              - commentsSheet
+            -
+              - type
+              - checkbox
+            -
+              - width
+              - 5%
+      -
+        - col11
+        -
+          __assoc__:
+            -
+              - heading
+              - Note
+            -
+              - handle
+              - note
+            -
+              - type
+              - multiline
+            -
+              - width
+              - 10%
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

@@ -1,0 +1,99 @@
+columnSuffix: null
+handle: editorNotes
+instructions: 'Annotations by the archive, as many as the piece needs. One row per note. Heading is what the note is about and may be left empty. Note may contain HTML, so a link can sit inside the text. Position places it above the prose, below it, or inline where the extraction found it. These render as boxes, visibly the archive speaking rather than the author.'
+name: "Editor's Notes"
+searchable: false
+settings:
+  addRowLabel: 'Add a note'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Heading
+            -
+              - handle
+              - heading
+            -
+              - type
+              - singleline
+            -
+              - width
+              - 22%
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Note
+            -
+              - handle
+              - note
+            -
+              - type
+              - multiline
+            -
+              - width
+              - 58%
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - Position
+            -
+              - handle
+              - position
+            -
+              - type
+              - select
+            -
+              - width
+              - 20%
+            -
+              - options
+              -
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - Top
+                    -
+                      - value
+                      - top
+                    -
+                      - default
+                      - false
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - Inline
+                    -
+                      - value
+                      - inline
+                    -
+                      - default
+                      - true
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - Bottom
+                    -
+                      - value
+                      - bottom
+                    -
+                      - default
+                      - false
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table
