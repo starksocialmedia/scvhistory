@@ -1,14 +1,260 @@
 {% extends "_layouts/base" %}
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
+  {% css %}
+  /* The photograph itself, when we hold it. Full column, on a mount, because
+     this record exists to show one picture rather than to carry prose. */
+  .ph-plate{margin:0 0 30px;background:#fff;border:1px solid #E2E4E8;padding:14px}
+  .ph-plate button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+  .ph-plate img{width:100%;height:auto;display:block}
+  .ph-plate figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.55;margin-top:11px}
+
+  /* And when we do not. 1,541 of the 1,544 are in this state: the page was
+     mirrored, the image was not. Saying so is the whole point of the block;
+     an empty frame would read as a broken page rather than as a known gap. */
+  .ph-absent{margin:0 0 30px;background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:20px 22px}
+  .ph-absent .lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B;margin-bottom:9px}
+  .ph-absent p{margin:0;font-size:15px;line-height:1.65;color:#2C2C2C}
+  .ph-absent a{color:#7A5C1B}
+  .ph-absent code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;color:#17254C}
+
+  .ph-credit{font-size:13.5px;line-height:1.6;color:#2C2C2C}
+  {% endcss %}
+{% endblock %}
 
 {% block content %}
-<article>
-  <h1>{{ entry.title }}</h1>
-  {% set image = entry.featuredImage.one() %}
-  {% if image %}
-    <p><img src="{{ image.url }}" alt="{{ entry.title }}"></p>
-  {% endif %}
-  {% if entry.body %}
-    <div>{{ entry.body|nl2br }}</div>
-  {% endif %}
-</article>
+{#
+  A photograph record.
+
+  This template was a stub: an h1, entry.featuredImage, and entry.body run
+  through nl2br. 1,544 records, the largest section in the archive, rendering as
+  raw text with no band, no prose partial, no footnotes, no images and no
+  sidebar. Everything below is the shared record chrome the other twelve types
+  already use.
+
+  Two things about this section that the template has to be built around.
+
+  First, the records are the legacy site's illustrated feature pages rather than
+  bare photographs. Many carry several hundred words, some over three thousand,
+  so the prose is not an afterthought and goes through _partials/prose with
+  footnotes and inline images like anything else.
+
+  Second, and it governs the layout: we hold the page and not the picture. Of
+  1,544 records, 3 resolve to an asset in the volume. The rest are waiting on
+  the image fetch. So the plate is written to appear the moment an image lands
+  and to say plainly, until then, that the image is not held and where it is.
+  Resolution is by photoSourceCode, the legacy image code, falling back to
+  legacyKey: LW9410m names lw9410m.jpg.
+#}
+
+{% set F = {} %}
+{% for h in ['body','photoDate','photoCredit','photoCaptionExt','photoSourceCode','photoSequence',
+             'creditRaw','creditDpi','creditProcess','creditKind','creditName',
+             'legacyKey','legacyUrl','sourcePath','culturalSensitivityNote'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
+
+{% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
+{% set archival = entry.archivalFiles is defined and entry.archivalFiles ? entry.archivalFiles.all() : [] %}
+{% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
+{% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
+
+{% set era = entry.historicalEra.one() ?? null %}
+{% set periods = entry.historicalPeriod.all() %}
+{% set communities = entry.neighborhood.all() %}
+{% set collection = entry.partOfCollection is defined and entry.partOfCollection ? entry.partOfCollection.one() ?? null : null %}
+
+{# bandImage, read off the layout rather than trusted to exist. #}
+{% set hasBandImage = false %}
+{% for f in entry.fieldLayout.customFields %}
+  {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
+{% endfor %}
+{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+
+{#- The plate. featuredImage first, then anything attached to the record, then
+    the legacy code matched against the volume by filename stem. -#}
+{% set plate = entry.featuredImage is defined and entry.featuredImage ? entry.featuredImage.one() ?? null : null %}
+{% set plate = plate ?? (recImages|length ? recImages|first : null) %}
+{% set code = F.photoSourceCode ?: F.legacyKey %}
+{% if not plate and code %}
+  {% set plate = craft.assets().filename([code|lower ~ '.jpg', code|lower ~ '.jpeg', code|lower ~ '.png', code|lower ~ '.gif']).one() ?? null %}
+{% endif %}
+
+{#- The date as printed. photoDate holds what the page said, which is sometimes
+    a camera timestamp, "Time: January 17, 1994 / 4:30:55 am PST". It is shown
+    as it stands, because it is the source and not our reading of it. The parsed
+    dates live in recordDates and are listed separately. -#}
+{% set dates = entry.recordDates is defined and entry.recordDates ? entry.recordDates : [] %}
+
+{#- Navigation is not prose. "Click image to enlarge" was the instruction under
+    a thumbnail on a page that had one, and this page does not. It is dropped on
+    the same terms as the trailing [ BACK ], by whole line and never mid
+    sentence. The stored body is untouched; a cleaning pass over the corpus is
+    a separate script and Nathan's to run. -#}
+{% set NAV = ['click image to enlarge', 'click to enlarge', 'click each image to enlarge',
+              'click images to enlarge', 'click map to enlarge', 'download archival scan',
+              'download archival scans', 'click image for more', 'click for more'] %}
+{% set bodyLines = [] %}
+{% for line in F.body|split("\n") %}
+  {% set flat = line|trim|lower|trim('.|: ') %}
+  {#- The separator the removed control hung off. "Saugus, California", then
+      "Click image to enlarge", then "|", then "Download archival scan": drop
+      the two controls and the bar is left behind, and prose.twig's rejoin rule
+      glues it to the end of the line above. -#}
+  {% set bare = line|trim|trim('|-–— 	') == '' and line|trim != '' %}
+  {% if flat not in NAV and not bare %}{% set bodyLines = bodyLines|merge([line]) %}{% endif %}
+{% endfor %}
+{% set bodyText = bodyLines|join("\n")|trim %}
+
+{% set words = bodyText ? bodyText|striptags|split(' ')|filter(w => w|trim)|length : 0 %}
+
+<div class="rec">
+  <section class="rec-band{{ bandImg ? ' rec-band--art' : '' }}">
+    {% if bandImg %}
+      <div class="rec-bandart" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
+      <div class="rec-bandfade" role="presentation"></div>
+    {% endif %}
+    <div class="rec-wrap">
+      <div class="rec-crumbs">
+        <a href="{{ siteUrl }}">Home</a> &rsaquo;
+        <a href="{{ url('photographs') }}">Photographs</a>
+        {%- if collection %} &rsaquo; <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %} &rsaquo;
+        <span>{{ entry.title ?: entry.slug }}</span>
+      </div>
+      <div class="rec-head rec-head--noart">
+        <div>
+          <div class="rec-kick"><span class="a">PHOTOGRAPHS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if collection %}<div class="rec-sub"><a href="{{ collection.url }}" style="color:inherit">{{ collection.title }}</a></div>{% endif %}
+          {% set facts = [
+            { l: 'DATE', v: F.photoDate },
+            { l: 'SOURCE', v: F.photoSourceCode },
+            { l: 'RESOLUTION', v: F.creditDpi ? F.creditDpi ~ ' dpi' : '' },
+            { l: 'PROCESS', v: F.creditProcess }
+          ]|filter(f => f.v) %}
+          {% if facts|length %}
+            <div class="rec-facts">
+              {% for f in facts %}<div><div class="l">{{ f.l }}</div><div class="v">{{ f.v }}</div></div>{% endfor %}
+            </div>
+          {% endif %}
+          {% if periods|length or communities|length %}
+            <div class="rec-chips">
+              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in communities %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: bodyText, textId: 'recText', words: words } only %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
+
+        {% if plate %}
+          {% set cap = plate.photoCaptionExt|default('')|trim ?: F.photoCaptionExt %}
+          <figure class="ph-plate">
+            <button type="button" data-lightbox data-src="{{ plate.url }}"
+                    data-caption="{{ cap ?: entry.title }}" data-credit="{{ F.photoCredit ?: F.creditName }}"
+                    aria-label="Open the full image">
+              <img src="{{ plate.url }}" alt="{{ plate.alt ?: (cap ?: entry.title) }}">
+            </button>
+            {% if cap %}<figcaption>{{ cap }}</figcaption>{% endif %}
+          </figure>
+        {% else %}
+          <div class="ph-absent">
+            <div class="lab">THE IMAGE IS NOT IN THE ARCHIVE YET</div>
+            <p>
+              We hold this page and not the picture on it.
+              {%- if code %} The legacy image is <code>{{ code }}</code>.{% endif %}
+              {%- if F.sourcePath %} It is on the original page at <a href="{{ F.sourcePath }}" rel="nofollow">{{ F.sourcePath }}</a>.{% endif %}
+            </p>
+          </div>
+        {% endif %}
+
+        {% if bodyText %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: bodyText, images: recImages, footnotesFor: entry } %}</div>
+          {% include "_partials/record/footnotes" with { entry: entry } only %}
+        {% endif %}
+
+        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+
+        {% include "_partials/record/images" with { images: recImages, body: bodyText } only %}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.editorNotes is defined ? entry.editorNotes : []), position: 'bottom' } only %}
+      </article>
+
+      <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'Photographs', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
+
+        {#- The credit as the archive states it. creditRaw is the whole line off
+            the legacy page and is the authority; the parsed columns beside it
+            are a reading of it and are shown only where they were filled. -#}
+        {% if F.creditRaw or F.creditName or F.photoCredit %}
+          <div class="rec-box">
+            <div class="rec-lab">CREDIT</div>
+            {% if F.creditRaw %}<div class="ph-credit">{{ F.creditRaw }}</div>{% endif %}
+            {% set cr = [
+              { k: 'BY', v: F.creditName ?: F.photoCredit },
+              { k: 'KIND', v: F.creditKind },
+              { k: 'PROCESS', v: F.creditProcess },
+              { k: 'DPI', v: F.creditDpi }
+            ]|filter(r => r.v) %}
+            {% if cr|length %}
+              <div class="rec-rows" style="margin-top:12px">
+                {% for r in cr %}<div class="k">{{ r.k }}</div><div class="v">{{ r.v }}</div>{% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% set dateRows = [] %}
+        {% for d in dates %}
+          {% set printed = (d.printed ?? '')|trim %}
+          {% set iso = d.iso ? d.iso|date('j F Y') : '' %}
+          {% if printed or iso %}{% set dateRows = dateRows|merge([{ p: printed, i: iso }]) %}{% endif %}
+        {% endfor %}
+        {% if dateRows|length or F.photoDate %}
+          <div class="rec-box">
+            <div class="rec-lab">DATE</div>
+            <div class="rec-rows">
+              {% if F.photoDate %}<div class="k">AS PRINTED</div><div class="v">{{ F.photoDate }}</div>{% endif %}
+              {% for r in dateRows %}<div class="k">{{ r.i ? 'PARSED' : 'AS PRINTED' }}</div><div class="v">{{ r.i ?: r.p }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% set boxes = [
+          { lab: 'PEOPLE', key: 'PERSON', rows: entry.photoPeople.all() },
+          { lab: 'PLACES', key: 'PLACE', rows: entry.photoPlaces.all() },
+          { lab: 'ORGANIZATIONS', key: 'ORG', rows: entry.photoOrganizations.all() },
+          { lab: 'EVENTS', key: 'EVENT', rows: entry.photoEvents.all() },
+          { lab: 'GROUPS', key: 'GROUP', rows: entry.photoGroups.all() },
+          { lab: 'ARTICLES', key: 'ARTICLE', rows: entry.photoArticles.all() },
+          { lab: 'RELATED PHOTOGRAPHS', key: 'PHOTO', rows: entry.relatedPhotographs.all() }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
+
+        {% if communities|length %}
+          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
+            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs|merge(archival) } only %}
+        {% include "_partials/record/tags" with { el: entry } only %}
+      </aside>
+    </main>
+  </div>
+</div>
 {% endblock %}

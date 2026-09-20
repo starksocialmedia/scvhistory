@@ -67,9 +67,15 @@
   /* The author signing the piece, not a caption on it. It was 16px grey, a
      shade smaller than the prose and the same colour as the furniture, which
      read as a label. It is the last thing before the citation and it belongs
-     to the text: Playfair at the body's 17px, navy, small caps, and enough
-     space above it to be a signature rather than a trailing line. */
-  .ar-signoff{text-align:right;margin:52px 0 0;font-family:'Playfair Display',serif;font-size:17px;font-variant-caps:small-caps;letter-spacing:.07em;color:#17254C}
+     to the text: Playfair, navy, small caps, larger than the prose rather than
+     smaller, and enough space above it to end the piece rather than begin the
+     furniture.
+
+     Not italic. The small caps already say this is a signature, and italic on
+     top of them would make it decorative where it should be an attribution. */
+  .ar-sig{margin:60px 0 0;display:flex;align-items:center;gap:18px}
+  .ar-sig .r{flex:1;height:1px;background:#E2E4E8}
+  .ar-sig .n{font-family:'Playfair Display',serif;font-variant-caps:small-caps;letter-spacing:.06em;font-size:20px;color:#17254C;white-space:nowrap}
 
   /* ── About the author ─────────────────────────────────────────── */
   .ar-author{margin:48px 0 0;border-top:3px solid #C4A031;background:#FDF7EA;padding:26px 28px}
@@ -248,9 +254,9 @@
     <div class="rec-body" id="recText" style="margin-top: 30px; font-size: 17.5px; line-height: 1.78">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id , footnotesFor: entry } %}</div>
 
     {% if author and year matches '/^[0-9]{4}$/' %}
-      <div style="margin-top: 34px; display: flex; align-items: center; gap: 16px">
-        <div style="flex: 1; height: 1px; background: #E2E4E8"></div>
-        <div style="font-family: 'Playfair Display', serif; font-variant: small-caps; letter-spacing: .06em; font-size: 17px; color: #17254C; white-space: nowrap">{{ author.title }} &middot; {{ year }}</div>
+      <div class="ar-sig">
+        <div class="r"></div>
+        <div class="n">{{ author.title }} &middot; {{ year }}</div>
       </div>
     {% endif %}
 
