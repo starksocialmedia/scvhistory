@@ -136,6 +136,17 @@
 {% if 'featuredImage' in H and el.featuredImage.one() %}{% set image = el.featuredImage.one() %}
 {% elseif 'recordImages' in H and el.recordImages.one() %}{% set image = el.recordImages.one() %}
 {% endif %}
+{#- Never publish an enhanced derivative. JSON-LD is an assertion to the rest of
+    the web about what this archive holds, and what it holds is the scan. An
+    upscaled or colourised version is a rendering of the scan with pixels a model
+    invented, and putting the archive's name behind it as the image of record
+    would be a false claim however good it looks. If a derivative has somehow
+    been attached, its original is published instead. -#}
+{% if image %}
+  {% set imgH = [] %}
+  {% for f in image.fieldLayout.customFields %}{% set imgH = imgH|merge([f.handle]) %}{% endfor %}
+  {% if 'enhancedFrom' in imgH and image.enhancedFrom.one() %}{% set image = image.enhancedFrom.one() %}{% endif %}
+{% endif %}
 
 {#- sameAs: only the authority files that actually hold a value. -#}
 {% set sameAs = [] %}

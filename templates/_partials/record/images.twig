@@ -21,6 +21,12 @@
     reads it. A thumbnail that pointed at a page is a link to that record, not a
     lightbox open: enlarging a 120px thumbnail shows nothing and loses the only
     navigation the legacy page had. -#}
+{#- The enlarge index: which pictures have a bigger file to open. See
+    _partials/prose.twig for why the magnifier is conditional. -#}
+{% set enlarge = {} %}
+{% set enlRaw = source('_data/enlarge.json', true) %}
+{% if enlRaw|trim %}{% set enlarge = enlRaw|json_decode %}{% endif %}
+
 {% set imgLinks = {} %}
 {% if entry is defined and entry %}
   {% set il = source('_data/image-links/' ~ entry.id ~ '.json', true) %}
@@ -49,6 +55,11 @@
 .rec-photos button{padding:0;border:1px solid #E2E4E8;background:#FDF7EA;cursor:pointer;display:block;width:100%}
 .rec-photos button:hover{border-color:#C4A031}
 .rec-photos button img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.rec-photos button{position:relative}
+.rec-photos .enh{position:absolute;left:5px;top:5px;font-family:Jost,sans-serif;font-size:9.5px;letter-spacing:.1em;
+                 text-transform:uppercase;background:rgba(23,37,76,.88);color:#fff;padding:2px 6px}
+.rec-photos .flat{display:block;border:1px solid #E2E4E8;background:#FDF7EA}
+.rec-photos .flat img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
 .rec-photos a.go{display:block;border:1px solid #E2E4E8;background:#FDF7EA;text-decoration:none;color:inherit}
 .rec-photos a.go:hover{border-color:#C4A031}
 .rec-photos a.go img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
@@ -79,10 +90,37 @@
           <span class="cap">{{ linkTo.title }}</span>
         </a>
       {% else %}
-        <button type="button" data-lightbox data-src="{{ a.url }}"
-                data-caption="{{ cap }}" data-credit="{{ credit }}">
-          <img src="{{ a.url }}" alt="{{ a.alt ?: cap }}" loading="lazy">
-        </button>
+        {%- set enl = enlarge[a.filename|lower] ?? null -%}
+        {%- set bigFile = (enl and enl.id is defined) ? enl : null -%}
+        {#- The tile draws a 560px transform, so the asset's own file is worth
+            opening whenever it is meaningfully wider than that. -#}
+        {%- set ownBigger = a.width and a.width > 640 -%}
+        {%- set zoomSrc = bigFile ? (craft.assets().id(bigFile.id).one().url ?? null) : (ownBigger ? a.url : null) -%}
+        {#- An enhanced derivative, looked up in reverse: the relation lives on
+            the derivative and points at this original. The original remains the
+            tile and the citation; the enhancement is offered in the lightbox. -#}
+        {%- set enhanced = null -%}
+        {%- set eh = [] -%}
+        {%- for f in a.fieldLayout.customFields %}{% set eh = eh|merge([f.handle]) %}{% endfor -%}
+        {%- if 'enhancedFrom' in eh -%}
+          {%- set enhanced = craft.assets().relatedTo({ targetElement: a, field: 'enhancedFrom' }).one() ?? null -%}
+        {%- endif -%}
+        {%- set enhNote = '' -%}
+        {%- if enhanced -%}
+          {%- set enhNote = [enhanced.enhancementMethod|default(''), enhanced.enhancedBy|default(''),
+                             enhanced.enhancedDate ? enhanced.enhancedDate|date('F Y') : '']|filter(x => x|trim)|join(' · ') -%}
+          {%- set zoomSrc = zoomSrc ?: a.url -%}
+        {%- endif -%}
+        {% if zoomSrc %}
+          <button type="button" data-lightbox data-src="{{ zoomSrc }}"
+                  data-caption="{{ cap }}" data-credit="{{ credit }}"
+                  {% if enhanced %}data-enhanced="{{ enhanced.url }}" data-enhanced-note="{{ enhNote }}"{% endif %}>
+            <img src="{{ a.url }}" alt="{{ a.alt ?: cap }}" loading="lazy">
+            {% if enhanced %}<span class="enh">Enhanced</span>{% endif %}
+          </button>
+        {% else %}
+          <span class="flat"><img src="{{ a.url }}" alt="{{ a.alt ?: cap }}" loading="lazy"></span>
+        {% endif %}
       {% endif %}
     {% endfor %}
   </div>

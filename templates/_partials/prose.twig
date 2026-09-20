@@ -44,6 +44,7 @@
       neither of them clears. -#}
   .rec-inline{float:right;width:280px;margin:4px 0 22px 30px}
   .rec-inline button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;font:inherit;text-align:inherit}
+  .rec-inline>img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
   .rec-inline img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
   .rec-inline button:hover img{border-color:#C4A031}
   .rec-inline-go{display:block;text-decoration:none}
@@ -57,6 +58,11 @@
       page. The width is the same 280px whatever the shape. -#}
   .rec-inline img{max-height:460px;object-fit:contain;object-position:top}
   .rec-inline figcaption{font-size:12.5px}
+  {#- The chip sits on the picture, because the claim is about the picture. -#}
+  .rec-inline button{position:relative}
+  .rec-inline .enh{position:absolute;left:7px;top:7px;font-family:Jost,sans-serif;font-size:10px;
+                   letter-spacing:.1em;text-transform:uppercase;background:rgba(23,37,76,.88);color:#fff;padding:3px 7px}
+  .rec-inline .enhn{font-style:normal;font-size:11.5px;color:#7A5C1B}
 
   {#- Nothing structural may start beside a float. A heading, the signature
       rule, the photographs and the foot of the piece all begin again at the
@@ -193,6 +199,19 @@
     record it pointed at, built by scripts/import/link_images_to_records.php.
     A layer, not a rewrite: the body is untouched and deleting the file turns
     the behaviour off. -#}
+{#- Which pictures have something bigger to open. Built by
+    scripts/import/build_enlarge_index.php from the legacy image-to-image links,
+    1,806 of them, mostly lw2184.jpg opening lw2184_large.jpg.
+
+    The magnifier renders only where there is something bigger to open. It used
+    to render always, and for an inline image it opened the identical URL: the
+    control promised an enlargement and delivered the same pixels. A control
+    that does nothing is worse than no control, because the reader tries it once
+    and stops trusting the next one. -#}
+{%- set enlarge = {} -%}
+{%- set enlRaw = source('_data/enlarge.json', true) -%}
+{%- if enlRaw|trim -%}{%- set enlarge = enlRaw|json_decode -%}{%- endif -%}
+
 {%- set imgLinks = {} -%}
 {%- set imgLinkId = (footnotesFor is defined and footnotesFor) ? footnotesFor.id : (linksFor is defined ? linksFor : null) -%}
 {%- if imgLinkId -%}
@@ -296,20 +315,59 @@
             the page offered. Where the layer names a target, the picture is a
             link to that record. -#}
         {%- set linkTo = imgLinks[asset.filename|lower] ?? null -%}
+        {#- Two ways there is more to see. A distinct larger file the legacy page
+            linked to, which is the enlargement proper. Or the asset's own
+            pixels, when the figure is drawn smaller than the file is: a 280px
+            column against an 800px scan is worth opening. Neither is "the same
+            file the tile shows" in any sense that matters to a reader.
+
+            Nothing else opens. An inline picture drawn at its natural size with
+            no larger file gets no magnifier and no lightbox at all. -#}
+        {%- set enl = enlarge[asset.filename|lower] ?? null -%}
+        {%- set drawn = (asset.width and asset.width < 280) ? asset.width : 280 -%}
+        {%- set bigFile = (enl and enl.id is defined) ? enl : null -%}
+        {%- set ownBigger = asset.width and asset.width > drawn * 1.2 -%}
+        {%- set zoomSrc = bigFile ? (craft.assets().id(bigFile.id).one().url ?? null) : (ownBigger ? asset.url : null) -%}
+
+        {#- An enhanced derivative, if one has been attached. The relation lives
+            on the derivative and points back here, so this is the reverse
+            lookup. The original stays the picture on the page and stays what
+            the citation names; the enhancement is offered in the lightbox. -#}
+        {%- set enhanced = null -%}
+        {%- set enhFields = [] -%}
+        {%- for f in asset.fieldLayout.customFields %}{% set enhFields = enhFields|merge([f.handle]) %}{% endfor -%}
+        {%- if 'enhancedFrom' in enhFields -%}
+          {%- set enhanced = craft.assets().relatedTo({ targetElement: asset, field: 'enhancedFrom' }).one() ?? null -%}
+        {%- endif -%}
+        {%- set enhNote = '' -%}
+        {%- if enhanced -%}
+          {%- set enhBits = [enhanced.enhancementMethod|default(''), enhanced.enhancedBy|default(''),
+                             enhanced.enhancedDate ? enhanced.enhancedDate|date('F Y') : '']|filter(x => x|trim) -%}
+          {%- set enhNote = enhBits|join(' &middot; ') -%}
+          {%- set zoomSrc = zoomSrc ?: asset.url -%}
+        {%- endif -%}
         {% if linkTo %}
           <a href="{{ linkTo.url }}" class="rec-inline-go">
             <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
             <span class="go">{{ linkTo.title }} &rarr;</span>
           </a>
         {% else %}
-          <button type="button" data-lightbox data-src="{{ asset.url }}"
-                  data-caption="{{ cap }}" data-credit="{{ credit }}"
-                  aria-label="{{ cap ? 'Open: ' ~ cap : 'Open the full image' }}">
+          {% if zoomSrc %}
+            <button type="button" data-lightbox data-src="{{ zoomSrc }}"
+                    data-caption="{{ cap }}" data-credit="{{ credit }}"
+                    {% if enhanced %}data-enhanced="{{ enhanced.url }}" data-enhanced-note="{{ enhNote|striptags }}"{% endif %}
+                    aria-label="{{ cap ? 'Open the larger image: ' ~ cap : 'Open the larger image' }}">
+              <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
+              {% if enhanced %}<span class="enh">Enhanced available</span>{% endif %}
+            </button>
+          {% else %}
             <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
-          </button>
+          {% endif %}
         {% endif %}
-        {%- if cap or credit %}
-        <figcaption>{{ cap }}{% if credit %}<span class="cr">{{ credit }}</span>{% endif %}</figcaption>
+        {%- if cap or credit or enhNote %}
+        <figcaption>{{ cap }}{% if credit %}<span class="cr">{{ credit }}</span>{% endif %}
+          {%- if enhNote %}<span class="cr enhn">Enhanced version available: {{ enhNote|raw }}</span>{% endif %}
+        </figcaption>
         {%- endif %}
       </figure>
     {%- elseif token -%}

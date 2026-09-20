@@ -10,6 +10,11 @@
     <button type="button" data-lightbox
             data-src="..." data-caption="..." data-credit="...">
 
+  An enhanced derivative adds data-enhanced and data-enhanced-note, and the
+  dialog grows a two-way toggle. The ORIGINAL opens first and is never replaced
+  by the enhancement: the scan is what the archive holds and the enhancement is
+  a rendering of it, however much better it looks.
+
   The script binds by delegation rather than by walking the buttons at load, so
   a figure rendered by a partial that runs after this one still works, and so
   does anything added to the page later.
@@ -26,6 +31,12 @@
 .rec-lb .close{position:absolute;top:8px;right:12px;background:none;border:0;font-size:26px;line-height:1;color:#5B6472;cursor:pointer}
 .rec-lb .close:hover{color:#7A5C1B}
 .rec-lb figcaption:empty{display:none}
+.rec-lb .sw{display:flex;align-items:center;gap:8px;margin-top:11px;flex-wrap:wrap}
+.rec-lb .sw[hidden]{display:none}
+.rec-lb .sw button{font-family:Jost,sans-serif;font-size:12px;letter-spacing:.06em;padding:5px 11px;
+                   border:1px solid #C4A031;background:#fff;color:#7A5C1B;cursor:pointer}
+.rec-lb .sw button.on{background:#C4A031;color:#17254C;font-weight:500}
+.rec-lb .sw .note{font-size:12px;color:#5B6472}
 {% endcss %}
 
 <dialog class="rec-lb" id="recLightbox">
@@ -33,6 +44,11 @@
     <button type="button" class="close" aria-label="Close">&times;</button>
     <figure style="margin:0">
       <img id="recLbImg" src="" alt="">
+      <div class="sw" id="recLbSwitch" hidden>
+        <button type="button" data-show="original" class="on">Original scan</button>
+        <button type="button" data-show="enhanced">Enhanced</button>
+        <span class="note" id="recLbNote"></span>
+      </div>
       <figcaption><span id="recLbCap"></span><span class="cr" id="recLbCredit"></span></figcaption>
     </figure>
   </div>
@@ -49,10 +65,35 @@ document.addEventListener('DOMContentLoaded', function(){
     var b = e.target.closest ? e.target.closest('[data-lightbox]') : null;
     if (!b || !b.dataset.src) { return; }
     e.preventDefault();
+    var sw = document.getElementById('recLbSwitch');
+    var note = document.getElementById('recLbNote');
+    var enhanced = b.dataset.enhanced || '';
+
+    /* The original first, always. An enhancement is a rendering of the scan,
+       not a replacement for it, and the reader should see what the archive
+       actually holds before they see what a model made of it. */
     img.src = b.dataset.src;
     img.alt = b.dataset.caption || '';
     cap.textContent = b.dataset.caption || '';
     cr.textContent  = b.dataset.credit  || '';
+
+    sw.hidden = !enhanced;
+    note.textContent = '';
+    sw.querySelectorAll('button').forEach(function (t) {
+      t.classList.toggle('on', t.dataset.show === 'original');
+    });
+    if (enhanced) {
+      sw.onclick = function (ev) {
+        var t = ev.target.closest('button[data-show]');
+        if (!t) { return; }
+        var wantEnhanced = t.dataset.show === 'enhanced';
+        img.src = wantEnhanced ? enhanced : b.dataset.src;
+        note.textContent = wantEnhanced ? (b.dataset.enhancedNote || '') : '';
+        sw.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === t); });
+      };
+    } else {
+      sw.onclick = null;
+    }
     dlg.showModal();
   });
   dlg.querySelector('.close').addEventListener('click', function(){ dlg.close(); });

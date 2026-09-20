@@ -241,6 +241,12 @@
 {% set media = recImages|merge(recDocs) %}
 
 {#- Images that were links to another record. The same layer prose.twig reads. -#}
+{#- The enlarge index. See _partials/prose.twig for why the magnifier is
+    conditional rather than always drawn. -#}
+{% set enlarge = {} %}
+{% set enlRaw = source('_data/enlarge.json', true) %}
+{% if enlRaw|trim %}{% set enlarge = enlRaw|json_decode %}{% endif %}
+
 {% set imgLinks = {} %}
 {% set il = source('_data/image-links/' ~ entry.id ~ '.json', true) %}
 {% if il|trim %}{% set imgLinks = (il|json_decode).links ?? {} %}{% endif %}
@@ -358,10 +364,20 @@
                 </a>
                 {% else %}<span class="im"><img src="{{ a.getUrl({ width: 560, mode: 'fit' }) ?: a.url }}" alt="{{ cap }}" loading="lazy"></span>
                 {% endif %}
-                <button type="button" class="zoom" data-lightbox data-src="{{ a.url }}"
-                        data-caption="{{ linkTo ? linkTo.title : cap }}"
-                        data-credit="{{ a.photoCredit|default('')|trim }}"
-                        aria-label="Open this image">&#9906;</button>
+                {#- The magnifier only where there is something bigger to open:
+                    the larger file the legacy page linked to, or the asset's own
+                    pixels when the tile is drawn well below them. A control that
+                    reopens what you are already looking at is worse than none. -#}
+                {%- set enl = enlarge[a.filename|lower] ?? null -%}
+                {%- set bigFile = (enl and enl.id is defined) ? enl : null -%}
+                {%- set zoomSrc = bigFile ? (craft.assets().id(bigFile.id).one().url ?? null)
+                                  : ((a.width and a.width > 640) ? a.url : null) -%}
+                {% if zoomSrc %}
+                  <button type="button" class="zoom" data-lightbox data-src="{{ zoomSrc }}"
+                          data-caption="{{ linkTo ? linkTo.title : cap }}"
+                          data-credit="{{ a.photoCredit|default('')|trim }}"
+                          aria-label="Open the larger image">&#9906;</button>
+                {% endif %}
               </div>
               <figcaption>
                 {% if linkTo %}
