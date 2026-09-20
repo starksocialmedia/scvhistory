@@ -71,7 +71,7 @@
   {%- endfor -%}
 {%- endif -%}
 
-{%- set hasMarker = want == 'editor' and prose matches '/(?<![A-Za-z0-9])\\[\\s*\\d{1,3}\\s*\\](?!\\d)/' -%}
+{%- set hasMarker = want == 'editor' and prose matches '/\\[\\s*\\d{1,3}\\s*\\](?!\\d)/' -%}
 {%- set notesOn = want == 'editor' ? notesOn : null -%}
 
 {% if notes|length or notesOn or hasMarker %}

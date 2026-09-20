@@ -223,9 +223,14 @@
       rendered as the literal shortcode and a [N] marker as a bare bracket. A
       paragraph that cites something is body text and stays in the body, where
       the note can open under it. -#}
+  {#- Same test the prose partial uses, and the same correction: a digit after
+      the bracket is what tells a date from a marker. A rule rejecting a marker
+      preceded by a word character rejected "in 1921[1]", so that paragraph was
+      promoted into the lead and printed as plain text with its bracket showing.
+      The first marker on chapter 5 was disappearing for exactly that reason. -#}
   {% set firstHasNote = paras|length > 1 and (
        paras|first|lower matches '/\\[mfn/'
-       or paras|first matches '/(?<![A-Za-z0-9])\\[\\s*\\d{1,3}\\s*\\](?!\\d)/') %}
+       or paras|first matches '/\\[\\s*\\d{1,3}\\s*\\](?!\\d)/') %}
   {% if paras|length > 1 and not firstHasNote %}
     {% set lead = paras|first|striptags|trim %}
     {% set bodyText = paras|slice(1)|join('\n\n') %}
@@ -295,10 +300,6 @@
 
     <div class="rec-body" id="recText" style="margin-top: 30px; font-size: 17.5px; line-height: 1.78">{% include "_partials/prose" with { text: bodyText, images: recImages, linksFor: entry.id , footnotesFor: entry } %}</div>
 
-    {#- Its own section, under the piece and above everything that follows. It
-        had been rendering inside the About the Author box, which said the notes
-        were the author's when they are the editor's. -#}
-    {% include "_partials/record/footnotes" with { entry: entry, editor: editor, source: 'editor' } only %}
 
     {% if author and year matches '/^[0-9]{4}$/' %}
       <div class="ar-sig">
@@ -306,6 +307,11 @@
         <div class="n">{{ author.title }} &middot; {{ year }}</div>
       </div>
     {% endif %}
+
+    {#- After the signature, not before it. The signature closes the piece; the
+        notes are the apparatus that follows it, and they come before the
+        navigation out of the chapter. -#}
+    {% include "_partials/record/footnotes" with { entry: entry, editor: editor, source: 'editor' } only %}
 
     {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
     {% include "_partials/record/editor-notes" with { rows: edNotes, position: 'bottom' } only %}
