@@ -184,7 +184,7 @@
 
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
 
-        {% include "_partials/record/images" with { images: recImages, body: bodyText } only %}
+        {% include "_partials/record/images" with { images: recImages, body: bodyText, entry: entry } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.editorNotes is defined ? entry.editorNotes : []), position: 'bottom' } only %}
       </article>

@@ -1,6 +1,24 @@
 {#
-  Editor's note. A cream box with a 3px gold left rule, used for the top and
-  bottom webmaster notes. Renders nothing when the text is empty.
+  The webmaster's note, top or bottom.
+
+  It was a cream strip with a gold left rule and no heading, which read as a
+  pull quote or as part of the prose depending on where it fell. It is now the
+  same box as record/editor-notes.twig: cream ground, thin border, 3px gold top
+  rule, a small caps label above the text. Both are the archive speaking about
+  the piece rather than the author speaking in it, so they should look alike.
+
+  The label is "Note:" unless the caller passes another, and a record can
+  override it without a schema change by opening the note with a short line of
+  its own ending in a colon:
+
+      Webmaster's note:
+      The dates on this page come from the family Bible rather than the census.
+
+  That first line becomes the label and is not printed twice. It has to be
+  short, on its own line and colon-terminated, so a note that simply begins
+  "In 1887: the depot opened" is left alone. Nothing in the corpus uses the
+  convention today, 69 of the 70 notes having no leading label at all; it is
+  here so a per-record label does not need a new field.
 
   The handle differs by entry type, so the caller passes the value rather than
   this partial guessing: webmasterNoteTop / webmasterNoteBottom on most types,
@@ -8,14 +26,37 @@
   mpWebmasterNote* on Military Profiles.
 
   Params:
-    text   the note, plain text or simple HTML
+    text    the note, plain text or simple HTML
+    bottom  true for the note under the piece
+    label   overrides the default, and is itself overridden by a label in the text
 #}
 {% if text is defined and text is not empty and text|trim %}
+  {%- set raw = text|trim -%}
+  {%- set lines = raw|split("\n") -%}
+  {%- set firstLine = lines|first|trim -%}
+
+  {#- A label line, not a sentence that happens to contain a colon. Short, on
+      its own line, ending in the colon, and with no colon before the end. -#}
+  {%- set isLabelLine = lines|length > 1
+        and firstLine|length > 1 and firstLine|length <= 40
+        and firstLine|slice(-1) == ':'
+        and firstLine|slice(0, -1)|split(':')|length == 1 -%}
+
+  {%- set lab = isLabelLine ? firstLine|slice(0, -1)|trim : (label|default('Note'))|trim|trim(':') -%}
+  {%- set bodyText = isLabelLine ? lines|slice(1)|join("\n")|trim : raw -%}
+
   {% css %}
-  .rec-note{background:#FDF7EA;border-left:3px solid #C4A031;padding:14px 18px;margin:0 0 28px;font-size:15px;line-height:1.65;color:#2C2C2C}
+  .rec-note{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:16px 20px;margin:0 0 28px}
   .rec-note:last-child{margin-bottom:0}
-  .rec-note a{color:#7A5C1B}
-  .rec-note--bottom{margin:32px 0 0}
+  .rec-note .h{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin:0 0 8px}
+  .rec-note .t{font-size:15.5px;line-height:1.7;color:#2C2C2C}
+  .rec-note .t p{margin:0 0 12px}
+  .rec-note .t p:last-child{margin-bottom:0}
+  .rec-note .t a{color:#7A5C1B}
+  .rec-note--bottom{margin:36px 0 0}
   {% endcss %}
-  <div class="rec-note{{ bottom is defined and bottom ? ' rec-note--bottom' : '' }}">{{ text|trim|raw }}</div>
+  <div class="rec-note{{ bottom is defined and bottom ? ' rec-note--bottom' : '' }}">
+    <div class="h">{{ lab }}</div>
+    <div class="t">{{ bodyText|raw }}</div>
+  </div>
 {% endif %}

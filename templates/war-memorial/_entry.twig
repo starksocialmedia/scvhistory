@@ -103,7 +103,7 @@
         {% if narrative %}
           <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages , footnotesFor: entry } %}</div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}
-          {% include "_partials/record/images" with { images: recImages, body: narrative } only %}
+          {% include "_partials/record/images" with { images: recImages, body: narrative, entry: entry } only %}
         {% endif %}
 
         {% include "_partials/record/note" with { text: F.wmNotes, bottom: true } only %}

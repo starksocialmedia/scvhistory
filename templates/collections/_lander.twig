@@ -229,7 +229,7 @@
         {% endif %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
 
-        {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
+        {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
 
         {% if chapters|length %}

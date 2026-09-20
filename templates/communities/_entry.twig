@@ -88,7 +88,7 @@
             <article class="scv-card"><div class="scv-note">{{ term.culturalSensitivityNote }}</div></article>
           {% endif %}
 
-          {% include "_partials/record/images" with { images: recImages, body: term.body is defined ? term.body : '' } only %}
+          {% include "_partials/record/images" with { images: recImages, body: term.body is defined ? term.body : '', entry: term } only %}
           {% include "_partials/record/note" with { text: term.webmasterNoteBottom is defined ? term.webmasterNoteBottom : null, bottom: true } only %}
 
           {% if hasBoundary or hasPin %}

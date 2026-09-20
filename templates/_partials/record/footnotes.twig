@@ -1,23 +1,27 @@
 {#
-  The notes under a piece, in the three states the archive actually has.
+  The numbered notes at the foot of a piece.
 
-  229 records print a footnote marker. 2 carry the note text, 6 can point at a
-  notes record we hold, and 221 are orphans. The legacy site kept one notes.html
-  for a whole series rather than putting the notes on the page that cited them,
-  and most of those files did not survive the mirror. A marker whose note is
-  gone is still evidence that the author cited something, so it stays visible.
-  What it must not do is offer a link to nothing.
+  The reading experience is not here. A marker in the prose opens its note under
+  the paragraph that cited it, in _partials/prose.twig, so the reader never
+  leaves the line they are on. This list is the reference: it is what a printed
+  or saved page needs, and what someone scanning the citations wants to see
+  together.
 
-    held       footnotes has rows. The notes print here, numbered, each one an
-               anchor the marker jumps to.
-    elsewhere  footnotesOn points at a record. Nothing prints here; the markers
-               in the prose link to that record instead.
-    orphan     neither. One line says the notes are not in the source, once, at
-               the foot of the piece.
+  Four sources, one list.
 
-  The fields are read through the layout rather than by name, because
-  entry.footnotes is "defined" on a type that has no such field and then throws
-  when it is read.
+    [mfn]...[/mfn]   the WordPress Modern Footnotes shortcode from the previous
+                     site, read straight out of the prose and numbered in
+                     document order from 1. Reading it here means a record is
+                     right before the conversion script has been run on it and
+                     identical afterwards.
+    footnotes        the table field, once the conversion has written it.
+    footnotesOn      the notes were published on another record. Nothing is
+                     listed; the piece says where they are.
+    neither          orphan. The markers are the author's and the notes they
+                     refer to did not survive. Said once, plainly.
+
+  The fields are read through the layout, because entry.footnotes is "defined"
+  on a type that has no such field and throws the moment it is read.
 
   Params:
     entry   the record
@@ -28,71 +32,76 @@
 {%- set rows = 'footnotes' in handles ? (entry.footnotes ?? []) : [] -%}
 {%- set notesOn = 'footnotesOn' in handles ? (entry.footnotesOn.one() ?? null) : null -%}
 
-{%- if rows|length or notesOn -%}{%- else -%}
-  {#- Orphan. Only say so where the prose actually carries a marker, so a piece
-      that simply has no notes stays silent.
+{#- The prose, for both the shortcode notes and the orphan test. Every PlainText
+    field, in layout order, which is the order prose.twig sees them in. Reading
+    a named three found nothing on records that plainly carry markers. -#}
+{%- set prose = '' -%}
+{%- for f in entry.fieldLayout.customFields -%}
+  {%- if f.className == 'craft\\fields\\PlainText' or className(f) == 'craft\\fields\\PlainText' -%}
+    {%- set prose = prose ~ "\n" ~ attribute(entry, f.handle) -%}
+  {%- endif -%}
+{%- endfor -%}
 
-      Every text field, not a named three. This read body, wmNarrative and
-      mpNarrative and found nothing on records that plainly carry markers,
-      because the prose is not always under those handles: an article's notes
-      can sit in a webmaster note or in the fine print, and on
-      /articles/6-oil-and-newhall the only bracketed numbers in body are the
-      broken dates. survey_footnotes.php walks every PlainText field, so this
-      has to walk the same ones or the count and the page disagree. -#}
-  {%- set prose = '' -%}
-  {%- for f in entry.fieldLayout.customFields -%}
-    {%- if className(f) == 'craft\\fields\\PlainText' -%}
-      {%- set prose = prose ~ "\n" ~ attribute(entry, f.handle) -%}
+{#- Shortcode notes, in document order. Only where the table is empty: once the
+    conversion has run, the rows are the authority and the body holds [N]. -#}
+{%- set notes = [] -%}
+{%- if rows|length -%}
+  {%- for r in rows -%}
+    {%- set notes = notes|merge([{ n: (r.number ?? '')|trim ?: loop.index, t: (r.note ?? '')|trim }]) -%}
+  {%- endfor -%}
+{%- elseif prose|lower|split('[mfn')|length > 1 -%}
+  {%- for part in prose|split('[mfn')|slice(1) -%}
+    {%- set afterOpen = part|split(']')|length > 1 ? part|slice(part|split(']')|first|length + 1) : '' -%}
+    {%- if afterOpen and afterOpen|split('[/mfn]')|length > 1 -%}
+      {%- set notes = notes|merge([{ n: notes|length + 1, t: afterOpen|split('[/mfn]')|first|trim }]) -%}
     {%- endif -%}
   {%- endfor -%}
-  {#- Whitespace inside the brackets, because the extraction broke a marker
-      across lines: the body holds "[", "21", "]" on three lines of their own and
-      prose.twig rejoins them at render time. Reading the raw field for a literal
-      [21] finds nothing on a record that plainly prints one. -#}
-  {%- set hasMarker = prose matches '/(?<![A-Za-z0-9])\\[\\s*\\d{1,3}\\s*\\](?!\\d)/' -%}
 {%- endif -%}
 
-{% if rows|length %}
-  {% css %}
-  .rec-fn{margin:40px 0 0;clear:both;max-width:none}
-  .rec-fn .rule{height:1px;background:#E2E4E8;margin-bottom:16px}
-  .rec-fn .lab{font-family:Jost,sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#5B6472;margin-bottom:12px}
-  .rec-fn ol{list-style:none;margin:0;padding:0;counter-reset:none}
-  .rec-fn li{display:flex;gap:10px;font-size:14.5px;line-height:1.65;color:#2C2C2C;margin-bottom:10px}
-  .rec-fn li .n{flex:0 0 auto;font-family:Jost,sans-serif;color:#7A5C1B;min-width:1.8em}
-  .rec-fn li:target .n,.rec-fn li:target{background:#FDF7EA}
-  .rec-fn .back{margin-left:6px;color:#7A5C1B;text-decoration:none;font-size:12px}
-  .rec-fn-away{margin:40px 0 0;clear:both;max-width:none;font-size:14px;line-height:1.7;color:#5B6472}
-  .rec-fn-away a{color:#7A5C1B}
-  {% endcss %}
+{%- set hasMarker = prose matches '/(?<![A-Za-z0-9])\\[\\s*\\d{1,3}\\s*\\](?!\\d)/' -%}
+
+{% if notes|length or notesOn or hasMarker %}
+{% css %}
+.rec-fn{margin:44px 0 0;clear:both}
+.rec-fn .rule{height:1px;background:#E2E4E8;margin-bottom:16px}
+.rec-fn .lab{font-family:Jost,sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#5B6472;margin-bottom:13px}
+.rec-fn ol{list-style:none;margin:0;padding:0}
+.rec-fn li{display:flex;gap:11px;font-size:15px;line-height:1.65;color:#2C2C2C;margin-bottom:11px}
+.rec-fn li .n{flex:0 0 auto;font-family:Jost,sans-serif;font-size:13px;color:#7A5C1B;min-width:1.6em;padding-top:2px}
+.rec-fn li:target{background:#FDF7EA}
+.rec-fn .back{margin-left:7px;color:#7A5C1B;text-decoration:none;font-size:13px}
+.rec-fn .back:hover{text-decoration:underline}
+.rec-fn-away{margin:44px 0 0;clear:both;font-size:14.5px;line-height:1.7;color:#5B6472}
+.rec-fn-away a{color:#7A5C1B}
+{#- On paper the arrow back to the text is meaningless. -#}
+@media print{.rec-fn .back{display:none}}
+{% endcss %}
+{% endif %}
+
+{% if notes|length %}
   <section class="rec-fn" id="footnotes">
     <div class="rule"></div>
     <div class="lab">NOTES</div>
     <ol>
-      {% for r in rows %}
-        {% set num = (r.number ?? '')|trim ?: loop.index %}
-        <li id="fn-{{ num }}"><span class="n">{{ num }}.</span><span>{{ r.note|trim|nl2br }}<a class="back" href="#fnref-{{ num }}" aria-label="Back to the text">&#8617;</a></span></li>
+      {% for note in notes %}
+        <li id="fn-{{ note.n }}">
+          <span class="n">{{ note.n }}.</span>
+          <span>{{ note.t|nl2br }}<a class="back" href="#fnref-{{ note.n }}" aria-label="Back to the text">&#8617;</a></span>
+        </li>
       {% endfor %}
     </ol>
   </section>
 
 {% elseif notesOn %}
-  {% css %}
-  .rec-fn-away{margin:40px 0 0;clear:both;max-width:none;font-size:14px;line-height:1.7;color:#5B6472}
-  .rec-fn-away a{color:#7A5C1B}
-  {% endcss %}
   <section class="rec-fn-away" id="footnotes">
     The notes for this piece were published separately, on
     <a href="{{ notesOn.url }}">{{ notesOn.title }}</a>.
   </section>
 
-{% elseif hasMarker|default(false) %}
-  {% css %}
-  .rec-fn-away{margin:40px 0 0;clear:both;max-width:none;font-size:14px;line-height:1.7;color:#5B6472}
-  .rec-fn-away a{color:#7A5C1B}
-  {% endcss %}
+{% elseif hasMarker %}
   <section class="rec-fn-away" id="footnotes">
     The numbered markers in this piece are the author's. The notes they refer to
-    are not in the source we hold, so they are shown without links.
+    are not in the source we hold, so each one says so rather than linking
+    to nothing.
   </section>
 {% endif %}

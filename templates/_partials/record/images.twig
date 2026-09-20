@@ -16,6 +16,16 @@
     images   the recordImages assets
     body     the prose, so inline tokens can be excluded
 #}
+{#- The layer of images that were links to another record. Built by
+    scripts/import/link_images_to_records.php and read the same way prose.twig
+    reads it. A thumbnail that pointed at a page is a link to that record, not a
+    lightbox open: enlarging a 120px thumbnail shows nothing and loses the only
+    navigation the legacy page had. -#}
+{% set imgLinks = {} %}
+{% if entry is defined and entry %}
+  {% set il = source('_data/image-links/' ~ entry.id ~ '.json', true) %}
+  {% if il|trim %}{% set imgLinks = (il|json_decode).links ?? {} %}{% endif %}
+{% endif %}
 {% set imgs = images is defined ? images : [] %}
 {% set used = [] %}
 {% if body is defined and body %}
@@ -39,6 +49,11 @@
 .rec-photos button{padding:0;border:1px solid #E2E4E8;background:#FDF7EA;cursor:pointer;display:block;width:100%}
 .rec-photos button:hover{border-color:#C4A031}
 .rec-photos button img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.rec-photos a.go{display:block;border:1px solid #E2E4E8;background:#FDF7EA;text-decoration:none;color:inherit}
+.rec-photos a.go:hover{border-color:#C4A031}
+.rec-photos a.go img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.rec-photos a.go .cap{display:block;font-size:12.5px;line-height:1.4;color:#7A5C1B;padding:7px 8px}
+.rec-photos a.go:hover .cap{text-decoration:underline}
 {% endcss %}
 
 <section class="rec-photos">
@@ -57,10 +72,18 @@
       {%- set realTitle = (a.title|trim and nrm != stemNrm) ? a.title|trim : '' -%}
       {%- set cap = a.photoCaptionExt|default('')|trim ?: realTitle -%}
       {%- set credit = a.photoCredit|default('')|trim -%}
-      <button type="button" data-lightbox data-src="{{ a.url }}"
-              data-caption="{{ cap }}" data-credit="{{ credit }}">
-        <img src="{{ a.url }}" alt="{{ a.alt ?: cap }}" loading="lazy">
-      </button>
+      {%- set linkTo = imgLinks[a.filename|lower] ?? null -%}
+      {% if linkTo %}
+        <a href="{{ linkTo.url }}" class="go" title="{{ linkTo.title }}">
+          <img src="{{ a.url }}" alt="{{ a.alt ?: (cap ?: linkTo.title) }}" loading="lazy">
+          <span class="cap">{{ linkTo.title }}</span>
+        </a>
+      {% else %}
+        <button type="button" data-lightbox data-src="{{ a.url }}"
+                data-caption="{{ cap }}" data-credit="{{ credit }}">
+          <img src="{{ a.url }}" alt="{{ a.alt ?: cap }}" loading="lazy">
+        </button>
+      {% endif %}
     {% endfor %}
   </div>
 </section>

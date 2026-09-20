@@ -70,7 +70,7 @@
         {% include "_partials/record/note" with { text: noteTop } only %}
         {% if narrative %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages , footnotesFor: entry } %}</div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}{% endif %}
-        {% include "_partials/record/images" with { images: recImages, body: narrative } only %}
+        {% include "_partials/record/images" with { images: recImages, body: narrative, entry: entry } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% include "_partials/record/fine-print" with { value: F.mpFinePrint } only %}
       </article>

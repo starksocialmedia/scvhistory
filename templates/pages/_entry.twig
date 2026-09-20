@@ -54,7 +54,7 @@
         {% else %}
           <p class="rec-empty">This page has not been written yet.</p>
         {% endif %}
-        {% include "_partials/record/images" with { images: recImages, body: F.body } only %}
+        {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
       </article>
 

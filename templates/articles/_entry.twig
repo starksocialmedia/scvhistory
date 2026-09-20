@@ -189,7 +189,15 @@
 {% set lead = F.subheadline %}
 {% if lead == '' and bodyText %}
   {% set paras = bodyText|split('\n\n')|filter(p => p|trim != '')|values %}
-  {% if paras|length > 1 %}
+  {#- Not a paragraph that carries a footnote. The lead is printed as plain
+      text, outside the prose partial, so a [mfn] block promoted into it was
+      rendered as the literal shortcode and a [N] marker as a bare bracket. A
+      paragraph that cites something is body text and stays in the body, where
+      the note can open under it. -#}
+  {% set firstHasNote = paras|length > 1 and (
+       paras|first|lower matches '/\\[mfn/'
+       or paras|first matches '/(?<![A-Za-z0-9])\\[\\s*\\d{1,3}\\s*\\](?!\\d)/') %}
+  {% if paras|length > 1 and not firstHasNote %}
     {% set lead = paras|first|striptags|trim %}
     {% set bodyText = paras|slice(1)|join('\n\n') %}
   {% endif %}
@@ -197,6 +205,11 @@
 
 {% set words = F.body ? F.body|striptags|split(' ')|filter(w => w|trim)|length : 0 %}
 {% set media = recImages|merge(recDocs) %}
+
+{#- Images that were links to another record. The same layer prose.twig reads. -#}
+{% set imgLinks = {} %}
+{% set il = source('_data/image-links/' ~ entry.id ~ '.json', true) %}
+{% if il|trim %}{% set imgLinks = (il|json_decode).links ?? {} %}{% endif %}
 
 <section style="position: relative; overflow: hidden; background: #FDF7EA; border-bottom: 1px solid #E8E0CC">
   {% if bandImg %}
@@ -272,10 +285,31 @@
           <div style="font-size: 13px; color: #8A919E">{{ media|length }} item{{ media|length == 1 ? '' : 's' }}</div>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin-top: 20px">
+          {#- data-lightbox, not data-scv-lightbox. Nothing has ever bound the
+              latter, so every tile in this grid was a bare link to the image
+              file and the gallery had no lightbox at all. The shared one in
+              _partials/record/lightbox.twig listens for data-lightbox.
+
+              And where the image was a link to another record rather than to a
+              larger copy of itself, the tile goes to that record instead. -#}
           {% for a in media %}
-            <a href="{{ a.url }}" data-scv-lightbox style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px; display: block">
-              <img src="{{ a.getUrl({ width: 400, height: 500, mode: 'crop' }) ?: a.url }}" alt="{{ a.title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
-            </a>
+            {%- set linkTo = imgLinks[a.filename|lower] ?? null -%}
+            {%- set stem = a.filename|split('.')|slice(0, -1)|join('.') -%}
+            {%- set nrm = a.title|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
+            {%- set stemNrm = stem|lower|replace({'-': '', '_': '', ' ': '', '.': ''}) -%}
+            {%- set realTitle = (a.title|trim and nrm != stemNrm) ? a.title|trim : '' -%}
+            {%- set cap = a.photoCaptionExt|default('')|trim ?: realTitle -%}
+            {% if linkTo %}
+              <a href="{{ linkTo.url }}" title="{{ linkTo.title }}" style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px; display: block">
+                <img src="{{ a.getUrl({ width: 400, height: 500, mode: 'crop' }) ?: a.url }}" alt="{{ linkTo.title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
+              </a>
+            {% else %}
+              <button type="button" data-lightbox data-src="{{ a.url }}"
+                      data-caption="{{ cap }}" data-credit="{{ a.photoCredit|default('')|trim }}"
+                      style="position: relative; aspect-ratio: 4/5; background: #fff; border: 1px solid #E2E4E8; padding: 6px; display: block; width: 100%; cursor: zoom-in">
+                <img src="{{ a.getUrl({ width: 400, height: 500, mode: 'crop' }) ?: a.url }}" alt="{{ cap }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block">
+              </button>
+            {% endif %}
           {% endfor %}
         </div>
       </div>

@@ -41,6 +41,10 @@
   .rec-inline button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;font:inherit;text-align:inherit}
   .rec-inline img{width:100%;height:auto;display:block;border:1px solid #E2E4E8;background:#fff}
   .rec-inline button:hover img{border-color:#C4A031}
+  .rec-inline-go{display:block;text-decoration:none}
+  .rec-inline-go:hover img{border-color:#C4A031}
+  .rec-inline-go .go{display:block;font-family:Jost,sans-serif;font-size:12.5px;letter-spacing:.04em;color:#7A5C1B;margin-top:7px;text-align:left}
+  .rec-inline-go:hover .go{text-decoration:underline}
   .rec-inline figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.5;margin-top:8px}
   .rec-inline .cr{display:block;font-style:normal;font-size:12px;color:#5B6472;margin-top:3px}
 
@@ -48,8 +52,15 @@
       too short to wrap around it, take the column instead of floating. A tall
       portrait floated at 40% pushes text past the end of its own paragraph and
       leaves a channel of white down the page. -#}
-  .rec-inline.full{float:none;width:100%;margin:26px 0}
-  .rec-inline.full figcaption{max-width:none}
+  .rec-inline.full{float:none;width:100%;margin:30px auto;text-align:center}
+  .rec-inline.full figcaption{max-width:none;text-align:left}
+  {#- Capped against the window, not just the column. A full-column picture in
+      an 840px measure is 840px tall as well when it is square, which fills the
+      screen and pushes the sentence that introduced it out of view. Height is
+      the dimension that matters, because width is already bounded by the
+      column and height is not. -#}
+  .rec-inline.full img{max-height:70vh;width:auto;max-width:100%;margin:0 auto}
+  @media(max-height:700px){.rec-inline.full img{max-height:62vh}}
 
   {#- Nothing structural may start beside a float. A heading, the signature
       rule, the photographs and the foot of the piece all begin again at the
@@ -61,34 +72,119 @@
   {% endcss %}
 {% endif %}
 {% css %}
-.rec-body sup.fn{font-size:.68em;line-height:0;vertical-align:super;font-family:Jost,sans-serif;margin-left:1px}
-.rec-body sup.fn a{color:#7A5C1B;text-decoration:none}
-.rec-body sup.fn a:hover{text-decoration:underline}
-{#- An orphan marker is not a link and must not look like one. It is the
-    author's own numbering, kept because it is evidence that something was
-    cited, and greyed because there is nothing at the end of it. -#}
-.rec-body sup.fn:not(:has(a)){color:#5B6472;cursor:help}
+{#- The marker is a button, not a link. A link takes the reader to the foot of
+    the page and costs them their place; this opens the note where they are
+    reading it. -#}
+.rec-body sup.fn{font-size:.7em;line-height:0;vertical-align:super;font-family:Jost,sans-serif;margin-left:1px}
+.rec-body .fn-ref{font:inherit;color:#7A5C1B;background:none;border:0;padding:0 1px;cursor:pointer}
+.rec-body .fn-ref:hover{text-decoration:underline}
+.rec-body .fn-ref[aria-expanded="true"]{background:#C4A031;color:#fff;border-radius:2px}
+.rec-body .fn-ref:focus-visible{outline:2px solid #A9842B;outline-offset:1px}
+
+{#- The note itself, opening under the paragraph that cited it and pushing the
+    rest of the piece down. Not a modal, not a jump, no loss of place. -#}
+.fn-panel{position:relative;margin:2px 0 20px;background:#FDF7EA;border-left:3px solid #C4A031;
+          padding:13px 38px 13px 16px;font-size:15px;line-height:1.65;color:#2C2C2C;
+          display:flex;gap:11px;align-items:flex-start;clear:both}
+.fn-panel[hidden]{display:none}
+.fn-panel .fn-n{flex:0 0 auto;font-family:Jost,sans-serif;font-size:13px;color:#7A5C1B;padding-top:2px}
+.fn-panel .fn-t{min-width:0}
+.fn-panel .fn-t a{color:#7A5C1B}
+.fn-panel .fn-x{position:absolute;top:6px;right:9px;background:none;border:0;font-size:19px;
+                line-height:1;color:#8A919E;cursor:pointer;padding:2px 4px}
+.fn-panel .fn-x:hover{color:#7A5C1B}
+
+{#- On paper there is nothing to click, so every note is open and the close
+    control is not printed. -#}
+@media print{
+  .fn-panel[hidden]{display:flex !important}
+  .fn-panel .fn-x{display:none}
+  .rec-body .fn-ref{background:none;color:#000;text-decoration:none}
+}
 {% endcss %}
+<script>
+(function(){
+  /* Bound once. prose.twig is included more than once on some pages, and two
+     copies of a toggle handler cancel each other out: the first click opens the
+     panel and the second handler closes it again, so nothing appears to happen
+     and nothing in the markup looks wrong. */
+  if (window.__scvFootnotes) { return; }
+  window.__scvFootnotes = true;
+
+  /* Delegated, so a panel rendered by any partial on the page works and so the
+     handler survives anything added later. */
+  document.addEventListener('click', function(e){
+    var close = e.target.closest ? e.target.closest('.fn-panel .fn-x') : null;
+    if (close) {
+      var panel = close.closest('.fn-panel');
+      panel.hidden = true;
+      var opener = document.getElementById('fnref-' + panel.id.replace('fnp-', ''));
+      if (opener) { opener.setAttribute('aria-expanded', 'false'); opener.focus(); }
+      return;
+    }
+    var ref = e.target.closest ? e.target.closest('.fn-ref') : null;
+    if (!ref) { return; }
+    e.preventDefault();
+    var id = ref.getAttribute('aria-controls');
+    var panel = id ? document.getElementById(id) : null;
+    if (!panel) { return; }
+    /* The hidden attribute and nothing else. An inline display beats it, which
+       is how the reading player came to be open while every script that read
+       .hidden was told it was closed. */
+    var open = !panel.hidden;
+    panel.hidden = open;
+    ref.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+})();
+</script>
 {%- set imgs = images is defined ? images : [] -%}
+{%- set shownInline = [] -%}
 
 {#- Which of the three footnote states this record is in. Read through the
     layout, because entry.footnotes is "defined" on a type that has no such
     field and throws the moment it is read. -#}
 {%- set fnMode = 'off' -%}
 {%- set fnHref = '' -%}
+{%- set fnAwayTitle = '' -%}
+{%- set fnText = {} -%}
+{#- Numbers for the shortcode notes, which carry none of their own. They run in
+    document order from 1. That is safe because no record carrying [mfn] also
+    carries a bare [N] marker, which was measured rather than assumed; the
+    conversion script checks the same thing and refuses a record where both
+    appear. -#}
+{%- set fnSeq = 0 -%}
 {%- if footnotesFor is defined and footnotesFor -%}
   {%- set fnHandles = [] -%}
   {%- for f in footnotesFor.fieldLayout.customFields -%}{%- set fnHandles = fnHandles|merge([f.handle]) -%}{%- endfor -%}
   {%- set fnRows = 'footnotes' in fnHandles ? (footnotesFor.footnotes ?? []) : [] -%}
   {%- set fnOn = 'footnotesOn' in fnHandles ? (footnotesFor.footnotesOn.one() ?? null) : null -%}
+  {#- String keys. merge is array_merge and renumbers integer keys, so a note
+      numbered 3 would not stay at 3. -#}
+  {%- for r in fnRows -%}
+    {%- set rn = (r.number ?? '')|trim ?: loop.index -%}
+    {%- set fnText = fnText|merge({ ('n' ~ rn): (r.note ?? '')|trim }) -%}
+  {%- endfor -%}
   {%- if fnRows|length -%}
     {%- set fnMode = 'here' -%}
   {%- elseif fnOn -%}
     {%- set fnMode = 'away' -%}
     {%- set fnHref = fnOn.url -%}
+    {%- set fnAwayTitle = fnOn.title -%}
   {%- else -%}
     {%- set fnMode = 'orphan' -%}
   {%- endif -%}
+{%- endif -%}
+
+{#- Images that were links to another record rather than to a larger copy of
+    themselves. templates/_data/image-links/<id>.json maps a filename to the
+    record it pointed at, built by scripts/import/link_images_to_records.php.
+    A layer, not a rewrite: the body is untouched and deleting the file turns
+    the behaviour off. -#}
+{%- set imgLinks = {} -%}
+{%- set imgLinkId = (footnotesFor is defined and footnotesFor) ? footnotesFor.id : (linksFor is defined ? linksFor : null) -%}
+{%- if imgLinkId -%}
+  {%- set il = source('_data/image-links/' ~ imgLinkId ~ '.json', true) -%}
+  {%- if il|trim -%}{%- set imgLinks = (il|json_decode).links ?? {} -%}{%- endif -%}
 {%- endif -%}
 
 {%- set spans = [] -%}
@@ -129,6 +225,22 @@
   {%- if line -%}
     {%- set token = line matches '/^\\[image:\\d+\\]$/' ? line|replace({'[image:': '', ']': ''}) : null -%}
     {%- set asset = token and imgs[token - 1] is defined ? imgs[token - 1] : null -%}
+    {#- The same picture twice. A re-import that met a filename already in the
+        volume let Craft rename the new copy, so jj2003a.jpg and
+        jj2003a_2026-09-18-071338_lure.jpg are both related to chapter 14 and
+        both cited in the body. Comparing the name with the rename suffix taken
+        off catches it. This is a guard and not the repair: the duplicate asset
+        should be deleted and the relation dropped. -#}
+    {%- if asset -%}
+      {%- set stemKey = asset.filename|lower|split('.')|slice(0, -1)|join('.') -%}
+      {%- set stemKey = stemKey matches '/_[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{6}_[a-z]+$/'
+                        ? stemKey|split('_')|slice(0, -2)|join('_') : stemKey -%}
+      {%- if stemKey in shownInline -%}
+        {%- set asset = null -%}
+      {%- else -%}
+        {%- set shownInline = shownInline|merge([stemKey]) -%}
+      {%- endif -%}
+    {%- endif -%}
     {%- if asset -%}
       {#- Two reasons to take the whole column rather than float. A portrait
           taller than it is wide by a fifth, because the text beside it runs out
@@ -174,11 +286,24 @@
         {%- set realTitle = (asset.title|trim and norm != stemNorm) ? asset.title|trim : '' -%}
         {%- set cap = asset.photoCaptionExt|default('')|trim ?: realTitle -%}
         {%- set credit = asset.photoCredit|default('')|trim -%}
-        <button type="button" data-lightbox data-src="{{ asset.url }}"
-                data-caption="{{ cap }}" data-credit="{{ credit }}"
-                aria-label="{{ cap ? 'Open: ' ~ cap : 'Open the full image' }}">
-          <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
-        </button>
+        {#- On the legacy page this thumbnail often opened a different page
+            rather than a larger scan, and sending it to the lightbox shows a
+            120px picture enlarged to nothing while losing the only navigation
+            the page offered. Where the layer names a target, the picture is a
+            link to that record. -#}
+        {%- set linkTo = imgLinks[asset.filename|lower] ?? null -%}
+        {% if linkTo %}
+          <a href="{{ linkTo.url }}" class="rec-inline-go">
+            <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
+            <span class="go">{{ linkTo.title }} &rarr;</span>
+          </a>
+        {% else %}
+          <button type="button" data-lightbox data-src="{{ asset.url }}"
+                  data-caption="{{ cap }}" data-credit="{{ credit }}"
+                  aria-label="{{ cap ? 'Open: ' ~ cap : 'Open the full image' }}">
+            <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
+          </button>
+        {% endif %}
         {%- if cap or credit %}
         <figcaption>{{ cap }}{% if credit %}<span class="cr">{{ credit }}</span>{% endif %}</figcaption>
         {%- endif %}
@@ -198,14 +323,53 @@
           {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
-      {#- Footnote markers. A marker is [N] with no word character before it and
-          no digit after the bracket, because the extraction broke years across
-          lines and "In December [18]54" is a date, not a note.
+      {#- ── Footnotes ────────────────────────────────────────────────
 
-          There is no regex replace in this Twig, and a plain replace of every
-          [N] would wrap that date. So the paragraph is cut on the opening
-          bracket and put back together, which is the only way to look at what
-          is on either side of the match. -#}
+          Two shapes arrive in the body and both become the same thing.
+
+          [mfn]the note text[/mfn] is the WordPress Modern Footnotes shortcode
+          from the previous site. The note sits inline, where the marker goes.
+          It is read here as well as by the conversion script, so a record
+          renders correctly before the conversion has been run and identically
+          after it.
+
+          [N] is a bare marker whose note is in the footnotes field, on another
+          record, or nowhere. It needs no word character before it and no digit
+          after the bracket, because the extraction broke years across lines and
+          "In December [18]54" is a date and not a note.
+
+          There is no regex replace in this Twig and a plain replace of every
+          [N] would wrap that date, so the paragraph is cut on the bracket and
+          put back together. That is the only way to see what sits on either
+          side of a match. -#}
+      {%- set paraNotes = [] -%}
+
+      {#- The shortcode first, so its note text is out of the way before the
+          bracket pass runs over what is left. -#}
+      {%- if out|lower|split('[mfn')|length > 1 -%}
+        {%- set parts = out|split('[mfn') -%}
+        {%- set built = parts|first -%}
+        {%- for part in parts|slice(1) -%}
+          {#- [mfn] and [mfn attr="..."] both open a note. Everything to the
+              first ] is the opening tag, everything to [/mfn] is the note. -#}
+          {%- set afterOpen = part|split(']')|length > 1 ? part|slice(part|split(']')|first|length + 1) : '' -%}
+          {%- if afterOpen and afterOpen|split('[/mfn]')|length > 1 -%}
+            {%- set noteText = afterOpen|split('[/mfn]')|first -%}
+            {#- [/mfn] is six characters. -#}
+            {%- set rest = afterOpen|slice(noteText|length + 6) -%}
+            {%- set fnSeq = fnSeq + 1 -%}
+            {%- set paraNotes = paraNotes|merge([{ n: fnSeq, t: noteText|trim, kind: 'held' }]) -%}
+            {%- set built = built ~ '<sup class="fn"><button type="button" class="fn-ref" id="fnref-' ~ fnSeq
+                            ~ '" aria-expanded="false" aria-controls="fnp-' ~ fnSeq ~ '">' ~ fnSeq ~ '</button></sup>' ~ rest -%}
+          {%- else -%}
+            {#- Unclosed. Put the text back exactly as it was rather than
+                guessing where the note ends; the conversion script reports it. -#}
+            {%- set built = built ~ '[mfn' ~ part -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- set out = built -%}
+      {%- endif -%}
+
       {%- if fnMode != 'off' -%}
         {%- set chunks = out|split('[') -%}
         {%- set built = chunks|first -%}
@@ -217,14 +381,11 @@
                        and not (ch|slice(num|length + 1, 1) matches '/[0-9]/') -%}
           {%- if ok -%}
             {%- set rest = ch|slice(num|length + 1) -%}
-            {%- if fnMode == 'here' -%}
-              {%- set mark = '<sup class="fn" id="fnref-' ~ num ~ '"><a href="#fn-' ~ num ~ '">' ~ num ~ '</a></sup>' -%}
-            {%- elseif fnMode == 'away' -%}
-              {%- set mark = '<sup class="fn"><a href="' ~ fnHref ~ '#fn-' ~ num ~ '">' ~ num ~ '</a></sup>' -%}
-            {%- else -%}
-              {%- set mark = '<sup class="fn" title="The note is not in the source">' ~ num ~ '</sup>' -%}
-            {%- endif -%}
-            {%- set built = built ~ mark ~ rest -%}
+            {%- set kind = fnMode == 'here' and fnText['n' ~ num] is defined ? 'held'
+                           : (fnMode == 'away' ? 'away' : 'orphan') -%}
+            {%- set paraNotes = paraNotes|merge([{ n: num, t: fnText['n' ~ num]|default(''), kind: kind }]) -%}
+            {%- set built = built ~ '<sup class="fn"><button type="button" class="fn-ref" id="fnref-' ~ num
+                            ~ '" aria-expanded="false" aria-controls="fnp-' ~ num ~ '">' ~ num ~ '</button></sup>' ~ rest -%}
           {%- else -%}
             {%- set built = built ~ '[' ~ ch -%}
           {%- endif -%}
@@ -232,6 +393,20 @@
         {%- set out = built -%}
       {%- endif -%}
       <p>{{ out|raw }}</p>
+      {#- The note opens under the paragraph it was cited in, not at the foot of
+          the page. The reader stays where they are and the text moves down. -#}
+      {%- for note in paraNotes %}
+        <div class="fn-panel" id="fnp-{{ note.n }}" role="note" hidden>
+          <span class="fn-n">{{ note.n }}</span>
+          <div class="fn-t">
+            {%- if note.kind == 'held' %}{{ note.t }}
+            {%- elseif note.kind == 'away' %}This note was published apart from the piece, on <a href="{{ fnHref }}">{{ fnAwayTitle }}</a>.
+            {%- else %}The note this marker refers to is not in the source we hold.
+            {%- endif -%}
+          </div>
+          <button type="button" class="fn-x" aria-label="Close this note">&times;</button>
+        </div>
+      {%- endfor -%}
     {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
