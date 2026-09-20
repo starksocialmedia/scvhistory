@@ -45,9 +45,14 @@ def stats(html: str) -> dict:
     if not html:
         return {'p': 0, 'br': 0, 'blocks': 0, 'words': 0}
 
-    # Every separator the legacy pages used, counted once each. A <br><br> run
-    # is one break however many tags are in it.
-    p = len(re.findall(r'<p\b', html, re.I))
+    # Non-empty <p> blocks, not <p> tags. The legacy markup opens and closes
+    # paragraphs around each other, so a page is full of <p>\n</p> pairs with
+    # nothing in them: lw2717 has 107 <p> tags and 93 paragraphs of text. The
+    # tag count made a faithful rebuild look like it was still losing breaks.
+    p = 0
+    for m in re.finditer(r'<p\b[^>]*>(.*?)(?=</p>|<p\b)', html, re.S | re.I):
+        if TAG.sub(' ', m.group(1)).strip():
+            p += 1
     br = len(re.findall(r'<br\b', html, re.I))
     blocks = len(BLOCK.findall(html)) + len(BRBR.findall(html))
 

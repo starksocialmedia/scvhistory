@@ -4,6 +4,16 @@ SCVHistory.com — Changelog
 
 - Agent: Claude Code
 - Date: 2026-09-20
+- Done: the photograph body re-import written and dry-run against all 1,544, the fidelity audit and the long-paragraph report re-run against the dry-run output, /admin-preview added to render a rebuilt body without writing it, and a converter for the one webmaster note that is a footnote list. Reports at web/review/photograph-reimport-findings.md and photograph-reimport.md.
+- Decisions: transcribe the source HTML's own structure and infer nothing, because every census name is already its own p in the source. A separate field was rejected for not holding position, a render-time rule for being the same class of heuristic that caused the loss. Navigation is stripped at import rather than at render because it reaches the meta description. Fidelity is measured in words rather than lines, because the fix reflows and the line metric cannot see through that.
+- Blockers: link_images_to_records.php writes to relatedArticles and relatedPlaces, the curated entity review's own fields, and to the photo* fields the JSON-LD publishes. Not applied. It needs a derivedImageLinks field first; no migration, because it has never been run.
+- Result: source words missing from our bodies falls from 105,958 to 5,820, 6.7% to 0.4%, and records holding under a third of their source words from 22 to 0. lw2717 goes from 218 characters and 4 lines to 2,330 and 93; the eighty census names are back. Ten records render clean with no fence, no navigation and no stray bar. A correction: my figure of 32 of 33 long paragraphs losing their breaks was wrong, because the html index counted raw p tags including the empty pairs the legacy markup is full of; counting non-empty blocks the real figure was 1 before and is 0 after.
+- Next: Nathan applies the re-import, then the caption script re-runs and the photograph template's plates fill in.
+
+2026-09-20
+
+- Agent: Claude Code
+- Date: 2026-09-20
 - Done: signature enlarged to 20px with more space above the rule, templates/photographs/_entry.twig rebuilt from a stub onto the shared record chrome, the long-paragraph report, and the fidelity audit across the 1,544 photographs. Reports at web/review/long-paragraphs.md and web/review/photographs-fidelity.md.
 - Decisions: the photograph plate resolves by photoSourceCode against the volume by filename stem, so an image appears the moment it lands, and until then the page says the image is not held rather than showing an empty frame. Navigation is dropped at render on that template only; the stored bodies are untouched because cleaning them is a separate script. The long-paragraph verdict turns on the source's p count rather than its block count, because blocks include table cells.
 - Blockers: both audits imply rewriting 1,544 bodies and neither was applied. The meta description is still built from the raw body, so the navigation text is in the page description on all 1,544; that argues for cleaning the bodies rather than filtering at render.

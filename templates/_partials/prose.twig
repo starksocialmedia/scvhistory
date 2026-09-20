@@ -75,6 +75,11 @@
 {#- The marker is a button, not a link. A link takes the reader to the foot of
     the page and costs them their place; this opens the note where they are
     reading it. -#}
+{#- A block whose line breaks are the author's. Tighter than paragraph leading,
+    because the lines belong together. -#}
+.rec-body .rec-lines{line-height:1.5}
+.rec-body .rec-list{margin:0 0 22px;padding-left:1.35em}
+.rec-body .rec-list li{margin:0 0 5px}
 .rec-body sup.fn{font-size:.7em;line-height:0;vertical-align:super;font-family:Jost,sans-serif;margin-left:1px}
 .rec-body .fn-ref{font:inherit;color:#7A5C1B;background:none;border:0;padding:0 1px;cursor:pointer}
 .rec-body .fn-ref:hover{text-decoration:underline}
@@ -139,6 +144,9 @@
 </script>
 {%- set imgs = images is defined ? images : [] -%}
 {%- set shownInline = [] -%}
+{%- set inLines = false -%}
+{%- set lineBuf = [] -%}
+{%- set inList = false -%}
 
 {#- Which of the three footnote states this record is in. Read through the
     layout, because entry.footnotes is "defined" on a type that has no such
@@ -310,6 +318,29 @@
       </figure>
     {%- elseif token -%}
       {# token points at an image that is not there; drop it rather than print it #}
+
+    {#- A run the author broke themselves: an address block, a transcribed
+        letter, a stack of dates. The importer fences it so that nothing here or
+        anywhere else can reflow it back into a sentence. -#}
+    {%- elseif line == '[lines]' -%}
+      {%- set inLines = true -%}
+      {%- set lineBuf = [] -%}
+    {%- elseif line == '[/lines]' -%}
+      {%- set inLines = false -%}
+      <p class="rec-lines">{{ lineBuf|join('<br>')|raw }}</p>
+      {%- set lineBuf = [] -%}
+    {%- elseif inLines -%}
+      {%- set lineBuf = lineBuf|merge([line]) -%}
+
+    {#- A list item, from a <li> in the source. Consecutive items are one list.
+        565 of them across 31 pages, so this is rare and real rather than a
+        shape somebody guessed at. -#}
+    {%- elseif line starts with '- ' -%}
+      {%- if not inList %}<ul class="rec-list">{% endif -%}
+      {%- set inList = true -%}
+      <li>{{ line|slice(2)|raw }}</li>
+      {%- if not (lines[loop.index0 + 1] is defined and lines[loop.index0 + 1]|trim starts with '- ') %}</ul>{% set inList = false %}{% endif -%}
+
     {%- else -%}
       {#- Spans are applied from the end of the paragraph backwards, so an
           earlier offset is still correct after a later one has been wrapped. -#}

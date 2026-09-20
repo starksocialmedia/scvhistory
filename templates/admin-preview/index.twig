@@ -1,0 +1,38 @@
+{#-
+  A rebuilt body, rendered as the page it would become, without writing it.
+
+  The re-import cannot be checked by reading a diff: the question is whether a
+  census of eighty names renders as eighty names and whether a transcribed
+  letter keeps the author's line breaks, and only a rendered page answers that.
+  Applying first and looking afterwards is the wrong order on 1,544 records.
+
+  So this reads web/review/reimport-dryrun.json, loads the entry, sets the
+  rebuilt body on it in memory and renders the record template. Nothing is
+  saved. The entry object is discarded when the request ends.
+
+  /admin-preview?key=lw2717
+
+  Admin only, guarded in the template rather than in the server config, for the
+  same reason the other admin pages are: a path rule protects the paths somebody
+  remembered to list, and the next page added would be public until the config
+  was edited again.
+-#}
+{% requireLogin %}
+{% if not currentUser.admin %}{% exit 404 %}{% endif %}
+
+{#- One file per record, written by the re-import's dry run. source() goes
+    through the template loader, so it cannot resolve @webroot, and the single
+    18MB dry-run file is not something to parse on every request. -#}
+{% set key = craft.app.request.getParam('key')|trim|lower %}
+{% set safe = key matches '/^[a-z0-9_-]{1,64}$/' %}
+{% set raw = safe ? source('_data/reimport/' ~ key ~ '.json', true) : '' %}
+{% if not raw|trim %}{% exit 404 %}{% endif %}
+{% set match = raw|json_decode %}
+
+{% set entry = craft.entries().id(match.id).status(null).one() %}
+{% if not entry %}{% exit 404 %}{% endif %}
+
+{#- In memory only. There is no save anywhere in this template. -#}
+{% do entry.setFieldValue('body', match.after) %}
+
+{% include 'photographs/_entry' %}

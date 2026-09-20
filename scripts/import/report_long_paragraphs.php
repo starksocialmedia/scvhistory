@@ -33,6 +33,11 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/report_long_paragraphs.php'))"
  */
 
+/* Point this at the re-import dry run to test the rebuilt bodies instead of the
+   stored ones, which is the only way to check a fix before applying it. */
+$FROM_DRYRUN = \Craft::getAlias('@webroot') . '/review/reimport-dryrun.json';
+$USE_DRYRUN  = false;
+
 $MIN_WORDS = 300;
 $REPORT = \Craft::getAlias('@webroot') . '/review/long-paragraphs.md';
 
@@ -45,6 +50,12 @@ if (!file_exists($INDEX)) {
 $HTML = json_decode(file_get_contents($INDEX), true);
 if (!is_array($HTML)) { echo 'could not parse the html index' . PHP_EOL; return; }
 echo 'source pages indexed: ' . count($HTML) . PHP_EOL;
+
+$rebuilt = [];
+if ($USE_DRYRUN && file_exists($FROM_DRYRUN)) {
+    foreach (json_decode(file_get_contents($FROM_DRYRUN), true) as $d) { $rebuilt[$d['id']] = $d['after']; }
+    echo 'using the re-import dry run for ' . count($rebuilt) . ' bodies' . PHP_EOL;
+}
 
 $rows = [];
 $scanned = 0;
@@ -64,6 +75,11 @@ foreach (\craft\elements\Entry::find()->limit(null)->status(null)->all() as $e) 
         if (in_array($f->handle, ['body', 'wmNarrative', 'mpNarrative'], true)) { $prose[$f->handle] = $v; }
     }
     $src = $key !== '' && isset($HTML[$key]) ? $HTML[$key] : null;
+    if (isset($rebuilt[$e->id])) {
+        /* The fences and list markers are ours and are not paragraph text. */
+        $b = preg_replace('/^\s*\[\/?lines\]\s*$/m', '', $rebuilt[$e->id]);
+        $prose = ['body' => preg_replace('/^\s*-\s+/m', '', $b)];
+    }
     if (!$prose) { continue; }
     $scanned++;
 

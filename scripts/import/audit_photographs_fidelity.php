@@ -30,6 +30,13 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/audit_photographs_fidelity.php'))"
  */
 
+/* Set to the dry-run file to audit the rebuilt bodies instead of the stored
+   ones. That is the only honest way to check a fix before it is applied: the
+   database still holds the damage, so the comparison has to be against what the
+   importer would write rather than against what is there. */
+$FROM_DRYRUN = \Craft::getAlias('@webroot') . '/review/reimport-dryrun.json';
+$USE_DRYRUN  = false;
+
 $SECTION   = 'photographs';
 $INVENTORY = \Craft::getAlias('@root') . '/inventory/legacy/lw-features.json';
 $REPORT    = \Craft::getAlias('@webroot') . '/review/photographs-fidelity.md';
@@ -75,9 +82,17 @@ $isChrome = function (string $n): bool {
 
 $entries = \craft\elements\Entry::find()->section($SECTION)->status(null)->limit(null)->all();
 echo 'records: ' . count($entries) . PHP_EOL;
+
+$rebuilt = [];
+if ($USE_DRYRUN) {
+    if (!file_exists($FROM_DRYRUN)) { echo 'not found: ' . $FROM_DRYRUN . PHP_EOL; return; }
+    foreach (json_decode(file_get_contents($FROM_DRYRUN), true) as $d) { $rebuilt[$d['id']] = $d['after']; }
+    echo 'auditing the DRY RUN output, ' . count($rebuilt) . ' rebuilt bodies' . PHP_EOL;
+}
 echo str_repeat('=', 72) . PHP_EOL;
 
 $rows = []; $noSource = 0; $totalAdded = 0; $totalLost = 0; $clean = 0;
+$totalSrcWords = 0; $totalOurWords = 0; $totalWordsLost = 0; $totalWordsAdded = 0; $wordGutted = 0;
 
 foreach ($entries as $e) {
     $key = strtolower(trim((string)($e->legacyKey ?? '')));
@@ -90,10 +105,37 @@ foreach ($entries as $e) {
            value, and a boolean counts as one word however long the line. */
         if ($n !== '') { $aLines[$n] = $l; }
     }
-    foreach (preg_split('/\r?\n/', (string)$e->body) as $l) {
+    $mine = $rebuilt[$e->id] ?? (string)$e->body;
+    /* The fences are ours, not the source's, so they are not lines to compare. */
+    $mine = preg_replace('/^\s*\[\/?lines\]\s*$/m', '', $mine);
+    foreach (preg_split('/\r?\n/', $mine) as $l) {
+        $l = preg_replace('/^\s*-\s+/', '', $l);
         $n = $norm($l);
         if ($n !== '') { $bLines[$n] = $l; }
     }
+
+    /* Words, not lines. The line comparison was adequate while nothing was
+       reflowed; a rebuild that puts each source paragraph on one line makes it
+       useless, because a paragraph wrapped over five lines in the source reads
+       as five lines lost and one line added when not a word has changed. The
+       word multiset is immune to wrapping and is the figure that answers
+       whether anything was actually lost. */
+    $wordsOf = function (string $t) use ($norm): array {
+        $bag = [];
+        foreach (preg_split('/\s+/', $norm($t)) as $w) {
+            if ($w !== '') { $bag[$w] = ($bag[$w] ?? 0) + 1; }
+        }
+        return $bag;
+    };
+    $aw = $wordsOf($legacy[$key]);
+    $bw = $wordsOf($mine);
+    $wLost = 0; $wAdded = 0;
+    foreach ($aw as $w => $n) { $d = $n - ($bw[$w] ?? 0); if ($d > 0) { $wLost += $d; } }
+    foreach ($bw as $w => $n) { $d = $n - ($aw[$w] ?? 0); if ($d > 0) { $wAdded += $d; } }
+    $srcWords = array_sum($aw); $ourWords = array_sum($bw);
+    $totalSrcWords += $srcWords; $totalOurWords += $ourWords;
+    $totalWordsLost += $wLost; $totalWordsAdded += $wAdded;
+    if ($srcWords > 40 && $ourWords < $srcWords / 3) { $wordGutted++; }
 
     $added = []; $lost = 0; $chrome = 0; $lostShort = 0; $lostProse = 0; $lostSample = [];
     foreach ($bLines as $n => $raw) {
@@ -141,7 +183,16 @@ echo 'added lines in total:             ' . $totalAdded . PHP_EOL;
 echo 'lost lines in total:              ' . $totalLost . PHP_EOL;
 echo '  of those, list entries:         ' . $lostShortTotal . PHP_EOL;
 echo '  of those, prose lines:          ' . $lostProseTotal . PHP_EOL;
-echo 'records holding under a third of the source: ' . $gutted . PHP_EOL;
+echo 'records holding under a third of the source, by line: ' . $gutted . PHP_EOL;
+echo str_repeat('-', 72) . PHP_EOL;
+echo 'WORDS, which wrapping cannot distort' . PHP_EOL;
+echo '  words in the source pages: ' . number_format($totalSrcWords) . PHP_EOL;
+echo '  words in ours:             ' . number_format($totalOurWords) . PHP_EOL;
+echo '  source words missing from ours: ' . number_format($totalWordsLost)
+   . ' (' . ($totalSrcWords ? number_format(100 * $totalWordsLost / $totalSrcWords, 1) : '0') . '%)' . PHP_EOL;
+echo '  our words not in the source:    ' . number_format($totalWordsAdded)
+   . ' (' . ($totalOurWords ? number_format(100 * $totalWordsAdded / $totalOurWords, 1) : '0') . '%)' . PHP_EOL;
+echo '  records holding under a third of the source words: ' . $wordGutted . PHP_EOL;
 
 $out = [];
 $out[] = '# The photographs against their legacy pages';
@@ -167,7 +218,12 @@ $out[] = '| added lines in total | ' . $totalAdded . ' |';
 $out[] = '| lost lines in total | ' . $totalLost . ' |';
 $out[] = '| of those, list entries (under 6 words) | ' . $lostShortTotal . ' |';
 $out[] = '| of those, prose lines | ' . $lostProseTotal . ' |';
-$out[] = '| **records holding under a third of their source** | **' . $gutted . '** |';
+$out[] = '| records holding under a third of their source, by line | ' . $gutted . ' |';
+$out[] = '| words in the source pages | ' . number_format($totalSrcWords) . ' |';
+$out[] = '| words in ours | ' . number_format($totalOurWords) . ' |';
+$out[] = '| **source words missing from ours** | **' . number_format($totalWordsLost) . '** |';
+$out[] = '| our words not in the source | ' . number_format($totalWordsAdded) . ' |';
+$out[] = '| **records holding under a third of the source words** | **' . $wordGutted . '** |';
 $out[] = '';
 $out[] = '## The ' . min($LIST_TOP, count($rows)) . ' worst, added first';
 $out[] = '';
