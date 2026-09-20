@@ -19,6 +19,13 @@
  * date written as "In December [18]54" by the extraction is not a footnote.
  * That error inflated an earlier count of these by two.
  *
+ * Whitespace is allowed inside the brackets, and that is not cosmetic. The
+ * extraction broke a marker across lines: /articles/6-oil-and-newhall stores
+ * "[", "21", "]" on three lines of their own, and prose.twig rejoins them when
+ * it renders. A scan for a literal [21] reads that record as carrying no
+ * markers while the page it produces carries five. An earlier count of 229 was
+ * made that way and was too low.
+ *
  * Read only. Writes a report and touches nothing.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/survey_footnotes.php'))"
  */
@@ -28,7 +35,7 @@ $REPORT = \Craft::getAlias('@webroot') . '/review/footnotes.md';
 /* No word character before, so "[18]54" inside a date is not a marker, and no
    digit after the bracket, so a year split across the extraction's lines is
    not one either. */
-$MARKER = '/(?<![A-Za-z0-9])\[(\d{1,3})\](?!\d)/';
+$MARKER = '/(?<![A-Za-z0-9])\[\s*(\d{1,3})\s*\](?!\d)/';
 
 /* The headings the legacy pages put above a block of notes. Matched on a line
    of its own, near the end of a body. */
@@ -110,7 +117,7 @@ foreach ($carry as $c) {
     $numbered = 0;
     if ($headingAt !== null) {
         for ($i = $headingAt + 1, $n = count($lines); $i < $n; $i++) {
-            if (preg_match('/^\s*\[?(\d{1,3})[\].]\s+\S/', $lines[$i])) { $numbered++; }
+            if (preg_match('/^\s*\[?\s*(\d{1,3})\s*[\].]\s+\S/', $lines[$i])) { $numbered++; }
         }
     }
 

@@ -97,18 +97,29 @@ opens it, the dialog closes, the PHOTOS grid opens the same one.
 
 ## 3. Footnotes
 
-**229 records carry a marker. This supersedes the 238 I reported last turn**,
-which came from a looser scan. A marker is `[N]` with no word character before it
-and no digit after, so "the refinery of the [18]70s" is a date and not a note.
-1,161 distinct markers across the 229.
+**238 records carry a marker, which is the figure I first reported.** I then
+"corrected" it to 229 and the correction was wrong. A marker is `[N]` with no
+word character before it and no digit after, so "the refinery of the [18]70s" is
+a date and not a note. But the extraction also broke markers across lines:
+`/articles/6-oil-and-newhall` stores `[`, `21` and `]` on three lines of their
+own, and `prose.twig` rejoins them when it renders. A scan for a literal `[21]`
+reads that record as carrying no markers while the page it produces carries
+five. Both scans now allow whitespace inside the brackets. 1,203 distinct
+markers across the 238.
+
+**The same bug had the orphan line rendering nowhere**, and I reported it
+verified when what I had actually matched in the HTML was the CSS rule name
+rather than the section. Two causes, both now fixed: the partial read three
+named handles where the survey read every PlainText field, and both read the raw
+field instead of allowing for the split marker.
 
 | state | records | what renders |
 |---|---:|---|
 | the note text is on the record | 2 | the notes print under the piece, the marker links to them |
-| the notes are on another record | 6 | the marker links to that record |
-| orphan, the note text is not held | **221** | the marker prints unlinked, one line says the notes are not in the source |
+| the notes are on another record | 12 | the marker links to that record |
+| orphan, the note text is not held | **224** | the marker prints unlinked, one line says the notes are not in the source |
 
-That is 96% orphans, and it matches the shape of Grok's survey: the legacy site
+That is 94% orphans, and it matches the shape of Grok's survey: the legacy site
 kept one `notes.html` for a whole series rather than putting notes on the page
 that cited them, and most of those files did not survive.
 
