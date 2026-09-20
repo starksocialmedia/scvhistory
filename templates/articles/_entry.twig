@@ -376,6 +376,7 @@
                   <button type="button" class="zoom" data-lightbox data-src="{{ zoomSrc }}"
                           data-caption="{{ linkTo ? linkTo.title : cap }}"
                           data-credit="{{ a.photoCredit|default('')|trim }}"
+                          {% if linkTo %}data-record="{{ linkTo.url }}"{% endif %}
                           aria-label="Open the larger image">&#9906;</button>
                 {% endif %}
               </div>

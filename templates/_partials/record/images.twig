@@ -114,6 +114,7 @@
         {% if zoomSrc %}
           <button type="button" data-lightbox data-src="{{ zoomSrc }}"
                   data-caption="{{ cap }}" data-credit="{{ credit }}"
+                  {% if linkTo %}data-record="{{ linkTo.url }}"{% endif %}
                   {% if enhanced %}data-enhanced="{{ enhanced.url }}" data-enhanced-note="{{ enhNote }}"{% endif %}>
             <img src="{{ a.url }}" alt="{{ a.alt ?: cap }}" loading="lazy">
             {% if enhanced %}<span class="enh">Enhanced</span>{% endif %}

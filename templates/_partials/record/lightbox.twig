@@ -1,102 +1,259 @@
 {#
   One lightbox for the whole site.
 
-  It used to live inside record/images.twig, which meant a record with no PHOTOS
-  section had no lightbox at all and an image placed inline in the prose could
-  not be opened. The dialog and its script are now included once from
-  _layouts/base.twig, and anything anywhere that carries data-lightbox opens it.
+  It is included once from _layouts/base.twig and bound by delegation, so
+  anything anywhere carrying data-lightbox opens it:
 
-  A control opts in with:
     <button type="button" data-lightbox
-            data-src="..." data-caption="..." data-credit="...">
+            data-src="..." data-caption="..." data-credit="..."
+            data-record="/articles/..."        optional, "View record"
+            data-enhanced="..." data-enhanced-note="...">   optional
 
-  An enhanced derivative adds data-enhanced and data-enhanced-note, and the
-  dialog grows a two-way toggle. The ORIGINAL opens first and is never replaced
-  by the enhancement: the scan is what the archive holds and the enhancement is
-  a rendering of it, however much better it looks.
+  WHY THE SIZING IS NOT JUST "FIT THE VIEWPORT"
 
-  The script binds by delegation rather than by walking the buttons at load, so
-  a figure rendered by a partial that runs after this one still works, and so
-  does anything added to the page later.
+  Most of this archive is newsprint. A column scan is 800 by 5,000 pixels, and
+  fitting that into a 900px-tall window renders it about 140px wide, which is
+  not a picture of a newspaper, it is a grey smear. The rule has to depend on
+  the shape of the thing:
 
-  No library. <dialog> does the modal, the backdrop and the escape key.
+    landscape or near-square   fit inside the viewport, as before
+    portrait taller than the   fit to WIDTH and scroll vertically. The width is
+    viewport's own ratio       at least 720px or 90vw, whichever is smaller, so
+                               8pt newsprint stays legible at 1:1 on a 1440px
+                               screen rather than being shrunk to fit a height
+                               it was never going to fit
+
+  Zoom is fit, 100% and 200%. At 100% and above the image is larger than its
+  frame, so dragging pans it. Double-click toggles between fit and 100%, which
+  is the gesture people already have from every other image viewer.
+
+  The close control sits in the dialog's own bar, above the picture, never on
+  top of it: a scan of a newspaper has words in its top right corner and a
+  cross over them is a cross over the thing you came to read. Escape closes.
+  Left and right move through the gallery in document order.
+
+  The caption, the credit and the record link are fixed under the image and do
+  not scroll with it, so a reader ten thousand pixels down a column can still
+  see what they are looking at.
 #}
 {% css %}
-.rec-lb{border:0;padding:0;background:transparent;max-width:92vw;max-height:92vh}
+.rec-lb{border:0;padding:0;background:transparent;max-width:96vw;max-height:94vh;width:auto}
 .rec-lb::backdrop{background:rgba(23,37,76,.94)}
-.rec-lb .inner{background:#fff;border-top:3px solid #C4A031;padding:16px}
-.rec-lb img{max-width:86vw;max-height:72vh;width:auto;height:auto;display:block;margin:0 auto}
-.rec-lb figcaption{font-size:14px;line-height:1.6;color:#2C2C2C;margin-top:12px;max-width:720px}
+.rec-lb .inner{background:#fff;border-top:3px solid #C4A031;display:flex;flex-direction:column;max-height:94vh}
+
+{#- The bar. The close control lives here and nowhere near the picture. -#}
+.rec-lb .bar{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 14px;border-bottom:1px solid #EFE6D0;flex:0 0 auto}
+.rec-lb .bar .zoom{display:flex;gap:4px}
+.rec-lb .bar button{font-family:Jost,sans-serif;font-size:12px;letter-spacing:.06em;padding:5px 10px;
+                    border:1px solid #DCC98F;background:#fff;color:#7A5C1B;cursor:pointer}
+.rec-lb .bar button.on{background:#C4A031;color:#17254C;font-weight:500}
+.rec-lb .bar .sp{flex:1}
+.rec-lb .bar .close{font-size:18px;line-height:1;padding:4px 10px;border-color:#E2E4E8;color:#5B6472}
+.rec-lb .bar .close:hover{border-color:#C4A031;color:#7A5C1B}
+.rec-lb .bar .nav[disabled]{opacity:.35;cursor:default}
+
+{#- The scroll area. Only this scrolls. -#}
+.rec-lb .view{flex:1 1 auto;overflow:auto;background:#F6F7F9;display:flex;align-items:flex-start;justify-content:center;
+              overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.rec-lb .view.fit{align-items:center}
+.rec-lb .view.grab{cursor:grab}
+.rec-lb .view.grabbing{cursor:grabbing;user-select:none}
+{#- flex:0 0 auto matters. The view is a flex container so the picture can be
+    centred when it fits, and a flex item shrinks to its container by default:
+    at 200% the image was being squeezed back to the dialog width instead of
+    overflowing and panning. max-width:none alone does not stop that. -#}
+.rec-lb img{display:block;max-width:none;flex:0 0 auto;background:#fff}
+
+{#- Fixed under the picture. -#}
+.rec-lb .foot{flex:0 0 auto;padding:11px 16px 14px;border-top:1px solid #EFE6D0;max-width:860px}
+.rec-lb figcaption{font-size:14px;line-height:1.6;color:#2C2C2C}
 .rec-lb .cr{display:block;font-size:12.5px;color:#5B6472;margin-top:4px}
-.rec-lb .close{position:absolute;top:8px;right:12px;background:none;border:0;font-size:26px;line-height:1;color:#5B6472;cursor:pointer}
-.rec-lb .close:hover{color:#7A5C1B}
-.rec-lb figcaption:empty{display:none}
-.rec-lb .sw{display:flex;align-items:center;gap:8px;margin-top:11px;flex-wrap:wrap}
+.rec-lb .rec{display:inline-block;margin-top:7px;font-family:Jost,sans-serif;font-size:13px;color:#7A5C1B;text-decoration:none}
+.rec-lb .rec:hover{text-decoration:underline}
+.rec-lb .sw{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
 .rec-lb .sw[hidden]{display:none}
-.rec-lb .sw button{font-family:Jost,sans-serif;font-size:12px;letter-spacing:.06em;padding:5px 11px;
-                   border:1px solid #C4A031;background:#fff;color:#7A5C1B;cursor:pointer}
+.rec-lb .sw button{font-family:Jost,sans-serif;font-size:12px;padding:4px 10px;border:1px solid #C4A031;
+                   background:#fff;color:#7A5C1B;cursor:pointer}
 .rec-lb .sw button.on{background:#C4A031;color:#17254C;font-weight:500}
 .rec-lb .sw .note{font-size:12px;color:#5B6472}
+@media(max-width:700px){.rec-lb .foot{padding:9px 12px 12px}.rec-lb .bar{padding:6px 8px}}
 {% endcss %}
 
-<dialog class="rec-lb" id="recLightbox">
-  <div class="inner" style="position:relative">
-    <button type="button" class="close" aria-label="Close">&times;</button>
-    <figure style="margin:0">
-      <img id="recLbImg" src="" alt="">
+<dialog class="rec-lb" id="recLightbox" aria-label="Image viewer">
+  <div class="inner">
+    <div class="bar">
+      <div class="zoom">
+        <button type="button" data-zoom="fit" class="on">Fit</button>
+        <button type="button" data-zoom="1">100%</button>
+        <button type="button" data-zoom="2">200%</button>
+      </div>
+      <button type="button" class="nav" data-step="-1" aria-label="Previous image">&larr;</button>
+      <button type="button" class="nav" data-step="1" aria-label="Next image">&rarr;</button>
+      <span class="sp"></span>
+      <button type="button" class="close" aria-label="Close">&times;</button>
+    </div>
+    <div class="view" id="recLbView"><img id="recLbImg" src="" alt=""></div>
+    <div class="foot">
+      <figcaption><span id="recLbCap"></span><span class="cr" id="recLbCredit"></span></figcaption>
+      <a class="rec" id="recLbRecord" href="#" hidden>View record &rarr;</a>
       <div class="sw" id="recLbSwitch" hidden>
         <button type="button" data-show="original" class="on">Original scan</button>
         <button type="button" data-show="enhanced">Enhanced</button>
         <span class="note" id="recLbNote"></span>
       </div>
-      <figcaption><span id="recLbCap"></span><span class="cr" id="recLbCredit"></span></figcaption>
-    </figure>
+    </div>
   </div>
 </dialog>
 
 <script>
-document.addEventListener('DOMContentLoaded', function(){
-  var dlg = document.getElementById('recLightbox');
-  if (!dlg || typeof dlg.showModal !== 'function') { return; }
-  var img = document.getElementById('recLbImg'),
-      cap = document.getElementById('recLbCap'),
-      cr  = document.getElementById('recLbCredit');
-  document.addEventListener('click', function(e){
-    var b = e.target.closest ? e.target.closest('[data-lightbox]') : null;
-    if (!b || !b.dataset.src) { return; }
-    e.preventDefault();
-    var sw = document.getElementById('recLbSwitch');
-    var note = document.getElementById('recLbNote');
-    var enhanced = b.dataset.enhanced || '';
+(function () {
+  if (window.__scvLightbox) { return; }
+  window.__scvLightbox = true;
 
-    /* The original first, always. An enhancement is a rendering of the scan,
-       not a replacement for it, and the reader should see what the archive
-       actually holds before they see what a model made of it. */
+  var dlg, img, view, cap, cr, recLink, sw, note, current, mode = 'fit', gallery = [], at = -1;
+
+  /* Below this the newsprint stops being readable. A Signal column is roughly
+     800px across for a 2-column measure, and 8pt type at that scale needs
+     about 720 device pixels to stay legible on a 1440px screen. */
+  var MIN_WIDTH = 720;
+
+  function el(id) { return document.getElementById(id); }
+
+  function apply() {
+    if (!img.naturalWidth) { return; }
+    var vw = view.clientWidth, vh = view.clientHeight;
+    var nat = img.naturalWidth, natH = img.naturalHeight;
+    var tallerThanFrame = (natH / nat) > (vh / vw);
+
+    view.classList.remove('fit');
+    if (mode === 'fit') {
+      if (tallerThanFrame) {
+        /* Fit to width, not to height, and never below the legibility floor.
+           A 5,000px column shrunk to fit 900px of height is unreadable. */
+        var w = Math.min(Math.max(MIN_WIDTH, Math.min(vw, nat)), Math.max(vw, MIN_WIDTH));
+        w = Math.min(w, nat);
+        if (w < MIN_WIDTH) { w = Math.min(MIN_WIDTH, nat); }
+        img.style.width = w + 'px';
+        img.style.height = 'auto';
+      } else {
+        var scale = Math.min(vw / nat, vh / natH, 1);
+        img.style.width = Math.round(nat * scale) + 'px';
+        img.style.height = 'auto';
+        view.classList.add('fit');
+      }
+    } else {
+      img.style.width = Math.round(nat * parseFloat(mode)) + 'px';
+      img.style.height = 'auto';
+    }
+
+    var pannable = img.offsetWidth > view.clientWidth + 1 || img.offsetHeight > view.clientHeight + 1;
+    view.classList.toggle('grab', pannable);
+  }
+
+  function setMode(m) {
+    mode = m;
+    dlg.querySelectorAll('.zoom button').forEach(function (b) { b.classList.toggle('on', b.dataset.zoom === m); });
+    apply();
+  }
+
+  function show(b) {
+    current = b;
+    img.style.width = ''; img.style.height = '';
     img.src = b.dataset.src;
     img.alt = b.dataset.caption || '';
     cap.textContent = b.dataset.caption || '';
-    cr.textContent  = b.dataset.credit  || '';
+    cr.textContent = b.dataset.credit || '';
 
+    if (b.dataset.record) { recLink.href = b.dataset.record; recLink.hidden = false; }
+    else { recLink.hidden = true; }
+
+    var enhanced = b.dataset.enhanced || '';
     sw.hidden = !enhanced;
     note.textContent = '';
-    sw.querySelectorAll('button').forEach(function (t) {
-      t.classList.toggle('on', t.dataset.show === 'original');
+    sw.querySelectorAll('button').forEach(function (t) { t.classList.toggle('on', t.dataset.show === 'original'); });
+    sw.onclick = enhanced ? function (ev) {
+      var t = ev.target.closest('button[data-show]');
+      if (!t) { return; }
+      var wantEnhanced = t.dataset.show === 'enhanced';
+      img.src = wantEnhanced ? enhanced : b.dataset.src;
+      note.textContent = wantEnhanced ? (b.dataset.enhancedNote || '') : '';
+      sw.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === t); });
+    } : null;
+
+    at = gallery.indexOf(b);
+    dlg.querySelectorAll('.nav').forEach(function (n) {
+      n.disabled = gallery.length < 2;
     });
-    if (enhanced) {
-      sw.onclick = function (ev) {
-        var t = ev.target.closest('button[data-show]');
-        if (!t) { return; }
-        var wantEnhanced = t.dataset.show === 'enhanced';
-        img.src = wantEnhanced ? enhanced : b.dataset.src;
-        note.textContent = wantEnhanced ? (b.dataset.enhancedNote || '') : '';
-        sw.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === t); });
-      };
-    } else {
-      sw.onclick = null;
-    }
+    setMode('fit');
+    view.scrollTop = 0; view.scrollLeft = 0;
+  }
+
+  function step(d) {
+    if (gallery.length < 2) { return; }
+    at = (at + d + gallery.length) % gallery.length;
+    show(gallery[at]);
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-lightbox]') : null;
+    if (!b || !b.dataset.src) { return; }
+    e.preventDefault();
+    dlg = el('recLightbox');
+    if (!dlg || typeof dlg.showModal !== 'function') { return; }
+    img = el('recLbImg'); view = el('recLbView'); cap = el('recLbCap');
+    cr = el('recLbCredit'); recLink = el('recLbRecord'); sw = el('recLbSwitch'); note = el('recLbNote');
+
+    /* The gallery is everything openable on the page, in document order, so
+       the arrows walk the grid the reader is looking at. */
+    gallery = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox][data-src]'));
+    img.onload = apply;
+    show(b);
     dlg.showModal();
   });
-  dlg.querySelector('.close').addEventListener('click', function(){ dlg.close(); });
-  dlg.addEventListener('click', function(e){ if (e.target === dlg) { dlg.close(); } });
-});
+
+  document.addEventListener('click', function (e) {
+    if (!dlg || !dlg.open) { return; }
+    var z = e.target.closest('.rec-lb .zoom button');
+    if (z) { setMode(z.dataset.zoom); return; }
+    var n = e.target.closest('.rec-lb .nav');
+    if (n) { step(parseInt(n.dataset.step, 10)); return; }
+    if (e.target.closest('.rec-lb .close')) { dlg.close(); return; }
+    /* The backdrop, which is the dialog element itself outside .inner. */
+    if (e.target === dlg) { dlg.close(); }
+  });
+
+  document.addEventListener('dblclick', function (e) {
+    if (!dlg || !dlg.open || !e.target.closest('.rec-lb .view')) { return; }
+    setMode(mode === 'fit' ? '1' : 'fit');
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!dlg || !dlg.open) { return; }
+    if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+    /* Escape is the dialog's own, and works without help. */
+  });
+
+  window.addEventListener('resize', function () { if (dlg && dlg.open) { apply(); } });
+
+  /* Drag to pan, once the picture is bigger than its frame. */
+  var down = false, sx = 0, sy = 0, sl = 0, st = 0;
+  document.addEventListener('mousedown', function (e) {
+    if (!dlg || !dlg.open) { return; }
+    var v = e.target.closest('.rec-lb .view');
+    if (!v || !v.classList.contains('grab')) { return; }
+    down = true; sx = e.clientX; sy = e.clientY; sl = v.scrollLeft; st = v.scrollTop;
+    v.classList.add('grabbing');
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', function (e) {
+    if (!down) { return; }
+    view.scrollLeft = sl - (e.clientX - sx);
+    view.scrollTop = st - (e.clientY - sy);
+  });
+  document.addEventListener('mouseup', function () {
+    down = false;
+    if (view) { view.classList.remove('grabbing'); }
+  });
+})();
 </script>

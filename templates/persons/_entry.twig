@@ -74,7 +74,15 @@
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('persons') }}">People</a> &rsaquo; <span>{{ entry.title }}</span></div>
       <div class="rec-head rec-head--left">
         <div class="rec-portrait">
-          {% if img %}<img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}">{% else %}<div class="ph">{{ initials|upper }}</div>{% endif %}
+          {#- A portrait is drawn into a 4:5 crop a few hundred pixels wide. Where the
+              file is bigger than that, the crop is worth escaping and the picture opens.
+              Where it is not, no control: a magnifier that reopens what you are looking
+              at is worse than none. -#}
+          {% if img %}{% if img.width and img.width > 400 %}<button type="button" class="pz" data-lightbox
+                data-src="{{ img.url }}"
+                data-caption="{{ img.photoCaptionExt|default('')|trim ?: entry.title }}"
+                data-credit="{{ img.photoCredit|default('')|trim }}"
+                aria-label="Open the full picture"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></button>{% else %}<img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}">{% endif %}{% else %}<div class="ph">{{ initials|upper }}</div>{% endif %}
         </div>
         <div>
           <div class="rec-kick"><span class="a">PEOPLE</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>

@@ -65,7 +65,10 @@ $made = [];
 foreach ($FIELDS as $def) {
     $f = $fs->getFieldByHandle($def['handle']);
     if ($f !== null) {
-        echo str_pad($def['handle'], 22) . 'exists already, left alone' . PHP_EOL;
+        /* A field that exists is not the same as a field that is usable. The
+           first apply left all four created and attached to nothing, so the
+           layout step below is the one that matters on a re-run. */
+        echo str_pad($def['handle'], 22) . 'exists already, id ' . $f->id . PHP_EOL;
         $made[$def['handle']] = $f;
         continue;
     }
@@ -113,6 +116,10 @@ foreach ($FIELDS as $def) { if (!in_array($def['handle'], $present, true)) { $wa
 if (!$want) {
     echo 'the ' . $VOLUME . ' layout already carries all four' . PHP_EOL;
 } else {
+    if (count($want) === count($FIELDS) && count($made) === count($FIELDS)) {
+        echo 'all four fields exist and none is on the layout: these are the orphans' . PHP_EOL;
+        echo 'left by the run that crashed. Attaching them is all that is needed.' . PHP_EOL;
+    }
     echo 'would add to the ' . $VOLUME . ' asset layout: ' . implode(', ', $want) . PHP_EOL;
     if ($APPLY) {
         $tabs = $layout->getTabs();
@@ -122,7 +129,17 @@ if (!$want) {
         $tab = null;
         foreach ($tabs as $t) { if ($t->name === 'Enhancement') { $tab = $t; } }
         if ($tab === null) {
-            $tab = new \craft\models\FieldLayoutTab(['name' => 'Enhancement', 'sortOrder' => count($tabs) + 1]);
+            /* setLayout before setElements. A tab validates its elements
+               against the layout it belongs to, so calling setElements on a
+               detached tab throws "Field layout tab is missing its field
+               layout" and the run dies after the fields have been created and
+               before they are attached. That is what happened on the first
+               apply: four orphan fields, on no layout, invisible in the control
+               panel and impossible to fill in. */
+            $tab = new \craft\models\FieldLayoutTab();
+            $tab->name = 'Enhancement';
+            $tab->sortOrder = count($tabs) + 1;
+            $tab->setLayout($layout);
             $tab->setElements([]);
             $tabs[] = $tab;
         }
