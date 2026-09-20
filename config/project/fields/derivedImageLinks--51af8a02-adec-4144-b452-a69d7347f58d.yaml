@@ -1,0 +1,24 @@
+columnSuffix: null
+handle: derivedImageLinks
+instructions: "Records this one pointed at through an image on the legacy page, resolved from the image's link target. Written by scripts/import/link_images_to_records.php and not by hand. These are derived, not curated: the archive has not confirmed the relationship, only that the old page linked one to the other. Anything you confirm belongs in the curated relation field for its type, and can then be removed from here."
+name: 'Derived Image Links'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources: '*'
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

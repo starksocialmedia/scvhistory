@@ -39,6 +39,69 @@ settings:
             -
               - width
               - 92%
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - Source
+            -
+              - handle
+              - source
+            -
+              - width
+              - 16%
+            -
+              - type
+              - select
+            -
+              - options
+              -
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - 'Editor (Leon Worden)'
+                    -
+                      - value
+                      - editor
+                    -
+                      - default
+                      - true
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - 'Original author'
+                    -
+                      - value
+                      - author
+                    -
+                      - default
+                      - false
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - 'Webmaster note'
+                    -
+                      - value
+                      - webmaster
+                    -
+                      - default
+                      - false
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - 'In the source document'
+                    -
+                      - value
+                      - source
+                    -
+                      - default
+                      - false
   maxRows: null
   minRows: null
   staticRows: false
