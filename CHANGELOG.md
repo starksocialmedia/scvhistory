@@ -1674,3 +1674,8 @@ A hand-edited title now keeps the queue's spelling as an alias, since that is
 the string the articles actually contain. Decisions are checked against
 name-canon.json and a decision creating a record under a canon alias is
 reported.
+
+Dry-ran the 52 hand-edited decisions: 27 records, 488 links across 266 distinct
+articles, 8 merges, 17 skipped, no conflicts with the canon. Four of the 52
+carry keys the canon has since moved, so the backfill now falls back to the
+name and reports how many were stale.

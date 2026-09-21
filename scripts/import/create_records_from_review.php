@@ -84,20 +84,44 @@ if ($TOP > 0) {
     $sourceNote = 'top ' . $TOP . ' of ' . basename($queue) . ', each at its guessed type';
 } elseif (file_exists($decided)) {
     $d = json_decode(file_get_contents($decided), true);
-    $byKey = [];
+    /* Keyed twice, and the second one matters.
+     *
+     * A decision carries the key the queue had when it was reviewed. Regenerate
+     * the queue between the review and the apply and those keys move: the name
+     * canon folded "hart park" into "william s hart park" and "lyons" into
+     * "lyons avenue", so four of the fifty-two decisions in this file point at
+     * keys that no longer exist.
+     *
+     * Nothing important is lost when that happens, because the name, type,
+     * articles, aliases and placeType all come from the decision itself. What
+     * is lost is the backfill: confidence, context, and the comparison that
+     * detects a hand-edited title. Falling back to the name keeps that working
+     * across a regeneration. */
+    $byKey = []; $byName = [];
+    $nrm = fn(string $v) => trim(mb_strtolower(preg_replace('~[^a-z0-9 ]~i', ' ', $v)));
     if (file_exists($queue)) {
-        foreach ((json_decode(file_get_contents($queue), true)['names'] ?? []) as $r) { $byKey[$r['key']] = $r; }
+        foreach ((json_decode(file_get_contents($queue), true)['names'] ?? []) as $r) {
+            $byKey[$r['key']] = $r;
+            $byName[$nrm($r['name'])] = $r;
+        }
     }
+    $stale = 0;
     foreach ($d['decisions'] ?? [] as $x) {
-        $q = $byKey[$x['key']] ?? [];
+        $q = $byKey[$x['key'] ?? ''] ?? null;
+        if ($q === null) {
+            $stale++;
+            $q = $byName[$nrm((string)($x['name'] ?? ''))] ?? [];
+        }
         $x['variants'] = $q['variants'] ?? [];
         $x['confidence'] = $q['confidence'] ?? '';
         $x['context'] = $q['context'] ?? [];
+        $x['_queueName'] = $q['name'] ?? '';
         $x['signals'] = $q['signals'] ?? [];
         if (!isset($x['placeType'])) { $x['placeType'] = $q['placeType'] ?? ''; }
         $decisions[] = $x;
     }
-    $sourceNote = basename($decided) . ', decided ' . ($d['generated'] ?? '?');
+    $sourceNote = basename($decided) . ', decided ' . ($d['generated'] ?? '?')
+        . ($stale ? '  [' . $stale . ' of ' . count($d['decisions'] ?? []) . ' keys no longer in the queue, matched by name]' : '');
 } else {
     echo 'no ' . $decided . ' and no $TOP_N set. Nothing to do.' . PHP_EOL;
     return;
@@ -189,7 +213,7 @@ foreach ($decisions as $x) {
        string forty articles contain, and a record that cannot be found under
        the name the text uses has lost the thing the rename was for. */
     $aliases = array_values(array_filter((array)($x['variants'] ?? [])));
-    $queueName = trim((string)($byKey[$x['key'] ?? '']['name'] ?? ''));
+    $queueName = trim((string)($x['_queueName'] ?? ''));
     if ($queueName !== '' && $queueName !== $name) {
         $overrides[] = ['from' => $queueName, 'to' => $name];
         if (!in_array($queueName, $aliases, true)) { $aliases[] = $queueName; }
