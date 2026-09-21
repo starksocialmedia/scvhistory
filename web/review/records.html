@@ -63,6 +63,8 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .ctx .q{border-left:2px solid var(--bord);padding:4px 0 4px 12px;margin-bottom:8px;font-size:13.5px;line-height:1.7;color:#3A3A3A}
 .ctx .q mark{background:#FBEFC9;color:inherit;padding:0 2px}
 .ctx .q .src{display:block;font-size:12px;color:#9AA3B0;margin-top:3px}
+.ctx .q .src a{color:#3C6DA8;text-decoration:none}
+.ctx .q .src a:hover{text-decoration:underline}
 .ctx .none{font-size:13px;color:#9AA3B0;font-style:italic}
 
 .arts{margin-top:10px;font-size:12.5px;color:var(--muted)}
@@ -407,8 +409,14 @@ function card(r, rank) {
   const st = d.action || '';
   const type = d.type || r.guess;
   const ptype = d.placeType || r.placeType || 'site';
-  const ctx = (r.context || []).map(c =>
-    `<div class="q">${mark(c.text, c.match)}<span class="src">${esc(c.title || c.path)}</span></div>`).join('')
+  /* The source line is a link where we know the article's URL. Reading the
+     sentence then opening the piece is how a name gets decided, and a title a
+     reader has to go and search for is not that. */
+  const ctx = (r.context || []).map(c => {
+    const label = esc(c.title || c.path);
+    const src = c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${label} &nearr;</a>` : label;
+    return `<div class="q">${mark(c.text, c.match)}<span class="src">${src}</span></div>`;
+  }).join('')
     || '<div class="none">No sample sentence was found for this name.</div>';
 
   const arts = (r.articles || []).map(a =>

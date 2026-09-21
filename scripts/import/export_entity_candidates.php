@@ -350,7 +350,12 @@ foreach ($bodyByPath as $path => $body) {
 
 /* One sentence showing $needle in $path, trimmed to something readable, with
    the text that actually matched kept so the screen can emphasise it. */
-$sentenceFor = function (string $path, array $needles) use ($sentencesByPath, $pageTitleByPath): ?array {
+/* A sample sentence names the article it came from, and that name has to be a
+   link. It is the whole mechanism by which a reviewer decides: read the
+   sentence, open the piece, come back and choose. Without a URL the card shows
+   a title the reader has to go and search for, which is why the sentences were
+   there but not usable. */
+$sentenceFor = function (string $path, array $needles) use ($sentencesByPath, $pageTitleByPath, &$articleByPath): ?array {
     foreach ($needles as $needle) {
         if (mb_strlen($needle) < 3) { continue; }
         foreach (($sentencesByPath[$path] ?? []) as $sent) {
@@ -364,7 +369,8 @@ $sentenceFor = function (string $path, array $needles) use ($sentencesByPath, $p
                 $text = ($from > 0 ? "\u{2026}" : '') . mb_substr($text, $from, 250);
                 if (mb_strlen($sent) > $from + 250) { $text .= "\u{2026}"; }
             }
-            return ['path' => $path, 'title' => $pageTitleByPath[$path] ?? $path, 'text' => $text, 'match' => $needle];
+            return ['path' => $path, 'title' => $pageTitleByPath[$path] ?? $path, 'text' => $text,
+                    'match' => $needle, 'url' => $articleByPath[$path]['url'] ?? null];
         }
     }
     return null;
@@ -579,6 +585,7 @@ if ($canon) {
                     if (count($entities[$ck][$cn]['decided'] ?? []) < 3) {
                         $entities[$ck][$cn]['decided'][] = [
                             'path' => $path,
+                            'url' => $articleByPath[$path]['url'] ?? null,
                             'title' => $pageTitleByPath[$path] ?? $path,
                             'text' => mb_strlen($sent) > 260 ? mb_substr($sent, 0, 250) . "\u{2026}" : trim($sent),
                             'match' => $base,

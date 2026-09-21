@@ -1750,3 +1750,13 @@ copy of it had been sitting fourth.
 An inline image that links to a record can now also open a lightbox. The two
 were mutually exclusive, and the data-record attribute written for exactly this
 case was unreachable.
+
+Sample sentences on the review cards now link to the article they came from,
+which is the mechanism by which a name gets decided. They carried a legacy path
+and a title and no URL, so the title was something a reader had to go and
+search for. 97 per cent now resolve.
+
+create_records_from_review.php enforces the name policy: a decision that puts a
+title in the record's name is reported, because the file had "Councilwoman Jill
+Klajic" as a record with "Jill Klajic" as its alias while Jill Klajic already
+exists.

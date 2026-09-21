@@ -513,10 +513,9 @@
           {% set sbSeen = sbSeen|merge([key]) %}
           {% set rimg = (r.featuredImage is defined and r.featuredImage) ? r.featuredImage.one() ?? null : null %}
           {% set sbLists = sbLists|merge({ (bucket): sbLists[bucket]|merge([{
-            t: r.title ?: r.slug, u: r.url ?? url('communities/' ~ r.slug), d: false,
+            t: r.title ?: r.slug, u: r.url, d: false,
             img: rimg ? (rimg.getUrl({ width: 88, height: 88, mode: 'crop', position: 'center-top' }) ?: rimg.url) : null,
-            r: (r.occupation is defined and r.occupation) ? r.occupation
-               : ((r.communityType is defined and r.communityType) ? r.communityType : '') }]) }) %}
+            r: (r.occupation is defined and r.occupation) ? r.occupation : '' }]) }) %}
         {% endif %}
       {% endfor %}
     {% endfor %}

@@ -317,6 +317,31 @@ if ($canon) {
         $canonOf[$norm($sp['name'])] = ['canonical' => $sp['name'] . ' (splits)', 'type' => '', 'split' => true];
     }
 
+    /* THE NAME POLICY, enforced.
+     *
+     * docs/DATA-MODEL.md says a title never enters a record's name: the bare
+     * name is the title and the titled form is an alias. A decision made
+     * before that was written can have it exactly backwards, and this file has
+     * one: "Councilwoman Jill Klajic" as the record with "Jill Klajic" as its
+     * alias, while Jill Klajic already exists as #15874. Approving it would
+     * create a second record for her under a job she held for four years. */
+    $TITLES = 'mr|mrs|ms|miss|dr|doctor|fr|father|capt|captain|col|colonel|gen|general|lt|lieutenant|'
+            . 'rev|reverend|sgt|sergeant|maj|major|judge|gov|governor|prof|professor|'
+            . 'congressman|congresswoman|councilman|councilwoman|councilmember|mayor|supervisor|'
+            . 'sheriff|senator|assemblyman|assemblywoman|chief|president|secretary|commissioner';
+    foreach ($plan['create'] as $c) {
+        if (!preg_match('~^(' . $TITLES . ')\.?\s+(.+)$~i', trim($c['name']), $m)) { continue; }
+        $bare = trim($m[2]);
+        /* Mrs, Miss, Ms and Sister are never stripped: she is not her husband. */
+        if (preg_match('~^(mrs|miss|ms|sister)$~i', $m[1])) { continue; }
+        $held = \craft\elements\Entry::find()->section($SECTION_FOR[$c['type']] ?? 'persons')
+            ->title($bare)->status(null)->one();
+        $conflicts[] = '"' . $c['name'] . '" carries a title. The policy is that the name is the '
+            . 'record and the title is the alias, so this should be "' . $bare . '"'
+            . ($held ? ', which already exists as #' . $held->id : '')
+            . '. As decided it would create the person under the job.';
+    }
+
     foreach ($plan['create'] as $c) {
         $n = $norm($c['name']);
         if (isset($canonOf[$n])) {
