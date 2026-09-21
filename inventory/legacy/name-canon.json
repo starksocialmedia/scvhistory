@@ -1,0 +1,150 @@
+{
+  "provenance": {
+    "source": "Nathan's review of the top 200 of the missing-records queue",
+    "started": "2026-09-21",
+    "note": "A curated list of names the archive has decided on. The entity exporter reads it on every run: aliases fold into the canonical row before ranking, the canonical name becomes the record title, and the aliases go on the record so every spelling still finds it. This is judgement, not derivation. Nothing here should be inferred by a script, and a script must not edit this file.",
+    "maintained_by": "hand"
+  },
+  "canon": [
+    {
+      "canonical": "William S. Hart High School",
+      "type": "organization",
+      "aliases": [
+        "Hart High",
+        "Hart Union High",
+        "Hart High School",
+        "Hart Union High School"
+      ],
+      "note": "One school under four names. The queue had Hart High as a place on 24 articles and Hart High School as an organization on 19, which would have been two records for one school in two different sections."
+    },
+    {
+      "canonical": "Jo Anne Darcy",
+      "type": "person",
+      "aliases": [
+        "Anne Darcy",
+        "Darcy"
+      ],
+      "note": "The extraction cut the given name in half. She appears as Jo Anne Darcy in the text; Anne Darcy is not a different councilwoman."
+    },
+    {
+      "canonical": "Downtown Newhall",
+      "type": "place",
+      "placeType": "site",
+      "aliases": [
+        "Downtown Newhall Specific",
+        "Downtown Newhall Specific Plan"
+      ],
+      "note": "Downtown Newhall Specific is a truncation of the Specific Plan, which is a document about the place rather than a second place."
+    },
+    {
+      "canonical": "Santa Clarita Valley Historical Society",
+      "type": "organization",
+      "aliases": [
+        "SCV Historical Society",
+        "Historical Society"
+      ],
+      "note": "The bare Historical Society is safe to fold here: no other historical society is named in the corpus."
+    },
+    {
+      "canonical": "California State University, Northridge",
+      "type": "organization",
+      "aliases": [
+        "California State University",
+        "Cal State Northridge",
+        "CSUN",
+        "San Fernando Valley State College"
+      ],
+      "note": "The Valley campus, under the name it has had since 1972 and the one it had before."
+    },
+    {
+      "canonical": "Lyons Avenue",
+      "type": "place",
+      "placeType": "road",
+      "aliases": [
+        "Lyons"
+      ],
+      "note": "Bare Lyons is the avenue in the modern columns. Lyons Station and Sanford Lyon are separate records and are NOT aliases of this: the station is a place of its own and the man is a person."
+    },
+    {
+      "canonical": "Newhall Land and Farming Company",
+      "type": "organization",
+      "aliases": [
+        "Newhall Land",
+        "Newhall Land and Farming",
+        "Newhall Land & Farming"
+      ],
+      "note": "One company three ways, 29, 17 and 28 articles. The containment check caught these as three pairs; the canon settles them once."
+    },
+    {
+      "canonical": "William S. Hart Park",
+      "type": "place",
+      "placeType": "park",
+      "aliases": [
+        "Hart Park"
+      ],
+      "note": "Hart Park on 42 articles is the same park. William S. Hart the man is a separate person record and is not an alias."
+    },
+    {
+      "canonical": "Elizabeth Lake",
+      "type": "place",
+      "placeType": "natural",
+      "aliases": [
+        "Lake Elizabeth"
+      ],
+      "note": "The same words in either order. Elizabeth Lake is the gazetteer's spelling and the one the USGS carries."
+    }
+  ],
+  "splits": [
+    {
+      "name": "Pico",
+      "note": "A bare surname that resolves three ways in this corpus. Each occurrence is decided by the words nearest it; an occurrence that matches no cue is left in review as \"Pico (ambiguous)\" rather than being assigned to the most common of the three, because the most common is not the same thing as the right one. Order matters and is the order in this list: Pico Canyon Road is tested before Pico Canyon, because the road's name contains the canyon's.",
+      "splits": [
+        {
+          "canonical": "Pico Canyon Road",
+          "type": "place",
+          "placeType": "road",
+          "cues": [
+            "road",
+            "rd",
+            "street",
+            "highway",
+            "drive",
+            "route"
+          ],
+          "note": "The road up the canyon. Checked before the canyon, since 'Pico Canyon Road' contains 'canyon'."
+        },
+        {
+          "canonical": "Pico Canyon",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "canyon",
+            "canyons",
+            "mentryville",
+            "pico canyon oilfield",
+            "oil canyon"
+          ],
+          "note": "The canyon itself, and the oilfield in it."
+        },
+        {
+          "canonical": "Andrés Pico",
+          "type": "person",
+          "cues": [
+            "andres",
+            "andrés",
+            "general",
+            "don",
+            "gen",
+            "his",
+            "he",
+            "brother",
+            "californio",
+            "treaty",
+            "cahuenga"
+          ],
+          "note": "The general who signed the Treaty of Cahuenga. His brother Pío is a separate person and is not folded here."
+        }
+      ]
+    }
+  ]
+}

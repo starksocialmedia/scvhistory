@@ -1655,3 +1655,13 @@ be overruled to ranch by hand.
 The places index printed a separator with no label on every card, because a
 Craft Dropdown returns a SingleOptionFieldData object that is truthy when
 nothing is selected. The value is what has to be tested.
+
+Added inventory/legacy/name-canon.json, a curated list the entity exporter reads
+on every run. Folds merge aliases into a canonical row before ranking; splits
+resolve a bare name by the words nearest each occurrence. Seeded with nine folds
+and the Pico split from Nathan's review of the top 200.
+
+The nine folds removed 13 rows from the top 200. William S. Hart High School
+arrives at 48 articles from four names across two sections; Newhall Land and
+Farming Company at 53 from three; William S. Hart Park at 42; Lyons Avenue at
+38. Pico splits 27 canyon, 12 road, 17 Andres, 8 left ambiguous.

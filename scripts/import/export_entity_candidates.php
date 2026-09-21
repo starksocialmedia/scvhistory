@@ -371,6 +371,205 @@ $contextFor = function (array $paths, array $needles, int $want = 3) use ($sente
     return $out;
 };
 
+/* ------------------------------------------------------ the curated canon
+
+   inventory/legacy/name-canon.json is judgement the archive has already made
+   and a script must never write to it. Two things live there.
+
+   FOLDS. A canonical name and the spellings that are the same thing. The
+   aliases are merged into the canonical row before anything is ranked, so
+   "Newhall Land", "Newhall Land and Farming" and "Newhall Land and Farming
+   Company" stop being three rows competing for the same articles and become one
+   row carrying the union of them. A fold crosses kinds where it has to: "Hart
+   High" arrived as a place and "Hart High School" as an organization, and one
+   school cannot be both.
+
+   SPLITS. A bare name that is several things. Pico is a canyon, a road and a
+   general, and which one it is depends on the sentence. Each page is decided by
+   the words nearest the name, in the order the canon lists, so the road is
+   tested before the canyon because the road's name contains the canyon's. A
+   page matching no cue is not guessed at: it goes to "Pico (ambiguous)" and a
+   person decides it. Assigning it to whichever of the three is commonest would
+   make the queue look finished while being wrong in a way nobody could see. */
+
+$canonPath = $root . '/inventory/legacy/name-canon.json';
+$canon = file_exists($canonPath) ? (json_decode(file_get_contents($canonPath), true) ?: []) : [];
+$canonReport = ['folds' => [], 'splits' => [], 'missing' => []];
+
+if ($canon) {
+    /* Merge one aggregate into another: pages, mentions, variants, inventories. */
+    $absorb = function (array &$dst, array $src, string $srcName) {
+        foreach (array_keys($src['pages'] ?? []) as $p) { $dst['pages'][$p] = true; }
+        foreach (array_keys($src['variants'] ?? []) as $v) { $dst['variants'][$v] = true; }
+        foreach (array_keys($src['inventories'] ?? []) as $i) { $dst['inventories'][$i] = true; }
+        $dst['mentions'] += (int)($src['mentions'] ?? 0);
+        $dst['variants'][$srcName] = true;
+        if (!empty($src['hasLegacyPage']) && empty($dst['hasLegacyPage'])) {
+            $dst['hasLegacyPage'] = true;
+            $dst['legacyPageUrl'] = (string)($src['legacyPageUrl'] ?? '');
+        }
+    };
+
+    /* Find a name in any kind, folded, so "CSUN" matches however it was filed. */
+    $findAnywhere = function (string $needle) use (&$entities, $fold): array {
+        $hits = [];
+        foreach ($entities as $k => $set) {
+            foreach ($set as $nm => $_) {
+                if ($fold($nm) === $fold($needle)) { $hits[] = [$k, $nm]; }
+            }
+        }
+        return $hits;
+    };
+
+    /* ---------------------------------------------------------------- folds */
+    foreach (($canon['canon'] ?? []) as $c) {
+        $target = trim((string)($c['canonical'] ?? ''));
+        $tkind  = (string)($c['type'] ?? '');
+        if ($target === '' || !isset($entities[$tkind])) { continue; }
+
+        $folded = []; $before = 0;
+
+        /* The canonical row may or may not already exist. Where it exists under
+           another kind, it moves: the canon says what kind it is. */
+        $existingHits = $findAnywhere($target);
+        if (!isset($entities[$tkind][$target])) {
+            $seed = null;
+            foreach ($existingHits as [$k, $nm]) { $seed = $entities[$k][$nm]; unset($entities[$k][$nm]); break; }
+            $entities[$tkind][$target] = $seed ?? [
+                'name' => $target, 'key' => $stripHon($target), 'mentions' => 0, 'pages' => [],
+                'inventories' => [], 'variants' => [], 'hasLegacyPage' => false, 'legacyPageUrl' => '',
+            ];
+            $entities[$tkind][$target]['name'] = $target;
+            $entities[$tkind][$target]['key'] = $stripHon($target);
+        }
+        $dst =& $entities[$tkind][$target];
+        $before = count($dst['pages']);
+
+        foreach (($c['aliases'] ?? []) as $alias) {
+            $alias = trim((string)$alias);
+            if ($alias === '' || $fold($alias) === $fold($target)) { continue; }
+            $hits = $findAnywhere($alias);
+            if (!$hits) { $canonReport['missing'][] = $target . ' <- ' . $alias . ' (not in the corpus)'; continue; }
+            foreach ($hits as [$k, $nm]) {
+                $absorb($dst, $entities[$k][$nm], $nm);
+                $folded[] = $nm . ' [' . $k . ', ' . count($entities[$k][$nm]['pages']) . ' pages]';
+                unset($entities[$k][$nm]);
+            }
+        }
+        if ($folded) {
+            $canonReport['folds'][] = [
+                'canonical' => $target, 'kind' => $tkind,
+                'from' => $folded, 'pagesBefore' => $before, 'pagesAfter' => count($dst['pages']),
+            ];
+        }
+        unset($dst);
+    }
+
+    /* --------------------------------------------------------------- splits */
+    foreach (($canon['splits'] ?? []) as $sp) {
+        $base = trim((string)($sp['name'] ?? ''));
+        if ($base === '') { continue; }
+        $hits = $findAnywhere($base);
+        if (!$hits) { $canonReport['missing'][] = $base . ' (split base not in the corpus)'; continue; }
+
+        $tally = []; $ambiguous = [];
+        foreach ($hits as [$k, $nm]) {
+            $src = $entities[$k][$nm];
+            foreach (array_keys($src['pages'] ?? []) as $path) {
+                /* PER OCCURRENCE, not per page.
+                 *
+                 * The first version of this built one window per page out of
+                 * every sentence the name appeared in, and decided the page
+                 * once. On a page about the canyon that mentions the road once,
+                 * the road's cue captured all of it: Pico Canyon Road came out
+                 * with 215 mentions across 10 articles and its best sample
+                 * sentence was "the local seeps in Wiley, Rice, Pico and other
+                 * canyons", which is the canyon.
+                 *
+                 * A sentence is the unit. One page can feed several splits,
+                 * which is what a page discussing the canyon and the road up it
+                 * actually does. */
+                $sents = [];
+                foreach (($sentencesByPath[$path] ?? []) as $sent) {
+                    if (mb_stripos($sent, $base) !== false) { $sents[] = $sent; }
+                }
+                if (!$sents) { $ambiguous[$path] = true; continue; }
+
+                $pageResolved = false;
+                foreach ($sents as $sent) {
+                    $w = ' ' . $fold($sent) . ' ';
+
+                    $chosen = null;
+                    foreach (($sp['splits'] ?? []) as $cand) {
+                        foreach (($cand['cues'] ?? []) as $cue) {
+                            if (str_contains($w, ' ' . $fold($cue) . ' ')) { $chosen = $cand; break 2; }
+                        }
+                    }
+                    if ($chosen === null) { continue; }
+
+                    $cn = (string)$chosen['canonical'];
+                    $ck = (string)$chosen['type'];
+                    if (!isset($entities[$ck][$cn])) {
+                        $entities[$ck][$cn] = [
+                            'name' => $cn, 'key' => $stripHon($cn), 'mentions' => 0, 'pages' => [],
+                            'inventories' => [], 'variants' => [], 'hasLegacyPage' => false, 'legacyPageUrl' => '',
+                        ];
+                    }
+                    if (!isset($entities[$ck][$cn]['pages'][$path])) {
+                        $entities[$ck][$cn]['pages'][$path] = true;
+                        $tally[$cn] = ($tally[$cn] ?? 0) + 1;
+                    }
+                    $entities[$ck][$cn]['variants'][$base] = true;
+                    foreach (array_keys($src['inventories'] ?? []) as $i) { $entities[$ck][$cn]['inventories'][$i] = true; }
+                    $entities[$ck][$cn]['mentions'] += max(1, mb_substr_count($fold($sent), $fold($base)));
+                    /* The sentence that decided it, kept so the review screen
+                       shows the evidence for the split rather than whichever
+                       sentence happens to contain the bare name. A card headed
+                       "Pico Canyon Road" over a sentence about the canyon
+                       invites the reviewer to reject a correct call. */
+                    if (count($entities[$ck][$cn]['decided'] ?? []) < 3) {
+                        $entities[$ck][$cn]['decided'][] = [
+                            'path' => $path,
+                            'title' => $pageTitleByPath[$path] ?? $path,
+                            'text' => mb_strlen($sent) > 260 ? mb_substr($sent, 0, 250) . "\u{2026}" : trim($sent),
+                            'match' => $base,
+                        ];
+                    }
+                    $pageResolved = true;
+                }
+                /* A page where no sentence matched any cue is a page a person
+                   has to read. One where some matched is already represented. */
+                if (!$pageResolved) { $ambiguous[$path] = true; }
+            }
+            unset($entities[$k][$nm]);
+        }
+
+        if ($ambiguous) {
+            $amb = $base . ' (ambiguous)';
+            $kk = (string)(($sp['splits'][0]['type']) ?? 'place');
+            $entities[$kk][$amb] = [
+                'name' => $amb, 'key' => $stripHon($amb), 'mentions' => count($ambiguous),
+                'pages' => $ambiguous, 'inventories' => [], 'variants' => [$base => true],
+                'hasLegacyPage' => false, 'legacyPageUrl' => '',
+            ];
+            $tally[$amb] = count($ambiguous);
+        }
+        $canonReport['splits'][] = ['name' => $base, 'tally' => $tally];
+    }
+
+    echo PHP_EOL . '=== name canon ===' . PHP_EOL;
+    foreach ($canonReport['folds'] as $f) {
+        printf("fold  %-42s %d -> %d pages\n", $f['canonical'], $f['pagesBefore'], $f['pagesAfter']);
+        foreach ($f['from'] as $x) { echo '        <- ' . $x . PHP_EOL; }
+    }
+    foreach ($canonReport['splits'] as $s) {
+        echo 'split ' . $s['name'] . ':' . PHP_EOL;
+        foreach ($s['tally'] as $n => $c) { printf("        %-28s %d pages\n", $n, $c); }
+    }
+    foreach ($canonReport['missing'] as $m) { echo 'note  ' . $m . PHP_EOL; }
+    echo PHP_EOL;
+}
+
 /* ---------------------------------------------------------- shape the rows */
 
 $rows = ['person' => [], 'place' => [], 'organization' => []];
@@ -399,7 +598,7 @@ foreach ($entities as $kind => $set) {
             'name' => $name,
             'needles' => $needles,
             'paths' => $paths,
-            'context' => $contextFor($paths, $needles),
+            'context' => !empty($e['decided']) ? $e['decided'] : $contextFor($paths, $needles),
             'key' => $e['key'],
             'kind' => $kind,
             'mentions' => $e['mentions'],
