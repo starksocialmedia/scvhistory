@@ -388,7 +388,21 @@ foreach ($plan['create'] as $c) {
  * Farming Company" are a place and the company that owned it; containment is
  * evidence, not a verdict. It is printed so the batch can be fixed before it
  * runs rather than audited after. */
+/* Pairs already answered. A containment pair a person has looked at and called
+   two different things must not come back as an open question every run: the
+   gate would then be unsatisfiable, and an unsatisfiable gate gets switched
+   off. Verdicts live in the decisions file beside everything else. */
+$answeredPairs = [];
+foreach ($decisions as $x) {
+    if (($x['type'] ?? '') !== 'pair') { continue; }
+    $k = mb_strtolower(trim((string)($x['short'] ?? '')) . '|' . trim((string)($x['long'] ?? '')));
+    $answeredPairs[$k] = (string)($x['action'] ?? '');
+    $rk = mb_strtolower(trim((string)($x['long'] ?? '')) . '|' . trim((string)($x['short'] ?? '')));
+    $answeredPairs[$rk] = (string)($x['action'] ?? '');
+}
+
 $containment = [];
+$answeredPairsUsed = [];
 $tok = function (string $s): array {
     $s = mb_strtolower(preg_replace('~[^a-zA-Z0-9 ]~', ' ', $s));
     $t = preg_split('~\s+~', trim($s), -1, PREG_SPLIT_NO_EMPTY) ?: [];
@@ -401,11 +415,16 @@ foreach ($plan['create'] as $i => $a) {
         if (!$ta || !$tb || $ta === $tb) { continue; }
         $sub = !array_diff($ta, $tb) ? 'a' : (!array_diff($tb, $ta) ? 'b' : null);
         if (!$sub) { continue; }
-        $containment[] = [
-            'short' => $sub === 'a' ? $a : $b,
-            'long'  => $sub === 'a' ? $b : $a,
-        ];
+        $short = $sub === 'a' ? $a : $b;
+        $long  = $sub === 'a' ? $b : $a;
+        $key = mb_strtolower($short['name'] . '|' . $long['name']);
+        if (isset($answeredPairs[$key])) { $answeredPairsUsed[] = $short['name'] . ' / ' . $long['name']; continue; }
+        $containment[] = ['short' => $short, 'long' => $long];
     }
+}
+if ($answeredPairsUsed) {
+    echo PHP_EOL . 'CONTAINMENT PAIRS ALREADY ANSWERED (' . count($answeredPairsUsed) . '):' . PHP_EOL;
+    foreach ($answeredPairsUsed as $x) { echo '  ' . $x . PHP_EOL; }
 }
 if ($containment) {
     echo PHP_EOL . 'ONE NAME CONTAINS ANOTHER, probably one record (' . count($containment) . '):' . PHP_EOL;
@@ -484,6 +503,46 @@ if ($conflicts) {
     echo PHP_EOL . 'no conflicts with the canon.' . PHP_EOL;
 }
 if ($plan['skip']) { echo PHP_EOL . 'SKIPPED: ' . count($plan['skip']) . PHP_EOL; }
+
+/* THE GATE.
+ *
+ * This ran once with five conflicts open and wrote seven wrong records: a
+ * second Jill Klajic under a job she held for four years, a Lyons beside the
+ * Lyons Avenue it is an alias of, a festival as a person. The conflicts were
+ * printed. Printing is not refusing.
+ *
+ * An unresolved conflict, an unanswered containment pair or a title in a name
+ * each means the file disagrees with itself or with the canon, and a batch that
+ * writes 36 records while disagreeing with itself produces exactly the kind of
+ * damage that takes a database restore to undo. So it stops, names what is
+ * open, and writes nothing. There is no flag to override this: the way past it
+ * is to settle the decisions, which is the point. */
+$blockers = [];
+if ($conflicts) { $blockers[] = count($conflicts) . ' unresolved conflict' . (count($conflicts) === 1 ? '' : 's'); }
+if ($containment) { $blockers[] = count($containment) . ' containment pair' . (count($containment) === 1 ? '' : 's') . ' nobody has answered'; }
+/* A merge pointing at nothing is the file disagreeing with itself: somebody
+   decided a name belongs to a record that this run does not create and the
+   archive does not hold. It writes nothing, so it is not damage, but it is a
+   decision nobody has finished making. */
+$dangling = array_values(array_filter($plan['merge'], fn($m) => !$m['ok']));
+if ($dangling) { $blockers[] = count($dangling) . ' merge' . (count($dangling) === 1 ? '' : 's') . ' pointing at a target that does not exist'; }
+
+if ($blockers) {
+    echo PHP_EOL . str_repeat('=', 74) . PHP_EOL;
+    echo 'REFUSING TO APPLY: ' . implode(', ', $blockers) . '.' . PHP_EOL;
+    foreach ($conflicts as $x) { echo '  conflict   ' . $x . PHP_EOL; }
+    foreach ($dangling as $m) {
+        printf("  merge      %s -> %s\n", $m['name'], $m['into']);
+    }
+    foreach ($containment as $c) {
+        printf("  pair       %s (%d links) sits inside %s (%d links); decide it on the screen\n",
+            $c['short']['name'], count($c['short']['articles']),
+            $c['long']['name'], count($c['long']['articles']));
+    }
+    echo PHP_EOL . 'Settle these and run again. Nothing was written'
+       . ($APPLY ? ', although APPLY was on.' : '.') . PHP_EOL;
+    return;
+}
 
 if (!$APPLY) {
     echo PHP_EOL . 'DRY RUN. Nothing was written.' . PHP_EOL;

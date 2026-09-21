@@ -1769,3 +1769,14 @@ Perceptual hashing to find larger copies by appearance. It disproves the case
 that prompted it: reynolds_jerry.jpg and jerry-reynolds.jpg are 30 apart out of
 64, which is two different pictures of one man, not two copies of one picture.
 Of 134 inline images with no enlargement, one has a larger copy worth taking.
+
+Two guards, after an apply ran with five open conflicts and wrote seven wrong
+records. create_records_from_review.php now refuses while any conflict,
+unanswered containment pair or dangling merge stands: printing a conflict is
+not refusing one. apply_org_backfill.php treats a short read-back as a failure
+and names the rows, instead of reporting 7 of 8 and returning.
+
+The eighth was Planning Commission's parent. A relation field handed a bare
+integer saves without error and stores nothing; it wants an array.
+
+Settled the five plus Hart Mansion, the Pico pair and the stale Beale row.

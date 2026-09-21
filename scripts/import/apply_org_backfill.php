@@ -76,7 +76,10 @@ foreach ($SET as $title => $vals) {
             if ($cur) { $held[] = $h . ' already ' . $cur->title; continue; }
             $t = \craft\elements\Entry::find()->section('organizations')->title($v)->status(null)->one();
             if (!$t) { $skipped[] = $title . ': parent "' . $v . '" is not a record'; continue; }
-            $write[$h] = $t->id;
+            /* An ARRAY. A relation field handed a bare integer saves without
+               error and stores nothing, which is how this reported 7 of 8 and
+               called it done: Planning Commission's parent never landed. */
+            $write[$h] = [$t->id];
             continue;
         }
         $cur = trim((string)$e->getFieldValue($h));
@@ -87,7 +90,8 @@ foreach ($SET as $title => $vals) {
 
     printf("%-42s #%d\n", mb_substr($title, 0, 41), $e->id);
     foreach ($write as $h => $v) {
-        printf("    %-20s %s\n", $h, $h === 'parentOrganization' ? ('#' . $v . ' ' . $SET[$title][$h]) : $v);
+        printf("    %-20s %s\n", $h, $h === 'parentOrganization'
+            ? ('#' . (is_array($v) ? $v[0] : $v) . ' ' . $SET[$title][$h]) : $v);
     }
     foreach ($held as $h) { printf("    %-20s %s\n", '(left alone)', $h); }
     echo PHP_EOL;
@@ -114,7 +118,11 @@ foreach ($plan as $p) {
     if (!$e) { continue; }
     $good = true;
     foreach ($p['write'] as $h => $v) {
-        if ($h === 'parentOrganization') { $good = $good && ($e->parentOrganization->one()?->id == $v); continue; }
+        if ($h === 'parentOrganization') {
+            $want = is_array($v) ? (int)$v[0] : (int)$v;
+            $good = $good && ((int)($e->parentOrganization->one()?->id ?? 0) === $want);
+            continue;
+        }
         if (trim((string)$e->getFieldValue($h)) !== (string)$v) { $good = false; }
     }
     if ($good) { $verified++; }
@@ -122,5 +130,38 @@ foreach ($plan as $p) {
 
 echo PHP_EOL . 'saved: ' . $ok . '  fields written: ' . $fields
    . '  verified on read-back: ' . $verified . ' of ' . count($plan) . PHP_EOL;
+
+/* A SHORT READ-BACK IS A FAILURE, not a score.
+ *
+ * This reported "verified 7 of 8" and returned as though it had worked. The
+ * eighth was Planning Commission's parent, handed to a relation field as a bare
+ * integer, which saves without error and stores nothing. A number that is not
+ * the total is the script telling you it does not know what it did, and the
+ * only honest response is to say so loudly and name the rows. */
+if ($verified < count($plan)) {
+    echo PHP_EOL . 'READ-BACK SHORT. ' . (count($plan) - $verified) . ' of ' . count($plan)
+       . ' records do not carry what was written. The rows that failed:' . PHP_EOL;
+    foreach ($plan as $p) {
+        $e = \craft\elements\Entry::find()->id($p['entry']->id)->status(null)->one();
+        foreach ($p['write'] as $h => $v) {
+            if ($h === 'parentOrganization') {
+                $want = is_array($v) ? (int)$v[0] : (int)$v;
+                $got = (int)($e->parentOrganization->one()?->id ?? 0);
+                if ($got !== $want) { printf("  %-40s %-20s wanted #%d, holds %s\n",
+                    $e->title, $h, $want, $got ?: '(nothing)'); }
+                continue;
+            }
+            $got = trim((string)$e->getFieldValue($h));
+            if ($got !== (string)$v) { printf("  %-40s %-20s wanted \"%s\", holds \"%s\"\n",
+                $e->title, $h, $v, $got); }
+        }
+    }
+    $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
+    $applyLog('apply_org_backfill.php', $ok, 'FAILED: verified only ' . $verified . ' of ' . count($plan),
+        $fields . ' fields attempted');
+    echo PHP_EOL . 'Treat this run as failed and do not build on it.' . PHP_EOL;
+    return;
+}
+
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('apply_org_backfill.php', $ok, 'verified ' . $verified . ' of ' . count($plan), $fields . ' fields');

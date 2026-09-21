@@ -1166,7 +1166,8 @@
                 12621,
                 12627
             ],
-            "placeType": "site"
+            "placeType": "site",
+            "settledBy": "Nathan, 2026-09-21: follows the parked festival"
         },
         {
             "key": "kit carson",
@@ -1271,7 +1272,7 @@
             "intoKey": "jan heidt"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "place",
             "name": "Lyons",
             "articles": [
@@ -1316,10 +1317,13 @@
             ],
             "placeType": "road",
             "storeKey": "lyons|place",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
+            "decidedAt": "2026-09-21T13:01:13-07:00",
+            "into": 15651,
+            "intoName": "Lyons Avenue",
+            "settledBy": "Nathan, 2026-09-21: the canon makes it an alias of the avenue"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "person",
             "name": "Councilwoman Jill Klajic",
             "articles": [
@@ -1342,14 +1346,14 @@
                 12739,
                 12907
             ],
-            "aliases": [
-                "Jill Klajic"
-            ],
             "storeKey": "councilwoman jill klajic|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
+            "decidedAt": "2026-09-21T13:01:13-07:00",
+            "into": 15874,
+            "intoName": "Jill Klajic",
+            "settledBy": "Nathan, 2026-09-21: the title is the alias, the name is the record"
         },
         {
-            "action": "approved",
+            "action": "skipped",
             "type": "person",
             "name": "Beale",
             "articles": [
@@ -1364,10 +1368,11 @@
                 1426
             ],
             "storeKey": "beale|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
+            "decidedAt": "2026-09-21T13:01:13-07:00",
+            "settledBy": "Nathan, 2026-09-21: stale; Edward F. Beale is the record"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "place",
             "name": "Lake Elizabeth",
             "articles": [
@@ -1381,7 +1386,10 @@
             ],
             "placeType": "natural",
             "storeKey": "lake elizabeth|place",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
+            "decidedAt": "2026-09-21T13:01:13-07:00",
+            "into": 15994,
+            "intoName": "Elizabeth Lake",
+            "settledBy": "Nathan, 2026-09-21: the canon makes it an alias of the lake"
         },
         {
             "action": "approved",
@@ -1879,14 +1887,13 @@
             "decidedAt": "2026-09-21T13:51:35-07:00"
         },
         {
-            "action": "merged",
+            "action": "skipped",
             "type": "person",
             "name": "Cowboy Festival",
             "key": "cowboy festival",
-            "intoName": "Cowboy Poetry Festival",
-            "intoKey": "cowboy poetry festival",
             "storeKey": "cowboy festival|person",
-            "decidedAt": "2026-09-21T13:51:37-07:00"
+            "decidedAt": "2026-09-21T13:51:37-07:00",
+            "settledBy": "Nathan, 2026-09-21: follows the parked festival"
         },
         {
             "name": "PAIR Cowboy Festival / Cowboy Poetry Festival",
@@ -1901,26 +1908,13 @@
             "decidedAt": "2026-09-21T13:51:37-07:00"
         },
         {
-            "action": "approved",
+            "action": "skipped",
             "type": "person",
             "name": "Cowboy Poetry Festival",
             "key": "cowboy poetry festival",
-            "articles": [
-                12230,
-                12318,
-                12196,
-                12434,
-                12368,
-                2145,
-                12226,
-                12647,
-                12826
-            ],
-            "aliases": [
-                "Cowboy Poetry"
-            ],
             "storeKey": "cowboy poetry festival|person",
-            "decidedAt": "2026-09-21T15:17:42-07:00"
+            "decidedAt": "2026-09-21T15:17:42-07:00",
+            "settledBy": "Nathan, 2026-09-21: the parked event, not a person"
         },
         {
             "name": "PAIR Henry Newhall / Henry M. Newhall",
@@ -1968,19 +1962,18 @@
             "decidedAt": "2026-09-21T15:16:21-07:00"
         },
         {
-            "action": "merged",
+            "action": "skipped",
             "type": "person",
             "name": "Theodore Roosevelt",
             "key": "theodore roosevelt",
-            "intoName": "President Theodore Roosevelt",
-            "intoKey": "president theodore roosevelt",
             "storeKey": "theodore roosevelt|person",
-            "decidedAt": "2026-09-21T15:16:25-07:00"
+            "decidedAt": "2026-09-21T15:16:25-07:00",
+            "settledBy": "Nathan, 2026-09-21: the rename made this a merge into itself"
         },
         {
             "action": "approved",
             "type": "person",
-            "name": "President Theodore Roosevelt",
+            "name": "Theodore Roosevelt",
             "key": "president theodore roosevelt",
             "articles": [
                 2117,
@@ -1998,10 +1991,19 @@
                 15392
             ],
             "aliases": [
-                "Theodore Roosevelt"
+                "Theodore Roosevelt",
+                "President Theodore Roosevelt"
             ],
             "storeKey": "president theodore roosevelt|person",
-            "decidedAt": "2026-09-21T15:16:25-07:00"
+            "decidedAt": "2026-09-21T15:16:25-07:00",
+            "wikidataId": "Q33866",
+            "authority": {
+                "source": "Wikidata",
+                "id": "Q33866",
+                "idField": "wikidataId",
+                "name": "Theodore Roosevelt"
+            },
+            "settledBy": "Nathan, 2026-09-21: untitled name, titled form as alias"
         },
         {
             "name": "PAIR Theodore Roosevelt / President Theodore Roosevelt",
@@ -2079,14 +2081,13 @@
             "decidedAt": "2026-09-21T15:16:29-07:00"
         },
         {
-            "action": "merged",
+            "action": "skipped",
             "type": "person",
             "name": "Cowboy Poetry",
             "key": "cowboy poetry",
-            "intoName": "Cowboy Poetry Festival",
-            "intoKey": "cowboy poetry festival",
             "storeKey": "cowboy poetry|person",
-            "decidedAt": "2026-09-21T15:17:42-07:00"
+            "decidedAt": "2026-09-21T15:17:42-07:00",
+            "settledBy": "Nathan, 2026-09-21: follows the parked festival"
         },
         {
             "name": "PAIR Cowboy Poetry / Cowboy Poetry Festival",
@@ -2343,7 +2344,7 @@
         },
         {
             "action": "approved",
-            "type": "person",
+            "type": "place",
             "name": "Hart Mansion",
             "key": "hart mansion",
             "articles": [
@@ -2354,7 +2355,9 @@
                 12627
             ],
             "storeKey": "hart mansion|person",
-            "decidedAt": "2026-09-21T15:26:05-07:00"
+            "decidedAt": "2026-09-21T15:26:05-07:00",
+            "placeType": "building",
+            "settledBy": "Nathan, 2026-09-21: it is a building"
         },
         {
             "action": "approved",
@@ -2569,6 +2572,17 @@
             "placeType": "ranch",
             "storeKey": "rancho san francisco|place",
             "decidedAt": "2026-09-21T15:28:36-07:00"
+        },
+        {
+            "name": "PAIR Pico Canyon / Pico Canyon Road",
+            "type": "pair",
+            "action": "diff",
+            "short": "Pico Canyon",
+            "long": "Pico Canyon Road",
+            "shortKey": "pico canyon",
+            "longKey": "pico canyon road",
+            "shape": "contains",
+            "settledBy": "Nathan, 2026-09-21: the canyon and the road up it"
         }
     ],
     "edited": "hand-edited 2026-09-21: renames and merges per Nathan"
