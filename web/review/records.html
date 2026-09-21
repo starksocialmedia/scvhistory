@@ -47,6 +47,16 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .guess li{margin:1px 0}
 .guess .clash{color:#8A4B00;display:block;margin-top:4px}
 
+.auth{margin-top:10px;background:#F2F6FB;border:1px solid #D9E4F1;border-left:3px solid #3C6DA8;padding:9px 12px;font-size:13px;line-height:1.6}
+.auth b{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#2F567F;display:block;margin-bottom:3px}
+.auth .an{font-weight:500;color:var(--navy)}
+.auth .src{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#3C6DA8;margin-left:6px}
+.auth .sc{color:var(--muted);font-size:12.5px;margin-left:6px}
+.auth .det{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.auth .alts{margin:5px 0 0;padding-left:16px;color:var(--muted);font-size:12.5px}
+.auth .tie{display:block;color:#8A4B00;margin-top:4px}
+.auth a{color:#2F567F}
+
 .ctx{margin-top:12px}
 .ctx .q{border-left:2px solid var(--bord);padding:4px 0 4px 12px;margin-bottom:8px;font-size:13.5px;line-height:1.7;color:#3A3A3A}
 .ctx .q mark{background:#FBEFC9;color:inherit;padding:0 2px}
@@ -275,6 +285,42 @@ function optionsFor(type, selected) {
     `<option value="${x.id}"${String(selected) === String(x.id) ? ' selected' : ''}>${esc(x.title)}</option>`).join('');
 }
 
+/* The authority match, shown with its source, its id and why it scored. A card
+   that asserts a match without showing the evidence invites the reviewer to
+   confirm rather than read, and the Wikidata table in particular contains a
+   Canadian planning commission and three Southern Hotels. */
+const AUTH_URL = {
+  NCES: id => 'https://nces.ed.gov/ccd/schoolsearch/school_detail.asp?ID=' + encodeURIComponent(id),
+  IRS: id => 'https://apps.irs.gov/app/eos/',
+  Wikidata: id => 'https://www.wikidata.org/wiki/' + encodeURIComponent(id),
+  GNIS: id => 'https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' + encodeURIComponent(id),
+};
+
+function authBlock(r) {
+  const a = r.authority;
+  if (!a || !a.top) return '';
+  const t = a.top;
+  const url = (AUTH_URL[t.source] || (() => ''))(t.id);
+  const bits = [];
+  if (t.orgType) bits.push(esc(t.orgType) + (t.schoolLevel ? ' / ' + esc(t.schoolLevel) : ''));
+  if (t.parent) bits.push('in ' + esc(t.parent));
+  if (t.status) bits.push(esc(t.status) + (t.closed ? ' ' + esc(String(t.closed)) : ''));
+  if (t.inception) bits.push('founded ' + esc(String(t.inception).slice(0, 4)));
+  if (t.class) bits.push(esc(t.class) + (t.county ? ', ' + esc(t.county) + ' County' : ''));
+  if (t.detail) bits.push(esc(t.detail));
+
+  return `<div class="auth">
+    <b>Authority match</b>
+    <span class="an">${esc(t.name)}</span><span class="src">${esc(t.source)}</span>
+    <span class="sc">${t.score}% &middot; ${esc(t.why || '')}</span>
+    ${t.id ? `<span class="det">${esc(t.idField || 'id')} ${url ? `<a href="${url}" target="_blank" rel="noopener">${esc(t.id)}</a>` : esc(t.id)}</span>` : ''}
+    ${bits.length ? `<span class="det">${bits.join(' &middot; ')}</span>` : ''}
+    ${a.tied > 1 ? `<span class="tie">${a.tied} candidates score the same. Pick one before approving.</span>` : ''}
+    ${(a.alternates || []).length ? `<ul class="alts">${a.alternates.map(x =>
+        `<li>${esc(x.name)} &mdash; ${esc(x.source)} ${esc(x.id)} (${x.score}%)</li>`).join('')}</ul>` : ''}
+  </div>`;
+}
+
 function card(r, rank) {
   const id = idOf(r);
   const d = decisions[id] || {};
@@ -301,6 +347,8 @@ function card(r, rank) {
       <ul>${(r.signals || []).map(s => '<li>' + esc(s) + '</li>').join('')}</ul>
       ${r.disagrees ? `<span class="clash">The extraction called this a ${esc(r.extraction)}.</span>` : ''}
     </div>
+
+    ${authBlock(r)}
 
     <div class="ctx">${ctx}</div>
 
@@ -466,6 +514,20 @@ document.getElementById('list').addEventListener('click', e => {
   } else {
     decisions[id] = { action: act, type, name: row.name, key: row.key,
                       articles: row.articles.map(a => a.id) };
+    /* The authority's official name becomes the title and the queue spelling
+       becomes an alias, which is the whole point of matching. */
+    if (act === 'approved' && row.authority && row.authority.top && !row.authority.tied) {
+      const t = row.authority.top;
+      decisions[id].authority = { source: t.source, id: t.id, idField: t.idField, name: t.name };
+      if (t.name && t.name !== row.name) {
+        decisions[id].name = t.name;
+        decisions[id].aliases = [row.name];
+      }
+      if (t.orgType) decisions[id].orgType = t.orgType;
+      if (t.schoolLevel) decisions[id].schoolLevel = t.schoolLevel;
+      if (t.parent) decisions[id].parentOrganization = t.parent;
+      if (t.source === 'GNIS') decisions[id].gnisId = t.id;
+    }
     if (type === 'place') decisions[id].placeType = el.querySelector('.ptype').value;
     if (act === 'merged') decisions[id].into = parseInt(into, 10);
     persist(decisions[id]);
