@@ -14,6 +14,8 @@ header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:10}
 header .wrap{padding-top:18px;padding-bottom:18px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 h1{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0}
 .counts{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--gold)}
+.saved{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.06em;color:#9FD6B8;min-width:120px}
+.saved.bad{color:#FFB4AC;font-weight:500}
 .tools{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 button,select,input{font:inherit}
 .btn{background:var(--gold);color:var(--navy);border:0;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;padding:9px 16px;cursor:pointer}
@@ -101,7 +103,8 @@ footer .tot b{color:var(--gold);font-weight:500}
   <h1>Missing records</h1>
   <div class="counts" id="counts">loading</div>
   <div class="tools">
-    <button class="btn ghost" id="reset">Clear decisions</button>
+    <button class="btn ghost" id="reset" title="Discard nothing; re-read the decisions file">Reload from file</button>
+    <span class="saved" id="saved">&nbsp;</span>
     <button class="btn" id="download">Download records-decided.json</button>
   </div>
 </div></header>
@@ -151,12 +154,80 @@ footer .tot b{color:var(--gold);font-weight:500}
 </div></footer>
 
 <script>
-const KEY = 'scvh-records-decisions';
+const KEY = 'scvh-records-decisions';      /* a local cache only; the server is the truth */
 const PAGE = 60;
 let DATA = { names: [], records: [] }, decisions = {}, shown = PAGE;
+let CSRF = null, SAVING = 0;
+
+/* THE STORE
+ *
+ * Decisions live in web/review/records-decided.json, written server side the
+ * moment a button is clicked. They are keyed by the normalised NAME and type,
+ * never by the queue key: the queue key is derived from the name and moves
+ * whenever the canon folds something or the queue is rebuilt, so a decision
+ * filed under it is unreachable the next time the page loads. That is how a
+ * pair marked "same thing" on Monday was gone on Tuesday.
+ *
+ * localStorage is kept as a cache so the page still shows your work if the
+ * server is unreachable, but nothing depends on it and nothing here clears it. */
+const storeKey = (name, type) =>
+  String(name || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
+  + '|' + String(type || '').toLowerCase().trim();
 
 try { decisions = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { decisions = {}; }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
+function cache() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
+
+async function token() {
+  if (CSRF) return CSRF;
+  const r = await fetch('/actions/users/session-info', { headers: { Accept: 'application/json' } });
+  CSRF = (await r.json()).csrfTokenValue;
+  return CSRF;
+}
+
+function flash(msg, bad) {
+  const el = document.getElementById('saved');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = bad ? 'saved bad' : 'saved';
+}
+
+async function persist(decision) {
+  SAVING++; flash('saving\u2026');
+  try {
+    const r = await fetch('/actions/reviewstore/decisions/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json',
+                 'X-CSRF-Token': await token() },
+      body: JSON.stringify({ decision }),
+    });
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || 'refused');
+    flash('saved \u00b7 ' + j.total + ' on file');
+  } catch (e) {
+    flash('NOT SAVED: ' + e.message + '. Your work is in this browser only.', true);
+  } finally { SAVING--; }
+}
+
+async function unpersist(name, type) {
+  SAVING++; flash('saving\u2026');
+  try {
+    const r = await fetch('/actions/reviewstore/decisions/clear', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json',
+                 'X-CSRF-Token': await token() },
+      body: JSON.stringify({ name, type }),
+    });
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || 'refused');
+    flash('removed');
+  } catch (e) {
+    flash('NOT SAVED: ' + e.message, true);
+  } finally { SAVING--; }
+}
+
+/* save() keeps its old name so every call site still reads the same, but it
+   now writes to the server and only caches locally. */
+function save() { cache(); }
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const today = () => new Date().toISOString().slice(0, 10);
@@ -171,7 +242,10 @@ function mark(text, needle) {
 
 const PLACE_TYPES = ['natural', 'road', 'ranch', 'building', 'park', 'site', 'trail'];
 
-const idOf = r => r.key || r.name;
+/* Identity is the NAME, not the queue key. The queue key moves; the name is
+   what the reviewer read and decided about. */
+const normName = n => String(n || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+const idOf = r => normName(r.name);
 const stateOf = r => (decisions[idOf(r)] || {}).action || '';
 
 function filtered() {
@@ -283,7 +357,15 @@ function render() {
    between them, and nothing on the screen would ever say so. */
 let pairState = {};
 try { pairState = JSON.parse(localStorage.getItem(KEY + '-pairs') || '{}'); } catch (e) { pairState = {}; }
-function savePairs() { try { localStorage.setItem(KEY + '-pairs', JSON.stringify(pairState)); } catch (e) {} }
+
+function savePairs() {
+  try { localStorage.setItem(KEY + '-pairs', JSON.stringify(pairState)); } catch (e) {}
+}
+async function persistPair(c, verdict) {
+  await persist({ name: 'PAIR ' + c.short + ' / ' + c.long, type: 'pair',
+                  action: verdict, short: c.short, long: c.long,
+                  shortKey: c.shortKey, longKey: c.longKey, shape: c.shape });
+}
 
 const pairId = c => c.shortKey + '||' + c.longKey;
 
@@ -344,17 +426,26 @@ document.getElementById('pairs').addEventListener('click', e => {
   if (pairState[id] === 'same' && shortRow && longRow) {
     const arts = Array.from(new Set(
       longRow.articles.map(a => a.id).concat(shortRow.articles.map(a => a.id))));
-    decisions[c.longKey] = {
-      action: 'approved', type: longRow.guess, name: longRow.name, articles: arts,
+    decisions[idOf(longRow)] = {
+      action: 'approved', type: longRow.guess, name: longRow.name, key: longRow.key, articles: arts,
       aliases: (longRow.variants || []).concat([shortRow.name]),
     };
-    if (longRow.guess === 'place') decisions[c.longKey].placeType = longRow.placeType || 'site';
-    decisions[c.shortKey] = { action: 'merged', type: shortRow.guess, name: shortRow.name,
-                              intoName: longRow.name, intoKey: c.longKey };
+    if (longRow.guess === 'place') decisions[idOf(longRow)].placeType = longRow.placeType || 'site';
+    decisions[idOf(shortRow)] = { action: 'merged', type: shortRow.guess, name: shortRow.name,
+                                  key: shortRow.key, intoName: longRow.name, intoKey: c.longKey };
+    persist(decisions[idOf(longRow)]);
+    persist(decisions[idOf(shortRow)]);
   } else {
-    if (decisions[c.shortKey] && decisions[c.shortKey].intoKey === c.longKey) delete decisions[c.shortKey];
-    if (decisions[c.longKey] && decisions[c.longKey].aliases) delete decisions[c.longKey];
+    const sk = shortRow ? idOf(shortRow) : null, lk = longRow ? idOf(longRow) : null;
+    if (sk && decisions[sk] && decisions[sk].intoKey === c.longKey) {
+      unpersist(decisions[sk].name, decisions[sk].type); delete decisions[sk];
+    }
+    if (lk && decisions[lk] && decisions[lk].aliases) {
+      unpersist(decisions[lk].name, decisions[lk].type); delete decisions[lk];
+    }
   }
+  if (pairState[id]) { persistPair(c, pairState[id]); }
+  else { unpersist('PAIR ' + c.short + ' / ' + c.long, 'pair'); }
   save(); savePairs(); renderPairs(); render();
 });
 
@@ -368,11 +459,16 @@ document.getElementById('list').addEventListener('click', e => {
   const into = el.querySelector('.into').value;
   if (act === 'merged' && !into) { el.querySelector('.into').focus(); return; }
   const cur = decisions[id] || {};
-  if (cur.action === act) { delete decisions[id]; }
-  else {
-    decisions[id] = { action: act, type, name: row.name, articles: row.articles.map(a => a.id) };
+  if (cur.action === act) {
+    const gone = decisions[id];
+    delete decisions[id];
+    unpersist(gone.name || row.name, gone.type || type);
+  } else {
+    decisions[id] = { action: act, type, name: row.name, key: row.key,
+                      articles: row.articles.map(a => a.id) };
     if (type === 'place') decisions[id].placeType = el.querySelector('.ptype').value;
     if (act === 'merged') decisions[id].into = parseInt(into, 10);
+    persist(decisions[id]);
   }
   save(); render();
 });
@@ -390,11 +486,11 @@ document.getElementById('list').addEventListener('change', e => {
       decisions[id].type = t;
       if (t === 'place') decisions[id].placeType = el.querySelector('.ptype').value;
       else delete decisions[id].placeType;
-      save(); render();
+      persist(decisions[id]); save(); render();
     }
   }
   if (e.target.classList.contains('ptype') && decisions[id]) {
-    decisions[id].placeType = e.target.value; save();
+    decisions[id].placeType = e.target.value; persist(decisions[id]); save();
   }
 });
 
@@ -404,8 +500,10 @@ document.getElementById('batch').onclick = () => {
   filtered().slice(0, n).forEach(r => {
     const id = idOf(r);
     if (decisions[id]) return;
-    decisions[id] = { action: 'approved', type: r.guess, name: r.name, articles: r.articles.map(a => a.id) };
+    decisions[id] = { action: 'approved', type: r.guess, name: r.name, key: r.key,
+                      articles: r.articles.map(a => a.id) };
     if (r.guess === 'place') decisions[id].placeType = r.placeType || 'site';
+    persist(decisions[id]);
   });
   save(); render();
 };
@@ -414,10 +512,11 @@ document.getElementById('more').onclick = () => { shown += PAGE; render(); };
 ['filter', 'ftype', 'minart'].forEach(x =>
   document.getElementById(x).addEventListener('change', () => { shown = PAGE; render(); }));
 
-document.getElementById('reset').onclick = () => {
-  if (!confirm('Clear every decision in this browser?')) return;
-  decisions = {}; pairState = {}; save(); savePairs(); renderPairs(); render();
-};
+/* There is no "clear everything" any more, and there should never be one. A
+   decision is undone by clicking it again, one at a time, which is the only
+   way a person ever actually wants to undo one. This button now reloads from
+   the file instead, which is what people reached for it hoping to get. */
+document.getElementById('reset').onclick = () => { location.reload(); };
 
 document.getElementById('download').onclick = () => {
   const out = {
@@ -434,11 +533,45 @@ document.getElementById('download').onclick = () => {
 };
 
 const set = new URLSearchParams(location.search).get('set');
-fetch(set === 'full' ? 'records-full.json' : 'records.json')
-  .then(r => r.json())
-  .then(d => { DATA = d; renderPairs(); render(); })
-  .catch(() => { document.getElementById('list').innerHTML =
-    '<div class="empty">No records.json. Run export_missing_records.php.</div>'; });
+
+/* Load order matters: the queue first, then the decisions on file, which are
+   applied to it BY NAME. A regeneration can rename keys, resplit groups and
+   reorder everything, and every decision still lands on the row a person made
+   it about. */
+async function boot() {
+  let d;
+  try {
+    d = await fetch(set === 'full' ? 'records-full.json' : 'records.json').then(r => r.json());
+  } catch (e) {
+    document.getElementById('list').innerHTML =
+      '<div class="empty">No records.json. Run export_missing_records.php.</div>';
+    return;
+  }
+  DATA = d;
+
+  try {
+    const srv = await fetch('/actions/reviewstore/decisions/all', {
+      headers: { Accept: 'application/json' } }).then(r => r.json());
+    if (srv.ok) {
+      let applied = 0, pairs = 0;
+      Object.values(srv.decisions || {}).forEach(x => {
+        if (x.type === 'pair') {
+          if (x.shortKey && x.longKey) { pairState[x.shortKey + '||' + x.longKey] = x.action; pairs++; }
+          return;
+        }
+        decisions[normName(x.name)] = x;
+        applied++;
+      });
+      cache();
+      flash(applied + ' decisions on file' + (pairs ? ', ' + pairs + ' pairs' : ''));
+    }
+  } catch (e) {
+    flash('could not read the decisions file; showing this browser only', true);
+  }
+
+  renderPairs(); render();
+}
+boot();
 </script>
 </body>
 </html>

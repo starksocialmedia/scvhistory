@@ -24,4 +24,14 @@ use craft\helpers\App;
 
 return [
     'id' => App::env('CRAFT_APP_ID') ?: 'CraftCMS',
+
+    /* The review screens need somewhere to save a decision the moment it is
+       made. They are static HTML with no server side, so every decision lived
+       in localStorage keyed by the queue key, and both halves of that lost
+       work: the key moves when the queue is regenerated, and localStorage is
+       per browser and can be cleared by anything. */
+    'modules' => [
+        'reviewstore' => \modules\reviewstore\ReviewStore::class,
+    ],
+    'bootstrap' => ['reviewstore'],
 ];

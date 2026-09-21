@@ -1696,3 +1696,14 @@ Seven canon lines added. Downtown Newhall Specific Plan is parked rather than
 folded: it is a document, so the aliases stop ranking and nothing is created.
 "Antonio" is a fold, not a split; every sentence behind the bare-Antonio group
 names Antonio del Valle. The canon's type is now authoritative over the guess.
+
+Review decisions now persist server side. Every click POSTs to a small module,
+which upserts into web/review/records-decided.json keyed by the normalised name
+and type, never by the queue key. The queue key is derived from the name and
+moves whenever the canon folds something or the queue is rebuilt, so decisions
+filed under it became unreachable on the next load. On load the screen reads the
+file and applies every decision to the current queue by name.
+
+Recovered 18 decisions and 13 pair verdicts that were in the browser and not on
+file. Nothing here clears localStorage or the decisions file, and the clear-all
+button is gone.
