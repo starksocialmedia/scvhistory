@@ -3,7 +3,8 @@
     "source": "Nathan's review of the top 200 of the missing-records queue",
     "started": "2026-09-21",
     "note": "A curated list of names the archive has decided on. The entity exporter reads it on every run: aliases fold into the canonical row before ranking, the canonical name becomes the record title, and the aliases go on the record so every spelling still finds it. This is judgement, not derivation. Nothing here should be inferred by a script, and a script must not edit this file.",
-    "maintained_by": "hand"
+    "maintained_by": "hand",
+    "rules_note": "rules are patterns applied to every name after the folds, overriding the guess and the extraction's kind. They exist for shapes that recur: the archive will keep meeting ranchos and missions, and deciding each one by hand is deciding the same thing repeatedly."
   },
   "canon": [
     {
@@ -159,6 +160,32 @@
         "Q David Bowers"
       ],
       "note": "The numismatist, cited constantly in the coin columns, who publishes under the initial."
+    },
+    {
+      "canonical": "City of Santa Clarita Cowboy Poetry and Music Festival",
+      "type": "event",
+      "aliases": [
+        "Cowboy Festival",
+        "Cowboy Poetry Festival",
+        "Music Festival",
+        "Santa Clarita Cowboy Festival",
+        "Cowboy Poetry and Music Festival"
+      ],
+      "note": "An event, not a body. The review screen creates people, places and organizations only, so this folds its aliases together and waits: the fragments stop ranking as five separate records and the festival is made once, by hand or by a screen that can make events."
+    },
+    {
+      "canonical": "Buck McKeon",
+      "type": "person",
+      "aliases": [
+        "Congressman Buck",
+        "Congressman McKeon",
+        "Mayor McKeon",
+        "Howard \"Buck\" McKeon",
+        "Howard McKeon",
+        "Congressman Howard McKeon",
+        "Rep. Buck McKeon"
+      ],
+      "note": "He is mayor in the early Signal columns and congressman in the later ones, and the corpus names him both ways plus his given name. The titles are aliases; the record is the man."
     }
   ],
   "splits": [
@@ -212,6 +239,150 @@
           "note": "The general who signed the Treaty of Cahuenga. His brother Pío is a separate person and is not folded here."
         }
       ]
+    },
+    {
+      "name": "Soledad",
+      "note": "Three things share the name. The canyon is the default reading in this corpus, so a sentence that carries none of the road cues resolves there rather than going to review: unlike Pico, where the three readings are genuinely balanced, Soledad without further words is the canyon in nearly every occurrence. Tested in the order below.",
+      "splits": [
+        {
+          "canonical": "Soledad Canyon Road",
+          "type": "place",
+          "placeType": "road",
+          "cues": [
+            "road",
+            "rd",
+            "drove",
+            "drive",
+            "mile",
+            "miles",
+            "intersection",
+            "highway",
+            "route",
+            "traffic",
+            "widening"
+          ],
+          "note": "Checked first, because the road's name contains the canyon's."
+        },
+        {
+          "canonical": "Soledad",
+          "type": "place",
+          "placeType": "settlement",
+          "cues": [
+            "township",
+            "post office",
+            "settlement",
+            "town of",
+            "village",
+            "population",
+            "census"
+          ],
+          "note": "The old township, which the Perkins and Reynolds material treats as a place people lived."
+        },
+        {
+          "canonical": "Soledad Canyon",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "canyon",
+            "creek",
+            "wash",
+            "mine",
+            "mining",
+            "railroad",
+            "rail",
+            "stage",
+            "narrows"
+          ],
+          "default": true,
+          "note": "The default. A bare Soledad with no other signal is the canyon."
+        }
+      ]
+    },
+    {
+      "name": "Placerita",
+      "note": "Four things, and the same default: the canyon unless the sentence says otherwise. Placerita Creek and the Nature Center are named outright when they are meant.",
+      "splits": [
+        {
+          "canonical": "Placerita Canyon Nature Center",
+          "type": "place",
+          "placeType": "park",
+          "cues": [
+            "nature center",
+            "nature centre",
+            "visitor center",
+            "interpretive",
+            "docent",
+            "ranger"
+          ],
+          "note": "Checked first: its name contains both the canyon's and the road's."
+        },
+        {
+          "canonical": "Placerita Canyon Road",
+          "type": "place",
+          "placeType": "road",
+          "cues": [
+            "road",
+            "rd",
+            "drove",
+            "drive",
+            "mile",
+            "miles",
+            "intersection",
+            "highway",
+            "route"
+          ],
+          "note": ""
+        },
+        {
+          "canonical": "Placerita Creek",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "creek",
+            "stream",
+            "water",
+            "flood",
+            "bed of"
+          ],
+          "note": ""
+        },
+        {
+          "canonical": "Placerita Canyon",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "canyon",
+            "oak",
+            "gold",
+            "placer",
+            "discovery",
+            "state park",
+            "gold discovery"
+          ],
+          "default": true,
+          "note": "The default, and the one the gold discovery material means."
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "pattern": "^Rancho\\b",
+      "type": "place",
+      "placeType": "ranch",
+      "note": "A rancho is a place. Three of them sit in the organizations section because the extraction read them as bodies, which they were in a legal sense and are not in the archive's sense: a reader looking for Rancho San Francisco wants the land."
+    },
+    {
+      "pattern": "\\bRanch$",
+      "type": "place",
+      "placeType": "ranch",
+      "note": "Newhall Ranch, Melody Ranch, Tejon Ranch. The same rule from the other end of the name."
+    },
+    {
+      "pattern": "^Mission\\b",
+      "type": "place",
+      "placeType": "site",
+      "note": "The missions are sites. San Fernando and San Gabriel are places people visit and write about, not congregations the archive holds as organizations."
     }
   ]
 }

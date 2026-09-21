@@ -76,7 +76,18 @@ $KINDS = ['people' => 'person', 'places' => 'place', 'organizations' => 'organiz
 $SECTION_FOR = ['person' => 'persons', 'place' => 'places', 'organization' => 'organizations'];
 $ALIAS_FOR = ['person' => 'personAliases', 'place' => 'placeAliases', 'organization' => 'orgAliases'];
 
-$HONORIFICS = 'mr|mrs|ms|miss|dr|fr|father|capt|captain|col|colonel|gen|general|lt|lieutenant|rev|reverend|sgt|sergeant|maj|major|don|dona|senor|senora|sister|brother|judge|gov|governor|prof|professor|sr|st|saint';
+/* Civic titles strip like military ones. A man is a councilman for four years
+   and a name for the rest of his life, and the corpus names him both ways in
+   the same paragraph. The title never becomes part of the record's name: the
+   titled form stays as an alias so the text still finds him.
+   
+   There is no roles field on person yet. Until there is, the title survives in
+   the alias and nowhere else, which is a loss worth naming: "Congressman
+   McKeon" tells a reader what he was, and an alias does not say when. */
+$HONORIFICS = 'mr|mrs|ms|miss|dr|fr|father|capt|captain|col|colonel|gen|general|lt|lieutenant|rev|reverend|'
+            . 'sgt|sergeant|maj|major|don|dona|senor|senora|sister|brother|judge|gov|governor|prof|professor|sr|st|saint|'
+            . 'congressman|congresswoman|councilman|councilwoman|councilmember|mayor|supervisor|sheriff|'
+            . 'senator|assemblyman|assemblywoman|deputy|chief|president|secretary|commissioner';
 
 $fold = function (string $s): string {
     $s = mb_strtolower(trim($s));
@@ -172,7 +183,7 @@ foreach (\craft\elements\Entry::find()->section('articles')->status(null)->all()
 $flagsByPage = [];
 $bodyByPath = [];
 $pageTitleByPath = [];
-$entities = ['person' => [], 'place' => [], 'organization' => []];
+$entities = ['person' => [], 'place' => [], 'organization' => [], 'event' => []];
 
 foreach ($INVENTORIES as $inv) {
     $p = $root . '/inventory/legacy/' . $inv . '.json';
@@ -496,7 +507,7 @@ if ($canon) {
         $hits = $findAnywhere($base);
         if (!$hits) { $canonReport['missing'][] = $base . ' (split base not in the corpus)'; continue; }
 
-        $tally = []; $ambiguous = [];
+        $tally = []; $ambiguous = []; $defaulted = [];
         foreach ($hits as [$k, $nm]) {
             $src = $entities[$k][$nm];
             foreach (array_keys($src['pages'] ?? []) as $path) {
@@ -528,6 +539,18 @@ if ($canon) {
                         foreach (($cand['cues'] ?? []) as $cue) {
                             if (str_contains($w, ' ' . $fold($cue) . ' ')) { $chosen = $cand; break 2; }
                         }
+                    }
+                    /* A split may name a default. Pico has none, because its
+                       three readings are balanced and guessing would be
+                       inventing. Soledad and Placerita do: a bare mention is
+                       the canyon in nearly every occurrence, and sending those
+                       to review would bury the two that are genuinely unclear
+                       under forty that are not. */
+                    if ($chosen === null) {
+                        foreach (($sp['splits'] ?? []) as $cand) {
+                            if (!empty($cand['default'])) { $chosen = $cand; break; }
+                        }
+                        if ($chosen !== null) { $defaulted[$sp['name']] = ($defaulted[$sp['name']] ?? 0) + 1; }
                     }
                     if ($chosen === null) { continue; }
 
@@ -580,8 +603,40 @@ if ($canon) {
             ];
             $tally[$amb] = count($ambiguous);
         }
-        $canonReport['splits'][] = ['name' => $base, 'tally' => $tally];
+        $canonReport['splits'][] = ['name' => $base, 'tally' => $tally,
+                                    'defaulted' => $defaulted[$base] ?? 0];
     }
+
+    /* ---------------------------------------------------------- the rules
+
+       A pattern applied to every name after the folds. Ranchos and missions
+       recur, and deciding each one by hand is deciding the same thing over and
+       over. A rule overrides the guess and the extraction's kind, and moves the
+       row between sections when it has to. */
+    $ruled = [];
+    foreach (($canon['rules'] ?? []) as $rule) {
+        $pat = '~' . str_replace('~', '\~', (string)$rule['pattern']) . '~i';
+        $tk  = (string)($rule['type'] ?? '');
+        if (!isset($entities[$tk])) { continue; }
+        foreach ($entities as $k => $set) {
+            foreach (array_keys($set) as $nm) {
+                if (!preg_match($pat, $nm)) { continue; }
+                if ($k !== $tk) {
+                    if (isset($entities[$tk][$nm])) {
+                        $absorb($entities[$tk][$nm], $entities[$k][$nm], $nm);
+                    } else {
+                        $entities[$tk][$nm] = $entities[$k][$nm];
+                    }
+                    unset($entities[$k][$nm]);
+                }
+                $entities[$tk][$nm]['canonType'] = $tk;
+                if (!empty($rule['placeType'])) { $entities[$tk][$nm]['canonPlaceType'] = (string)$rule['placeType']; }
+                $ruled[] = ['name' => $nm, 'from' => $k, 'to' => $tk,
+                            'placeType' => $rule['placeType'] ?? '', 'pattern' => $rule['pattern']];
+            }
+        }
+    }
+    $canonReport['ruled'] = $ruled;
 
     echo PHP_EOL . '=== name canon ===' . PHP_EOL;
     foreach ($canonReport['folds'] as $f) {
@@ -594,7 +649,20 @@ if ($canon) {
     }
     foreach ($canonReport['splits'] as $s) {
         echo 'split ' . $s['name'] . ':' . PHP_EOL;
-        foreach ($s['tally'] as $n => $c) { printf("        %-28s %d pages\n", $n, $c); }
+        foreach ($s['tally'] as $n => $c) { printf("        %-32s %d pages\n", $n, $c); }
+        if (!empty($s['defaulted'])) { printf("        (%d resolved by the default rather than a cue)\n", $s['defaulted']); }
+    }
+    if ($ruled) {
+        echo 'rules matched ' . count($ruled) . ' names:' . PHP_EOL;
+        $byPat = [];
+        foreach ($ruled as $r) { $byPat[$r['pattern']][] = $r; }
+        foreach ($byPat as $pat => $list) {
+            printf("   %-16s %d names -> %s%s\n", $pat, count($list), $list[0]['to'],
+                $list[0]['placeType'] ? '/' . $list[0]['placeType'] : '');
+            foreach (array_slice($list, 0, 6) as $r) {
+                echo '      ' . str_pad($r['name'], 38) . ($r['from'] !== $r['to'] ? 'moved from ' . $r['from'] : 'already ' . $r['to']) . PHP_EOL;
+            }
+        }
     }
     foreach ($canonReport['missing'] as $m) { echo 'note  ' . $m . PHP_EOL; }
     echo PHP_EOL;
@@ -602,7 +670,7 @@ if ($canon) {
 
 /* ---------------------------------------------------------- shape the rows */
 
-$rows = ['person' => [], 'place' => [], 'organization' => []];
+$rows = ['person' => [], 'place' => [], 'organization' => [], 'event' => []];
 foreach ($entities as $kind => $set) {
     foreach ($set as $name => $e) {
         $articles = [];
