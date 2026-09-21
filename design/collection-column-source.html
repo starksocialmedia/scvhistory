@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Collection: column run — mockup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Mockup only. Not wired, not a template. The values are the ones the record
+     templates already use, so this can be translated without redesigning it:
+     1320 outer on a 1240 content column, 840 + 344 with a 56 gutter. */
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Public Sans', system-ui, sans-serif; color: #2C2C2C; background: #F6F7F9; }
+  a { color: inherit; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── The band ─────────────────────────────────────────────────────
+     The author IS the subject of a column run, so the portrait sits in
+     the band beside the title rather than in a sidebar card, and the run
+     of years sits under the name. A book's band has artwork and a first
+     chapter to start at; a column has neither. */
+  .band { background: #FDF7EA; border-bottom: 1px solid #E8E0CC; }
+  .band .wrap { padding-top: 26px; padding-bottom: 46px; }
+  .crumbs { font-size: 13px; color: #5B6472; margin-bottom: 34px; }
+  .crumbs a { color: #7A5C1B; text-decoration: none; }
+  .bandgrid { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 28px; align-items: start; }
+  .por { width: 132px; height: 132px; border-radius: 50%; overflow: hidden; border: 2px solid #C4A031; background: #fff;
+         display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif;
+         font-size: 40px; color: #C4A031; }
+  .por img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .kick { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-family: 'Jost', sans-serif;
+          font-size: 11.5px; letter-spacing: .18em; color: #7E6118; margin-bottom: 18px; }
+  .kick .r { width: 22px; height: 1px; background: #C4A031; }
+  h1 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(36px, 4vw, 54px);
+       line-height: 1.05; margin: 0; color: #17254C; text-wrap: balance; }
+  .by { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; line-height: 1.35;
+        color: #5B6472; margin: 14px 0 0; }
+  .by a { color: #17254C; text-decoration: none; }
+  .years { font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .06em; color: #7A5C1B; margin-top: 8px; }
+  .chips { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 26px; }
+  .chip { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em; color: #7E6118;
+          border: 1px solid #C4A031; background: rgba(255,255,255,.55); padding: 7px 13px; text-decoration: none; }
+  .chip.solid { color: #fff; background: #17254C; border-color: #17254C; }
+
+  /* No "Start reading". A column has no first piece: the reader wants a year
+     and a subject. The only band control is the most recent piece. */
+  .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 30px 0 0; }
+  .cta { font-family: 'Jost', sans-serif; font-size: 15px; padding: 13px 22px; text-decoration: none; }
+  .cta.ghost { border: 1px solid #C4A031; color: #7A5C1B; }
+
+  .stats { display: flex; gap: 38px; flex-wrap: wrap; border-top: 1px solid #EFE6D0; padding-top: 22px; margin-top: 30px; }
+  .stat b { display: block; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px;
+            line-height: 1; color: #17254C; }
+  .stat span { display: block; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11.5px;
+               letter-spacing: .12em; color: #7E6118; margin-top: 6px; text-transform: uppercase; }
+
+  /* ── Main ─────────────────────────────────────────────────────── */
+  main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 344px); gap: 56px;
+         align-items: start; padding: 40px 40px 90px; max-width: 1320px; margin: 0 auto; }
+  .lede { font-size: 17.5px; line-height: 1.78; margin: 0 0 30px; }
+
+  /* ── The year jump bar ────────────────────────────────────────────
+     Sticky, because the point of it is to be reachable from anywhere in
+     a list that may be 259 items long. */
+  .jump { position: sticky; top: 0; z-index: 3; background: #F6F7F9; border-bottom: 1px solid #E2E4E8;
+          padding: 11px 0 12px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .jump .lab { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .14em; color: #5B6472; }
+  .jump a { font-family: 'Jost', sans-serif; font-size: 14px; color: #7A5C1B; text-decoration: none;
+            padding: 3px 8px; border: 1px solid transparent; }
+  .jump a:hover { border-color: #C4A031; background: #fff; }
+  .jump a.now { background: #C4A031; color: #17254C; font-weight: 500; }
+
+  .yr { display: flex; align-items: center; gap: 16px; margin: 34px 0 12px; scroll-margin-top: 60px; }
+  .yr h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 27px; color: #17254C; margin: 0; }
+  .yr .rule { flex: 1; height: 1px; background: #E2E4E8; }
+  .yr .n { font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .12em; color: #8A919E; }
+
+  ol.list { list-style: none; margin: 0; padding: 0; border: 1px solid #E2E4E8; background: #fff; }
+  ol.list li { border-bottom: 1px solid #E2E4E8; }
+  ol.list li:last-child { border-bottom: 0; }
+  ol.list a { display: grid; grid-template-columns: 116px minmax(0, 1fr) auto; gap: 16px; align-items: baseline;
+              padding: 13px 18px; text-decoration: none; color: inherit; }
+  ol.list a:hover { background: #FDF7EA; }
+  .date { font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .04em; color: #7A5C1B; }
+  .date.none { color: #A8AEB8; }
+  .t { display: block; font-family: 'Playfair Display', serif; font-size: 17.5px; line-height: 1.3; color: #17254C; }
+  .m { display: block; font-size: 13px; color: #5B6472; margin-top: 3px; }
+  .words { font-family: 'Jost', sans-serif; font-size: 11.5px; color: #8A919E; white-space: nowrap; }
+
+  .note { background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 14px 18px;
+          font-size: 14.5px; line-height: 1.65; margin: 30px 0 0; }
+
+  aside { display: flex; flex-direction: column; gap: 18px; min-width: 0; position: sticky; top: 64px; }
+  .box { background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 16px 20px 18px; }
+  .box .lab { font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .14em; color: #7A5C1B; margin-bottom: 10px; }
+  .rows { display: grid; grid-template-columns: 92px minmax(0,1fr); gap: 0 14px; font-size: 14.5px; line-height: 1.5; }
+  .rows .k { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: .1em; color: #5B6472;
+             padding: 8px 0; border-bottom: 1px solid #EFE6D0; }
+  .rows .v { padding: 8px 0; border-bottom: 1px solid #EFE6D0; }
+
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; gap: 28px; }
+    aside { position: static; }
+    .bandgrid { grid-template-columns: 1fr; }
+    ol.list a { grid-template-columns: 1fr; gap: 4px; }
+    .words { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="band">
+  <div class="wrap">
+    <div class="crumbs"><a href="#">Home</a> &rsaquo; <a href="#">Collections</a> &rsaquo; <span>Story of Our Valley</span></div>
+    <div class="bandgrid">
+      <div class="por">AP</div>
+      <div>
+        <div class="kick">
+          <span>COLLECTION</span><span class="r"></span>
+          <span>COLUMN</span><span class="r"></span>
+          <span>20 PIECES</span>
+        </div>
+        <h1>Story of Our Valley</h1>
+        <p class="by">by <a href="#">Arthur Burnett Perkins</a></p>
+        <div class="years">The Signal &middot; 1947&ndash;1965</div>
+
+        <div class="chips">
+          <a class="chip" href="#">Pre-1850</a>
+          <a class="chip" href="#">American Frontier</a>
+          <a class="chip solid" href="#">Newhall</a>
+          <a class="chip solid" href="#">Saugus</a>
+          <a class="chip solid" href="#">Placerita Canyon</a>
+        </div>
+
+        <!-- No "Start reading". A column has no first piece. -->
+        <div class="ctas">
+          <a class="cta ghost" href="#">Read the most recent &rarr;</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><b>20</b><span>Pieces</span></div>
+          <div class="stat"><b>18</b><span>Years</span></div>
+          <div class="stat"><b>4</b><span>Dated</span></div>
+          <div class="stat"><b>69,000</b><span>Words</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <article>
+    <p class="lede">Arthur Burnett Perkins wrote on the valley's history for The Signal
+    across three decades, in a series called Story of Our Valley and in longer pieces
+    published separately. This is everything the archive holds under his name, newest
+    first within each year.</p>
+
+    <nav class="jump" aria-label="Jump to a year">
+      <span class="lab">YEARS</span>
+      <a href="#y1965" class="now">1965</a>
+      <a href="#y1961">1961</a>
+      <a href="#y1957">1957</a>
+      <a href="#y1947">1947</a>
+      <a href="#yundated">Undated</a>
+    </nav>
+
+    <div class="yr" id="y1965"><h2>1965</h2><span class="rule"></span><span class="n">1 PIECE</span></div>
+    <ol class="list">
+      <li><a href="#">
+        <span class="date">28 April</span>
+        <span><span class="t">Pardee House Has Seen Local History</span><span class="m">The Newhall Signal</span></span>
+        <span class="words">752 words</span>
+      </a></li>
+    </ol>
+
+    <div class="yr" id="y1961"><h2>1961</h2><span class="rule"></span><span class="n">1 PIECE</span></div>
+    <ol class="list">
+      <li><a href="#">
+        <span class="date">23 March</span>
+        <span><span class="t">Tales of Lang and Soledad</span><span class="m">The Newhall Signal</span></span>
+        <span class="words">2,065 words</span>
+      </a></li>
+    </ol>
+
+    <div class="yr" id="y1957"><h2>1957</h2><span class="rule"></span><span class="n">1 PIECE</span></div>
+    <ol class="list">
+      <li><a href="#">
+        <span class="date">June</span>
+        <span><span class="t">Rancho San Francisco: A Study of a California Land Grant</span><span class="m">Historical Society of Southern California</span></span>
+        <span class="words">11,377 words</span>
+      </a></li>
+    </ol>
+
+    <div class="yr" id="y1947"><h2>1947</h2><span class="rule"></span><span class="n">1 PIECE</span></div>
+    <ol class="list">
+      <li><a href="#">
+        <span class="date">2 January</span>
+        <span><span class="t">The Birth of Newhall</span><span class="m">The Newhall Signal</span></span>
+        <span class="words">821 words</span>
+      </a></li>
+    </ol>
+
+    <!-- The case the data actually has, and the one a book template never has
+         to face: 16 of 20 pieces carry no date. A column grouped by year needs
+         somewhere to put them, and hiding them would be worse than admitting
+         the gap. They keep the reading order the source gave them. -->
+    <div class="yr" id="yundated"><h2>Undated</h2><span class="rule"></span><span class="n">16 PIECES</span></div>
+    <ol class="list">
+      <li><a href="#"><span class="date none">—</span><span><span class="t">Introduction</span><span class="m">Story of Our Valley</span></span><span class="words">745 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">1. Early Inhabitants</span><span class="m">Story of Our Valley</span></span><span class="words">5,257 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">2. Rancho San Francisco</span><span class="m">Story of Our Valley</span></span><span class="words">3,876 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">3. The Placerita Gold Rush</span><span class="m">Story of Our Valley</span></span><span class="words">2,835 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">4. Early Transportation</span><span class="m">Story of Our Valley</span></span><span class="words">6,399 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">5. Mining</span><span class="m">Story of Our Valley</span></span><span class="words">6,449 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">6. Oil and Newhall</span><span class="m">Story of Our Valley</span></span><span class="words">6,366 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">Editor's Notes</span><span class="m">Story of Our Valley</span></span><span class="words">1,126 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">History of Downtown Newhall</span><span class="m">1958</span></span><span class="words">4,393 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">History of Pico Canyon Oil Production</span><span class="m">1958</span></span><span class="words">5,007 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">Manuscript: Colonization</span><span class="m">circa 1940s</span></span><span class="words">5,013 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">The Pico Ghost Camp</span><span class="m">The Newhall Signal</span></span><span class="words">3,687 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">Train Station Served Newhall Till 1933</span><span class="m">The Newhall Signal</span></span><span class="words">1,021 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">Newhall Fourth of July Parade History</span><span class="m">The Newhall Signal</span></span><span class="words">1,793 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">Enemy Confirms Fremont's Trek Through SCV</span><span class="m">The Newhall Signal</span></span><span class="words">485 words</span></a></li>
+      <li><a href="#"><span class="date none">—</span><span><span class="t">Picture Story of Hart High School</span><span class="m">May 1952</span></span><span class="words">489 words</span></a></li>
+    </ol>
+
+    <div class="note"><strong>On this mockup.</strong> The content is the real Perkins
+    data, unedited, which is why sixteen of the twenty pieces sit under Undated: only
+    four carry an <code>originalPublishDate</code>. A real column run will not look like
+    this. Worden is 219 pieces across 1995&ndash;2009 and Making Cents is 259 weekly
+    pieces, so the year bar there will carry fifteen years and the groups will be
+    twenty deep. Perkins is a book being shown in a column layout to test the layout,
+    not a column.</div>
+  </article>
+
+  <aside>
+    <div class="box">
+      <div class="lab">THE RUN</div>
+      <div class="rows">
+        <div class="k">PUBLISHED</div><div class="v">The Newhall Signal</div>
+        <div class="k">SPAN</div><div class="v">1947&ndash;1965</div>
+        <div class="k">PIECES</div><div class="v">20</div>
+        <div class="k">DATED</div><div class="v">4 of 20</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="lab">AUTHOR</div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="width:48px;height:48px;border-radius:50%;background:#fff;border:1px solid #EFE6D0;flex:none;
+                    display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;color:#C4A031">AP</div>
+        <div style="min-width:0">
+          <div style="font-family:'Playfair Display',serif;font-size:17px;color:#17254C">Arthur Burnett Perkins</div>
+          <div style="font-size:13px;color:#5B6472;margin-top:2px">Historian, civil engineer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="lab">ON THE LEGACY SITE</div>
+      <div style="font-size:14px"><a href="#" style="color:#7A5C1B">Read the original index &nearr;</a></div>
+      <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#5B6472;margin-top:6px">
+        /scvhistory/signal/perkins/contents.html</div>
+    </div>
+  </aside>
+</main>
+
+<script>
+  /* The year bar marks the group you are in. Mockup behaviour only. */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.jump a'));
+    var groups = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+    function mark() {
+      var y = window.scrollY + 90, cur = 0;
+      groups.forEach(function (g, i) { if (g.offsetTop <= y) { cur = i; } });
+      links.forEach(function (a, i) { a.classList.toggle('now', i === cur); });
+    }
+    window.addEventListener('scroll', mark, { passive: true });
+    mark();
+  })();
+</script>
+</body>
+</html>
