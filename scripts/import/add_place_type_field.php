@@ -174,10 +174,17 @@ if (in_array($HANDLE, $present, true)) {
 /* ------------------------------------------------------- the GNIS default */
 
 $classPath = \Craft::getAlias('@root') . '/inventory/legacy/gnis-classes.json';
-$classes = file_exists($classPath) ? (json_decode(file_get_contents($classPath), true) ?: []) : [];
+$gnis = file_exists($classPath) ? (json_decode(file_get_contents($classPath), true) ?: []) : [];
+$classes = $gnis['classes'] ?? [];
+$prov = $gnis['provenance'] ?? [];
 
 echo PHP_EOL . 'GNIS defaults' . PHP_EOL;
-echo 'feature classes on file: ' . ($classes ? count($classes) : 'none, ' . basename($classPath) . ' does not exist') . PHP_EOL;
+if ($classes) {
+    echo 'feature classes on file: ' . number_format(count($classes)) . PHP_EOL;
+    echo 'from: ' . ($prov['source'] ?? '?') . ', downloaded ' . ($prov['downloaded'] ?? '?') . PHP_EOL;
+} else {
+    echo 'feature classes on file: none, ' . basename($classPath) . ' does not exist' . PHP_EOL;
+}
 
 $hasField = function ($el, string $h): bool {
     $l = $el->getFieldLayout();
@@ -192,8 +199,16 @@ foreach (\craft\elements\Entry::find()->section('places')->status(null)->limit(n
     $gid = trim((string)$e->getFieldValue('gnisId'));
     if ($gid === '') { $noGnis++; continue; }
 
-    $cls = strtolower(trim((string)($classes[$gid] ?? '')));
-    if ($cls === '') { $noClass[] = [$e->title, $gid]; continue; }
+    $row = $classes[$gid] ?? null;
+    $cls = strtolower(trim((string)($row['class'] ?? '')));
+    if ($cls === '') {
+        /* An id that is not in the gazetteer at all. Reported rather than
+           passed over: it means the number we hold is wrong or belongs to a
+           dataset this file is not, and that is worth knowing about a field
+           we are about to take defaults from. */
+        $noClass[] = [$e->title, $gid . ($row === null ? '  not in the California gazetteer' : '')];
+        continue;
+    }
 
     $t = $GNIS_TO_TYPE[$cls] ?? null;
     if ($t === null) { $noClass[] = [$e->title, $gid . ' class "' . $cls . '" has no mapping']; continue; }
@@ -201,7 +216,7 @@ foreach (\craft\elements\Entry::find()->section('places')->status(null)->limit(n
     /* Never overwrite a value a person set. */
     $cur = $hasField($e, $HANDLE) ? trim((string)$e->getFieldValue($HANDLE)) : '';
     if ($cur !== '') { continue; }
-    $wouldSet[] = [$e, $t, $cls];
+    $wouldSet[] = [$e, $t, $row['class'], $row['name']];
 }
 
 echo 'places with no GNIS id, left empty: ' . $noGnis . PHP_EOL;
@@ -211,12 +226,25 @@ if ($noClass) {
 }
 if ($wouldSet) {
     echo 'would set from the feature class: ' . count($wouldSet) . PHP_EOL;
-    foreach ($wouldSet as $w) { printf("   %-26s %-14s from GNIS class %s\n", $w[0]->title, $w[1], $w[2]); }
+    foreach ($wouldSet as $w) {
+        printf("   %-26s %-10s from GNIS \"%s\" (%s)\n", $w[0]->title, $w[1], $w[2], $w[3]);
+    }
 } else {
     echo 'would set from the feature class: 0' . PHP_EOL;
 }
 
 if ($APPLY && $wouldSet) {
+    /* The field has to be on the layout before a value can land in it. When the
+       field is created in the same run this is already true; when the script is
+       re-run for the defaults alone it is the thing most likely to be wrong,
+       and setFieldValue on a handle the layout does not carry writes nothing
+       and reports success. */
+    $probe = \craft\elements\Entry::find()->section('places')->status(null)->one();
+    if (!$probe || !$hasField($probe, $HANDLE)) {
+        echo PHP_EOL . 'refusing to set defaults: the place layout does not carry ' . $HANDLE . ' yet.' . PHP_EOL;
+        echo str_repeat('=', 74) . PHP_EOL;
+        return;
+    }
     $ok = 0;
     foreach ($wouldSet as $w) {
         $w[0]->setFieldValue($HANDLE, $w[1]);

@@ -1629,3 +1629,16 @@ Domestic Names download, which is a separate decision.
 The records screen offers the kind wherever a name is guessed to be a place,
 opened on a guess from the name's last word. The places index filters by kind,
 and stays correct while the field does not exist.
+
+Fetched the USGS California gazetteer once and derived
+inventory/legacy/gnis-classes.json: 52,723 features as feature_id, name, class
+and county, with a provenance block naming the download URL and the date. The
+8 MB download is not committed; it is reproducible from that URL and carries
+coordinates, map sheets and BGN columns this project has no use for.
+
+placeType now defaults from it. Two of the eighteen places gain a class, both
+"Populated Place" and so both site. Two do not: the GNIS ids held for Vasquez
+Rocks and Fort Tejon are not in the California gazetteer at all. Vasquez Rocks
+is in it under 1661629, class Summit. Both of our numbers came from Wikidata
+P590 and both name the park rather than the feature, and neither has been
+changed here.
