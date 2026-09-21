@@ -9,4 +9,11 @@
  * @link https://craftcms.com/docs/5.x/system/routing.html
  */
 
-return [];
+return [
+    /* The image's own page. An asset used on six articles has no page of its
+       own: it is a file behind a lightbox, and everything known about it lives
+       on whichever record happens to use it. /media/<id> is where the picture
+       is the subject rather than the illustration, and it is what the lightbox
+       and the ImageObject both point at when no photograph record exists. */
+    'media/<assetId:\\d+>' => ['template' => 'media/_entry'],
+];

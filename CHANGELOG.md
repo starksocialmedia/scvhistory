@@ -1780,3 +1780,11 @@ The eighth was Planning Commission's parent. A relation field handed a bare
 integer saves without error and stores nothing; it wants an array.
 
 Settled the five plus Hart Mansion, the Pico pair and the stale Beale row.
+
+Images as objects. Asset fields creator, dateAsPrinted, dateEdtf, source,
+rightsHolder, license and courtesyOf, dry run. Every image a page shows is
+emitted as a schema.org ImageObject with its creator, date, credit, licence and
+isPartOf, identified by the photograph record where one exists and by
+/media/<id> otherwise. /media/<id> is the image's own page, with the file, its
+provenance and every record that uses it. The lightbox gains a Details link and
+changes nothing else. DATA-MODEL documents the mapping.

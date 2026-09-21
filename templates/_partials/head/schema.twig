@@ -148,6 +148,78 @@
   {% if 'enhancedFrom' in imgH and image.enhancedFrom.one() %}{% set image = image.enhancedFrom.one() %}{% endif %}
 {% endif %}
 
+{#- ------------------------------------------------------- ImageObject
+
+    Every image on the page as an object in its own right, rather than a URL
+    hanging off the record. A picture used on six articles is one thing with a
+    creator, a date and a licence, and saying so is the difference between the
+    archive publishing a file and publishing a photograph.
+
+    Built from the asset's own fields, which travel with it into every page that
+    uses it. Where a photograph record exists for the image, the ImageObject is
+    identified by that record's URL so the two are one node; otherwise by its
+    own /media/<id> page, which exists for exactly this.
+
+    An enhanced derivative is never published here either, for the same reason
+    it is never the record image: it has pixels a model invented. -#}
+{% macro imageObject(a, siteUrl, photoUrl) %}
+  {%- set h = [] -%}
+  {%- for f in a.fieldLayout.customFields %}{% set h = h|merge([f.handle]) %}{% endfor -%}
+  {%- set val = {} -%}
+  {%- for k in ['creator','dateAsPrinted','dateEdtf','source','rightsHolder','courtesyOf','photoCredit','photoCaptionExt','photoDate','legacySourcePath'] -%}
+    {%- if k in h %}{% set val = val|merge({ (k): attribute(a, k) }) %}{% endif -%}
+  {%- endfor -%}
+  {%- set lic = ('license' in h and a.license and a.license.value) ? a.license.value : '' -%}
+  {%- set licUrl = {
+      'public-domain': 'https://creativecommons.org/publicdomain/mark/1.0/',
+      'scvhistory': siteUrl ~ 'about#rights',
+      'courtesy': siteUrl ~ 'about#rights',
+      'unknown': null } -%}
+  {%- set credit = [val.photoCredit ?? '', (val.courtesyOf ?? '') ? 'Courtesy of ' ~ val.courtesyOf : '']|filter(x => x|trim)|join(' · ') -%}
+  {{- {
+    '@type': 'ImageObject',
+    '@id': photoUrl ?: (siteUrl ~ 'media/' ~ a.id),
+    'contentUrl': a.url,
+    'url': photoUrl ?: (siteUrl ~ 'media/' ~ a.id),
+    'name': a.title,
+    'caption': (val.photoCaptionExt ?? '')|trim ?: null,
+    'creator': (val.creator ?? '')|trim ? { '@type': 'Person', 'name': val.creator|trim } : null,
+    'dateCreated': (val.dateEdtf ?? '')|trim ?: ((val.dateAsPrinted ?? '')|trim ?: ((val.photoDate ?? '')|trim ?: null)),
+    'temporalCoverage': (val.dateAsPrinted ?? '')|trim ?: null,
+    'width': a.width ? { '@type': 'QuantitativeValue', 'value': a.width, 'unitCode': 'E37' } : null,
+    'height': a.height ? { '@type': 'QuantitativeValue', 'value': a.height, 'unitCode': 'E37' } : null,
+    'creditText': credit ?: null,
+    'copyrightHolder': (val.rightsHolder ?? '')|trim ? { '@type': 'Organization', 'name': val.rightsHolder|trim } : null,
+    'license': lic ? licUrl[lic] : null,
+    'acquireLicensePage': siteUrl ~ 'about#rights',
+    'isBasedOn': (val.legacySourcePath ?? '')|trim ?: null,
+    'encodingFormat': a.mimeType ?? null,
+  }|filter(v => v is not null)|json_encode|raw -}}
+{% endmacro %}
+{% import _self as IMG %}
+
+{#- Every image the page shows, de-duplicated, with the photograph record's URL
+    where one exists so the ImageObject and the record are the same node. -#}
+{% set pageImages = [] %}
+{% set seenImg = [] %}
+{% for handle in ['featuredImage', 'recordImages'] %}
+  {% if handle in H %}
+    {% for a in attribute(el, handle).all() %}
+      {% set ih = [] %}
+      {% for f in a.fieldLayout.customFields %}{% set ih = ih|merge([f.handle]) %}{% endfor %}
+      {% set real = ('enhancedFrom' in ih and a.enhancedFrom.one()) ? a.enhancedFrom.one() : a %}
+      {% if real.id not in seenImg %}
+        {% set seenImg = seenImg|merge([real.id]) %}
+        {% set pr = null %}
+        {% if 'photoArticles' in ih %}
+          {% for p in craft.entries().section('photographs').relatedTo(real).status(null).limit(1).all() %}{% set pr = p.url %}{% endfor %}
+        {% endif %}
+        {% set pageImages = pageImages|merge([{ 'asset': real, 'photoUrl': pr }]) %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
 {#- sameAs: only the authority files that actually hold a value. -#}
 {% set sameAs = [] %}
 {% for u in [V.personWikipediaUrl ?? '', V.placeWikipediaUrl ?? '', V.orgWikipediaUrl ?? '',
@@ -421,13 +493,30 @@
     any Thing; publisher, license and isAccessibleForFree belong to a
     CreativeWork, so a Person or a Place does not get handed them. Emitting a
     property a type does not define is exactly what a validator flags. -#}
+{#- The page's own image as a node reference rather than a bare URL, so the
+    ImageObject carries the creator and the licence instead of the record
+    asserting a string. A photograph record names its image as the page's
+    primary image, which is what that page is actually about.
+
+    Worked out here rather than inside the hash below: a Twig comment inside an
+    expression is a syntax error, and a filter chain inside one is unreadable. -#}
+{% set imageRef = null %}
+{% if image %}
+  {% set imageId = siteUrl ~ 'media/' ~ image.id %}
+  {% for pi in pageImages %}
+    {% if pi.asset.id == image.id and pi.photoUrl %}{% set imageId = pi.photoUrl %}{% endif %}
+  {% endfor %}
+  {% set imageRef = { '@id': imageId } %}
+{% endif %}
+
 {% set CREATIVE = ['Article','ScholarlyArticle','CreativeWorkSeries','CreativeWork','Photograph','WebPage','WebSite'] %}
 {% set main = main|merge({
   '@id': main['@id'] ?? canonical,
   'url': main.url ?? canonical,
   'mainEntityOfPage': canonical,
   'description': metaDescriptionOut is defined ? metaDescriptionOut : null,
-  'image': image ? image.url : null
+  'image': imageRef,
+  'primaryImageOfPage': (sec == 'photographs' and imageRef) ? imageRef : null
 }) %}
 {% if main['@type'] in CREATIVE %}
   {% set main = main|merge({
@@ -438,7 +527,21 @@
   }) %}
 {% endif %}
 {% set main = main|filter(v => v is not null and v is not same as('') and v is not same as([])) %}
-{% set graph = [main]|merge(extra) %}
+{#- Every image on the page, as its own node. They go last so the record reads
+    first in the graph, which is the order a person debugging one reads it in. -#}
+{#- isPartOf is merged as each node is built. Setting it in a second loop over
+    the array does nothing: Twig's `set` inside a for loop rebinds the loop
+    variable and never writes back to the array, so every node came out without
+    it and the graph said these images belonged to no page. -#}
+{% set imageNodes = [] %}
+{% for pi in pageImages %}
+  {% set node = IMG.imageObject(pi.asset, siteUrl, pi.photoUrl)|trim|json_decode %}
+  {% if node %}
+    {% set imageNodes = imageNodes|merge([node|merge({ 'isPartOf': { '@id': canonical } })]) %}
+  {% endif %}
+{% endfor %}
+
+{% set graph = [main]|merge(extra)|merge(imageNodes) %}
 
 {#- SEOmatic's head output is switched off here, next to the partials that
     replace it, so the reason travels with the change and it lives in git

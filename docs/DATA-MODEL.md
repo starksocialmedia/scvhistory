@@ -674,7 +674,7 @@ local unless the note says otherwise.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
-- **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
+- **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`, `settlement`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
 - **`schoolLevel`** — `elementary`, `middle`, `high`, `college`, `district`. Drives the schema.org School subtype: ElementarySchool, MiddleSchool, HighSchool, CollegeOrUniversity. A district has no schema.org subtype and stays Organization.
 
 ## Category groups
@@ -683,6 +683,36 @@ local unless the note says otherwise.
 - **`historicalEra`** — 15 terms. Local vocabulary.
 - **`historicalPeriod`** — 14 terms. Local vocabulary.
 - **`tag`** — 0 terms. Local vocabulary.
+
+## Images as objects
+
+Every image a page shows is emitted as a schema.org `ImageObject` in the page graph,
+not as a URL hanging off the record. A picture used on six articles is one thing with
+a creator, a date and a licence, and saying so is the difference between publishing a
+file and publishing a photograph.
+
+| Asset field | ImageObject property |
+| --- | --- |
+| (the file) | `contentUrl` |
+| `photoCaptionExt` | `caption` |
+| `creator` | `creator`, as a Person |
+| `dateEdtf`, else `dateAsPrinted` | `dateCreated` |
+| `dateAsPrinted` | `temporalCoverage`, always the printed form |
+| `photoCredit` + `courtesyOf` | `creditText` |
+| `rightsHolder` | `copyrightHolder` |
+| `license` | `license`, as a URL |
+| `legacySourcePath` | `isBasedOn` |
+| width, height | `width`, `height` as QuantitativeValue in pixels (unitCode E37) |
+| (the page) | `isPartOf` |
+
+The node is identified by the photograph record's URL where one exists, so the record
+and the image are one node; otherwise by its own `/media/<id>` page. A photograph
+record names its image as `primaryImageOfPage`.
+
+**An enhanced derivative is never emitted.** JSON-LD is an assertion to the rest of the
+web about what this archive holds, and what it holds is the scan. An upscaled version
+has pixels a model invented, and publishing it under the archive's name would be a
+false claim however good it looks. Where one is attached, its original is emitted.
 
 ## Dates
 

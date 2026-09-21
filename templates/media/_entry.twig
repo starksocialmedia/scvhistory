@@ -1,0 +1,175 @@
+{% extends "_layouts/base" %}
+
+{#- THE IMAGE'S OWN PAGE.
+    
+    An asset used on six articles has no page of its own. Everything known about
+    it lives on whichever record happens to use it, so the same picture is well
+    described on one page and anonymous on the next, and there is nowhere to
+    link when somebody asks what this photograph is.
+    
+    This is that page: the file as the subject. Same chrome as a record, no new
+    ideas, and it exists as much for the ImageObject and the lightbox to point
+    at as for a reader to visit. -#}
+
+{% set asset = craft.assets().id(assetId).status(null).one() ?? null %}
+{% if not asset %}{% exit 404 %}{% endif %}
+
+{#- Handles off the layout. A custom field reads as defined on an element whose
+    type lacks it and then throws when it is read. -#}
+{% set H = [] %}
+{% for f in asset.fieldLayout.customFields %}{% set H = H|merge([f.handle]) %}{% endfor %}
+{% macro v(asset, H, handle) %}{% if handle in H %}{{ attribute(asset, handle) }}{% endif %}{% endmacro %}
+{% import _self as F %}
+
+{% set creator     = F.v(asset, H, 'creator')|trim %}
+{% set printed     = F.v(asset, H, 'dateAsPrinted')|trim ?: F.v(asset, H, 'photoDate')|trim %}
+{% set edtf        = F.v(asset, H, 'dateEdtf')|trim %}
+{% set src         = F.v(asset, H, 'source')|trim %}
+{% set rights      = F.v(asset, H, 'rightsHolder')|trim %}
+{% set courtesy    = F.v(asset, H, 'courtesyOf')|trim %}
+{% set credit      = F.v(asset, H, 'photoCredit')|trim %}
+{% set legacyCode  = F.v(asset, H, 'photoSourceCode')|trim %}
+{% set legacyPath  = F.v(asset, H, 'legacySourcePath')|trim %}
+{% set caption     = F.v(asset, H, 'photoCaptionExt')|trim %}
+{% set lic = '' %}
+{% if 'license' in H and asset.license %}{% set lic = asset.license.label ?? asset.license.value %}{% endif %}
+
+{#- Every record that uses this image, curated first. -#}
+{% set users = [] %}
+{% for sec in ['photographs', 'articles', 'persons', 'places', 'organizations'] %}
+  {% for e in craft.entries().section(sec).status(null).limit(null).all() %}
+    {% set eh = [] %}
+    {% for f in e.fieldLayout.customFields %}{% set eh = eh|merge([f.handle]) %}{% endfor %}
+    {% for h in ['featuredImage', 'recordImages', 'bandImage'] %}
+      {% if h in eh %}
+        {% for a in attribute(e, h).all() %}
+          {% if a.id == asset.id and e.id not in users|map(u => u.id) %}
+            {% set users = users|merge([e]) %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+
+{% set photoRecord = null %}
+{% for u in users %}{% if u.section.handle == 'photographs' and not photoRecord %}{% set photoRecord = u %}{% endif %}{% endfor %}
+
+{% set metaDescription = (caption ?: asset.title) ~ ' — an image in the SCVHistory.com archive.' %}
+
+{% block head %}
+{#- The file page's own ImageObject. Without it /media/<id> emitted the generic
+    site node, which is the one page on the site where the image IS the subject
+    saying nothing about the image. -#}
+{% set licUrl = {
+    'public-domain': 'https://creativecommons.org/publicdomain/mark/1.0/',
+    'scvhistory': siteUrl ~ 'about#rights',
+    'courtesy': siteUrl ~ 'about#rights' } %}
+{% set licVal = ('license' in H and asset.license) ? asset.license.value : '' %}
+{% set creditLine = [credit, courtesy ? 'Courtesy of ' ~ courtesy : '']|filter(x => x|trim)|join(' · ') %}
+{% set node = {
+  '@type': 'ImageObject',
+  '@id': siteUrl ~ 'media/' ~ asset.id,
+  'contentUrl': asset.url,
+  'url': siteUrl ~ 'media/' ~ asset.id,
+  'name': asset.title,
+  'caption': caption ?: null,
+  'creator': creator ? { '@type': 'Person', 'name': creator } : null,
+  'dateCreated': edtf ?: (printed ?: null),
+  'temporalCoverage': printed ?: null,
+  'width': asset.width ? { '@type': 'QuantitativeValue', 'value': asset.width, 'unitCode': 'E37' } : null,
+  'height': asset.height ? { '@type': 'QuantitativeValue', 'value': asset.height, 'unitCode': 'E37' } : null,
+  'creditText': creditLine ?: null,
+  'copyrightHolder': rights ? { '@type': 'Organization', 'name': rights } : null,
+  'license': licVal ? (licUrl[licVal] ?? null) : null,
+  'acquireLicensePage': siteUrl ~ 'about#rights',
+  'isBasedOn': legacyPath ?: null,
+  'encodingFormat': asset.mimeType ?? null,
+  'subjectOf': users|length ? users|map(u => { '@id': u.url }) : null
+}|filter(v => v is not null) %}
+<script type="application/ld+json">{{ { '@context': 'https://schema.org', '@graph': [node] }|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+{% endblock %}
+
+{% block content %}
+{% include "_partials/record/css" ignore missing %}
+<style>
+  .md-wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  .md-grid{display:grid;grid-template-columns:minmax(0,1fr) 344px;gap:56px;padding:28px 0 80px}
+  @media(max-width:980px){.md-grid{grid-template-columns:minmax(0,1fr)}}
+  .md-fig{background:#fff;border:1px solid #E2E4E8;padding:10px}
+  .md-fig img{width:100%;height:auto;display:block}
+  .md-cap{font-size:15.5px;line-height:1.7;color:#2C2C2C;margin-top:14px}
+  .md-cr{display:block;font-size:13px;color:#5B6472;margin-top:6px}
+  .md-card{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:18px 20px 14px;margin-bottom:18px}
+  .md-lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.16em;color:#A9842B;margin-bottom:12px}
+  .md-row{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;padding:9px 0;border-bottom:1px solid #F1EAD8;align-items:baseline}
+  .md-row:last-child{border-bottom:0}
+  .md-k{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.12em;color:#8A919E}
+  .md-v{font-size:14px;line-height:1.5;color:#2C2C2C;word-break:break-word}
+  .md-v.mono{font-family:ui-monospace,monospace;font-size:11.5px;color:#5B6472}
+  .md-use a{display:block;padding:8px 0;border-bottom:1px solid #F1EAD8;font-size:14.5px}
+  .md-use a:last-child{border-bottom:0}
+  .md-h1{font-family:'Playfair Display',serif;font-weight:500;font-size:30px;line-height:1.2;color:#17254C;margin:0 0 6px}
+  .md-kick{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.16em;color:#A9842B;margin-bottom:8px}
+</style>
+
+<div class="md-wrap">
+  <div class="md-grid">
+    <main style="min-width:0">
+      <div class="md-kick">IMAGE</div>
+      <h1 class="md-h1">{{ caption ?: asset.title }}</h1>
+      <figure class="md-fig" style="margin:18px 0 0">
+        <img src="{{ asset.url }}" alt="{{ asset.alt ?: caption ?: asset.title }}"
+             width="{{ asset.width }}" height="{{ asset.height }}">
+      </figure>
+      {% if caption or credit or courtesy %}
+        <div class="md-cap">
+          {{ caption }}
+          {% if credit %}<span class="md-cr">{{ credit }}</span>{% endif %}
+          {% if courtesy %}<span class="md-cr">Courtesy of {{ courtesy }}</span>{% endif %}
+        </div>
+      {% endif %}
+    </main>
+
+    <aside style="min-width:0">
+      <div class="md-card">
+        <div class="md-lab">THE FILE</div>
+        {% if creator %}<div class="md-row"><div class="md-k">CREATOR</div><div class="md-v">{{ creator }}</div></div>{% endif %}
+        {% if printed %}<div class="md-row"><div class="md-k">DATE</div><div class="md-v">{{ printed }}{% if edtf %} <span style="color:#8A919E">({{ edtf }})</span>{% endif %}</div></div>{% endif %}
+        {% if src %}<div class="md-row"><div class="md-k">SOURCE</div><div class="md-v">{{ src }}</div></div>{% endif %}
+        {% if rights %}<div class="md-row"><div class="md-k">RIGHTS</div><div class="md-v">{{ rights }}</div></div>{% endif %}
+        {% if lic %}<div class="md-row"><div class="md-k">LICENSE</div><div class="md-v">{{ lic }}</div></div>{% endif %}
+        <div class="md-row"><div class="md-k">DIMENSIONS</div><div class="md-v">{{ asset.width }} &times; {{ asset.height }}</div></div>
+        <div class="md-row"><div class="md-k">FILE</div><div class="md-v mono">{{ asset.filename }}</div></div>
+      </div>
+
+      {% if legacyCode or legacyPath %}
+      <div class="md-card">
+        <div class="md-lab">PROVENANCE</div>
+        {% if legacyCode %}<div class="md-row"><div class="md-k">LEGACY CODE</div><div class="md-v mono">{{ legacyCode }}</div></div>{% endif %}
+        {% if legacyPath %}
+          <div class="md-row"><div class="md-k">MIRROR PATH</div><div class="md-v mono">{{ legacyPath }}</div></div>
+          {#- Built here rather than through _partials/legacy-url. That partial
+              normalises stored legacy URLs of several shapes; legacySourcePath
+              is provenance and is always a path from the site root, which
+              DRIVE.md says explicitly. Sending it through the partial produced
+              https:///gif/mugs/reynolds_jerry.jpg. -#}
+          {% set legacyHost = craft.app.config.custom.legacyHost|default('https://scvhistory.com') %}
+          {% set originalUrl = legacyHost ~ '/' ~ legacyPath|trim('/') %}
+          <div class="md-row"><div class="md-k">ORIGINAL</div><div class="md-v mono"><a href="{{ originalUrl }}" target="_blank" rel="noopener">{{ originalUrl }}</a></div></div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if users|length %}
+      <div class="md-card">
+        <div class="md-lab">USED ON {{ users|length }} RECORD{{ users|length == 1 ? '' : 'S' }}</div>
+        <div class="md-use">
+          {% for u in users %}<a href="{{ u.url }}">{{ u.title }}</a>{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </aside>
+  </div>
+</div>
+{% endblock %}

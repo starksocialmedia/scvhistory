@@ -99,6 +99,13 @@ $MAP = [
     'legacySourcePath'     => ['Dublin Core', 'source', 'assets: the path the file had on the legacy site'],
     'recordProvenance'     => ['Dublin Core', 'provenance', 'how the record came to exist'],
     'culturalSensitivityNote' => ['Dublin Core', 'rights', 'approximate; it is a note, not a licence'],
+    'creator'              => ['schema.org', 'creator', 'ImageObject: who made the picture'],
+    'dateAsPrinted'        => ['schema.org', 'temporalCoverage', 'ImageObject: the date as the source prints it'],
+    'dateEdtf'             => ['EDTF', 'ISO 8601-2', 'emitted as schema.org dateCreated'],
+    'source'               => ['Dublin Core', 'source', 'the repository or publication'],
+    'rightsHolder'         => ['schema.org', 'copyrightHolder', 'also dcterms:rightsHolder'],
+    'license'              => ['schema.org', 'license', 'local vocabulary, emitted as a licence URL'],
+    'courtesyOf'           => ['schema.org', 'creditText', 'the depositor\'s wording, verbatim'],
     'placeType'            => ['local', 'vocabulary', 'mapped from GNIS feature class where a record has one'],
     'orgType'              => ['local', 'vocabulary', 'drives the schema.org @type'],
     'schoolLevel'          => ['local', 'vocabulary', 'drives the schema.org School subtype'],
@@ -262,6 +269,38 @@ foreach (Craft::$app->categories->getAllGroups() as $g) {
 }
 $lines[] = '';
 
+$lines[] = '## Images as objects';
+$lines[] = '';
+$lines[] = 'Every image a page shows is emitted as a schema.org `ImageObject` in the page graph,';
+$lines[] = 'not as a URL hanging off the record. A picture used on six articles is one thing with';
+$lines[] = 'a creator, a date and a licence, and saying so is the difference between publishing a';
+$lines[] = 'file and publishing a photograph.';
+$lines[] = '';
+$lines[] = '| Asset field | ImageObject property |';
+$lines[] = '| --- | --- |';
+foreach ([
+    ['(the file)', '`contentUrl`'],
+    ['`photoCaptionExt`', '`caption`'],
+    ['`creator`', '`creator`, as a Person'],
+    ['`dateEdtf`, else `dateAsPrinted`', '`dateCreated`'],
+    ['`dateAsPrinted`', '`temporalCoverage`, always the printed form'],
+    ['`photoCredit` + `courtesyOf`', '`creditText`'],
+    ['`rightsHolder`', '`copyrightHolder`'],
+    ['`license`', '`license`, as a URL'],
+    ['`legacySourcePath`', '`isBasedOn`'],
+    ['width, height', '`width`, `height` as QuantitativeValue in pixels (unitCode E37)'],
+    ['(the page)', '`isPartOf`'],
+] as $r) { $lines[] = '| ' . $r[0] . ' | ' . $r[1] . ' |'; }
+$lines[] = '';
+$lines[] = 'The node is identified by the photograph record\'s URL where one exists, so the record';
+$lines[] = 'and the image are one node; otherwise by its own `/media/<id>` page. A photograph';
+$lines[] = 'record names its image as `primaryImageOfPage`.';
+$lines[] = '';
+$lines[] = '**An enhanced derivative is never emitted.** JSON-LD is an assertion to the rest of the';
+$lines[] = 'web about what this archive holds, and what it holds is the scan. An upscaled version';
+$lines[] = 'has pixels a model invented, and publishing it under the archive\'s name would be a';
+$lines[] = 'false claim however good it looks. Where one is attached, its original is emitted.';
+$lines[] = '';
 $lines[] = '## Dates';
 $lines[] = '';
 $lines[] = 'Dates are held as the source printed them. "about 1887", "spring of 1912" and';

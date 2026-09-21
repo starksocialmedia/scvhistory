@@ -96,6 +96,11 @@
     <div class="foot">
       <figcaption><span id="recLbCap"></span><span class="cr" id="recLbCredit"></span></figcaption>
       <a class="rec" id="recLbRecord" href="#" hidden>View record &rarr;</a>
+      {#- Details: the image's own page. Everything known about a picture lives
+          on whichever record happens to use it, so there was nowhere to send
+          somebody who wants to know what the photograph is. Goes to the
+          photograph record where one exists, else to /media/<id>. -#}
+      <a class="rec" id="recLbDetails" href="#" hidden>Details &rarr;</a>
       <div class="sw" id="recLbSwitch" hidden>
         <button type="button" data-show="original" class="on">Original scan</button>
         <button type="button" data-show="enhanced">Enhanced</button>
@@ -110,7 +115,7 @@
   if (window.__scvLightbox) { return; }
   window.__scvLightbox = true;
 
-  var dlg, img, view, cap, cr, recLink, sw, note, current, mode = 'fit', gallery = [], at = -1;
+  var dlg, img, view, cap, cr, recLink, detLink, sw, note, current, mode = 'fit', gallery = [], at = -1;
 
   /* Below this the newsprint stops being readable. A Signal column is roughly
      800px across for a 2-column measure, and 8pt type at that scale needs
@@ -166,6 +171,12 @@
 
     if (b.dataset.record) { recLink.href = b.dataset.record; recLink.hidden = false; }
     else { recLink.hidden = true; }
+    /* Details goes to the image's own page, which exists whether or not any
+       record claims the picture. */
+    if (detLink) {
+      if (b.dataset.details) { detLink.href = b.dataset.details; detLink.hidden = false; }
+      else { detLink.hidden = true; }
+    }
 
     var enhanced = b.dataset.enhanced || '';
     sw.hidden = !enhanced;
@@ -202,6 +213,7 @@
     if (!dlg || typeof dlg.showModal !== 'function') { return; }
     img = el('recLbImg'); view = el('recLbView'); cap = el('recLbCap');
     cr = el('recLbCredit'); recLink = el('recLbRecord'); sw = el('recLbSwitch'); note = el('recLbNote');
+    detLink = el('recLbDetails');
 
     /* The gallery is everything openable on the page, in document order, so
        the arrows walk the grid the reader is looking at. */

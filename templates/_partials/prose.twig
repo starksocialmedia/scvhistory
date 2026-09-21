@@ -362,6 +362,7 @@
           <button type="button" data-lightbox data-src="{{ zoomSrc }}"
                   data-caption="{{ cap }}" data-credit="{{ credit }}"
                   {% if linkTo %}data-record="{{ linkTo.url }}"{% endif %}
+                  data-details="{{ siteUrl }}media/{{ asset.id }}"
                   {% if enhanced %}data-enhanced="{{ enhanced.url }}" data-enhanced-note="{{ enhNote|striptags }}"{% endif %}
                   aria-label="{{ cap ? 'Open the larger image: ' ~ cap : 'Open the larger image' }}">
             <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
