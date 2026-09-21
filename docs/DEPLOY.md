@@ -64,23 +64,34 @@ the project config they write has been committed.** Merging first puts templates
 on main that expect fields the committed config does not yet declare, and the
 workflow will happily deploy them.
 
+As of 21 September the config is committed and the outstanding applies are the
+provenance backfill, which writes no schema, and the two asset deletions, which
+write none either. So the merge is unblocked on that count.
+
 ---
 
 ## The sequence
 
 ### 1. Finish locally  — **iMac**
 
+`config/project/` was committed and pushed on 20 September, so this step is a
+check rather than work. It stays in the runbook because the next batch of
+applies will dirty those files again and deploying past them is the failure this
+whole sequence exists to avoid.
+
 ```
 cd ~/scvhistory
-git status --short
+git status --short config/project
 ```
 
-Stop if `config/project/` is dirty. Those files are written by the applies and
-must be committed before anything is deployed.
+**Anything printed means stop.** Those files are written by `$APPLY` runs and
+declare the fields the templates on main are about to expect. Deploying with
+them uncommitted gives the server templates reading fields its config does not
+mention, which is step 3's failure with nothing to roll back to.
 
 ```
 git add config/project
-git commit -m "Project config after the collections batch"
+git commit -m "Project config after <whatever was applied>"
 git push
 ```
 

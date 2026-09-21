@@ -78,6 +78,27 @@
 {% set plate = entry.featuredImage is defined and entry.featuredImage ? entry.featuredImage.one() ?? null : null %}
 {% set plate = plate ?? (recImages|length ? recImages|first : null) %}
 {% set code = F.photoSourceCode ?: F.legacyKey %}
+
+{#- legacySourcePath first, filename stem second.
+
+    The stem works because the mirror's gif/ is flat: 22,043 of its 23,365
+    images sit there with no subdirectory, so lw2184 resolves to lw2184.jpg and
+    nothing has to know a path. But some assets came from a subdirectory —
+    /gif/mugs/deedeemyers.jpg, /oldtownnewhall/gif/wicks.jpg — and the stem
+    lookup finds those only because their filenames happen to be unique across
+    the volume. Where two directories hold the same name it would find whichever
+    Craft returned first, which is a coin toss.
+
+    legacySourcePath records where the file actually was, so it is the better
+    key wherever it has been written. It is not yet on every asset, so the stem
+    remains as the fallback rather than the rule. -#}
+{% if not plate and code %}
+  {% set byPath = craft.assets()
+       .legacySourcePath(['*/' ~ code|lower ~ '.jpg', '*/' ~ code|lower ~ '.jpeg',
+                          '*/' ~ code|lower ~ '.png', '*/' ~ code|lower ~ '.gif'])
+       .one() ?? null %}
+  {% set plate = byPath %}
+{% endif %}
 {% if not plate and code %}
   {% set plate = craft.assets().filename([code|lower ~ '.jpg', code|lower ~ '.jpeg', code|lower ~ '.png', code|lower ~ '.gif']).one() ?? null %}
 {% endif %}
