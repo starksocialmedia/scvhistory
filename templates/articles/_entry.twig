@@ -80,11 +80,17 @@
   /* ── Sidebar name lists ───────────────────────────────────────── */
   .ar-sb{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:16px 20px 18px}
   .ar-sb .lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B;margin-bottom:10px}
-  .ar-sb ul{list-style:none;margin:0;padding:0}
-  .ar-sb li{font-size:15px;line-height:1.45;padding:4px 0;border-bottom:1px solid #EFE6D0}
-  .ar-sb li:last-child{border-bottom:0}
-  .ar-sb a{color:#17254C;text-decoration:none}
-  .ar-sb a:hover{color:#7A5C1B;text-decoration:underline}
+  .ar-sb .row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:13px;align-items:center;
+              color:inherit;text-decoration:none;padding:7px 0;border-bottom:1px solid #EFE6D0}
+  .ar-sb .row:last-child{border-bottom:0}
+  .ar-sb .row:hover .n{color:#7A5C1B;text-decoration:underline}
+  .ar-sb .th{width:44px;height:44px;border-radius:50%;border:1px solid #C4A031;overflow:hidden;background:#fff;
+             display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;
+             font-size:15px;color:#C4A031;flex:none}
+  .ar-sb .th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .ar-sb .tx{min-width:0}
+  .ar-sb .n{display:block;font-family:'Playfair Display',serif;font-size:16.5px;line-height:1.25;color:#17254C}
+  .ar-sb .r{display:block;font-size:12.5px;color:#5B6472;margin-top:1px}
   /* A derived link is marked, quietly. It is worth following and it is not a
      relationship the archive has confirmed. */
   .ar-sb .dv{color:#C4A031;margin-left:5px;cursor:help}
@@ -500,7 +506,12 @@
         {% set key = 'i' ~ r.id %}
         {% if key not in sbSeen %}
           {% set sbSeen = sbSeen|merge([key]) %}
-          {% set sbLists = sbLists|merge({ (bucket): sbLists[bucket]|merge([{ t: r.title ?: r.slug, u: r.url ?? url('communities/' ~ r.slug), d: false }]) }) %}
+          {% set rimg = (r.featuredImage is defined and r.featuredImage) ? r.featuredImage.one() ?? null : null %}
+          {% set sbLists = sbLists|merge({ (bucket): sbLists[bucket]|merge([{
+            t: r.title ?: r.slug, u: r.url ?? url('communities/' ~ r.slug), d: false,
+            img: rimg ? (rimg.getUrl({ width: 88, height: 88, mode: 'crop', position: 'center-top' }) ?: rimg.url) : null,
+            r: (r.occupation is defined and r.occupation) ? r.occupation
+               : ((r.communityType is defined and r.communityType) ? r.communityType : '') }]) }) %}
         {% endif %}
       {% endfor %}
     {% endfor %}
@@ -509,7 +520,11 @@
       {% set key = 'i' ~ r.id %}
       {% if bucket and key not in sbSeen %}
         {% set sbSeen = sbSeen|merge([key]) %}
-        {% set sbLists = sbLists|merge({ (bucket): sbLists[bucket]|merge([{ t: r.title ?: r.slug, u: r.url, d: true }]) }) %}
+        {% set rimg = (r.featuredImage is defined and r.featuredImage) ? r.featuredImage.one() ?? null : null %}
+        {% set sbLists = sbLists|merge({ (bucket): sbLists[bucket]|merge([{
+          t: r.title ?: r.slug, u: r.url, d: true,
+          img: rimg ? (rimg.getUrl({ width: 88, height: 88, mode: 'crop', position: 'center-top' }) ?: rimg.url) : null,
+          r: (r.occupation is defined and r.occupation) ? r.occupation : '' }]) }) %}
       {% endif %}
     {% endfor %}
     {% for fn, link in imgLinks %}
@@ -517,20 +532,37 @@
       {% set key = 'i' ~ link.id %}
       {% if bucket and key not in sbSeen %}
         {% set sbSeen = sbSeen|merge([key]) %}
-        {% set sbLists = sbLists|merge({ (bucket): sbLists[bucket]|merge([{ t: link.title, u: link.url, d: true }]) }) %}
+        {% set sbLists = sbLists|merge({ (bucket): sbLists[bucket]|merge([{
+          t: link.title, u: link.url, d: true, img: null, r: link.kind ?? '' }]) }) %}
       {% endif %}
     {% endfor %}
 
+    {#- One card per type, in the format the People block already used: thumbnail,
+        name, descriptor. The four bare name lists that used to sit above this
+        were a second, worse rendering of the same information, so People
+        appeared twice on every article that had any.
+
+        Curated first, then derived, de-duplicated by id. A derived entry carries
+        a gold dot: worth following, and not a relationship the archive has
+        confirmed. -#}
     {% set sbLabels = { people: 'PEOPLE', places: 'PLACES', communities: 'COMMUNITIES', organizations: 'ORGANIZATIONS' } %}
     {% for bucket, label in sbLabels %}
       {% if sbLists[bucket]|length %}
         <div class="ar-sb">
           <div class="lab">{{ label }}</div>
-          <ul>
-            {% for r in sbLists[bucket] %}
-              <li><a href="{{ r.u }}">{{ r.t }}</a>{% if r.d %}<span class="dv" title="Linked from an image on the legacy page, not a confirmed relationship">&middot;</span>{% endif %}</li>
-            {% endfor %}
-          </ul>
+          {% for r in sbLists[bucket] %}
+            {% set words = r.t|split(' ')|filter(x => x|trim) %}
+            <a class="row" href="{{ r.u }}">
+              <span class="th">
+                {%- if r.img %}<img src="{{ r.img }}" alt="" loading="lazy">
+                {%- else %}{{ (words|length > 1 ? words|first|slice(0,1) ~ words|last|slice(0,1) : r.t|slice(0,1))|upper }}{% endif -%}
+              </span>
+              <span class="tx">
+                <span class="n">{{ r.t }}{% if r.d %}<span class="dv" title="Linked from an image on the legacy page, not a confirmed relationship">&middot;</span>{% endif %}</span>
+                {%- if r.r %}<span class="r">{{ r.r }}</span>{% endif -%}
+              </span>
+            </a>
+          {% endfor %}
         </div>
       {% endif %}
     {% endfor %}
@@ -602,23 +634,6 @@
       </div>
     {% endif %}
 
-    {% if people|length %}
-      <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 20px">
-        <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 14px">PEOPLE IN THIS ARTICLE</div>
-        {% for p in people %}
-          {% set pimg = (p.featuredImage is defined and p.featuredImage) ? p.featuredImage.one() ?? null : null %}
-          <a href="{{ p.url }}" style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: center; color: inherit{{ not loop.first ? '; margin-top: 14px' : '' }}">
-            <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #C4A031; overflow: hidden; position: relative">
-              {% if pimg %}<img src="{{ pimg.getUrl({ width: 88, height: 88, mode: 'crop', position: 'center-top' }) ?: pimg.url }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">{% endif %}
-            </div>
-            <div style="min-width: 0">
-              <div style="font-family: 'Playfair Display', serif; font-size: 17px; color: #17254C">{{ p.title }}</div>
-              {% if p.occupation is defined and p.occupation %}<div style="font-size: 13px; color: #5B6472; margin-top: 1px">{{ p.occupation }}</div>{% endif %}
-            </div>
-          </a>
-        {% endfor %}
-      </div>
-    {% endif %}
 
     {% include "_partials/record/cite-article" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles' } only %}
 
