@@ -1707,3 +1707,10 @@ file and applies every decision to the current queue by name.
 Recovered 18 decisions and 13 pair verdicts that were in the browser and not on
 file. Nothing here clears localStorage or the decisions file, and the clear-all
 button is gone.
+
+Two of the three authority tables derived. nonprofits-scv.json: 1,459
+organizations from the IRS Exempt Organizations file for California, filtered
+by city and ZIP to the valley and its edges. orgs-wikidata.json: 145
+organizations, 60 found by place and 85 by matching the corpus's own
+organization names, which is the only way the Southern Pacific and Hart High
+were found at all. schools-ca.json waits on pubschls.txt.
