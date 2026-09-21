@@ -65,6 +65,9 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .acts button.sk.on{background:var(--muted);border-color:var(--muted)}
 .acts button.mg.on{background:var(--gold-d);border-color:var(--gold-d)}
 .acts .as{font-size:12.5px;color:var(--muted);margin-left:2px}
+.acts .sub{display:none;align-items:center;gap:6px}
+.acts .sub.on{display:inline-flex}
+.acts .sub label{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d)}
 
 .pairs{margin-bottom:26px}
 .pairs h2{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;color:var(--navy);margin:0 0 4px}
@@ -166,6 +169,8 @@ function mark(text, needle) {
   try { return t.replace(new RegExp(n, 'ig'), m => '<mark>' + m + '</mark>'); } catch (e) { return t; }
 }
 
+const PLACE_TYPES = ['natural', 'road', 'ranch', 'building', 'park', 'site', 'trail'];
+
 const idOf = r => r.key || r.name;
 const stateOf = r => (decisions[idOf(r)] || {}).action || '';
 
@@ -196,6 +201,7 @@ function card(r, rank) {
   const d = decisions[id] || {};
   const st = d.action || '';
   const type = d.type || r.guess;
+  const ptype = d.placeType || r.placeType || 'site';
   const ctx = (r.context || []).map(c =>
     `<div class="q">${mark(c.text, c.match)}<span class="src">${esc(c.title || c.path)}</span></div>`).join('')
     || '<div class="none">No sample sentence was found for this name.</div>';
@@ -225,11 +231,18 @@ function card(r, rank) {
         ${['person', 'place', 'organization'].map(t =>
           `<option value="${t}"${t === type ? ' selected' : ''}>${t}</option>`).join('')}
       </select>
+      <span class="sub ${type === 'place' ? 'on' : ''}">
+        <label>kind</label>
+        <select class="ptype">
+          ${PLACE_TYPES.map(t =>
+            `<option value="${t}"${t === ptype ? ' selected' : ''}>${t}</option>`).join('')}
+        </select>
+      </span>
       <button class="ap ${st === 'approved' ? 'on' : ''}" data-act="approved">Approve</button>
       <button class="sk ${st === 'skipped' ? 'on' : ''}" data-act="skipped">Skip</button>
       <select class="into">${optionsFor(type, d.into)}</select>
       <button class="mg ${st === 'merged' ? 'on' : ''}" data-act="merged">Merge into</button>
-      <span class="as">${st === 'approved' ? 'creates a ' + esc(type) + ', links ' + r.articleCount : ''}</span>
+      <span class="as">${st === 'approved' ? 'creates a ' + esc(type === 'place' ? ptype + ' place' : type) + ', links ' + r.articleCount : ''}</span>
     </div>
   </div>`;
 }
@@ -329,6 +342,7 @@ document.getElementById('pairs').addEventListener('click', e => {
       action: 'approved', type: longRow.guess, name: longRow.name, articles: arts,
       aliases: (longRow.variants || []).concat([shortRow.name]),
     };
+    if (longRow.guess === 'place') decisions[c.longKey].placeType = longRow.placeType || 'site';
     decisions[c.shortKey] = { action: 'merged', type: shortRow.guess, name: shortRow.name,
                               intoName: longRow.name, intoKey: c.longKey };
   } else {
@@ -351,6 +365,7 @@ document.getElementById('list').addEventListener('click', e => {
   if (cur.action === act) { delete decisions[id]; }
   else {
     decisions[id] = { action: act, type, name: row.name, articles: row.articles.map(a => a.id) };
+    if (type === 'place') decisions[id].placeType = el.querySelector('.ptype').value;
     if (act === 'merged') decisions[id].into = parseInt(into, 10);
   }
   save(); render();
@@ -362,7 +377,18 @@ document.getElementById('list').addEventListener('change', e => {
   if (e.target.classList.contains('type')) {
     const t = e.target.value;
     el.querySelector('.into').innerHTML = optionsFor(t, (decisions[id] || {}).into);
-    if (decisions[id]) { decisions[id].type = t; save(); render(); }
+    /* Show the kind selector the moment the type becomes place, without a
+       re-render, so changing the type does not throw away an open card. */
+    el.querySelector('.sub').classList.toggle('on', t === 'place');
+    if (decisions[id]) {
+      decisions[id].type = t;
+      if (t === 'place') decisions[id].placeType = el.querySelector('.ptype').value;
+      else delete decisions[id].placeType;
+      save(); render();
+    }
+  }
+  if (e.target.classList.contains('ptype') && decisions[id]) {
+    decisions[id].placeType = e.target.value; save();
   }
 });
 
@@ -373,6 +399,7 @@ document.getElementById('batch').onclick = () => {
     const id = idOf(r);
     if (decisions[id]) return;
     decisions[id] = { action: 'approved', type: r.guess, name: r.name, articles: r.articles.map(a => a.id) };
+    if (r.guess === 'place') decisions[id].placeType = r.placeType || 'site';
   });
   save(); render();
 };

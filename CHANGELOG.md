@@ -1619,3 +1619,13 @@ approved separately: Southern Pacific against Southern Pacific Railroad, Hart
 Park against William S. Hart Park, Newhall Land three ways. Same thing keeps
 the longer name and files the shorter as an alias with the union of both
 article lists; different things keeps both.
+
+Added placeType (dropdown: natural, road, ranch, building, park, site, trail)
+to the place type, with the GNIS feature class mapping that should default it.
+It defaults nothing today: gnisId stores the number only, four of the eighteen
+places carry one, and the class is held nowhere. Filling it means the USGS
+Domestic Names download, which is a separate decision.
+
+The records screen offers the kind wherever a name is guessed to be a place,
+opened on a guess from the name's last word. The places index filters by kind,
+and stays correct while the field does not exist.

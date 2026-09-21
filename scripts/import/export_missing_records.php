@@ -70,6 +70,35 @@ $GIVEN = ['john','james','william','george','charles','henry','thomas','robert',
     'mary','anna','elizabeth','margaret','sarah','helen','ruth','alice','ethel','clara','rose','martha',
     'ygnacio','jose','juan','antonio','maria','pedro','francisco','manuel','ramon','miguel','sol','leon'];
 
+/* The place subtype, guessed from the name's last word for the screen's
+   selector. Same idea as the type guess and the same rule about showing it:
+   the reviewer sees what was chosen and changes it in one click. "Site" is the
+   fallback rather than empty, because a named place in the corpus that is not a
+   river, a road or a building is almost always somewhere a thing stood. */
+$SUBTYPE_TAIL = [
+    'river' => 'natural', 'creek' => 'natural', 'canyon' => 'natural', 'arroyo' => 'natural',
+    'spring' => 'natural', 'springs' => 'natural', 'lake' => 'natural', 'mesa' => 'natural',
+    'hill' => 'natural', 'hills' => 'natural', 'mountain' => 'natural', 'mountains' => 'natural',
+    'valley' => 'natural', 'pass' => 'natural', 'ridge' => 'natural', 'peak' => 'natural',
+    'flat' => 'natural', 'flats' => 'natural', 'wash' => 'natural', 'cienega' => 'natural',
+    'bend' => 'natural', 'basin' => 'natural', 'cut' => 'natural', 'grade' => 'natural',
+
+    'road' => 'road', 'street' => 'road', 'avenue' => 'road', 'boulevard' => 'road',
+    'highway' => 'road', 'lane' => 'road',
+
+    'ranch' => 'ranch', 'rancho' => 'ranch',
+    'park' => 'park', 'plaza' => 'park',
+    'trail' => 'trail',
+
+    'station' => 'building', 'depot' => 'building', 'mill' => 'building', 'refinery' => 'building',
+    'works' => 'building', 'hotel' => 'building', 'saloon' => 'building', 'store' => 'building',
+    'school' => 'building', 'church' => 'building', 'theatre' => 'building', 'theater' => 'building',
+    'tunnel' => 'building', 'bridge' => 'building', 'dam' => 'building', 'museum' => 'building',
+
+    'mine' => 'site', 'camp' => 'site', 'junction' => 'site', 'crossing' => 'site',
+    'cemetery' => 'site', 'reservoir' => 'site',
+];
+
 $words = function (string $s): array {
     $s = mb_strtolower($s);
     $s = preg_replace('~[^a-z0-9 ]+~', ' ', $s);
@@ -223,6 +252,17 @@ foreach ($groups as $gkey => $members) {
                 'id' => $a['id'] ?? null, 'title' => $a['title'] ?? '', 'url' => $a['url'] ?? ''], $arts)),
             'variants'    => array_values(array_keys($variants)),
             'mergedFrom'  => count($members),
+            'placeType'   => (function () use ($title, $words, $SUBTYPE_TAIL) {
+                $w = $words($title);
+                if (!$w) { return 'site'; }
+                $tail = end($w);
+                if (isset($SUBTYPE_TAIL[$tail])) { return $SUBTYPE_TAIL[$tail]; }
+                /* "Lake Hughes" and "Rancho San Francisco" name their type
+                   first, which is the Spanish and the gazetteer habit both. */
+                $head = $w[0];
+                if (isset($SUBTYPE_TAIL[$head])) { return $SUBTYPE_TAIL[$head]; }
+                return 'site';
+            })(),
         ];
     }
 }

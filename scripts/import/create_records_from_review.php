@@ -77,6 +77,7 @@ if ($TOP > 0) {
             'type' => $r['guess'], 'articles' => array_column($r['articles'], 'id'),
             'variants' => $r['variants'] ?? [], 'confidence' => $r['confidence'],
             'signals' => $r['signals'] ?? [], 'context' => $r['context'] ?? [],
+            'placeType' => $r['placeType'] ?? '',
         ];
     }
     $sourceNote = 'top ' . $TOP . ' of ' . basename($queue) . ', each at its guessed type';
@@ -92,6 +93,7 @@ if ($TOP > 0) {
         $x['confidence'] = $q['confidence'] ?? '';
         $x['context'] = $q['context'] ?? [];
         $x['signals'] = $q['signals'] ?? [];
+        if (!isset($x['placeType'])) { $x['placeType'] = $q['placeType'] ?? ''; }
         $decisions[] = $x;
     }
     $sourceNote = basename($decided) . ', decided ' . ($d['generated'] ?? '?');
@@ -165,6 +167,7 @@ foreach ($decisions as $x) {
         'articles' => $ids, 'confidence' => (string)($x['confidence'] ?? ''),
         'signals' => (array)($x['signals'] ?? []),
         'context' => (array)($x['context'] ?? []),
+        'placeType' => $type === 'place' ? (string)($x['placeType'] ?? '') : '',
         'linkField' => $LINK_FOR[$type],
     ];
 }
@@ -179,10 +182,11 @@ foreach ($plan['create'] as $c) { $byType[$c['type']] = ($byType[$c['type']] ?? 
 foreach ($byType as $t => $n) { echo '  ' . str_pad($t, 15) . $n . PHP_EOL; }
 echo PHP_EOL;
 
-printf("  %-34s %-14s %-9s %6s  %s\n", 'TITLE', 'SECTION', 'CONFIDENCE', 'LINKS', 'ALIASES');
+printf("  %-34s %-20s %-9s %6s  %s\n", 'TITLE', 'SECTION', 'CONFIDENCE', 'LINKS', 'ALIASES');
 foreach ($plan['create'] as $c) {
-    printf("  %-34s %-14s %-9s %6d  %s\n",
-        mb_substr($c['name'], 0, 33), $c['section'], $c['confidence'], count($c['articles']),
+    printf("  %-34s %-20s %-9s %6d  %s\n",
+        mb_substr($c['name'], 0, 33), $c['section'] . ($c['placeType'] !== '' ? '/' . $c['placeType'] : ''),
+        $c['confidence'], count($c['articles']),
         $c['aliases'] ? mb_substr(implode(', ', $c['aliases']), 0, 44) : '');
 }
 
@@ -301,6 +305,9 @@ foreach ($plan['create'] as $c) {
     $e->enabled = true;
 
     $set = [$PROV_FIELD => $PROVENANCE];
+    if ($c['placeType'] !== '' && $hasField($e, 'placeType')) {
+        $set['placeType'] = $c['placeType'];
+    }
     if ($c['aliases'] && $hasField($e, $ALIAS_FOR[$c['type']])) {
         $set[$ALIAS_FOR[$c['type']]] = implode("\n", $c['aliases']);
     }

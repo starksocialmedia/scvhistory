@@ -6,10 +6,41 @@
 
 {% block content %}
 {% set comSlug = craft.app.request.getParam('community') %}
+{% set kind = craft.app.request.getParam('kind') %}
 {% set all = craft.entries().section('places').status(null).orderBy('title asc').all() %}
+
+{#- placeType is added by scripts/import/add_place_type_field.php and may not be
+    on the layout yet. Read the handles off the layout rather than asking `is
+    defined`, which answers true on a type that lacks the field and then throws
+    when the value is read. -#}
+{% set handles = all|length ? all[0].fieldLayout.customFields|map(f => f.handle) : [] %}
+{% set hasKinds = 'placeType' in handles %}
+
+{% set KINDS = {
+  natural:  'Natural features',
+  road:     'Roads',
+  ranch:    'Ranches',
+  building: 'Buildings',
+  park:     'Parks',
+  site:     'Sites',
+  trail:    'Trails and routes'
+} %}
+
 {% set query = craft.entries().section('places').status(null).orderBy('title asc') %}
 {% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).status(null).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
+{% if hasKinds and kind and KINDS[kind] is defined %}{% set query = query.placeType(kind) %}{% endif %}
 {% set places = query.all() %}
+
+{#- Counts for the chips, taken from the whole set so a chip still says how many
+    it would show while another filter is on. A chip that reads zero because of
+    a filter the reader forgot they set is how a filter row loses their trust. -#}
+{% set kindCounts = {} %}
+{% if hasKinds %}
+  {% for p in all %}
+    {% set k = p.placeType ?: 'unset' %}
+    {% set kindCounts = kindCounts|merge({ (k): (kindCounts[k] ?? 0) + 1 }) %}
+  {% endfor %}
+{% endif %}
 
 {% set comIds = [] %}
 {% set earliest = null %}
@@ -49,12 +80,22 @@
   <section class="pl-filters">
     <div class="pl-wrap">
       <div class="pl-lab">COMMUNITY</div>
-      <a class="pl-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('places') }}">All communities</a>
+      <a class="pl-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('places', kind ? {kind: kind} : {}) }}">All communities</a>
       {% for c in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
         {% set n = craft.entries().section('places').relatedTo(c).status(null).count() %}
-        {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('places', {community: c.slug}) }}">{{ c.title }} ({{ n }})</a>{% endif %}
+        {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('places', kind ? {community: c.slug, kind: kind} : {community: c.slug}) }}">{{ c.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
-      <div class="pl-count">{{ comSlug ? places|length ~ ' of ' ~ all|length : all|length }} places</div>
+
+      {% if hasKinds %}
+        <div class="pl-lab" style="margin-top:14px">KIND</div>
+        <a class="pl-chip {{ not kind ? 'on' : '' }}" href="{{ url('places', comSlug ? {community: comSlug} : {}) }}">All kinds</a>
+        {% for k, label in KINDS %}
+          {% set n = kindCounts[k] ?? 0 %}
+          {% if n %}<a class="pl-chip {{ kind == k ? 'on' : '' }}" href="{{ url('places', comSlug ? {community: comSlug, kind: k} : {kind: k}) }}">{{ label }} ({{ n }})</a>{% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <div class="pl-count">{{ comSlug or kind ? places|length ~ ' of ' ~ all|length : all|length }} places</div>
     </div>
   </section>
 
@@ -80,13 +121,13 @@
             <div class="pl-body">
               <h3>{{ p.title }}</h3>
               {% if p.dateEstablished %}<div class="pl-meta">Est. {{ p.dateEstablished }}</div>{% endif %}
-              <div class="pl-comm">{{ com ? com.title : 'Community not set' }}</div>
+              <div class="pl-comm">{{ com ? com.title : 'Community not set' }}{% if hasKinds and p.placeType %} &middot; {{ KINDS[p.placeType] ?? p.placeType }}{% endif %}</div>
             </div>
           </a>
         {% endfor %}
       </div>
       {% else %}
-        <div class="pl-empty">No places in this community yet. <a href="{{ url('places') }}" style="color:#7A5C1B">Show all</a></div>
+        <div class="pl-empty">No places match these filters yet. <a href="{{ url('places') }}" style="color:#7A5C1B">Show all</a></div>
       {% endif %}
     </div>
   </main>
