@@ -76,9 +76,19 @@ $OPTIONS = [
  * GNIS classifies physical and cultural features, so it is rich where the land
  * is concerned and thin where our categories are about human use. It has no
  * class for a road, because roads are not named features in the gazetteer, and
- * none for a ranch, which it files under Locale with everything else that is a
- * place without a structure. Those two can only come from a person or from the
- * name, and this mapping does not pretend otherwise. */
+ * none for a ranch. Those two can only come from a person or from the name, and
+ * this mapping does not pretend otherwise.
+ *
+ * The California edition downloaded on 2026-09-21 carries 43 classes and none
+ * of them is Park, Building, Trail or Locale. So of the seven kinds, this
+ * default can only ever produce natural and site, and the other five are a
+ * person's judgement every time. The mapping still names the missing classes,
+ * because the gazetteer has carried them in other editions and a later download
+ * may bring them back.
+ *
+ * Every class in this edition is mapped. Area and Bench were the two that were
+ * not, and an unmapped class is reported as "has no mapping" rather than
+ * silently skipped. */
 $GNIS_TO_TYPE = [
     'arroyo' => 'natural', 'bar' => 'natural', 'basin' => 'natural', 'bay' => 'natural',
     'beach' => 'natural', 'bend' => 'natural', 'cape' => 'natural', 'cliff' => 'natural',
@@ -88,7 +98,7 @@ $GNIS_TO_TYPE = [
     'plain' => 'natural', 'range' => 'natural', 'rapids' => 'natural', 'ridge' => 'natural',
     'sea' => 'natural', 'slope' => 'natural', 'spring' => 'natural', 'stream' => 'natural',
     'summit' => 'natural', 'swamp' => 'natural', 'valley' => 'natural', 'woods' => 'natural',
-    'arch' => 'natural', 'channel' => 'natural',
+    'arch' => 'natural', 'channel' => 'natural', 'bench' => 'natural',
 
     'building' => 'building', 'church' => 'building', 'school' => 'building',
     'hospital' => 'building', 'post office' => 'building', 'tower' => 'building',
@@ -101,7 +111,7 @@ $GNIS_TO_TYPE = [
     'reservoir' => 'site', 'well' => 'site', 'oilfield' => 'site', 'military' => 'site',
     'census' => 'site', 'populated place' => 'site', 'civil' => 'site', 'reserve' => 'site',
     'harbor' => 'site', 'crossing' => 'site', 'tunnel' => 'site', 'canal' => 'site',
-    'levee' => 'site', 'bridge' => 'site',
+    'levee' => 'site', 'bridge' => 'site', 'area' => 'site',
 ];
 
 $fs  = Craft::$app->getFields();
@@ -112,6 +122,7 @@ echo str_repeat('=', 74) . PHP_EOL;
 
 /* ------------------------------------------------------------- the field */
 
+$createdSchema = false;
 $field = $fs->getFieldByHandle($HANDLE);
 if ($field === null) {
     echo $HANDLE . '  would create, Dropdown, "' . $NAME . '"' . PHP_EOL;
@@ -127,6 +138,7 @@ if ($field === null) {
             return;
         }
         $field = $fs->getFieldByHandle($HANDLE);
+        $createdSchema = true;
         echo 'created' . PHP_EOL;
     }
 } else {
@@ -166,7 +178,7 @@ if (in_array($HANDLE, $present, true)) {
         $tabs[$tabIdx]->setElements($els);
         $layout->setTabs($tabs);
         $type->setFieldLayout($layout);
-        if ($svc->saveEntryType($type)) { echo 'added to the layout' . PHP_EOL; }
+        if ($svc->saveEntryType($type)) { $createdSchema = true; echo 'added to the layout' . PHP_EOL; }
         else { echo 'FAILED: ' . implode('; ', $type->getFirstErrors()) . PHP_EOL; }
     }
 }
@@ -260,7 +272,7 @@ if ($APPLY && $wouldSet) {
     echo PHP_EOL . 'set: ' . $ok . '  verified on read-back: ' . $verified . ' of ' . count($wouldSet) . PHP_EOL;
 }
 
-if ($APPLY) {
+if ($APPLY && $createdSchema) {
     echo PHP_EOL . 'config/project will be dirty. Commit it before deploying: see docs/DEPLOY.md step 1.' . PHP_EOL;
 }
 

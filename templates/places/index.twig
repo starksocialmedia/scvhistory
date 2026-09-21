@@ -16,6 +16,10 @@
 {% set handles = all|length ? all[0].fieldLayout.customFields|map(f => f.handle) : [] %}
 {% set hasKinds = 'placeType' in handles %}
 
+{#- Two labels per kind: the chip counts a group and the card names one thing,
+    and "Piru &middot; Sites" on a single place reads as a mistake. Not derived
+    with an "s", because "Natural features" and "Trails and routes" do not
+    pluralise the way the others do. -#}
 {% set KINDS = {
   natural:  'Natural features',
   road:     'Roads',
@@ -25,9 +29,24 @@
   site:     'Sites',
   trail:    'Trails and routes'
 } %}
+{% set KIND_ONE = {
+  natural:  'Natural feature',
+  road:     'Road',
+  ranch:    'Ranch',
+  building: 'Building',
+  park:     'Park',
+  site:     'Site',
+  trail:    'Trail'
+} %}
 
 {% set query = craft.entries().section('places').status(null).orderBy('title asc') %}
 {% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).status(null).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
+{#- A Dropdown hands back a SingleOptionFieldData object, not a string. It is
+    truthy even when nothing is selected, so `p.placeType` alone passes an
+    `if` on every place and prints a separator with no label after it. The
+    value is what has to be tested and compared; it casts to a string on its
+    own in {{ }} and as an array key, which is why the counts looked right
+    while the cards did not. -#}
 {% if hasKinds and kind and KINDS[kind] is defined %}{% set query = query.placeType(kind) %}{% endif %}
 {% set places = query.all() %}
 
@@ -37,7 +56,7 @@
 {% set kindCounts = {} %}
 {% if hasKinds %}
   {% for p in all %}
-    {% set k = p.placeType ?: 'unset' %}
+    {% set k = p.placeType.value ?: 'unset' %}
     {% set kindCounts = kindCounts|merge({ (k): (kindCounts[k] ?? 0) + 1 }) %}
   {% endfor %}
 {% endif %}
@@ -121,7 +140,7 @@
             <div class="pl-body">
               <h3>{{ p.title }}</h3>
               {% if p.dateEstablished %}<div class="pl-meta">Est. {{ p.dateEstablished }}</div>{% endif %}
-              <div class="pl-comm">{{ com ? com.title : 'Community not set' }}{% if hasKinds and p.placeType %} &middot; {{ KINDS[p.placeType] ?? p.placeType }}{% endif %}</div>
+              <div class="pl-comm">{{ com ? com.title : 'Community not set' }}{% if hasKinds and p.placeType.value %} &middot; {{ KIND_ONE[p.placeType.value] ?? p.placeType.value }}{% endif %}</div>
             </div>
           </a>
         {% endfor %}

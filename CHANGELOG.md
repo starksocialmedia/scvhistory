@@ -1642,3 +1642,16 @@ Rocks and Fort Tejon are not in the California gazetteer at all. Vasquez Rocks
 is in it under 1661629, class Summit. Both of our numbers came from Wikidata
 P590 and both name the park rather than the feature, and neither has been
 changed here.
+
+gnisId now holds the id of the feature the record describes. Vasquez Rocks
+moves from 1665736 to 1661629 (Summit) and Fort Tejon from 271183 to 1656588,
+"Old Fort Tejon (historical)", class Military. The retired Wikidata park ids go
+into recordProvenance. Script written, dry run clean, not applied.
+
+Applied the two placeType defaults: Rancho Camulos and Lake Hughes, both
+"Populated Place", both site, both verified on read-back. Rancho Camulos is to
+be overruled to ranch by hand.
+
+The places index printed a separator with no label on every card, because a
+Craft Dropdown returns a SingleOptionFieldData object that is truthy when
+nothing is selected. The value is what has to be tested.
