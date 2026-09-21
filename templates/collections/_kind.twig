@@ -1,0 +1,29 @@
+{#
+  Which kind of collection a record is, and therefore which template renders it.
+
+  collectionIsMajor was a checkbox answering "does this deserve a landing page",
+  which is a question about effort rather than about the material. A column run
+  of 219 pieces deserves a landing page and must not get a Start reading button.
+  collectionKind answers the question that matters.
+
+  A macro rather than an include, because an include has its own scope and a
+  variable set inside one does not reach the caller. The collections index needs
+  the same answer, so it has to be callable.
+
+      {% import "collections/_kind" as ck %}
+      {% set kind = ck.of(entry) %}
+
+  Read through the layout: a custom field reads as defined on a type that has no
+  such field and throws the moment it is read. Where the field does not exist
+  yet, or is empty, the old checkbox still decides, so this is correct before
+  the field is applied and after.
+#}
+{% macro of(entry) %}
+  {%- set handles = [] -%}
+  {%- for f in entry.fieldLayout.customFields -%}{%- set handles = handles|merge([f.handle]) -%}{%- endfor -%}
+  {%- set k = 'collectionKind' in handles ? (attribute(entry, 'collectionKind') ?? '')|trim : '' -%}
+  {%- if k == '' -%}
+    {%- set k = ('collectionIsMajor' in handles and entry.collectionIsMajor) ? 'book' : '' -%}
+  {%- endif -%}
+  {{- k -}}
+{% endmacro %}

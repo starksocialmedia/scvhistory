@@ -1,0 +1,232 @@
+{#
+  A column run: a body of work by one author over time.
+
+  From design/collection-column-source.html. The differences from the book
+  lander are not cosmetic:
+
+    the author is IN the band, because for a column the author is the subject
+    rather than a credit on somebody else's work
+
+    there is NO "Start reading", because a column has no first piece. The band
+    control is the most recent one
+
+    the list is chronological and grouped by year, newest first, with a sticky
+    year bar. Reading order means nothing here; a reader wants a year and a
+    subject
+
+    the stat blocks count pieces, years and words rather than chapters
+
+  Undated pieces get their own group at the end. 16 of the 20 Perkins records
+  carry no originalPublishDate, and a column grouped by year has to put them
+  somewhere: hiding them would be worse than showing the gap.
+#}
+{% set F = {} %}
+{% for h in ['body','archiveUrl','legacyUrl','culturalSensitivityNote','sourceLine'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
+{% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
+{% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
+{% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
+{% set author = entry.writtenBy.one() ?? null %}
+{% set editor = entry.editedBy.one() ?? null %}
+
+{% set hasBandImage = false %}
+{% for f in entry.fieldLayout.customFields %}{% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}{% endfor %}
+{% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+{% set aimg = (author and author.featuredImage is defined and author.featuredImage) ? author.featuredImage.one() ?? null : null %}
+
+{% set pieces = entry.articlesInCollection.all()
+   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).status(null).all() %}
+
+{#- Group by year, newest first. The year comes off originalPublishDate, which
+    is stored as printed, so the four digits are taken rather than parsed: a
+    date reading "Saturday, January 23, 2010" is not a date object and must not
+    be turned into a guess. -#}
+{% set byYear = {} %}
+{% set undated = [] %}
+{% set words = 0 %}
+{% for p in pieces %}
+  {% set raw = (p.originalPublishDate is defined and p.originalPublishDate) ? p.originalPublishDate|trim : '' %}
+  {% set y = raw matches '/(1[6-9]\\d{2}|20\\d{2})/' ? raw|split('')|filter(c => c matches '/[0-9]/')|join('')|slice(0, 4) : '' %}
+  {% set y = raw matches '/(1[6-9]\\d{2}|20\\d{2})/' ? (raw|slice(raw|split('')|length)) : y %}
+  {% set found = '' %}
+  {% for n in 0..(raw|length - 4) %}
+    {% if found == '' and raw|slice(n, 4) matches '/^(1[6-9]\\d{2}|20\\d{2})$/' %}{% set found = raw|slice(n, 4) %}{% endif %}
+  {% endfor %}
+  {% set words = words + (p.body is defined and p.body ? p.body|striptags|split(' ')|filter(w => w|trim)|length : 0) %}
+  {% if found %}
+    {% set byYear = byYear|merge({ ('y' ~ found): (byYear['y' ~ found] ?? [])|merge([{ p: p, d: raw }]) }) %}
+  {% else %}
+    {% set undated = undated|merge([{ p: p, d: '' }]) %}
+  {% endif %}
+{% endfor %}
+{% set years = byYear|keys|sort|reverse %}
+{% set span = years|length ? (years|last|slice(1) ~ '&ndash;' ~ years|first|slice(1)) : '' %}
+{% set newest = years|length ? byYear[years|first]|first.p : (pieces|length ? pieces|first : null) %}
+
+{% set eraSeen = [] %}
+{% set comSeen = [] %}
+{% set comObj = [] %}
+{% for p in pieces %}
+  {% set e = p.historicalEra.one() ?? null %}
+  {% if e and e.id not in eraSeen %}{% set eraSeen = eraSeen|merge([e.id]) %}{% endif %}
+  {% for c in p.neighborhood.all() %}
+    {% if c.id not in comSeen %}{% set comSeen = comSeen|merge([c.id]) %}{% set comObj = comObj|merge([c]) %}{% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% css %}
+.cn-bandgrid{display:grid;grid-template-columns:132px minmax(0,1fr);gap:28px;align-items:start}
+.cn-por{width:132px;height:132px;border-radius:50%;overflow:hidden;border:2px solid #C4A031;background:#fff;
+        display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:40px;color:#C4A031}
+.cn-por img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.cn-years{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.06em;color:#7A5C1B;margin-top:8px}
+.cn-ctas{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 0}
+.cn-cta{font-family:'Jost',sans-serif;font-size:15px;padding:13px 22px;text-decoration:none;border:1px solid #C4A031;color:#7A5C1B}
+.cn-cta:hover{background:#fff}
+.cn-stats{display:flex;gap:38px;flex-wrap:wrap;border-top:1px solid #EFE6D0;padding-top:22px;margin-top:30px}
+.cn-stat b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:30px;line-height:1;color:#17254C}
+.cn-stat span{display:block;font-family:'Jost',sans-serif;font-weight:500;font-size:11.5px;letter-spacing:.12em;color:#7E6118;margin-top:6px;text-transform:uppercase}
+.cn-jump{position:sticky;top:0;z-index:3;background:#F6F7F9;border-bottom:1px solid #E2E4E8;padding:11px 0 12px;
+         display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.cn-jump .lab{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.14em;color:#5B6472}
+.cn-jump a{font-family:'Jost',sans-serif;font-size:14px;color:#7A5C1B;text-decoration:none;padding:3px 8px;border:1px solid transparent}
+.cn-jump a:hover{border-color:#C4A031;background:#fff}
+.cn-jump a.now{background:#C4A031;color:#17254C;font-weight:500}
+.cn-yr{display:flex;align-items:center;gap:16px;margin:34px 0 12px;scroll-margin-top:60px}
+.cn-yr h2{font-family:'Playfair Display',serif;font-weight:500;font-size:27px;color:#17254C;margin:0}
+.cn-yr .rule{flex:1;height:1px;background:#E2E4E8}
+.cn-yr .n{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;color:#8A919E}
+.cn-list{list-style:none;margin:0;padding:0;border:1px solid #E2E4E8;background:#fff}
+.cn-list li{border-bottom:1px solid #E2E4E8}
+.cn-list li:last-child{border-bottom:0}
+.cn-list a{display:grid;grid-template-columns:116px minmax(0,1fr) auto;gap:16px;align-items:baseline;
+           padding:13px 18px;text-decoration:none;color:inherit}
+.cn-list a:hover{background:#FDF7EA}
+.cn-date{font-family:'Jost',sans-serif;font-size:12.5px;letter-spacing:.04em;color:#7A5C1B}
+.cn-date.none{color:#A8AEB8}
+.cn-t{display:block;font-family:'Playfair Display',serif;font-size:17.5px;line-height:1.3;color:#17254C}
+.cn-m{display:block;font-size:13px;color:#5B6472;margin-top:3px}
+.cn-w{font-family:'Jost',sans-serif;font-size:11.5px;color:#8A919E;white-space:nowrap}
+@media(max-width:900px){.cn-bandgrid{grid-template-columns:1fr}.cn-list a{grid-template-columns:1fr;gap:4px}.cn-w{display:none}}
+{% endcss %}
+
+<div class="rec cn">
+  <section class="rec-band{{ bandImg ? ' rec-band--art' : '' }}">
+    {% if bandImg %}
+      <div class="rec-bandart" style="background-image:url('{{ bandImg.url }}')" role="presentation"></div>
+      <div class="rec-bandfade" role="presentation"></div>
+    {% endif %}
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('collections') }}">Collections</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      <div class="cn-bandgrid">
+        <div class="cn-por">
+          {%- if aimg %}<img src="{{ aimg.getUrl({ width: 264, height: 264, mode: 'crop', position: 'center-top' }) ?: aimg.url }}" alt="">
+          {%- else %}{{ author ? (author.title|split(' ')|first|slice(0,1) ~ author.title|split(' ')|last|slice(0,1))|upper : '' }}{% endif -%}
+        </div>
+        <div class="rec-bandcol">
+          <div class="rec-kick">
+            <span class="a">COLLECTION</span><span class="r"></span>
+            <span class="b">COLUMN</span><span class="r"></span>
+            <span class="b">{{ pieces|length }} PIECE{{ pieces|length == 1 ? '' : 'S' }}</span>
+          </div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if author %}<p class="rec-sub">by <a href="{{ author.url }}">{{ author.title }}</a></p>{% endif %}
+          {% if span %}<div class="cn-years">{{ F.sourceLine ?: 'The Signal' }} &middot; {{ span|raw }}</div>{% endif %}
+          {% if comObj|length %}
+            <div class="rec-chips">
+              {% for c in comObj|slice(0, 8) %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
+          {% if newest %}
+            <div class="cn-ctas"><a class="cn-cta" href="{{ newest.url }}">Read the most recent &rarr;</a></div>
+          {% endif %}
+          <div class="cn-stats">
+            <div class="cn-stat"><b>{{ pieces|length }}</b><span>Pieces</span></div>
+            {% if years|length %}<div class="cn-stat"><b>{{ years|length }}</b><span>Years</span></div>{% endif %}
+            {% if undated|length %}<div class="cn-stat"><b>{{ pieces|length - undated|length }}</b><span>Dated</span></div>{% endif %}
+            {% if words %}<div class="cn-stat"><b>{{ (words / 1000)|round }}k</b><span>Words</span></div>{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% include "_partials/record/note" with { text: noteTop } only %}
+        {% if F.body %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages, footnotesFor: entry } %}</div>
+          {% include "_partials/record/footnotes" with { entry: entry, editor: editor } only %}
+        {% endif %}
+        {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+
+        {% if years|length or undated|length %}
+          <nav class="cn-jump" aria-label="Jump to a year">
+            <span class="lab">YEARS</span>
+            {% for y in years %}<a href="#{{ y }}">{{ y|slice(1) }}</a>{% endfor %}
+            {% if undated|length %}<a href="#yundated">Undated</a>{% endif %}
+          </nav>
+
+          {% for y in years %}
+            {% set rows = byYear[y] %}
+            <div class="cn-yr" id="{{ y }}"><h2>{{ y|slice(1) }}</h2><span class="rule"></span><span class="n">{{ rows|length }} PIECE{{ rows|length == 1 ? '' : 'S' }}</span></div>
+            <ol class="cn-list">
+              {% for r in rows %}
+                {% set w = r.p.body is defined and r.p.body ? r.p.body|striptags|split(' ')|filter(x => x|trim)|length : 0 %}
+                <li><a href="{{ r.p.url }}">
+                  <span class="cn-date">{{ r.d }}</span>
+                  <span><span class="cn-t">{{ r.p.title ?: r.p.slug }}</span>{% if r.p.publishedBy is defined and r.p.publishedBy.one() %}<span class="cn-m">{{ r.p.publishedBy.one().title }}</span>{% endif %}</span>
+                  <span class="cn-w">{{ w ? (w|number_format) ~ ' words' : '' }}</span>
+                </a></li>
+              {% endfor %}
+            </ol>
+          {% endfor %}
+
+          {% if undated|length %}
+            <div class="cn-yr" id="yundated"><h2>Undated</h2><span class="rule"></span><span class="n">{{ undated|length }} PIECE{{ undated|length == 1 ? '' : 'S' }}</span></div>
+            <ol class="cn-list">
+              {% for r in undated %}
+                {% set w = r.p.body is defined and r.p.body ? r.p.body|striptags|split(' ')|filter(x => x|trim)|length : 0 %}
+                <li><a href="{{ r.p.url }}">
+                  <span class="cn-date none">&mdash;</span>
+                  <span><span class="cn-t">{{ r.p.title ?: r.p.slug }}</span></span>
+                  <span class="cn-w">{{ w ? (w|number_format) ~ ' words' : '' }}</span>
+                </a></li>
+              {% endfor %}
+            </ol>
+          {% endif %}
+        {% endif %}
+      </article>
+
+      <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, author: author, label: 'Collections', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
+        {% if author %}
+          <div class="rec-box"><div class="rec-lab">AUTHOR</div>
+            <a class="rec-person" href="{{ author.url }}">
+              <div class="th">{% if aimg %}<img src="{{ aimg.url }}" alt="">{% else %}{{ (author.title|split(' ')|first|slice(0,1) ~ author.title|split(' ')|last|slice(0,1))|upper }}{% endif %}</div>
+              <div style="min-width:0"><div class="n">{{ author.title }}</div>{% if author.occupation is defined and author.occupation %}<div class="r">{{ author.occupation }}</div>{% endif %}</div>
+            </a>
+          </div>
+        {% endif %}
+        {% include "_partials/record/tags" with { el: entry } only %}
+      </aside>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.cn-jump a'));
+  if(!links.length){return;}
+  var groups=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+  function mark(){var y=window.scrollY+90,cur=0;
+    groups.forEach(function(g,i){if(g.offsetTop<=y){cur=i;}});
+    links.forEach(function(a,i){a.classList.toggle('now',i===cur);});}
+  window.addEventListener('scroll',mark,{passive:true});mark();
+})();
+</script>

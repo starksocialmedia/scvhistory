@@ -12,11 +12,13 @@
   exist, so this is safe on an install where collectionIsMajor has not been
   created.
 #}
-{% set isMajor = false %}
-{% for f in entry.fieldLayout.customFields %}
-  {% if f.handle == 'collectionIsMajor' and entry.collectionIsMajor %}{% set isMajor = true %}{% endif %}
-{% endfor %}
-{% if isMajor %}{% include "collections/_lander" %}{% else %}
+{% import "collections/_kind" as ck %}
+{% set kind = ck.of(entry)|trim %}
+{% if kind == 'book' %}{% include "collections/_lander" %}
+{% elseif kind == 'column' %}{% include "collections/_column" %}
+{% elseif kind == 'catalogue' %}{% include "collections/_catalogue" %}
+{% elseif kind == 'topic' %}{% include "collections/_topic" %}
+{% else %}
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
