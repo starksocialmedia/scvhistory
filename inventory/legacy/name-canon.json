@@ -30,11 +30,8 @@
       "canonical": "Downtown Newhall",
       "type": "place",
       "placeType": "site",
-      "aliases": [
-        "Downtown Newhall Specific",
-        "Downtown Newhall Specific Plan"
-      ],
-      "note": "Downtown Newhall Specific is a truncation of the Specific Plan, which is a document about the place rather than a second place."
+      "aliases": [],
+      "note": "Downtown Newhall is the place, on twelve articles. The Specific Plan is a document about it, parked under its own entry, and \"Downtown Newhall Specific\" is a truncation of that document's title and folds there. Both entries claimed that alias at first and the place won on order, which put 21 articles about a planning document onto a place. The place keeps no aliases: nothing else in the corpus is it."
     },
     {
       "canonical": "Santa Clarita Valley Historical Society",
@@ -92,6 +89,76 @@
         "Lake Elizabeth"
       ],
       "note": "The same words in either order. Elizabeth Lake is the gazetteer's spelling and the one the USGS carries."
+    },
+    {
+      "canonical": "Downtown Newhall Specific Plan",
+      "type": "organization",
+      "park": true,
+      "parkReason": "A document, not a place and not a body. The corpus names it because articles discuss the plan, and an entry for it would sit in a section for things that exist in the valley. Parked: the aliases fold here so the fragments stop ranking, and nothing is created.",
+      "aliases": [
+        "Specific Plan",
+        "Downtown Newhall Specific"
+      ],
+      "note": "\"Specific Plan\" on 11 articles is the tail of this title. Folding it here without parking would only move the wrong record's name."
+    },
+    {
+      "canonical": "Antonio del Valle",
+      "type": "person",
+      "aliases": [
+        "Don Antonio",
+        "Lt. Antonio",
+        "Lieutenant Antonio",
+        "Don Antonio's"
+      ],
+      "note": "A fold rather than a split. The brief asked for a split between Antonio del Valle and Antonio Coronel where the sentences support it; they do not. Every sentence behind the bare-Antonio group names del Valle: \"Don Antonio del Valle petitioned Governor Alvarado for the Rancho\", \"Lieutenant Antonio del Valle by order of the Governor\", \"son of Antonio and Maria del Valle\". Antonio Coronel already stands as his own row on one article, with a key the grouping never touches, so a split would have produced an empty second branch and no ambiguous remainder."
+    },
+    {
+      "canonical": "Rancho La Liebre",
+      "type": "place",
+      "placeType": "ranch",
+      "aliases": [
+        "Liebre",
+        "La Liebre"
+      ],
+      "note": "Guessed a person at close confidence. It is Beale's ranch in the Tehachapis."
+    },
+    {
+      "canonical": "Lincoln Memorial",
+      "type": "place",
+      "placeType": "building",
+      "aliases": [],
+      "note": "Guessed a person. It is a building, and the coin columns name it for the reverse of the cent."
+    },
+    {
+      "canonical": "Southern Pacific Railroad",
+      "type": "organization",
+      "aliases": [
+        "Southern Pacific",
+        "Southern Pacific Co",
+        "SP Railroad"
+      ],
+      "note": "The bare name on 24 articles and the full name on 18 are one railroad. The containment check raised this as a pair; the canon settles it."
+    },
+    {
+      "canonical": "Richard Rioux",
+      "type": "person",
+      "aliases": [
+        "Doc Rioux",
+        "Richard \"Doc\" Rioux",
+        "Dr. Richard Rioux",
+        "Doc"
+      ],
+      "note": "He signed the Old Town Newhall column as Doc Rioux across 38 articles. The record is under his name and finds him under the byline."
+    },
+    {
+      "canonical": "Q. David Bowers",
+      "type": "person",
+      "aliases": [
+        "David Bowers",
+        "Dave Bowers",
+        "Q David Bowers"
+      ],
+      "note": "The numismatist, cited constantly in the coin columns, who publishes under the initial."
     }
   ],
   "splits": [

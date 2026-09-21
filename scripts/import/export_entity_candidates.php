@@ -432,9 +432,15 @@ if ($canon) {
         /* The canonical row may or may not already exist. Where it exists under
            another kind, it moves: the canon says what kind it is. */
         $existingHits = $findAnywhere($target);
+        $movedFrom = null;
         if (!isset($entities[$tkind][$target])) {
             $seed = null;
-            foreach ($existingHits as [$k, $nm]) { $seed = $entities[$k][$nm]; unset($entities[$k][$nm]); break; }
+            foreach ($existingHits as [$k, $nm]) {
+                $seed = $entities[$k][$nm];
+                if ($k !== $tkind) { $movedFrom = $k; }
+                unset($entities[$k][$nm]);
+                break;
+            }
             $entities[$tkind][$target] = $seed ?? [
                 'name' => $target, 'key' => $stripHon($target), 'mentions' => 0, 'pages' => [],
                 'inventories' => [], 'variants' => [], 'hasLegacyPage' => false, 'legacyPageUrl' => '',
@@ -456,10 +462,28 @@ if ($canon) {
                 unset($entities[$k][$nm]);
             }
         }
-        if ($folded) {
+        /* A parked canonical is folded and then marked. The aliases stop
+           ranking as rows of their own, and the row they fold into says it must
+           not become a record. "Downtown Newhall Specific Plan" is a document:
+           the articles discuss it, so the corpus names it, but a record for it
+           would sit in a section for things that exist in the valley. */
+        if (!empty($c['park'])) {
+            $dst['parked'] = (string)($c['parkReason'] ?? 'parked by the canon');
+        }
+
+        /* The canon's type is a ruling, not a hint. Without carrying it the
+           guesser re-decides from the name and gets "Rancho La Liebre" wrong as
+           a person and "Lincoln Memorial" wrong as a site, which is the whole
+           thing the canon line was written to settle. */
+        $dst['canonType'] = $tkind;
+        if (!empty($c['placeType'])) { $dst['canonPlaceType'] = (string)$c['placeType']; }
+
+        if ($folded || $movedFrom !== null || !empty($c['park'])) {
             $canonReport['folds'][] = [
                 'canonical' => $target, 'kind' => $tkind,
                 'from' => $folded, 'pagesBefore' => $before, 'pagesAfter' => count($dst['pages']),
+                'parked' => !empty($c['park']),
+                'movedFrom' => $movedFrom, 'toKind' => $tkind,
             ];
         }
         unset($dst);
@@ -520,6 +544,8 @@ if ($canon) {
                         $tally[$cn] = ($tally[$cn] ?? 0) + 1;
                     }
                     $entities[$ck][$cn]['variants'][$base] = true;
+                    $entities[$ck][$cn]['canonType'] = $ck;
+                    if (!empty($chosen['placeType'])) { $entities[$ck][$cn]['canonPlaceType'] = (string)$chosen['placeType']; }
                     foreach (array_keys($src['inventories'] ?? []) as $i) { $entities[$ck][$cn]['inventories'][$i] = true; }
                     $entities[$ck][$cn]['mentions'] += max(1, mb_substr_count($fold($sent), $fold($base)));
                     /* The sentence that decided it, kept so the review screen
@@ -559,7 +585,11 @@ if ($canon) {
 
     echo PHP_EOL . '=== name canon ===' . PHP_EOL;
     foreach ($canonReport['folds'] as $f) {
-        printf("fold  %-42s %d -> %d pages\n", $f['canonical'], $f['pagesBefore'], $f['pagesAfter']);
+        printf("%-5s %-42s %d -> %d pages\n", $f['parked'] ? 'park' : 'fold',
+            $f['canonical'], $f['pagesBefore'], $f['pagesAfter']);
+        if ($f['movedFrom'] !== null) {
+            echo '        moved from ' . $f['movedFrom'] . ' to ' . $f['toKind'] . PHP_EOL;
+        }
         foreach ($f['from'] as $x) { echo '        <- ' . $x . PHP_EOL; }
     }
     foreach ($canonReport['splits'] as $s) {
@@ -612,6 +642,9 @@ foreach ($entities as $kind => $set) {
             'legacyPageUrl' => $e['legacyPageUrl'],
             'flags' => array_values($flags),
             'existing' => $records[$kind][$e['key']] ?? null,
+            'parked' => $e['parked'] ?? null,
+            'canonType' => $e['canonType'] ?? null,
+            'canonPlaceType' => $e['canonPlaceType'] ?? null,
         ];
     }
     usort($rows[$kind], function ($a, $b) { return [$b['mentions'], $a['name']] <=> [$a['mentions'], $b['name']]; });

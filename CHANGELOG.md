@@ -1686,3 +1686,13 @@ exporters and the triage against the live database: full-corpus accept 1,131 to
 review 364. The missing-records export now carries prior decisions, so a name
 skipped or merged last session does not head the next fifty as though it were
 new.
+
+Every apply now appends a line to scripts/import/APPLIED.log: when, script,
+host, rows, read-back, note. Committed, because its value is being there later
+on another machine. Written after the 21 September GNIS episode, where a write
+took a revision query, a transcript search and two wrong guesses to attribute.
+
+Seven canon lines added. Downtown Newhall Specific Plan is parked rather than
+folded: it is a document, so the aliases stop ranking and nothing is created.
+"Antonio" is a fold, not a split; every sentence behind the bare-Antonio group
+names Antonio del Valle. The canon's type is now authoritative over the guess.

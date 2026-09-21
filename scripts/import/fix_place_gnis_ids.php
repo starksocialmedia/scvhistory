@@ -137,3 +137,6 @@ foreach ($plan as $p) {
 }
 
 echo PHP_EOL . 'saved: ' . $ok . '  verified on read-back: ' . $verified . ' of ' . count($plan) . PHP_EOL;
+$applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
+$applyLog('fix_place_gnis_ids.php', $ok, 'verified ' . $verified . ' of ' . count($plan),
+    implode('; ', array_map(fn($p) => $p['entry']->title . ' ' . $p['old'] . '->' . $p['new'], $plan)));

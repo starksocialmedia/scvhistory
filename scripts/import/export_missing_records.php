@@ -49,6 +49,8 @@ $src = json_decode(file_get_contents($in), true);
 
 /* ------------------------------------------------------------ the signals */
 
+$SECTION_GUESS_OK = ['person' => 1, 'place' => 1, 'organization' => 1];
+
 $PLACE_TAIL = ['river','creek','canyon','road','street','avenue','boulevard','highway','trail','lane',
     'station','park','mountain','mountains','valley','pass','lake','springs','spring','mesa','hill','hills',
     'ranch','rancho','camp','mine','tunnel','bridge','cut','reservoir','dam','wash','flat','flats',
@@ -236,6 +238,19 @@ foreach ($groups as $gkey => $members) {
         $r = $merged;
         $kind = $merged['kind'];
         $g = $guess($r);
+        /* A canon ruling overrides the guess outright, and says so on the card
+           so a reviewer sees it was decided rather than inferred. */
+        $canonType = $lead['canonType'] ?? null;
+        if ($canonType !== null && isset($SECTION_GUESS_OK[$canonType])) {
+            if ($g['type'] !== $canonType) {
+                $g['signals'][] = 'the canon says ' . $canonType . ', overriding the guess of ' . $g['type'];
+            } else {
+                $g['signals'][] = 'the canon says ' . $canonType;
+            }
+            $g['type'] = $canonType;
+            $g['confidence'] = 'decided';
+            $g['disagrees'] = false;
+        }
         $rows[] = [
             'name'        => $title,
             'key'         => (string)$gkey,
@@ -252,7 +267,9 @@ foreach ($groups as $gkey => $members) {
                 'id' => $a['id'] ?? null, 'title' => $a['title'] ?? '', 'url' => $a['url'] ?? ''], $arts)),
             'variants'    => array_values(array_keys($variants)),
             'mergedFrom'  => count($members),
-            'placeType'   => (function () use ($title, $words, $SUBTYPE_TAIL) {
+            'parked'      => $lead['parked'] ?? null,
+            'placeType'   => (function () use ($title, $words, $SUBTYPE_TAIL, $lead) {
+                if (!empty($lead['canonPlaceType'])) { return (string)$lead['canonPlaceType']; }
                 $w = $words($title);
                 if (!$w) { return 'site'; }
                 $tail = end($w);
@@ -293,6 +310,20 @@ foreach ($groups as $gkey => $members) {
  *
  * They are parked, not deleted, and written to the file so the rule can be
  * audited against what it removed. */
+/* PARKED BY THE CANON.
+ *
+ * A name the canon has ruled must not become a record: a document, a phrase, a
+ * thing that belongs to no section. It is removed here rather than left for a
+ * reviewer to skip every time the queue is rebuilt, and it is written to the
+ * file with its reason so the ruling is visible rather than just its effect. */
+$parked = [];
+$keepP = [];
+foreach ($rows as $r) {
+    if (!empty($r['parked'])) { $parked[] = $r; continue; }
+    $keepP[] = $r;
+}
+$rows = $keepP;
+
 $FURNITURE_AT   = 85;
 $FURNITURE_MIN  = 3;        /* distinct articles the same sentence must span */
 $furniture = [];
@@ -460,10 +491,13 @@ file_put_contents($out, json_encode([
     'records' => $existing,
     'names' => $rows,
     'furniture' => $furniture,
+    'parked' => $parked,
     'containment' => $containment,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 
 echo 'names with no record: ' . count($rows) . PHP_EOL;
+echo 'parked by the canon, never offered: ' . count($parked) . PHP_EOL;
+foreach ($parked as $x) { printf("  %-38s %d articles\n", mb_substr($x['name'],0,37), $x['articleCount']); }
 echo 'carried over as already decided: ' . $decidedCount . PHP_EOL;
 echo 'removed as page furniture: ' . count($furniture) . PHP_EOL;
 echo 'names containing other names, for the screen to ask about: ' . count($containment) . PHP_EOL;

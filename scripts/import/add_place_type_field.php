@@ -270,6 +270,9 @@ if ($APPLY && $wouldSet) {
         if ($e && trim((string)$e->getFieldValue($HANDLE)) === $w[1]) { $verified++; }
     }
     echo PHP_EOL . 'set: ' . $ok . '  verified on read-back: ' . $verified . ' of ' . count($wouldSet) . PHP_EOL;
+    $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
+    $applyLog('add_place_type_field.php', $ok, 'verified ' . $verified . ' of ' . count($wouldSet),
+        $createdSchema ? 'created the field and the layouts' : 'defaults only');
 }
 
 if ($APPLY && $createdSchema) {

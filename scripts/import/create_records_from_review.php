@@ -532,4 +532,7 @@ foreach ($plan['create'] as $c) {
 
 echo PHP_EOL . 'created: ' . $made . '  links written: ' . $linked
    . '  provenance verified on read-back: ' . $verified . ' of ' . $made . PHP_EOL;
+$applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
+$applyLog('create_records_from_review.php', $made, 'provenance verified ' . $verified . ' of ' . $made,
+    $linked . ' article links; source ' . $sourceNote);
 foreach (array_slice($failed, 0, 20) as $f) { echo '  FAILED ' . $f . PHP_EOL; }

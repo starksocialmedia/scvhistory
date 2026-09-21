@@ -138,6 +138,8 @@ if ($APPLY) {
         }
         echo str_pad($handle, 16) . ($ok ? 'present on a live entry' : 'NOT PRESENT, the save did not take') . PHP_EOL;
     }
+    $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
+    $applyLog('add_record_provenance_field.php', count($TYPES), 'field present on a live entry', 'schema only');
     echo PHP_EOL . 'config/project will be dirty. Commit it before deploying: see docs/DEPLOY.md step 1.' . PHP_EOL;
 }
 
