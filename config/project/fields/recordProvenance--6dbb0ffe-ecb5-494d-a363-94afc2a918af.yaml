@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: recordProvenance
+instructions: 'Where this record came from, when it was not made by hand. Scripts write a phrase and a date here, such as "created from review, 2026-09-21", so that everything one batch created can be found again and inspected or undone. Empty means a person made it. Nothing on the site renders this field.'
+name: 'Record Provenance'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
