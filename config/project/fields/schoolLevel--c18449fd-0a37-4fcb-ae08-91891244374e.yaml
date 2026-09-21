@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: schoolLevel
+instructions: 'Only meaningful when the type is School. Elementary, middle, high, college, or district for the body that runs the schools rather than a school itself.'
+name: 'School Level'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Elementary
+        -
+          - value
+          - elementary
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Middle
+        -
+          - value
+          - middle
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - High
+        -
+          - value
+          - high
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - College
+        -
+          - value
+          - college
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - District
+        -
+          - value
+          - district
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

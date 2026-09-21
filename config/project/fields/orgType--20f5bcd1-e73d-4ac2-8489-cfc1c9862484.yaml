@@ -1,0 +1,110 @@
+columnSuffix: null
+handle: orgType
+instructions: 'What kind of body this is, which decides how it is grouped and filtered on the organizations index and what it is called in structured data. Choose Other deliberately rather than leaving it empty.'
+name: 'Organisation Type'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'School, district or college'
+        -
+          - value
+          - school
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Government body'
+        -
+          - value
+          - government
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Business
+        -
+          - value
+          - business
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Nonprofit or society'
+        -
+          - value
+          - nonprofit
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Church or mission'
+        -
+          - value
+          - church
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Club or lodge'
+        -
+          - value
+          - club
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Newspaper or broadcaster'
+        -
+          - value
+          - media
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Military
+        -
+          - value
+          - military
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Other
+        -
+          - value
+          - other
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

@@ -330,6 +330,57 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
+            fieldUid: acaad169-1f7f-4e8b-9e7c-c9e0e55ffd40 # CDS Code
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 68c7cbc8-7abc-4dbf-a6f5-b299999c2fcd
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9c812071-c814-4c1a-a8d1-fc7b92980ee3 # NCES ID
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7fcd4353-1233-4777-b261-e822f89b392c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3d39a454-fc5b-478d-842b-0f0708de20b8 # EIN
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1e56a4fc-45cb-499e-88e3-5e60fcacbab8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
             fieldUid: 6ef144ed-69a5-4e1d-90be-7151b4399300 # Reported haunted
             handle: null
             instructions: null
@@ -652,6 +703,51 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 34f0d6a5-607a-4654-a120-16b60fde2c2f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 20f5bcd1-e73d-4ac2-8489-cfc1c9862484 # Organisation Type
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ce530416-13eb-4e84-93f1-fc3f82f9049f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition:
+              class: craft\elements\conditions\entries\EntryCondition
+              conditionRules:
+                -
+                  class: craft\fields\conditions\OptionsFieldConditionRule
+                  fieldUid: 20f5bcd1-e73d-4ac2-8489-cfc1c9862484 # Organisation Type
+                  operator: in
+                  uid: 8e0b6e25-6bb8-4d06-b636-0c3cc81e9add
+                  values:
+                    - school
+              elementType: craft\elements\Entry
+              fieldContext: global
+            elementEditCondition: null
+            fieldUid: c18449fd-0a37-4fcb-ae08-91891244374e # School Level
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8b136fc8-3b2f-436e-bc3c-dc42278328e9
             userCondition: null
             warning: null
             width: 100

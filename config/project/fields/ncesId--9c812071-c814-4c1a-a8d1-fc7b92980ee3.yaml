@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: ncesId
+instructions: 'The federal identifier from the National Center for Education Statistics: twelve digits for a school, seven for a district. This is the id the Common Core of Data uses, and the one that survives a school changing its name.'
+name: 'NCES ID'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 32
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

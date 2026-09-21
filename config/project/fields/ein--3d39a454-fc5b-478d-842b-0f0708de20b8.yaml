@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: ein
+instructions: 'The Employer Identification Number the IRS assigns an exempt organization, nine digits. Identifies a nonprofit, a church or a chamber in the federal Business Master File.'
+name: EIN
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 32
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

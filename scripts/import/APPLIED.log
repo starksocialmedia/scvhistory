@@ -1,3 +1,5 @@
 # Applies that wrote to the database. Appended by scripts/import/_apply_log.php.
 # when	script	host	rows	read-back	note
 2026-09-21 12:50:16 PDT	add_place_type_field.php	scvhistory-web	2 rows	verified 2 of 2	defaults only
+2026-09-21 15:38:15 PDT	add_org_taxonomy_fields.php	scvhistory-web	12 rows	orgType present on 12	created orgType and schoolLevel
+2026-09-21 15:38:17 PDT	add_org_identifier_fields.php	scvhistory-web	3 rows	present on a live entry: 3	schema only
