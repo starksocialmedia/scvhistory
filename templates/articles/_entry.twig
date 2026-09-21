@@ -84,7 +84,8 @@
               color:inherit;text-decoration:none;padding:7px 0;border-bottom:1px solid #EFE6D0}
   .ar-sb .row:last-child{border-bottom:0}
   .ar-sb .row:hover .n{color:#7A5C1B;text-decoration:underline}
-  .ar-sb .th{width:44px;height:44px;border-radius:50%;border:1px solid #C4A031;overflow:hidden;background:#fff;
+  .ar-sb .row.noimg{grid-template-columns:minmax(0,1fr)}
+  .ar-sb .th{width:44px;height:44px;border:1px solid #E8E0CC;overflow:hidden;background:#fff;
              display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;
              font-size:15px;color:#C4A031;flex:none}
   .ar-sb .th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
@@ -429,10 +430,14 @@
           authority, as everywhere else in this template. -#}
       <div class="ar-author" style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 26px 28px 28px; margin-top: 44px">
         <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 20px">ABOUT THE AUTHOR</div>
-        <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px; align-items: start">
+        {#- No portrait, no frame. An empty gold circle is a hole where a face
+            should be, and it draws the eye to the absence. -#}
+        <div style="display: grid; grid-template-columns: {{ aimg ? '96px ' : '' }}minmax(0, 1fr); gap: 24px; align-items: start">
+          {% if aimg %}
           <div style="width: 96px; height: 96px; border-radius: 50%; border: 2px solid #C4A031; overflow: hidden; position: relative">
-            {% if aimg %}<img src="{{ aimg.getUrl({ width: 192, height: 192, mode: 'crop', position: 'center-top' }) ?: aimg.url }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">{% endif %}
+            <img src="{{ aimg.getUrl({ width: 192, height: 192, mode: 'crop', position: 'center-top' }) ?: aimg.url }}" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block">
           </div>
+          {% endif %}
           <div style="min-width: 0">
             <div style="font-family: 'Playfair Display', serif; font-size: 25px; color: #17254C">{{ author.title }}</div>
             {% if author.occupation is defined and author.occupation %}<div style="font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #7E6118; margin-top: 4px">{{ author.occupation }}</div>{% endif %}
@@ -472,7 +477,7 @@
     {% set sbH = [] %}
     {% for f in entry.fieldLayout.customFields %}{% set sbH = sbH|merge([f.handle]) %}{% endfor %}
 
-    {% set sbCurated = { people: [], places: [], communities: [], organizations: [] } %}
+    {% set sbCurated = { people: [], places: [], organizations: [] } %}
     {% set curatedHandles = {
       people: ['subjectPerson', 'relatedPersons', 'photoPeople'],
       places: ['depictsPlace', 'relatedPlaces', 'photoPlaces'],
@@ -487,9 +492,9 @@
         {% endif %}
       {% endfor %}
     {% endfor %}
-    {% for c in communities %}
-      {% set sbCurated = sbCurated|merge({ communities: sbCurated.communities|merge([c]) }) %}
-    {% endfor %}
+    {#- Communities are the band chips at the top of the page and nowhere else.
+        A community is a filter, not a subject, and repeating the chips as a
+        sidebar card said twice what the band already said once. -#}
 
     {#- Derived, from the relation field where it exists and from the layer
         otherwise. Both, because one is applied and the other is not yet. -#}
@@ -497,9 +502,9 @@
     {% if 'derivedImageLinks' in sbH %}
       {% for r in entry.derivedImageLinks.status(null).all() %}{% set sbDerived = sbDerived|merge([r]) %}{% endfor %}
     {% endif %}
-    {% set SB_SECTION = { persons: 'people', places: 'places', communities: 'communities', organizations: 'organizations', groups: 'organizations' } %}
+    {% set SB_SECTION = { persons: 'people', places: 'places', organizations: 'organizations', groups: 'organizations' } %}
 
-    {% set sbLists = { people: [], places: [], communities: [], organizations: [] } %}
+    {% set sbLists = { people: [], places: [], organizations: [] } %}
     {% set sbSeen = [] %}
     {% for bucket, rows in sbCurated %}
       {% for r in rows %}
@@ -545,28 +550,28 @@
         Curated first, then derived, de-duplicated by id. A derived entry carries
         a gold dot: worth following, and not a relationship the archive has
         confirmed. -#}
-    {% set sbLabels = { people: 'PEOPLE', places: 'PLACES', communities: 'COMMUNITIES', organizations: 'ORGANIZATIONS' } %}
-    {% for bucket, label in sbLabels %}
-      {% if sbLists[bucket]|length %}
-        <div class="ar-sb">
-          <div class="lab">{{ label }}</div>
-          {% for r in sbLists[bucket] %}
-            {% set words = r.t|split(' ')|filter(x => x|trim) %}
-            <a class="row" href="{{ r.u }}">
-              <span class="th">
-                {%- if r.img %}<img src="{{ r.img }}" alt="" loading="lazy">
-                {%- else %}{{ (words|length > 1 ? words|first|slice(0,1) ~ words|last|slice(0,1) : r.t|slice(0,1))|upper }}{% endif -%}
-              </span>
-              <span class="tx">
-                <span class="n">{{ r.t }}{% if r.d %}<span class="dv" title="Linked from an image on the legacy page, not a confirmed relationship">&middot;</span>{% endif %}</span>
-                {%- if r.r %}<span class="r">{{ r.r }}</span>{% endif -%}
-              </span>
-            </a>
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% endfor %}
+    {% set facts = [] %}
+    {% if F.originalPublishDate %}{% set facts = facts|merge([{ k: 'PUBLISHED', v: F.originalPublishDate }]) %}{% endif %}
+    {% if F.originallyPublishedTitle %}{% set facts = facts|merge([{ k: 'AS PRINTED', v: F.originallyPublishedTitle }]) %}{% endif %}
+    {% if publishers|length %}{% set facts = facts|merge([{ k: 'PUBLISHER', v: publishers|map(o => o.title)|join('; ') }]) %}{% endif %}
+    {% if F.sourceLine %}{% set facts = facts|merge([{ k: 'SOURCE', v: F.sourceLine }]) %}{% endif %}
+    {% if era %}{% set facts = facts|merge([{ k: 'ERA', v: era.title }]) %}{% endif %}
+    {% set facts = facts|merge([{ k: 'UPDATED', v: entry.dateUpdated|date('M j, Y') }]) %}
 
+    <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 14px">
+      <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 12px">RECORD</div>
+      {% for f in facts %}
+        <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; padding: 9px 0; border-bottom: 1px solid #F1F2F5; align-items: baseline">
+          <div style="font-family: 'Jost', sans-serif; font-size: 10.5px; letter-spacing: .12em; color: #8A919E">{{ f.k }}</div>
+          <div style="font-size: 14.5px; line-height: 1.5; color: #2C2C2C">{{ f.v }}</div>
+        </div>
+      {% endfor %}
+      {% if F.legacyUrl %}
+        {% set legacyHref = include('_partials/legacy-url', { value: F.legacyUrl })|trim %}
+        <a href="{{ legacyHref }}" target="_blank" rel="noopener" style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 0 4px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em">Read the original page <span>&nearr;</span></a>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; color: #9AA1AD; word-break: break-all; padding-bottom: 8px">{{ F.legacyUrl }}</div>
+      {% endif %}
+    </div>
     {% if collection %}
       {% set total = chapters|length %}
       {% set pos = idx is not null ? idx + 1 : 0 %}
@@ -635,32 +640,41 @@
     {% endif %}
 
 
-    {% include "_partials/record/cite-article" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles' } only %}
 
     {#- Record facts, as drawn: the label column in small Jost, the value beside
         it, then the legacy link and the legacy path in mono beneath. -#}
-    {% set facts = [] %}
-    {% if F.originalPublishDate %}{% set facts = facts|merge([{ k: 'PUBLISHED', v: F.originalPublishDate }]) %}{% endif %}
-    {% if F.originallyPublishedTitle %}{% set facts = facts|merge([{ k: 'AS PRINTED', v: F.originallyPublishedTitle }]) %}{% endif %}
-    {% if publishers|length %}{% set facts = facts|merge([{ k: 'PUBLISHER', v: publishers|map(o => o.title)|join('; ') }]) %}{% endif %}
-    {% if F.sourceLine %}{% set facts = facts|merge([{ k: 'SOURCE', v: F.sourceLine }]) %}{% endif %}
-    {% if era %}{% set facts = facts|merge([{ k: 'ERA', v: era.title }]) %}{% endif %}
-    {% set facts = facts|merge([{ k: 'UPDATED', v: entry.dateUpdated|date('M j, Y') }]) %}
-
-    <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 14px">
-      <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 12px">RECORD</div>
-      {% for f in facts %}
-        <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; padding: 9px 0; border-bottom: 1px solid #F1F2F5; align-items: baseline">
-          <div style="font-family: 'Jost', sans-serif; font-size: 10.5px; letter-spacing: .12em; color: #8A919E">{{ f.k }}</div>
-          <div style="font-size: 14.5px; line-height: 1.5; color: #2C2C2C">{{ f.v }}</div>
+    {% set sbLabels = { people: 'PEOPLE', places: 'PLACES', organizations: 'ORGANIZATIONS' } %}
+    {% for bucket, label in sbLabels %}
+      {% if sbLists[bucket]|length %}
+        <div class="ar-sb">
+          <div class="lab">{{ label }}</div>
+          {#- A row with a picture shows the picture. A row without one shows the
+              name and the descriptor, and nothing else. The initials in a gold
+              circle were decoration standing in for information: two letters
+              that tell a reader nothing they cannot read in the name beside
+              them, while looking like a portrait from across the page. -#}
+          {% for r in sbLists[bucket] %}
+            <a class="row{{ r.img ? '' : ' noimg' }}" href="{{ r.u }}">
+              {%- if r.img %}
+              <span class="th"><img src="{{ r.img }}" alt="" loading="lazy"></span>
+              {%- endif %}
+              <span class="tx">
+                <span class="n">{{ r.t }}{% if r.d %}<span class="dv" title="Linked from an image on the legacy page, not a confirmed relationship">&middot;</span>{% endif %}</span>
+                {%- if r.r %}<span class="r">{{ r.r }}</span>{% endif -%}
+              </span>
+            </a>
+          {% endfor %}
         </div>
-      {% endfor %}
-      {% if F.legacyUrl %}
-        {% set legacyHref = include('_partials/legacy-url', { value: F.legacyUrl })|trim %}
-        <a href="{{ legacyHref }}" target="_blank" rel="noopener" style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 0 4px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em">Read the original page <span>&nearr;</span></a>
-        <div style="font-family: ui-monospace, monospace; font-size: 11px; color: #9AA1AD; word-break: break-all; padding-bottom: 8px">{{ F.legacyUrl }}</div>
       {% endif %}
-    </div>
+    {% endfor %}
+
+
+    {#- Cite last. It is what a reader wants once they have decided the page is
+        worth citing, and nothing above it should be pushed down by it. This is
+        the shared partial the other record types use; an earlier version of
+        this block was a hand-rolled copy sitting fourth, so every article
+        offered two different citations in one column. -#}
+    {% include "_partials/record/cite-article" with { entry: entry, author: author, collection: collection, date: F.originalPublishDate, label: 'Articles' } only %}
   </aside>
 </main>
 {% endblock %}

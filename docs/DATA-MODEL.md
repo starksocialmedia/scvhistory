@@ -373,7 +373,7 @@ emitted from whichever side schema.org expects.
 
 ### Organizations — `organizations/organization`
 
-45 fields.
+50 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -394,6 +394,9 @@ emitted from whichever side schema.org expects.
 | `orgLegacyUrl` | PlainText | **local** | no external equivalent |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
 | `wikidataId` | PlainText | Wikidata `QID` | emitted as schema.org sameAs |
+| `cdsCode` | PlainText | CDE `CDS code` | Wikidata P2183 |
+| `ncesId` | PlainText | NCES `school or district ID` | Wikidata P2696 |
+| `ein` | PlainText | IRS `EIN` | Wikidata P1297 |
 | `hauntedStatus` | Dropdown | **local** | no external equivalent |
 | `hauntedAccount` | PlainText | **local** | no external equivalent |
 | `hauntedSource` | PlainText | **local** | no external equivalent |
@@ -412,6 +415,8 @@ emitted from whichever side schema.org expects.
 | `historicalEra` | Categories | Dublin Core `temporal` | local vocabulary, no external period thesaurus |
 | `historicalPeriod` | Categories | Dublin Core `temporal` | local vocabulary |
 | `neighborhood` | Categories | Dublin Core `spatial` | local vocabulary of valley communities |
+| `orgType` | Dropdown | **local** | drives the schema.org @type |
+| `schoolLevel` | Dropdown | **local** | drives the schema.org School subtype |
 | `legacyKey` | PlainText | **local** | no external equivalent |
 | `legacyUrl` | PlainText | Dublin Core `source` | where it stood on the legacy site |
 | `sourcePath` | PlainText | Dublin Core `source` |  |
@@ -668,7 +673,9 @@ local unless the note says otherwise.
 - **`collectionKind`** — `book`, `column`, `catalogue`, `topic`.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
+- **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
 - **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
+- **`schoolLevel`** — `elementary`, `middle`, `high`, `college`, `district`. Drives the schema.org School subtype: ElementarySchool, MiddleSchool, HighSchool, CollegeOrUniversity. A district has no schema.org subtype and stays Organization.
 
 ## Category groups
 

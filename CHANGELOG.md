@@ -1739,3 +1739,14 @@ handles, 64 mapped to an external standard and 175 local by definition. The
 name policy, the identifier schemes with their URL patterns, and the relation
 vocabulary. check_render now fails if a field exists that the document does not
 mention.
+
+Sidebar, third time asked. Communities removed: they are the band chips and
+nothing else. Order is Record, Part of Collection, People, Places,
+Organizations, Cite, with nothing above Record. Initial circles gone
+everywhere, including the empty gold ring the author box drew when a person had
+no portrait. The cite block at the foot is the shared partial; a hand-rolled
+copy of it had been sitting fourth.
+
+An inline image that links to a record can now also open a lightbox. The two
+were mutually exclusive, and the data-record attribute written for exactly this
+case was unreachable.

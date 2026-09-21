@@ -50,6 +50,8 @@
   .rec-inline-go{display:block;text-decoration:none}
   .rec-inline-go:hover img{border-color:#C4A031}
   .rec-inline-go .go{display:block;font-family:Jost,sans-serif;font-size:12.5px;letter-spacing:.04em;color:#7A5C1B;margin-top:7px;text-align:left}
+  .rec-inline-link{display:block;font-family:Jost,sans-serif;font-size:12.5px;letter-spacing:.04em;color:#7A5C1B;margin-top:7px;text-align:left;text-decoration:none}
+  .rec-inline-link:hover{text-decoration:underline}
   .rec-inline-go:hover .go{text-decoration:underline}
   .rec-inline figcaption{font-size:13.5px;font-style:italic;color:#5B6472;line-height:1.5;margin-top:8px}
   .rec-inline .cr{display:block;font-style:normal;font-size:12px;color:#5B6472;margin-top:3px}
@@ -346,24 +348,33 @@
           {%- set enhNote = enhBits|join(' &middot; ') -%}
           {%- set zoomSrc = zoomSrc ?: asset.url -%}
         {%- endif -%}
-        {% if linkTo %}
+        {#- A picture can both open and lead somewhere, and until now it could
+            not: `if linkTo` returned the record link and the lightbox test was
+            never reached, so Jerry Reynolds' portrait on the preface, a 720 by
+            1066 file drawn at 280, had no magnifier. The data-record attribute
+            three lines down was written for exactly this case and was
+            unreachable.
+
+            The picture opens the lightbox, which carries the record link
+            inside it, and the caption line below carries the record link too
+            for anyone who wants the record without the detour. -#}
+        {% if zoomSrc %}
+          <button type="button" data-lightbox data-src="{{ zoomSrc }}"
+                  data-caption="{{ cap }}" data-credit="{{ credit }}"
+                  {% if linkTo %}data-record="{{ linkTo.url }}"{% endif %}
+                  {% if enhanced %}data-enhanced="{{ enhanced.url }}" data-enhanced-note="{{ enhNote|striptags }}"{% endif %}
+                  aria-label="{{ cap ? 'Open the larger image: ' ~ cap : 'Open the larger image' }}">
+            <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
+            {% if enhanced %}<span class="enh">Enhanced available</span>{% endif %}
+          </button>
+          {% if linkTo %}<a href="{{ linkTo.url }}" class="rec-inline-link">{{ linkTo.title }} &rarr;</a>{% endif %}
+        {% elseif linkTo %}
           <a href="{{ linkTo.url }}" class="rec-inline-go">
             <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
             <span class="go">{{ linkTo.title }} &rarr;</span>
           </a>
         {% else %}
-          {% if zoomSrc %}
-            <button type="button" data-lightbox data-src="{{ zoomSrc }}"
-                    data-caption="{{ cap }}" data-credit="{{ credit }}"
-                    {% if linkTo %}data-record="{{ linkTo.url }}"{% endif %}
-                    {% if enhanced %}data-enhanced="{{ enhanced.url }}" data-enhanced-note="{{ enhNote|striptags }}"{% endif %}
-                    aria-label="{{ cap ? 'Open the larger image: ' ~ cap : 'Open the larger image' }}">
-              <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
-              {% if enhanced %}<span class="enh">Enhanced available</span>{% endif %}
-            </button>
-          {% else %}
-            <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
-          {% endif %}
+          <img src="{{ asset.url }}" alt="{{ asset.alt ?: cap }}" loading="lazy">
         {% endif %}
         {%- if cap or credit or enhNote %}
         <figcaption>{{ cap }}{% if credit %}<span class="cr">{{ credit }}</span>{% endif %}
