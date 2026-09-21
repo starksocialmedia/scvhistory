@@ -97,6 +97,19 @@ echo 'assets in the volume: ' . count($held) . PHP_EOL;
 
 /* ------------------------------------------------------------ pass lists */
 
+/* Files the series imports will need. Worden, Making Cents and the five Old
+   Town Newhall runs reference pictures by name, and a body that renders an
+   [image:N] against an asset that is not here shows nothing. Each dry run
+   writes its list, so pass 3 covers them without anybody keeping a tally by
+   hand. */
+$wanted = [];
+foreach (glob(\Craft::getAlias('@webroot') . '/review/images-wanted-*.json') as $wf) {
+    foreach ((json_decode(file_get_contents($wf), true) ?: []) as $fn) {
+        $wanted[strtolower($fn)] = true;
+    }
+}
+if ($wanted) { echo 'files the series imports reference: ' . count($wanted) . PHP_EOL; }
+
 /* 1. every file with a real caption, on the same terms apply_extracted_captions
       uses: a caption that is not navigation. */
 $NAV = '/^\s*(click|download|enlarge|mouse\s*over|scroll\s+down)\b/iu';
@@ -154,6 +167,7 @@ $PASSES = [
     ['key' => 'enlarge',   'label' => 'Enlarge targets', 'want' => $targets],
     ['key' => 'plates',    'label' => 'One plate per photograph record', 'want' => $plates],
     ['key' => 'captioned', 'label' => 'Files with a caption we hold', 'want' => $captioned],
+    ['key' => 'series',    'label' => 'Referenced by the Worden, OTN and coins imports', 'want' => $wanted],
     ['key' => 'better',    'label' => 'Better copies of files we already hold', 'want' => $better],
 ];
 

@@ -1,17 +1,91 @@
 {% extends "_layouts/base" %}
-{% set metaDescription = 'Newspaper series and article runs, kept together and in the order their authors intended.' %}
+{% set metaDescription = 'Newspaper series, column runs and gathered subjects, kept together and in the order their authors intended.' %}
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 
 {% block content %}
-{% set cols = craft.entries().section('collections').status(null).orderBy('title asc').all() %}
-{% set totalArticles = 0 %}
-{% set authorIds = [] %}
+{#
+  The collections lander.
+
+  Sorted by kind rather than alphabetically: books first, then column runs, then
+  catalogues, then topics, and the uncrawled last. A reader looking for a
+  serialised history should not have to scroll past four author columns to find
+  it, and the kind is the most useful thing we can say about a collection before
+  they click.
+
+  AN EMPTY COLLECTION SHOWS ITS DESCRIPTION, NOT A ZERO.
+
+  Four of them have a record, a description and a legacy URL, and no inventory
+  covers their directories: boston, manzer, newsmaker and iraq were never
+  crawled. Printing "0 articles" on those says the archive has nothing to say
+  about John Boston, when what is true is that his run has not been migrated
+  yet. The card says so instead, and the description carries the substance: the
+  legacy page's own account of how much is there.
+#}
+{% import "collections/_kind" as ck %}
+
+{% set cols = craft.entries().section('collections').status(null).limit(null).all() %}
+
+{% set KINDORDER = { book: 1, column: 2, catalogue: 3, topic: 4, '': 5 } %}
+{% set KINDLABEL = { book: 'Book', column: 'Column run', catalogue: 'Catalogue', topic: 'Topic', '': 'Collection' } %}
+
+{% set rows = [] %}
+{% set totalPieces = 0 %}
 {% for c in cols %}
-  {% set n = c.articlesInCollection.count() ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).count() %}
-  {% set totalArticles = totalArticles + n %}
-  {% set a = c.writtenBy.one() ?? null %}
-  {% if a and a.id not in authorIds %}{% set authorIds = authorIds|merge([a.id]) %}{% endif %}
+  {% set kind = ck.of(c)|trim %}
+  {% set n = c.articlesInCollection.count()
+       ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).count() %}
+  {% set totalPieces = totalPieces + n %}
+  {% set author = c.writtenBy.one() ?? null %}
+  {% set editor = c.editedBy.one() ?? null %}
+  {% set hasBand = false %}
+  {% for f in c.fieldLayout.customFields %}{% if f.handle == 'bandImage' %}{% set hasBand = true %}{% endif %}{% endfor %}
+  {% set band = hasBand and c.bandImage ? c.bandImage.one() ?? null : null %}
+
+  {#- The era span, from the pieces themselves. A collection has no era of its
+      own and asserting one would be inventing it. -#}
+  {% set eras = [] %}
+  {% if n %}
+    {% for p in craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).limit(null).all() %}
+      {% set e = p.historicalEra.one() ?? null %}
+      {% if e and e.title not in eras %}{% set eras = eras|merge([e.title]) %}{% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% set desc = (c.body is defined and c.body) ? c.body|striptags|trim : '' %}
+  {% set desc = desc|split('. ')|first %}
+  {% set rows = rows|merge([{
+    c: c, kind: kind, n: n, author: author, editor: editor, band: band,
+    eras: eras, desc: desc,
+    ord: (KINDORDER[kind] ?? 5) * 1000 + (n > 0 ? 0 : 500)
+  }]) %}
 {% endfor %}
+{% set rows = rows|sort((a, b) => a.ord <=> b.ord ?: b.n <=> a.n) %}
+
+{% css %}
+.cx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px;margin-top:26px}
+.cx-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E2E4E8;text-decoration:none;color:inherit}
+.cx-card:hover{border-color:#C4A031}
+.cx-art{aspect-ratio:16/9;background:#FDF7EA;position:relative;overflow:hidden;border-bottom:1px solid #EFE6D0}
+.cx-art img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block}
+.cx-art .none{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+              font-family:'Playfair Display',serif;font-size:34px;color:#DCC98F}
+.cx-body{padding:15px 18px 18px;display:flex;flex-direction:column;flex:1}
+.cx-kick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:10.5px;
+         letter-spacing:.14em;text-transform:uppercase;color:#7E6118;margin-bottom:8px}
+.cx-kick .n{color:#8A919E}
+.cx-t{font-family:'Playfair Display',serif;font-size:20px;line-height:1.24;color:#17254C;margin:0}
+.cx-by{font-family:'Playfair Display',serif;font-style:italic;font-size:14.5px;color:#5B6472;margin-top:5px}
+.cx-d{font-size:13.5px;line-height:1.55;color:#4A5260;margin-top:10px;flex:1}
+.cx-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;
+         font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.06em;color:#7A5C1B}
+.cx-foot .era{color:#8A919E}
+.cx-pend{display:inline-block;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.12em;
+         text-transform:uppercase;color:#8A6C1B;border:1px solid #DCC98F;background:#FDF7EA;padding:3px 8px}
+.cx-sec{display:flex;align-items:center;gap:16px;margin:36px 0 4px}
+.cx-sec h2{font-family:'Playfair Display',serif;font-weight:500;font-size:25px;color:#17254C;margin:0}
+.cx-sec .rule{flex:1;height:1px;background:#E2E4E8}
+.cx-sec .n{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;color:#8A919E}
+{% endcss %}
 
 <div class="scv-page">
   <section class="scv-hero">
@@ -19,14 +93,15 @@
       <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Collections</span></div>
       <div class="scv-herogrid">
         <div>
-          <div class="scv-kicker">Series kept in order</div>
-          <h1>Collections</h1>
-          <p class="scv-lede">Newspaper series and article runs, kept together and in the order their authors intended.</p>
+          <div class="scv-kicker">Collections</div>
+          <h1>Series and runs</h1>
+          <p class="scv-lede">Work that belongs together: serialised histories read in
+          order, column runs by a single hand over many years, a periodical's numbered
+          issues, and subjects gathered from many hands.</p>
         </div>
         <div class="scv-stat">
-          <div><b>{{ cols|length }}</b><span>Collections</span></div>
-          <div><b>{{ totalArticles }}</b><span>Articles</span></div>
-          {% if authorIds|length %}<div><b>{{ authorIds|length }}</b><span>{{ authorIds|length == 1 ? 'Author' : 'Authors' }}</span></div>{% endif %}
+          <div><b>{{ rows|length }}</b><span>Collections</span></div>
+          <div><b>{{ totalPieces }}</b><span>Pieces</span></div>
         </div>
       </div>
     </div>
@@ -34,27 +109,49 @@
 
   <main class="scv-main">
     <div class="scv-wrap">
-      {% if cols|length %}
-        <div class="scv-cards scv-cards--wide">
-          {% for c in cols %}
-            {% set n = c.articlesInCollection.count() ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).count() %}
-            {% set img = (c.featuredImage is defined and c.featuredImage) ? c.featuredImage.one() ?? null : null %}
-            {% set author = c.writtenBy.one() ?? null %}
-            {% set era = c.historicalEra.one() ?? null %}
-            <a class="scv-tile" href="{{ c.url }}">
-              <div class="scv-ph scv-ph--wide">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ (c.title ?: c.slug)|slice(0,1)|upper }}</span>{% endif %}</div>
-              <div class="scv-tilebody">
-                <h3>{{ c.title ?: c.slug }}</h3>
-                {% if author %}<div class="scv-tilemeta">{{ author.title }}</div>{% endif %}
-                <div class="scv-tilemeta">{{ n }} article{{ n == 1 ? '' : 's' }}</div>
-                <div class="scv-tilefoot">{{ era ? era.title : 'Series' }}</div>
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      {% else %}
-        <div class="scv-empty">No collections yet.</div>
-      {% endif %}
+      {% set lastKind = '__none__' %}
+      {% set lastEmpty = null %}
+      {% for r in rows %}
+        {% set isEmpty = r.n == 0 %}
+        {% if r.kind != lastKind or isEmpty != lastEmpty %}
+          {% if not loop.first %}</div>{% endif %}
+          {% set groupRows = rows|filter(x => x.kind == r.kind and (x.n == 0) == isEmpty) %}
+          <div class="cx-sec">
+            <h2>{{ isEmpty and r.kind == '' ? 'Not yet migrated' : (KINDLABEL[r.kind] ?? 'Collection') ~ (groupRows|length > 1 ? 's' : '') }}</h2>
+            <span class="rule"></span>
+            <span class="n">{{ groupRows|length }}</span>
+          </div>
+          <div class="cx-grid">
+          {% set lastKind = r.kind %}
+          {% set lastEmpty = isEmpty %}
+        {% endif %}
+
+        <a class="cx-card" href="{{ r.c.url }}">
+          <div class="cx-art">
+            {% if r.band %}<img src="{{ r.band.getUrl({ width: 640, height: 360, mode: 'crop', position: 'right-center' }) ?: r.band.url }}" alt="" loading="lazy">
+            {% else %}<span class="none">{{ (r.c.title|slice(0,1))|upper }}</span>{% endif %}
+          </div>
+          <div class="cx-body">
+            <div class="cx-kick">
+              <span>{{ KINDLABEL[r.kind] ?? 'Collection' }}</span>
+              {% if r.n %}<span class="n">{{ r.n }} piece{{ r.n == 1 ? '' : 's' }}</span>{% endif %}
+            </div>
+            <h3 class="cx-t">{{ r.c.title ?: r.c.slug }}</h3>
+            {% if r.author %}<div class="cx-by">by {{ r.author.title }}</div>
+            {% elseif r.editor %}<div class="cx-by">edited by {{ r.editor.title }}</div>{% endif %}
+            {% if r.desc %}<p class="cx-d">{{ r.desc }}{{ r.desc|slice(-1) == '.' ? '' : '.' }}</p>{% endif %}
+            <div class="cx-foot">
+              {%- if r.n %}
+                {% if r.eras|length %}<span class="era">{{ r.eras|slice(0, 2)|join(' &middot; ')|raw }}{{ r.eras|length > 2 ? ' &middot; +' ~ (r.eras|length - 2) : '' }}</span>{% endif %}
+              {%- else %}
+                {#- Not a zero. The run exists; it has not been migrated. -#}
+                <span class="cx-pend">Not yet migrated</span>
+              {%- endif %}
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+      {% if rows|length %}</div>{% endif %}
     </div>
   </main>
 </div>
