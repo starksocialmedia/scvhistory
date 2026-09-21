@@ -56,6 +56,8 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .auth .alts{margin:5px 0 0;padding-left:16px;color:var(--muted);font-size:12.5px}
 .auth .tie{display:block;color:#8A4B00;margin-top:4px}
 .auth a{color:#2F567F}
+.auth.selfsrc{background:var(--cream);border-color:var(--cream-b);border-left-color:var(--gold)}
+.auth.selfsrc b{color:var(--gold-d)}
 
 .ctx{margin-top:12px}
 .ctx .q{border-left:2px solid var(--bord);padding:4px 0 4px 12px;margin-bottom:8px;font-size:13.5px;line-height:1.7;color:#3A3A3A}
@@ -100,6 +102,9 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .pair .pacts button.same.on{background:var(--green);border-color:var(--green);color:#fff}
 .pair .pacts button.diff.on{background:var(--muted);border-color:var(--muted);color:#fff}
 .pair .pacts .outcome{font-size:12.5px;color:var(--muted)}
+.pair .folded{margin-top:8px;font-size:13px;color:var(--green)}
+.pair .folded b{font-weight:500}
+.rec .includes{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--gold-d);background:var(--cream);border:1px solid var(--cream-b);padding:2px 7px;margin-left:8px;white-space:nowrap}
 footer{position:fixed;bottom:0;left:0;right:0;background:var(--navy);color:#fff;z-index:9}
 footer .wrap{padding-top:12px;padding-bottom:12px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:13px}
 footer .tot{font-family:'Jost',sans-serif;letter-spacing:.08em}
@@ -194,11 +199,21 @@ async function token() {
   return CSRF;
 }
 
+/* The header says what has been decided and, deliberately, that none of it has
+   happened yet. A screen that reports "38 to create" without that second half
+   reads as though it has created them. */
+function status(bad) {
+  const el = document.getElementById('saved');
+  if (!el) return;
+  const n = Object.keys(decisions).length + Object.keys(pairState).length;
+  el.textContent = n + ' decided \u00b7 0 created until apply';
+  el.className = bad ? 'saved bad' : 'saved';
+}
 function flash(msg, bad) {
   const el = document.getElementById('saved');
   if (!el) return;
-  el.textContent = msg;
-  el.className = bad ? 'saved bad' : 'saved';
+  if (bad) { el.textContent = msg; el.className = 'saved bad'; return; }
+  status(false);
 }
 
 async function persist(decision) {
@@ -212,7 +227,7 @@ async function persist(decision) {
     });
     const j = await r.json();
     if (!j.ok) throw new Error(j.error || 'refused');
-    flash('saved \u00b7 ' + j.total + ' on file');
+    status(false);
   } catch (e) {
     flash('NOT SAVED: ' + e.message + '. Your work is in this browser only.', true);
   } finally { SAVING--; }
@@ -229,7 +244,7 @@ async function unpersist(name, type) {
     });
     const j = await r.json();
     if (!j.ok) throw new Error(j.error || 'refused');
-    flash('removed');
+    status(false);
   } catch (e) {
     flash('NOT SAVED: ' + e.message, true);
   } finally { SAVING--; }
@@ -296,9 +311,46 @@ const AUTH_URL = {
   GNIS: id => 'https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' + encodeURIComponent(id),
 };
 
+/* A school the authorities cannot vouch for.
+ *
+ * NCES begins in 1987 and CDE is unreachable, so a schoolhouse that closed in
+ * 1910 is in no table and never will be. The absence is not a gap in the
+ * record; it is the record. Those approve with provenance naming this archive
+ * as the source, because for the Felton School and the Sulphur Springs School
+ * that is simply true: SCVHistory.com is where the evidence is.
+ *
+ * The test is deliberately narrow. A name that looks like a school, with no
+ * match, and nothing in its sentences placing it after 1987. */
+const SELF_SOURCE = 'no external authority; SCVHistory.com is the source';
+
+function looksLikeSchool(r) {
+  const n = String(r.name || '').trim();
+  /* "Academy Award" and "Academy Addressing" are not schools. A type word that
+     opens the name is describing something else with it. */
+  if (/^(academy|school|district)\b/i.test(n)) return false;
+  return /\b(school|schoolhouse|seminary)\b/i.test(n)
+      || /\b(academy|district)$/i.test(n);
+}
+function modernEvidence(r) {
+  const t = (r.context || []).map(c => c.text).join(' ');
+  const years = (t.match(/\b(1[89]\d{2}|20\d{2})\b/g) || []).map(Number);
+  return years.some(y => y >= 1987);
+}
+function selfSourced(r) {
+  return !r.authority && looksLikeSchool(r) && !modernEvidence(r);
+}
+
 function authBlock(r) {
   const a = r.authority;
-  if (!a || !a.top) return '';
+  if (!a || !a.top) {
+    if (!selfSourced(r)) return '';
+    return `<div class="auth selfsrc">
+      <b>No authority holds this</b>
+      <span class="det">NCES begins in 1987 and CDE is unreachable, so a school that closed before
+        then is in no table. Approving records the provenance as
+        &ldquo;${esc(SELF_SOURCE)}&rdquo;, which for this archive is simply true.</span>
+    </div>`;
+  }
   const t = a.top;
   const url = (AUTH_URL[t.source] || (() => ''))(t.id);
   const bits = [];
@@ -321,6 +373,34 @@ function authBlock(r) {
   </div>`;
 }
 
+/* Which names have been folded into this one by a decided pair, so the
+   surviving card says out loud that the fold is riding with it. Without this a
+   reviewer marks "same thing", scrolls down, and approves a card that looks
+   exactly as it did before the decision. */
+/* Matched on the NAME, not the key, for the same reason every other lookup
+   here is: the pair was decided against a queue that has since been rebuilt,
+   and its keys moved when the canon folded things. pairNames is filled at boot
+   from what the server holds, which carries both display names. */
+let pairNames = {};      /* "shortKey||longKey" => {short, long} */
+
+function foldedInto(r) {
+  const me = normName(r.name);
+  const out = [];
+  Object.entries(pairState).forEach(([k, verdict]) => {
+    if (verdict !== 'same') return;
+    const info = pairNames[k];
+    const [sk, lk] = k.split('||');
+    const longName = info ? info.long : null;
+    const shortName = info ? info.short : null;
+    const c = (DATA.containment || []).find(x => x.shortKey === sk && x.longKey === lk);
+    const ln = longName || (c ? c.long : null);
+    const sn = shortName || (c ? c.short : sk);
+    if (!ln || normName(ln) !== me) return;
+    out.push(sn);
+  });
+  return out;
+}
+
 function card(r, rank) {
   const id = idOf(r);
   const d = decisions[id] || {};
@@ -339,6 +419,7 @@ function card(r, rank) {
       <span class="nm"><span class="rank">${rank}.</span>${esc(r.name)}</span>
       <span class="ct">${r.articleCount} article${r.articleCount === 1 ? '' : 's'} &middot; ${r.mentions} mention${r.mentions === 1 ? '' : 's'}${
         r.decidedAs ? ' &middot; ' + esc(r.decidedAs) + ' in an earlier session' : ''}</span>
+      ${foldedInto(r).map(n => `<span class="includes">includes ${esc(n)}</span>`).join('')}
     </div>
 
     <div class="guess">
@@ -410,6 +491,7 @@ function savePairs() {
   try { localStorage.setItem(KEY + '-pairs', JSON.stringify(pairState)); } catch (e) {}
 }
 async function persistPair(c, verdict) {
+  pairNames[c.shortKey + '||' + c.longKey] = { short: c.short, long: c.long };
   await persist({ name: 'PAIR ' + c.short + ' / ' + c.long, type: 'pair',
                   action: verdict, short: c.short, long: c.long,
                   shortKey: c.shortKey, longKey: c.longKey, shape: c.shape });
@@ -454,6 +536,7 @@ function renderPairs() {
         <span class="outcome">${c.shared} article${c.shared === 1 ? '' : 's'} name both${
           st === 'same' ? ' &middot; one record, ' + (c.shortArticles + c.longArticles - c.shared) + ' links' : ''}</span>
       </div>
+      ${st === 'same' ? `<div class="folded">Folded into <b>${esc(c.long)}</b>, approve it below.</div>` : ''}
     </div>`;
   }).join('');
 }
@@ -516,6 +599,9 @@ document.getElementById('list').addEventListener('click', e => {
                       articles: row.articles.map(a => a.id) };
     /* The authority's official name becomes the title and the queue spelling
        becomes an alias, which is the whole point of matching. */
+    if (act === 'approved' && selfSourced(row)) {
+      decisions[id].recordProvenance = SELF_SOURCE;
+    }
     if (act === 'approved' && row.authority && row.authority.top && !row.authority.tied) {
       const t = row.authority.top;
       decisions[id].authority = { source: t.source, id: t.id, idField: t.idField, name: t.name };
@@ -618,14 +704,19 @@ async function boot() {
       let applied = 0, pairs = 0;
       Object.values(srv.decisions || {}).forEach(x => {
         if (x.type === 'pair') {
-          if (x.shortKey && x.longKey) { pairState[x.shortKey + '||' + x.longKey] = x.action; pairs++; }
+          if (x.shortKey && x.longKey) {
+            const k = x.shortKey + '||' + x.longKey;
+            pairState[k] = x.action;
+            pairNames[k] = { short: x.short || x.shortKey, long: x.long || x.longKey };
+            pairs++;
+          }
           return;
         }
         decisions[normName(x.name)] = x;
         applied++;
       });
       cache();
-      flash(applied + ' decisions on file' + (pairs ? ', ' + pairs + ' pairs' : ''));
+      status(false);
     }
   } catch (e) {
     flash('could not read the decisions file; showing this browser only', true);

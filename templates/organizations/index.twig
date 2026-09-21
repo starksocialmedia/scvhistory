@@ -6,10 +6,60 @@
 
 {% block content %}
 {% set comSlug = craft.app.request.getParam('community') %}
+{% set kind = craft.app.request.getParam('kind') %}
+{% set level = craft.app.request.getParam('level') %}
 {% set all = craft.entries().section('organizations').status(null).orderBy('title asc').all() %}
+
+{#- orgType and schoolLevel are added by scripts/import/add_org_taxonomy_fields.php
+    and may not be on the layout yet. The handles are read off the layout rather
+    than asked for with `is defined`, which answers true on a type that lacks
+    the field and then throws when the value is read. -#}
+{% set handles = all|length ? all[0].fieldLayout.customFields|map(f => f.handle) : [] %}
+{% set hasKinds = 'orgType' in handles %}
+{% set hasLevels = 'schoolLevel' in handles %}
+
+{% set KINDS = {
+  school:     'Schools',
+  government: 'Government',
+  business:   'Businesses',
+  nonprofit:  'Nonprofits',
+  church:     'Churches',
+  club:       'Clubs',
+  media:      'Newspapers',
+  military:   'Military',
+  other:      'Other'
+} %}
+{% set KIND_ONE = {
+  school: 'School', government: 'Government body', business: 'Business',
+  nonprofit: 'Nonprofit', church: 'Church', club: 'Club',
+  media: 'Newspaper', military: 'Military', other: 'Other'
+} %}
+{% set LEVELS = {
+  elementary: 'Elementary', middle: 'Middle', high: 'High',
+  college: 'College', district: 'Districts'
+} %}
+
 {% set query = craft.entries().section('organizations').status(null).orderBy('title asc') %}
 {% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).status(null).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
+{% if hasKinds and kind and KINDS[kind] is defined %}{% set query = query.orgType(kind) %}{% endif %}
+{#- The level only narrows within schools, so it is ignored unless schools are
+    the kind on screen. A level chip on its own would filter to schools without
+    saying it had. -#}
+{% if hasLevels and kind == 'school' and level and LEVELS[level] is defined %}{% set query = query.schoolLevel(level) %}{% endif %}
 {% set places = query.all() %}
+
+{% set kindCounts = {} %}
+{% set levelCounts = {} %}
+{% if hasKinds %}
+  {% for p in all %}
+    {% set k = p.orgType.value ?: 'unset' %}
+    {% set kindCounts = kindCounts|merge({ (k): (kindCounts[k] ?? 0) + 1 }) %}
+    {% if hasLevels and k == 'school' %}
+      {% set lv = p.schoolLevel.value ?: 'unset' %}
+      {% set levelCounts = levelCounts|merge({ (lv): (levelCounts[lv] ?? 0) + 1 }) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 
 {% set comIds = [] %}
 {% set earliest = null %}
@@ -48,13 +98,39 @@
 
   <section class="pl-filters">
     <div class="pl-wrap">
+      {% set keep = {} %}
+      {% if kind %}{% set keep = keep|merge({kind: kind}) %}{% endif %}
+      {% if kind == 'school' and level %}{% set keep = keep|merge({level: level}) %}{% endif %}
+
       <div class="pl-lab">COMMUNITY</div>
-      <a class="pl-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('organizations') }}">All communities</a>
+      <a class="pl-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('organizations', keep) }}">All communities</a>
       {% for c in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
         {% set n = craft.entries().section('organizations').relatedTo(c).status(null).count() %}
-        {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('organizations', {community: c.slug}) }}">{{ c.title }} ({{ n }})</a>{% endif %}
+        {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('organizations', keep|merge({community: c.slug})) }}">{{ c.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
-      <div class="pl-count">{{ comSlug ? places|length ~ ' of ' ~ all|length : all|length }} organizations</div>
+
+      {% if hasKinds %}
+        {% set keepCom = comSlug ? {community: comSlug} : {} %}
+        <div class="pl-lab" style="margin-top:14px">KIND</div>
+        <a class="pl-chip {{ not kind ? 'on' : '' }}" href="{{ url('organizations', keepCom) }}">All kinds</a>
+        {% for k, label in KINDS %}
+          {% set n = kindCounts[k] ?? 0 %}
+          {% if n %}<a class="pl-chip {{ kind == k ? 'on' : '' }}" href="{{ url('organizations', keepCom|merge({kind: k})) }}">{{ label }} ({{ n }})</a>{% endif %}
+        {% endfor %}
+
+        {#- The level row appears only when schools are the kind on screen,
+            because a level means nothing beside a newspaper. -#}
+        {% if hasLevels and kind == 'school' %}
+          <div class="pl-lab" style="margin-top:14px">LEVEL</div>
+          <a class="pl-chip {{ not level ? 'on' : '' }}" href="{{ url('organizations', keepCom|merge({kind: 'school'})) }}">All levels</a>
+          {% for lv, label in LEVELS %}
+            {% set n = levelCounts[lv] ?? 0 %}
+            {% if n %}<a class="pl-chip {{ level == lv ? 'on' : '' }}" href="{{ url('organizations', keepCom|merge({kind: 'school', level: lv})) }}">{{ label }} ({{ n }})</a>{% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+
+      <div class="pl-count">{{ comSlug or kind or level ? places|length ~ ' of ' ~ all|length : all|length }} organizations</div>
     </div>
   </section>
 
@@ -82,7 +158,7 @@
             <div class="pl-body">
               <h3>{{ p.title }}</h3>
               {% if p.dateFounded %}<div class="pl-meta">Est. {{ p.dateFounded }}</div>{% endif %}
-              <div class="pl-comm">{{ coms ?: 'Beyond the valley' }}</div>
+              <div class="pl-comm">{{ coms ?: 'Beyond the valley' }}{% if hasKinds and p.orgType.value %} &middot; {{ KIND_ONE[p.orgType.value] ?? p.orgType.value }}{% if hasLevels and p.orgType.value == 'school' and p.schoolLevel.value %}, {{ LEVELS[p.schoolLevel.value]|lower }}{% endif %}{% endif %}</div>
             </div>
           </a>
         {% endfor %}

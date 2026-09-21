@@ -1722,3 +1722,14 @@ anything that closed before 1987 is in none of it.
 
 match_authorities.php scores the queue against all four tables and writes the
 best candidate onto each row, with its source, id and reason.
+
+Organization schema written and dry-run: orgType and schoolLevel with a layout
+condition, and cdsCode, ncesId and ein beside the wikidataId that was already
+there. parentOrganization existed too. The organizations index filters by kind,
+and by level once schools are the kind on screen. propose_org_backfill.php
+matches the 21 existing records against the three tables: 8 proposals, 1 of
+them tied, 13 with nothing.
+
+Schools no authority can vouch for approve with provenance naming this archive
+as the source. The pairs block says where a fold went and the surviving card
+says what it carries.
