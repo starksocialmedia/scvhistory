@@ -44,8 +44,16 @@
  */
 
 $REVIEW = \Craft::getAlias('@webroot') . '/review';
-$OUT    = $REVIEW . '/triage.json';
-$REPORT = $REVIEW . '/triage.md';
+
+/* Which pair of queue files to sort. Empty is the live queue; '-full' is the
+   whole-corpus export, which is kept beside it so a full run never overwrites
+   the queue a person is part way through.
+
+   Set it on the command line:
+     ddev craft exec "\$TRIAGE_SUFFIX='-full'; eval(file_get_contents('scripts/import/triage_review_queues.php'))" */
+$SUFFIX = $TRIAGE_SUFFIX ?? '';
+$OUT    = $REVIEW . '/triage' . $SUFFIX . '.json';
+$REPORT = $REVIEW . '/triage' . $SUFFIX . '.md';
 
 $norm = function (string $s): string {
     $s = mb_strtolower(trim($s), 'UTF-8');
@@ -53,14 +61,61 @@ $norm = function (string $s): string {
     return trim(preg_replace('/\s+/', ' ', $s));
 };
 
+/* A rank is not a different man. "Dr. Sol Taylor" is on 224 articles and record
+   #2582 is titled "Sol Taylor", and matching on the exact string reports the
+   biggest missing record in the archive for a record the archive already holds.
+   The entity exporter has stripped honorifics for this reason from the start;
+   the triage matching without doing so is the two halves disagreeing.
+ *
+ * MRS, MISS, MS and SISTER are deliberately NOT stripped. "Mrs. George LeBrun"
+ * is how the nineteenth century names a woman by her husband, and stripping it
+ * matches her to his record and links her articles to him. That is not a near
+ * miss, it is erasing her, and it is the one case where the looser rule does
+ * real damage. Those keep their honorific and stay distinct. */
+$STRIPPABLE = 'mr|dr|doctor|fr|father|capt|captain|col|colonel|gen|general|lt|lieutenant|rev|reverend|'
+            . 'sgt|sergeant|maj|major|don|senor|judge|gov|governor|prof|professor|sheriff|deputy|chief|mayor';
+$matchKey = function (string $s) use ($norm, $STRIPPABLE): string {
+    $s = $norm($s);
+    do { $b = $s; $s = preg_replace('~^(' . $STRIPPABLE . ')\s+~', '', $s); } while ($s !== $b);
+    return trim($s);
+};
+
 /* Every record we hold, by normalised title and section, so a match is a
    lookup rather than a query per candidate. */
+/* Titles AND aliases. A record answers to every name it is filed under, and
+   indexing only the title reports "Dr. Sol Taylor" as a missing record on 224
+   articles while #2582 sits there titled "Sol Taylor". The alias list is where
+   the archive records that they are the same man, so the matcher has to read
+   it or the alias does nothing.
+
+   The field is read off the layout rather than tested with `is defined`, which
+   reads as true on a type that does not have it and then throws. */
+$ALIAS_FIELD = ['persons' => 'personAliases', 'places' => 'placeAliases', 'organizations' => 'orgAliases'];
+
 $bySection = [];
+$aliasCount = 0;
 foreach (\craft\elements\Entry::find()->limit(null)->status(null)->all() as $e) {
-    $t = $norm((string)$e->title);
-    if ($t === '') { continue; }
-    $bySection[$e->section->handle][$t][] = $e;
+    $sec = $e->section->handle;
+    $t = $matchKey((string)$e->title);
+    if ($t !== '') { $bySection[$sec][$t][] = $e; }
+
+    $af = $ALIAS_FIELD[$sec] ?? null;
+    if (!$af) { continue; }
+    $has = false;
+    foreach ($e->getFieldLayout()->getCustomFields() as $f) {
+        if ($f->handle === $af) { $has = true; break; }
+    }
+    if (!$has) { continue; }
+    try { $raw = (string)$e->getFieldValue($af); } catch (\Throwable $ex) { continue; }
+    foreach (preg_split('~\r\n|\n|\r|,~', $raw) as $al) {
+        $k = $matchKey($al);
+        if ($k === '' || $k === $t) { continue; }
+        if (isset($bySection[$sec][$k]) && in_array($e, $bySection[$sec][$k], true)) { continue; }
+        $bySection[$sec][$k][] = $e;
+        $aliasCount++;
+    }
 }
+if ($aliasCount) { echo 'alias spellings indexed: ' . $aliasCount . PHP_EOL; }
 $counts = [];
 foreach ($bySection as $s => $m) { $counts[] = $s . ' ' . count($m); }
 echo 'records indexed by title: ' . implode(', ', $counts) . PHP_EOL;
@@ -82,9 +137,48 @@ $KIND_SECTION = [
     'group' => 'groups', 'event' => 'events',
 ];
 
+/* SIMULATED RECORDS.
+ *
+ * "Re-run the triage after the top fifty" is a question about a database state
+ * that does not exist yet and must not be created to answer it. $ASSUME_RECORDS
+ * injects names as though their records had been made, so the shrink can be
+ * measured before anything is written.
+ *
+ * They are marked simulated, and the collection-consistency test skips them: a
+ * record that does not exist belongs to no collection, and treating its absence
+ * as a mismatch would send every one of them to review and report the opposite
+ * of the truth.
+ *
+ *   ddev craft exec "$ASSUME_RECORDS=json_decode(file_get_contents('/var/www/html/web/review/assume.json'),true); eval(...)" */
+$simulated = 0;
+foreach (($ASSUME_RECORDS ?? []) as $a) {
+    $t = $matchKey((string)($a['name'] ?? ''));
+    $sec = $KIND_SECTION[strtolower((string)($a['type'] ?? ''))] ?? null;
+    if ($t === '' || !$sec) { continue; }
+    $fake = new \stdClass();
+    $fake->id = 0; $fake->url = ''; $fake->simulated = true;
+
+    /* The title AND every alias the approval would write. A record titled
+       Antonio, created by merging "Don Antonio", "Lt. Antonio" and "Lieutenant
+       Antonio", is reachable from all three names once it exists, and a
+       simulation that registers only the bare title reports it as matching
+       nothing at all. */
+    $spellings = array_merge([$a['name'] ?? ''], (array)($a['variants'] ?? []));
+    $added = false;
+    foreach ($spellings as $sp) {
+        $k = $matchKey((string)$sp);
+        if ($k === '' || isset($bySection[$sec][$k])) { continue; }
+        $bySection[$sec][$k][] = $fake;
+        $added = true;
+    }
+    if ($added) { $simulated++; }
+}
+if ($simulated) { echo 'simulated records injected: ' . $simulated . PHP_EOL; }
+
+
 /* ------------------------------------------------------------ relations */
 
-$relPath = $REVIEW . '/relations.json';
+$relPath = $REVIEW . '/relations' . $SUFFIX . '.json';
 $rel = file_exists($relPath) ? json_decode(file_get_contents($relPath), true) : ['candidates' => []];
 $cands = $rel['candidates'] ?? [];
 
@@ -105,7 +199,7 @@ $why = [];
 
 foreach ($cands as $c) {
     $name = trim((string)($c['name'] ?? ''));
-    $n = $norm($name);
+    $n = $matchKey($name);
     if ($n === '') { continue; }
     $section = $KIND_SECTION[strtolower((string)($c['kind'] ?? ''))] ?? null;
     $matches = ($section && isset($bySection[$section][$n])) ? $bySection[$section][$n] : [];
@@ -118,14 +212,15 @@ foreach ($cands as $c) {
             'articles' => $articles, 'mentions' => $mentions,
             'matchCount' => count($matches),
             'matchId' => count($matches) === 1 ? $matches[0]->id : null,
-            'matchUrl' => count($matches) === 1 ? $matches[0]->url : null];
+            'matchUrl' => count($matches) === 1 ? $matches[0]->url : null,
+            'simulated' => count($matches) === 1 && isset($matches[0]->simulated)];
 
     if (count($matches) === 1) {
         /* Collection consistency: a match already tied to a different
            collection than the citing article is a name coincidence. */
         $ok = true;
         $m = $matches[0];
-        if (isset($collOf[$c['entryId'] ?? 0])) {
+        if (!isset($m->simulated) && isset($collOf[$c['entryId'] ?? 0])) {
             foreach ($m->getFieldLayout()->getCustomFields() as $f) {
                 if ($f->handle === 'partOfCollection') {
                     $mc = $m->partOfCollection->one();
@@ -160,7 +255,7 @@ foreach ($cands as $c) {
 
 /* ------------------------------------------------------------- entities */
 
-$entPath = $REVIEW . '/entities.json';
+$entPath = $REVIEW . '/entities' . $SUFFIX . '.json';
 $ent = file_exists($entPath) ? json_decode(file_get_contents($entPath), true) : ['pairs' => []];
 $pairs = $ent['pairs'] ?? [];
 
@@ -177,10 +272,35 @@ foreach ($pairs as $p) {
     /* A merge is never auto-accepted. Merging two records is destructive and
        irreversible in a way a relation is not: the relation can be unlinked and
        the merge cannot be unmerged. Every pair goes to a person. */
-    if (!$aEx && !$bEx && $arts <= 1 && $shared === 0) {
-        $row['note'] = 'neither side is a record, seen once';
+    /* THE FOURTH RULE. Neither side is a record, so there is nothing to merge.
+       Whether either name should become a record is a different question and
+       the relations queue already asks it; answering it here as a merge would
+       be answering it twice, in the harder of the two forms.
+
+       This fires regardless of how many articles the names appear in. A name in
+       ninety articles with no record is a missing record, not a merge, and
+       sorting it by article count only buries the pairs that are real. On the
+       full corpus this is 3,585 of 3,765 merge decisions. */
+    /* Except for a marriage the source states outright. "Barbara Sitzman (Mrs.
+       Paul Cook)" is not a proposal that two names might be one person; it is
+       the text naming a woman, her married alias and her husband in one breath.
+       Neither side being a record is the reason to act on it rather than the
+       reason to park it: park it and she stays in the archive under her
+       husband's name only, which is the outcome the pair exists to prevent. */
+    $reasons = (array)($p['reasons'] ?? []);
+    $stated = in_array('stated_married_name', $reasons, true);
+
+    if (!$aEx && !$bEx && !$stated) {
+        $row['note'] = 'neither side is a record, nothing to merge';
         $buckets['reject'][] = $row;
-        $why['pair: neither is a record, single occurrence'] = ($why['pair: neither is a record, single occurrence'] ?? 0) + 1;
+        $why['pair: neither is a record'] = ($why['pair: neither is a record'] ?? 0) + 1;
+        continue;
+    }
+    if ($stated) {
+        $row['note'] = 'the source states this marriage; creates two records and an alias';
+        $row['stated'] = true;
+        $buckets['review'][] = $row;
+        $why['pair: stated marriage'] = ($why['pair: stated marriage'] ?? 0) + 1;
         continue;
     }
     $row['note'] = 'a merge is never automatic';

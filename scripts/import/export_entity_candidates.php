@@ -42,15 +42,28 @@
  * proposes them as one person, and accepting that erases her from the archive.
  * Those pairs carry probable_spouse and say so on the card.
  *
- * Pairs are proposed five ways, within one kind only:
- *   honorific  the names match once an honorific is removed
- *   initials   same surname, and one side's initials expand to the other's
- *              given names, so "J. P. Harrington" meets "John P. Harrington"
- *   suffix     one name's words are the tail of the other's, so "Dr. Bard"
- *              meets "Cephas R. Bard"
- *   surname    same surname, different given names
- *   spelling   the normalised names are within one edit, which catches
- *              "Herrington" against "Harrington"
+ * A pair is proposed on one rule only, within one kind: the two names are the
+ * same name once the honorific and the initials are stripped, AND each side
+ * already resolves to a record, AND those are two different records.
+ *
+ * It used to propose five ways, including on a shared surname. Against a
+ * columnist whose byline sits on 228 articles that rule proposed merging Sol
+ * Taylor with Liz Taylor, Mabel Taylor, Archie Taylor and every other Taylor in
+ * the corpus, and the queue it produced was 3,765 decisions holding one real
+ * question. The rule now refuses:
+ *
+ *   neither side is a record   there is nothing to merge. Whether either should
+ *                              become a record is the relations queue's
+ *                              question and it already asks it.
+ *   one side is a record       an alias, not a merge. Recorded under 'aliases'
+ *                              so the name can be attached to the record it
+ *                              matches without inventing a second one.
+ *   both resolve to the same   "Dr. Sol Taylor" against "Sol Taylor" where both
+ *   record                     already point at #2582. Nothing to do.
+ *
+ * Suffix and spelling are gone entirely. "Dr. Bard" against "Cephas R. Bard"
+ * and "Herrington" against "Harrington" may well be the same person, but a
+ * script does not get to decide that, and a merge cannot be unmerged.
  *
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_entity_candidates.php'))"
  */
@@ -81,6 +94,25 @@ $stripHon = function (string $s) use ($fold, $HONORIFICS): string {
 $tokens = function (string $s) use ($stripHon): array {
     $t = preg_split('~\s+~', $stripHon($s), -1, PREG_SPLIT_NO_EMPTY);
     return $t ?: [];
+};
+
+/* THE MERGE KEY
+ *
+ * Two names are a merge candidate only if they are the same name once the
+ * honorific and the initials are taken off. "Dr. Sol Taylor" and "Sol Taylor"
+ * share a key. "Henry M. Newhall" and "Henry Newhall" share a key. "Sol Taylor"
+ * and "Liz Taylor" do not, and that is the point: the old rule paired on the
+ * surname alone, and against a columnist whose byline sits on 228 articles it
+ * proposed merging him with every other Taylor in the corpus.
+ *
+ * Initials come off rather than being matched positionally, so that "J. B.
+ * Smith" and "John Smith" land together without the rule having to decide that
+ * B stands for anything. It is a coarser key than the old initialsMatch and
+ * that is the right trade: a merge is destructive and unmergeable, so the rule
+ * should propose few things and be right about them. */
+$mergeKey = function (string $s) use ($tokens): string {
+    $t = array_values(array_filter($tokens($s), fn($x) => strlen($x) > 1));
+    return implode(' ', $t);
 };
 
 /* ---------------------------------------------------------- existing records */
@@ -431,6 +463,10 @@ $initialsMatch = function (array $a, array $b): bool {
 
 $pairs = [];
 $compared = 0;
+/* What the gate turned away, kept as counts so the shape of the rejected mass
+   is visible rather than merely absent. */
+$aliases = [];
+$notMerges = ['neither_is_a_record' => 0, 'alias' => 0, 'same_record' => 0];
 foreach ($rows as $kind => $list) {
     $index = [];
     $blocksFor = [];
@@ -494,16 +530,35 @@ foreach ($rows as $kind => $list) {
                 if ($wifeA !== '' && $fold($wifeA) === $fold($B['name'])) { $spouse = true; }
                 if ($wifeB !== '' && $fold($wifeB) === $fold($A['name'])) { $spouse = true; }
 
-                $reasons = [];
+                /* The gate. Same name stripped of honorific and initials, and a
+                   DIFFERENT existing record on each side. Anything else is not
+                   a merge: two names where neither is a record is a question
+                   about whether to create one, which the relations queue
+                   already asks, and a name matching a record it is not yet
+                   attached to is an alias rather than a merge. Both are
+                   counted below and neither belongs in this pile. */
+                $mka = $mergeKey($A['name']);
+                $mkb = $mergeKey($B['name']);
+                if ($mka === '' || $mka !== $mkb) { continue; }
+
+                if (!$A['existing'] || !$B['existing']) {
+                    $notMerges[($A['existing'] || $B['existing']) ? 'alias' : 'neither_is_a_record']++;
+                    if ($A['existing'] || $B['existing']) {
+                        $aliases[] = ['kind' => $kind, 'a' => $A['name'], 'b' => $B['name'],
+                            'record' => $A['existing'] ?: $B['existing'],
+                            'newName' => $A['existing'] ? $B['name'] : $A['name']];
+                    }
+                    continue;
+                }
+                if ((int)$A['existing']['id'] === (int)$B['existing']['id']) {
+                    $notMerges['same_record']++;
+                    continue;
+                }
+
+                $reasons = ['same_name_different_records'];
                 if ($spouse) { $reasons[] = 'probable_spouse'; }
                 if ($ka === $kb) { $reasons[] = 'honorific'; }
                 if ($initialsMatch($ta, $tb)) { $reasons[] = 'initials'; }
-                $n = min(count($ta), count($tb));
-                if ($ka !== $kb && array_slice($ta, -$n) === array_slice($tb, -$n)) { $reasons[] = 'suffix'; }
-                if (end($ta) === end($tb) && $ka !== $kb && !in_array('suffix', $reasons, true)) { $reasons[] = 'surname'; }
-                if ($ka !== $kb && abs(strlen($ka) - strlen($kb)) <= 1 && levenshtein($ka, $kb) === 1) { $reasons[] = 'spelling'; }
-
-                if (!$reasons) { continue; }
                 /* Proximity in one piece is the strongest signal there is, so a
                    sentence from a shared page leads on both sides. */
                 $sharedPaths = array_values(array_intersect($A['paths'], $B['paths']));
@@ -607,9 +662,11 @@ file_put_contents($out, json_encode([
         'inventories' => $INVENTORIES,
         'names' => array_sum(array_map('count', $rows)),
         'pairs' => count($pairs),
+        'notMerges' => $notMerges,
     ],
     'entities' => $rows,
     'pairs' => $pairs,
+    'aliases' => $aliases,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 
 echo '=== summary ===' . PHP_EOL;
@@ -617,7 +674,11 @@ foreach ($rows as $kind => $list) {
     $withRec = count(array_filter($list, fn($r) => $r['existing'] !== null));
     echo str_pad($kind, 16) . str_pad((string)count($list), 7) . 'distinct names, ' . $withRec . ' already a record' . PHP_EOL;
 }
-echo 'pairs proposed:  ' . count($pairs) . '  from ' . $compared . ' comparisons' . PHP_EOL;
+echo 'merge candidates: ' . count($pairs) . '  from ' . $compared . ' comparisons' . PHP_EOL;
+echo 'turned away by the gate:' . PHP_EOL;
+echo '  same name, neither side is a record  ' . $notMerges['neither_is_a_record'] . PHP_EOL;
+echo '  same name, one side is a record      ' . $notMerges['alias'] . '  (alias, not a merge)' . PHP_EOL;
+echo '  same name, both resolve to one record ' . $notMerges['same_record'] . PHP_EOL;
 $byReason = [];
 foreach ($pairs as $p) { foreach ($p['reasons'] as $r) { $byReason[$r] = ($byReason[$r] ?? 0) + 1; } }
 arsort($byReason);

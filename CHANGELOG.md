@@ -1574,3 +1574,29 @@ ddev craft exec "eval(file_get_contents('scripts/import/export_entity_candidates
 ```
 
 then open `https://scvhistory.ddev.site/review/entities.html`, decide, download `merged.json` into `web/review/`, and run `apply_entity_merges.php` dry first.
+
+## 2026-09-21
+
+Replaced the entity merge rule. It paired on a shared surname, and against a
+columnist whose byline sits on 228 articles it proposed merging Sol Taylor with
+every other Taylor in the corpus. A pair now needs the same name once the
+honorific and the initials are stripped, and a different existing record on each
+side. Merge candidates across the full corpus went from 10,107 to zero; the four
+pairs left are marriages the source states outright, which are facts rather than
+proposals.
+
+Fourth triage rule: a pair where neither side is a record is parked, because
+there is nothing to merge and the relations queue already asks whether either
+name should become one. Stated marriages are exempt.
+
+The triage now matches on aliases and ignores ranks, which the entity exporter
+has always done. "Dr. Sol Taylor" was the largest item in the review pile at 224
+articles and record #2582 was sitting there titled "Sol Taylor". MRS, MISS, MS
+and SISTER are never stripped: "Mrs. George LeBrun" is a woman named by her
+husband, and matching her to his record erases her.
+
+New: /review/records.html, the missing-records queue, ranked by how many
+articles use a name, with the type guess and its evidence shown. Backed by
+export_missing_records.php and create_records_from_review.php, both read only.
+
+Full-corpus review pile: 5,783 decisions to 1,909.
