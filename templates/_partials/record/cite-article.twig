@@ -66,7 +66,9 @@
     When the other eleven are redesigned, this and record/cite.twig should
     become one again.
 -------------------------------------------------------------------------- -#}
-<div class="rec-cite-art" style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 20px">
+{#- The sidebar's card: cream, gold top rule. It was white with a grey border,
+    which set it apart from every block above it for no reason. -#}
+<div class="rec-cite-art" style="background: #FDF7EA; border: 1px solid #EFE6D0; border-top: 3px solid #C4A031; padding: 18px 20px 20px">
   <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 14px">
     <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B">CITE THIS RECORD</div>
     <div style="display: flex; gap: 2px">
@@ -75,7 +77,7 @@
       <button type="button" class="rec-citetab" data-style="apa" aria-selected="false" style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .04em; padding: 4px 9px; cursor: pointer; border: 1px solid #E8E0CC; background: #fff; color: #5B6472">APA 7</button>
     </div>
   </div>
-  <div class="rec-citebox" style="background: #FBFAF6; border-left: 3px solid #C4A031; padding: 13px 15px; font-size: 13.5px; line-height: 1.62; color: #2C2C2C; word-break: break-word">
+  <div class="rec-citebox" style="background: #fff; border-left: 3px solid #C4A031; padding: 13px 15px; font-size: 13.5px; line-height: 1.62; color: #2C2C2C; word-break: break-word">
     <div class="txt" data-style="chicago">{{ chicago|trim }}</div>
     <div class="txt" data-style="mla" hidden>{{ mla|trim }}</div>
     <div class="txt" data-style="apa" hidden>{{ apa|trim }}</div>

@@ -1760,3 +1760,12 @@ create_records_from_review.php enforces the name policy: a decision that puts a
 title in the record's name is reported, because the file had "Councilwoman Jill
 Klajic" as a record with "Jill Klajic" as its alias while Jill Klajic already
 exists.
+
+Sidebar: Record and Cite take the same card as every other block. Verified with
+computed styles: all five share background rgb(253,247,234), border-top 3px
+rgb(196,160,49), and a Jost 11.5px heading at rgb(169,132,43).
+
+Perceptual hashing to find larger copies by appearance. It disproves the case
+that prompted it: reynolds_jerry.jpg and jerry-reynolds.jpg are 30 apart out of
+64, which is two different pictures of one man, not two copies of one picture.
+Of 134 inline images with no enlargement, one has a larger copy worth taking.

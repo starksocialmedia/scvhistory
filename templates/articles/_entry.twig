@@ -79,7 +79,9 @@
 
   /* ── Sidebar name lists ───────────────────────────────────────── */
   .ar-sb{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:16px 20px 18px}
-  .ar-sb .lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#7A5C1B;margin-bottom:10px}
+  .sb-card{background:#FDF7EA;border:1px solid #EFE6D0;border-top:3px solid #C4A031;padding:18px 20px 14px}
+  .sb-lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.16em;color:#A9842B;margin-bottom:12px}
+  .ar-sb .lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.16em;color:#A9842B;margin-bottom:12px}
   .ar-sb .row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:13px;align-items:center;
               color:inherit;text-decoration:none;padding:7px 0;border-bottom:1px solid #EFE6D0}
   .ar-sb .row:last-child{border-bottom:0}
@@ -557,8 +559,12 @@
     {% if era %}{% set facts = facts|merge([{ k: 'ERA', v: era.title }]) %}{% endif %}
     {% set facts = facts|merge([{ k: 'UPDATED', v: entry.dateUpdated|date('M j, Y') }]) %}
 
-    <div style="background: #fff; border: 1px solid #E2E4E8; padding: 18px 20px 14px">
-      <div style="font-family: 'Jost', sans-serif; font-size: 11.5px; letter-spacing: .16em; color: #A9842B; margin-bottom: 12px">RECORD</div>
+    {#- The same card as every other block in this column: cream, a gold top
+        rule, a small-caps heading. It had been white with a grey border, which
+        made the one block a reader looks at first read as a different kind of
+        thing from the four below it. -#}
+    <div class="sb-card">
+      <div class="sb-lab">RECORD</div>
       {% for f in facts %}
         <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; padding: 9px 0; border-bottom: 1px solid #F1F2F5; align-items: baseline">
           <div style="font-family: 'Jost', sans-serif; font-size: 10.5px; letter-spacing: .12em; color: #8A919E">{{ f.k }}</div>
