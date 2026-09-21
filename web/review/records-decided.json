@@ -1,5 +1,5 @@
 {
-    "generated": "2026-09-21T13:01:14-07:00",
+    "generated": "2026-09-21T15:28:36-07:00",
     "provenance": "created from review, 2026-09-21",
     "source": "entities-full.json",
     "decisions": [
@@ -861,10 +861,10 @@
             "placeType": "site"
         },
         {
-            "key": "bill clinton",
-            "action": "skipped",
+            "action": "approved",
             "type": "person",
             "name": "Bill Clinton",
+            "key": "bill clinton",
             "articles": [
                 12228,
                 12398,
@@ -875,8 +875,18 @@
                 12440,
                 12828,
                 12836,
-                12794
-            ]
+                12794,
+                12784,
+                12834,
+                12792,
+                12804
+            ],
+            "aliases": [
+                "Gov. Bill Clinton",
+                "Clinton"
+            ],
+            "storeKey": "bill clinton|person",
+            "decidedAt": "2026-09-21T15:16:29-07:00"
         },
         {
             "key": "wiley canyon",
@@ -1089,10 +1099,10 @@
             "placeType": "site"
         },
         {
-            "key": "california star oil works",
-            "action": "skipped",
+            "action": "approved",
             "type": "organization",
             "name": "California Star Oil Works",
+            "key": "california star oil works",
             "articles": [
                 1430,
                 1440,
@@ -1100,8 +1110,17 @@
                 2089,
                 2109,
                 12210,
-                12212
-            ]
+                12212,
+                1434,
+                2111,
+                12170,
+                12372
+            ],
+            "aliases": [
+                "California Star Oil"
+            ],
+            "storeKey": "california star oil works|organization",
+            "decidedAt": "2026-09-21T13:51:35-07:00"
         },
         {
             "key": "newhall elementary school",
@@ -1366,215 +1385,6 @@
         },
         {
             "action": "approved",
-            "type": "person",
-            "name": "John Lang",
-            "articles": [
-                1444,
-                2091,
-                2103,
-                12460,
-                12558,
-                869,
-                1426,
-                1428,
-                1432,
-                1434,
-                1438,
-                2093,
-                2097,
-                2111,
-                2121,
-                2167,
-                12212,
-                12390
-            ],
-            "aliases": [
-                "Lang"
-            ],
-            "storeKey": "john lang|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "merged",
-            "type": "place",
-            "name": "Lang",
-            "intoName": "John Lang",
-            "intoKey": "john lang",
-            "storeKey": "lang|place",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "approved",
-            "type": "place",
-            "name": "Grapevine Canyon",
-            "articles": [
-                1420,
-                1424,
-                1426,
-                1428,
-                1434,
-                1440,
-                1450,
-                2069,
-                2071,
-                2073,
-                2081,
-                2085,
-                2091,
-                2127,
-                12484,
-                12168,
-                12194
-            ],
-            "aliases": [
-                "Grapevine"
-            ],
-            "placeType": "natural",
-            "storeKey": "grapevine canyon|place",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "merged",
-            "type": "place",
-            "name": "Grapevine",
-            "intoName": "Grapevine Canyon",
-            "intoKey": "grapevine canyon",
-            "storeKey": "grapevine|place",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "merged",
-            "type": "organization",
-            "name": "California Star Oil",
-            "intoName": "California Star Oil Works",
-            "intoKey": "california star oil works",
-            "storeKey": "california star oil|organization",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "approved",
-            "type": "person",
-            "name": "Cowboy Poetry Festival",
-            "articles": [
-                12230,
-                12318,
-                12196,
-                12434,
-                12368,
-                2145,
-                12226,
-                12647,
-                12826
-            ],
-            "aliases": [
-                "Cowboy Poetry"
-            ],
-            "storeKey": "cowboy poetry festival|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "approved",
-            "type": "person",
-            "name": "President Theodore Roosevelt",
-            "articles": [
-                2117,
-                14962,
-                15370,
-                15198,
-                14948,
-                15290,
-                15454,
-                2107,
-                2113,
-                2115,
-                2181,
-                14976,
-                15392
-            ],
-            "aliases": [
-                "Theodore Roosevelt"
-            ],
-            "storeKey": "president theodore roosevelt|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "merged",
-            "type": "person",
-            "name": "Theodore Roosevelt",
-            "intoName": "President Theodore Roosevelt",
-            "intoKey": "president theodore roosevelt",
-            "storeKey": "theodore roosevelt|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "approved",
-            "type": "organization",
-            "name": "Downtown Newhall Merchants Association",
-            "articles": [
-                12540,
-                12334,
-                12412,
-                12368,
-                12589,
-                12641
-            ],
-            "aliases": [
-                "Downtown Newhall Merchants"
-            ],
-            "storeKey": "downtown newhall merchants association|organization",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "merged",
-            "type": "person",
-            "name": "Downtown Newhall Merchants",
-            "intoName": "Downtown Newhall Merchants Association",
-            "intoKey": "downtown newhall merchants association",
-            "storeKey": "downtown newhall merchants|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "approved",
-            "type": "person",
-            "name": "Henry M. Newhall",
-            "articles": [
-                869,
-                1422,
-                1426,
-                1434,
-                1438,
-                12286,
-                12170,
-                12294,
-                12372,
-                12623
-            ],
-            "aliases": [
-                "Henry Newhall"
-            ],
-            "storeKey": "henry m newhall|person",
-            "decidedAt": "2026-09-21T13:01:13-07:00"
-        },
-        {
-            "action": "merged",
-            "type": "person",
-            "name": "Henry Newhall",
-            "intoName": "Henry M. Newhall",
-            "intoKey": "henry m newhall",
-            "storeKey": "henry newhall|person",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
-        },
-        {
-            "action": "merged",
-            "type": "person",
-            "name": "Cowboy Poetry",
-            "intoName": "Cowboy Poetry Festival",
-            "intoKey": "cowboy poetry festival",
-            "storeKey": "cowboy poetry|person",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
-        },
-        {
-            "action": "approved",
             "type": "organization",
             "name": "William S. Hart High School",
             "articles": [
@@ -1667,18 +1477,6 @@
             "decidedAt": "2026-09-21T13:01:14-07:00"
         },
         {
-            "name": "PAIR Lang / John Lang",
-            "type": "pair",
-            "action": "same",
-            "short": "Lang",
-            "long": "John Lang",
-            "shortKey": "lang",
-            "longKey": "john lang",
-            "shape": "contains",
-            "storeKey": "pair lang john lang|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
-        },
-        {
             "name": "PAIR standard oil / standard oil company",
             "type": "pair",
             "action": "same",
@@ -1703,16 +1501,370 @@
             "decidedAt": "2026-09-21T13:01:14-07:00"
         },
         {
-            "name": "PAIR Grapevine / Grapevine Canyon",
+            "action": "approved",
+            "type": "organization",
+            "name": "Southern Pacific Railroad",
+            "key": "southern pacific railroad",
+            "articles": [
+                1422,
+                1426,
+                1428,
+                1440,
+                2073,
+                2091,
+                2101,
+                2113,
+                2115,
+                2181,
+                12286,
+                12210,
+                12212,
+                12152,
+                12318,
+                12208,
+                12601,
+                12615,
+                869,
+                1432,
+                1434,
+                1448,
+                1454,
+                823,
+                2099,
+                2103,
+                2105,
+                2117,
+                2119,
+                2127,
+                2141,
+                12216,
+                12294,
+                12562,
+                12428,
+                12272,
+                12649
+            ],
+            "storeKey": "southern pacific railroad|organization",
+            "decidedAt": "2026-09-21T13:11:40-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Jo Anne Darcy",
+            "key": "jo anne darcy",
+            "articles": [
+                2163,
+                2165,
+                2169,
+                12142,
+                12296,
+                12330,
+                12184,
+                12508,
+                12146,
+                12404,
+                12350,
+                12426,
+                12428,
+                12438,
+                12589,
+                12824,
+                12852,
+                12810,
+                12838,
+                12844,
+                12921
+            ],
+            "storeKey": "jo anne darcy|person",
+            "decidedAt": "2026-09-21T13:11:53-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Pico Canyon",
+            "key": "pico canyon",
+            "articles": [
+                1420,
+                1430,
+                1434,
+                1438,
+                1440,
+                1446,
+                2087,
+                2089,
+                2109,
+                2111,
+                2123,
+                2167,
+                12166,
+                12170,
+                12390,
+                12360,
+                12372,
+                15294,
+                12599
+            ],
+            "placeType": "natural",
+            "storeKey": "pico canyon|place",
+            "decidedAt": "2026-09-21T13:12:00-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "San Francisquito",
+            "key": "san francisquito",
+            "articles": [
+                1420,
+                1424,
+                1426,
+                1428,
+                1434,
+                1438,
+                1444,
+                1450,
+                821,
+                2069,
+                2125,
+                12484,
+                12380,
+                12392,
+                12597
+            ],
+            "placeType": "site",
+            "storeKey": "san francisquito|place",
+            "decidedAt": "2026-09-21T13:12:11-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Pioneer Oil Refinery",
+            "key": "pioneer oil refinery",
+            "articles": [
+                2111,
+                2167,
+                2171,
+                12286,
+                12166,
+                12210,
+                12212,
+                12142,
+                12484,
+                12170,
+                12386,
+                12372,
+                12601,
+                12668
+            ],
+            "storeKey": "pioneer oil refinery|organization",
+            "decidedAt": "2026-09-21T13:12:17-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Heritage Auction Galleries",
+            "key": "heritage auction galleries",
+            "articles": [
+                15364,
+                15182,
+                15028,
+                15220,
+                15122,
+                15042,
+                15134,
+                15450,
+                15422,
+                15440,
+                15442,
+                15444,
+                15392,
+                15102,
+                15120,
+                15342
+            ],
+            "aliases": [
+                "Heritage Galleries"
+            ],
+            "storeKey": "heritage auction galleries|organization",
+            "decidedAt": "2026-09-21T13:51:26-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "John Wayne",
+            "key": "john wayne",
+            "articles": [
+                2143,
+                2145,
+                2173,
+                12290,
+                12342,
+                12370,
+                12374,
+                15294,
+                12607,
+                12627,
+                12883
+            ],
+            "storeKey": "john wayne|person",
+            "decidedAt": "2026-09-21T13:12:37-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Pico Canyon Road",
+            "key": "pico canyon road",
+            "articles": [
+                1420,
+                1430,
+                1434,
+                1438,
+                1440,
+                1446,
+                2081,
+                12484,
+                12472,
+                12360
+            ],
+            "placeType": "road",
+            "storeKey": "pico canyon road|place",
+            "decidedAt": "2026-09-21T13:12:50-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Southern Hotel",
+            "key": "southern hotel",
+            "articles": [
+                2105,
+                2123,
+                2129,
+                2179,
+                2181,
+                12258,
+                12280,
+                12623,
+                12649
+            ],
+            "storeKey": "southern hotel|organization",
+            "decidedAt": "2026-09-21T13:12:57-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Grapevine Canyon",
+            "key": "grapevine canyon",
+            "articles": [
+                1420,
+                1424,
+                1426,
+                1428,
+                1434,
+                1440,
+                1450,
+                2069,
+                2071,
+                2073,
+                2081,
+                2085,
+                2091,
+                2127,
+                12484,
+                12168,
+                12194
+            ],
+            "aliases": [
+                "Grapevine"
+            ],
+            "placeType": "natural",
+            "storeKey": "grapevine canyon|place",
+            "decidedAt": "2026-09-21T15:27:59-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Newhall Redevelopment Committee",
+            "key": "newhall redevelopment committee",
+            "articles": [
+                12538,
+                12386,
+                12234,
+                12334,
+                12196,
+                12404,
+                12258,
+                12550,
+                12280,
+                12585,
+                12589,
+                12591,
+                12595,
+                12601,
+                12603,
+                12609,
+                12613,
+                12621,
+                12641,
+                12645
+            ],
+            "aliases": [
+                "Redevelopment Committee"
+            ],
+            "storeKey": "newhall redevelopment committee|organization",
+            "decidedAt": "2026-09-21T13:51:02-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "organization",
+            "name": "Redevelopment Committee",
+            "key": "redevelopment committee",
+            "intoName": "Newhall Redevelopment Committee",
+            "intoKey": "newhall redevelopment committee",
+            "storeKey": "redevelopment committee|organization",
+            "decidedAt": "2026-09-21T13:51:02-07:00"
+        },
+        {
+            "name": "PAIR Redevelopment Committee / Newhall Redevelopment Committee",
             "type": "pair",
             "action": "same",
-            "short": "Grapevine",
-            "long": "Grapevine Canyon",
-            "shortKey": "grapevine",
-            "longKey": "grapevine canyon",
+            "short": "Redevelopment Committee",
+            "long": "Newhall Redevelopment Committee",
+            "shortKey": "redevelopment committee",
+            "longKey": "newhall redevelopment committee",
             "shape": "contains",
-            "storeKey": "pair grapevine grapevine canyon|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
+            "storeKey": "pair redevelopment committee newhall redevelopment committee|pair",
+            "decidedAt": "2026-09-21T13:51:02-07:00"
+        },
+        {
+            "name": "PAIR Heritage Galleries / Heritage Auction Galleries",
+            "type": "pair",
+            "action": "same",
+            "short": "Heritage Galleries",
+            "long": "Heritage Auction Galleries",
+            "shortKey": "heritage galleries",
+            "longKey": "heritage auction galleries",
+            "shape": "contains",
+            "storeKey": "pair heritage galleries heritage auction galleries|pair",
+            "decidedAt": "2026-09-21T13:51:26-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Heritage Galleries",
+            "key": "heritage galleries",
+            "intoName": "Heritage Auction Galleries",
+            "intoKey": "heritage auction galleries",
+            "storeKey": "heritage galleries|person",
+            "decidedAt": "2026-09-21T13:51:26-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "organization",
+            "name": "California Star Oil",
+            "key": "california star oil",
+            "intoName": "California Star Oil Works",
+            "intoKey": "california star oil works",
+            "storeKey": "california star oil|organization",
+            "decidedAt": "2026-09-21T13:51:35-07:00"
         },
         {
             "name": "PAIR California Star Oil / California Star Oil Works",
@@ -1724,7 +1876,17 @@
             "longKey": "california star oil works",
             "shape": "contains",
             "storeKey": "pair california star oil california star oil works|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
+            "decidedAt": "2026-09-21T13:51:35-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Cowboy Festival",
+            "key": "cowboy festival",
+            "intoName": "Cowboy Poetry Festival",
+            "intoKey": "cowboy poetry festival",
+            "storeKey": "cowboy festival|person",
+            "decidedAt": "2026-09-21T13:51:37-07:00"
         },
         {
             "name": "PAIR Cowboy Festival / Cowboy Poetry Festival",
@@ -1736,31 +1898,29 @@
             "longKey": "cowboy poetry festival",
             "shape": "contains",
             "storeKey": "pair cowboy festival cowboy poetry festival|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
+            "decidedAt": "2026-09-21T13:51:37-07:00"
         },
         {
-            "name": "PAIR Theodore Roosevelt / President Theodore Roosevelt",
-            "type": "pair",
-            "action": "same",
-            "short": "Theodore Roosevelt",
-            "long": "President Theodore Roosevelt",
-            "shortKey": "theodore roosevelt",
-            "longKey": "president theodore roosevelt",
-            "shape": "contains",
-            "storeKey": "pair theodore roosevelt president theodore roosevelt|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
-        },
-        {
-            "name": "PAIR Downtown Newhall Merchants / Downtown Newhall Merchants Association",
-            "type": "pair",
-            "action": "same",
-            "short": "Downtown Newhall Merchants",
-            "long": "Downtown Newhall Merchants Association",
-            "shortKey": "downtown newhall merchants",
-            "longKey": "downtown newhall merchants association",
-            "shape": "contains",
-            "storeKey": "pair downtown newhall merchants downtown newhall merchants association|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
+            "action": "approved",
+            "type": "person",
+            "name": "Cowboy Poetry Festival",
+            "key": "cowboy poetry festival",
+            "articles": [
+                12230,
+                12318,
+                12196,
+                12434,
+                12368,
+                2145,
+                12226,
+                12647,
+                12826
+            ],
+            "aliases": [
+                "Cowboy Poetry"
+            ],
+            "storeKey": "cowboy poetry festival|person",
+            "decidedAt": "2026-09-21T15:17:42-07:00"
         },
         {
             "name": "PAIR Henry Newhall / Henry M. Newhall",
@@ -1772,7 +1932,161 @@
             "longKey": "henry m newhall",
             "shape": "contains",
             "storeKey": "pair henry newhall henry m newhall|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
+            "decidedAt": "2026-09-21T15:16:21-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Henry Newhall",
+            "key": "henry newhall",
+            "intoName": "Henry M. Newhall",
+            "intoKey": "henry m newhall",
+            "storeKey": "henry newhall|person",
+            "decidedAt": "2026-09-21T15:16:21-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Henry M. Newhall",
+            "key": "henry m newhall",
+            "articles": [
+                869,
+                1422,
+                1426,
+                1434,
+                1438,
+                12286,
+                12170,
+                12294,
+                12372,
+                12623
+            ],
+            "aliases": [
+                "Henry Newhall"
+            ],
+            "storeKey": "henry m newhall|person",
+            "decidedAt": "2026-09-21T15:16:21-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Theodore Roosevelt",
+            "key": "theodore roosevelt",
+            "intoName": "President Theodore Roosevelt",
+            "intoKey": "president theodore roosevelt",
+            "storeKey": "theodore roosevelt|person",
+            "decidedAt": "2026-09-21T15:16:25-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "President Theodore Roosevelt",
+            "key": "president theodore roosevelt",
+            "articles": [
+                2117,
+                14962,
+                15370,
+                15198,
+                14948,
+                15290,
+                15454,
+                2107,
+                2113,
+                2115,
+                2181,
+                14976,
+                15392
+            ],
+            "aliases": [
+                "Theodore Roosevelt"
+            ],
+            "storeKey": "president theodore roosevelt|person",
+            "decidedAt": "2026-09-21T15:16:25-07:00"
+        },
+        {
+            "name": "PAIR Theodore Roosevelt / President Theodore Roosevelt",
+            "type": "pair",
+            "action": "same",
+            "short": "Theodore Roosevelt",
+            "long": "President Theodore Roosevelt",
+            "shortKey": "theodore roosevelt",
+            "longKey": "president theodore roosevelt",
+            "shape": "contains",
+            "storeKey": "pair theodore roosevelt president theodore roosevelt|pair",
+            "decidedAt": "2026-09-21T15:16:25-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Downtown Newhall Merchants",
+            "key": "downtown newhall merchants",
+            "intoName": "Downtown Newhall Merchants Association",
+            "intoKey": "downtown newhall merchants association",
+            "storeKey": "downtown newhall merchants|person",
+            "decidedAt": "2026-09-21T15:16:27-07:00"
+        },
+        {
+            "name": "PAIR Downtown Newhall Merchants / Downtown Newhall Merchants Association",
+            "type": "pair",
+            "action": "same",
+            "short": "Downtown Newhall Merchants",
+            "long": "Downtown Newhall Merchants Association",
+            "shortKey": "downtown newhall merchants",
+            "longKey": "downtown newhall merchants association",
+            "shape": "contains",
+            "storeKey": "pair downtown newhall merchants downtown newhall merchants association|pair",
+            "decidedAt": "2026-09-21T15:16:27-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Downtown Newhall Merchants Association",
+            "key": "downtown newhall merchants association",
+            "articles": [
+                12540,
+                12334,
+                12412,
+                12368,
+                12589,
+                12641
+            ],
+            "aliases": [
+                "Downtown Newhall Merchants"
+            ],
+            "storeKey": "downtown newhall merchants association|organization",
+            "decidedAt": "2026-09-21T15:16:27-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Clinton",
+            "key": "clinton",
+            "intoName": "Bill Clinton",
+            "intoKey": "bill clinton",
+            "storeKey": "clinton|person",
+            "decidedAt": "2026-09-21T15:16:29-07:00"
+        },
+        {
+            "name": "PAIR Clinton / Bill Clinton",
+            "type": "pair",
+            "action": "same",
+            "short": "Clinton",
+            "long": "Bill Clinton",
+            "shortKey": "clinton",
+            "longKey": "bill clinton",
+            "shape": "contains",
+            "storeKey": "pair clinton bill clinton|pair",
+            "decidedAt": "2026-09-21T15:16:29-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Cowboy Poetry",
+            "key": "cowboy poetry",
+            "intoName": "Cowboy Poetry Festival",
+            "intoKey": "cowboy poetry festival",
+            "storeKey": "cowboy poetry|person",
+            "decidedAt": "2026-09-21T15:17:42-07:00"
         },
         {
             "name": "PAIR Cowboy Poetry / Cowboy Poetry Festival",
@@ -1784,7 +2098,477 @@
             "longKey": "cowboy poetry festival",
             "shape": "contains",
             "storeKey": "pair cowboy poetry cowboy poetry festival|pair",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
+            "decidedAt": "2026-09-21T15:17:42-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "California State University, Northridge",
+            "key": "california state university northridge",
+            "articles": [
+                2163,
+                2171,
+                12218,
+                12593,
+                12854,
+                12798,
+                12850
+            ],
+            "storeKey": "california state university northridge|organization",
+            "decidedAt": "2026-09-21T15:20:50-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Bill Hart",
+            "key": "bill hart",
+            "articles": [
+                2131,
+                12536,
+                12384,
+                12162,
+                12581,
+                12658
+            ],
+            "storeKey": "bill hart|person",
+            "decidedAt": "2026-09-21T15:21:21-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Saugus Cafe",
+            "key": "saugus cafe",
+            "articles": [
+                2117,
+                2129,
+                2153,
+                2171,
+                12288,
+                12346
+            ],
+            "placeType": "site",
+            "storeKey": "saugus cafe|place",
+            "decidedAt": "2026-09-21T15:23:02-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Ted Lamkin",
+            "key": "ted lamkin",
+            "articles": [
+                1446,
+                1454,
+                817,
+                2171,
+                12542,
+                12574
+            ],
+            "storeKey": "ted lamkin|person",
+            "decidedAt": "2026-09-21T15:23:12-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "organization",
+            "name": "Advisory Committee",
+            "key": "advisory committee",
+            "articles": [
+                12292,
+                12178,
+                12198,
+                12456,
+                14944,
+                15008
+            ],
+            "storeKey": "advisory committee|organization",
+            "decidedAt": "2026-09-21T15:23:41-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Music Festival",
+            "key": "music festival",
+            "articles": [
+                2145,
+                2171,
+                12350,
+                12647,
+                12826,
+                12921
+            ],
+            "storeKey": "music festival|person",
+            "decidedAt": "2026-09-21T15:23:49-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "William Sheldon",
+            "key": "william sheldon",
+            "articles": [
+                15176,
+                15308,
+                15220,
+                15046,
+                15160,
+                15440
+            ],
+            "storeKey": "william sheldon|person",
+            "decidedAt": "2026-09-21T15:23:53-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Juan",
+            "key": "juan",
+            "articles": [
+                835,
+                837,
+                12486,
+                12532,
+                2175,
+                851
+            ],
+            "storeKey": "juan|person",
+            "decidedAt": "2026-09-21T15:23:56-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Cameron Smyth",
+            "key": "cameron smyth",
+            "articles": [
+                12296,
+                12228,
+                12508,
+                12146,
+                12404,
+                12901
+            ],
+            "storeKey": "cameron smyth|person",
+            "decidedAt": "2026-09-21T15:24:03-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Charles Crocker",
+            "key": "charles crocker",
+            "articles": [
+                1432,
+                2101,
+                2103,
+                12286,
+                12294,
+                12272
+            ],
+            "storeKey": "charles crocker|person",
+            "decidedAt": "2026-09-21T15:24:08-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "organization",
+            "name": "Franklin Mint",
+            "key": "franklin mint",
+            "articles": [
+                15070,
+                14946,
+                15060,
+                15416,
+                15432,
+                15438
+            ],
+            "storeKey": "franklin mint|organization",
+            "decidedAt": "2026-09-21T15:24:16-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Independence Hall",
+            "key": "independence hall",
+            "articles": [
+                15200,
+                14986,
+                14966,
+                15230,
+                15148,
+                15436
+            ],
+            "storeKey": "independence hall|person",
+            "decidedAt": "2026-09-21T15:24:21-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Collectibles Expo",
+            "key": "collectibles expo",
+            "articles": [
+                15038,
+                15122,
+                15342,
+                15410,
+                15426,
+                15392
+            ],
+            "storeKey": "collectibles expo|person",
+            "decidedAt": "2026-09-21T15:24:33-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "George Caravalho",
+            "key": "george caravalho",
+            "articles": [
+                2165,
+                12462,
+                12230,
+                12176,
+                12528,
+                12824
+            ],
+            "storeKey": "george caravalho|person",
+            "decidedAt": "2026-09-21T15:25:58-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Collectors Universe",
+            "key": "collectors universe",
+            "articles": [
+                15450,
+                15430,
+                15440,
+                15442,
+                15444
+            ],
+            "storeKey": "collectors universe|person",
+            "decidedAt": "2026-09-21T15:26:01-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Hart Mansion",
+            "key": "hart mansion",
+            "articles": [
+                12376,
+                12556,
+                12581,
+                12593,
+                12627
+            ],
+            "storeKey": "hart mansion|person",
+            "decidedAt": "2026-09-21T15:26:05-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Ward Connerly",
+            "key": "ward connerly",
+            "articles": [
+                12354,
+                12436,
+                12442,
+                12274,
+                12282
+            ],
+            "storeKey": "ward connerly|person",
+            "decidedAt": "2026-09-21T15:26:11-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Ygnacio",
+            "key": "ygnacio",
+            "articles": [
+                1434,
+                851,
+                2075,
+                2077,
+                1424
+            ],
+            "storeKey": "ygnacio|person",
+            "decidedAt": "2026-09-21T15:26:20-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Connie Worden",
+            "key": "connie worden",
+            "articles": [
+                817,
+                2163,
+                2165,
+                2169,
+                12844
+            ],
+            "storeKey": "connie worden|person",
+            "decidedAt": "2026-09-21T15:26:28-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Valencia Marketplace",
+            "key": "valencia marketplace",
+            "articles": [
+                12482,
+                12140,
+                12180,
+                12400,
+                12804
+            ],
+            "storeKey": "valencia marketplace|organization",
+            "decidedAt": "2026-09-21T15:26:39-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "William Mulholland",
+            "key": "william mulholland",
+            "articles": [
+                2117,
+                2125,
+                2133,
+                12380,
+                12597
+            ],
+            "storeKey": "william mulholland|person",
+            "decidedAt": "2026-09-21T15:26:48-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Columbian Exposition",
+            "key": "columbian exposition",
+            "articles": [
+                15078,
+                15036,
+                15344,
+                15250,
+                15454
+            ],
+            "storeKey": "columbian exposition|person",
+            "decidedAt": "2026-09-21T15:26:57-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "place",
+            "name": "Honby",
+            "key": "honby",
+            "articles": [
+                1442,
+                1444,
+                2097,
+                2179,
+                12390
+            ],
+            "placeType": "site",
+            "storeKey": "honby|place",
+            "decidedAt": "2026-09-21T15:27:05-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "place",
+            "name": "Grapevine",
+            "key": "grapevine",
+            "intoName": "Grapevine Canyon",
+            "intoKey": "grapevine canyon",
+            "storeKey": "grapevine|place",
+            "decidedAt": "2026-09-21T15:27:59-07:00"
+        },
+        {
+            "name": "PAIR Grapevine / Grapevine Canyon",
+            "type": "pair",
+            "action": "same",
+            "short": "Grapevine",
+            "long": "Grapevine Canyon",
+            "shortKey": "grapevine",
+            "longKey": "grapevine canyon",
+            "shape": "contains",
+            "storeKey": "pair grapevine grapevine canyon|pair",
+            "decidedAt": "2026-09-21T15:27:59-07:00"
+        },
+        {
+            "name": "PAIR Gelcich / Vincent Gelcich",
+            "type": "pair",
+            "action": "same",
+            "short": "Gelcich",
+            "long": "Vincent Gelcich",
+            "shortKey": "gelcich",
+            "longKey": "vincent gelcich",
+            "shape": "contains",
+            "storeKey": "pair gelcich vincent gelcich|pair",
+            "decidedAt": "2026-09-21T15:28:06-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Vincent Gelcich",
+            "key": "vincent gelcich",
+            "articles": [
+                1430,
+                1434,
+                1440,
+                2087,
+                2089
+            ],
+            "aliases": [
+                "Vincent Gelcich",
+                "Dr. Vincent Gelcich",
+                "Gelcich"
+            ],
+            "storeKey": "vincent gelcich|person",
+            "decidedAt": "2026-09-21T15:28:06-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "person",
+            "name": "Gelcich",
+            "key": "gelcich",
+            "intoName": "Vincent Gelcich",
+            "intoKey": "vincent gelcich",
+            "storeKey": "gelcich|person",
+            "decidedAt": "2026-09-21T15:28:06-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Rancho San Francisco",
+            "key": "rancho san francisco",
+            "articles": [
+                1418,
+                1422,
+                1424,
+                1426,
+                1428,
+                1430,
+                1432,
+                1434,
+                1440,
+                1446,
+                841,
+                843,
+                847,
+                851,
+                853,
+                859,
+                2073,
+                2077,
+                2083,
+                2087,
+                2099,
+                2105,
+                2171,
+                2179,
+                12486,
+                12490,
+                12294,
+                12352,
+                12448,
+                12532,
+                15294,
+                12589,
+                12619
+            ],
+            "placeType": "ranch",
+            "storeKey": "rancho san francisco|place",
+            "decidedAt": "2026-09-21T15:28:36-07:00"
         }
     ],
     "edited": "hand-edited 2026-09-21: renames and merges per Nathan"
