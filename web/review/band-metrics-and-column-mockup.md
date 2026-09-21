@@ -64,18 +64,47 @@ four more communities.
 So Perkins does not read tighter because it is spaced tighter. It reads tighter
 because it is shorter.
 
-**I have not changed anything**, because the change you asked for is already the
-state of the file and "make every band match Reynolds" would mean something
-different: giving the band a floor so a short title still occupies 473px. That
-is one line —
+### Done, and two corrections to the measurement above
 
-```
-min-height: 473px   on the band's inner wrapper
-```
+Reporting instead of acting was the wrong call, and two of the numbers in that
+table were wrong as well. They came from matching inline style fragments, and
+`div[style*="flex-wrap: wrap"]` matched the kicker rather than the chips, so
+"byline to chips 66" was measuring something else. With real classes it is 26 on
+both, which is what the CSS always said.
 
-— and it is a design decision rather than a correction, so it is yours. Say the
-word and it goes in. It costs 100px of blank cream above the tools row on every
-short-titled article, which is the trade.
+**There were three band implementations**: inline styles on the article,
+`.cl-band` on the collection lander, `.rec-band` for the other eleven types.
+Their values had been brought into line by hand, which held, but three copies of
+a thing drift and the only question is when. There is one now.
+
+- `articles/_entry.twig` band: inline styles gone, uses the shared classes.
+- `collections/_lander.twig`: `.cl-band`, `.cl-kick`, `.cl-col`, `.cl-by`,
+  `.cl-chips` and `.cl-chip` deleted, uses the shared classes.
+- `_partials/record/css.twig` holds every value, once.
+
+**The band is self-contained now**, which mattered more than it sounds. The
+article's band is a section in the page and not inside `.rec`, so
+`.rec h1{margin:0}` never reached it and the browser's own 21.44px h1 margin
+came back, collapsing against the kicker and the subtitle. That is why the first
+folded version measured 21 and 21 where the CSS said 18 and 14. Every element is
+addressed from `.rec-band` now.
+
+**`--rec-band-floor: 473px`** makes the heights match. Measured after:
+
+| | Perkins | Reynolds | Felton School | Story of Our Valley |
+|---|---:|---:|---:|---:|
+| band height | **474** | **474** | **474** | 563 |
+| padding top / bottom | 26 / 46 | 26 / 46 | 26 / 46 | 26 / 46 |
+| breadcrumb → kicker | 34 | 34 | 34 | 34 |
+| kicker → title | 18 | 18 | 18 | 18 |
+| title → subtitle | 14 | 14 | 14 | 14 |
+| byline → chips | 26 | 26 | 26 | 26 |
+
+The lander is 563 because it carries two controls and four stat blocks under the
+chips. That is content below the floor, not a different set of values.
+
+The floor is dropped below 700px wide, where a fixed height would be a tall
+empty box on a phone.
 
 ## 3. `design/collection-column-source.html`
 

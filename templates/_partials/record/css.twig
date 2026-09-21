@@ -19,12 +19,50 @@
 .rec{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
 .rec-wrap{max-width:1320px;margin:0 auto;padding:0 40px}
 
-/* The band, the kicker, the type, the chips and the grid below are the article
-   page's values, read off templates/articles/_entry.twig, which was built from
-   design/article-source.html. They were set here from a written brief before
-   that design existed, and every record type was a little different from it.
-   Changing them here brings all eleven into line at once. */
-.rec-band{position:relative;overflow:hidden;background:#FDF7EA;border-bottom:1px solid #E8E0CC}
+/* ── The band ─────────────────────────────────────────────────────────
+   ONE set of values, for every band on the site.
+
+   There were three implementations: inline styles on the article, .cl-band on
+   the collection lander, .rec-band here for the other eleven types. Their
+   numbers were brought into line by hand, which held, but three copies of a
+   thing drift and the only question is when. These are now the values and the
+   other two use them.
+
+   Measured before the change, Perkins against Reynolds: padding 26 and 46,
+   breadcrumb to kicker 34, kicker to title 18, title to subtitle 14, byline to
+   chips 66, chips to bottom 47. Identical on both. The 100px between them was
+   never spacing: Reynolds's title wraps to two lines where Perkins's fits on
+   one, and it carries seven chips on two rows where Perkins has three on one.
+
+   --rec-band-floor is what makes them match anyway. A band with a short title
+   and three chips now occupies the same height as one with a wrapped title and
+   two rows, so moving between chapters does not move the page under the reader.
+   It costs blank cream above the tools row on a short record, which is the
+   trade and is deliberate. */
+.rec-band{position:relative;overflow:hidden;background:#FDF7EA;border-bottom:1px solid #E8E0CC;
+          --rec-band-floor:473px}
+.rec-band>.rec-wrap{min-height:var(--rec-band-floor);display:flex;flex-direction:column}
+.rec-band .rec-bandcol{max-width:560px}
+/* The band styles itself and does not rely on a .rec ancestor. The article's
+   band is a section in the page, not inside .rec, so .rec h1{margin:0} never
+   reached it and the browser's own 21.44px h1 margin came back, collapsing
+   against the kicker and the subtitle and pushing both gaps out by three and
+   seven pixels. Every element in the band is addressed from .rec-band. */
+.rec-band .rec-crumbs{font-size:13px;color:#5B6472;margin:0 0 34px}
+.rec-band .rec-kick{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Jost',sans-serif;
+                    font-size:11.5px;letter-spacing:.18em;color:#7E6118;margin:0 0 18px}
+.rec-band h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(36px,4vw,54px);
+             line-height:1.05;margin:0;color:#17254C;text-wrap:balance}
+.rec-band .rec-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;line-height:1.35;
+                   color:#5B6472;margin:14px 0 0}
+.rec-band .rec-chips{display:flex;gap:9px;flex-wrap:wrap;margin:26px 0 0}
+.rec-band .rec-facts{margin-top:22px}
+/* The kicker row: label, a short gold rule, the era. */
+.rec-band .rec-kick .r{width:22px;height:1px;background:#C4A031;flex:0 0 auto}
+.rec-band .rec-sub a{color:inherit;text-decoration:none}
+.rec-band .rec-byline{font-size:15px;color:#4A5260;margin-top:16px}
+.rec-band .rec-byline a{color:#17254C;font-weight:600;text-decoration:none}
+.rec-band .rec-byline a:hover{color:#7A5C1B}
 /* Artwork behind the band: one image layer and one gradient, never two image
    layers. The gradient carries the words and lets the drawing fall away to the
    right, which is how the artwork is composed. */
@@ -34,7 +72,11 @@
 /* With artwork, everything in the band shares one column to the left of it. */
 .rec-band--art .rec-head{grid-template-columns:1fr}
 .rec-band--art .rec-head>div:first-child{max-width:560px}
-.rec-band .rec-wrap{padding-top:26px}
+@media(max-width:700px){.rec-band{--rec-band-floor:0px}}
+/* 26 top, 46 bottom, which is what the article band carried inline. The shared
+   rule only ever set the top, so folding the article onto these classes left
+   the bottom at zero and the chips sitting against the edge. */
+.rec-band .rec-wrap{padding-top:26px;padding-bottom:46px}
 .rec-crumbs{font-size:13px;color:#5B6472;margin-bottom:34px}
 .rec-crumbs a{color:#7A5C1B;text-decoration:none}
 .rec-crumbs a:hover{text-decoration:underline}
