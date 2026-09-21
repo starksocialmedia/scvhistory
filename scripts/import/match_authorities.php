@@ -125,9 +125,26 @@ if ($wikidata) {
             'detail' => $desc, 'inception' => $o['inception'] ?? '',
             'wikipedia' => $o['wikipedia'] ?? '',
             'local' => $local, 'foreign' => $foreign,
+            'foundBy' => $o['foundBy'] ?? [],
             'ein' => $o['ein'] ?? '', 'ncesId' => $o['ncesId'] ?? '', 'gnisId' => $o['gnisId'] ?? '']);
     }
 }
+
+/* The gazetteer's class, mapped to the archive's placeType, so an approval can
+   set both the id and the kind from one match. */
+$GNIS_TYPE = ['stream'=>'natural','valley'=>'natural','summit'=>'natural','spring'=>'natural',
+  'lake'=>'natural','flat'=>'natural','ridge'=>'natural','cliff'=>'natural','gap'=>'natural',
+  'basin'=>'natural','island'=>'natural','swamp'=>'natural','falls'=>'natural','bend'=>'natural',
+  'bar'=>'natural','bay'=>'natural','beach'=>'natural','cape'=>'natural','arch'=>'natural',
+  'channel'=>'natural','crater'=>'natural','glacier'=>'natural','gut'=>'natural','isthmus'=>'natural',
+  'lava'=>'natural','pillar'=>'natural','plain'=>'natural','range'=>'natural','rapids'=>'natural',
+  'sea'=>'natural','slope'=>'natural','woods'=>'natural','arroyo'=>'natural','bench'=>'natural',
+  'canal'=>'site','census'=>'site','civil'=>'site','crossing'=>'site','levee'=>'site',
+  'military'=>'site','populated place'=>'site','reservoir'=>'site','area'=>'site'];
+
+/* The valley and the counties it touches. A gazetteer name like Grapevine
+   Canyon occurs ten times across California, and nine of them are irrelevant. */
+$NEAR_COUNTIES = ['los angeles' => 1, 'ventura' => 1, 'kern' => 1];
 
 $gnis = [];
 if ($gnisDoc) {
@@ -135,7 +152,8 @@ if ($gnisDoc) {
         $n = $norm((string)($row['name'] ?? ''));
         if ($n === '') { continue; }
         $gnis[$n][] = ['source' => 'GNIS', 'id' => (string)$fid, 'idField' => 'gnisId',
-            'name' => $row['name'], 'class' => $row['class'], 'county' => $row['county']];
+            'name' => $row['name'], 'class' => $row['class'], 'county' => $row['county'],
+            'placeType' => $GNIS_TYPE[strtolower((string)$row['class'])] ?? ''];
     }
 }
 
@@ -208,6 +226,38 @@ foreach ($rows as $i => $r) {
         if ($sc <= 0) { continue; }
         if (!empty($c['foreign'])) { $sc = (int)floor($sc / 2); $why .= ', but it is not in California'; }
         if (!empty($c['viaBare'])) { $why .= ' (on the shortened form)'; }
+
+        /* A Wikidata row that entered the table only because its label matched
+           a corpus name, and whose description says nothing about California,
+           is a blind hit. "Planning Commission" is identical to a government
+           agency somewhere and the identity is the whole of the evidence. */
+        if ($c['source'] === 'Wikidata'
+            && ($c['foundBy'] ?? []) === ['name']
+            && empty($c['local'])) {
+            $sc = (int)floor($sc / 2);
+            $why .= ', but it is in the table only because the name matched and nothing places it here';
+        }
+
+        /* A gazetteer name repeats across the state. Grapevine Canyon is ten
+           features in ten counties, and the archive means the one here. A
+           feature in this valley's counties keeps its score; one elsewhere is
+           halved, which breaks the tie without discarding the alternative. */
+        if ($c['source'] === 'GNIS') {
+            $cty = mb_strtolower((string)($c['county'] ?? ''));
+            if (isset($NEAR_COUNTIES[$cty])) { $sc += 5; $why .= ', in ' . $c['county'] . ' County'; }
+            else { $sc = (int)floor($sc / 2); $why .= ', but it is in ' . ($c['county'] ?: 'another') . ' County'; }
+        }
+
+        /* The IRS file is full of the bodies that orbit a school rather than
+           the school: the booster club, the PTA, the scout pack that meets in
+           its hall. "Castaic School" matched CASTAIC HIGH SCHOOL PACK on every
+           word appearing, which is true and useless. */
+        if ($c['source'] === 'IRS'
+            && preg_match('~\b(pta|ptsa|ptso|booster|boosters|pack|troop|auxiliary|alumni|friends of|foundation|parent|parents|advisory|council|club)\b~i', (string)$c['name'])
+            && !preg_match('~\b(pta|ptsa|booster|pack|troop|auxiliary|alumni|friends|foundation|parent|advisory|council|club)\b~i', $r['name'])) {
+            $sc = (int)floor($sc / 3);
+            $why .= ', but this is a support group rather than the body itself';
+        }
         $key = $c['source'] . '|' . $c['id'];
         if (!isset($scored[$key]) || $scored[$key]['score'] < $sc) {
             $scored[$key] = $c + ['score' => $sc, 'why' => $why];

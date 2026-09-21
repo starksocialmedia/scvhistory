@@ -1714,3 +1714,11 @@ by city and ZIP to the valley and its edges. orgs-wikidata.json: 145
 organizations, 60 found by place and 85 by matching the corpus's own
 organization names, which is the only way the Southern Pacific and Hart High
 were found at all. schools-ca.json waits on pubschls.txt.
+
+Schools switched to NCES, since CDE refuses a browser download as well as curl.
+38 years of Common Core of Data for Los Angeles County: 15,380 schools, 10,292
+open and 5,088 closed, 2,482 districts. Closure is derived from absence, so
+anything that closed before 1987 is in none of it.
+
+match_authorities.php scores the queue against all four tables and writes the
+best candidate onto each row, with its source, id and reason.
