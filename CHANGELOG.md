@@ -1733,3 +1733,9 @@ them tied, 13 with nothing.
 Schools no authority can vouch for approve with provenance naming this archive
 as the source. The pairs block says where a fold went and the surviving card
 says what it carries.
+
+docs/DATA-MODEL.md, generated from the live schema: 14 entry types, 239 field
+handles, 64 mapped to an external standard and 175 local by definition. The
+name policy, the identifier schemes with their URL patterns, and the relation
+vocabulary. check_render now fails if a field exists that the document does not
+mention.

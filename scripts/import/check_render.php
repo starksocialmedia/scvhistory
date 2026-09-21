@@ -135,6 +135,13 @@ foreach ($urls as $url => $what) {
 
 echo str_repeat('=', 76) . PHP_EOL;
 echo 'checked ' . $checked . ' pages, ' . $ldTotal . ' JSON-LD blocks parsed' . PHP_EOL;
+
+/* The data model has to keep up with the schema. A field added without
+   regenerating docs/DATA-MODEL.md fails here, because a data model that drifts
+   is consulted and believed. */
+$dm = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_data_model.php'));
+if (is_array($dm) && !($dm['ok'] ?? true)) { $fail++; }
+
 echo ($fail ? 'FAILURES: ' . $fail : 'no failures') . PHP_EOL;
 if ($fail) {
     echo PHP_EOL . 'Do not report the work as done. A page that 500s or renders an error into' . PHP_EOL;
