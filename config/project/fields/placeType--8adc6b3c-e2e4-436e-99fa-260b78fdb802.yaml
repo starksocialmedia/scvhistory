@@ -1,0 +1,88 @@
+columnSuffix: null
+handle: placeType
+instructions: 'What kind of place this is, which decides how it is grouped and filtered on the places index. Natural: made by the land, such as a river, canyon or summit. Road: a named road, street or highway. Ranch: a rancho or working ranch. Building: a structure. Park: land set aside and open to the public. Site: somewhere a thing happened or stood, with or without remains. Trail: a route travelled rather than a road. Leave empty if none of them fits.'
+name: 'Place Type'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Natural feature'
+        -
+          - value
+          - natural
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Road or street'
+        -
+          - value
+          - road
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Ranch or rancho'
+        -
+          - value
+          - ranch
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Building
+        -
+          - value
+          - building
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Park
+        -
+          - value
+          - park
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Site
+        -
+          - value
+          - site
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Trail or route'
+        -
+          - value
+          - trail
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown
