@@ -66,6 +66,25 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .acts button.mg.on{background:var(--gold-d);border-color:var(--gold-d)}
 .acts .as{font-size:12.5px;color:var(--muted);margin-left:2px}
 
+.pairs{margin-bottom:26px}
+.pairs h2{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;color:var(--navy);margin:0 0 4px}
+.pairs .lede{font-size:13px;color:var(--muted);line-height:1.7;margin:0 0 14px;max-width:760px}
+.pair{background:#fff;border:1px solid var(--bord);border-left:3px solid #8A4B00;padding:14px 16px;margin-bottom:10px}
+.pair.done{border-left-color:var(--green);background:#F2FAF6;opacity:.8}
+.pair .shape{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#8A4B00;margin-bottom:8px}
+.pair.done .shape{color:var(--green)}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.sides{grid-template-columns:1fr}}
+.side{border:1px solid var(--bord);padding:10px 12px;background:var(--grey)}
+.side.keeps{background:var(--cream);border-color:var(--cream-b)}
+.side .n{font-family:'Jost',sans-serif;font-size:15px;font-weight:500;color:var(--navy)}
+.side .m{font-size:12.5px;color:var(--muted);margin-top:3px}
+.side .role{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-top:6px}
+.pair .pacts{margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pair .pacts button{border:1px solid var(--bord);background:#fff;font-family:'Jost',sans-serif;font-size:13.5px;padding:8px 14px;cursor:pointer}
+.pair .pacts button.same.on{background:var(--green);border-color:var(--green);color:#fff}
+.pair .pacts button.diff.on{background:var(--muted);border-color:var(--muted);color:#fff}
+.pair .pacts .outcome{font-size:12.5px;color:var(--muted)}
 footer{position:fixed;bottom:0;left:0;right:0;background:var(--navy);color:#fff;z-index:9}
 footer .wrap{padding-top:12px;padding-bottom:12px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:13px}
 footer .tot{font-family:'Jost',sans-serif;letter-spacing:.08em}
@@ -115,6 +134,8 @@ footer .tot b{color:var(--gold);font-weight:500}
     <label>Approve top <input type="number" id="topn" value="50" min="1"></label>
     <button class="btn" id="batch">Approve them</button>
   </div>
+
+  <div class="pairs" id="pairs"></div>
 
   <div id="list"></div>
   <div class="more"><button class="btn ghost" id="more" style="color:var(--navy);border-color:var(--bord)">Show more</button></div>
@@ -224,11 +245,98 @@ function render() {
   let a = 0, s = 0, m = 0;
   Object.values(decisions).forEach(d => { if (d.action === 'approved') a++; else if (d.action === 'skipped') s++; else if (d.action === 'merged') m++; });
   document.getElementById('counts').textContent = `${n} names, ${rows.length} shown`;
-  const links = DATA.names.filter(r => (decisions[idOf(r)] || {}).action === 'approved')
-    .reduce((t, r) => t + r.articleCount, 0);
+  /* The decision's own article list, not the row's count. After a "same thing"
+     the approved record carries the union of both names' articles, which is
+     more than either row knows about, and reading the row reports the smaller
+     number for the bigger record. */
+  const links = Object.values(decisions)
+    .filter(d => d.action === 'approved')
+    .reduce((t, d) => t + (d.articles ? d.articles.length : 0), 0);
   document.getElementById('tot').innerHTML =
     `<b>${a}</b> to create &middot; <b>${links}</b> article links &middot; ${m} merged &middot; ${s} skipped &middot; ${n - a - s - m} undecided`;
 }
+
+
+/* ---- names that contain other names -------------------------------------
+   Rendered above the queue, because these are the decisions that go wrong
+   quietly. Approving both halves of "Southern Pacific" and "Southern Pacific
+   Railroad" creates two records for one railroad and splits its articles
+   between them, and nothing on the screen would ever say so. */
+let pairState = {};
+try { pairState = JSON.parse(localStorage.getItem(KEY + '-pairs') || '{}'); } catch (e) { pairState = {}; }
+function savePairs() { try { localStorage.setItem(KEY + '-pairs', JSON.stringify(pairState)); } catch (e) {} }
+
+const pairId = c => c.shortKey + '||' + c.longKey;
+
+function renderPairs() {
+  const list = (DATA.containment || []).filter(c =>
+    DATA.names.some(r => r.key === c.shortKey) && DATA.names.some(r => r.key === c.longKey));
+  const el = document.getElementById('pairs');
+  if (!list.length) { el.innerHTML = ''; return; }
+
+  const open = list.filter(c => !pairState[pairId(c)]).length;
+  el.innerHTML = `
+    <h2>One name inside another &mdash; ${open} still to decide</h2>
+    <p class="lede">Approving both halves of these creates two records for one thing and splits the
+      articles between them. <b>Same thing</b> keeps the longer name as the title and files the
+      shorter one as an alias, so both spellings reach the record. <b>Different things</b> keeps
+      both and stops asking.</p>
+    ` + list.map(c => {
+    const id = pairId(c), st = pairState[id];
+    const reordered = c.shape === 'reordered';
+    return `<div class="pair ${st ? 'done' : ''}" data-pair="${esc(id)}">
+      <div class="shape">${st ? (st === 'same' ? 'one record' : 'two records') :
+        (reordered ? 'the same words in a different order' : 'one name contains the other')}</div>
+      <div class="sides">
+        <div class="side ${st === 'same' ? '' : 'keeps'}">
+          <div class="n">${esc(c.short)}</div>
+          <div class="m">${c.shortType} &middot; ${c.shortArticles} articles</div>
+          <div class="role">${st === 'same' ? 'becomes an alias' : 'its own record'}</div>
+        </div>
+        <div class="side keeps">
+          <div class="n">${esc(c.long)}</div>
+          <div class="m">${c.longType} &middot; ${c.longArticles} articles</div>
+          <div class="role">${st === 'same' ? 'keeps the title' : 'its own record'}</div>
+        </div>
+      </div>
+      <div class="pacts">
+        <button class="same ${st === 'same' ? 'on' : ''}" data-p="same">Same thing</button>
+        <button class="diff ${st === 'diff' ? 'on' : ''}" data-p="diff">Different things</button>
+        <span class="outcome">${c.shared} article${c.shared === 1 ? '' : 's'} name both${
+          st === 'same' ? ' &middot; one record, ' + (c.shortArticles + c.longArticles - c.shared) + ' links' : ''}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('pairs').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-p]');
+  if (!btn) return;
+  const id = btn.closest('.pair').dataset.pair;
+  const c = (DATA.containment || []).find(x => pairId(x) === id);
+  const want = btn.dataset.p;
+  if (pairState[id] === want) { delete pairState[id]; }
+  else { pairState[id] = want; }
+
+  /* Same thing: the long name is approved carrying the short one as an alias
+     and the union of both article lists, and the short name is retired. */
+  const shortRow = DATA.names.find(r => r.key === c.shortKey);
+  const longRow  = DATA.names.find(r => r.key === c.longKey);
+  if (pairState[id] === 'same' && shortRow && longRow) {
+    const arts = Array.from(new Set(
+      longRow.articles.map(a => a.id).concat(shortRow.articles.map(a => a.id))));
+    decisions[c.longKey] = {
+      action: 'approved', type: longRow.guess, name: longRow.name, articles: arts,
+      aliases: (longRow.variants || []).concat([shortRow.name]),
+    };
+    decisions[c.shortKey] = { action: 'merged', type: shortRow.guess, name: shortRow.name,
+                              intoName: longRow.name, intoKey: c.longKey };
+  } else {
+    if (decisions[c.shortKey] && decisions[c.shortKey].intoKey === c.longKey) delete decisions[c.shortKey];
+    if (decisions[c.longKey] && decisions[c.longKey].aliases) delete decisions[c.longKey];
+  }
+  save(); savePairs(); renderPairs(); render();
+});
 
 document.getElementById('list').addEventListener('click', e => {
   const btn = e.target.closest('button[data-act]');
@@ -275,7 +383,7 @@ document.getElementById('more').onclick = () => { shown += PAGE; render(); };
 
 document.getElementById('reset').onclick = () => {
   if (!confirm('Clear every decision in this browser?')) return;
-  decisions = {}; save(); render();
+  decisions = {}; pairState = {}; save(); savePairs(); renderPairs(); render();
 };
 
 document.getElementById('download').onclick = () => {
@@ -295,7 +403,7 @@ document.getElementById('download').onclick = () => {
 const set = new URLSearchParams(location.search).get('set');
 fetch(set === 'full' ? 'records-full.json' : 'records.json')
   .then(r => r.json())
-  .then(d => { DATA = d; render(); })
+  .then(d => { DATA = d; renderPairs(); render(); })
   .catch(() => { document.getElementById('list').innerHTML =
     '<div class="empty">No records.json. Run export_missing_records.php.</div>'; });
 </script>

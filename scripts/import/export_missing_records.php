@@ -227,12 +227,147 @@ foreach ($groups as $gkey => $members) {
     }
 }
 
+/* PAGE FURNITURE, REMOVED BEFORE THE QUEUE IS RANKED.
+ *
+ * "Post Office Box" is on fifteen articles and "Gazette Archive" on fifteen,
+ * which puts both inside the top fifty by article count, which is where a batch
+ * approval would create records for them. Neither is a thing. One is the
+ * contact line at the foot of every Old Town Newhall page and the other is a
+ * link in the navigation bar.
+ *
+ * The words do not give them away: "Gazette Archive" is shaped exactly like a
+ * name. What gives them away is that furniture appears in the SAME SENTENCE
+ * every time, because it is the same sentence repeated across pages, while a
+ * person appears in a different sentence in every article. The sample sentences
+ * for "Post Office Box" are identical; those for Jan Heidt, a real mayor, are
+ * 42 per cent alike, and real names run from 14 per cent up.
+ *
+ * The threshold is 85, which is well clear of the highest real name measured.
+ * Two samples are required: one sentence cannot be compared with itself, and a
+ * name appearing in a single article is not what this is for.
+ *
+ * An earlier version of this test asked whether the name carried a given name,
+ * an honorific or a nearby pronoun. It flagged Doc Rioux, Jan Heidt and Sanford
+ * Lyon, who are real people, and a check that wrong teaches a reviewer to
+ * ignore it.
+ *
+ * They are parked, not deleted, and written to the file so the rule can be
+ * audited against what it removed. */
+$FURNITURE_AT   = 85;
+$FURNITURE_MIN  = 3;        /* distinct articles the same sentence must span */
+$furniture = [];
+$keep = [];
+foreach ($rows as $r) {
+    /* One sentence per ARTICLE, not per sample. Two things were breaking this:
+       a name in a single article can have the same sentence sampled twice, and
+       the legacy site mirrors some pages at two paths, so
+       /worden/old/lw080798ea.htm and /worden/lw080798ea.htm are one article
+       under two names. Both produce a pair of identical sentences that have
+       nothing to do with furniture. Keying on the basename collapses the
+       mirror, and requiring three distinct articles means a name cannot be
+       called furniture on the strength of one page. */
+    $byArticle = [];
+    foreach (($r['context'] ?? []) as $c) {
+        $t = trim((string)($c['text'] ?? ''));
+        if ($t === '') { continue; }
+        $k = basename((string)($c['path'] ?? $t));
+        if (!isset($byArticle[$k])) { $byArticle[$k] = $t; }
+    }
+    $texts = array_values($byArticle);
+
+    if (count($texts) < 2 || $r['articleCount'] < $FURNITURE_MIN) { $keep[] = $r; continue; }
+
+    $sum = 0; $n = 0;
+    for ($i = 0; $i < count($texts); $i++) {
+        for ($j = $i + 1; $j < count($texts); $j++) {
+            similar_text($texts[$i], $texts[$j], $pc);
+            $sum += $pc; $n++;
+        }
+    }
+    $avg = $n ? $sum / $n : 0;
+    $r['contextSimilarity'] = round($avg, 1);
+    $r['contextArticles'] = count($texts);
+    if ($avg >= $FURNITURE_AT) {
+        $r['furnitureSample'] = $texts[0];
+        $furniture[] = $r;
+        continue;
+    }
+    $keep[] = $r;
+}
+$rows = $keep;
+
 /* Ranked by articles, because that is the ranking that says which missing
    record costs the archive most. Mentions break the tie: a name used nine
    times in three articles is more established than one used three times. */
 usort($rows, function ($a, $b) {
     return [$b['articleCount'], $b['mentions'], $a['name']] <=> [$a['articleCount'], $a['mentions'], $b['name']];
 });
+
+/* NAMES THAT CONTAIN OTHER NAMES.
+ *
+ * "Southern Pacific" and "Southern Pacific Railroad" are one railroad.
+ * "Hart Park" and "William S. Hart Park" are one park. "Newhall Land",
+ * "Newhall Land and Farming" and "Newhall Land and Farming Company" are one
+ * company three times. Approved as they stand that is eight records for four
+ * things, and the second copy of each is found a year later by somebody
+ * wondering why half the articles link to the wrong one.
+ *
+ * The stripped-name key does not catch these, and should not: it exists to
+ * collapse "General Beale" into "Beale", where the difference is a rank. Here
+ * the difference is a real word, and a real word sometimes means a real
+ * difference. "Newhall Ranch" and "Newhall Land and Farming Company" are a
+ * place and the company that owned it.
+ *
+ * So this decides nothing. It pairs them for the screen, which puts the two
+ * side by side with their evidence and asks. Bounded to the top of the queue
+ * because that is where a batch approval does damage, and because comparing
+ * every name against every other name is four thousand squared.
+ *
+ * "the" and "of" are dropped before comparing, so "Santa Clarita Valley
+ * Historical Society" contains "SCV Historical Society" only if the words
+ * genuinely nest, which they do not. That pair is a different shape and the
+ * screen will not raise it. */
+$CONTAIN_TOP = 200;
+$toks = function (string $s): array {
+    $s = mb_strtolower(preg_replace('~[^a-zA-Z0-9 ]~', ' ', $s));
+    $t = preg_split('~\s+~', trim($s), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+    return array_values(array_diff($t, ['the', 'of', 'and', 'a']));
+};
+$containment = [];
+$head = array_slice($rows, 0, $CONTAIN_TOP);
+foreach ($head as $i => $a) {
+    foreach ($head as $j => $b) {
+        if ($i >= $j) { continue; }
+        $ta = $toks($a['name']); $tb = $toks($b['name']);
+        if (!$ta || !$tb || $ta === $tb) { continue; }
+        $aExtra = array_diff($ta, $tb);
+        $bExtra = array_diff($tb, $ta);
+        if ($aExtra && $bExtra) { continue; }
+
+        if (!$aExtra && !$bExtra) {
+            /* Same words, different order: "Lake Elizabeth" against "Elizabeth
+               Lake". Neither contains the other and "keep the longer form" has
+               nothing to choose between them, so it is marked as its own shape
+               and the screen asks which spelling wins rather than assuming. */
+            $shape = 'reordered';
+            $short = mb_strlen($a['name']) <= mb_strlen($b['name']) ? $a : $b;
+            $long  = $short === $a ? $b : $a;
+        } else {
+            $shape = 'contains';
+            $short = $aExtra ? $b : $a;
+            $long  = $aExtra ? $a : $b;
+        }
+        $containment[] = [
+            'shape' => $shape,
+            'shortKey' => $short['key'], 'short' => $short['name'],
+            'shortType' => $short['guess'], 'shortArticles' => $short['articleCount'],
+            'longKey' => $long['key'], 'long' => $long['name'],
+            'longType' => $long['guess'], 'longArticles' => $long['articleCount'],
+            'shared' => count(array_intersect(
+                array_column($short['articles'], 'id'), array_column($long['articles'], 'id'))),
+        ];
+    }
+}
 
 /* Every record we hold, for the merge-into selector on the screen. */
 $existing = [];
@@ -249,13 +384,25 @@ file_put_contents($out, json_encode([
         'generated_by' => 'scripts/import/export_missing_records.php',
         'source' => basename($in),
         'names' => count($rows),
+        'furnitureRemoved' => count($furniture),
+        'furnitureThreshold' => $FURNITURE_AT,
+        'containmentPairs' => count($containment),
         'records_held' => count($existing),
     ],
     'records' => $existing,
     'names' => $rows,
+    'furniture' => $furniture,
+    'containment' => $containment,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 
 echo 'names with no record: ' . count($rows) . PHP_EOL;
+echo 'removed as page furniture: ' . count($furniture) . PHP_EOL;
+echo 'names containing other names, for the screen to ask about: ' . count($containment) . PHP_EOL;
+foreach (array_slice($furniture, 0, 12) as $f) {
+    printf("  %-30s %2d articles, samples %d%% alike\n     %s\n",
+        mb_substr($f['name'], 0, 29), $f['articleCount'], round($f['contextSimilarity']),
+        mb_substr(trim($f['furnitureSample']), 0, 84));
+}
 echo 'records held: ' . count($existing) . PHP_EOL;
 $byGuess = [];
 foreach ($rows as $r) { $byGuess[$r['guess']] = ($byGuess[$r['guess']] ?? 0) + 1; }

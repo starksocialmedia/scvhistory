@@ -1600,3 +1600,22 @@ articles use a name, with the type guess and its evidence shown. Backed by
 export_missing_records.php and create_records_from_review.php, both read only.
 
 Full-corpus review pile: 5,783 decisions to 1,909.
+
+Added recordProvenance (PlainText, on person, place and organization, rendered
+nowhere) so a record created by a batch says so and the batch can be found
+again. Script written, dry run clean, not applied.
+
+Page furniture is now removed from the missing-records queue rather than
+flagged in it. "Post Office Box" and "Gazette Archive" were both inside the top
+fifty by article count. Furniture repeats the same sentence across pages where
+a person appears in a different sentence each time; the rule needs three
+distinct articles and 85 per cent similarity. The first version counted samples
+rather than articles and removed 207 names, most of them real, because a name
+in one article can have its one sentence sampled twice and the legacy site
+mirrors some pages at two paths. Six removed now, all correct.
+
+The records screen asks about names that contain other names before they are
+approved separately: Southern Pacific against Southern Pacific Railroad, Hart
+Park against William S. Hart Park, Newhall Land three ways. Same thing keeps
+the longer name and files the shorter as an alias with the union of both
+article lists; different things keeps both.
