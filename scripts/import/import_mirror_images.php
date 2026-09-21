@@ -282,10 +282,27 @@ if ($APPLY) {
                 }
             }
 
-            $asset->setFieldValue('photoSourceCode', $r['code']);
-            if ($hasPathField) { $asset->setFieldValue('legacySourcePath', $r['rel']); }
-            if ($elements->saveElement($asset)) { $stamped++; }
-            else { $failed[] = $r['fn'] . ': provenance ' . json_encode($asset->getErrors()); }
+            /* Reloaded before the provenance is written, and this is not
+               optional.
+
+               The object above is still in SCENARIO_CREATE, and Craft's create
+               scenario requires tempFilePath or newLocation because creating an
+               asset means putting a file somewhere. The first save consumed
+               tempFilePath and nulled it, the file having arrived, so a second
+               save on the same object re-validates the create rules against an
+               element with no file left to move and refuses with "newLocation
+               and tempFilePath cannot be blank".
+
+               An asset read back from the database arrives in the default
+               scenario with nothing pending, so it saves. That is the whole
+               difference, and it cost 3,491 assets their provenance across four
+               passes: the files landed and the two custom fields never did. */
+            $fresh = \craft\elements\Asset::find()->id($asset->id)->one();
+            if (!$fresh) { $failed[] = $r['fn'] . ': not found after the file save'; @unlink($tmp); continue; }
+            $fresh->setFieldValue('photoSourceCode', $r['code']);
+            if ($hasPathField) { $fresh->setFieldValue('legacySourcePath', $r['rel']); }
+            if ($elements->saveElement($fresh)) { $stamped++; }
+            else { $failed[] = $r['fn'] . ': provenance ' . json_encode($fresh->getFirstErrors()); }
             @unlink($tmp);
         }
     }
@@ -300,8 +317,9 @@ if ($APPLY) {
     $back = 0; $short = [];
     foreach ($PASSES as $p) {
         foreach ($plan[$p['key']] as $r) {
-            $fresh = \craft\elements\Asset::find()->filename($r['fn'])->one();
-            if (!$fresh) { $short[] = $r['fn'] . ': not in the volume after import'; continue; }
+            $chk = \craft\elements\Asset::find()->filename($r['fn'])->one();
+            if (!$chk) { $short[] = $r['fn'] . ': not in the volume after import'; continue; }
+            $fresh = $chk;
             if (trim((string)$fresh->getFieldValue('photoSourceCode')) !== $r['code']) {
                 $short[] = $r['fn'] . ': photoSourceCode reads back as "'
                          . trim((string)$fresh->getFieldValue('photoSourceCode')) . '"';
