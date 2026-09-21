@@ -183,7 +183,12 @@ function filtered() {
     const d = decisions[idOf(r)];
     const t = (d && d.type) || r.guess;
     if (ft && t !== ft) return false;
-    const st = stateOf(r);
+    /* A decision carried in from a previous session counts as decided even
+       though this browser has no memory of it: the file was downloaded and
+       applied from somewhere else, and a name skipped last week should not head
+       the list again this week as though it were new. */
+    const st = stateOf(r) || (r.decidedAs === 'skipped' ? 'skipped'
+                            : r.decidedAs === 'merged' ? 'merged' : '');
     if (f === 'all') return true;
     if (f === 'undecided') return !st;
     return st === f;
@@ -212,7 +217,8 @@ function card(r, rank) {
   return `<div class="rec ${st}" data-id="${esc(id)}">
     <div class="top">
       <span class="nm"><span class="rank">${rank}.</span>${esc(r.name)}</span>
-      <span class="ct">${r.articleCount} article${r.articleCount === 1 ? '' : 's'} &middot; ${r.mentions} mention${r.mentions === 1 ? '' : 's'}</span>
+      <span class="ct">${r.articleCount} article${r.articleCount === 1 ? '' : 's'} &middot; ${r.mentions} mention${r.mentions === 1 ? '' : 's'}${
+        r.decidedAs ? ' &middot; ' + esc(r.decidedAs) + ' in an earlier session' : ''}</span>
     </div>
 
     <div class="guess">

@@ -1679,3 +1679,10 @@ Dry-ran the 52 hand-edited decisions: 27 records, 488 links across 266 distinct
 articles, 8 merges, 17 skipped, no conflicts with the canon. Four of the 52
 carry keys the canon has since moved, so the backfill now falls back to the
 name and reports how many were stale.
+
+Applied 27 records from the review screen, 488 links, verified. Re-ran the
+exporters and the triage against the live database: full-corpus accept 1,131 to
+1,904, review 1,909 to 1,869; the live queue is accept 298, reject 1,019,
+review 364. The missing-records export now carries prior decisions, so a name
+skipped or merged last session does not head the next fifty as though it were
+new.

@@ -336,6 +336,33 @@ foreach ($rows as $r) {
 }
 $rows = $keep;
 
+/* ALREADY DECIDED, carried through from the last session.
+ *
+ * A name approved last time has a record now and has already left this queue.
+ * A name SKIPPED or MERGED has not: it still has no record of its own, so it
+ * comes back at the top of the pile it was just dismissed from, and the next
+ * fifty are the same fifty. Marking them lets the screen hide what has been
+ * answered and show what has not.
+ *
+ * Matched on key and then on name, because the canon moves keys between a
+ * review and the next export. */
+$decidedPath = $REVIEW . '/records-decided.json';
+$decidedBy = ['key' => [], 'name' => []];
+if (file_exists($decidedPath)) {
+    $dd = json_decode(file_get_contents($decidedPath), true) ?: [];
+    foreach (($dd['decisions'] ?? []) as $x) {
+        $act = (string)($x['action'] ?? '');
+        if ($act === '') { continue; }
+        if (!empty($x['key'])) { $decidedBy['key'][(string)$x['key']] = $act; }
+        if (!empty($x['name'])) { $decidedBy['name'][mb_strtolower(trim((string)$x['name']))] = $act; }
+    }
+}
+$decidedCount = 0;
+foreach ($rows as $i => $r) {
+    $act = $decidedBy['key'][$r['key']] ?? $decidedBy['name'][mb_strtolower($r['name'])] ?? null;
+    if ($act !== null) { $rows[$i]['decidedAs'] = $act; $decidedCount++; }
+}
+
 /* Ranked by articles, because that is the ranking that says which missing
    record costs the archive most. Mentions break the tie: a name used nine
    times in three articles is more established than one used three times. */
@@ -424,6 +451,7 @@ file_put_contents($out, json_encode([
         'generated_by' => 'scripts/import/export_missing_records.php',
         'source' => basename($in),
         'names' => count($rows),
+        'alreadyDecided' => $decidedCount,
         'furnitureRemoved' => count($furniture),
         'furnitureThreshold' => $FURNITURE_AT,
         'containmentPairs' => count($containment),
@@ -436,6 +464,7 @@ file_put_contents($out, json_encode([
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 
 echo 'names with no record: ' . count($rows) . PHP_EOL;
+echo 'carried over as already decided: ' . $decidedCount . PHP_EOL;
 echo 'removed as page furniture: ' . count($furniture) . PHP_EOL;
 echo 'names containing other names, for the screen to ask about: ' . count($containment) . PHP_EOL;
 foreach (array_slice($furniture, 0, 12) as $f) {
