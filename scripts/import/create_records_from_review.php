@@ -66,6 +66,7 @@ $decided = $REVIEW . '/records-decided.json';
 $queue   = $REVIEW . '/records' . $SUFFIX . '.json';
 
 $decisions = [];
+$byKey = [];
 $sourceNote = '';
 
 if ($TOP > 0) {
@@ -132,6 +133,8 @@ foreach ($SECTION_FOR as $type => $section) {
 /* ------------------------------------------------------------- the work */
 
 $plan = ['create' => [], 'merge' => [], 'skip' => [], 'collision' => []];
+$deferred = [];          /* merges pointing at another decision in this file */
+$overrides = [];         /* names edited by hand away from the queue's spelling */
 $linkTotal = 0; $articlesTouched = [];
 
 foreach ($decisions as $x) {
@@ -143,9 +146,29 @@ foreach ($decisions as $x) {
     if ($act === 'skipped') { $plan['skip'][] = $x; continue; }
 
     if ($act === 'merged') {
+        /* Two shapes of merge.
+         *
+         *   into      an existing record's id. The name becomes an alias of a
+         *             record the archive already holds.
+         *   intoKey   the key of another decision in THIS file, which is the
+         *             shape the containment pairs write: "Newhall Land" merges
+         *             into "Newhall Land and Farming Company", and that target
+         *             does not exist yet because this same run is about to
+         *             create it.
+         *
+         * The second cannot be resolved here, because the target's record has
+         * no id until the creates have run. It is deferred and resolved after
+         * the plan is built. */
+        if (!empty($x['intoKey'])) {
+            $deferred[] = ['name' => $name, 'key' => (string)($x['key'] ?? ''),
+                           'intoKey' => (string)$x['intoKey'],
+                           'intoName' => (string)($x['intoName'] ?? ''),
+                           'articles' => array_values(array_unique(array_filter((array)($x['articles'] ?? []))))];
+            continue;
+        }
         $into = \craft\elements\Entry::find()->id((int)($x['into'] ?? 0))->status(null)->one();
         $plan['merge'][] = ['name' => $name, 'into' => $into ? $into->title : '(missing #' . ($x['into'] ?? '?') . ')',
-                            'intoId' => $x['into'] ?? null, 'ok' => (bool)$into];
+                            'intoId' => $x['into'] ?? null, 'ok' => (bool)$into, 'via' => 'id'];
         continue;
     }
 
@@ -161,15 +184,127 @@ foreach ($decisions as $x) {
     $linkTotal += count($ids);
     foreach ($ids as $i) { $articlesTouched[$i] = true; }
 
+    /* A hand-edited title wins, and the spelling the corpus actually uses
+       becomes an alias. "Anne Darcy" corrected to "Jo Anne Darcy" is still the
+       string forty articles contain, and a record that cannot be found under
+       the name the text uses has lost the thing the rename was for. */
+    $aliases = array_values(array_filter((array)($x['variants'] ?? [])));
+    $queueName = trim((string)($byKey[$x['key'] ?? '']['name'] ?? ''));
+    if ($queueName !== '' && $queueName !== $name) {
+        $overrides[] = ['from' => $queueName, 'to' => $name];
+        if (!in_array($queueName, $aliases, true)) { $aliases[] = $queueName; }
+    }
+    foreach ((array)($x['aliases'] ?? []) as $a) {
+        $a = trim((string)$a);
+        if ($a !== '' && $a !== $name && !in_array($a, $aliases, true)) { $aliases[] = $a; }
+    }
+
     $plan['create'][] = [
         'name' => $name, 'type' => $type, 'section' => $SECTION_FOR[$type],
-        'aliases' => array_values(array_filter((array)($x['variants'] ?? []))),
+        'aliases' => $aliases,
+        'key' => (string)($x['key'] ?? ''),
         'articles' => $ids, 'confidence' => (string)($x['confidence'] ?? ''),
         'signals' => (array)($x['signals'] ?? []),
         'context' => (array)($x['context'] ?? []),
         'placeType' => $type === 'place' ? (string)($x['placeType'] ?? '') : '',
         'linkField' => $LINK_FOR[$type],
     ];
+}
+
+/* ------------------------------------------- resolve the same-file merges
+
+   A merge whose target is another decision in this file can only be resolved
+   once the create plan exists, because the target has no record yet. The name
+   becomes an alias on the target's record, and the merged row's articles are
+   unioned into the target's links: the screen already does that union when it
+   writes the pair, but a hand-edited file need not have, and a union applied
+   twice is the same union.
+
+   Chains are followed, so A into B into C lands on C, with a visited guard
+   because a file edited by hand can say A into B and B into A. */
+$createByKey = [];
+foreach ($plan['create'] as $i => $c) { if ($c['key'] !== '') { $createByKey[$c['key']] = $i; } }
+
+foreach ($deferred as $d) {
+    $seen = [];
+    $targetKey = $d['intoKey'];
+    while ($targetKey !== '' && !isset($seen[$targetKey])) {
+        $seen[$targetKey] = true;
+        $next = '';
+        foreach ($deferred as $e) {
+            if ($e['key'] === $targetKey && $e['intoKey'] !== '') { $next = $e['intoKey']; break; }
+        }
+        if ($next === '') { break; }
+        $targetKey = $next;
+    }
+
+    if (isset($createByKey[$targetKey])) {
+        $idx = $createByKey[$targetKey];
+        $t =& $plan['create'][$idx];
+        if (!in_array($d['name'], $t['aliases'], true)) { $t['aliases'][] = $d['name']; }
+        $before = count($t['articles']);
+        $t['articles'] = array_values(array_unique(array_merge($t['articles'], $d['articles'])));
+        $added = count($t['articles']) - $before;
+        $linkTotal += $added;
+        foreach ($t['articles'] as $i) { $articlesTouched[$i] = true; }
+        $plan['merge'][] = ['name' => $d['name'], 'into' => $t['name'], 'intoId' => null,
+                            'ok' => true, 'via' => 'intoKey', 'added' => $added,
+                            'chained' => $targetKey !== $d['intoKey']];
+        unset($t);
+        continue;
+    }
+
+    /* The target might already be a record rather than a pending creation. */
+    $hit = null;
+    foreach ($SECTION_FOR as $type => $section) {
+        foreach (($held[$type] ?? []) as $t => $e) {
+            if ($t === mb_strtolower(trim($d['intoName'])) || $t === $targetKey) { $hit = $e; break 2; }
+        }
+    }
+    if ($hit) {
+        $plan['merge'][] = ['name' => $d['name'], 'into' => $hit->title, 'intoId' => $hit->id,
+                            'ok' => true, 'via' => 'intoKey -> existing record'];
+        continue;
+    }
+
+    $plan['merge'][] = ['name' => $d['name'],
+                        'into' => '(no decision or record with key "' . $d['intoKey'] . '")',
+                        'intoId' => null, 'ok' => false, 'via' => 'intoKey'];
+}
+
+/* ------------------------------------------------ against the curated canon
+
+   The canon and a decisions file are two people answering the same question,
+   and where they disagree the disagreement is the finding. A decision that
+   creates a record under a name the canon lists as an ALIAS is the one that
+   matters: it would put back the row the canon exists to fold away. */
+$canonPath = \Craft::getAlias('@root') . '/inventory/legacy/name-canon.json';
+$canon = file_exists($canonPath) ? (json_decode(file_get_contents($canonPath), true) ?: []) : [];
+$conflicts = [];
+if ($canon) {
+    $norm = fn(string $v) => trim(mb_strtolower(preg_replace('~[^a-z0-9 ]~i', ' ', $v)));
+    $canonOf = []; $typeOf = [];
+    foreach (($canon['canon'] ?? []) as $c) {
+        $typeOf[$norm($c['canonical'])] = $c['type'];
+        foreach (($c['aliases'] ?? []) as $a) { $canonOf[$norm($a)] = $c; }
+    }
+    foreach (($canon['splits'] ?? []) as $sp) {
+        foreach (($sp['splits'] ?? []) as $x) { $typeOf[$norm($x['canonical'])] = $x['type']; }
+        $canonOf[$norm($sp['name'])] = ['canonical' => $sp['name'] . ' (splits)', 'type' => '', 'split' => true];
+    }
+
+    foreach ($plan['create'] as $c) {
+        $n = $norm($c['name']);
+        if (isset($canonOf[$n])) {
+            $conflicts[] = $c['name'] . ' is a canon alias of "' . $canonOf[$n]['canonical']
+                . '"' . (!empty($canonOf[$n]['split']) ? ' and the canon splits it by context' : '')
+                . '; the decision would create it as its own record';
+            continue;
+        }
+        if (isset($typeOf[$n]) && $typeOf[$n] !== $c['type']) {
+            $conflicts[] = $c['name'] . ': decided as ' . $c['type'] . ', canon says ' . $typeOf[$n];
+        }
+    }
 }
 
 /* ------------------------------------------------------------- the report */
@@ -280,9 +415,24 @@ if ($plan['collision']) {
     echo PHP_EOL . 'ALREADY HELD, would not create (' . count($plan['collision']) . '):' . PHP_EOL;
     foreach ($plan['collision'] as $c) { echo '  ' . str_pad($c['name'], 34) . $c['type'] . ' #' . $c['id'] . PHP_EOL; }
 }
+if ($overrides) {
+    echo PHP_EOL . 'NAME OVERRIDES, the queue spelling kept as an alias (' . count($overrides) . '):' . PHP_EOL;
+    foreach ($overrides as $o) { printf("  %-34s -> %s\n", $o['from'], $o['to']); }
+}
 if ($plan['merge']) {
-    echo PHP_EOL . 'ALIAS ONTO AN EXISTING RECORD (' . count($plan['merge']) . '):' . PHP_EOL;
-    foreach ($plan['merge'] as $m) { echo '  ' . str_pad($m['name'], 34) . '-> ' . $m['into'] . ($m['ok'] ? '' : '  TARGET MISSING') . PHP_EOL; }
+    echo PHP_EOL . 'MERGES (' . count($plan['merge']) . '):' . PHP_EOL;
+    foreach ($plan['merge'] as $m) {
+        printf("  %-30s -> %-38s %s%s%s\n", $m['name'], $m['into'],
+            $m['via'] ?? '',
+            isset($m['added']) ? ', +' . $m['added'] . ' links' : '',
+            ($m['ok'] ? '' : '   TARGET MISSING') . (!empty($m['chained']) ? '   (chained)' : ''));
+    }
+}
+if ($conflicts) {
+    echo PHP_EOL . 'CONFLICTS WITH THE CANON (' . count($conflicts) . '):' . PHP_EOL;
+    foreach ($conflicts as $x) { echo '  ' . $x . PHP_EOL; }
+} elseif ($canon) {
+    echo PHP_EOL . 'no conflicts with the canon.' . PHP_EOL;
 }
 if ($plan['skip']) { echo PHP_EOL . 'SKIPPED: ' . count($plan['skip']) . PHP_EOL; }
 
@@ -333,7 +483,10 @@ foreach ($plan['create'] as $c) {
 }
 
 foreach ($plan['merge'] as $m) {
-    if (!$m['ok']) { continue; }
+    /* A merge resolved to a pending creation needed no work of its own: the
+       alias and the articles were folded into that creation's plan above, and
+       writing them again here would be writing them twice. */
+    if (!$m['ok'] || $m['intoId'] === null) { continue; }
     $t = \craft\elements\Entry::find()->id($m['intoId'])->status(null)->one();
     $type = array_search($t->section->handle, $SECTION_FOR, true);
     if ($type === false || !$hasField($t, $ALIAS_FOR[$type])) { continue; }
