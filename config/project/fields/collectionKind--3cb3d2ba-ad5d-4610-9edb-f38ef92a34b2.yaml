@@ -10,13 +10,18 @@ settings:
       __assoc__:
         -
           - label
-          - 'Book, read in order'
+          - 'Series, read in order'
+        -
+          - value
+          - series
+    -
+      __assoc__:
+        -
+          - label
+          - 'Book, a published volume'
         -
           - value
           - book
-        -
-          - default
-          - false
     -
       __assoc__:
         -
@@ -25,9 +30,6 @@ settings:
         -
           - value
           - column
-        -
-          - default
-          - false
     -
       __assoc__:
         -
@@ -36,9 +38,6 @@ settings:
         -
           - value
           - catalogue
-        -
-          - default
-          - false
     -
       __assoc__:
         -
@@ -47,9 +46,6 @@ settings:
         -
           - value
           - topic
-        -
-          - default
-          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

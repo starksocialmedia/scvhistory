@@ -25,3 +25,6 @@
 2026-09-21 20:31:03 PDT	mark_external_people.php	scvhistory-web	11 rows	verified: 3 stripped, 0 relations left, 7 of 7 merged	8 decisions marked external, 11 canon entries
 2026-09-21 20:31:28 PDT	create_records_from_review.php	scvhistory-web	32 rows	provenance verified 32 of 32	302 article links; source records-decided.json, decided 2026-09-21T18:43:37-07:00  [102 of 180 keys no longer in the queue, matched by name]
 2026-09-21 20:38:43 PDT	strip_split_base_aliases.php	scvhistory-web	7 rows	verified: 7 of 7 saved, 0 base aliases left	split bases: Pico, Soledad, Placerita, Gorman
+2026-09-21 21:07:24 PDT	record_external_qids.php	scvhistory-web	8 rows	verified: canon 4/4, decisions 4/4	3 ids found on Wikidata, 1 has no item
+2026-09-21 21:07:27 PDT	record_external_qids.php	scvhistory-web	8 rows	verified: canon 4/4, decisions 4/4	3 ids found on Wikidata, 1 has no item
+2026-09-21 21:07:28 PDT	rename_collection_kind_book_to_series.php	scvhistory-web	0 rows	FAILED: 0 moved, 2 left on book, options 5	book kept for published volumes
