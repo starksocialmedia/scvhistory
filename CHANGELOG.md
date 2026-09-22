@@ -1863,3 +1863,12 @@ existing-section path, which made eighty more untitled entries and stopped at
 the guard. A script that can only fix a fault it has not yet caused is not a
 fix. It also finds an untitled entry by its Wikidata id rather than by title,
 so a re-run names the existing eighty instead of doubling them.
+
+The roles title field: project config writes are not transactional. Every
+"proof in a rolled-back transaction" wrote the entry type change to
+config/project on disk and rolled back only the database, which is how config
+came to say hasTitleField true while the column said 0 and project-config/diff
+reported nothing pending. Three runs then made untitled entries against a type
+that looked fixed. rebuild_roles_vocabulary.php no longer touches schema: it
+reads the column, and stops with the reconciling command when config and
+database disagree.

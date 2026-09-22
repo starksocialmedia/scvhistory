@@ -9,6 +9,34 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 811962b8-2a47-4591-8188-40e6b5fa78f1
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: null
             editCondition: null
             elementCondition: null
@@ -47,7 +75,7 @@ fieldLayouts:
         userCondition: null
     thumbFieldKey: null
 handle: role
-hasTitleField: false
+hasTitleField: true
 icon: null
 name: Role
 showSlugField: true

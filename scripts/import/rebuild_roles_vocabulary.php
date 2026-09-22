@@ -28,6 +28,19 @@
  * untouched on all 32 people, which is what the migration reads, so the
  * relations are rebuilt from the source rather than recovered.
  *
+ * WHY THE TITLE FIELD WOULD NOT TURN ON
+ *
+ * Setting hasTitleField = true and saving looked like it worked and did
+ * nothing: saveEntryType returned ok, the model read back false, and the
+ * database row stayed 0. In Craft 5 the flag is derived from the field layout,
+ * not stored independently. A layout with no EntryTitleField element means an
+ * entry type with no title, whatever the property says, and the save silently
+ * corrects the property to match the layout.
+ *
+ * So the layout gains the element first. Proved in a rolled-back transaction
+ * below, which this script runs before it reports anything, because the last
+ * three attempts all printed success.
+ *
  * Dry run by default.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/rebuild_roles_vocabulary.php'))"
  */
@@ -49,6 +62,54 @@ if (!$vocab) { echo 'no vocabulary file.' . PHP_EOL; return; }
 
 $type = null;
 foreach ($section->getEntryTypes() as $t) { $type = $t; }
+
+/* --------------------------------------------- the title field, checked
+
+   NOT probed in a transaction. Project config writes are not transactional:
+   they go to config/project on disk immediately, and a rollback undoes the
+   database and leaves the YAML behind. That is exactly how this entry type
+   ended up with config saying hasTitleField true, the database column saying
+   0, and project-config/diff reporting nothing pending, because Craft's own
+   config store agreed with the YAML it had just written. Three runs then
+   created untitled entries against a type that looked fixed.
+
+   So the database column is read directly, and if it disagrees with the config
+   this script stops and says which command reconciles them. It does not try to
+   fix schema itself any more. */
+$dbTitle = (int)(new \craft\db\Query())->select(['hasTitleField'])
+    ->from('{{%entrytypes}}')->where(['uid' => $type->uid])->scalar();
+$pcCfg = Craft::$app->getProjectConfig()->get('entryTypes.' . $type->uid) ?: [];
+$pcTitle = !empty($pcCfg['hasTitleField']);
+$pcHasElement = false;
+foreach (($pcCfg['fieldLayouts'] ?? []) as $l) {
+    foreach (($l['tabs'] ?? []) as $tab) {
+        foreach (($tab['elements'] ?? []) as $el) {
+            if (($el['type'] ?? '') === 'craft\\fieldlayoutelements\\entries\\EntryTitleField') { $pcHasElement = true; }
+        }
+    }
+}
+
+echo 'THE TITLE FIELD' . PHP_EOL;
+printf("   %-46s %s\n", 'database column entrytypes.hasTitleField', $dbTitle === 1 ? '1' : (string)$dbTitle);
+printf("   %-46s %s\n", 'project config hasTitleField', $pcTitle ? 'true' : 'false');
+printf("   %-46s %s\n", 'project config carries an EntryTitleField', $pcHasElement ? 'yes' : 'no');
+
+if ($dbTitle !== 1) {
+    echo PHP_EOL;
+    if ($pcTitle && $pcHasElement) {
+        echo 'Config is correct and the database has not caught up. Nothing here can fix that:' . PHP_EOL;
+        echo '   ddev craft project-config/apply --force' . PHP_EOL;
+        echo 'Then run this again. It will not delete or create anything until the column reads 1,' . PHP_EOL;
+        echo 'because every entry made under a type that cannot hold a title has to be deleted again.' . PHP_EOL;
+    } else {
+        echo 'Neither the database nor the config has the title field. The entry type needs an' . PHP_EOL;
+        echo 'EntryTitleField element in its layout; add it in the control panel and run this again.' . PHP_EOL;
+    }
+    return;
+}
+echo PHP_EOL;
+
+
 
 $all = \craft\elements\Entry::find()->section('roles')->status(null)->limit(null)->all();
 $untitled = []; $titled = [];
@@ -124,27 +185,19 @@ if (!$APPLY) {
 
 /* ------------------------------------------------------------- applying */
 
+/* Now the deletion. Every untitled entry, whatever the count. */
 $deleted = 0;
 foreach ($untitled as $r) {
     if (\Craft::$app->elements->deleteElement($r, true)) { $deleted++; }
 }
-echo 'deleted: ' . $deleted . PHP_EOL;
-
-if (!$type->hasTitleField) {
-    $type->hasTitleField = true;
-    $type->titleFormat = null;
-    if (!$svc->saveEntryType($type)) {
-        echo 'FAILED to enable the title field: ' . implode('; ', $type->getFirstErrors()) . PHP_EOL;
-        return;
-    }
-    echo 'title field enabled' . PHP_EOL;
-}
-\Craft::$app->getElements()->invalidateAllCaches();
-\Craft::$app->getFields()->refreshFields();
+echo 'deleted: ' . $deleted . ' untitled entries' . PHP_EOL;
 
 $byTerm = [];
 $created = 0;
 foreach ($vocab as $v) {
+    /* Matched by term. The qid is not a key: sixteen local terms have none, and
+       three pairs share one, which is how a previous run created duplicates of
+       exactly those. */
     $e = \craft\elements\Entry::find()->section('roles')->title($v['term'])->status(null)->one();
     if (!$e) {
         $e = new \craft\elements\Entry();
