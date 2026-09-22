@@ -1,0 +1,55 @@
+columnSuffix: null
+handle: license
+instructions: 'What may be done with this image. "Courtesy of" means a depositor allowed its use on this site with a credit; the wording goes in Courtesy of.'
+name: License
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Public domain'
+        -
+          - value
+          - public-domain
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Copyright held by SCVHistory.com'
+        -
+          - value
+          - scvhistory
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Courtesy of'
+        -
+          - value
+          - courtesy
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Unknown
+        -
+          - value
+          - unknown
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

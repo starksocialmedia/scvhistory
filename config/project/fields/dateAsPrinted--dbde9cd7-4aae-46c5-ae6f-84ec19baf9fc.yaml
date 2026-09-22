@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: dateAsPrinted
+instructions: 'The date exactly as the source gives it, including its hedges: "about 1887", "spring of 1912", "n.d.". This is what the source claims and it is authoritative. Do not tidy it.'
+name: 'Date as printed'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

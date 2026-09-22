@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: courtesyOf
+instructions: 'The credit wording a depositor asked for, reproduced exactly as they gave it. Shown verbatim wherever the image appears.'
+name: 'Courtesy of'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 500
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

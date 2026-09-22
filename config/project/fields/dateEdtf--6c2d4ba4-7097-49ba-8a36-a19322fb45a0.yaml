@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: dateEdtf
+instructions: 'The printed date in Extended Date/Time Format, for sorting and comparison: 1887~ for about 1887, 1912-21 for spring 1912, 1880/1889 for a range. Leave empty where the printed form does not parse cleanly. Never guess: an empty field is a date nobody could pin down, which is a fact worth keeping.'
+name: 'Date (EDTF)'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

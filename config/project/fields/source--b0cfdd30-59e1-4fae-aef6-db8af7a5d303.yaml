@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: source
+instructions: 'The repository or publication this came from: a library, a collection, a newspaper and its date.'
+name: Source
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 500
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

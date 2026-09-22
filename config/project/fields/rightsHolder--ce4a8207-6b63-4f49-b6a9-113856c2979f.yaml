@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: rightsHolder
+instructions: 'Who holds the rights, where that is known and is somebody in particular. Leave empty rather than writing "unknown" here; the licence says that.'
+name: 'Rights holder'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
