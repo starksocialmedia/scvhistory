@@ -43,8 +43,11 @@ if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $HANDLE = 'collectionKind';
 
 $KINDS = [
-    'history-of-the-santa-clarita-valley' => ['book',      '80 chapters in five parts, read in order'],
-    'story-of-our-valley'                 => ['book',      'a 13-part series with an introduction'],
+    /* Both were newspaper serials, not volumes. What the reader needs to know
+       is that the pieces run in order, which is what series says; book said it
+       only by accident and is now reserved for an actual published book. */
+    'history-of-the-santa-clarita-valley' => ['series',    '80 chapters in five parts, read in order'],
+    'story-of-our-valley'                 => ['series',    'a 13-part series with an introduction'],
     'worden'                              => ['column',    '219 weekly pieces, one author, 1995 to 2009'],
     'coins'                               => ['column',    '259 weekly pieces by Sol Taylor. Columns about coins, not records of coins'],
     'boston'                              => ['column',    "John Boston's Signal run"],

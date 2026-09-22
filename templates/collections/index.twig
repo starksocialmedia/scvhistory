@@ -22,11 +22,16 @@
   legacy page's own account of how much is there.
 #}
 {% import "collections/_kind" as ck %}
+{% import "collections/_summary" as sum %}
 
 {% set cols = craft.entries().section('collections').status(null).limit(null).all() %}
 
-{% set KINDORDER = { book: 1, column: 2, catalogue: 3, topic: 4, '': 5 } %}
-{% set KINDLABEL = { book: 'Book', column: 'Column run', catalogue: 'Catalogue', topic: 'Topic', '': 'Collection' } %}
+{% set KINDORDER = { series: 1, book: 2, column: 3, catalogue: 4, topic: 5, '': 6 } %}
+{% set KINDLABEL = { series: 'Series', book: 'Book', column: 'Column run', catalogue: 'Catalogue', topic: 'Topic', '': 'Collection' } %}
+{#- Series is already plural, so the heading cannot be built by appending an s.
+    Spelled out rather than special-cased, because the next irregular one will
+    be spelled out too. -#}
+{% set KINDPLURAL = { series: 'Series', book: 'Books', column: 'Column runs', catalogue: 'Catalogues', topic: 'Topics', '': 'Collections' } %}
 
 {% set rows = [] %}
 {% set totalPieces = 0 %}
@@ -51,8 +56,7 @@
     {% endfor %}
   {% endif %}
 
-  {% set desc = (c.body is defined and c.body) ? c.body|striptags|trim : '' %}
-  {% set desc = desc|split('. ')|first %}
+  {% set desc = (c.body is defined and c.body) ? sum.firstSentence(c.body) : '' %}
   {% set rows = rows|merge([{
     c: c, kind: kind, n: n, author: author, editor: editor, band: band,
     eras: eras, desc: desc,
@@ -117,7 +121,9 @@
           {% if not loop.first %}</div>{% endif %}
           {% set groupRows = rows|filter(x => x.kind == r.kind and (x.n == 0) == isEmpty) %}
           <div class="cx-sec">
-            <h2>{{ isEmpty and r.kind == '' ? 'Not yet migrated' : (KINDLABEL[r.kind] ?? 'Collection') ~ (groupRows|length > 1 ? 's' : '') }}</h2>
+            <h2>{{ isEmpty and r.kind == '' ? 'Not yet migrated'
+                   : (groupRows|length > 1 ? (KINDPLURAL[r.kind] ?? 'Collections')
+                                           : (KINDLABEL[r.kind] ?? 'Collection')) }}</h2>
             <span class="rule"></span>
             <span class="n">{{ groupRows|length }}</span>
           </div>
@@ -142,7 +148,11 @@
             {% if r.desc %}<p class="cx-d">{{ r.desc }}{{ r.desc|slice(-1) == '.' ? '' : '.' }}</p>{% endif %}
             <div class="cx-foot">
               {%- if r.n %}
-                {% if r.eras|length %}<span class="era">{{ r.eras|slice(0, 2)|join(' &middot; ')|raw }}{{ r.eras|length > 2 ? ' &middot; +' ~ (r.eras|length - 2) : '' }}</span>{% endif %}
+                {#- The separator is the character, not the entity. The first half carried
+                    |raw and rendered; the second did not, so its &middot; was escaped to
+                    &amp;middot; and the page showed the markup. Using · directly means
+                    there is nothing to escape and no |raw to forget. -#}
+                {% if r.eras|length %}<span class="era">{{ r.eras|slice(0, 2)|join(' · ') }}{{ r.eras|length > 2 ? ' · +' ~ (r.eras|length - 2) : '' }}</span>{% endif %}
               {%- else %}
                 {#- Not a zero. The run exists; it has not been migrated. -#}
                 <span class="cx-pend">Not yet migrated</span>

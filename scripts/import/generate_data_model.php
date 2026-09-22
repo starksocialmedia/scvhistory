@@ -289,6 +289,9 @@ ksort($dropdowns);
 foreach ($dropdowns as $h => $vals) {
     $note = '';
     if ($h === 'placeType') { $note = ' Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.'; }
+    if ($h === 'collectionKind') { $note = ' How a collection is read, not what it is about. `series` is a run'
+        . ' meant to be read in order, which is what both of the archive\'s long newspaper serials are;'
+        . ' `book` is reserved for an actual published volume and is not yet used by any record.'; }
     if ($h === 'orgType') { $note = ' Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.'; }
     if ($h === 'schoolLevel') { $note = ' Drives the schema.org School subtype: ElementarySchool, MiddleSchool, HighSchool, CollegeOrUniversity. A district has no schema.org subtype and stays Organization.'; }
     $lines[] = '- **`' . $h . '`** — ' . implode(', ', array_map(fn($v) => '`' . $v . '`', $vals)) . '.' . $note;

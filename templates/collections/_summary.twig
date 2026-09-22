@@ -1,0 +1,30 @@
+{#
+  The first sentence of a collection's description, for the index cards.
+
+  This was desc|split('. ')|first, which cuts at the first ". " anywhere. The
+  Story of Our Valley description begins "written by Arthur B. \"Perk\"
+  Perkins", so the card read "Story of Our Valley is a series of historical
+  articles written by Arthur B." and stopped. A period after an initial is not
+  the end of a sentence, and neither is one after Jan., Co. or Dr.
+
+  The rule: a period ends a sentence when it is followed by whitespace and a
+  capital or an opening quote, AND is not preceded by a single capital letter
+  (an initial) or by one of the abbreviations below. Craft's replace filter runs
+  preg_replace when the key is delimited, which is the only regular expression
+  available in a template; it marks the sentence ends and the split follows.
+
+  The lookbehinds are written one per abbreviation rather than as an
+  alternation, because PCRE requires each branch of a lookbehind to be fixed
+  length and a single group of varying words is not.
+#}
+{% macro firstSentence(text) %}
+  {%- set t = text|striptags|trim -%}
+  {%- set marked = t|replace({
+    ('/(?<!\\b[A-Z])(?<!\\bMr)(?<!\\bMrs)(?<!\\bMs)(?<!\\bDr)(?<!\\bSt)(?<!\\bJr)'
+     ~ '(?<!\\bSr)(?<!\\bCo)(?<!\\bInc)(?<!\\bRev)(?<!\\bGen)(?<!\\bCapt)(?<!\\bCol)'
+     ~ '(?<!\\bSgt)(?<!\\bAve)(?<!\\bRd)(?<!\\bvs)(?<!\\bNo)(?<!\\bJan)(?<!\\bFeb)'
+     ~ '(?<!\\bMar)(?<!\\bApr)(?<!\\bJun)(?<!\\bJul)(?<!\\bAug)(?<!\\bSept?)(?<!\\bOct)'
+     ~ '(?<!\\bNov)(?<!\\bDec)\\.\\s+(?=["“A-Z0-9])/u'): '.|CUT|'
+  }) -%}
+  {{- marked|split('|CUT|')|first|trim -}}
+{% endmacro %}

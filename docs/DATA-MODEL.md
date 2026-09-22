@@ -722,7 +722,7 @@ a skip means the queue has not been settled, and an external means it has.
 Every dropdown in the schema, with its values. All of these vocabularies are
 local unless the note says otherwise.
 
-- **`collectionKind`** — `book`, `column`, `catalogue`, `topic`.
+- **`collectionKind`** — `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
