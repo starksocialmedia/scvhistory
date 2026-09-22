@@ -53,6 +53,9 @@
  */
 
 $APPLY = false;
+/* Set $MIRROR_APPLY = true before the eval to apply without editing this file,
+   the way the quality passes take $QUALITY_APPLY. */
+if (!empty($MIRROR_APPLY)) { $APPLY = true; }
 if ($APPLY) { echo 'APPLY IS ON, this will copy files and write to the database' . PHP_EOL; }
 
 $MIRROR  = '/mnt/reggie/scvhistory.com';
@@ -175,6 +178,8 @@ $PASSES = [
    four in order. A pass claims its files, so running them one at a time and
    running them together give the same result. */
 $ONLY = 'enlarge';
+/* $MIRROR_ONLY before the eval picks the pass without editing this file. */
+if (isset($MIRROR_ONLY)) { $ONLY = (string)$MIRROR_ONLY; }
 if ($ONLY !== '') {
     $PASSES = array_values(array_filter($PASSES, fn($p) => $p['key'] === $ONLY));
     if (!$PASSES) { echo 'no pass called ' . $ONLY . PHP_EOL; return; }

@@ -36,7 +36,7 @@ class QualityReport
         'tags'       => ['Font/center tags', 'A raw or escaped HTML tag other than the inline ones prose.twig renders: font, center, div, span, table.'],
         'nav'        => ['Nav junk', 'A legacy navigation line: a "> A > B" breadcrumb, a "| Home | ... |" bar, "Click here", "Return to", "More ... News", "comments powered by Disqus".'],
         'imgBroken'  => ['Broken images', 'An [image:N] with no Nth image, or an attached image whose file is not on disk.'],
-        'imgMissing' => ['Missing images', 'The legacy page had more content pictures than the record holds. Chrome (logos, buttons, images on five or more pages) is not counted.'],
+        'imgMissing' => ['Missing images', 'The legacy page had more content pictures than the record holds. Not counted: chrome (logos, buttons, images on five or more pages), thumbnails that link to another page, author headshots under /mugs/, title graphics whose alt text is their filename, and badges sized 120px or less in their filename.'],
         'undated'    => ['Undated', 'No publication date, printed or EDTF.'],
         'dateProse'  => ['Date in prose', 'A dateline left in the first or last three lines of the body: a short line that is a date, or a byline and a date.'],
         'footnotes'  => ['Unconverted footnotes', 'A notes heading still in the body, or [N] markers with no footnotes rows and no footnotesOn.'],
@@ -51,14 +51,26 @@ class QualityReport
     /** @var array<string,bool> every crawled page key, for the coverage note */
     private array $_crawled = [];
     private int $_matched = 0;
+    /** @var array<string,string[]>|null content picture filenames per crawled page */
+    private ?array $_content = null;
 
     private const MONTH = '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?';
 
+    /** @var array<int,array<string,mixed>> see build() */
+    private array $_over = [];
+
     /**
+     * $overrides lets a dry run score what a pass would do without writing it:
+     * [entryId => [handle => value]], where a text field takes a string, a
+     * relation field takes a list of target ids and footnotes takes its rows.
+     * An override replaces the stored value for that piece only.
+     *
      * @return array{built:string, classes:array, rows:array, totals:array, notes:array}
      */
-    public function build(): array
+    public function build(array $overrides = []): array
     {
+        $this->_over = $overrides;
+        $this->_matched = 0;
         $fields = Craft::$app->getFields();
         $partOf = $fields->getFieldByHandle('partOfCollection');
         $listed = $fields->getFieldByHandle('articlesInCollection');
@@ -95,6 +107,11 @@ class QualityReport
         if ($allIds && $fieldIds) {
             foreach ($this->_canonicalRelations(['r.fieldId' => array_keys($fieldIds), 'r.sourceId' => $allIds]) as $r) {
                 $rel[(int)$r['sourceId']][$fieldIds[(int)$r['fieldId']]][] = (int)$r['targetId'];
+            }
+        }
+        foreach ($this->_over as $id => $o) {
+            foreach (self::RELATION_FIELDS as $h) {
+                if (array_key_exists($h, $o)) { $rel[(int)$id][$h] = array_map('intval', (array)$o[$h]); }
             }
         }
 
@@ -185,8 +202,10 @@ class QualityReport
     private function _faults(Entry $e, array $rel, array $fileMissing, array $wanted): array
     {
         $out = [];
-        $has = fn(string $h) => (bool)$e->getFieldLayout()?->getFieldByHandle($h);
-        $body = $has('body') ? (string)$e->getFieldValue('body') : '';
+        $over = $this->_over[(int)$e->id] ?? [];
+        $has = fn(string $h) => array_key_exists($h, $over) || (bool)$e->getFieldLayout()?->getFieldByHandle($h);
+        $val = fn(string $h) => array_key_exists($h, $over) ? $over[$h] : $e->getFieldValue($h);
+        $body = $has('body') ? (string)$val('body') : '';
         $lines = array_values(array_filter(array_map('trim', explode("\n", $body)), 'strlen'));
 
         /* Layout residue. The three [table] blocks in the collections are real
@@ -218,18 +237,21 @@ class QualityReport
         foreach ($held as $a) { if (isset($fileMissing[$a])) { $broken = true; } }
         if ($broken) { $out[] = 'imgBroken'; }
 
-        $key = $this->_pathKey((string)($has('legacyKey') ? $e->getFieldValue('legacyKey') : ''))
-            ?: $this->_pathKey((string)($has('legacyUrl') ? $e->getFieldValue('legacyUrl') : ''));
+        $key = $this->_pathKey((string)($has('legacyKey') ? $val('legacyKey') : ''))
+            ?: $this->_pathKey((string)($has('legacyUrl') ? $val('legacyUrl') : ''));
         if ($key !== '' && isset($this->_crawled[$key])) { $this->_matched++; }
         if ($key !== '' && isset($wanted[$key]) && count($held) < $wanted[$key]) { $out[] = 'imgMissing'; }
 
         $date = '';
         foreach (['originalPublishDate', 'originalPublishDateEdtf', 'photoDate', 'photoDateEdtf'] as $h) {
-            if ($has($h)) { $date .= trim((string)$e->getFieldValue($h)); }
+            if ($has($h)) { $date .= trim((string)$val($h)); }
         }
         if ($date === '') { $out[] = 'undated'; }
 
-        $edge = array_merge(array_slice($lines, 0, 3), array_slice($lines, -3));
+        /* The [lines] and [table] markers are structure, not prose, so they don't
+           take up a place among the first and last three lines. */
+        $prose = array_values(array_filter($lines, fn($l) => !preg_match('~^\[/?(lines|table)\]$~', $l)));
+        $edge = array_merge(array_slice($prose, 0, 3), array_slice($prose, -3));
         foreach ($edge as $l) {
             if (mb_strlen($l) > 70) { continue; }
             $rest = preg_replace('~\(?\s*(?:(?:Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,?\s+)?' . self::MONTH . '\s+\d{1,2},?\s+(?:18|19|20)\d\d\s*\)?\.?~u', '', $l, 1, $hit);
@@ -238,7 +260,7 @@ class QualityReport
 
         $markers = preg_match('/(?<![A-Za-z0-9])\[\s*\d{1,3}\s*\](?!\d)/', $body);
         $notesHeading = preg_match('/^\s*(notes?|footnotes?|end\s?notes?|references?|sources?\s+and\s+notes)\s*:?\s*$/im', $body);
-        $fnRows = $has('footnotes') ? (array)$e->getFieldValue('footnotes') : [];
+        $fnRows = $has('footnotes') ? (array)$val('footnotes') : [];
         if ($notesHeading || ($markers && !$fnRows && empty($rel['footnotesOn']))) { $out[] = 'footnotes'; }
 
         if (empty($rel['subjectPerson']) && empty($rel['depictsPlace'])) { $out[] = 'noLinks'; }
@@ -286,7 +308,20 @@ class QualityReport
                 $names = [];
                 foreach ($p['images'] as $im) {
                     $src = is_array($im) ? (string)($im['src_raw'] ?? '') : (string)$im;
+                    /* A picture that links to another page is that page's
+                       thumbnail, a link rather than a picture of this piece
+                       (images.twig treats it the same way). One that links to a
+                       bigger copy of itself is still this piece's picture. */
+                    $to = is_array($im) ? (string)($im['links_to'] ?? '') : '';
+                    if ($to !== '' && preg_match('~\.(s?html?|php|asp)(?:[?#].*)?$|/$~i', (string)(parse_url($to, PHP_URL_PATH) ?? $to))) { continue; }
                     $n = strtolower(basename((string)(parse_url($src, PHP_URL_PATH) ?: '')));
+                    /* An author headshot, byline furniture: /gif/mugs/worden_leon.jpg. */
+                    if (str_contains(strtolower($src), '/mugs/')) { continue; }
+                    /* A title graphic: its alt text is its own name, images.gif "IMAGES". */
+                    $alt = is_array($im) ? strtolower(trim((string)($im['alt'] ?? ''))) : '';
+                    if ($alt !== '' && $alt === strtolower(pathinfo($n, PATHINFO_FILENAME))) { continue; }
+                    /* A badge sized in its name: ana60x70.jpg. */
+                    if (preg_match('~(\d{2,4})x(\d{2,4})~', $n, $dim) && (int)$dim[1] <= 120 && (int)$dim[2] <= 120) { continue; }
                     if ($n !== '') { $names[$n] = true; }
                 }
                 $pages[$key] = array_keys($names);
@@ -299,12 +334,30 @@ class QualityReport
         foreach ($pages as $names) { foreach ($names as $n) { $freq[$n] = ($freq[$n] ?? 0) + 1; } }
         $chrome = '~logo|clikhere|click|spacer|button|btn|arrow|bullet|banner|^small|^top|^home|^back|^next|^prev|^line|^dot~';
         $wanted = [];
+        $this->_content = [];
         foreach ($pages as $key => $names) {
-            $n = 0;
-            foreach ($names as $name) { if ($freq[$name] < 5 && !preg_match($chrome, $name)) { $n++; } }
-            if ($n) { $wanted[$key] = $n; }
+            $content = array_values(array_filter($names, fn($name) => $freq[$name] < 5 && !preg_match($chrome, $name)));
+            if ($content) { $wanted[$key] = count($content); $this->_content[$key] = $content; }
         }
         return [$wanted, 'Missing images read from ' . count($pages) . ' crawled pages in inventory/legacy.'];
+    }
+
+    /**
+     * The content pictures the legacy page for this piece carried, by filename,
+     * in page order: the same list the Missing images class counts.
+     *
+     * @return string[]
+     */
+    public function contentImagesFor(Entry $e): array
+    {
+        if ($this->_content === null) { $this->_legacyImages(); }
+        $layout = $e->getFieldLayout();
+        foreach (['legacyKey', 'legacyUrl'] as $h) {
+            if (!$layout?->getFieldByHandle($h)) { continue; }
+            $key = $this->_pathKey((string)$e->getFieldValue($h));
+            if ($key !== '' && isset($this->_content[$key])) { return $this->_content[$key]; }
+        }
+        return [];
     }
 
     private function _pathKey(string $s): string

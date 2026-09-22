@@ -270,3 +270,53 @@ $stripBackLinks = function (array $lines) use ($BACK_LINE, $BRACKET_ONLY): array
     }
     return $drop;
 };
+
+/* ------------------------------------------------ the quality phase, 22 Sep
+
+   Four shapes the head and tail walks above did not know, found by the
+   collection quality report. All measured on the 761 collection pieces:
+
+     the Gazette link bars   35 pieces, first line, two fixed bars
+     Disqus                  71 pieces, the last line, the comment widget's
+                             "comments powered by Disqus" caught as text
+     breadcrumbs             5 pieces, in the head but under a line the walk
+                             stopped at, so the walk never reached them
+     "Click here" heads      in the head only. The four "Click here" lines in
+                             the middle of the prose are sentences that point
+                             at a link we no longer have ("[Click here] to read
+                             the press release.") and are left for a person.
+
+   A bar is split on the pipes and only the cells named below are removed. A
+   cell that is not named stays, so the one bar carrying a heading,
+   '| Home | | Old Town Newhall, USA | "Images" | Biography | RICHARD "DOC"
+   RIOUX', keeps RICHARD "DOC" RIOUX as its line. */
+$NAV_BAR_CELLS = [
+    'home', 'home to newhall', 'go home to newhall', 'more newhall news', 'gazette archive',
+    'city of santa clarita', 'scvtv', 'scv history in pictures', 'july 4 parade', 'contact us',
+    'old town newhall, usa', '"images"', 'images', 'biography',
+];
+
+/* Returns the line with its nav cells removed: '' when nothing else was in it,
+   the line unchanged when it is not a bar of known cells. */
+$stripNavBar = function (string $l) use ($NAV_BAR_CELLS): string {
+    if (substr_count($l, '|') < 2) { return $l; }
+    $cells = array_values(array_filter(array_map('trim', explode('|', $l)), 'strlen'));
+    $keep = []; $navCount = 0;
+    foreach ($cells as $c) {
+        if (in_array(mb_strtolower($c), $NAV_BAR_CELLS, true)) { $navCount++; } else { $keep[] = $c; }
+    }
+    if ($navCount < 2) { return $l; }
+    return implode(' | ', $keep);
+};
+
+$isDisqus = function (string $l): bool {
+    return (bool)preg_match('~^comments powered by disqus\.?$~iu', trim($l));
+};
+
+/* A "Click here" line that is only a link: short, and nothing after the link
+   text that reads as a sentence about something else. */
+$isClickHereNav = function (string $l): bool {
+    $l = trim($l);
+    if (mb_strlen($l) > 70) { return false; }
+    return (bool)preg_match('~^(>>|\[)?\s*click here\b[^.]*?(<<|\])?$~iu', $l);
+};

@@ -1,12 +1,42 @@
-name: Deploy to Cloudways
+# Deploy to Cloudways staging.
+#
+# DISABLED. Nathan enables this; nothing else should. Two locks, both on
+# purpose:
+#   1. The only trigger is workflow_dispatch, so no push runs it.
+#   2. The job carries `if: false`, so a manual run from the Actions tab is
+#      skipped too.
+# To enable: add the CLOUDWAYS_SSH_KEY secret (below), delete the `if: false`
+# line, and put the push trigger back:
+#     on:
+#       push:
+#         branches: [templates-batch-9]
+#
+# What it does is DEPLOY-RUNBOOK.md §2, "Every deploy from here": code and
+# schema only. It never moves the database or the uploads. Those are the
+# deliberate manual refresh in DEPLOY.md, because a deploy script that also
+# imports a database is a deploy script that can destroy one.
+#
+# Fixed from the old version, which could not have worked:
+#   - the path was /home/676057..., another server. The app is at
+#     /home/1656314.cloudwaysapps.com/ufppzhwvbk.
+#   - it pulled main, while the server tree is on templates-batch-9.
+#   - it only pulled, so the schema never applied. It now runs `craft up`
+#     (migrations, then project config) after a database backup.
+#   - a failed step reported success. `set -euo pipefail` stops that, and the
+#     preflight refuses a dirty tree, the wrong branch, or an environment that
+#     isn't staging.
+#   - it logged in with a password. It now takes a key: CLOUDWAYS_SSH_KEY, the
+#     private half of a key whose public half is in the app user's
+#     authorized_keys (Cloudways panel, Application > SSH Public Keys).
+
+name: Deploy to Cloudways staging
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Deploy via SSH
@@ -14,7 +44,28 @@ jobs:
         with:
           host: ${{ secrets.CLOUDWAYS_HOST }}
           username: ${{ secrets.CLOUDWAYS_USER }}
-          password: ${{ secrets.CLOUDWAYS_PASSWORD }}
+          key: ${{ secrets.CLOUDWAYS_SSH_KEY }}
+          script_stop: true
           script: |
-            cd /home/676057.cloudwaysapps.com/ufppzhwvbk/public_html
-            git pull origin main
+            set -euo pipefail
+            APP=/home/1656314.cloudwaysapps.com/ufppzhwvbk
+            BRANCH=templates-batch-9
+            cd "$APP/public_html"
+
+            # Preflight. Each of these was wrong on the server at some point.
+            [ "$(git branch --show-current)" = "$BRANCH" ] || { echo "server is not on $BRANCH"; exit 1; }
+            [ -z "$(git status --porcelain)" ] || { echo "server tree is dirty"; git status --short; exit 1; }
+            grep -qx 'CRAFT_ENVIRONMENT=staging' .env || { echo "CRAFT_ENVIRONMENT is not staging"; exit 1; }
+
+            BEFORE=$(git rev-parse HEAD)
+            git pull --ff-only origin "$BRANCH"
+            AFTER=$(git rev-parse HEAD)
+            echo "deployed $BEFORE -> $AFTER"
+
+            if git diff --name-only "$BEFORE" "$AFTER" | grep -qx 'composer.lock'; then
+              composer install --no-dev --optimize-autoloader --no-interaction
+            fi
+
+            php craft db/backup
+            php craft up --interactive=0
+            php craft clear-caches/all

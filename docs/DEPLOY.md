@@ -53,9 +53,10 @@ on 22 September while the steps were running.
 
 Two consequences follow from the path:
 
-- **`.github/workflows/deploy.yml` still `cd`s into the `676057` path**, which
-  does not exist. The workflow can't have worked on this server. It is not
-  fixed here. See "What this does not cover".
+- **`.github/workflows/deploy.yml` `cd`'d into the `676057` path**, which
+  does not exist, so the workflow can't have worked on this server. Fixed on
+  22 September to the real path and branch, and left **disabled** until Nathan
+  enables it. See "What this does not cover".
 - `docs/DEPLOY-RUNBOOK.md` refers to the path as `~/public_html`, which is
   only right if the shell's home is the app directory. Use the full path.
 
@@ -306,11 +307,13 @@ See DEPLOY-RUNBOOK.md §5. Use the panel's **Application → Application Setting
 
 ## What this does not cover
 
-- **The workflow.** `.github/workflows/deploy.yml` `cd`s into
-  `/home/676057.cloudwaysapps.com/...`, which is the wrong server. It pulls
-  `main` while the server tracks `templates-batch-9`, and it authenticates
-  with a password. It should be fixed as a separate change, and the path is
-  the first line to change.
+- **The workflow.** `.github/workflows/deploy.yml` now has the real path and
+  branch, a preflight (branch, clean tree, `CRAFT_ENVIRONMENT=staging`), a
+  database backup, then `craft up` and a cache clear, with key authentication.
+  It carries code and schema only, never the database or uploads. It is
+  **disabled** twice over: manual trigger only, and `if: false` on the job.
+  Enabling it means adding the `CLOUDWAYS_SSH_KEY` secret, deleting `if: false`
+  and restoring the push trigger, as the file's header says.
 - **Rolling back.** The backup in step 4, in `private_html/`, is the rollback
   for content. For code it is `git checkout <previous sha>` on the server and
   re-running steps 3, 5 and 7.
