@@ -3,9 +3,9 @@
         "title": "SCVHistory.com people",
         "source": "SCVHistory.com, the Santa Clarita Valley History Archive",
         "url": "https://scvhistory.ddev.site/",
-        "generated": "2026-09-21T20:42:38-07:00",
+        "generated": "2026-09-21T22:14:45-07:00",
         "generated_by": "scripts/import/build_data_exports.php",
-        "records": 85,
+        "records": 83,
         "license": {
             "name": "Creative Commons Attribution 4.0 International",
             "id": "CC-BY-4.0",
@@ -121,31 +121,6 @@
             "updated": "2026-09-21"
         },
         {
-            "id": 16023,
-            "name": "Bill Clinton",
-            "type": "person",
-            "subtype": "",
-            "level": "",
-            "aliases": [
-                "Gov. Bill Clinton",
-                "President Bill Clinton",
-                "Clinton"
-            ],
-            "parent": "",
-            "parentUrl": "",
-            "wikidataId": "",
-            "viafId": "",
-            "gnisId": "",
-            "ein": "",
-            "cdsCode": "",
-            "ncesId": "",
-            "nrhpReference": "",
-            "articleCount": 0,
-            "url": "https://scvhistory.ddev.site/persons/bill-clinton",
-            "provenance": "created from review, 2026-09-21",
-            "updated": "2026-09-21"
-        },
-        {
             "id": 16356,
             "name": "Bill Hart",
             "type": "person",
@@ -198,7 +173,7 @@
             "aliases": [],
             "parent": "",
             "parentUrl": "",
-            "wikidataId": "",
+            "wikidataId": "Q5026379",
             "viafId": "",
             "gnisId": "",
             "ein": "",
@@ -510,7 +485,7 @@
             "cdsCode": "",
             "ncesId": "",
             "nrhpReference": "",
-            "articleCount": 9,
+            "articleCount": 0,
             "url": "https://scvhistory.ddev.site/persons/edward-f-beale",
             "provenance": "created from review, 2026-09-21",
             "updated": "2026-09-21"
@@ -521,7 +496,13 @@
             "type": "person",
             "subtype": "",
             "level": "",
-            "aliases": [],
+            "aliases": [
+                "Colonel Beale",
+                "Mr. Beale",
+                "General Beale",
+                "Beale",
+                "Edward F. Beale"
+            ],
             "parent": "",
             "parentUrl": "",
             "wikidataId": "Q1292161",
@@ -531,7 +512,7 @@
             "cdsCode": "",
             "ncesId": "",
             "nrhpReference": "",
-            "articleCount": 0,
+            "articleCount": 9,
             "url": "https://scvhistory.ddev.site/persons/edward-fitzgerald-beale",
             "provenance": "",
             "updated": "2026-09-21"
@@ -748,7 +729,7 @@
             "cdsCode": "",
             "ncesId": "",
             "nrhpReference": "",
-            "articleCount": 10,
+            "articleCount": 0,
             "url": "https://scvhistory.ddev.site/persons/henry-m-newhall",
             "provenance": "created from review, 2026-09-21",
             "updated": "2026-09-21"
@@ -759,7 +740,10 @@
             "type": "person",
             "subtype": "",
             "level": "",
-            "aliases": [],
+            "aliases": [
+                "Henry Newhall",
+                "Henry M. Newhall"
+            ],
             "parent": "",
             "parentUrl": "",
             "wikidataId": "Q15458611",
@@ -769,7 +753,7 @@
             "cdsCode": "",
             "ncesId": "",
             "nrhpReference": "",
-            "articleCount": 0,
+            "articleCount": 10,
             "url": "https://scvhistory.ddev.site/persons/henry-mayo-newhall",
             "provenance": "",
             "updated": "2026-09-21"
@@ -1558,29 +1542,6 @@
             "nrhpReference": "",
             "articleCount": 6,
             "url": "https://scvhistory.ddev.site/persons/ted-lamkin",
-            "provenance": "created from review, 2026-09-21",
-            "updated": "2026-09-21"
-        },
-        {
-            "id": 16324,
-            "name": "Theodore Roosevelt",
-            "type": "person",
-            "subtype": "",
-            "level": "",
-            "aliases": [
-                "President Theodore Roosevelt"
-            ],
-            "parent": "",
-            "parentUrl": "",
-            "wikidataId": "",
-            "viafId": "",
-            "gnisId": "",
-            "ein": "",
-            "cdsCode": "",
-            "ncesId": "",
-            "nrhpReference": "",
-            "articleCount": 0,
-            "url": "https://scvhistory.ddev.site/persons/theodore-roosevelt",
             "provenance": "created from review, 2026-09-21",
             "updated": "2026-09-21"
         },
