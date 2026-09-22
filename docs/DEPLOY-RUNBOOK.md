@@ -281,8 +281,8 @@ panel is the safer of the two.
 
 ### The admin pages are guarded in the template, and that has landed
 
-`/admin-overview`, `/graph`, `/graph/data`, `/admin-ledger`, `/admin-ledger/data`
-and `/admin-fixes` now carry, at the top of each template:
+`/admin-overview`, `/graph`, `/graph/data`, `/admin-ledger`, `/admin-ledger/data`,
+`/admin-fixes` and `/admin-quality` now carry, at the top of each template:
 
 ```twig
 {% requireLogin %}
@@ -291,7 +291,7 @@ and `/admin-fixes` now carry, at the top of each template:
 
 Anonymous requests get 302 to the login screen; a signed-in non-admin gets 404
 rather than 403, so the page is not confirmed to exist to somebody who should
-not see it. `check_render.php` asserts the guard on all six, so a template that
+not see it. `check_render.php` asserts the guard on all seven, so a template that
 loses it fails the standing check rather than going quietly public.
 
 This lives in the code, so it holds whatever the server config says, and a

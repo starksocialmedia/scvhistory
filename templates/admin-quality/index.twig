@@ -1,0 +1,134 @@
+{% extends "_layouts/base" %}
+
+{#- Admin only. Same guard as /admin-overview, and check_render.php asserts it. -#}
+{% requireLogin %}
+{% if not currentUser.admin %}{% exit 404 %}{% endif %}
+
+{#
+  Collection quality. For each collection, how many of its pieces carry each
+  known fault class, worst collection first.
+
+  Unlisted and read only. The numbers come from modules/quality/QualityReport.php,
+  which scripts/import/report_collection_quality.php also prints, so this page
+  and the terminal agree by construction. Cached ten minutes; ?fresh=1 rebuilds.
+
+  A cell is a count of pieces, not of occurrences. Its shade is the share of
+  the collection's pieces at fault. Open a row for up to five examples per
+  class, each linked to its control panel edit page.
+#}
+
+{% set metaTitle = 'Collection quality' %}
+{% set metaDescription = 'Fault classes by collection. Unlisted status board.' %}
+{% set r = craft.quality.report(craft.app.request.getQueryParam('fresh') == '1') %}
+
+{% block head %}
+  <meta name="robots" content="noindex,nofollow">
+  {% css %}
+  .qa{max-width:1280px;margin:0 auto;padding:36px 40px 90px}
+  .qa h1{font-family:'Playfair Display',serif;font-weight:500;font-size:34px;color:#17254C;margin:0 0 6px}
+  .qa .sub{color:#5B6472;font-size:14.5px;line-height:1.6;margin:0 0 26px;max-width:72ch}
+  .qa h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin:40px 0 12px;padding-bottom:7px;border-bottom:1px solid #EFE6D0}
+  .wrap{overflow-x:auto;border:1px solid #E2E4E8;background:#fff}
+  table.q{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.q th{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#8A919E;text-align:right;padding:9px 8px;border-bottom:1px solid #E2E4E8;font-weight:500;vertical-align:bottom;line-height:1.3}
+  table.q th:first-child,table.q td:first-child{text-align:left}
+  table.q td{padding:7px 8px;border-bottom:1px solid #F1F2F4;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.q td.nm{font-family:'Jost',sans-serif;color:#17254C;white-space:normal;min-width:190px}
+  table.q td.nm small{display:block;color:#8A919E;font-size:11.5px}
+  table.q td.c0{color:#C3C8D0}
+  table.q td.c1{background:#FBF3DE}
+  table.q td.c2{background:#F6E2B5}
+  table.q td.c3{background:#F1C9BF;color:#7A2A22}
+  table.q tr.empty td{color:#B0B5BE}
+  table.q tfoot td{border-top:1px solid #E2E4E8;border-bottom:0;font-weight:500;color:#17254C}
+  .fz{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:#17254C;color:#fff;padding:1px 6px;margin-left:6px;vertical-align:1px}
+  details.ex{background:#fff;border:1px solid #E2E4E8;margin-bottom:8px}
+  details.ex>summary{cursor:pointer;padding:10px 14px;font-family:'Jost',sans-serif;color:#17254C;font-size:13.5px}
+  details.ex .body{padding:0 14px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px 24px}
+  details.ex h3{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A5C1B;margin:8px 0 4px;font-weight:500}
+  details.ex ul{margin:0;padding:0 0 0 16px;font-size:13px;line-height:1.55}
+  dl.key{display:grid;grid-template-columns:170px 1fr;gap:6px 18px;font-size:13.5px;line-height:1.55;color:#5B6472;margin:0}
+  dl.key dt{font-family:'Jost',sans-serif;color:#17254C}
+  dl.key dd{margin:0}
+  .note{font-size:13px;color:#5B6472;line-height:1.65;margin:6px 0 0}
+  @media(max-width:760px){.qa{padding:24px 16px 70px}dl.key{grid-template-columns:1fr}}
+  {% endcss %}
+{% endblock %}
+
+{% block content %}
+<div class="qa">
+  <h1>Collection quality</h1>
+  <p class="sub">
+    For each collection, how many of its pieces carry each known fault, worst first. Worst means the
+    largest share of pieces at fault, summed across the classes, so a small collection isn't ranked
+    below a large one for being small. Built {{ r.built }}.
+    <a href="?fresh=1">Rebuild now</a>.
+  </p>
+
+  <div class="wrap">
+  <table class="q">
+    <thead>
+      <tr>
+        <th>Collection</th>
+        <th>Pieces</th>
+        <th>Any fault</th>
+        {% for k, c in r.classes %}<th title="{{ c[1] }}">{{ c[0] }}</th>{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in r.rows %}
+        <tr class="{{ row.pieces ? '' : 'empty' }}">
+          <td class="nm">
+            <a href="{{ row.cpUrl }}">{{ row.title }}</a>{% if row.frozen %}<span class="fz">Frozen</span>{% endif %}
+            <small>{{ row.slug }}</small>
+          </td>
+          <td>{{ row.pieces }}</td>
+          <td>{{ row.pieces ? row.any : '–' }}</td>
+          {% for k, c in r.classes %}
+            {% set n = row.counts[k] %}
+            {% if not row.pieces %}
+              <td>–</td>
+            {% else %}
+              {% set share = n / row.pieces %}
+              <td class="{{ n == 0 ? 'c0' : (share < 0.1 ? 'c1' : (share < 0.5 ? 'c2' : 'c3')) }}"
+                  title="{{ (share * 100)|round }}% of {{ row.pieces }}">{{ n }}</td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>All collections</td>
+        <td>{{ r.totals.pieces }}</td>
+        <td>{{ r.totals.any }}</td>
+        {% for k, c in r.classes %}<td>{{ r.totals[k] }}</td>{% endfor %}
+      </tr>
+    </tfoot>
+  </table>
+  </div>
+  {% for n in r.notes %}<p class="note">{{ n }}</p>{% endfor %}
+
+  <h2>Examples</h2>
+  {% for row in r.rows|filter(row => row.any) %}
+    <details class="ex">
+      <summary>{{ row.title }} · {{ row.any }} of {{ row.pieces }} with a fault</summary>
+      <div class="body">
+        {% for k, c in r.classes|filter((c, k) => row.examples[k]|length) %}
+          <div>
+            <h3>{{ c[0] }} · {{ row.counts[k] }}</h3>
+            <ul>
+              {% for x in row.examples[k] %}<li><a href="{{ x.cpUrl }}">{{ x.title }}</a></li>{% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    </details>
+  {% endfor %}
+
+  <h2>What each class means</h2>
+  <dl class="key">
+    {% for k, c in r.classes %}<dt>{{ c[0] }}</dt><dd>{{ c[1] }}</dd>{% endfor %}
+  </dl>
+</div>
+{% endblock %}

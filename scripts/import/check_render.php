@@ -65,7 +65,7 @@ foreach ([
        So they are checked for the redirect, which proves the guard is there. */
     'admin-overview' => 'guarded', 'graph' => 'guarded', 'graph/data' => 'guarded',
     'admin-ledger' => 'guarded', 'admin-ledger/data' => 'guarded',
-    'admin-fixes' => 'guarded',
+    'admin-fixes' => 'guarded', 'admin-quality' => 'guarded',
 ] as $path => $what) {
     $urls[$base . '/' . $path] = $what;
 }

@@ -32,6 +32,12 @@ return [
        per browser and can be cleared by anything. */
     'modules' => [
         'reviewstore' => \modules\reviewstore\ReviewStore::class,
+        /* Refuses console writes to entries in a collection whose
+           collectionFrozen is on, so a re-run import can't overwrite the
+           hand edits made after the freeze. */
+        'collectionfreeze' => \modules\collectionfreeze\CollectionFreeze::class,
+        /* craft.quality, for /admin-quality. */
+        'quality' => \modules\quality\Quality::class,
     ],
-    'bootstrap' => ['reviewstore'],
+    'bootstrap' => ['reviewstore', 'collectionfreeze', 'quality'],
 ];
