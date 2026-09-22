@@ -24,6 +24,19 @@
  * longer in the list reads back as that value and displays as blank -- it does
  * not error, which is worse, because nothing says anything is wrong.
  *
+ * WHY THE FIRST RUN MOVED NOTHING
+ *
+ * It collected the entries, saved the new option list, then wrote to the
+ * entries it already had in hand. Those carry the field layout as it was when
+ * they were loaded, and a Dropdown validates its value against that instance's
+ * options -- which did not yet contain series. Both saves failed validation
+ * with "Collection Kind is invalid", $moved stayed at zero, and the read-back
+ * reported FAILED, which is the one part that behaved.
+ *
+ * So the entries are re-fetched after the field is saved, and a failed save now
+ * prints its validation errors instead of being counted as a silent zero. A
+ * count that says nothing happened does not say why.
+ *
  * Idempotent. Dry run by default.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/rename_collection_kind_book_to_series.php'))"
  */
@@ -85,10 +98,20 @@ if (!$fs->saveField($f)) {
 }
 echo PHP_EOL . 'options saved' . PHP_EOL;
 
+/* Re-fetched AFTER the field is saved, so each entry carries the option list it
+   is about to be validated against. */
+$ids = array_map(fn($e) => $e->id, $moving);
 $moved = 0;
-foreach ($moving as $e) {
+foreach ($ids as $id) {
+    $e = \craft\elements\Entry::find()->id($id)->status(null)->one();
+    if (!$e) { echo 'entry #' . $id . ' vanished between the read and the write' . PHP_EOL; continue; }
     $e->setFieldValue($HANDLE, $TO);
-    if (\Craft::$app->elements->saveElement($e)) { $moved++; }
+    if (\Craft::$app->elements->saveElement($e)) {
+        $moved++;
+    } else {
+        echo 'FAILED #' . $id . ' ' . $e->title . ': '
+           . implode('; ', array_merge(...array_values($e->getErrors()) ?: [[]])) . PHP_EOL;
+    }
 }
 
 /* Read back from fresh queries: an element in memory reports what was set on
