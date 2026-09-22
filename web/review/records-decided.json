@@ -1,5 +1,5 @@
 {
-    "generated": "2026-09-21T15:28:36-07:00",
+    "generated": "2026-09-21T18:39:19-07:00",
     "provenance": "created from review, 2026-09-21",
     "source": "entities-full.json",
     "decisions": [
@@ -2583,6 +2583,854 @@
             "longKey": "pico canyon road",
             "shape": "contains",
             "settledBy": "Nathan, 2026-09-21: the canyon and the road up it"
+        },
+        {
+            "name": "PAIR Placerita Canyon / Placerita Canyon Nature Center",
+            "type": "pair",
+            "action": "diff",
+            "short": "Placerita Canyon",
+            "long": "Placerita Canyon Nature Center",
+            "shortKey": "placerita canyon",
+            "longKey": "placerita canyon nature center",
+            "shape": "contains",
+            "storeKey": "pair placerita canyon placerita canyon nature center|pair",
+            "decidedAt": "2026-09-21T18:33:36-07:00"
+        },
+        {
+            "name": "PAIR Newhall / Newhall School",
+            "type": "pair",
+            "action": "diff",
+            "short": "Newhall",
+            "long": "Newhall School",
+            "shortKey": "newhall",
+            "longKey": "newhall school",
+            "shape": "contains",
+            "storeKey": "pair newhall newhall school|pair",
+            "decidedAt": "2026-09-21T18:33:53-07:00"
+        },
+        {
+            "name": "PAIR Newhall / Downtown Newhall Merchants",
+            "type": "pair",
+            "action": "diff",
+            "short": "Newhall",
+            "long": "Downtown Newhall Merchants",
+            "shortKey": "newhall",
+            "longKey": "downtown newhall merchants",
+            "shape": "contains",
+            "storeKey": "pair newhall downtown newhall merchants|pair",
+            "decidedAt": "2026-09-21T18:33:58-07:00"
+        },
+        {
+            "name": "PAIR Valencia Bank / Valencia National Bank",
+            "type": "pair",
+            "action": "same",
+            "short": "Valencia Bank",
+            "long": "Valencia National Bank",
+            "shortKey": "valencia bank",
+            "longKey": "valencia national bank",
+            "shape": "contains",
+            "storeKey": "pair valencia bank valencia national bank|pair",
+            "decidedAt": "2026-09-21T18:34:06-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Valencia National Bank",
+            "key": "valencia national bank",
+            "articles": [
+                12500,
+                12196,
+                12200,
+                12552,
+                12206,
+                12394,
+                12312,
+                12715
+            ],
+            "aliases": [
+                "Valencia Bank"
+            ],
+            "storeKey": "valencia national bank|organization",
+            "decidedAt": "2026-09-21T18:34:06-07:00"
+        },
+        {
+            "action": "merged",
+            "type": "organization",
+            "name": "Valencia Bank",
+            "key": "valencia bank",
+            "intoName": "Valencia National Bank",
+            "intoKey": "valencia national bank",
+            "storeKey": "valencia bank|organization",
+            "decidedAt": "2026-09-21T18:34:06-07:00"
+        },
+        {
+            "name": "PAIR Newhall / Scott Newhall",
+            "type": "pair",
+            "action": "diff",
+            "short": "Newhall",
+            "long": "Scott Newhall",
+            "shortKey": "newhall",
+            "longKey": "scott newhall",
+            "shape": "contains",
+            "storeKey": "pair newhall scott newhall|pair",
+            "decidedAt": "2026-09-21T18:34:09-07:00"
+        },
+        {
+            "name": "PAIR Newhall / Newhall Elementary",
+            "type": "pair",
+            "action": "diff",
+            "short": "Newhall",
+            "long": "Newhall Elementary",
+            "shortKey": "newhall",
+            "longKey": "newhall elementary",
+            "shape": "contains",
+            "storeKey": "pair newhall newhall elementary|pair",
+            "decidedAt": "2026-09-21T18:34:11-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Soledad Canyon",
+            "key": "soledad canyon",
+            "articles": [
+                869,
+                1426,
+                1428,
+                1430,
+                1434,
+                1438,
+                1440,
+                1444,
+                1448,
+                821,
+                837,
+                841,
+                2079,
+                2085,
+                2091,
+                2093,
+                2097,
+                2103,
+                2113,
+                2115,
+                2147,
+                2149,
+                2155,
+                2179,
+                12482,
+                12460,
+                12542,
+                12488,
+                12312,
+                12400,
+                12558,
+                12574,
+                12597,
+                12937
+            ],
+            "authority": {
+                "source": "GNIS",
+                "id": "273802",
+                "idField": "gnisId",
+                "name": "Soledad Canyon"
+            },
+            "gnisId": "273802",
+            "placeType": "natural",
+            "storeKey": "soledad canyon|place",
+            "decidedAt": "2026-09-21T18:34:19-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Placerita Canyon",
+            "key": "placerita canyon",
+            "articles": [
+                1424,
+                1428,
+                1430,
+                1432,
+                1454,
+                853,
+                2073,
+                2087,
+                2109,
+                2149,
+                2173,
+                12166,
+                12288,
+                12490,
+                12154,
+                12390,
+                12392,
+                12298,
+                12306,
+                12346,
+                12554,
+                12474,
+                12597,
+                12599,
+                12615,
+                12639,
+                12854,
+                12656,
+                12662,
+                12698,
+                12686,
+                12696
+            ],
+            "authority": {
+                "source": "GNIS",
+                "id": "273044",
+                "idField": "gnisId",
+                "name": "Placerita Canyon"
+            },
+            "gnisId": "273044",
+            "placeType": "natural",
+            "storeKey": "placerita canyon|place",
+            "decidedAt": "2026-09-21T18:34:23-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Abe Kosoff",
+            "key": "abe kosoff",
+            "articles": [
+                15018,
+                15176,
+                15072,
+                15086,
+                15096,
+                15028,
+                15376,
+                15214,
+                15104,
+                15032,
+                15108,
+                15110,
+                15380,
+                15224,
+                15160,
+                15424,
+                15440
+            ],
+            "storeKey": "abe kosoff|person",
+            "decidedAt": "2026-09-21T18:34:32-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Porta Bella",
+            "key": "porta bella",
+            "articles": [
+                12172,
+                12462,
+                12228,
+                12398,
+                12320,
+                12464,
+                12244,
+                12182,
+                12328,
+                12250,
+                12332,
+                12406,
+                12148,
+                12804,
+                12814
+            ],
+            "storeKey": "porta bella|organization",
+            "decidedAt": "2026-09-21T18:34:37-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Dan Hon",
+            "key": "dan hon",
+            "articles": [
+                2163,
+                12218,
+                12328,
+                12148,
+                12556,
+                12426,
+                12266,
+                12480,
+                12358,
+                12438,
+                12284,
+                12810,
+                12887,
+                12868,
+                12870
+            ],
+            "storeKey": "dan hon|person",
+            "decidedAt": "2026-09-21T18:34:44-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Soledad Canyon Road",
+            "key": "soledad canyon road",
+            "articles": [
+                869,
+                1422,
+                1426,
+                1428,
+                1432,
+                1434,
+                1444,
+                2079,
+                2091,
+                12482,
+                12460,
+                12402,
+                12558,
+                12609
+            ],
+            "placeType": "road",
+            "storeKey": "soledad canyon road|place",
+            "decidedAt": "2026-09-21T18:34:50-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Alex Mentry",
+            "key": "alex mentry",
+            "articles": [
+                2089,
+                2097,
+                2109,
+                2111,
+                2123,
+                12210,
+                12458,
+                12170,
+                12380,
+                12294,
+                12262,
+                12472,
+                12372
+            ],
+            "storeKey": "alex mentry|person",
+            "decidedAt": "2026-09-21T18:34:52-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Randy Wicks",
+            "key": "randy wicks",
+            "articles": [
+                12158,
+                12480,
+                12472,
+                12444,
+                12528,
+                12838,
+                12911,
+                12897,
+                12887,
+                12921,
+                12868,
+                12870
+            ],
+            "storeKey": "randy wicks|person",
+            "decidedAt": "2026-09-21T18:34:56-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Railroad Canyon",
+            "key": "railroad canyon",
+            "articles": [
+                1426,
+                1428,
+                1430,
+                1438,
+                1440,
+                2109,
+                2135,
+                12210,
+                12212,
+                12170,
+                12372
+            ],
+            "authority": {
+                "source": "GNIS",
+                "id": "273168",
+                "idField": "gnisId",
+                "name": "Railroad Canyon"
+            },
+            "gnisId": "273168",
+            "placeType": "natural",
+            "storeKey": "railroad canyon|place",
+            "decidedAt": "2026-09-21T18:35:10-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Charles Barber",
+            "key": "charles barber",
+            "articles": [
+                15190,
+                15198,
+                14948,
+                15128,
+                15246,
+                15256,
+                15270,
+                15004,
+                15452,
+                15454,
+                15438
+            ],
+            "storeKey": "charles barber|person",
+            "decidedAt": "2026-09-21T18:35:12-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Tom Mix",
+            "key": "tom mix",
+            "articles": [
+                1438,
+                1452,
+                817,
+                2131,
+                2143,
+                2171,
+                2181,
+                12290,
+                12384,
+                12370
+            ],
+            "storeKey": "tom mix|person",
+            "decidedAt": "2026-09-21T18:35:18-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Phineas Banning",
+            "key": "phineas banning",
+            "articles": [
+                1426,
+                1428,
+                1434,
+                2069,
+                2079,
+                2101,
+                2127,
+                2103,
+                12290,
+                12370
+            ],
+            "storeKey": "phineas banning|person",
+            "decidedAt": "2026-09-21T18:35:26-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Max Mehl",
+            "key": "max mehl",
+            "articles": [
+                14980,
+                15076,
+                15086,
+                15104,
+                15110,
+                15380,
+                14992,
+                15256,
+                15056
+            ],
+            "storeKey": "max mehl|person",
+            "decidedAt": "2026-09-21T18:35:30-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "George Pederson",
+            "key": "george pederson",
+            "articles": [
+                12538,
+                12292,
+                12550,
+                12480,
+                12528,
+                12456,
+                12589,
+                12820,
+                12158
+            ],
+            "storeKey": "george pederson|person",
+            "decidedAt": "2026-09-21T18:35:31-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "James Marshall",
+            "key": "james marshall",
+            "articles": [
+                1430,
+                819,
+                859,
+                12286,
+                12484,
+                12154,
+                12306,
+                15294
+            ],
+            "storeKey": "james marshall|person",
+            "decidedAt": "2026-09-21T18:35:36-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Kenneth Bressett",
+            "key": "kenneth bressett",
+            "articles": [
+                15072,
+                15086,
+                15104,
+                15032,
+                15380,
+                15248,
+                15056,
+                15448
+            ],
+            "storeKey": "kenneth bressett|person",
+            "decidedAt": "2026-09-21T18:35:39-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "George Runner",
+            "key": "george runner",
+            "articles": [
+                12324,
+                12186,
+                12426,
+                12358,
+                12570,
+                12300,
+                12254
+            ],
+            "storeKey": "george runner|person",
+            "decidedAt": "2026-09-21T18:35:44-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Val Thomas",
+            "key": "val thomas",
+            "articles": [
+                12458,
+                12316,
+                12260,
+                12262,
+                12406,
+                12264,
+                12923
+            ],
+            "storeKey": "val thomas|person",
+            "decidedAt": "2026-09-21T18:36:25-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Michael White",
+            "key": "michael white",
+            "articles": [
+                15390,
+                14938,
+                15414,
+                15420,
+                15432,
+                15436,
+                15438
+            ],
+            "storeKey": "michael white|person",
+            "decidedAt": "2026-09-21T18:36:27-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Tom Campbell",
+            "key": "tom campbell",
+            "articles": [
+                12458,
+                12316,
+                12260,
+                12262,
+                12406,
+                12264,
+                12923
+            ],
+            "storeKey": "tom campbell|person",
+            "decidedAt": "2026-09-21T18:36:33-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Farran Zerbe",
+            "key": "farran zerbe",
+            "articles": [
+                15370,
+                15072,
+                15074,
+                15396,
+                15102,
+                15380,
+                14966
+            ],
+            "storeKey": "farran zerbe|person",
+            "decidedAt": "2026-09-21T18:36:37-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Russell Rulau",
+            "key": "russell rulau",
+            "articles": [
+                15068,
+                15102,
+                15314,
+                15340,
+                15144,
+                15060,
+                15354
+            ],
+            "storeKey": "russell rulau|person",
+            "decidedAt": "2026-09-21T18:36:42-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Tom Frew",
+            "key": "tom frew",
+            "articles": [
+                817,
+                2167,
+                2171,
+                12184,
+                12252,
+                12422
+            ],
+            "storeKey": "tom frew|person",
+            "decidedAt": "2026-09-21T18:37:16-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Buck McKeon",
+            "key": "buck mckeon",
+            "articles": [
+                12242,
+                12474,
+                12784,
+                12838,
+                12925,
+                12678
+            ],
+            "storeKey": "buck mckeon|person",
+            "decidedAt": "2026-09-21T18:37:29-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Placerita Canyon Nature Center",
+            "key": "placerita canyon nature center",
+            "articles": [
+                1432,
+                12286,
+                12166,
+                12154,
+                12818
+            ],
+            "placeType": "park",
+            "storeKey": "placerita canyon nature center|place",
+            "decidedAt": "2026-09-21T18:37:39-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Harvey Stack",
+            "key": "harvey stack",
+            "articles": [
+                15076,
+                15450,
+                14944,
+                15444,
+                15166
+            ],
+            "storeKey": "harvey stack|organization",
+            "decidedAt": "2026-09-21T18:37:45-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Doña Jacoba",
+            "key": "jacoba",
+            "articles": [
+                847,
+                851,
+                853,
+                855,
+                859
+            ],
+            "storeKey": "do a jacoba|person",
+            "decidedAt": "2026-09-21T18:37:50-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "John Lang",
+            "key": "john lang",
+            "articles": [
+                1444,
+                2091,
+                2103,
+                12460,
+                12558
+            ],
+            "storeKey": "john lang|person",
+            "decidedAt": "2026-09-21T18:38:20-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Felton School",
+            "key": "felton school",
+            "articles": [
+                2111,
+                12542,
+                12546,
+                12574,
+                12599
+            ],
+            "recordProvenance": "no external authority; SCVHistory.com is the source",
+            "storeKey": "felton school|organization",
+            "decidedAt": "2026-09-21T18:38:24-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Francisco Lopez",
+            "key": "francisco lopez",
+            "articles": [
+                1422,
+                1424,
+                1428,
+                1434,
+                1454
+            ],
+            "storeKey": "francisco lopez|person",
+            "decidedAt": "2026-09-21T18:38:29-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "place",
+            "name": "Placerita Canyon Road",
+            "key": "placerita canyon road",
+            "articles": [
+                12166,
+                12154,
+                12306,
+                12702,
+                12704
+            ],
+            "placeType": "road",
+            "storeKey": "placerita canyon road|place",
+            "decidedAt": "2026-09-21T18:38:33-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Bill Fivaz",
+            "key": "bill fivaz",
+            "articles": [
+                15190,
+                15448,
+                15006,
+                15418,
+                15432
+            ],
+            "storeKey": "bill fivaz|person",
+            "decidedAt": "2026-09-21T18:38:36-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Michael Freedman",
+            "key": "michael freedman",
+            "articles": [
+                12430,
+                12520,
+                12368,
+                12589,
+                12621
+            ],
+            "storeKey": "michael freedman|person",
+            "decidedAt": "2026-09-21T18:39:01-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Ronald Reagan",
+            "key": "ronald reagan",
+            "articles": [
+                2145,
+                12218,
+                15198,
+                12607,
+                12897
+            ],
+            "storeKey": "ronald reagan|person",
+            "decidedAt": "2026-09-21T18:39:08-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Union Oil Company",
+            "key": "union oil company",
+            "articles": [
+                1430,
+                1434,
+                1440,
+                2111,
+                2181
+            ],
+            "storeKey": "union oil company|organization",
+            "decidedAt": "2026-09-21T18:39:13-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Aubrey Bebee",
+            "key": "aubrey bebee",
+            "articles": [
+                15086,
+                15096,
+                15380,
+                15224,
+                15430
+            ],
+            "storeKey": "aubrey bebee|person",
+            "decidedAt": "2026-09-21T18:39:16-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Ben Franklin",
+            "key": "ben franklin",
+            "articles": [
+                12482,
+                12344,
+                14998,
+                15054,
+                14942
+            ],
+            "storeKey": "ben franklin|person",
+            "decidedAt": "2026-09-21T18:39:19-07:00"
         }
     ],
     "edited": "hand-edited 2026-09-21: renames and merges per Nathan"
