@@ -34,6 +34,11 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .rec.approved{border-left-color:var(--green);background:#F2FAF6}
 .rec.skipped{border-left-color:var(--muted);background:#F4F6F8;opacity:.68}
 .rec.merged{border-left-color:var(--gold);background:var(--cream)}
+/* External is not Skip. Skip says "not now"; External says "never, and here is
+   who it is instead". The card keeps full contrast because the Wikidata id on
+   it is information the archive keeps, unlike a skip, which is an absence. */
+.rec.external{border-left-color:#7A5CA8;background:#F7F4FB}
+.rec.external .as{color:#5E4488}
 .rec .top{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
 .rec .nm{font-family:'Playfair Display',serif;font-size:21px;color:var(--navy)}
 .rec .ct{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d)}
@@ -80,6 +85,7 @@ main .wrap{padding-top:24px;padding-bottom:110px}
 .acts button.ap.on{background:var(--green);border-color:var(--green)}
 .acts button.sk.on{background:var(--muted);border-color:var(--muted)}
 .acts button.mg.on{background:var(--gold-d);border-color:var(--gold-d)}
+.acts button.ex.on{background:#7A5CA8;border-color:#7A5CA8}
 .acts .as{font-size:12.5px;color:var(--muted);margin-left:2px}
 .acts .sub{display:none;align-items:center;gap:6px}
 .acts .sub.on{display:inline-flex}
@@ -145,6 +151,7 @@ footer .tot b{color:var(--gold);font-weight:500}
       <option value="approved">approved</option>
       <option value="skipped">skipped</option>
       <option value="merged">merged</option>
+      <option value="external">external</option>
     </select></label>
     <label>Type <select id="ftype">
       <option value="">any</option>
@@ -289,11 +296,22 @@ function filtered() {
        applied from somewhere else, and a name skipped last week should not head
        the list again this week as though it were new. */
     const st = stateOf(r) || (r.decidedAs === 'skipped' ? 'skipped'
-                            : r.decidedAs === 'merged' ? 'merged' : '');
+                            : r.decidedAs === 'merged' ? 'merged'
+                            : r.decidedAs === 'external' ? 'external' : '');
     if (f === 'all') return true;
     if (f === 'undecided') return !st;
     return st === f;
   });
+}
+
+/* A Wikidata id already attached to the row by the authority pass, if the top
+   candidate is Wikidata and nothing ties with it. An External ruling made on a
+   row with no match leaves the id empty and says so on the card; the id is then
+   added by hand in the canon rather than guessed here. */
+function qidOf(r) {
+  const t = r.authority && r.authority.top;
+  if (!t || r.authority.tied) return '';
+  return t.source === 'Wikidata' ? t.id : (t.qid || '');
 }
 
 function optionsFor(type, selected) {
@@ -459,7 +477,12 @@ function card(r, rank) {
       <button class="sk ${st === 'skipped' ? 'on' : ''}" data-act="skipped">Skip</button>
       <select class="into">${optionsFor(type, d.into)}</select>
       <button class="mg ${st === 'merged' ? 'on' : ''}" data-act="merged">Merge into</button>
-      <span class="as">${st === 'approved' ? 'creates a ' + esc(type === 'place' ? ptype + ' place' : type) + ', links ' + r.articleCount : ''}</span>
+      <button class="ex ${st === 'external' ? 'on' : ''}" data-act="external"
+              title="A subject the articles write about, with no Santa Clarita Valley connection they document. No record is created; the name points at Wikidata.">External</button>
+      <span class="as">${
+        st === 'approved' ? 'creates a ' + esc(type === 'place' ? ptype + ' place' : type) + ', links ' + r.articleCount
+      : st === 'external' ? 'no record; ' + (qidOf(r) ? 'points at ' + esc(qidOf(r)) : 'needs a Wikidata id') + ', ' + r.articleCount + ' articles keep the plain name'
+      : ''}</span>
     </div>
   </div>`;
 }
@@ -472,8 +495,8 @@ function render() {
   document.getElementById('more').style.display = rows.length > shown ? '' : 'none';
 
   const n = DATA.names.length;
-  let a = 0, s = 0, m = 0;
-  Object.values(decisions).forEach(d => { if (d.action === 'approved') a++; else if (d.action === 'skipped') s++; else if (d.action === 'merged') m++; });
+  let a = 0, s = 0, m = 0, x = 0;
+  Object.values(decisions).forEach(d => { if (d.action === 'approved') a++; else if (d.action === 'skipped') s++; else if (d.action === 'merged') m++; else if (d.action === 'external') x++; });
   document.getElementById('counts').textContent = `${n} names, ${rows.length} shown`;
   /* The decision's own article list, not the row's count. After a "same thing"
      the approved record carries the union of both names' articles, which is
@@ -483,7 +506,7 @@ function render() {
     .filter(d => d.action === 'approved')
     .reduce((t, d) => t + (d.articles ? d.articles.length : 0), 0);
   document.getElementById('tot').innerHTML =
-    `<b>${a}</b> to create &middot; <b>${links}</b> article links &middot; ${m} merged &middot; ${s} skipped &middot; ${n - a - s - m} undecided`;
+    `<b>${a}</b> to create &middot; <b>${links}</b> article links &middot; ${m} merged &middot; ${s} skipped &middot; ${x} external &middot; ${n - a - s - m - x} undecided`;
 }
 
 
@@ -621,6 +644,15 @@ document.getElementById('list').addEventListener('click', e => {
       if (t.schoolLevel) decisions[id].schoolLevel = t.schoolLevel;
       if (t.parent) decisions[id].parentOrganization = t.parent;
       if (t.source === 'GNIS') decisions[id].gnisId = t.id;
+    }
+    if (act === 'external') {
+      /* The id is the whole value of the disposition. Without it External is
+         indistinguishable from Skip in the file, and the prose linker has
+         nothing to point the name at. */
+      decisions[id].wikidataId = qidOf(row) || '';
+      decisions[id].externalReason = 'the locality policy: a subject the articles '
+        + 'write about, with no Santa Clarita Valley connection they document';
+      delete decisions[id].articles;
     }
     if (type === 'place') decisions[id].placeType = el.querySelector('.ptype').value;
     if (act === 'merged') decisions[id].into = parseInt(into, 10);

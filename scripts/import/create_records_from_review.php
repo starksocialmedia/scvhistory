@@ -156,7 +156,7 @@ foreach ($SECTION_FOR as $type => $section) {
 
 /* ------------------------------------------------------------- the work */
 
-$plan = ['create' => [], 'merge' => [], 'skip' => [], 'collision' => []];
+$plan = ['create' => [], 'merge' => [], 'skip' => [], 'collision' => [], 'external' => []];
 $deferred = [];          /* merges pointing at another decision in this file */
 $overrides = [];         /* names edited by hand away from the queue's spelling */
 $linkTotal = 0; $articlesTouched = [];
@@ -168,6 +168,13 @@ foreach ($decisions as $x) {
     if ($name === '' || !isset($SECTION_FOR[$type])) { continue; }
 
     if ($act === 'skipped') { $plan['skip'][] = $x; continue; }
+
+    /* External is a ruling, not an omission, and the difference matters when
+       somebody reads this report in six months. Skip means the queue has not
+       been settled; external means it has, and the answer was that the archive
+       holds no record because the valley has no claim on the subject. It
+       creates nothing here either way, but it is counted and named. */
+    if ($act === 'external') { $plan['external'][] = $x; continue; }
 
     if ($act === 'merged') {
         /* Two shapes of merge.
@@ -503,6 +510,18 @@ if ($conflicts) {
     echo PHP_EOL . 'no conflicts with the canon.' . PHP_EOL;
 }
 if ($plan['skip']) { echo PHP_EOL . 'SKIPPED: ' . count($plan['skip']) . PHP_EOL; }
+if ($plan['external']) {
+    echo PHP_EOL . 'EXTERNAL, no record created (' . count($plan['external']) . '):' . PHP_EOL;
+    foreach ($plan['external'] as $x) {
+        printf("   %-34s %-12s %s\n", mb_substr((string)$x['name'], 0, 33), $x['type'] ?? '',
+            ($x['wikidataId'] ?? '') !== '' ? $x['wikidataId'] : 'no Wikidata id yet');
+    }
+    $noQid = count(array_filter($plan['external'], fn($x) => ($x['wikidataId'] ?? '') === ''));
+    if ($noQid) {
+        echo '   ' . $noQid . ' carry no Wikidata id. The ruling stands without one, but the '
+           . 'name then points at nothing.' . PHP_EOL;
+    }
+}
 
 /* THE GATE.
  *

@@ -207,6 +207,40 @@ $lines[] = '';
 $lines[] = '## Entry types';
 $lines[] = '';
 
+/* Prose that belongs to one entry type rather than to the model as a whole.
+   Emitted under that type's field table, because a rule about who gets a record
+   is read by whoever is looking at the fields, not by whoever scrolls to the
+   end. Keyed by entry type handle. */
+$TYPE_NOTES = [
+    'person' => [
+        '**Who gets a record.** A person record requires a Santa Clarita Valley connection',
+        'the articles document: lived, worked, owned, built, founded, filmed, buried or',
+        'acted here. The connection has to be in the text. A name appearing in an article',
+        'is not a connection; it is a mention.',
+        '',
+        'National figures and subject-matter figures a local columnist wrote about get no',
+        'record. Leon Worden covering Proposition 209 does not make Ward Connerly part of',
+        'this valley, and the coin column naming forty numismatists does not make them',
+        'residents. Those names keep their articles and point at Wikidata instead.',
+        '',
+        'The test is the subject, not the collection. Most of the numismatists are caught',
+        'by being written about only inside one national column, but that is a symptom and',
+        'not the rule: Connerly appears in a local column throughout and still fails,',
+        'because nothing in the text places him here.',
+        '',
+        'William Mulholland has a record. He built the aqueduct and the St Francis Dam,',
+        'and the dam broke in this valley and killed people in it; that is as documented',
+        'as a connection gets. So do John Wayne and Tom Mix, who filmed at Melody Ranch,',
+        'Charles Crocker, whose railroad came through, and Kit Carson, who came through',
+        'with Fremont.',
+        '',
+        'The ruling is recorded, not just acted on. A name ruled out is marked **External**',
+        'on the review screen, which creates nothing and writes the Wikidata id into the',
+        'name canon so the prose linker can point the name somewhere. External is not Skip:',
+        'a skip means the queue has not been settled, and an external means it has.',
+    ],
+];
+
 $dropdowns = [];
 $allHandles = [];
 
@@ -239,6 +273,8 @@ foreach ($svc->getAllSections() as $sec) {
             }
         }
         $lines[] = '';
+        foreach (($TYPE_NOTES[$et->handle] ?? []) as $ln) { $lines[] = $ln; }
+        if (isset($TYPE_NOTES[$et->handle])) { $lines[] = ''; }
     }
 }
 
