@@ -1,0 +1,265 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Eras and themes — review</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1F2A3C;--gold:#C8A24A;--gold-d:#96751F;--bord:#DDD8CE;--cream:#FBF8F1;
+      --muted:#6B7280;--green:#2E7D5B;--purple:#7A5CA8}
+*{box-sizing:border-box}
+body{margin:0;background:#F5F3EE;color:var(--navy);font:15px/1.55 'Jost',system-ui,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--bord);padding:18px 22px;position:sticky;top:0;z-index:5}
+h1{font-family:'Playfair Display',serif;font-size:23px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px}
+.bar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:13.5px}
+.bar select,.bar input{padding:6px 9px;border:1px solid var(--bord);background:#fff;font:inherit}
+.bar .sep{flex:1}
+main{max-width:1060px;margin:0 auto;padding:22px}
+.art{background:#fff;border:1px solid var(--bord);border-left:3px solid var(--bord);padding:15px 18px;margin-bottom:12px}
+.art.decided{border-left-color:var(--green);background:#F3FAF6}
+.art.skipped{border-left-color:var(--muted);background:#F4F6F8;opacity:.66}
+.art h2{font-family:'Playfair Display',serif;font-size:18px;margin:0 0 3px;font-weight:500}
+.art h2 a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--bord)}
+.meta{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.kind{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+      padding:2px 7px;border:1px solid var(--bord);margin-right:8px;color:var(--gold-d)}
+.kind.one{border-color:var(--green);color:var(--green)}
+.kind.several{border-color:var(--purple);color:var(--purple)}
+.row{margin:10px 0}
+.lab{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+button.opt{border:1px solid var(--bord);background:#fff;font:inherit;font-size:13px;padding:6px 11px;cursor:pointer;text-align:left}
+button.opt.on{background:var(--green);border-color:var(--green);color:#fff}
+button.opt.th.on{background:var(--gold-d);border-color:var(--gold-d)}
+button.opt small{display:block;font-size:11px;opacity:.75}
+.why{font-size:12.5px;color:#4A5262;background:var(--cream);border-left:2px solid var(--bord);
+     padding:6px 10px;margin:5px 0 0}
+.why b{color:var(--gold-d);font-weight:500}
+.acts{margin-top:13px;padding-top:11px;border-top:1px solid var(--bord);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.acts button{border:1px solid var(--bord);background:#fff;font:inherit;font-size:13px;padding:7px 13px;cursor:pointer}
+.acts button.save{border-color:var(--green);color:var(--green)}
+.acts button.save.on{background:var(--green);color:#fff}
+.acts button.sk.on{background:var(--muted);border-color:var(--muted);color:#fff}
+.acts .note{font-size:12.5px;color:var(--muted)}
+#more{display:block;margin:18px auto;padding:10px 22px;border:1px solid var(--bord);background:#fff;font:inherit;cursor:pointer}
+.warn{background:#FFF8E6;border:1px solid var(--gold);padding:10px 14px;margin-bottom:16px;font-size:13.5px}
+</style>
+
+<header>
+  <h1>Eras and themes</h1>
+  <div class="sub" id="sub">loading…</div>
+  <div class="bar">
+    <label>Show <select id="filter">
+      <option value="undecided">undecided</option>
+      <option value="one">one era candidate</option>
+      <option value="several">several candidates</option>
+      <option value="spans">spans a boundary</option>
+      <option value="none">no years found</option>
+      <option value="decided">decided</option>
+      <option value="all">all</option>
+    </select></label>
+    <label>Search <input id="q" type="search" placeholder="title…" size="18"></label>
+    <span class="sep"></span>
+    <span id="tot"></span>
+  </div>
+</header>
+
+<main>
+  <div class="warn" id="warn" style="display:none"></div>
+  <div id="list"></div>
+  <button id="more">Show more</button>
+</main>
+
+<script>
+/* The queue proposes and a person rules. Nothing on this screen writes to a
+   record: decisions go to eras-decided.json through the same store the records
+   screen uses, and a separate apply script reads that file.
+ *
+ * An era is one choice; themes are any number. That asymmetry is the whole
+ * point of splitting the taxonomy, so the controls are shaped differently --
+ * radio behaviour for the era, toggles for the themes -- rather than looking
+ * alike and behaving differently. */
+const SET = 'eras';
+let DATA = null, decisions = {}, shown = 40, CSRF = null;
+
+/* Craft rejects a POST with no CSRF token, and the rejection is a 400 HTML
+   page rather than a JSON error, so a screen that does not fetch one fails in
+   a way that looks like the store being down. Same fetch the records screen
+   uses. */
+async function token() {
+  if (CSRF) return CSRF;
+  const r = await fetch('/actions/users/session-info', { headers: { Accept: 'application/json' } });
+  CSRF = (await r.json()).csrfTokenValue;
+  return CSRF;
+}
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const keyOf = r => 'article ' + r.id;
+
+async function load() {
+  DATA = await (await fetch('eras.json?' + Date.now())).json();
+  try {
+    const r = await (await fetch('/actions/reviewstore/decisions/all?set=' + SET)).json();
+    if (r.ok) decisions = r.decisions || {};
+  } catch (e) {
+    document.getElementById('warn').style.display = '';
+    document.getElementById('warn').textContent =
+      'The decisions store did not answer, so nothing on this screen will be remembered. '
+      + 'Do not work through the queue until it does.';
+  }
+  if (!DATA.themeIds || Object.keys(DATA.themeIds).length === 0) {
+    const w = document.getElementById('warn');
+    w.style.display = '';
+    w.innerHTML += (w.innerHTML ? '<br>' : '')
+      + 'The theme categories do not exist yet. Decisions record theme <b>names</b>, '
+      + 'and the apply script resolves them once the schema is applied.';
+  }
+  render();
+}
+
+/* Save one decision. The store is the record; this object is a cache of it. */
+async function persist(row, dec) {
+  const body = new URLSearchParams();
+  body.set('set', SET);
+  body.set('decision[name]', keyOf(row));
+  body.set('decision[type]', 'article');
+  body.set('decision[articleId]', row.id);
+  body.set('decision[title]', row.title);
+  body.set('decision[action]', dec.action);
+  if (dec.eraId) { body.set('decision[eraId]', dec.eraId); body.set('decision[eraTitle]', dec.eraTitle); }
+  (dec.themes || []).forEach((t, i) => body.set('decision[themes][' + i + ']', t));
+  let res;
+  try {
+    res = await fetch('/actions/reviewstore/decisions/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded',
+                 'Accept': 'application/json',
+                 'X-CSRF-Token': await token() },
+      body,
+    });
+  } catch (e) { alert('Not saved: the store did not answer.'); return false; }
+  if (!res.ok) { alert('Not saved: HTTP ' + res.status + '. Nothing was recorded.'); return false; }
+  const r = await res.json();
+  if (!r.ok) { alert('Not saved: ' + (r.error || 'unknown')); return false; }
+  return true;
+}
+
+function stateOf(r) { return decisions['article ' + r.id + '|article'] || decisions[keyOf(r).toLowerCase() + '|article'] || null; }
+
+function filtered() {
+  const f = document.getElementById('filter').value;
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  return DATA.articles.filter(r => {
+    if (q && !r.title.toLowerCase().includes(q)) return false;
+    const d = stateOf(r);
+    if (f === 'all') return true;
+    if (f === 'decided') return !!d;
+    if (f === 'undecided') return !d;
+    return r.kind === f && !d;
+  });
+}
+
+function card(r) {
+  const d = stateOf(r) || {};
+  const chosenEra = d.eraId ? String(d.eraId) : '';
+  const chosenThemes = d.themes || [];
+  const cls = d.action === 'skipped' ? 'skipped' : (d.action === 'set' ? 'decided' : '');
+
+  /* Every era is offered, not only the candidates. The candidates are marked,
+     because a suggestion that cannot be overruled is a decision in disguise. */
+  const eraBtns = DATA.eras.map(e => {
+    const isCand = (r.eraCandidates || []).some(c => c.id === e.id);
+    const on = chosenEra === String(e.id);
+    return `<button class="opt era ${on ? 'on' : ''}" data-era="${e.id}" data-t="${esc(e.title)}">
+      ${esc(e.title)}${isCand ? '<small>fits the years found</small>' : ''}</button>`;
+  }).join('');
+
+  const themeBtns = (r.themes || []).map(t =>
+    `<button class="opt th ${chosenThemes.includes(t.name) ? 'on' : ''}" data-th="${esc(t.name)}">${esc(t.name)}</button>`
+  ).join('');
+
+  const whys = Object.entries(r.eraWhy || {}).map(([y, s]) =>
+    `<div class="why"><b>${esc(y)}</b> — ${esc(s)}</div>`).join('');
+  const themeWhy = (r.themes || []).slice(0, 3).map(t =>
+    `<div class="why"><b>${esc(t.name)}</b> — ${esc(t.why)}</div>`).join('');
+
+  return `<div class="art ${cls}" data-id="${r.id}">
+    <h2><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a></h2>
+    <div class="meta">
+      <span class="kind ${r.kind}">${r.kind === 'one' ? 'one candidate'
+        : r.kind === 'several' ? (r.eraCandidates.length + ' candidates')
+        : r.kind === 'spans' ? 'spans a boundary' : 'no years found'}</span>
+      printed ${esc(r.published || '—')}
+      ${r.span ? ' &middot; years ' + esc(r.span) + ' (' + r.years.length + ' found)' : ''}
+      ${r.currentEra ? ' &middot; currently ' + esc(r.currentEra.title) : ''}
+    </div>
+    ${whys}
+    <div class="row"><div class="lab">Era — one</div><div class="opts">${eraBtns}</div></div>
+    ${themeBtns ? `<div class="row"><div class="lab">Themes — any number</div><div class="opts">${themeBtns}</div>${themeWhy}</div>` : ''}
+    <div class="acts">
+      <button class="save ${d.action === 'set' ? 'on' : ''}">Save</button>
+      <button class="sk ${d.action === 'skipped' ? 'on' : ''}">Skip</button>
+      <span class="note">${d.action === 'set'
+        ? esc((d.eraTitle || 'no era')) + ((d.themes || []).length ? ' + ' + d.themes.length + ' themes' : '')
+        : d.action === 'skipped' ? 'skipped' : 'nothing written until Save'}</span>
+    </div>
+  </div>`;
+}
+
+function render() {
+  const rows = filtered();
+  document.getElementById('list').innerHTML = rows.slice(0, shown).map(card).join('');
+  document.getElementById('more').style.display = rows.length > shown ? '' : 'none';
+  const c = DATA.counts;
+  document.getElementById('sub').textContent =
+    `${DATA.articles.length} articles — ${c.one} with one era candidate, ${c.several} with several, `
+    + `${c.spans} spanning a boundary, ${c.none} with no years. Generated ${DATA.generated.slice(0, 16)}.`;
+  const dec = Object.keys(decisions).length;
+  document.getElementById('tot').innerHTML =
+    `<b>${dec}</b> decided &middot; ${rows.length} shown &middot; nothing written to a record`;
+}
+
+/* Clicks: era is exclusive, themes toggle, and neither writes until Save. The
+   pending state lives on the card so a half-made decision is never stored. */
+document.getElementById('list').addEventListener('click', async e => {
+  const card = e.target.closest('.art'); if (!card) return;
+  const id = parseInt(card.dataset.id, 10);
+  const row = DATA.articles.find(r => r.id === id);
+  const eraBtn = e.target.closest('button.era');
+  const thBtn = e.target.closest('button.th');
+  const save = e.target.closest('button.save');
+  const skip = e.target.closest('button.sk');
+
+  if (eraBtn) {
+    const was = eraBtn.classList.contains('on');
+    card.querySelectorAll('button.era').forEach(b => b.classList.remove('on'));
+    if (!was) eraBtn.classList.add('on');
+    return;
+  }
+  if (thBtn) { thBtn.classList.toggle('on'); return; }
+
+  if (save) {
+    const on = card.querySelector('button.era.on');
+    const themes = [...card.querySelectorAll('button.th.on')].map(b => b.dataset.th);
+    if (!on && !themes.length) { alert('Choose an era or at least one theme, or Skip.'); return; }
+    const dec = { action: 'set', eraId: on ? on.dataset.era : '', eraTitle: on ? on.dataset.t : '', themes };
+    if (await persist(row, dec)) {
+      decisions['article ' + id + '|article'] = { ...dec, name: keyOf(row), type: 'article', articleId: id };
+      render();
+    }
+    return;
+  }
+  if (skip) {
+    const dec = { action: 'skipped' };
+    if (await persist(row, dec)) {
+      decisions['article ' + id + '|article'] = { ...dec, name: keyOf(row), type: 'article', articleId: id };
+      render();
+    }
+  }
+});
+
+document.getElementById('filter').addEventListener('change', () => { shown = 40; render(); });
+document.getElementById('q').addEventListener('input', () => { shown = 40; render(); });
+document.getElementById('more').addEventListener('click', () => { shown += 40; render(); });
+load();
+</script>

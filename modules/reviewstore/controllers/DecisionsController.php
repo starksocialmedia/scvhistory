@@ -32,7 +32,11 @@ class DecisionsController extends Controller
 
     private function path(string $set = ''): string
     {
-        $name = $set === 'pairs' ? 'records-pairs-decided.json' : 'records-decided.json';
+        $name = match ($set) {
+            'pairs' => 'records-pairs-decided.json',
+            'eras'  => 'eras-decided.json',
+            default => 'records-decided.json',
+        };
         return Craft::getAlias('@webroot') . '/review/' . $name;
     }
 

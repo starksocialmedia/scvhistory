@@ -42,22 +42,31 @@ $CAMERON = 16380;
 
 /* Written. Role titles, resolved to the vocabulary by exact title. */
 $ROLES = [
-    $CLYDE   => ['City Council Member'],
+    /* Mayor and School Superintendent added on Nathan's ruling, 21 September,
+       after the evidence below was put to him. They were held back on the
+       first pass because the brief named City Council Member and nothing
+       else. */
+    $CLYDE   => ['City Council Member', 'Mayor', 'School Superintendent'],
     $CAMERON => ['City Council Member', 'State Assemblymember'],
 ];
 
 /* Proposed, not written. */
-$PROPOSED = [
-    $CLYDE => [
-        'Mayor' => 'named mayor by the council; "Santa Clarita\'s mayor" in two more articles',
-        'School Superintendent' => '"former superintendent of the William S. [Hart district]"',
-    ],
-];
+$PROPOSED = [];   /* both of Clyde's were accepted and are written above */
 
 $WIKIDATA = [
     $CAMERON => ['qid' => 'Q5026379', 'desc' => 'American politician; member of the California '
         . 'State Assembly Q18180908, 4 December 2006 to 30 November 2012; born 19 August 1971'],
 ];
+/* The vocabulary has Mayor and City Council Member but no superintendency, so
+   the term is created here rather than silently dropped. Wikidata's own item
+   for the occupation, not a local coinage: the archive will hold more Hart
+   district superintendents than this one. */
+$NEW_ROLES = [
+    'School Superintendent' => ['qid' => 'Q7643464',
+        'desc' => 'administrator in charge of multiple schools, a school district or entity '
+                . 'with school oversight'],
+];
+
 $NO_ITEM = [
     $CLYDE => 'no Wikidata item; a search by name returns nothing at all. A Santa Clarita '
         . 'mayor and Hart district superintendent is below Wikidata\'s threshold, and the '
@@ -86,6 +95,34 @@ printf("   %-30s %s\n", 'inverse on Clyde',
 $vocab = [];
 foreach (\craft\elements\Entry::find()->section('roles')->status(null)->limit(null)->all() as $r) {
     $vocab[mb_strtolower(trim((string)$r->title))] = $r;
+}
+
+echo PHP_EOL . 'VOCABULARY' . PHP_EOL;
+$toCreate = [];
+foreach ($NEW_ROLES as $t => $spec) {
+    if (isset($vocab[mb_strtolower($t)])) {
+        printf("   %-26s exists as #%d\n", $t, $vocab[mb_strtolower($t)]->id);
+        continue;
+    }
+    printf("   %-26s would create, %s (%s)\n", $t, $spec['qid'], $spec['desc']);
+    $toCreate[$t] = $spec;
+}
+if ($APPLY && $toCreate) {
+    $sec = \Craft::$app->getEntries()->getSectionByHandle('roles');
+    $et = $sec->getEntryTypes()[0];
+    foreach ($toCreate as $t => $spec) {
+        $e = new \craft\elements\Entry();
+        $e->sectionId = $sec->id;
+        $e->typeId = $et->id;
+        $e->title = $t;
+        $e->setFieldValue('wikidataId', $spec['qid']);
+        if (\Craft::$app->elements->saveElement($e)) {
+            $vocab[mb_strtolower($t)] = $e;
+            echo '   created ' . $t . ' #' . $e->id . PHP_EOL;
+        } else {
+            echo '   FAILED creating ' . $t . ': ' . json_encode($e->getErrors()) . PHP_EOL;
+        }
+    }
 }
 
 echo PHP_EOL . 'ROLES' . PHP_EOL;
