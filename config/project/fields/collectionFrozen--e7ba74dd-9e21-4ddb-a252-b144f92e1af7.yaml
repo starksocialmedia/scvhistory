@@ -1,0 +1,13 @@
+columnSuffix: null
+handle: collectionFrozen
+instructions: 'On means the import and rebuild scripts are finished with this collection. They will refuse to write to it, or to any piece in it, so edits made here by hand are not overwritten by a re-run. Turn it off only to run an importer fix again, and expect that run to replace hand edits in the fields it writes.'
+name: Frozen
+searchable: false
+settings:
+  default: false
+  offLabel: 'Open to scripts'
+  onLabel: Frozen
+  showLabelsInCards: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

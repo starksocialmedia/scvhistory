@@ -45,3 +45,4 @@
 2026-09-21 21:57:51 PDT	rename_collection_kind_book_to_series.php	N8s-MacBook-2	0 rows	CORRECTION: the 21:21:27 run moved both records (2 of 2, 0 left on book) and is the migration. The 21:27:11 and 21:34:46 reruns had nothing to move; their FAIL on 'now on series' compared 2 against 0 moved	supersedes the 21:42:56 line, which said 'an earlier run'; check fixed in 79e6d25
 2026-09-21 22:14:47 PDT	build_collections_export.php	scvhistory-web	14 rows	verified: json 14, csv 14	/data/collections.json and .csv
 2026-09-21 22:43:48 PDT	build_collections_export.php	scvhistory-web	14 rows	verified: json 14, csv 14	/data/collections.json and .csv
+2026-09-22 09:05:02 PDT	add_collection_frozen_field.php	scvhistory-web	1 rows	verified: lightswitch, in layout, 0 frozen	schema only; guard in modules/collectionfreeze

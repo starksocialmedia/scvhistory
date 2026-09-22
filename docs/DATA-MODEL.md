@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 21 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 22 September 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -120,7 +120,7 @@ emitted from whichever side schema.org expects.
 
 ### Collections — `collections/collection`
 
-32 fields.
+33 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -141,6 +141,7 @@ emitted from whichever side schema.org expects.
 | `editedBy` | Entries | schema.org `editor` |  |
 | `publishedBy` | Entries | schema.org `publisher` |  |
 | `collectionKind` | Dropdown | **local** | how a collection is read, not what it is about |
+| `collectionFrozen` | Lightswitch | **local** | no external equivalent |
 | `collectionGroups` | Entries | **local** | no external equivalent |
 | `articlesInCollection` | Entries | **local** | no external equivalent |
 | `historicalEra` | Categories | Dublin Core `temporal` | local vocabulary, no external period thesaurus |
