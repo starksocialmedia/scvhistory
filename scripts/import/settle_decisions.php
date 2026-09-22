@@ -96,26 +96,44 @@ if ($i !== null) {
     $log[] = [$was . ' -> place/building', 'Hart Mansion', ''];
 }
 
-/* The containment pair, answered: two different things. */
-$pairDone = false;
-foreach ($rows as $i => $r) {
-    if (($r['type'] ?? '') !== 'pair') { continue; }
-    $s = $norm((string)($r['short'] ?? '')); $l = $norm((string)($r['long'] ?? ''));
-    if (($s === 'pico canyon' && $l === 'pico canyon road') || ($s === 'pico canyon road' && $l === 'pico canyon')) {
-        $rows[$i]['action'] = 'diff';
-        $rows[$i]['settledBy'] = 'Nathan, ' . date('Y-m-d') . ': the canyon and the road up it';
-        $log[] = ['pair -> diff', 'Pico Canyon / Pico Canyon Road', 'different things'];
-        $pairDone = true;
+/* The containment pairs, answered: every one of them two different things.
+ *
+ * Nathan settled these by instruction rather than on the screen, and the reason
+ * they are a table here is that the answer is the same three times and the
+ * shape of the question is identical: a canyon, and the road that runs up it.
+ * A road is not the landform it is named after. Soledad Canyon Road runs out of
+ * Canyon Country and along the canyon for miles, and the canyon existed for
+ * some time before anyone paved anything.
+ *
+ * Written whether or not a pair row exists. The gate raises a pair from the
+ * geometry of the names, not from the file, so a verdict that is only recorded
+ * when a row happens to be present is a verdict that comes back. */
+$PAIRS = [
+    ['Pico Canyon',      'Pico Canyon Road',      'the canyon and the road up it'],
+    ['Soledad Canyon',   'Soledad Canyon Road',   'the canyon and the road along it'],
+    ['Placerita Canyon', 'Placerita Canyon Road', 'the canyon and the road into it'],
+];
+foreach ($PAIRS as [$short, $long, $why]) {
+    $sn = $norm($short); $ln = $norm($long);
+    $done = false;
+    foreach ($rows as $i => $r) {
+        if (($r['type'] ?? '') !== 'pair') { continue; }
+        $a = $norm((string)($r['short'] ?? '')); $b = $norm((string)($r['long'] ?? ''));
+        if (($a === $sn && $b === $ln) || ($a === $ln && $b === $sn)) {
+            $was = $rows[$i]['action'] ?? 'open';
+            $rows[$i]['action'] = 'diff';
+            $rows[$i]['settledBy'] = 'Nathan, ' . date('Y-m-d') . ': ' . $why;
+            if ($was !== 'diff') { $log[] = [$was . ' -> diff', $short . ' / ' . $long, 'different things']; }
+            $done = true;
+        }
     }
-}
-if (!$pairDone) {
-    /* No stored verdict exists, so record one rather than leaving the gate to
-       raise it again. */
-    $rows[] = ['name' => 'PAIR Pico Canyon / Pico Canyon Road', 'type' => 'pair', 'action' => 'diff',
-               'short' => 'Pico Canyon', 'long' => 'Pico Canyon Road',
-               'shortKey' => 'pico canyon', 'longKey' => 'pico canyon road', 'shape' => 'contains',
-               'settledBy' => 'Nathan, ' . date('Y-m-d') . ': the canyon and the road up it'];
-    $log[] = ['pair added', 'Pico Canyon / Pico Canyon Road', 'different things'];
+    if (!$done) {
+        $rows[] = ['name' => 'PAIR ' . $short . ' / ' . $long, 'type' => 'pair', 'action' => 'diff',
+                   'short' => $short, 'long' => $long,
+                   'shortKey' => $sn, 'longKey' => $ln, 'shape' => 'contains',
+                   'settledBy' => 'Nathan, ' . date('Y-m-d') . ': ' . $why];
+        $log[] = ['pair added', $short . ' / ' . $long, 'different things'];
+    }
 }
 
 /* The festival's own aliases. Skipping the festival left "Cowboy Festival" and

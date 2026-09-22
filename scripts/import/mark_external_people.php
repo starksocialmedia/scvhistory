@@ -30,6 +30,18 @@
  * Proposition 209, which is not. The subject decides, and a subject is a
  * judgement, so this script proposes from the evidence and a person rules.
  *
+ * ALSO, BY NATHAN'S INSTRUCTION, ONE MERGE
+ *
+ * Kit Carson #15976 folds into Christopher Houston Carson #315, with Kit Carson
+ * kept as an alias. Two records for one man, and the fuller name is the title
+ * by the name policy while the name every article actually uses is the alias,
+ * which is what an alias is for.
+ *
+ * This rides along here rather than in its own script because it is the same
+ * operation the strip performs in reverse: the strip moves relations off a
+ * record and drops them, the merge moves them onto another record and keeps
+ * them. Doing both in one pass means one read-back proves both.
+ *
  * Dry run by default.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/mark_external_people.php'))"
  */
@@ -53,6 +65,22 @@ $KEPT = [
     'Kit Carson' => 'came through with Fremont',
     'Christopher Houston Carson' => 'came through with Fremont',
 ];
+
+/* from, into, alias to keep. Both sides must already exist; a merge into a
+   record that is not there is a rename with a deletion attached. */
+$MERGES = [
+    ['from' => 15976, 'into' => 315, 'alias' => 'Kit Carson'],
+];
+
+/* THE TRAP THIS CLOSES
+ *
+ * The decisions file holds an approved "Kit Carson", and it is harmless only
+ * because #15976 exists and the gate treats it as already held. Delete #15976
+ * after the merge and that row stops being a collision and becomes a create:
+ * batch three would build a fresh Kit Carson and quietly undo the merge, with
+ * nothing in either report saying so. The decision is repointed at the target
+ * here, in the same pass that performs the merge, because that is the only
+ * moment both facts are in view. */
 
 $FILE = \Craft::getAlias('@webroot') . '/review/records-decided.json';
 $doc = json_decode(file_get_contents($FILE), true) ?: [];
@@ -107,9 +135,50 @@ foreach ($asRecord as $x) {
 if ($absent) { echo PHP_EOL . 'neither a record nor a decision: ' . implode(', ', $absent) . PHP_EOL; }
 
 echo PHP_EOL . 'KEPT, with the connection that earns the record:' . PHP_EOL;
+$mergedAway = array_map(fn($m) => $m['from'], $MERGES);
 foreach ($KEPT as $n => $why) {
     $r = \craft\elements\Entry::find()->section('persons')->title($n)->status(null)->one();
-    printf("   %-28s %-14s %s\n", $n, $r ? '#' . $r->id : 'pending', $why);
+    $note = $r && in_array($r->id, $mergedAway, true) ? ' (merged away below; the man is kept)' : '';
+    printf("   %-28s %-14s %s%s\n", $n, $r ? '#' . $r->id : 'pending', $why, $note);
+}
+
+$merges = [];
+foreach ($MERGES as $m) {
+    $from = \craft\elements\Entry::find()->id($m['from'])->status(null)->one();
+    $into = \craft\elements\Entry::find()->id($m['into'])->status(null)->one();
+    if (!$from || !$into) {
+        echo PHP_EOL . 'MERGE SKIPPED: #' . $m['from'] . ' -> #' . $m['into']
+           . ' (' . (!$from ? 'source' : 'target') . ' does not exist)' . PHP_EOL;
+        continue;
+    }
+    $moving = [];
+    foreach ($ARTICLE_FIELDS as $fh) {
+        foreach (\craft\elements\Entry::find()->section('articles')
+                     ->relatedTo(['targetElement' => $from, 'field' => $fh])->status(null)->limit(null)->all() as $a) {
+            $moving[$fh][] = $a;
+        }
+    }
+    $n = array_sum(array_map('count', $moving));
+    $have = array_values(array_filter(array_map('trim',
+        preg_split('~[\r\n]+~', (string)$into->getFieldValue('personAliases')))));
+    $merges[] = ['from' => $from, 'into' => $into, 'moving' => $moving, 'n' => $n,
+                 'alias' => $m['alias'], 'aliasHeld' => in_array($m['alias'], $have, true),
+                 'aliases' => array_values(array_unique(array_merge($have, [$m['alias']])))];
+    echo PHP_EOL . 'MERGE' . PHP_EOL;
+    printf("   #%-6d %-32s -> #%-6d %s\n", $from->id, $from->title, $into->id, $into->title);
+    foreach ($moving as $fh => $as) { printf("      %-16s %d relations move\n", $fh, count($as)); }
+    printf("      %-16s %s\n", 'aliases after', implode(' | ', $merges[count($merges) - 1]['aliases']));
+    printf("      %-16s #%d, after the read-back\n", 'delete in the CP', $from->id);
+    $pend = 0;
+    foreach ($rows as $r) {
+        if (($r['type'] ?? '') === 'pair') { continue; }
+        if ($norm((string)($r['name'] ?? '')) === $norm((string)$from->title)
+            && ($r['action'] ?? '') === 'approved') { $pend++; }
+    }
+    if ($pend) {
+        printf("      %-16s %d approved decision repointed to the merge, or batch three rebuilds it\n",
+            'decisions file', $pend);
+    }
 }
 
 $relToDrop = 0;
@@ -134,6 +203,31 @@ file_put_contents($tmp, json_encode($doc, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLA
 rename($tmp, $FILE);
 @chmod($FILE, 0644);
 echo 'decisions marked external: ' . count($inFile) . PHP_EOL;
+
+/* the decision that would rebuild what the merge just folded away */
+$repointed = 0;
+foreach ($merges as $mg) {
+    foreach ($rows as $i => $r) {
+        if (($r['type'] ?? '') === 'pair') { continue; }
+        if ($norm((string)($r['name'] ?? '')) !== $norm((string)$mg['from']->title)) { continue; }
+        if (($r['action'] ?? '') === 'merged' && (int)($r['into'] ?? 0) === $mg['into']->id) { continue; }
+        $rows[$i]['action'] = 'merged';
+        $rows[$i]['into'] = $mg['into']->id;
+        $rows[$i]['intoName'] = $mg['into']->title;
+        unset($rows[$i]['intoKey'], $rows[$i]['articles']);
+        $rows[$i]['settledBy'] = 'Nathan, ' . date('Y-m-d') . ': merged into #' . $mg['into']->id
+            . '; the decision would otherwise recreate the record the merge removed';
+        $repointed++;
+    }
+}
+if ($repointed) {
+    $doc['decisions'] = array_values($rows);
+    $tmp2 = $FILE . '.tmp';
+    file_put_contents($tmp2, json_encode($doc, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n", LOCK_EX);
+    rename($tmp2, $FILE);
+    @chmod($FILE, 0644);
+    echo 'merge decisions repointed: ' . $repointed . PHP_EOL;
+}
 
 /* the canon */
 $CANON = \Craft::getAlias('@root') . '/inventory/legacy/name-canon.json';
@@ -170,6 +264,35 @@ foreach ($asRecord as $x) {
     $stripped++;
 }
 
+$moved = 0; $aliasOk = 0;
+foreach ($merges as $mg) {
+    foreach ($mg['moving'] as $fh => $arts) {
+        foreach ($arts as $a) {
+            /* Repoint, not reassign: an article can already carry the target,
+               and writing the target in twice is a duplicate relation that the
+               control panel shows as two identical rows. */
+            $ids = array_map(fn($r) => $r->id, $a->{$fh}->all());
+            $ids = array_values(array_unique(array_map(
+                fn($i) => $i === $mg['from']->id ? $mg['into']->id : $i, $ids)));
+            $a->setFieldValue($fh, $ids);
+            if (\Craft::$app->elements->saveElement($a)) { $moved++; }
+        }
+    }
+    $mg['into']->setFieldValue('personAliases', implode("\n", $mg['aliases']));
+    if (\Craft::$app->elements->saveElement($mg['into'])) {
+        $back = \craft\elements\Entry::find()->id($mg['into']->id)->status(null)->one();
+        if (str_contains((string)$back->getFieldValue('personAliases'), $mg['alias'])) { $aliasOk++; }
+    }
+}
+
+$stranded = 0;
+foreach ($merges as $mg) {
+    foreach ($ARTICLE_FIELDS as $fh) {
+        $stranded += (int)\craft\elements\Entry::find()->section('articles')
+            ->relatedTo(['targetElement' => $mg['from'], 'field' => $fh])->status(null)->count();
+    }
+}
+
 $left = 0;
 foreach ($asRecord as $x) {
     foreach ($ARTICLE_FIELDS as $fh) {
@@ -180,9 +303,15 @@ foreach ($asRecord as $x) {
 echo PHP_EOL . 'READ-BACK' . PHP_EOL;
 printf("   %-24s %-16s %s\n", 'records stripped', $stripped . ' of ' . count($asRecord), $stripped === count($asRecord) ? 'pass' : 'FAIL');
 printf("   %-24s %-16s %s\n", 'relations remaining', (string)$left, $left === 0 ? 'pass' : 'FAIL');
+$wantMove = array_sum(array_column($merges, 'n'));
+printf("   %-24s %-16s %s\n", 'merge relations moved', $moved . ' of ' . $wantMove, $moved === $wantMove ? 'pass' : 'FAIL');
+printf("   %-24s %-16s %s\n", 'merge aliases kept', $aliasOk . ' of ' . count($merges), $aliasOk === count($merges) ? 'pass' : 'FAIL');
+printf("   %-24s %-16s %s\n", 'merge sources stranded', (string)$stranded, $stranded === 0 ? 'pass' : 'FAIL');
 echo PHP_EOL . 'FOR DELETION IN THE CONTROL PANEL:' . PHP_EOL;
-foreach ($asRecord as $x) { printf("   #%-6d %s\n", $x['entry']->id, $x['name']); }
+foreach ($asRecord as $x) { printf("   #%-6d %-28s external\n", $x['entry']->id, $x['name']); }
+foreach ($merges as $mg) { printf("   #%-6d %-28s merged into #%d\n", $mg['from']->id, $mg['from']->title, $mg['into']->id); }
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('mark_external_people.php', count($inFile) + $stripped,
-    ($left === 0 ? 'verified: ' : 'FAILED: ') . $stripped . ' stripped, ' . $left . ' relations left',
+    ($left === 0 && $moved === $wantMove && $stranded === 0 ? 'verified: ' : 'FAILED: ')
+        . $stripped . ' stripped, ' . $left . ' relations left, ' . $moved . ' of ' . $wantMove . ' merged',
     count($inFile) . ' decisions marked external, ' . $added . ' canon entries');

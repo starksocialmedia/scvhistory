@@ -3551,6 +3551,28 @@
             ],
             "storeKey": "executive director|person",
             "decidedAt": "2026-09-21T18:43:37-07:00"
+        },
+        {
+            "name": "PAIR Soledad Canyon / Soledad Canyon Road",
+            "type": "pair",
+            "action": "diff",
+            "short": "Soledad Canyon",
+            "long": "Soledad Canyon Road",
+            "shortKey": "soledad canyon",
+            "longKey": "soledad canyon road",
+            "shape": "contains",
+            "settledBy": "Nathan, 2026-09-21: the canyon and the road along it"
+        },
+        {
+            "name": "PAIR Placerita Canyon / Placerita Canyon Road",
+            "type": "pair",
+            "action": "diff",
+            "short": "Placerita Canyon",
+            "long": "Placerita Canyon Road",
+            "shortKey": "placerita canyon",
+            "longKey": "placerita canyon road",
+            "shape": "contains",
+            "settledBy": "Nathan, 2026-09-21: the canyon and the road into it"
         }
     ],
     "edited": "hand-edited 2026-09-21: renames and merges per Nathan"
