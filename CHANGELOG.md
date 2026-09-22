@@ -1845,3 +1845,13 @@ left at nearest.
 add_roles_schema.php built the section before its entry type, which Craft 5
 refuses. Order proved in a rolled-back transaction, which found a second fault
 behind the first.
+
+The roles apply created 80 vocabulary entries with no titles: Craft 5 defaults
+hasTitleField to false. It reported "verified 32 of 32" because it checked the
+relations and never looked at what it had named them. hasOccupation emits the
+right Wikidata ids with name null. repair_role_titles.php restores them by
+position, checking the expected Wikidata id at every step; add_roles_schema.php
+now refuses to finish while any vocabulary entry is untitled.
+
+Batch three: the gate refuses on two containment pairs, Soledad Canyon against
+Soledad Canyon Road and Placerita Canyon against Placerita Canyon Road.

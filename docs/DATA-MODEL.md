@@ -451,7 +451,7 @@ emitted from whichever side schema.org expects.
 
 ### Persons — `persons/person`
 
-49 fields.
+50 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -468,6 +468,7 @@ emitted from whichever side schema.org expects.
 | `deathDateEdtf` | PlainText | **local** | no external equivalent |
 | `burialPlace` | PlainText | schema.org `deathPlace` | burial rather than death, so the mapping is approximate |
 | `occupation` | PlainText | schema.org `hasOccupation` | free text today; see the roles work |
+| `roles` | Entries | **local** | no external equivalent |
 | `authorBio` | PlainText | **local** | no external equivalent |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
 | `personAliases` | PlainText | SKOS `altLabel` | schema.org alternateName |
@@ -611,6 +612,15 @@ emitted from whichever side schema.org expects.
 | `recordDates` | Table | **local** | no external equivalent |
 | `graveCensus` | Table | **local** | no external equivalent |
 | `bandImage` | Assets | schema.org `image` | presentation only |
+
+### Roles — `roles/role`
+
+2 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `roleWikidataId` | PlainText | **local** | no external equivalent |
+| `roleMatch` | PlainText | **local** | no external equivalent |
 
 ### War Memorials — `warMemorials/warMemorial`
 

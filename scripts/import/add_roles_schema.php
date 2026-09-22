@@ -165,7 +165,12 @@ if (!$section) {
     $roleType = new \craft\models\EntryType();
     $roleType->name = 'Role';
     $roleType->handle = 'role';
+    /* Craft 5 defaults this to false, and a vocabulary of eighty entries called
+       nothing is what that produces. The run that made them reported "verified
+       32 of 32" because it checked the relations and never looked at what it
+       had named them. */
     $roleType->hasTitleField = true;
+    $roleType->titleFormat = null;
     $roleType->setFieldLayout($rolesLayout);
     if (!$svc->saveEntryType($roleType)) {
         echo 'FAILED entry type: ' . implode('; ', $roleType->getFirstErrors()) . PHP_EOL;
@@ -224,6 +229,20 @@ foreach ($vocab as $v) {
     if (\Craft::$app->elements->saveElement($e)) { $roleEntry[$v['term']] = $e->id; }
 }
 echo 'vocabulary entries created: ' . $vmade . ', total ' . count($roleEntry) . PHP_EOL;
+
+/* A vocabulary entry with no title is not a term. Checked here rather than
+   left for the JSON-LD to emit as an empty occupation name. */
+$blankTitles = 0;
+foreach (\craft\elements\Entry::find()->section('roles')->status(null)->limit(null)->all() as $r) {
+    if (trim((string)$r->title) === '') { $blankTitles++; }
+}
+if ($blankTitles) {
+    echo 'BLANK TITLES: ' . $blankTitles . ' of ' . count($roleEntry) . '. The entry type has no '
+       . 'title field, so the vocabulary is unusable. Run repair_role_titles.php.' . PHP_EOL;
+    $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
+    $applyLog('add_roles_schema.php', 0, 'FAILED: ' . $blankTitles . ' vocabulary entries have no title', 'stopped');
+    return;
+}
 
 /* the relation field */
 $rf = $fs->getFieldByHandle('roles');
