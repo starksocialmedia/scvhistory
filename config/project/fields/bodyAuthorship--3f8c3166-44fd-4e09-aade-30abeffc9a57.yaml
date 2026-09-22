@@ -1,0 +1,55 @@
+columnSuffix: null
+handle: bodyAuthorship
+instructions: 'Who wrote the prose in Body and Author Bio on this record. Empty means nobody has established it yet, and the prose stays off the front end until somebody does. Only "Legacy SCVHistory" and "SCVHistory editorial, 2026" publish.'
+name: 'Body authorship'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - "Legacy SCVHistory (Leon Worden's site)"
+        -
+          - value
+          - legacy-leon
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'WordPress import, unsourced'
+        -
+          - value
+          - wordpress-import-unsourced
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'SCVHistory editorial, 2026'
+        -
+          - value
+          - editorial-2026
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Mixed, not yet separated'
+        -
+          - value
+          - mixed
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

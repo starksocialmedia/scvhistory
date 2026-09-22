@@ -826,6 +826,23 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3f8c3166-44fd-4e09-aade-30abeffc9a57 # Body authorship
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ea7b2ad3-02fa-4fa2-9b99-e4271cca62ba
+            userCondition: null
+            warning: null
+            width: 100
         name: Ingest
         uid: 9ac52719-f18c-456d-a1ad-9ccd94eedd72
         userCondition: null

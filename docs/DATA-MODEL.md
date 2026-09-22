@@ -453,7 +453,7 @@ emitted from whichever side schema.org expects.
 
 ### Persons — `persons/person`
 
-50 fields.
+51 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -503,6 +503,7 @@ emitted from whichever side schema.org expects.
 | `legacyHtml` | PlainText | **local** | no external equivalent |
 | `legacyCategory` | PlainText | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+| `bodyAuthorship` | Dropdown | **local** | no external equivalent |
 | `recordImages` | Assets | schema.org `image` |  |
 | `recordDocuments` | Assets | schema.org `associatedMedia` |  |
 | `recordDates` | Table | **local** | no external equivalent |
@@ -724,6 +725,7 @@ a skip means the queue has not been settled, and an external means it has.
 Every dropdown in the schema, with its values. All of these vocabularies are
 local unless the note says otherwise.
 
+- **`bodyAuthorship`** — `legacy-leon`, `wordpress-import-unsourced`, `editorial-2026`, `mixed`.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
