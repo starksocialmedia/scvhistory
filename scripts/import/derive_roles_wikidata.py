@@ -65,6 +65,13 @@ PINNED = {
     'Assemblywoman': 'Q13218630',
     'State Assemblymember': 'Q13218630',
     'Chief': '',                   # too many senses to pin; a person chooses
+
+    # Nathan's rulings on the nearest matches, 21 September.
+    'Lawman': 'Q384593',           # law enforcement officer, not a Scandinavian lawspeaker
+    'Hotelier': '',                # Wikidata has no hotelier occupation: a surname, two TV
+                                   # dramas and a film. Q105756071 hotel owner exists and is
+                                   # arguably right for Nadeau, who owned rather than managed.
+    'Political Agent': '',         # not an election agent; local
     'Franciscan Missionary': 'Q1423891',
     'Cattle Rustler': '',          # local
     'College Trustee': '',         # local
@@ -149,6 +156,20 @@ def main():
             rows.append({**t, 'qid': qid, 'label': lab, 'description': desc,
                          'confidence': 'pinned', 'alternates': [],
                          'why': 'set by hand; a plain search finds the wrong sense'})
+            time.sleep(0.4)
+            continue
+
+        # Accepted by hand where the nearest match was judged right, so the
+        # table records a decision rather than a guess that happened to stand.
+        ACCEPTED = {'Museum Curator': 'Q674426', 'Congressman': 'Q18002923',
+                    'Congresswoman': 'Q18002923'}
+        if term in ACCEPTED:
+            hits = search(term, 4)
+            lab = next((h['label'] for h in hits if h['id'] == ACCEPTED[term]), term)
+            desc = next((h.get('description', '') for h in hits if h['id'] == ACCEPTED[term]), '')
+            rows.append({**t, 'qid': ACCEPTED[term], 'label': lab, 'description': desc,
+                         'confidence': 'accepted', 'alternates': [],
+                         'why': 'the nearest match, accepted by hand'})
             time.sleep(0.4)
             continue
 

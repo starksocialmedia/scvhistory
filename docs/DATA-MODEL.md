@@ -68,7 +68,7 @@ emitted from whichever side schema.org expects.
 
 ### Articles — `articles/article`
 
-43 fields.
+44 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -76,6 +76,7 @@ emitted from whichever side schema.org expects.
 | `body` | PlainText | schema.org `text` | also dcterms:description |
 | `originallyPublishedTitle` | PlainText | schema.org `alternativeHeadline` | the title the piece first carried |
 | `originalPublishDate` | PlainText | schema.org `datePublished` | printed form; EDTF in dateEdtf where it parses |
+| `originalPublishDateEdtf` | PlainText | **local** | no external equivalent |
 | `subheadline` | PlainText | schema.org `alternativeHeadline` |  |
 | `sourceLine` | PlainText | **local** | no external equivalent |
 | `legacyKey` | PlainText | **local** | no external equivalent |
@@ -186,7 +187,7 @@ emitted from whichever side schema.org expects.
 
 ### Events — `events/event`
 
-39 fields.
+40 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -198,6 +199,7 @@ emitted from whichever side schema.org expects.
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
 | `eventDate` | PlainText | **local** | no external equivalent |
+| `eventDateEdtf` | PlainText | **local** | no external equivalent |
 | `eventDateStart` | PlainText | **local** | no external equivalent |
 | `eventDateEnd` | PlainText | **local** | no external equivalent |
 | `eventRecurring` | Lightswitch | **local** | no external equivalent |
@@ -373,7 +375,7 @@ emitted from whichever side schema.org expects.
 
 ### Organizations — `organizations/organization`
 
-50 fields.
+51 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -385,6 +387,7 @@ emitted from whichever side schema.org expects.
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
 | `dateFounded` | PlainText | schema.org `foundingDate` | printed form |
+| `dateFoundedEdtf` | PlainText | **local** | no external equivalent |
 | `orgAliases` | PlainText | SKOS `altLabel` | schema.org alternateName |
 | `orgAddress` | PlainText | schema.org `address` |  |
 | `orgLat` | Number | WGS84 `lat` | schema.org latitude |
@@ -448,7 +451,7 @@ emitted from whichever side schema.org expects.
 
 ### Persons — `persons/person`
 
-47 fields.
+49 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -461,6 +464,8 @@ emitted from whichever side schema.org expects.
 | `birthDate` | PlainText | schema.org `birthDate` | printed form |
 | `birthplace` | PlainText | schema.org `birthPlace` |  |
 | `deathDate` | PlainText | schema.org `deathDate` | printed form |
+| `birthDateEdtf` | PlainText | **local** | no external equivalent |
+| `deathDateEdtf` | PlainText | **local** | no external equivalent |
 | `burialPlace` | PlainText | schema.org `deathPlace` | burial rather than death, so the mapping is approximate |
 | `occupation` | PlainText | schema.org `hasOccupation` | free text today; see the roles work |
 | `authorBio` | PlainText | **local** | no external equivalent |
@@ -502,7 +507,7 @@ emitted from whichever side schema.org expects.
 
 ### Photographs — `photographs/photograph`
 
-41 fields.
+42 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -514,6 +519,7 @@ emitted from whichever side schema.org expects.
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
 | `photoDate` | PlainText | **local** | no external equivalent |
+| `photoDateEdtf` | PlainText | **local** | no external equivalent |
 | `photoCredit` | PlainText | **local** | no external equivalent |
 | `photoCaptionExt` | PlainText | **local** | no external equivalent |
 | `photoSourceCode` | PlainText | **local** | no external equivalent |
@@ -550,7 +556,7 @@ emitted from whichever side schema.org expects.
 
 ### Places — `places/place`
 
-50 fields.
+51 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -565,6 +571,7 @@ emitted from whichever side schema.org expects.
 | `placeLat` | Number | WGS84 `lat` | schema.org latitude |
 | `placeLng` | Number | WGS84 `long` | schema.org longitude |
 | `dateEstablished` | PlainText | schema.org `foundingDate` | printed form |
+| `dateEstablishedEdtf` | PlainText | **local** | no external equivalent |
 | `placeAliases` | PlainText | SKOS `altLabel` | schema.org alternateName |
 | `placeChlNumber` | PlainText | OHP `California Historical Landmark number` | state register |
 | `placeFeatured` | Lightswitch | **local** | no external equivalent |
@@ -607,7 +614,7 @@ emitted from whichever side schema.org expects.
 
 ### War Memorials — `warMemorials/warMemorial`
 
-53 fields.
+54 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -617,6 +624,7 @@ emitted from whichever side schema.org expects.
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
 | `deathDate` | PlainText | schema.org `deathDate` | printed form |
+| `deathDateEdtf` | PlainText | **local** | no external equivalent |
 | `burialPlace` | PlainText | schema.org `deathPlace` | burial rather than death, so the mapping is approximate |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
 | `neighborhood` | Categories | Dublin Core `spatial` | local vocabulary of valley communities |

@@ -1817,3 +1817,14 @@ after folding a typo, matched against Wikidata occupation and position items.
 
 The EDTF derivation wrote nothing on the run that created the fields: entry
 layouts are read before the fields exist, so nothing queued. 968 values now.
+
+Roles: Lawman to law enforcement officer, Hotelier local (Wikidata has no
+hotelier occupation), Political Agent local, Museum Curator and the House
+members accepted. add_roles_schema.php, dry run: a roles section, 80 vocabulary
+entries carrying wikidataId and how the match was made, a relation on person,
+and 93 relations migrated from free text with the printed string kept.
+
+JSON-LD emits everything: organization @type from orgType and schoolLevel,
+identifiers as PropertyValue naming their scheme, subOrganization,
+hasOccupation from roles, and EDTF dates in preference to parsing the printed
+form at render time. Validated on ten pages across every record type.

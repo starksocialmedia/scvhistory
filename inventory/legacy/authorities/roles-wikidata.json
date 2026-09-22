@@ -410,18 +410,12 @@
    "term": "Hotelier",
    "count": 1,
    "source": "record",
-   "qid": "Q1631120",
-   "label": "hotel manager",
-   "description": "manager of a hotel",
-   "confidence": "nearest",
-   "alternates": [
-    {
-     "qid": "Q105756071",
-     "label": "hotel owner",
-     "description": "occupation"
-    }
-   ],
-   "why": "the closest candidate that is an occupation"
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
   },
   {
    "term": "Justice of the Peace",
@@ -487,12 +481,12 @@
    "term": "Lawman",
    "count": 1,
    "source": "record",
-   "qid": "Q1466992",
-   "label": "lawspeaker",
-   "description": "Scandinavian legal office",
-   "confidence": "nearest",
+   "qid": "Q384593",
+   "label": "Lawman",
+   "description": "",
+   "confidence": "pinned",
    "alternates": [],
-   "why": "the closest candidate that is an occupation"
+   "why": "set by hand; a plain search finds the wrong sense"
   },
   {
    "term": "Millwright",
@@ -512,15 +506,9 @@
    "qid": "Q674426",
    "label": "curator",
    "description": "content specialist charged with a museum's collections and involved with the interpretation of heritage material",
-   "confidence": "nearest",
-   "alternates": [
-    {
-     "qid": "Q47090899",
-     "label": "museum professional",
-     "description": "occupation"
-    }
-   ],
-   "why": "the closest candidate that is an occupation"
+   "confidence": "accepted",
+   "alternates": [],
+   "why": "the nearest match, accepted by hand"
   },
   {
    "term": "Naval Officer",
@@ -587,12 +575,12 @@
    "term": "Political Agent",
    "count": 1,
    "source": "record",
-   "qid": "Q5354552",
-   "label": "election agent",
-   "description": "profession",
-   "confidence": "nearest",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
    "alternates": [],
-   "why": "the closest candidate that is an occupation"
+   "why": "no Wikidata occupation covers this; kept as a local term"
   },
   {
    "term": "Political Staffer",
@@ -891,15 +879,9 @@
    "qid": "Q18002923",
    "label": "member of the House of Representatives",
    "description": "elected representative to the House of Representatives of the Philippines",
-   "confidence": "nearest",
-   "alternates": [
-    {
-     "qid": "Q14761450",
-     "label": "member of congress",
-     "description": "essential office of an elected members called congress"
-    }
-   ],
-   "why": "the closest candidate that is an occupation"
+   "confidence": "accepted",
+   "alternates": [],
+   "why": "the nearest match, accepted by hand"
   },
   {
    "term": "Congresswoman",
@@ -908,15 +890,9 @@
    "qid": "Q18002923",
    "label": "member of the House of Representatives",
    "description": "elected representative to the House of Representatives of the Philippines",
-   "confidence": "nearest",
-   "alternates": [
-    {
-     "qid": "Q14761450",
-     "label": "member of congress",
-     "description": "essential office of an elected members called congress"
-    }
-   ],
-   "why": "the closest candidate that is an occupation"
+   "confidence": "accepted",
+   "alternates": [],
+   "why": "the nearest match, accepted by hand"
   },
   {
    "term": "Councilman",

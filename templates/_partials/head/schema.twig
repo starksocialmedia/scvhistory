@@ -50,20 +50,26 @@
 
 {#- Plain values, read only where the layout carries them. -#}
 {% set V = {} %}
-{% for h in ['fullName','birthDate','deathDate','burialPlace','birthplace','occupation','personAliases',
+{#- EDTF where the archive has derived one. dt.iso() guesses at a printed date
+    every time a page renders; the EDTF field is the same judgement made once,
+    written down, and correctable by hand. Where it is empty the old parser
+    still runs, because an empty EDTF means the printed form did not parse and
+    guessing at render time will not do better. -#}
+{% for h in ['fullName','birthDate','deathDate','birthDateEdtf','deathDateEdtf','burialPlace','birthplace','occupation','personAliases',
              'wikidataId','viafId','personWikipediaUrl','personGraveUrl','legacyUrl','sourcePath',
-             'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','placeChlNumber','gnisId',
+             'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','dateEstablishedEdtf','placeChlNumber','gnisId',
              'scvhlNumber','nrhpReference','nrhpListedDate','placeScvhlCheckbox',
              'placeWikipediaUrl','placeChlUrl','placeScvhlUrl',
-             'orgAddress','orgLat','orgLng','orgAliases','dateFounded','orgWebsite','orgWikipediaUrl',
+             'orgAddress','orgLat','orgLng','orgAliases','dateFounded','dateFoundedEdtf','orgWebsite','orgWikipediaUrl',
+             'orgType','schoolLevel','cdsCode','ncesId','ein',
              'groupAliases','groupDateStart','groupDateEnd','groupWebsite',
              'eventDate','eventDateStart','eventDateEnd','eventWikipediaUrl',
-             'originalPublishDate','originallyPublishedTitle','subheadline','sourceLine','body',
+             'originalPublishDate','originalPublishDateEdtf','originallyPublishedTitle','subheadline','sourceLine','body',
              'deathDate','wmBranch','wmRank','wmUnit','wmConflict','wmDateOfBirth','wmIncidentDate',
              'wmIncidentLocation','wmHomeOfRecord','wmBirthplace','wmCasualtyReason',
              'mpRank','mpUnit','mpDateOfBirth','mpDateOfDeath','mpBurialPlace','mpNarrative',
              'mpWikipediaUrl','mpFindAGraveUrl','obitDateOfDeath','obitDatePublished','obitGraveUrl',
-             'photoDate','photoCredit','communityLat','communityLng','communityAliases','communityType',
+             'photoDate','photoDateEdtf','photoCredit','communityLat','communityLng','communityAliases','communityType',
              'articleLat','articleLng'] %}
   {% if h in H %}{% set V = V|merge({ (h): (attribute(el, h) ~ '')|trim }) %}{% endif %}
 {% endfor %}
@@ -220,6 +226,29 @@
   {% endif %}
 {% endfor %}
 
+{#- IDENTIFIERS, each naming its scheme.
+    A bare string in an identifier field says a number and not which register it
+    belongs to. PropertyValue carries the scheme with it, so a reader of the
+    graph can resolve 062718009956 without knowing in advance that it is NCES. -#}
+{% set IDSCHEMES = {
+  cdsCode: { name: 'CDS', url: 'https://www.cde.ca.gov/SchoolDirectory/details?cdscode=' },
+  ncesId:  { name: 'NCES', url: 'https://nces.ed.gov/ccd/schoolsearch/school_detail.asp?ID=' },
+  ein:     { name: 'EIN', url: '' },
+  wikidataId: { name: 'Wikidata', url: 'https://www.wikidata.org/wiki/' },
+  viafId:  { name: 'VIAF', url: 'https://viaf.org/viaf/' },
+  gnisId:  { name: 'GNIS', url: 'https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' },
+  nrhpReference: { name: 'NRHP', url: 'https://npgallery.nps.gov/NRHP/AssetDetail?assetID=' }
+} %}
+{% set identifiers = [] %}
+{% for handle, scheme in IDSCHEMES %}
+  {% set v = (V[handle] ?? '')|trim %}
+  {% if v %}
+    {% set identifiers = identifiers|merge([{
+      '@type': 'PropertyValue', 'propertyID': scheme.name, 'value': v,
+      'url': scheme.url ? scheme.url ~ v : null }|filter(x => x is not null)]) %}
+  {% endif %}
+{% endfor %}
+
 {#- sameAs: only the authority files that actually hold a value. -#}
 {% set sameAs = [] %}
 {% for u in [V.personWikipediaUrl ?? '', V.placeWikipediaUrl ?? '', V.orgWikipediaUrl ?? '',
@@ -272,7 +301,7 @@
     'alternativeHeadline': V.originallyPublishedTitle ?? '' ?: (V.subheadline ?? ''),
     'author': authors,
     'editor': (N.editedBy ?? []),
-    'datePublished': dt.iso(V.originalPublishDate ?? '')|trim,
+    'datePublished': (V.originalPublishDateEdtf ?? '')|trim ?: dt.iso(V.originalPublishDate ?? '')|trim,
     'isPartOf': coll ? coll|merge({ '@type': 'CreativeWorkSeries' }) : null,
     'about': about,
     'publisher': pub ?: ((V.sourceLine ?? '') ? { '@type': 'Organization', 'name': V.sourceLine } : PUBLISHER),
@@ -281,14 +310,31 @@
   } %}
 
 {% elseif sec == 'persons' %}
+  {#- hasOccupation from the roles relation, each carrying the Wikidata item
+      that says which occupation it is. The printed occupation string stays on
+      the record and is emitted as description-level text, not as a claim about
+      a term. -#}
+  {% set occupations = [] %}
+  {% if 'roles' in H %}
+    {% for r in el.roles.status(null).all() %}
+      {% set rh = [] %}
+      {% for f in r.fieldLayout.customFields %}{% set rh = rh|merge([f.handle]) %}{% endfor %}
+      {% set qid = 'roleWikidataId' in rh ? r.roleWikidataId|trim : '' %}
+      {% set occupations = occupations|merge([{
+        '@type': 'Occupation', 'name': r.title,
+        'sameAs': qid ? 'https://www.wikidata.org/wiki/' ~ qid : null
+      }|filter(x => x is not null)]) %}
+    {% endfor %}
+  {% endif %}
   {% set main = {
     '@type': 'Person',
     'name': V.fullName ?? '' ?: el.title,
     'alternateName': alt,
-    'birthDate': dt.iso(V.birthDate ?? '')|trim,
-    'deathDate': dt.iso(V.deathDate ?? '')|trim,
+    'birthDate': (V.birthDateEdtf ?? '')|trim ?: dt.iso(V.birthDate ?? '')|trim,
+    'deathDate': (V.deathDateEdtf ?? '')|trim ?: dt.iso(V.deathDate ?? '')|trim,
     'birthPlace': (V.birthplace ?? '') ? { '@type': 'Place', 'name': V.birthplace } : null,
     'deathPlace': (V.burialPlace ?? '') ? { '@type': 'Place', 'name': V.burialPlace } : null,
+    'hasOccupation': occupations|length ? occupations : null,
     'jobTitle': (V.occupation ?? '') ? (V.occupation|split(';')|map(o => o|trim)|filter(o => o)|values) : [],
     'sameAs': sameAs,
     'spouse': (FAM.spouses ?? []),
@@ -328,14 +374,43 @@
   } %}
 
 {% elseif sec == 'organizations' %}
+  {#- The @type from what the record says it is. schema.org has a term for a
+      school, a church and a newspaper, and calling all three Organization
+      throws away the one fact the orgType field exists to record. The school
+      level narrows it further, and a district has no schema.org subtype so it
+      stays Organization: inventing EducationalOrganization for it would be
+      asserting something schema.org does not define. -#}
+  {% set ORG_TYPE = {
+    school: 'School', government: 'GovernmentOrganization', business: 'Corporation',
+    nonprofit: 'NGO', church: 'Church', media: 'NewsMediaOrganization',
+    club: 'Organization', military: 'Organization', other: 'Organization'
+  } %}
+  {% set LEVEL_TYPE = {
+    elementary: 'ElementarySchool', middle: 'MiddleSchool',
+    high: 'HighSchool', college: 'CollegeOrUniversity'
+  } %}
+  {% set orgTypeVal = (V.orgType ?? '') %}
+  {% set levelVal = (V.schoolLevel ?? '') %}
+  {% set schemaType = ORG_TYPE[orgTypeVal] ?? 'Organization' %}
+  {% if orgTypeVal == 'school' and LEVEL_TYPE[levelVal] is defined %}
+    {% set schemaType = LEVEL_TYPE[levelVal] %}
+  {% endif %}
+
+  {#- Every organization that names this one as its parent. -#}
+  {% set subOrgs = [] %}
+  {% for c in craft.entries().section('organizations').relatedTo({ targetElement: el, field: 'parentOrganization' }).status(null).limit(null).all() %}
+    {% set subOrgs = subOrgs|merge([{ '@type': 'Organization', '@id': c.url, 'name': c.title, 'url': c.url }]) %}
+  {% endfor %}
+
   {% set main = {
-    '@type': 'Organization',
+    '@type': schemaType,
+    'subOrganization': subOrgs|length ? subOrgs : null,
     'name': el.title,
     'alternateName': alt,
     'address': V.orgAddress ?? '',
     'geo': (V.orgLat ?? '') and (V.orgLng ?? '')
         ? { '@type': 'GeoCoordinates', 'latitude': V.orgLat + 0, 'longitude': V.orgLng + 0 } : null,
-    'foundingDate': dt.iso(V.dateFounded ?? '')|trim,
+    'foundingDate': (V.dateFoundedEdtf ?? '')|trim ?: dt.iso(V.dateFounded ?? '')|trim,
     'founder': (N.orgFoundedBy ?? []),
     'member': (N.boardMembers ?? [])|merge((N.orgAssociatedPersons ?? [])),
     'parentOrganization': (N.parentOrganization ?? [])|first,
@@ -516,7 +591,8 @@
   'mainEntityOfPage': canonical,
   'description': metaDescriptionOut is defined ? metaDescriptionOut : null,
   'image': imageRef,
-  'primaryImageOfPage': (sec == 'photographs' and imageRef) ? imageRef : null
+  'primaryImageOfPage': (sec == 'photographs' and imageRef) ? imageRef : null,
+  'identifier': identifiers|length ? identifiers : null
 }) %}
 {% if main['@type'] in CREATIVE %}
   {% set main = main|merge({
