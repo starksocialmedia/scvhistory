@@ -68,7 +68,7 @@ emitted from whichever side schema.org expects.
 
 ### Articles — `articles/article`
 
-44 fields.
+45 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -107,6 +107,7 @@ emitted from whichever side schema.org expects.
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
 | `articleEvents` | Entries | schema.org `about` |  |
 | `historicalEra` | Categories | Dublin Core `temporal` | local vocabulary, no external period thesaurus |
+| `articleThemes` | Categories | Dublin Core `subject` | local vocabulary; any number per article, where an era is one |
 | `historicalPeriod` | Categories | Dublin Core `temporal` | local vocabulary |
 | `neighborhood` | Categories | Dublin Core `spatial` | local vocabulary of valley communities |
 | `sourcePath` | PlainText | Dublin Core `source` |  |
@@ -735,6 +736,7 @@ local unless the note says otherwise.
 - **`historicalEra`** — 15 terms. Local vocabulary.
 - **`historicalPeriod`** — 14 terms. Local vocabulary.
 - **`tag`** — 0 terms. Local vocabulary.
+- **`theme`** — 15 terms. Local vocabulary.
 
 ## Images as objects
 
@@ -776,6 +778,7 @@ Where a printed form parses cleanly, an EDTF form is derived alongside it. Where
 it does not, the EDTF field stays empty rather than being guessed. EDTF is
 Extended Date/Time Format, ISO 8601-2.
 
-_The `dateEdtf` fields are not yet in the schema; this section describes the
-intent that the schema script implements._
+The EDTF fields sit beside the printed ones and are derived by
+`add_edtf_fields.php`: `originalPublishDateEdtf`, `eventDateEdtf`, `photoDateEdtf`,
+`birthDateEdtf`, `deathDateEdtf`, `dateFoundedEdtf` and `dateEstablishedEdtf`.
 

@@ -18,17 +18,44 @@
  *
  * Writes are atomic: the file is written beside itself and renamed, under a
  * lock, so a click that lands mid-write cannot truncate somebody's afternoon.
+ *
+ * REVIEW IS LOCAL ONLY
+ *
+ * Every action answers 403 unless CRAFT_ENVIRONMENT is dev, and a write also
+ * needs an admin session. The /review/ password on the server guards the static
+ * files, not /actions/, so without this anyone who could reach staging could
+ * write a decision the importer then acts on. The decisions files are tracked,
+ * so a write on the server would also dirty its tree and fail the next pull.
+ * The screens read the tracked files directly when this refuses, and say that
+ * they are read-only.
  */
 
 namespace modules\reviewstore\controllers;
 
 use Craft;
 use craft\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 
 class DecisionsController extends Controller
 {
     protected array|int|bool $allowAnonymous = true;
+
+    /* Before parent::beforeAction, so the refusal comes ahead of the CSRF check
+       and a request without a token still gets a 403 rather than a 400. */
+    public function beforeAction($action): bool
+    {
+        if (Craft::$app->env !== 'dev') {
+            throw new ForbiddenHttpException('Review is local only. This environment is ' . (Craft::$app->env ?: 'unset') . '.');
+        }
+        if ($action->id !== 'all') {
+            $user = Craft::$app->getUser()->getIdentity();
+            if (!$user || !$user->admin) {
+                throw new ForbiddenHttpException('Saving a review decision needs an admin session.');
+            }
+        }
+        return parent::beforeAction($action);
+    }
 
     private function path(string $set = ''): string
     {

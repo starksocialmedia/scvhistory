@@ -87,6 +87,7 @@ $MAP = [
     'footnotesOn'          => ['schema.org', 'citation', ''],
     'recordTags'           => ['Dublin Core', 'subject', 'local vocabulary'],
     'historicalEra'        => ['Dublin Core', 'temporal', 'local vocabulary, no external period thesaurus'],
+    'articleThemes'        => ['Dublin Core', 'subject', 'local vocabulary; any number per article, where an era is one'],
     'historicalPeriod'     => ['Dublin Core', 'temporal', 'local vocabulary'],
     'neighborhood'         => ['Dublin Core', 'spatial', 'local vocabulary of valley communities'],
     'featuredImage'        => ['schema.org', 'image', ''],
@@ -350,8 +351,9 @@ $lines[] = 'Where a printed form parses cleanly, an EDTF form is derived alongsi
 $lines[] = 'it does not, the EDTF field stays empty rather than being guessed. EDTF is';
 $lines[] = 'Extended Date/Time Format, ISO 8601-2.';
 $lines[] = '';
-$lines[] = '_The `dateEdtf` fields are not yet in the schema; this section describes the';
-$lines[] = 'intent that the schema script implements._';
+$lines[] = 'The EDTF fields sit beside the printed ones and are derived by';
+$lines[] = '`add_edtf_fields.php`: `originalPublishDateEdtf`, `eventDateEdtf`, `photoDateEdtf`,';
+$lines[] = '`birthDateEdtf`, `deathDateEdtf`, `dateFoundedEdtf` and `dateEstablishedEdtf`.';
 $lines[] = '';
 
 file_put_contents($OUT, implode("\n", $lines) . "\n");

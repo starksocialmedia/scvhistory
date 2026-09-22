@@ -2,6 +2,7 @@
 <meta charset="utf-8">
 <title>Eras and themes — review</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="readonly.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#1F2A3C;--gold:#C8A24A;--gold-d:#96751F;--bord:#DDD8CE;--cream:#FBF8F1;
@@ -80,7 +81,7 @@ button.opt small{display:block;font-size:11px;opacity:.75}
  * radio behaviour for the era, toggles for the themes -- rather than looking
  * alike and behaving differently. */
 const SET = 'eras';
-let DATA = null, decisions = {}, shown = 40, CSRF = null;
+let DATA = null, decisions = {}, shown = 40, CSRF = null, READONLY = false;
 
 /* Craft rejects a POST with no CSRF token, and the rejection is a 400 HTML
    page rather than a JSON error, so a screen that does not fetch one fails in
@@ -98,7 +99,14 @@ const keyOf = r => 'article ' + r.id;
 
 async function load() {
   DATA = await (await fetch('eras.json?' + Date.now())).json();
-  try {
+  /* Off the dev machine the store refuses; show the decisions as committed. */
+  READONLY = await window.reviewReadOnly;
+  if (READONLY) {
+    try {
+      const f = await (await fetch('eras-decided.json?' + Date.now())).json();
+      (f.decisions || []).forEach(x => { decisions[x.storeKey] = x; });
+    } catch (e) {}
+  } else try {
     const r = await (await fetch('/actions/reviewstore/decisions/all?set=' + SET)).json();
     if (r.ok) decisions = r.decisions || {};
   } catch (e) {
@@ -119,6 +127,7 @@ async function load() {
 
 /* Save one decision. The store is the record; this object is a cache of it. */
 async function persist(row, dec) {
+  if (READONLY) { alert('Read-only: review decisions are saved on the local machine only.'); return false; }
   const body = new URLSearchParams();
   body.set('set', SET);
   body.set('decision[name]', keyOf(row));

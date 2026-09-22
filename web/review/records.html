@@ -120,6 +120,7 @@ footer .tot b{color:var(--gold);font-weight:500}
 .more{text-align:center;margin:22px 0 0}
 .empty{background:#fff;border:1px solid var(--bord);padding:34px;text-align:center;color:var(--muted)}
 </style>
+<script src="readonly.js"></script>
 </head>
 <body>
 <header><div class="wrap">
@@ -225,7 +226,10 @@ function flash(msg, bad) {
   status(false);
 }
 
+let READONLY = false;
+
 async function persist(decision) {
+  if (READONLY) { flash('READ-ONLY: not saved. Review decisions are saved on the local machine only.', true); return; }
   SAVING++; flash('saving\u2026');
   try {
     const r = await fetch('/actions/reviewstore/decisions/save', {
@@ -243,6 +247,7 @@ async function persist(decision) {
 }
 
 async function unpersist(name, type) {
+  if (READONLY) { flash('READ-ONLY: not saved. Review decisions are saved on the local machine only.', true); return; }
   SAVING++; flash('saving\u2026');
   try {
     const r = await fetch('/actions/reviewstore/decisions/clear', {
@@ -737,9 +742,14 @@ async function boot() {
   }
   DATA = d;
 
+  /* Off the dev machine the store refuses; the committed file is the same
+     decisions, as last committed, in the store's own shape. */
+  READONLY = await window.reviewReadOnly;
   try {
-    const srv = await fetch('/actions/reviewstore/decisions/all', {
-      headers: { Accept: 'application/json' } }).then(r => r.json());
+    const srv = READONLY
+      ? await fetch('records-decided.json?' + Date.now()).then(r => r.json()).then(f => ({ ok: true, decisions: f.decisions || [] }))
+      : await fetch('/actions/reviewstore/decisions/all', {
+          headers: { Accept: 'application/json' } }).then(r => r.json());
     if (srv.ok) {
       let applied = 0, pairs = 0;
       Object.values(srv.decisions || {}).forEach(x => {
