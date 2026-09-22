@@ -31,3 +31,8 @@
 2026-09-21 21:21:27 PDT	rename_collection_kind_book_to_series.php	scvhistory-web	2 rows	verified: 2 moved, 0 left on book, options 5	book kept for published volumes
 2026-09-21 21:21:30 PDT	merge_person_duplicates.php	scvhistory-web	19 rows	FAILED: 19 of 19 moved, 1 stranded, aliases 2/2	Beale #15908->#327, Newhall #16312->#283
 2026-09-21 21:21:31 PDT	build_collections_export.php	scvhistory-web	14 rows	verified: json 14, csv 14	/data/collections.json and .csv
+2026-09-21 21:27:01 PDT	smyth_family_and_roles.php	scvhistory-web	3 rows	verified: relation ok, roles 1/2, qid Q5026379	Clyde has no Wikidata item; Mayor not written for Cameron
+2026-09-21 21:27:10 PDT	smyth_family_and_roles.php	scvhistory-web	1 rows	verified: relation ok, roles 1/2, qid Q5026379	Clyde has no Wikidata item; Mayor not written for Cameron
+2026-09-21 21:27:11 PDT	rename_collection_kind_book_to_series.php	scvhistory-web	0 rows	verified: 0 moved, 0 left on book, options 5	book kept for published volumes
+2026-09-21 21:27:13 PDT	merge_person_duplicates.php	scvhistory-web	1 rows	verified: 1 of 1 moved, 0 stranded, aliases 2/2	Beale #15908->#327, Newhall #16312->#283
+2026-09-21 21:27:15 PDT	build_collections_export.php	scvhistory-web	14 rows	verified: json 14, csv 14	/data/collections.json and .csv
