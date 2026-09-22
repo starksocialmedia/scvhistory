@@ -1788,3 +1788,13 @@ isPartOf, identified by the photograph record where one exists and by
 /media/<id> otherwise. /media/<id> is the image's own page, with the file, its
 provenance and every record that uses it. The lightbox gains a Details link and
 changes nothing else. DATA-MODEL documents the mapping.
+
+Canon bug: a parked canonical parks itself, not only its aliases. The Cowboy
+Poetry and Music Festival folded its five aliases and then ranked seventh in
+the queue as a person on 18 articles. A canon type the review screen cannot
+create is now parked by that fact alone.
+
+move_orgs_to_places.php, dry run: three ranchos and three missions out of
+organizations. Two already exist as places, so it repoints rather than
+duplicating. Ten person-to-organization relations are reversed onto the place
+as placePeople rather than dropped.

@@ -484,8 +484,25 @@ if ($canon) {
            not become a record. "Downtown Newhall Specific Plan" is a document:
            the articles discuss it, so the corpus names it, but a record for it
            would sit in a section for things that exist in the valley. */
+        /* A PARKED CANONICAL PARKS ITSELF.
+         *
+         * Two ways a canonical gets parked, and the second was missing. The
+         * explicit one is park: true, for a thing that exists and should not be
+         * a record, like a planning document. The implicit one is a type the
+         * review screen cannot create: it makes people, places and
+         * organizations, and an event is none of those.
+         *
+         * Without the second, the Cowboy Poetry and Music Festival folded its
+         * five aliases together and then ranked as the seventh name in the
+         * queue, guessed a person, on eighteen articles. The aliases were
+         * parked and the canonical was not, which is the worst of both: one
+         * confident wrong row where there had been five vague ones. */
+        $CREATABLE = ['person' => 1, 'place' => 1, 'organization' => 1];
         if (!empty($c['park'])) {
             $dst['parked'] = (string)($c['parkReason'] ?? 'parked by the canon');
+        } elseif (!isset($CREATABLE[$tkind])) {
+            $dst['parked'] = 'a ' . $tkind . '. The review screen creates people, places and '
+                . 'organizations only, so this waits for a screen that can make one, or a hand.';
         }
 
         /* The canon's type is a ruling, not a hint. Without carrying it the
@@ -499,7 +516,7 @@ if ($canon) {
             $canonReport['folds'][] = [
                 'canonical' => $target, 'kind' => $tkind,
                 'from' => $folded, 'pagesBefore' => $before, 'pagesAfter' => count($dst['pages']),
-                'parked' => !empty($c['park']),
+                'parked' => !empty($c['park']) || !isset(['person' => 1, 'place' => 1, 'organization' => 1][$tkind]),
                 'movedFrom' => $movedFrom, 'toKind' => $tkind,
             ];
         }
