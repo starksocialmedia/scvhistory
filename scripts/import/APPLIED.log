@@ -28,3 +28,6 @@
 2026-09-21 21:07:24 PDT	record_external_qids.php	scvhistory-web	8 rows	verified: canon 4/4, decisions 4/4	3 ids found on Wikidata, 1 has no item
 2026-09-21 21:07:27 PDT	record_external_qids.php	scvhistory-web	8 rows	verified: canon 4/4, decisions 4/4	3 ids found on Wikidata, 1 has no item
 2026-09-21 21:07:28 PDT	rename_collection_kind_book_to_series.php	scvhistory-web	0 rows	FAILED: 0 moved, 2 left on book, options 5	book kept for published volumes
+2026-09-21 21:21:27 PDT	rename_collection_kind_book_to_series.php	scvhistory-web	2 rows	verified: 2 moved, 0 left on book, options 5	book kept for published volumes
+2026-09-21 21:21:30 PDT	merge_person_duplicates.php	scvhistory-web	19 rows	FAILED: 19 of 19 moved, 1 stranded, aliases 2/2	Beale #15908->#327, Newhall #16312->#283
+2026-09-21 21:21:31 PDT	build_collections_export.php	scvhistory-web	14 rows	verified: json 14, csv 14	/data/collections.json and .csv
