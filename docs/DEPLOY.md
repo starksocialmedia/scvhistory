@@ -7,8 +7,8 @@ State at the time of writing, 22 September:
 
 - Database imported: 764 articles, 81 roles.
 - `project-config/diff` clean, `php craft up` clean.
-- The uploads rsync was still running when this was written. Its result is
-  not recorded here yet.
+- Uploads rsynced: 4,327 files on the server. About 7.5 GB on the first run.
+- Config diff clean after the import. Staging fully deployed.
 
 Every block below is labelled **MacBook** or **Server**. The MacBook is the
 machine running DDEV. It holds the local database, `web/uploads/archive-media`
@@ -262,14 +262,35 @@ rsync -avz --partial --progress \
   <user>@<host>:/home/1656314.cloudwaysapps.com/ufppzhwvbk/public_html/web/uploads/archive-media/
 ```
 
+- **The first run is about 7.5 GB.** Measured on 22 September: 4,319 files,
+  7.66 GB (7.14 GiB). Staging held 4,327 files after it, the extra eight being
+  files the server already had. Later runs send only what changed. Six of the
+  7.5 GB are the `_large` and `_orig` enlarge masters; see "The masters" below.
 - **`--exclude='_*/'`** skips Craft's image transform directories (`_1200x800_crop_center-center_…/`
-  and the like). They are generated per server and rebuilt on demand, and
-  copying them roughly doubles the transfer for nothing.
+  and the like). They are generated per server and rebuilt on demand. They
+  are small (748 files, 0.02 GB on 22 September), so the exclude is about not
+  shipping stale transforms, not about size.
 - Trailing slashes on both paths. Without them rsync nests the directory
   inside itself.
 - `--partial` lets a dropped connection resume. Re-running the same command
   picks up where it stopped.
 - Do **not** add `--delete`.
+
+#### The masters
+
+1,769 files in `web/uploads/archive-media/legacy` are `_large` or `_orig`
+masters, 6.4 GB of the 7.5. They are not idle copies: 1,765 of them are the
+files the magnifier opens (`templates/_data/enlarge.json`), so moving them off
+the web root without replacing them would turn the magnifier off again. The
+median is 3 MB. The problem is the top: 50 of them are over 10 MB (789 MB
+together), up to 71 MB and 9,600 pixels wide for `lw3808_large.jpg`, and that
+is what a reader's browser downloads on a click.
+
+The fix is not in this deploy. Keep those masters on Reggie, where they
+already are, and serve a web derivative of each as the enlarge target
+instead. Four masters are not referenced by `enlarge.json` at all
+(`lw3775_large.jpg`, `lw3624bullocks_large.jpg`, `lw2377e_large.jpg`,
+`lw2554b_large.jpg`, 8.7 MB) and can simply stay off the web root.
 
 ### 7. Clear and verify  — **Server**, then **MacBook**
 
