@@ -36,7 +36,11 @@
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
 {% set personGroups = entry.personGroups.all() %}
-{% set prose = F.body ?: F.authorBio %}
+{#- The WordPress prose does not publish until somebody has said who wrote it.
+    See _partials/body-authorship for the rule and why empty holds it back. -#}
+{% import "_partials/body-authorship" as authorship %}
+{% set proseShows = authorship.publishes(entry)|trim %}
+{% set prose = proseShows ? (F.body ?: F.authorBio) : '' %}
 
 {% set parts = entry.title|split(' ')|filter(p => p|trim) %}
 {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : entry.title|slice(0,1) %}

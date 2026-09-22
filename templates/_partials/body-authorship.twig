@@ -1,0 +1,33 @@
+{#
+  Who wrote a person's prose, and whether it publishes.
+
+  33 person records carry a body and an author bio that came in from the old
+  WordPress site. The text is written narrative with no citations and no
+  established author, and nothing on the record said so, which meant a reader
+  had no way to tell it from the archive's own legacy writing. The
+  bodyAuthorship field says; this macro is the single place that decides what
+  that means for the front end.
+
+  Publishes: legacy-leon, editorial-2026.
+  Does not:  wordpress-import-unsourced, mixed, and empty.
+
+  Empty does not publish on purpose. An unclassified body is one nobody has
+  looked at, and silence is not a claim that the text is sound. The same
+  applies when the field does not exist yet: before it is applied, every person
+  body is the WordPress import, so the honest default is to hold it back.
+
+  The prose is not deleted and not touched. It stays in the database and in the
+  control panel, where it is the starting point for the editorial profile that
+  will replace it.
+
+  Prints '1' for publishes and nothing otherwise, so callers test it with
+  |trim. Used by persons/_entry.twig, articles/_entry.twig (the author box) and
+  _partials/head/meta.twig (the description and the social cards).
+#}
+{% macro publishes(entry) %}
+  {%- set has = false -%}
+  {%- for f in entry.fieldLayout.customFields -%}
+    {%- if f.handle == 'bodyAuthorship' %}{% set has = true %}{% endif -%}
+  {%- endfor -%}
+  {%- if has and entry.bodyAuthorship in ['legacy-leon', 'editorial-2026'] %}1{% endif -%}
+{% endmacro %}

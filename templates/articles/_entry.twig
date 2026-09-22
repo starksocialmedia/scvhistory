@@ -443,7 +443,13 @@
           <div style="min-width: 0">
             <div style="font-family: 'Playfair Display', serif; font-size: 25px; color: #17254C">{{ author.title }}</div>
             {% if author.occupation is defined and author.occupation %}<div style="font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #7E6118; margin-top: 4px">{{ author.occupation }}</div>{% endif %}
-            {% set abio = (author.authorBio is defined and author.authorBio) ? author.authorBio : (author.body is defined ? author.body : '') %}
+            {#- The author's bio is person prose and obeys the same rule as the
+                person page: unclassified or WordPress-imported text does not
+                publish. See _partials/body-authorship. -#}
+            {% import "_partials/body-authorship" as authorship %}
+            {% set abio = authorship.publishes(author)|trim
+               ? ((author.authorBio is defined and author.authorBio) ? author.authorBio : (author.body is defined ? author.body : ''))
+               : '' %}
             {#- No footnotesFor. A biography is not the piece, and a marker in it
                 is not one of the piece's notes. -#}
             {% if abio|trim %}<div style="font-size: 16px; line-height: 1.72; color: #2C2C2C; margin: 14px 0 0; max-width: 46em">{% include "_partials/prose" with { text: abio } %}</div>{% endif %}

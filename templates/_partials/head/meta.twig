@@ -37,11 +37,31 @@
 {% if metaDescription is defined and metaDescription %}
   {% set src = metaDescription %}
 {% elseif el %}
+  {#- A person's prose can be text nobody has vouched for, and a meta
+      description and a social card are publishing it as surely as the page is.
+      So the same rule applies here. See _partials/body-authorship. -#}
+  {% import "_partials/body-authorship" as authorship %}
+  {#- Test the class, not an attribute. On a Category both `el.section is
+      defined` and `el.sectionId is defined` call the method and throw:
+      /communities/acton 500'd twice on that before this line was right. -#}
+  {% set personProse = el is instance of('craft\\elements\\Entry')
+                       and el.section.handle == 'persons'
+                       and not authorship.publishes(el)|trim %}
   {% for h in ['body', 'wmNarrative', 'mpNarrative', 'authorBio'] %}
-    {% if src is null and attribute(el, h) is defined and attribute(el, h) %}
+    {% if src is null and attribute(el, h) is defined and attribute(el, h)
+          and not (personProse and h in ['body', 'authorBio']) %}
       {% set src = attribute(el, h) %}
     {% endif %}
   {% endfor %}
+  {#- With the prose held back a person would have no description at all, and an
+      empty card is worse than a plain one. The record's own facts stand in. -#}
+  {% if src is null and personProse %}
+    {% set bits = [el.title] %}
+    {% if el.occupation is defined and el.occupation %}{% set bits = bits|merge([el.occupation]) %}{% endif %}
+    {% set years = [el.birthDate is defined ? el.birthDate : null, el.deathDate is defined ? el.deathDate : null]|filter(v => v)|join(' – ') %}
+    {% if years %}{% set bits = bits|merge([years]) %}{% endif %}
+    {% set src = bits|join('. ') ~ '. A record in the SCVHistory archive.' %}
+  {% endif %}
 {% endif %}
 {% set desc = null %}
 {% if src %}
