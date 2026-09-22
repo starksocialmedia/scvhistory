@@ -50,7 +50,24 @@ echo str_repeat('=', 78) . PHP_EOL;
 
 $section = $svc->getSectionByHandle('roles');
 if ($section) {
-    echo 'section roles       exists already (' . \craft\elements\Entry::find()->section('roles')->status(null)->count() . ' entries)' . PHP_EOL;
+    $n = \craft\elements\Entry::find()->section('roles')->status(null)->count();
+    echo 'section roles       exists already (' . $n . ' entries)' . PHP_EOL;
+
+    /* Reported here, in the part a person reads, and not only in the applying
+       half below the dry-run return. A restore left this section standing with
+       no title field, the re-run took this path, and the only sign was a guard
+       firing at the very end. */
+    $t0 = null;
+    foreach ($section->getEntryTypes() as $et0) { $t0 = $et0; }
+    if ($t0 && !$t0->hasTitleField) {
+        $blank0 = 0;
+        foreach (\craft\elements\Entry::find()->section('roles')->status(null)->limit(null)->all() as $r0) {
+            if (trim((string)$r0->title) === '') { $blank0++; }
+        }
+        echo '                    its entry type has NO TITLE FIELD, so ' . $blank0 . ' of ' . $n
+           . ' entries are untitled' . PHP_EOL;
+        echo '                    this run would enable it and name them by their Wikidata id' . PHP_EOL;
+    }
 } else {
     echo 'section roles       would create, channel, no URLs' . PHP_EOL;
     echo '                    a controlled vocabulary is not a page; it is a list records point at' . PHP_EOL;
@@ -195,6 +212,35 @@ if (!$section) {
 if (!isset($roleType) || !$roleType) {
     foreach ($section->getEntryTypes() as $et) { $roleType = $et; }
 }
+
+/* AN EXISTING TYPE THAT CANNOT HOLD A TITLE.
+ *
+ * The fix for the title field only ran when this script created the section.
+ * A restore left the section standing with hasTitleField false, so the re-run
+ * took the existing-section path, made eighty more untitled entries and
+ * stopped at the guard. A script that can only fix a fault it has not yet
+ * caused is not a fix.
+ *
+ * This repairs the type in place, which is the state the archive is actually
+ * in, and then the entries below can carry their names. */
+if ($roleType && !$roleType->hasTitleField) {
+    echo 'entry type ' . $roleType->handle . ' has no title field' . PHP_EOL;
+    if ($APPLY) {
+        $roleType->hasTitleField = true;
+        $roleType->titleFormat = null;
+        if ($svc->saveEntryType($roleType)) {
+            echo '   enabled it' . PHP_EOL;
+            \Craft::$app->getElements()->invalidateAllCaches();
+            \Craft::$app->getFields()->refreshFields();
+        } else {
+            echo '   FAILED: ' . implode('; ', $roleType->getFirstErrors()) . PHP_EOL;
+            return;
+        }
+    } else {
+        echo '   would enable it, so the vocabulary can carry names' . PHP_EOL;
+    }
+}
+
 if ($roleType) {
     $layout = $roleType->getFieldLayout();
     $present = [];
@@ -217,6 +263,17 @@ $roleEntry = [];
 $vmade = 0;
 foreach ($vocab as $v) {
     $e = \craft\elements\Entry::find()->section('roles')->title($v['term'])->status(null)->one();
+
+    /* An entry made before the title field existed cannot be found by title,
+       so look it up by its Wikidata id before creating a second one. Without
+       this a re-run doubles the vocabulary every time. */
+    if (!$e && ($v['qid'] ?? '') !== '') {
+        foreach (\craft\elements\Entry::find()->section('roles')->status(null)->limit(null)->all() as $cand) {
+            if (trim((string)$cand->title) === '' && trim((string)$cand->roleWikidataId) === $v['qid']) { $e = $cand; break; }
+        }
+    }
+    if ($e && trim((string)$e->title) === '') { $e->title = $v['term']; $e->slug = null; }
+
     if (!$e) {
         $e = new \craft\elements\Entry();
         $e->sectionId = $section->id;

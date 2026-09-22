@@ -1855,3 +1855,11 @@ now refuses to finish while any vocabulary entry is untitled.
 
 Batch three: the gate refuses on two containment pairs, Soledad Canyon against
 Soledad Canyon Road and Placerita Canyon against Placerita Canyon Road.
+
+add_roles_schema.php can now repair an existing roles section whose entry type
+has no title field. The earlier fix only ran when the script created the
+section, so a restore that left the section standing sent the re-run down the
+existing-section path, which made eighty more untitled entries and stopped at
+the guard. A script that can only fix a fault it has not yet caused is not a
+fix. It also finds an untitled entry by its Wikidata id rather than by title,
+so a re-run names the existing eighty instead of doubling them.
