@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: articleThemes
+instructions: 'What the article is about, as against when it happened. Any number, or none. The era says when; a theme says what.'
+name: Themes
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  source: 'group:28ef7e8a-b0dc-4cef-918d-2cedabbbdf96' # Theme
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Categories
