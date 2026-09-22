@@ -24,3 +24,4 @@
 2026-09-21 20:12:00 PDT	rebuild_roles_vocabulary.php	scvhistory-web	0 rows	CORRECTION: the 19:59 run passed. entries 80/80, titled 80, people 32/32, 93 relations	the FAILED verdict came from comparing a string count with an integer
 2026-09-21 20:31:03 PDT	mark_external_people.php	scvhistory-web	11 rows	verified: 3 stripped, 0 relations left, 7 of 7 merged	8 decisions marked external, 11 canon entries
 2026-09-21 20:31:28 PDT	create_records_from_review.php	scvhistory-web	32 rows	provenance verified 32 of 32	302 article links; source records-decided.json, decided 2026-09-21T18:43:37-07:00  [102 of 180 keys no longer in the queue, matched by name]
+2026-09-21 20:38:43 PDT	strip_split_base_aliases.php	scvhistory-web	7 rows	verified: 7 of 7 saved, 0 base aliases left	split bases: Pico, Soledad, Placerita, Gorman
