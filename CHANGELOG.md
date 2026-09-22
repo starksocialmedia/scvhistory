@@ -1828,3 +1828,20 @@ JSON-LD emits everything: organization @type from orgType and schoolLevel,
 identifiers as PropertyValue naming their scheme, subOrganization,
 hasOccupation from roles, and EDTF dates in preference to parsing the printed
 form at render time. Validated on ten pages across every record type.
+
+Canon: Tehachapi, Bakersfield, Fillmore and Piru as place/settlement, and a
+Gorman split into the town and Private James Gorman. Splitting exposed a bug
+that had been silently losing a branch: where a split target shares the base
+name, the base was deleted after the target was built in its place, and the
+target inherited every page including its siblings'. Gorman now reads 6 town
+and 1 person, and Soledad the settlement appears at 7 where it had shown
+nothing.
+
+Roles: Father dropped as an honorific, Catholic Priest Q250867 added,
+Franciscan Missionary local because Q1423891 is Christian minister, Hotelier
+to hotel owner Q105756071, the four remaining nearest accepted. No term is
+left at nearest.
+
+add_roles_schema.php built the section before its entry type, which Craft 5
+refuses. Order proved in a rolled-back transaction, which found a second fault
+behind the first.

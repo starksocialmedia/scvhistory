@@ -68,11 +68,13 @@ PINNED = {
 
     # Nathan's rulings on the nearest matches, 21 September.
     'Lawman': 'Q384593',           # law enforcement officer, not a Scandinavian lawspeaker
-    'Hotelier': '',                # Wikidata has no hotelier occupation: a surname, two TV
-                                   # dramas and a film. Q105756071 hotel owner exists and is
-                                   # arguably right for Nadeau, who owned rather than managed.
     'Political Agent': '',         # not an election agent; local
-    'Franciscan Missionary': 'Q1423891',
+    # Q1423891 is "Christian minister", which is not what a Franciscan
+    # missionary was and is the sort of pin that looks checked because a human
+    # typed it. Local.
+    'Franciscan Missionary': '',
+    'Catholic Priest': 'Q250867',
+    'Hotelier': 'Q105756071',      # hotel owner: Nadeau owned rather than managed
     'Cattle Rustler': '',          # local
     'College Trustee': '',         # local
     'Freighter': '',               # local: a hauler of goods by wagon
@@ -162,7 +164,9 @@ def main():
         # Accepted by hand where the nearest match was judged right, so the
         # table records a decision rather than a guess that happened to stand.
         ACCEPTED = {'Museum Curator': 'Q674426', 'Congressman': 'Q18002923',
-                    'Congresswoman': 'Q18002923'}
+                    'Congresswoman': 'Q18002923',
+                    'Financial Advisor': 'Q683476', 'Ship Owner': 'Q500251',
+                    'Councilman': 'Q708492', 'Councilwoman': 'Q708492'}
         if term in ACCEPTED:
             hits = search(term, 4)
             lab = next((h['label'] for h in hits if h['id'] == ACCEPTED[term]), term)

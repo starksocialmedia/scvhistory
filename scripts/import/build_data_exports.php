@@ -145,8 +145,13 @@ foreach ($SETS as $name => $spec) {
 
     if (!is_dir($OUTDIR)) { mkdir($OUTDIR, 0775, true); }
 
-    file_put_contents($OUTDIR . '/' . $name . '.json',
+    /* 0644. PHP's umask in the container gives these 0600, which the web server
+       cannot read, so the export published fine and served a 403: a public
+       dataset nobody outside the container could open. */
+    $jsonPath = $OUTDIR . '/' . $name . '.json';
+    file_put_contents($jsonPath,
         json_encode($doc, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+    @chmod($jsonPath, 0644);
 
     /* CSV carries the provenance as comment lines above the header. A
        spreadsheet shows them as a first column and a reader can see where the
@@ -166,6 +171,7 @@ foreach ($SETS as $name => $spec) {
         fputcsv($fh, $line);
     }
     fclose($fh);
+    @chmod($OUTDIR . '/' . $name . '.csv', 0644);
 }
 
 printf("%-16s %-7s %-10s %-10s %-10s %s\n", 'SET', 'ROWS', 'WITH ID', 'SUBTYPE', 'PARENT', 'ARTICLE LINKS');
@@ -181,6 +187,8 @@ echo PHP_EOL . 'wrote:' . PHP_EOL;
 foreach (array_keys($SETS) as $n) {
     foreach (['json', 'csv'] as $ext) {
         $p = $OUTDIR . '/' . $n . '.' . $ext;
-        printf("   %-28s %s\n", '/data/' . $n . '.' . $ext, file_exists($p) ? number_format(filesize($p)) . ' bytes' : 'MISSING');
+        printf("   %-28s %-12s mode %s\n", '/data/' . $n . '.' . $ext,
+            file_exists($p) ? number_format(filesize($p)) . ' bytes' : 'MISSING',
+            file_exists($p) ? substr(sprintf('%o', fileperms($p)), -4) : '-');
     }
 }

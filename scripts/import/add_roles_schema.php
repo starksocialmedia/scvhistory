@@ -125,19 +125,8 @@ if (!$APPLY) { echo PHP_EOL . 'nothing was written. Set $APPLY = true to apply.'
 
 /* ------------------------------------------------------------- applying */
 
-if (!$section) {
-    $section = new \craft\models\Section();
-    $section->name = 'Roles';
-    $section->handle = 'roles';
-    $section->type = \craft\models\Section::TYPE_CHANNEL;
-    $section->setSiteSettings([ (new \craft\models\Section_SiteSettings([
-        'siteId' => Craft::$app->sites->getPrimarySite()->id,
-        'hasUrls' => false, 'enabledByDefault' => true,
-    ])) ]);
-    if (!$svc->saveSection($section)) { echo 'FAILED section: ' . implode('; ', $section->getFirstErrors()) . PHP_EOL; return; }
-    echo 'section created' . PHP_EOL;
-}
-
+/* The fields first: the entry type's layout is built from them, and the entry
+   type has to exist before the section will save. */
 $made = [];
 foreach ($NEW as $h => [$n, $i]) {
     $f = $fs->getFieldByHandle($h);
@@ -150,8 +139,57 @@ foreach ($NEW as $h => [$n, $i]) {
     $made[$h] = $f;
 }
 
-$roleType = null;
-foreach ($section->getEntryTypes() as $et) { $roleType = $et; }
+/* THE ORDER CRAFT 5 WANTS.
+ *
+ * A section will not save without at least one entry type, and an entry type
+ * is an element of its own that must exist first. The first version built the
+ * section and let Craft make the type, which is how Craft 4 worked; Craft 5
+ * refuses with "Entry Types cannot be blank".
+ *
+ * So: create the field layout, create the entry type carrying it, save the
+ * entry type, then create the section with that type attached.
+ */
+if (!$section) {
+    /* 1. the layout, then the tab holding a reference BACK to it. A tab built
+          before its layout throws "Field layout tab is missing its field
+          layout", which is the second thing this got wrong and is invisible
+          until something tries to save. */
+    $rolesLayout = new \craft\models\FieldLayout(['type' => \craft\elements\Entry::class]);
+    $tab = new \craft\models\FieldLayoutTab(['name' => 'Term', 'layout' => $rolesLayout]);
+    $els = [];
+    foreach ($made as $h => $f) { $els[] = new \craft\fieldlayoutelements\CustomField($f); }
+    $tab->setElements($els);
+    $rolesLayout->setTabs([$tab]);
+
+    /* 2. the entry type, saved on its own */
+    $roleType = new \craft\models\EntryType();
+    $roleType->name = 'Role';
+    $roleType->handle = 'role';
+    $roleType->hasTitleField = true;
+    $roleType->setFieldLayout($rolesLayout);
+    if (!$svc->saveEntryType($roleType)) {
+        echo 'FAILED entry type: ' . implode('; ', $roleType->getFirstErrors()) . PHP_EOL;
+        return;
+    }
+    echo 'entry type role created' . PHP_EOL;
+
+    /* 3. the section, with the type already attached */
+    $section = new \craft\models\Section();
+    $section->name = 'Roles';
+    $section->handle = 'roles';
+    $section->type = \craft\models\Section::TYPE_CHANNEL;
+    $section->setEntryTypes([$roleType]);
+    $section->setSiteSettings([ (new \craft\models\Section_SiteSettings([
+        'siteId' => Craft::$app->sites->getPrimarySite()->id,
+        'hasUrls' => false, 'enabledByDefault' => true,
+    ])) ]);
+    if (!$svc->saveSection($section)) { echo 'FAILED section: ' . implode('; ', $section->getFirstErrors()) . PHP_EOL; return; }
+    echo 'section created with its entry type attached' . PHP_EOL;
+}
+
+if (!isset($roleType) || !$roleType) {
+    foreach ($section->getEntryTypes() as $et) { $roleType = $et; }
+}
 if ($roleType) {
     $layout = $roleType->getFieldLayout();
     $present = [];

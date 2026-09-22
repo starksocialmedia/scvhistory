@@ -1,5 +1,5 @@
 {
-    "generated": "2026-09-21T18:39:19-07:00",
+    "generated": "2026-09-21T18:43:37-07:00",
     "provenance": "created from review, 2026-09-21",
     "source": "entities-full.json",
     "decisions": [
@@ -3431,6 +3431,126 @@
             ],
             "storeKey": "ben franklin|person",
             "decidedAt": "2026-09-21T18:39:19-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "California Petroleum Company",
+            "key": "california petroleum company",
+            "articles": [
+                869,
+                1426,
+                1434,
+                2083,
+                2099
+            ],
+            "storeKey": "california petroleum company|organization",
+            "decidedAt": "2026-09-21T18:42:55-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "organization",
+            "name": "Harvard University",
+            "key": "harvard university",
+            "articles": [
+                829,
+                2087,
+                2173,
+                12488,
+                15454
+            ],
+            "storeKey": "harvard university|organization",
+            "decidedAt": "2026-09-21T18:43:03-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Louisiana Purchase",
+            "key": "louisiana purchase",
+            "articles": [
+                15212,
+                15040,
+                15250,
+                15284,
+                12826
+            ],
+            "storeKey": "louisiana purchase|person",
+            "decidedAt": "2026-09-21T18:43:06-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "person",
+            "name": "Remi Nadeau",
+            "key": "remi nadeau",
+            "articles": [
+                2085,
+                2091,
+                2155,
+                12460,
+                12558
+            ],
+            "storeKey": "remi nadeau|person",
+            "decidedAt": "2026-09-21T18:43:24-07:00"
+        },
+        {
+            "action": "approved",
+            "type": "organization",
+            "name": "Acton Hotel",
+            "key": "acton hotel",
+            "articles": [
+                2115,
+                2147,
+                2167,
+                12152,
+                12208
+            ],
+            "storeKey": "acton hotel|organization",
+            "decidedAt": "2026-09-21T18:43:27-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Andrew Jackson",
+            "key": "andrew jackson",
+            "articles": [
+                15298,
+                15068,
+                15122,
+                855,
+                2081
+            ],
+            "storeKey": "andrew jackson|person",
+            "decidedAt": "2026-09-21T18:43:29-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Assembly Bill",
+            "key": "assembly bill",
+            "articles": [
+                12222,
+                12234,
+                12568,
+                12767,
+                12731
+            ],
+            "storeKey": "assembly bill|person",
+            "decidedAt": "2026-09-21T18:43:31-07:00"
+        },
+        {
+            "action": "skipped",
+            "type": "person",
+            "name": "Executive Director",
+            "key": "executive director",
+            "articles": [
+                15420,
+                15430,
+                12854,
+                12850,
+                12864
+            ],
+            "storeKey": "executive director|person",
+            "decidedAt": "2026-09-21T18:43:37-07:00"
         }
     ],
     "edited": "hand-edited 2026-09-21: renames and merges per Nathan"

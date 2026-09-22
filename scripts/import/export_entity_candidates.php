@@ -530,7 +530,7 @@ if ($canon) {
         $hits = $findAnywhere($base);
         if (!$hits) { $canonReport['missing'][] = $base . ' (split base not in the corpus)'; continue; }
 
-        $tally = []; $ambiguous = []; $defaulted = [];
+        $tally = []; $ambiguous = []; $defaulted = []; $resolved = [];
         foreach ($hits as [$k, $nm]) {
             $src = $entities[$k][$nm];
             foreach (array_keys($src['pages'] ?? []) as $path) {
@@ -585,9 +585,15 @@ if ($canon) {
                             'inventories' => [], 'variants' => [], 'hasLegacyPage' => false, 'legacyPageUrl' => '',
                         ];
                     }
+                    /* Recorded separately as well as written, because where a
+                       split target IS the base name it already holds every
+                       page, including the ones that belong to its siblings.
+                       Gorman the town kept the sentence about Private James
+                       Gorman and the tally showed it as having gained nothing.
+                       The resolved set replaces the inherited one below. */
+                    $resolved[$ck][$cn][$path] = true;
                     if (!isset($entities[$ck][$cn]['pages'][$path])) {
                         $entities[$ck][$cn]['pages'][$path] = true;
-                        $tally[$cn] = ($tally[$cn] ?? 0) + 1;
                     }
                     $entities[$ck][$cn]['variants'][$base] = true;
                     $entities[$ck][$cn]['canonType'] = $ck;
@@ -614,17 +620,31 @@ if ($canon) {
                    has to read. One where some matched is already represented. */
                 if (!$pageResolved) { $ambiguous[$path] = true; }
             }
-            unset($entities[$k][$nm]);
+            /* Unless a split target IS the base name. Gorman splits into James
+               Gorman and Gorman, and deleting the base afterwards deleted the
+               town that had just been built in its place: the run reported one
+               page for the person and none for the town, from seven. */
+            $targetNames = array_map(fn($c) => (string)$c['canonical'], $sp['splits'] ?? []);
+            if (!in_array($nm, $targetNames, true)) { unset($entities[$k][$nm]); }
+        }
+
+        /* Every target now carries exactly the pages that resolved to it. */
+        foreach ($resolved as $ck => $set) {
+            foreach ($set as $cn => $paths) {
+                $entities[$ck][$cn]['pages'] = $paths;
+                $tally[$cn] = count($paths);
+            }
         }
 
         if ($ambiguous) {
             $amb = $base . ' (ambiguous)';
             $kk = (string)(($sp['splits'][0]['type']) ?? 'place');
-            $entities[$kk][$amb] = [
+            if (isset($entities[$kk][$amb])) { $entities[$kk][$amb]['pages'] += $ambiguous; }
+            else { $entities[$kk][$amb] = [
                 'name' => $amb, 'key' => $stripHon($amb), 'mentions' => count($ambiguous),
                 'pages' => $ambiguous, 'inventories' => [], 'variants' => [$base => true],
                 'hasLegacyPage' => false, 'legacyPageUrl' => '',
-            ];
+            ]; }
             $tally[$amb] = count($ambiguous);
         }
         $canonReport['splits'][] = ['name' => $base, 'tally' => $tally,

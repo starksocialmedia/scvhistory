@@ -186,6 +186,34 @@
         "Rep. Buck McKeon"
       ],
       "note": "He is mayor in the early Signal columns and congressman in the later ones, and the corpus names him both ways plus his given name. The titles are aliases; the record is the man."
+    },
+    {
+      "canonical": "Tehachapi",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "Guessed a person on six articles although the extraction called it a place: two words, neither a type word, and nothing in the sentences to say otherwise. It is the town over the pass. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
+    },
+    {
+      "canonical": "Bakersfield",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "The town at the end of the Ridge Route. Named here whether or not the corpus uses it today, because the rule is about what these names are, not about which happen to be in the current export. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
+    },
+    {
+      "canonical": "Fillmore",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "Down the river in Ventura County, and in the archive's territory for the same reason Piru is. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
+    },
+    {
+      "canonical": "Piru",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "Ventura County, and the Rancho Camulos material is about it. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
     }
   ],
   "splits": [
@@ -361,6 +389,61 @@
           ],
           "default": true,
           "note": "The default, and the one the gold discovery material means."
+        }
+      ]
+    },
+    {
+      "name": "Gorman",
+      "note": "A town on the Ridge Route and a soldier mustered out at Fort Tejon in 1864. The person is tested first: \"at\" and \"near\" appear in sentences about the man as readily as about the town, but a given name or a rank does not appear in a sentence about a place. An occurrence matching neither goes to review rather than to the commoner reading.",
+      "splits": [
+        {
+          "canonical": "James Gorman",
+          "type": "person",
+          "cues": [
+            "james",
+            "mr",
+            "mrs",
+            "private",
+            "corporal",
+            "sergeant",
+            "soldier",
+            "mustered",
+            "enlisted",
+            "said",
+            "wrote",
+            "died",
+            "born",
+            "married",
+            "served",
+            "came",
+            "went",
+            "arrived",
+            "reported"
+          ],
+          "note": "Tested first. A given name, a title or a verb of action."
+        },
+        {
+          "canonical": "Gorman",
+          "type": "place",
+          "placeType": "settlement",
+          "cues": [
+            "at",
+            "near",
+            "to",
+            "in",
+            "through",
+            "ridge route",
+            "station",
+            "post office",
+            "road",
+            "highway",
+            "north of",
+            "south of",
+            "past",
+            "toward",
+            "towards"
+          ],
+          "note": "The town. GNIS holds it; the review card will show the gazetteer match."
         }
       ]
     }

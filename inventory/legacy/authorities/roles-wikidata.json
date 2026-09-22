@@ -374,26 +374,20 @@
    "qid": "Q683476",
    "label": "financial adviser",
    "description": "professional who renders financial services to clients",
-   "confidence": "nearest",
-   "alternates": [
-    {
-     "qid": "Q5449578",
-     "label": "Financial Advisor to the Chief of Staff",
-     "description": "head of the Budgeting Directorate of Israel’s Ministry of Defense"
-    }
-   ],
-   "why": "the closest candidate that is an occupation"
+   "confidence": "accepted",
+   "alternates": [],
+   "why": "the nearest match, accepted by hand"
   },
   {
    "term": "Franciscan Missionary",
    "count": 2,
    "source": "record",
-   "qid": "Q1423891",
-   "label": "Franciscan Missionary",
+   "qid": "",
+   "label": "",
    "description": "",
-   "confidence": "pinned",
+   "confidence": "local",
    "alternates": [],
-   "why": "set by hand; a plain search finds the wrong sense"
+   "why": "no Wikidata occupation covers this; kept as a local term"
   },
   {
    "term": "Freighter",
@@ -410,12 +404,12 @@
    "term": "Hotelier",
    "count": 1,
    "source": "record",
-   "qid": "",
-   "label": "",
-   "description": "",
-   "confidence": "local",
+   "qid": "Q105756071",
+   "label": "hotel owner",
+   "description": "occupation",
+   "confidence": "pinned",
    "alternates": [],
-   "why": "no Wikidata occupation covers this; kept as a local term"
+   "why": "set by hand; a plain search finds the wrong sense"
   },
   {
    "term": "Justice of the Peace",
@@ -666,9 +660,9 @@
    "qid": "Q500251",
    "label": "ship-owner",
    "description": "businessperson who owns or charters ships",
-   "confidence": "nearest",
+   "confidence": "accepted",
    "alternates": [],
-   "why": "the closest candidate that is an occupation"
+   "why": "the nearest match, accepted by hand"
   },
   {
    "term": "Small Business Owner",
@@ -901,15 +895,9 @@
    "qid": "Q708492",
    "label": "council member",
    "description": "representative of voters to a local government",
-   "confidence": "nearest",
-   "alternates": [
-    {
-     "qid": "Q43100332",
-     "label": "Councilman of the City council of Las Rozas",
-     "description": ""
-    }
-   ],
-   "why": "the closest candidate that is an occupation"
+   "confidence": "accepted",
+   "alternates": [],
+   "why": "the nearest match, accepted by hand"
   },
   {
    "term": "Councilwoman",
@@ -918,9 +906,9 @@
    "qid": "Q708492",
    "label": "council member",
    "description": "representative of voters to a local government",
-   "confidence": "nearest",
+   "confidence": "accepted",
    "alternates": [],
-   "why": "the closest candidate that is an occupation"
+   "why": "the nearest match, accepted by hand"
   },
   {
    "term": "Deputy",
@@ -975,17 +963,6 @@
     }
    ],
    "why": "label matches exactly"
-  },
-  {
-   "term": "Father",
-   "count": 0,
-   "source": "title",
-   "qid": "Q2029179",
-   "label": "regular priest",
-   "description": "religious who is an ordained priest",
-   "confidence": "nearest",
-   "alternates": [],
-   "why": "the closest candidate that is an occupation"
   },
   {
    "term": "General",
@@ -1244,6 +1221,17 @@
     }
    ],
    "why": "label matches exactly"
+  },
+  {
+   "term": "Catholic Priest",
+   "count": 0,
+   "source": "ruling",
+   "qid": "Q250867",
+   "label": "Catholic priest",
+   "description": "priest of the Catholic Church",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
   }
  ]
 }
