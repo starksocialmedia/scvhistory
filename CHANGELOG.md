@@ -1808,3 +1808,12 @@ printed form parses and left empty where it does not. The first parser read 525
 of 1,493; tidying weekday prefixes, stray commas, parenthesës, bullets and
 abbreviated months took it to 968. The 525 that remain are mostly prose typed
 into a date field.
+
+Roles vocabulary built from the corpus outward: 56 occupation terms on the
+person records plus 25 civic and military titles the name policy strips, 80
+after folding a typo, matched against Wikidata occupation and position items.
+46 exact, 9 pinned by hand where a label match was the wrong sense, 11 nearest,
+14 local. No schema yet.
+
+The EDTF derivation wrote nothing on the run that created the fields: entry
+layouts are read before the fields exist, so nothing queued. 968 values now.

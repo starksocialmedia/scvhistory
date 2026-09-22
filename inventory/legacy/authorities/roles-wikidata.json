@@ -1,0 +1,1273 @@
+{
+ "provenance": {
+  "source": "Wikidata, matched against the occupation terms this archive uses",
+  "url": "https://www.wikidata.org/w/api.php",
+  "downloaded": "2026-09-21",
+  "derived_by": "scripts/import/derive_roles_wikidata.py",
+  "terms": 80,
+  "note": "Built from the corpus outward: the occupation values on the person records plus the civic and military titles the name policy strips. A candidate is kept only if it is an occupation or a position by P31/P279*, because a plain search for Rancher returns a surname and an album. Terms marked local have no Wikidata equivalent and are the archive's own."
+ },
+ "roles": [
+  {
+   "term": "Military Officer",
+   "count": 9,
+   "source": "record",
+   "qid": "Q189290",
+   "label": "military officer",
+   "description": "member of an armed force or uniformed service who holds a position of authority",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q11545923",
+     "label": "military commander",
+     "description": "person commanding a military force"
+    },
+    {
+     "qid": "Q2020172",
+     "label": "military officer of healthcare",
+     "description": "military rank"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Rancher",
+   "count": 9,
+   "source": "record",
+   "qid": "Q10841764",
+   "label": "Rancher",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "Politician",
+   "count": 5,
+   "source": "record",
+   "qid": "Q82955",
+   "label": "politician",
+   "description": "person who seeks or holds a political office or mandate or is otherwise politically active",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Explorer",
+   "count": 4,
+   "source": "record",
+   "qid": "Q11900058",
+   "label": "explorer",
+   "description": "person who by means of travel searches out new information",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Merchant",
+   "count": 4,
+   "source": "record",
+   "qid": "Q215536",
+   "label": "merchant",
+   "description": "businessperson who trades in commodities that were produced by others",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q3704253",
+     "label": "trader",
+     "description": "person or group engaged in trade"
+    },
+    {
+     "qid": "Q1762621",
+     "label": "vendor",
+     "description": "business that supplies, provides and usually sells goods or services"
+    },
+    {
+     "qid": "Q12049274",
+     "label": "retail worker",
+     "description": "person who works in the retail industry or business activity that generally sells to the public (consumer)"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Author",
+   "count": 3,
+   "source": "record",
+   "qid": "Q482980",
+   "label": "author",
+   "description": "writer of an original work",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q36180",
+     "label": "writer",
+     "description": "person who uses written words to communicate ideas and to produce literary works"
+    },
+    {
+     "qid": "Q15296811",
+     "label": "draftsperson",
+     "description": "person who makes drawings (artist/cartoonist/drafter/illustrator)"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Colonial Governor",
+   "count": 3,
+   "source": "record",
+   "qid": "Q1250464",
+   "label": "Colonial Governor",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "Historian",
+   "count": 3,
+   "source": "record",
+   "qid": "Q201788",
+   "label": "historian",
+   "description": "scholar who deals with the exploration and presentation of history",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q1792450",
+     "label": "art historian",
+     "description": "humanist who is engaged in history of art"
+    },
+    {
+     "qid": "Q1595570",
+     "label": "local historian",
+     "description": "someone who researches their local area's history"
+    },
+    {
+     "qid": "Q3332711",
+     "label": "medievalist",
+     "description": "historian, scientist or expert in medieval studies"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Civic Leader",
+   "count": 2,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Diplomat",
+   "count": 2,
+   "source": "record",
+   "qid": "Q193391",
+   "label": "diplomat",
+   "description": "person appointed by a state to conduct diplomacy with another state or international organization",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Journalist",
+   "count": 2,
+   "source": "record",
+   "qid": "Q1930187",
+   "label": "journalist",
+   "description": "person who collects, writes, and distributes news and other information",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q6051619",
+     "label": "opinion journalist",
+     "description": "journalist who makes no claim of objectivity"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Miner",
+   "count": 2,
+   "source": "record",
+   "qid": "Q820037",
+   "label": "miner",
+   "description": "person who works in mining",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Real Estate Agent",
+   "count": 2,
+   "source": "record",
+   "qid": "Q519076",
+   "label": "real estate agent",
+   "description": "person who acts as an intermediary between sellers and buyers of real estate/real property for a commission",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "State Assemblymember",
+   "count": 2,
+   "source": "record",
+   "qid": "Q13218630",
+   "label": "State Assemblymember",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "Actor",
+   "count": 1,
+   "source": "record",
+   "qid": "Q33999",
+   "label": "actor",
+   "description": "person who acts in a dramatic or comic production and works in film, television, theatre, or radio",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q10798782",
+     "label": "television actor",
+     "description": "actor who performs on television"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Alcalde",
+   "count": 1,
+   "source": "record",
+   "qid": "Q3621491",
+   "label": "Alcalde",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "Auctioneer",
+   "count": 1,
+   "source": "record",
+   "qid": "Q2743689",
+   "label": "auctioneer",
+   "description": "person who runs a sale by auction",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Bandit",
+   "count": 1,
+   "source": "record",
+   "qid": "Q16144978",
+   "label": "bandit",
+   "description": "kind of criminal",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Carpenter",
+   "count": 1,
+   "source": "record",
+   "qid": "Q154549",
+   "label": "carpenter",
+   "description": "profession; person who performs carpentry",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q15977971",
+     "label": "woodworker",
+     "description": "one who works with wood to create art, furniture, or other objects"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Cattle Rustler",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "City Council Member",
+   "count": 1,
+   "source": "record",
+   "qid": "Q708492",
+   "label": "council member",
+   "description": "representative of voters to a local government",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "College Trustee",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Diarist",
+   "count": 1,
+   "source": "record",
+   "qid": "Q18939491",
+   "label": "diarist",
+   "description": "person who writes a personal journal",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q54128",
+     "label": "domestic worker",
+     "description": "person who works within the scope of a residence"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Entrepreneur",
+   "count": 1,
+   "source": "record",
+   "qid": "Q131524",
+   "label": "entrepreneur",
+   "description": "person who owns and operates a business",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q43845",
+     "label": "businessperson",
+     "description": "person involved in activities for the purpose of generating revenue"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Father-Presidente",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Financial Advisor",
+   "count": 1,
+   "source": "record",
+   "qid": "Q683476",
+   "label": "financial adviser",
+   "description": "professional who renders financial services to clients",
+   "confidence": "nearest",
+   "alternates": [
+    {
+     "qid": "Q5449578",
+     "label": "Financial Advisor to the Chief of Staff",
+     "description": "head of the Budgeting Directorate of Israel’s Ministry of Defense"
+    }
+   ],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Franciscan Missionary",
+   "count": 2,
+   "source": "record",
+   "qid": "Q1423891",
+   "label": "Franciscan Missionary",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "Freighter",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Hotelier",
+   "count": 1,
+   "source": "record",
+   "qid": "Q1631120",
+   "label": "hotel manager",
+   "description": "manager of a hotel",
+   "confidence": "nearest",
+   "alternates": [
+    {
+     "qid": "Q105756071",
+     "label": "hotel owner",
+     "description": "occupation"
+    }
+   ],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Justice of the Peace",
+   "count": 1,
+   "source": "record",
+   "qid": "Q329455",
+   "label": "justice of the peace",
+   "description": "judicial officer elected or appointed to keep the peace and perform minor civic jobs",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q6731168",
+     "label": "magistrate",
+     "description": "legal office held by lay people in England and Wales"
+    },
+    {
+     "qid": "Q54819580",
+     "label": "kantonrechter",
+     "description": "judge in less serious cases in the lowest courts of law in The Netherlands"
+    },
+    {
+     "qid": "Q56453031",
+     "label": "juez de paz",
+     "description": "Salvadoran judicial position"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Land Developer",
+   "count": 1,
+   "source": "record",
+   "qid": "Q15980346",
+   "label": "land developer",
+   "description": "",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Land Grantee",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Land Owner",
+   "count": 1,
+   "source": "record",
+   "qid": "Q1483709",
+   "label": "land owner",
+   "description": "owner of land; holder of the estate in land with considerable rights of ownership",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Lawman",
+   "count": 1,
+   "source": "record",
+   "qid": "Q1466992",
+   "label": "lawspeaker",
+   "description": "Scandinavian legal office",
+   "confidence": "nearest",
+   "alternates": [],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Millwright",
+   "count": 1,
+   "source": "record",
+   "qid": "Q1958442",
+   "label": "millwright",
+   "description": "craftsman or tradesman engaged with the erection of machinery",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Museum Curator",
+   "count": 1,
+   "source": "record",
+   "qid": "Q674426",
+   "label": "curator",
+   "description": "content specialist charged with a museum's collections and involved with the interpretation of heritage material",
+   "confidence": "nearest",
+   "alternates": [
+    {
+     "qid": "Q47090899",
+     "label": "museum professional",
+     "description": "occupation"
+    }
+   ],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Naval Officer",
+   "count": 1,
+   "source": "record",
+   "qid": "Q10669499",
+   "label": "naval officer",
+   "description": "commissioned officer serving in a navy",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Outlaw",
+   "count": 1,
+   "source": "record",
+   "qid": "Q254508",
+   "label": "outlaw",
+   "description": "person declared as outside the protection of the law",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Physician",
+   "count": 1,
+   "source": "record",
+   "qid": "Q39631",
+   "label": "physician",
+   "description": "professional who practices medicine",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q15924224",
+     "label": "internist",
+     "description": "physician with medical specialty internal medicine; is skilled in the management of patients who have undifferentiated or multi-system disease processes; cares for hospitalized and ambulatory patients"
+    },
+    {
+     "qid": "Q5287521",
+     "label": "Doctor of Osteopathic Medicine",
+     "description": "professional degree"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Pioneer",
+   "count": 1,
+   "source": "record",
+   "qid": "Q937283",
+   "label": "pioneer",
+   "description": "person who is among the first to enter a new area or field",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q13393921",
+     "label": "pioneer",
+     "description": "soldier tasked with engineering and construction"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Political Agent",
+   "count": 1,
+   "source": "record",
+   "qid": "Q5354552",
+   "label": "election agent",
+   "description": "profession",
+   "confidence": "nearest",
+   "alternates": [],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Political Staffer",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "President & CEO",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Private Investigator",
+   "count": 1,
+   "source": "record",
+   "qid": "Q1058617",
+   "label": "private investigator",
+   "description": "professional who conducts private investigations and gathers, analyzes, and reports information or evidence for individuals, businesses, attorneys, or other clients",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Railroad Investor",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Rancho Administrator",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Scout",
+   "count": 1,
+   "source": "record",
+   "qid": "Q1350189",
+   "label": "Scout",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "SCVTV",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Ship Owner",
+   "count": 1,
+   "source": "record",
+   "qid": "Q500251",
+   "label": "ship-owner",
+   "description": "businessperson who owns or charters ships",
+   "confidence": "nearest",
+   "alternates": [],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Small Business Owner",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "State Senator",
+   "count": 1,
+   "source": "record",
+   "qid": "Q7603534",
+   "label": "state senator",
+   "description": "member of an upper house of a U.S. state legislature",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q20058776",
+     "label": "member of the State Senate of Massachusetts",
+     "description": "elected position in Massachusetts"
+    },
+    {
+     "qid": "Q19394559",
+     "label": "member of the State Senate of Wyoming",
+     "description": "elected position"
+    },
+    {
+     "qid": "Q18046513",
+     "label": "State Senator of Belgium",
+     "description": "member of the Belgian Senate appointed by a regional parliament or community"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Surveyor",
+   "count": 1,
+   "source": "record",
+   "qid": "Q294126",
+   "label": "surveyor",
+   "description": "land measurement specialist",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Television Producer",
+   "count": 1,
+   "source": "record",
+   "qid": "Q578109",
+   "label": "television producer",
+   "description": "occupation within video production for TV",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Trapper",
+   "count": 1,
+   "source": "record",
+   "qid": "Q14009165",
+   "label": "trapper",
+   "description": "person who engages in animal trapping",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q113097821",
+     "label": "trapper",
+     "description": "trap music singer"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Water Company Manager",
+   "count": 1,
+   "source": "record",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Assemblyman",
+   "count": 0,
+   "source": "title",
+   "qid": "Q13218630",
+   "label": "Assemblyman",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "Assemblywoman",
+   "count": 0,
+   "source": "title",
+   "qid": "Q13218630",
+   "label": "Assemblywoman",
+   "description": "",
+   "confidence": "pinned",
+   "alternates": [],
+   "why": "set by hand; a plain search finds the wrong sense"
+  },
+  {
+   "term": "Captain",
+   "count": 0,
+   "source": "title",
+   "qid": "Q19100",
+   "label": "captain",
+   "description": "military rank (OF-2)",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q849424",
+     "label": "sea captain",
+     "description": "commander of a ship or other sea-going vessel"
+    },
+    {
+     "qid": "Q5036514",
+     "label": "captain",
+     "description": "senior officer rank of the Royal Navy"
+    },
+    {
+     "qid": "Q163500",
+     "label": "captain",
+     "description": "naval officer rank"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Chief",
+   "count": 0,
+   "source": "title",
+   "qid": "",
+   "label": "",
+   "description": "",
+   "confidence": "local",
+   "alternates": [],
+   "why": "no Wikidata occupation covers this; kept as a local term"
+  },
+  {
+   "term": "Colonel",
+   "count": 0,
+   "source": "title",
+   "qid": "Q104680",
+   "label": "colonel",
+   "description": "military rank in various countries",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q2984198",
+     "label": "Colonel",
+     "description": "military rank of the United States"
+    },
+    {
+     "qid": "Q21074077",
+     "label": "colonel",
+     "description": "military rank of France"
+    },
+    {
+     "qid": "Q12799162",
+     "label": "colonel",
+     "description": "military rank of the United Kingdom"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Commissioner",
+   "count": 0,
+   "source": "title",
+   "qid": "Q112602440",
+   "label": "commissioner",
+   "description": "a person appointed, often to hold a local trial",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q524778",
+     "label": "commissioner",
+     "description": "title given to a member of a commission or to an individual who has been given a commission"
+    },
+    {
+     "qid": "Q329455",
+     "label": "justice of the peace",
+     "description": "judicial officer elected or appointed to keep the peace and perform minor civic jobs"
+    },
+    {
+     "qid": "Q15472169",
+     "label": "patron of the arts",
+     "description": "person or corporate body who gives financial or other support to a person, organization, cause, or activity"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Congressman",
+   "count": 0,
+   "source": "title",
+   "qid": "Q18002923",
+   "label": "member of the House of Representatives",
+   "description": "elected representative to the House of Representatives of the Philippines",
+   "confidence": "nearest",
+   "alternates": [
+    {
+     "qid": "Q14761450",
+     "label": "member of congress",
+     "description": "essential office of an elected members called congress"
+    }
+   ],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Congresswoman",
+   "count": 0,
+   "source": "title",
+   "qid": "Q18002923",
+   "label": "member of the House of Representatives",
+   "description": "elected representative to the House of Representatives of the Philippines",
+   "confidence": "nearest",
+   "alternates": [
+    {
+     "qid": "Q14761450",
+     "label": "member of congress",
+     "description": "essential office of an elected members called congress"
+    }
+   ],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Councilman",
+   "count": 0,
+   "source": "title",
+   "qid": "Q708492",
+   "label": "council member",
+   "description": "representative of voters to a local government",
+   "confidence": "nearest",
+   "alternates": [
+    {
+     "qid": "Q43100332",
+     "label": "Councilman of the City council of Las Rozas",
+     "description": ""
+    }
+   ],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Councilwoman",
+   "count": 0,
+   "source": "title",
+   "qid": "Q708492",
+   "label": "council member",
+   "description": "representative of voters to a local government",
+   "confidence": "nearest",
+   "alternates": [],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "Deputy",
+   "count": 0,
+   "source": "title",
+   "qid": "Q1055894",
+   "label": "deputy",
+   "description": "name for legislator in many countries",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q21295979",
+     "label": "Member of the National Assembly of the Democratic Republic of the Congo",
+     "description": "member of the lower house of the parliament of the Democratic Republic of the Congo"
+    },
+    {
+     "qid": "Q3250324",
+     "label": "deputy",
+     "description": "one who is an assistant or second-in-command"
+    },
+    {
+     "qid": "Q16157264",
+     "label": "deputy",
+     "description": "in the period of noble democracy, an elected representative of the nobility and clergy to the legislative and judicial authorities"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Doctor",
+   "count": 0,
+   "source": "title",
+   "qid": "Q4618975",
+   "label": "Doctor",
+   "description": "honorific title for a holder of a doctoral degree",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q39631",
+     "label": "physician",
+     "description": "professional who practices medicine"
+    },
+    {
+     "qid": "Q752297",
+     "label": "Doctor of Philosophy",
+     "description": "postgraduate academic degree awarded by most universities worldwide"
+    },
+    {
+     "qid": "Q12764792",
+     "label": "doctoral student",
+     "description": "student enrolled in a PhD program"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Father",
+   "count": 0,
+   "source": "title",
+   "qid": "Q2029179",
+   "label": "regular priest",
+   "description": "religious who is an ordained priest",
+   "confidence": "nearest",
+   "alternates": [],
+   "why": "the closest candidate that is an occupation"
+  },
+  {
+   "term": "General",
+   "count": 0,
+   "source": "title",
+   "qid": "Q83460",
+   "label": "general",
+   "description": "officer of high rank in the armies, and in some nations' air forces, space forces, or marines",
+   "confidence": "exact",
+   "alternates": [],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Governor",
+   "count": 0,
+   "source": "title",
+   "qid": "Q132050",
+   "label": "governor",
+   "description": "high ranked governing official in a state",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q181888",
+     "label": "khan",
+     "description": "ruler in Mongol and Turkic cultures, variously describing kings, princes, and governors"
+    },
+    {
+     "qid": "Q382844",
+     "label": "governor-general",
+     "description": "vice-regal representative of the head of state in an independent realm or a major colonial state"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Judge",
+   "count": 0,
+   "source": "title",
+   "qid": "Q16533",
+   "label": "judge",
+   "description": "official who presides over court proceedings",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q52008309",
+     "label": "competition judge",
+     "description": "person who is a member of a jury in a competition"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Lieutenant",
+   "count": 0,
+   "source": "title",
+   "qid": "Q186024",
+   "label": "lieutenant",
+   "description": "military rank in many armies",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q493898",
+     "label": "Lieutenant Colonel",
+     "description": "military rank (OF-4)"
+    },
+    {
+     "qid": "Q24038912",
+     "label": "lieutenant",
+     "description": "rank of the Royal Navy"
+    },
+    {
+     "qid": "Q16996284",
+     "label": "Lieutenant",
+     "description": "rank in British Army and Royal Marines"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Major",
+   "count": 0,
+   "source": "title",
+   "qid": "Q983927",
+   "label": "Major",
+   "description": "military rank (OF-3)",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q6738004",
+     "label": "Major",
+     "description": "military rank of the field grad officers in the German Bundeswehr"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Mayor",
+   "count": 0,
+   "source": "title",
+   "qid": "Q30185",
+   "label": "mayor",
+   "description": "head of municipal government such as a town or city",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q382617",
+     "label": "mayor of a place in France",
+     "description": "public office in France"
+    },
+    {
+     "qid": "Q177529",
+     "label": "burgomaster",
+     "description": "archaic term for a mayor (to be used with P39)"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Professor",
+   "count": 0,
+   "source": "title",
+   "qid": "Q121594",
+   "label": "professor",
+   "description": "academic position at universities and other education and research institutions",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q37226",
+     "label": "teacher",
+     "description": "person who helps others to acquire knowledge, competences or values"
+    },
+    {
+     "qid": "Q1622272",
+     "label": "university teacher",
+     "description": "person teaching at a university or college"
+    },
+    {
+     "qid": "Q25339110",
+     "label": "full professor",
+     "description": "highest administrative rank in the teaching career, assimilated to the highest academic rank, this being that of doctor"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Reverend",
+   "count": 0,
+   "source": "title",
+   "qid": "Q841594",
+   "label": "Reverend",
+   "description": "honorific prefix in various religions, such as Christianity, Judaism and Buddhism.",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q42603",
+     "label": "priest",
+     "description": "person who consecrates his life to some divinity and whose main functions are to direct religious rites and offer sacrifices to the divinity (for a minister use Q1423891)"
+    },
+    {
+     "qid": "Q1423891",
+     "label": "Christian minister",
+     "description": "function of service in Christianity"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Senator",
+   "count": 0,
+   "source": "title",
+   "qid": "Q15686806",
+   "label": "senator",
+   "description": "member of a senate, usually the upper house of a legislature",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q14828018",
+     "label": "Senator of the French Fifth Republic",
+     "description": "member of the French Senate"
+    },
+    {
+     "qid": "Q17619252",
+     "label": "Senator of Belgium",
+     "description": "member of the Belgian Senate"
+    },
+    {
+     "qid": "Q21032547",
+     "label": "senator of the French Third Republic",
+     "description": "member of the senate of the French Third Republic"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Sergeant",
+   "count": 0,
+   "source": "title",
+   "qid": "Q157696",
+   "label": "Sergeant",
+   "description": "enlisted rank",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q429703",
+     "label": "Feldwebel",
+     "description": "German military rank"
+    },
+    {
+     "qid": "Q7453376",
+     "label": "sergeant",
+     "description": "military rank in Sweden and Finland"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Sheriff",
+   "count": 0,
+   "source": "title",
+   "qid": "Q578478",
+   "label": "sheriff",
+   "description": "government official",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q1686380",
+     "label": "lensmann",
+     "description": "historically holder of a royal fief and now rural police chief"
+    }
+   ],
+   "why": "label matches exactly"
+  },
+  {
+   "term": "Supervisor",
+   "count": 0,
+   "source": "title",
+   "qid": "Q1240788",
+   "label": "supervisor",
+   "description": "lower-level management position and role in a business or event",
+   "confidence": "exact",
+   "alternates": [
+    {
+     "qid": "Q363802",
+     "label": "doctoral advisor",
+     "description": "university faculty member who supervises the doctoral research of a graduate student"
+    },
+    {
+     "qid": "Q2101915",
+     "label": "supervisor",
+     "description": "represents the client on the construction site"
+    },
+    {
+     "qid": "Q29414388",
+     "label": "production supervisor",
+     "description": "film crew member"
+    }
+   ],
+   "why": "label matches exactly"
+  }
+ ]
+}

@@ -196,6 +196,18 @@ foreach ($PAIRS as $typeHandle => $map) {
 
 /* ------------------------------------------------------- what would parse */
 
+/* The entry layouts were read into memory before the fields were added above,
+   so on the run that CREATES them every entry still reports the EDTF field as
+   absent and nothing queues. That is why the first apply created seven fields
+   and wrote zero values, and why the dry run said "would write: 0" without my
+   noticing it was describing a bug rather than an empty archive.
+
+   Craft's caches are flushed so the layouts are re-read as they now are. */
+if ($APPLY) {
+    \Craft::$app->getElements()->invalidateAllCaches();
+    \Craft::$app->getFields()->refreshFields();
+}
+
 echo PHP_EOL . 'DERIVING from what the records actually hold:' . PHP_EOL;
 $SECTION_OF = ['article' => 'articles', 'event' => 'events', 'organization' => 'organizations',
                'person' => 'persons', 'photograph' => 'photographs', 'place' => 'places',
@@ -218,10 +230,9 @@ foreach ($PAIRS as $typeHandle => $map) {
             if ($edtf === null) { $unparsed++; if (count($fails) < 14) { $fails[$raw] = $why; } continue; }
             $parsed++;
             if (count($samples) < 12) { $samples[$raw] = $edtf . '   (' . $why . ')'; }
-            if (in_array($to, $h, true)) {
-                $cur = trim((string)$e->getFieldValue($to));
-                if ($cur === '') { $plan[] = [$e, $to, $edtf]; }
-            }
+            /* Queued whether or not the layout reports the field, because on a
+               creating run it does not yet. The write is guarded instead. */
+            $plan[] = [$e, $to, $edtf];
         }
     }
 }
@@ -240,17 +251,29 @@ echo PHP_EOL . '  would write: ' . count($plan) . ' EDTF values' . PHP_EOL;
 if (!$APPLY) { echo PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
 
 $ok = 0;
+$skipped = 0;
 foreach ($plan as [$e, $to, $edtf]) {
-    $e->setFieldValue($to, $edtf);
-    if (\Craft::$app->elements->saveElement($e)) { $ok++; }
+    $fresh = \craft\elements\Entry::find()->id($e->id)->status(null)->one();
+    if (!$fresh) { continue; }
+    $fh = [];
+    foreach ($fresh->getFieldLayout()->getCustomFields() as $f) { $fh[] = $f->handle; }
+    if (!in_array($to, $fh, true)) { $skipped++; continue; }
+    if (trim((string)$fresh->getFieldValue($to)) !== '') { $skipped++; continue; }
+    $fresh->setFieldValue($to, $edtf);
+    if (\Craft::$app->elements->saveElement($fresh)) { $ok++; }
 }
+if ($skipped) { echo 'skipped ' . $skipped . ' already set or with no such field' . PHP_EOL; }
 $verified = 0;
 foreach ($plan as [$e, $to, $edtf]) {
     $c = \craft\elements\Entry::find()->id($e->id)->status(null)->one();
-    if ($c && trim((string)$c->getFieldValue($to)) === $edtf) { $verified++; }
+    if (!$c) { continue; }
+    $fh = [];
+    foreach ($c->getFieldLayout()->getCustomFields() as $f) { $fh[] = $f->handle; }
+    if (in_array($to, $fh, true) && trim((string)$c->getFieldValue($to)) === $edtf) { $verified++; }
 }
-echo PHP_EOL . 'wrote: ' . $ok . '  verified: ' . $verified . ' of ' . count($plan) . PHP_EOL;
-if ($verified < count($plan)) { echo 'READ-BACK SHORT. Treat this run as failed.' . PHP_EOL; }
+$expect = count($plan) - $skipped;
+echo PHP_EOL . 'wrote: ' . $ok . '  verified: ' . $verified . ' of ' . $expect . ' attempted' . PHP_EOL;
+if ($verified < $expect) { echo 'READ-BACK SHORT. Treat this run as failed.' . PHP_EOL; }
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('add_edtf_fields.php', $ok,
     ($verified < count($plan) ? 'FAILED: ' : '') . 'verified ' . $verified . ' of ' . count($plan),
