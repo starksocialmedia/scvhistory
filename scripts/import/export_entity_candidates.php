@@ -69,9 +69,32 @@
  */
 
 $root = \Craft::getAlias('@root');
-$out = \Craft::getAlias('@webroot') . '/review/entities.json';
 
-$INVENTORIES = ['perkins', 'reynolds-full', 'reynolds', 'warmemorial'];
+/* TWO CORPORA, ONE SWITCH
+ *
+ * entities.json is the four inventories that have been read closely;
+ * entities-full.json is every inventory, and feeds records-full.json. Both were
+ * produced from this file, the second by editing the output path and the
+ * inventory list by hand and remembering to put them back.
+ *
+ * That is how entities-full.json came to be four hours older than its sibling,
+ * and how a fix applied here reached records.json and not records-full.json:
+ * the suffix was passed to export_missing_records.php, which dutifully rebuilt
+ * the full queue from a stale full source and reported success.
+ *
+ * So the suffix now picks the inventory list too. The two cannot disagree,
+ * because there is only one thing to set.
+ *
+ *   ddev craft exec "eval(file_get_contents('scripts/import/export_entity_candidates.php'))"
+ *   ddev craft exec "\$ENTITIES_SUFFIX='-full'; eval(file_get_contents('scripts/import/export_entity_candidates.php'))"
+ */
+$ESUFFIX = $ENTITIES_SUFFIX ?? '';
+$out = \Craft::getAlias('@webroot') . '/review/entities' . $ESUFFIX . '.json';
+
+$INVENTORIES = $ESUFFIX === '-full'
+    ? ['perkins', 'reynolds-full', 'reynolds', 'warmemorial', 'worden', 'coins',
+       'oldtownnewhall', 'mentryville', 'media', 'loose-pages']
+    : ['perkins', 'reynolds-full', 'reynolds', 'warmemorial'];
 $KINDS = ['people' => 'person', 'places' => 'place', 'organizations' => 'organization'];
 $SECTION_FOR = ['person' => 'persons', 'place' => 'places', 'organization' => 'organizations'];
 $ALIAS_FOR = ['person' => 'personAliases', 'place' => 'placeAliases', 'organization' => 'orgAliases'];
@@ -595,7 +618,26 @@ if ($canon) {
                     if (!isset($entities[$ck][$cn]['pages'][$path])) {
                         $entities[$ck][$cn]['pages'][$path] = true;
                     }
-                    $entities[$ck][$cn]['variants'][$base] = true;
+                    /* The base name is NOT an alias of a split target.
+                     *
+                     * This wrote it onto every target, so "Soledad" became an
+                     * alias of Soledad Canyon AND of Soledad Canyon Road, and
+                     * "Placerita" of the canyon, the road and the Nature
+                     * Center. One alias pointing at three records is not an
+                     * alias; it is the ambiguity the split exists to resolve,
+                     * recorded as though it had been resolved. The prose linker
+                     * reading it has no way to choose, and the whole point of
+                     * deciding each occurrence by the words nearest it is lost
+                     * at the last step.
+                     *
+                     * Where a target IS the base name -- Soledad the place,
+                     * Gorman the town -- the base is its title, and a title is
+                     * not its own alias. So this is skipped in every case; the
+                     * comparison is kept to say that out loud rather than
+                     * leaving a silent deletion. */
+                    if ($cn === $base) {
+                        /* the title, dropped later by the alias assembly anyway */
+                    }
                     $entities[$ck][$cn]['canonType'] = $ck;
                     if (!empty($chosen['placeType'])) { $entities[$ck][$cn]['canonPlaceType'] = (string)$chosen['placeType']; }
                     foreach (array_keys($src['inventories'] ?? []) as $i) { $entities[$ck][$cn]['inventories'][$i] = true; }

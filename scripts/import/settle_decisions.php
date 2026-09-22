@@ -170,6 +170,56 @@ if ($i !== null) {
     $log[] = [$was . ' -> skipped', 'Beale', 'Edward F. Beale already covers him'];
 }
 
+/* ------------------------------------- the bare split names as aliases
+ *
+ * A split base name must never be an alias of a split target. "Soledad"
+ * resolving to the canyon in one sentence and the road in the next is the
+ * ambiguity the split exists to decide; writing it onto both records records
+ * that ambiguity as though it were an answer, and leaves the prose linker with
+ * two records and no way to choose.
+ *
+ * The real source is export_entity_candidates.php, which wrote the base onto
+ * every target and no longer does. This is the second pass, over decisions
+ * already taken: a stored alias survives a queue rebuild, and the exporter fix
+ * cannot reach it.
+ *
+ * The names come from the canon, so a split added later is covered without
+ * anyone remembering to come back here. */
+$canonFile = \Craft::getAlias('@root') . '/inventory/legacy/name-canon.json';
+$canon = json_decode(file_get_contents($canonFile), true) ?: [];
+$bases = [];
+foreach (($canon['splits'] ?? []) as $sp) {
+    $b = trim((string)($sp['name'] ?? ''));
+    if ($b === '') { continue; }
+    foreach (($sp['splits'] ?? []) as $t) {
+        /* Where the target IS the base, the base is its title. Stripping it
+           from that record's aliases is right too: a title is not its own
+           alias, and the alias assembly drops it anyway. */
+        $bases[$norm($b)] = $b;
+    }
+}
+$stripped = 0; $touched = [];
+foreach ($rows as $i => $r) {
+    if (($r['type'] ?? '') === 'pair') { continue; }
+    foreach (['aliases', 'variants'] as $key) {
+        $al = (array)($r[$key] ?? []);
+        if (!$al) { continue; }
+        $keep = array_values(array_filter($al, fn($a) => !isset($bases[$norm((string)$a)])));
+        if (count($keep) === count($al)) { continue; }
+        $gone = array_values(array_diff($al, $keep));
+        $rows[$i][$key] = $keep;
+        $stripped += count($gone);
+        $touched[] = [(string)($r['name'] ?? ''), $key, implode(', ', $gone)];
+    }
+}
+foreach ($touched as $t) {
+    $log[] = ['alias stripped', $t[0], $t[2] . ' (' . $t[1] . '); the split rule resolves it'];
+}
+if (!$touched) {
+    $log[] = ['alias check', 'split base names', 'none stored in the file; ' . count($bases)
+              . ' bases checked: ' . implode(', ', array_values($bases))];
+}
+
 /* ------------------------------------------------------------- report */
 
 echo ($APPLY ? 'APPLYING to the decisions file' : 'DRY RUN') . PHP_EOL;
