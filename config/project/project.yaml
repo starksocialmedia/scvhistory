@@ -1,4 +1,4 @@
-dateModified: 1790040124
+dateModified: 1790044077
 email:
   fromEmail: nathan@starksocial.com
   fromName: 'SCV History'
@@ -26,6 +26,7 @@ meta:
     1d2482c4-095a-413b-9e52-d396af8ef90d: 'MP Base Station' # MP Base Station
     1f1e0b5a-e874-40b9-9a54-cf6acef1dd94: Body # Body
     1fdb2efa-4d0e-4825-821f-682e150a16e8: 'Event Date Edtf' # Event Date Edtf
+    02b2c907-bcc2-485b-b2e8-ce5990c28d48: Role # Role
     2b5ff652-e35d-48c0-9f14-51570e23c33f: 'Place Events' # Place Events
     2b8c5353-113c-4862-8fa6-eed91e039549: 'Related Events' # Related Events
     2b51a19f-90c3-4bc5-860d-da1deb512c16: Collections # Collections
@@ -77,6 +78,7 @@ meta:
     6f160385-0b35-4fa8-bea5-29d8432d4530: Document # Document
     7b5da2bc-f3cd-4678-a175-6a58bd58f008: Page # Page
     7c04bff4-9186-475c-b3fa-8f0bd2940044: 'GNIS ID' # GNIS ID
+    7c3d38e7-2d1a-47a3-be5d-08a44fb0b834: 'Roles Probe' # Roles Probe
     7ce3598f-7711-4df6-8f99-ac10d904f0e2: 'Place Longitude' # Place Longitude
     7eadd519-a55c-433a-8391-a6ec84fa97e7: 'MP Related Obituaries' # MP Related Obituaries
     7f2b776b-bbf7-4fd8-8f9f-4f9e5b3ef56b: 'Person Find A Grave URL' # Person Find A Grave URL
@@ -172,10 +174,12 @@ meta:
     757b1bf8-8bee-4d70-a8e3-7290c2296d0e: 'Obit Legacy URL' # Obit Legacy URL
     859dcc97-3458-4901-8659-37043953a91e: 'MP Date of Death' # MP Date of Death
     869c1a3c-de72-4539-9c4f-c2a66302a5ad: 'Person Legacy URL' # Person Legacy URL
+    886afeb7-184f-4030-8d35-d7538d0c362b: 'Role Probe' # Role Probe
     915e06ff-2663-43af-bd6b-ec40a3206421: 'Parent Organization' # Parent Organization
     926bf40e-0b97-438f-a964-5b3bf7d19f4a: 'Vietnam Memorial Wall' # Vietnam Memorial Wall
     962f38b8-f3e6-476e-8ad4-11e0226524df: 'MP Organizations' # MP Organizations
     988b1ca1-fba1-4fc1-9cae-4ca4a4eaeda4: 'Event Organizations' # Event Organizations
+    01214a41-054c-43c6-aed9-5062b7556cb5: 'Role Wikidata ID' # Role Wikidata ID
     1303c17c-81e9-413f-94a4-88d12a45ae5b: 'Fix Seen On' # Fix Seen On
     1573db5e-b99d-4ba7-80b7-f20eeeb0bc79: 'Org Events' # Org Events
     1702e809-d8cf-49e7-bab1-02c9f2a38a21: 'Credit Kind' # Credit Kind
@@ -275,6 +279,7 @@ meta:
     d128c8cb-5a5c-4c17-b8ec-025770ae4070: 'Extended Caption' # Extended Caption
     d487d693-b6f8-4637-9f22-86552a6e75bb: 'Obit Date of Death' # Obit Date of Death
     d766bbd9-36cd-4ed2-9625-641a7616587d: 'Specialty / MOS' # Specialty / MOS
+    d63777e7-c8a3-47fb-8890-c7020c2b6fe2: 'Role match' # Role match
     d81838a3-86d6-44fb-b151-b5b77f7bc8f1: 'MP High School' # MP High School
     d710292c-42cd-463f-b92f-a2851d2f258b: 'Historical Period' # Historical Period
     d8986720-2f23-472c-a1fa-15359e42b55e: Photographs # Photographs
@@ -288,8 +293,10 @@ meta:
     e2ec95fc-c81f-4a2a-aaa7-61ff0c646e1b: 'Publication Details' # Publication Details
     e2f52146-4d98-4e9f-a342-5f55cb6381d2: 'Org Legacy URL' # Org Legacy URL
     e6d8d39f-eebe-4c3e-90a7-10d20899c999: 'WM Conflict' # WM Conflict
+    e27adeb1-4305-4ddd-9b7f-c526e3a11759: Roles # Roles
     e31f2a11-8bb9-4061-992b-119f6b2645fc: Person # Person
     e34dff31-185d-469b-9dc0-528a82120aac: Birthplace # Birthplace
+    e52a98cd-0a9f-47a7-a10e-a15411b38fda: Roles # Roles
     e57a8e96-dedb-449e-a6de-361e5429da5b: 'Casualty Detail' # Casualty Detail
     e97d0827-a474-451e-aecd-c48ecd38717e: 'MP Service End' # MP Service End
     e8320e2a-0de3-4d5b-bc01-2c49eaa28486: 'MP Find A Grave URL' # MP Find A Grave URL

@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: roles
+instructions: 'What this person did, from the controlled vocabulary. The printed occupation stays as written; this is the version a machine can ask questions of.'
+name: Roles
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:e52a98cd-0a9f-47a7-a10e-a15411b38fda' # Roles
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

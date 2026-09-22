@@ -1,0 +1,60 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  5a2de0c4-f0f9-4e69-b5ae-f9007e1967e1:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 01214a41-054c-43c6-aed9-5062b7556cb5 # Role Wikidata ID
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 146a78e5-4e3b-4a77-ae76-4f32922d582f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d63777e7-c8a3-47fb-8890-c7020c2b6fe2 # Role match
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a87397dd-ac1a-4191-bc99-4218e4e425a8
+            userCondition: null
+            warning: null
+            width: 100
+        name: Term
+        uid: 01a03e51-39b0-4366-afb4-2f71cc90bcae
+        userCondition: null
+    thumbFieldKey: null
+handle: role
+hasTitleField: false
+icon: null
+name: Role
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

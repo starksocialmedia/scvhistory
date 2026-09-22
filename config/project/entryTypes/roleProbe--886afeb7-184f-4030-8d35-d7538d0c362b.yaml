@@ -1,0 +1,43 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  cddd4c86-ea0d-4036-93c6-ff503ff00f7b:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 01214a41-054c-43c6-aed9-5062b7556cb5 # Role Wikidata ID
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d39672dc-5f1f-440f-8ad8-13dc5906cac4
+            userCondition: null
+            warning: null
+            width: 100
+        name: Term
+        uid: 36f61f81-1777-428f-9d0f-e49b6bb5e19e
+        userCondition: null
+    thumbFieldKey: null
+handle: roleProbe
+hasTitleField: false
+icon: null
+name: 'Role Probe'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'
