@@ -1,559 +1,685 @@
 {
-    "provenance": {
-        "source": "Nathan's review of the top 200 of the missing-records queue",
-        "started": "2026-09-21",
-        "note": "A curated list of names the archive has decided on. The entity exporter reads it on every run: aliases fold into the canonical row before ranking, the canonical name becomes the record title, and the aliases go on the record so every spelling still finds it. This is judgement, not derivation. Nothing here should be inferred by a script, and a script must not edit this file.",
-        "maintained_by": "hand",
-        "rules_note": "rules are patterns applied to every name after the folds, overriding the guess and the extraction's kind. They exist for shapes that recur: the archive will keep meeting ranchos and missions, and deciding each one by hand is deciding the same thing repeatedly."
+  "provenance": {
+    "source": "Nathan's review of the top 200 of the missing-records queue",
+    "started": "2026-09-21",
+    "note": "A curated list of names the archive has decided on. The entity exporter reads it on every run: aliases fold into the canonical row before ranking, the canonical name becomes the record title, and the aliases go on the record so every spelling still finds it. This is judgement, not derivation. Nothing here should be inferred by a script, and a script must not edit this file.",
+    "maintained_by": "hand",
+    "rules_note": "rules are patterns applied to every name after the folds, overriding the guess and the extraction's kind. They exist for shapes that recur: the archive will keep meeting ranchos and missions, and deciding each one by hand is deciding the same thing repeatedly."
+  },
+  "canon": [
+    {
+      "canonical": "William S. Hart High School",
+      "type": "organization",
+      "aliases": [
+        "Hart High",
+        "Hart Union High",
+        "Hart High School",
+        "Hart Union High School"
+      ],
+      "note": "One school under four names. The queue had Hart High as a place on 24 articles and Hart High School as an organization on 19, which would have been two records for one school in two different sections."
     },
-    "canon": [
+    {
+      "canonical": "Jo Anne Darcy",
+      "type": "person",
+      "aliases": [
+        "Anne Darcy",
+        "Darcy"
+      ],
+      "note": "The extraction cut the given name in half. She appears as Jo Anne Darcy in the text; Anne Darcy is not a different councilwoman."
+    },
+    {
+      "canonical": "Downtown Newhall",
+      "type": "place",
+      "placeType": "site",
+      "aliases": [],
+      "note": "Downtown Newhall is the place, on twelve articles. The Specific Plan is a document about it, parked under its own entry, and \"Downtown Newhall Specific\" is a truncation of that document's title and folds there. Both entries claimed that alias at first and the place won on order, which put 21 articles about a planning document onto a place. The place keeps no aliases: nothing else in the corpus is it."
+    },
+    {
+      "canonical": "Santa Clarita Valley Historical Society",
+      "type": "organization",
+      "aliases": [
+        "SCV Historical Society",
+        "Historical Society"
+      ],
+      "note": "The bare Historical Society is safe to fold here: no other historical society is named in the corpus."
+    },
+    {
+      "canonical": "California State University, Northridge",
+      "type": "organization",
+      "aliases": [
+        "California State University",
+        "Cal State Northridge",
+        "CSUN",
+        "San Fernando Valley State College"
+      ],
+      "note": "The Valley campus, under the name it has had since 1972 and the one it had before."
+    },
+    {
+      "canonical": "Lyons Avenue",
+      "type": "place",
+      "placeType": "road",
+      "aliases": [
+        "Lyons"
+      ],
+      "note": "Bare Lyons is the avenue in the modern columns. Lyons Station and Sanford Lyon are separate records and are NOT aliases of this: the station is a place of its own and the man is a person."
+    },
+    {
+      "canonical": "Newhall Land and Farming Company",
+      "type": "organization",
+      "aliases": [
+        "Newhall Land",
+        "Newhall Land and Farming",
+        "Newhall Land & Farming"
+      ],
+      "note": "One company three ways, 29, 17 and 28 articles. The containment check caught these as three pairs; the canon settles them once."
+    },
+    {
+      "canonical": "William S. Hart Park",
+      "type": "place",
+      "placeType": "park",
+      "aliases": [
+        "Hart Park"
+      ],
+      "note": "Hart Park on 42 articles is the same park. William S. Hart the man is a separate person record and is not an alias."
+    },
+    {
+      "canonical": "Elizabeth Lake",
+      "type": "place",
+      "placeType": "natural",
+      "aliases": [
+        "Lake Elizabeth"
+      ],
+      "note": "The same words in either order. Elizabeth Lake is the gazetteer's spelling and the one the USGS carries."
+    },
+    {
+      "canonical": "Downtown Newhall Specific Plan",
+      "type": "organization",
+      "park": true,
+      "parkReason": "A document, not a place and not a body. The corpus names it because articles discuss the plan, and an entry for it would sit in a section for things that exist in the valley. Parked: the aliases fold here so the fragments stop ranking, and nothing is created.",
+      "aliases": [
+        "Specific Plan",
+        "Downtown Newhall Specific"
+      ],
+      "note": "\"Specific Plan\" on 11 articles is the tail of this title. Folding it here without parking would only move the wrong record's name."
+    },
+    {
+      "canonical": "Antonio del Valle",
+      "type": "person",
+      "aliases": [
+        "Don Antonio",
+        "Lt. Antonio",
+        "Lieutenant Antonio",
+        "Don Antonio's"
+      ],
+      "note": "A fold rather than a split. The brief asked for a split between Antonio del Valle and Antonio Coronel where the sentences support it; they do not. Every sentence behind the bare-Antonio group names del Valle: \"Don Antonio del Valle petitioned Governor Alvarado for the Rancho\", \"Lieutenant Antonio del Valle by order of the Governor\", \"son of Antonio and Maria del Valle\". Antonio Coronel already stands as his own row on one article, with a key the grouping never touches, so a split would have produced an empty second branch and no ambiguous remainder."
+    },
+    {
+      "canonical": "Rancho La Liebre",
+      "type": "place",
+      "placeType": "ranch",
+      "aliases": [
+        "Liebre",
+        "La Liebre"
+      ],
+      "note": "Guessed a person at close confidence. It is Beale's ranch in the Tehachapis."
+    },
+    {
+      "canonical": "Lincoln Memorial",
+      "type": "place",
+      "placeType": "building",
+      "aliases": [],
+      "note": "Guessed a person. It is a building, and the coin columns name it for the reverse of the cent."
+    },
+    {
+      "canonical": "Southern Pacific Railroad",
+      "type": "organization",
+      "aliases": [
+        "Southern Pacific",
+        "Southern Pacific Co",
+        "SP Railroad"
+      ],
+      "note": "The bare name on 24 articles and the full name on 18 are one railroad. The containment check raised this as a pair; the canon settles it."
+    },
+    {
+      "canonical": "Richard Rioux",
+      "type": "person",
+      "aliases": [
+        "Doc Rioux",
+        "Richard \"Doc\" Rioux",
+        "Dr. Richard Rioux",
+        "Doc"
+      ],
+      "note": "He signed the Old Town Newhall column as Doc Rioux across 38 articles. The record is under his name and finds him under the byline."
+    },
+    {
+      "canonical": "Q. David Bowers",
+      "type": "person",
+      "aliases": [
+        "David Bowers",
+        "Dave Bowers",
+        "Q David Bowers"
+      ],
+      "note": "The numismatist, cited constantly in the coin columns, who publishes under the initial."
+    },
+    {
+      "canonical": "City of Santa Clarita Cowboy Poetry and Music Festival",
+      "type": "event",
+      "aliases": [
+        "Cowboy Festival",
+        "Cowboy Poetry Festival",
+        "Music Festival",
+        "Santa Clarita Cowboy Festival",
+        "Cowboy Poetry and Music Festival"
+      ],
+      "note": "An event, not a body. The review screen creates people, places and organizations only, so this folds its aliases together and waits: the fragments stop ranking as five separate records and the festival is made once, by hand or by a screen that can make events."
+    },
+    {
+      "canonical": "Buck McKeon",
+      "type": "person",
+      "aliases": [
+        "Congressman Buck",
+        "Congressman McKeon",
+        "Mayor McKeon",
+        "Howard \"Buck\" McKeon",
+        "Howard McKeon",
+        "Congressman Howard McKeon",
+        "Rep. Buck McKeon"
+      ],
+      "note": "He is mayor in the early Signal columns and congressman in the later ones, and the corpus names him both ways plus his given name. The titles are aliases; the record is the man."
+    },
+    {
+      "canonical": "Tehachapi",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "Guessed a person on six articles although the extraction called it a place: two words, neither a type word, and nothing in the sentences to say otherwise. It is the town over the pass. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
+    },
+    {
+      "canonical": "Bakersfield",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "The town at the end of the Ridge Route. Named here whether or not the corpus uses it today, because the rule is about what these names are, not about which happen to be in the current export. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
+    },
+    {
+      "canonical": "Fillmore",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "Down the river in Ventura County, and in the archive's territory for the same reason Piru is. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
+    },
+    {
+      "canonical": "Piru",
+      "type": "place",
+      "placeType": "settlement",
+      "aliases": [],
+      "note": "Ventura County, and the Rancho Camulos material is about it. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
+    },
+    {
+      "canonical": "Kenneth Bressett",
+      "type": "person",
+      "external": true,
+      "wikidataId": "Q6389291",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Farran Zerbe",
+      "type": "person",
+      "external": true,
+      "wikidataId": "Q5437084",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Russell Rulau",
+      "type": "person",
+      "external": true,
+      "wikidataId": "",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Bill Fivaz",
+      "type": "person",
+      "external": true,
+      "wikidataId": "",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Abe Kosoff",
+      "type": "person",
+      "external": true,
+      "wikidataId": "",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Max Mehl",
+      "type": "person",
+      "external": true,
+      "wikidataId": "Q1913185",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Aubrey Bebee",
+      "type": "person",
+      "external": true,
+      "wikidataId": "",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Ward Connerly",
+      "type": "person",
+      "external": true,
+      "wikidataId": "Q7968160",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Ronald Reagan",
+      "type": "person",
+      "external": true,
+      "wikidataId": "Q9960",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Bill Clinton",
+      "type": "person",
+      "external": true,
+      "wikidataId": "Q1124",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Theodore Roosevelt",
+      "type": "person",
+      "external": true,
+      "wikidataId": "Q33866",
+      "aliases": [],
+      "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+    },
+    {
+      "canonical": "Saugus Cafe",
+      "type": "place",
+      "placeType": "site",
+      "aliases": [
+        "Saugus Café"
+      ],
+      "note": "The queue guessed it a person at 'close' confidence and the extraction said organization, so the existing-record check never saw #16364: that lookup is keyed by kind, and a place record is invisible to a name filed under people. Typing it here puts it in the right bucket, the check finds the record, and the name drops out of the queue instead of creating a second cafe in a second section."
+    },
+    {
+      "canonical": "Ygnacio del Valle",
+      "type": "person",
+      "aliases": [
+        "Ygnacio",
+        "Don Ygnacio",
+        "Senor Ygnacio",
+        "Don Ygnacio del Valle"
+      ],
+      "note": "#293. The bare given name folds into him where the record exists; it is not a second man."
+    }
+  ],
+  "splits": [
+    {
+      "name": "Pico",
+      "note": "A bare surname that resolves three ways in this corpus. Each occurrence is decided by the words nearest it; an occurrence that matches no cue is left in review as \"Pico (ambiguous)\" rather than being assigned to the most common of the three, because the most common is not the same thing as the right one. Order matters and is the order in this list: Pico Canyon Road is tested before Pico Canyon, because the road's name contains the canyon's.",
+      "splits": [
         {
-            "canonical": "William S. Hart High School",
-            "type": "organization",
-            "aliases": [
-                "Hart High",
-                "Hart Union High",
-                "Hart High School",
-                "Hart Union High School"
-            ],
-            "note": "One school under four names. The queue had Hart High as a place on 24 articles and Hart High School as an organization on 19, which would have been two records for one school in two different sections."
+          "canonical": "Pico Canyon Road",
+          "type": "place",
+          "placeType": "road",
+          "cues": [
+            "road",
+            "rd",
+            "street",
+            "highway",
+            "drive",
+            "route"
+          ],
+          "note": "The road up the canyon. Checked before the canyon, since 'Pico Canyon Road' contains 'canyon'."
         },
         {
-            "canonical": "Jo Anne Darcy",
-            "type": "person",
-            "aliases": [
-                "Anne Darcy",
-                "Darcy"
-            ],
-            "note": "The extraction cut the given name in half. She appears as Jo Anne Darcy in the text; Anne Darcy is not a different councilwoman."
+          "canonical": "Pico Canyon",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "canyon",
+            "canyons",
+            "mentryville",
+            "pico canyon oilfield",
+            "oil canyon"
+          ],
+          "note": "The canyon itself, and the oilfield in it."
         },
         {
-            "canonical": "Downtown Newhall",
-            "type": "place",
-            "placeType": "site",
-            "aliases": [],
-            "note": "Downtown Newhall is the place, on twelve articles. The Specific Plan is a document about it, parked under its own entry, and \"Downtown Newhall Specific\" is a truncation of that document's title and folds there. Both entries claimed that alias at first and the place won on order, which put 21 articles about a planning document onto a place. The place keeps no aliases: nothing else in the corpus is it."
-        },
-        {
-            "canonical": "Santa Clarita Valley Historical Society",
-            "type": "organization",
-            "aliases": [
-                "SCV Historical Society",
-                "Historical Society"
-            ],
-            "note": "The bare Historical Society is safe to fold here: no other historical society is named in the corpus."
-        },
-        {
-            "canonical": "California State University, Northridge",
-            "type": "organization",
-            "aliases": [
-                "California State University",
-                "Cal State Northridge",
-                "CSUN",
-                "San Fernando Valley State College"
-            ],
-            "note": "The Valley campus, under the name it has had since 1972 and the one it had before."
-        },
-        {
-            "canonical": "Lyons Avenue",
-            "type": "place",
-            "placeType": "road",
-            "aliases": [
-                "Lyons"
-            ],
-            "note": "Bare Lyons is the avenue in the modern columns. Lyons Station and Sanford Lyon are separate records and are NOT aliases of this: the station is a place of its own and the man is a person."
-        },
-        {
-            "canonical": "Newhall Land and Farming Company",
-            "type": "organization",
-            "aliases": [
-                "Newhall Land",
-                "Newhall Land and Farming",
-                "Newhall Land & Farming"
-            ],
-            "note": "One company three ways, 29, 17 and 28 articles. The containment check caught these as three pairs; the canon settles them once."
-        },
-        {
-            "canonical": "William S. Hart Park",
-            "type": "place",
-            "placeType": "park",
-            "aliases": [
-                "Hart Park"
-            ],
-            "note": "Hart Park on 42 articles is the same park. William S. Hart the man is a separate person record and is not an alias."
-        },
-        {
-            "canonical": "Elizabeth Lake",
-            "type": "place",
-            "placeType": "natural",
-            "aliases": [
-                "Lake Elizabeth"
-            ],
-            "note": "The same words in either order. Elizabeth Lake is the gazetteer's spelling and the one the USGS carries."
-        },
-        {
-            "canonical": "Downtown Newhall Specific Plan",
-            "type": "organization",
-            "park": true,
-            "parkReason": "A document, not a place and not a body. The corpus names it because articles discuss the plan, and an entry for it would sit in a section for things that exist in the valley. Parked: the aliases fold here so the fragments stop ranking, and nothing is created.",
-            "aliases": [
-                "Specific Plan",
-                "Downtown Newhall Specific"
-            ],
-            "note": "\"Specific Plan\" on 11 articles is the tail of this title. Folding it here without parking would only move the wrong record's name."
-        },
-        {
-            "canonical": "Antonio del Valle",
-            "type": "person",
-            "aliases": [
-                "Don Antonio",
-                "Lt. Antonio",
-                "Lieutenant Antonio",
-                "Don Antonio's"
-            ],
-            "note": "A fold rather than a split. The brief asked for a split between Antonio del Valle and Antonio Coronel where the sentences support it; they do not. Every sentence behind the bare-Antonio group names del Valle: \"Don Antonio del Valle petitioned Governor Alvarado for the Rancho\", \"Lieutenant Antonio del Valle by order of the Governor\", \"son of Antonio and Maria del Valle\". Antonio Coronel already stands as his own row on one article, with a key the grouping never touches, so a split would have produced an empty second branch and no ambiguous remainder."
-        },
-        {
-            "canonical": "Rancho La Liebre",
-            "type": "place",
-            "placeType": "ranch",
-            "aliases": [
-                "Liebre",
-                "La Liebre"
-            ],
-            "note": "Guessed a person at close confidence. It is Beale's ranch in the Tehachapis."
-        },
-        {
-            "canonical": "Lincoln Memorial",
-            "type": "place",
-            "placeType": "building",
-            "aliases": [],
-            "note": "Guessed a person. It is a building, and the coin columns name it for the reverse of the cent."
-        },
-        {
-            "canonical": "Southern Pacific Railroad",
-            "type": "organization",
-            "aliases": [
-                "Southern Pacific",
-                "Southern Pacific Co",
-                "SP Railroad"
-            ],
-            "note": "The bare name on 24 articles and the full name on 18 are one railroad. The containment check raised this as a pair; the canon settles it."
-        },
-        {
-            "canonical": "Richard Rioux",
-            "type": "person",
-            "aliases": [
-                "Doc Rioux",
-                "Richard \"Doc\" Rioux",
-                "Dr. Richard Rioux",
-                "Doc"
-            ],
-            "note": "He signed the Old Town Newhall column as Doc Rioux across 38 articles. The record is under his name and finds him under the byline."
-        },
-        {
-            "canonical": "Q. David Bowers",
-            "type": "person",
-            "aliases": [
-                "David Bowers",
-                "Dave Bowers",
-                "Q David Bowers"
-            ],
-            "note": "The numismatist, cited constantly in the coin columns, who publishes under the initial."
-        },
-        {
-            "canonical": "City of Santa Clarita Cowboy Poetry and Music Festival",
-            "type": "event",
-            "aliases": [
-                "Cowboy Festival",
-                "Cowboy Poetry Festival",
-                "Music Festival",
-                "Santa Clarita Cowboy Festival",
-                "Cowboy Poetry and Music Festival"
-            ],
-            "note": "An event, not a body. The review screen creates people, places and organizations only, so this folds its aliases together and waits: the fragments stop ranking as five separate records and the festival is made once, by hand or by a screen that can make events."
-        },
-        {
-            "canonical": "Buck McKeon",
-            "type": "person",
-            "aliases": [
-                "Congressman Buck",
-                "Congressman McKeon",
-                "Mayor McKeon",
-                "Howard \"Buck\" McKeon",
-                "Howard McKeon",
-                "Congressman Howard McKeon",
-                "Rep. Buck McKeon"
-            ],
-            "note": "He is mayor in the early Signal columns and congressman in the later ones, and the corpus names him both ways plus his given name. The titles are aliases; the record is the man."
-        },
-        {
-            "canonical": "Tehachapi",
-            "type": "place",
-            "placeType": "settlement",
-            "aliases": [],
-            "note": "Guessed a person on six articles although the extraction called it a place: two words, neither a type word, and nothing in the sentences to say otherwise. It is the town over the pass. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
-        },
-        {
-            "canonical": "Bakersfield",
-            "type": "place",
-            "placeType": "settlement",
-            "aliases": [],
-            "note": "The town at the end of the Ridge Route. Named here whether or not the corpus uses it today, because the rule is about what these names are, not about which happen to be in the current export. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
-        },
-        {
-            "canonical": "Fillmore",
-            "type": "place",
-            "placeType": "settlement",
-            "aliases": [],
-            "note": "Down the river in Ventura County, and in the archive's territory for the same reason Piru is. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
-        },
-        {
-            "canonical": "Piru",
-            "type": "place",
-            "placeType": "settlement",
-            "aliases": [],
-            "note": "Ventura County, and the Rancho Camulos material is about it. placeType settlement exists for exactly these: a town outside the valley that is neither a site nor a natural feature, and calling Bakersfield a site is the kind of classification that makes a filter useless."
-        },
-        {
-            "canonical": "Kenneth Bressett",
-            "type": "person",
-            "external": true,
-            "wikidataId": "Q6389291",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Farran Zerbe",
-            "type": "person",
-            "external": true,
-            "wikidataId": "Q5437084",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Russell Rulau",
-            "type": "person",
-            "external": true,
-            "wikidataId": "",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Bill Fivaz",
-            "type": "person",
-            "external": true,
-            "wikidataId": "",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Abe Kosoff",
-            "type": "person",
-            "external": true,
-            "wikidataId": "",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Max Mehl",
-            "type": "person",
-            "external": true,
-            "wikidataId": "Q1913185",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Aubrey Bebee",
-            "type": "person",
-            "external": true,
-            "wikidataId": "",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Ward Connerly",
-            "type": "person",
-            "external": true,
-            "wikidataId": "Q7968160",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Ronald Reagan",
-            "type": "person",
-            "external": true,
-            "wikidataId": "Q9960",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Bill Clinton",
-            "type": "person",
-            "external": true,
-            "wikidataId": "Q1124",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
-        },
-        {
-            "canonical": "Theodore Roosevelt",
-            "type": "person",
-            "external": true,
-            "wikidataId": "Q33866",
-            "aliases": [],
-            "note": "External. A national figure a local columnist wrote about, with no Santa Clarita Valley connection the articles document. The prose linker points the name at Wikidata; the archive holds no record."
+          "canonical": "Andrés Pico",
+          "type": "person",
+          "cues": [
+            "andres",
+            "andrés",
+            "general",
+            "don",
+            "gen",
+            "his",
+            "he",
+            "brother",
+            "californio",
+            "treaty",
+            "cahuenga"
+          ],
+          "note": "The general who signed the Treaty of Cahuenga. His brother Pío is a separate person and is not folded here."
         }
-    ],
-    "splits": [
+      ]
+    },
+    {
+      "name": "Soledad",
+      "note": "Three things share the name. The canyon is the default reading in this corpus, so a sentence that carries none of the road cues resolves there rather than going to review: unlike Pico, where the three readings are genuinely balanced, Soledad without further words is the canyon in nearly every occurrence. Tested in the order below.",
+      "splits": [
         {
-            "name": "Pico",
-            "note": "A bare surname that resolves three ways in this corpus. Each occurrence is decided by the words nearest it; an occurrence that matches no cue is left in review as \"Pico (ambiguous)\" rather than being assigned to the most common of the three, because the most common is not the same thing as the right one. Order matters and is the order in this list: Pico Canyon Road is tested before Pico Canyon, because the road's name contains the canyon's.",
-            "splits": [
-                {
-                    "canonical": "Pico Canyon Road",
-                    "type": "place",
-                    "placeType": "road",
-                    "cues": [
-                        "road",
-                        "rd",
-                        "street",
-                        "highway",
-                        "drive",
-                        "route"
-                    ],
-                    "note": "The road up the canyon. Checked before the canyon, since 'Pico Canyon Road' contains 'canyon'."
-                },
-                {
-                    "canonical": "Pico Canyon",
-                    "type": "place",
-                    "placeType": "natural",
-                    "cues": [
-                        "canyon",
-                        "canyons",
-                        "mentryville",
-                        "pico canyon oilfield",
-                        "oil canyon"
-                    ],
-                    "note": "The canyon itself, and the oilfield in it."
-                },
-                {
-                    "canonical": "Andrés Pico",
-                    "type": "person",
-                    "cues": [
-                        "andres",
-                        "andrés",
-                        "general",
-                        "don",
-                        "gen",
-                        "his",
-                        "he",
-                        "brother",
-                        "californio",
-                        "treaty",
-                        "cahuenga"
-                    ],
-                    "note": "The general who signed the Treaty of Cahuenga. His brother Pío is a separate person and is not folded here."
-                }
-            ]
+          "canonical": "Soledad Canyon Road",
+          "type": "place",
+          "placeType": "road",
+          "cues": [
+            "road",
+            "rd",
+            "drove",
+            "drive",
+            "mile",
+            "miles",
+            "intersection",
+            "highway",
+            "route",
+            "traffic",
+            "widening"
+          ],
+          "note": "Checked first, because the road's name contains the canyon's."
         },
         {
-            "name": "Soledad",
-            "note": "Three things share the name. The canyon is the default reading in this corpus, so a sentence that carries none of the road cues resolves there rather than going to review: unlike Pico, where the three readings are genuinely balanced, Soledad without further words is the canyon in nearly every occurrence. Tested in the order below.",
-            "splits": [
-                {
-                    "canonical": "Soledad Canyon Road",
-                    "type": "place",
-                    "placeType": "road",
-                    "cues": [
-                        "road",
-                        "rd",
-                        "drove",
-                        "drive",
-                        "mile",
-                        "miles",
-                        "intersection",
-                        "highway",
-                        "route",
-                        "traffic",
-                        "widening"
-                    ],
-                    "note": "Checked first, because the road's name contains the canyon's."
-                },
-                {
-                    "canonical": "Soledad",
-                    "type": "place",
-                    "placeType": "settlement",
-                    "cues": [
-                        "township",
-                        "post office",
-                        "settlement",
-                        "town of",
-                        "village",
-                        "population",
-                        "census"
-                    ],
-                    "note": "The old township, which the Perkins and Reynolds material treats as a place people lived."
-                },
-                {
-                    "canonical": "Soledad Canyon",
-                    "type": "place",
-                    "placeType": "natural",
-                    "cues": [
-                        "canyon",
-                        "creek",
-                        "wash",
-                        "mine",
-                        "mining",
-                        "railroad",
-                        "rail",
-                        "stage",
-                        "narrows"
-                    ],
-                    "default": true,
-                    "note": "The default. A bare Soledad with no other signal is the canyon."
-                }
-            ]
+          "canonical": "Soledad",
+          "type": "place",
+          "placeType": "settlement",
+          "cues": [
+            "township",
+            "post office",
+            "settlement",
+            "town of",
+            "village",
+            "population",
+            "census"
+          ],
+          "note": "The old township, which the Perkins and Reynolds material treats as a place people lived."
         },
         {
-            "name": "Placerita",
-            "note": "Four things, and the same default: the canyon unless the sentence says otherwise. Placerita Creek and the Nature Center are named outright when they are meant.",
-            "splits": [
-                {
-                    "canonical": "Placerita Canyon Nature Center",
-                    "type": "place",
-                    "placeType": "park",
-                    "cues": [
-                        "nature center",
-                        "nature centre",
-                        "visitor center",
-                        "interpretive",
-                        "docent",
-                        "ranger"
-                    ],
-                    "note": "Checked first: its name contains both the canyon's and the road's."
-                },
-                {
-                    "canonical": "Placerita Canyon Road",
-                    "type": "place",
-                    "placeType": "road",
-                    "cues": [
-                        "road",
-                        "rd",
-                        "drove",
-                        "drive",
-                        "mile",
-                        "miles",
-                        "intersection",
-                        "highway",
-                        "route"
-                    ],
-                    "note": ""
-                },
-                {
-                    "canonical": "Placerita Creek",
-                    "type": "place",
-                    "placeType": "natural",
-                    "cues": [
-                        "creek",
-                        "stream",
-                        "water",
-                        "flood",
-                        "bed of"
-                    ],
-                    "note": ""
-                },
-                {
-                    "canonical": "Placerita Canyon",
-                    "type": "place",
-                    "placeType": "natural",
-                    "cues": [
-                        "canyon",
-                        "oak",
-                        "gold",
-                        "placer",
-                        "discovery",
-                        "state park",
-                        "gold discovery"
-                    ],
-                    "default": true,
-                    "note": "The default, and the one the gold discovery material means."
-                }
-            ]
-        },
-        {
-            "name": "Gorman",
-            "note": "A town on the Ridge Route and a soldier mustered out at Fort Tejon in 1864. The person is tested first: \"at\" and \"near\" appear in sentences about the man as readily as about the town, but a given name or a rank does not appear in a sentence about a place. An occurrence matching neither goes to review rather than to the commoner reading.",
-            "splits": [
-                {
-                    "canonical": "James Gorman",
-                    "type": "person",
-                    "cues": [
-                        "james",
-                        "mr",
-                        "mrs",
-                        "private",
-                        "corporal",
-                        "sergeant",
-                        "soldier",
-                        "mustered",
-                        "enlisted",
-                        "said",
-                        "wrote",
-                        "died",
-                        "born",
-                        "married",
-                        "served",
-                        "came",
-                        "went",
-                        "arrived",
-                        "reported"
-                    ],
-                    "note": "Tested first. A given name, a title or a verb of action."
-                },
-                {
-                    "canonical": "Gorman",
-                    "type": "place",
-                    "placeType": "settlement",
-                    "cues": [
-                        "at",
-                        "near",
-                        "to",
-                        "in",
-                        "through",
-                        "ridge route",
-                        "station",
-                        "post office",
-                        "road",
-                        "highway",
-                        "north of",
-                        "south of",
-                        "past",
-                        "toward",
-                        "towards"
-                    ],
-                    "note": "The town. GNIS holds it; the review card will show the gazetteer match."
-                }
-            ]
+          "canonical": "Soledad Canyon",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "canyon",
+            "creek",
+            "wash",
+            "mine",
+            "mining",
+            "railroad",
+            "rail",
+            "stage",
+            "narrows"
+          ],
+          "default": true,
+          "note": "The default. A bare Soledad with no other signal is the canyon."
         }
-    ],
-    "rules": [
+      ]
+    },
+    {
+      "name": "Placerita",
+      "note": "Four things, and the same default: the canyon unless the sentence says otherwise. Placerita Creek and the Nature Center are named outright when they are meant.",
+      "splits": [
         {
-            "pattern": "^Rancho\\b",
-            "type": "place",
-            "placeType": "ranch",
-            "note": "A rancho is a place. Three of them sit in the organizations section because the extraction read them as bodies, which they were in a legal sense and are not in the archive's sense: a reader looking for Rancho San Francisco wants the land."
+          "canonical": "Placerita Canyon Nature Center",
+          "type": "place",
+          "placeType": "park",
+          "cues": [
+            "nature center",
+            "nature centre",
+            "visitor center",
+            "interpretive",
+            "docent",
+            "ranger"
+          ],
+          "note": "Checked first: its name contains both the canyon's and the road's."
         },
         {
-            "pattern": "\\bRanch$",
-            "type": "place",
-            "placeType": "ranch",
-            "note": "Newhall Ranch, Melody Ranch, Tejon Ranch. The same rule from the other end of the name."
+          "canonical": "Placerita Canyon Road",
+          "type": "place",
+          "placeType": "road",
+          "cues": [
+            "road",
+            "rd",
+            "drove",
+            "drive",
+            "mile",
+            "miles",
+            "intersection",
+            "highway",
+            "route"
+          ],
+          "note": ""
         },
         {
-            "pattern": "^Mission\\b",
-            "type": "place",
-            "placeType": "site",
-            "note": "The missions are sites. San Fernando and San Gabriel are places people visit and write about, not congregations the archive holds as organizations."
+          "canonical": "Placerita Creek",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "creek",
+            "stream",
+            "water",
+            "flood",
+            "bed of"
+          ],
+          "note": ""
+        },
+        {
+          "canonical": "Placerita Canyon",
+          "type": "place",
+          "placeType": "natural",
+          "cues": [
+            "canyon",
+            "oak",
+            "gold",
+            "placer",
+            "discovery",
+            "state park",
+            "gold discovery"
+          ],
+          "default": true,
+          "note": "The default, and the one the gold discovery material means."
         }
-    ]
+      ]
+    },
+    {
+      "name": "Gorman",
+      "note": "A town on the Ridge Route and a soldier mustered out at Fort Tejon in 1864. The person is tested first: \"at\" and \"near\" appear in sentences about the man as readily as about the town, but a given name or a rank does not appear in a sentence about a place. An occurrence matching neither goes to review rather than to the commoner reading.",
+      "splits": [
+        {
+          "canonical": "James Gorman",
+          "type": "person",
+          "cues": [
+            "james",
+            "mr",
+            "mrs",
+            "private",
+            "corporal",
+            "sergeant",
+            "soldier",
+            "mustered",
+            "enlisted",
+            "said",
+            "wrote",
+            "died",
+            "born",
+            "married",
+            "served",
+            "came",
+            "went",
+            "arrived",
+            "reported"
+          ],
+          "note": "Tested first. A given name, a title or a verb of action."
+        },
+        {
+          "canonical": "Gorman",
+          "type": "place",
+          "placeType": "settlement",
+          "cues": [
+            "at",
+            "near",
+            "to",
+            "in",
+            "through",
+            "ridge route",
+            "station",
+            "post office",
+            "road",
+            "highway",
+            "north of",
+            "south of",
+            "past",
+            "toward",
+            "towards"
+          ],
+          "note": "The town. GNIS holds it; the review card will show the gazetteer match."
+        }
+      ]
+    },
+    {
+      "name": "Newhall",
+      "note": "The most overloaded name in the corpus: a town, the man it is named after, his land company, a ranch and a school. Tested in the order below, longest and most specific first, because every one of the others contains the bare name. The settlement is the default: a sentence carrying none of the cues below is about the town in the large majority of occurrences, and sending those to review would put several hundred pages in front of a person to confirm the obvious reading.",
+      "splits": [
+        {
+          "canonical": "Newhall Land and Farming Company",
+          "type": "organization",
+          "cues": [
+            "land and farming",
+            "land company",
+            "the company",
+            "subdivided",
+            "subdivision",
+            "acreage",
+            "tract",
+            "developer",
+            "development",
+            "sold the land",
+            "landholder",
+            "holdings",
+            "stockholders"
+          ],
+          "note": "Checked first: its name contains every other reading's."
+        },
+        {
+          "canonical": "Newhall Elementary School",
+          "type": "organization",
+          "cues": [
+            "school",
+            "pupils",
+            "students",
+            "classroom",
+            "teacher",
+            "teachers",
+            "principal",
+            "grammar",
+            "elementary",
+            "schoolhouse",
+            "enrollment",
+            "district"
+          ],
+          "note": "Nathan named this 'Newhall School', which is what the articles call it; #15958 is titled 'Newhall Elementary School'. The authority form is the title and the usage is the alias, so the record keeps its name and the corpus spelling resolves to it."
+        },
+        {
+          "canonical": "Newhall Ranch",
+          "type": "place",
+          "placeType": "ranch",
+          "cues": [
+            "ranch",
+            "rancho",
+            "cattle",
+            "grazing",
+            "acres",
+            "spread",
+            "herd",
+            "roundup",
+            "stock"
+          ],
+          "note": "Not a record yet; it sits in the queue on 12 articles. Distinct from #2538 Newhall Ranch House, which is the building on it."
+        },
+        {
+          "canonical": "Henry Mayo Newhall",
+          "type": "person",
+          "cues": [
+            "henry",
+            "mayo",
+            "mr. newhall",
+            "auctioneer",
+            "san francisco",
+            "magnate",
+            "his widow",
+            "his estate",
+            "his heirs",
+            "his sons",
+            "died",
+            "was born",
+            "bought the",
+            "purchased the",
+            "fell from",
+            "his horse"
+          ],
+          "note": "#283, not #16312. #16312 is 'Henry M. Newhall', a second record for the same man that the merge brief called for and which has not been run; the fuller form is the title under the name policy."
+        },
+        {
+          "canonical": "Newhall",
+          "type": "place",
+          "placeType": "settlement",
+          "cues": [
+            "town",
+            "depot",
+            "station",
+            "avenue",
+            "street",
+            "downtown",
+            "residents",
+            "population",
+            "post office",
+            "main street",
+            "business district",
+            "incorporated"
+          ],
+          "default": true,
+          "note": "The default. A bare Newhall with no other signal is the town."
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "pattern": "^Rancho\\b",
+      "type": "place",
+      "placeType": "ranch",
+      "note": "A rancho is a place. Three of them sit in the organizations section because the extraction read them as bodies, which they were in a legal sense and are not in the archive's sense: a reader looking for Rancho San Francisco wants the land."
+    },
+    {
+      "pattern": "\\bRanch$",
+      "type": "place",
+      "placeType": "ranch",
+      "note": "Newhall Ranch, Melody Ranch, Tejon Ranch. The same rule from the other end of the name."
+    },
+    {
+      "pattern": "^Mission\\b",
+      "type": "place",
+      "placeType": "site",
+      "note": "The missions are sites. San Fernando and San Gabriel are places people visit and write about, not congregations the archive holds as organizations."
+    }
+  ]
 }

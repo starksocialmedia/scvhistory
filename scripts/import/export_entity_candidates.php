@@ -451,11 +451,29 @@ if ($canon) {
     };
 
     /* Find a name in any kind, folded, so "CSUN" matches however it was filed. */
-    $findAnywhere = function (string $needle) use (&$entities, $fold): array {
+    /* $honorifics loosens the match to the honorific-stripped form, which the
+       splits need and the folds must not have.
+     *
+     * A split base can be absent from the corpus under its bare name and
+     * present under a title. The only Newhall-alone name the extraction
+     * produced is "Mr. Newhall"; the queue already strips the honorific and
+     * shows it as "Newhall", but this lookup compared the full names, missed,
+     * and reported "split base not in the corpus" -- so the five-way Newhall
+     * split silently did nothing while saying so in a line nobody reads as an
+     * error. Any base appearing only with a title had the same problem.
+     *
+     * The folds keep the strict comparison. A fold rewrites one name to
+     * another, and honorific variants are listed there explicitly as aliases
+     * precisely so each one is a decision somebody made. Loosening it would
+     * fold "Dr. Bard" wherever "Bard" folds, which is a guess about a person. */
+    $findAnywhere = function (string $needle, bool $honorifics = false) use (&$entities, $fold, $stripHon): array {
         $hits = [];
+        $n = $fold($needle);
+        $nh = $stripHon($needle);
         foreach ($entities as $k => $set) {
             foreach ($set as $nm => $_) {
-                if ($fold($nm) === $fold($needle)) { $hits[] = [$k, $nm]; }
+                if ($fold($nm) === $n) { $hits[] = [$k, $nm]; continue; }
+                if ($honorifics && $stripHon($nm) === $nh) { $hits[] = [$k, $nm]; }
             }
         }
         return $hits;
@@ -550,7 +568,7 @@ if ($canon) {
     foreach (($canon['splits'] ?? []) as $sp) {
         $base = trim((string)($sp['name'] ?? ''));
         if ($base === '') { continue; }
-        $hits = $findAnywhere($base);
+        $hits = $findAnywhere($base, true);
         if (!$hits) { $canonReport['missing'][] = $base . ' (split base not in the corpus)'; continue; }
 
         $tally = []; $ambiguous = []; $defaulted = []; $resolved = [];
@@ -670,11 +688,31 @@ if ($canon) {
             if (!in_array($nm, $targetNames, true)) { unset($entities[$k][$nm]); }
         }
 
-        /* Every target now carries exactly the pages that resolved to it. */
+        /* REPLACE THE BASE, UNION THE REST.
+         *
+         * A target whose name IS the base -- Gorman the town, Soledad the
+         * township -- holds every page the bare name appeared on, including the
+         * ones that belong to its siblings, because it and the base are one
+         * entity. Its inherited set is wrong by construction and the resolved
+         * set replaces it. That is what this block was written for.
+         *
+         * A target whose name is NOT the base is a separate entity with its own
+         * extracted pages, and those have nothing to do with resolving the bare
+         * name. Replacing them throws them away: Newhall Ranch was extracted on
+         * twelve articles in its own right, three of which also mention a bare
+         * Newhall, and a wholesale replacement cut it to those three. The nine
+         * it lost were never in question.
+         *
+         * The four older splits did not show this because their targets came
+         * into existence through the split and had almost nothing of their own
+         * to lose. Newhall is the first split whose targets are real records
+         * with real page sets, which is why it surfaced here. */
         foreach ($resolved as $ck => $set) {
             foreach ($set as $cn => $paths) {
-                $entities[$ck][$cn]['pages'] = $paths;
-                $tally[$cn] = count($paths);
+                $entities[$ck][$cn]['pages'] = $fold($cn) === $fold($base)
+                    ? $paths
+                    : (($entities[$ck][$cn]['pages'] ?? []) + $paths);
+                $tally[$cn] = count($entities[$ck][$cn]['pages']);
             }
         }
 
