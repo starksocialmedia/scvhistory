@@ -1798,3 +1798,13 @@ move_orgs_to_places.php, dry run: three ranchos and three missions out of
 organizations. Two already exist as places, so it repoints rather than
 duplicating. Ten person-to-organization relations are reversed onto the place
 as placePeople rather than dropped.
+
+Data exports at /data/organizations, people and places in JSON and CSV, with
+authority ids, subtype, level, parent, article count, canonical URL and a
+provenance and licence header. Dry run: 135 records, 999 article links.
+
+dateEdtf beside every printed date on seven entry types, derived where the
+printed form parses and left empty where it does not. The first parser read 525
+of 1,493; tidying weekday prefixes, stray commas, parenthesës, bullets and
+abbreviated months took it to 968. The 525 that remain are mostly prose typed
+into a date field.

@@ -213,7 +213,19 @@ foreach ($plan as $p) {
        deleted, which is how a move loses what it was moving. */
     $e = $p['exists'];
     if ($e) {
-        echo 'place exists for ' . $p['org']->title . ' (#' . $e->id . '), repointing only' . PHP_EOL;
+        echo 'place exists for ' . $p['org']->title . ' (#' . $e->id . '), repointing' . PHP_EOL;
+        /* And correcting its type. Rancho Camulos already existed as a place
+           carrying placeType site, set from the GNIS feature class Populated
+           Place. The canon rule ^Rancho says ranch and is a judgement about
+           what the archive means; the gazetteer's class is a default for when
+           nobody has judged. The first version repointed and left the type
+           alone, so the run verified 5 of 6 and said so. */
+        $cur = $e->placeType?->value ?: '';
+        if ($cur !== $p['placeType']) {
+            echo '   placeType ' . ($cur ?: '(empty)') . ' -> ' . $p['placeType'] . ', the canon rule over the GNIS default' . PHP_EOL;
+            $e->setFieldValue('placeType', $p['placeType']);
+            \Craft::$app->elements->saveElement($e);
+        }
     } else {
     $e = new \craft\elements\Entry();
     $e->sectionId = $placeSection->id;
