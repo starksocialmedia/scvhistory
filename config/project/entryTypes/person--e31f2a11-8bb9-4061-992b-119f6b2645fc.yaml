@@ -162,6 +162,40 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f82c4f23-b4f8-4edd-8b9d-e4e5024dc76b # Birth Date Edtf
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1d5c5408-4b93-42db-8170-c25724dc0adf
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 675b15a9-df4a-45fb-b3ea-bc10dd2da61d # Death Date Edtf
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b937e054-35e7-4fa7-b9d7-274f0f5a42f3
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: '2026-04-15T17:26:38+00:00'
             editCondition: null
             elementCondition: null

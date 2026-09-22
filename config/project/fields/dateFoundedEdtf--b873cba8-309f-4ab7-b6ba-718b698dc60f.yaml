@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: dateFoundedEdtf
+instructions: 'The date in dateFounded, expressed in Extended Date/Time Format for sorting and comparison. Derived where the printed form parses; empty where it does not. The printed form is authoritative: this is a convenience, not a correction.'
+name: 'Date Founded Edtf'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 64
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
