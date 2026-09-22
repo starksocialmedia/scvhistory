@@ -1872,3 +1872,10 @@ reported nothing pending. Three runs then made untitled entries against a type
 that looked fixed. rebuild_roles_vocabulary.php no longer touches schema: it
 reads the column, and stops with the reconciling command when config and
 database disagree.
+
+The 19:59 rebuild passed and reported failure. Entry::find()->count() returns a
+string and '80' === 80 is false, so the verdict was a type mismatch in the
+check rather than anything wrong with the data. Every check now prints its
+numbers and the verdict names which one failed. Roles are live: 80 titled
+terms, 93 relations, 32 people, and hasOccupation emits names and Wikidata ids
+on every person page.

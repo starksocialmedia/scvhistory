@@ -238,13 +238,35 @@ foreach ($plan as $x) {
     $got = array_filter(array_map(fn($r) => trim((string)$r->title), $p->roles->all()));
     if (count($got) === count($x['terms'])) { $verified++; }
 }
-$total = \craft\elements\Entry::find()->section('roles')->status(null)->count();
-echo PHP_EOL . 'entries: ' . $total . '  relations: ' . $linked
-   . '  people verified: ' . $verified . ' of ' . count($plan) . PHP_EOL;
-$ok = ($blank === 0 && $verified === count($plan) && $total === count($vocab));
-if (!$ok) { echo 'READ-BACK SHORT. Treat this run as failed.' . PHP_EOL; }
+/* (int). Entry::find()->count() returns a STRING from the database driver, and
+   '80' === 80 is false. The run of 19:59 deleted 80, created 80, wrote 93
+   relations and verified 32 of 32 people, all correctly, and then reported
+   READ-BACK SHORT on a type mismatch in its own check. An hour was spent
+   looking for a fault in the data because the check could not say which of its
+   three conditions had failed. */
+$total = (int)\craft\elements\Entry::find()->section('roles')->status(null)->count();
+
+/* Every check, with its numbers, every time. A verdict without them sends a
+   person to the control panel to find out what the script already knew. */
+$checks = [
+    ['entries titled',  $blank === 0,                     ($total - $blank) . ' of ' . $total],
+    ['vocabulary size', $total === count($vocab),          $total . ' of ' . count($vocab) . ' terms'],
+    ['people related',  $verified === count($plan),        $verified . ' of ' . count($plan)],
+    ['relations written', $linked > 0,                     (string)$linked],
+];
+echo PHP_EOL . 'READ-BACK' . PHP_EOL;
+foreach ($checks as [$name, $pass, $detail]) {
+    printf("   %-20s %-22s %s\n", $name, $detail, $pass ? 'pass' : 'FAIL');
+}
+$failed = array_values(array_filter($checks, fn($c) => !$c[1]));
+$ok = !$failed;
+if (!$ok) {
+    echo PHP_EOL . 'READ-BACK SHORT on: ' . implode(', ', array_column($failed, 0)) . PHP_EOL;
+    echo 'Treat this run as failed.' . PHP_EOL;
+}
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('rebuild_roles_vocabulary.php', $created,
-    ($ok ? '' : 'FAILED: ') . 'entries ' . $total . '/' . count($vocab)
+    ($ok ? 'verified: ' : 'FAILED on ' . implode('/', array_column($failed, 0)) . ': ')
+    . 'entries ' . $total . '/' . count($vocab) . ', titled ' . ($total - $blank)
     . ', people ' . $verified . '/' . count($plan),
     'deleted ' . $deleted . ' untitled, wrote ' . $linked . ' relations');
