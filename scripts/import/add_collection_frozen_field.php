@@ -21,6 +21,9 @@
  * console request, so one guard there covers them all. Control panel saves are
  * web requests and are not touched.
  *
+ * Unfreezing is always allowed, from the control panel or the console:
+ * scripts/import/set_collection_frozen.php does it and reads the switch back.
+ *
  * This creates the field, off by default, and freezes nothing.
  *
  * Idempotent. Dry run by default. Set $APPLY = true to write.
