@@ -75,13 +75,20 @@ foreach ($OPTIONS as $o) {
     printf("   %-12s %-32s %s\n", $o['value'], $o['label'], $had ? '' : 'new');
 }
 
+/* $already counts the records on series before this run, so the read-back can
+   check the total that should end up there. Comparing against $moving alone
+   reported FAIL on every rerun: nothing left to move, two already moved. */
 $moving = [];
+$already = 0;
 foreach (\craft\elements\Entry::find()->section('collections')->status(null)->limit(null)->all() as $e) {
     $has = false;
     foreach ($e->getFieldLayout()->getCustomFields() as $c) { if ($c->handle === $HANDLE) { $has = true; } }
     if (!$has) { continue; }
-    if (($e->{$HANDLE}->value ?? '') === $FROM) { $moving[] = $e; }
+    $v = $e->{$HANDLE}->value ?? '';
+    if ($v === $FROM) { $moving[] = $e; }
+    if ($v === $TO) { $already++; }
 }
+$expected = $already + count($moving);
 
 echo PHP_EOL . 'RECORDS MOVING ' . $FROM . ' -> ' . $TO . ' (' . count($moving) . '):' . PHP_EOL;
 foreach ($moving as $e) { printf("   #%-7d %s\n", $e->id, $e->title); }
@@ -130,14 +137,14 @@ foreach (\craft\elements\Entry::find()->section('collections')->status(null)->li
 
 echo PHP_EOL . 'READ-BACK' . PHP_EOL;
 printf("   %-26s %-18s %s\n", 'entries moved', $moved . ' of ' . count($moving), $moved === count($moving) ? 'pass' : 'FAIL');
-printf("   %-26s %-18s %s\n", 'now on ' . $TO, (string)$now, $now === count($moving) ? 'pass' : 'FAIL');
+printf("   %-26s %-18s %s\n", 'now on ' . $TO, $now . ' of ' . $expected, $now === $expected ? 'pass' : 'FAIL');
 printf("   %-26s %-18s %s\n", 'left on ' . $FROM, (string)$still, $still === 0 ? 'pass' : 'FAIL');
 printf("   %-26s %-18s %s\n", 'series in the options', in_array($TO, $vals, true) ? 'yes' : 'no', in_array($TO, $vals, true) ? 'pass' : 'FAIL');
 printf("   %-26s %-18s %s\n", 'book kept in the options', in_array($FROM, $vals, true) ? 'yes' : 'no', in_array($FROM, $vals, true) ? 'pass' : 'FAIL');
 
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('rename_collection_kind_book_to_series.php', $moved,
-    ($moved === count($moving) && $still === 0 && in_array($FROM, $vals, true) ? 'verified: ' : 'FAILED: ')
-        . $moved . ' moved, ' . $still . ' left on book, options ' . count($vals),
+    ($moved === count($moving) && $now === $expected && $still === 0 && in_array($FROM, $vals, true) ? 'verified: ' : 'FAILED: ')
+        . $moved . ' moved, ' . $now . ' of ' . $expected . ' on series, ' . $still . ' left on book, options ' . count($vals),
     'book kept for published volumes');
 echo PHP_EOL . 'config/project will be dirty. Commit it before deploying: see docs/DEPLOY.md step 1.' . PHP_EOL;
