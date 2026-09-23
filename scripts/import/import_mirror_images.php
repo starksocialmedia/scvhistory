@@ -43,6 +43,18 @@
  * resolved by replacing the file on the existing asset, never by letting Craft
  * invent a suffix.
  *
+ * THE FILES MUST REACH THE HOST. On 23 September all 18 replacements in the
+ * series pass were lost, and the script reported them as done. The cause was
+ * not Craft: .ddev/config.yaml sets upload_dirs to "web/uploads/archive-media"
+ * when DDEV reads that path relative to the docroot, so the bind mount landed
+ * on /var/www/html/web/web/uploads/archive-media, a path nothing uses, and the
+ * real uploads directory was left to Mutagen, whose watcher was in a problem
+ * state. A file written inside the container never reached the host. Check
+ * before an apply that writes files:
+ *
+ *     ddev exec mount | grep archive-media     # must show the real path
+ *     ddev mutagen status                      # must not say "problems"
+ *
  * Dry run by default: it copies nothing, creates nothing and writes a report
  * with counts and a twenty-file sample per pass.
  *
@@ -282,8 +294,20 @@ if ($APPLY) {
                 $asset = \craft\elements\Asset::find()->id($r['id'])->one();
                 if (!$asset) { $failed[] = $r['fn'] . ': asset vanished'; continue; }
                 if ($r['action'] === 'replace') {
+                    /* replaceAssetFile ends in saveElement and throws its result
+                       away, so a refused save returns void and the bytes never
+                       move. The count has to come from the file, not the call:
+                       on 23 September this reported 18 replacements and changed
+                       nothing. */
+                    $want = filesize($tmp);
                     $assetsSvc->replaceAssetFile($asset, $tmp, $asset->filename);
-                    $swapped++;
+                    $after = \craft\elements\Asset::find()->id($r['id'])->one();
+                    if ($after && (int)$after->size === (int)$want) { $swapped++; }
+                    else {
+                        $failed[] = $r['fn'] . ': replaceAssetFile reported nothing and the asset still reads '
+                            . ($after ? $after->size : '?') . ' bytes, not ' . $want
+                            . ($after ? '; errors ' . json_encode($after->getErrors()) : '');
+                    }
                 }
             }
 
@@ -315,7 +339,8 @@ if ($APPLY) {
     echo PHP_EOL . 'created: ' . $made . PHP_EOL;
     echo 'replaced in place: ' . $swapped . PHP_EOL;
     echo 'provenance saved: ' . $stamped . PHP_EOL;
-    foreach (array_slice($failed, 0, 12) as $f) { echo '  FAILED ' . $f . PHP_EOL; }
+    echo 'failed: ' . count($failed) . PHP_EOL;
+    foreach ($failed as $f) { echo '  FAILED ' . $f . PHP_EOL; }
 
     /* ------------------------------------------------- read the writes back */
 
@@ -343,11 +368,16 @@ if ($APPLY) {
         }
     }
     echo 'read back: ' . $back . ' files carry their provenance and their bytes' . PHP_EOL;
-    if ($short) {
-        echo PHP_EOL . 'THE WRITE DID NOT PERSIST' . PHP_EOL;
-        foreach (array_slice($short, 0, 12) as $m) { echo '  ' . $m . PHP_EOL; }
+    if ($short || $failed) {
+        echo PHP_EOL . 'THE WRITE DID NOT PERSIST: ' . count($short) . ' short, ' . count($failed) . ' failed' . PHP_EOL;
+        foreach ($short as $m) { echo '  ' . $m . PHP_EOL; }
         echo 'Do not re-run until this is understood.' . PHP_EOL;
-        return;
+        /* Thrown, not returned. On 23 September this printed its own failure and
+           exited 0, so the && chain treated it as success and ran the next pass
+           against files that had not been replaced. A script that says it failed
+           has to fail. */
+        throw new \RuntimeException('import_mirror_images: the write did not persist. '
+            . count($short) . ' files short, ' . count($failed) . ' failed.');
     }
     echo 'verified.' . PHP_EOL;
 }
