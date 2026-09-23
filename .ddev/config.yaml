@@ -9,9 +9,15 @@ additional_fqdns: []
 database:
     type: mysql
     version: "8.0"
+# Relative to the docroot, not the project root. With "web/uploads/..." here
+# DDEV mounted the host directory on /var/www/html/web/web/uploads/archive-media,
+# a path nothing reads, and left the real uploads directory to Mutagen; a file
+# written inside the container then never reached the host. 18 image
+# replacements were lost that way on 23 September 2026 and reported as done.
+# Check after a restart: ddev exec mount | grep archive-media
 upload_dirs:
-    - web/uploads/archive-media
-    - web/assets
+    - uploads/archive-media
+    - assets
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
