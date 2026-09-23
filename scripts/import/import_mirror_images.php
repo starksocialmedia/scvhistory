@@ -16,9 +16,11 @@
  *   3 captioned       every file the extraction holds a real caption for.
  *                     apply_extracted_captions.php can currently reach 89 of
  *                     its 5,220 records because the other files are not here.
- *   4 better copies   files we already hold, where the mirror's copy is larger.
- *                     Ours were fetched from the live site, which recompresses;
- *                     the mirror has what was uploaded.
+ *   4 better copies   files we already hold where the mirror's image is larger
+ *                     in pixels. Not in bytes: Craft sanitises every image it
+ *                     stores, so the stored file is always smaller than its
+ *                     source and a byte comparison flags files that are already
+ *                     as good as this pipeline can make them.
  *
  * The passes overlap and the union is deduplicated: a file wanted by two passes
  * is imported once, by the earlier one.
@@ -168,9 +170,32 @@ if (file_exists($enlPath)) {
 /* 4. files we hold whose mirror copy is larger. Bytes, which is a proxy: some
       of this is compression rather than resolution, and replacing a file with
       the same pixels at higher quality is still the right way round. */
+$volForPaths = Craft::$app->getVolumes()->getVolumeByHandle($VOLUME);
+$fsPathForAssets = $volForPaths ? rtrim(Craft::parseEnv($volForPaths->getFs()->path), '/') : '';
+
+/* "Better" means more pixels, not more bytes.
+
+   Craft sanitises every image it stores (Image::cleanImageByPath, which strips
+   metadata and re-encodes), so a stored file is always smaller than the source
+   it came from. Comparing the mirror's raw bytes against the stored bytes
+   therefore flags a file that is already the best version this pipeline can
+   produce, and flags it again on every run: on 23 September that was 952 files,
+   of which 950 have identical pixel dimensions and none is larger. Running the
+   mirror copy of ana60x70.jpg, worden_leon.jpg and nlg-logo-90.jpg through the
+   cleaner produces bytes identical to what is stored, md5 for md5.
+
+   So the test is the image, not the file. */
+$isBetterCopy = function (string $mirrorPath, \craft\elements\Asset $asset) use ($fsPathForAssets): bool {
+    $stored = $fsPathForAssets . '/' . $asset->getPath();
+    if (!is_file($stored)) { return true; }                 /* the file is gone: take the mirror's */
+    $m = @getimagesize($mirrorPath); $d = @getimagesize($stored);
+    if (!$m || !$d) { return filesize($mirrorPath) > filesize($stored) * 1.05; }
+    return ($m[0] * $m[1]) > ($d[0] * $d[1]);
+};
+
 $better = [];
 foreach ($held as $fn => $a) {
-    if (isset($mirror[$fn]) && $mirror[$fn]['size'] > $a->size * 1.05) { $better[$fn] = true; }
+    if (isset($mirror[$fn]) && $isBetterCopy($mirror[$fn]['path'], $a)) { $better[$fn] = true; }
 }
 
 /* Enlarge targets first. Until they land no tile on the Perkins pages or the
@@ -233,7 +258,7 @@ foreach ($PASSES as $p) {
         if ($existing === null) {
             $action = 'create';
             $new++;
-        } elseif ($m['size'] > $existing->size * 1.05) {
+        } elseif ($isBetterCopy($m['path'], $existing)) {
             $action = 'replace';
             $replace++;
         } else {
@@ -299,9 +324,17 @@ if ($APPLY) {
                        move. The count has to come from the file, not the call:
                        on 23 September this reported 18 replacements and changed
                        nothing. */
-                    $want = filesize($tmp);
+                    /* Compare like with like. Craft stores the cleaned image, so
+                       the check is against a cleaned copy of the source, never
+                       against the source's own bytes. */
+                    $expect = $tmp . '.expect';
+                    @copy($tmp, $expect);
+                    \craft\helpers\Image::cleanImageByPath($expect);
+                    clearstatcache();
+                    $want = is_file($expect) ? filesize($expect) : filesize($tmp);
                     $assetsSvc->replaceAssetFile($asset, $tmp, $asset->filename);
                     $after = \craft\elements\Asset::find()->id($r['id'])->one();
+                    @unlink($expect);
                     if ($after && (int)$after->size === (int)$want) { $swapped++; }
                     else {
                         $failed[] = $r['fn'] . ': replaceAssetFile reported nothing and the asset still reads '
@@ -360,8 +393,12 @@ if ($APPLY) {
                          . trim((string)$fresh->getFieldValue('legacySourcePath')) . '"';
                 continue;
             }
-            if ($r['action'] === 'replace' && $fresh->size <= $r['was']) {
-                $short[] = $r['fn'] . ': still ' . $fresh->size . ' bytes, the replacement did not take';
+            /* Not "bigger than before": a replacement whose cleaned bytes match
+               what was already stored is a no-op, not a failure. The planning
+               rule above should have kept it out of the set; this only catches a
+               file that vanished. */
+            if ($r['action'] === 'replace' && !$fresh->getVolume()->getFs()->fileExists($fresh->getPath())) {
+                $short[] = $r['fn'] . ': the file is not in the volume after the replacement';
                 continue;
             }
             $back++;
