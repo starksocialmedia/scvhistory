@@ -405,6 +405,15 @@ if ($APPLY) {
         }
     }
     echo 'read back: ' . $back . ' files carry their provenance and their bytes' . PHP_EOL;
+
+    /* Logged like every other apply. This script wrote nothing to APPLIED.log
+       for its first four passes, which is why the log has no record of the
+       3,491 assets they created or the replacements they reported. */
+    $applyLog = require $root . '/scripts/import/_apply_log.php';
+    $applyLog('import_mirror_images.php', $made + $swapped + $stamped,
+        ($short || $failed ? 'SHORT ' : 'verified ') . $back . ' of ' . array_sum(array_map('count', $plan))
+            . ' read back' . ($short ? ', ' . count($short) . ' short' : '') . ($failed ? ', ' . count($failed) . ' failed' : ''),
+        'pass ' . ($ONLY ?: 'all') . ': created ' . $made . ', replaced ' . $swapped . ', provenance ' . $stamped);
     if ($short || $failed) {
         echo PHP_EOL . 'THE WRITE DID NOT PERSIST: ' . count($short) . ' short, ' . count($failed) . ' failed' . PHP_EOL;
         foreach ($short as $m) { echo '  ' . $m . PHP_EOL; }

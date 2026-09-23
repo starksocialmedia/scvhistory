@@ -7,41 +7,37 @@
  * knows about who and what is in a picture is sitting in the crawl and in the
  * captions, unread. This reads it.
  *
- * THREE ROUTES, MEASURED 22 SEPTEMBER
+ * WHAT COUNTS AS EVIDENCE
  *
- *   A  the crawl's mention lists, per page (people_mentioned, places_mentioned,
- *      orgs_mentioned). Reaches 1,434 of the 1,544 photographs, 3,432 relations.
- *   B  the record's own words: caption, body, title. 1,353 photographs.
- *   C  the image-link layer: which article's thumbnail points at this
- *      photograph. It fills photoArticles, a different field from the other
- *      two routes. Most of that layer is one photograph pointing at another,
- *      which is a gallery link and not this field's business; only article
- *      sources are read.
+ * The picture's own words: its title and its caption. Nothing else writes.
  *
- * WHAT IS WRITTEN, AND WHAT IS NOT
+ * It read the page's prose too, by two routes — the crawl's mention lists and
+ * the record's body — and wrote where they agreed. They are not two routes.
+ * Every one of the crawl's mention names appears in that page's own body_text,
+ * measured at 100% over 4,599 mentions, because the mention lists were
+ * extracted from the prose the body was imported from. Agreement between them
+ * was one piece of evidence counted twice, which is why the agreed set was
+ * always exactly the crawl's set: 1,116 and 1,116.
  *
- * Only where A and B agree on the same record for the same photograph. A
- * disagreement is a signal, not something to settle by preferring a route, so
- * anything either route finds alone goes to the queue unwritten. Route C is
- * separate and writes photoArticles on its own evidence, because a thumbnail
- * pointing at a page is a fact about the link, not an inference about a
- * subject.
+ * The prose is the wrong evidence anyway. A name in the body says the article
+ * mentions it, not that the picture shows it. Sampled on 23 September:
  *
- * THE CREDIT IS NOT THE SUBJECT. Leon Worden resolves on 1,129 of the 1,544
- * pages, because he is the credit line and the collector. Any name that
- * appears in this photograph's credit fields is dropped from both routes
- * before they are compared. Without that filter the archive would say Leon is
- * pictured in three quarters of its photographs.
+ *   Tom Mix        0 of 5 were pictures of him. A Hart lobby card, a rodeo
+ *                  ribbon and two ticket stubs, each naming him in passing:
+ *                  "stars such as William S. Hart, Harry Carey, Tom Mix".
+ *   Elizabeth Lake 1 of 5. The rest were Munz Lakes Resort on Elizabeth Lake
+ *                  ROAD, and gallery navigation lists.
  *
- * AMBIGUOUS NAMES ARE NEVER GUESSED. inventory/legacy/name-canon.json lists
- * names that resolve more than one way, "Pico" among them. They are never
- * written, whatever the routes say, and always queued.
+ * Where the name is in the title or the caption, the picture is of the thing.
+ * So that is the rule, and it writes 171 relations across 156 photographs
+ * rather than 2,632 across 1,129. The prose evidence is not kept as a weaker
+ * signal: it is queued, which is where "Tom Mix was also a star" belongs.
  *
- * 8,626 distinct mention names match no record at all, and the top of that
- * list is legacy menu furniture: "Publicity Photos", "Drone Video", "Personal
- * Life". Those are not entities and this never invents one; they go to the
- * queue as candidate names with their counts, for the same review that governs
- * every other entity decision.
+ * photoArticles is separate and unaffected: it comes from the image-link layer,
+ * which records that an article's thumbnail points at this photograph. That is
+ * a fact about the link, not an inference about a subject. Only layers sitting
+ * on an article are read; most of that layer is one photograph pointing at
+ * another, which is a gallery link.
  *
  * Read the queue at web/review/photo-links.json.
  *
@@ -205,48 +201,51 @@ foreach (\craft\elements\Entry::find()->section('photographs')->status(null)->li
         if ($k !== '' && isset($crawl[$k])) { $page = $crawl[$k]; break; }
     }
 
-    /* A: the crawl's mentions. */
-    $A = [];
+    /* The evidence that writes: the picture's own words. */
+    $ownWords = ' ' . $norm($ph->title . ' '
+        . ($layout?->getFieldByHandle('photoCaptionExt') ? (string)$ph->getFieldValue('photoCaptionExt') : '')) . ' ';
+    $titleCaption = [];
+    foreach ($byName as $n => $rec) {
+        if (isset($ambiguous[$n])) { $skippedAmbiguous[$n] = ($skippedAmbiguous[$n] ?? 0) + 1; continue; }
+        if ($credit !== '' && str_contains($credit, $n)) {
+            $creditDropped++;
+            if ($creditPhraseOnly !== '' && str_contains($creditPhraseOnly, $n)) { $creditQueue[$rec['title']] = ($creditQueue[$rec['title']] ?? 0) + 1; }
+            continue;
+        }
+        if (str_contains($ownWords, ' ' . $n . ' ')) { $titleCaption[$rec['section'] . ':' . $rec['id']] = $rec + ['via' => $n]; }
+    }
+
+    /* The evidence that queues: the page's prose, by either reading of it. */
+    $prose = ' ' . $norm($layout?->getFieldByHandle('body') ? (string)$ph->getFieldValue('body') : '') . ' ';
+    $fromProse = [];
+    foreach ($byName as $n => $rec) {
+        if (isset($ambiguous[$n])) { continue; }
+        if ($credit !== '' && str_contains($credit, $n)) { continue; }
+        if (isset($titleCaption[$rec['section'] . ':' . $rec['id']])) { continue; }
+        if (str_contains($prose, ' ' . $n . ' ')) { $fromProse[$rec['section'] . ':' . $rec['id']] = $rec + ['via' => $n]; }
+    }
     foreach (['people_mentioned', 'places_mentioned', 'orgs_mentioned'] as $m) {
         foreach ((array)($page[$m] ?? []) as $it) {
             $raw = is_array($it) ? (string)($it['name_raw'] ?? '') : (string)$it;
             $n = $norm($raw);
-            if ($n === '' ) { continue; }
-            if (isset($ambiguous[$n])) { $skippedAmbiguous[$raw] = ($skippedAmbiguous[$raw] ?? 0) + 1; continue; }
-            if ($n !== '' && $credit !== '' && str_contains($credit, $n)) {
-                $creditDropped++;
-                if ($creditPhraseOnly !== '' && str_contains($creditPhraseOnly, $n)) { $creditQueue[$raw] = ($creditQueue[$raw] ?? 0) + 1; }
-                continue;
-            }
+            if ($n === '' || isset($ambiguous[$n])) { continue; }
+            if ($credit !== '' && str_contains($credit, $n)) { continue; }
             $rec = $byName[$n] ?? null;
-            if ($rec) { $A[$rec['section'] . ':' . $rec['id']] = $rec + ['via' => $raw]; }
-            elseif (mb_strlen($n) >= 6) { $unmatched[$raw] = ($unmatched[$raw] ?? 0) + 1; }
+            if ($rec && !isset($titleCaption[$rec['section'] . ':' . $rec['id']])) {
+                $fromProse[$rec['section'] . ':' . $rec['id']] = $rec + ['via' => $raw];
+            } elseif (!$rec && mb_strlen($n) >= 6) {
+                $unmatched[$raw] = ($unmatched[$raw] ?? 0) + 1;
+            }
         }
     }
 
-    /* B: the record's own words. */
-    $own = ' ' . $norm(implode(' ', [
-        $ph->title,
-        $layout?->getFieldByHandle('photoCaptionExt') ? (string)$ph->getFieldValue('photoCaptionExt') : '',
-        $layout?->getFieldByHandle('body') ? (string)$ph->getFieldValue('body') : '',
-    ])) . ' ';
-    $B = [];
-    foreach ($byName as $n => $rec) {
-        if (isset($ambiguous[$n])) { continue; }
-        if ($credit !== '' && str_contains($credit, $n)) { continue; }
-        if (str_contains($own, ' ' . $n . ' ')) { $B[$rec['section'] . ':' . $rec['id']] = $rec + ['via' => $n]; }
-    }
-
+    $A = $titleCaption; $B = $fromProse;
     if ($A) { $statA++; }
-    if ($B) { $statB++; }
 
-    $agree = array_intersect_key($A, $B);
-    $onlyA = array_diff_key($A, $B);
-    $onlyB = array_diff_key($B, $A);
-    if ($agree) { $statAgree++; }
+    if ($B) { $statAgree++; }
 
     $write = [];
-    foreach ($agree as $rec) {
+    foreach ($A as $rec) {
         $field = $FIELD_FOR[$rec['section']];
         if (!$layout?->getFieldByHandle($field)) { continue; }
         $write[$field][] = $rec['id'];
@@ -264,11 +263,11 @@ foreach (\craft\elements\Entry::find()->section('photographs')->status(null)->li
     }
     if ($set) { $plan[(int)$ph->id] = ['id' => (int)$ph->id, 'title' => $ph->title, 'set' => $set]; }
 
-    if ($onlyA || $onlyB) {
+    if ($B) {
         $queue[] = [
             'photograph' => (int)$ph->id, 'title' => $ph->title, 'url' => $ph->getCpEditUrl(),
-            'onlyCrawl' => array_values(array_map(fn($r) => ['record' => $r['section'] . ' #' . $r['id'], 'name' => $r['title'], 'saw' => $r['via']], $onlyA)),
-            'onlyRecordText' => array_values(array_map(fn($r) => ['record' => $r['section'] . ' #' . $r['id'], 'name' => $r['title'], 'saw' => $r['via']], $onlyB)),
+            'namedInTheProseOnly' => array_values(array_map(
+                fn($r) => ['record' => $r['section'] . ' #' . $r['id'], 'name' => $r['title'], 'saw' => $r['via']], $B)),
         ];
     }
 }
@@ -284,10 +283,9 @@ foreach ($plan as $p) {
 arsort($perTarget);
 
 echo 'photographs: ' . \craft\elements\Entry::find()->section('photographs')->status(null)->count() . PHP_EOL;
-echo '   route A found something on          ' . $statA . PHP_EOL;
-echo '   route B found something on          ' . $statB . PHP_EOL;
-echo '   A and B agreed on                   ' . $statAgree . PHP_EOL;
-echo '   route C (photoArticles) on          ' . $statC . PHP_EOL;
+echo '   named in the title or caption       ' . $statA . '  (this is what writes)' . PHP_EOL;
+echo '   named only in the page prose        ' . $statAgree . '  (queued, never written)' . PHP_EOL;
+echo '   photoArticles from the link layer   ' . $statC . PHP_EOL;
 echo '   names dropped for being the credit  ' . $creditDropped
    . ' (' . count($creditQueue) . ' of them found by a credit phrase in the record\'s own words, queued)' . PHP_EOL;
 echo '   ambiguous names refused             ' . count($skippedAmbiguous) . PHP_EOL;
@@ -302,7 +300,7 @@ foreach (array_slice($perTarget, 0, 10, true) as $id => $n) {
     echo '   ' . str_pad((string)$n, 6) . '#' . $id . ' ' . ($e?->title ?? '?') . ' (' . ($e?->section->handle ?? '?') . ')' . PHP_EOL;
 }
 
-echo PHP_EOL . 'to the queue: ' . count($queue) . ' photographs where the routes disagree, '
+echo PHP_EOL . 'to the queue: ' . count($queue) . ' photographs named only in the prose, '
    . count($unmatched) . ' names matching no record, ' . count($skippedAmbiguous) . ' ambiguous' . PHP_EOL;
 
 arsort($unmatched);
@@ -311,9 +309,9 @@ $out = [
         'generated' => date('c'),
         'generated_by' => 'scripts/import/rebuild_photo_relations.php',
         'mode' => $APPLY ? 'applied' : 'dry run',
-        'rule' => 'written only where the crawl and the record text agree; everything else is here, unwritten',
+        'rule' => 'written only where the picture\'s own title or caption names the record; a name in the page prose is queued here, unwritten',
     ],
-    'disagreements' => $queue,
+    'namedOnlyInProse' => $queue,
     'namesWithNoRecord' => array_slice(array_map(fn($k, $v) => ['name' => $k, 'seen' => $v], array_keys($unmatched), $unmatched), 0, 1200),
     'ambiguous' => array_map(fn($k, $v) => ['name' => $k, 'seen' => $v, 'why' => $ambiguous[$norm($k)] ?? ''], array_keys($skippedAmbiguous), $skippedAmbiguous),
     'readAsCredit' => array_map(fn($k, $v) => ['name' => $k, 'seen' => $v,
