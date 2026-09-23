@@ -53,3 +53,8 @@
 2026-09-23 06:54:20 PDT	relabel_person_bodies.php	scvhistory-web	2 rows	verified 2 of 2	#283 -> legacy-leon, #281 -> mixed with the #817 overlap recorded
 2026-09-23 06:54:21 PDT	add_document_publishing_fields.php	scvhistory-web	6 rows	verified: 6 fields on the document layout	existing fields reused; publishedBy left empty for Wolfenstein
 2026-09-23 06:54:23 PDT	create_vasquez_document.php	scvhistory-web	2 rows	verified: document and person both read back	document #18991 from JE4001, 1874, V. Wolfenstein; person #285 body emptied
+2026-09-23 07:04:53 PDT	quality_nav_junk.php	scvhistory-web	114 rows	SHORT 43 of 114; report as predicted	nav 118->4; 6 left for a person; frozen skipped: none
+2026-09-23 07:15:31 PDT	quality_byline_dates.php	scvhistory-web	423 rows	verified 423 of 423; report as predicted	dateProse 441->19, undated 136->114; 20 left for a person; frozen skipped: none
+2026-09-23 07:16:19 PDT	quality_drop_caps.php	scvhistory-web	295 rows	verified 295 of 295; report as predicted	; 14 left for a person; frozen skipped: none
+2026-09-23 07:16:42 PDT	quality_footnotes.php	scvhistory-web	7 rows	verified 7 of 7; report as predicted	footnotes 17->10; 9 left for a person; frozen skipped: none
+2026-09-23 07:17:03 PDT	quality_images.php	scvhistory-web	15 rows	verified 15 of 15; report as predicted	imgMissing 172->159; 159 left for a person; frozen skipped: none
