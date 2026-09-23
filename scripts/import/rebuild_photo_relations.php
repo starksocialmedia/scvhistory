@@ -39,6 +39,21 @@
  * on an article are read; most of that layer is one photograph pointing at
  * another, which is a gallery link.
  *
+ * WHAT THE NUMBERS MEAN, FOR ANYONE READING THEM LATER
+ *
+ * The 31 photoPeople relations this wrote on 23 September are a floor, not a
+ * finished job. They are bounded by two things that will move: there are 83
+ * person records in the archive to match against, and the captions rarely name
+ * anybody. Re-run this after the person records grow — the editorial profiles
+ * track adds them — and expect the number to rise without anything here
+ * changing.
+ *
+ * A high count is not photographic presence. John C. Frémont ends up with 8,
+ * and all 8 are scans of one object: "Circle of Friends Medal No. 9: John C.
+ * Fremont". The medal carries his portrait, so the relation is sound, but the
+ * archive holds no photograph of the man. Read a person's count as "pictures
+ * whose own title or caption names them", which is what it is.
+ *
  * Read the queue at web/review/photo-links.json.
  *
  * Idempotent: a relation already on the record is left alone and never
@@ -300,6 +315,9 @@ foreach (array_slice($perTarget, 0, 10, true) as $id => $n) {
     echo '   ' . str_pad((string)$n, 6) . '#' . $id . ' ' . ($e?->title ?? '?') . ' (' . ($e?->section->handle ?? '?') . ')' . PHP_EOL;
 }
 
+echo PHP_EOL . 'these counts are a floor: 83 person records to match against, and captions that rarely name'
+   . ' anybody. A high count is not photographic presence — Frémont\'s are eight scans of one medal.' . PHP_EOL;
+
 echo PHP_EOL . 'to the queue: ' . count($queue) . ' photographs named only in the prose, '
    . count($unmatched) . ' names matching no record, ' . count($skippedAmbiguous) . ' ambiguous' . PHP_EOL;
 
@@ -310,6 +328,8 @@ $out = [
         'generated_by' => 'scripts/import/rebuild_photo_relations.php',
         'mode' => $APPLY ? 'applied' : 'dry run',
         'rule' => 'written only where the picture\'s own title or caption names the record; a name in the page prose is queued here, unwritten',
+        'theNumbersAreAFloor' => 'Bounded by 83 person records and by captions that rarely name people. Re-run as person records grow.',
+        'countIsNotPresence' => 'A person\'s count is pictures whose title or caption names them. Frémont\'s 8 are eight scans of one medal bearing his portrait, not photographs of the man.',
     ],
     'namedOnlyInProse' => $queue,
     'namesWithNoRecord' => array_slice(array_map(fn($k, $v) => ['name' => $k, 'seen' => $v], array_keys($unmatched), $unmatched), 0, 1200),

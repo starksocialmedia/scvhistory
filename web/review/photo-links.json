@@ -1,9 +1,11 @@
 {
     "meta": {
-        "generated": "2026-09-23T08:19:35-07:00",
+        "generated": "2026-09-23T08:29:16-07:00",
         "generated_by": "scripts/import/rebuild_photo_relations.php",
-        "mode": "applied",
-        "rule": "written only where the picture's own title or caption names the record; a name in the page prose is queued here, unwritten"
+        "mode": "dry run",
+        "rule": "written only where the picture's own title or caption names the record; a name in the page prose is queued here, unwritten",
+        "theNumbersAreAFloor": "Bounded by 83 person records and by captions that rarely name people. Re-run as person records grow.",
+        "countIsNotPresence": "A person's count is pictures whose title or caption names them. Frémont's 8 are eight scans of one medal bearing his portrait, not photographs of the man."
     },
     "namedOnlyInProse": [
         {
