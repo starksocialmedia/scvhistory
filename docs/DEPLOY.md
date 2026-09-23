@@ -94,6 +94,48 @@ After the MacBook restarts, DDEV and the Reggie bind are both down. Before any
 
 ---
 
+## When the container writes files  — **MacBook**
+
+Anything that imports images writes them from inside the DDEV container:
+`import_mirror_images.php`, a control panel upload, a generated transform. The
+host copy is what `rsync` ships to staging, so a write that does not reach the
+host is a write that does not exist, and on 23 September 2026 eighteen of them
+were lost in silence.
+
+Three things to know, because none of them announces itself.
+
+**`upload_dirs` is resolved against the docroot, not the project root.** The
+docroot here is `web`, so the correct value is `uploads/archive-media`, and
+`web/uploads/archive-media` makes DDEV mount the host directory on
+`/var/www/html/web/web/uploads/archive-media`.
+
+**A wrong path fails silently, by mounting somewhere nothing reads.** There is
+no error. The bind mount is made, it is simply made in the wrong place, and the
+real uploads directory is left to Mutagen instead of being shared directly.
+`.ddev/mutagen/mutagen.yml` inherits the same wrong path in its ignore list, so
+the directory is not excluded from syncing either. Both faults point the same
+way and neither is visible from Craft.
+
+**A container write to a synced path can be reverted with no error.** Mutagen
+runs in `two-way-resolved` mode, where the host wins a conflict. With its
+watcher in a problem state the change is not propagated, and at the next
+reconcile the container's copy is replaced by the host's. Craft reports a
+successful save, the database keeps the new metadata, and the bytes go back to
+what they were. That is how eighteen image replacements were reported as done
+while every file kept its old contents.
+
+Before any apply that writes files:
+
+```
+ddev exec mount | grep archive-media     # must show /var/www/html/web/uploads/archive-media
+ddev mutagen status                      # must not say "problems"
+```
+
+If the mount is on the doubled path, fix `upload_dirs` in `.ddev/config.yaml`
+and `ddev restart`; `mutagen.yml` is `#ddev-generated` and corrects itself.
+
+---
+
 ## What the deploy carries, and how
 
 | Change | Route |
