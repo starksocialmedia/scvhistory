@@ -100,12 +100,31 @@ return function (array $cfg): void {
         foreach ($mine as $why) { $listed[] = ['id' => (int)$e->id, 'coll' => $collSlug[$cid], 'title' => $e->title, 'why' => $why]; }
         if (!$p || empty($p['set'])) { continue; }
 
-        /* Keep only what differs from the stored value. */
+        /* Keep only what differs from the stored value, and store text the way
+           Craft will.
+
+           Craft trims both ends of a text field on save. A pass that removes
+           the last line of a body hands over a value ending in a newline, gets
+           back a value without it, and its own read-back calls that a failed
+           write: on 23 September pass 1 wrote all 114 records correctly and
+           then refused to let passes 2 to 5 run, because 71 of them had lost a
+           trailing newline that was never going to be stored. Measured, not
+           assumed: a probe saved "\n  text\n\nmiddle\n\n  \n" and read back
+           "text\n\nmiddle".
+
+           So the trim happens here, before the comparison, and the read-back
+           stays an exact match. Loosening the read-back instead would have hidden
+           a real change in the same place. */
         $set = [];
         foreach ($p['set'] as $h => $v) {
             $cur = $e->getFieldValue($h);
             if (is_object($cur) && method_exists($cur, 'ids')) { $cur = $cur->status(null)->ids(); }
-            if (is_array($v) ? array_values($v) != array_values((array)$cur) : (string)$v !== (string)$cur) { $set[$h] = $v; }
+            if (is_array($v)) {
+                if (array_values($v) != array_values((array)$cur)) { $set[$h] = $v; }
+            } else {
+                $v = trim((string)$v);
+                if ($v !== trim((string)$cur)) { $set[$h] = $v; }
+            }
         }
         if (!$set) { continue; }
         $plan[(int)$e->id] = ['id' => (int)$e->id, 'coll' => $collSlug[$cid], 'title' => $e->title,
@@ -243,8 +262,26 @@ return function (array $cfg): void {
         implode(', ', $moved) . '; ' . count($listed) . ' left for a person; frozen skipped: '
         . ($frozenList ? implode(', ', $frozenList) : 'none'));
 
-    if ($short || $failed || $mismatch) {
-        foreach ($short as $m) { echo '  ' . $m . PHP_EOL; }
+    /* Three different faults, which used to share one sentence. They mean
+       different things and want different next steps. */
+    if ($failed) {
+        echo PHP_EOL . 'REFUSED: ' . count($failed) . ' of ' . count($plan) . ' saves were refused.' . PHP_EOL;
+    }
+    if ($short) {
+        echo PHP_EOL . 'SHORT READ-BACK: ' . count($short) . ' of ' . count($plan)
+           . ' records do not hold what was planned. The data is wrong; look at these before anything else.' . PHP_EOL;
+        foreach (array_slice($short, 0, 20) as $m) { echo '  ' . $m . PHP_EOL; }
+    }
+    if ($mismatch) {
+        echo PHP_EOL . 'REPORT DIFFERS FROM THE DRY RUN: the records read back exactly as planned, but the'
+           . ' quality report does not say what the dry run predicted. The writes are not in doubt; the'
+           . ' prediction or a fault class is.' . PHP_EOL;
+        foreach ($mismatch as $m) { echo '  ' . $m . PHP_EOL; }
+    }
+    if ($short || $failed) {
         throw new \RuntimeException($script . ': the write did not land as planned. Do not run the next pass until this is understood.');
+    }
+    if ($mismatch) {
+        throw new \RuntimeException($script . ': the write landed, but the report does not match the dry run. The next pass can wait until that is explained.');
     }
 };
