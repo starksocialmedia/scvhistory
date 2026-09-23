@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 22 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 23 September 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -160,13 +160,19 @@ emitted from whichever side schema.org expects.
 
 ### Documents — `documents/document`
 
-22 fields.
+28 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
 | `featuredImage` | Assets | schema.org `image` |  |
 | `webmasterNoteTop` | PlainText | **local** | no external equivalent |
 | `body` | PlainText | schema.org `text` | also dcterms:description |
+| `originallyPublishedTitle` | PlainText | schema.org `alternativeHeadline` | the title the piece first carried |
+| `originalPublishDate` | PlainText | schema.org `datePublished` | printed form; EDTF in dateEdtf where it parses |
+| `originalPublishDateEdtf` | PlainText | **local** | no external equivalent |
+| `sourceLine` | PlainText | **local** | no external equivalent |
+| `publishedBy` | Entries | schema.org `publisher` |  |
+| `subjectPerson` | Entries | schema.org `about` | dcterms:subject |
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |

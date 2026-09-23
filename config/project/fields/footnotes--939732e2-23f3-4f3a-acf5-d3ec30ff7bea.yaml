@@ -68,7 +68,7 @@ settings:
                       - editor
                     -
                       - default
-                      - true
+                      - false
                 -
                   __assoc__:
                     -
@@ -99,6 +99,17 @@ settings:
                     -
                       - value
                       - source
+                    -
+                      - default
+                      - false
+                -
+                  __assoc__:
+                    -
+                      - label
+                      - 'SCVHistory editorial, 2026'
+                    -
+                      - value
+                      - editorial-2026
                     -
                       - default
                       - false

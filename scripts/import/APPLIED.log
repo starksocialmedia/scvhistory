@@ -49,3 +49,7 @@
 2026-09-22 13:09:10 PDT	set_collection_frozen.php	scvhistory-web	1 rows	verified: reads open	mentryville #12135 frozen -> open
 2026-09-22 15:40:26 PDT	add_body_authorship_field.php	scvhistory-web	1 rows	verified: dropdown, in layout, 0 classified	step 0 of the editorial profiles track
 2026-09-22 15:40:29 PDT	classify_person_bodies.php	scvhistory-web	33 rows	verified 33 of 33 labelled, bodies unchanged	wordpress-import-unsourced; 0 left for a person; prose kept, hidden from the front end
+2026-09-23 06:54:18 PDT	fix_footnote_source_options.php	scvhistory-web	1 rows	verified: 5 options, no default	added editorial-2026; default was "editor" (Leon Worden); 12 real rows untouched
+2026-09-23 06:54:20 PDT	relabel_person_bodies.php	scvhistory-web	2 rows	verified 2 of 2	#283 -> legacy-leon, #281 -> mixed with the #817 overlap recorded
+2026-09-23 06:54:21 PDT	add_document_publishing_fields.php	scvhistory-web	6 rows	verified: 6 fields on the document layout	existing fields reused; publishedBy left empty for Wolfenstein
+2026-09-23 06:54:23 PDT	create_vasquez_document.php	scvhistory-web	2 rows	verified: document and person both read back	document #18991 from JE4001, 1874, V. Wolfenstein; person #285 body emptied
