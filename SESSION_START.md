@@ -6,12 +6,18 @@
 
 You are working on SCVHistory.com, a Craft CMS 5 digital archive project for Santa Clarita Valley history.
 
-Before doing anything else, fetch and read these four files from GitHub:
+Before doing anything else, read these four files from the main branch of starksocialmedia/scvhistory:
 
-- https://raw.githubusercontent.com/starkweblabs/scvhistory/main/BUILDPLAN.md
-- https://raw.githubusercontent.com/starkweblabs/scvhistory/main/CHANGELOG.md
-- https://raw.githubusercontent.com/starkweblabs/scvhistory/main/ERRORLOG.md
-- https://raw.githubusercontent.com/starkweblabs/scvhistory/main/SCVTALK_SERIES.md
+- BUILDPLAN.md
+- CHANGELOG.md
+- ERRORLOG.md
+- SCVTALK_SERIES.md
+
+Fetch with authenticated methods:
+
+- a local clone: `git pull`, then read the files; or
+- `gh api "repos/starksocialmedia/scvhistory/contents/<file>?ref=main" -H "Accept: application/vnd.github.raw"`; or
+- `git clone git@github.com:starksocialmedia/scvhistory.git` (SSH key required).
 
 After reading all four, provide a brief summary:
 - What was last completed
