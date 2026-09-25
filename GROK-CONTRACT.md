@@ -234,3 +234,131 @@ Resolutions:
 ## Related-reading sidebars (`links_out`)
 
 Many legacy pages carry a narrow right-hand column headed with `inversecaption` / `thumbcaption` (Leon's related-reading apparatus: diaries, companion stories, index galleries). Those links belong in `links_out` even when they sit outside the main prose column. Extractors that narrow to the main column must still merge them. Tag merged sidebar links with `"role": "related_reading"` and, when present, record the sidebar heading in `related_block_header_raw`. Do not treat site chrome (NEXT/PREVIOUS/PHOTO CREDITS/BIBLIOGRAPHY) as related reading.
+
+## Living people
+
+**Do not build a structured graph of living people.** Every date cutoff is only a
+proxy for this. Where a date doesn't settle it, apply the principle: if the text
+doesn't establish the named person is deceased, the relationship is not structured.
+It stays only as prose in `body_text`. The deceased subject's own facts are
+unaffected.
+
+## Obituary relationships (`relationships`, obituaries.json)
+
+Stated family relationships only, extracted from each obituary's own `body_text` by
+`inventory/legacy/extract_relationships.py`. No identity resolution, no merging, no
+linking to other pages or records.
+
+Storage rule. A relationship is stored only if one of these holds, recorded in
+`retention_basis`:
+
+- `preceded_in_death`: the text lists the person in a "preceded in death/passing by"
+  or "predeceased by" clause.
+- `stated_deceased`: the obituary text itself states the named person is deceased
+  ("the late X", "her late husband, X", "X (deceased)", "X, both deceased",
+  "X, who died in 1990").
+- `pre_cutoff`: the obituary's printed year (the latest four-digit year in
+  `date_raw`; for a life-dates range this is the death year) is 72 or more years
+  before the current year, i.e. 1954 or earlier in 2026. The cutoff rolls forward
+  each year.
+
+Undated obituaries qualify only as `preceded_in_death` or `stated_deceased`. A name
+carrying a parenthetical ("Name (Spouse) Surname") is not stored unless the text
+states that person is deceased, because the parenthetical usually names a living
+spouse. Everything else is not stored: no sidecar file, and no names in reports.
+`obituaries_relationships_report.json` is aggregate-only and records the cutoff year
+used.
+
+```json
+"relationships": [
+  { "person_raw": "", "relationship_raw": "", "subject_raw": "", "sentence_raw": "",
+    "survival_raw": "preceded_in_death|stated|survived_by|", "retention_basis": "preceded_in_death|stated_deceased|pre_cutoff" }
+]
+```
+
+- `subject_raw` is the obituary's subject, taken from the page title (with an
+  `Obituary |`-style prefix, trailing life dates, and news-headline wording such as
+  "Lifelong Newhall Resident ... Dies at 104" or "... Obituary & Death Certificate"
+  removed). Some titles still leave extra words in it.
+- `person_raw` is the other named person, as printed.
+- `relationship_raw` is the kinship word as printed, including plural and case
+  (`daughters`, `Son`). It is not normalized.
+- `sentence_raw` is the sentence the relationship came from.
+
+Direction depends on `survival_raw`:
+
+- `preceded_in_death` / `survived_by` ("He was preceded in death by his wife, Mary"):
+  `person_raw` is the subject's `relationship_raw` (Mary is the subject's wife).
+- `stated` ("the son of the late X"): the phrase is "`relationship_raw` of
+  `person_raw`", so the **subject** is the person's `relationship_raw` (the subject is
+  X's son).
+
+Known limitations: in lists like "daughter Sue and her husband Bob", the nested spouse
+is recorded against the subject. Some `person_raw` values are fragments. A human checks
+entries before any import treats them as facts.
+
+## Obituary name index and other name-bearing fields
+
+The living-people rule also governs every structured field that can carry a name on
+an obituary, applied by `inventory/legacy/apply_living_rule.py` after
+`extract_relationships.py` (counts in `obituaries_living_rule_report.json`,
+aggregate-only). On an obituary printed after the cutoff year, or undated:
+
+- `people_mentioned`: a name stays only if it is the obituary subject (matched to the
+  title-derived subject) or passes the relationship storage rule (`preceded_in_death`,
+  `stated_deceased`); the kept entry carries `retention_basis` (`subject` or the
+  basis). A name whose generational suffix (Jr., Sr., II, III, IV) differs from the
+  subject's, including a missing one, is not the subject unless every occurrence in
+  `body_text` carries the subject's suffix; otherwise it goes through the normal rule.
+- `stated_deceased` requires the death phrase to attach to the named person: "the
+  late X" and "X (deceased)" do; "X, who died/passed away" does only when a following
+  date differs from the subject's death, or X directly follows a kinship word.
+- `entity_index.people` is rebuilt from the filtered `people_mentioned` (each entry
+  lists its `retention_basis` values, `pre_cutoff` for older pages).
+- `needs_review` surname groupings (`possible_same_person`) are kept only when every
+  grouped name is still indexed on that page.
+- `relationships[].sentence_raw` is trimmed to the preceded-in-death clause or the
+  clause stating the death, so survivors listed in the same sentence are not carried.
+  It stays a verbatim substring of `body_text`. When that clause contains a
+  parenthetical name ("Name (Spouse) Surname"), `sentence_raw` is `null`; the
+  relationship itself is kept.
+- `orgs_mentioned` entries whose name never occurs on a single line of `body_text`
+  are dropped: they were glued across a line break, usually a person's name from a
+  header line plus an employer or school. `entity_index.organizations` is rebuilt from
+  `orgs_mentioned`.
+- `dates_mentioned[].context` is set to `null` (the date in `text_raw` is kept) unless
+  every capitalized name-like word in it is the subject, a kept name, a known place,
+  or a common word.
+
+Other names remain only in `body_text`/`body_html`.
+
+`editor_notes` is Leon's printed text, like `body_text`, and is left as is. If Craft
+ever renders `editor_notes` on its own, it carries the same exposure as `body_text`
+and gets the same display rule. Obituaries printed at or before
+the cutoff are not changed by this step. Cases needing human judgment (suffix
+collisions, ambiguous death phrases) are written, with names, to a review file outside
+the repo via `--review-out`; never commit it.
+
+## Obituary funeral fields (`funeral_location_raw`, `burial_location_raw`, `funeral_home_raw`)
+
+Verbatim spans from the obituary's own `body_text`; empty string when not stated.
+Written by `inventory/legacy/extract_funeral.py`, counts in
+`obituaries_funeral_report.json`.
+
+- `funeral_location_raw`: the place in "(funeral|memorial|graveside) services / Mass /
+  celebration of life will be (was) held ... at X".
+- `burial_location_raw`: the place in "interment / inurnment / entombment / burial
+  (will be|followed) at|in Y" or "was buried / laid to rest at|in Y". A reception
+  "following the burial at" a place is not a burial location.
+- `funeral_home_raw`: the name in "arrangements by / under the direction of Z" or "Z is
+  in charge of arrangements", and only when Z is a funeral establishment (Mortuary,
+  Funeral Home, Chapel, Memorial Park, and the like).
+
+The span ends at a semicolon, parenthesis, sentence end, line break, or a following
+date/time/day clause. It continues past a comma only while the next comma segment is a
+short run of capitalized place words (optionally a ZIP), so "Quintin, Pangasinan,
+Philippines" and "Eternal Valley Memorial Park, Newhall, CA" stay whole; a segment that
+starts with a day, month, number, or title, or leads into an officiant, ends the span. When a page states more than
+one distinct value for a field, the field is left empty and the page is listed in the
+report. A mortuary name printed alone under the obituary heading is not used: the text
+does not state what it did.
