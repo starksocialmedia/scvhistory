@@ -66,3 +66,4 @@
 2026-09-24 22:13:35 PDT	retire_board_fields.php	scvhistory-web	4 rows	verified: gone from the layout and deleted, parentOrganization kept	superseded by officeHolding; all four were empty across 38 organizations
 2026-09-24 22:15:10 PDT	add_office_holding.php	scvhistory-web	0 rows	verified: section, type, 18 fields, URLs off	terms as records; evidence per date, not per term
 2026-09-24 22:15:12 PDT	retire_board_fields.php	scvhistory-web	0 rows	verified: gone from the layout and deleted, parentOrganization kept	superseded by officeHolding; all four were empty across 38 organizations
+2026-09-25 00:20:20 PDT	fix_document_body_duplication.php	scvhistory-web	1 rows	verified 1 of 1; headline and credit still in their fields, dateline still in the body	headline and credit line removed from the body; they render from the fields
