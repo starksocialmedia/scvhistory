@@ -27,6 +27,28 @@ Three rules, applied by the review screen and the name canon.
    **Mrs, Miss, Ms and Sister are never stripped.** "Mrs. George LeBrun" is a
    woman named by her husband, and folding her into his record erases her.
 
+## Transcription and interpretation
+
+A source record keeps what the source says apart from what anyone says about it.
+
+- **`body` is transcription.** The words of the item itself, verbatim, and
+  nothing else: the 1899 reporter, the 1889 county history, Scofield's eulogy.
+  A `[sic]` is kept where the page printed one and never added.
+- **`webmasterNoteTop` is interpretation.** The webmaster's or a contributor's
+  framing, commentary and argument about the item, verbatim as they wrote it.
+- **`webmasterNoteBottom` is apparatus.** Credits, scan lines and notes on how
+  the text was edited ("divided into paragraphs for ease of reading").
+
+Where a legacy page never transcribed its item and wrote about it instead, the
+body stays empty. A page about a death certificate is 2014 talking, not 1900,
+and putting it in the body would publish the essay as the certificate. Facts the
+essay quotes from the item go into `recordDates`, labelled as quoted and
+unconfirmed until someone reads them off the scan.
+
+A headline goes into `originallyPublishedTitle` only when the original printed
+it. A headline the legacy site wrote for its own page is the page's, not the
+item's.
+
 ## Identifier schemes
 
 | Field | Scheme | URL pattern | Wikidata property |

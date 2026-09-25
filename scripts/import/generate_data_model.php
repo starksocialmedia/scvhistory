@@ -161,6 +161,31 @@ $lines[] = '   **Mrs, Miss, Ms and Sister are never stripped.** "Mrs. George LeB
 $lines[] = '   woman named by her husband, and folding her into his record erases her.';
 $lines[] = '';
 
+/* ------------------------------------ transcription and interpretation */
+
+$lines[] = '## Transcription and interpretation';
+$lines[] = '';
+$lines[] = 'A source record keeps what the source says apart from what anyone says about it.';
+$lines[] = '';
+$lines[] = '- **`body` is transcription.** The words of the item itself, verbatim, and';
+$lines[] = '  nothing else: the 1899 reporter, the 1889 county history, Scofield\'s eulogy.';
+$lines[] = '  A `[sic]` is kept where the page printed one and never added.';
+$lines[] = '- **`webmasterNoteTop` is interpretation.** The webmaster\'s or a contributor\'s';
+$lines[] = '  framing, commentary and argument about the item, verbatim as they wrote it.';
+$lines[] = '- **`webmasterNoteBottom` is apparatus.** Credits, scan lines and notes on how';
+$lines[] = '  the text was edited ("divided into paragraphs for ease of reading").';
+$lines[] = '';
+$lines[] = 'Where a legacy page never transcribed its item and wrote about it instead, the';
+$lines[] = 'body stays empty. A page about a death certificate is 2014 talking, not 1900,';
+$lines[] = 'and putting it in the body would publish the essay as the certificate. Facts the';
+$lines[] = 'essay quotes from the item go into `recordDates`, labelled as quoted and';
+$lines[] = 'unconfirmed until someone reads them off the scan.';
+$lines[] = '';
+$lines[] = 'A headline goes into `originallyPublishedTitle` only when the original printed';
+$lines[] = 'it. A headline the legacy site wrote for its own page is the page\'s, not the';
+$lines[] = 'item\'s.';
+$lines[] = '';
+
 /* ------------------------------------------------------- the identifiers */
 
 $lines[] = '## Identifier schemes';
