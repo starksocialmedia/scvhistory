@@ -258,6 +258,12 @@ foreach ($cands as $c) {
 $entPath = $REVIEW . '/entities' . $SUFFIX . '.json';
 $ent = file_exists($entPath) ? json_decode(file_get_contents($entPath), true) : ['pairs' => []];
 $pairs = $ent['pairs'] ?? [];
+/* A pair that links one person to another (a stated marriage, a probable
+   spouse) is not queued or counted. export_entity_candidates.php no longer
+   emits them; this keeps a stale entities file from bringing them back into
+   the triage data. */
+$pairs = array_values(array_filter($pairs, fn($p) => empty($p['statedMarriage'])
+    && !array_intersect(['stated_married_name', 'probable_spouse'], (array)($p['reasons'] ?? []))));
 
 foreach ($pairs as $p) {
     $a = trim((string)($p['a'] ?? '')); $b = trim((string)($p['b'] ?? ''));
@@ -281,26 +287,10 @@ foreach ($pairs as $p) {
        ninety articles with no record is a missing record, not a merge, and
        sorting it by article count only buries the pairs that are real. On the
        full corpus this is 3,585 of 3,765 merge decisions. */
-    /* Except for a marriage the source states outright. "Barbara Sitzman (Mrs.
-       Paul Cook)" is not a proposal that two names might be one person; it is
-       the text naming a woman, her married alias and her husband in one breath.
-       Neither side being a record is the reason to act on it rather than the
-       reason to park it: park it and she stays in the archive under her
-       husband's name only, which is the outcome the pair exists to prevent. */
-    $reasons = (array)($p['reasons'] ?? []);
-    $stated = in_array('stated_married_name', $reasons, true);
-
-    if (!$aEx && !$bEx && !$stated) {
+    if (!$aEx && !$bEx) {
         $row['note'] = 'neither side is a record, nothing to merge';
         $buckets['reject'][] = $row;
         $why['pair: neither is a record'] = ($why['pair: neither is a record'] ?? 0) + 1;
-        continue;
-    }
-    if ($stated) {
-        $row['note'] = 'the source states this marriage; creates two records and an alias';
-        $row['stated'] = true;
-        $buckets['review'][] = $row;
-        $why['pair: stated marriage'] = ($why['pair: stated marriage'] ?? 0) + 1;
         continue;
     }
     $row['note'] = 'a merge is never automatic';

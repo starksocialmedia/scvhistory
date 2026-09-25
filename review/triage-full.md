@@ -10,8 +10,8 @@ not 31.
 |---|---:|---:|---:|
 | accept | 2,311 | 2,311 | 19.6% |
 | reject | 4,689 | 4,579 | 39.7% |
-| review | 4,820 | 1,832 | 40.8% |
-| **total** | **11,820** | **8,722** | |
+| review | 4,816 | 1,828 | 40.8% |
+| **total** | **11,816** | **8,718** | |
 
 ## Why each went where
 
@@ -21,7 +21,6 @@ not 31.
 | no record, single occurrence | 4,689 |
 | exact one match | 2,311 |
 | ambiguous, several records | 43 |
-| pair: stated marriage | 4 |
 
 ## The review pile, by reach
 

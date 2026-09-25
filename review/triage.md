@@ -9,9 +9,9 @@ not 31.
 | bucket | rows | decisions | share of rows |
 |---|---:|---:|---:|
 | accept | 500 | 500 | 22.1% |
-| reject | 1,055 | 1,015 | 46.6% |
-| review | 710 | 329 | 31.3% |
-| **total** | **2,265** | **1,844** | |
+| reject | 1,055 | 1,015 | 46.7% |
+| review | 706 | 325 | 31.2% |
+| **total** | **2,261** | **1,840** | |
 
 ## Why each went where
 
@@ -20,7 +20,6 @@ not 31.
 | no record, single occurrence | 1,055 |
 | no record, recurs | 703 |
 | exact one match | 500 |
-| pair: stated marriage | 4 |
 | ambiguous, several records | 3 |
 
 ## The review pile, by reach

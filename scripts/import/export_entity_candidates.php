@@ -24,23 +24,22 @@
  * can see that "Don Ygnacio", "Senor Ygnacio", "Ygnacio del Valle" and "Don
  * Ygnacio del Valle" are all in play rather than deciding one pair blind.
  *
- * One shape is not a guess at all: the source states it. Leon's text writes
- * "Barbara Sitzman (Mrs. Paul Cook)" and "Nicolene Cheney (Mrs. Wayne Graham)",
- * the maiden name followed by the married form. That names three things at
- * once: the woman, her alias, and her husband. Those are recorded as
- * stated_married_name pairs with the sentence they came from, so the screen can
- * present them as fact rather than as a judgement, and so a woman who would
- * otherwise appear only as her husband's name gets a record under her own.
+ * NO PERSON-TO-PERSON PAIRS. This file used to emit two more pair shapes,
+ * both of which link one person to another rather than proposing that two names
+ * are one: stated_married_name (a maiden name followed by the married form in
+ * parentheses, recorded with the wife, the husband and the sentence) and
+ * probable_spouse ("Mrs. <his name>" beside "<his name>"). A working file that
+ * names who is married to whom is personal structure the archive has decided
+ * not to hold in the review data, so neither is emitted any more. A spouse pair
+ * is simply not proposed, which also keeps it out of the merge pile; the
+ * wife/husband/spouseNote keys stay on every pair as null so the screen's
+ * shape does not change.
  *
- * "Russell (nee Pearl Pardee)" is the same fact written the other way round and
- * is read the same way.
- *
- * One shape is detected the other way round, as a reason NOT to merge.
- * "Mrs. George LeBrun" beside "George LeBrun" is a married woman named by her
- * husband's name, which is how nineteenth century sources name most women. The
- * two are identical once the honorific is stripped, so every similarity test
- * proposes them as one person, and accepting that erases her from the archive.
- * Those pairs carry probable_spouse and say so on the card.
+ * NO PHONES OR HOMES NEXT TO NAMES. Every sample sentence stored in 'context',
+ * 'aShared' and 'bShared' is passed through scripts/import/redact_pii.php,
+ * which replaces telephone numbers with [phone redacted] and street addresses
+ * (house number + street + suffix) with [address redacted]. body_text itself is
+ * untouched.
  *
  * A pair is proposed on one rule only, within one kind: the two names are the
  * same name once the honorific and the initials are stripped, AND each side
@@ -249,116 +248,8 @@ foreach ($INVENTORIES as $inv) {
     }
 }
 
-/* ------------------------------------------- married names the source states
-
-   "Barbara Sitzman (Mrs. Paul Cook)". A name token is a capitalised word or one
-   of the lowercase particles, so "Henry de Moss" is read whole; requiring every
-   word to be capitalised silently dropped one of the three. */
-
-$NM  = "[A-Z][A-Za-z'\x{2019}.\-]*(?:\s+(?:[A-Z][A-Za-z'\x{2019}.\-]*|de|del|la|van|von|di|du|den|der))" . '{0,3}';
-$HON = 'Mrs\.?|Mme\.?|Madame|Se\x{00F1}ora|Senora|Sra\.?';
-
-$statedMarriages = [];
-$seenMarriage = [];
-foreach ($bodyByPath as $path => $bodyRaw) {
-    $flat = preg_replace('~\s+~u', ' ', $bodyRaw);
-
-    /* maiden name first: Barbara Sitzman (Mrs. Paul Cook) */
-    $shapes = [
-        ['~\b(' . $NM . ')\s*,?\s*\((?:' . $HON . ')\s+(' . $NM . ')\)~u', 'wife-first'],
-        /* married form first: Mrs. Cook (Barbara Sitzman) */
-        ['~\b(?:' . $HON . ')\s+(' . $NM . ')\s*\((' . $NM . ')\)~u', 'husband-first'],
-        /* Russell (nee Pearl Pardee) */
-        ['~\b(' . $NM . ')\s*\(n[e\x{00E9}]e\s+(' . $NM . ')\)~u', 'nee'],
-    ];
-
-    foreach ($shapes as [$re, $shape]) {
-        if (!preg_match_all($re, $flat, $ms, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) { continue; }
-        foreach ($ms as $m) {
-            $whole = $m[0][0];
-            $at = $m[0][1];
-
-            if ($shape === 'wife-first')   { $wife = trim($m[1][0]); $husbandForm = trim($m[2][0]); }
-            elseif ($shape === 'husband-first') { $wife = trim($m[2][0]); $husbandForm = trim($m[1][0]); }
-            else { $wife = trim($m[2][0]); $husbandForm = trim($m[1][0]); }
-
-            /* A sentence can start on the match: "To Nicolene Cheney, (Mrs.
-               Graham)" and "Informant, Mrs. H.B. Russell (nee Pearl Pardee)". */
-            $wife = trim(preg_replace('~^(?:To|And|Of|But|In|At|For|With|Informant|The|Her|His)\s+~u', '', $wife));
-            $husbandForm = trim(preg_replace('~^(?:' . $HON . ')\s+~u', '', $husbandForm));
-
-            /* "the ranch house, nee the Asistencia" and "Lillie (named for Mrs.
-               Needham)" both match the shape and are not marriages. A person's
-               name here is two words or more on the woman's side. */
-            if (count(preg_split('~\s+~u', $wife)) < 2) { continue; }
-            if (preg_match('~\b(the|a|an|his|her|named|house|ranch)\b~i', $wife)) { continue; }
-
-            $key = $fold($wife) . '|' . $fold($husbandForm);
-            if (isset($seenMarriage[$key])) { continue; }
-            $seenMarriage[$key] = true;
-
-            /* The sentence it sits in, for the card.
-
-               Two traps here, both of which produced nonsense first time.
-               PREG_OFFSET_CAPTURE returns a byte offset, so every cut below is
-               byte based; mixing in mb_substr sliced mid-character. And the
-               phrase itself contains "Mrs.", so splitting on a full stop cut
-               the sentence in half at the very word it is about. Abbreviations
-               are masked before the split and restored after. */
-            $winFrom = max(0, $at - 320);
-            $win = substr($flat, $winFrom, 320 + strlen($whole) + 220);
-            $rel = $at - $winFrom;
-
-            $ABBR = ['Mrs.', 'Mr.', 'Dr.', 'Jr.', 'Sr.', 'St.', 'Col.', 'Gen.', 'Capt.',
-                     'Rev.', 'Hon.', 'Lt.', 'Sgt.', 'Maj.', 'Prof.', 'Ave.', 'No.'];
-            $masked = $win;
-            foreach ($ABBR as $i => $a) { $masked = str_replace($a, rtrim($a, '.') . "\x01", $masked); }
-            /* A lone initial, "H.B. Russell". */
-            $masked = preg_replace('~\b([A-Z])\.~', '$1' . "\x01", $masked);
-
-            $before = substr($masked, 0, $rel);
-            $start = 0;
-            foreach (['. ', '! ', '? '] as $mark) {
-                $e = strrpos($before, $mark);
-                if ($e !== false && $e + 2 > $start) { $start = $e + 2; }
-            }
-            $tail = substr($masked, $start);
-            $cut = preg_split('~(?<=[.!?])\s~u', $tail);
-            $sent = trim($cut[0] ?? $tail);
-            $sent = str_replace("\x01", '.', $sent);
-
-            $statedMarriages[] = [
-                'wife' => $wife,
-                'husband' => $husbandForm,
-                'marriedName' => $shape === 'nee' ? '' : 'Mrs. ' . $husbandForm,
-                'shape' => $shape,
-                'phrase' => $whole,
-                'sentence' => $sent,
-                'path' => $path,
-                'page' => $pageTitleByPath[$path] ?? $path,
-            ];
-        }
-    }
-}
-
-/* The same marriage is often written twice, once in full and once short:
-   "Nicolene Cheney (Mrs. Wayne Graham)" and later "(Mrs. Graham)". Keep the
-   fullest husband name per woman; the short form adds nothing. */
-$byWife = [];
-foreach ($statedMarriages as $sm) {
-    $k = $fold($sm['wife']);
-    if (!isset($byWife[$k]) || mb_strlen($sm['husband']) > mb_strlen($byWife[$k]['husband'])) {
-        $byWife[$k] = $sm;
-    }
-}
-$statedMarriages = array_values($byWife);
-usort($statedMarriages, fn($a, $b) => strcmp($a['wife'], $b['wife']));
-
-echo 'married names the source states outright: ' . count($statedMarriages) . PHP_EOL;
-foreach ($statedMarriages as $sm) {
-    echo '  ' . str_pad($sm['shape'], 14) . str_pad($sm['wife'], 24) . 'wife of ' . $sm['husband']
-        . '   on ' . mb_substr($sm['page'], 0, 30) . PHP_EOL;
-}
+/* Stated marriages are no longer detected or emitted: see NO PERSON-TO-PERSON
+   PAIRS at the top of this file. */
 
 /* ------------------------------------------------------- sentences in body */
 
@@ -378,19 +269,21 @@ foreach ($bodyByPath as $path => $body) {
    sentence, open the piece, come back and choose. Without a URL the card shows
    a title the reader has to go and search for, which is why the sentences were
    there but not usable. */
-$sentenceFor = function (string $path, array $needles) use ($sentencesByPath, $pageTitleByPath, &$articleByPath): ?array {
+$redactPii = require $root . '/scripts/import/redact_pii.php';
+$sentenceFor = function (string $path, array $needles) use ($sentencesByPath, $pageTitleByPath, &$articleByPath, $redactPii): ?array {
     foreach ($needles as $needle) {
         if (mb_strlen($needle) < 3) { continue; }
         foreach (($sentencesByPath[$path] ?? []) as $sent) {
             $at = mb_stripos($sent, $needle);
             if ($at === false) { continue; }
-            $text = trim($sent);
+            /* Redacted before trimming, so a cut can never leave half a number. */
+            $text = $full = $redactPii(trim($sent));
             /* A very long sentence is trimmed around the match, never through it. */
             if (mb_strlen($text) > 260) {
-                $at = mb_stripos($text, $needle);
+                $at = (int)mb_stripos($text, $needle);
                 $from = max(0, $at - 110);
                 $text = ($from > 0 ? "\u{2026}" : '') . mb_substr($text, $from, 250);
-                if (mb_strlen($sent) > $from + 250) { $text .= "\u{2026}"; }
+                if (mb_strlen($full) > $from + 250) { $text .= "\u{2026}"; }
             }
             return ['path' => $path, 'title' => $pageTitleByPath[$path] ?? $path, 'text' => $text,
                     'match' => $needle, 'url' => $articleByPath[$path]['url'] ?? null];
@@ -670,7 +563,7 @@ if ($canon) {
                             'path' => $path,
                             'url' => $articleByPath[$path]['url'] ?? null,
                             'title' => $pageTitleByPath[$path] ?? $path,
-                            'text' => mb_strlen($sent) > 260 ? mb_substr($sent, 0, 250) . "\u{2026}" : trim($sent),
+                            'text' => mb_strlen($ds = $redactPii(trim($sent))) > 260 ? mb_substr($ds, 0, 250) . "\u{2026}" : $ds,
                             'match' => $base,
                         ];
                     }
@@ -979,8 +872,12 @@ foreach ($rows as $kind => $list) {
                     continue;
                 }
 
+                /* A married woman beside her husband is two people linked to
+                   each other, not a merge: not emitted (NO PERSON-TO-PERSON
+                   PAIRS, top of file). */
+                if ($spouse) { continue; }
+
                 $reasons = ['same_name_different_records'];
-                if ($spouse) { $reasons[] = 'probable_spouse'; }
                 if ($ka === $kb) { $reasons[] = 'honorific'; }
                 if ($initialsMatch($ta, $tb)) { $reasons[] = 'initials'; }
                 /* Proximity in one piece is the strongest signal there is, so a
@@ -996,11 +893,9 @@ foreach ($rows as $kind => $list) {
                 $pairs[] = [
                     'kind' => $kind,
                     'a' => $A['name'], 'b' => $B['name'],
-                    'spouseNote' => $spouse
-                        ? 'A married woman named by her husband\'s name. These are two people. '
-                        . 'Link them as spouses rather than merging.' : null,
-                    'wife' => $spouse ? ($wifeA !== '' ? $A['name'] : $B['name']) : null,
-                    'husband' => $spouse ? ($wifeA !== '' ? $B['name'] : $A['name']) : null,
+                    'spouseNote' => null,
+                    'wife' => null,
+                    'husband' => null,
                     'aShared' => $aShared, 'bShared' => $bShared,
                     'sharedPages' => count($sharedPaths),
                     'aBlock' => $blockMates($x, [$y]), 'bBlock' => $blockMates($y, [$x]),
@@ -1014,55 +909,6 @@ foreach ($rows as $kind => $list) {
             }
         }
     }
-}
-
-/* ---------------------------------- the stated marriages become their own pairs
-
-   These are not proposals. The source says who she is, so the pair carries the
-   sentence and the screen presents it as fact. The woman's own name is the
-   survivor, the married form becomes her alias, and the husband is recorded as
-   a separate person she is married to.
-
-   A name the extraction never indexed is still emitted. Two of the four women
-   are in that position, which is the whole point: without this they exist only
-   as their husband's name. */
-
-$knownNames = [];
-foreach ($rows['person'] as $r) { $knownNames[$fold($r['name'])] = $r['name']; }
-
-foreach ($statedMarriages as $sm) {
-    $marriedForm = $sm['marriedName'] !== '' ? $sm['marriedName'] : 'Mrs. ' . $sm['husband'];
-    $wife = $knownNames[$fold($sm['wife'])] ?? $sm['wife'];
-    $alias = $knownNames[$fold($marriedForm)] ?? $marriedForm;
-
-    $pairs[] = [
-        'kind' => 'person',
-        'a' => $alias,
-        'b' => $wife,
-        'statedMarriage' => [
-            'wife' => $wife,
-            'husband' => $sm['husband'],
-            'marriedForm' => $marriedForm,
-            'phrase' => $sm['phrase'],
-            'sentence' => $sm['sentence'],
-            'page' => $sm['page'],
-            'wifeIndexed' => isset($knownNames[$fold($sm['wife'])]),
-            'husbandIndexed' => isset($knownNames[$fold($sm['husband'])]),
-            'aliasIndexed' => isset($knownNames[$fold($marriedForm)]),
-        ],
-        'spouseNote' => null,
-        'wife' => $wife,
-        'husband' => $sm['husband'],
-        'aMentions' => 0, 'bMentions' => 0,
-        'aArticles' => 0, 'bArticles' => 0,
-        'aExisting' => $records['person'][$stripHon($alias)] ?? null,
-        'bExisting' => $records['person'][$stripHon($wife)] ?? null,
-        'reasons' => ['stated_married_name'],
-        'shared' => 0,
-        'sharedPages' => 0,
-        'aShared' => null, 'bShared' => null,
-        'aBlock' => [], 'bBlock' => [],
-    ];
 }
 
 /* Strongest evidence first, then the ones that share an article. */
