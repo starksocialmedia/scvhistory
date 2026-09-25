@@ -37,3 +37,6 @@ review/assume.json
 review/records-decided.backup-*.json
 review/hash-needles.json
 review/larger-by-hash.json
+
+# Scratch output from ad-hoc probes. Committed by accident on 2026-09-18.
+.probe/
