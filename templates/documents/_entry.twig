@@ -38,6 +38,7 @@
 {% endblock %}
 
 {% block content %}
+{% import "_partials/head/dates" as dt %}
 
 {% set F = {} %}
 {% for h in ['body','originallyPublishedTitle','originalPublishDate','originalPublishDateEdtf','sourceLine',
@@ -178,7 +179,7 @@
         {% set dateRows = [] %}
         {% for d in dates %}
           {% set printed = (d.printed ?? '')|trim %}
-          {% set iso = d.iso ? d.iso|date('j F Y') : '' %}
+          {% set iso = dt.recordDate(d.iso, d.granularity ?? '')|trim %}
           {% set lab = (d.label ?? '')|trim %}
           {% if printed or iso %}{% set dateRows = dateRows|merge([{ p: printed, i: iso, l: lab }]) %}{% endif %}
         {% endfor %}

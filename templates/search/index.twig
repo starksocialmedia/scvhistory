@@ -104,7 +104,8 @@
     {% set years = [] %}
     {% if 'recordDates' in has and r.recordDates %}
       {% for d in r.recordDates %}
-        {% if d.iso %}{% set years = years|merge([d.iso|date('Y') + 0]) %}{% endif %}
+        {#- In UTC: read in Los Angeles time a 1 January date is the year before. -#}
+        {% if d.iso %}{% set years = years|merge([d.iso|date('Y', 'UTC') + 0]) %}{% endif %}
       {% endfor %}
     {% endif %}
     {% for h in ['originalPublishDate', 'eventDate', 'dateFounded', 'dateEstablished'] %}

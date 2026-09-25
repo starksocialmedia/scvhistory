@@ -70,3 +70,23 @@
 {%- set e = (edtf ?? '')|trim -%}
 {%- if e is not empty -%}{{ d.certain(e) }}{%- else -%}{{ d.iso(printed ?? '') }}{%- endif -%}
 {% endmacro %}
+
+{#- A recordDates row's ISO date, for display, to the row's own precision.
+
+    Craft stores the table's date column as UTC midnight and hands it back in
+    the site's timezone, Los Angeles, which puts it on the previous afternoon:
+    1874-05-19 read as 18 May 1874, 16:07, and a year-only 1874-01-01 as
+    31 December 1873. So it is formatted in UTC, the way
+    build_calendar_index.php already reads it.
+
+    And to its precision: a row that knows only the year prints the year. A
+    full day for a year-precision row claims a day nobody recorded. -#}
+{% macro recordDate(iso, gran) %}
+{%- if iso -%}
+  {%- if gran == 'year' -%}{{ iso|date('Y', 'UTC') }}
+  {%- elseif gran == 'circa' -%}c. {{ iso|date('Y', 'UTC') }}
+  {%- elseif gran == 'month' -%}{{ iso|date('F Y', 'UTC') }}
+  {%- else -%}{{ iso|date('j F Y', 'UTC') }}
+  {%- endif -%}
+{%- endif -%}
+{% endmacro %}

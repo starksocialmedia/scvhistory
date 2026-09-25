@@ -24,6 +24,7 @@
 {% endblock %}
 
 {% block content %}
+{% import "_partials/head/dates" as dt %}
 {#
   A photograph record.
 
@@ -238,7 +239,7 @@
         {% set dateRows = [] %}
         {% for d in dates %}
           {% set printed = (d.printed ?? '')|trim %}
-          {% set iso = d.iso ? d.iso|date('j F Y') : '' %}
+          {% set iso = dt.recordDate(d.iso, d.granularity ?? '')|trim %}
           {% if printed or iso %}{% set dateRows = dateRows|merge([{ p: printed, i: iso }]) %}{% endif %}
         {% endfor %}
         {% if dateRows|length or F.photoDate %}
