@@ -1021,7 +1021,7 @@ Public repo: OpenArchive Starter Kit
 - Setup guide for new regional archives
 - MIT license for code, CC-BY for documentation
 
-Private repo: SCVHistory (starkweblabs/scvhistory)
+Private repo: SCVHistory (starksocialmedia/scvhistory)
 - Leon's content
 - SCV-specific taxonomy terms
 - SCV design system
