@@ -1,13 +1,13 @@
 # SCVHistory.com — Master Build Plan
 
-This repo is private. It lives at github.com/starksocialmedia/scvhistory.
-Still do not put credentials or secrets here.
+This file lives at github.com/starksocialmedia/scvhistory.
+Do not put credentials, secrets or personal data here.
 
 ---
 
 ## Session Start — Paste This Into Every New Chat
 
-You are working on SCVHistory.com, a Craft CMS 5 digital archive project for Santa Clarita Valley history. Before doing anything else, read these three files from the main branch of the private repo starksocialmedia/scvhistory: BUILDPLAN.md, CHANGELOG.md and ERRORLOG.md. Anonymous raw.githubusercontent.com URLs do not work for a private repo; use an authenticated method: read them from a local clone (`git pull` first), or `gh api "repos/starksocialmedia/scvhistory/contents/BUILDPLAN.md?ref=main" -H "Accept: application/vnd.github.raw"` (same for the other files), or clone with `git clone git@github.com:starksocialmedia/scvhistory.git`. After reading all three, summarize what was last completed, current status, and what's next. Then ask what we're working on today.
+You are working on SCVHistory.com, a Craft CMS 5 digital archive project for Santa Clarita Valley history. Before doing anything else, read these three files from the main branch of starksocialmedia/scvhistory: BUILDPLAN.md, CHANGELOG.md and ERRORLOG.md. Fetch with authenticated methods: read them from a local clone (`git pull` first), or `gh api "repos/starksocialmedia/scvhistory/contents/BUILDPLAN.md?ref=main" -H "Accept: application/vnd.github.raw"` (same for the other files), or clone with `git clone git@github.com:starksocialmedia/scvhistory.git`. After reading all three, summarize what was last completed, current status, and what's next. Then ask what we're working on today.
 
 ---
 
@@ -33,7 +33,7 @@ World-class digital archive of SCV history. Launch: 2027 (30th anniversary). Aud
 
 Local (DDEV): https://scvhistory.ddev.site — Code only
 Cloudways: phpstack-676057-6346692.cloudwaysapps.com — Content + live testing
-Git: github.com/starksocialmedia/scvhistory (private) main — Source of truth
+Git: github.com/starksocialmedia/scvhistory main — Source of truth
 
 Workflow rule: Code = local to git to Cloudways. Content = directly to Cloudways.
 Auto-deploy: GitHub Action (.github/workflows/deploy.yml) SSHes into Cloudways on every push to main.

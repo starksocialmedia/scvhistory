@@ -6,14 +6,14 @@
 
 You are working on SCVHistory.com, a Craft CMS 5 digital archive project for Santa Clarita Valley history.
 
-Before doing anything else, read these four files from the main branch of the private repo starksocialmedia/scvhistory:
+Before doing anything else, read these four files from the main branch of starksocialmedia/scvhistory:
 
 - BUILDPLAN.md
 - CHANGELOG.md
 - ERRORLOG.md
 - SCVTALK_SERIES.md
 
-The repo is private, so anonymous raw.githubusercontent.com URLs will not work. Use an authenticated method:
+Fetch with authenticated methods:
 
 - a local clone: `git pull`, then read the files; or
 - `gh api "repos/starksocialmedia/scvhistory/contents/<file>?ref=main" -H "Accept: application/vnd.github.raw"`; or

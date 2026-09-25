@@ -234,7 +234,7 @@ Create these Plain Text fields and attach to the Asset field layout (apply to al
 4. Start import pipeline: scan_inventory.py against Leon's HTML archive
 
 ---
-*Derived from DATA_MODEL.md and BUILDPLAN.md (2026-04-15). No credentials; the repo (starksocialmedia/scvhistory) is private.*
+*Derived from DATA_MODEL.md and BUILDPLAN.md (2026-04-15). Contains no credentials, secrets or personal data; never commit those to starksocialmedia/scvhistory.*
 
 ---
 
