@@ -59,7 +59,7 @@
  * description on all 1,544 and a template filter cannot reach that.
  *
  * Dry run by default. The dry run writes every rebuilt body to
- * web/review/reimport-dryrun.json so the fidelity audit can be run against the
+ * review/reimport-dryrun.json so the fidelity audit can be run against the
  * output rather than against the database.
  *
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/reimport_photograph_bodies.php'))"
@@ -70,8 +70,8 @@ if ($APPLY) { echo 'APPLY IS ON, this will rewrite bodies in the database' . PHP
 
 $SECTION   = 'photographs';
 $INVENTORY = \Craft::getAlias('@root') . '/inventory/legacy/lw-features.json';
-$DRYRUN    = \Craft::getAlias('@webroot') . '/review/reimport-dryrun.json';
-$REPORT    = \Craft::getAlias('@webroot') . '/review/photograph-reimport.md';
+$DRYRUN    = \Craft::getAlias('@review') . '/reimport-dryrun.json';
+$REPORT    = \Craft::getAlias('@review') . '/photograph-reimport.md';
 
 if (!file_exists($INVENTORY)) { echo 'not found: ' . $INVENTORY . PHP_EOL; return; }
 

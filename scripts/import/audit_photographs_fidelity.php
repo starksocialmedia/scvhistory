@@ -34,12 +34,12 @@
    ones. That is the only honest way to check a fix before it is applied: the
    database still holds the damage, so the comparison has to be against what the
    importer would write rather than against what is there. */
-$FROM_DRYRUN = \Craft::getAlias('@webroot') . '/review/reimport-dryrun.json';
+$FROM_DRYRUN = \Craft::getAlias('@review') . '/reimport-dryrun.json';
 $USE_DRYRUN  = false;
 
 $SECTION   = 'photographs';
 $INVENTORY = \Craft::getAlias('@root') . '/inventory/legacy/lw-features.json';
-$REPORT    = \Craft::getAlias('@webroot') . '/review/photographs-fidelity.md';
+$REPORT    = \Craft::getAlias('@review') . '/photographs-fidelity.md';
 $LIST_TOP  = 40;   /* how many records to write out in full */
 
 if (!file_exists($INVENTORY)) { echo 'not found: ' . $INVENTORY . PHP_EOL; return; }

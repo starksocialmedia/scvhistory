@@ -43,7 +43,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/triage_review_queues.php'))"
  */
 
-$REVIEW = \Craft::getAlias('@webroot') . '/review';
+$REVIEW = \Craft::getAlias('@review');
 
 /* Which pair of queue files to sort. Empty is the live queue; '-full' is the
    whole-corpus export, which is kept beside it so a full run never overwrites
@@ -149,7 +149,7 @@ $KIND_SECTION = [
  * as a mismatch would send every one of them to review and report the opposite
  * of the truth.
  *
- *   ddev craft exec "$ASSUME_RECORDS=json_decode(file_get_contents('/var/www/html/web/review/assume.json'),true); eval(...)" */
+ *   ddev craft exec "$ASSUME_RECORDS=json_decode(file_get_contents('/var/www/html/review/assume.json'),true); eval(...)" */
 $simulated = 0;
 foreach (($ASSUME_RECORDS ?? []) as $a) {
     $t = $matchKey((string)($a['name'] ?? ''));

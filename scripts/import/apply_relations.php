@@ -1,5 +1,5 @@
 /**
- * Reads web/review/relations-decided.json produced by the review screen and wires
+ * Reads review/relations-decided.json produced by the review screen and wires
  * the approved relations onto the articles.
  *
  * Five decisions come back per candidate. "link" relates an existing record.
@@ -27,9 +27,9 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-$file = \Craft::getAlias('@webroot') . '/review/relations-decided.json';
+$file = \Craft::getAlias('@review') . '/relations-decided.json';
 if (!file_exists($file)) {
-    echo 'ERROR: web/review/relations-decided.json not found. Download it from the review screen first.' . PHP_EOL;
+    echo 'ERROR: review/relations-decided.json not found. Download it from the review screen first.' . PHP_EOL;
     return;
 }
 $data = json_decode(file_get_contents($file), true);

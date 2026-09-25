@@ -2,7 +2,7 @@
  * Requests every external link the archive holds and reports what answers.
  *
  * Read only in both directions: it writes nothing to Craft, and its own output
- * goes to web/review/link-check.json. Nothing here changes a record, ever.
+ * goes to review/link-check.json. Nothing here changes a record, ever.
  *
  * Eight Find A Grave URLs turned out to serve a different person entirely,
  * because Find A Grave resolves by the memorial number and ignores the slug, so
@@ -45,7 +45,7 @@ $MAX                = 0;   /* 0 for all; set a number to sample while testing */
 $UA = 'SCVHistory-LinkCheck/1.0 (+https://scvhistory.com; contact: nathan@starksocial.com)';
 
 $root = \Craft::getAlias('@root');
-$out  = \Craft::getAlias('@webroot') . '/review/link-check.json';
+$out  = \Craft::getAlias('@review') . '/link-check.json';
 
 $LEGACY_HOST = rtrim((string)(Craft::$app->getConfig()->getCustom()->legacyHost ?? 'https://scvhistory.com'), '/');
 
@@ -379,5 +379,5 @@ $payload = [
     'links' => $results,
 ];
 file_put_contents($out, json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
-echo PHP_EOL . 'wrote web/review/link-check.json' . PHP_EOL;
+echo PHP_EOL . 'wrote review/link-check.json' . PHP_EOL;
 echo 'No record was read for anything but its field values, and none was changed.' . PHP_EOL;

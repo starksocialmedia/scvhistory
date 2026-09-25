@@ -238,10 +238,17 @@ not served.
 
 ### 3. Prove `/review/` is blocked  — **MacBook**, before the pull
 
-The pull publishes whatever `web/review` holds that day. On 24 September that
-included `photo-links.json`, 1.2 MB listing 8,359 names, and the only thing in
-front of it was the site-wide basic auth: `web/.htaccess` is inert on this host
-and `server.nginx-vhosts.conf` carried no `/review/` rule.
+The review screens and their queues moved to `<project>/review` on 24
+September, outside the web root, because `web/.htaccess` is inert on this host
+and this application's Cloudways panel has no Nginx Settings section to block a
+path with. Nothing outside the docroot can be served, so there is no rule to
+add and none to lose. This check is what keeps it that way: it fails if
+anything under `web/` is tracked again, and fails if any working path is
+readable on the host.
+
+The first pull after the move also deletes the old `web/review` from the
+server's working tree, because the files moved in the index rather than being
+deleted from it.
 
 ```
 HOST=https://phpstack-1656314-6593553.cloudwaysapps.com \

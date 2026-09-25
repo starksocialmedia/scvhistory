@@ -30,7 +30,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/survey_footnotes.php'))"
  */
 
-$REPORT = \Craft::getAlias('@webroot') . '/review/footnotes.md';
+$REPORT = \Craft::getAlias('@review') . '/footnotes.md';
 
 /* No word character before, so "[18]54" inside a date is not a marker, and no
    digit after the bracket, so a year split across the extraction's lines is

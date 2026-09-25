@@ -82,7 +82,7 @@ $MERGES = [
  * here, in the same pass that performs the merge, because that is the only
  * moment both facts are in view. */
 
-$FILE = \Craft::getAlias('@webroot') . '/review/records-decided.json';
+$FILE = \Craft::getAlias('@review') . '/records-decided.json';
 $doc = json_decode(file_get_contents($FILE), true) ?: [];
 $rows = $doc['decisions'] ?? [];
 $norm = fn(string $v) => trim(mb_strtolower(preg_replace('~[^a-z0-9 ]~i', ' ', $v)));

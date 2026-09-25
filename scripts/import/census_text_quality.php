@@ -8,7 +8,7 @@
  * sitting there to be found later. This reads every stored body once and sorts
  * everything it finds into classes, so the next pass can be specified whole.
  *
- * Read only. It writes web/review/text-quality.json and touches nothing in
+ * Read only. It writes review/text-quality.json and touches nothing in
  * Craft. There is no $APPLY here because there is nothing to apply: a census
  * that could also write would be a cleanup pass, which is the next thing, not
  * this thing.
@@ -34,7 +34,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/census_text_quality.php'))"
  */
 
-$OUT = \Craft::getAlias('@webroot') . '/review/text-quality.json';
+$OUT = \Craft::getAlias('@review') . '/text-quality.json';
 
 /* Every field that holds prose. Titles and one-line fields are left out: they
    have their own problems and they are not what a body cleanup pass touches. */
@@ -306,4 +306,4 @@ foreach ($found as $name => $c) {
 }
 foreach ($worst as $label => $w) { $payload['reviewQueue'][$label] = $w; }
 file_put_contents($OUT, json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
-echo PHP_EOL . 'wrote web/review/text-quality.json. Nothing in Craft was touched.' . PHP_EOL;
+echo PHP_EOL . 'wrote review/text-quality.json. Nothing in Craft was touched.' . PHP_EOL;

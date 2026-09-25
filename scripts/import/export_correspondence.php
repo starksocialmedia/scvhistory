@@ -9,9 +9,9 @@
  * Regenerated on demand and never committed. A stored copy of this would be
  * wrong within a day, and a wrong answer to that question is worse than none.
  *
- * Read only. Writes web/review/correspondence.csv and touches nothing in Craft.
+ * Read only. Writes review/correspondence.csv and touches nothing in Craft.
  *
- * The legacy half comes from web/review/ledger-index.json, built by
+ * The legacy half comes from review/ledger-index.json, built by
  * build_ledger_index.py from the two crawls and every extraction. The archive
  * half is counted here, as this runs, so the two halves cannot drift.
  *
@@ -34,8 +34,8 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_correspondence.php'))"
  */
 
-$OUT = \Craft::getAlias('@webroot') . '/review/correspondence.csv';
-$INDEX = \Craft::getAlias('@webroot') . '/review/ledger-index.json';
+$OUT = \Craft::getAlias('@review') . '/correspondence.csv';
+$INDEX = \Craft::getAlias('@review') . '/ledger-index.json';
 $REVIEW = \Craft::getAlias('@root') . '/templates/_data/ledger-review.json';
 
 if (!file_exists($INDEX)) {
@@ -180,7 +180,7 @@ foreach ($bornDigital as $rec) {
 }
 fclose($fh);
 
-echo 'wrote web/review/correspondence.csv, ' . number_format($rows) . ' rows, '
+echo 'wrote review/correspondence.csv, ' . number_format($rows) . ' rows, '
     . number_format(filesize($OUT)) . ' bytes' . PHP_EOL;
 echo PHP_EOL . 'legacy pages: ' . count($index['pages']) . PHP_EOL;
 foreach ($counts as $k => $n) { echo '   ' . str_pad($k, 22) . $n . PHP_EOL; }

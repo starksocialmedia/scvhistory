@@ -1,5 +1,5 @@
 /**
- * Builds web/review/records.json: the names the corpus uses that have no record
+ * Builds review/records.json: the names the corpus uses that have no record
  * behind them, ranked by how many articles use them.
  *
  * This is the queue that matters. The relations screen asks, one article at a
@@ -36,7 +36,7 @@
  * Full corpus: prefix with $RECORDS_SUFFIX='-full';
  */
 
-$REVIEW = \Craft::getAlias('@webroot') . '/review';
+$REVIEW = \Craft::getAlias('@review');
 $SUFFIX = $RECORDS_SUFFIX ?? '';
 $in     = $REVIEW . '/entities' . $SUFFIX . '.json';
 $out    = $REVIEW . '/records' . $SUFFIX . '.json';

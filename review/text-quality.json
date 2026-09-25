@@ -1,0 +1,900 @@
+{
+    "meta": {
+        "generated": "2026-09-19T12:06:41-07:00",
+        "generated_by": "scripts/import/census_text_quality.php",
+        "fields_scanned": [
+            "body",
+            "hauntedAccount",
+            "hauntedSource",
+            "finePrint",
+            "webmasterNoteTop",
+            "webmasterNoteBottom",
+            "subheadline",
+            "authorBio",
+            "photoCaptionExt",
+            "culturalSensitivityNote",
+            "orgAliases",
+            "personAliases"
+        ],
+        "records_read": 262,
+        "text_fields_read": 353,
+        "characters_read": 957214,
+        "totals": {
+            "mechanical": 0,
+            "review": 81,
+            "outlier": 2,
+            "intended": 1131
+        }
+    },
+    "classes": {
+        "image-token": {
+            "verdict": "intended",
+            "what": "The rendered image layer. _partials/prose.twig turns these into pictures.",
+            "todo": "Leave alone. A pass that strips bracketed lines destroys the illustrations.",
+            "records": 30,
+            "fields": 30,
+            "hits": 80,
+            "recordList": [
+                "articles/about-the-namesakes-of-the-kingsburry-house",
+                "articles/bowers-cave",
+                "articles/62-suddenly-searchlights",
+                "articles/58-pistoleros",
+                "articles/55-fights-and-feuds",
+                "articles/52-servicing-the-traveler",
+                "articles/46-surrey",
+                "articles/45-father-of-acton",
+                "articles/40-a-town-is-born",
+                "articles/39-ribbons-of-steel",
+                "articles/32-gushers-and-glory",
+                "articles/24-wordsmiths",
+                "articles/newhall-fourth-of-july-parade-history",
+                "articles/pardee-house-has-seen-local-history",
+                "articles/enemy-confirms-fremonts-trek-through-scv",
+                "articles/train-station-served-newhall-till-1933",
+                "articles/tales-of-lang-and-soledad",
+                "articles/history-of-pico-canyon-oil-production",
+                "articles/history-of-downtown-newhall",
+                "articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957",
+                "articles/6-oil-and-newhall",
+                "articles/5-mining",
+                "articles/4-early-transportation",
+                "articles/2-rancho-san-francisco",
+                "articles/chapter-19-paradise-found",
+                "articles/chapter-18-the-pathfinder",
+                "articles/chapter-16-golden-dreams",
+                "articles/chapter-14-lord-and-master",
+                "articles/chapter-10-solitary-hiker",
+                "articles/preface-history-of-the-santa-clarita-valley"
+            ],
+            "examples": [
+                {
+                    "record": "articles/about-the-namesakes-of-the-kingsburry-house",
+                    "field": "body",
+                    "text": "8 the Old Town Newhall Junction restaurant). [image:2] Homeowner and -mover August Ferrier, at left"
+                },
+                {
+                    "record": "articles/bowers-cave",
+                    "field": "body",
+                    "text": "under-sheriff who objected to an editorial. [image:1] [Click here to see Bowers' Cave artifacts.]"
+                },
+                {
+                    "record": "articles/62-suddenly-searchlights",
+                    "field": "body",
+                    "text": "f cigarettes — whether they smoked or not. [image:1] Manzanar internment camp, October 1944. Clic"
+                },
+                {
+                    "record": "articles/58-pistoleros",
+                    "field": "body",
+                    "text": "m TB in 1967. See his [ death certificate ]. [image:1]"
+                },
+                {
+                    "record": "articles/55-fights-and-feuds",
+                    "field": "body",
+                    "text": "con, school board member and honorary mayor. [image:1] Jerry Reynolds' depiction of the end of the"
+                },
+                {
+                    "record": "articles/52-servicing-the-traveler",
+                    "field": "body",
+                    "text": "auto repair emporium known as Wood's Garage. [image:1] Sam Parson's Castaic general store. The nex"
+                },
+                {
+                    "record": "articles/46-surrey",
+                    "field": "body",
+                    "text": "EY SEE ALSO: BERCAW FAMILY Reynolds Story [image:1] Bercaw Store 1907 [image:2] 1910s [image:"
+                },
+                {
+                    "record": "articles/45-father-of-acton",
+                    "field": "body",
+                    "text": "t came from his friend, Governor Henry Gage. [image:1]"
+                }
+            ]
+        },
+        "editor-bracket": {
+            "verdict": "intended",
+            "what": "The editor's own interpolation, \"[sic: Reynolds subsequently says 1878]\".",
+            "todo": "Leave alone. This is the archive correcting its sources in public.",
+            "records": 3,
+            "fields": 3,
+            "hits": 8,
+            "recordList": [
+                "articles/about-the-namesakes-of-the-kingsburry-house",
+                "articles/the-birth-of-newhall-continued",
+                "persons/tiburcio-vasquez"
+            ],
+            "examples": [
+                {
+                    "record": "articles/about-the-namesakes-of-the-kingsburry-house",
+                    "field": "body",
+                    "text": "seem the house was actually built about 1879 [sic: Reynolds subsequently says 1878] and originally located on a lot extending fr"
+                },
+                {
+                    "record": "articles/the-birth-of-newhall-continued",
+                    "field": "body",
+                    "text": "d home. The first Campton home burned in 1893 [sic: 1882], was replaced on the same site. The second ho"
+                },
+                {
+                    "record": "persons/tiburcio-vasquez",
+                    "field": "body",
+                    "text": "erey County, in this State, August 11th, 1835 [sic: April 7*], and is therefore 39 years of age. He has thr"
+                }
+            ]
+        },
+        "em-dash": {
+            "verdict": "intended",
+            "what": "Reynolds and Worden both write with em dashes, and the bibliography uses a double em dash for a repeated author.",
+            "todo": "Leave alone. This is the corpus's voice, not a defect.",
+            "records": 147,
+            "fields": 155,
+            "hits": 705,
+            "recordList": [
+                "articles/about-the-namesakes-of-the-kingsburry-house",
+                "articles/bowers-cave",
+                "articles/ethnography-of-castaic",
+                "articles/notes",
+                "articles/bibliography",
+                "articles/epilogue",
+                "articles/71-requiem",
+                "articles/70-birth-of-a-city",
+                "articles/69-rebels-with-a-cause",
+                "articles/68-sagebrush-reservoirs",
+                "articles/67-magic",
+                "articles/66-new-town",
+                "articles/65-transitions",
+                "articles/64-end-of-an-era",
+                "articles/63-confusion-hill",
+                "articles/62-suddenly-searchlights",
+                "articles/61-the-chroniclers",
+                "articles/60-melody",
+                "articles/59-mixville",
+                "articles/58-pistoleros",
+                "articles/56-eureka",
+                "articles/55-fights-and-feuds",
+                "articles/54-disaster-at-185-feet",
+                "articles/53-two-gun-bill",
+                "articles/52-servicing-the-traveler",
+                "articles/51-the-settlers",
+                "articles/50-the-chief",
+                "articles/49-reflections",
+                "articles/48-king-borax",
+                "articles/47-dry-colony",
+                "articles/46-surrey",
+                "articles/45-father-of-acton",
+                "articles/44-the-governor",
+                "articles/43-boom-town",
+                "articles/42-the-pioneer",
+                "articles/41-baron-of-casteca",
+                "articles/40-a-town-is-born",
+                "articles/39-ribbons-of-steel",
+                "articles/38-the-loud-neigh",
+                "articles/37-a-new-beginning",
+                "articles/36-taming-the-territory",
+                "articles/35-reign-of-terror",
+                "articles/34-bandido",
+                "articles/33-song-of-the-soledad",
+                "articles/32-gushers-and-glory",
+                "articles/31-rivers-of-oil",
+                "articles/30-the-north-forty",
+                "articles/29-barbaric-elegance",
+                "articles/28-monarch-of-all-he-surveys",
+                "articles/27-mining-the-soledad",
+                "articles/26-twilight-of-the-dons",
+                "articles/25-rest-stop",
+                "articles/24-wordsmiths",
+                "articles/23-the-beasts-of-tejon",
+                "articles/22-breaching-the-pass",
+                "articles/newhall-fourth-of-july-parade-history",
+                "articles/pardee-house-has-seen-local-history",
+                "articles/enemy-confirms-fremonts-trek-through-scv",
+                "articles/train-station-served-newhall-till-1933",
+                "articles/the-pico-ghost-camp",
+                "articles/tales-of-lang-and-soledad",
+                "articles/history-of-pico-canyon-oil-production",
+                "articles/history-of-downtown-newhall",
+                "articles/manuscript-colonization-1940s",
+                "articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957",
+                "articles/editors-notes",
+                "articles/6-oil-and-newhall",
+                "articles/5-mining",
+                "articles/4-early-transportation",
+                "articles/3-the-placerita-gold-rush",
+                "articles/2-rancho-san-francisco",
+                "articles/1-early-inhabitants",
+                "articles/introduction",
+                "articles/the-birth-of-newhall-continued",
+                "articles/henry-clay-wiley",
+                "articles/chapter-21-buttons-and-bows",
+                "articles/chapter-19-paradise-found",
+                "articles/chapter-18-the-pathfinder",
+                "articles/chapter-17-yanks-infiltrate",
+                "articles/chapter-15-family-squabbles",
+                "articles/diseno-map-of-rancho-san-francisco-c-1843",
+                "articles/chapter-14-lord-and-master",
+                "articles/chapter-11-ferdinands-grasp",
+                "articles/chapter-7-spain-reconnoiters",
+                "articles/chapter-6-winds-of-change",
+                "articles/chapter-4-children-of-nature",
+                "articles/chapter-3-man-arrives",
+                "articles/chapter-2-where-eagles-dare",
+                "articles/prologue-history-of-the-santa-clarita-valley",
+                "articles/preface-history-of-the-santa-clarita-valley",
+                "collections/history-of-the-santa-clarita-valley",
+                "collections/story-of-our-valley",
+                "events/northridge-earthquake",
+                "groups/bennett-arcan-party",
+                "groups/california-battalion",
+                "groups/newhall-family",
+                "groups/de-anza-expedition",
+                "groups/catalonian-volunteers",
+                "groups/portola-expedition",
+                "groups/del-valle-family",
+                "groups/tataviam",
+                "organizations/santa-clarita-valley-water",
+                "organizations/mission-santa-cruz",
+                "organizations/mission-san-francisco-de-asis",
+                "organizations/santa-clarita-valley-chamber-of-commerce",
+                "organizations/rancho-el-tejon",
+                "organizations/mission-san-gabriel-arcangel",
+                "organizations/rancho-camulos",
+                "organizations/rancho-san-francisco",
+                "organizations/henry-mayo-newhall-memorial-hospital",
+                "persons/dante-acosta",
+                "persons/remi-nadeau-i",
+                "persons/john-gifford",
+                "persons/scott-wilk",
+                "persons/arthur-b-perkins",
+                "persons/henry-clay-wiley",
+                "persons/edward-fitzgerald-beale",
+                "persons/juan-bandini",
+                "persons/cave-johnson-couts",
+                "persons/william-lewis-manly",
+                "persons/james-w-marshall",
+                "persons/andres-pico",
+                "persons/kit-carson",
+                "persons/edwin-bryant",
+                "persons/thomas-o-larkin",
+                "persons/abel-stearns",
+                "persons/john-c-fremont",
+                "persons/francisco-lopez",
+                "persons/juventino-del-valle",
+                "persons/juan-bautista-de-anza",
+                "persons/junipero-serra",
+                "persons/juan-crespi",
+                "persons/gaspar-de-portola",
+                "persons/ygnacio-del-valle",
+                "persons/antonio-del-valle",
+                "persons/father-francisco-garces",
+                "persons/pedro-fages",
+                "persons/tiburcio-vasquez",
+                "persons/henry-mayo-newhall",
+                "persons/jerry-reynolds",
+                "persons/leon-worden",
+                "places/newhall-pass-interchange",
+                "places/beales-cut-stagecoach-pass",
+                "warMemorials/joseph-b-balsz",
+                "warMemorials/ww2-jimbartlett",
+                "warMemorials/terror-rudyacosta",
+                "warMemorials/ww2-augustrubel"
+            ],
+            "examples": [
+                {
+                    "record": "articles/about-the-namesakes-of-the-kingsburry-house",
+                    "field": "body",
+                    "text": "tly older. He discovered it was built in 1878 — the year downtown Newhall moved from present-"
+                },
+                {
+                    "record": "articles/bowers-cave",
+                    "field": "body",
+                    "text": "monuments to mark the spot, no brass plaques — only a dump. If one pauses a moment at t"
+                },
+                {
+                    "record": "articles/ethnography-of-castaic",
+                    "field": "body",
+                    "text": "flicker feathers were found. Pictographs — painted symbols — and petroglyphs — carve"
+                },
+                {
+                    "record": "articles/notes",
+                    "field": "body",
+                    "text": "aces used in a more famous John Wayne picture — \"Stagecoach\" (John Ford, 1939). This isn't tr"
+                },
+                {
+                    "record": "articles/bibliography",
+                    "field": "body",
+                    "text": "AUTHOR'S RESOURCES ——. \"The Castaic Story.\" Undated manuscript, Castaic School archives."
+                },
+                {
+                    "record": "articles/epilogue",
+                    "field": "body",
+                    "text": "of Sanford and Cyrus Lyon). At least the name — albeit without the apostrophe, an early typog"
+                },
+                {
+                    "record": "articles/71-requiem",
+                    "field": "body",
+                    "text": "ed the Mentryville \"Big House\" in Pico Canyon — an effort that would be repeated in 1970 when"
+                },
+                {
+                    "record": "articles/70-birth-of-a-city",
+                    "field": "body",
+                    "text": "get surplus of three million dollars per year — local tax dollars that would otherwise go to"
+                }
+            ]
+        },
+        "legacy-nav-in-body": {
+            "verdict": "review",
+            "what": "A line of the legacy site's navigation still inside the prose: a breadcrumb, a \"MORE JERRY REYNOLDS\" footer, a bracketed \"Click here\".",
+            "todo": "Delete the line, after checking it is not the only pointer to something. clean_legacy_bodies.php removes these from the head and foot but stops at the first line it does not recognise, so anything further in survived.",
+            "records": 3,
+            "fields": 3,
+            "hits": 4,
+            "recordList": [
+                "articles/first-presbyterian-church",
+                "articles/bowers-cave",
+                "articles/ethnography-of-castaic"
+            ],
+            "examples": [
+                {
+                    "record": "articles/first-presbyterian-church",
+                    "field": "body",
+                    "text": "\" > JERRY REYNOLDS INDEX 90 Years Beneath the Cross. Story of the First Presbyterian Church of Newhall. By Jerry"
+                },
+                {
+                    "record": "articles/bowers-cave",
+                    "field": "body",
+                    "text": "MORE JERRY REYNOLDS ] Bowers Cave By Jerry Reynolds For The Signal Friday, December 14, 1984 Motorists roa"
+                },
+                {
+                    "record": "articles/ethnography-of-castaic",
+                    "field": "body",
+                    "text": "MORE JERRY REYNOLDS ] Ethnography of Castaic By Jerry Reynolds For The Signal date? It is not known when p"
+                }
+            ]
+        },
+        "bare-caps-line": {
+            "verdict": "review",
+            "what": "A whole line in capitals with no markup: a subheading the extraction flattened.",
+            "todo": "Decide whether these become headings in the body or are dropped. They are the same problem as fused-subheading, caught before the break was lost.",
+            "records": 10,
+            "fields": 10,
+            "hits": 15,
+            "recordList": [
+                "articles/bowers-cave",
+                "articles/ethnography-of-castaic",
+                "articles/bibliography",
+                "articles/46-surrey",
+                "articles/37-a-new-beginning",
+                "articles/27-mining-the-soledad",
+                "articles/newhall-fourth-of-july-parade-history",
+                "articles/tales-of-lang-and-soledad",
+                "articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957",
+                "articles/surveyors-map-showing-lyons-station"
+            ],
+            "examples": [
+                {
+                    "record": "articles/bowers-cave",
+                    "field": "body",
+                    "text": "MORE JERRY REYNOLDS ] Bowers Cave By Jerry Reynolds For The Signal Friday, December 14, 1984 Motorists roa"
+                },
+                {
+                    "record": "articles/ethnography-of-castaic",
+                    "field": "body",
+                    "text": "MORE JERRY REYNOLDS ] Ethnography of Castaic By Jerry Reynolds For The Signal date? It is not known when p"
+                },
+                {
+                    "record": "articles/bibliography",
+                    "field": "body",
+                    "text": "AUTHOR'S RESOURCES ——. \"The Castaic Story.\" Undated manuscript, Castaic School archives. ——. \"Collec"
+                },
+                {
+                    "record": "articles/46-surrey",
+                    "field": "body",
+                    "text": "DOWNTOWN SAUGUS / SURREY SEE ALSO: BERCAW FAMILY Reynolds Story [image:1] Bercaw Store 1907 [image:"
+                },
+                {
+                    "record": "articles/37-a-new-beginning",
+                    "field": "body",
+                    "text": "wing advertisement in the Ventura newspaper: RANCHO SAN FRANCISCO Contains 48,000 acres and is situated on the"
+                },
+                {
+                    "record": "articles/27-mining-the-soledad",
+                    "field": "body",
+                    "text": ". Something was done, by a man named Beale. SOLEDAD CITY aka Hebrewville, aka?"
+                },
+                {
+                    "record": "articles/newhall-fourth-of-july-parade-history",
+                    "field": "body",
+                    "text": "istorical Society collection. Document file. NEWHALL FOURTH OF JULY CELEBRATION 1968 [image:1] Program Book"
+                },
+                {
+                    "record": "articles/tales-of-lang-and-soledad",
+                    "field": "body",
+                    "text": "to control the grizzlies. * * * [image:2] THOMAS F. MITCHELL Thomas Finley Mitchell came to California f"
+                }
+            ]
+        },
+        "mid-sentence-double-space": {
+            "verdict": "review",
+            "what": "Two or more spaces that are not after a sentence stop, so not the typescript's sentence gap but a scan artefact: \"Aug.  24, 1878\".",
+            "todo": "Collapse to one. Separated from the sentence gap below on purpose, because collapsing both is a typographic decision rather than a repair.",
+            "records": 10,
+            "fields": 10,
+            "hits": 55,
+            "recordList": [
+                "articles/bowers-cave",
+                "articles/ethnography-of-castaic",
+                "articles/bibliography",
+                "articles/26-twilight-of-the-dons",
+                "articles/24-wordsmiths",
+                "articles/history-of-pico-canyon-oil-production",
+                "articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957",
+                "articles/2-rancho-san-francisco",
+                "articles/1-early-inhabitants",
+                "articles/introduction"
+            ],
+            "examples": [
+                {
+                    "record": "articles/bowers-cave",
+                    "field": "body",
+                    "text": "the spot, no brass plaques — only a dump. If one pauses a moment at the entry to the Chi"
+                },
+                {
+                    "record": "articles/ethnography-of-castaic",
+                    "field": "body",
+                    "text": "Los Angeles area as being 26,000 years old. The earliest inhabitants were big-game hunters"
+                },
+                {
+                    "record": "articles/bibliography",
+                    "field": "body",
+                    "text": "ations or correspondence with the following: Gerald G. and Myrna Reynolds, Jack and Joan Be"
+                },
+                {
+                    "record": "articles/26-twilight-of-the-dons",
+                    "field": "body",
+                    "text": "was the death knell for the California dons. Prime beef was back to two dollars a head, whe"
+                },
+                {
+                    "record": "articles/24-wordsmiths",
+                    "field": "body",
+                    "text": "lity, and some of it containing good pasture.\" Cattle were valued at thirty dollars, horses a"
+                },
+                {
+                    "record": "articles/history-of-pico-canyon-oil-production",
+                    "field": "body",
+                    "text": "y. \"Uncle Alec,\" as Mentry was known, directed the development of the Newhall field during it"
+                },
+                {
+                    "record": "articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957",
+                    "field": "body",
+                    "text": "hat on the corresponding stamp. Santa Barbara April 4th, 1842 Franco Lopez Manuel Cota Fr"
+                },
+                {
+                    "record": "articles/2-rancho-san-francisco",
+                    "field": "body",
+                    "text": "er 102,000 acres, and was the northerly rancho — Camulos was then an integral part of Ranc"
+                }
+            ]
+        },
+        "date-placeholder": {
+            "verdict": "review",
+            "what": "The literal word \"Date?\" left where a date was not known.",
+            "todo": "Fill it or remove the line. clean_legacy_bodies.php strips this at the head of a body; one survived further in.",
+            "records": 1,
+            "fields": 1,
+            "hits": 1,
+            "recordList": [
+                "articles/ethnography-of-castaic"
+            ],
+            "examples": [
+                {
+                    "record": "articles/ethnography-of-castaic",
+                    "field": "body",
+                    "text": "of Castaic By Jerry Reynolds For The Signal date? It is not known when prehistoric populations"
+                }
+            ]
+        },
+        "bare-url-in-prose": {
+            "verdict": "review",
+            "what": "A URL written out in the prose rather than linked.",
+            "todo": "Either link it or move it to a field that holds a link.",
+            "records": 1,
+            "fields": 1,
+            "hits": 1,
+            "recordList": [
+                "articles/bibliography"
+            ],
+            "examples": [
+                {
+                    "record": "articles/bibliography",
+                    "field": "body",
+                    "text": "7. Santa Clarita Valley History In Pictures (http://www.scvhistory.com). Old Town Newhall, USA and the Santa Clarita"
+                }
+            ]
+        },
+        "footnote-marker": {
+            "verdict": "intended",
+            "what": "A footnote number on a line of its own.",
+            "todo": "Leave alone until footnotes are modelled properly.",
+            "records": 16,
+            "fields": 16,
+            "hits": 175,
+            "recordList": [
+                "articles/70-birth-of-a-city",
+                "articles/65-transitions",
+                "articles/60-melody",
+                "articles/55-fights-and-feuds",
+                "articles/40-a-town-is-born",
+                "articles/enemy-confirms-fremonts-trek-through-scv",
+                "articles/the-pico-ghost-camp",
+                "articles/history-of-pico-canyon-oil-production",
+                "articles/history-of-downtown-newhall",
+                "articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957",
+                "articles/6-oil-and-newhall",
+                "articles/4-early-transportation",
+                "articles/3-the-placerita-gold-rush",
+                "articles/2-rancho-san-francisco",
+                "articles/1-early-inhabitants",
+                "warMemorials/william-ernest-pineau"
+            ],
+            "examples": [
+                {
+                    "record": "articles/70-birth-of-a-city",
+                    "field": "body",
+                    "text": "fice on Soledad Canyon Road in Canyon Country [1] , with Carmen Sarro as the first permanent em"
+                },
+                {
+                    "record": "articles/65-transitions",
+                    "field": "body",
+                    "text": "son of the famous L.A. freighter and hotelier [1] — featured an extensive deer park and was"
+                },
+                {
+                    "record": "articles/60-melody",
+                    "field": "body",
+                    "text": "rds while Smith Ballew did the actual singing [ 8 ] , in the early 1930s Wayne played \"Singin' Sa"
+                },
+                {
+                    "record": "articles/55-fights-and-feuds",
+                    "field": "body",
+                    "text": "king, well-behaved faction was William Broome [1] — farmer, church deacon, school board memb"
+                },
+                {
+                    "record": "articles/40-a-town-is-born",
+                    "field": "body",
+                    "text": "the parking lot of the Anawalt Lumber Company [1] . By 1882, Henry Mayo could look with some p"
+                },
+                {
+                    "record": "articles/enemy-confirms-fremonts-trek-through-scv",
+                    "field": "body",
+                    "text": "es the impression that the present cut is it. [1] The Fremont party did come through the rancho"
+                },
+                {
+                    "record": "articles/the-pico-ghost-camp",
+                    "field": "body",
+                    "text": "CO timebook would also have to be considered. [1] About 1908, Goldberg thinks there were over 1"
+                },
+                {
+                    "record": "articles/history-of-pico-canyon-oil-production",
+                    "field": "body",
+                    "text": "Vincent Gelcich had been born in 1829 [1828]. [14] He became an army contract surgeon and may h"
+                }
+            ]
+        },
+        "sentence-gap": {
+            "verdict": "intended",
+            "what": "Two spaces after a sentence stop: the typescript convention the sources were typed in.",
+            "todo": "A decision, not a repair. Keeping it is defensible and so is collapsing it, but it should be done once, deliberately, and not as a side effect.",
+            "records": 6,
+            "fields": 6,
+            "hits": 61,
+            "recordList": [
+                "articles/27-mining-the-soledad",
+                "articles/26-twilight-of-the-dons",
+                "articles/24-wordsmiths",
+                "articles/history-of-pico-canyon-oil-production",
+                "articles/1-early-inhabitants",
+                "articles/introduction"
+            ],
+            "examples": [
+                {
+                    "record": "articles/27-mining-the-soledad",
+                    "field": "body",
+                    "text": "k, crumpled hills; and deep, twisting arroyos. Through this land skulked outlaws, renegade In"
+                },
+                {
+                    "record": "articles/26-twilight-of-the-dons",
+                    "field": "body",
+                    "text": "d to take out mortgages on their vast estates. An interest rate of four percent per month was"
+                },
+                {
+                    "record": "articles/24-wordsmiths",
+                    "field": "body",
+                    "text": "tists and cartographers during November, 1849. The son of famed ornithologist John James Audu"
+                },
+                {
+                    "record": "articles/history-of-pico-canyon-oil-production",
+                    "field": "body",
+                    "text": "asket mortars, or as a base for ornamentation. It was used externally and internally medicina"
+                },
+                {
+                    "record": "articles/1-early-inhabitants",
+                    "field": "body",
+                    "text": "ent was simple and practically indestructible. Most important was the metate, or stone mortar"
+                },
+                {
+                    "record": "articles/introduction",
+                    "field": "body",
+                    "text": "\"first historian\" of the Santa Clarita Valley. With the permission of the Signal, his valuabl"
+                }
+            ]
+        },
+        "curly-quote": {
+            "verdict": "outlier",
+            "what": "A curly quote or apostrophe in a corpus that is otherwise entirely straight.",
+            "todo": "Straighten it, or decide to curl the other 1,000 and do that once.",
+            "records": 1,
+            "fields": 1,
+            "hits": 1,
+            "recordList": [
+                "articles/the-pico-ghost-camp"
+            ],
+            "examples": [
+                {
+                    "record": "articles/the-pico-ghost-camp",
+                    "field": "body",
+                    "text": "le — the wells Scofield drilled in the late ‘70s for the California Star Oil Works Co., wer"
+                }
+            ]
+        },
+        "ellipsis-character": {
+            "verdict": "outlier",
+            "what": "U+2026 in a corpus that otherwise writes three full stops.",
+            "todo": "Pick one. Whichever it is, one instance against two hundred is the odd one.",
+            "records": 1,
+            "fields": 1,
+            "hits": 1,
+            "recordList": [
+                "articles/the-pico-ghost-camp"
+            ],
+            "examples": [
+                {
+                    "record": "articles/the-pico-ghost-camp",
+                    "field": "body",
+                    "text": "hop. It could handle any mechanical breakdown … or there was a change of shop foreman. Sprin"
+                }
+            ]
+        },
+        "fused-subheading": {
+            "verdict": "review",
+            "what": "A word repeated immediately, in the same case. Almost always a subheading that lost its line break and ran into the sentence below it: \"Recent Mining Mining has always been\", \"Events of 1869 1869 opened cheerily\".",
+            "todo": "Restore the break and mark the subheading. A machine cannot tell where the heading ends, so this is a person's job, but the list is short.",
+            "records": 3,
+            "fields": 3,
+            "hits": 5,
+            "recordList": [
+                "articles/history-of-pico-canyon-oil-production",
+                "articles/5-mining",
+                "articles/2-rancho-san-francisco"
+            ],
+            "examples": [
+                {
+                    "record": "articles/history-of-pico-canyon-oil-production",
+                    "field": "body",
+                    "text": ", three spring pole wells were drilled by the C.S.O. C.S.O. No. 1 produced ten barrels of oil at 120 feet"
+                },
+                {
+                    "record": "articles/5-mining",
+                    "field": "body",
+                    "text": "en in the locality where we were.\" Events of 1869 1869 opened cheerily, as there were \"no brawls on"
+                },
+                {
+                    "record": "articles/2-rancho-san-francisco",
+                    "field": "body",
+                    "text": "is inscribed: \"Mac Pyle 1884.\" Lo, The Poor Indians Indians are not illogical. How they reconciled the te"
+                }
+            ]
+        },
+        "inline-markup": {
+            "verdict": "intended",
+            "what": "Inline emphasis and links inside a plain-text body, rendered by prose.twig.",
+            "todo": "Leave alone. This is the layer that stopped emphasis from splitting sentences.",
+            "records": 14,
+            "fields": 15,
+            "hits": 102,
+            "recordList": [
+                "articles/henry-clay-wiley",
+                "articles/chapter-18-the-pathfinder",
+                "articles/chapter-9-the-trail-blazer",
+                "articles/chapter-6-winds-of-change",
+                "articles/prologue-history-of-the-santa-clarita-valley",
+                "articles/preface-history-of-the-santa-clarita-valley",
+                "collections/history-of-the-santa-clarita-valley",
+                "events/northridge-earthquake",
+                "obituaries/in-memoriam-henry-clay-wiley-1829-1898",
+                "persons/remi-nadeau-i",
+                "persons/scott-wilk",
+                "persons/ygnacio-del-valle",
+                "persons/jerry-reynolds",
+                "persons/leon-worden"
+            ],
+            "examples": [
+                {
+                    "record": "articles/henry-clay-wiley",
+                    "field": "body",
+                    "text": "Another Pioneer Passes Away. <strong>Mr. Henry C. Wiley Dies at His Residence — Was An Old Settle"
+                },
+                {
+                    "record": "articles/chapter-18-the-pathfinder",
+                    "field": "body",
+                    "text": "us for the great experiment of liberty....\" <strong>— John L. O'Sullivan, Editor</strong> <stron"
+                },
+                {
+                    "record": "articles/chapter-9-the-trail-blazer",
+                    "field": "body",
+                    "text": "expedition through the Santa Clarita Valley. <a href=\"/persons/pedro-fages\" title=\"Captain Pedro Fages (c. 1734–1796), Catalonian "
+                },
+                {
+                    "record": "articles/chapter-6-winds-of-change",
+                    "field": "body",
+                    "text": "<em>\"Know ye that on the right hand of the Indies there is an island called California, very nea"
+                },
+                {
+                    "record": "articles/chapter-6-winds-of-change",
+                    "field": "webmasterNoteBottom",
+                    "text": "formed by any other ruler — Queen Califa.\" <em><strong>— Leon Worden</strong></em>"
+                },
+                {
+                    "record": "articles/prologue-history-of-the-santa-clarita-valley",
+                    "field": "body",
+                    "text": "s who will be brought to life in these pages. <strong>JERRY REYNOLDS</strong> <strong>1985</strong>"
+                },
+                {
+                    "record": "articles/preface-history-of-the-santa-clarita-valley",
+                    "field": "body",
+                    "text": "ley's history to life so that the reader just <i>knows</i> the author must have been there, wit"
+                },
+                {
+                    "record": "collections/history-of-the-santa-clarita-valley",
+                    "field": "body",
+                    "text": "<em>History of the Santa Clarita Valley</em> is the most comprehensive account of the Santa Clar"
+                }
+            ]
+        }
+    },
+    "reviewQueue": {
+        "articles/ethnography-of-castaic": {
+            "n": 22,
+            "classes": [
+                "legacy-nav-in-body",
+                "bare-caps-line",
+                "date-placeholder",
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957": {
+            "n": 17,
+            "classes": [
+                "bare-caps-line",
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/bowers-cave": {
+            "n": 15,
+            "classes": [
+                "legacy-nav-in-body",
+                "bare-caps-line",
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/bibliography": {
+            "n": 4,
+            "classes": [
+                "bare-caps-line",
+                "mid-sentence-double-space",
+                "bare-url-in-prose"
+            ]
+        },
+        "articles/2-rancho-san-francisco": {
+            "n": 4,
+            "classes": [
+                "fused-subheading",
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/history-of-pico-canyon-oil-production": {
+            "n": 3,
+            "classes": [
+                "fused-subheading",
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/5-mining": {
+            "n": 3,
+            "classes": [
+                "fused-subheading"
+            ]
+        },
+        "articles/37-a-new-beginning": {
+            "n": 2,
+            "classes": [
+                "bare-caps-line"
+            ]
+        },
+        "articles/tales-of-lang-and-soledad": {
+            "n": 2,
+            "classes": [
+                "bare-caps-line"
+            ]
+        },
+        "articles/first-presbyterian-church": {
+            "n": 1,
+            "classes": [
+                "legacy-nav-in-body"
+            ]
+        },
+        "articles/46-surrey": {
+            "n": 1,
+            "classes": [
+                "bare-caps-line"
+            ]
+        },
+        "articles/27-mining-the-soledad": {
+            "n": 1,
+            "classes": [
+                "bare-caps-line"
+            ]
+        },
+        "articles/26-twilight-of-the-dons": {
+            "n": 1,
+            "classes": [
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/24-wordsmiths": {
+            "n": 1,
+            "classes": [
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/newhall-fourth-of-july-parade-history": {
+            "n": 1,
+            "classes": [
+                "bare-caps-line"
+            ]
+        },
+        "articles/1-early-inhabitants": {
+            "n": 1,
+            "classes": [
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/introduction": {
+            "n": 1,
+            "classes": [
+                "mid-sentence-double-space"
+            ]
+        },
+        "articles/surveyors-map-showing-lyons-station": {
+            "n": 1,
+            "classes": [
+                "bare-caps-line"
+            ]
+        }
+    }
+}

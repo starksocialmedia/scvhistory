@@ -41,7 +41,7 @@ if ($APPLY) { echo 'APPLY IS ON, this will write relations to the database' . PH
 
 $INVENTORY  = \Craft::getAlias('@root') . '/inventory/legacy/perkins.json';
 $COLLECTION = 'story-of-our-valley';
-$REPORT     = \Craft::getAlias('@webroot') . '/review/perkins-pilot.md';
+$REPORT     = \Craft::getAlias('@review') . '/perkins-pilot.md';
 $SAMPLE     = 10;
 
 if (!file_exists($INVENTORY)) { echo 'not found: ' . $INVENTORY . PHP_EOL; return; }

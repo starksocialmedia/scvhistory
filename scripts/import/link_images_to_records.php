@@ -37,7 +37,7 @@ if ($APPLY) { echo 'APPLY IS ON, this will write relations to the database' . PH
 
 $root     = \Craft::getAlias('@root');
 $LAYER_DIR = $root . '/templates/_data/image-links';
-$REPORT    = \Craft::getAlias('@webroot') . '/review/image-links.md';
+$REPORT    = \Craft::getAlias('@review') . '/image-links.md';
 
 /* One field, derivedImageLinks, whatever the target is.
  *

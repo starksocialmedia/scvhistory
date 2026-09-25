@@ -40,7 +40,7 @@
 $root  = \Craft::getAlias('@root');
 $OUT   = $root . '/templates/_data/enlarge.json';
 $DRIVE = $root . '/inventory/raw/scvhistory-manifest-2026-08-20.sha256';
-$REPORT = \Craft::getAlias('@webroot') . '/review/enlarge-targets.md';
+$REPORT = \Craft::getAlias('@review') . '/enlarge-targets.md';
 
 /* ------------------------------------------------ the legacy image links */
 

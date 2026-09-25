@@ -42,7 +42,7 @@
 
 $APPLY = false;
 
-$REVIEW = \Craft::getAlias('@webroot') . '/review';
+$REVIEW = \Craft::getAlias('@review');
 $SUFFIX = $RECORDS_SUFFIX ?? '';
 $TOP    = isset($TOP_N) ? (int)$TOP_N : 0;
 $PROV_FIELD = 'recordProvenance';

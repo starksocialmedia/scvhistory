@@ -3,7 +3,7 @@
  * candidate onto the row, so the review screen can show a name, an id and a
  * source beside the sentence the name came from.
  *
- * Read only as far as the database goes. It rewrites web/review/records*.json
+ * Read only as far as the database goes. It rewrites review/records*.json
  * in place, adding an "authority" block to each row and nothing else.
  *
  * WHAT IT MATCHES AGAINST
@@ -45,7 +45,7 @@
  */
 
 $ROOT   = \Craft::getAlias('@root');
-$REVIEW = \Craft::getAlias('@webroot') . '/review';
+$REVIEW = \Craft::getAlias('@review');
 $SUFFIX = $MATCH_SUFFIX ?? '';
 $AUTH   = $ROOT . '/inventory/legacy/authorities';
 

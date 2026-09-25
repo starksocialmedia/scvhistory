@@ -64,7 +64,7 @@ class DecisionsController extends Controller
             'eras'  => 'eras-decided.json',
             default => 'records-decided.json',
         };
-        return Craft::getAlias('@webroot') . '/review/' . $name;
+        return Craft::getAlias('@review') . '/' . $name;
     }
 
     private static function keyFor(string $name, string $type): string

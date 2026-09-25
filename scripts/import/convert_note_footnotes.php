@@ -35,7 +35,7 @@ if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $HANDLES = ['webmasterNoteBottom', 'webmasterNoteTop', 'personWebmasterNoteBottom',
             'obitWebmasterNoteBottom', 'mpWebmasterNoteBottom', 'wmNotes'];
 
-$REPORT = \Craft::getAlias('@webroot') . '/review/note-footnotes.md';
+$REPORT = \Craft::getAlias('@review') . '/note-footnotes.md';
 $elements = Craft::$app->getElements();
 
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL;

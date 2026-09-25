@@ -30,5 +30,13 @@ return GeneralConfig::create()
     // Set the @webroot alias so the clear-caches command knows where to find CP resources
     ->aliases([
         '@webroot' => dirname(__DIR__) . '/web',
+        /* The review screens and the queues they read are working material:
+           reconciliation queues, the ledger index, 8,359 unmatched names in
+           photo-links.json, and in the fidelity files the full text of the
+           archive. They sit outside the web root so that no host can serve
+           them, because on Cloudways nothing in web/.htaccess is read and the
+           panel on this application offers no Nginx settings to block a path.
+           Local browsing at /review/ is a DDEV-only alias: .ddev/nginx/review.conf. */
+        '@review' => dirname(__DIR__) . '/review',
     ])
 ;

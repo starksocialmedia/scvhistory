@@ -148,7 +148,7 @@ WHERE {
 """
 
 QUEUE = os.path.join(os.path.dirname(__file__), '..', '..',
-                     'web', 'review', 'records-full.json')
+                     'review', 'records-full.json')
 
 NAME_CAP = 400
 

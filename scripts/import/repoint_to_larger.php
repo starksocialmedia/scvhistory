@@ -1,7 +1,7 @@
 /**
  * Repoints inline image references at a larger copy found by perceptual hash.
  *
- * Input is web/review/larger-by-hash.json from find_larger_by_hash.php. Only
+ * Input is review/larger-by-hash.json from find_larger_by_hash.php. Only
  * pairs at "certain" are eligible by default; likely and possible are printed
  * and skipped, because a 120x90 thumbnail carries so little information that a
  * difference hash on one is barely better than a guess at distance 9 or more.
@@ -23,7 +23,7 @@ $MIN_CONFIDENCE = $REPOINT_CONFIDENCE ?? 'certain';   /* certain | likely | poss
 $RANK = ['certain' => 3, 'likely' => 2, 'possible' => 1];
 $floor = $RANK[$MIN_CONFIDENCE] ?? 3;
 
-$REPORT = \Craft::getAlias('@webroot') . '/review/larger-by-hash.json';
+$REPORT = \Craft::getAlias('@review') . '/larger-by-hash.json';
 if (!file_exists($REPORT)) { echo 'no larger-by-hash.json. Run find_larger_by_hash.php first.' . PHP_EOL; return; }
 $doc = json_decode(file_get_contents($REPORT), true) ?: [];
 

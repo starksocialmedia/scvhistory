@@ -1,5 +1,5 @@
 /**
- * Exports the relation candidates for every article to web/review/relations.json
+ * Exports the relation candidates for every article to review/relations.json
  * for the review screen. Read only: it never writes to the database.
  *
  * A candidate is an entity the extraction found on that article's legacy page.
@@ -23,7 +23,7 @@
  */
 
 $root = \Craft::getAlias('@root');
-$out = \Craft::getAlias('@webroot') . '/review/relations.json';
+$out = \Craft::getAlias('@review') . '/relations.json';
 
 $INVENTORIES = ['perkins', 'reynolds-full', 'warmemorial'];
 $KINDS = ['people' => 'person', 'places' => 'place', 'organizations' => 'organization'];

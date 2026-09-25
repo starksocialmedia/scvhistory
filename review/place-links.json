@@ -1,0 +1,580 @@
+{
+    "meta": {
+        "generated": "2026-09-18T17:44:36-07:00",
+        "generated_by": "scripts/import/export_place_links.php",
+        "nearKm": 2,
+        "places": 15,
+        "pairs": 14,
+        "byKind": {
+            "community": 11,
+            "proximity": 3,
+            "mention": 2
+        }
+    },
+    "places": [
+        {
+            "id": 932,
+            "title": "Beale's Cut Stagecoach Pass",
+            "url": "https://scvhistory.ddev.site/places/beales-cut-stagecoach-pass",
+            "community": "Newhall",
+            "aliases": [
+                "Fremont Pass",
+                "San Fernando Pass",
+                "Newhall Cut"
+            ],
+            "lat": 34.3444,
+            "lng": -118.5074,
+            "related": 0
+        },
+        {
+            "id": 595,
+            "title": "Estancia de San Francisco Xavier",
+            "url": "https://scvhistory.ddev.site/places/estancia",
+            "community": "Castaic Junction",
+            "aliases": [],
+            "lat": 34.4275,
+            "lng": -118.6125,
+            "related": 0
+        },
+        {
+            "id": 597,
+            "title": "Fort Tejon",
+            "url": "https://scvhistory.ddev.site/places/fort-tejon",
+            "community": "Tejon",
+            "aliases": [],
+            "lat": 34.8735,
+            "lng": -118.8955,
+            "related": 0
+        },
+        {
+            "id": 599,
+            "title": "Harry Carey Ranch",
+            "url": "https://scvhistory.ddev.site/places/harry-carey-ranch",
+            "community": "Saugus",
+            "aliases": [],
+            "lat": 34.463,
+            "lng": -118.562,
+            "related": 0
+        },
+        {
+            "id": 605,
+            "title": "Heritage Junction Historic Park",
+            "url": "https://scvhistory.ddev.site/places/heritage-junction",
+            "community": "Newhall",
+            "aliases": [],
+            "lat": 34.381,
+            "lng": -118.5325,
+            "related": 0
+        },
+        {
+            "id": 607,
+            "title": "Lake Hughes",
+            "url": "https://scvhistory.ddev.site/places/lake-hughes",
+            "community": "Lake Hughes",
+            "aliases": [],
+            "lat": 34.677,
+            "lng": -118.438,
+            "related": 0
+        },
+        {
+            "id": 609,
+            "title": "Lang Station",
+            "url": "https://scvhistory.ddev.site/places/lang",
+            "community": "Soledad Canyon",
+            "aliases": [],
+            "lat": 34.444,
+            "lng": -118.363,
+            "related": 0
+        },
+        {
+            "id": 926,
+            "title": "Lyons Station Stagecoach Stop",
+            "url": "https://scvhistory.ddev.site/places/lyons-station",
+            "community": "Newhall",
+            "aliases": [
+                "Lyon's Station",
+                "Hart's Station",
+                "Wiley's Station"
+            ],
+            "lat": 34.369,
+            "lng": -118.5225,
+            "related": 0
+        },
+        {
+            "id": 615,
+            "title": "Melody Ranch Motion Picture Studio",
+            "url": "https://scvhistory.ddev.site/places/melody-ranch",
+            "community": "Newhall",
+            "aliases": [],
+            "lat": 34.383,
+            "lng": -118.501,
+            "related": 0
+        },
+        {
+            "id": 934,
+            "title": "Newhall Pass interchange",
+            "url": "https://scvhistory.ddev.site/places/newhall-pass-interchange",
+            "community": "Newhall",
+            "aliases": [],
+            "lat": 34.339,
+            "lng": -118.504,
+            "related": 0
+        },
+        {
+            "id": 631,
+            "title": "Rancho Camulos",
+            "url": "https://scvhistory.ddev.site/places/rancho-camulos",
+            "community": "Piru",
+            "aliases": [],
+            "lat": 34.407,
+            "lng": -118.753,
+            "related": 0
+        },
+        {
+            "id": 635,
+            "title": "Ridge Route",
+            "url": "https://scvhistory.ddev.site/places/ridge-route",
+            "community": "Castaic",
+            "aliases": [],
+            "lat": 34.62,
+            "lng": -118.73,
+            "related": 0
+        },
+        {
+            "id": 643,
+            "title": "Saugus Speedway",
+            "url": "https://scvhistory.ddev.site/places/saugus-speedway",
+            "community": "Saugus",
+            "aliases": [],
+            "lat": 34.42,
+            "lng": -118.545,
+            "related": 0
+        },
+        {
+            "id": 613,
+            "title": "Six Flags Magic Mountain",
+            "url": "https://scvhistory.ddev.site/places/magic-mountain",
+            "community": "Valencia",
+            "aliases": [],
+            "lat": 34.425,
+            "lng": -118.597,
+            "related": 0
+        },
+        {
+            "id": 659,
+            "title": "Vasquez Rocks",
+            "url": "https://scvhistory.ddev.site/places/vasquez-rocks",
+            "community": "Agua Dulce",
+            "aliases": [],
+            "lat": 34.488,
+            "lng": -118.32,
+            "related": 0
+        }
+    ],
+    "pairs": [
+        {
+            "a": {
+                "id": 597,
+                "title": "Fort Tejon",
+                "url": "https://scvhistory.ddev.site/places/fort-tejon",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/597-fort-tejon",
+                "community": "Tejon"
+            },
+            "b": {
+                "id": 926,
+                "title": "Lyons Station Stagecoach Stop",
+                "url": "https://scvhistory.ddev.site/places/lyons-station",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/926-lyons-station",
+                "community": "Newhall"
+            },
+            "km": 65.67,
+            "evidence": [
+                {
+                    "kind": "mention",
+                    "detail": "Lyons Station Stagecoach Stop names Fort Tejon as \"Fort Tejon\"",
+                    "sentence": "Lyon's Station was a stage and wagon road stop established circa 1854 on the road connecting Los Angeles to Fort Tejon, situated on the west side of the road at what is now the present-day entry to Eternal Valley Memorial Park at the intersection of Sierra Highway and Newhall Avenue."
+                }
+            ],
+            "kinds": [
+                "mention"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 932,
+                "title": "Beale's Cut Stagecoach Pass",
+                "url": "https://scvhistory.ddev.site/places/beales-cut-stagecoach-pass",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/932-beales-cut-stagecoach-pass",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 597,
+                "title": "Fort Tejon",
+                "url": "https://scvhistory.ddev.site/places/fort-tejon",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/597-fort-tejon",
+                "community": "Tejon"
+            },
+            "km": 68.72,
+            "evidence": [
+                {
+                    "kind": "mention",
+                    "detail": "Beale's Cut Stagecoach Pass names Fort Tejon as \"Fort Tejon\"",
+                    "sentence": "It pierced the \"San Fernando Mountain\" — the most formidable obstacle along the Fort Tejon Road, the main inland route from Los Angeles northward — creating a passable slot between the San Gabriel and Santa Susana mountain ranges."
+                }
+            ],
+            "kinds": [
+                "mention"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 932,
+                "title": "Beale's Cut Stagecoach Pass",
+                "url": "https://scvhistory.ddev.site/places/beales-cut-stagecoach-pass",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/932-beales-cut-stagecoach-pass",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 934,
+                "title": "Newhall Pass interchange",
+                "url": "https://scvhistory.ddev.site/places/newhall-pass-interchange",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/934-newhall-pass-interchange",
+                "community": "Newhall"
+            },
+            "km": 0.68,
+            "evidence": [
+                {
+                    "kind": "proximity",
+                    "detail": "0.68 km apart"
+                },
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "proximity",
+                "community"
+            ],
+            "strength": 2,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 605,
+                "title": "Heritage Junction Historic Park",
+                "url": "https://scvhistory.ddev.site/places/heritage-junction",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/605-heritage-junction",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 926,
+                "title": "Lyons Station Stagecoach Stop",
+                "url": "https://scvhistory.ddev.site/places/lyons-station",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/926-lyons-station",
+                "community": "Newhall"
+            },
+            "km": 1.62,
+            "evidence": [
+                {
+                    "kind": "proximity",
+                    "detail": "1.62 km apart"
+                },
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "proximity",
+                "community"
+            ],
+            "strength": 2,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 595,
+                "title": "Estancia de San Francisco Xavier",
+                "url": "https://scvhistory.ddev.site/places/estancia",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/595-estancia",
+                "community": "Castaic Junction"
+            },
+            "b": {
+                "id": 613,
+                "title": "Six Flags Magic Mountain",
+                "url": "https://scvhistory.ddev.site/places/magic-mountain",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/613-magic-mountain",
+                "community": "Valencia"
+            },
+            "km": 1.45,
+            "evidence": [
+                {
+                    "kind": "proximity",
+                    "detail": "1.45 km apart"
+                }
+            ],
+            "kinds": [
+                "proximity"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 926,
+                "title": "Lyons Station Stagecoach Stop",
+                "url": "https://scvhistory.ddev.site/places/lyons-station",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/926-lyons-station",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 615,
+                "title": "Melody Ranch Motion Picture Studio",
+                "url": "https://scvhistory.ddev.site/places/melody-ranch",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/615-melody-ranch",
+                "community": "Newhall"
+            },
+            "km": 2.51,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 605,
+                "title": "Heritage Junction Historic Park",
+                "url": "https://scvhistory.ddev.site/places/heritage-junction",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/605-heritage-junction",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 615,
+                "title": "Melody Ranch Motion Picture Studio",
+                "url": "https://scvhistory.ddev.site/places/melody-ranch",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/615-melody-ranch",
+                "community": "Newhall"
+            },
+            "km": 2.9,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 932,
+                "title": "Beale's Cut Stagecoach Pass",
+                "url": "https://scvhistory.ddev.site/places/beales-cut-stagecoach-pass",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/932-beales-cut-stagecoach-pass",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 926,
+                "title": "Lyons Station Stagecoach Stop",
+                "url": "https://scvhistory.ddev.site/places/lyons-station",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/926-lyons-station",
+                "community": "Newhall"
+            },
+            "km": 3.07,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 926,
+                "title": "Lyons Station Stagecoach Stop",
+                "url": "https://scvhistory.ddev.site/places/lyons-station",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/926-lyons-station",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 934,
+                "title": "Newhall Pass interchange",
+                "url": "https://scvhistory.ddev.site/places/newhall-pass-interchange",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/934-newhall-pass-interchange",
+                "community": "Newhall"
+            },
+            "km": 3.74,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 932,
+                "title": "Beale's Cut Stagecoach Pass",
+                "url": "https://scvhistory.ddev.site/places/beales-cut-stagecoach-pass",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/932-beales-cut-stagecoach-pass",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 615,
+                "title": "Melody Ranch Motion Picture Studio",
+                "url": "https://scvhistory.ddev.site/places/melody-ranch",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/615-melody-ranch",
+                "community": "Newhall"
+            },
+            "km": 4.33,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 932,
+                "title": "Beale's Cut Stagecoach Pass",
+                "url": "https://scvhistory.ddev.site/places/beales-cut-stagecoach-pass",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/932-beales-cut-stagecoach-pass",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 605,
+                "title": "Heritage Junction Historic Park",
+                "url": "https://scvhistory.ddev.site/places/heritage-junction",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/605-heritage-junction",
+                "community": "Newhall"
+            },
+            "km": 4.68,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 615,
+                "title": "Melody Ranch Motion Picture Studio",
+                "url": "https://scvhistory.ddev.site/places/melody-ranch",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/615-melody-ranch",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 934,
+                "title": "Newhall Pass interchange",
+                "url": "https://scvhistory.ddev.site/places/newhall-pass-interchange",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/934-newhall-pass-interchange",
+                "community": "Newhall"
+            },
+            "km": 4.9,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 599,
+                "title": "Harry Carey Ranch",
+                "url": "https://scvhistory.ddev.site/places/harry-carey-ranch",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/599-harry-carey-ranch",
+                "community": "Saugus"
+            },
+            "b": {
+                "id": 643,
+                "title": "Saugus Speedway",
+                "url": "https://scvhistory.ddev.site/places/saugus-speedway",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/643-saugus-speedway",
+                "community": "Saugus"
+            },
+            "km": 5.03,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Saugus"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        },
+        {
+            "a": {
+                "id": 605,
+                "title": "Heritage Junction Historic Park",
+                "url": "https://scvhistory.ddev.site/places/heritage-junction",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/605-heritage-junction",
+                "community": "Newhall"
+            },
+            "b": {
+                "id": 934,
+                "title": "Newhall Pass interchange",
+                "url": "https://scvhistory.ddev.site/places/newhall-pass-interchange",
+                "cp": "https://scvhistory.ddev.site/admin/content/entries/places/934-newhall-pass-interchange",
+                "community": "Newhall"
+            },
+            "km": 5.35,
+            "evidence": [
+                {
+                    "kind": "community",
+                    "detail": "both in Newhall"
+                }
+            ],
+            "kinds": [
+                "community"
+            ],
+            "strength": 1,
+            "alreadyRelated": false
+        }
+    ]
+}

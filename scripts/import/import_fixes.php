@@ -23,7 +23,7 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-$IN = \Craft::getAlias('@webroot') . '/review/fixes.json';
+$IN = \Craft::getAlias('@review') . '/fixes.json';
 
 $section = Craft::$app->entries->getSectionByHandle('fixes');
 $type = Craft::$app->entries->getEntryTypeByHandle('fix');
@@ -32,7 +32,7 @@ if (!$section || !$type) {
     return;
 }
 if (!file_exists($IN)) {
-    echo 'not found: web/review/fixes.json' . PHP_EOL;
+    echo 'not found: review/fixes.json' . PHP_EOL;
     echo 'Export it on the other machine with export_fixes.php and copy it here.' . PHP_EOL;
     return;
 }

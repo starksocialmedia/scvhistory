@@ -27,7 +27,7 @@
  *               subject. No order but relevance.
  *
  * This creates the field and sets nothing. The value for each of the thirteen
- * is proposed in web/review/collections-inventory-map.md and is a judgement, so
+ * is proposed in review/collections-inventory-map.md and is a judgement, so
  * it wants a person rather than a script.
  *
  * Idempotent. Dry run by default. Set $APPLY = true to write.

@@ -261,13 +261,13 @@ foreach (array_slice($plan, 0, 10) as $r) {
 }
 
 /* The images this import will need, so pass 3 can be extended to cover them. */
-$wantFile = \Craft::getAlias('@webroot') . '/review/images-wanted-' . $SERIES['key'] . '.json';
+$wantFile = \Craft::getAlias('@review') . '/images-wanted-' . $SERIES['key'] . '.json';
 @mkdir(dirname($wantFile), 0775, true);
 file_put_contents($wantFile, json_encode(array_keys($imagesWanted)));
 echo PHP_EOL . 'images this import needs: ' . $wantFile . PHP_EOL;
 
 /* A twenty-record before and after. */
-$REPORT = \Craft::getAlias('@webroot') . '/review/import-' . $SERIES['key'] . '.md';
+$REPORT = \Craft::getAlias('@review') . '/import-' . $SERIES['key'] . '.md';
 $out = [];
 $out[] = '# ' . $SERIES['label'];
 $out[] = '';

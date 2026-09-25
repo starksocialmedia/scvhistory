@@ -35,11 +35,11 @@
 
 /* Point this at the re-import dry run to test the rebuilt bodies instead of the
    stored ones, which is the only way to check a fix before applying it. */
-$FROM_DRYRUN = \Craft::getAlias('@webroot') . '/review/reimport-dryrun.json';
+$FROM_DRYRUN = \Craft::getAlias('@review') . '/reimport-dryrun.json';
 $USE_DRYRUN  = false;
 
 $MIN_WORDS = 300;
-$REPORT = \Craft::getAlias('@webroot') . '/review/long-paragraphs.md';
+$REPORT = \Craft::getAlias('@review') . '/long-paragraphs.md';
 
 $INDEX = \Craft::getAlias('@root') . '/inventory/legacy/html-index.json';
 if (!file_exists($INDEX)) {

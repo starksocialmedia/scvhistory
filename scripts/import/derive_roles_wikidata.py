@@ -40,7 +40,7 @@ UA = 'scvhistory-archive/1.0 (https://scvhistory.com; archive research)'
 API = 'https://www.wikidata.org/w/api.php'
 SPARQL = 'https://query.wikidata.org/sparql'
 ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
-TERMS = os.path.normpath(os.path.join(ROOT, 'web', 'review', 'role-terms.json'))
+TERMS = os.path.normpath(os.path.join(ROOT, 'review', 'role-terms.json'))
 OUT = os.path.normpath(os.path.join(ROOT, 'inventory', 'legacy', 'authorities', 'roles-wikidata.json'))
 
 # Hand-set where a plain search will not find the right sense. These are the

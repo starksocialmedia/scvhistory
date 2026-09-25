@@ -1,7 +1,7 @@
 /**
  * Writes the confirmed place relationships from the review screen.
  *
- * Reads web/review/place-links-decided.json, the download from
+ * Reads review/place-links-decided.json, the download from
  * /review/place-links.html. Only "yes" is written; "no" is recorded in the file
  * so the same pair is not proposed again, and is otherwise ignored here.
  *
@@ -16,7 +16,7 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-$path = \Craft::getAlias('@webroot') . '/review/place-links-decided.json';
+$path = \Craft::getAlias('@review') . '/place-links-decided.json';
 if (!file_exists($path)) {
     echo 'not found: ' . $path . PHP_EOL;
     echo 'Decide at /review/place-links.html and press Download first.' . PHP_EOL;

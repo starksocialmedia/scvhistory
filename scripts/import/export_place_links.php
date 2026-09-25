@@ -21,14 +21,14 @@
  * thing a reviewer should see. Beale's Cut and Lyons Station both name Fort
  * Tejon, and that is the stage road, not proximity.
  *
- * Read only. Writes web/review/place-links.json for the review screen and
+ * Read only. Writes review/place-links.json for the review screen and
  * touches nothing in Craft.
  *
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_place_links.php'))"
  */
 
 $NEAR_KM = 2.0;
-$out = \Craft::getAlias('@webroot') . '/review/place-links.json';
+$out = \Craft::getAlias('@review') . '/place-links.json';
 
 $hasField = function (\craft\base\ElementInterface $el, string $handle): bool {
     $layout = $el->getFieldLayout();
@@ -188,7 +188,7 @@ file_put_contents($out, json_encode([
     'pairs' => $pairs,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 
-echo PHP_EOL . 'wrote web/review/place-links.json' . PHP_EOL;
+echo PHP_EOL . 'wrote review/place-links.json' . PHP_EOL;
 echo 'Nothing in Craft was changed. Decide at /review/place-links.html' . PHP_EOL;
 
 function sentenceAround(string $body, string $needle): string

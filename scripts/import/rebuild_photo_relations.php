@@ -54,7 +54,7 @@
  * archive holds no photograph of the man. Read a person's count as "pictures
  * whose own title or caption names them", which is what it is.
  *
- * Read the queue at web/review/photo-links.json.
+ * Read the queue at review/photo-links.json.
  *
  * Idempotent: a relation already on the record is left alone and never
  * duplicated; a record whose field already holds something is added to, never
@@ -71,7 +71,7 @@ if (!empty($PHOTO_APPLY)) { $APPLY = true; echo 'APPLY IS ON, this will write to
 $root = \Craft::getAlias('@root');
 $FIELD_FOR = ['persons' => 'photoPeople', 'places' => 'photoPlaces', 'organizations' => 'photoOrganizations',
               'groups' => 'photoGroups', 'events' => 'photoEvents'];
-$QUEUE = \Craft::getAlias('@webroot') . '/review/photo-links.json';
+$QUEUE = \Craft::getAlias('@review') . '/photo-links.json';
 
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL;
 echo str_repeat('=', 78) . PHP_EOL;
@@ -340,7 +340,7 @@ $out = [
 ];
 @mkdir(dirname($QUEUE), 0775, true);
 file_put_contents($QUEUE, json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
-echo 'queue written to web/review/photo-links.json' . PHP_EOL;
+echo 'queue written to review/photo-links.json' . PHP_EOL;
 
 echo PHP_EOL . 'sample of what would be written:' . PHP_EOL;
 foreach (array_slice($plan, 0, 8, true) as $p) {
@@ -386,5 +386,5 @@ echo 'relation rows across the photo fields now: ' . $total . ' (was 0)' . PHP_E
 
 $applyLog = require $root . '/scripts/import/_apply_log.php';
 $applyLog('rebuild_photo_relations.php', $saved, $readback,
-    'agreements only; ' . count($queue) . ' disagreements and ' . count($unmatched) . ' unmatched names queued in web/review/photo-links.json');
+    'agreements only; ' . count($queue) . ' disagreements and ' . count($unmatched) . ' unmatched names queued in review/photo-links.json');
 if ($short || $failed) { throw new \RuntimeException('rebuild_photo_relations: the write did not land as planned.'); }

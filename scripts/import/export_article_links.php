@@ -22,14 +22,14 @@
  * initial both end in a full stop and both cut a sentence in half at exactly
  * the name it is about.
  *
- * Read only. Writes web/review/article-links.json for the review screen and
+ * Read only. Writes review/article-links.json for the review screen and
  * touches nothing in Craft.
  *
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_article_links.php'))"
  */
 
 $root = \Craft::getAlias('@root');
-$out  = \Craft::getAlias('@webroot') . '/review/article-links.json';
+$out  = \Craft::getAlias('@review') . '/article-links.json';
 $INVENTORIES = ['perkins', 'reynolds-full', 'reynolds', 'warmemorial', 'worden'];
 /* How many of the linked-to-but-not-held pages to print with their linking
    articles. The whole set goes into the JSON regardless of this. */
@@ -265,7 +265,7 @@ foreach ($rows as $r) {
    list of filenames into a list anybody can read. It is optional: without it the
    report still runs and simply shows paths. */
 $ledgerTitles = [];
-$ledgerPath = $root . '/web/review/ledger-index.json';
+$ledgerPath = $root . '/review/ledger-index.json';
 if (file_exists($ledgerPath)) {
     foreach ((json_decode(file_get_contents($ledgerPath), true)['pages'] ?? []) as $lr) {
         if (!empty($lr['t'])) { $ledgerTitles[strtolower($lr['p'])] = $lr['t']; }
@@ -345,5 +345,5 @@ foreach ($bySource as $slug => $refs) {
     }
 }
 
-echo PHP_EOL . 'wrote web/review/article-links.json' . PHP_EOL;
+echo PHP_EOL . 'wrote review/article-links.json' . PHP_EOL;
 echo 'Nothing in Craft was changed. Decide at /review/article-links.html' . PHP_EOL;

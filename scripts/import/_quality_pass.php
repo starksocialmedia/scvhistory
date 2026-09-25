@@ -38,7 +38,7 @@
  * and 'show' (lines for the report). It can add to $listed: a piece it looked
  * at and would not touch, with the reason. Those are the editorial remainder.
  *
- * Every pass writes its whole plan to web/review/quality-<pass>.md.
+ * Every pass writes its whole plan to review/quality-<pass>.md.
  */
 
 use craft\elements\Entry;
@@ -189,7 +189,7 @@ return function (array $cfg): void {
     }
     $md[] = '## Left for a person (' . count($listed) . ')'; $md[] = '';
     foreach ($listed as $x) { $md[] = '- #' . $x['id'] . ' ' . $x['title'] . ' (' . $x['coll'] . '): ' . $x['why']; }
-    $path = \Craft::getAlias('@webroot') . '/review/quality-' . $slug . '.md';
+    $path = \Craft::getAlias('@review') . '/quality-' . $slug . '.md';
     @mkdir(dirname($path), 0775, true);
     file_put_contents($path, implode("\n", $md) . "\n");
 
@@ -203,7 +203,7 @@ return function (array $cfg): void {
         foreach (array_slice($listed, 0, 25) as $x) { echo '  #' . $x['id'] . ' (' . $x['coll'] . ') ' . mb_substr($x['why'], 0, 100) . PHP_EOL; }
         if (count($listed) > 25) { echo '  ... and ' . (count($listed) - 25) . ' more in the report' . PHP_EOL; }
     }
-    echo PHP_EOL . 'full plan: web/review/quality-' . $slug . '.md' . PHP_EOL;
+    echo PHP_EOL . 'full plan: review/quality-' . $slug . '.md' . PHP_EOL;
 
     if (!$APPLY) {
         echo PHP_EOL . str_repeat('=', 78) . PHP_EOL . 'nothing was written. Pass $QUALITY_APPLY = true to apply.' . PHP_EOL;

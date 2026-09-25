@@ -27,8 +27,8 @@ $INVENTORIES = ['perkins', 'reynolds-full', 'warmemorial', 'worden'];
 $LISTS     = ['series_pages', 'related_pages', 'pages'];
 $LIMIT     = 0;       /* how many articles per inventory; 0 for all */
 $PER_FILE  = 10;      /* articles per file */
-$OUT_DIR   = \Craft::getAlias('@webroot') . '/review/fidelity';
-$SUMMARY   = \Craft::getAlias('@webroot') . '/review/fidelity-summary.json';
+$OUT_DIR   = \Craft::getAlias('@review') . '/fidelity';
+$SUMMARY   = \Craft::getAlias('@review') . '/fidelity-summary.json';
 
 /* The fields set from the legacy page, in the order a reviewer would check
    them. Each is [label, how to read it]. */
@@ -343,6 +343,6 @@ file_put_contents($SUMMARY, json_encode([
     'appeared' => $appeared,
     'noRecord' => $missing,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
-echo PHP_EOL . 'wrote web/review/fidelity-summary.json' . PHP_EOL;
+echo PHP_EOL . 'wrote review/fidelity-summary.json' . PHP_EOL;
 echo PHP_EOL . 'Readable at ' . Craft::$app->getSites()->getPrimarySite()->getBaseUrl()
     . 'review/fidelity/ , or straight off disk. Nothing in Craft was changed.' . PHP_EOL;

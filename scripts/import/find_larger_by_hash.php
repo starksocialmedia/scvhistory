@@ -51,8 +51,8 @@ $LIMIT = isset($OPTS['limit']) ? (int)$OPTS['limit'] : 0;
 $ROOT = dirname(__DIR__, 2);
 $UPLOADS = $ROOT . '/web/uploads';
 $MIRROR = '/Volumes/Reggie/SCVHistory/scvhistory.com';
-$NEEDLES = $ROOT . '/web/review/hash-needles.json';
-$OUT = $ROOT . '/web/review/larger-by-hash.json';
+$NEEDLES = $ROOT . '/review/hash-needles.json';
+$OUT = $ROOT . '/review/larger-by-hash.json';
 
 if (!file_exists($NEEDLES)) {
     fwrite(STDERR, "no hash-needles.json. Generate it from Craft first.\n");

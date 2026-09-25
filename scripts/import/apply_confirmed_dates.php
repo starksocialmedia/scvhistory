@@ -1,5 +1,5 @@
 /**
- * Reads web/review/confirmed.json produced by the review screen and writes the
+ * Reads review/confirmed.json produced by the review screen and writes the
  * confirmations and edited labels back into recordDates.
  * Dry run by default. Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/apply_confirmed_dates.php'))"
@@ -8,8 +8,8 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-$file = \Craft::getAlias('@webroot') . '/review/confirmed.json';
-if (!file_exists($file)) { echo 'ERROR: web/review/confirmed.json not found. Download it from the review screen first.' . PHP_EOL; return; }
+$file = \Craft::getAlias('@review') . '/confirmed.json';
+if (!file_exists($file)) { echo 'ERROR: review/confirmed.json not found. Download it from the review screen first.' . PHP_EOL; return; }
 $data = json_decode(file_get_contents($file), true);
 if (!is_array($data)) { echo 'ERROR: confirmed.json is not valid JSON' . PHP_EOL; return; }
 

@@ -53,7 +53,7 @@ if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $MIRROR = '/mnt/reggie/scvhistory.com';
 $DIRS   = ['gif', 'orig', 'icons', 'pico', 'mentryville', 'oldtownnewhall', 'warmemorial'];
-$REPORT = \Craft::getAlias('@webroot') . '/review/asset-provenance-backfill.md';
+$REPORT = \Craft::getAlias('@review') . '/asset-provenance-backfill.md';
 $BATCH  = 250;   /* saved in batches so a failure does not lose the whole run */
 
 if (!is_dir($MIRROR)) { echo 'mirror not mounted at ' . $MIRROR . PHP_EOL; return; }

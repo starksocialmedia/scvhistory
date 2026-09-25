@@ -1,6 +1,6 @@
 /**
  * Exports every distinct entity name across the legacy extraction to
- * web/review/entities.json, with the pairs that may be the same thing.
+ * review/entities.json, with the pairs that may be the same thing.
  * Read only: it never writes to the database and never merges anything.
  *
  * This looks at the extraction index, not at Craft records. Almost nothing has
@@ -89,7 +89,7 @@ $root = \Craft::getAlias('@root');
  *   ddev craft exec "\$ENTITIES_SUFFIX='-full'; eval(file_get_contents('scripts/import/export_entity_candidates.php'))"
  */
 $ESUFFIX = $ENTITIES_SUFFIX ?? '';
-$out = \Craft::getAlias('@webroot') . '/review/entities' . $ESUFFIX . '.json';
+$out = \Craft::getAlias('@review') . '/entities' . $ESUFFIX . '.json';
 
 $INVENTORIES = $ESUFFIX === '-full'
     ? ['perkins', 'reynolds-full', 'reynolds', 'warmemorial', 'worden', 'coins',

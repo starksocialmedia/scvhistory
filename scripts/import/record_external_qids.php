@@ -72,7 +72,7 @@ if ($canonMiss) { echo '   NOT IN THE CANON: ' . implode(', ', $canonMiss) . PHP
 
 /* -------------------------------------------------------- the decisions */
 
-$FILE = \Craft::getAlias('@webroot') . '/review/records-decided.json';
+$FILE = \Craft::getAlias('@review') . '/records-decided.json';
 $doc = json_decode(file_get_contents($FILE), true) ?: [];
 $rows = $doc['decisions'] ?? [];
 $decHits = 0;

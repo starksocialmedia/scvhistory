@@ -1,6 +1,6 @@
 /**
  * Measures every record against RECORD-CHECKLIST.md and reports what is missing.
- * Read only. Writes web/review/audit.json for the review screen.
+ * Read only. Writes review/audit.json for the review screen.
  *
  * Provenance is required on a migrated record and does not apply to one written
  * here. A record with sourcePath, legacyUrl and legacyKey all empty never had a
@@ -141,7 +141,7 @@ foreach ($tally as $handle => $t) {
     }
 }
 
-$path = \Craft::getAlias('@webroot') . '/review';
+$path = \Craft::getAlias('@review');
 if (!is_dir($path)) { mkdir($path, 0775, true); }
 file_put_contents($path . '/audit.json', json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 echo PHP_EOL . str_repeat('=', 70) . PHP_EOL;
@@ -157,4 +157,4 @@ foreach ($tally as $handle => $t) {
 
 echo PHP_EOL . 'records with at least one gap: ' . count($out) . PHP_EOL;
 echo 'born digital, provenance not counted: ' . $bornTotal . PHP_EOL;
-echo 'written to web/review/audit.json' . PHP_EOL;
+echo 'written to review/audit.json' . PHP_EOL;

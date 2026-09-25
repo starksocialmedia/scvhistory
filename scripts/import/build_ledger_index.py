@@ -6,7 +6,7 @@ Read only. It touches no database and downloads nothing. It reads the two
 sitemap crawls, every page extraction, every image inventory and the drive
 manifest, and writes one condensed file:
 
-    web/review/ledger-index.json
+    review/ledger-index.json
 
 That file is the static half of the ledger. It changes only when a crawl, an
 extraction or a drive manifest changes, so it is built rather than computed at
@@ -45,7 +45,7 @@ from urllib.parse import urlsplit, unquote
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 LEGACY = os.path.join(ROOT, 'inventory', 'legacy')
-OUT = os.path.join(ROOT, 'web', 'review', 'ledger-index.json')
+OUT = os.path.join(ROOT, 'review', 'ledger-index.json')
 
 SITEMAPS = ['sitemap', 'sitemap-2']
 EXTRACTIONS = ['perkins', 'reynolds', 'reynolds-full', 'warmemorial', 'worden', 'loose-pages']

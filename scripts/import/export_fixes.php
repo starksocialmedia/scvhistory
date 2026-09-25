@@ -7,7 +7,7 @@
  * gap because a content refresh is a whole-database import from local and
  * overwrites everything on the server.
  *
- * Read only. Writes web/review/fixes.json and touches nothing in Craft.
+ * Read only. Writes review/fixes.json and touches nothing in Craft.
  *
  * The record a note points at is exported by its legacy URL and its slug, not
  * by its id. Ids are not stable across the two databases: entry #819 on staging
@@ -18,7 +18,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_fixes.php'))"
  */
 
-$OUT = \Craft::getAlias('@webroot') . '/review/fixes.json';
+$OUT = \Craft::getAlias('@review') . '/fixes.json';
 
 $section = Craft::$app->entries->getSectionByHandle('fixes');
 if (!$section) {
@@ -76,7 +76,7 @@ file_put_contents($OUT, json_encode([
     'fixes' => $rows,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 
-echo 'wrote web/review/fixes.json, ' . count($rows) . ' notes' . PHP_EOL;
+echo 'wrote review/fixes.json, ' . count($rows) . ' notes' . PHP_EOL;
 $byStatus = [];
 foreach ($rows as $r) { $byStatus[$r['status']] = ($byStatus[$r['status']] ?? 0) + 1; }
 foreach ($byStatus as $k => $n) { echo '   ' . str_pad($k, 10) . $n . PHP_EOL; }

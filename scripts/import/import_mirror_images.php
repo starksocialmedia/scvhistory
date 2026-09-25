@@ -75,7 +75,7 @@ if ($APPLY) { echo 'APPLY IS ON, this will copy files and write to the database'
 $MIRROR  = '/mnt/reggie/scvhistory.com';
 $VOLUME  = 'archiveMedia';
 $FOLDER  = 'legacy/';
-$REPORT  = \Craft::getAlias('@webroot') . '/review/mirror-import.md';
+$REPORT  = \Craft::getAlias('@review') . '/mirror-import.md';
 $SAMPLE  = 20;
 $LIMIT   = 0;          /* files per pass; 0 for all. Useful for a first apply. */
 
@@ -120,7 +120,7 @@ echo 'assets in the volume: ' . count($held) . PHP_EOL;
    writes its list, so pass 3 covers them without anybody keeping a tally by
    hand. */
 $wanted = [];
-foreach (glob(\Craft::getAlias('@webroot') . '/review/images-wanted-*.json') as $wf) {
+foreach (glob(\Craft::getAlias('@review') . '/images-wanted-*.json') as $wf) {
     foreach ((json_decode(file_get_contents($wf), true) ?: []) as $fn) {
         $wanted[strtolower($fn)] = true;
     }

@@ -11,15 +11,15 @@
  *   body either             is a bug, and it wants finding before 1,544
  *                           photographs import.
  *
- * Read only. Writes web/review/fidelity-investigation.md and touches nothing.
+ * Read only. Writes review/fidelity-investigation.md and touches nothing.
  *
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/investigate_added_text.php'))"
  */
 
-$OUT = \Craft::getAlias('@webroot') . '/review/fidelity-investigation.md';
+$OUT = \Craft::getAlias('@review') . '/fidelity-investigation.md';
 $root = \Craft::getAlias('@root');
 
-$summary = json_decode(file_get_contents(\Craft::getAlias('@webroot') . '/review/fidelity-summary.json'), true);
+$summary = json_decode(file_get_contents(\Craft::getAlias('@review') . '/fidelity-summary.json'), true);
 $wp = json_decode(file_get_contents($root . '/inventory/wp_content.json'), true);
 $wpBySlug = [];
 foreach ($wp['posts'] ?? [] as $post) {
@@ -224,4 +224,4 @@ echo 'records: ' . count($rows) . ', added lines: ' . $totLines . PHP_EOL;
 echo 'in the WordPress body: ' . $totIn . '   in neither: ' . $totNot . PHP_EOL;
 echo 'all in WP: ' . count($allInWp) . '   none in WP: ' . count($allNot) . '   mixed: ' . count($mixed) . PHP_EOL;
 echo 'no WP post under the slug: ' . count($noPost) . PHP_EOL;
-echo PHP_EOL . 'wrote web/review/fidelity-investigation.md' . PHP_EOL;
+echo PHP_EOL . 'wrote review/fidelity-investigation.md' . PHP_EOL;

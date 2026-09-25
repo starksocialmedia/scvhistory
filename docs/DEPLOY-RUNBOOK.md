@@ -227,68 +227,37 @@ absent only because they were kept out of git for size.
 
 Block `/review/` before the next pull, not after.
 
-### The block
+### The fix: outside the web root, not a host rule
 
-**`.htaccess` is not read, and `Deny from all` in it protects nothing.**
-Cloudways serves this stack with Nginx in front of Apache, and Nginx answers for
-a static file like `/review/photo-links.json` without Apache ever seeing the
-request. The `<LocationMatch>` block in `web/.htaccess` is inert. It is left in
-place for a future host that does read it, and it is not the control here.
+**`web/.htaccess` is inert on this host.** Cloudways serves this stack with
+Nginx in front of Apache, and Nginx answers for a static file without Apache
+ever seeing the request, so `Deny from all` protects nothing. Checked on 24
+September 2026: `server.nginx-vhosts.conf` carries no `/review/` rule either,
+**and this application's Cloudways panel offers no Nginx Settings section**, so
+there is no reliable way to add one and no way to be sure a stack update keeps
+it.
 
-Checked again on 24 September 2026: `server.nginx-vhosts.conf` on this
-application carries no `/review/` rule at all, so the only thing standing
-between that directory and the public is the site-wide HTTP basic auth, which
-comes off the day staging goes live. `web/review/photo-links.json` alone is
-1.2 MB and lists 8,359 names.
+So the directory moved instead. As of 24 September the review screens and their
+queues live at `<project>/review`, outside `web/`, which is the same reason
+`/craft`, `/config/db.php` and `/bootstrap.php` already return 404 on staging:
+nothing outside the docroot can be served, by any host, with no rule to add and
+none to lose. The next `git pull` on the server deletes the old `web/review`
+from its working tree, because the files moved in the index.
 
-The control is one Nginx location block.
+Three things hold it together:
 
-**Where it goes on a Cloudways PHP stack.** Use the panel:
-**Application → Application Settings → Nginx Settings**. That writes the
-application's vhost include, `server.nginx-vhosts.conf`, and survives a
-Cloudways stack update; editing the file over SSH may not. The file is included
-inside the `server { }` block for this application, so a bare `location`
-directive is what belongs in it, with no wrapper.
+- `@review` in `config/general.php`, which every script writes through. 51
+  references across 50 files were swept from `@webroot . '/review'`.
+- `.ddev/nginx/review.conf`, a DDEV-only alias so the screens still open at
+  `https://scvhistory.ddev.site/review/`. DDEV includes it from
+  `/mnt/ddev_config/nginx/*.conf`; Cloudways never reads `.ddev`. After editing
+  it: `ddev exec nginx -s reload`.
+- `scripts/deploy/check_review_exposure.sh`, which fails if anything under
+  `web/` is tracked again, and fails if any working path is readable on the
+  host with the staging password in hand.
 
-Add:
-
-```nginx
-# The review screens, the built ledger index, the queue files and the
-# correspondence CSV. All of it is working material: legacy URLs, record
-# titles, reconciliation queues, 8,359 unmatched names in photo-links.json,
-# and in the fidelity files the full text of the archive. None of it is for
-# the public.
-location ^~ /review/ {
-    deny all;
-    return 404;
-}
-```
-
-`^~` matters. Without it a later regex `location` for static files can win on a
-`.json` or `.csv` and serve the file anyway; `^~` stops Nginx considering
-regex locations at all once the prefix matches. `return 404` rather than `403`
-so the directory is not advertised.
-
-Then **Application → Application Settings → Restart Nginx**, or over SSH:
-
-```
-Server
-sudo service nginx reload
-```
-
-**Prove it rather than assume it.** Basic auth answers 401 for everything while
-staging is closed, which hides whether the block exists. The check below asks
-with the credentials, so a 200 means the file really is served:
-
-```
-MacBook
-HOST=https://phpstack-1656314-6593553.cloudwaysapps.com \
-AUTH=user:password scripts/deploy/check_review_exposure.sh
-```
-
-It exits non-zero if any working file is readable, and also if it cannot prove
-the block either way. Run it before every deploy: a `git pull` on the server
-publishes whatever `web/review` holds that day.
+The `<LocationMatch>` block left in `web/.htaccess` is now doubly irrelevant:
+inert on this host, and guarding a directory that is no longer there.
 
 ### The admin pages are guarded in the template, and that has landed
 

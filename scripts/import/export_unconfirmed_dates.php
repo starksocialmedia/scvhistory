@@ -1,5 +1,5 @@
 /**
- * Exports every unconfirmed recordDates row to web/review/dates.json for the
+ * Exports every unconfirmed recordDates row to review/dates.json for the
  * review screen. Read only.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_unconfirmed_dates.php'))"
  */
@@ -39,10 +39,10 @@ usort($out, function ($a, $b) {
     return [substr($a['iso'], 5), $a['iso']] <=> [substr($b['iso'], 5), $b['iso']];
 });
 
-$path = \Craft::getAlias('@webroot') . '/review';
+$path = \Craft::getAlias('@review');
 if (!is_dir($path)) { mkdir($path, 0775, true); }
 file_put_contents($path . '/dates.json', json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 
 $day = count(array_filter($out, fn($r) => $r['granularity'] === 'day'));
-echo 'exported ' . count($out) . ' unconfirmed rows (' . $day . ' day-precision) to web/review/dates.json' . PHP_EOL;
+echo 'exported ' . count($out) . ' unconfirmed rows (' . $day . ' day-precision) to review/dates.json' . PHP_EOL;
 echo 'open https://scvhistory.ddev.site/review/dates.html' . PHP_EOL;

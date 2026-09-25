@@ -7,7 +7,7 @@
  * are meant to be the archive's settled answer, and an answer that applies only
  * to future decisions is not settled.
  *
- * Reads web/review/records-decided.json, retypes what the rules cover, and
+ * Reads review/records-decided.json, retypes what the rules cover, and
  * reports every change. Dry run by default: the decisions file is a record of
  * judgement and this rewrites it, so it waits for a flag like anything else.
  *
@@ -17,7 +17,7 @@
 $APPLY = false;
 
 $ROOT = \Craft::getAlias('@root');
-$FILE = \Craft::getAlias('@webroot') . '/review/records-decided.json';
+$FILE = \Craft::getAlias('@review') . '/records-decided.json';
 $CANON = $ROOT . '/inventory/legacy/name-canon.json';
 
 if (!file_exists($FILE))  { echo 'no records-decided.json' . PHP_EOL; return; }

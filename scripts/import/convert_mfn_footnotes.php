@@ -37,7 +37,7 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-$REPORT = \Craft::getAlias('@webroot') . '/review/mfn-footnotes.md';
+$REPORT = \Craft::getAlias('@review') . '/mfn-footnotes.md';
 
 $OPEN   = '/\[mfn\b([^\]]*)\]/i';
 $MARKER = '/(?<![A-Za-z0-9])\[\s*\d{1,3}\s*\](?!\d)/';

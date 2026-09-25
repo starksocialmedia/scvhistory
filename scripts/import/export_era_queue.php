@@ -1,5 +1,5 @@
 /**
- * Builds the era and theme review queue: web/review/eras.json.
+ * Builds the era and theme review queue: review/eras.json.
  *
  * WHY THIS IS A QUEUE AND NOT A DERIVATION
  *
@@ -34,7 +34,7 @@
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/export_era_queue.php'))"
  */
 
-$OUT = \Craft::getAlias('@webroot') . '/review/eras.json';
+$OUT = \Craft::getAlias('@review') . '/eras.json';
 
 /* The same patterns the theme list was measured with. Kept here rather than in
    the schema script because this is the file that has to stay true to the

@@ -2,7 +2,7 @@
  * Creates the personAliases field and puts it on the person entry type.
  *
  * The entity reconciliation workflow expects it: export_entity_candidates.php,
- * web/review/entities.html and apply_entity_merges.php all map persons to
+ * review/entities.html and apply_entity_merges.php all map persons to
  * personAliases already. Until the field exists the screen warns that a person
  * merge would lose the other title, and the apply script reports the field as
  * missing and skips the alias write. Both start working the moment this runs.

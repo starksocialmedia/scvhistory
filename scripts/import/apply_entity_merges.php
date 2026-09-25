@@ -1,5 +1,5 @@
 /**
- * Reads web/review/entity-merges.json from the reconciliation screen and writes
+ * Reads review/entity-merges.json from the reconciliation screen and writes
  * a canonical name table to inventory/legacy/entity-canon.json.
  *
  * A stated married name is not a judgement and is not adjudicated: where the
@@ -32,11 +32,11 @@ $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $root = \Craft::getAlias('@root');
-$file = \Craft::getAlias('@webroot') . '/review/entity-merges.json';
+$file = \Craft::getAlias('@review') . '/entity-merges.json';
 $canonPath = $root . '/inventory/legacy/entity-canon.json';
 
 if (!file_exists($file)) {
-    echo 'ERROR: web/review/entity-merges.json not found. Download it from the review screen first.' . PHP_EOL;
+    echo 'ERROR: review/entity-merges.json not found. Download it from the review screen first.' . PHP_EOL;
     return;
 }
 $data = json_decode(file_get_contents($file), true);
@@ -192,7 +192,7 @@ $out = [
     'meta' => [
         'generated' => (new DateTime())->format('c'),
         'generated_by' => 'scripts/import/apply_entity_merges.php',
-        'source' => 'web/review/entity-merges.json',
+        'source' => 'review/entity-merges.json',
         'names' => $totalNames,
         'entities' => $totalPeople,
         'note' => 'Canonical names for the legacy extraction. export_relation_candidates.php reads this to collapse variants into one candidate per entity per article.',
