@@ -1,0 +1,101 @@
+{
+ "meta": {
+  "source": "City of Santa Clarita, City Clerk, historical election data",
+  "index": "https://santaclarita.gov/city-clerk/elections/historical-election-data/",
+  "fetched": "2026-09-25",
+  "fetched_by": "Claude Code for SCVHistory",
+  "note": "Fetched copies held for import. The city page is the authority; these are our copies of it."
+ },
+ "documents": [
+  {
+   "tag": "2024",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2025/01/10880.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 18318,
+   "sha256": "c7f284dac7749ebccdd7adeca5d2786547ec315d7a4b7d2b4597ffa121844fa1",
+   "text_chars": 3497,
+   "readable_pct": 89,
+   "note": "LA County Statement of Votes Cast by precinct, \"Member of the City Council, District 1\". Text layer readable."
+  },
+  {
+   "tag": "2022",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2023/06/Final-Certficate-of-Canvas-1.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 355890,
+   "sha256": "e2349b53fb388b3c15b676b9a6533f1e0f0fb6147fd0c8dab9407391efe8d585",
+   "text_chars": 1,
+   "readable_pct": 100,
+   "note": "Final Certificate of Canvass. No text layer this extractor can read."
+  },
+  {
+   "tag": "2020",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2023/06/Final-Election-Canvass-Res-2.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 1185221,
+   "sha256": "57fdf61d7a524909375ce576516dd070e20b3338472864b359ba454f0000033f",
+   "text_chars": 1,
+   "readable_pct": 100,
+   "note": "Final Election Canvass resolution. No text layer this extractor can read."
+  },
+  {
+   "tag": "2018",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2023/06/LACountyFinalVoteCount-3.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 85417,
+   "sha256": "f827fed35d16e0d7a1802cfd901487705023ee6d870241c0b4af483a47a56b03",
+   "text_chars": 37040,
+   "readable_pct": 22,
+   "note": "LA County final vote count. Text layer present but font-encoded; extraction unreadable."
+  },
+  {
+   "tag": "2016",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2023/06/2016StatementofVotesCast-4.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 67058,
+   "sha256": "6f6810d6fa236fdf636d32ac4d3711e679664b38eb78e16be31d9123345d7796",
+   "text_chars": 26577,
+   "readable_pct": 15,
+   "note": "Statement of Votes Cast. Text layer present but font-encoded; extraction unreadable."
+  },
+  {
+   "tag": "2014",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2023/06/2014ElectionResultsbyPreci-5.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 20150,
+   "sha256": "e424b2b6663bf1748cc2dbfacdfbd32bcc566496b18cf6ed5e93f5cd9be0f0b5",
+   "text_chars": 5171,
+   "readable_pct": 100,
+   "note": "Election results by precinct, candidate columns readable."
+  },
+  {
+   "tag": "2012",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2023/06/resolutionNo129-6.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 985723,
+   "sha256": "c259bf788e75f2422c6f7ada1436ffa2a7437430820514d2e60340ece89b24ba",
+   "text_chars": 589252,
+   "readable_pct": 9,
+   "note": "Resolution No. 12-9. Scanned image, no text layer."
+  },
+  {
+   "tag": "1987-2012",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2023/06/historical-results-7.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 122462,
+   "sha256": "4c07ddb940461b6d3067fec88f089740d9fe46e0d333579c87ebf8c3dae4005b",
+   "text_chars": 6277,
+   "readable_pct": 96,
+   "note": "City summary of general municipal elections 1987 to April 2012. Readable."
+  },
+  {
+   "tag": "appointments",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2025/08/LOCAL-APPT-LIST_-082625.pdf",
+   "fetched": "2026-09-25",
+   "bytes": 151068,
+   "sha256": "71204d84da7ed55e8ae9ff7300797b82a5a405e7143e4e716aa6b4f49b0a1957",
+   "text_chars": 8633,
+   "readable_pct": 100,
+   "note": "Local Appointments List, boards and commissions. Readable."
+  }
+ ]
+}
