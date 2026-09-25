@@ -21,20 +21,8 @@
 
   Params: none. Reads `entry` or `category` from the page.
 #}
-{% import _self as dt %}
+{% import "_partials/head/dates" as dt %}
 
-{#- An ISO 8601 date, or nothing. Returns '' for anything it cannot be sure of. -#}
-{% macro iso(raw) %}
-{%- set s = (raw ?? '')|trim|trim('.') -%}
-{%- if s matches '/^\\d{4}-\\d{2}-\\d{2}$/' -%}{{ s }}
-{%- elseif s matches '/^\\d{4}$/' -%}{{ s }}
-{%- elseif s matches '/^\\d{4}-\\d{2}$/' -%}{{ s }}
-{%- elseif s matches '/^(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},\\s*\\d{4}$/' -%}{{ s|date('Y-m-d') }}
-{%- elseif s matches '/^(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}$/' -%}{{ s|date('Y-m') }}
-{%- elseif s matches '/^(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,\\s+(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},\\s*\\d{4}$/' -%}{{ s|date('Y-m-d') }}
-{%- elseif s matches '/^\\d{1,2}\\/\\d{1,2}\\/\\d{4}$/' -%}{{ s|date('Y-m-d') }}
-{%- endif -%}
-{% endmacro %}
 
 {% set SITE_NAME = 'SCVHistory.com' %}
 {% set RIGHTS = 'Santa Clarita Valley Historical Society and SCVTV. Personal and research use only; other uses may be subject to rights held by third parties.' %}
@@ -190,7 +178,7 @@
     'name': a.title,
     'caption': (val.photoCaptionExt ?? '')|trim ?: null,
     'creator': (val.creator ?? '')|trim ? { '@type': 'Person', 'name': val.creator|trim } : null,
-    'dateCreated': (val.dateEdtf ?? '')|trim ?: ((val.dateAsPrinted ?? '')|trim ?: ((val.photoDate ?? '')|trim ?: null)),
+    'dateCreated': dt.published(val.dateEdtf ?? '', (val.dateAsPrinted ?? '') ?: (val.photoDate ?? ''))|trim ?: null,
     'temporalCoverage': (val.dateAsPrinted ?? '')|trim ?: null,
     'width': a.width ? { '@type': 'QuantitativeValue', 'value': a.width, 'unitCode': 'E37' } : null,
     'height': a.height ? { '@type': 'QuantitativeValue', 'value': a.height, 'unitCode': 'E37' } : null,
@@ -301,7 +289,7 @@
     'alternativeHeadline': V.originallyPublishedTitle ?? '' ?: (V.subheadline ?? ''),
     'author': authors,
     'editor': (N.editedBy ?? []),
-    'datePublished': (V.originalPublishDateEdtf ?? '')|trim ?: dt.iso(V.originalPublishDate ?? '')|trim,
+    'datePublished': dt.published(V.originalPublishDateEdtf ?? '', V.originalPublishDate ?? '')|trim,
     'isPartOf': coll ? coll|merge({ '@type': 'CreativeWorkSeries' }) : null,
     'about': about,
     'publisher': pub ?: ((V.sourceLine ?? '') ? { '@type': 'Organization', 'name': V.sourceLine } : PUBLISHER),
@@ -330,8 +318,8 @@
     '@type': 'Person',
     'name': V.fullName ?? '' ?: el.title,
     'alternateName': alt,
-    'birthDate': (V.birthDateEdtf ?? '')|trim ?: dt.iso(V.birthDate ?? '')|trim,
-    'deathDate': (V.deathDateEdtf ?? '')|trim ?: dt.iso(V.deathDate ?? '')|trim,
+    'birthDate': dt.published(V.birthDateEdtf ?? '', V.birthDate ?? '')|trim,
+    'deathDate': dt.published(V.deathDateEdtf ?? '', V.deathDate ?? '')|trim,
     'birthPlace': (V.birthplace ?? '') ? { '@type': 'Place', 'name': V.birthplace } : null,
     'deathPlace': (V.burialPlace ?? '') ? { '@type': 'Place', 'name': V.burialPlace } : null,
     'hasOccupation': occupations|length ? occupations : null,
@@ -410,7 +398,7 @@
     'address': V.orgAddress ?? '',
     'geo': (V.orgLat ?? '') and (V.orgLng ?? '')
         ? { '@type': 'GeoCoordinates', 'latitude': V.orgLat + 0, 'longitude': V.orgLng + 0 } : null,
-    'foundingDate': (V.dateFoundedEdtf ?? '')|trim ?: dt.iso(V.dateFounded ?? '')|trim,
+    'foundingDate': dt.published(V.dateFoundedEdtf ?? '', V.dateFounded ?? '')|trim,
     'founder': (N.orgFoundedBy ?? []),
     'member': (N.orgAssociatedPersons ?? []),
     'parentOrganization': (N.parentOrganization ?? [])|first,

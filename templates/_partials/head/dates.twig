@@ -1,0 +1,72 @@
+{#
+  Date helpers for structured data. Imported by anything that emits a date into
+  JSON-LD; nothing here renders on its own.
+
+  THE RULE, and why it exists.
+
+  schema.org dates are ISO 8601. EDTF is not ISO 8601 as soon as it does the one
+  thing we keep it for: carry a qualifier. "1847?-03-27" says the year is
+  uncertain and the day is not, which is exactly what the sources support for
+  Alex Mentry, and it is not a value any consumer of our JSON-LD can read.
+
+  So a template had two ways to be wrong and was taking the first: publish the
+  EDTF string raw and emit an invalid date, or strip the qualifier and publish a
+  certainty no source supports. Publishing an invalid date is wrong. Publishing
+  a false certain one is worse, because it is legible. We publish neither: a
+  qualified date is withheld from structured data and rendered on the page
+  instead, where a reader can see the hedge.
+
+  This is the rule the derived image links already follow. JSON-LD is an
+  assertion to the rest of the web, so it carries only what the archive can
+  stand behind.
+
+  WHITELIST, NOT BLACKLIST. `certain()` tests for the three shapes schema.org
+  accepts and returns nothing for everything else. Testing for '?~%' instead
+  would pass every form nobody has thought of yet: intervals, sets, unspecified
+  digits, seasons, and whatever EDTF grows next. Today 37 of the 976 stored EDTF
+  values are intervals like '2005-11/2005-12', and every one of them is being
+  published as a schema.org Date right now.
+#}
+
+{#- An ISO 8601 date parsed out of a printed one, or nothing. Returns '' for
+    anything it cannot be sure of. -#}
+{% macro iso(raw) %}
+{%- set s = (raw ?? '')|trim|trim('.') -%}
+{%- if s matches '/^\\d{4}-\\d{2}-\\d{2}$/' -%}{{ s }}
+{%- elseif s matches '/^\\d{4}$/' -%}{{ s }}
+{%- elseif s matches '/^\\d{4}-\\d{2}$/' -%}{{ s }}
+{%- elseif s matches '/^(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},\\s*\\d{4}$/' -%}{{ s|date('Y-m-d') }}
+{%- elseif s matches '/^(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}$/' -%}{{ s|date('Y-m') }}
+{%- elseif s matches '/^(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,\\s+(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},\\s*\\d{4}$/' -%}{{ s|date('Y-m-d') }}
+{%- elseif s matches '/^\\d{1,2}\\/\\d{1,2}\\/\\d{4}$/' -%}{{ s|date('Y-m-d') }}
+{%- endif -%}
+{% endmacro %}
+
+{#- An EDTF value, but only when it is a plain ISO date: YYYY, YYYY-MM or
+    YYYY-MM-DD. Anything qualified, any interval, set or unspecified digit
+    returns ''. -#}
+{% macro certain(raw) %}
+{%- set s = (raw ?? '')|trim -%}
+{%- if s matches '/^\\d{4}(-\\d{2}(-\\d{2})?)?$/' -%}{{ s }}{%- endif -%}
+{% endmacro %}
+
+{#- What to publish for a date that has both a stored EDTF value and a printed
+    one.
+
+    The EDTF field wins whenever it is filled, INCLUDING when what it says is
+    "this is uncertain". That is the whole point, and it is the part that is easy
+    to get wrong: falling back to parsing the printed form when the EDTF is
+    qualified would re-publish the certainty through the back door. A record
+    holding birthDateEdtf '1847?-03-27' and birthDate 'March 27, 1847' must emit
+    nothing, not 1847-03-27.
+
+    So: EDTF filled -> publish it only if certain, never fall back.
+        EDTF empty   -> parse the printed form, as before. -#}
+{% macro published(edtf, printed) %}
+{#- The import must live INSIDE the macro: a macro body cannot see the
+    template's own imports, so a top-level `{% import _self %}` compiles fine
+    and then throws "Undefined array key" on every page that calls this. -#}
+{%- import _self as d -%}
+{%- set e = (edtf ?? '')|trim -%}
+{%- if e is not empty -%}{{ d.certain(e) }}{%- else -%}{{ d.iso(printed ?? '') }}{%- endif -%}
+{% endmacro %}

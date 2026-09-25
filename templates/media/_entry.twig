@@ -23,6 +23,7 @@
 
 {% set creator     = F.v(asset, H, 'creator')|trim %}
 {% set printed     = F.v(asset, H, 'dateAsPrinted')|trim ?: F.v(asset, H, 'photoDate')|trim %}
+{% import "_partials/head/dates" as dt %}
 {% set edtf        = F.v(asset, H, 'dateEdtf')|trim %}
 {% set src         = F.v(asset, H, 'source')|trim %}
 {% set rights      = F.v(asset, H, 'rightsHolder')|trim %}
@@ -75,7 +76,7 @@
   'name': asset.title,
   'caption': caption ?: null,
   'creator': creator ? { '@type': 'Person', 'name': creator } : null,
-  'dateCreated': edtf ?: (printed ?: null),
+  'dateCreated': dt.published(edtf, printed)|trim ?: null,
   'temporalCoverage': printed ?: null,
   'width': asset.width ? { '@type': 'QuantitativeValue', 'value': asset.width, 'unitCode': 'E37' } : null,
   'height': asset.height ? { '@type': 'QuantitativeValue', 'value': asset.height, 'unitCode': 'E37' } : null,
