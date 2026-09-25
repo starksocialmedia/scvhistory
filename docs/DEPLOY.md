@@ -236,7 +236,25 @@ scp /tmp/scvh-$D.sql.gz <user>@<host>:/home/1656314.cloudwaysapps.com/ufppzhwvbk
 and the `scp` into it fails. `private_html` sits beside `public_html` and is
 not served.
 
-### 3. Check the tree and pull  — **Server**
+### 3. Prove `/review/` is blocked  — **MacBook**, before the pull
+
+The pull publishes whatever `web/review` holds that day. On 24 September that
+included `photo-links.json`, 1.2 MB listing 8,359 names, and the only thing in
+front of it was the site-wide basic auth: `web/.htaccess` is inert on this host
+and `server.nginx-vhosts.conf` carried no `/review/` rule.
+
+```
+HOST=https://phpstack-1656314-6593553.cloudwaysapps.com \
+AUTH=user:password scripts/deploy/check_review_exposure.sh
+```
+
+It must exit 0. Exit 2 means it could not prove anything — usually the
+credentials were left out, and a 401 is not a pass. Exit 1 means a working file
+is served to anyone holding the staging password: fix it before pulling, with
+the location block in docs/DEPLOY-RUNBOOK.md section 5, added through
+**Application → Application Settings → Nginx Settings** in the Cloudways panel.
+
+### 4. Check the tree and pull  — **Server**
 
 ```
 ssh <user>@<host>
@@ -267,7 +285,7 @@ git pull
 composer install --no-dev --optimize-autoloader
 ```
 
-### 4. Import the database  — **Server**
+### 5. Import the database  — **Server**
 
 Take a backup first, because this overwrites everything. It goes in
 `private_html` for the same reason as the dump.
@@ -282,7 +300,7 @@ gunzip -c scvh-<date>.sql.gz | mysql -h 127.0.0.1 -u <db_user> -p <db_name>
 The database comes before the config on purpose. The imported database already
 carries the schema the committed config declares.
 
-### 5. Migrations and config, expecting nothing  — **Server**
+### 6. Migrations and config, expecting nothing  — **Server**
 
 ```
 cd /home/1656314.cloudwaysapps.com/ufppzhwvbk/public_html
@@ -294,7 +312,7 @@ On 22 September both were clean: `craft up` had nothing to run and the diff
 reported no changes. **If the diff shows anything, stop and report it before
 applying.** A difference means the dump and the commit don't match.
 
-### 6. Move the images  — **MacBook**
+### 7. Move the images  — **MacBook**
 
 ```
 cd ~/scvhistory
@@ -334,7 +352,7 @@ instead. Four masters are not referenced by `enlarge.json` at all
 (`lw3775_large.jpg`, `lw3624bullocks_large.jpg`, `lw2377e_large.jpg`,
 `lw2554b_large.jpg`, 8.7 MB) and can simply stay off the web root.
 
-### 7. Clear and verify  — **Server**, then **MacBook**
+### 8. Clear and verify  — **Server**, then **MacBook**
 
 ```
 cd /home/1656314.cloudwaysapps.com/ufppzhwvbk/public_html
@@ -361,7 +379,7 @@ Expect `200`, `1`, `403` or `404`, `403`, `200`. The fourth is the review store
 refusing a write off `dev`. Anything else there means `CRAFT_ENVIRONMENT` is
 wrong.
 
-### 8. The `/review/` guard  — **Server**, once
+### 9. The `/review/` guard  — **Server**, once
 
 See DEPLOY-RUNBOOK.md §5. Use the panel's **Application → Application Settings
 → Nginx Settings** so the block survives a stack update.

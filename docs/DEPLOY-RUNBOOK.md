@@ -229,33 +229,35 @@ Block `/review/` before the next pull, not after.
 
 ### The block
 
-**`.htaccess` is not read.** Cloudways serves this stack with Nginx in front of
-Apache, and Nginx answers for a static file like `/review/ledger-index.json`
-without Apache ever seeing the request. The `<LocationMatch>` block in
-`web/.htaccess` is inert. It is left in place for a future host that does read
-it, and it is not the control here.
+**`.htaccess` is not read, and `Deny from all` in it protects nothing.**
+Cloudways serves this stack with Nginx in front of Apache, and Nginx answers for
+a static file like `/review/photo-links.json` without Apache ever seeing the
+request. The `<LocationMatch>` block in `web/.htaccess` is inert. It is left in
+place for a future host that does read it, and it is not the control here.
+
+Checked again on 24 September 2026: `server.nginx-vhosts.conf` on this
+application carries no `/review/` rule at all, so the only thing standing
+between that directory and the public is the site-wide HTTP basic auth, which
+comes off the day staging goes live. `web/review/photo-links.json` alone is
+1.2 MB and lists 8,359 names.
 
 The control is one Nginx location block.
 
-**Where it goes on a Cloudways PHP stack.** Each application has its own Nginx
-include, and the file to edit is:
-
-```
-Server
-/home/master/applications/<APP>/conf/server.nginx
-```
-
-`<APP>` is the application folder name, the one in the path to `public_html`.
-That file is included inside the `server { }` block for this application, so a
-bare `location` directive is what belongs in it, with no wrapper.
+**Where it goes on a Cloudways PHP stack.** Use the panel:
+**Application → Application Settings → Nginx Settings**. That writes the
+application's vhost include, `server.nginx-vhosts.conf`, and survives a
+Cloudways stack update; editing the file over SSH may not. The file is included
+inside the `server { }` block for this application, so a bare `location`
+directive is what belongs in it, with no wrapper.
 
 Add:
 
 ```nginx
-# The review screens, the built ledger index, the fidelity files and the
+# The review screens, the built ledger index, the queue files and the
 # correspondence CSV. All of it is working material: legacy URLs, record
-# titles, reconciliation queues, and in the fidelity files the full text of
-# the archive. None of it is for the public.
+# titles, reconciliation queues, 8,359 unmatched names in photo-links.json,
+# and in the fidelity files the full text of the archive. None of it is for
+# the public.
 location ^~ /review/ {
     deny all;
     return 404;
@@ -267,17 +269,26 @@ location ^~ /review/ {
 regex locations at all once the prefix matches. `return 404` rather than `403`
 so the directory is not advertised.
 
-Then, from the panel, **Application → Application Settings → Restart Nginx**, or:
+Then **Application → Application Settings → Restart Nginx**, or over SSH:
 
 ```
 Server
 sudo service nginx reload
 ```
 
-Cloudways also exposes this through **Application → Application Settings →
-Nginx Settings** in the panel, which writes the same file. Editing it there
-survives a Cloudways stack update; editing the file directly may not, so the
-panel is the safer of the two.
+**Prove it rather than assume it.** Basic auth answers 401 for everything while
+staging is closed, which hides whether the block exists. The check below asks
+with the credentials, so a 200 means the file really is served:
+
+```
+MacBook
+HOST=https://phpstack-1656314-6593553.cloudwaysapps.com \
+AUTH=user:password scripts/deploy/check_review_exposure.sh
+```
+
+It exits non-zero if any working file is readable, and also if it cannot prove
+the block either way. Run it before every deploy: a `git pull` on the server
+publishes whatever `web/review` holds that day.
 
 ### The admin pages are guarded in the template, and that has landed
 
