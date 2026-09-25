@@ -3811,6 +3811,12 @@
           "count": 1,
           "linked_to": "",
           "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Tom Mix",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
         }
       ],
       "places_mentioned": [
@@ -13138,7 +13144,14 @@
           "context": null
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Mack Sennett",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [],
       "orgs_mentioned": [
         {
@@ -17356,6 +17369,12 @@
         },
         {
           "name_raw": "Hoot Gibson",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Tom Mix",
           "count": 1,
           "linked_to": "",
           "retention_basis": "public_figure"
@@ -28067,14 +28086,17 @@
       {
         "name_raw": "Tom Mix",
         "name_variants": [],
-        "mention_count": 1,
+        "mention_count": 3,
         "pages": [
+          "https://scvhistory.com/gif/galleries/harrycarey050215/",
+          "https://scvhistory.com/gif/galleries/lw2703/",
           "https://scvhistory.com/gif/galleries/lw2831/"
         ],
         "has_legacy_page": false,
         "legacy_page_url": "",
         "retention_basis": [
-          "pre_cutoff"
+          "pre_cutoff",
+          "public_figure"
         ]
       },
       {
@@ -29288,6 +29310,19 @@
         "legacy_page_url": "",
         "retention_basis": [
           "pre_cutoff"
+        ]
+      },
+      {
+        "name_raw": "Mack Sennett",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/gif/galleries/lw2685/"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
         ]
       },
       {

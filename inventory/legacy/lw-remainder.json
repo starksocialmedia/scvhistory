@@ -1124,7 +1124,14 @@
           "context": "2008"
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Gene Autry",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [
         {
           "name_raw": "San Fernando Road",
@@ -6647,6 +6654,12 @@
         },
         {
           "name_raw": "Hoot Gibson",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Tom Mix",
           "count": 1,
           "linked_to": "",
           "retention_basis": "public_figure"
@@ -24072,6 +24085,12 @@
           "name_raw": "Rodolfo Acosta",
           "count": 1,
           "linked_to": "lw3330.htm",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Tom Mix",
+          "count": 1,
+          "linked_to": "",
           "retention_basis": "public_figure"
         }
       ],
@@ -60675,7 +60694,14 @@
           "context": null
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Tom Mix",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [
         {
           "name_raw": "San Fernando Road",
@@ -91281,7 +91307,20 @@
           "context": null
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Tom Mix",
+          "count": 3,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Mack Sennett",
+          "count": 2,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [],
       "orgs_mentioned": [
         {
@@ -105719,6 +105758,18 @@
           "count": 5,
           "linked_to": "",
           "retention_basis": "stated_deceased"
+        },
+        {
+          "name_raw": "Gene Autry",
+          "count": 2,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Trem Carr",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
         }
       ],
       "places_mentioned": [
@@ -112229,6 +112280,22 @@
         ]
       },
       {
+        "name_raw": "Tom Mix",
+        "name_variants": [],
+        "mention_count": 6,
+        "pages": [
+          "https://scvhistory.com/scvhistory/lw3335.htm",
+          "https://scvhistory.com/scvhistory/lw2102.htm",
+          "https://scvhistory.com/scvhistory/lw2051.htm",
+          "https://scvhistory.com/scvhistory/lw3066.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
+        ]
+      },
+      {
         "name_raw": "Van Ness",
         "name_variants": [],
         "mention_count": 2,
@@ -112709,6 +112776,20 @@
         "legacy_page_url": "",
         "retention_basis": [
           "pre_cutoff"
+        ]
+      },
+      {
+        "name_raw": "Gene Autry",
+        "name_variants": [],
+        "mention_count": 3,
+        "pages": [
+          "https://scvhistory.com/scvhistory/lw2513d.htm",
+          "https://scvhistory.com/scvhistory/lw3652.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
         ]
       },
       {
@@ -113228,6 +113309,19 @@
         "legacy_page_url": "",
         "retention_basis": [
           "pre_cutoff"
+        ]
+      },
+      {
+        "name_raw": "Mack Sennett",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/scvhistory/lw3066.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
         ]
       },
       {
@@ -115278,6 +115372,19 @@
         "legacy_page_url": "",
         "retention_basis": [
           "pre_cutoff"
+        ]
+      },
+      {
+        "name_raw": "Trem Carr",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/lw3652.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
         ]
       },
       {

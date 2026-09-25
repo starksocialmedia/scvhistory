@@ -2368,7 +2368,14 @@
           "context": null
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Gene Autry",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [
         {
           "name_raw": "San Fernando Road",
@@ -3993,7 +4000,14 @@
           "context": null
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Gene Autry",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [
         {
           "name_raw": "Hart Park",
@@ -7647,7 +7661,19 @@
       ],
       "people_mentioned": [
         {
+          "name_raw": "Gene Autry",
+          "count": 1,
+          "linked_to": "autry.htm",
+          "retention_basis": "public_figure"
+        },
+        {
           "name_raw": "Henry Mayo Newhall",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Tom Mix",
           "count": 1,
           "linked_to": "",
           "retention_basis": "public_figure"
@@ -9786,6 +9812,12 @@
       "people_mentioned": [
         {
           "name_raw": "Henry Newhall",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Tom Mix",
           "count": 1,
           "linked_to": "",
           "retention_basis": "public_figure"
@@ -20993,6 +21025,21 @@
         ]
       },
       {
+        "name_raw": "Gene Autry",
+        "name_variants": [],
+        "mention_count": 3,
+        "pages": [
+          "https://scvhistory.com/oldtownnewhall/gazette/gazette1203-walk.htm",
+          "https://scvhistory.com/oldtownnewhall/gazette/gazette1201-events.htm",
+          "https://scvhistory.com/oldtownnewhall/newhall/freedman0795.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
+        ]
+      },
+      {
         "name_raw": "Jerry Reynolds",
         "name_variants": [],
         "mention_count": 3,
@@ -21031,6 +21078,20 @@
         "legacy_page_url": "",
         "retention_basis": [
           "subject"
+        ]
+      },
+      {
+        "name_raw": "Tom Mix",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/oldtownnewhall/newhall/freedman0795.htm",
+          "https://scvhistory.com/oldtownnewhall/news/sg111200c.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
         ]
       },
       {

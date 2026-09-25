@@ -3254,6 +3254,12 @@
       ],
       "people_mentioned": [
         {
+          "name_raw": "Tom Mix",
+          "count": 9,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
           "name_raw": "Andy Jauregui",
           "count": 1,
           "linked_to": "",
@@ -5677,7 +5683,20 @@
           "context": null
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Gene Autry",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
+          "name_raw": "Tom Mix",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [
         {
           "name_raw": "Hart Park",
@@ -19809,6 +19828,12 @@
       ],
       "people_mentioned": [
         {
+          "name_raw": "Tom Mix",
+          "count": 9,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        },
+        {
           "name_raw": "Andy Jauregui",
           "count": 1,
           "linked_to": "",
@@ -21108,6 +21133,21 @@
         ]
       },
       {
+        "name_raw": "Tom Mix",
+        "name_variants": [],
+        "mention_count": 19,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/worden/lw040997.htm",
+          "https://scvhistory.com/scvhistory/signal/worden/lw022295.htm",
+          "https://scvhistory.com/scvhistory/signal/worden/old/lw040997.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
+        ]
+      },
+      {
         "name_raw": "Jan Heidt",
         "name_variants": [],
         "mention_count": 17,
@@ -21792,6 +21832,19 @@
         "legacy_page_url": "",
         "retention_basis": [
           "pre_cutoff"
+        ]
+      },
+      {
+        "name_raw": "Gene Autry",
+        "name_variants": [],
+        "mention_count": 1,
+        "pages": [
+          "https://scvhistory.com/scvhistory/signal/worden/lw022295.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "retention_basis": [
+          "public_figure"
         ]
       },
       {

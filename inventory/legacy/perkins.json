@@ -7926,6 +7926,12 @@
           "count": 1,
           "linked_to": "",
           "retention_basis": "stated_deceased"
+        },
+        {
+          "name_raw": "Tom Mix",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
         }
       ],
       "places_mentioned": [
@@ -11825,7 +11831,14 @@
           "context": null
         }
       ],
-      "people_mentioned": [],
+      "people_mentioned": [
+        {
+          "name_raw": "Tom Mix",
+          "count": 1,
+          "linked_to": "",
+          "retention_basis": "public_figure"
+        }
+      ],
       "places_mentioned": [
         {
           "name_raw": "San Fernando Road",
@@ -12399,6 +12412,26 @@
         ],
         "has_legacy_page": true,
         "legacy_page_url": "https://scvhistory.com/scvhistory/stephenbowersbio_aps.htm",
+        "retention_basis": [
+          "public_figure"
+        ]
+      },
+      {
+        "name_raw": "Tom Mix",
+        "name_variants": [],
+        "mention_count": 2,
+        "pages": [
+          "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+          "https://scvhistory.com/scvhistory/sentinel042865.htm"
+        ],
+        "has_legacy_page": false,
+        "legacy_page_url": "",
+        "needs_review": [
+          {
+            "reason": "possible_legacy_page",
+            "detail": "multiple_pages: https://scvhistory.com/scvhistory/lw3371.htm; https://scvhistory.com/scvhistory/sw_commercejournalwichitatx092123.htm; https://scvhistory.com/scvhistory/sw_dailyclintonian120723.htm"
+          }
+        ],
         "retention_basis": [
           "public_figure"
         ]
