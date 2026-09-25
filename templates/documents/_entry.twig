@@ -1,14 +1,216 @@
 {% extends "_layouts/base" %}
 
+{#
+  A document is a source, not a piece of writing by the archive.
+
+  The page therefore answers four questions in this order: what the thing is,
+  when and by whom it was published, what it says, and where our copy came
+  from. The first document in the section is the 1874 Vasquez sketch, and it
+  arrived rendering as a title and a wall of text, with its date, its publisher,
+  its subject and its provenance all held in fields nothing printed.
+
+  It reuses the record shell the photograph and article pages use, so a document
+  sits in the same furniture as everything else: the same band, the same tools,
+  the same citation block, the same sidebar boxes.
+
+  THE DOCUMENT'S OWN HEADLINE. originallyPublishedTitle is the headline as the
+  item printed it, which is not the archive's title for the record. On the
+  legacy page it was set centred between two rules in its own type, under the
+  copyright line — the printed item's masthead reproduced. This renders it the
+  same way, above the text and visibly part of the document rather than part of
+  the page.
+#}
+
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
+  {% css %}
+  .doc-mast{max-width:46em;margin:0 auto 26px;text-align:center}
+  .doc-rule{width:60px;height:1px;background:#C4A031;margin:18px auto;border:0}
+  .doc-head{font-family:'Playfair Display',Georgia,serif;font-size:26px;line-height:1.25;color:#17254C;letter-spacing:.01em;margin:0}
+  .doc-sub{font-family:'Playfair Display',Georgia,serif;font-size:19px;line-height:1.3;color:#17254C;margin:0}
+  .doc-credit{font-family:'Jost',sans-serif;font-size:13.5px;line-height:1.65;color:#5B6472;max-width:44em;margin:0 auto}
+  .doc-absent{border:1px solid #E2E4E8;background:#FBFBFC;padding:18px 20px;margin-bottom:24px}
+  .doc-absent .lab{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.12em;color:#8A919E;margin-bottom:8px}
+  .doc-absent p{margin:0;font-size:14.5px;line-height:1.7;color:#5B6472}
+  @media print{.doc-rule{background:#000}}
+  {% endcss %}
+{% endblock %}
+
 {% block content %}
-<article>
-  <h1>{{ entry.title }}</h1>
-  {% set image = entry.featuredImage.one() %}
-  {% if image %}
-    <p><img src="{{ image.url }}" alt="{{ entry.title }}"></p>
-  {% endif %}
-  {% if entry.body %}
-    <div>{{ entry.body|nl2br }}</div>
-  {% endif %}
-</article>
+
+{% set F = {} %}
+{% for h in ['body','originallyPublishedTitle','originalPublishDate','originalPublishDateEdtf','sourceLine',
+             'legacyKey','legacyUrl','sourcePath','culturalSensitivityNote','webmasterNoteTop','webmasterNoteBottom'] %}
+  {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
+{% endfor %}
+
+{% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
+{% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
+{% set files = entry.documentFiles is defined and entry.documentFiles ? entry.documentFiles.all() : [] %}
+{% set era = entry.historicalEra.one() ?? null %}
+{% set periods = entry.historicalPeriod.all() %}
+{% set communities = entry.neighborhood.all() %}
+{% set subjects = entry.subjectPerson is defined and entry.subjectPerson ? entry.subjectPerson.all() : [] %}
+{% set publishers = entry.publishedBy is defined and entry.publishedBy ? entry.publishedBy.all() : [] %}
+{% set dates = entry.recordDates is defined and entry.recordDates ? entry.recordDates : [] %}
+
+{% set plate = entry.featuredImage is defined and entry.featuredImage ? entry.featuredImage.one() ?? null : null %}
+{% set plate = plate ?? (recImages|length ? recImages|first : null) %}
+{% set bodyText = F.body %}
+{% set words = bodyText ? bodyText|striptags|split(' ')|filter(w => w|trim)|length : 0 %}
+
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-bandin">
+        <div class="rec-bandtext">
+          <div class="rec-kicker">DOCUMENT</div>
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {#- Not the headline: the masthead below prints that, where the printed
+              item had it. Repeating it here would say it three times with the
+              record title. -#}
+          {% if publishers|length %}<div class="rec-sub">{{ publishers|map(p => p.title)|join(', ') }}</div>{% endif %}
+          {% set facts = [
+            { l: 'PUBLISHED', v: F.originalPublishDate },
+            { l: 'SOURCE', v: F.legacyKey|upper },
+            { l: 'ERA', v: era ? era.title : '' }
+          ]|filter(f => f.v) %}
+          {% if facts|length %}
+            <div class="rec-facts">
+              {% for f in facts %}<div><div class="l">{{ f.l }}</div><div class="v">{{ f.v }}</div></div>{% endfor %}
+            </div>
+          {% endif %}
+          {% if periods|length or communities|length %}
+            <div class="rec-chips">
+              {% for p in periods %}<span class="rec-chip">{{ p.title }}</span>{% endfor %}
+              {% for c in communities %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: bodyText, textId: 'recText', words: words } only %}
+        {% include "_partials/record/note" with { text: F.webmasterNoteTop } only %}
+
+        {% if plate %}
+          <figure class="ph-plate">
+            <button type="button" data-lightbox data-src="{{ plate.url }}"
+                    data-caption="{{ entry.title }}" data-credit="{{ F.sourceLine }}"
+                    aria-label="Open the scan">
+              <img src="{{ plate.url }}" alt="{{ plate.alt ?: entry.title }}">
+            </button>
+            <figcaption>The archive's copy{% if F.legacyKey %}, {{ F.legacyKey|upper }}{% endif %}</figcaption>
+          </figure>
+        {% else %}
+          <div class="doc-absent">
+            <div class="lab">THE SCAN IS NOT IN THE ARCHIVE YET</div>
+            <p>
+              We hold the text of this document and not an image of it.
+              {%- if F.legacyKey %} The legacy image is <code>{{ F.legacyKey }}</code>.{% endif %}
+              {%- if F.sourcePath %} It is on the original page at <a href="{{ F.sourcePath }}" rel="nofollow">{{ F.sourcePath }}</a>.{% endif %}
+            </p>
+          </div>
+        {% endif %}
+
+        {#- The item's own masthead, in the order the printed thing had it: the
+            copyright line, then the headline between rules. -#}
+        {% if F.sourceLine or F.originallyPublishedTitle %}
+          <div class="doc-mast">
+            {% if F.sourceLine %}<p class="doc-credit">{{ F.sourceLine }}</p>{% endif %}
+            {% if F.originallyPublishedTitle %}
+              <hr class="doc-rule">
+              {% set headParts = F.originallyPublishedTitle|split('!') %}
+              {% if headParts|length > 1 %}
+                <p class="doc-head">{{ headParts|first|trim }}!</p>
+                <hr class="doc-rule">
+                <p class="doc-sub">{{ headParts|slice(1)|join('!')|trim }}</p>
+              {% else %}
+                <p class="doc-head">{{ F.originallyPublishedTitle }}</p>
+              {% endif %}
+              <hr class="doc-rule">
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if bodyText %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: bodyText, images: recImages, footnotesFor: entry } %}</div>
+          {% include "_partials/record/footnotes" with { entry: entry } only %}
+        {% endif %}
+
+        {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+
+        {% include "_partials/record/images" with { images: recImages, body: bodyText, entry: entry } only %}
+        {% include "_partials/record/note" with { text: F.webmasterNoteBottom, bottom: true } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.editorNotes is defined ? entry.editorNotes : []), position: 'bottom' } only %}
+      </article>
+
+      <aside class="rec-side">
+        {% include "_partials/record/cite" with { entry: entry, label: 'Documents', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
+
+        {#- Publication: what the item said about itself. sourceLine is the
+            credit verbatim and is the authority; the parsed fields beside it
+            are the archive's reading of it. -#}
+        {% if F.originallyPublishedTitle or F.originalPublishDate or publishers|length or F.sourceLine %}
+          <div class="rec-box">
+            <div class="rec-lab">PUBLICATION</div>
+            {% if F.sourceLine %}<div class="ph-credit">{{ F.sourceLine }}</div>{% endif %}
+            {% set pub = [
+              { k: 'HEADLINE', v: F.originallyPublishedTitle },
+              { k: 'DATE', v: F.originalPublishDate },
+              { k: 'PARSED', v: F.originalPublishDateEdtf }
+            ]|filter(r => r.v) %}
+            {% if pub|length or publishers|length %}
+              <div class="rec-rows" style="margin-top:12px">
+                {% for r in pub %}<div class="k">{{ r.k }}</div><div class="v">{{ r.v }}</div>{% endfor %}
+                {% for p in publishers %}<div class="k">PUBLISHER</div><div class="v"><a href="{{ p.url }}">{{ p.title }}</a></div>{% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% set dateRows = [] %}
+        {% for d in dates %}
+          {% set printed = (d.printed ?? '')|trim %}
+          {% set iso = d.iso ? d.iso|date('j F Y') : '' %}
+          {% set lab = (d.label ?? '')|trim %}
+          {% if printed or iso %}{% set dateRows = dateRows|merge([{ p: printed, i: iso, l: lab }]) %}{% endif %}
+        {% endfor %}
+        {% if dateRows|length %}
+          <div class="rec-box">
+            <div class="rec-lab">DATES</div>
+            <div class="rec-rows">
+              {% for r in dateRows %}<div class="k">{{ r.l ? r.l|upper|slice(0, 22) : 'DATE' }}</div><div class="v">{{ r.i ?: r.p }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% set boxes = [
+          { lab: 'ABOUT', key: 'PERSON', rows: subjects },
+          { lab: 'RELATED IMAGES', key: 'RECORD', rows: (entry.derivedImageLinks is defined ? entry.derivedImageLinks.all() : []) }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
+
+        {% if communities|length %}
+          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
+            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs|merge(files) } only %}
+        {% include "_partials/record/tags" with { el: entry } only %}
+      </aside>
+    </main>
+  </div>
+</div>
 {% endblock %}
