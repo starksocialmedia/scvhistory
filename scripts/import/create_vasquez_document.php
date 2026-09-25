@@ -62,12 +62,36 @@ if ($missing) {
 $person = \craft\elements\Entry::find()->id($PERSON)->section('persons')->status(null)->one();
 if (!$person) { echo 'person #' . $PERSON . ' not found' . PHP_EOL; return; }
 
-/* The document's body: the headline, the copyright line, then the text as the
-   page prints it, ending with the dateline. */
-$body = implode("\n\n", array_merge(
-    [$src['headline'], $src['copyright_line']],
-    $src['body_lines']
-));
+/* The document's body is the text and nothing else.
+ *
+ * It used to be composed as headline + copyright line + text, which put both
+ * in the body while the fields held them too, and then put the headline in
+ * twice: once joined here, and once again inside body_lines, which start above
+ * the centred lines the page printed. fix_document_body_duplication.php cleaned
+ * that up on the Vasquez record; this is the fault it was cleaning up.
+ *
+ * The headline belongs in originallyPublishedTitle and the credit in
+ * sourceLine, and templates/documents/_entry.twig prints them above the text in
+ * the order the legacy page set them: credit, rule, headline, rule, text. So
+ * the display matter is dropped from the front of body_lines here, and every
+ * line dropped must equal what the fields are being given. */
+$displayLines = [];
+$normLine = fn(string $x): string => trim(preg_replace('~\s+~', ' ', $x));
+$headNorm = $normLine((string)$src['headline']);
+$displayLines[$headNorm] = true;
+if (str_contains($headNorm, '!')) {
+    [$firstPart, $restPart] = explode('!', $headNorm, 2);
+    $displayLines[$normLine($firstPart . '!')] = true;
+    $displayLines[$normLine($restPart)] = true;
+}
+$displayLines[$normLine((string)$src['copyright_line'])] = true;
+
+$textLines = $src['body_lines'];
+while ($textLines && isset($displayLines[$normLine((string)$textLines[0])])) {
+    array_shift($textLines);
+}
+$droppedFromBody = count($src['body_lines']) - count($textLines);
+$body = implode("\n\n", $textLines);
 
 $fields = [
     'title' => 'A Brief Sketch of the Notorious Bandit',
@@ -83,7 +107,7 @@ $fields = [
     'culturalSensitivityNote' => '',
     'recordProvenance' => 'text from ' . $meta['source_url'] . ', fetched ' . $meta['fetched']
         . '; moved out of person #' . $PERSON . "'s body, where it had arrived without its copyright line or headline",
-    'body' => $body,
+    'body' => $body,   /* the text only: the headline and credit are fields */
     'recordDates' => [
         ['col1' => 'May 19th, 1874', 'col2' => '1874-05-19', 'col3' => 'day',  'col4' => 'dateline on the sketch', 'col5' => true],
         ['col1' => '1874',           'col2' => '1874-01-01', 'col3' => 'year', 'col4' => 'copyright entered by V. Wolfenstein, Los Angeles', 'col5' => true],
@@ -100,7 +124,8 @@ foreach ($fields as $h => $v) {
     $show = is_array($v) ? json_encode($v) : (string)$v;
     echo '   ' . str_pad($h, 26) . mb_substr(preg_replace('~\s+~', ' ', $show), 0, 96) . PHP_EOL;
 }
-echo '   ' . str_pad('body', 26) . mb_strlen($body) . ' characters, ' . count($src['body_lines']) . ' paragraphs' . PHP_EOL;
+echo '   ' . str_pad('body', 26) . mb_strlen($body) . ' characters, ' . count($textLines) . ' paragraphs'
+   . ($droppedFromBody ? ' (' . $droppedFromBody . ' display line(s) left to the fields)' : '') . PHP_EOL;
 echo PHP_EOL . '   first: ' . mb_substr($body, 0, 150) . PHP_EOL;
 echo '   last:  ' . mb_substr($body, -90) . PHP_EOL;
 
