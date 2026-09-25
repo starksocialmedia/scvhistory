@@ -1,0 +1,77 @@
+columnSuffix: null
+handle: districtKind
+instructions: null
+name: 'Kind of district'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'State Assembly'
+        -
+          - value
+          - assembly
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'State Senate'
+        -
+          - value
+          - senate
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Congressional
+        -
+          - value
+          - congressional
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'County supervisorial'
+        -
+          - value
+          - supervisorial
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'School trustee area'
+        -
+          - value
+          - trustee-area
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Other
+        -
+          - value
+          - other
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

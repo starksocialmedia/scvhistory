@@ -383,7 +383,7 @@ emitted from whichever side schema.org expects.
 
 ### Organizations — `organizations/organization`
 
-51 fields.
+56 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -411,6 +411,11 @@ emitted from whichever side schema.org expects.
 | `hauntedStatus` | Dropdown | **local** | no external equivalent |
 | `hauntedAccount` | PlainText | **local** | no external equivalent |
 | `hauntedSource` | PlainText | **local** | no external equivalent |
+| `dateDissolved` | PlainText | **local** | no external equivalent |
+| `dateDissolvedEdtf` | PlainText | **local** | no external equivalent |
+| `precededBy` | Entries | **local** | no external equivalent |
+| `succeededBy` | Entries | **local** | no external equivalent |
+| `seatCount` | Number | **local** | no external equivalent |
 | `hasParentOrg` | Lightswitch | **local** | no external equivalent |
 | `parentOrganization` | Entries | schema.org `parentOrganization` | inverse emitted as subOrganization |
 | `hasSubBoards` | Lightswitch | **local** | no external equivalent |
@@ -606,7 +611,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Places — `places/place`
 
-51 fields.
+55 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -637,6 +642,10 @@ a skip means the queue has not been settled, and an external means it has.
 | `hauntedStatus` | Dropdown | **local** | no external equivalent |
 | `hauntedAccount` | PlainText | **local** | no external equivalent |
 | `hauntedSource` | PlainText | **local** | no external equivalent |
+| `districtNumber` | PlainText | **local** | no external equivalent |
+| `districtKind` | Dropdown | **local** | no external equivalent |
+| `effectiveFrom` | PlainText | **local** | no external equivalent |
+| `effectiveTo` | PlainText | **local** | no external equivalent |
 | `placePeople` | Entries | **local** | no external equivalent |
 | `placeOrganizations` | Entries | **local** | no external equivalent |
 | `relatedPlaces` | Entries | **local** | no external equivalent |
@@ -747,10 +756,11 @@ local unless the note says otherwise.
 
 - **`bodyAuthorship`** — `legacy-leon`, `wordpress-import-unsourced`, `editorial-2026`, `mixed`.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
+- **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
-- **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`, `settlement`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
+- **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`, `settlement`, `district`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
 - **`schoolLevel`** — `elementary`, `middle`, `high`, `college`, `district`. Drives the schema.org School subtype: ElementarySchool, MiddleSchool, HighSchool, CollegeOrUniversity. A district has no schema.org subtype and stays Organization.
 
 ## Category groups

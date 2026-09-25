@@ -1,4 +1,4 @@
-dateModified: 1790171661
+dateModified: 1790312562
 email:
   fromEmail: nathan@starksocial.com
   fromName: 'SCV History'
@@ -17,6 +17,7 @@ meta:
     0a435923-bb41-4cc3-8f64-48ada83aef28: 'Obit Group' # Obit Group
     0cde1937-2ac4-47df-afc3-af331dfa4127: 'Photo Date Edtf' # Photo Date Edtf
     0e428760-475d-483d-97b2-d1444c7630f4: 'Photo Date' # Photo Date
+    1aa05281-0c0f-4598-abfb-6d16744b7ba1: 'Boundaries in force to' # Boundaries in force to
     1b1e1845-f71f-49d3-9032-e609d3014117: 'Person Obituaries' # Person Obituaries
     1b97d8d9-6b72-48e2-9f3b-25bfe8e1a5f0: "Editor's note (top)" # Editor's note (top)
     1ba9b651-746d-4c46-8c1e-8cdaf07c27b2: 'Incident Date' # Incident Date
@@ -117,6 +118,7 @@ meta:
     28ef7e8a-b0dc-4cef-918d-2cedabbbdf96: Theme # Theme
     29aeece8-4c7e-41bd-bbf8-f4d81d6a4559: 'MP Burial Place' # MP Burial Place
     29fa4bea-ad8f-4d3b-abf0-d1eaa63f18ac: 'Event Recurring' # Event Recurring
+    32e2423f-572f-4209-a084-8706742eaeef: 'Preceded by' # Preceded by
     036deeea-7eea-42b5-89ad-55bc86bd744b: 'Group Aliases' # Group Aliases
     42cc5706-8791-4935-b463-28f759b078cf: 'Notes Are On' # Notes Are On
     42d78cec-1dc4-444b-92a5-a152db50db29: 'Place Address' # Place Address
@@ -144,6 +146,7 @@ meta:
     80f1e2a4-562c-496b-a74e-5b9715a20d8d: 'Parent Of' # Parent Of
     84bf8d55-d4e1-489a-b2d5-0156e38e1551: 'Place Articles' # Place Articles
     084d1036-a377-46cb-89f9-ac0cabe546db: 'Service ID' # Service ID
+    86c39efd-6daa-48a4-bfcf-b51c68985a58: 'Succeeded by' # Succeeded by
     86fb465a-1c5e-4958-923a-e02fd2b9ff28: 'Originally Published Title' # Originally Published Title
     86fc56b5-0ead-43fb-a2ff-f9e9bc9ff67d: Narrative # Narrative
     91b0878b-c21f-4a84-9f10-4222f08055a5: 'Written By' # Written By
@@ -174,12 +177,14 @@ meta:
     698d779f-1097-4b65-8801-1f7984a324b8: 'Date Founded' # Date Founded
     702dbfa1-389d-4c04-8665-4b8e678766d2: Group # Group
     727d75ad-c579-4c63-bb99-9d59dc9a962c: 'Incident Location' # Incident Location
+    747e402d-aa73-45fc-9fdd-4d7209d11a51: 'Dissolved or merged, as printed' # Dissolved or merged, as printed
     757b1bf8-8bee-4d70-a8e3-7290c2296d0e: 'Obit Legacy URL' # Obit Legacy URL
     859dcc97-3458-4901-8659-37043953a91e: 'MP Date of Death' # MP Date of Death
     869c1a3c-de72-4539-9c4f-c2a66302a5ad: 'Person Legacy URL' # Person Legacy URL
     886afeb7-184f-4030-8d35-d7538d0c362b: 'Role Probe' # Role Probe
     915e06ff-2663-43af-bd6b-ec40a3206421: 'Parent Organization' # Parent Organization
     926bf40e-0b97-438f-a964-5b3bf7d19f4a: 'Vietnam Memorial Wall' # Vietnam Memorial Wall
+    951e7477-bc46-44c3-8aa1-4d5b5ffb2371: 'Kind of district' # Kind of district
     962f38b8-f3e6-476e-8ad4-11e0226524df: 'MP Organizations' # MP Organizations
     988b1ca1-fba1-4fc1-9cae-4ca4a4eaeda4: 'Event Organizations' # Event Organizations
     01214a41-054c-43c6-aed9-5062b7556cb5: 'Role Wikidata ID' # Role Wikidata ID
@@ -223,6 +228,7 @@ meta:
     1678256c-2ea1-4897-9904-446333a2eaac: 'Article Longitude' # Article Longitude
     2475755e-6c05-4ce2-ba03-c8eb55c99e02: 'MP Places' # MP Places
     2783613e-042b-4eba-aff6-22af40915baf: Places # Places
+    13923961-cf8f-4e24-8e0a-5f6c4643e0fb: 'District number' # District number
     63028120-1877-42f9-bd4a-02e19aa083f0: 'Obit Related Persons' # Obit Related Persons
     68602574-7525-4259-95bf-d8b04f848b01: 'Photo Places' # Photo Places
     71712435-b6d1-4157-93d5-5a09243930c1: 'WM Branch' # WM Branch
@@ -252,6 +258,7 @@ meta:
     b20e0e7d-aa77-4614-a377-46760055a3e1: 'Part of Collection' # Part of Collection
     b20f82ad-7fa5-44c7-ba5e-0a0890f4819c: Parts # Parts
     b58aa9b7-ca9a-4189-8422-b0d07956fa62: License # License
+    b98b0b01-816a-4381-b003-28e5af075578: 'Boundaries in force from' # Boundaries in force from
     b873cba8-309f-4ab7-b6ba-718b698dc60f: 'Date Founded Edtf' # Date Founded Edtf
     b96081cd-d6b6-4ead-b45c-57be363c93ca: Tags # Tags
     ba80cc74-a8ca-455c-b406-7836e2a3ff54: 'Org Wikipedia URL' # Org Wikipedia URL
@@ -300,6 +307,7 @@ meta:
     e27adeb1-4305-4ddd-9b7f-c526e3a11759: Roles # Roles
     e31f2a11-8bb9-4061-992b-119f6b2645fc: Person # Person
     e34dff31-185d-469b-9dc0-528a82120aac: Birthplace # Birthplace
+    e38f1aac-bc15-41a9-8c35-3706d11ee03c: 'Seats on this body' # Seats on this body
     e52a98cd-0a9f-47a7-a10e-a15411b38fda: Roles # Roles
     e57a8e96-dedb-449e-a6de-361e5429da5b: 'Casualty Detail' # Casualty Detail
     e97d0827-a474-451e-aecd-c48ecd38717e: 'MP Service End' # MP Service End
@@ -319,6 +327,7 @@ meta:
     f93e01ae-4939-48d8-8151-268836846a7c: 'MP Specialty MOS' # MP Specialty MOS
     f458eafb-a385-4fda-8dd7-3635f5342fda: 'Major collection' # Major collection
     f9985d92-a139-4549-a734-787b59ea727e: 'Also Known As' # Also Known As
+    f10633b8-0592-4ecc-b972-8e9e21d91711: 'Dissolved, EDTF' # Dissolved, EDTF
     f313790d-6d5c-4b50-a64b-f0103c1daf13: 'MP Groups' # MP Groups
     fa9e8a3d-1e71-4bd5-8614-61ce7dd91233: 'Place CHL Number' # Place CHL Number
     fa81d32a-753b-4d7a-b1fc-628cc6c78536: 'Legacy Source Path' # Legacy Source Path

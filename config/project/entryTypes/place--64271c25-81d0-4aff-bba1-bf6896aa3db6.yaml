@@ -495,6 +495,74 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 13923961-cf8f-4e24-8e0a-5f6c4643e0fb # District number
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: db266557-5f5c-4131-84b7-f55b21784b71
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 951e7477-bc46-44c3-8aa1-4d5b5ffb2371 # Kind of district
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 261cda24-dc2a-460d-b248-30dd426cae58
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b98b0b01-816a-4381-b003-28e5af075578 # Boundaries in force from
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2395985a-e003-4d51-a843-1c398fc6bf1d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1aa05281-0c0f-4598-abfb-6d16744b7ba1 # Boundaries in force to
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d8818ebe-d2cb-4ade-878b-5a69df0cc68b
+            userCondition: null
+            warning: null
+            width: 100
         name: Identity
         uid: 8564a6bf-e641-442c-a738-e58150c8eabb
         userCondition: null
