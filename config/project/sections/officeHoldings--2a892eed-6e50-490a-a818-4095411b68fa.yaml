@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: b8c3d45b-5cc2-4abf-9fe6-268b52ef38f3 # Office Holding
+handle: officeHoldings
+maxAuthors: 1
+minAuthors: 1
+name: 'Office Holdings'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: null
+type: channel

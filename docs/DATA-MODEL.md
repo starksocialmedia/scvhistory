@@ -381,9 +381,34 @@ emitted from whichever side schema.org expects.
 | `recordDates` | Table | **local** | no external equivalent |
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
 
+### Office Holdings — `officeHoldings/officeHolding`
+
+18 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `holdingPerson` | Entries | **local** | no external equivalent |
+| `holdingOffice` | Entries | **local** | no external equivalent |
+| `holdingBody` | Entries | **local** | no external equivalent |
+| `holdingDistrict` | Entries | **local** | no external equivalent |
+| `termStart` | PlainText | **local** | no external equivalent |
+| `termStartEdtf` | PlainText | **local** | no external equivalent |
+| `termEnd` | PlainText | **local** | no external equivalent |
+| `termEndEdtf` | PlainText | **local** | no external equivalent |
+| `seatLabel` | PlainText | **local** | no external equivalent |
+| `selectionMethod` | Dropdown | **local** | no external equivalent |
+| `howEnded` | Dropdown | **local** | no external equivalent |
+| `startEvidence` | Dropdown | **local** | no external equivalent |
+| `endEvidence` | Dropdown | **local** | no external equivalent |
+| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
+| `footnotesOn` | Entries | schema.org `citation` |  |
+| `editorNotes` | Table | **local** | no external equivalent |
+| `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+| `recordDates` | Table | **local** | no external equivalent |
+
 ### Organizations — `organizations/organization`
 
-56 fields.
+52 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -418,10 +443,6 @@ emitted from whichever side schema.org expects.
 | `seatCount` | Number | **local** | no external equivalent |
 | `hasParentOrg` | Lightswitch | **local** | no external equivalent |
 | `parentOrganization` | Entries | schema.org `parentOrganization` | inverse emitted as subOrganization |
-| `hasSubBoards` | Lightswitch | **local** | no external equivalent |
-| `subBoards` | Entries | **local** | no external equivalent |
-| `boardMembers` | Entries | **local** | no external equivalent |
-| `termNotes` | PlainText | **local** | no external equivalent |
 | `orgFoundedBy` | Entries | **local** | no external equivalent |
 | `orgAssociatedPersons` | Entries | **local** | no external equivalent |
 | `orgEvents` | Entries | **local** | no external equivalent |
@@ -757,11 +778,15 @@ local unless the note says otherwise.
 - **`bodyAuthorship`** — `legacy-leon`, `wordpress-import-unsourced`, `editorial-2026`, `mixed`.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
 - **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`.
+- **`endEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
+- **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `serving`, `unknown`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
 - **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`, `settlement`, `district`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
 - **`schoolLevel`** — `elementary`, `middle`, `high`, `college`, `district`. Drives the schema.org School subtype: ElementarySchool, MiddleSchool, HighSchool, CollegeOrUniversity. A district has no schema.org subtype and stays Organization.
+- **`selectionMethod`** — `elected`, `appointed`, `rotated`, `exofficio`, `succeeded`.
+- **`startEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 
 ## Category groups
 

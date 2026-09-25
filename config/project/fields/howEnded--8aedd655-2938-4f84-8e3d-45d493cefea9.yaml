@@ -1,0 +1,110 @@
+columnSuffix: null
+handle: howEnded
+instructions: null
+name: 'How the term ended'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Term expired'
+        -
+          - value
+          - expired
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Re-elected
+        -
+          - value
+          - reelected
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Resigned
+        -
+          - value
+          - resigned
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Died in office'
+        -
+          - value
+          - died
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Recalled
+        -
+          - value
+          - recalled
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Termed out'
+        -
+          - value
+          - termed-out
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Left for another office'
+        -
+          - value
+          - left
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Still serving'
+        -
+          - value
+          - serving
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Unknown
+        -
+          - value
+          - unknown
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

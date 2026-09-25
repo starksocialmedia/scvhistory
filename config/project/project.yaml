@@ -1,4 +1,4 @@
-dateModified: 1790312562
+dateModified: 1790313215
 email:
   fromEmail: nathan@starksocial.com
   fromName: 'SCV History'
@@ -27,6 +27,7 @@ meta:
     1d2482c4-095a-413b-9e52-d396af8ef90d: 'MP Base Station' # MP Base Station
     1f1e0b5a-e874-40b9-9a54-cf6acef1dd94: Body # Body
     1fdb2efa-4d0e-4825-821f-682e150a16e8: 'Event Date Edtf' # Event Date Edtf
+    2a892eed-6e50-490a-a818-4095411b68fa: 'Office Holdings' # Office Holdings
     02b2c907-bcc2-485b-b2e8-ce5990c28d48: Role # Role
     2b5ff652-e35d-48c0-9f14-51570e23c33f: 'Place Events' # Place Events
     2b8c5353-113c-4862-8fa6-eed91e039549: 'Related Events' # Related Events
@@ -50,9 +51,9 @@ meta:
     4b9ddc11-19f2-4c19-b079-bedd7af8656d: 'Legacy HTML' # Legacy HTML
     4c63e41a-3d70-4840-9069-fa32507828ee: 'Group Events' # Group Events
     4c744660-4a32-4290-8c1c-c63ce96860a2: Communities # Communities
-    4d66c49f-ea87-47c9-9678-ec3a61e72941: 'Sub Boards' # Sub Boards
     4d825e5a-ad47-4085-a9dd-47a4387e3fda: Fix # Fix
     4d552843-9cf4-48e1-a3da-98f6d83b1405: 'Credit DPI' # Credit DPI
+    04e25d74-b910-4996-8e82-17876669f0db: 'Evidence for the end' # Evidence for the end
     04e3416e-73bc-4e6b-b275-4684ebcefd34: Event # Event
     4f57db14-792f-4d7e-b71f-95e03830afb1: 'Photo Credit' # Photo Credit
     4f428042-496d-40ac-aa96-b77a6ae54b40: Pages # Pages
@@ -61,7 +62,7 @@ meta:
     5bc9f443-fe94-4f95-aba0-8b9e648eaa4a: Family # Family
     5c70f0e4-afc4-48fd-8900-a82091a600b5: 'Source of the account' # Source of the account
     5c3991a3-9e32-4d91-a8ec-ef6de06542b2: 'Community Type' # Community Type
-    5e8daf31-6516-4238-9d20-d2e62d65491f: 'Has Sub-Boards' # Has Sub-Boards
+    5ec09ef3-afdd-40dc-8511-bd7a9da1d8d2: 'Seat or area' # Seat or area
     5f320f53-c2c1-482c-8c5b-59abb89a2755: 'Subject Person' # Subject Person
     5f666556-bbe0-4999-b3db-cf58e10d2fb8: 'Person Webmaster Note Bottom' # Person Webmaster Note Bottom
     5fcd0c5d-7181-4e5b-8008-6343935422c7: 'Historical Period' # Historical Period
@@ -86,7 +87,9 @@ meta:
     7f2b776b-bbf7-4fd8-8f9f-4f9e5b3ef56b: 'Person Find A Grave URL' # Person Find A Grave URL
     8a1309e9-6990-4d93-9c45-6b2a0cdd0855: 'Photo Sequence' # Photo Sequence
     8adc6b3c-e2e4-436e-99fa-260b78fdb802: 'Place Type' # Place Type
+    8aedd655-2938-4f84-8e3d-45d493cefea9: 'How the term ended' # How the term ended
     08b63f6e-f44c-450d-b3fb-69c4b983b676: 'Original Publish Date Edtf' # Original Publish Date Edtf
+    8bfe2011-3f4e-4e37-b09b-79c6eacdeded: 'Term start, EDTF' # Term start, EDTF
     008c946e-c13a-432d-991a-167ac93a724d: 'Place SCV Landmark' # Place SCV Landmark
     08cfbb4b-0f7f-4f68-9c6e-2285c3e3bdb6: 'Event Groups' # Event Groups
     8dd6b19b-d56f-4147-a107-973586b98c4e: 'War Memorial' # War Memorial
@@ -156,6 +159,7 @@ meta:
     0110dcc2-9ed5-49f6-8446-b5002c904180: 'Event Date Start' # Event Date Start
     128b0aaf-48d6-4809-8e70-1a05f12ada1d: 'MP Has Parents' # MP Has Parents
     130ff87e-48c1-4635-b347-425b1774eb8e: 'VIAF ID' # VIAF ID
+    133e940d-e9e5-49da-9d0b-bcf4d6128062: Office # Office
     194eacba-378f-4297-9417-e248ba6b415f: 'Photo Organizations' # Photo Organizations
     197c3668-54d5-4dcb-925d-5d800b4f3466: 'Related Places' # Related Places
     250dd588-f834-454a-88da-ebaa6a23b19b: 'Community Latitude' # Community Latitude
@@ -166,6 +170,7 @@ meta:
     430f48e5-d9ff-40e7-9d65-0bc6291d8d54: 'Obit Date Published' # Obit Date Published
     432d3616-6a90-4f24-a5e8-e39966513933: Themes # Themes
     447a484a-adde-421a-aea6-2819d46b9b8c: 'MP Has Children' # MP Has Children
+    467b2fb6-a290-48a7-913d-e554ee1e9b49: District # District
     506d9eee-d8b7-4646-a6ee-df8151946554: 'Articles About' # Articles About
     506e37ea-45dd-4aa1-85f4-803b107a7c17: Groups # Groups
     533ae5d6-dab4-40be-8b7e-02821ae74d90: 'Fix Note' # Fix Note
@@ -207,10 +212,10 @@ meta:
     9210d98c-d829-46ea-aa5e-7fa6f9d6928c: 'WM Home of Record' # WM Home of Record
     9545ec9a-db2c-435c-908c-b7afcadd4991: 'Obit Published In' # Obit Published In
     49092f2b-66bc-499b-95cd-d01ceb9d6fe1: Obituaries # Obituaries
-    55816b3d-1478-46fa-8ae3-3b8bfc5792ed: 'Board Members' # Board Members
     64271c25-81d0-4aff-bba1-bf6896aa3db6: Place # Place
     65551adf-1fcd-4c63-bc62-823f2fb5cdc8: 'Casualty Type' # Casualty Type
     65766de2-684f-443c-ae20-38ffe4c6c377: 'Org Associated Persons' # Org Associated Persons
+    73609c97-6d23-4a59-8803-427477b033d3: 'Term start, as printed' # Term start, as printed
     92124bd1-8d76-4b8e-bdce-f50fd6deeeca: 'Start of Tour' # Start of Tour
     115362a0-44f4-4a9f-967c-3f86939f03a1: Creator # Creator
     209335f5-d0cd-48d6-97a6-643511740df6: 'Obit Webmaster Note Bottom' # Obit Webmaster Note Bottom
@@ -229,6 +234,7 @@ meta:
     2475755e-6c05-4ce2-ba03-c8eb55c99e02: 'MP Places' # MP Places
     2783613e-042b-4eba-aff6-22af40915baf: Places # Places
     13923961-cf8f-4e24-8e0a-5f6c4643e0fb: 'District number' # District number
+    27773065-2a16-4ea5-b962-192d6495e76a: Person # Person
     63028120-1877-42f9-bd4a-02e19aa083f0: 'Obit Related Persons' # Obit Related Persons
     68602574-7525-4259-95bf-d8b04f848b01: 'Photo Places' # Photo Places
     71712435-b6d1-4157-93d5-5a09243930c1: 'WM Branch' # WM Branch
@@ -254,6 +260,7 @@ meta:
     b6f60f2c-09bb-43e2-ab37-f36f1544c1d4: 'Photo Source Code' # Photo Source Code
     b6ff062a-24fa-45e0-910c-a8197e59eb77: 'Photo Articles' # Photo Articles
     b7cd4f62-4e1b-404b-abbb-be7461ca3ecd: Birthplace # Birthplace
+    b8c3d45b-5cc2-4abf-9fe6-268b52ef38f3: 'Office Holding' # Office Holding
     b9d1def6-30f2-4133-8bb0-2b222faad34e: 'Burial Place' # Burial Place
     b20e0e7d-aa77-4614-a377-46760055a3e1: 'Part of Collection' # Part of Collection
     b20f82ad-7fa5-44c7-ba5e-0a0890f4819c: Parts # Parts
@@ -268,6 +275,7 @@ meta:
     bed77614-e166-47dd-b910-b1d4ff5bc37b: 'Place Wikipedia URL' # Place Wikipedia URL
     beddf6b8-b0e9-476e-b624-db1f64e8f170: 'MP Webmaster Note Top' # MP Webmaster Note Top
     bfe168c1-16f3-47bc-9e6a-fb6378c27e18: 'Event Significance' # Event Significance
+    c9bbf159-b011-4ee0-945e-235e9cdfa0db: 'Term end, as printed' # Term end, as printed
     c464ffde-1351-4dd5-812b-5a8efa5da0c5: 'Fix Status' # Fix Status
     c863b608-9f47-45c9-8606-39a27567d86d: 'Dates in this record' # Dates in this record
     c18449fd-0a37-4fcb-ae08-91891244374e: 'School Level' # School Level
@@ -299,7 +307,6 @@ meta:
     dd0a52b7-df2d-4e82-a561-d26cb387c12e: 'Org Longitude' # Org Longitude
     de0a8281-1c45-4f56-b235-c650d2a0116e: 'Grave Census' # Grave Census
     df3ed0ec-a3cf-4df1-916e-711b8af9a0d4: 'MP Has Spouse' # MP Has Spouse
-    e2dbda40-5fc4-43b9-a35b-24774c380b20: 'Term Notes' # Term Notes
     e2ec95fc-c81f-4a2a-aaa7-61ff0c646e1b: 'Publication Details' # Publication Details
     e2f52146-4d98-4e9f-a342-5f55cb6381d2: 'Org Legacy URL' # Org Legacy URL
     e6d8d39f-eebe-4c3e-90a7-10d20899c999: 'WM Conflict' # WM Conflict
@@ -316,9 +323,12 @@ meta:
     ea5a6f8f-47bb-471a-8b22-e36ee428407b: 'Event Next Occurrence' # Event Next Occurrence
     ea2701b7-c19a-42f4-bfa6-673e90079acf: 'Birth Date' # Birth Date
     ebf41740-5f0c-48b0-a176-663bd3142759: 'Org Address' # Org Address
+    ec23384e-7846-4e9a-b32b-28b5b91b73ad: 'How the office was taken' # How the office was taken
     eca3a22b-ede0-47d3-89bb-8fda28ebfe83: 'MP Related Persons' # MP Related Persons
+    ed950bdc-df75-4180-9ad0-9eb71019563b: Body # Body
     f0a5c7de-ccc3-4005-84ee-53feaafc26e9: 'Cultural Sensitivity Note' # Cultural Sensitivity Note
     f1d3d7f0-8c7e-494b-8c6b-2e6f48450ffc: 'Fix Legacy URL' # Fix Legacy URL
+    f2f2db3e-6445-4c60-aa7a-a2a30314edc7: 'Term end, EDTF' # Term end, EDTF
     f4a71c17-3c33-43f1-a285-d8e7ecae62fb: 'Related Photographs' # Related Photographs
     f4ccb290-b8d9-4d71-a8d9-fd8a94107187: 'Age at Loss' # Age at Loss
     f5eb4908-d535-4b94-9a6c-ecc1b3828387: 'Archive URL' # Archive URL
@@ -326,6 +336,7 @@ meta:
     f82c4f23-b4f8-4edd-8b9d-e4e5024dc76b: 'Birth Date Edtf' # Birth Date Edtf
     f93e01ae-4939-48d8-8151-268836846a7c: 'MP Specialty MOS' # MP Specialty MOS
     f458eafb-a385-4fda-8dd7-3635f5342fda: 'Major collection' # Major collection
+    f568f5dd-4105-4a0b-89e2-b781df066b51: 'Evidence for the start' # Evidence for the start
     f9985d92-a139-4549-a734-787b59ea727e: 'Also Known As' # Also Known As
     f10633b8-0592-4ecc-b972-8e9e21d91711: 'Dissolved, EDTF' # Dissolved, EDTF
     f313790d-6d5c-4b50-a64b-f0103c1daf13: 'MP Groups' # MP Groups

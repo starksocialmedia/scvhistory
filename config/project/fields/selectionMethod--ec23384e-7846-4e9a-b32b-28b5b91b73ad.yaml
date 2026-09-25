@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: selectionMethod
+instructions: null
+name: 'How the office was taken'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Elected
+        -
+          - value
+          - elected
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Appointed
+        -
+          - value
+          - appointed
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Rotated by the body'
+        -
+          - value
+          - rotated
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Ex officio'
+        -
+          - value
+          - exofficio
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Succeeded mid-term'
+        -
+          - value
+          - succeeded
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

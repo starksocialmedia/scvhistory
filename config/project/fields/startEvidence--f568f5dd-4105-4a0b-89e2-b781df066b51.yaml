@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: startEvidence
+instructions: null
+name: 'Evidence for the start'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - "Certified: the body's own record"
+        -
+          - value
+          - certified
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Contemporary report'
+        -
+          - value
+          - contemporary
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Retrospective account'
+        -
+          - value
+          - retrospective
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Undated roster'
+        -
+          - value
+          - roster
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Uncited
+        -
+          - value
+          - uncited
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

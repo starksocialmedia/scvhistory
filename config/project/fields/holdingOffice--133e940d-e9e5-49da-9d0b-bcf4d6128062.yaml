@@ -1,14 +1,14 @@
 columnSuffix: null
-handle: subBoards
+handle: holdingOffice
 instructions: null
-name: 'Sub Boards'
+name: Office
 searchable: false
 settings:
   allowSelfRelations: false
   branchLimit: null
   defaultPlacement: end
   maintainHierarchy: false
-  maxRelations: null
+  maxRelations: 1
   minRelations: null
   selectionLabel: null
   showSearchInput: true
@@ -16,7 +16,7 @@ settings:
   showUnpermittedEntries: false
   showUnpermittedSections: false
   sources:
-    - 'section:1c4743cd-c0fa-42eb-92c1-ace6b3f5bf18' # Organizations
+    - 'section:e52a98cd-0a9f-47a7-a10e-a15411b38fda' # Roles
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list
