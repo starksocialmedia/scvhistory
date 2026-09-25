@@ -134,8 +134,7 @@ foreach (\craft\elements\Entry::find()->section('articles')->status(null)->limit
 echo '   articles mentioning the City Council, the sourcing base: ' . $arts . PHP_EOL;
 
 if ($missingSource) {
-    echo PHP_EOL . 'STOPPING: these sections do not exist: ' . implode(', ', array_unique($missingSource)) . PHP_EOL;
-    return;
+    throw new \RuntimeException('add_office_holding: these sections do not exist: ' . implode(', ', array_unique($missingSource)));
 }
 
 if (!$APPLY) {
@@ -145,20 +144,15 @@ if (!$APPLY) {
     return;
 }
 
-/* ------------------------------------------------------------- creating */
+/* ------------------------------------------------------------- creating
+
+   Order matters, and getting it wrong is what failed on 24 September: Craft 5
+   validates a section against its entry types, so saving the section first
+   returns "Entry Types cannot be blank". The fields come first because the
+   layout needs them, then the entry type carrying that layout, then the section
+   with the type already attached. Every failure throws: this script printed
+   FAILED and exited 0, and the && chain took that for success. */
 $created = 0;
-if (!$section) {
-    $section = new \craft\models\Section([
-        'name' => $SECTION_NAME, 'handle' => $SECTION, 'type' => \craft\models\Section::TYPE_CHANNEL,
-        'enableVersioning' => true,
-        'siteSettings' => array_map(fn($site) => new \craft\models\Section_SiteSettings([
-            'siteId' => $site->id, 'enabledByDefault' => true, 'hasUrls' => false,
-        ]), Craft::$app->getSites()->getAllSites()),
-    ]);
-    if (!$svc->saveSection($section)) { echo 'FAILED section: ' . json_encode($section->getErrors()) . PHP_EOL; return; }
-    $created++;
-    echo 'created the section' . PHP_EOL;
-}
 
 $fieldsForLayout = [];
 foreach ($NEW_FIELDS as $handle => [$kind, $label, $opts]) {
@@ -180,28 +174,68 @@ foreach ($NEW_FIELDS as $handle => [$kind, $label, $opts]) {
             $f->options = array_map(fn($v, $l) => ['label' => $l, 'value' => $v, 'default' => false],
                 array_keys($opts['options']), array_values($opts['options']));
         }
-        if (!$fs->saveField($f)) { echo 'FAILED field ' . $handle . ': ' . json_encode($f->getErrors()) . PHP_EOL; return; }
+        if (!$fs->saveField($f)) {
+            throw new \RuntimeException('add_office_holding: field ' . $handle . ' refused: ' . json_encode($f->getErrors()));
+        }
         $created++;
         $f = $fs->getFieldByHandle($handle);
     }
     $fieldsForLayout[] = $f;
 }
 foreach ($REUSED as $h) { if ($f = $fs->getFieldByHandle($h)) { $fieldsForLayout[] = $f; } }
+echo 'fields ready: ' . count($fieldsForLayout) . PHP_EOL;
 
 $type = $svc->getEntryTypeByHandle($TYPE);
 if (!$type) {
-    $type = new \craft\models\EntryType(['name' => $TYPE_NAME, 'handle' => $TYPE, 'hasTitleField' => false,
-        'titleFormat' => '{holdingPerson.one().title} — {holdingOffice.one().title}, {holdingBody.one().title}']);
+    $type = new \craft\models\EntryType([
+        'name' => $TYPE_NAME,
+        'handle' => $TYPE,
+        'hasTitleField' => false,
+        /* Null-safe on purpose: a holding saved before its relations are set
+           would otherwise fail on a missing title rather than saying what is
+           missing. */
+        'titleFormat' => '{holdingPerson.one().title ?? \'Unknown person\'}'
+            . ' — {holdingOffice.one().title ?? \'unknown office\'}'
+            . ', {holdingBody.one().title ?? \'unknown body\'}',
+    ]);
     $layout = new \craft\models\FieldLayout(['type' => \craft\elements\Entry::class]);
     $tab = new \craft\models\FieldLayoutTab(['name' => 'The term', 'layout' => $layout]);
     $tab->setElements(array_map(fn($f) => new \craft\fieldlayoutelements\CustomField($f), $fieldsForLayout));
     $layout->setTabs([$tab]);
     $type->setFieldLayout($layout);
-    if (!$svc->saveEntryType($type)) { echo 'FAILED entry type: ' . json_encode($type->getErrors()) . PHP_EOL; return; }
+    if (!$svc->saveEntryType($type)) {
+        throw new \RuntimeException('add_office_holding: entry type refused: ' . json_encode($type->getErrors()));
+    }
     $created++;
+    $type = $svc->getEntryTypeByHandle($TYPE);
     echo 'created the entry type' . PHP_EOL;
+}
+
+if (!$section) {
+    $section = new \craft\models\Section([
+        'name' => $SECTION_NAME,
+        'handle' => $SECTION,
+        'type' => \craft\models\Section::TYPE_CHANNEL,
+        'enableVersioning' => true,
+        'siteSettings' => array_map(fn($site) => new \craft\models\Section_SiteSettings([
+            'siteId' => $site->id, 'enabledByDefault' => true, 'hasUrls' => false,
+        ]), Craft::$app->getSites()->getAllSites()),
+    ]);
     $section->setEntryTypes([$type]);
-    if (!$svc->saveSection($section)) { echo 'FAILED attaching the type: ' . json_encode($section->getErrors()) . PHP_EOL; return; }
+    if (!$svc->saveSection($section)) {
+        throw new \RuntimeException('add_office_holding: section refused: ' . json_encode($section->getErrors()));
+    }
+    $created++;
+    echo 'created the section with its entry type attached' . PHP_EOL;
+} else {
+    $have = array_map(fn($t) => $t->handle, $section->getEntryTypes());
+    if (!in_array($TYPE, $have, true)) {
+        $section->setEntryTypes(array_merge($section->getEntryTypes(), [$type]));
+        if (!$svc->saveSection($section)) {
+            throw new \RuntimeException('add_office_holding: attaching the type refused: ' . json_encode($section->getErrors()));
+        }
+        echo 'attached the entry type to the existing section' . PHP_EOL;
+    }
 }
 
 /* ------------------------------------------------------------ read back */
