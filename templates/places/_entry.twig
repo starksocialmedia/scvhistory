@@ -123,6 +123,10 @@
         {% include "_partials/record/tags" with { el: entry } only %}
 
         {% set links = [] %}
+        {#- Checked on the layout, not with `is defined`, which answers true for a
+            field the type does not have and then throws on the read. -#}
+        {% set webField = entry.fieldLayout ? entry.fieldLayout.getFieldByHandle('placeWebsite') : null %}
+        {% if webField and entry.placeWebsite %}{% set links = links|merge([{u: entry.placeWebsite, t: 'Official website'}]) %}{% endif %}
         {% if entry.placeWikipediaUrl is defined and entry.placeWikipediaUrl %}{% set links = links|merge([{u: entry.placeWikipediaUrl, t: 'Wikipedia'}]) %}{% endif %}
         {% if entry.placeChlUrl is defined and entry.placeChlUrl %}{% set links = links|merge([{u: entry.placeChlUrl, t: 'California Historical Landmark'}]) %}{% endif %}
         {% if entry.placeScvhlUrl is defined and entry.placeScvhlUrl %}{% set links = links|merge([{u: entry.placeScvhlUrl, t: 'SCV Historical Landmark'}]) %}{% endif %}

@@ -47,7 +47,7 @@
              'wikidataId','viafId','personWikipediaUrl','personGraveUrl','legacyUrl','sourcePath',
              'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','dateEstablishedEdtf','placeChlNumber','gnisId',
              'scvhlNumber','nrhpReference','nrhpListedDate','placeScvhlCheckbox',
-             'placeWikipediaUrl','placeChlUrl','placeScvhlUrl',
+             'placeWikipediaUrl','placeChlUrl','placeScvhlUrl','placeWebsite',
              'orgAddress','orgLat','orgLng','orgAliases','dateFounded','dateFoundedEdtf','orgWebsite','orgWikipediaUrl',
              'orgType','schoolLevel','cdsCode','ncesId','ein',
              'groupAliases','groupDateStart','groupDateEnd','groupWebsite',
@@ -344,6 +344,7 @@
       ? { '@type': 'GeoCoordinates', 'latitude': V.placeLat + 0, 'longitude': V.placeLng + 0 } : null %}
   {% set main = {
     '@type': 'Place',
+    'url': V.placeWebsite ?? '',
     'name': el.title,
     'alternateName': alt,
     'address': V.placeAddress ?? '',

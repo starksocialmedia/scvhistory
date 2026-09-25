@@ -65,6 +65,7 @@ $MAP = [
     'personWikipediaUrl'   => ['schema.org', 'sameAs', ''],
     'placeWikipediaUrl'    => ['schema.org', 'sameAs', ''],
     'orgWikipediaUrl'      => ['schema.org', 'sameAs', ''],
+    'placeWebsite'         => ['schema.org', 'url', 'the place\'s own official site'],
     'personGraveUrl'       => ['schema.org', 'sameAs', 'Find a Grave'],
     'personAliases'        => ['SKOS', 'altLabel', 'schema.org alternateName'],
     'placeAliases'         => ['SKOS', 'altLabel', 'schema.org alternateName'],

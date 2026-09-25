@@ -46,7 +46,9 @@ $MOVES = [
     16425 => [null, 'site'],       /* Valencia Marketplace: a shopping centre */
     18827 => [2540, null],         /* Felton School */
     382   => [16446, null],        /* Rancho San Francisco */
-    384   => [631, null],          /* Rancho Camulos */
+    /* 384 Rancho Camulos: carried on the 03:51 run and held live. Nathan, 25
+       September: two different bodies about one subject is a merge for a
+       human read, not a script. Out of this script; see TODO.md. */
     388   => [16506, null],        /* Rancho El Tejon */
     386   => [16511, null],        /* Mission San Gabriel Arcángel */
     398   => [16515, null],        /* Mission San Francisco de Asís */
@@ -65,7 +67,7 @@ $SCALAR = [
     'legacyKey' => 'legacyKey', 'legacyUrl' => 'legacyUrl', 'sourcePath' => 'sourcePath',
     'legacyHtml' => 'legacyHtml', 'legacyCategory' => 'legacyCategory',
 ];
-$LINK = ['orgWikipediaUrl' => 'placeWikipediaUrl'];
+$LINK = ['orgWikipediaUrl' => 'placeWikipediaUrl', 'orgWebsite' => 'placeWebsite'];   /* placeWebsite: add_place_website_field.php */
 $ALIAS = ['orgAliases' => 'placeAliases'];
 $REL = [
     'featuredImage' => 'featuredImage', 'recordImages' => 'recordImages', 'recordDocuments' => 'recordDocuments',
@@ -118,6 +120,9 @@ $blocked = [];
 foreach ($MOVES as $orgId => [$targetId, $newType]) {
     $org = \craft\elements\Entry::find()->id($orgId)->section('organizations')->status(null)->one();
     if (!$org) { $blocked[] = "#$orgId: not found"; continue; }
+    /* Already retired by an earlier run: nothing to carry, and re-saving the
+       place would append its provenance note a second time. */
+    if (!$org->enabled) { echo 'skip #' . $orgId . ' "' . $org->title . '": already retired' . PHP_EOL; continue; }
     $place = $targetId ? \craft\elements\Entry::find()->id($targetId)->section('places')->status(null)->one() : null;
     if ($targetId && !$place) { $blocked[] = "#$orgId: target place #$targetId not found"; continue; }
     $clash = !$targetId ? \craft\elements\Entry::find()->section('places')->status(null)->slug($org->slug)->one() : null;
@@ -130,6 +135,10 @@ foreach ($MOVES as $orgId => [$targetId, $newType]) {
         $v = $FIX[$orgId][$h] ?? $val($org, $h);
         if (isset($FIX[$orgId][$h])) { $notes[] = "$h carried corrected: " . json_encode($val($org, $h)) . ' -> ' . json_encode($v); }
         if ($isEmpty($v)) { continue; }
+        $dest = $SCALAR[$h] ?? $LINK[$h] ?? $ALIAS[$h] ?? $REL[$h] ?? $TABLE[$h] ?? null;
+        /* A destination the place layout does not carry is nowhere to go, and
+           holds the organization, rather than being filtered out at save. */
+        if ($dest && !$placeLayout->getFieldByHandle($dest)) { $unplaced[$h] = (is_array($v) ? count($v) . ' value(s)' : mb_substr((string)$v, 0, 60)) . " ($dest is not on the place layout)"; continue; }
         if (isset($SCALAR[$h]) || isset($LINK[$h])) {
             $to = $SCALAR[$h] ?? $LINK[$h];
             $have = $place ? $val($place, $to) : '';
@@ -162,8 +171,10 @@ foreach ($MOVES as $orgId => [$targetId, $newType]) {
         }
     }
     if (!$place) { $set['placeType'] = $newType; }
-    $prov = trim(($place ? $val($place, 'recordProvenance') : '') . '; carried from organization #' . $orgId . ' by convert_orgs_to_places.php, 2026-09-25', '; ');
-    $set['recordProvenance'] = $prov;
+    $had = $place ? $val($place, 'recordProvenance') : '';
+    if (!str_contains($had, 'carried from organization #' . $orgId)) {
+        $set['recordProvenance'] = trim($had . '; carried from organization #' . $orgId . ' by convert_orgs_to_places.php, 2026-09-25', '; ');
+    }
 
     /* Inbound relations, excluding drafts and revisions. */
     $inbound = [];

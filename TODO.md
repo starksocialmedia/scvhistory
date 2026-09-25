@@ -92,6 +92,13 @@ Copied from `<title>` or the visible series heading on the collection index. Not
 
 Same title-field bug as Places: titles will not stick until Collection `hasTitleField` is true.
 
+## Deferred by decision
+
+Parked on purpose, with the reason, so the next pass that opens the area finds them.
+
+- **Rancho Camulos: merge the organization into the place by hand.** Organization #384 and place #631 hold two different bodies about the same rancho (the organization's 1,450 characters begin "Rancho Camulos is a historic rancho located along"; the place's begin "The del Valle family seat, and the westernmost") and two different images (#34 on the organization, #1195 on the place). convert_orgs_to_places.php carried everything else on 25 September and held the organization live. Nathan, 25 September: two bodies about one subject is a merge that needs a human read, not a script choice. When it is done, disable #384; the redirect goes in config/redirects.php.
+- **Derived image links from the Walk of Western Stars.** Eleven photographs reach the SCV Chamber of Commerce #396 through derivedImageLinks, among them a Clint Walker lobby card (lw3689), Bob Hope in 'Alias Jesse James' and Montie Montana photographs, most likely because their captions name the Walk of Western Stars, which the Chamber ran. The records are not wrong; the derivation rule is. Revisit when the derived-links pass is next opened: an event the Chamber ran is not a link from every inductee's photograph to the Chamber.
+
 ## Open Questions
 
 Leave these 7 Place entries untouched until Nathan decides:

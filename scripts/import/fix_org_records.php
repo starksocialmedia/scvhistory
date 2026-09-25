@@ -17,6 +17,8 @@
  *      refinery becomes a place in convert_orgs_to_places.php; run that first),
  *      Downtown Newhall and its merchants association, Heritage Junction and
  *      the Santa Clarita Valley Historical Society.
+ *   5. (added after the first apply) Unlink the 1969 Golden State Memorial
+ *      Hospital advertisement, photograph #5683, from Henry Mayo #380.
  *
  * Only empty fields are set; a relation is added, never replaced. Idempotent.
  * Dry run by default. Set $APPLY = true to write.
@@ -155,6 +157,23 @@ foreach ($PAIRS as [$placeRef, $orgId]) {
         return $elements->saveElement($p);
     }, fn() => in_array($orgId, array_map('intval', $get($pid)->placeOrganizations->status(null)->ids()), true) ? '' : "place #$pid placeOrganizations reads " . json_encode($get($pid)->placeOrganizations->status(null)->ids()) . ", expected it to include #$orgId", "pair #$pid <-> #$orgId"];
 }
+
+/* 5. Photograph #5683 (lw6901) is a 1969 advertisement for Golden State
+   Memorial Hospital, linked to Henry Mayo Newhall Memorial Hospital #380, which
+   was founded in 1975. Nothing in the archive makes the one the other's
+   predecessor: a false connection. Nathan, 25 September: unlink. The photograph
+   stays. */
+$AD = 5683; $HOSPITAL = 380;
+$ad = $get($AD);
+if ($ad && in_array($HOSPITAL, array_map('intval', $ad->photoOrganizations->status(null)->ids()), true)) {
+    echo PHP_EOL . 'unlink photograph #' . $AD . ' "' . $ad->title . '" from #' . $HOSPITAL . ' (photoOrganizations)' . PHP_EOL;
+    $ops[] = [function () use ($get, $AD, $HOSPITAL, $elements) {
+        $p = $get($AD);
+        $p->setFieldValue('photoOrganizations', array_values(array_diff(array_map('intval', $p->photoOrganizations->status(null)->ids()), [$HOSPITAL])));
+        return $elements->saveElement($p);
+    }, fn() => in_array($HOSPITAL, array_map('intval', $get($AD)->photoOrganizations->status(null)->ids()), true)
+        ? "photograph #$AD photoOrganizations still includes #$HOSPITAL" : '', "unlink #$AD from #$HOSPITAL"];
+} else { $skipped[] = "photograph #$AD is not linked to #$HOSPITAL"; }
 
 foreach ($skipped as $s) { echo 'skip ' . $s . PHP_EOL; }
 echo PHP_EOL . count($ops) . ' operation(s)' . PHP_EOL;

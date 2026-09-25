@@ -2,31 +2,36 @@
 /**
  * Redirection Rules
  *
- * Rules returned in this array are evaluated only after Craft would ordinarily
- * throw a 404 exception. They can be key-value pairs representing “from”
- * and “to” URIs…
+ * Evaluated only after Craft would otherwise 404, so a rule for a live page
+ * does nothing until that page goes away. That is what the organization rules
+ * below rely on: each fires once its organization is disabled.
  *
- * ```php
- * return [
- *     'old/path' => 'new/path',
- * ];
- * ```
+ * Organizations moved to places, 25 September 2026
+ * (scripts/import/convert_orgs_to_places.php). The organization records were
+ * public for four days from 21 September and may be indexed, so each old URL
+ * sends a 301 to the place that now holds what it held. The three missions
+ * redirect once add_place_website_field.php has run and they retire; until then
+ * their organization pages are live and these rules are dormant.
  *
- * …or a nested array with `from`, `to`, `caseSensitive`, and `statusCode` keys:
+ * Not here: Rancho Camulos (#384) is still live by decision, and Harvey Stack
+ * (#18806) was a person misfiled as an organization and has no successor.
  *
- * ```php
- * return [
- *     [
- *         'from' => 'Helpdesk.aspx',
- *         'to' => 'account/tickets',
- *         'caseSensitive' => true,
- *         'statusCode' => 301,
- *     ],
- * ];
- * ```
- *
- * Read all about Craft’s redirection behavior and capabilities, here:
  * @link https://craftcms.com/docs/5.x/system/routing.html#redirection
  */
 
-return [];
+$moved = [
+    'organizations/acton-hotel'                   => 'places/acton-hotel',
+    'organizations/southern-hotel'                => 'places/southern-hotel',
+    'organizations/pioneer-oil-refinery'          => 'places/pioneer-oil-refinery',
+    'organizations/porta-bella'                   => 'places/porta-bella',
+    'organizations/valencia-marketplace'          => 'places/valencia-marketplace',
+    'organizations/felton-school'                 => 'places/felton-school',
+    'organizations/rancho-san-francisco'          => 'places/rancho-san-francisco',
+    'organizations/rancho-el-tejon'               => 'places/rancho-el-tejon',
+    'organizations/mission-san-gabriel-arcangel'  => 'places/mission-san-gabriel-arcángel',
+    'organizations/mission-san-francisco-de-asis' => 'places/mission-san-francisco-de-asís',
+    'organizations/mission-santa-cruz'            => 'places/mission-santa-cruz',
+];
+
+return array_map(fn($from, $to) => ['from' => $from, 'to' => $to, 'statusCode' => 301],
+    array_keys($moved), array_values($moved));
