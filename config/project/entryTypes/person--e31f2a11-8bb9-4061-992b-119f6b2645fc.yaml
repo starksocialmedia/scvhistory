@@ -331,6 +331,57 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8e5e49e6-cb22-4ef9-90ef-a72a6496768c # Evidence for the birth
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fd571d1e-5bf8-4300-9fd5-c7c8dd37c6ab
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 20447bfc-d0a4-48c3-b83f-6b5cd23a096b # Evidence for the death
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2842b3d3-aa8c-4a8d-8c34-06100088d6fa
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 437792ac-494b-493e-9c93-10f44a06003b # Evidence for the burial
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b3bf01ca-cf5b-44a2-870e-9487a991cd9c
+            userCondition: null
+            warning: null
+            width: 100
         name: Identity
         uid: 87408374-03db-4515-bd4a-8ee312ccd9ff
         userCondition: null

@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 24 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 25 September 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -485,7 +485,7 @@ emitted from whichever side schema.org expects.
 
 ### Persons — `persons/person`
 
-51 fields.
+54 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -508,6 +508,9 @@ emitted from whichever side schema.org expects.
 | `personAliases` | PlainText | SKOS `altLabel` | schema.org alternateName |
 | `wikidataId` | PlainText | Wikidata `QID` | emitted as schema.org sameAs |
 | `viafId` | PlainText | VIAF `cluster ID` | Wikidata P214 |
+| `birthEvidence` | Dropdown | **local** | no external equivalent |
+| `deathEvidence` | Dropdown | **local** | no external equivalent |
+| `burialEvidence` | Dropdown | **local** | no external equivalent |
 | `spouseOf` | Entries | schema.org `spouse` |  |
 | `childOf` | Entries | schema.org `parent` | inverse of schema.org children |
 | `siblingOf` | Entries | schema.org `sibling` |  |
@@ -775,8 +778,11 @@ a skip means the queue has not been settled, and an external means it has.
 Every dropdown in the schema, with its values. All of these vocabularies are
 local unless the note says otherwise.
 
+- **`birthEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`bodyAuthorship`** — `legacy-leon`, `wordpress-import-unsourced`, `editorial-2026`, `mixed`.
+- **`burialEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
+- **`deathEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`.
 - **`endEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
