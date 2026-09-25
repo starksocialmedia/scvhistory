@@ -11,3 +11,7 @@ inventory/private/
 # Crawl checkpoints and logs
 *_checkpoint.json
 *_stdout.log
+# Living-rule name lists (public_figure_verified.json, living_rule_overrides.json)
+# live in the private repo starksocialmedia/scvhistory-data (inventory/).
+public_figure_verified.json
+living_rule_overrides.json

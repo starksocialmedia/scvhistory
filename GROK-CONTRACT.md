@@ -379,3 +379,59 @@ starts with a day, month, number, or title, or leads into an officiant, ends the
 one distinct value for a field, the field is left empty and the page is listed in the
 report. A mortuary name printed alone under the obituary heading is not used: the text
 does not state what it did.
+
+## Inventory name indexes (living rule, `apply_living_rule_inventory.py`)
+
+**Do not build a structured index of living people.** The inventory files
+(`lw-features`, `lw-film`, `lw-remainder`, `lw-disaster`, `coins`, `worden`,
+`oldtownnewhall`, `media`, `reynolds`, `reynolds-full`, `perkins`, `warmemorial`,
+`loose-pages`, `mentryville`; whichever exist) are filtered by
+`inventory/legacy/apply_living_rule_inventory.py`. It is idempotent, contains no
+personal names, and writes aggregate counts to
+`inventory/legacy/inventory_living_rule_report.json`.
+
+A page is post-cutoff when the latest year in `date_raw` is after the cutoff (current
+year minus 72) or `date_raw` has no year. Pre-cutoff pages are unchanged. On a
+post-cutoff page a name stays in `people_mentioned` only with a `retention_basis`:
+
+- `preceded_in_death`: inside a "preceded in death by" clause.
+- `stated_deceased`: the text states the person is dead ("the late X", "X, who died
+  ... <year>", "X died", "X was killed", "death of X", "(d. 1920)" after the name, or
+  a life-date range after the name; a range ending after the cutoff must span 20+
+  years).
+- `subject`: X is the page's own subject AND the title carries a life-date range or
+  the text states the subject's death. Being the subject is not enough on its own:
+  "Council Honors X" does not keep X.
+- `casualty_subject`: the page is a war-memorial casualty page (casualty header or a
+  parsed `service_record` with casualty fields) and X is that page's casualty, including
+  nickname, partial and rank forms of the title name.
+- `public_figure`: X is in `public_figure_verified.json`. Each name there had its
+  legacy-page link or Wikidata match read by hand and confirmed as the same historical
+  or public person (not a namesake, relative, film, facility or place). Unverified
+  `has_legacy_page` flags are not a basis.
+
+`public_figure_verified.json` and `living_rule_overrides.json` hold names, so they live
+in the private repo `starksocialmedia/scvhistory-data` under `inventory/`, never here
+(`.gitignore` blocks them). The script finds them through `inventory/legacy/scv_data.py`
+(`$SCV_DATA_DIR`, else `../scvhistory-data`, else `inventory/private/`) and stops with
+an error if either is missing. The overrides file is a short curated list of fixes for
+built fields that carry a removed person name where no name-free rule tells a person
+from a non-person: glued role or possessive org names in `orgs_mentioned`, a person
+filed under `entity_index.organizations`, `title_topic` values that are a removed name,
+our own `orphan_note` text, and a person read as a `community_inferred` longer name.
+
+Context or historical importance alone is not a basis. `entity_index.people` keeps
+only the pages where a name is kept (pre-cutoff pages always) and carries the sorted
+`retention_basis` list (`pre_cutoff` included). Entries with no pages left are
+removed. The script also prunes these fields:
+
+- `possible_same_person` groupings on post-cutoff pages survive only when every
+  grouped name is still kept.
+- Variant notes naming a removed name are dropped.
+- `dates_mentioned[].context` on post-cutoff pages is set to null unless every name
+  in it is a kept multi-word name or a known place, community or organization. The
+  date values stay.
+
+`body_text`, `body_html`, titles, `links_out`, captions, `service_record` and other
+verbatim legacy text are not changed. Names and URLs for human review go to a file
+outside the repo via `--review-out`. Never commit that file.

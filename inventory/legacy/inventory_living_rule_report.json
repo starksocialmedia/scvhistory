@@ -1,0 +1,1565 @@
+{
+  "cutoff_year": 1954,
+  "written_variant": "approved",
+  "public_figure_verified_names": 76,
+  "override_items": 18,
+  "variants": {
+    "obituary_wording_only": [
+      "preceded_in_death",
+      "stated_deceased"
+    ],
+    "approved_without_casualty_subject": [
+      "preceded_in_death",
+      "stated_deceased",
+      "stated_deceased_wide",
+      "subject_deceased",
+      "public_figure"
+    ],
+    "approved": [
+      "preceded_in_death",
+      "stated_deceased",
+      "stated_deceased_wide",
+      "subject_deceased",
+      "casualty_subject",
+      "public_figure"
+    ]
+  },
+  "files": {
+    "lw-features": {
+      "before": {
+        "pages": 1661,
+        "post_cutoff_pages": 1518,
+        "people_mentioned_total": 30356,
+        "people_mentioned_post_cutoff": 26642,
+        "unique_names_all": 8133,
+        "unique_names_post_cutoff": 7222,
+        "entity_index_people": 8133,
+        "possible_same_person": 2347,
+        "possible_same_person_post_cutoff": 2027,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 26642
+        },
+        "post_cutoff_dates_mentioned": 38296,
+        "post_cutoff_dates_context_kept": 38296,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 1661,
+            "post_cutoff_pages": 1518,
+            "people_mentioned_total": 3724,
+            "people_mentioned_post_cutoff": 10,
+            "unique_names_all": 1509,
+            "unique_names_post_cutoff": 8,
+            "entity_index_people": 1509,
+            "possible_same_person": 320,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 10
+            },
+            "post_cutoff_dates_mentioned": 38296,
+            "post_cutoff_dates_context_kept": 38296,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 26632,
+            "possible_same_person_removed": 2027,
+            "kept_stated_deceased": 10,
+            "entity_people_removed": 6624,
+            "entity_people_pages_trimmed": 591
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 1661,
+            "post_cutoff_pages": 1518,
+            "people_mentioned_total": 4557,
+            "people_mentioned_post_cutoff": 843,
+            "unique_names_all": 1617,
+            "unique_names_post_cutoff": 144,
+            "entity_index_people": 1617,
+            "possible_same_person": 324,
+            "possible_same_person_post_cutoff": 4,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 621,
+              "stated_deceased": 202,
+              "subject": 20
+            },
+            "post_cutoff_dates_mentioned": 38296,
+            "post_cutoff_dates_context_kept": 38296,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 25799,
+            "possible_same_person_removed": 2023,
+            "kept_public_figure": 621,
+            "kept_stated_deceased_wide": 192,
+            "kept_subject_deceased": 20,
+            "kept_stated_deceased": 10,
+            "entity_people_removed": 6516,
+            "entity_people_pages_trimmed": 588
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 1661,
+            "post_cutoff_pages": 1518,
+            "people_mentioned_total": 4557,
+            "people_mentioned_post_cutoff": 843,
+            "unique_names_all": 1617,
+            "unique_names_post_cutoff": 144,
+            "entity_index_people": 1617,
+            "possible_same_person": 324,
+            "possible_same_person_post_cutoff": 4,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 621,
+              "stated_deceased": 202,
+              "subject": 20
+            },
+            "post_cutoff_dates_mentioned": 38296,
+            "post_cutoff_dates_context_kept": 3463,
+            "post_cutoff_dates_context_null": 34833
+          },
+          "changes": {
+            "people_removed": 25799,
+            "possible_same_person_removed": 2023,
+            "dates_context_nulled": 34833,
+            "kept_public_figure": 621,
+            "dates_context_kept": 3463,
+            "override_orgs_mentioned_drop": 3,
+            "kept_stated_deceased_wide": 192,
+            "kept_subject_deceased": 20,
+            "override_orgs_mentioned_replace": 3,
+            "kept_stated_deceased": 10,
+            "override_title_topic_replace": 7,
+            "entity_people_removed": 6516,
+            "entity_people_pages_trimmed": 588,
+            "override_org_index_entries_emptied": 5
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "lw-film": {
+      "before": {
+        "pages": 563,
+        "post_cutoff_pages": 530,
+        "people_mentioned_total": 18259,
+        "people_mentioned_post_cutoff": 17075,
+        "unique_names_all": 4283,
+        "unique_names_post_cutoff": 4086,
+        "entity_index_people": 4283,
+        "possible_same_person": 1147,
+        "possible_same_person_post_cutoff": 1059,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 17075
+        },
+        "post_cutoff_dates_mentioned": 15045,
+        "post_cutoff_dates_context_kept": 15045,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 563,
+            "post_cutoff_pages": 530,
+            "people_mentioned_total": 1209,
+            "people_mentioned_post_cutoff": 25,
+            "unique_names_all": 627,
+            "unique_names_post_cutoff": 4,
+            "entity_index_people": 627,
+            "possible_same_person": 88,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 25
+            },
+            "post_cutoff_dates_mentioned": 15045,
+            "post_cutoff_dates_context_kept": 15045,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 17050,
+            "possible_same_person_removed": 1059,
+            "kept_stated_deceased": 25,
+            "entity_people_pages_trimmed": 427,
+            "entity_people_removed": 3656
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 563,
+            "post_cutoff_pages": 530,
+            "people_mentioned_total": 1817,
+            "people_mentioned_post_cutoff": 633,
+            "unique_names_all": 680,
+            "unique_names_post_cutoff": 79,
+            "entity_index_people": 680,
+            "possible_same_person": 100,
+            "possible_same_person_post_cutoff": 12,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 170,
+              "public_figure": 424,
+              "subject": 39
+            },
+            "post_cutoff_dates_mentioned": 15045,
+            "post_cutoff_dates_context_kept": 15045,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 16442,
+            "possible_same_person_removed": 1047,
+            "kept_stated_deceased_wide": 145,
+            "kept_public_figure": 424,
+            "kept_subject_deceased": 39,
+            "kept_stated_deceased": 25,
+            "entity_people_pages_trimmed": 429,
+            "entity_people_removed": 3603
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 563,
+            "post_cutoff_pages": 530,
+            "people_mentioned_total": 1817,
+            "people_mentioned_post_cutoff": 633,
+            "unique_names_all": 680,
+            "unique_names_post_cutoff": 79,
+            "entity_index_people": 680,
+            "possible_same_person": 100,
+            "possible_same_person_post_cutoff": 12,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 170,
+              "public_figure": 424,
+              "subject": 39
+            },
+            "post_cutoff_dates_mentioned": 15045,
+            "post_cutoff_dates_context_kept": 899,
+            "post_cutoff_dates_context_null": 14146
+          },
+          "changes": {
+            "people_removed": 16442,
+            "possible_same_person_removed": 1047,
+            "dates_context_nulled": 14146,
+            "dates_context_kept": 899,
+            "kept_stated_deceased_wide": 145,
+            "kept_public_figure": 424,
+            "kept_subject_deceased": 39,
+            "kept_stated_deceased": 25,
+            "entity_people_pages_trimmed": 429,
+            "entity_people_removed": 3603
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "lw-remainder": {
+      "before": {
+        "pages": 272,
+        "post_cutoff_pages": 256,
+        "people_mentioned_total": 5124,
+        "people_mentioned_post_cutoff": 4811,
+        "unique_names_all": 2283,
+        "unique_names_post_cutoff": 2109,
+        "entity_index_people": 2283,
+        "possible_same_person": 477,
+        "possible_same_person_post_cutoff": 447,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 4811
+        },
+        "post_cutoff_dates_mentioned": 5424,
+        "post_cutoff_dates_context_kept": 5424,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 272,
+            "post_cutoff_pages": 256,
+            "people_mentioned_total": 318,
+            "people_mentioned_post_cutoff": 5,
+            "unique_names_all": 225,
+            "unique_names_post_cutoff": 2,
+            "entity_index_people": 225,
+            "possible_same_person": 30,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 5
+            },
+            "post_cutoff_dates_mentioned": 5424,
+            "post_cutoff_dates_context_kept": 5424,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 4806,
+            "possible_same_person_removed": 447,
+            "kept_stated_deceased": 5,
+            "entity_people_pages_trimmed": 49,
+            "entity_people_removed": 2058
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 272,
+            "post_cutoff_pages": 256,
+            "people_mentioned_total": 495,
+            "people_mentioned_post_cutoff": 182,
+            "unique_names_all": 280,
+            "unique_names_post_cutoff": 61,
+            "entity_index_people": 280,
+            "possible_same_person": 35,
+            "possible_same_person_post_cutoff": 5,
+            "post_cutoff_kept_by_retention_basis": {
+              "subject": 10,
+              "public_figure": 132,
+              "stated_deceased": 40
+            },
+            "post_cutoff_dates_mentioned": 5424,
+            "post_cutoff_dates_context_kept": 5424,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 4629,
+            "possible_same_person_removed": 442,
+            "kept_subject_deceased": 10,
+            "kept_public_figure": 132,
+            "kept_stated_deceased_wide": 35,
+            "kept_stated_deceased": 5,
+            "entity_people_pages_trimmed": 53,
+            "entity_people_removed": 2003
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 272,
+            "post_cutoff_pages": 256,
+            "people_mentioned_total": 495,
+            "people_mentioned_post_cutoff": 182,
+            "unique_names_all": 280,
+            "unique_names_post_cutoff": 61,
+            "entity_index_people": 280,
+            "possible_same_person": 35,
+            "possible_same_person_post_cutoff": 5,
+            "post_cutoff_kept_by_retention_basis": {
+              "subject": 10,
+              "public_figure": 132,
+              "stated_deceased": 40
+            },
+            "post_cutoff_dates_mentioned": 5424,
+            "post_cutoff_dates_context_kept": 501,
+            "post_cutoff_dates_context_null": 4923
+          },
+          "changes": {
+            "people_removed": 4629,
+            "dates_context_nulled": 4923,
+            "dates_context_kept": 501,
+            "possible_same_person_removed": 442,
+            "kept_subject_deceased": 10,
+            "kept_public_figure": 132,
+            "kept_stated_deceased_wide": 35,
+            "kept_stated_deceased": 5,
+            "override_orgs_mentioned_replace": 1,
+            "entity_people_pages_trimmed": 53,
+            "entity_people_removed": 2003,
+            "override_org_index_entries_emptied": 1
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "lw-disaster": {
+      "before": {
+        "pages": 226,
+        "post_cutoff_pages": 205,
+        "people_mentioned_total": 2985,
+        "people_mentioned_post_cutoff": 2734,
+        "unique_names_all": 537,
+        "unique_names_post_cutoff": 468,
+        "entity_index_people": 537,
+        "possible_same_person": 233,
+        "possible_same_person_post_cutoff": 216,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 2734
+        },
+        "post_cutoff_dates_mentioned": 2687,
+        "post_cutoff_dates_context_kept": 2687,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 226,
+            "post_cutoff_pages": 205,
+            "people_mentioned_total": 251,
+            "people_mentioned_post_cutoff": 0,
+            "unique_names_all": 123,
+            "unique_names_post_cutoff": 0,
+            "entity_index_people": 123,
+            "possible_same_person": 17,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {},
+            "post_cutoff_dates_mentioned": 2687,
+            "post_cutoff_dates_context_kept": 2687,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 2734,
+            "possible_same_person_removed": 216,
+            "entity_people_pages_trimmed": 54,
+            "entity_people_removed": 414
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 226,
+            "post_cutoff_pages": 205,
+            "people_mentioned_total": 267,
+            "people_mentioned_post_cutoff": 16,
+            "unique_names_all": 134,
+            "unique_names_post_cutoff": 12,
+            "entity_index_people": 134,
+            "possible_same_person": 17,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 12,
+              "stated_deceased": 4
+            },
+            "post_cutoff_dates_mentioned": 2687,
+            "post_cutoff_dates_context_kept": 2687,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 2718,
+            "possible_same_person_removed": 216,
+            "kept_public_figure": 12,
+            "kept_stated_deceased_wide": 4,
+            "entity_people_pages_trimmed": 55,
+            "entity_people_removed": 403
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 226,
+            "post_cutoff_pages": 205,
+            "people_mentioned_total": 267,
+            "people_mentioned_post_cutoff": 16,
+            "unique_names_all": 134,
+            "unique_names_post_cutoff": 12,
+            "entity_index_people": 134,
+            "possible_same_person": 17,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 12,
+              "stated_deceased": 4
+            },
+            "post_cutoff_dates_mentioned": 2687,
+            "post_cutoff_dates_context_kept": 360,
+            "post_cutoff_dates_context_null": 2327
+          },
+          "changes": {
+            "people_removed": 2718,
+            "dates_context_nulled": 2327,
+            "possible_same_person_removed": 216,
+            "dates_context_kept": 360,
+            "kept_public_figure": 12,
+            "override_orgs_mentioned_replace": 1,
+            "kept_stated_deceased_wide": 4,
+            "override_title_topic_replace": 3,
+            "entity_people_pages_trimmed": 55,
+            "entity_people_removed": 403,
+            "override_org_index_entries_emptied": 1
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "coins": {
+      "before": {
+        "pages": 259,
+        "post_cutoff_pages": 259,
+        "people_mentioned_total": 3933,
+        "people_mentioned_post_cutoff": 3933,
+        "unique_names_all": 1683,
+        "unique_names_post_cutoff": 1683,
+        "entity_index_people": 1372,
+        "possible_same_person": 410,
+        "possible_same_person_post_cutoff": 410,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 3933
+        },
+        "post_cutoff_dates_mentioned": 5110,
+        "post_cutoff_dates_context_kept": 5110,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 259,
+            "post_cutoff_pages": 259,
+            "people_mentioned_total": 16,
+            "people_mentioned_post_cutoff": 16,
+            "unique_names_all": 16,
+            "unique_names_post_cutoff": 16,
+            "entity_index_people": 16,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 16
+            },
+            "post_cutoff_dates_mentioned": 5110,
+            "post_cutoff_dates_context_kept": 5110,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 3917,
+            "possible_same_person_removed": 410,
+            "kept_stated_deceased": 16,
+            "entity_people_removed": 1356,
+            "entity_people_pages_trimmed": 10
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 259,
+            "post_cutoff_pages": 259,
+            "people_mentioned_total": 31,
+            "people_mentioned_post_cutoff": 31,
+            "unique_names_all": 31,
+            "unique_names_post_cutoff": 31,
+            "entity_index_people": 31,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 26,
+              "subject": 2,
+              "public_figure": 3
+            },
+            "post_cutoff_dates_mentioned": 5110,
+            "post_cutoff_dates_context_kept": 5110,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 3902,
+            "possible_same_person_removed": 410,
+            "kept_stated_deceased": 16,
+            "kept_subject_deceased": 2,
+            "kept_stated_deceased_wide": 10,
+            "kept_public_figure": 3,
+            "entity_people_removed": 1341,
+            "entity_people_pages_trimmed": 16
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 259,
+            "post_cutoff_pages": 259,
+            "people_mentioned_total": 31,
+            "people_mentioned_post_cutoff": 31,
+            "unique_names_all": 31,
+            "unique_names_post_cutoff": 31,
+            "entity_index_people": 31,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 26,
+              "subject": 2,
+              "public_figure": 3
+            },
+            "post_cutoff_dates_mentioned": 5110,
+            "post_cutoff_dates_context_kept": 1241,
+            "post_cutoff_dates_context_null": 3869
+          },
+          "changes": {
+            "people_removed": 3902,
+            "possible_same_person_removed": 410,
+            "dates_context_nulled": 3869,
+            "dates_context_kept": 1241,
+            "kept_stated_deceased": 16,
+            "kept_subject_deceased": 2,
+            "kept_stated_deceased_wide": 10,
+            "kept_public_figure": 3,
+            "entity_people_removed": 1341,
+            "entity_people_pages_trimmed": 16,
+            "override_org_index_entries_emptied": 0,
+            "override_entity_index.organizations_drop": 3,
+            "override_entity_index.community_inferred_drop": 0
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "worden": {
+      "before": {
+        "pages": 219,
+        "post_cutoff_pages": 214,
+        "people_mentioned_total": 1787,
+        "people_mentioned_post_cutoff": 1741,
+        "unique_names_all": 1023,
+        "unique_names_post_cutoff": 1012,
+        "entity_index_people": 1027,
+        "possible_same_person": 92,
+        "possible_same_person_post_cutoff": 87,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 1741
+        },
+        "post_cutoff_dates_mentioned": 971,
+        "post_cutoff_dates_context_kept": 971,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 219,
+            "post_cutoff_pages": 214,
+            "people_mentioned_total": 48,
+            "people_mentioned_post_cutoff": 2,
+            "unique_names_all": 38,
+            "unique_names_post_cutoff": 2,
+            "entity_index_people": 36,
+            "possible_same_person": 5,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 2
+            },
+            "post_cutoff_dates_mentioned": 971,
+            "post_cutoff_dates_context_kept": 971,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 1739,
+            "possible_same_person_removed": 87,
+            "kept_stated_deceased": 2,
+            "entity_people_pages_trimmed": 24,
+            "entity_people_removed": 991
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 219,
+            "post_cutoff_pages": 214,
+            "people_mentioned_total": 142,
+            "people_mentioned_post_cutoff": 96,
+            "unique_names_all": 56,
+            "unique_names_post_cutoff": 24,
+            "entity_index_people": 54,
+            "possible_same_person": 6,
+            "possible_same_person_post_cutoff": 1,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 92,
+              "stated_deceased": 4
+            },
+            "post_cutoff_dates_mentioned": 971,
+            "post_cutoff_dates_context_kept": 971,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 1645,
+            "kept_public_figure": 92,
+            "possible_same_person_removed": 86,
+            "kept_stated_deceased": 2,
+            "kept_stated_deceased_wide": 2,
+            "entity_people_pages_trimmed": 20,
+            "entity_people_removed": 973
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 219,
+            "post_cutoff_pages": 214,
+            "people_mentioned_total": 142,
+            "people_mentioned_post_cutoff": 96,
+            "unique_names_all": 56,
+            "unique_names_post_cutoff": 24,
+            "entity_index_people": 54,
+            "possible_same_person": 6,
+            "possible_same_person_post_cutoff": 1,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 92,
+              "stated_deceased": 4
+            },
+            "post_cutoff_dates_mentioned": 971,
+            "post_cutoff_dates_context_kept": 204,
+            "post_cutoff_dates_context_null": 767
+          },
+          "changes": {
+            "people_removed": 1645,
+            "dates_context_nulled": 767,
+            "kept_public_figure": 92,
+            "dates_context_kept": 204,
+            "possible_same_person_removed": 86,
+            "kept_stated_deceased": 2,
+            "kept_stated_deceased_wide": 2,
+            "override_orgs_mentioned_drop": 1,
+            "entity_people_pages_trimmed": 20,
+            "entity_people_removed": 973,
+            "override_org_index_entries_emptied": 1,
+            "override_entity_index.community_inferred_drop": 0
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "oldtownnewhall": {
+      "before": {
+        "pages": 231,
+        "post_cutoff_pages": 231,
+        "people_mentioned_total": 1810,
+        "people_mentioned_post_cutoff": 1810,
+        "unique_names_all": 1256,
+        "unique_names_post_cutoff": 1256,
+        "entity_index_people": 1256,
+        "possible_same_person": 133,
+        "possible_same_person_post_cutoff": 133,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 1810
+        },
+        "post_cutoff_dates_mentioned": 630,
+        "post_cutoff_dates_context_kept": 630,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 231,
+            "post_cutoff_pages": 231,
+            "people_mentioned_total": 2,
+            "people_mentioned_post_cutoff": 2,
+            "unique_names_all": 2,
+            "unique_names_post_cutoff": 2,
+            "entity_index_people": 2,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 2
+            },
+            "post_cutoff_dates_mentioned": 630,
+            "post_cutoff_dates_context_kept": 630,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 1808,
+            "possible_same_person_removed": 133,
+            "kept_stated_deceased": 2,
+            "entity_people_removed": 1254,
+            "entity_people_pages_trimmed": 2
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 231,
+            "post_cutoff_pages": 231,
+            "people_mentioned_total": 59,
+            "people_mentioned_post_cutoff": 59,
+            "unique_names_all": 22,
+            "unique_names_post_cutoff": 22,
+            "entity_index_people": 22,
+            "possible_same_person": 2,
+            "possible_same_person_post_cutoff": 2,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 50,
+              "stated_deceased": 8,
+              "subject": 1
+            },
+            "post_cutoff_dates_mentioned": 630,
+            "post_cutoff_dates_context_kept": 630,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 1751,
+            "possible_same_person_removed": 131,
+            "kept_public_figure": 50,
+            "kept_stated_deceased": 2,
+            "kept_subject_deceased": 1,
+            "kept_stated_deceased_wide": 6,
+            "entity_people_removed": 1234,
+            "entity_people_pages_trimmed": 5
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 231,
+            "post_cutoff_pages": 231,
+            "people_mentioned_total": 59,
+            "people_mentioned_post_cutoff": 59,
+            "unique_names_all": 22,
+            "unique_names_post_cutoff": 22,
+            "entity_index_people": 22,
+            "possible_same_person": 2,
+            "possible_same_person_post_cutoff": 2,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 50,
+              "stated_deceased": 8,
+              "subject": 1
+            },
+            "post_cutoff_dates_mentioned": 630,
+            "post_cutoff_dates_context_kept": 90,
+            "post_cutoff_dates_context_null": 540
+          },
+          "changes": {
+            "people_removed": 1751,
+            "dates_context_nulled": 540,
+            "possible_same_person_removed": 131,
+            "dates_context_kept": 90,
+            "override_community_inferred_drop": 1,
+            "kept_public_figure": 50,
+            "kept_stated_deceased": 2,
+            "kept_subject_deceased": 1,
+            "kept_stated_deceased_wide": 6,
+            "entity_people_removed": 1234,
+            "entity_people_pages_trimmed": 5,
+            "override_org_index_entries_emptied": 0,
+            "override_entity_index.community_inferred_drop": 1
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "media": {
+      "before": {
+        "pages": 63,
+        "post_cutoff_pages": 56,
+        "people_mentioned_total": 1619,
+        "people_mentioned_post_cutoff": 1383,
+        "unique_names_all": 1293,
+        "unique_names_post_cutoff": 1161,
+        "entity_index_people": 1293,
+        "possible_same_person": 136,
+        "possible_same_person_post_cutoff": 121,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 1383
+        },
+        "post_cutoff_dates_mentioned": 1453,
+        "post_cutoff_dates_context_kept": 1453,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 63,
+            "post_cutoff_pages": 56,
+            "people_mentioned_total": 239,
+            "people_mentioned_post_cutoff": 3,
+            "unique_names_all": 200,
+            "unique_names_post_cutoff": 3,
+            "entity_index_people": 200,
+            "possible_same_person": 15,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 3
+            },
+            "post_cutoff_dates_mentioned": 1453,
+            "post_cutoff_dates_context_kept": 1453,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 1380,
+            "possible_same_person_removed": 121,
+            "kept_stated_deceased": 3,
+            "entity_people_pages_trimmed": 66,
+            "entity_people_removed": 1093
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 63,
+            "post_cutoff_pages": 56,
+            "people_mentioned_total": 274,
+            "people_mentioned_post_cutoff": 38,
+            "unique_names_all": 222,
+            "unique_names_post_cutoff": 28,
+            "entity_index_people": 222,
+            "possible_same_person": 15,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 23,
+              "subject": 2,
+              "stated_deceased": 13
+            },
+            "post_cutoff_dates_mentioned": 1453,
+            "post_cutoff_dates_context_kept": 1453,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "kept_public_figure": 23,
+            "people_removed": 1345,
+            "possible_same_person_removed": 121,
+            "kept_subject_deceased": 2,
+            "kept_stated_deceased_wide": 10,
+            "kept_stated_deceased": 3,
+            "entity_people_pages_trimmed": 62,
+            "entity_people_removed": 1071
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 63,
+            "post_cutoff_pages": 56,
+            "people_mentioned_total": 274,
+            "people_mentioned_post_cutoff": 38,
+            "unique_names_all": 222,
+            "unique_names_post_cutoff": 28,
+            "entity_index_people": 222,
+            "possible_same_person": 15,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 23,
+              "subject": 2,
+              "stated_deceased": 13
+            },
+            "post_cutoff_dates_mentioned": 1453,
+            "post_cutoff_dates_context_kept": 117,
+            "post_cutoff_dates_context_null": 1336
+          },
+          "changes": {
+            "kept_public_figure": 23,
+            "people_removed": 1345,
+            "dates_context_kept": 117,
+            "dates_context_nulled": 1336,
+            "possible_same_person_removed": 121,
+            "kept_subject_deceased": 2,
+            "kept_stated_deceased_wide": 10,
+            "kept_stated_deceased": 3,
+            "entity_people_pages_trimmed": 62,
+            "entity_people_removed": 1071
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "reynolds": {
+      "before": {
+        "pages": 23,
+        "post_cutoff_pages": 23,
+        "people_mentioned_total": 145,
+        "people_mentioned_post_cutoff": 145,
+        "unique_names_all": 129,
+        "unique_names_post_cutoff": 129,
+        "entity_index_people": 129,
+        "possible_same_person": 10,
+        "possible_same_person_post_cutoff": 10,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 145
+        },
+        "post_cutoff_dates_mentioned": 134,
+        "post_cutoff_dates_context_kept": 134,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 23,
+            "post_cutoff_pages": 23,
+            "people_mentioned_total": 0,
+            "people_mentioned_post_cutoff": 0,
+            "unique_names_all": 0,
+            "unique_names_post_cutoff": 0,
+            "entity_index_people": 0,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {},
+            "post_cutoff_dates_mentioned": 134,
+            "post_cutoff_dates_context_kept": 134,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 145,
+            "possible_same_person_removed": 10,
+            "entity_people_removed": 129
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 23,
+            "post_cutoff_pages": 23,
+            "people_mentioned_total": 14,
+            "people_mentioned_post_cutoff": 14,
+            "unique_names_all": 12,
+            "unique_names_post_cutoff": 12,
+            "entity_index_people": 12,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 12,
+              "stated_deceased": 2
+            },
+            "post_cutoff_dates_mentioned": 134,
+            "post_cutoff_dates_context_kept": 134,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 131,
+            "kept_public_figure": 12,
+            "possible_same_person_removed": 10,
+            "kept_stated_deceased_wide": 2,
+            "entity_people_pages_trimmed": 1,
+            "entity_people_removed": 117
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 23,
+            "post_cutoff_pages": 23,
+            "people_mentioned_total": 14,
+            "people_mentioned_post_cutoff": 14,
+            "unique_names_all": 12,
+            "unique_names_post_cutoff": 12,
+            "entity_index_people": 12,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 12,
+              "stated_deceased": 2
+            },
+            "post_cutoff_dates_mentioned": 134,
+            "post_cutoff_dates_context_kept": 9,
+            "post_cutoff_dates_context_null": 125
+          },
+          "changes": {
+            "people_removed": 131,
+            "kept_public_figure": 12,
+            "possible_same_person_removed": 10,
+            "dates_context_nulled": 125,
+            "dates_context_kept": 9,
+            "kept_stated_deceased_wide": 2,
+            "entity_people_pages_trimmed": 1,
+            "entity_people_removed": 117
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "reynolds-full": {
+      "before": {
+        "pages": 80,
+        "post_cutoff_pages": 80,
+        "people_mentioned_total": 911,
+        "people_mentioned_post_cutoff": 911,
+        "unique_names_all": 739,
+        "unique_names_post_cutoff": 739,
+        "entity_index_people": 736,
+        "possible_same_person": 67,
+        "possible_same_person_post_cutoff": 67,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 911
+        },
+        "post_cutoff_dates_mentioned": 826,
+        "post_cutoff_dates_context_kept": 826,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 80,
+            "post_cutoff_pages": 80,
+            "people_mentioned_total": 3,
+            "people_mentioned_post_cutoff": 3,
+            "unique_names_all": 3,
+            "unique_names_post_cutoff": 3,
+            "entity_index_people": 3,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 3
+            },
+            "post_cutoff_dates_mentioned": 826,
+            "post_cutoff_dates_context_kept": 826,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 908,
+            "possible_same_person_removed": 67,
+            "kept_stated_deceased": 3,
+            "entity_people_removed": 733
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 80,
+            "post_cutoff_pages": 80,
+            "people_mentioned_total": 99,
+            "people_mentioned_post_cutoff": 99,
+            "unique_names_all": 57,
+            "unique_names_post_cutoff": 57,
+            "entity_index_people": 57,
+            "possible_same_person": 1,
+            "possible_same_person_post_cutoff": 1,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 87,
+              "stated_deceased": 12
+            },
+            "post_cutoff_dates_mentioned": 826,
+            "post_cutoff_dates_context_kept": 826,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 812,
+            "kept_public_figure": 87,
+            "possible_same_person_removed": 66,
+            "kept_stated_deceased_wide": 9,
+            "kept_stated_deceased": 3,
+            "entity_people_pages_trimmed": 2,
+            "entity_people_removed": 679,
+            "entity_variant_notes_removed": 2
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 80,
+            "post_cutoff_pages": 80,
+            "people_mentioned_total": 99,
+            "people_mentioned_post_cutoff": 99,
+            "unique_names_all": 57,
+            "unique_names_post_cutoff": 57,
+            "entity_index_people": 57,
+            "possible_same_person": 1,
+            "possible_same_person_post_cutoff": 1,
+            "post_cutoff_kept_by_retention_basis": {
+              "public_figure": 87,
+              "stated_deceased": 12
+            },
+            "post_cutoff_dates_mentioned": 826,
+            "post_cutoff_dates_context_kept": 129,
+            "post_cutoff_dates_context_null": 697
+          },
+          "changes": {
+            "people_removed": 812,
+            "kept_public_figure": 87,
+            "possible_same_person_removed": 66,
+            "dates_context_nulled": 697,
+            "dates_context_kept": 129,
+            "kept_stated_deceased_wide": 9,
+            "kept_stated_deceased": 3,
+            "entity_people_pages_trimmed": 2,
+            "entity_people_removed": 679,
+            "entity_variant_notes_removed": 2
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "perkins": {
+      "before": {
+        "pages": 20,
+        "post_cutoff_pages": 19,
+        "people_mentioned_total": 485,
+        "people_mentioned_post_cutoff": 476,
+        "unique_names_all": 372,
+        "unique_names_post_cutoff": 368,
+        "entity_index_people": 372,
+        "possible_same_person": 0,
+        "possible_same_person_post_cutoff": 0,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 476
+        },
+        "post_cutoff_dates_mentioned": 906,
+        "post_cutoff_dates_context_kept": 906,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 20,
+            "post_cutoff_pages": 19,
+            "people_mentioned_total": 25,
+            "people_mentioned_post_cutoff": 16,
+            "unique_names_all": 22,
+            "unique_names_post_cutoff": 14,
+            "entity_index_people": 22,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 16
+            },
+            "post_cutoff_dates_mentioned": 906,
+            "post_cutoff_dates_context_kept": 906,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 460,
+            "kept_stated_deceased": 16,
+            "entity_people_removed": 350,
+            "entity_people_pages_trimmed": 7,
+            "entity_variant_notes_removed": 4
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 20,
+            "post_cutoff_pages": 19,
+            "people_mentioned_total": 54,
+            "people_mentioned_post_cutoff": 45,
+            "unique_names_all": 42,
+            "unique_names_post_cutoff": 35,
+            "entity_index_people": 42,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 18,
+              "public_figure": 27
+            },
+            "post_cutoff_dates_mentioned": 906,
+            "post_cutoff_dates_context_kept": 906,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 431,
+            "kept_stated_deceased_wide": 2,
+            "kept_stated_deceased": 16,
+            "kept_public_figure": 27,
+            "entity_people_pages_trimmed": 7,
+            "entity_people_removed": 330,
+            "entity_variant_notes_removed": 5
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 20,
+            "post_cutoff_pages": 19,
+            "people_mentioned_total": 54,
+            "people_mentioned_post_cutoff": 45,
+            "unique_names_all": 42,
+            "unique_names_post_cutoff": 35,
+            "entity_index_people": 42,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 18,
+              "public_figure": 27
+            },
+            "post_cutoff_dates_mentioned": 906,
+            "post_cutoff_dates_context_kept": 205,
+            "post_cutoff_dates_context_null": 701
+          },
+          "changes": {
+            "people_removed": 431,
+            "dates_context_nulled": 701,
+            "dates_context_kept": 205,
+            "kept_stated_deceased_wide": 2,
+            "kept_stated_deceased": 16,
+            "kept_public_figure": 27,
+            "entity_people_pages_trimmed": 7,
+            "entity_people_removed": 330,
+            "entity_variant_notes_removed": 5
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "warmemorial": {
+      "before": {
+        "pages": 54,
+        "post_cutoff_pages": 54,
+        "people_mentioned_total": 223,
+        "people_mentioned_post_cutoff": 223,
+        "unique_names_all": 217,
+        "unique_names_post_cutoff": 217,
+        "entity_index_people": 216,
+        "possible_same_person": 30,
+        "possible_same_person_post_cutoff": 30,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 223
+        },
+        "post_cutoff_dates_mentioned": 477,
+        "post_cutoff_dates_context_kept": 477,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 54,
+            "post_cutoff_pages": 54,
+            "people_mentioned_total": 1,
+            "people_mentioned_post_cutoff": 1,
+            "unique_names_all": 1,
+            "unique_names_post_cutoff": 1,
+            "entity_index_people": 1,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 1
+            },
+            "post_cutoff_dates_mentioned": 477,
+            "post_cutoff_dates_context_kept": 477,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 222,
+            "possible_same_person_removed": 30,
+            "kept_stated_deceased": 1,
+            "entity_people_removed": 215
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 54,
+            "post_cutoff_pages": 54,
+            "people_mentioned_total": 12,
+            "people_mentioned_post_cutoff": 12,
+            "unique_names_all": 12,
+            "unique_names_post_cutoff": 12,
+            "entity_index_people": 12,
+            "possible_same_person": 1,
+            "possible_same_person_post_cutoff": 1,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 7,
+              "subject": 5
+            },
+            "post_cutoff_dates_mentioned": 477,
+            "post_cutoff_dates_context_kept": 477,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 211,
+            "kept_stated_deceased_wide": 6,
+            "possible_same_person_removed": 29,
+            "kept_stated_deceased": 1,
+            "kept_subject_deceased": 5,
+            "entity_people_removed": 204
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 54,
+            "post_cutoff_pages": 54,
+            "people_mentioned_total": 67,
+            "people_mentioned_post_cutoff": 67,
+            "unique_names_all": 67,
+            "unique_names_post_cutoff": 67,
+            "entity_index_people": 67,
+            "possible_same_person": 8,
+            "possible_same_person_post_cutoff": 8,
+            "post_cutoff_kept_by_retention_basis": {
+              "casualty_subject": 55,
+              "stated_deceased": 7,
+              "subject": 5
+            },
+            "post_cutoff_dates_mentioned": 477,
+            "post_cutoff_dates_context_kept": 46,
+            "post_cutoff_dates_context_null": 431
+          },
+          "changes": {
+            "kept_casualty_subject": 55,
+            "people_removed": 156,
+            "dates_context_kept": 46,
+            "dates_context_nulled": 431,
+            "kept_stated_deceased_wide": 6,
+            "possible_same_person_removed": 22,
+            "kept_stated_deceased": 1,
+            "kept_subject_deceased": 5,
+            "entity_people_removed": 149
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "loose-pages": {
+      "before": {
+        "pages": 2,
+        "post_cutoff_pages": 2,
+        "people_mentioned_total": 94,
+        "people_mentioned_post_cutoff": 94,
+        "unique_names_all": 94,
+        "unique_names_post_cutoff": 94,
+        "entity_index_people": 94,
+        "possible_same_person": 5,
+        "possible_same_person_post_cutoff": 5,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 94
+        },
+        "post_cutoff_dates_mentioned": 118,
+        "post_cutoff_dates_context_kept": 118,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 2,
+            "post_cutoff_pages": 2,
+            "people_mentioned_total": 0,
+            "people_mentioned_post_cutoff": 0,
+            "unique_names_all": 0,
+            "unique_names_post_cutoff": 0,
+            "entity_index_people": 0,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {},
+            "post_cutoff_dates_mentioned": 118,
+            "post_cutoff_dates_context_kept": 118,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 94,
+            "possible_same_person_removed": 5,
+            "entity_people_removed": 94
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 2,
+            "post_cutoff_pages": 2,
+            "people_mentioned_total": 2,
+            "people_mentioned_post_cutoff": 2,
+            "unique_names_all": 2,
+            "unique_names_post_cutoff": 2,
+            "entity_index_people": 2,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 1,
+              "public_figure": 1
+            },
+            "post_cutoff_dates_mentioned": 118,
+            "post_cutoff_dates_context_kept": 118,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "kept_stated_deceased_wide": 1,
+            "people_removed": 92,
+            "kept_public_figure": 1,
+            "possible_same_person_removed": 5,
+            "entity_people_removed": 92
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 2,
+            "post_cutoff_pages": 2,
+            "people_mentioned_total": 2,
+            "people_mentioned_post_cutoff": 2,
+            "unique_names_all": 2,
+            "unique_names_post_cutoff": 2,
+            "entity_index_people": 2,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 1,
+              "public_figure": 1
+            },
+            "post_cutoff_dates_mentioned": 118,
+            "post_cutoff_dates_context_kept": 23,
+            "post_cutoff_dates_context_null": 95
+          },
+          "changes": {
+            "kept_stated_deceased_wide": 1,
+            "people_removed": 92,
+            "kept_public_figure": 1,
+            "possible_same_person_removed": 5,
+            "dates_context_nulled": 95,
+            "dates_context_kept": 23,
+            "override_orphan_note_replace_substring": 1,
+            "entity_people_removed": 92,
+            "override_org_index_entries_emptied": 0,
+            "override_entity_index.community_inferred_drop": 0
+          }
+        }
+      },
+      "file_changed": true
+    },
+    "mentryville": {
+      "before": {
+        "pages": 44,
+        "post_cutoff_pages": 44,
+        "people_mentioned_total": 40,
+        "people_mentioned_post_cutoff": 40,
+        "unique_names_all": 40,
+        "unique_names_post_cutoff": 40,
+        "entity_index_people": 40,
+        "possible_same_person": 2,
+        "possible_same_person_post_cutoff": 2,
+        "post_cutoff_kept_by_retention_basis": {
+          "(none)": 40
+        },
+        "post_cutoff_dates_mentioned": 61,
+        "post_cutoff_dates_context_kept": 61,
+        "post_cutoff_dates_context_null": 0
+      },
+      "variants": {
+        "obituary_wording_only": {
+          "after": {
+            "pages": 44,
+            "post_cutoff_pages": 44,
+            "people_mentioned_total": 1,
+            "people_mentioned_post_cutoff": 1,
+            "unique_names_all": 1,
+            "unique_names_post_cutoff": 1,
+            "entity_index_people": 1,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 1
+            },
+            "post_cutoff_dates_mentioned": 61,
+            "post_cutoff_dates_context_kept": 61,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 39,
+            "possible_same_person_removed": 2,
+            "kept_stated_deceased": 1,
+            "entity_people_removed": 39
+          }
+        },
+        "approved_without_casualty_subject": {
+          "after": {
+            "pages": 44,
+            "post_cutoff_pages": 44,
+            "people_mentioned_total": 5,
+            "people_mentioned_post_cutoff": 5,
+            "unique_names_all": 5,
+            "unique_names_post_cutoff": 5,
+            "entity_index_people": 5,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 2,
+              "public_figure": 3
+            },
+            "post_cutoff_dates_mentioned": 61,
+            "post_cutoff_dates_context_kept": 61,
+            "post_cutoff_dates_context_null": 0
+          },
+          "changes": {
+            "people_removed": 35,
+            "kept_stated_deceased_wide": 1,
+            "kept_public_figure": 3,
+            "possible_same_person_removed": 2,
+            "kept_stated_deceased": 1,
+            "entity_people_removed": 35
+          }
+        },
+        "approved": {
+          "after": {
+            "pages": 44,
+            "post_cutoff_pages": 44,
+            "people_mentioned_total": 5,
+            "people_mentioned_post_cutoff": 5,
+            "unique_names_all": 5,
+            "unique_names_post_cutoff": 5,
+            "entity_index_people": 5,
+            "possible_same_person": 0,
+            "possible_same_person_post_cutoff": 0,
+            "post_cutoff_kept_by_retention_basis": {
+              "stated_deceased": 2,
+              "public_figure": 3
+            },
+            "post_cutoff_dates_mentioned": 61,
+            "post_cutoff_dates_context_kept": 9,
+            "post_cutoff_dates_context_null": 52
+          },
+          "changes": {
+            "people_removed": 35,
+            "kept_stated_deceased_wide": 1,
+            "kept_public_figure": 3,
+            "possible_same_person_removed": 2,
+            "dates_context_kept": 9,
+            "dates_context_nulled": 52,
+            "kept_stated_deceased": 1,
+            "entity_people_removed": 35
+          }
+        }
+      },
+      "file_changed": true
+    }
+  },
+  "notes": "Aggregate counts only; no names. Undated pages count as post-cutoff. Retention bases in the data: stated_deceased covers obituary and widened wording; subject requires a stated death; casualty_subject is the casualty of a war memorial casualty page. Built-field overrides come from the private data repo."
+}
