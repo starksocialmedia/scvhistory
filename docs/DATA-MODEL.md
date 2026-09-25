@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 23 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 24 September 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -535,6 +535,20 @@ and the dam broke in this valley and killed people in it; that is as documented
 as a connection gets. So do John Wayne and Tom Mix, who filmed at Melody Ranch,
 Charles Crocker, whose railroad came through, and Kit Carson, who came through
 with Fremont.
+
+**Holding an office that represents the valley is a connection.** Somebody who
+sat on a body whose constituency includes the SCV, or held a single-member seat
+drawn to include it, has a record, and the officeHolding record is the evidence:
+they legislated, voted or governed for this valley whether or not they ever lived
+here. A state senator whose district reached the SCV for one cycle passes on that
+ground alone. Without this the two rules disagree, because the inclusion rule for
+offices admits the office while the rule above turns away the person who held it.
+
+The exception is deliberate and bounded: statewide and national at-large offices
+are context, not valley seats, because nobody is the valley's governor. The two
+California US Senate seats are carried anyway, marked as statewide rather than
+valley offices, because an archive that cannot say who represented the state in
+the Senate has a hole a reader will notice.
 
 The ruling is recorded, not just acted on. A name ruled out is marked **External**
 on the review screen, which creates nothing and writes the Wikidata id into the
