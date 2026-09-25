@@ -64,3 +64,5 @@
 2026-09-24 22:02:43 PDT	add_jurisdiction_fields.php	scvhistory-web	10 rows	verified: org and place fields on their layouts, placeType has district	dissolution, succession, seat counts; districts as places
 2026-09-24 22:13:33 PDT	add_office_holding.php	scvhistory-web	15 rows	verified: section, type, 18 fields, URLs off	terms as records; evidence per date, not per term
 2026-09-24 22:13:35 PDT	retire_board_fields.php	scvhistory-web	4 rows	verified: gone from the layout and deleted, parentOrganization kept	superseded by officeHolding; all four were empty across 38 organizations
+2026-09-24 22:15:10 PDT	add_office_holding.php	scvhistory-web	0 rows	verified: section, type, 18 fields, URLs off	terms as records; evidence per date, not per term
+2026-09-24 22:15:12 PDT	retire_board_fields.php	scvhistory-web	0 rows	verified: gone from the layout and deleted, parentOrganization kept	superseded by officeHolding; all four were empty across 38 organizations
