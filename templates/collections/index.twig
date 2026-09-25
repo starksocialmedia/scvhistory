@@ -24,7 +24,7 @@
 {% import "collections/_kind" as ck %}
 {% import "collections/_summary" as sum %}
 
-{% set cols = craft.entries().section('collections').status(null).limit(null).all() %}
+{% set cols = craft.entries().section('collections').limit(null).all() %}
 
 {% set KINDORDER = { series: 1, book: 2, column: 3, catalogue: 4, topic: 5, '': 6 } %}
 {% set KINDLABEL = { series: 'Series', book: 'Book', column: 'Column run', catalogue: 'Catalogue', topic: 'Topic', '': 'Collection' } %}
@@ -38,7 +38,7 @@
 {% for c in cols %}
   {% set kind = ck.of(c)|trim %}
   {% set n = c.articlesInCollection.count()
-       ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).count() %}
+       ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).count() %}
   {% set totalPieces = totalPieces + n %}
   {% set author = c.writtenBy.one() ?? null %}
   {% set editor = c.editedBy.one() ?? null %}
@@ -50,7 +50,7 @@
       own and asserting one would be inventing it. -#}
   {% set eras = [] %}
   {% if n %}
-    {% for p in craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).limit(null).all() %}
+    {% for p in craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).limit(null).all() %}
       {% set e = p.historicalEra.one() ?? null %}
       {% if e and e.title not in eras %}{% set eras = eras|merge([e.title]) %}{% endif %}
     {% endfor %}

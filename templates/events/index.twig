@@ -4,10 +4,10 @@
 
 {% block content %}
 {% set eraSlug = craft.app.request.getParam('era') %}
-{% set all = craft.entries().section('events').status(null).orderBy('title asc').all() %}
-{% set query = craft.entries().section('events').status(null).orderBy('title asc') %}
+{% set all = craft.entries().section('events').orderBy('title asc').all() %}
+{% set query = craft.entries().section('events').orderBy('title asc') %}
 {% if eraSlug %}
-  {% set term = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
+  {% set term = craft.categories().group('historicalEra').slug(eraSlug).one() %}
   {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
 {% endif %}
 {% set events = query.all() %}
@@ -37,8 +37,8 @@
     <div class="scv-wrap">
       <div class="scv-lab">Era</div>
       <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('events') }}">All</a>
-      {% for e in craft.categories().group('historicalEra').status(null).all() %}
-        {% set n = craft.entries().section('events').relatedTo(e).status(null).count() %}
+      {% for e in craft.categories().group('historicalEra').all() %}
+        {% set n = craft.entries().section('events').relatedTo(e).count() %}
         {% if n %}<a class="scv-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('events', { era: e.slug }) }}">{{ e.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
       <div class="scv-count">{{ eraSlug ? events|length ~ ' of ' ~ all|length : all|length }} events</div>

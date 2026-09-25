@@ -27,8 +27,8 @@
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
-{% set members = craft.entries().section('persons').relatedTo({ targetElement: entry, field: 'personGroups' }).status(null).orderBy('title asc').all() %}
-{% set articles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectGroup' }).status(null).orderBy('title asc').all() %}
+{% set members = craft.entries().section('persons').relatedTo({ targetElement: entry, field: 'personGroups' }).orderBy('title asc').all() %}
+{% set articles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectGroup' }).orderBy('title asc').all() %}
 {% set people = entry.groupPersons.all() %}
 
 <div class="rec">

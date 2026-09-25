@@ -30,7 +30,7 @@
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
 {% set hasMap = entry.placeLat and entry.placeLng %}
-{% set depicted = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'depictsPlace' }).status(null).orderBy('title asc').all() %}
+{% set depicted = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'depictsPlace' }).orderBy('title asc').all() %}
 
 <div class="rec">
   <section class="rec-band">

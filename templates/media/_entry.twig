@@ -11,7 +11,7 @@
     ideas, and it exists as much for the ImageObject and the lightbox to point
     at as for a reader to visit. -#}
 
-{% set asset = craft.assets().id(assetId).status(null).one() ?? null %}
+{% set asset = craft.assets().id(assetId).one() ?? null %}
 {% if not asset %}{% exit 404 %}{% endif %}
 
 {#- Handles off the layout. A custom field reads as defined on an element whose
@@ -38,7 +38,7 @@
 {#- Every record that uses this image, curated first. -#}
 {% set users = [] %}
 {% for sec in ['photographs', 'articles', 'persons', 'places', 'organizations'] %}
-  {% for e in craft.entries().section(sec).status(null).limit(null).all() %}
+  {% for e in craft.entries().section(sec).limit(null).all() %}
     {% set eh = [] %}
     {% for f in e.fieldLayout.customFields %}{% set eh = eh|merge([f.handle]) %}{% endfor %}
     {% for h in ['featuredImage', 'recordImages', 'bandImage'] %}

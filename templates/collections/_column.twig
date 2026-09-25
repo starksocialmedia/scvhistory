@@ -36,7 +36,7 @@
 {% set aimg = (author and author.featuredImage is defined and author.featuredImage) ? author.featuredImage.one() ?? null : null %}
 
 {% set pieces = entry.articlesInCollection.all()
-   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).status(null).all() %}
+   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).all() %}
 
 {#- Group by year, newest first. The year comes off originalPublishDate, which
     is stored as printed, so the four digits are taken rather than parsed: a

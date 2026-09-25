@@ -24,7 +24,7 @@
 {% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
 
 {% set items = entry.articlesInCollection.all()
-   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).status(null).all() %}
+   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).all() %}
 
 {#- The identifier is the legacy key's trailing digits: gazette1403-editorial
     is issue 1403. Read rather than invented, and blank where there is none. -#}

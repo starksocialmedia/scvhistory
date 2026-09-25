@@ -43,7 +43,7 @@
 {% set related = {} %}
 {% set total = 0 %}
 {% for g in groups %}
-  {% set rows = craft.entries().section(g.handle).relatedTo(term).status(null).orderBy('title asc').all() %}
+  {% set rows = craft.entries().section(g.handle).relatedTo(term).orderBy('title asc').all() %}
   {% set related = related|merge({ (g.handle): rows }) %}
   {% set total = total + rows|length %}
 {% endfor %}
@@ -146,7 +146,7 @@
 
           {% set nbSlugs = (nbData.neighbors ?? {})[term.slug] ?? [] %}
           {% if nbSlugs|length %}
-            {% set nbTerms = craft.categories().group('neighborhood').slug(nbSlugs).status(null).orderBy('title asc').all() %}
+            {% set nbTerms = craft.categories().group('neighborhood').slug(nbSlugs).orderBy('title asc').all() %}
             {% if nbTerms|length %}
               {% embed "_partials/sidebar/box" with { title: 'Neighbouring communities', nbTerms: nbTerms } only %}
                 {% block body %}

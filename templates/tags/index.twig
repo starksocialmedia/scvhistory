@@ -10,12 +10,12 @@
   here is guarded and the page reads as empty rather than erroring.
 #}
 {% set group = craft.app.categories.getGroupByHandle('tag') %}
-{% set terms = group ? craft.categories().group('tag').status(null).orderBy('title asc').all() : [] %}
+{% set terms = group ? craft.categories().group('tag').orderBy('title asc').all() : [] %}
 
 {% set rows = [] %}
 {% set maxCount = 0 %}
 {% for t in terms %}
-  {% set n = craft.entries().relatedTo(t).status(null).count() %}
+  {% set n = craft.entries().relatedTo(t).count() %}
   {% set rows = rows|merge([{ term: t, n: n }]) %}
   {% if n > maxCount %}{% set maxCount = n %}{% endif %}
 {% endfor %}

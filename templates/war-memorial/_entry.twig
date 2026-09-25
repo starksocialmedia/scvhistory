@@ -64,7 +64,7 @@
 {% set died = F.wmIncidentDate ?: F.deathDate %}
 {% set kick = [F.wmBranch, F.wmCombatOperations ?: F.wmConflict]|filter(x => x) %}
 {% set sub = [F.wmRank, F.wmSpecialty]|filter(x => x)|join(', ') %}
-{% set total = craft.entries().section('warMemorials').status(null).count() %}
+{% set total = craft.entries().section('warMemorials').count() %}
 
 <div class="rec">
   <section class="rec-band">

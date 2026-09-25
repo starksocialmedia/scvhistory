@@ -8,7 +8,7 @@
 {% set comSlug = craft.app.request.getParam('community') %}
 {% set kind = craft.app.request.getParam('kind') %}
 {% set level = craft.app.request.getParam('level') %}
-{% set all = craft.entries().section('organizations').status(null).orderBy('title asc').all() %}
+{% set all = craft.entries().section('organizations').orderBy('title asc').all() %}
 
 {#- orgType and schoolLevel are added by scripts/import/add_org_taxonomy_fields.php
     and may not be on the layout yet. The handles are read off the layout rather
@@ -39,8 +39,8 @@
   college: 'College', district: 'Districts'
 } %}
 
-{% set query = craft.entries().section('organizations').status(null).orderBy('title asc') %}
-{% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).status(null).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
+{% set query = craft.entries().section('organizations').orderBy('title asc') %}
+{% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
 {% if hasKinds and kind and KINDS[kind] is defined %}{% set query = query.orgType(kind) %}{% endif %}
 {#- The level only narrows within schools, so it is ignored unless schools are
     the kind on screen. A level chip on its own would filter to schools without
@@ -104,8 +104,8 @@
 
       <div class="pl-lab">COMMUNITY</div>
       <a class="pl-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('organizations', keep) }}">All communities</a>
-      {% for c in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
-        {% set n = craft.entries().section('organizations').relatedTo(c).status(null).count() %}
+      {% for c in craft.categories().group('neighborhood').orderBy('title asc').all() %}
+        {% set n = craft.entries().section('organizations').relatedTo(c).count() %}
         {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('organizations', keep|merge({community: c.slug})) }}">{{ c.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
 

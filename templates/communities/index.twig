@@ -12,14 +12,14 @@
   Communities with no official boundary fall back to a pin from communityLat and
   communityLng, and appear on the map only once those are set.
 #}
-{% set terms = craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
+{% set terms = craft.categories().group('neighborhood').orderBy('title asc').all() %}
 {% set sections = ['persons', 'places', 'articles', 'warMemorials'] %}
 
 {% set stats = {} %}
 {% for t in terms %}
   {% set row = {} %}
   {% for handle in sections %}
-    {% set row = row|merge({ (handle): craft.entries().section(handle).relatedTo(t).status(null).count() }) %}
+    {% set row = row|merge({ (handle): craft.entries().section(handle).relatedTo(t).count() }) %}
   {% endfor %}
   {% set stats = stats|merge({ (t.slug): row }) %}
 {% endfor %}

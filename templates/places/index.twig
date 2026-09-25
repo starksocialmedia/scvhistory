@@ -7,7 +7,7 @@
 {% block content %}
 {% set comSlug = craft.app.request.getParam('community') %}
 {% set kind = craft.app.request.getParam('kind') %}
-{% set all = craft.entries().section('places').status(null).orderBy('title asc').all() %}
+{% set all = craft.entries().section('places').orderBy('title asc').all() %}
 
 {#- placeType is added by scripts/import/add_place_type_field.php and may not be
     on the layout yet. Read the handles off the layout rather than asking `is
@@ -39,8 +39,8 @@
   trail:    'Trail'
 } %}
 
-{% set query = craft.entries().section('places').status(null).orderBy('title asc') %}
-{% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).status(null).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
+{% set query = craft.entries().section('places').orderBy('title asc') %}
+{% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
 {#- A Dropdown hands back a SingleOptionFieldData object, not a string. It is
     truthy even when nothing is selected, so `p.placeType` alone passes an
     `if` on every place and prints a separator with no label after it. The
@@ -100,8 +100,8 @@
     <div class="pl-wrap">
       <div class="pl-lab">COMMUNITY</div>
       <a class="pl-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('places', kind ? {kind: kind} : {}) }}">All communities</a>
-      {% for c in craft.categories().group('neighborhood').status(null).orderBy('title asc').all() %}
-        {% set n = craft.entries().section('places').relatedTo(c).status(null).count() %}
+      {% for c in craft.categories().group('neighborhood').orderBy('title asc').all() %}
+        {% set n = craft.entries().section('places').relatedTo(c).count() %}
         {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('places', kind ? {community: c.slug, kind: kind} : {community: c.slug}) }}">{{ c.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
 

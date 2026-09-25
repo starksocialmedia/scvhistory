@@ -27,7 +27,7 @@
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 {% set img = (entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
-{% set others = craft.entries().section('pages').status(null).orderBy('title asc').all()|filter(p => p.id != entry.id) %}
+{% set others = craft.entries().section('pages').orderBy('title asc').all()|filter(p => p.id != entry.id) %}
 
 <div class="rec">
   <section class="rec-band">

@@ -28,7 +28,7 @@
 {% for h in ['body','archiveUrl','legacyUrl','culturalSensitivityNote'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
-{% set articles = entry.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).status(null).all() %}
+{% set articles = entry.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).all() %}
 {% set author = entry.writtenBy.one() ?? null %}
 {% set editor = entry.editedBy.one() ?? null %}
 {% set era = entry.historicalEra.one() ?? null %}

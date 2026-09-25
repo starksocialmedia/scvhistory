@@ -46,19 +46,19 @@
 {% set eraSlug = craft.app.request.getParam('era') %}
 {% set colSlug = craft.app.request.getParam('collection') %}
 {% set view = craft.app.request.getParam('view') == 'era' ? 'era' : 'collection' %}
-{% set query = craft.entries().section('articles').status(null).orderBy('title asc') %}
-{% if eraSlug %}{% set eraTerm = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}{% if eraTerm %}{% set query = query.relatedTo(eraTerm) %}{% endif %}{% endif %}
-{% if colSlug %}{% set colEntry = craft.entries().section('collections').slug(colSlug).status(null).one() %}{% if colEntry %}{% set query = query.relatedTo({targetElement: colEntry, field: 'partOfCollection'}) %}{% endif %}{% endif %}
+{% set query = craft.entries().section('articles').orderBy('title asc') %}
+{% if eraSlug %}{% set eraTerm = craft.categories().group('historicalEra').slug(eraSlug).one() %}{% if eraTerm %}{% set query = query.relatedTo(eraTerm) %}{% endif %}{% endif %}
+{% if colSlug %}{% set colEntry = craft.entries().section('collections').slug(colSlug).one() %}{% if colEntry %}{% set query = query.relatedTo({targetElement: colEntry, field: 'partOfCollection'}) %}{% endif %}{% endif %}
 {% set entries = query.all() %}
-{% set allArticles = craft.entries().section('articles').status(null).count() %}
+{% set allArticles = craft.entries().section('articles').count() %}
 {% set authorIds = [] %}
-{% for a in craft.entries().section('articles').status(null).all() %}
+{% for a in craft.entries().section('articles').all() %}
   {% set w = a.writtenBy.one() ?? null %}
   {% if w and w.id not in authorIds %}{% set authorIds = authorIds|merge([w.id]) %}{% endif %}
 {% endfor %}
 {% set collectionsWithArticles = [] %}
-{% for c in craft.entries().section('collections').status(null).all() %}
-  {% set n = craft.entries().section('articles').relatedTo({targetElement: c, field: 'partOfCollection'}).status(null).count() %}
+{% for c in craft.entries().section('collections').all() %}
+  {% set n = craft.entries().section('articles').relatedTo({targetElement: c, field: 'partOfCollection'}).count() %}
   {% if n %}{% set collectionsWithArticles = collectionsWithArticles|merge([c]) %}{% endif %}
 {% endfor %}
 
@@ -91,8 +91,8 @@
       <div class="ap-row">
         <div class="lab">ERA</div>
         <a class="ap-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('articles', colSlug ? {collection: colSlug} : {}) }}">All</a>
-        {% for e in craft.categories().group('historicalEra').status(null).all() %}
-          {% set n = craft.entries().section('articles').relatedTo(e).status(null).count() %}
+        {% for e in craft.categories().group('historicalEra').all() %}
+          {% set n = craft.entries().section('articles').relatedTo(e).count() %}
           {% if n %}<a class="ap-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('articles', colSlug ? {era: e.slug, collection: colSlug} : {era: e.slug}) }}">{{ e.title }} ({{ n }})</a>{% endif %}
         {% endfor %}
       </div>
@@ -100,7 +100,7 @@
         <div class="lab">COLLECTION</div>
         <a class="ap-chip {{ not colSlug ? 'on' : '' }}" href="{{ url('articles', eraSlug ? {era: eraSlug} : {}) }}">All</a>
         {% for c in collectionsWithArticles %}
-          {% set n = craft.entries().section('articles').relatedTo({targetElement: c, field: 'partOfCollection'}).status(null).count() %}
+          {% set n = craft.entries().section('articles').relatedTo({targetElement: c, field: 'partOfCollection'}).count() %}
           <a class="ap-chip {{ colSlug == c.slug ? 'on' : '' }}" href="{{ url('articles', eraSlug ? {collection: c.slug, era: eraSlug} : {collection: c.slug}) }}">{{ c.title ?: c.slug }} ({{ n }})</a>
         {% endfor %}
         <div class="ap-countlab">{{ entries|length }} article{{ entries|length == 1 ? '' : 's' }}</div>
@@ -117,7 +117,7 @@
       #}
       {% set grouped = {} %}
       {% if view == 'era' %}
-        {% for term in craft.categories().group('historicalEra').status(null).all() %}
+        {% for term in craft.categories().group('historicalEra').all() %}
           {% set inEra = entries|filter(e => e.historicalEra.ids()|merge([0]) and term.id in e.historicalEra.ids()) %}
           {% if inEra|length %}{% set grouped = grouped|merge({ ('era:' ~ term.slug): inEra }) %}{% endif %}
         {% endfor %}
@@ -135,8 +135,8 @@
 
       {% for key, items in grouped %}
         {% set isEra = key starts with 'era:' %}
-        {% set eraTermHead = isEra ? craft.categories().group('historicalEra').slug(key|replace({'era:': ''})).status(null).one() : null %}
-        {% set col = (not isEra and key != '_other') ? craft.entries().section('collections').slug(key).status(null).one() : null %}
+        {% set eraTermHead = isEra ? craft.categories().group('historicalEra').slug(key|replace({'era:': ''})).one() : null %}
+        {% set col = (not isEra and key != '_other') ? craft.entries().section('collections').slug(key).one() : null %}
         {% set ordered = col ? col.articlesInCollection.all() : [] %}
         {% set list = [] %}
         {% if ordered|length %}

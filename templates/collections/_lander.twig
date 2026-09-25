@@ -44,10 +44,10 @@
 
 {# reading order #}
 {% set chapters = entry.articlesInCollection.all()
-   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).status(null).all() %}
+   ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).all() %}
 
 {# era order, straight from the structure #}
-{% set eraOrder = craft.categories().group('historicalEra').status(null).all() %}
+{% set eraOrder = craft.categories().group('historicalEra').all() %}
 
 {# bucket the chapters by era, keeping reading order inside each bucket #}
 {% set buckets = {} %}
@@ -296,10 +296,10 @@
         {# other collections sharing this one's author or any of its eras #}
         {% set eraIds = erasPresent|map(t => t.id) %}
         {% set related = [] %}
-        {% for c in craft.entries().section('collections').status(null).orderBy('title asc').all() %}
+        {% for c in craft.entries().section('collections').orderBy('title asc').all() %}
           {% if c.id != entry.id %}
             {% set ca = c.writtenBy.one() ?? null %}
-            {% set rows = c.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).status(null).all() %}
+            {% set rows = c.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: c, field: 'partOfCollection' }).all() %}
             {% set share = author and ca and ca.id == author.id %}
             {% set years = [] %}
             {% for a in rows %}

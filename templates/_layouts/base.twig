@@ -147,7 +147,7 @@
       {%- set stickyColl = entry.partOfCollection.one() ?? null -%}
       {%- if stickyColl -%}
         {%- set stickyParts = stickyColl.articlesInCollection.all()
-            ?: craft.entries().section('articles').relatedTo({ targetElement: stickyColl, field: 'partOfCollection' }).status(null).all() -%}
+            ?: craft.entries().section('articles').relatedTo({ targetElement: stickyColl, field: 'partOfCollection' }).all() -%}
         {%- for c in stickyParts -%}
           {%- if c.id == entry.id -%}{%- set stickyChapter = loop.index -%}{%- endif -%}
         {%- endfor -%}

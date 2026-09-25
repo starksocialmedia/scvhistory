@@ -28,7 +28,7 @@
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
 {% set whenLine = F.eventDate ?: (F.eventDateStart ? F.eventDateStart ~ (F.eventDateEnd ? ' to ' ~ F.eventDateEnd : '') : '') %}
-{% set mentions = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'articleEvents' }).status(null).orderBy('title asc').all() %}
+{% set mentions = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'articleEvents' }).orderBy('title asc').all() %}
 
 <div class="rec">
   <section class="rec-band">

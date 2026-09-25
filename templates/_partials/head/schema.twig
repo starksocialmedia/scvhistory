@@ -80,7 +80,7 @@
              'articlesAbout','relatedPersons',
              'wmRelatedPerson','mpSubject','mpPlaces','mpEvents','mpOrganizations',
              'obitSubject','obitPublishedIn','photoPeople','photoPlaces','photoOrganizations'] %}
-  {% if h in H %}{% set REL = REL|merge({ (h): attribute(el, h).status(null).all() }) %}{% endif %}
+  {% if h in H %}{% set REL = REL|merge({ (h): attribute(el, h).all() }) %}{% endif %}
 {% endfor %}
 
 {#- Section to Schema.org type for a linked node. -#}
@@ -207,7 +207,7 @@
         {% set seenImg = seenImg|merge([real.id]) %}
         {% set pr = null %}
         {% if 'photoArticles' in ih %}
-          {% for p in craft.entries().section('photographs').relatedTo(real).status(null).limit(1).all() %}{% set pr = p.url %}{% endfor %}
+          {% for p in craft.entries().section('photographs').relatedTo(real).limit(1).all() %}{% set pr = p.url %}{% endfor %}
         {% endif %}
         {% set pageImages = pageImages|merge([{ 'asset': real, 'photoUrl': pr }]) %}
       {% endif %}
@@ -305,7 +305,7 @@
       a term. -#}
   {% set occupations = [] %}
   {% if 'roles' in H %}
-    {% for r in el.roles.status(null).all() %}
+    {% for r in el.roles.all() %}
       {% set rh = [] %}
       {% for f in r.fieldLayout.customFields %}{% set rh = rh|merge([f.handle]) %}{% endfor %}
       {% set qid = 'roleWikidataId' in rh ? r.roleWikidataId|trim : '' %}
@@ -386,7 +386,7 @@
 
   {#- Every organization that names this one as its parent. -#}
   {% set subOrgs = [] %}
-  {% for c in craft.entries().section('organizations').relatedTo({ targetElement: el, field: 'parentOrganization' }).status(null).limit(null).all() %}
+  {% for c in craft.entries().section('organizations').relatedTo({ targetElement: el, field: 'parentOrganization' }).limit(null).all() %}
     {% set subOrgs = subOrgs|merge([{ '@type': 'Organization', '@id': c.url, 'name': c.title, 'url': c.url }]) %}
   {% endfor %}
 
@@ -448,7 +448,7 @@
     it describes. -#}
 {% elseif sec == 'collections' %}
   {% set parts = [] %}
-  {% set inOrder = ('articlesInCollection' in H) ? (REL.articlesInCollection ?: craft.entries().section('articles').relatedTo({ targetElement: el, field: 'partOfCollection' }).status(null).all()) : [] %}
+  {% set inOrder = ('articlesInCollection' in H) ? (REL.articlesInCollection ?: craft.entries().section('articles').relatedTo({ targetElement: el, field: 'partOfCollection' }).all()) : [] %}
   {% for a in inOrder %}
     {% set parts = parts|merge([{ '@type': 'Article', '@id': a.url, 'name': a.title ?: a.slug, 'url': a.url, 'position': loop.index }]) %}
   {% endfor %}

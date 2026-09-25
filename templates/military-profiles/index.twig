@@ -3,17 +3,17 @@
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 
 {% block content %}
-{% set all = craft.entries().section('militaryProfiles').status(null).orderBy('title asc').all() %}
+{% set all = craft.entries().section('militaryProfiles').orderBy('title asc').all() %}
 {% set eraSlug = craft.app.request.getParam('era') %}
-{% set query = craft.entries().section('militaryProfiles').status(null).orderBy('title asc') %}
+{% set query = craft.entries().section('militaryProfiles').orderBy('title asc') %}
 {% if eraSlug %}
-  {% set term = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}
+  {% set term = craft.categories().group('historicalEra').slug(eraSlug).one() %}
   {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
 {% endif %}
 {% set rows = query.all() %}
 {% set eraChips = [] %}
-{% for e in craft.categories().group('historicalEra').status(null).all() %}
-  {% set n = craft.entries().section('militaryProfiles').relatedTo(e).status(null).count() %}
+{% for e in craft.categories().group('historicalEra').all() %}
+  {% set n = craft.entries().section('militaryProfiles').relatedTo(e).count() %}
   {% if n %}{% set eraChips = eraChips|merge([{term: e, n: n}]) %}{% endif %}
 {% endfor %}
 

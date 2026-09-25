@@ -87,11 +87,11 @@
   {h:'obituaries', u:'obituaries', l:'Obituaries', d:'Death notices as originally published.'}
 ] %}
 {% set total = 0 %}
-{% for c in cards %}{% set total = total + craft.entries().section(c.h).status(null).count() %}{% endfor %}
+{% for c in cards %}{% set total = total + craft.entries().section(c.h).count() %}{% endfor %}
 
 {# Eras: parse "Name (YYYY–YYYY)" into spans for the timeline #}
 {% set eras = [] %}
-{% for e in craft.categories().group('historicalEra').status(null).all() %}
+{% for e in craft.categories().group('historicalEra').all() %}
   {% set parts = e.title|split('(') %}
   {% set name = parts[0]|trim %}
   {% set range = parts|length > 1 ? parts[1]|replace({')': ''})|trim : '' %}
@@ -118,7 +118,7 @@
   {% endif %}
 {% endfor %}
 
-{% set featCol = craft.entries().section('collections').slug('history-of-the-santa-clarita-valley').status(null).one() ?? craft.entries().section('collections').status(null).one() %}
+{% set featCol = craft.entries().section('collections').slug('history-of-the-santa-clarita-valley').one() ?? craft.entries().section('collections').one() %}
 
 <div class="hp">
   <section class="hp-hero">
@@ -172,7 +172,7 @@
     <div class="hp-head"><h2>In the archive</h2><div class="hp-kick">{{ total }} RECORDS</div></div>
     <div class="hp-cards">
       {% for c in cards %}
-        {% set n = craft.entries().section(c.h).status(null).count() %}
+        {% set n = craft.entries().section(c.h).count() %}
         {% if n %}<a class="hp-card" href="{{ url(c.u) }}"><div class="n">{{ n }}</div><div class="l">{{ c.l|upper }}</div><div class="d">{{ c.d }}</div></a>{% endif %}
       {% endfor %}
     </div>

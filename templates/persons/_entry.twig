@@ -49,9 +49,9 @@
 {% set died = [F.deathDate, F.burialPlace]|filter(x => x)|join(' · ') %}
 {% set residence = communities|map(c => c.title)|join(' · ') %}
 
-{% set written = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'writtenBy' }).status(null).orderBy('title asc').all() %}
-{% set about = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectPerson' }).status(null).orderBy('title asc').all() %}
-{% set livedPlaces = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placePeople' }).status(null).orderBy('title asc').all() %}
+{% set written = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'writtenBy' }).orderBy('title asc').all() %}
+{% set about = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectPerson' }).orderBy('title asc').all() %}
+{% set livedPlaces = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placePeople' }).orderBy('title asc').all() %}
 {% set obits = entry.personObituaries.all() %}
 {% set orgs = entry.personOrganizations.all() %}
 

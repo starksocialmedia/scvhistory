@@ -28,7 +28,7 @@
 {% set found = [] %}
 {% set total = 0 %}
 {% for g in GROUPS %}
-  {% set rows = craft.entries().section(g.handle).relatedTo(term).status(null).orderBy('title asc').all() %}
+  {% set rows = craft.entries().section(g.handle).relatedTo(term).orderBy('title asc').all() %}
   {% if rows|length %}
     {% set found = found|merge([{ label: g.label, rows: rows }]) %}
     {% set total = total + rows|length %}

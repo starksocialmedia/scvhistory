@@ -32,8 +32,8 @@
 {% set periods = entry.historicalPeriod.all() %}
 {% set hasMap = entry.orgLat and entry.orgLng %}
 {% set parent = entry.parentOrganization.one() ?? null %}
-{% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).status(null).orderBy('title asc').all() %}
-{% set publishedArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).status(null).orderBy('title asc').all() %}
+{% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).orderBy('title asc').all() %}
+{% set publishedArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).orderBy('title asc').all() %}
 {#- termNotes was retired with the board fields: a term belongs in an
     officeHolding record, not in a paragraph on the body. -#}
 {% set prose = F.body %}
@@ -95,7 +95,7 @@
             could not say when anybody served. They are now the holders of offices
             in this body, read from their term records. A comment belongs out here:
             one inside the array literal below is a syntax error, not a comment. -#}
-        {% set holders = craft.entries().section('officeHoldings').status(null)
+        {% set holders = craft.entries().section('officeHoldings')
             .relatedTo({ targetElement: entry, field: 'holdingBody' }).all()
             |map(h => h.holdingPerson.one())|filter(p => p) %}
         {% set peopleBoxes = [
@@ -118,7 +118,7 @@
 
         {#- Sub-bodies were entry.subBoards, the inverse of parentOrganization kept
             in a second place. Read the nesting instead: one fact, one home. -#}
-        {% set subBodies = craft.entries().section('organizations').status(null)
+        {% set subBodies = craft.entries().section('organizations')
             .relatedTo({ targetElement: entry, field: 'parentOrganization' }).all() %}
         {% set boxes = [
           { lab: 'PARENT ORGANIZATION', key: 'PARENT', rows: parent ? [parent] : [] },

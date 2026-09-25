@@ -39,7 +39,7 @@
       <h2 class="scv-h2">Browse the archive</h2>
       <div class="scv-cards">
         {% for s in SECTIONS %}
-          {% set n = s.handle ? craft.entries().section(s.handle).status(null).count() : craft.categories().group('neighborhood').status(null).count() %}
+          {% set n = s.handle ? craft.entries().section(s.handle).count() : craft.categories().group('neighborhood').count() %}
           <a class="scv-tile" href="{{ url(s.uri) }}">
             <div class="scv-tilebody">
               <h3>{{ s.label }}</h3>

@@ -44,8 +44,8 @@
 {% block content %}
 {% set eraSlug = craft.app.request.getParam('era') %}
 {% set sort = craft.app.request.getParam('sort') ?: 'alpha' %}
-{% set query = craft.entries().section('persons').status(null).orderBy('title asc') %}
-{% if eraSlug %}{% set t = craft.categories().group('historicalEra').slug(eraSlug).status(null).one() %}{% if t %}{% set query = query.relatedTo(t) %}{% endif %}{% endif %}
+{% set query = craft.entries().section('persons').orderBy('title asc') %}
+{% if eraSlug %}{% set t = craft.categories().group('historicalEra').slug(eraSlug).one() %}{% if t %}{% set query = query.relatedTo(t) %}{% endif %}{% endif %}
 {% set people = query.all() %}
 
 {% set rows = [] %}
@@ -61,8 +61,8 @@
 {% if sort == 'birth' %}{% set rows = rows|sort((a, b) => a.by <=> b.by) %}{% endif %}
 
 {% set eraCount = 0 %}
-{% set eras = craft.categories().group('historicalEra').status(null).all() %}
-{% for e in eras %}{% if craft.entries().section('persons').relatedTo(e).status(null).count() %}{% set eraCount = eraCount + 1 %}{% endif %}{% endfor %}
+{% set eras = craft.categories().group('historicalEra').all() %}
+{% for e in eras %}{% if craft.entries().section('persons').relatedTo(e).count() %}{% set eraCount = eraCount + 1 %}{% endif %}{% endfor %}
 
 <div class="pp">
   <section class="scv-band pp-band">
@@ -75,7 +75,7 @@
           <p>Historians, explorers, ranchers, outlaws, civic leaders, and artists who shaped the history of the valley.</p>
         </div>
         <div class="pp-stats">
-          <div><div class="n">{{ craft.entries().section('persons').status(null).count() }}</div><div class="l">PEOPLE</div></div>
+          <div><div class="n">{{ craft.entries().section('persons').count() }}</div><div class="l">PEOPLE</div></div>
           <div><div class="n">{{ eraCount }}</div><div class="l">ERAS</div></div>
           {% if earliest %}<div><div class="n">{{ earliest }}</div><div class="l">EARLIEST BIRTH</div></div>{% endif %}
         </div>
@@ -88,7 +88,7 @@
       <div class="pp-lab">ERA</div>
       <a class="pp-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('persons', sort != 'alpha' ? {sort: sort} : {}) }}">All</a>
       {% for e in eras %}
-        {% set n = craft.entries().section('persons').relatedTo(e).status(null).count() %}
+        {% set n = craft.entries().section('persons').relatedTo(e).count() %}
         {% if n %}<a class="pp-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('persons', sort != 'alpha' ? {era: e.slug, sort: sort} : {era: e.slug}) }}">{{ e.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
       <div class="pp-right">
