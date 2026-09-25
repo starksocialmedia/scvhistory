@@ -13,7 +13,7 @@
 {% set noteTop = entry.webmasterNoteTop is defined ? entry.webmasterNoteTop : null %}
 {% set noteBottom = entry.webmasterNoteBottom is defined ? entry.webmasterNoteBottom : null %}
 {% set F = {} %}
-{% for h in ['body','termNotes','orgFinePrint','dateFounded','orgAliases','orgAddress','orgLegacyUrl','legacyUrl','culturalSensitivityNote'] %}
+{% for h in ['body','orgFinePrint','dateFounded','orgAliases','orgAddress','orgLegacyUrl','legacyUrl','culturalSensitivityNote'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
 {# bandImage first: artwork with no lettering, composed with its subject at the
@@ -34,7 +34,9 @@
 {% set parent = entry.parentOrganization.one() ?? null %}
 {% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).status(null).orderBy('title asc').all() %}
 {% set publishedArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).status(null).orderBy('title asc').all() %}
-{% set prose = [F.body, F.termNotes]|filter(x => x)|join("\n\n") %}
+{#- termNotes was retired with the board fields: a term belongs in an
+    officeHolding record, not in a paragraph on the body. -#}
+{% set prose = F.body %}
 
 <div class="rec">
   <section class="rec-band">
@@ -89,10 +91,17 @@
           </div>
         {% endif %}
 
+        {#- Board members were entry.boardMembers, a relation with no dates, so it
+            could not say when anybody served. They are now the holders of offices
+            in this body, read from their term records. A comment belongs out here:
+            one inside the array literal below is a syntax error, not a comment. -#}
+        {% set holders = craft.entries().section('officeHoldings').status(null)
+            .relatedTo({ targetElement: entry, field: 'holdingBody' }).all()
+            |map(h => h.holdingPerson.one())|filter(p => p) %}
         {% set peopleBoxes = [
           { lab: 'FOUNDED BY', rows: entry.orgFoundedBy.all() },
           { lab: 'ASSOCIATED PEOPLE', rows: entry.orgAssociatedPersons.all() },
-          { lab: 'BOARD MEMBERS', rows: entry.boardMembers.all() }
+          { lab: 'BOARD MEMBERS', rows: holders }
         ]|filter(b => b.rows|length) %}
         {% for b in peopleBoxes %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
@@ -107,9 +116,13 @@
           </div>
         {% endfor %}
 
+        {#- Sub-bodies were entry.subBoards, the inverse of parentOrganization kept
+            in a second place. Read the nesting instead: one fact, one home. -#}
+        {% set subBodies = craft.entries().section('organizations').status(null)
+            .relatedTo({ targetElement: entry, field: 'parentOrganization' }).all() %}
         {% set boxes = [
           { lab: 'PARENT ORGANIZATION', key: 'PARENT', rows: parent ? [parent] : [] },
-          { lab: 'BOARDS AND SUBSIDIARIES', key: 'BOARD', rows: entry.subBoards.all() },
+          { lab: 'BOARDS AND SUBSIDIARIES', key: 'BOARD', rows: subBodies },
           { lab: 'EVENTS', key: 'EVENT', rows: entry.orgEvents.all() },
           { lab: 'ARTICLES', key: 'ARTICLE', rows: subjectArticles },
           { lab: 'PUBLISHED BY THIS ORGANIZATION', key: 'ARTICLE', rows: publishedArticles }

@@ -20,6 +20,12 @@
  *
  * parentOrganization stays. It is used, it is right, and it is the nesting.
  *
+ * Checked before anything is removed: no record holds a value, AND no template,
+ * module or script still names the handle. The first check alone let this delete
+ * termNotes, subBoards and boardMembers while organizations/_entry.twig was still
+ * reading them, and every organization page answered 500 until the templates
+ * caught up.
+ *
  * Idempotent. Dry run by default. Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/retire_board_fields.php'))"
  */
@@ -55,14 +61,70 @@ foreach ($RETIRE as $h) {
     if ($used > 0) { $inUse[] = $h . ' (' . $used . ')'; }
 }
 
+/* Records were checked and templates were not, which is how /organizations/
+   acton-hotel started answering 500: every organization page read termNotes, and
+   a field that holds no values is still a field the site calls by name. A
+   handle is used by whatever names it, not only by what stores something in it. */
+$referenced = [];
+$roots = ['templates', 'modules', 'scripts/import', 'config'];
+/* Named literally: __FILE__ inside a script run through `craft exec` is Craft's
+   ExecController, not this file, so basename(__FILE__) excluded nothing and the
+   check counted its own $RETIRE list as four references to itself. */
+$self = 'retire_board_fields.php';
+foreach ($RETIRE as $h) {
+    foreach ($roots as $root) {
+        $dir = \Craft::getAlias('@root') . '/' . $root;
+        if (!is_dir($dir)) { continue; }
+        $it = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS));
+        foreach ($it as $file) {
+            if (!$file->isFile()) { continue; }
+            if (!preg_match('~\.(twig|php|js|json|yaml|yml)$~', $file->getFilename())) { continue; }
+            $rel = str_replace(\Craft::getAlias('@root') . '/', '', $file->getPathname());
+            /* This script names all four by design, and so does the log. */
+            if (str_ends_with($rel, $self) || str_contains($rel, 'APPLIED.log')) { continue; }
+            /* Project config is the schema itself: it is rewritten by the apply. */
+            if (str_starts_with($rel, 'config/project/')) { continue; }
+            $body = (string)file_get_contents($file->getPathname());
+            /* Comments are not usage. A template that explains why a field went
+               away names it on purpose, and counting that as a reference makes
+               the check cry wolf at its own documentation. */
+            $ext = $file->getExtension();
+            if ($ext === 'twig') {
+                $body = preg_replace('~\{#.*?#\}~s', ' ', $body);
+            } elseif (in_array($ext, ['php', 'js'], true)) {
+                $body = preg_replace(['~/\*.*?\*/~s', '~//[^\n]*~', '~(?<![:\w])#[^\n]*~'], ' ', $body);
+            }
+            if (preg_match('~(?<![A-Za-z0-9_])' . preg_quote($h, '~') . '(?![A-Za-z0-9_])~', $body)) {
+                foreach (preg_split('~\R~', $body) as $i => $line) {
+                    if (preg_match('~(?<![A-Za-z0-9_])' . preg_quote($h, '~') . '(?![A-Za-z0-9_])~', $line)) {
+                        $referenced[$h][] = $rel . ':' . ($i + 1) . '  ' . trim(mb_substr($line, 0, 90));
+                    }
+                }
+            }
+        }
+    }
+}
+echo PHP_EOL . 'still named in the code:' . PHP_EOL;
+foreach ($RETIRE as $h) {
+    $hits = $referenced[$h] ?? [];
+    printf("   %-16s %d reference%s\n", $h, count($hits), count($hits) === 1 ? '' : 's');
+    foreach (array_slice($hits, 0, 6) as $hit) { echo '      ' . $hit . PHP_EOL; }
+}
+
 $type = $svc->getEntryTypeByHandle($TYPE);
 $onLayout = array_values(array_intersect($RETIRE, array_map(fn($c) => $c->handle, $type->getFieldLayout()->getCustomFields())));
 echo PHP_EOL . 'on the organization layout: ' . ($onLayout ? implode(', ', $onLayout) : 'none') . PHP_EOL;
 echo 'parentOrganization: kept, ' . \craft\elements\Entry::find()->section('organizations')->status(null)->parentOrganization(':notempty:')->count() . ' record(s) use it' . PHP_EOL;
 
 if ($inUse) {
-    echo PHP_EOL . 'STOPPING: ' . implode('; ', $inUse) . ' now hold values. Move them into officeHolding first.' . PHP_EOL;
-    return;
+    throw new \RuntimeException('retire_board_fields: ' . implode('; ', $inUse)
+        . ' now hold values. Move them into officeHolding first.');
+}
+if ($referenced) {
+    echo PHP_EOL . 'STOPPING: these handles are still named in the code. Deleting a field the'
+       . ' templates call is how every organization page came to answer 500 on 25 September.' . PHP_EOL;
+    throw new \RuntimeException('retire_board_fields: still referenced: '
+        . implode(', ', array_map(fn($h) => $h . ' (' . count($referenced[$h]) . ')', array_keys($referenced))));
 }
 if (!$svc->getEntryTypeByHandle('officeHolding')) {
     echo PHP_EOL . 'officeHolding does not exist yet. Run add_office_holding.php first, so nothing is removed'

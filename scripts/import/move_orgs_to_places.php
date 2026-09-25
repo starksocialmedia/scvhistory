@@ -71,7 +71,10 @@ $RENAME = [
 
 /* Relations pointing AT an organization, by the field that holds them. */
 $INBOUND = ['subjectOrganization', 'publishedBy', 'personOrganizations', 'orgAssociatedPersons',
-            'placeOrganizations', 'photoOrganizations', 'parentOrganization', 'subBoards',
+            /* subBoards was retired on 25 September 2026: it was the inverse of
+               parentOrganization kept in a second place, and sub-bodies are read
+               from the nesting now. */
+            'placeOrganizations', 'photoOrganizations', 'parentOrganization',
             'orgFoundedBy', 'derivedImageLinks', 'relatedArticles'];
 
 /* Where a place takes the same relation, so the repoint has somewhere to go. */
