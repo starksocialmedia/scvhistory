@@ -68,3 +68,5 @@
 2026-09-24 22:15:12 PDT	retire_board_fields.php	scvhistory-web	0 rows	verified: gone from the layout and deleted, parentOrganization kept	superseded by officeHolding; all four were empty across 38 organizations
 2026-09-25 00:20:20 PDT	fix_document_body_duplication.php	scvhistory-web	1 rows	verified 1 of 1; headline and credit still in their fields, dateline still in the body	headline and credit line removed from the body; they render from the fields
 2026-09-25 01:38:21 PDT	add_person_evidence_fields.php	scvhistory-web	6 rows	verified: 3 dropdowns on the person layout, levels identical to startEvidence	evidence per claim, not per field; a hedge now has somewhere to live
+2026-09-25 02:14:03 PDT	add_document_collection_field.php	scvhistory-web	1 rows	verified: on the document layout	schema only; documents can now join a collection
+2026-09-25 02:14:13 PDT	import_mentry_sources.php	scvhistory-web	10 rows	verified: 10 records and their scans read back	2 photographs, 8 documents from 7 legacy pages; masters as0001_large, penpictureslacounty_large
