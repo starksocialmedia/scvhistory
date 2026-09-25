@@ -2,3 +2,12 @@
 /.idea
 /vendor
 .DS_Store
+
+# Obituary data lives in the private repo starksocialmedia/scvhistory-data.
+# Never commit obituary data here.
+inventory/legacy/obituaries*.json
+inventory/legacy/obituaries_*
+inventory/private/
+# Crawl checkpoints and logs
+*_checkpoint.json
+*_stdout.log

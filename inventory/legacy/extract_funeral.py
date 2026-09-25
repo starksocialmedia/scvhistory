@@ -5,7 +5,12 @@ import json, re, sys
 from collections import Counter
 from pathlib import Path
 
-INV = Path("/workspace/scvhistory/inventory/legacy")
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scv_data import obituaries_dir  # noqa: E402
+
+# Obituary data lives in the private repo starksocialmedia/scvhistory-data (see scv_data.py).
+INV = obituaries_dir()
 OBITS = INV / "obituaries.json"
 REPORT = INV / "obituaries_funeral_report.json"
 

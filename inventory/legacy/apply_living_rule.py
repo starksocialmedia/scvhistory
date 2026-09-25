@@ -62,7 +62,10 @@ from extract_relationships import (  # noqa: E402
     split_sentences,
 )
 
-INV = Path(__file__).resolve().parent
+from scv_data import obituaries_dir  # noqa: E402
+
+# Obituary data lives in the private repo starksocialmedia/scvhistory-data (see scv_data.py).
+INV = obituaries_dir()
 OBITS = INV / "obituaries.json"
 REPORT = INV / "obituaries_living_rule_report.json"
 

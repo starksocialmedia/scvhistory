@@ -243,6 +243,23 @@ doesn't establish the named person is deceased, the relationship is not structur
 It stays only as prose in `body_text`. The deceased subject's own facts are
 unaffected.
 
+## Where obituary data lives
+
+**Obituary data lives in the private repo `starksocialmedia/scvhistory-data`; never
+commit obituary data here.** That covers `obituaries.json` and the three
+`obituaries_*_report.json` files, now at `obituaries/` in the data repo, and any
+checkpoint, log or excerpt of them. `.gitignore` blocks `inventory/legacy/obituaries*`
+and `inventory/private/`. The scripts stay in this repo and hold no personal data:
+`crawl_obituaries.py`, `inventory/legacy/extract_relationships.py`,
+`apply_living_rule.py`, `extract_funeral.py`. They locate the data through
+`inventory/legacy/scv_data.py`: `$SCV_DATA_DIR` if set (relative paths resolve
+against the repo root), else `../scvhistory-data` next to the repo root, else the
+gitignored `inventory/private/`. Files are read and written in `<data dir>/obituaries/`.
+`crawl_obituaries.py` does not commit; run the three scripts after a crawl, then
+commit in the data repo. `extract_footnotes.py` does not process obituaries (its
+report is committed here). Where this contract says `obituaries.json` or an
+`obituaries_*_report.json`, it means the file in the data repo.
+
 ## Obituary relationships (`relationships`, obituaries.json)
 
 Stated family relationships only, extracted from each obituary's own `body_text` by

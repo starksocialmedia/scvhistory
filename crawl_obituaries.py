@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
-"""Crawl SCVHistory obituaries into inventory/legacy/obituaries.json.
+"""Crawl SCVHistory obituaries into <SCV_DATA_DIR>/obituaries/obituaries.json.
 
 Targets from scvhistory-map.json: kind==obituary OR filename starts with
-obituary_ / obituary-. Batches of 100 with git commit+push after each.
+obituary_ / obituary-. Batches of 100; output and checkpoint are written after each.
+
+Obituary data lives in the private repo starksocialmedia/scvhistory-data, never in
+this repo. The data directory is resolved by inventory/legacy/scv_data.py:
+$SCV_DATA_DIR, else ../scvhistory-data next to the repo root, else the gitignored
+inventory/private/. This script does not commit anything. After a crawl, run
+inventory/legacy/extract_relationships.py -> apply_living_rule.py -> extract_funeral.py
+(the raw crawl output is unfiltered), then commit in the data repo.
 """
 from __future__ import annotations
 
 import json
 import re
-import subprocess
+import sys
 import time
 import urllib.request
 from collections import defaultdict
@@ -22,11 +29,15 @@ UA = cr.UA
 SLEEP = 1.0
 BATCH_SIZE = 100
 CRAWLED = date.today().isoformat()
-MAP_PATH = Path("/workspace/scvhistory/inventory/legacy/scvhistory-map.json")
-OUT_PATH = Path("/workspace/scvhistory/inventory/legacy/obituaries.json")
-CKPT_PATH = Path("/workspace/scvhistory/inventory/legacy/obituaries_checkpoint.json")
-LOG_PATH = Path("/workspace/scvhistory/inventory/legacy/obituaries_stdout.log")
-REPO = Path("/workspace/scvhistory")
+REPO = Path(__file__).resolve().parent
+sys.path.insert(0, str(REPO / "inventory" / "legacy"))
+from scv_data import obituaries_dir  # noqa: E402
+
+MAP_PATH = REPO / "inventory" / "legacy" / "scvhistory-map.json"
+DATA = obituaries_dir()
+OUT_PATH = DATA / "obituaries.json"
+CKPT_PATH = DATA / "obituaries_checkpoint.json"
+LOG_PATH = DATA / "obituaries_stdout.log"
 
 
 def log(msg: str) -> None:
@@ -342,20 +353,6 @@ def write_output(
     OUT_PATH.write_text(json.dumps(doc, ensure_ascii=False) + "\n")
 
 
-def git_commit_batch(batch_num: int, batch_count: int, total: int, target: int) -> str:
-    add_paths = ["inventory/legacy/obituaries.json"]
-    script_repo = REPO / "crawl_obituaries.py"
-    if script_repo.exists():
-        add_paths.append("crawl_obituaries.py")
-    subprocess.run(["git", "add", *add_paths], cwd=REPO, check=True)
-    msg = f"obituaries batch {batch_num}: +{batch_count} pages ({total}/{target})"
-    subprocess.run(["git", "commit", "-m", msg], cwd=REPO, check=True)
-    subprocess.run(["git", "push", "origin", "grok-bot"], cwd=REPO, check=True)
-    return subprocess.check_output(
-        ["git", "rev-parse", "--short", "HEAD"], cwd=REPO, text=True
-    ).strip()
-
-
 def process_obituary(url: str, series_position: int, title_hint: str, html: str, final: str) -> dict:
     page = w6.process_content_page(url, series_position, title_hint, html, final)
     # Explicit related-reading merge on full HTML (contract sidebar rule)
@@ -372,6 +369,7 @@ def process_obituary(url: str, series_position: int, title_hint: str, html: str,
 
 
 def main() -> None:
+    DATA.mkdir(parents=True, exist_ok=True)
     targets, kind_obit, filename_extra = obituary_urls()
     target_n = len(targets)
     state = load_state()
@@ -472,14 +470,10 @@ def main() -> None:
                 "target_count": target_n,
             }
         )
-        try:
-            sha = git_commit_batch(batch_num, len(batch_pages), len(pages), target_n)
-            log(
-                f"BATCH {batch_num} COMMIT {sha} pages_in_batch={len(batch_pages)} "
-                f"total_pages={len(pages)}/{target_n} failures={len(failures)}"
-            )
-        except subprocess.CalledProcessError as e:
-            log(f"BATCH {batch_num} git failed: {e}")
+        log(
+            f"BATCH {batch_num} SAVED {OUT_PATH} pages_in_batch={len(batch_pages)} "
+            f"total_pages={len(pages)}/{target_n} failures={len(failures)}"
+        )
         i += BATCH_SIZE
 
     log(f"DONE page_count={len(pages)}/{target_n} failures={len(failures)}")

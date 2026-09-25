@@ -10,7 +10,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
-INV = Path("/workspace/scvhistory/inventory/legacy")
+INV = Path(__file__).resolve().parent
 HTML_CACHE = Path("/tmp/scv_html")
 
 SHARED_NOTES_URLS = {
@@ -27,7 +27,8 @@ TARGET_FILES = [
     "lw-disaster.json",
     "lw-remainder.json",
     "media.json",
-    "obituaries.json",
+    # obituaries.json is not here: it lives in the private repo starksocialmedia/scvhistory-data
+    # and must not feed this report (which is committed to this repo). Missing files are skipped.
     "warmemorial.json",
     "loose-pages.json",
     "mentryville.json",
