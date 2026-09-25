@@ -4173,5 +4173,133 @@
       },
       "footnotes_notes_page_url": ""
     }
-  ]
+  ],
+  "unique_by_source_url": {
+    "normalization": "source_url lowercased, scheme and leading www. stripped, trailing slash stripped",
+    "files_scanned": [
+      "perkins.json",
+      "reynolds.json",
+      "reynolds-full.json",
+      "lw-features.json",
+      "lw-film.json",
+      "lw-disaster.json",
+      "lw-remainder.json",
+      "media.json",
+      "obituaries.json",
+      "warmemorial.json"
+    ],
+    "per_file": [
+      {
+        "file": "perkins.json",
+        "pages_with_footnotes": 10,
+        "total_entries": 209
+      },
+      {
+        "file": "reynolds.json",
+        "pages_with_footnotes": 4,
+        "total_entries": 7
+      },
+      {
+        "file": "reynolds-full.json",
+        "pages_with_footnotes": 11,
+        "total_entries": 21
+      },
+      {
+        "file": "lw-features.json",
+        "pages_with_footnotes": 220,
+        "total_entries": 924
+      },
+      {
+        "file": "lw-film.json",
+        "pages_with_footnotes": 38,
+        "total_entries": 93
+      },
+      {
+        "file": "lw-disaster.json",
+        "pages_with_footnotes": 41,
+        "total_entries": 109
+      },
+      {
+        "file": "lw-remainder.json",
+        "pages_with_footnotes": 28,
+        "total_entries": 220
+      },
+      {
+        "file": "media.json",
+        "pages_with_footnotes": 6,
+        "total_entries": 23
+      },
+      {
+        "file": "obituaries.json",
+        "pages_with_footnotes": 3,
+        "total_entries": 7
+      },
+      {
+        "file": "warmemorial.json",
+        "pages_with_footnotes": 1,
+        "total_entries": 2
+      }
+    ],
+    "pages_with_footnotes_raw_sum": 362,
+    "entries_raw_sum": 1615,
+    "unique_pages": 358,
+    "unique_entries": 1608,
+    "distinct_page_number_markers": 1608,
+    "counts_by_resolution_unique": {
+      "shared_notes_page": 42,
+      "same_page": 290,
+      "orphan": 1276
+    },
+    "urls_in_multiple_files": [
+      {
+        "normalized_url": "scvhistory.com/scvhistory/signal/reynolds/part05.html",
+        "files": [
+          "reynolds.json",
+          "reynolds-full.json"
+        ],
+        "entries_per_copy": [
+          3,
+          3
+        ],
+        "copies_identical": true
+      },
+      {
+        "normalized_url": "scvhistory.com/scvhistory/signal/reynolds/part13.html",
+        "files": [
+          "reynolds.json",
+          "reynolds-full.json"
+        ],
+        "entries_per_copy": [
+          1,
+          1
+        ],
+        "copies_identical": true
+      },
+      {
+        "normalized_url": "scvhistory.com/scvhistory/signal/reynolds/part14.html",
+        "files": [
+          "reynolds.json",
+          "reynolds-full.json"
+        ],
+        "entries_per_copy": [
+          1,
+          1
+        ],
+        "copies_identical": true
+      },
+      {
+        "normalized_url": "scvhistory.com/scvhistory/signal/reynolds/part16.html",
+        "files": [
+          "reynolds.json",
+          "reynolds-full.json"
+        ],
+        "entries_per_copy": [
+          2,
+          2
+        ],
+        "copies_identical": true
+      }
+    ],
+    "notes": "Only the four Reynolds chapters present in both reynolds.json and reynolds-full.json are duplicated among footnoted pages (identical footnote arrays). reynolds.json and reynolds-full.json share 23 chapter URLs overall; perkins.json shares no URLs with any other file."
+  }
 }
