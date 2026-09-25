@@ -81,7 +81,7 @@ foreach (array_keys($bySection) as $handle) {
         $empty = function (string $h) use ($e, $layout): bool {
             if (!in_array($h, $layout, true)) { return false; }
             try { $v = $e->getFieldValue($h); } catch (\Throwable $x) { return false; }
-            if (is_object($v) && method_exists($v, 'count')) { return $v->count() === 0; }
+            if (is_object($v) && method_exists($v, 'count')) { return (int)$v->count() === 0; }
             if (is_array($v)) { return count($v) === 0; }
             return trim((string)$v) === '';
         };

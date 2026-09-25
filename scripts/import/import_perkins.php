@@ -72,7 +72,7 @@ $isEmptyValue = function ($v): bool {
     if ($v === null) { return true; }
     if (is_string($v)) { return trim($v) === ''; }
     if (is_array($v)) { return count($v) === 0; }
-    if ($v instanceof \craft\elements\db\ElementQuery) { return $v->count() === 0; }
+    if ($v instanceof \craft\elements\db\ElementQuery) { return (int)$v->count() === 0; }
     if (is_object($v) && method_exists($v, 'getRawContent')) {
         return trim(strip_tags((string)$v->getRawContent())) === '';
     }

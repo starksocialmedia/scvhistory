@@ -72,7 +72,7 @@ foreach ($RENAME as $id => $r) {
         $e->setFieldValue('orgAliases', $have ? $have . ', ' . $r['aliases'] : $r['aliases']);
         $e->setFieldValue('orgType', 'business');
         return $elements->saveElement($e);
-    }, fn() => $get($id)->title === $r['title'], "rename #$id"];
+    }, fn() => ($t = $get($id)->title) === $r['title'] ? '' : "#$id title reads \"$t\", expected \"{$r['title']}\"", "rename #$id"];
 }
 
 /* 2 */
@@ -86,7 +86,7 @@ foreach ($TYPES as $id => [$type, $level, $why]) {
         $e = $get($id); $e->setFieldValue('orgType', $type);
         if ($level && $e->getFieldLayout()->getFieldByHandle('schoolLevel') && !(string)$e->schoolLevel->value) { $e->setFieldValue('schoolLevel', $level); }
         return $elements->saveElement($e);
-    }, fn() => (string)$get($id)->orgType->value === $type, "orgType #$id"];
+    }, fn() => ($t = (string)$get($id)->orgType->value) === $type ? '' : "#$id orgType reads \"$t\", expected \"$type\"", "orgType #$id"];
 }
 
 /* 3 */
@@ -124,10 +124,19 @@ if ($harvey) {
         }
         return $elements->deleteElement($get($STACK));
     }, function () use ($STACK, $STACKS_ARTICLES) {
-        $gone = !\craft\elements\Entry::find()->id($STACK)->status(null)->exists();
+        $out = [];
+        if (\craft\elements\Entry::find()->id($STACK)->status(null)->exists()) { $out[] = "Harvey Stack #$STACK is still live"; }
         $s = \craft\elements\Entry::find()->section('organizations')->status(null)->title("Stack's")->one();
-        $n = $s ? \craft\elements\Entry::find()->status(null)->id($STACKS_ARTICLES)->relatedTo(['targetElement' => $s, 'field' => 'subjectOrganization'])->count() : 0;
-        return $gone && $n === count($STACKS_ARTICLES);
+        if (!$s) { return "no organization titled Stack's"; }
+        /* count() comes back from MySQL as a string: "3" === 3 is false. This
+           comparison failed the 03:51 apply with every write in place. */
+        $got = \craft\elements\Entry::find()->status(null)->id($STACKS_ARTICLES)->relatedTo(['targetElement' => $s, 'field' => 'subjectOrganization'])->ids();
+        $missing = array_diff($STACKS_ARTICLES, array_map('intval', $got));
+        if ($missing) { $out[] = "Stack's #{$s->id} is missing articles #" . implode(', #', $missing) . ' (holds ' . count($got) . ' of ' . count($STACKS_ARTICLES) . ')'; }
+        $left = (new \craft\db\Query())->from(['r' => '{{%relations}}'])->innerJoin(['e' => '{{%elements}}'], 'e.id = r.sourceId')
+            ->where(['r.targetId' => $STACK, 'e.revisionId' => null, 'e.draftId' => null])->count();
+        if ((int)$left) { $out[] = "$left relation(s) still point at Harvey Stack #$STACK"; }
+        return implode('; ', $out);
     }, 'Harvey Stack deleted, Stack\'s holds 3 articles'];
 } else { $skipped[] = "Harvey Stack #$STACK already gone"; }
 
@@ -144,7 +153,7 @@ foreach ($PAIRS as [$placeRef, $orgId]) {
         $p = $get($pid);
         $p->setFieldValue('placeOrganizations', array_values(array_unique(array_merge($p->placeOrganizations->status(null)->ids(), [$orgId]))));
         return $elements->saveElement($p);
-    }, fn() => in_array($orgId, $get($pid)->placeOrganizations->status(null)->ids(), true), "pair #$pid <-> #$orgId"];
+    }, fn() => in_array($orgId, array_map('intval', $get($pid)->placeOrganizations->status(null)->ids()), true) ? '' : "place #$pid placeOrganizations reads " . json_encode($get($pid)->placeOrganizations->status(null)->ids()) . ", expected it to include #$orgId", "pair #$pid <-> #$orgId"];
 }
 
 foreach ($skipped as $s) { echo 'skip ' . $s . PHP_EOL; }
@@ -154,11 +163,14 @@ if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $A
 $short = [];
 foreach ($ops as [$write, $check, $what]) {
     if (!$write()) { $short[] = "$what: save failed"; continue; }
-    if (!$check()) { $short[] = "$what: reads back short"; }
+    /* A check returns '' when the write holds, or says what it found and what
+       it expected. "reads back short" alone is the fault the mirror import
+       had; never again. */
+    if (($why = $check()) !== '') { $short[] = "$what: $why"; }
 }
 echo 'READ-BACK ' . ($short ? 'SHORT' : 'OK') . ': ' . (count($ops) - count($short)) . ' of ' . count($ops) . PHP_EOL;
 foreach ($short as $s) { echo '   FAIL ' . $s . PHP_EOL; }
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('fix_org_records.php', count($ops), $short ? 'SHORT: ' . implode('; ', $short) : 'verified ' . count($ops) . ' of ' . count($ops),
     'rename #18862; orgType x' . count($TYPES) . "; Harvey Stack deleted, Stack's created; org-place pairs linked");
-if ($short) { throw new \RuntimeException('fix_org_records: read-back failed'); }
+if ($short) { throw new \RuntimeException('fix_org_records: read-back failed: ' . implode('; ', $short)); }
