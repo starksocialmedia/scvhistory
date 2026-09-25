@@ -89,6 +89,49 @@ $hasField = function (\craft\base\ElementInterface $el, string $handle): bool {
     return false;
 };
 
+/* ---------------------------------------------- no family graph of the living
+
+   A kinship relation is written only between two historical people. The site
+   will not publish one otherwise (_partials/record/historical.twig), and a
+   relation that is stored but can never be shown is a living person's family
+   structure held in the archive for no reason. So the refusal happens here,
+   before the write, not after it in a template.
+
+   The test is the template's, in PHP: historical is a war memorial casualty, a
+   death date with a year in it, a live obituary, or a birth year more than 120
+   years ago. It FAILS CLOSED: undetermined is living.
+
+   It is run twice. In the plan, against the dates this script is about to
+   write, so a dry run shows which relations would be refused. And at write
+   time, against the saved records as they read back from the database, which
+   is what actually decides: a record this script found already existing may
+   not carry the dates the plan assumed. */
+$historical = function (\craft\elements\Entry $e) use ($hasField): array {
+    if ($e->section && $e->section->handle === 'warMemorials') { return [true, 'war memorial casualty']; }
+    foreach (['deathDate', 'deathDateEdtf', 'mpDateOfDeath'] as $h) {
+        if ($hasField($e, $h) && preg_match('~\d{3}~', (string)$e->getFieldValue($h))) { return [true, $h]; }
+    }
+    if ($hasField($e, 'personObituaries') && $e->personObituaries->exists()) { return [true, 'obituary']; }
+    if (\craft\elements\Entry::find()->section('obituaries')
+        ->relatedTo(['targetElement' => $e, 'field' => 'obitSubject'])->exists()) { return [true, 'obituary subject']; }
+    foreach (['birthDateEdtf', 'birthDate', 'wmDateOfBirth', 'mpDateOfBirth'] as $h) {
+        if ($hasField($e, $h) && preg_match('~\b(1[5-9]\d\d|20\d\d)\b~', (string)$e->getFieldValue($h), $m)) {
+            return (int)$m[1] <= (int)date('Y') - 120
+                ? [true, 'born ' . $m[1]] : [false, 'born ' . $m[1] . ', no death date'];
+        }
+    }
+    return [false, 'undetermined: no death date, no obituary, no birth year'];
+};
+/* The same test against a plan row, before anything is saved. */
+$plannedHistorical = function (array $p): array {
+    if (($p['deathDate'] ?? '') !== '' && preg_match('~\d{3}~', $p['deathDate'])) { return [true, 'deathDate ' . $p['deathDate']]; }
+    if (preg_match('~\b(1[5-9]\d\d|20\d\d)\b~', (string)($p['birthDate'] ?? ''), $m) && (int)$m[1] <= (int)date('Y') - 120) {
+        return [true, 'born ' . $m[1]];
+    }
+    return [false, 'undetermined in the plan: no death date and no birth year before ' . ((int)date('Y') - 120)];
+};
+$refused = [];
+
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL;
 echo str_repeat('=', 78) . PHP_EOL;
 
@@ -608,14 +651,25 @@ foreach ($PEOPLE as $map => [$title, $fullName, $prose]) {
 }
 
 echo PHP_EOL . 'relations that would be set:' . PHP_EOL;
+$planGate = function (string $a, string $b) use ($plan, $plannedHistorical): string {
+    $out = [];
+    foreach ([$a, $b] as $k) {
+        [$ok, $why] = isset($plan[$k]) ? $plannedHistorical($plan[$k]) : [false, 'not in the plan'];
+        if (!$ok) { $out[] = ($plan[$k]['title'] ?? $k) . ': ' . $why; }
+    }
+    return $out ? '   REFUSED, living or undetermined: ' . implode('; ', $out) : '';
+};
 foreach ($SPOUSES as [$a, $b]) {
+    $gate = $planGate($a, $b);
     echo '   spouseOf   ' . ($plan[$a]['title'] ?? $a) . '  <->  ' . ($plan[$b]['title'] ?? $b)
-        . '   [the census spouse column says so]' . PHP_EOL;
+        . '   [the census spouse column says so]' . $gate . PHP_EOL;
 }
 foreach ($CHILDREN as $child => $parents) {
-    $ps = array_map(fn($p) => $plan[$p]['title'] ?? $p, $parents);
-    echo '   childOf    ' . ($plan[$child]['title'] ?? $child) . '  ->  ' . implode(' and ', $ps)
-        . '   [inferred: Worden\'s four children, aged eight to thirty]' . PHP_EOL;
+    foreach ($parents as $p) {
+        $gate = $planGate($child, $p);
+        echo '   childOf    ' . ($plan[$child]['title'] ?? $child) . '  ->  ' . ($plan[$p]['title'] ?? $p)
+            . '   [inferred: Worden\'s four children, aged eight to thirty]' . $gate . PHP_EOL;
+    }
 }
 
 /* --------------------------------------------- who else has a second fact
@@ -728,8 +782,21 @@ foreach ($plan as $map => $p) {
     }
 }
 
+/* The gate, against the records as saved. Either party failing refuses the
+   relation, loudly, and the refusal is counted so the summary cannot read as
+   clean. */
+$gate = function (\craft\elements\Entry $x, \craft\elements\Entry $y, string $rel) use ($historical, &$refused): bool {
+    [$okX, $whyX] = $historical($x);
+    [$okY, $whyY] = $historical($y);
+    if ($okX && $okY) { return true; }
+    $refused[] = $rel . '  #' . $x->id . ' ' . $x->title . ' [' . $whyX . ']  ->  #' . $y->id . ' ' . $y->title . ' [' . $whyY . ']';
+    echo 'REFUSED ' . end($refused) . PHP_EOL;
+    return false;
+};
+$wantRel = [];
 foreach ($SPOUSES as [$a, $b]) {
     if (!isset($made[$a], $made[$b])) { continue; }
+    if (!$gate($made[$a], $made[$b], 'spouseOf')) { continue; }
     foreach ([[$a, $b], [$b, $a]] as [$x, $y]) {
         $e = $made[$x];
         if (!$hasField($e, 'spouseOf')) { continue; }
@@ -737,6 +804,7 @@ foreach ($SPOUSES as [$a, $b]) {
         if (in_array($made[$y]->id, $ids, true)) { continue; }
         $e->setFieldValue('spouseOf', array_merge($ids, [$made[$y]->id]));
         $elements->saveElement($e);
+        $wantRel[] = ['spouseOf', $e->id, $made[$y]->id];
         echo 'spouseOf  ' . $e->title . ' -> ' . $made[$y]->title . PHP_EOL;
     }
 }
@@ -746,13 +814,31 @@ foreach ($CHILDREN as $child => $parents) {
     $e = $made[$child];
     if (!$hasField($e, 'childOf')) { continue; }
     $ids = $e->childOf->ids();
+    $added = [];
     foreach ($parents as $p) {
-        if (isset($made[$p]) && !in_array($made[$p]->id, $ids, true)) { $ids[] = $made[$p]->id; }
+        if (!isset($made[$p]) || in_array($made[$p]->id, $ids, true)) { continue; }
+        if (!$gate($e, $made[$p], 'childOf')) { continue; }
+        $ids[] = $made[$p]->id;
+        $added[] = $made[$p];
+        $wantRel[] = ['childOf', $e->id, $made[$p]->id];
     }
+    if (!$added) { continue; }
     $e->setFieldValue('childOf', $ids);
     $elements->saveElement($e);
-    echo 'childOf   ' . $e->title . ' -> ' . implode(', ', array_map(fn($p) => $made[$p]->title ?? $p, $parents)) . PHP_EOL;
+    echo 'childOf   ' . $e->title . ' -> ' . implode(', ', array_map(fn($x) => $x->title, $added)) . PHP_EOL;
 }
+
+/* Read the relations back, and re-run the gate on what the database holds. */
+$relShort = 0;
+foreach ($wantRel as [$h, $src, $tgt]) {
+    $fresh = \craft\elements\Entry::find()->id($src)->status(null)->one();
+    $got = $fresh ? $fresh->getFieldValue($h)->status(null)->ids() : [];
+    if (!in_array($tgt, $got, true)) { $relShort++; echo 'RELATION DID NOT PERSIST: ' . $h . ' #' . $src . ' -> #' . $tgt . PHP_EOL; }
+}
+echo 'relations read back: ' . (count($wantRel) - $relShort) . ' of ' . count($wantRel)
+    . ($relShort ? '   SHORT' : '') . PHP_EOL;
+echo 'relations refused, living or undetermined: ' . count($refused) . PHP_EOL;
+foreach ($refused as $r) { echo '   ' . $r . PHP_EOL; }
 
 if ($hasTable) {
     $place->setFieldValue($CENSUS_FIELD, $tableRows);

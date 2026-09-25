@@ -1,0 +1,48 @@
+{#
+  Is this person historical: dead on the record's own evidence, or born long
+  enough ago that they cannot be living.
+
+  The archive does not publish a family graph of living people. A relation
+  between two documented historical figures is history; a living person's
+  family structure is not the archive's to state. This is the test that decides
+  which is which, shared by the family calculation in _layouts/base.twig, the
+  Family box and the relatives' lines in it.
+
+  It FAILS CLOSED. Undetermined is treated as living: a record with no death
+  date, no casualty record, no obituary and no birth year says nothing about
+  whether the person is alive, and silence is not evidence of death.
+
+  Historical is any one of:
+    - a war memorial casualty record
+    - a death date on the record (deathDate, deathDateEdtf, mpDateOfDeath)
+    - a live obituary for the person, either direction
+    - a birth year more than 120 years ago
+
+  Prints '1' for historical and nothing otherwise, so callers test it with
+  |trim. Mirrors the guard in scripts/import/import_ruiz_census.php, which
+  refuses to write a relation this would hide.
+#}
+{% macro historical(e) %}
+  {%- set h = [] -%}
+  {%- for f in (e.fieldLayout ? e.fieldLayout.customFields : []) -%}{%- set h = h|merge([f.handle]) -%}{%- endfor -%}
+  {%- set yes = e.section and e.section.handle == 'warMemorials' -%}
+  {%- for f in ['deathDate', 'deathDateEdtf', 'mpDateOfDeath'] -%}
+    {%- if not yes and f in h and (e.getFieldValue(f) ~ '') matches '/\\d{3}/' -%}{%- set yes = true -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if not yes and 'personObituaries' in h and e.personObituaries.exists() -%}{%- set yes = true -%}{%- endif -%}
+  {%- if not yes and craft.entries().section('obituaries').relatedTo({ targetElement: e, field: 'obitSubject' }).exists() -%}{%- set yes = true -%}{%- endif -%}
+  {%- if not yes -%}
+    {#- The first four-digit year in whichever birth field is filled. An
+        uncertain year ('1847?-03-27') still counts: uncertainty of a year or
+        two does not move anyone across a 120-year line. -#}
+    {%- set y = '' -%}
+    {%- for f in ['birthDateEdtf', 'birthDate', 'wmDateOfBirth', 'mpDateOfBirth'] -%}
+      {%- set v = f in h ? (e.getFieldValue(f) ~ '')|trim : '' -%}
+      {%- if not y and v matches '/\\b(1[5-9]\\d\\d|20\\d\\d)\\b/' -%}
+        {%- set y = v|replace('/^.*?\\b(1[5-9]\\d\\d|20\\d\\d)\\b.*$/s', '$1') -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if y and (y + 0) <= (now|date('Y')) - 120 -%}{%- set yes = true -%}{%- endif -%}
+  {%- endif -%}
+  {%- if yes %}1{% endif -%}
+{% endmacro %}

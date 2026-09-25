@@ -1,11 +1,12 @@
 {#
   Family box for the record sidebar.
 
-  childOf is the only stored direction: a person points up at their parents.
-  Everything else is derived, in _layouts/base.twig, which hands this partial a
-  `fam` of parents, children, siblings, grandparents and spouses, already
-  de-duplicated and with the record itself removed. That derivation is shared
-  with the JSON-LD, so the box and the graph can never disagree.
+  _layouts/base.twig hands this partial a `fam` of parents, children, siblings,
+  spouses and other relations, already de-duplicated, with the record itself
+  removed, and with every kinship row already limited to stored relations
+  between two historical people. That is shared with the JSON-LD, so the box and
+  the graph can never disagree. Nothing here is derived: no grandparents, no
+  grandchildren, no siblings from shared parents.
 
   The box renders only when something resolves, and each row renders only when
   that relation has someone in it, so an unrecorded family costs nothing on the
@@ -18,8 +19,7 @@
   an absent portrait reads as deliberate rather than broken.
 
   Other relations is whatever wmRelatedPerson, relatedPersons or mpRelatedPersons
-  held that is not already a parent, child, sibling, spouse, grandparent or
-  grandchild. The
+  held that is not already a parent, child, sibling or spouse. The
   separate Related person box is retired: a family member is a related person,
   and two boxes for one relationship is noise.
 
@@ -29,19 +29,31 @@
   than probed with `is defined`, which answers true for a field the type does
   not have.
 
+  A LIVING PERSON IS A NAME. Anyone who fails the historical test in
+  _partials/record/historical.twig (undetermined counts as living) is listed by
+  name alone, behind the initials circle: no portrait, no occupation, no birth
+  year. They are not the subject of this page, and a birth year is a routine
+  identity-verification field. Kinship rows never reach here with a living
+  person in them; this covers Other relations, and holds whatever the caller
+  hands in.
+
   Params
     fam  the derived family, or null
 #}
+{% import "_partials/record/historical" as hist %}
 {% if fam %}
   {% set rows = [
     ['PARENTS', fam.parents],
     ['CHILDREN', fam.children],
     ['SIBLINGS', fam.siblings],
-    ['GRANDPARENTS', fam.grandparents],
-    ['GRANDCHILDREN', fam.grandchildren ?? []],
     ['SPOUSE', fam.spouses],
     ['OTHER RELATIONS', fam.other ?? []]
   ]|filter(r => r[1]|length) %}
+  {#- The box says FAMILY only when it holds kinship. Other relations are
+      curated links, not kinship claims, and a curated link to a living person
+      under a FAMILY heading would state the family structure the kinship rule
+      has just withheld. Alone, they are RELATED PEOPLE, with no row label. -#}
+  {% set kinRows = rows|filter(r => r[0] != 'OTHER RELATIONS') %}
 
   {% if rows|length %}
     {% css %}
@@ -60,11 +72,12 @@
     {% endcss %}
 
     <div class="rec-box">
-      <div class="rec-lab">FAMILY</div>
+      <div class="rec-lab">{{ kinRows|length ? 'FAMILY' : 'RELATED PEOPLE' }}</div>
       <div class="rec-fam">
         {% for row in rows %}
-          <div class="lab">{{ row[0] }}</div>
+          {% if kinRows|length %}<div class="lab">{{ row[0] }}</div>{% endif %}
           {% for p in row[1] %}
+            {% set living = not (hist.historical(p)|trim) %}
             {% set ph = [] %}
             {% for f in (p.fieldLayout ? p.fieldLayout.customFields : []) %}{% set ph = ph|merge([f.handle]) %}{% endfor %}
 
@@ -80,8 +93,9 @@
             {% set role = 'occupation' in ph ? p.occupation|trim : ('wmRank' in ph ? p.wmRank|trim : ('mpRank' in ph ? p.mpRank|trim : '')) %}
             {% set sub = role ?: span %}
             {% if role and span %}{% set sub = role ~ ' · ' ~ span %}{% endif %}
+            {% if living %}{% set sub = '' %}{% endif %}
 
-            {% set img = 'featuredImage' in ph ? p.featuredImage.one() ?? null : null %}
+            {% set img = not living and 'featuredImage' in ph ? p.featuredImage.one() ?? null : null %}
             {% set words = (p.title ?: p.slug)|trim|split(' ')|filter(w => w|trim) %}
             {% set ini = (words|first|slice(0, 1) ~ (words|length > 1 ? words|last|slice(0, 1) : ''))|upper %}
 

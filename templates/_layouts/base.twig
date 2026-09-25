@@ -3,16 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {#- Family, derived once here so the sidebar box and the JSON-LD agree and the
-      queries run once. childOf is the only stored direction: a person points up
-      at their parents. Children are whoever points at this record, siblings are
-      the other children of its parents, grandparents one hop further up and
-      grandchildren one hop further down.
+  {#- Family, worked out once here so the sidebar box and the JSON-LD agree and
+      the queries run once.
+
+      ONLY STORED KINSHIP IS PUBLISHED. childOf is the stored direction: a
+      person points up at their parents, and children are the same stored fact
+      read from the other end. siblingOf and spouseOf are stored and read both
+      ways. Nothing is derived from two hops: no siblings from shared parents,
+      no grandparents, no grandchildren. Two childOf links do not make a
+      sourced sibling relationship, and a grandparent worked out from two
+      stored links is the archive asserting something no source stated. If a
+      sibling matters, it is stored as siblingOf with a citation.
+
+      NO FAMILY GRAPH OF LIVING PEOPLE. A kinship relation is published only
+      when both people are historical, by the test in
+      _partials/record/historical.twig, which treats undetermined as living. A
+      living person's page therefore shows no kin at all, and a historical
+      person's page never names a living relative. The relation stays stored
+      and visible in the control panel; this is a display rule.
+
+      LIVE RECORDS ONLY. No query here takes status(null): a disabled relative
+      is hidden, which is what disabling a record is for.
 
       Every hop goes through relatedTo rather than through the field on the
       element, because the related record may be a war memorial or a military
       profile whose layout does not carry childOf, and reading a field a type
       does not have throws. -#}
+  {%- import "_partials/record/historical" as hist -%}
   {%- set fam = null -%}
   {%- if entry is defined and entry -%}
     {%- set famH = [] -%}
@@ -20,53 +37,39 @@
       {%- set famH = famH|merge([f.handle]) -%}
     {%- endfor -%}
     {%- if 'childOf' in famH -%}
-      {%- set parents = craft.entries().relatedTo({ sourceElement: entry, field: 'childOf' }).status(null).all() -%}
-      {%- set children = craft.entries().relatedTo({ targetElement: entry, field: 'childOf' }).status(null).all() -%}
-      {%- set siblings = [] -%}
-      {%- set grandparents = [] -%}
-      {%- for p in parents -%}
-        {%- for s in craft.entries().relatedTo({ targetElement: p, field: 'childOf' }).status(null).all() -%}
-          {%- if s.id != entry.id -%}{%- set siblings = siblings|merge([s]) -%}{%- endif -%}
-        {%- endfor -%}
-        {%- set grandparents = grandparents|merge(craft.entries().relatedTo({ sourceElement: p, field: 'childOf' }).status(null).all()) -%}
-      {%- endfor -%}
-      {#- The same walk downwards: whoever points at one of this record's
-          children. Rodolfo Acosta reaches Rudy this way, from nothing typed
-          anywhere but childOf on Rudy and on Dante. -#}
-      {%- set grandchildren = [] -%}
-      {%- for c in children -%}
-        {%- set grandchildren = grandchildren|merge(craft.entries().relatedTo({ targetElement: c, field: 'childOf' }).status(null).all()) -%}
-      {%- endfor -%}
-      {#- siblingOf stays for the half-brother the parents do not reach, and it
-          reads both ways so it need only be entered once. -#}
-      {%- if 'siblingOf' in famH -%}
-        {%- set siblings = siblings
-            |merge(craft.entries().relatedTo({ sourceElement: entry, field: 'siblingOf' }).status(null).all())
-            |merge(craft.entries().relatedTo({ targetElement: entry, field: 'siblingOf' }).status(null).all()) -%}
+      {%- set selfHistorical = hist.historical(entry)|trim -%}
+      {%- set kin = { parents: [], children: [], siblings: [], spouses: [] } -%}
+      {%- if selfHistorical -%}
+        {%- set kin = {
+          parents: craft.entries().relatedTo({ sourceElement: entry, field: 'childOf' }).all(),
+          children: craft.entries().relatedTo({ targetElement: entry, field: 'childOf' }).all(),
+          siblings: 'siblingOf' in famH
+            ? craft.entries().relatedTo({ sourceElement: entry, field: 'siblingOf' }).all()
+              |merge(craft.entries().relatedTo({ targetElement: entry, field: 'siblingOf' }).all())
+            : [],
+          spouses: 'spouseOf' in famH
+            ? craft.entries().relatedTo({ sourceElement: entry, field: 'spouseOf' }).all()
+              |merge(craft.entries().relatedTo({ targetElement: entry, field: 'spouseOf' }).all())
+            : []
+        } -%}
       {%- endif -%}
-      {%- set spouses = [] -%}
-      {%- if 'spouseOf' in famH -%}
-        {%- set spouses = craft.entries().relatedTo({ sourceElement: entry, field: 'spouseOf' }).status(null).all()
-            |merge(craft.entries().relatedTo({ targetElement: entry, field: 'spouseOf' }).status(null).all()) -%}
-      {%- endif -%}
-      {#- The loose relation fields, read both ways. A family member is a related
-          person, so anyone already placed above is dropped below and only the
-          rest reaches the Other heading. That retires the separate Related
-          person box: two boxes for one relationship is noise. -#}
+      {#- The loose relation fields, read both ways. They are curated links, not
+          kinship claims, so they are not held to the historical test; the box
+          shows a living one by name only. Anyone already placed as kin is
+          dropped here, so one person is never listed twice. -#}
       {%- set other = [] -%}
       {%- for h in ['wmRelatedPerson', 'relatedPersons', 'mpRelatedPersons'] -%}
         {%- set other = other
-            |merge(craft.entries().relatedTo({ sourceElement: entry, field: h }).status(null).all())
-            |merge(craft.entries().relatedTo({ targetElement: entry, field: h }).status(null).all()) -%}
+            |merge(craft.entries().relatedTo({ sourceElement: entry, field: h }).all())
+            |merge(craft.entries().relatedTo({ targetElement: entry, field: h }).all()) -%}
       {%- endfor -%}
-      {#- One entry can arrive twice, as a derived sibling and as a stored one. -#}
       {%- set fam = {} -%}
       {%- set seenAll = [] -%}
-      {%- for k, list in { parents: parents, children: children, siblings: siblings, grandparents: grandparents, grandchildren: grandchildren, spouses: spouses, other: other } -%}
+      {%- for k, list in kin|merge({ other: other }) -%}
         {%- set seen = seenAll -%}
         {%- set out = [] -%}
         {%- for e in list -%}
-          {%- if e.id not in seen and e.id != entry.id -%}
+          {%- if e.id not in seen and e.id != entry.id and (k == 'other' or hist.historical(e)|trim) -%}
             {%- set seen = seen|merge([e.id]) -%}
             {%- set out = out|merge([e]) -%}
           {%- endif -%}
@@ -75,8 +78,7 @@
         {%- set fam = fam|merge({ (k): out }) -%}
       {%- endfor -%}
       {%- set fam = (fam.parents|length or fam.children|length or fam.siblings|length
-          or fam.grandparents|length or fam.grandchildren|length or fam.spouses|length
-          or fam.other|length) ? fam : null -%}
+          or fam.spouses|length or fam.other|length) ? fam : null -%}
     {%- endif -%}
   {%- endif -%}
 
