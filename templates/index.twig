@@ -220,7 +220,12 @@
         </a>
       {% endif %}
       <div class="hp-list">
-        {% for e in craft.entries().status(null).orderBy('dateUpdated desc').limit(7).all() %}
+        {#- Live records that have a page of their own. It used to take
+            status(null) across every section, so a disabled record, a filed
+            fix note or a role term could land on the front page as a title
+            linking to '#'. A record with no URI is an internal one by
+            definition: fixes, roles, office holdings. -#}
+        {% for e in craft.entries().uri(':notempty:').orderBy('dateUpdated desc').limit(7).all() %}
           {% set img = e.featuredImage is defined ? e.featuredImage.one() ?? null : null %}
           {% set sub = '' %}
           {% if e.section.handle == 'persons' and e.occupation is defined %}{% set sub = e.occupation %}
