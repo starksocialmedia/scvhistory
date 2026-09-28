@@ -120,14 +120,22 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var PINS = {{ pins|json_encode|raw }};
-  var SHAPES_URL = {{ polygonsUrl ? polygonsUrl|json_encode|raw : 'null' }};
+  {#- A version on the GeoJSON URL. The file is served with no cache headers, so
+      browsers keep it on their own heuristics: after four boundaries were added
+      on 28 September, Chrome went on drawing its cached 15 while the server had
+      19. The version is a fingerprint of the neighbours file generated with the
+      boundaries, so it changes exactly when the boundaries do. -#}
+  {% set geoVersion = (source('_data/community-neighbors.json', ignore_missing = true)|hash)|slice(0, 12) %}
+  var GEO_V = {{ ('v=' ~ geoVersion)|json_encode|raw }};
+  function versioned(u){ return u ? u + (u.indexOf('?') === -1 ? '?' : '&') + GEO_V : u; }
+  var SHAPES_URL = versioned({{ polygonsUrl ? polygonsUrl|json_encode|raw : 'null' }});
   var SHAPE_META = {{ polygonMeta ? polygonMeta|json_encode|raw : '{}' }};
   var COUNT_EL = {{ boundaryCount ? boundaryCount|json_encode|raw : 'null' }};
   var OUTLINE_URL = {{ outlineUrl ? outlineUrl|json_encode|raw : 'null' }};
   var ACTIVE_SLUG = {{ activeSlug ? activeSlug|json_encode|raw : 'null' }};
   var HINT = {{ hint|json_encode|raw }};
   var FRAME = {{ frameSlugs|json_encode|raw }};
-  var GEO_URL = SHAPES_URL || {{ (siteUrl ~ 'data/communities.geojson')|json_encode|raw }};
+  var GEO_URL = SHAPES_URL || versioned({{ (siteUrl ~ 'data/communities.geojson')|json_encode|raw }});
   var frameBounds = null;
   var map = L.map('map', { scrollWheelZoom: false });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors', maxZoom: 18 }).addTo(map);

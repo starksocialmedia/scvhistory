@@ -8,8 +8,12 @@
   "bouquet-canyon": "csa",
   "canyon-country": "zcta",
   "castaic": "csa",
+  "fillmore": "census-place",
+  "frazier-park": "census-place",
   "lake-hughes": "csa",
+  "lebec": "census-place",
   "newhall": "zcta",
+  "piru": "census-place",
   "placerita-canyon": "csa",
   "san-francisquito-canyon": "csa",
   "sand-canyon": "csa",
@@ -25,8 +29,12 @@
   "bouquet-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
   "canyon-country": "Boundary approximated from Census ZIP Code Tabulation Areas 91351 and 91387.",
   "castaic": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "fillmore": "Boundary from the 2020 Census incorporated place (city limits).",
+  "frazier-park": "Boundary from the 2020 Census Designated Place, a statistical area the Census Bureau draws for an unincorporated community.",
   "lake-hughes": "Boundary from the Los Angeles County Countywide Statistical Areas.",
+  "lebec": "Boundary from the 2020 Census Designated Place, a statistical area the Census Bureau draws for an unincorporated community.",
   "newhall": "Boundary approximated from Census ZIP Code Tabulation Area 91321.",
+  "piru": "Boundary from the 2020 Census Designated Place, a statistical area the Census Bureau draws for an unincorporated community.",
   "placerita-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
   "san-francisquito-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
   "sand-canyon": "Boundary from the Los Angeles County Countywide Statistical Areas.",
@@ -68,9 +76,16 @@
    "val-verde",
    "valencia"
   ],
+  "fillmore": [],
+  "frazier-park": [
+   "lebec"
+  ],
   "lake-hughes": [
    "bouquet-canyon",
    "castaic"
+  ],
+  "lebec": [
+   "frazier-park"
   ],
   "newhall": [
    "canyon-country",
@@ -80,6 +95,7 @@
    "stevenson-ranch",
    "valencia"
   ],
+  "piru": [],
   "placerita-canyon": [
    "canyon-country",
    "newhall",
@@ -142,8 +158,12 @@
   "bouquet-canyon",
   "canyon-country",
   "castaic",
+  "fillmore",
+  "frazier-park",
   "lake-hughes",
+  "lebec",
   "newhall",
+  "piru",
   "placerita-canyon",
   "san-francisquito-canyon",
   "sand-canyon",
