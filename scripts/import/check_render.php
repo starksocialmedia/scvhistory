@@ -83,6 +83,36 @@ $ERRORS = ['Twig\\Error', 'Twig Syntax Error', 'Unexpected character',
 
 $fail = 0; $checked = 0; $ldTotal = 0;
 
+/* ------------------------------------------------ every template compiles
+
+   Rendering one page per kind catches a broken template only on the pages this
+   list loads. A Twig comment inside an array or hash literal is a syntax error
+   (the {# ... #} is read as code), and it took the site down three times: the
+   record pages once, the site header twice, in September 2026. The header is on
+   every page, so one comment in the wrong place is a whole-site outage.
+
+   So every .twig file under templates/ is tokenized and parsed first, and a
+   syntax error anywhere fails the check, whether or not a page below uses it.
+   Parsing only: nothing is rendered or executed here. */
+$view = Craft::$app->getView();
+$view->setTemplateMode(\craft\web\View::TEMPLATE_MODE_SITE);
+$twig = $view->getTwig();
+$tplRoot = \Craft::getAlias('@templates');
+$parsed = 0;
+$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($tplRoot, FilesystemIterator::SKIP_DOTS));
+foreach ($it as $f) {
+    if (!str_ends_with($f->getFilename(), '.twig')) { continue; }
+    $name = ltrim(substr($f->getPathname(), strlen($tplRoot)), '/');
+    try {
+        $twig->parse($twig->tokenize(new \Twig\Source((string)file_get_contents($f->getPathname()), $name, $f->getPathname())));
+        $parsed++;
+    } catch (\Twig\Error\SyntaxError $e) {
+        $fail++;
+        echo 'SYNTAX  ' . $name . ' line ' . $e->getTemplateLine() . ': ' . $e->getRawMessage() . PHP_EOL;
+    }
+}
+echo 'parsed ' . $parsed . ' templates' . PHP_EOL;
+
 foreach ($urls as $url => $what) {
     $ch = curl_init($url);
     curl_setopt_array($ch, [
