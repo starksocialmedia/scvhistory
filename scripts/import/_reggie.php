@@ -5,8 +5,8 @@
  *   $MIRROR = (require \Craft::getAlias('@root') . '/scripts/import/_reggie.php')('scvhistory.com');
  *
  * Reggie is an external drive and is regularly unplugged. DDEV starts without
- * it (.ddev/docker-compose.drive.yaml mounts /Volumes, and /mnt/reggie is a
- * symlink that dangles while the drive is absent). A script that reads the
+ * it: .ddev/drive-mount.sh, a pre-start hook, mounts it at /mnt/reggie only when
+ * it is connected at start, and mounts nothing otherwise. A script that reads the
  * mirror calls this first, and gets the absolute path, or a RuntimeException
  * that says what is missing and what to do, before it has done anything.
  */
@@ -18,9 +18,7 @@ return function (string $sub = ''): string {
         if ($sub === '' || file_exists($path)) { return $path; }
         throw new \RuntimeException("Reggie is connected, but $path is not on it.");
     }
-    $seen = is_dir('/mnt/volumes/Reggie')
-        ? 'The drive is mounted on the Mac but /mnt/volumes/Reggie/SCVHistory is missing: check the folder name.'
-        : 'The Mac does not see the drive (/Volumes/Reggie is absent).';
-    throw new \RuntimeException("Reggie is not connected. $seen This script reads the legacy mirror, so it cannot run without it. "
-        . 'Plug the drive in; if it is in and this persists, run: ddev restart');
+    throw new \RuntimeException('Reggie is not connected: there is no /mnt/reggie in the container. This script reads the legacy mirror, '
+        . 'so it cannot run without it. Plug the drive in, then restart DDEV (warn first, and wait for `ddev mutagen status` to read ok); '
+        . '.ddev/drive-mount.sh mounts it at start.');
 };

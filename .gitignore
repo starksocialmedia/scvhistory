@@ -41,3 +41,6 @@ review/photo-links.json
 
 # Scratch output from ad-hoc probes. Committed by accident on 2026-09-18.
 .probe/
+
+# Written at start by .ddev/drive-mount.sh when the Reggie drive is connected.
+.ddev/docker-compose.drive.yaml

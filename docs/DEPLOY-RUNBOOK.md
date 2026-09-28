@@ -428,8 +428,14 @@ ddev craft exec "eval(file_get_contents('scripts/import/check_render.php'))"
 
 ### Reggie is optional
 
-The archive drive is external and is often unplugged. DDEV starts without it
-(`.ddev/docker-compose.drive.yaml`), and a script that needs the mirror stops at
-once with "Reggie is not connected", through `scripts/import/_reggie.php`. That
-message is the whole diagnosis: plug the drive in. If it is plugged in and the
-message persists, restart DDEV (warn first, then wait for Mutagen).
+The archive drive is external and is often unplugged. A pre-start hook,
+`.ddev/drive-mount.sh`, runs on the Mac before every start. With the drive
+connected it mounts only `/Volumes/Reggie/SCVHistory`, read-only, at
+`/mnt/reggie`. Without it, it mounts nothing, and the container sees no other
+volume. A script that needs the mirror stops at once with "Reggie is not
+connected", through `scripts/import/_reggie.php`.
+
+Plugging the drive in while DDEV runs is not enough: restart to mount it (warn
+first, then wait for Mutagen). DDEV v1.25.1 runs pre-start hooks before it
+writes the compose config, so the restart that follows plugging in is the one
+that mounts it.

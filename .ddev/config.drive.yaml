@@ -1,0 +1,4 @@
+# The Reggie archive drive is optional. See .ddev/drive-mount.sh.
+hooks:
+  pre-start:
+    - exec-host: ".ddev/drive-mount.sh"
