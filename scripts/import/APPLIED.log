@@ -70,3 +70,6 @@
 2026-09-25 01:38:21 PDT	add_person_evidence_fields.php	scvhistory-web	6 rows	verified: 3 dropdowns on the person layout, levels identical to startEvidence	evidence per claim, not per field; a hedge now has somewhere to live
 2026-09-25 02:14:03 PDT	add_document_collection_field.php	scvhistory-web	1 rows	verified: on the document layout	schema only; documents can now join a collection
 2026-09-25 02:14:13 PDT	import_mentry_sources.php	scvhistory-web	10 rows	verified: 10 records and their scans read back	2 photographs, 8 documents from 7 legacy pages; masters as0001_large, penpictureslacounty_large
+2026-09-25 03:51:08 PDT	convert_orgs_to_places.php	scvhistory-web	8 rows	verified: 8 of 12 moved and retired	{"18876":20109,"16260":20118,"16201":20131,"18599":20152,"16425":20170,"18827":2540,"382":16446,"388":16506} retired; held live [384,386,398,400]; organizations disabled, not deleted
+2026-09-25 03:51:17 PDT	fix_org_records.php	scvhistory-web	16 rows	SHORT: Harvey Stack deleted, Stack's holds 3 articles: reads back short	rename #18862; orgType x11; Harvey Stack deleted, Stack's created; org-place pairs linked
+2026-09-28 07:40:57 CEST	fix_org_records.php	N8s-MacBook-2	0 rows	CORRECTION: the 03:51:17 SHORT was the check, not the data. count() returned "3" as a string and "3" === 3 is false; every write landed and was read back by id	check fixed in db5c2ae
