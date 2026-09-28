@@ -72,7 +72,7 @@ $APPLY = false;
 if (!empty($MIRROR_APPLY)) { $APPLY = true; }
 if ($APPLY) { echo 'APPLY IS ON, this will copy files and write to the database' . PHP_EOL; }
 
-$MIRROR  = '/mnt/reggie/scvhistory.com';
+$MIRROR  = (require \Craft::getAlias('@root') . '/scripts/import/_reggie.php')('scvhistory.com');   /* stops here when the drive is out */
 $VOLUME  = 'archiveMedia';
 $FOLDER  = 'legacy/';
 $REPORT  = \Craft::getAlias('@review') . '/mirror-import.md';

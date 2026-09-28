@@ -80,3 +80,5 @@
 2026-09-27 22:51:44 PDT	add_event_evidence_field.php	scvhistory-web	1 rows	verified: on the event layout	schema only; an event date can say how it is known
 2026-09-27 22:51:51 PDT	create_pico_1860s_records.php	scvhistory-web	4 rows	verified: 3 records and the place relation	Lyon #20224, Jenkins #20226, event #20228 186X retrospective
 2026-09-27 22:51:57 PDT	update_mentry_profile.php	scvhistory-web	1 rows	verified: title and 22 fields	#18648 Charles Alexander Mentry; birth 1847?-03-27 (source fault); priority claim as four scopes
+2026-09-27 23:19:49 PDT	set_evidence_levels.php	scvhistory-web	2 rows	verified 2 of 2; every remaining certified value rests on a held certificate	Mentry birth and Jenkins death to retrospective; evidence rates the claim, not the document
+2026-09-27 23:19:55 PDT	add_caption_corrections.php	scvhistory-web	1 rows	verified 1 of 1; captions unchanged	correcting notes from link-fixes/corrections.json; lw2320 waits for its import

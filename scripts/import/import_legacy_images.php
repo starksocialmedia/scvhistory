@@ -212,13 +212,9 @@ if (!$driveReadable) {
         echo PHP_EOL . 'There is no ' . $driveMountRoot . ' at all, so this is running inside the DDEV' . PHP_EOL;
         echo 'container, which only sees the project directory. Host volumes are not passed' . PHP_EOL;
         echo 'through by default and no amount of permission on the Mac changes that.' . PHP_EOL;
-        echo PHP_EOL . 'Bind the drive in, in .ddev/docker-compose.drive.yaml:' . PHP_EOL;
-        echo PHP_EOL . '  services:' . PHP_EOL;
-        echo '    web:' . PHP_EOL;
-        echo '      volumes:' . PHP_EOL;
-        echo '        - "/Volumes/Reggie/SCVHistory:/mnt/reggie:ro"' . PHP_EOL;
-        echo PHP_EOL . 'then ddev restart, and set $DRIVE = \'/mnt/reggie\' here. Read-only on purpose:' . PHP_EOL;
-        echo 'nothing in this repository has any business writing to the archive drive.' . PHP_EOL;
+        echo PHP_EOL . '.ddev/docker-compose.drive.yaml mounts /Volumes read-only and /mnt/reggie' . PHP_EOL;
+        echo 'points into it, so inside the container the drive appears at /mnt/reggie' . PHP_EOL;
+        echo 'whenever it is plugged in. If it is plugged in and still missing: ddev restart.' . PHP_EOL;
         echo 'Or run this on the host with the plain php binary instead of through ddev.' . PHP_EOL;
     } elseif (is_dir(dirname($DRIVE)) || @stat($DRIVE) !== false) {
         echo PHP_EOL . 'The mount point exists but its contents cannot be listed. On macOS that is' . PHP_EOL;

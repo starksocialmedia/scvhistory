@@ -1,0 +1,4 @@
+# /mnt/reggie points into the /Volumes mount (.ddev/docker-compose.drive.yaml).
+# While the drive is unplugged the link dangles, and scripts/import/_reggie.php
+# reports that clearly instead of the container refusing to start.
+RUN ln -sfn /mnt/volumes/Reggie/SCVHistory /mnt/reggie

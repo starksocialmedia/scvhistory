@@ -49,6 +49,27 @@ A headline goes into `originallyPublishedTitle` only when the original printed
 it. A headline the legacy site wrote for its own page is the page's, not the
 item's.
 
+## Evidence rates the claim, not the document
+
+The evidence fields (`birthEvidence`, `deathEvidence`, `burialEvidence`,
+`startEvidence`, `endEvidence`) say how good one claim is, not what kind of paper
+it was found on.
+
+- **A document is `certified` only for what its certifier attests.** A death
+  certificate certifies the death. The birth date on it is an informant's
+  statement, rated by who supplied it and how long after the event: usually
+  `retrospective`.
+- **`certified` requires a certificate the archive holds.** A certificate that a
+  page or a book cites is `retrospective` until the document itself is in the
+  archive.
+- **A contradiction is not an evidence level.** A source that disagrees with
+  itself keeps its rating; the doubt goes in the EDTF qualifier and a source
+  fault. Charles Alexander Mentry's certificate gives 27 March 1847 and an age
+  that counts back to 1848: `1847?-03-27`, `retrospective`, and a note.
+
+`scripts/import/set_evidence_levels.php` audits every `certified` value against
+this rule each time it runs.
+
 ## Identifier schemes
 
 | Field | Scheme | URL pattern | Wikidata property |
@@ -218,7 +239,7 @@ emitted from whichever side schema.org expects.
 
 ### Events — `events/event`
 
-40 fields.
+41 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -231,6 +252,7 @@ emitted from whichever side schema.org expects.
 | `editorNotes` | Table | **local** | no external equivalent |
 | `eventDate` | PlainText | **local** | no external equivalent |
 | `eventDateEdtf` | PlainText | **local** | no external equivalent |
+| `startEvidence` | Dropdown | **local** | no external equivalent |
 | `eventDateStart` | PlainText | **local** | no external equivalent |
 | `eventDateEnd` | PlainText | **local** | no external equivalent |
 | `eventRecurring` | Lightswitch | **local** | no external equivalent |

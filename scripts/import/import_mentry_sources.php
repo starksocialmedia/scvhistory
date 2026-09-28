@@ -43,8 +43,8 @@
  * Idempotent: an entry with the legacyKey or an asset with the filename is
  * found and left alone.
  *
- * Needs the Reggie mount in the container: /mnt/reggie. After a remount of the
- * drive, `ddev restart` first.
+ * Needs the Reggie drive: scripts/import/_reggie.php stops the run with a clear
+ * message when it is not connected.
  *
  * Dry run by default. Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/import_mentry_sources.php'))"
@@ -54,7 +54,7 @@ $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $SRC      = \Craft::getAlias('@root') . '/inventory/legacy/mentry-sources.json';
-$MIRROR   = '/mnt/reggie/scvhistory.com';
+$MIRROR   = (require \Craft::getAlias('@root') . '/scripts/import/_reggie.php')('scvhistory.com');   /* stops here, clearly, when the drive is out */
 $MENTRY   = 18648;          /* person: Alex Mentry */
 $HERALD   = 390;            /* organization: Los Angeles Herald */
 $COMMUNITY_SLUG = 'mentryville';
@@ -64,10 +64,6 @@ echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL . str_repeat('=', 78) . PHP_EOL
 
 if (!is_file($SRC)) { echo 'source extract missing: ' . $SRC . PHP_EOL; return; }
 $src = json_decode((string)file_get_contents($SRC), true);
-if (!is_dir($MIRROR)) {
-    echo 'the mirror is not mounted at ' . $MIRROR . '. Run: ddev restart' . PHP_EOL;
-    if ($APPLY) { return; }
-}
 
 $elements = Craft::$app->getElements();
 $svc = Craft::$app->getEntries();

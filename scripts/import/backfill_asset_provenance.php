@@ -51,7 +51,7 @@
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
-$MIRROR = '/mnt/reggie/scvhistory.com';
+$MIRROR = (require \Craft::getAlias('@root') . '/scripts/import/_reggie.php')('scvhistory.com');   /* stops here when the drive is out */
 $DIRS   = ['gif', 'orig', 'icons', 'pico', 'mentryville', 'oldtownnewhall', 'warmemorial'];
 $REPORT = \Craft::getAlias('@review') . '/asset-provenance-backfill.md';
 $BATCH  = 250;   /* saved in batches so a failure does not lose the whole run */

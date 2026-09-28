@@ -47,7 +47,7 @@ if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $VOLUME     = 'archiveMedia';
 $PATH_FIELD = 'legacySourcePath';
-$MIRROR     = '/mnt/reggie/scvhistory.com';
+$MIRROR     = (require \Craft::getAlias('@root') . '/scripts/import/_reggie.php')('scvhistory.com');   /* stops here when the drive is out */
 
 /* filename => [legacy path under the mirror root, source code] */
 $PROVENANCE = [

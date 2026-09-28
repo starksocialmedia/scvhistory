@@ -34,6 +34,9 @@ from datetime import date
 MIRROR = '/Volumes/Reggie/SCVHistory/scvhistory.com'
 OUT = os.path.join(os.path.dirname(__file__), '..', '..', 'inventory', 'legacy', 'mentry-sources.json')
 
+if not os.path.isdir(MIRROR):
+    sys.exit('Reggie is not connected: ' + MIRROR + ' is missing. This extractor reads the legacy mirror on the host; plug the drive in.')
+
 BIO_START = 'Born Charles Alexander Menetrier (maybe)'
 BIO_END = 'Further reading: The Story of Mentryville.'
 SIDEBAR = "CHARLES ALEXANDER 'ALEC' MENTRY"

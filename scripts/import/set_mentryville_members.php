@@ -21,7 +21,8 @@
  * Additive: nothing already in a member's partOfCollection is removed.
  * Refuses to run against a frozen collection.
  *
- * Needs the Reggie mount in the container (ddev restart after a remount).
+ * Needs the Reggie drive: scripts/import/_reggie.php stops the run with a clear
+ * message when it is not connected.
  * Dry run by default. Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/set_mentryville_members.php'))"
  */
@@ -30,7 +31,7 @@ $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 
 $COLLECTION = 12135;
-$INDEX = '/mnt/reggie/scvhistory.com/scvhistory/pico.htm';
+$INDEX = (require \Craft::getAlias('@root') . '/scripts/import/_reggie.php')('scvhistory.com/scvhistory/pico.htm');   /* stops here when the drive is out */
 $CHROME = ['scvhistory', 'key', 'bibliography', 'publications', 'index', 'pico'];
 
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL . str_repeat('=', 78) . PHP_EOL;
@@ -38,7 +39,6 @@ $elements = Craft::$app->getElements();
 $col = \craft\elements\Entry::find()->id($COLLECTION)->section('collections')->status(null)->one();
 if (!$col) { echo 'collection #' . $COLLECTION . ' not found' . PHP_EOL; return; }
 if ($col->getFieldValue('collectionFrozen')) { echo 'collection #' . $COLLECTION . ' is frozen; refusing' . PHP_EOL; return; }
-if (!is_file($INDEX)) { echo 'the index is not on the mount: ' . $INDEX . '. Run: ddev restart' . PHP_EOL; return; }
 
 $raw = (string)file_get_contents($INDEX);
 echo 'index ' . $INDEX . PHP_EOL . 'sha256 ' . hash('sha256', $raw) . PHP_EOL;
