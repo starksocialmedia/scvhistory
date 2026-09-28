@@ -41,10 +41,32 @@ fifth slot for CIVIC without growing the bar.
 | Item | Columns |
 |---|---|
 | **ARCHIVE** — what we hold | Collections · Photographs · Articles · Documents |
-| **PEOPLE** | People · Families · Obituaries · War Memorial · Military |
-| **PLACES** | Places · Communities · Organizations |
+| **PEOPLE** — who acted | People · Organizations · Families · Obituaries · War Memorial · Military |
+| **PLACES** — what is located | Places · Communities |
 | **CIVIC** — the public record | The City Council · Elections · Bodies · Officeholders |
 | **TIME** | By era · On this day · Events · The timeline |
+
+**Organizations are under PEOPLE, not PLACES** (Nathan, 28 September 2026). An
+organization acts: it decides, employs, publishes. Filing it under PLACES said an
+organization is a kind of place, the confusion that moved Acton Hotel and the
+missions out of the organizations section. Nor do they all go under CIVIC:
+Newhall Hardware, Southern Pacific and Stack's act, but they are not the public
+record. So PEOPLE is the door for who acted, people and organizations alike,
+with a Government chip on `/organizations`. CIVIC's Bodies column is that
+government view of the same URLs, not a second home for them.
+
+**CIVIC waits for elections.** Today it would hold four government bodies, no
+office holdings and no elections: another `/military-profiles`. It appears when
+the elections import lands, by the rule below, with no one having to remember.
+
+### The rule for every nav link
+
+**A nav link appears only when its page exists and has records.** Both, checked
+at render: the template is there, and the query behind it returns something. A
+count alone proves only that there is something to fail to show (the
+`/photographs` 404); a template alone gives a room with nothing in it (the
+`/military-profiles` index). This applies to every item, column and row of the
+menu, and to landers: a door opens when there is something behind it.
 
 Photographs are 1,544 of 2,644 records, the largest holding and the most
 browsable thing here. They belong in the first column of the first item, not the
