@@ -397,3 +397,39 @@ Take one by hand before anything that writes: an import run against production,
 a `project-config/apply` that carries a schema change, or a content refresh.
 
 The direction of travel is in section 3 and is not repeated here.
+
+## 8. Local DDEV: restarts and the archive drive
+
+### Warn before a restart, and wait for Mutagen after it
+
+The project runs in Mutagen performance mode: the project files are synced into
+the web container rather than mounted. After every `ddev start` or
+`ddev restart` the container serves whatever part of the tree has synced so
+far. Until the sync finishes, pages 404 and a half-synced template throws a
+Twig error, which looks exactly like a broken site with the database and
+containers up. On 28 September two restarts in a row cost twenty minutes of
+diagnosing an outage that was a sync in progress.
+
+- Anyone about to restart DDEV says so first. Another person may be mid-check.
+- After a restart, wait for the sync before judging anything:
+
+```
+ddev mutagen status
+```
+
+  It must read `ok: watching`. Only then run the render check:
+
+```
+ddev craft exec "eval(file_get_contents('scripts/import/check_render.php'))"
+```
+
+- A site-wide 404 with the containers up is a sync in progress until
+  `ddev mutagen status` says otherwise.
+
+### Reggie is optional
+
+The archive drive is external and is often unplugged. DDEV starts without it
+(`.ddev/docker-compose.drive.yaml`), and a script that needs the mirror stops at
+once with "Reggie is not connected", through `scripts/import/_reggie.php`. That
+message is the whole diagnosis: plug the drive in. If it is plugged in and the
+message persists, restart DDEV (warn first, then wait for Mutagen).
