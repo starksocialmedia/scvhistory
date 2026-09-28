@@ -77,3 +77,6 @@
 2026-09-27 22:44:58 PDT	add_place_website_field.php	scvhistory-web	1 rows	verified: field created and on the place layout	schema only; lets the three missions retire
 2026-09-27 22:45:33 PDT	convert_orgs_to_places.php	scvhistory-web	3 rows	verified: 3 of 3 moved and retired	{"386":16511,"398":16515,"400":16517} retired; held live []; organizations disabled, not deleted
 2026-09-27 22:45:38 PDT	fix_org_records.php	scvhistory-web	1 rows	verified 1 of 1	rename #18862; orgType x11; Harvey Stack deleted, Stack's created; org-place pairs linked
+2026-09-27 22:51:44 PDT	add_event_evidence_field.php	scvhistory-web	1 rows	verified: on the event layout	schema only; an event date can say how it is known
+2026-09-27 22:51:51 PDT	create_pico_1860s_records.php	scvhistory-web	4 rows	verified: 3 records and the place relation	Lyon #20224, Jenkins #20226, event #20228 186X retrospective
+2026-09-27 22:51:57 PDT	update_mentry_profile.php	scvhistory-web	1 rows	verified: title and 22 fields	#18648 Charles Alexander Mentry; birth 1847?-03-27 (source fault); priority claim as four scopes
