@@ -1,0 +1,998 @@
+{
+ "meta": {
+  "purpose": "Corrections to links and captions on the legacy site, to be applied by whatever brings a page into Craft and by any pass that turns legacy links into relations or prose links. Craft stores no legacy links today: bodies are plain text, legacyHtml is empty, and the prose link layer holds only its README. Nothing here is a database write by itself.",
+  "authority": "Grok Bot, inventory/legacy/link-fixes/person_link_mismatches.md and live_link_fixes.md, 2026-09-25, every target verified live that day. Do not re-fetch to confirm.",
+  "rulings": "Nathan, 2026-09-28. 1 Noah Beery: unlink, keep text. 2 Herman The Hermit: unlink. 3 broken targets: fix the Whyte typo, unlink Lizza. 4 five retargets. 5 caption errors: correcting note, not a rewrite.",
+  "not_included": "87 category-d links (bibliography, glossary, index hubs, actor-to-film, passing mentions) had no ruling and are harmless or deliberate; see the report. The additions (Francisco Lopez 43 pages, Henry Mayo Newhall 51, Stephen Bowers 3) are held for a separate proposal.",
+  "counts": {
+   "links": 46,
+   "by_action": {
+    "unlink": 40,
+    "retarget": 6
+   },
+   "by_ruling": {
+    "2": 15,
+    "1": 16,
+    "3": 10,
+    "4": 5
+   },
+   "source_pages_in_craft": 13,
+   "captions": 2,
+   "caption_pages_in_craft": 1
+  }
+ },
+ "links": [
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2160a.htm",
+    "legacy_key": "lw2160a",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2160b.htm",
+    "legacy_key": "lw2160b",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2262a.htm",
+    "legacy_key": "lw2262a",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2262b.htm",
+    "legacy_key": "lw2262b",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2262c.htm",
+    "legacy_key": "lw2262c",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2272.htm",
+    "legacy_key": "lw2272",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3199.htm",
+    "legacy_key": "lw3199",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3299.htm",
+    "legacy_key": "lw3299",
+    "craft": {
+     "id": 5127,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3318.htm",
+    "legacy_key": "lw3318",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3459.htm",
+    "legacy_key": "lw3459",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3539.htm",
+    "legacy_key": "lw3539",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3572.htm",
+    "legacy_key": "lw3572",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3662.htm",
+    "legacy_key": "lw3662",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3732.htm",
+    "legacy_key": "lw3732",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3735.htm",
+    "legacy_key": "lw3735",
+    "craft": null
+   },
+   "anchor": "Herman The Hermit",
+   "old_target": {
+    "legacy_path": "/scvhistory/vs3801.htm",
+    "legacy_key": "vs3801",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "medium",
+   "ruling": 2,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Herman The Hermit is described as Cliffie Stone's father; the link points at a Cliffie Stone photo page and no Herman page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2110.htm",
+    "legacy_key": "lw2110",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2116.htm",
+    "legacy_key": "lw2116",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2319.htm",
+    "legacy_key": "lw2319",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2337a.htm",
+    "legacy_key": "lw2337a",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2337b.htm",
+    "legacy_key": "lw2337b",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2356a.htm",
+    "legacy_key": "lw2356a",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2356b.htm",
+    "legacy_key": "lw2356b",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2446a.htm",
+    "legacy_key": "lw2446a",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2446b.htm",
+    "legacy_key": "lw2446b",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2458.htm",
+    "legacy_key": "lw2458",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2626a.htm",
+    "legacy_key": "lw2626a",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2626b.htm",
+    "legacy_key": "lw2626b",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2847.htm",
+    "legacy_key": "lw2847",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3082.htm",
+    "legacy_key": "lw3082",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3701.htm",
+    "legacy_key": "lw3701",
+    "craft": null
+   },
+   "anchor": "Noah Beery",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "report_category": "c/relative",
+   "report_confidence": "high",
+   "ruling": 1,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Keep \"Noah Beery\" as Leon wrote it; the link points at a photograph of Wallace Beery and no Noah Beery page exists."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2107.htm",
+    "legacy_key": "lw2107",
+    "craft": {
+     "id": 2813,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2336.htm",
+    "legacy_key": "lw2336",
+    "craft": {
+     "id": 3311,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2552.htm",
+    "legacy_key": "lw2552",
+    "craft": {
+     "id": 4115,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2556.htm",
+    "legacy_key": "lw2556",
+    "craft": {
+     "id": 4145,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2569.htm",
+    "legacy_key": "lw2569",
+    "craft": {
+     "id": 4155,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2618.htm",
+    "legacy_key": "lw2618",
+    "craft": {
+     "id": 4267,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2751.htm",
+    "legacy_key": "lw2751",
+    "craft": {
+     "id": 4459,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2804.htm",
+    "legacy_key": "lw2804",
+    "craft": {
+     "id": 4517,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3517.htm",
+    "legacy_key": "lw3517",
+    "craft": {
+     "id": 5361,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Patrick Lizza",
+   "old_target": {
+    "legacy_path": "/scvhistory/sw_connelslvillepadailycourier072144.htm",
+    "legacy_key": "sw_connelslvillepadailycourier072144",
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "unlink",
+   "new_target": null,
+   "why": "Target 404 per Grok, verified live 2026-09-25; no corrected URL. Alternative not applied: lw3517 is itself about Patrick Lizza (\"Bermite's Patrick Lizza: He Sets the Sky On Fire\")."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/signal/worden/old/lw102997.htm",
+    "legacy_key": "lw102997",
+    "craft": {
+     "id": 12260,
+     "section": "articles"
+    }
+   },
+   "anchor": "Tim Whyte",
+   "old_target": {
+    "legacy_path": "/oldtownnewahll/whyte/",
+    "legacy_key": null,
+    "craft": null
+   },
+   "report_category": "e/broken_target_404",
+   "report_confidence": "high",
+   "ruling": 3,
+   "action": "retarget",
+   "new_target": {
+    "legacy_path": "/oldtownnewhall/whyte/index.html",
+    "legacy_key": null,
+    "craft": {
+     "id": 685,
+     "section": "collections"
+    }
+   },
+   "why": "Typo \"oldtownnewahll\". The corrected index existed: Craft collection #685 (Black 'N' Whyte) was built from /oldtownnewhall/whyte/index.html and lives at /collections/otn-whyte."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2933.htm",
+    "legacy_key": "lw2933",
+    "craft": {
+     "id": 4703,
+     "section": "photographs"
+    }
+   },
+   "anchor": "Antonio and Mariana Coronel",
+   "old_target": {
+    "legacy_path": "/scvhistory/carter-ramona1902.htm",
+    "legacy_key": "carter-ramona1902",
+    "craft": null
+   },
+   "report_category": "d/passing_mention",
+   "report_confidence": "high",
+   "ruling": 4,
+   "action": "retarget",
+   "new_target": {
+    "legacy_path": "/scvhistory/hssc0501coronel.htm",
+    "legacy_key": "hssc0501coronel",
+    "craft": null
+   },
+   "why": "A page about the person exists; the current link goes to a film, index or booklet page. Target verified live by Grok, 2026-09-25."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3040.htm",
+    "legacy_key": "lw3040",
+    "craft": null
+   },
+   "anchor": "Buck Jones",
+   "old_target": {
+    "legacy_path": "/scvhistory/film.htm",
+    "legacy_key": "film",
+    "craft": null
+   },
+   "report_category": "d/index_hub",
+   "report_confidence": "high",
+   "ruling": 4,
+   "action": "retarget",
+   "new_target": {
+    "legacy_path": "/scvhistory/lw3389.htm",
+    "legacy_key": "lw3389",
+    "craft": null
+   },
+   "why": "A page about the person exists; the current link goes to a film, index or booklet page. Target verified live by Grok, 2026-09-25."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw2102.htm",
+    "legacy_key": "lw2102",
+    "craft": {
+     "id": 950,
+     "section": "groups"
+    }
+   },
+   "anchor": "Gene Autry",
+   "old_target": {
+    "legacy_path": "/scvhistory/film.htm",
+    "legacy_key": "film",
+    "craft": null
+   },
+   "report_category": "d/index_hub",
+   "report_confidence": "high",
+   "ruling": 4,
+   "action": "retarget",
+   "new_target": {
+    "legacy_path": "/scvhistory/obituary_geneautry.htm",
+    "legacy_key": "obituary_geneautry",
+    "craft": null
+   },
+   "why": "A page about the person exists; the current link goes to a film, index or booklet page. Target verified live by Grok, 2026-09-25."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3502.htm",
+    "legacy_key": "lw3502",
+    "craft": null
+   },
+   "anchor": "Hugh O'Brian",
+   "old_target": {
+    "legacy_path": "/scvhistory/lw3253.htm",
+    "legacy_key": "lw3253",
+    "craft": null
+   },
+   "report_category": "d/actor_to_film",
+   "report_confidence": "high",
+   "ruling": 4,
+   "action": "retarget",
+   "new_target": {
+    "legacy_path": "/scvhistory/lw3273.htm",
+    "legacy_key": "lw3273",
+    "craft": null
+   },
+   "why": "A page about the person exists; the current link goes to a film, index or booklet page. Target verified live by Grok, 2026-09-25."
+  },
+  {
+   "source": {
+    "legacy_path": "/scvhistory/lw3623.htm",
+    "legacy_key": "lw3623",
+    "craft": null
+   },
+   "anchor": "Sanford Lyon, Henry Clay Wiley and William W. Jenkins",
+   "old_target": {
+    "legacy_path": "/mentryville/mstory.htm",
+    "legacy_key": "mstory",
+    "craft": {
+     "id": 12135,
+     "section": "collections"
+    }
+   },
+   "report_category": "d/passing_mention",
+   "report_confidence": "high",
+   "ruling": 4,
+   "action": "retarget",
+   "new_target": {
+    "legacy_path": "/scvhistory/ap1334.htm",
+    "legacy_key": "ap1334",
+    "craft": null
+   },
+   "why": "A page about the person exists; the current link goes to a film, index or booklet page. Target verified live by Grok, 2026-09-25."
+  }
+ ],
+ "captions": [
+  {
+   "ruling": 5,
+   "page": {
+    "legacy_path": "/scvhistory/lw2320.htm",
+    "legacy_key": "lw2320",
+    "craft": null
+   },
+   "text_as_printed": "Wallace Beery Sr. [sic]",
+   "correction": "Wallace Beery had no son of the same name; the Sr. and Jr. are Noah Beery and his son. The caption's own [sic] flags it.",
+   "action": "editor-note",
+   "note": "Correcting note beside Leon's caption, which stays as printed. Applies when lw2320 is imported; it is not in Craft yet."
+  },
+  {
+   "ruling": 5,
+   "page": {
+    "legacy_path": "/scvhistory/lw3407.htm",
+    "legacy_key": "lw3407",
+    "craft": {
+     "id": 5249,
+     "section": "photographs"
+    }
+   },
+   "text_as_printed": "Beery's uncle, Noah Beery",
+   "correction": "Noah Beery (Sr.) was the father of Noah Beery Jr., not his uncle. His uncle was Wallace Beery.",
+   "action": "editor-note",
+   "note": "Correcting note beside Leon's caption, which stays as printed (Nathan, 28 September: note, not rewrite; same as the Cephas Bard precedent)."
+  }
+ ]
+}

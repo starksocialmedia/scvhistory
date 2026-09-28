@@ -187,6 +187,30 @@ $lines[] = 'it. A headline the legacy site wrote for its own page is the page\'s
 $lines[] = 'item\'s.';
 $lines[] = '';
 
+/* ------------------------------------------------------------- evidence */
+
+$lines[] = '## Evidence rates the claim, not the document';
+$lines[] = '';
+$lines[] = 'The evidence fields (`birthEvidence`, `deathEvidence`, `burialEvidence`,';
+$lines[] = '`startEvidence`, `endEvidence`) say how good one claim is, not what kind of paper';
+$lines[] = 'it was found on.';
+$lines[] = '';
+$lines[] = '- **A document is `certified` only for what its certifier attests.** A death';
+$lines[] = '  certificate certifies the death. The birth date on it is an informant\'s';
+$lines[] = '  statement, rated by who supplied it and how long after the event: usually';
+$lines[] = '  `retrospective`.';
+$lines[] = '- **`certified` requires a certificate the archive holds.** A certificate that a';
+$lines[] = '  page or a book cites is `retrospective` until the document itself is in the';
+$lines[] = '  archive.';
+$lines[] = '- **A contradiction is not an evidence level.** A source that disagrees with';
+$lines[] = '  itself keeps its rating; the doubt goes in the EDTF qualifier and a source';
+$lines[] = '  fault. Charles Alexander Mentry\'s certificate gives 27 March 1847 and an age';
+$lines[] = '  that counts back to 1848: `1847?-03-27`, `retrospective`, and a note.';
+$lines[] = '';
+$lines[] = '`scripts/import/set_evidence_levels.php` audits every `certified` value against';
+$lines[] = 'this rule each time it runs.';
+$lines[] = '';
+
 /* ------------------------------------------------------- the identifiers */
 
 $lines[] = '## Identifier schemes';
