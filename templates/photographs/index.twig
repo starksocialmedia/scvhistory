@@ -1,0 +1,238 @@
+{% extends "_layouts/base" %}
+{% set metaDescription = 'Photographs of the Santa Clarita Valley and its surroundings, browsed by the archive\'s own filing: the topics Leon Worden filed each picture under.' %}
+{#
+  /photographs. 1,546 records, 60 percent of the archive, and the first thing a
+  reader of it sees, so the arrangement is a decision (Nathan, 28 September 2026):
+
+  - LEAD WITH THE TOPICS. The default view is a grid of the archive's own
+    filing: the index pages Leon filed each photograph under, as carried in
+    legacyCategory (set_photo_legacy_category.php). They mix places and
+    subjects, Mojave Desert beside William S. Hart beside Earthquakes, and are
+    left that way: it is his filing, not a taxonomy to tidy. The 40 topics with
+    ten or more photographs are tiles; the other 148 are behind "all topics".
+  - EACH ROW IS A PICTURE. The image is the content and the title is its
+    caption. A photograph whose image is not yet held is a plain tile that says
+    so, and sorts after the ones with images.
+  - A topic, a community, or everything newest accession first, 60 to a page.
+
+  The image is found the way photographs/_entry.twig finds it: featuredImage,
+  then the legacy code matched to an asset's filename. Resolved in one asset
+  query per page render, not one per tile.
+
+  Until legacyCategory is written, there are no topics and the page opens on
+  the full list instead.
+#}
+{% block head %}
+{% include "_partials/scv-extra-css" %}
+{% css %}
+.ph{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.ph-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0;color:#17254C}
+.ph-band-in{padding-top:44px;padding-bottom:48px}
+.ph-crumbs{font-size:13px;color:#5B6472;margin-bottom:22px}
+.ph-crumbs a{color:#7A5C1B;text-decoration:none}
+.ph-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:end}
+.ph-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:14px}
+.ph-head h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(40px,5vw,56px);line-height:1.05;margin:0 0 16px;color:#17254C}
+.ph-head p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:580px}
+.ph-note{font-size:14px;color:#5B6472;margin-top:12px;font-style:italic}
+.ph-stats{display:flex;gap:40px;flex-wrap:wrap;justify-self:end}
+.ph-stats .n{font-family:'Playfair Display',serif;font-size:44px;line-height:1;color:#17254C}
+.ph-stats .l{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#7A5C1B;margin-top:8px}
+.ph-filters{background:#fff;border-bottom:1px solid #E2E4E8;position:sticky;top:0;z-index:5}
+.ph-filters-in{padding-top:16px;padding-bottom:16px;display:flex;flex-direction:column;gap:12px}
+.ph-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ph-row .lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:#5B6472;width:96px;flex:none}
+.ph-chip{background:#fff;color:#7A5C1B;border:1px solid #C4A031;font-family:'Jost',sans-serif;font-size:13px;padding:7px 13px;border-radius:3px;text-decoration:none;display:inline-block}
+.ph-chip:hover{background:#FDF7EA}
+.ph-chip.on{background:#17254C;color:#fff;border-color:#17254C}
+.ph-count{margin-left:auto;font-size:14px;color:#5B6472}
+.ph-main{padding-top:40px;padding-bottom:96px}
+.ph-sechead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-top:3px solid #C4A031;padding-top:14px;margin-bottom:22px}
+.ph-sechead h2{font-family:'Playfair Display',serif;font-weight:500;font-size:28px;margin:0;color:#17254C}
+.ph-sechead a,.ph-sechead span{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.06em;color:#7A5C1B;text-decoration:none}
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:24px}
+.ph-tile{display:flex;flex-direction:column;background:#fff;border:1px solid #E2E4E8;color:inherit;min-width:0;text-decoration:none}
+.ph-tile:hover{border-color:#C4A031}
+.ph-img{aspect-ratio:4/3;background:#FDF7EA;overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #EFE6D0}
+.ph-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ph-img .none{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#8F6E22;text-align:center;padding:0 16px;line-height:1.6}
+.ph-cap{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.ph-cap .t{font-family:'Playfair Display',serif;font-weight:500;font-size:16.5px;line-height:1.3;color:#17254C}
+.ph-cap .m{font-size:12.5px;line-height:1.45;color:#5B6472}
+.ph-topic .ph-cap .t{font-size:19px}
+.ph-topic .ph-cap .m{font-family:'Jost',sans-serif;letter-spacing:.1em;font-size:12px;color:#7A5C1B}
+.ph-alltopics{columns:4 220px;column-gap:32px;background:#fff;border:1px solid #E2E4E8;padding:22px 26px}
+.ph-alltopics a{display:block;break-inside:avoid;padding:5px 0;color:#17254C;text-decoration:none;font-size:14.5px}
+.ph-alltopics a:hover{color:#7A5C1B}
+.ph-alltopics a span{color:#5B6472;font-size:13px}
+.ph-pages{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:40px}
+.ph-empty{text-align:center;padding:64px 0;color:#5B6472;font-size:16px}
+{% endcss %}
+{% endblock %}
+
+{% block content %}
+{% set req = craft.app.request %}
+{% set topic = req.getParam('topic') %}
+{% set comSlug = req.getParam('community') %}
+{% set showAllTopics = req.getParam('topics') == 'all' %}
+{% set page = max(1, req.getParam('page')|default(1) + 0) %}
+{% set PER = 60 %}
+{% set TILE_TOPICS = 10 %}
+
+{#- Every photograph once, with only what the page needs. The topic counts and
+    the covers come from this one pass. -#}
+{% set photos = craft.entries().section('photographs').with(['featuredImage']).all() %}
+{% set total = photos|length %}
+
+{#- Topics: one per breadcrumb segment, so a photograph filed under two counts
+    in both. -#}
+{% set topicCount = {} %}
+{% set topicFirst = {} %}
+{% for p in photos %}
+  {% set cat = (p.legacyCategory ?? '')|trim %}
+  {% if cat %}
+    {% for t in cat|split(' > ') %}
+      {% set topicCount = topicCount|merge({ (t): (topicCount[t] ?? 0) + 1 }) %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+{% set topicsBySize = topicCount|sort((a, b) => b <=> a) %}
+{% set hasTopics = topicCount|length > 0 %}
+{% set view = topic ? 'topic' : (comSlug or not hasTopics or req.getParam('view') == 'all' ? 'all' : 'topics') %}
+
+{#- The image for a photograph: featuredImage, else the legacy code matched to an
+    asset filename. One query for every code on the page. -#}
+{% macro code(p) %}{{ (p.photoSourceCode ?: p.legacyKey)|lower|trim }}{% endmacro %}
+{% import _self as m %}
+{% set allCodes = [] %}
+{% for p in photos %}{% set c = m.code(p)|trim %}{% if c %}{% set allCodes = allCodes|merge([c ~ '.jpg', c ~ '.jpeg', c ~ '.png', c ~ '.gif']) %}{% endif %}{% endfor %}
+{% set assetsByName = {} %}
+{% for a in craft.assets().filename(allCodes).all() %}{% set assetsByName = assetsByName|merge({ (a.filename|lower): a }) %}{% endfor %}
+{% set imageOf = {} %}
+{% for p in photos %}
+  {% set f = p.featuredImage[0] ?? null %}
+  {% set c = m.code(p)|trim %}
+  {% set a = f ?? assetsByName[c ~ '.jpg'] ?? assetsByName[c ~ '.jpeg'] ?? assetsByName[c ~ '.png'] ?? assetsByName[c ~ '.gif'] ?? null %}
+  {% if a %}{% set imageOf = imageOf|merge({ ('p' ~ p.id): a }) %}{% endif %}
+{% endfor %}
+{% set withImage = imageOf|length %}
+
+{#- The list for the current view, pictures first, then paged. -#}
+{% set list = [] %}
+{% if view == 'topic' %}
+  {% set list = photos|filter(p => topic in ((p.legacyCategory ?? '')|trim|split(' > '))) %}
+  {% set list = list|sort((a, b) => a.legacyKey <=> b.legacyKey) %}
+{% elseif view == 'all' %}
+  {% set list = comSlug
+      ? craft.entries().section('photographs').relatedTo(craft.categories().group('neighborhood').slug(comSlug).one()).all()
+      : photos %}
+  {#- Newest accession first: the LW number is the order Leon posted them. -#}
+  {% set list = list|sort((a, b) => b.legacyKey <=> a.legacyKey) %}
+{% endif %}
+{% set list = list|filter(p => imageOf['p' ~ p.id] is defined)|merge(list|filter(p => imageOf['p' ~ p.id] is not defined)) %}
+{% set pages = max(1, (list|length / PER)|round(0, 'ceil')) %}
+{% set pageList = list|slice((page - 1) * PER, PER) %}
+
+{% macro tile(p, img) %}
+  <a class="ph-tile" href="{{ p.url }}">
+    <div class="ph-img">
+      {% if img %}<img src="{{ img.getUrl({ width: 480, height: 360, mode: 'crop' }) }}" alt="{{ p.title }}" loading="lazy">
+      {% else %}<span class="none">IMAGE NOT YET HELD<br>{{ (p.photoSourceCode ?: p.legacyKey)|upper }}</span>{% endif %}
+    </div>
+    <div class="ph-cap">
+      <div class="t">{{ p.title }}</div>
+      {% if (p.photoDate ?? '')|trim %}<div class="m">{{ p.photoDate|trim|slice(0, 60) }}</div>{% endif %}
+    </div>
+  </a>
+{% endmacro %}
+
+<div class="ph">
+  <div class="scv-band ph-band">
+    <div class="scv-band-in ph-band-in">
+      <div class="ph-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; {% if view != 'topics' %}<a href="{{ url('photographs') }}">Photographs</a> &rsaquo; <span>{{ topic ?: (comSlug ? 'By community' : 'All photographs') }}</span>{% else %}<span>Photographs</span>{% endif %}</div>
+      <div class="ph-head">
+        <div>
+          <div class="ph-kicker">{{ topic ? 'FILED UNDER' : 'THE PICTURE ARCHIVE' }}</div>
+          <h1>{{ topic ?: 'Photographs' }}</h1>
+          {% if view == 'topics' %}
+            <p>Photographs, postcards, maps and objects from the Santa Clarita Valley and around it.</p>
+            <div class="ph-note">Browsing by the archive's own filing: the topics Leon Worden filed each picture under, places and subjects together, as he kept them.</div>
+          {% elseif topic %}
+            <div class="ph-note">One of the archive's own filings, as Leon Worden kept it.</div>
+          {% endif %}
+        </div>
+        <div class="ph-stats">
+          <div><div class="n">{{ topic or comSlug ? list|length : total }}</div><div class="l">PHOTOGRAPHS</div></div>
+          {% if hasTopics and not topic %}<div><div class="n">{{ topicCount|length }}</div><div class="l">TOPICS</div></div>{% endif %}
+          {% if not topic and not comSlug %}<div><div class="n">{{ withImage }}</div><div class="l">WITH IMAGES</div></div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scv-band ph-filters">
+    <div class="scv-band-in ph-filters-in">
+      <div class="ph-row">
+        <div class="lab">BROWSE</div>
+        {% if hasTopics %}<a class="ph-chip {{ view == 'topics' or view == 'topic' ? 'on' : '' }}" href="{{ url('photographs') }}">By topic</a>{% endif %}
+        <a class="ph-chip {{ view == 'all' and not comSlug ? 'on' : '' }}" href="{{ url('photographs', { view: 'all' }) }}">All, newest first</a>
+        <div class="ph-count">{{ view == 'topics' ? total ~ ' photographs' : list|length ~ ' photograph' ~ (list|length == 1 ? '' : 's') }}</div>
+      </div>
+      {% if view == 'all' %}
+        <div class="ph-row">
+          <div class="lab">COMMUNITY</div>
+          <a class="ph-chip {{ not comSlug ? 'on' : '' }}" href="{{ url('photographs', { view: 'all' }) }}">All</a>
+          {% for c in craft.categories().group('neighborhood').orderBy('title asc').all() %}
+            {% set n = craft.entries().section('photographs').relatedTo(c).count() %}
+            {% if n %}<a class="ph-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('photographs', { view: 'all', community: c.slug }) }}">{{ c.title }} ({{ n }})</a>{% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <main class="scv-band-in ph-main">
+    {% if view == 'topics' %}
+      <div class="ph-sechead"><h2>Topics</h2><a href="{{ url('photographs', { topics: 'all' }) }}#all">All {{ topicCount|length }} topics &rarr;</a></div>
+      <div class="ph-grid">
+        {% for t, n in topicsBySize|filter(n => n >= TILE_TOPICS) %}
+          {#- The cover: the first photograph in the topic, in Leon's order, that has an image. -#}
+          {% set cover = null %}
+          {% for p in photos|filter(p => t in ((p.legacyCategory ?? '')|trim|split(' > ')))|sort((a, b) => a.legacyKey <=> b.legacyKey) %}
+            {% if not cover and imageOf['p' ~ p.id] is defined %}{% set cover = imageOf['p' ~ p.id] %}{% endif %}
+          {% endfor %}
+          <a class="ph-tile ph-topic" href="{{ url('photographs', { topic: t }) }}">
+            <div class="ph-img">{% if cover %}<img src="{{ cover.getUrl({ width: 480, height: 360, mode: 'crop' }) }}" alt="" loading="lazy">{% else %}<span class="none">NO IMAGE HELD</span>{% endif %}</div>
+            <div class="ph-cap"><div class="t">{{ t|title }}</div><div class="m">{{ n }} PHOTOGRAPH{{ n == 1 ? '' : 'S' }}</div></div>
+          </a>
+        {% endfor %}
+      </div>
+
+      {% if showAllTopics %}
+        <div class="ph-sechead" id="all" style="margin-top:56px"><h2>All topics</h2><span>{{ topicCount|length }}, A to Z</span></div>
+        <div class="ph-alltopics">
+          {% for t in topicCount|keys|sort %}
+            <a href="{{ url('photographs', { topic: t }) }}">{{ t|title }} <span>{{ topicCount[t] }}</span></a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    {% elseif pageList|length %}
+      <div class="ph-grid">
+        {% for p in pageList %}{{ m.tile(p, imageOf['p' ~ p.id] ?? null) }}{% endfor %}
+      </div>
+      {% if pages > 1 %}
+        <nav class="ph-pages" aria-label="Pages">
+          {% for i in 1..pages %}
+            {% set q = { page: i } %}
+            {% if topic %}{% set q = q|merge({ topic: topic }) %}{% elseif comSlug %}{% set q = q|merge({ view: 'all', community: comSlug }) %}{% else %}{% set q = q|merge({ view: 'all' }) %}{% endif %}
+            <a class="ph-chip {{ i == page ? 'on' : '' }}" href="{{ url('photographs', q) }}">{{ i }}</a>
+          {% endfor %}
+        </nav>
+      {% endif %}
+    {% else %}
+      <div class="ph-empty">No photographs here yet. <a href="{{ url('photographs') }}" style="color:#7A5C1B">Back to the topics</a></div>
+    {% endif %}
+  </main>
+</div>
+{% endblock %}

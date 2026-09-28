@@ -75,7 +75,16 @@
 {% set otdDays = otdRaw ? (otdRaw|json_decode(true)).days ?? {} : {} %}
 {% set otdToday = otdDays[now|date('m-d')] ?? [] %}
 {% set q = craft.app.request.getParam('q') %}
+{#- THE ARCHIVE'S SECTIONS, ONCE. The record total and the cards are both
+    computed from this list and from the counts taken below, so they cannot
+    disagree. They used to agree while both being wrong: photographs (60
+    percent of the archive) and documents were missing from the list, and the
+    total read 1,005 against 2,560. A section with public pages belongs here;
+    the static pages and internal sections (fixes, roles) do not, because the
+    number means archive records. -#}
 {% set cards = [
+  {h:'photographs', u:'photographs', l:'Photographs', d:'Pictures, postcards, maps and objects, filed as the archive kept them.'},
+  {h:'documents', u:'documents', l:'Documents', d:'Printed items transcribed: biographies, certificates, clippings.'},
   {h:'warMemorials', u:'war-memorial', l:'War Memorial', d:'Valley residents killed in service, with unit and incident records.'},
   {h:'persons', u:'persons', l:'People', d:'Pioneers, ranchers, actors, and civic leaders.'},
   {h:'articles', u:'articles', l:'Articles', d:'Newspaper accounts and serialized local histories.'},
@@ -86,8 +95,10 @@
   {h:'events', u:'events', l:'Events', d:'Dated happenings with places and people attached.'},
   {h:'obituaries', u:'obituaries', l:'Obituaries', d:'Death notices as originally published.'}
 ] %}
-{% set total = 0 %}
-{% for c in cards %}{% set total = total + craft.entries().section(c.h).count() %}{% endfor %}
+{% set counted = [] %}
+{% for c in cards %}{% set counted = counted|merge([c|merge({ n: craft.entries().section(c.h).count() + 0 })]) %}{% endfor %}
+{% set cards = counted %}
+{% set total = cards|reduce((sum, c) => sum + c.n, 0) %}
 
 {# Eras: parse "Name (YYYY–YYYY)" into spans for the timeline #}
 {% set eras = [] %}
@@ -172,7 +183,7 @@
     <div class="hp-head"><h2>In the archive</h2><div class="hp-kick">{{ total }} RECORDS</div></div>
     <div class="hp-cards">
       {% for c in cards %}
-        {% set n = craft.entries().section(c.h).count() %}
+        {% set n = c.n %}
         {% if n %}<a class="hp-card" href="{{ url(c.u) }}"><div class="n">{{ n }}</div><div class="l">{{ c.l|upper }}</div><div class="d">{{ c.d }}</div></a>{% endif %}
       {% endfor %}
     </div>

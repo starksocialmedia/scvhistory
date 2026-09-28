@@ -1,0 +1,77 @@
+{% extends "_layouts/base" %}
+{% set metaDescription = 'Documents held by the archive: the printed items themselves, transcribed, with their publisher and date.' %}
+{#
+  /documents. Few records today (9), so a plain list grouped by publisher, each
+  with its date and source line: what the item is and where it came from. A
+  document with no publisher record sits under "Other publishers", named in its
+  source line. The shape can grow into filters when the count justifies them.
+#}
+{% block head %}
+{% include "_partials/scv-extra-css" %}
+{% css %}
+.dc{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.dc-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0;color:#17254C}
+.dc-band-in{padding-top:44px;padding-bottom:48px}
+.dc-crumbs{font-size:13px;color:#5B6472;margin-bottom:22px}
+.dc-crumbs a{color:#7A5C1B;text-decoration:none}
+.dc-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:14px}
+.dc-band h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(40px,5vw,56px);line-height:1.05;margin:0 0 16px;color:#17254C}
+.dc-band p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:580px}
+.dc-main{padding-top:40px;padding-bottom:96px;display:flex;flex-direction:column;gap:44px}
+.dc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-top:3px solid #C4A031;padding-top:14px}
+.dc-head h2{font-family:'Playfair Display',serif;font-weight:500;font-size:26px;margin:0;color:#17254C}
+.dc-head span{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#7A5C1B}
+.dc-list{background:#fff;border:1px solid #E2E4E8;border-top:0}
+.dc-item{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;padding:16px 22px;border-bottom:1px solid #E2E4E8;color:inherit;text-decoration:none}
+.dc-item:last-child{border-bottom:0}
+.dc-item:hover{background:#FDF7EA}
+.dc-date{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.06em;color:#8F6E22;padding-top:3px}
+.dc-t{font-family:'Playfair Display',serif;font-weight:500;font-size:18px;line-height:1.3;color:#17254C}
+.dc-m{font-size:13.5px;line-height:1.5;color:#5B6472;margin-top:4px}
+{% endcss %}
+{% endblock %}
+
+{% block content %}
+{% set docs = craft.entries().section('documents').with(['publishedBy']).orderBy('title asc').all() %}
+{% set groups = {} %}
+{% for d in docs %}
+  {% set pub = d.publishedBy[0] ?? null %}
+  {% set k = pub ? pub.title : '~other' %}
+  {% set groups = groups|merge({ (k): (groups[k] ?? [])|merge([d]) }) %}
+{% endfor %}
+{#- Named publishers first, largest first; documents with no publisher record last. -#}
+{% set other = groups['~other'] ?? [] %}
+{% set groups = groups|filter((v, k) => k != '~other')|sort((a, b) => b|length <=> a|length) %}
+{% if other|length %}{% set groups = groups|merge({ '~other': other }) %}{% endif %}
+
+<div class="dc">
+  <div class="scv-band dc-band">
+    <div class="scv-band-in dc-band-in">
+      <div class="dc-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Documents</span></div>
+      <div class="dc-kicker">PRINTED ITEMS</div>
+      <h1>Documents</h1>
+      <p>The printed items themselves: biographies, certificates, clippings and eulogies, transcribed as they appeared, with who published them and when.</p>
+    </div>
+  </div>
+  <main class="scv-band-in dc-main">
+    {% for k, items in groups %}
+      <section>
+        <div class="dc-head"><h2>{{ k == '~other' ? 'Other publishers' : k }}</h2><span>{{ items|length }} DOCUMENT{{ items|length == 1 ? '' : 'S' }}</span></div>
+        <div class="dc-list">
+          {% for d in items|sort((a, b) => (a.originalPublishDateEdtf ?? '') <=> (b.originalPublishDateEdtf ?? '')) %}
+            <a class="dc-item" href="{{ d.url }}">
+              <div class="dc-date">{{ (d.originalPublishDate ?? '')|trim ?: ((d.originalPublishDateEdtf ?? '')|trim ?: 'Undated') }}</div>
+              <div>
+                <div class="dc-t">{{ d.title }}</div>
+                {% if (d.sourceLine ?? '')|trim %}<div class="dc-m">{{ d.sourceLine|trim|slice(0, 160) }}</div>{% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% else %}
+      <p>No documents yet.</p>
+    {% endfor %}
+  </main>
+</div>
+{% endblock %}
