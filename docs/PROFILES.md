@@ -20,6 +20,31 @@ Nathan, 28 September 2026. Before any profile is written, count:
 profile.** That is fine, as long as the page says so: the body names its
 evidence as later accounts, and the evidence fields say `retrospective`.
 
+## Legacy prose becomes a source, not the body
+
+Nathan, 28 September 2026. Biographical prose already on a person record, or
+on the legacy page about them, is not the profile. It becomes its own **article
+record** with its author's byline (`writtenBy`) and its `legacyUrl`, pointing at
+the person through `subjectPerson`. The person's body becomes the editorial
+profile, which cites that article like any other source.
+
+- Every word is kept, the author keeps the credit, and the page speaks in one
+  voice. Two biographies side by side is two voices saying overlapping things.
+- The Mentry pilot did this implicitly: Leon's ch1070 biography was a source
+  and never the body. Henry Mayo Newhall #283 makes it explicit: Leon's 2,869
+  characters (`legacy-leon`) move to an article by Leon Worden, `legacyUrl`
+  /scvhistory/ap1335a.htm.
+- The Vasquez sketch set the pattern for a published item
+  (`create_vasquez_document.php`): the 1874 text left person #285's body for a
+  document with its copyright line and date.
+
+**The 33 hidden WordPress bodies** (`wordpress-import-unsourced`) follow the same
+rule wherever their authorship can be established: an article under the real
+author's byline, cited by the profile. **Where authorship cannot be established,
+the body stays hidden.** It does not become an article by nobody: an unsigned,
+uncited biography published as a record would claim a standing it has not
+earned.
+
 ## The shape that worked
 
 1. **Extract** the sources verbatim from the Reggie mirror into
