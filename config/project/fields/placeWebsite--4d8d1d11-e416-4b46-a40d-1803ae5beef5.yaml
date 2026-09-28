@@ -1,0 +1,14 @@
+columnSuffix: null
+handle: placeWebsite
+instructions: "The place's own official site, where it has one. Not Wikipedia: that has its own field."
+name: 'Place Website'
+searchable: false
+settings:
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: false
+  types:
+    - url
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Link

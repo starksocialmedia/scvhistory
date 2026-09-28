@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 25 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 27 September 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -182,7 +182,7 @@ emitted from whichever side schema.org expects.
 
 ### Documents — `documents/document`
 
-28 fields.
+29 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -201,6 +201,7 @@ emitted from whichever side schema.org expects.
 | `editorNotes` | Table | **local** | no external equivalent |
 | `documentFiles` | Assets | **local** | no external equivalent |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
+| `partOfCollection` | Entries | schema.org `isPartOf` | also dcterms:isPartOf |
 | `legacyKey` | PlainText | **local** | no external equivalent |
 | `legacyUrl` | PlainText | Dublin Core `source` | where it stood on the legacy site |
 | `sourcePath` | PlainText | Dublin Core `source` |  |
@@ -657,7 +658,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Places — `places/place`
 
-55 fields.
+56 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -699,6 +700,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `placeArticles` | Entries | **local** | no external equivalent |
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
 | `placeWikipediaUrl` | Link | schema.org `sameAs` |  |
+| `placeWebsite` | Link | schema.org `url` | the place's own official site |
 | `placeChlUrl` | Link | **local** | no external equivalent |
 | `placeScvhlUrl` | Link | **local** | no external equivalent |
 | `placeLegacyUrl` | PlainText | **local** | no external equivalent |

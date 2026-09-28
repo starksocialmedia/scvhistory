@@ -74,3 +74,6 @@
 2026-09-25 03:51:17 PDT	fix_org_records.php	scvhistory-web	16 rows	SHORT: Harvey Stack deleted, Stack's holds 3 articles: reads back short	rename #18862; orgType x11; Harvey Stack deleted, Stack's created; org-place pairs linked
 2026-09-28 07:40:57 CEST	fix_org_records.php	N8s-MacBook-2	0 rows	CORRECTION: the 03:51:17 SHORT was the check, not the data. count() returned "3" as a string and "3" === 3 is false; every write landed and was read back by id	check fixed in db5c2ae
 2026-09-28 07:41:25 CEST	fix_org_records.php	N8s-MacBook-2	0 rows	CORRECTION: the 03:51:17 SHORT was the check, not the data. count() returned "3" as a string and "3" === 3 is false; every write landed and was read back by id	check fixed in db5c2ae
+2026-09-27 22:44:58 PDT	add_place_website_field.php	scvhistory-web	1 rows	verified: field created and on the place layout	schema only; lets the three missions retire
+2026-09-27 22:45:33 PDT	convert_orgs_to_places.php	scvhistory-web	3 rows	verified: 3 of 3 moved and retired	{"386":16511,"398":16515,"400":16517} retired; held live []; organizations disabled, not deleted
+2026-09-27 22:45:38 PDT	fix_org_records.php	scvhistory-web	1 rows	verified 1 of 1	rename #18862; orgType x11; Harvey Stack deleted, Stack's created; org-place pairs linked
