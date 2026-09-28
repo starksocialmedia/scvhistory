@@ -13,6 +13,8 @@
     fitAllLabel   label for the "fit everything" link
     showFitValley true adds a "Fit the valley" link before it
     initialValley true fits the valley on load instead of every pin
+    frameSlugs    optional list of community slugs whose combined outline is "the
+                  valley"; defaults to the core valley below
     polygonsUrl   optional URL of a GeoJSON FeatureCollection, fetched at runtime
     polygonMeta   optional map of slug -> { tooltip, url } for those polygons
     boundaryCount optional element id whose text is set to the polygon count
@@ -84,6 +86,22 @@
 {% set boundaryCount = boundaryCount ?? null %}
 {% set outlineUrl = outlineUrl ?? null %}
 {% set activeSlug = activeSlug ?? null %}
+{#- THE VALLEY, FOR FRAMING. What "Fit the valley" and initialValley fit: the
+    combined outline of these communities, read from communities.geojson at
+    runtime, so the frame follows the boundaries rather than a typed-in box.
+    Nathan, 28 September 2026: the map's first job is orientation, so frame the
+    core valley, not the archive's widest definition.
+
+    The core, the city of Santa Clarita and its four named communities, plus the
+    valley-floor ring around it: Stevenson Ranch, Val Verde, Placerita Canyon,
+    Sand Canyon. About 21 by 44 km. Left out: Castaic's county outline, which
+    runs 35 by 40 km north to the lake and the forest (its town sits inside this
+    frame anyway), and the neighbours reaching up-canyon or into the desert,
+    Agua Dulce, Acton, San Francisquito Canyon; with them the frame was as wide
+    as all fifteen outlines together. Anything outside stays off-screen until the
+    reader zooms out, fits everything, or selects it. -#}
+{% set frameSlugs = frameSlugs ?? ['santa-clarita', 'newhall', 'saugus', 'valencia', 'canyon-country',
+                                   'stevenson-ranch', 'val-verde', 'placerita-canyon', 'sand-canyon'] %}
 
 <div class="pl-mapcard">
   <div id="map" role="img" aria-label="{{ mapLabel ?? 'Map of the Santa Clarita Valley' }}"{% if mapHeight is defined and mapHeight %} style="height:{{ mapHeight }}"{% endif %}></div>
@@ -108,6 +126,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var OUTLINE_URL = {{ outlineUrl ? outlineUrl|json_encode|raw : 'null' }};
   var ACTIVE_SLUG = {{ activeSlug ? activeSlug|json_encode|raw : 'null' }};
   var HINT = {{ hint|json_encode|raw }};
+  var FRAME = {{ frameSlugs|json_encode|raw }};
+  var GEO_URL = SHAPES_URL || {{ (siteUrl ~ 'data/communities.geojson')|json_encode|raw }};
+  var frameBounds = null;
   var map = L.map('map', { scrollWheelZoom: false });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
 
@@ -185,13 +206,16 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
-  function inValley(p){ return p.lat > 34.3 && p.lat < 35 && p.lng > -118.95 && p.lng < -118.25; }
   function fit(valley){
-    var pts = valley ? PINS.filter(inValley) : PINS;
-    if (!pts.length) pts = PINS;
+    var pts = PINS;
     // A community filter means the community is the subject: fit its outline.
     if (activeLayer && activeLayer.getBounds && activeLayer.getBounds().isValid()) {
       map.fitBounds(activeLayer.getBounds(), { padding: [30,30] });
+      return;
+    }
+    // The valley: the combined outline of FRAME, from the GeoJSON.
+    if (valley && frameBounds && frameBounds.isValid()) {
+      map.fitBounds(frameBounds, { padding: [16,16] });
       return;
     }
     var bounds = pts.length ? L.latLngBounds(pts.map(function(p){ return [p.lat, p.lng]; })) : null;
@@ -225,14 +249,16 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('fitAll').addEventListener('click', function(e){ e.preventDefault(); reset(false); });
   var fv = document.getElementById('fitValley');
   if (fv) { fv.addEventListener('click', function(e){ e.preventDefault(); reset(true); }); }
-  if (SHAPES_URL) {
-    fetch(SHAPES_URL)
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(geo){ if (geo) { drawShapes(geo); } })
-      .catch(function(){})
-      .then(function(){ fit({{ initialValley ? 'true' : 'false' }}); });
-  } else {
-    fit({{ initialValley ? 'true' : 'false' }});
-  }
+  // The GeoJSON is read for the valley frame even where no shapes are drawn.
+  fetch(GEO_URL)
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(geo){
+      if (!geo) { return; }
+      var framed = (geo.features || []).filter(function(f){ return FRAME.indexOf((f.properties || {}).slug) !== -1; });
+      if (framed.length) { frameBounds = L.geoJSON({ type: 'FeatureCollection', features: framed }).getBounds(); }
+      if (SHAPES_URL) { drawShapes(geo); }
+    })
+    .catch(function(){})
+    .then(function(){ fit({{ initialValley ? 'true' : 'false' }}); });
 });
 </script>
