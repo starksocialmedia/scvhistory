@@ -14,14 +14,14 @@
 {% set activeMap = {
   'persons': 'people', 'groups': 'people', 'obituaries': 'people',
   'war-memorial': 'people', 'military-profiles': 'people',
-  'places': 'places', 'communities': 'places', 'organizations': 'places',
+  'places': 'places', 'communities': 'places', 'organizations': 'people',
   'collections': 'collections',
   'articles': 'articles', 'events': 'articles',
   'photographs': 'articles', 'documents': 'articles'
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v4-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v5-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -40,6 +40,8 @@
 {% set cWar       = craft.entries().section('warMemorials').count() %}
 {% set cPlaces    = craft.entries().section('places').count() %}
 {% set cOrgs      = craft.entries().section('organizations').count() %}
+{% set cGov       = craft.entries().section('organizations').orgType('government').count() %}
+{% set cComms     = craft.categories().group('neighborhood').count() %}
 {% set cColls     = craft.entries().section('collections').count() %}
 {% set cArticles  = craft.entries().section('articles').count() %}
 {% set cEvents    = craft.entries().section('events').count() %}
@@ -48,10 +50,18 @@
 {% set cEraTerms  = craft.categories().group('historicalEra').count() %}
 
 {# PEOPLE #}
+{#- Organizations are here, not under PLACES (STRUCTURE.md, 28 September 2026):
+    an organization acts, like a person; a place is located. The government
+    bodies are a view of the same index, not a second home. (Comments go
+    outside array and hash literals: inside one, Twig fails to parse.) -#}
 {% set colsPeople = [
   { label: 'RECORDS', items: [
     { t: 'All people',       n: cPersons, u: url('persons') },
     { t: 'Pioneer families', n: cGroups,  u: url('groups') }
+  ] },
+  { label: 'ORGANIZATIONS', items: [
+    { t: 'All organizations', n: cOrgs, u: url('organizations') },
+    { t: 'Government bodies', n: cGov,  u: url('organizations', { kind: 'government' }) }
   ] },
   { label: 'MEMORIAL', items: [
     { t: 'Obituaries',   n: cObits, u: url('obituaries') },
@@ -69,24 +79,16 @@
 } : null %}
 
 {# PLACES #}
-{% set nbhdRows = [] %}
-{% for c in craft.categories().group('neighborhood').all() %}
-  {% set n = craft.entries().relatedTo(c).count() %}
-  {% if n > 0 %}
-    {% set nbhdRows = nbhdRows|merge([{ t: c.title, n: n, u: c.url }]) %}
-  {% endif %}
-{% endfor %}
-{% set nbhdRows = nbhdRows|sort((a, b) => b.n - a.n)|slice(0, 3) %}
-
-{% set colsPlaces = [{ label: 'GEOGRAPHY', items: [
-  { t: 'All places', n: cPlaces, u: url('places') }
-] }] %}
-{% if nbhdRows|length %}
-  {% set colsPlaces = colsPlaces|merge([{ label: 'COMMUNITIES', items: nbhdRows }]) %}
-{% endif %}
-{% set colsPlaces = colsPlaces|merge([{ label: 'INSTITUTIONS', items: [
-  { t: 'Organizations', n: cOrgs, u: url('organizations') }
-] }]) %}
+{#- What is located. Communities go to their map, not three of 35 as text rows.
+    Organizations moved to PEOPLE. -#}
+{% set colsPlaces = [
+  { label: 'GEOGRAPHY', items: [
+    { t: 'All places', n: cPlaces, u: url('places') }
+  ] },
+  { label: 'COMMUNITIES', items: [
+    { t: 'Community map', n: cComms, u: url('communities') }
+  ] }
+] %}
 
 {% set fPlace = craft.entries().section('places').slug('beales-cut-stagecoach-pass').one() %}
 {% if not fPlace %}
@@ -191,13 +193,10 @@
 {% endif %}
 
 {# ARTICLES #}
-{% set mediaItems = [] %}
-{% if cPhotos > 0 %}
-  {% set mediaItems = mediaItems|merge([{ t: 'Photo galleries', n: cPhotos, u: url('photographs') }]) %}
-{% endif %}
-{% if cDocs > 0 %}
-  {% set mediaItems = mediaItems|merge([{ t: 'Documents', n: cDocs, u: url('documents') }]) %}
-{% endif %}
+{% set mediaItems = [
+  { t: 'Photographs', n: cPhotos, u: url('photographs') },
+  { t: 'Documents',   n: cDocs,   u: url('documents') }
+] %}
 
 {% set colsArticles = [
   { label: 'WRITING', items: [{ t: 'All articles', n: cArticles, u: url('articles') }] },
@@ -260,10 +259,34 @@
 {% set menus = [
   { id: 'articles',    label: 'ARTICLES',    kicker: 'SINGLE PIECES & EVENTS',          columns: colsArticles, feature: featArticles },
   { id: 'collections', label: 'COLLECTIONS', kicker: 'MULTI-PART WORKS, READ IN ORDER', columns: colsColls,    feature: featColls },
-  { id: 'people',      label: 'PEOPLE',      kicker: 'BIOGRAPHY & FAMILY RECORDS',      columns: colsPeople,   feature: featPeople },
+  { id: 'people',      label: 'PEOPLE',      kicker: 'PEOPLE, FAMILIES & ORGANIZATIONS', columns: colsPeople,   feature: featPeople },
   { id: 'places',      label: 'PLACES',      kicker: 'LAND, SITES & COMMUNITIES',       columns: colsPlaces,   feature: featPlaces },
   { id: 'era',         label: 'BY ERA',      kicker: 'BROWSE THE TIMELINE',             columns: colsEra,      feature: featEra }
 ] %}
+
+{#- THE NAV-LINK RULE (STRUCTURE.md): a link appears only when its page exists
+    AND has records. A count alone let the menu advertise 1,546 photographs
+    behind a 404 for months; a template alone gives a room with nothing in it,
+    the /military-profiles index. So every item in every menu is checked here
+    once, both ways: n above zero, and, for an index URL (one path segment),
+    a template that exists. A column left empty is dropped. -#}
+{% set checked = [] %}
+{% for menu in menus %}
+  {% set cols = [] %}
+  {% for col in menu.columns %}
+    {% set items = [] %}
+    {% for it in col.items %}
+      {% set path = it.u|replace({ (siteUrl): '' })|split('?')|first|trim('/') %}
+      {% set isIndex = path and '/' not in path %}
+      {% if (it.n ?? 0) > 0 and (not isIndex or craft.app.view.doesTemplateExist(path)) %}
+        {% set items = items|merge([it]) %}
+      {% endif %}
+    {% endfor %}
+    {% if items|length %}{% set cols = cols|merge([col|merge({ items: items })]) %}{% endif %}
+  {% endfor %}
+  {% if cols|length %}{% set checked = checked|merge([menu|merge({ columns: cols })]) %}{% endif %}
+{% endfor %}
+{% set menus = checked %}
 
 <header class="scv-hdr" style="background: #17254C; position: relative; z-index: 5">
 
