@@ -426,6 +426,19 @@ ddev craft exec "eval(file_get_contents('scripts/import/check_render.php'))"
 - A site-wide 404 with the containers up is a sync in progress until
   `ddev mutagen status` says otherwise.
 
+### Wait for the sync after an edit, too
+
+The same lag applies to every file edit, not only restarts. An edited template
+reaches the container a moment later, so a page fetched straight after the edit
+can be the old version. On 28 September the documents index was judged wrong
+from exactly that: the fix was already made, the page had not caught up.
+
+- After editing a template, a script or a config file, wait for
+  `ddev mutagen status` to read `ok` before loading the page, running
+  check_render or reading any output that depends on the change.
+- A result that contradicts an edit just made is stale until the sync says
+  otherwise.
+
 ### Reggie is optional
 
 The archive drive is external and is often unplugged. A pre-start hook,
