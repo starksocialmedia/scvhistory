@@ -106,6 +106,13 @@ wrong column. Before reporting, compare at least one number against something
 already known to be true. Three faults this session read correctly and rendered
 wrong; the note in `scv-record-template` lists them.
 
+**Check every value against its field's limit in the dry run.** A PlainText
+field can carry a `charLimit` (the asset `source` field allows 500). A value
+over it fails the save halfway through an apply, after the file is already in
+the volume: Scofield's portrait landed with no fields and his profile not at all
+(29 September 2026). Compare `mb_strlen($value)` with `$field->charLimit` for
+every PlainText value in the plan, and refuse in the dry run.
+
 **Report anything unmatched.** Communities with no matching term, labels with no
 field, pages with no record, URLs that 404. List them with their keys so Nathan
 can act. Never drop a row silently.

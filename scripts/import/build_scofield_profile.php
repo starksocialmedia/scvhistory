@@ -76,9 +76,21 @@ $ASSET = [
         'acquiredDate' => '2026-09-28',
         'dateAsPrinted' => '1911, publication, per Wikimedia Commons',
         'dateEdtf' => '../1911',
-        'source' => 'Wikimedia Commons, File:DemetriusGScofield.jpg, which gives "Original publication: 1911," credits Standard Oil of California, and took the image from elsmerecanyon.com. The 1911 publication is not named, and the public-domain status, published before 1929 (PD-US-1923), rests on that unnamed publication: the gap is recorded here so that a later reader can close it. Received from Commons on 28 September 2026, 374 x 477, SHA-1 ' . '3d95720019d02001ba6d14ba859758dd86148b1c' . ', matching the Commons original; the stored copy is re-encoded on import and differs from the file as received.',
+        /* 500 characters is the field's limit: the first version of this line
+           was 604 and the apply failed on it (29 September 2026). The rights
+           caveat and the checksum are in full in the editor note on #21584. */
+        'source' => 'Wikimedia Commons, File:DemetriusGScofield.jpg: "Original publication: 1911," credited to Standard Oil of California. Public domain as published before 1929; the 1911 publication is not named (see the editor note on record #21584). Received 28 September 2026, SHA-1 3d95720019d02001ba6d14ba859758dd86148b1c; the stored copy is re-encoded.',
     ],
 ];
+
+$RIGHTS_NOTE = ['heading' => 'The portrait: provenance and rights', 'position' => 'bottom',
+    'note' => 'The portrait is Wikimedia Commons, File:DemetriusGScofield.jpg (https://commons.wikimedia.org/wiki/File:DemetriusGScofield.jpg), which gives "Original publication: 1911," credits Standard Oil of California, and took the image from elsmerecanyon.com. The 1911 publication is not named. Its public-domain status, published before 1929 (PD-US-1923), rests on that unnamed publication; the gap is recorded so that a later reader can close it. Received from Commons on 28 September 2026 as a 374 x 477 file, SHA-1 3d95720019d02001ba6d14ba859758dd86148b1c, matching the Commons original. The stored copy is re-encoded on import and differs from the file as received.'];
+
+/* Every value against its field's character limit, in the dry run, so an
+   overlong value fails here and not halfway through an apply. */
+$fsvc = Craft::$app->getFields(); $over = [];
+foreach ($ASSET['fields'] as $h => $v) { $f = $fsvc->getFieldByHandle($h); if ($f instanceof \craft\fields\PlainText && $f->charLimit && mb_strlen($v) > $f->charLimit) { $over[] = "$h is " . mb_strlen($v) . " characters, limit {$f->charLimit}"; } }
+if ($over) { echo 'REFUSING: ' . implode('; ', $over) . PHP_EOL; return; }
 
 $elements = Craft::$app->getElements();
 $e = Entry::find()->id($ID)->status(null)->one();
@@ -95,7 +107,11 @@ $folder = Craft::$app->getAssets()->findFolder(['volumeId' => $volume->id, 'path
 $existing = Asset::find()->volumeId($volume->id)->filename($FILENAME)->one();
 $current = $e->featuredImage->one();
 if ($current && (!$existing || $current->id !== $existing->id)) { echo 'REFUSING the portrait: featuredImage already holds #' . $current->id . ' ' . $current->filename . PHP_EOL; return; }
-echo PHP_EOL . 'portrait: ' . ($existing ? 'held as #' . $existing->id : 'import as archiveMedia/outside/' . $FILENAME) . ($current ? ', already featured' : ', set as featuredImage') . PHP_EOL;
+$fillExisting = $existing && trim((string)$existing->getFieldValue('source')) === '';
+echo PHP_EOL . 'portrait: ' . ($existing ? 'held as #' . $existing->id . ($fillExisting ? ', created by the failed apply with no fields: its fields are filled' : '') : 'import as archiveMedia/outside/' . $FILENAME) . ($current ? ', already featured' : ', set as featuredImage') . PHP_EOL;
+$notes = array_values(array_filter($e->editorNotes ?? [], fn($r) => is_array($r) && trim((string)($r['note'] ?? '')) !== ''));
+$addNote = !array_filter($notes, fn($r) => ($r['heading'] ?? '') === $RIGHTS_NOTE['heading']);
+if ($addNote) { echo 'editor note on #' . $ID . ': ' . $RIGHTS_NOTE['heading'] . PHP_EOL; }
 foreach ($ASSET['fields'] as $k => $v) { echo '   ' . str_pad($k, 15) . $v . PHP_EOL; }
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
 
@@ -107,6 +123,9 @@ if (!$asset) {
     $asset->tempFilePath = $tmp; $asset->setFilename($FILENAME); $asset->newFolderId = $folder->id; $asset->setVolumeId($volume->id);
     $asset->setScenario(Asset::SCENARIO_CREATE); $asset->avoidFilenameConflicts = false;
     if (!$elements->saveElement($asset)) { throw new \RuntimeException('build_scofield_profile: asset ' . json_encode($asset->getFirstErrors())); }
+    $fillExisting = true;
+}
+if ($fillExisting) {
     $asset = Asset::find()->id($asset->id)->one();
     $asset->title = $ASSET['title']; $asset->alt = $ASSET['alt'];
     $vals = $ASSET['fields']; $vals['sourceUrl'] = ['type' => 'url', 'value' => $vals['sourceUrl']];
@@ -115,6 +134,7 @@ if (!$asset) {
 }
 $e = Entry::find()->id($ID)->status(null)->one();
 if ($doBody) { $e->setFieldValues(['body' => $BODY, 'footnotes' => $FOOTNOTES]); }
+if ($addNote) { $notes[] = $RIGHTS_NOTE; $e->setFieldValue('editorNotes', $notes); }
 if (!$current) { $e->setFieldValue('featuredImage', [$asset->id]); }
 if (!$elements->saveElement($e)) { throw new \RuntimeException('build_scofield_profile: person ' . json_encode($e->getFirstErrors())); }
 
@@ -122,6 +142,7 @@ $b = Entry::find()->id($ID)->status(null)->one(); $short = [];
 if (trim((string)$b->body) !== trim($BODY)) { $short[] = 'body differs'; }
 if (($b->featuredImage->one()->id ?? null) !== $asset->id) { $short[] = 'portrait not featured'; }
 if ((string)Asset::find()->id($asset->id)->one()->getFieldValue('license')->value !== 'public-domain') { $short[] = 'licence not recorded'; }
+if (!array_filter($b->editorNotes ?? [], fn($r) => ($r['heading'] ?? '') === $RIGHTS_NOTE['heading'])) { $short[] = 'rights note missing'; }
 echo 'READ-BACK ' . ($short ? 'SHORT: ' . implode('; ', $short) : 'OK: career body, 16 footnotes, portrait #' . $asset->id) . PHP_EOL;
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('build_scofield_profile.php', 2, $short ? 'SHORT: ' . implode('; ', $short) : 'verified', 'Scofield career 1873-1917; Commons portrait, PD-US-1923 on an unnamed 1911 publication');
