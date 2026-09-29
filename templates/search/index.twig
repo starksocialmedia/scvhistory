@@ -311,7 +311,7 @@
                   {% if r.years|length %}{% set bits = bits|merge([r.years|first]) %}{% endif %}
                   <li>
                     <a href="{{ e.url }}">
-                      <span class="th">{% if img %}<img src="{{ img.url }}" alt="" loading="lazy">{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
+                      <span class="th">{% if img %}<img src="{{ img.url }}" alt="" loading="lazy"{% include '_partials/record/img-pos.twig' with {img: img} only %}>{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
                       <span style="min-width:0">
                         <span class="k">{{ LABEL[r.kind] ?? r.kind }}</span>
                         <span class="t">{{ label }}</span>

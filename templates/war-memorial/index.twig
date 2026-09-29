@@ -99,7 +99,7 @@
             <a class="wm-card" href="{{ r.e.url }}">
               <div class="wm-face{{ r.img ? '' : ' wm-face--plate' }}">
                 {% if r.img %}
-                  <img src="{{ r.img.url }}" alt="{{ r.name }}">
+                  <img src="{{ r.img.url }}" alt="{{ r.name }}"{% include '_partials/record/img-pos.twig' with {img: r.img} only %}>
                 {% else %}
                   <span class="nm" style="font-size:{{ size }}px">{{ r.name }}</span>
                   {% if r.rank %}<span class="rk">{{ r.rank }}</span>{% endif %}

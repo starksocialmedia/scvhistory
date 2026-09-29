@@ -113,7 +113,7 @@
         {% set words = p.title|split(' ') %}
         <a class="pp-card" href="{{ p.url }}">
           <div class="pp-photo">
-            {% if img %}<img src="{{ img.url }}" alt="{{ p.title }}">{% else %}<span class="pp-initials">{{ (words|first|slice(0,1) ~ (words|length > 1 ? words|last|slice(0,1) : ''))|upper }}</span>{% endif %}
+            {% if img %}<img src="{{ img.url }}" alt="{{ p.title }}"{% include '_partials/record/img-pos.twig' with {img: img} only %}>{% else %}<span class="pp-initials">{{ (words|first|slice(0,1) ~ (words|length > 1 ? words|last|slice(0,1) : ''))|upper }}</span>{% endif %}
           </div>
           <div class="pp-body">
             <div class="pp-name">{{ p.title }}</div>

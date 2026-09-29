@@ -2,7 +2,12 @@
 {% block head %}
   {% include "_partials/record/css" %}
   {% include "_partials/record/print" %}
-  {% if entry.orgLat and entry.orgLng %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
+  {#- The map may come from a place this organization is tied to: a firm's
+      coordinates are where its works stood, and they live on the place record,
+      one fact in one home. Computed here as well because head renders first. -#}
+  {% set headMapPlace = (entry.orgLat and entry.orgLng) ? null : (craft.entries().section('places')
+      .relatedTo({ targetElement: entry, field: 'placeOrganizations' }).placeLat(':notempty:').placeLng(':notempty:').one() ?? null) %}
+  {% if (entry.orgLat and entry.orgLng) or headMapPlace %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
   {% css %}.rec-map{height:220px;background:#EEF0F4;margin:-18px -20px 14px;width:calc(100% + 40px)}{% endcss %}
 {% endblock %}
 
@@ -30,7 +35,12 @@
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
-{% set hasMap = entry.orgLat and entry.orgLng %}
+{% set orgPlaces = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placeOrganizations' }).orderBy('title asc').all() %}
+{% set mapPlace = (entry.orgLat and entry.orgLng) ? null : (orgPlaces|filter(p => p.placeLat and p.placeLng)|first ?: null) %}
+{% set mapLat = mapPlace ? mapPlace.placeLat : entry.orgLat %}
+{% set mapLng = mapPlace ? mapPlace.placeLng : entry.orgLng %}
+{% set mapTitle = mapPlace ? mapPlace.title : entry.title %}
+{% set hasMap = mapLat and mapLng %}
 {% set parent = entry.parentOrganization.one() ?? null %}
 {% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).orderBy('title asc').all() %}
 {% set publishedArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).orderBy('title asc').all() %}
@@ -84,9 +94,10 @@
         {% if hasMap %}
           <div class="rec-box">
             <div class="rec-lab">LOCATION</div>
-            <div id="recMap" class="rec-map" role="img" aria-label="Map showing the location of {{ entry.title }}"></div>
-            <p class="scv-sr">The coordinates and address for this organization are listed beside the map.</p>
-            {% set loc = [['FOUNDED', F.dateFounded], ['ADDRESS', F.orgAddress], ['LAT', entry.orgLat], ['LNG', entry.orgLng]]|filter(r => r[1]) %}
+            <div id="recMap" class="rec-map" role="img" aria-label="Map showing the location of {{ mapTitle }}"></div>
+            <p class="scv-sr">The coordinates for this location are listed beside the map.</p>
+            {% if mapPlace %}<div class="rec-rows"><div class="k">PLACE</div><div class="v"><a href="{{ mapPlace.url }}">{{ mapPlace.title }}</a></div></div>{% endif %}
+            {% set loc = [['FOUNDED', F.dateFounded], ['ADDRESS', mapPlace ? '' : F.orgAddress], ['LAT', mapLat], ['LNG', mapLng]]|filter(r => r[1]) %}
             <div class="rec-rows">{% for r in loc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
           </div>
         {% endif %}
@@ -109,7 +120,7 @@
               {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
               {% set pp = p.title|split(' ')|filter(x => x|trim) %}
               <a class="rec-person" href="{{ p.url }}">
-                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
+                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: pimg} only %}>{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
                 <div style="min-width:0"><div class="n">{{ p.title }}</div>{% if p.occupation is defined and p.occupation %}<div class="r">{{ p.occupation }}</div>{% endif %}</div>
               </a>
             {% endfor %}
@@ -123,6 +134,7 @@
         {% set boxes = [
           { lab: 'PARENT ORGANIZATION', key: 'PARENT', rows: parent ? [parent] : [] },
           { lab: 'BOARDS AND SUBSIDIARIES', key: 'BOARD', rows: subBodies },
+          { lab: 'PLACES', key: 'PLACE', rows: orgPlaces },
           { lab: 'EVENTS', key: 'EVENT', rows: entry.orgEvents.all() },
           { lab: 'ARTICLES', key: 'ARTICLE', rows: subjectArticles },
           { lab: 'PUBLISHED BY THIS ORGANIZATION', key: 'ARTICLE', rows: publishedArticles }
@@ -166,10 +178,10 @@
 document.addEventListener('DOMContentLoaded', function(){
   var el = document.getElementById('recMap');
   if (!el || typeof L === 'undefined') { return; }
-  var map = L.map(el, { scrollWheelZoom: false }).setView([{{ entry.orgLat }}, {{ entry.orgLng }}], 15);
+  var map = L.map(el, { scrollWheelZoom: false }).setView([{{ mapLat }}, {{ mapLng }}], 15);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
-  L.marker([{{ entry.orgLat }}, {{ entry.orgLng }}]).addTo(map)
-    .bindPopup({{ ('<b>' ~ entry.title ~ '</b>' ~ F.orgAddress)|json_encode|raw }});
+  L.marker([{{ mapLat }}, {{ mapLng }}]).addTo(map)
+    .bindPopup({{ ('<b>' ~ mapTitle ~ '</b>' ~ (mapPlace ? '' : F.orgAddress))|json_encode|raw }});
 });
 </script>
 {% endif %}

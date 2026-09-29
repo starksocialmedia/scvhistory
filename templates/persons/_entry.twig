@@ -62,7 +62,7 @@
   {% set life = [p.birthDate is defined ? p.birthDate : null, p.deathDate is defined ? p.deathDate : null]|filter(x => x)|join(' – ') %}
   {% set line = (p.occupation is defined and p.occupation) ? p.occupation : life %}
   <a class="rec-person" href="{{ p.url }}">
-    <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ pini|upper }}{% endif %}</div>
+    <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: pimg} only %}>{% else %}{{ pini|upper }}{% endif %}</div>
     <div style="min-width:0">
       <div class="n">{{ p.title }}</div>
       {% if line %}<div class="r">{{ line }}</div>{% endif %}
@@ -143,7 +143,7 @@
             {% for o in orgs %}
               {% set oimg = o.featuredImage is defined ? o.featuredImage.one() ?? null : null %}
               <a class="rec-person" href="{{ o.url }}">
-                <div class="th">{% if oimg %}<img src="{{ oimg.url }}" alt="">{% else %}{{ o.title|slice(0,1)|upper }}{% endif %}</div>
+                <div class="th">{% if oimg %}<img src="{{ oimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: oimg} only %}>{% else %}{{ o.title|slice(0,1)|upper }}{% endif %}</div>
                 <div style="min-width:0"><div class="n">{{ o.title }}</div>{% if o.dateFounded is defined and o.dateFounded %}<div class="r">Founded {{ o.dateFounded }}</div>{% endif %}</div>
               </a>
             {% endfor %}

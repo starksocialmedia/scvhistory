@@ -1,0 +1,8 @@
+{#- Where a cropped image is anchored. The asset's focal point when one is set
+   (a person standing off centre in a landscape frame), else the top, where a
+   portrait's face usually is. Emits a style attribute or nothing.
+   Usage: <img src="..." {% include '_partials/record/img-pos.twig' with {img: img} only %}> -#}
+{%- if img is defined and img and img.getHasFocalPoint() -%}
+{%- set fp = img.getFocalPoint() -%}
+{{ " " }}style="object-position:{{ (fp.x * 100)|round(1) }}% {{ (fp.y * 100)|round(1) }}%"
+{%- endif -%}

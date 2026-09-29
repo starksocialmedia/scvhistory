@@ -21,6 +21,9 @@ What counts as a marker, in the metadata exiftool reads:
   IPTC DigitalSourceType trainedAlgorithmicMedia or
     compositeWithTrainedAlgorithmicMedia (the IPTC term for generated media)
   a generator named in Software, CreatorTool or a PNG text chunk
+A manifest held elsewhere is fetched (one request every two seconds) and its
+declared source type reported: generated, generated in part, or neither.
+An Adobe manifest alone only means Adobe software touched the file.
     (Firefly, DALL-E, Midjourney, Stable Diffusion, Imagen, and so on)
 A raw byte search for the same strings runs as well, and a byte hit that
 exiftool does not confirm is reported separately, never counted as a finding.
@@ -50,6 +53,25 @@ TAG = re.compile(r'jumbf|c2pa|trainedalgorithmicmedia|' + GENERATORS, re.I)
 BYTES = re.compile(rb'c2pa|jumb|trainedAlgorithmicMedia|' + GENERATORS.encode(), re.I)
 
 
+def read_manifest(url):
+    """Fetch a manifest held elsewhere and say what it declares about the image."""
+    time.sleep(2)
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'SCVHistory archive provenance check'})
+        m = urllib.request.urlopen(req, timeout=30).read()
+    except Exception as e:
+        return f'could not fetch {url}: {e}'
+    if b'compositeWithTrainedAlgorithmicMedia' in m:
+        kind = 'GENERATED IN PART (compositeWithTrainedAlgorithmicMedia)'
+    elif b'trainedAlgorithmicMedia' in m:
+        kind = 'GENERATED (trainedAlgorithmicMedia)'
+    else:
+        kind = 'no generative source type declared'
+    agents = sorted({a.decode('latin-1') for a in re.findall(rb'(Adobe Firefly|Adobe Photoshop|Lightroom|DALL-E|OpenAI|Midjourney)', m)})
+    ops = sorted({o.decode('latin-1') for o in re.findall(rb'text_to_image|generative_fill|generative_expand', m)})
+    return kind + (', by ' + ', '.join(agents) if agents else '') + (', ' + ', '.join(ops) if ops else '')
+
+
 def scan(path):
     """Return (confirmed markers, unconfirmed byte hits)."""
     out = subprocess.run(['exiftool', '-a', '-G1', '-s', '-api', 'LargeFileSupport=1', path],
@@ -60,6 +82,8 @@ def scan(path):
             continue
         if TAG.search(line) or ('Provenance' in line and 'manifest' in line.lower()):
             found.append(re.sub(r'\s+', ' ', line.strip())[:160])
+    for url in sorted(set(re.findall(r'https://cai-manifests\.adobe\.com/manifests/[\w-]+', out))):
+        found.append('manifest says: ' + read_manifest(url))
     with open(path, 'rb') as fh:
         raw = fh.read()
     hits = sorted({m.group(0).decode('latin-1').lower() for m in BYTES.finditer(raw)})
