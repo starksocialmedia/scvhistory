@@ -1,0 +1,2547 @@
+{
+ "subject": "Edward Fitzgerald Beale",
+ "craft_person_id": 327,
+ "duplicate_craft_person_id": 15908,
+ "compiled": "2026-09-29",
+ "vitals": {
+  "birth": {
+   "date": "1822-02-04",
+   "place": "Washington, D.C.",
+   "status": "confirmed; no disagreement"
+  },
+  "death": {
+   "date": "1893-04-22",
+   "place": "Decatur House, Washington, D.C.",
+   "burial": "Chester Rural Cemetery, Chester PA",
+   "status": "confirmed"
+  }
+ },
+ "counts": {
+  "fetched_urls": 146,
+  "fetched_http200": 146,
+  "classified_pages": 116,
+  "local": 104,
+  "career": 9,
+  "index_pages": 3,
+  "peripheral_checked": 30,
+  "bealescut_index_links": 45,
+  "bealescut_content_links": 38,
+  "bealescut_distinct_targets": 37,
+  "beale_sidebar_links": 10,
+  "ridge_beale_entries": 21,
+  "inventory_urls_mentioning_beale": 352,
+  "inventory_urls_beale_in_title": 45,
+  "within_lifetime": 14,
+  "spans_lifetime": 4,
+  "conflicts": 24,
+  "live_errors": 10,
+  "archive_beats": 6,
+  "cc_person_records": [
+   "#327 Edward Fitzgerald Beale",
+   "#15908 Edward F. Beale (duplicate)"
+  ],
+  "cc_place": "#932 Beale's Cut Stagecoach Pass",
+  "cc_photo_links_named_only_in_prose": {
+   "#15908": 30,
+   "#327": 10
+  }
+ },
+ "local_pages": [
+  {
+   "code": "bealescut",
+   "group": "A index",
+   "date": "live index",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "index page",
+   "originating_archive": "SCVHistory (Leon Worden)",
+   "notes": "45 links / 38 content / 37 distinct targets; Iron Horse entry mislabeled",
+   "conflicts": [
+    "C10",
+    "L1"
+   ],
+   "url": "https://scvhistory.com/scvhistory/bealescut.htm",
+   "title": "Beale's Cut Beale's Cut Beale's Cut & Ridge Route The San Fernando (Newhall) Pass And the Pioneer Traffic That Went Over"
+  },
+  {
+   "code": "ripley-index",
+   "group": "A cut",
+   "date": "1947-48 (reprint)",
+   "date_source": "HSSC Quarterly series, Ripley",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "Historical Society of Southern California Quarterly (Vernette Snyder Ripley)",
+   "notes": "16-part index; the documentary backbone (quotes LA Star, Statutes, BoS)",
+   "conflicts": [
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley-index.htm",
+   "title": "The San Fernando (Newhall) Pass and the Pioneer Traffic That Went Over It. The San Fernando (Newhall) Pass And the Pione"
+  },
+  {
+   "code": "ripley1pdf",
+   "group": "A cut",
+   "date": "1947-48",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "HSSC Quarterly scan",
+   "notes": "Part I pdf",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley1pdf.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part I. The San Fernando (Newhall) Pass. Part I. By VERNETTE SNYDER RIPLEY The "
+  },
+  {
+   "code": "ripley2pdf",
+   "group": "A cut",
+   "date": "1947-48",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "HSSC Quarterly scan",
+   "notes": "Part II pdf",
+   "conflicts": [
+    "C10",
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley2pdf.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part II. The San Fernando (Newhall) Pass. Part II. By VERNETTE SNYDER RIPLEY Th"
+  },
+  {
+   "code": "ripley10",
+   "group": "A cut",
+   "date": "1947-48 (covers 1858)",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "cites LA Daily Evening Bulletin 7-12-1858; LA Star 7-31-1858",
+   "notes": "1858 lowering for Butterfield",
+   "conflicts": [
+    "C10",
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley10.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part 10. The San Fernando (Newhall) Pass. 10. 1858: The Butterfield Overland Ma"
+  },
+  {
+   "code": "ripley11",
+   "group": "A cut",
+   "date": "1947-48 (covers 1860)",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "HSSC",
+   "notes": "1860 stage road",
+   "conflicts": [
+    "C10"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley11.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part 11: 1860 Stage Road. > ROADS-TRANSPORTATION The San Fernando (Newhall) Pas"
+  },
+  {
+   "code": "ripley12",
+   "group": "A cut",
+   "date": "1947-48 (covers 1860-61)",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "cites Statutes of California 1861 p.303",
+   "notes": "franchise to Brinley, Pico, Vineyard, May 7 1861",
+   "conflicts": [
+    "C12",
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley12.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part 12. The San Fernando (Newhall) Pass. 12. Developments During 1860-1861. By"
+  },
+  {
+   "code": "ripley13",
+   "group": "A cut",
+   "date": "1947-48 (covers 1862-64)",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "cites LA Star 1-25-1862, 3-15-1862, 4-4-1863, 12-26-1863, 3-5-1864; Stats 1862 p.282; Gaffey MSS (Huntington)",
+   "notes": "core source for the deep cut; reservation given up 1862 (Giffen)",
+   "conflicts": [
+    "C4",
+    "C10",
+    "C11",
+    "C12",
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley13.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part 13. The San Fernando (Newhall) Pass. 13. 1862-64: The New Deep Cut in the "
+  },
+  {
+   "code": "ripley14",
+   "group": "A cut",
+   "date": "1947-48 (covers 1865-76)",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "HSSC",
+   "notes": "Star Oil Co. 1865; Dunne bought Robbins by 1870; franchise expired 1883",
+   "conflicts": [
+    "C13",
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley14.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part 14. The San Fernando (Newhall) Pass. 14. 1865-76: Oil and the San Fernando"
+  },
+  {
+   "code": "ripley15",
+   "group": "A cut",
+   "date": "1947-48 (covers 1876-1910)",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "HSSC",
+   "notes": "20 years from Mar 1864 = 1884",
+   "conflicts": [
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley15.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part 15. The San Fernando (Newhall) Pass. 15. 1876-1910: Development of the New"
+  },
+  {
+   "code": "ripley16",
+   "group": "A cut",
+   "date": "1947-48 (covers 1902-10)",
+   "date_source": "HSSC Quarterly",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "HSSC",
+   "notes": "deepened \"a few feet about 1904\"; tunnel 1910",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ripley16.htm",
+   "title": "Ripley: The San Fernando (Newhall) Pass, Part 16. The San Fernando (Newhall) Pass. 16. 1902-10: Autos on the San Fernand"
+  },
+  {
+   "code": "perkins part04",
+   "group": "A cut",
+   "date": "1940s series (Signal)",
+   "date_source": "Perkins \"Story of Our Valley\"",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Newhall Signal series by A.B. Perkins",
+   "notes": "quotes LA Star 4-4-1863 and Horace Bell (Banning Dec 1854); \"Superintendent... in 1852\"",
+   "conflicts": [
+    "C3",
+    "C7",
+    "C12",
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+   "title": "The Story Of Our Valley by A.B. Perkins | Part 4: Early Transportation. THE STORY OF OUR VALLEY BY A.B. PERKINS [ NEXT ]"
+  },
+  {
+   "code": "perkins notes",
+   "group": "A cut",
+   "date": "editor's notes (2000s)",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "editorial notes",
+   "originating_archive": "SCVHistory",
+   "notes": "note 13: Banning's crossing and Beale's may not be the same place",
+   "conflicts": [
+    "C12",
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+   "title": "The Story Of Our Valley by A.B. Perkins | Notes THE STORY OF OUR VALLEY BY A.B. PERKINS [ CONTENTS ][ SEARCH ] Editor's "
+  },
+  {
+   "code": "reynolds part27",
+   "group": "A cut",
+   "date": "book 1992; web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "\"improvements made by Phineas Banning\"",
+   "conflicts": [
+    "C12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part27.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 27: Mining the Soledad HISTORY OF THE SANTA CLARITA VALLEY BY JE"
+  },
+  {
+   "code": "reynolds part28",
+   "group": "A cut",
+   "date": "book 1992; web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "born DC Feb 4 1822; \"U.S. Naval Academy\" via Jackson; troops dug 90 ft; $5,000; Hudson & Robbins loan 9-19-1863; 297,000 acres",
+   "conflicts": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C7",
+    "C8",
+    "C9",
+    "C12",
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part28.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 28: Monarch of All He Surveys HISTORY OF THE SANTA CLARITA VALLE"
+  },
+  {
+   "code": "lwhist",
+   "group": "A cut",
+   "date": "Feb 1997",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Leon Worden",
+   "notes": "\"In 1863... Beale's troops cut an enormous, 90-foot-deep swath\"",
+   "conflicts": [
+    "C10",
+    "C12",
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lwhist.htm",
+   "title": "Concise History of the Santa Clarita Valley Santa Clarita: Where It All Started. By Leon Worden | February 1997 ©1997 SC"
+  },
+  {
+   "code": "worden lw040997",
+   "group": "B film",
+   "date": "4-9-1997",
+   "date_source": "column date",
+   "within_lifetime": "after",
+   "type": "later article (column)",
+   "originating_archive": "Leon Worden, The Signal",
+   "notes": "boilerplate: Banning 1854 at 30 ft; troops 1863; Hart criticism of Stagecoach",
+   "conflicts": [
+    "C11",
+    "C12",
+    "C16",
+    "L7"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/lw040997.htm",
+   "title": "Movie trivia from Beale's Cut Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In Pictures SCV"
+  },
+  {
+   "code": "worden lw050500b (old)",
+   "group": "A cut",
+   "date": "5-5-2000",
+   "date_source": "column date",
+   "within_lifetime": "after",
+   "type": "later article (column)",
+   "originating_archive": "Leon Worden, The Signal",
+   "notes": "\"deepened in 1858 to about 30 feet\"; caved in \"late in 1997\"",
+   "conflicts": [
+    "C11",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/old/lw050500b.htm",
+   "title": "What Can be Done with Beale's Cut? Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In Picture"
+  },
+  {
+   "code": "worden lw062498 (old)",
+   "group": "A cut",
+   "date": "6-24-1998",
+   "date_source": "column date",
+   "within_lifetime": "after",
+   "type": "later article (column; contemporaneous with collapse)",
+   "originating_archive": "Leon Worden, The Signal",
+   "notes": "collapse discussed as recent; troops",
+   "conflicts": [
+    "C12",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/old/lw062498.htm",
+   "title": "Beale's Cut, parade, the 'Marsha question' Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In"
+  },
+  {
+   "code": "worden lw032905",
+   "group": "A cut",
+   "date": "3-29-2005",
+   "date_source": "column date",
+   "within_lifetime": "after",
+   "type": "later article (column)",
+   "originating_archive": "Leon Worden",
+   "notes": "\"private property\" (2005)",
+   "conflicts": [
+    "C17",
+    "L5"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/lw032905.htm",
+   "title": "Leon Worden: Hunting for SCV History? Caution: Roadblocks Ahead Leon Worden Index SCVTV.com Local Television for Santa C"
+  },
+  {
+   "code": "hs9029",
+   "group": "A cut",
+   "date": "Reynolds 1992 image",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "artwork + debunk note",
+   "originating_archive": "Reynolds 1992 p.26; Stan Walker 2023 note",
+   "notes": "\"Wiley's Windlass\" invented (page debunks)",
+   "conflicts": [
+    "C12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/hs9029.htm",
+   "title": "HS9029 | (Pre-) Newhall Pass | Artist's Rendering of Wiley's Windlass (NOT) > BEALE'S CUT \"Wiley's Windlass\" (Artist's R"
+  },
+  {
+   "code": "ap0625",
+   "group": "A cut",
+   "date": "1872",
+   "date_source": "title",
+   "within_lifetime": "within",
+   "type": "photo",
+   "originating_archive": "not stated (earliest known photos; same set as AP2307)",
+   "notes": "earliest photos of the Cut",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ap0625.htm",
+   "title": "AP0625 | Beale's Cut | Earliest Known Photos Beale's Cut, 1872 Newhall, California [ VIEW 1 ] [ VIEW 2 ] Beale's Cut, 18"
+  },
+  {
+   "code": "ap2307",
+   "group": "A cut",
+   "date": "1872",
+   "date_source": "title",
+   "within_lifetime": "within",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "duplicate set of AP0625",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ap2307.htm",
+   "title": "AP2307 | Beale's Cut | Earliest Known Photos Beale's Cut, 1872 Newhall, California [ VIEW 1 ] [ VIEW 2 ] Beale's Cut, 18"
+  },
+  {
+   "code": "ap2306",
+   "group": "A cut",
+   "date": "photo 1938; clipping 2-24-1939",
+   "date_source": "sidebar \"Toll House 1938\"; clipping date",
+   "within_lifetime": "after",
+   "type": "photo + newspaper",
+   "originating_archive": "Newhall Signal and Saugus Enterprise 2-24-1939",
+   "notes": "\"completed in 1864\"; franchise \"three miles each way\"",
+   "conflicts": [
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ap2306.htm",
+   "title": "AP2306 | Beale's Cut | Toll House > BEALE'S CUT Beale's Cut Toll House Newhall, California Toll house set up by Gen. Edw"
+  },
+  {
+   "code": "en0100a",
+   "group": "A cut",
+   "date": "1903",
+   "date_source": "index label",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "wedding party in the Cut",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/en0100a.htm",
+   "title": "EN0100 Beale's Cut Newhall, California The wedding party of Albert Edwin Nicholls, Sr., then-owner of Nicholls-Loomis Fe"
+  },
+  {
+   "code": "mu9001",
+   "group": "A cut",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after (est.)",
+   "type": "photo",
+   "originating_archive": "NHMLA Seaver Center (MU series)",
+   "notes": "boilerplate text",
+   "conflicts": [
+    "C11",
+    "C12",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/mu9001.htm",
+   "title": "MU9001 | Beale's Cut | 2 Men in Horse-Drawn Carriage Leave SCV Through Beale's Cut. > BEALE'S CUT 2 Men in Horse-Drawn C"
+  },
+  {
+   "code": "di4005",
+   "group": "A cut",
+   "date": "ca. 1900-1910",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "boilerplate text",
+   "conflicts": [
+    "C11",
+    "C12",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/di4005.htm",
+   "title": "DI4005 | Beale's Cut | Person Standing in Beale's Cut, Looking South, n.d. (ca. 1900-1910). > BEALE'S CUT Person Standin"
+  },
+  {
+   "code": "tm0701",
+   "group": "A cut",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "movie men at the Cut",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/tm0701.htm",
+   "title": "TM0701 Phil Lang & Storm Boyd At Beale's Cut [ View 1 ][ View 2 ] Movie men Phil Lang (left) and Storm V. Boyd at Beale'"
+  },
+  {
+   "code": "tm0702",
+   "group": "A cut",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "movie men at the Cut",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/tm0702.htm",
+   "title": "TM0702 Storm Boyd & Phil Lang At Beale's Cut [ View 1 ][ View 2 ] Movie men Storm Boyd (left) and Phil Lang at Beale's C"
+  },
+  {
+   "code": "ap0107",
+   "group": "A cut",
+   "date": "1909",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo (RPPC)",
+   "originating_archive": "not stated",
+   "notes": "boilerplate text",
+   "conflicts": [
+    "C11",
+    "C12",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ap0107.htm",
+   "title": "AP0107 | Beale's Cut | 1909 View Beale's Cut Newhall, California Real Photo Postcard of Beale's Cut, 1909. Beale's Cut i"
+  },
+  {
+   "code": "hr1001",
+   "group": "A cut",
+   "date": "ca. 1910",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "naming note (Fremont Pass)",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/hr1001.htm",
+   "title": "HR1001 Beale's Cut Newhall, California Beale's Cut, ca. 1910. Note: Beale's Cut used to be called Fremont Pass, but this"
+  },
+  {
+   "code": "ap1915",
+   "group": "A cut",
+   "date": "ca. 1910",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/ap1915.htm",
+   "title": "AP1915 Beale's Cut. Newhall, California Beale's Cut, ca. 1910. Probably looking south. AP1915: 9600 dpi jpeg from copy p"
+  },
+  {
+   "code": "lw3582",
+   "group": "A cut",
+   "date": "1911",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "postcard",
+   "originating_archive": "SCVHistory",
+   "notes": "boilerplate; naming",
+   "conflicts": [
+    "C14",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3582.htm",
+   "title": "LW3582 | Newhall | Beale's Cut, Colorized Souvenir Postcard, 1911. > BEALE'S CUT Beale's Cut Souvenir Postcard Newhall P"
+  },
+  {
+   "code": "lw3328",
+   "group": "A cut",
+   "date": "1910s-1920s",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "SCVHistory",
+   "notes": "boilerplate",
+   "conflicts": [
+    "C11",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3328.htm",
+   "title": "LW3328 | Beale's Cut | Man with Spade, Walking Through Beale's Cut, 1910s-1920s. > BEALE'S CUT Man with Spade Beale's Cu"
+  },
+  {
+   "code": "lw2233",
+   "group": "A cut",
+   "date": "1930s",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "SCVHistory",
+   "notes": "boilerplate",
+   "conflicts": [
+    "C11",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2233.htm",
+   "title": "LW2233 | Beale's Cut | 1930s Beale's Cut Newhall, California Beale's Cut, probably in the 1930s, looking south(?). Note "
+  },
+  {
+   "code": "lw2725",
+   "group": "A cut",
+   "date": "photo 1933; story via Latta 1976",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "photo + reminiscence",
+   "originating_archive": "José Jesús López via Latta 1976",
+   "notes": "\"made by General Beale in the 1850s [sic]\"; \"City of Los Angeles secured the charter [sic]\"",
+   "conflicts": [
+    "C10",
+    "C12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2725.htm",
+   "title": "Beale's Cut with New Pipelines; Story by Jose Jesus Lopez (Photo 1933). > JOSE JESUS LOPEZ INDEX > BEALE'S CUT \"The Beal"
+  },
+  {
+   "code": "ap1304",
+   "group": "A cut",
+   "date": "ca. 1938",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "not stated",
+   "notes": "",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/ap1304.htm",
+   "title": "AP1304 Beale's Cut. Newhall, California Beale's Cut, ca. 1938. Probably looking north (car heading south). AP1304: 9600 "
+  },
+  {
+   "code": "st_lat110440",
+   "group": "A cut",
+   "date": "11-4-1940",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper",
+   "originating_archive": "Los Angeles Times; courtesy Stan Walker",
+   "notes": "\"Fremont Pass\" landmark drive; page corrects \"1842\"",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/st_lat110440.htm",
+   "title": "Beale's Cut | Landmark Status for Beale's Cut. > BEALE'S CUT Landmark Status for Beale's Cut. News Reports, 1940. Click "
+  },
+  {
+   "code": "cu1951",
+   "group": "A cut",
+   "date": "n.d. (RPPC)",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "postcard",
+   "originating_archive": "not stated",
+   "notes": "\"cut by hand by General Fremont's men\" (page corrects)",
+   "conflicts": [
+    "C12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/cu1951.htm",
+   "title": "CU1951 Beale's Cut Newhall Real photo postcard of Beale's Cut, circa 1950's. Rear of postcard states \"FREMONT CUT. Histo"
+  },
+  {
+   "code": "ap0329",
+   "group": "A cut",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "artwork",
+   "originating_archive": "not stated",
+   "notes": "sketch",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/ap0329.htm",
+   "title": "AP0329 Sketch of Beale's Cut. Newhall, California Artist's rendering of Beale's Cut, ca. 1958. AP0329: 9600 dpi jpeg fro"
+  },
+  {
+   "code": "hb1806",
+   "group": "A cut",
+   "date": "1964 (note 2018)",
+   "date_source": "book date; note date",
+   "within_lifetime": "after",
+   "type": "book",
+   "originating_archive": "Andrew M. Griffin, Gypsy Jaunts; courtesy Steven Tabarez",
+   "notes": "2018 note: \"located on private property\"",
+   "conflicts": [
+    "C17",
+    "L5"
+   ],
+   "url": "https://scvhistory.com/scvhistory/hb1806.htm",
+   "title": "HB1806 | Beale's Cut | 'Gypsy Jaunts' Hiking Guide to Beale's Cut, 1964. > BEALE'S CUT Gypsy Jaunts: Beale's Cut. Free F"
+  },
+  {
+   "code": "lw2020",
+   "group": "A cut",
+   "date": "1920s-1930s",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "postcard",
+   "originating_archive": "SCVHistory",
+   "notes": "Newhall Tunnel (successor route)",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lw2020.htm",
+   "title": "LW2020 | Newhall | Newhall Auto Tunnel, South Portal, Souvenir Postcards, 1920s-1930s. > NEWHALL Newhall Auto Tunnel, So"
+  },
+  {
+   "code": "lw2143a",
+   "group": "A naming",
+   "date": "1853",
+   "date_source": "title",
+   "within_lifetime": "within",
+   "type": "map (government report)",
+   "originating_archive": "USPRR / Williamson expedition report",
+   "notes": "\"New Pass\" name",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2143a.htm",
+   "title": "LW2143a | Tejon Area | USPRR/Williamson Expedition (1853): Geological Map > TEJON AREA Williamson Expedition: Geological"
+  },
+  {
+   "code": "lw3188",
+   "group": "A naming",
+   "date": "1853",
+   "date_source": "title",
+   "within_lifetime": "within",
+   "type": "illustration (government report)",
+   "originating_archive": "USPRR / Williamson",
+   "notes": "Tejon area view",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lw3188.htm",
+   "title": "LW3188 | Tejon Ranch | USPRR/Williamson Expedition (1853): Great Basin from Canada de las Uvas (Grapevine). > EARLY CALI"
+  },
+  {
+   "code": "perkins-fremont",
+   "group": "A naming",
+   "date": "Perkins (1940s-50s)",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "A.B. Perkins",
+   "notes": "Frémont's route through SCV",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/perkins-fremont.htm",
+   "title": "Early California | Enemy Confirms Fremont's Trek Through SCV > EARLY CALIFORNIA > PERKINS STORY INDEX Enemy Confirms Fre"
+  },
+  {
+   "code": "lw2069",
+   "group": "A naming",
+   "date": "portrait n.d.",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "photo + text",
+   "originating_archive": "SCVHistory",
+   "notes": "Frémont camped Jan 1847 near Lyon's Station",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2069.htm",
+   "title": "LW2069 | People | Major Gen. John C. Fremont. > PEOPLE > EARLY CALIFORNIA Gen. John C. Frémont \"The Pathfinder\" Engravin"
+  },
+  {
+   "code": "lw2225",
+   "group": "A naming",
+   "date": "portrait n.d.",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "photo + text",
+   "originating_archive": "SCVHistory",
+   "notes": "Frémont 1847",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2225.htm",
+   "title": "LW2225 | People | John C. Fremont > PEOPLE > EARLY CALIFORNIA Gen. John C. Frémont \"The Pathfinder\" Click image to enlar"
+  },
+  {
+   "code": "lw2163",
+   "group": "A naming",
+   "date": "portrait n.d.",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "artwork + text",
+   "originating_archive": "SCVHistory",
+   "notes": "Frémont (Healy portrait)",
+   "conflicts": [
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2163.htm",
+   "title": "lw2163 | People | Col. John C. Fremont Portrait by George Healy > PEOPLE > EARLY CALIFORNIA Col. John C. Frémont \"The Pa"
+  },
+  {
+   "code": "pollack1114kitcarson",
+   "group": "G career",
+   "date": "Nov-Dec 2014",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Alan Pollack, Heritage Junction Dispatch",
+   "notes": "Naval School Philadelphia 1842; Pico failed, Beale completed Cut 1864",
+   "conflicts": [
+    "C2",
+    "C10"
+   ],
+   "url": "https://scvhistory.com/scvhistory/pollack1114kitcarson.htm",
+   "title": "Kit Carson, Ned Beale Cross Paths and Alter California's Future | Story by Dr. Alan Pollack > EARLY CALIFORNIA Kit Carso"
+  },
+  {
+   "code": "brokenways1913",
+   "group": "B film",
+   "date": "1913",
+   "date_source": "film date",
+   "within_lifetime": "after",
+   "type": "film",
+   "originating_archive": "D.W. Griffith / Biograph (per page); locally hosted copy",
+   "notes": "\"earliest known motion picture to use Beale's Cut\"",
+   "conflicts": [
+    "C16",
+    "A4"
+   ],
+   "url": "https://scvhistory.com/scvhistory/brokenways1913.htm",
+   "title": "Film-Arts | Harry Carey in 'Broken Ways' (1913): Downtown Newhall, Beale's Cut. > HARRY CAREY > NEWHALL > BEALE'S CUT Ha"
+  },
+  {
+   "code": "lw2159a",
+   "group": "B film",
+   "date": "1923",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo (still)",
+   "originating_archive": "not stated",
+   "notes": "Tom Mix \"jumps\" (or not); Earl Simpson per Birchard",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2159a.htm",
+   "title": "LW2159 | Film-Arts | Tom Mix Jumps Over Beale's Cut (Or Not) Tom Mix 'Jumps' Over Beale's Cut \"Three Jumps Ahead,\" 1923 "
+  },
+  {
+   "code": "lw2159b",
+   "group": "B film",
+   "date": "1923",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo (still)",
+   "originating_archive": "not stated",
+   "notes": "second view",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2159b.htm",
+   "title": "LW2159 | Film-Arts | Tom Mix Jumps Over Beale's Cut (Or Not) Tom Mix 'Jumps' Over Beale's Cut \"Three Jumps Ahead,\" 1923 "
+  },
+  {
+   "code": "lw3692",
+   "group": "B film",
+   "date": "1923",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "lobby card",
+   "originating_archive": "SCVHistory",
+   "notes": "3 Jumps Ahead",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3692.htm",
+   "title": "LW3692 | Film-Arts | Original Lobby Card: Tom Mix and Tony Jump Beale's Cut in ''3 Jumps Ahead'' (Fox 1923), Rare. > TOM"
+  },
+  {
+   "code": "lw3323",
+   "group": "B film",
+   "date": "1923",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "lobby card",
+   "originating_archive": "SCVHistory",
+   "notes": "3 Jumps Ahead",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3323.htm",
+   "title": "LW3323 | Film-Arts | Original Lobby Card: Tom Mix and Tony in ''3 Jumps Ahead'' (Fox 1923), Rare. > TOM MIX \"3 Jumps Ahe"
+  },
+  {
+   "code": "sw_commercejournalwichitatx092123",
+   "group": "B film",
+   "date": "9-21-1923",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper",
+   "originating_archive": "Commerce Journal (Wichita Falls TX); Stan Walker",
+   "notes": "Mix claims 5-6 jumps",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/sw_commercejournalwichitatx092123.htm",
+   "title": "Tom Mix | 3 Jumps Ahead: Mix Takes Credit for Jumping Beale's Cut, 1923. > TOM MIX > BEALE'S CUT 3 Jumps Ahead: Mix Take"
+  },
+  {
+   "code": "sw_dailyclintonian120723",
+   "group": "B film",
+   "date": "12-7-1923",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper (ads)",
+   "originating_archive": "Daily Clintonian; Stan Walker",
+   "notes": "",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/sw_dailyclintonian120723.htm",
+   "title": "Tom Mix | Advertisements for '3 Jumps Ahead' (Fox 1923). > TOM MIX Advertisements for \"3 Jumps Ahead.\" A William Fox Pic"
+  },
+  {
+   "code": "lw3371",
+   "group": "B film",
+   "date": "1923",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "letter",
+   "originating_archive": "SCVHistory",
+   "notes": "exhibition letter, 3 Jumps Ahead",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3371.htm",
+   "title": "LW3371 | Tom Mix | Letter Re: Exhibition of 'Three Jumps Ahead' (Fox 1923). > FILM-ARTS Letter: Exhibition of \"Three Jum"
+  },
+  {
+   "code": "lw2228",
+   "group": "B film",
+   "date": "1924",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "film still",
+   "originating_archive": "SCVHistory",
+   "notes": "The Iron Horse; mislabeled on index",
+   "conflicts": [
+    "C16",
+    "L1"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2228.htm",
+   "title": "LW2228 | Beale's Cut | 'The Iron Horse' (1924) Beale's Cut, 1924 Newhall, California Screen shot of Beale's Cut from the"
+  },
+  {
+   "code": "pa2501",
+   "group": "B film",
+   "date": "1925",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "film still",
+   "originating_archive": "not stated",
+   "notes": "Keaton, Seven Chances",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/pa2501.htm",
+   "title": "PA2501 Buster Keaton in Beale's Cut, 1925 Newhall, California Comedian Buster Keaton (dark figure at right) is being cha"
+  },
+  {
+   "code": "st3201",
+   "group": "B film",
+   "date": "1932",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "film clip",
+   "originating_archive": "SCVHistory",
+   "notes": "The Devil Horse; no real jump",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/st3201.htm",
+   "title": "ST3201 | Harry Carey | Video: Beale's Cut Scenes in 'The Devil Horse' (Mascot 1932). > BEALESCUT > HARRY CAREY SR. \"The "
+  },
+  {
+   "code": "lw2172",
+   "group": "B film",
+   "date": "1939",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "film still",
+   "originating_archive": "SCVHistory",
+   "notes": "Stagecoach",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2172.htm",
+   "title": "LW2172 | Film-Arts | Stagecoach (1939): Beale's Cut Scene. > BEALE'S CUT \"Stagecoach\" Beale's Cut Scene To view this vid"
+  },
+  {
+   "code": "lw2065",
+   "group": "B film",
+   "date": "1939",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "film still",
+   "originating_archive": "SCVHistory",
+   "notes": "Ford \"at least three times before\"",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2065.htm",
+   "title": "LW2065 Beale's Cut in \"Stagecoach\" Newhall, California Cutaway from the John Ford film, \"Stagecoach\" (United Artists, 19"
+  },
+  {
+   "code": "lw3115",
+   "group": "B film",
+   "date": "1942",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "film still",
+   "originating_archive": "SCVHistory",
+   "notes": "Cowboy Serenade: NOT Beale's Cut",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3115.htm",
+   "title": "LW3115 | Film-Arts | Gene Autry Appears to Jump Beale's Cut in 'Cowboy Serenade' (It's Neither), Republic 1942. > GENE A"
+  },
+  {
+   "code": "lw2229",
+   "group": "B film",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "photo + text",
+   "originating_archive": "SCVHistory",
+   "notes": "Ford; Straight Shooting 1917",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2229.htm",
+   "title": "LW2229 | Film-Arts | John Ford, Film Director > JOHN FORD John Ford Film Director Movie director John Ford. An incomplet"
+  },
+  {
+   "code": "reynolds part59",
+   "group": "B film",
+   "date": "book 1992; web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "Hart in Newhall streets from 1914; Straight Shooting first Ford use; Mix jump theories",
+   "conflicts": [
+    "C16"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part59.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 59: Mixville HISTORY OF THE SANTA CLARITA VALLEY BY JERRY REYNOL"
+  },
+  {
+   "code": "tejonranchtimeline",
+   "group": "C tejon",
+   "date": "2014",
+   "date_source": "source line",
+   "within_lifetime": "after",
+   "type": "later compilation",
+   "originating_archive": "Tejon Ranch Co. 2014",
+   "notes": "Superintendent 1852-1854; reserve 1853, 75,000 ac; abandoned 1862; ranchos 1855/1865/1866; dies \"age of 72\"",
+   "conflicts": [
+    "C3",
+    "C4",
+    "C5",
+    "C8",
+    "C19",
+    "C24",
+    "L9"
+   ],
+   "url": "https://scvhistory.com/scvhistory/tejonranchtimeline.htm",
+   "title": "Tejon | Timeline: History of Tejon Ranch > TEJON RANCH Timeline: History of Tejon Ranch Source: Tejon Ranch Co. | 2014 P"
+  },
+  {
+   "code": "lw2580",
+   "group": "C tejon",
+   "date": "plat 11-8-1862 (copy); text 2013",
+   "date_source": "document date; byline",
+   "within_lifetime": "within (document)",
+   "type": "map (government plat) + later text",
+   "originating_archive": "traced copy photographed by Leon Worden 1997; original custody not stated (NEEDS_VERIFICATION)",
+   "notes": "signed E.F. Beale as Surveyor General; Castac bought 1863 via Bishop; 269,215 acres (Thompson 1983:232); Fort Tejon garrisoned Aug 10 1854",
+   "conflicts": [
+    "C5",
+    "C7",
+    "C8",
+    "C9"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2580.htm",
+   "title": "LW2580 | Lebec-Tejon | Plat Map of Rancho Castac by E.F. Beale, 1862 > TEJON RANCH > MAPS Plat Map of Rancho Castac by E"
+  },
+  {
+   "code": "lw2521",
+   "group": "C tejon",
+   "date": "~1842 map; text 2013",
+   "date_source": "title",
+   "within_lifetime": "within (pre-Beale)",
+   "type": "map + later text",
+   "originating_archive": "SCVHistory",
+   "notes": "same text as lw2580",
+   "conflicts": [
+    "C5",
+    "C8",
+    "C9"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2521.htm",
+   "title": "LW2521 | Lebec-Tejon | Map of (Pre-Rancho) Castec, ~1842. > TEJON RANCH Map of (Pre-Rancho) Castec, ~1842 Lebec-Tejon Ar"
+  },
+  {
+   "code": "lat051212",
+   "group": "C tejon",
+   "date": "5-12-1912",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper",
+   "originating_archive": "Los Angeles Times",
+   "notes": "276,000 acres; La Liebre and Castac bought while Surveyor General; camels \"from Egypt\"",
+   "conflicts": [
+    "C8",
+    "C9",
+    "C15",
+    "C20",
+    "A5"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lat051212.htm",
+   "title": "Tejon Ranch | Beale Heirs Sell 276,000-acre Tejon Ranch to L.A. Times-led Syndicate, 1912. > TEJON RANCH Beale Heirs Sel"
+  },
+  {
+   "code": "hssc1929parks_laliebre",
+   "group": "C tejon",
+   "date": "1929",
+   "date_source": "publication date",
+   "within_lifetime": "after",
+   "type": "later article (with reminiscence)",
+   "originating_archive": "HSSC Annual 1929, Marion Parks; J.J. López",
+   "notes": "La Liebre granted to Flores 1846; Beale lived there as Surveyor General",
+   "conflicts": [
+    "C8"
+   ],
+   "url": "https://scvhistory.com/scvhistory/hssc1929parks_laliebre.htm",
+   "title": "Tejon Ranch | E.F. Beale's Rancho La Liebre (Parks 1929). > TEJON RANCH E.F. Beale's Rancho La Liebre. Memories of Jose "
+  },
+  {
+   "code": "lo8803",
+   "group": "C tejon",
+   "date": "1888-1900",
+   "date_source": "title",
+   "within_lifetime": "spans",
+   "type": "photo",
+   "originating_archive": "Carleton E. Watkins; Library of Congress (per page)",
+   "notes": "Beale residence",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lo8803.htm",
+   "title": "LO8803 | Tejon Ranch | Gen. Beale's Residence, Photo 1888-1900. > TEJON RANCH Gen. Beale's Residence Tejon Ranch Click i"
+  },
+  {
+   "code": "al1902",
+   "group": "C tejon",
+   "date": "1902",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo (stereoview)",
+   "originating_archive": "Alan Pollack collection",
+   "notes": "cowboys",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/al1902.htm",
+   "title": "AL1902 | Tejon | Cowboys of Castaic and Tejon Ranch, 1902 > TEJON RANCH > CASTAIC Cowboys of Castaic and Tejon Ranch, 7-"
+  },
+  {
+   "code": "cullimore_oldadobes",
+   "group": "C tejon",
+   "date": "rev. 1949",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "book",
+   "originating_archive": "Clarence Cullimore",
+   "notes": "superintendent spring 1853; Fort Tejon 1854; garrison removed 6-15-1861; reoccupied 8-17-1863 to 9-11-1864; camels fall 1857; \"last Friday week\"",
+   "conflicts": [
+    "C3",
+    "C4",
+    "C5",
+    "C8",
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/cullimore_oldadobes.htm",
+   "title": "Old Adobes of Forgotten Fort Tejon (Full Book) by Clarence Cullimore, Rev. 1949. > FORT TEJON Old Adobes of Forgotten Fo"
+  },
+  {
+   "code": "forttejonparkinventory2015",
+   "group": "C tejon",
+   "date": "2015",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "later report",
+   "originating_archive": "California State Parks (per page)",
+   "notes": "abandoned 9-11-1864",
+   "conflicts": [
+    "C5"
+   ],
+   "url": "https://scvhistory.com/scvhistory/forttejonparkinventory2015.htm",
+   "title": "Fort Tejon | Inventory of Fort Tejon State Historic Park Collection, 2015. > FORT TEJON Guide to the Fort Tejon State Hi"
+  },
+  {
+   "code": "ah_lastar062658",
+   "group": "C tejon",
+   "date": "6-26-1858",
+   "date_source": "newspaper date",
+   "within_lifetime": "within",
+   "type": "newspaper",
+   "originating_archive": "Los Angeles Star",
+   "notes": "hotel at Fort Tejon (not built)",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/ah_lastar062658.htm",
+   "title": "Tejon | Hotel at Fort Tejon, 1858 (not built). > FORT TEJON Hotel at Fort Tejon (Not Built). Los Angeles Star | June 26,"
+  },
+  {
+   "code": "ah5803",
+   "group": "C tejon",
+   "date": "9-16-1858",
+   "date_source": "document date",
+   "within_lifetime": "within",
+   "type": "timetable",
+   "originating_archive": "Butterfield Overland Mail Co.",
+   "notes": "route via SCV and Fort Tejon",
+   "conflicts": [
+    "C10"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ah5803.htm",
+   "title": "AH5803 | Butterfield's Overland Mail Co. Timetable, San Francisco-St. Louis via SCV, 9-16-1858 > ROADS/TRANSPORTATION > "
+  },
+  {
+   "code": "lw2600d",
+   "group": "C tejon",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "SCVHistory",
+   "notes": "Sinks of Tejon station",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lw2600d.htm",
+   "title": "LW2600d | Tejon Ranch | Butterfield Overland Mail Co.'s Sinks of Tejon Station > TEJON RANCH Sinks of Tejon Station Tejo"
+  },
+  {
+   "code": "tlp_lebeck080990",
+   "group": "C tejon",
+   "date": "1890",
+   "date_source": "newspaper date",
+   "within_lifetime": "within",
+   "type": "newspaper",
+   "originating_archive": "Kern County paper, 7-26-(1890); courtesy Tricia Lemon Putnam",
+   "notes": "Lebeck exhumation \"It Was Beale's Idea\"",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/tlp_lebeck080990.htm",
+   "title": "Fort Tejon | Foxtail Rangers Exhume & Rebury Peter Lebeck (It Was Beale's Idea), 1890. > FORT TEJON Foxtail Rangers Exhu"
+  },
+  {
+   "code": "lw2727",
+   "group": "C tejon",
+   "date": "story via Latta 1976",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "reminiscence",
+   "originating_archive": "José Jesús López via Latta",
+   "notes": "sheep 95,000; \"more than 300,000 acres\"",
+   "conflicts": [
+    "C9"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2727.htm",
+   "title": "San Francisquito Canyon | Major Gordon's Station, aka Widow Smith's | Story by Jose Jesus Lopez (Photo 1933). > JOSE JES"
+  },
+  {
+   "code": "reynolds part26",
+   "group": "C tejon",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "1857 quake: Beale's corral on La Liebre",
+   "conflicts": [
+    "C8"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part26.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 26: Twilight of the Dons HISTORY OF THE SANTA CLARITA VALLEY BY "
+  },
+  {
+   "code": "reynolds part30",
+   "group": "C tejon",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "Castac sold to Beale 23 years after 1843; \"Kashtuk, meaning 'eyes'\"",
+   "conflicts": [
+    "C8",
+    "C22"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part30.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 30: The North Forty HISTORY OF THE SANTA CLARITA VALLEY BY JERRY"
+  },
+  {
+   "code": "lw2026",
+   "group": "C tejon",
+   "date": "1920s postcard",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "postcard + text",
+   "originating_archive": "SCVHistory",
+   "notes": "Castac Lake",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lw2026.htm",
+   "title": "LW2026 | Rancho Castec | Castaic Valley and Lake > LEBEC / RIDGE ROUTE Castaic Valley and Lake Lebec | Ridge Route Postc"
+  },
+  {
+   "code": "heizer1972",
+   "group": "D indigenous",
+   "date": "treaty 1851; Heizer 1972",
+   "date_source": "page title",
+   "within_lifetime": "within (treaty)",
+   "type": "treaty text + later commentary",
+   "originating_archive": "Heizer 1972 (per page)",
+   "notes": "Treaty \"Castake, Texon, etc.\" 1851; index says 1852",
+   "conflicts": [
+    "C6",
+    "L3"
+   ],
+   "url": "https://scvhistory.com/scvhistory/heizer1972.htm",
+   "title": "Treaty Between the United States and the Indians of 'Castaic, Tejon, Etc.,' 1851. > TATAVIAM CULTURE > TEJON/SAN SEBASTI"
+  },
+  {
+   "code": "lw2742",
+   "group": "D indigenous",
+   "date": "1976",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Wilke & Lawton 1976",
+   "notes": "reservation organized 1852; \"about fifteen years\"",
+   "conflicts": [
+    "C3",
+    "C4"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2742.htm",
+   "title": "Tejon Indians | Purpose of Fort Tejon & San Sebastian Indian Reservation (From Wilke & Lawton 1976). > FORT TEJON > NEAR"
+  },
+  {
+   "code": "lo8801",
+   "group": "D indigenous",
+   "date": "1888-1900 (text later)",
+   "date_source": "title",
+   "within_lifetime": "spans",
+   "type": "photo + later text",
+   "originating_archive": "Carleton E. Watkins; Library of Congress (W535, per page)",
+   "notes": "\"for good in 1854\" error; \"rounded up Indians... using soldiers\"",
+   "conflicts": [
+    "C4",
+    "C22",
+    "L4"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lo8801.htm",
+   "title": "LO8801 | Tejon Ranch | Church at Ex-Sebastian Indian Reservation, 1888-1900. > TEJON RANCH > NATIVE CULTURES Church at E"
+  },
+  {
+   "code": "lo8802",
+   "group": "D indigenous",
+   "date": "1888-1900 (text later)",
+   "date_source": "title",
+   "within_lifetime": "spans",
+   "type": "photo + later text",
+   "originating_archive": "Watkins; Library of Congress (W534, per page)",
+   "notes": "same text as lo8801",
+   "conflicts": [
+    "C4",
+    "C22",
+    "L4"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lo8802.htm",
+   "title": "LO8802 | Tejon Ranch | Indian Home and Orchard, 1888-1900. > TEJON RANCH > NATIVE CULTURES Indian Home and Orchard Tejon"
+  },
+  {
+   "code": "lo8804",
+   "group": "D indigenous",
+   "date": "1888-1900",
+   "date_source": "title",
+   "within_lifetime": "spans",
+   "type": "photo",
+   "originating_archive": "Watkins; LoC (per page)",
+   "notes": "unidentified people (not named here)",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lo8804.htm",
+   "title": "LO8804 | Tejon Ranch | Unidentified Indian Man, Woman, Child with Dog in Front of Giant Oak Tree, 1888. > TEJON RANCH > "
+  },
+  {
+   "code": "jj1002",
+   "group": "D indigenous",
+   "date": "n.d. (1840-1913 lifespan)",
+   "date_source": "title",
+   "within_lifetime": "n/a",
+   "type": "photo + text",
+   "originating_archive": "family-provided (per page)",
+   "notes": "Altamirano Badillo; Tataviam, Serrano, Fernandeño ancestry (per page)",
+   "conflicts": [
+    "C22"
+   ],
+   "url": "https://scvhistory.com/scvhistory/jj1002.htm",
+   "title": "JJ1002 | Tataviam Culture | Altamirano Badillo, 1840-1913. > ALTAMIRANO BADILLO ANCESTRY Altamirano Badillo Tataviam Cul"
+  },
+  {
+   "code": "johnson-kashtiq",
+   "group": "D indigenous",
+   "date": "1978",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "later article (scholarly)",
+   "originating_archive": "John R. Johnson 1978",
+   "notes": "Tataviam debate; Beale \"floated\" Los Alamos grant (Latta 1976:193); Crowe 1957:67 for Lincoln quip",
+   "conflicts": [
+    "C7",
+    "C22"
+   ],
+   "url": "https://scvhistory.com/scvhistory/johnson-kashtiq.htm",
+   "title": "Early California | The Trail to Kashtiq > TATAVIAM INDIANS > EARLY CALIFORNIA The Trail to Kashtiq By Dr. John R. Johnso"
+  },
+  {
+   "code": "tataviam",
+   "group": "D indigenous",
+   "date": "live index",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "index page",
+   "originating_archive": "SCVHistory",
+   "notes": "#tejontribe lists 2006 request and \"4-24-2012\" reaffirmation",
+   "conflicts": [
+    "C23",
+    "L3"
+   ],
+   "url": "https://scvhistory.com/scvhistory/tataviam.htm",
+   "title": "Tataviam Culture Tataviam Culture [ Watch the Program ] Tataviam Geography and Ethnohistory • Johnson & Earle 1990 The I"
+  },
+  {
+   "code": "al2075",
+   "group": "E camels",
+   "date": "2-20-1858",
+   "date_source": "newspaper date",
+   "within_lifetime": "within",
+   "type": "newspaper",
+   "originating_archive": "Porter's Spirit of the Times; Alan Pollack collection",
+   "notes": "expedition account: 24 camels at the Mormon road",
+   "conflicts": [
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/al2075.htm",
+   "title": "AL2075 | Porter's Spirit of the Times | The Camel Expedition, 2-20-1858 > U.S. CAMEL CORPS The Camel Expedition Porter's"
+  },
+  {
+   "code": "lw2130",
+   "group": "E camels",
+   "date": "postcard n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "postcard + text",
+   "originating_archive": "SCVHistory",
+   "notes": "Beale hauled via Beale's Cut",
+   "conflicts": [
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2130.htm",
+   "title": "LW2130 | U.S. Camel Corps | Fort Davis, Texas > U.S. CAMEL CORPS Fort Davis West Texas No, it isn't the Santa Clarita Va"
+  },
+  {
+   "code": "lw2152a",
+   "group": "E camels",
+   "date": "Vischer print (date NEEDS_VERIFICATION)",
+   "date_source": "caption",
+   "within_lifetime": "within? (NEEDS_VERIFICATION)",
+   "type": "print",
+   "originating_archive": "original print (per page)",
+   "notes": "\"Fort Tejon camels... painted on the spot by Vischer\"",
+   "conflicts": [
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2152a.htm",
+   "title": "LW2152a | U.S. Camel Corps | Fort Tejon Camels > U.S. CAMEL CORPS Fort Tejon Camels United States Camel Corps Click imag"
+  },
+  {
+   "code": "lw2208",
+   "group": "E camels",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "map",
+   "originating_archive": "SCVHistory",
+   "notes": "\"Fort Defiance, Texas\"",
+   "conflicts": [
+    "C15",
+    "L6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2208.htm",
+   "title": "LW2208 | U.S. Camel Corps | Map of Beale's Camel Expedition > U.S. CAMEL CORPS Map of Beale's Camel Expedition United St"
+  },
+  {
+   "code": "lw3491",
+   "group": "E camels",
+   "date": "1935 cover; text 2019+",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "artifact + later text",
+   "originating_archive": "cover purchased 2019 by Leon Worden",
+   "notes": "debunks camel mail; La Liebre owned by Bishop (1857)",
+   "conflicts": [
+    "C8",
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3491.htm",
+   "title": "LW3491 | U.S. Camel Corps | Postal Cover: Revival of the Camel Express, Lilac Label, 1935. > U.S. CAMEL CORPS > FORT TEJ"
+  },
+  {
+   "code": "lw3451",
+   "group": "E camels",
+   "date": "10-30-2018",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "photo + text",
+   "originating_archive": "SCVHistory",
+   "notes": "plaque: Hi Jolly b. ~1828, d. 12-16-1902, arrived 2-10-1856; \"Ft. Defiance, in Texas\"",
+   "conflicts": [
+    "C15",
+    "L6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3451.htm",
+   "title": "LW3451 | Beale's U.S. Camel Corps: Hi Jolly's Tomb & Cemetery, Quartzsite, Arizona. > U.S. CAMEL CORPS Hi Jolly's Tomb &"
+  },
+  {
+   "code": "lw3647",
+   "group": "E camels",
+   "date": "2010s",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "booklet",
+   "originating_archive": "Quartzsite Public Library",
+   "notes": "same text as lw3451",
+   "conflicts": [
+    "C15",
+    "L6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3647.htm",
+   "title": "LW3647 | U.S. Camel Corps | Guide to Hi Jolly Pioneer Cemetery, Quartzsite, Ariz., n.d. (2010s). > U.S. CAMEL CORPS Hi J"
+  },
+  {
+   "code": "lw2161",
+   "group": "E camels",
+   "date": "n.d.",
+   "date_source": "none",
+   "within_lifetime": "after",
+   "type": "photo + text",
+   "originating_archive": "SCVHistory",
+   "notes": "same text as lw3451",
+   "conflicts": [
+    "C15",
+    "L6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2161.htm",
+   "title": "Syrian camel jockey Haiji Ali — whose name was Anglicized to \"Hi Jolly\" — came to the U.S. to drive the herd of camels t"
+  },
+  {
+   "code": "reynolds part23",
+   "group": "E camels",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "camel idea from Death Valley with Carson; Indianola 5-13-1856; LA Star 1-27-1858; Hi Jolly d. 12-16-1902 age 74",
+   "conflicts": [
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part23.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 23. The Beasts of Tejon HISTORY OF THE SANTA CLARITA VALLEY BY J"
+  },
+  {
+   "code": "worden lw011399",
+   "group": "E camels",
+   "date": "filename 1-13-1999 vs dateline 4-24-2002",
+   "date_source": "URL; byline",
+   "within_lifetime": "after",
+   "type": "later article (column)",
+   "originating_archive": "Leon Worden",
+   "notes": "title tag \"Henry Newhall Builds an Empire\"; Army sold camels Nov 1863; \"300,000-acre\"; Hi Jolly 1903/75",
+   "conflicts": [
+    "C9",
+    "C12",
+    "C15",
+    "L2"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/lw011399.htm",
+   "title": "Henry Newhall Builds an Empire. Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In Pictures S"
+  },
+  {
+   "code": "lw3521",
+   "group": "E camels",
+   "date": "1958",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "comic",
+   "originating_archive": "Dell Comic No. 930",
+   "notes": "Maverick \"Relic of Fort Tejon\"",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lw3521.htm",
+   "title": "LW3521 | Flim-Arts | James Garner as Maverick: ''Relic of Fort Tejon,'' Dell Comic No. 930, 1958. > FILM-ARTS > FORT TEJ"
+  },
+  {
+   "code": "sw_leaming070366",
+   "group": "F oil",
+   "date": "7-3-1866",
+   "date_source": "letter date",
+   "within_lifetime": "within",
+   "type": "letter",
+   "originating_archive": "Robert S. Baker Collection, Huntington Library (per page); transcribed by Stan Walker",
+   "notes": "Leaming to Beale, San Fernando Petroleum Mining District",
+   "conflicts": [
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/sw_leaming070366.htm",
+   "title": "Pico Canyon | Letter from Leaming to Beale, San Fdo. Petroleum Mining Dist., 7-3-1866. > PICO CANYON Letter from Christo"
+  },
+  {
+   "code": "reynolds part31",
+   "group": "F oil",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "mining districts 1865",
+   "conflicts": [
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part31.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 31: Rivers of Oil HISTORY OF THE SANTA CLARITA VALLEY BY JERRY R"
+  },
+  {
+   "code": "worden lw101597",
+   "group": "F oil",
+   "date": "10-15-1997",
+   "date_source": "column date",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Leon Worden",
+   "notes": "Beale & Baker bought claims \"close of the 1860s\"",
+   "conflicts": [
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/lw101597.htm",
+   "title": "Darius Towsley: Towsley Canyon's Namesake Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In "
+  },
+  {
+   "code": "lw021704",
+   "group": "F oil",
+   "date": "2-17-2004",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "SCVHistory (quotes White)",
+   "notes": "Pico Springs claim 3-22-1865",
+   "conflicts": [
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw021704.htm",
+   "title": "People | Ramon Perea: A Forgotten Name at Pico. > PEOPLE > PICO CANYON > SAN FRANCISQUITO CANYON Ramon Perea: A Forgotte"
+  },
+  {
+   "code": "perkins-pico-1958",
+   "group": "F oil",
+   "date": "1958",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "A.B. Perkins",
+   "notes": "1866 news item on springs of \"Poci, Beale and Baker\"",
+   "conflicts": [
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/perkins-pico-1958.htm",
+   "title": "Newhall | History of Pico Canyon Oil Production by Arthur B. Perkins > PERKINS INDEX > PICO CANYON History of Pico Canyo"
+  },
+  {
+   "code": "lw2204",
+   "group": "G career",
+   "date": "n.d. (image)",
+   "date_source": "none",
+   "within_lifetime": "n/a",
+   "type": "portrait",
+   "originating_archive": "printed image",
+   "notes": "Beale portrait",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lw2204.htm",
+   "title": "LW2204 | People | Edward F. Beale > PEOPLE Edward Fitzgerald Beale Landowner, Entrepreneur Edward F. Beale. LW2204: 9600"
+  },
+  {
+   "code": "lw2205",
+   "group": "G career",
+   "date": "n.d. (woodcut)",
+   "date_source": "none",
+   "within_lifetime": "n/a",
+   "type": "woodcut",
+   "originating_archive": "printed image",
+   "notes": "Beale woodcut",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/lw2205.htm",
+   "title": "LW2205 | People | Edward F. Beale > PEOPLE Edward Fitzgerald Beale Landowner, Entrepreneur Edward F. Beale, woodcut. LW2"
+  },
+  {
+   "code": "bealeafb",
+   "group": "G career",
+   "date": "n.d. (Beale AFB text)",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "later biography",
+   "originating_archive": "Beale Air Force Base (per page)",
+   "notes": "b. Feb 4 1822 DC; Naval School; grad 1842; Superintendent Mar 3 1853-1856; Decatur House 1870; 270,000 acres; 25 camels from Tunis",
+   "conflicts": [
+    "C1",
+    "C2",
+    "C3",
+    "C9",
+    "C15",
+    "C18",
+    "L8"
+   ],
+   "url": "https://scvhistory.com/scvhistory/bealeafb.htm",
+   "title": "People | Beale Air Force Base: Biography of Edward F. Beale. > PEOPLE Edward Fitzgerald \"Ned\" Beale Feb. 4, 1822 — April"
+  },
+  {
+   "code": "bonsal_beale1912",
+   "group": "G career",
+   "date": "1912",
+   "date_source": "publication",
+   "within_lifetime": "after",
+   "type": "book",
+   "originating_archive": "Stephen Bonsal, G.P. Putnam's Sons",
+   "notes": "full book",
+   "conflicts": [
+    "C3"
+   ],
+   "url": "https://scvhistory.com/scvhistory/bonsal_beale1912.htm",
+   "title": "People | Full Book: Edward Fitzgerald Beale, A Pioneer in the Path of Empire (Bonsal 1912). > PEOPLE Edward Fitzgerald B"
+  },
+  {
+   "code": "lp_sfchronicle062312",
+   "group": "G career",
+   "date": "6-23-1912",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper (review)",
+   "originating_archive": "San Francisco Chronicle",
+   "notes": "\"200,000 [sic] acres\"; Lincoln quip; \"square deal\"",
+   "conflicts": [
+    "C7",
+    "C9",
+    "C22"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lp_sfchronicle062312.htm",
+   "title": "People | Book Review: Edward Fitzgerald Beale/Path of Empire (Bonsal 1912). > PEOPLE [Header] Some of the New Books of J"
+  },
+  {
+   "code": "lw3359",
+   "group": "G career",
+   "date": "2010s visit",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "photo + text",
+   "originating_archive": "SCVHistory; State Parks handouts",
+   "notes": "San Pasqual Dec 6 1846",
+   "conflicts": [
+    "C2"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3359.htm",
+   "title": "LW3359 | Battle of San Pasqual, 1846: Pico Routs Kearny; Beale's Stealth Turns Tide. > EARLY CALIFORNIA San Pasqual Batt"
+  },
+  {
+   "code": "treatyguadalupehidalgo",
+   "group": "G career",
+   "date": "2-2-1848",
+   "date_source": "document",
+   "within_lifetime": "within",
+   "type": "treaty",
+   "originating_archive": "SCVHistory",
+   "notes": "context",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/treatyguadalupehidalgo.htm",
+   "title": "Early California | Treaty of Guadalupe Hidalgo, 2-2-1848. > EARLY CALIFORNIA Treaty of Guadalupe Hidalgo Entered Into Fe"
+  },
+  {
+   "code": "worden-coinage1005",
+   "group": "G career",
+   "date": "Oct 2005",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "magazine",
+   "originating_archive": "COINage (Leon Worden)",
+   "notes": "Beale and Carson \"headed east\" with gold; \"Lincoln fired him\"",
+   "conflicts": [
+    "C7",
+    "C24"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/coins/worden-coinage1005.htm",
+   "title": "California's REAL First Gold Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In Pictures SCV "
+  },
+  {
+   "code": "people",
+   "group": "G index",
+   "date": "live index",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "index page",
+   "originating_archive": "SCVHistory",
+   "notes": "lists al2075 for Beale",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/people.htm",
+   "title": "People Autobiographical Videos And Audiotaped Oral Histories (bottom) ADRIAN ADAMS (2004: Legacy) GREG AMSLER (2009: SCV"
+  },
+  {
+   "code": "ridge",
+   "group": "C index",
+   "date": "live index",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "index page",
+   "originating_archive": "SCVHistory",
+   "notes": "21 Beale-related Tejon entries; heizer1972 labeled 1852",
+   "conflicts": [
+    "L3"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ridge.htm",
+   "title": "Ridge Route CATCH ALL THE LATEST ON OUR FACEBOOK Santa Clarita History Buffs Ridge Route & US-99 | Lebec, Tejon Also Pyr"
+  }
+ ],
+ "peripheral_pages": [
+  {
+   "code": "lw3186",
+   "url": "https://scvhistory.com/scvhistory/lw3186.htm"
+  },
+  {
+   "code": "worden lw040997 (old)",
+   "url": "https://scvhistory.com/scvhistory/signal/worden/old/lw040997.htm"
+  },
+  {
+   "code": "reynolds part07",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part07.html"
+  },
+  {
+   "code": "reynolds part42",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part42.html"
+  },
+  {
+   "code": "reynolds part49",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part49.html"
+  },
+  {
+   "code": "reynolds part51",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part51.html"
+  },
+  {
+   "code": "reynolds part61",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part61.html"
+  },
+  {
+   "code": "reynolds part63",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part63.html"
+  },
+  {
+   "code": "perkins intro",
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/intro.html"
+  },
+  {
+   "code": "perkins part03",
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part03.html"
+  },
+  {
+   "code": "perkins part05",
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part05.html"
+  },
+  {
+   "code": "perkins part06",
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part06.html"
+  },
+  {
+   "code": "worden lw022702 (old)",
+   "url": "https://scvhistory.com/scvhistory/signal/worden/old/lw022702.htm"
+  },
+  {
+   "code": "perkins-newhall-1958",
+   "url": "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm"
+  },
+  {
+   "code": "sg19470102perkins",
+   "url": "https://scvhistory.com/scvhistory/sg19470102perkins.htm"
+  },
+  {
+   "code": "sfrhms1201kelly",
+   "url": "https://scvhistory.com/scvhistory/sfrhms1201kelly.htm"
+  },
+  {
+   "code": "pollack0909lebeck",
+   "url": "https://scvhistory.com/scvhistory/pollack0909lebeck.htm"
+  },
+  {
+   "code": "lw2304a",
+   "url": "https://scvhistory.com/scvhistory/lw2304a.htm"
+  },
+  {
+   "code": "lw2605",
+   "url": "https://scvhistory.com/scvhistory/lw2605.htm"
+  },
+  {
+   "code": "lw2008",
+   "url": "https://scvhistory.com/scvhistory/lw2008.htm"
+  },
+  {
+   "code": "lw2009",
+   "url": "https://scvhistory.com/scvhistory/lw2009.htm"
+  },
+  {
+   "code": "lw2010",
+   "url": "https://scvhistory.com/scvhistory/lw2010.htm"
+  },
+  {
+   "code": "lw2013",
+   "url": "https://scvhistory.com/scvhistory/lw2013.htm"
+  },
+  {
+   "code": "lw2017",
+   "url": "https://scvhistory.com/scvhistory/lw2017.htm"
+  },
+  {
+   "code": "lw2041",
+   "url": "https://scvhistory.com/scvhistory/lw2041.htm"
+  },
+  {
+   "code": "lw2136",
+   "url": "https://scvhistory.com/scvhistory/lw2136.htm"
+  },
+  {
+   "code": "lw2052",
+   "url": "https://scvhistory.com/scvhistory/lw2052.htm"
+  },
+  {
+   "code": "lw3900",
+   "url": "https://scvhistory.com/scvhistory/lw3900.htm"
+  },
+  {
+   "code": "sg19630117depot",
+   "url": "https://scvhistory.com/scvhistory/sg19630117depot.htm"
+  },
+  {
+   "code": "lw2027",
+   "url": "https://scvhistory.com/scvhistory/lw2027.htm"
+  }
+ ],
+ "conflicts": [
+  {
+   "id": "C1",
+   "topic": "Birth and death: date and place (no disagreement found)",
+   "pages": [
+    "bealeafb: \"born Feb. 4, 1822 in the District of Columbia\"; died at Decatur House April 22, 1893",
+    "reynolds part28: \"Washington, D.C., on February 4, 1822\"",
+    "lo8803: \"(1822-1893)\"",
+    "tejonranchtimeline: \"1893 — Beale dies at the age of 72\" (Feb 4 1822 to Apr 22 1893 is 71 years; see L9)"
+   ],
+   "outside": "Wikipedia, Wikidata Q1292161 (P569 1822-02-04, P570 1893-04-22, citing SNAC w62z15gt; P19/P20 Washington DC), Find a Grave 11558486 (4 Feb 1822 DC to 22 Apr 1893 DC; Chester Rural Cemetery, Chester PA, Sec. K Lot 141 Grave 6) and the LoC/SNAC authority (Beale, Edward Fitzgerald, 1822-1893) all agree.",
+   "favors": "Confirmed: born Feb 4, 1822, Washington DC; died Apr 22, 1893, Decatur House, Washington DC; buried Chester Rural Cemetery. The only discrepancy is the age of 72 on the Tejon Ranch Co. timeline. A primary birth record was not seen: NEEDS_VERIFICATION (baptismal register, or Beale family papers at LoC).",
+   "settle": "Beale Family Papers from the Decatur House (LoC, MSS ms009320): biographical material; Chester Rural Cemetery interment record; DC death record, 1893."
+  },
+  {
+   "id": "C2",
+   "topic": "Naval schooling, the 'Andrew Jackson' link, and leaving the Navy",
+   "pages": [
+    "bealeafb: \"President Andrew Jackson appointed him to the Naval School. Beale graduated in 1842.\" Photo caption \"Midshipman E.F. Beale, 1837\"",
+    "pollack1114kitcarson: \"graduated from the Naval School in Philadelphia in 1842\"",
+    "reynolds part28: \"appointed to the U.S. Naval Academy by President Andrew Jackson\" (the Academy opened in 1845)",
+    "bealeafb: made lieutenant Aug 3, 1850; \"resigned from the Navy in May 1851\"",
+    "reynolds part28: \"resigned from the Navy in November 1852 and was promptly appointed superintendent\"",
+    "tejonranchtimeline: in 1846 Beale \"serves with Fremont\" (vs bealeafb and lw3359: with Stockton, then Gillespie and Kearny)"
+   ],
+   "outside": "Wikipedia: Jackson appointed him to the Philadelphia Naval School; Navy service 1837–1851. Find a Grave: \"graduated in 1842\" from the US Naval Academy. That is anachronistic, since the Academy was founded in 1845.",
+   "favors": "Naval School (Philadelphia), graduated 1842, resigned 1851. 'Naval Academy' (Reynolds; Find a Grave) is anachronistic. **The brief's 'credited to Andrew Jackson' has no support on the site. None of the 146 fetched pages credits Jackson with the Cut. Jackson's only role is the 1830s naval appointment.** Resignation: May 1851 (bealeafb, WP) against Nov 1852 (Reynolds), NEEDS_VERIFICATION.",
+   "settle": "Navy officer registers and resignation letter (NARA RG 24 / RG 45, NEEDS_VERIFICATION); Beale papers at LoC (naval-career series)."
+  },
+  {
+   "id": "C3",
+   "topic": "Superintendent of Indian Affairs: dates, title and exit",
+   "pages": [
+    "perkins part04: \"Superintendent of Indian Affairs in California and Nevada in 1852\"",
+    "tejonranchtimeline: \"1852 — Beale arrives as the Superintendent of Indian Affairs, a post he held until 1854\"",
+    "lw2742 (Wilke & Lawton 1976): reservation organized 1852 by Beale, \"General Superintendent of Indian Affairs for California and Nevada\"",
+    "bealeafb: appointed by Fillmore \"On March 3, 1853\"; left Washington May 6, 1853; reached LA Aug 22; \"retained his position as superintendent until 1856\"",
+    "cullimore_oldadobes: \"In the spring of 1853, Lieutenant Edward Fitzgerald Beale was made superintendent\"; \"in 1854 was Superintendent\"",
+    "reynolds part28: \"short tenure\"; \"ousted from office\", then \"quickly\" made militia brigadier and surveyor-general (the Surveyor General appointment was not until 1861)"
+   ],
+   "outside": "Wikipedia: Superintendent for California and Nevada, 1853–1856. LoC finding aid: 'journey in 1853 to take up his post as superintendent of Indian affairs for California and Nevada'. Find a Grave says 'California and New Mexico'.",
+   "favors": "Appointed 1853 (Mar 3, per bealeafb), arrived Aug 1853. The '1852' dates are wrong for the appointment. End date: 1854 (Tejon Ranch Co.) against 1856 (bealeafb, WP). Unresolved, NEEDS_VERIFICATION. Title: California and Nevada, not New Mexico.",
+   "settle": "Annual Reports of the Commissioner of Indian Affairs 1853–1856 (printed in the Congressional Serial Set); NARA RG 75, Letters Received, California Superintendency (microfilm M234, NEEDS_VERIFICATION); the Beale commission, 1853 (LoC Beale papers)."
+  },
+  {
+   "id": "C4",
+   "topic": "Sebastian (Tejon) Reserve: when founded, how big, one reserve or two, when it ended",
+   "pages": [
+    "lw2742: organized 1852; operated \"about fifteen years\"",
+    "tejonranchtimeline: \"1853 — Sebastian Indian Reserve is established on 75,000 acres\"; \"1862 — Sebastian Indian Reserve is abandoned\"",
+    "lw2580 / lw2521: \"the 75,000-acre Sebastian (aka Tejon) Indian Reservation\"",
+    "cullimore_oldadobes: Beale \"surveyed fifty thousand acres of this grant when the Tejon Indian reservation was established\"; Indians' final removal Sept 1864",
+    "reynolds part28: \"The first two were at San Sebastian, near Bakersfield, and Tejon, on the Grapevine Pass\" (treats them as two separate reservations)",
+    "ripley13: given up as a government project in 1862 (citing Giffen); Owens Valley people brought in 1863; most removed by 1864",
+    "lo8801 / lo8802: established 1852 \"on Yokuts land\"; Army closed the fort \"and the reservation, for good in 1854\" (see L4)"
+   ],
+   "outside": "Interior Solicitor's memorandum on the Tejon Indian Tribe (bia.gov PDF): Beale mapped and named the Sebastian Military Reserve; 'contemporaries... commonly referred to the Sebastian Military Reserve as the \"Tejon Reservation\"'; the reserve lay on a Mexican land grant; Tule River reservation established in 1864 for the Tejon Indians and others.",
+   "favors": "One reserve, called both Sebastian and Tejon (against Reynolds). Founded 1853, when Beale arrived (the 1852 dates predate his appointment). Official project wound down in 1862, with final removals in 1864 (not 1854, and not 'about fifteen years'). Acreage (50,000 vs 75,000) NEEDS_VERIFICATION. Treat everything here as needing consultation with the tribe (see C22).",
+   "settle": "Commissioner of Indian Affairs reports 1853–64; NARA RG 75 California Superintendency; the Solicitor's memo (a secondary legal history citing primary records); Tejon Indian Tribe (consult)."
+  },
+  {
+   "id": "C5",
+   "topic": "Fort Tejon: founding, occupation and abandonment",
+   "pages": [
+    "cullimore_oldadobes: established at Beale's suggestion; Mansfield report 7-1-1854; Wool order; garrison removed June 15, 1861; reoccupied Aug 17, 1863 to Sept 11, 1864",
+    "lw2580: \"On Aug. 10, 1854, the U.S. Army garrisoned Fort Tejon\"; \"lasted just 10 years, until Sept. 11, 1864, when the Army needed to save money to fight the South\"",
+    "tejonranchtimeline and reynolds part23: abandoned Sept 11, 1864",
+    "forttejonparkinventory2015: abandoned Sept 11, 1864"
+   ],
+   "outside": "Wikipedia: established 1854 at Beale's urging; abandoned 1864.",
+   "favors": "Established Aug 1854; abandoned Sept 11, 1864. 'Ten years' hides the 1861–63 gap when there was no regular garrison. The stated reason (money for the war, vs the final removal of the Indians) is interpretive.",
+   "settle": "Post returns, Fort Tejon (NARA RG 94, microfilm M617, NEEDS_VERIFICATION); Mansfield inspection report of 1854 (quoted by Cullimore)."
+  },
+  {
+   "id": "C6",
+   "topic": "The 1851 treaty 'Castake, Texon, etc.' is labeled 1852 on the site",
+   "pages": [
+    "heizer1972 (page title): \"Treaty Between the United States and the Indians of 'Castaic, Tejon, Etc.,' 1851\"",
+    "ridge.htm and tataviam.htm (index labels): \"(Unratified), 1852\""
+   ],
+   "outside": "None fetched. Heizer 1972 (the site's source) gives 1851.",
+   "favors": "1851, per the page's own source. The index labels are wrong (L3). The treaty was never ratified. Whether Beale had any role in it is not stated on the page; do not assert one.",
+   "settle": "Heizer 1972 (UC Archaeological Research Facility); Senate confidential documents on the unratified 1851–52 California treaties (NARA RG 46 / RG 75 Ratified and Unratified Treaties microfilm T494, NEEDS_VERIFICATION)."
+  },
+  {
+   "id": "C7",
+   "topic": "Surveyor General: the Lincoln 'monarch of all he surveys' quip, and how Beale left office",
+   "pages": [
+    "reynolds part28: \"It is said that Abraham Lincoln refused Beale's reappointment with the memorable words, 'I will not have a surveyor who becomes monarch of all he surveys.'\"",
+    "perkins part04: \"No, he apparently becomes monarch of all he surveys\" (asked about reappointment)",
+    "lat051212: when Beale told Lincoln of his purchases, the President \"is reputed to have remarked, 'Beale, you are truly monarch of all you survey.'\"",
+    "lp_sfchronicle062312: Lincoln \"couldn't reappoint Beale\" because \"he became monarch of all he surveyed\"",
+    "lw2580: \"Lincoln fired him\"; \"monarch of all he has surveyed\"; also \"accounting irregularities\"",
+    "worden-coinage1005: \"Lincoln fired him\"",
+    "ripley (note 42): resigned \"at the close of the Civil War that year of 1864\" (the war ended in 1865; internally inconsistent)",
+    "johnson-kashtiq note 19: cites Crowe 1957:67 for the quip"
+   ],
+   "outside": "Wikipedia: appointed Surveyor General 1861 by Lincoln. No contemporary source for the quip was found.",
+   "favors": "At least five wordings and three contexts. Treat it as an anecdote (the earliest printed source seen is the 1912 LAT and Chronicle, both after Beale's death). Whether he was fired or resigned, and when, is unresolved: NEEDS_VERIFICATION.",
+   "settle": "Abraham Lincoln Papers (LoC, digitized) for a removal or successor appointment; Senate Executive Journal (nomination of his successor, NEEDS_VERIFICATION); GLO / Surveyor General records (NARA RG 49)."
+  },
+  {
+   "id": "C8",
+   "topic": "How and when the Tejon ranchos were acquired",
+   "pages": [
+    "reynolds part28: \"bought Rancho La Liebre on August 8, 1855 for... three cents an acre\"",
+    "tejonranchtimeline: \"1855 — Rancho La Liebre is deeded to Mary Edward Beale from William C. Walker\"; 1865 El Tejon and Los Alamos y Agua Caliente; 1866 Castac; about $90,000 in total",
+    "hssc1929parks_laliebre: La Liebre granted 1846 to José María Flores, \"From him it was conveyed to Beale\"",
+    "lw3491: in 1857 La Liebre was \"owned by his business partner, Samuel A. Bishop\"",
+    "perkins part04: \"In the middle [18]50s, with his partner Samuel A. Bishop, he acquired title\"",
+    "lat051212: \"while he was Surveyor-General\" (1861–64) he bought La Liebre (48,799 ac) and Castac (22,178 ac); then El Tejon (97,612); then Los Alamos (26,626)",
+    "lw2580: Castac bought \"in 1863 through an intermediary\" (Bishop), passed to Baker, \"who sold it to Beale in 1866\"",
+    "reynolds part30: Covarrubias \"sold it twenty-three years later [after 1843] to Edward F. Beale\" (1866)",
+    "cullimore_oldadobes: López recalled the price as \"$100 a league or about five cents an acre\""
+   ],
+   "outside": "Wikipedia: bought the ranchos in 1865–66.",
+   "favors": "La Liebre was acquired in 1855 in some form: deeded to Mary Edwards Beale (Tejon Ranch Co.) or bought in partnership with Bishop. The LAT's 'while Surveyor-General' fits Castac (1863, through intermediaries). El Tejon and Los Alamos 1865, Castac title 1866. The chain of title is NEEDS_VERIFICATION.",
+   "settle": "Kern County and LA County Recorder deed books, 1855–66; US District Court land-case files (Bancroft Library land case records, NEEDS_VERIFICATION); Tejon Ranch Co. archives (access NEEDS_VERIFICATION); Thompson 1983 p.232."
+  },
+  {
+   "id": "C9",
+   "topic": "Ranch acreage",
+   "pages": [
+    "ripley: \"nearly two hundred thousand acres\"; lp_sfchronicle062312: \"200,000 [sic]\"",
+    "lw2580: 269,215 acres (Thompson 1983:232), itemized",
+    "bealeafb: 270,000",
+    "lat051212: \"more than 276,000 acres\"; headline \"Nearly Three Hundred Thousand Acres\"",
+    "reynolds part28: 297,000",
+    "worden lw011399: \"300,000-acre\"; lw2727: \"more than 300,000 acres\""
+   ],
+   "outside": "None authoritative.",
+   "favors": "About 269,000–270,000 acres in Beale's lifetime (Thompson, itemized); about 276,000 at the 1912 sale. 297,000 and 300,000 are inflated.",
+   "settle": "Thompson 1983 p.232 and its sources; the 1912 deed of sale (Kern and LA Recorders)."
+  },
+  {
+   "id": "C10",
+   "topic": "When Beale's Cut was made: 1854, 1858, 1859, 1862, 1863 or 1864",
+   "pages": [
+    "ripley13 (via LA Star and Board of Supervisors): 1854 first cut by contractors Sanford & Carson (County $1,000); 1858 lowered for Butterfield; state franchise 1861; Beale holds it from 1862; work mostly 1863; completed and tolls set, LA Star Mar 5, 1864",
+    "boilerplate (ap0107, di4005, lw2233, lw3328, lw3582, mu9001, st_lat110440, worden lw040997): Banning's first stage 1854; Beale took over the contract in 1862; most work 1863; accepted Mar 5, 1864",
+    "reynolds part28: \"From 1863 to 1910 it was the only way\"; lwhist: \"In 1863... Beale's troops cut\"",
+    "pollack1114kitcarson: Beale \"completed the famous Beale's Cut in 1864\"; ap2306: \"completed in 1864\"",
+    "lw2725: \"made by General Beale in the 1850s [sic]\"; lw3491: \"The following decade [1860s], when he dug out Beale's Cut\""
+   ],
+   "outside": "WP 'Beale's Cut Stagecoach Pass': 'built in 1859' in the text vs infobox 'Built 1862'. WP 'Edward Fitzgerald Beale': 'In 1862, he dispatched a crew of Chinese workers to widen an 1858 cut'. OHP CHL No. 1006 (registered 5/11/1992): 'At the time of its construction in 1862'.",
+   "favors": "A staged cut: 1854 (first cut), 1858 (lowered), 1862–63 (Beale's deep cut under the franchise), accepted March 1864. '1859' (WP) has no support in any site source. '1862' (OHP) is the date Beale took over, not the completion date.",
+   "settle": "LA County Board of Supervisors minutes 1854 (Aguilar motion, $1,000) and Dec 23, 1863 / Mar 1864 (Executive Office of the Board / LA County Archives, NEEDS_VERIFICATION); LA Star 4-4-1863, 12-26-1863, 3-5-1864 (CDNC; USC/Huntington Los Angeles Star collection)."
+  },
+  {
+   "id": "C11",
+   "topic": "How deep: 30, 50 or 90 feet, and today",
+   "pages": [
+    "boilerplate: \"only 30 feet deep\" in 1854; \"90-foot-deep\"",
+    "worden lw050500b (old): \"deepened in 1858 to about 30 feet\"; 90 ft \"from 1863\"",
+    "ripley12/13: statute required cutting \"at least fifty feet from its summit\"; LA Star 4-4-1863 new grading terms given as 90 ft (NW end) to 15 ft (SE angle). These figures may describe grade or length rather than depth: NEEDS_VERIFICATION",
+    "ripley16: deepened \"a few feet about 1904\"",
+    "1923 wire copy (on the Mix pages): \"20 feet wide and 90 feet deep\"",
+    "boilerplate today: \"about half of its former depth\""
+   ],
+   "outside": "WP: deepened to 90 ft; after the collapse, about 30 ft.",
+   "favors": "'90 feet' is the traditional figure (1923 press, boilerplate), but no survey is cited. The statutory minimum was 50 ft. The 1854 figure of '30 ft' is unsourced. Measure it or find an engineering survey.",
+   "settle": "Keller's report to the Board (Dec 23, 1863; BoS minutes); 1872 photographs (ap0625) for photogrammetry; LA County Road Dept. survey plats c.1904 (NEEDS_VERIFICATION); a modern survey by the City of Santa Clarita (the current owner, see L5)."
+  },
+  {
+   "id": "C12",
+   "topic": "Who made the Cut and who did the digging: Beale, Pico, Banning, the County, 'Frémont's men'; troops or Chinese workers",
+   "pages": [
+    "ripley12: the 1861 franchise went to \"Charles H. Brinley, Andrés Pico and James R. Vineyard\"; 1854 contractors Sanford & Carson (W.T.B. Sanford was Banning's brother-in-law); Gabriel Allen put the first cut through",
+    "reynolds part27: \"in spite of improvements made by Phineas Banning\"; perkins part04 (quoting Horace Bell): Banning drove the stage over in Dec 1854",
+    "perkins notes 13: Banning's crossing point and Beale's may not be the same",
+    "reynolds part28: \"called out the troops from Fort Tejon to dig a ninety-foot slash\"; lwhist, worden lw040997, lw062498 and lw011399: troops",
+    "boilerplate: \"Beale used Chinese immigrants\"",
+    "ripley13: soldiers under Major Coult repaired the road Feb 14–24, 1862 (LA Star Mar 15, 1862); no workforce named for the 1863 work",
+    "cu1951: postcard \"cut by hand by General Fremont's men\" (page corrects this)",
+    "lw2725: \"City of Los Angeles secured the charter\" [sic] (it was the state franchise, with the County setting tolls)",
+    "reynolds part28: Beale \"got five thousand dollars\"; LA Star 4-4-1863 (via Ripley/Perkins): cost estimated at $16,000–18,000",
+    "hs9029: \"Wiley's Windlass\" was invented by Reynolds (page debunks)"
+   ],
+   "outside": "WP Beale: Chinese workers, 1862. WP Cut: Brindley [sic], Pico and Vineyard under a 20-year state contract. Coult repairs cited to 'LA Herald on March 5, 1862', a paper that did not exist until 1873.",
+   "favors": "Credit layers: Sanford & Carson / Allen (1854; Banning connected by family and as the first driver), Brinley–Pico–Vineyard (1861 franchise), Beale (1862–64 deep cut). Nothing credits Andrew Jackson (see C2). 'Troops' most likely conflates Coult's 1862 soldiers' repair with the 1863 cut. 'Chinese workers' is unsourced on every page and in WP: NEEDS_VERIFICATION.",
+   "settle": "Beale's accounts and contracts, 1862–64 (LoC Beale papers; Huntington Gaffey MSS and R.S. Baker collection, NEEDS_VERIFICATION); LA Star 1862–64; BoS minutes."
+  },
+  {
+   "id": "C13",
+   "topic": "Toll franchise: grantor, dates, radius, term, collectors",
+   "pages": [
+    "ripley12/13: state Act of May 7, 1861 (Stats. 1861 p.303), completion due May 7, 1862; amended Apr 18, 1862 (Stats. 1862 p.282), deadline Mar 7, 1863, 12% return, no rival toll road \"within two miles on either side\"; tolls set by Supervisors for up to 20 years",
+    "perkins part04: the franchise \"very shortly was in the possession of E.F. Beale\"; LA Star 4-4-1863: \"franchise granted by the last Legislature\"; right of way \"one mile\" (truncated); tolls paid in gold dust",
+    "ap2306 (Signal 2-24-1939): \"the county supervisors granted a toll franchise, which extended three miles each way\"",
+    "boilerplate: Beale \"took over a contract from the LA County Board\"",
+    "LA Star 3-5-1864 (via Ripley): \"Mr. Beale has appointed A.P. Robbins as Collector\"; elsewhere Ripley says O.P. Robbins; Reynolds says Oliver P. Robbins; Reynolds: loan of Sept 19, 1863 to A.A. Hudson and Robbins for the toll house",
+    "ripley14: Dunne bought out Robbins by 1870, \"until the franchise expired in 1883\"; perkins: Dunn took over in 1873; ripley15: 20 years from Mar 1864 = 1884"
+   ],
+   "outside": "WP: 'In 1863, Beale was awarded the right to collect the toll'.",
+   "favors": "Grantor: the Legislature (1861/1862 Acts), with tolls fixed by the Board. Radius: two miles (statute). Tolls began March 1864, and the county takeover came 1883–84. Robbins's initial, and 1870 vs 1873 for Dunne: NEEDS_VERIFICATION.",
+   "settle": "Statutes of California 1861 ch./p.303 and 1862 p.282 (state law library; HathiTrust, NEEDS_VERIFICATION); BoS minutes 1863–64 and 1883–84; LA Star 3-5-1864."
+  },
+  {
+   "id": "C14",
+   "topic": "Naming: San Fernando Pass, Fremont Pass, Newhall Pass, 'New Pass', Beale's Cut",
+   "pages": [
+    "ripley (series title): \"The San Fernando (Newhall) Pass\"; LA Star 1863: \"San Fernando mountains\"; LAT 1904: still \"San Fernando Pass\"",
+    "lw2143a: Williamson's \"New Pass\" (1853)",
+    "st_lat110440: LAT 11-4-1940 drive to mark \"Fremont Pass\", where Frémont marched \"in 1842\" (the page corrects this to 1846–48)",
+    "boilerplate: \"often called Fremont Pass\", though Frémont crossed about a quarter-mile east via Elsmere Canyon (Jan 1847: lw2069, lw2225)",
+    "perkins notes 13: \"Known, after 1863, as Beale's Cut\""
+   ],
+   "outside": "WP Cut: 'also known as the Fremont Pass, San Fernando Pass, and the Newhall Cut'; says the pass was named after Henry Newhall and discovered by Portolà in 1769 (not checked here).",
+   "favors": "Contemporary name: San Fernando Pass (1850s–1900s). 'Fremont Pass' is a 20th-century memorial usage for a route Frémont probably did not take. 'Newhall Pass' dates from after the town was founded in 1876.",
+   "settle": "USGS and GLO plats 1850s–1900s; Williamson report (Pacific Railroad Reports vol. 5); Frémont's Jan 1847 reports and journals."
+  },
+  {
+   "id": "C15",
+   "topic": "Camel stories",
+   "pages": [
+    "reynolds part23: the idea came to Beale \"While exploring Death Valley with Kit Carson\"; Porter landed at Indianola \"May 13, 1856\" with 33; camels used locally \"until the fort was abandoned on September 11, 1864\"; last auction at Camp Verde 1866",
+    "bealeafb: plan \"first proposed by Secretary of War Jefferson Davis\"; \"25 camels, imported from Tunis\"",
+    "lw3451 / lw3647 / lw2161: plaque: landed Feb 10, 1856 (33 camels; 41 more on a second voyage); Wayne and Lt. D.D. Porter (Reynolds: 'Colonel David D. Porter')",
+    "worden lw011399: arrived Indianola \"April 29, 1856, with 34 camels\"; \"Egyptian\"; \"the Army sold Beale's camels in November 1863\"; Texas camels sold 1865",
+    "lat051212: \"imported from Egypt\"; lw2130: \"from Asia and Africa\"",
+    "lw2208, lw3451, lw3647, lw2161: \"Fort Defiance, Texas\" vs lw3491: \"Fort Defiance, New Mexico Territory\" (see L6)",
+    "al2075 (1858): \"all the camels (twenty-four in number)\" vs 25 elsewhere",
+    "lw3491: debunks the 1856 camel mail and the use of camels by Butterfield; there were no camels at Fort Tejon in 1856; in 1857 they went to La Liebre (Bishop)",
+    "lw2130: Beale used them \"by way of Beale's Cut\" (the Cut was not accepted until Mar 1864, after the Nov 1863 sale per lw011399)",
+    "reynolds part23 / lw011399: LA Star Jan 27, 1858, \"about fourteen camels... last Friday\"; cullimore: \"last Friday week\", credited to \"an old San Francisco paper\" and naming \"General\" Beale",
+    "reynolds part23: Hi Jolly died Dec 16, 1902, aged 74; lw011399 quoting Reynolds: \"Dec. 16, 1903... 75-year-old\"; the body with the camel is described as \"local legend\""
+   ],
+   "outside": "Wikipedia: camels bought and kept at the ranch [citation needed]; Hi Jolly. White House Historical Association: Beale 'initiator' of the Camel Corps.",
+   "favors": "The Davis-era War Department experiment, with Beale commanding the 1857 wagon-road use. The landing dates and origins conflict, so settle them from the Army's report. Plaque and Reynolds agree on 1902, so lw011399's 1903/75 is a misquote. The camel mail was a myth (the site's own debunk is correct). Camels at the Cut after Mar 1864 would have been ranch-owned animals: NEEDS_VERIFICATION.",
+   "settle": "Senate Ex. Doc. 62, 34th Cong. 3rd Sess. (1857), Report of the Secretary of War on the purchase of camels (NEEDS_VERIFICATION); Beale's wagon-road report (H. Ex. Doc. 124, 35th Cong. 1st Sess., Serial 959); LA Star 1-27-1858 (CDNC); Lesley, Uncle Sam's Camels (1929)."
+  },
+  {
+   "id": "C16",
+   "topic": "Film myths at the Cut: earliest film, Ford, Tom Mix, Hart",
+   "pages": [
+    "brokenways1913: \"the earliest known motion picture to use Beale's Cut\" (D.W. Griffith, 1913)",
+    "reynolds part59: Ford's \"first effort was Straight Shooting, using Beale's Cut\" (1917); Hart \"was using the streets of Newhall and the Walker Ranch... as early as 1914\"",
+    "lw2065: Ford used it \"at least three times before\" Stagecoach: Straight Shooting, 3 Jumps Ahead, The Iron Horse",
+    "worden lw040997: same shot in 1917 and 1924; \"Big Bill Hart took a crack at the famous director in his autobiography\" over the Stagecoach chase (see L7)",
+    "sw_commercejournalwichitatx092123: Mix says he jumped it five or six times; lw2159a: Earl Simpson (per Birchard); Reynolds / lw040997: Richard Talmadge claimed it; Jauregui: dubbed in; all agree Mix and Tony did not jump; the film is lost",
+    "st3201: The Devil Horse (1932), no real jump; lw3115: Cowboy Serenade (1942) is NOT Beale's Cut",
+    "pa2501: Keaton, Seven Chances (1925)"
+   ],
+   "outside": "WP: Ford used it in at least four films beginning as early as 1917; the Mix jump is debated. OHP CHL 1006: 'favorite film-making location by pioneer film maker, David Wark Griffith, and others'.",
+   "favors": "Earliest known use: 1913 (Broken Ways), not 1917. **Hart: no scvhistory page shows Hart filming at Beale's Cut**; any such claim is NEEDS_VERIFICATION. The Mix jump did not happen as billed.",
+   "settle": "The Broken Ways print (LoC / MoMA, NEEDS_VERIFICATION); AFI Catalog records; Birchard, King Cowboy (2008) sources; Hart, My Life East and West (1929) for the alleged criticism."
+  },
+  {
+   "id": "C17",
+   "topic": "When the Cut collapsed: 1997–98 El Niño or the 1994 Northridge earthquake",
+   "pages": [
+    "boilerplate (ap0107, di4005, lw2233, lw3328, lw3582, mu9001, st_lat110440) and perkins notes 17: \"During the El Niño storms of 1997-98, Beale's Cut caved in\"",
+    "worden lw050500b (5-5-2000): 90 ft \"until late in 1997, when the torrential El Niño rains partially caved in its vertical dirt sides\"",
+    "worden lw062498 (6-24-1998): discusses stabilizing the collapse as current news",
+    "hb1806 (2018 note): partially collapsed during the 1997-98 El Niño"
+   ],
+   "outside": "WP 'Beale's Cut Stagecoach Pass': partial collapse in the Northridge earthquake of Jan 17, 1994; now about 30 ft.",
+   "favors": "1997–98, backed by the site's contemporaneous 1998 and 2000 columns (see A2). Earthquake damage in 1994 cannot be ruled out: NEEDS_VERIFICATION.",
+   "settle": "LA County / Caltrans or City geologist reports, 1994–98; Signal coverage, winter 1997–98."
+  },
+  {
+   "id": "C18",
+   "topic": "When Beale bought Decatur House",
+   "pages": [
+    "bealeafb: \"In 1870 he bought the Decatur House\""
+   ],
+   "outside": "White House Historical Association, National Trust (savingplaces.org) and WP Beale: 1871 ($60,000). WP 'Decatur House': 1872.",
+   "favors": "1871 (the operator and the owner agree).",
+   "settle": "DC Recorder of Deeds, 1871; Beale papers (LoC)."
+  },
+  {
+   "id": "C19",
+   "topic": "Death details: age, burial vs cremation",
+   "pages": [
+    "tejonranchtimeline: \"dies at the age of 72\""
+   ],
+   "outside": "Find a Grave: 'left instructions that his remains be cremated', then burial at the family plot in Chester (internally inconsistent). Wikipedia: buried at Chester Rural Cemetery.",
+   "favors": "Age 71. Burial at Chester is confirmed by the cemetery listing. Whether he was cremated first is NEEDS_VERIFICATION.",
+   "settle": "Chester Rural Cemetery records; Washington newspapers, April 1893."
+  },
+  {
+   "id": "C20",
+   "topic": "Sale of the ranch by the heirs: 1911 or 1912",
+   "pages": [
+    "lat051212: LAT Sunday May 12, 1912, reports the \"recent sale\"",
+    "tejonranchtimeline: 1912"
+   ],
+   "outside": "Find a Grave: 'Truxtun sold the Tejon ranch in 1911 for $3 million'.",
+   "favors": "1912 (contemporary LAT). The price is NEEDS_VERIFICATION.",
+   "settle": "Kern and LA Recorder deeds, 1912."
+  },
+  {
+   "id": "C21",
+   "topic": "Beale's oil ventures in the SCV (summary)",
+   "pages": [
+    "ripley14: Star Oil Co. 1865 (Baker, Beale, Pico, Foster, Lyon)",
+    "reynolds part31: LA Asphaltum and Petroleum Mining District, then the San Fernando Mining District, June 24, 1865; Pico's claim backdated to Jan 24, 1865",
+    "lwhist: \"In 1865 the two generals hooked up\"; worden lw101597: alliance of Beale and Baker bought the claims \"by the close of the 1860s\"",
+    "sw_leaming070366: Leaming to Beale, July 3, 1866 (primary; Huntington R.S. Baker Collection, per page)"
+   ],
+   "outside": "None checked.",
+   "favors": "Activity 1865–66 is well supported. 'Close of the 1860s' is loose. Outward-pointing; keep short.",
+   "settle": "Huntington Library, Robert S. Baker collection (per sw_leaming070366); LA mining-district records (NEEDS_VERIFICATION)."
+  },
+  {
+   "id": "C22",
+   "topic": "Indigenous history: interpretation, names and terms (CARE: needs consultation)",
+   "pages": [
+    "lo8801 / lo8802: Beale \"rounded up Indians... using soldiers at his command\"; names Tataviam people from Newhall and Castaic (e.g. Estanislao Cabuti), Barbareño Chumash, Kitanemuk, Yokuts and Paiutes from Owens Valley",
+    "lp_sfchronicle062312 (1912): Beale \"gave all the Indians a square deal\"; \"exacted such terrible...\"",
+    "johnson-kashtiq: the debate over whether the Tataviam existed (Beeler & Klar 1977 vs Johnson 1978); Beale \"floated\" the Los Alamos y Agua Caliente grant (Latta 1976:193)",
+    "lw2580: Castaic from the Chumash word Kashtiq, \"like an eye\" (Johnson 1978); reynolds part30: \"Kashtuk, meaning 'eyes'\"",
+    "jj1002: Altamirano Badillo, of Tataviam, Serrano and Fernandeño ancestry (per page)",
+    "tejonranchtimeline: 'five Native American tribes' on the ranch, including the Kitanemuk"
+   ],
+   "outside": "WP: Beale 'helped charter a humanitarian policy'. Self-names verified on official sites: 'Tejon Indian Tribe' (tejonindiantribe.com; BIA) and 'Fernandeño Tataviam Band of Mission Indians' (tataviam-nsn.us).",
+   "favors": "Do not choose between the 'humanitarian' and 'coercive' readings in migration text. Present sourced statements, attributed. Use the self-names above; use 'Kitanemuk', 'Yokuts' and 'Chumash' only as the sources use them. **No village locations, sacred sites or coordinates are given in this dossier.** The Kashtiq/Kashtuk spelling and meaning, the Tataviam-existence debate, and any statement about descendants need consultation with the Tejon Indian Tribe and the Fernandeño Tataviam Band before publication.",
+   "settle": "Tribal consultation (Tejon Indian Tribe; Fernandeño Tataviam Band of Mission Indians); Commissioner of Indian Affairs reports; Johnson 1978 and its sources."
+  },
+  {
+   "id": "C23",
+   "topic": "Tejon Indian Tribe reaffirmation date",
+   "pages": [
+    "tataviam.htm#tejontribe: \"Reaffirmation of Federal Recognition of Tejon Indian Tribe\" dated 4-24-2012; request for confirmation 6-30-2006"
+   ],
+   "outside": "BIA press release and the Tribe's posted letter: Assistant Secretary Larry Echo Hawk reaffirmed the relationship on Dec 30, 2011 (the DOI OIG report gives the same date); the request was first made in 2006.",
+   "favors": "The reaffirmation is dated Dec 30, 2011. The site's 4-24-2012 may be a different document (e.g. its Federal Register listing): NEEDS_VERIFICATION.",
+   "settle": "BIA letter of 12-30-2011; Federal Register tribal list 2012."
+  },
+  {
+   "id": "C24",
+   "topic": "Career-summary slips (outward; summarize only)",
+   "pages": [
+    "tejonranchtimeline: 1846 \"serves with Fremont\"; 1848 Beale carried the gold news \"two months ahead of Kit Carson\"",
+    "worden-coinage1005: \"Beale and his pal Kit Carson were headed east with proof\" (together)",
+    "bealeafb: Minister to Austria-Hungary 1876 \"for a year\"; lat051212: camels on the 45th parallel (\"forty-fifth parallel\"; the route was the 35th: lw3491, lw2208)"
+   ],
+   "outside": "Wikipedia: Minister June 1, 1876 – April 20, 1877; 1857 wagon road along the 35th parallel.",
+   "favors": "Point outward to Thompson 1983 and the LoC papers; do not migrate these details uncorrected.",
+   "settle": "Thompson 1983; LoC Beale papers; Beale's wagon-road reports."
+  }
+ ],
+ "live_errors": [
+  {
+   "id": "L1",
+   "page": "bealescut.htm (Beale's Cut index)",
+   "quote": "Entry \"Beale's Cut in John Ford's 'The Iron Horse,' 1924\" labeled LW2159, linking https://scvhistory.com/scvhistory/lw2228.htm",
+   "correct": "The label should be LW2228 (LW2159 is the Tom Mix item, listed separately above it).",
+   "evidence": "Link parse of the live index (bealescut_links.txt): 'LW2159 | .../lw2228.htm'; the lw2228 page title reads 'LW2228 | Beale's Cut | 'The Iron Horse' (1924)'."
+  },
+  {
+   "id": "L2",
+   "page": "signal/worden/lw011399.htm",
+   "quote": "Page title/header: \"Henry Newhall Builds an Empire\"; body: \"E.F. Beale and the Beasts of Tejon By Leon Worden Wednesday, April 24, 2002\"",
+   "correct": "The title should be 'E.F. Beale and the Beasts of Tejon'. The date needs checking: the filename encodes 01-13-1999, and the text says the SCVHS '1999 calendar' is 'Available now', which fits Jan 1999, not April 2002.",
+   "evidence": "Fetched page text; the inventory title for this URL is 'E.F. Beale and the Beasts of Tejon'. The same page misquotes Reynolds as 'Dec. 16, 1903... 75-year-old' Hi Jolly; reynolds part23 reads 'December 16, 1902... seventy-four-year-old'."
+  },
+  {
+   "id": "L3",
+   "page": "ridge.htm and tataviam.htm (index labels for heizer1972)",
+   "quote": "\"(Unratified), 1852\"",
+   "correct": "1851",
+   "evidence": "heizer1972 page title: 'Treaty Between the United States and the Indians of \"Castaic, Tejon, Etc.,\" 1851. With Heizer (1972).'"
+  },
+  {
+   "id": "L4",
+   "page": "lo8801 and lo8802 (Watkins photo captions)",
+   "quote": "\"The Army began to shut down the fort when the U.S. Civil War broke out and closed it, and the reservation, for good in 1854.\"",
+   "correct": "1864 (the fort was abandoned Sept 11, 1864, and the Indians were removed to Tule River in 1864).",
+   "evidence": "The site's own pages: lw2580, reynolds part23, cullimore_oldadobes, forttejonparkinventory2015, tejonranchtimeline (all Sept 11, 1864); the Interior Solicitor's memo (Tule River 1864). The sentence itself puts the closing after the Civil War broke out (1861)."
+  },
+  {
+   "id": "L5",
+   "page": "hb1806 (2018 webmaster note); worden lw032905 (2005 column)",
+   "quote": "\"As this is added to the archive in 2018, Beale's Cut is located on private property... Trespassing is prohibited.\" / \"It is private property and you would be trespassing.\"",
+   "correct": "Ownership has changed. On Oct 28, 2025 the Santa Clarita City Council approved buying the approximately 13-acre Forum Engineering Property, which contains Beale's Cut, adding it to the city's Open Space Preservation District. Current access rules: NEEDS_VERIFICATION. Close of escrow: NEEDS_VERIFICATION.",
+   "evidence": "SCVNews 10-27-2025 (city staff report quoted: 'The property includes the California historical landmark, Beale's Cut'); Signal (Perry Smith) 10-30-2025, 'added 670 acres to its open space Tuesday, including the historic Beale's Cut'; CEQAnet 2025110832 (state grant). Both notes are dated, so this is out-of-date custody text in the same way as the Hart Park example."
+  },
+  {
+   "id": "L6",
+   "page": "lw2208, lw3451, lw3647, lw2161",
+   "quote": "\"from Fort Defiance, Texas\" / \"between Ft. Defiance, in Texas, and the Colorado River\"",
+   "correct": "Fort Defiance, New Mexico Territory (today Arizona).",
+   "evidence": "The site's own lw3491: 'from Fort Defiance, New Mexico Territory, to the Colorado River'; WP further reading: Beale, Wagon Route From Fort Defiance to the Colorado River (H. Ex. Doc. 124, 35th Cong. 1st Sess.)."
+  },
+  {
+   "id": "L7",
+   "page": "signal/worden/lw040997.htm",
+   "quote": "\"Big Bill Hart took a crack at the famous director in his autobiography, saying Ford should have made the chase scene more realistic\" (about Stagecoach, 1939)",
+   "correct": "Hart's autobiography, My Life East and West, was published in 1929, ten years before Stagecoach. The criticism, if Hart made it, must come from another source (NEEDS_VERIFICATION; the column attributes the anecdote to Buscombe's book).",
+   "evidence": "Stagecoach release 1939 (lw2065, lw2172); Hart autobiography 1929 (Hart dossier; site page hart-wife-son cites 'Hart 1929')."
+  },
+  {
+   "id": "L8",
+   "page": "bealeafb",
+   "quote": "\"In 1870 he bought the Decatur House\"",
+   "correct": "1871",
+   "evidence": "White House Historical Association (operator) and National Trust (owner) both say 1871; WP Beale says 1871 ($60,000). The page reproduces Beale AFB text, so fix it with a [sic] or an editor's note."
+  },
+  {
+   "id": "L9",
+   "page": "tejonranchtimeline",
+   "quote": "\"1893 — Beale dies at the age of 72.\"",
+   "correct": "71 (Feb 4, 1822 to Apr 22, 1893).",
+   "evidence": "The site's own bealeafb and reynolds part28 dates; Wikidata Q1292161. The page is Tejon Ranch Co. 2014 text, so add an editor's note."
+  },
+  {
+   "id": "L10",
+   "page": "CC migration data (not the live site): person records #327 'Edward Fitzgerald Beale' and #15908 'Edward F. Beale'",
+   "quote": "two person records for one man",
+   "correct": "Merge into #327 (the user's canonical record), carrying over #15908's 30 prose-only photo links.",
+   "evidence": "photo-links namedOnlyInProse: 30 for #15908 and 10 for #327. For the migration team; no live-site change needed."
+  }
+ ],
+ "archive_beats_outside": [
+  {
+   "id": "A1",
+   "outside": "Wikipedia 'Beale's Cut Stagecoach Pass'",
+   "claim": "'built in 1859' (text); franchise holder 'Charles H. Brindley'; Coult's repairs cited to 'LA Herald on March 5, 1862'",
+   "archive": "ripley12/13 quote the Statutes of California 1861 p.303 (Charles H. Brinley) and LA Star Mar 15, 1862 (Coult's soldiers repairing the road Feb 14–24, 1862), and LA Star Mar 5, 1864 (completion and tolls). The LA Herald did not begin until 1873.",
+   "verdict": "The archive (Ripley's transcriptions of the Star and the Statutes) is right on the spelling, the newspaper and the chronology. No site source supports 1859."
+  },
+  {
+   "id": "A2",
+   "outside": "Wikipedia 'Beale's Cut Stagecoach Pass'",
+   "claim": "partial collapse in the Northridge earthquake, Jan 17, 1994",
+   "archive": "Contemporaneous Signal columns on the site: worden lw062498 (June 24, 1998) treats stabilizing the collapse as current news; worden lw050500b (May 5, 2000) says 90 ft deep 'until late in 1997, when the torrential El Niño rains partially caved in its vertical dirt sides'.",
+   "verdict": "The archive's 1997–98 date has contemporary support; WP's 1994 claim has none in the fetched material (NEEDS_VERIFICATION for any 1994 damage)."
+  },
+  {
+   "id": "A3",
+   "outside": "Find a Grave 11558486",
+   "claim": "'Truxtun sold the Tejon ranch in 1911 for $3 million'",
+   "archive": "lat051212: Los Angeles Times, Sunday May 12, 1912, reports the 'recent sale' by the Beale heirs.",
+   "verdict": "The archive's primary newspaper supports 1912."
+  },
+  {
+   "id": "A4",
+   "outside": "Wikipedia 'Beale's Cut Stagecoach Pass' (Ford 'beginning as early as 1917') and reynolds part59",
+   "claim": "the first film use of the Cut was Ford's Straight Shooting (1917)",
+   "archive": "brokenways1913: a locally hosted copy of D.W. Griffith's Broken Ways (1913), with Beale's Cut footage. OHP CHL 1006 also names Griffith.",
+   "verdict": "The archive's film (primary) moves the earliest known use to 1913."
+  },
+  {
+   "id": "A5",
+   "outside": "Find a Grave 11558486",
+   "claim": "'graduated in 1842' from the U.S. Naval Academy; superintendent for 'California and New Mexico'",
+   "archive": "Site pages (bealeafb, pollack1114kitcarson) say Naval School (Philadelphia) 1842. The superintendency for California and Nevada is backed by the LoC finding aid for the Beale papers. The Academy opened in 1845.",
+   "verdict": "The archive is right, but its pages are secondary. The primary support is the LoC finding aid. (Reynolds on the site repeats the 'Naval Academy' error: see C2.)"
+  },
+  {
+   "id": "A6",
+   "outside": "Wikipedia 'Edward Fitzgerald Beale'",
+   "claim": "'In 1862, he dispatched a crew of Chinese workers to widen an 1858 cut'",
+   "archive": "ripley13 (from LA Star and BoS) documents an 1854 first cut (County $1,000) before the 1858 lowering, the 1862 franchise takeover, 1863 work, and acceptance Mar 5, 1864. It names no Chinese crew.",
+   "verdict": "Partial: the archive corrects the 'cut first made 1858' implication and the finish date. The Chinese-crew claim is unsourced on both sides (NEEDS_VERIFICATION)."
+  }
+ ],
+ "corrections": [
+  "**Brief premise, 'Cut credited to Andrew Jackson':** not found. None of the 146 fetched pages credits Jackson with the Cut; Jackson appears only as the President who appointed Beale to the Naval School (bealeafb, reynolds part28, WP). What does appear is **Phineas Banning** (the first stage over the 1854 cut) and **the County** (the 1854 $1,000 appropriation; Board-set tolls). See C2 and C12.",
+  "**Working note superseded:** 'Army closed the reservation in 1854' (lo8801/2) had been logged as a date conflict. It is a typo for 1864, contradicted by the site's own pages, and is now listed as live error L4.",
+  "**Hart dossier:** nothing overturned. It made no Beale's Cut claims. This dossier adds one Hart-related live error (L7) and confirms that no site page shows Hart filming at the Cut."
+ ],
+ "open_questions": [
+  {
+   "q": "Andrew Jackson / Cut attribution",
+   "note": "No page found; if CC or a label credits Jackson with the Cut, that is a migration error (see C2)."
+  },
+  {
+   "q": "Chinese workforce on the 1863 cut",
+   "note": "Asserted by the site boilerplate and WP; no source found. Check Beale's accounts (LoC) and the LA Star, 1863."
+  },
+  {
+   "q": "Superintendency end date 1854 vs 1856",
+   "note": "Commissioner of Indian Affairs reports; name of his successor."
+  },
+  {
+   "q": "Original of the 1862 Castac plat (lw2580)",
+   "note": "Likely BLM/GLO California survey records or the Bancroft land-case files: NEEDS_VERIFICATION."
+  },
+  {
+   "q": "Vischer camel print (lw2152a) date",
+   "note": "Edward Vischer's published views (1860s?): NEEDS_VERIFICATION."
+  }
+ ],
+ "finding_aids": [
+  {
+   "name": "Library of Congress, Manuscript Division: Beale Family Papers from the Decatur House, 1794–1957 (MSS ms009320; about 4,000 items, 10 linear ft)",
+   "url": "https://findingaids.loc.gov/repositories/19/resources/3853",
+   "points_to": "Verified via the LoC finding aid (search snippet; direct fetch timed out), ArchiveGrid and SNAC. Bequeathed with Decatur House to the National Trust in 1956, deeded to LoC in 1959, with additions 1960 and 1974. Covers the 1853 journey to the superintendency and the 1858–59 Fort Smith wagon-road survey. **The main Beale Papers are at LoC, not at Decatur House or the National Trust.**"
+  },
+  {
+   "name": "The Huntington Library: Collection related to Edward Fitzgerald Beale, 1855–1983 (mssBeale; 1.66 linear ft)",
+   "url": "https://oac.cdlib.org/findaid/ark:/13030/c8j96dps/",
+   "points_to": "Verified on OAC. Mostly research material collected by Laurence R. Cook and Andrew F. Rolle (theses, notes, copies), plus letters from Beale to Polk and Clayton, Lincoln-collection letters and a Stockton letterbook. Covers Tejon Ranch, Fort Tejon and the Camel Corps."
+  },
+  {
+   "name": "The Huntington Library: Benjamin Davis Wilson papers",
+   "url": "https://catalog.huntington.org/record=b1554673",
+   "points_to": "Verified in the catalog. Wilson served as Indian Agent under Superintendent Beale; covers Indian affairs in Southern California 1852–56; Beale and Banning are among the correspondents."
+  },
+  {
+   "name": "The Huntington Library: Robert S. Baker collection; Gaffey MSS",
+   "url": "(per sw_leaming070366 and Ripley)",
+   "points_to": "Cited on site pages. Not independently verified: NEEDS_VERIFICATION."
+  },
+  {
+   "name": "Decatur House (National Trust owns; White House Historical Association operates)",
+   "url": "https://www.whitehousehistory.org/the-historic-decatur-house",
+   "points_to": "Verified: bought by Beale in 1871; bequeathed by Marie Beale to the National Trust in 1956. Its Beale furnishings and artwork are museum holdings, not a manuscript collection (NEEDS_VERIFICATION for any archive there)."
+  },
+  {
+   "name": "OHP California Historical Landmark No. 1006, Beale's Cut Stagecoach Pass",
+   "url": "https://ohp.parks.ca.gov/ListedResources/Detail/1006",
+   "points_to": "Verified: registered 5/11/1992; 'construction in 1862'; Griffith named."
+  },
+  {
+   "name": "HMDB 184724 (CHL 1006 marker)",
+   "url": "https://www.hmdb.org/m.asp?m=184724",
+   "points_to": "Markers missing; the OHP text was never placed."
+  },
+  {
+   "name": "California Digital Newspaper Collection: Los Angeles Star",
+   "url": "https://cdnc.ucr.edu/?a=cl&cl=CL1&sp=LASTAR",
+   "points_to": "The title is in CDNC (a Dec 12, 1863 issue was seen in search). Direct browsing was blocked by a Cloudflare challenge, which was not bypassed. Specific issues (4-4-1863, 12-26-1863, 3-5-1864) are NEEDS_VERIFICATION. Calisphere also lists a 'Los Angeles Star Collection' (USC)."
+  },
+  {
+   "name": "City of Santa Clarita, Beale's Cut acquisition (Oct 2025)",
+   "url": "https://scvnews.com/beales-cut-to-be-purchased-by-city/",
+   "points_to": "Council item of 10-28-2025; the Forum Engineering Property includes the landmark. Signal 10-30-2025: https://signalscv.com/2025/10/city-announces-addition-of-beales-cut-to-open-space-district/ (fetch blocked; seen via search)."
+  },
+  {
+   "name": "BIA: Echo Hawk reaffirmation of the Tejon Indian Tribe",
+   "url": "https://www.bia.gov/as-ia/opa/online-press-release/echo-hawk-issues-reaffirmation-tejon-indian-tribes-government",
+   "points_to": "Letter dated Dec 30, 2011 (the OIG report gives the same date). The Solicitor's memo with the history of the Sebastian reserve: https://www.bia.gov/sites/default/files/dup/assets/bia/ois/ots/pdf/Tejon_Indian_Tribe_2.pdf"
+  },
+  {
+   "name": "Tejon Indian Tribe (self-name)",
+   "url": "https://www.tejonindiantribe.com/",
+   "points_to": "Self-name 'Tejon Indian Tribe' (the site hosts the reaffirmation letter). For consultation."
+  },
+  {
+   "name": "Fernandeño Tataviam Band of Mission Indians (self-name)",
+   "url": "https://www.tataviam-nsn.us/",
+   "points_to": "Self-name verified. For consultation."
+  },
+  {
+   "name": "Wikipedia, 'Edward Fitzgerald Beale' (rev. 1369776892)",
+   "url": "https://en.wikipedia.org/wiki/Edward_Fitzgerald_Beale",
+   "points_to": "Dates; offices; Chinese crew in 1862 (A6); further reading: H. Ex. Doc. 124, 35th Cong. 1st Sess., Serial 959 (Fort Defiance wagon route) and H. Ex. Doc. 42, 36th Cong. 1st Sess., Serial 1048 (Fort Smith wagon road): cited by WP, serial numbers NEEDS_VERIFICATION; Bonsal 1912; Lesley 1929; Thompson 1983 (UNM Press)."
+  },
+  {
+   "name": "Wikipedia, 'Beale's Cut Stagecoach Pass'",
+   "url": "https://en.wikipedia.org/wiki/Beale%27s_Cut_Stagecoach_Pass",
+   "points_to": "Contradicts itself on 1859/1862; 1994 collapse; anachronistic 'LA Herald 1862' citation (A1, A2)."
+  },
+  {
+   "name": "Wikidata Q1292161",
+   "url": "https://www.wikidata.org/wiki/Q1292161",
+   "points_to": "Dates cited to SNAC; Find a Grave 11558486; VIAF 72295682; LCNAF n79149084; NARA 10580625."
+  },
+  {
+   "name": "Find a Grave 11558486",
+   "url": "https://www.findagrave.com/memorial/11558486",
+   "points_to": "Dates and burial agree; biography errors (A3, A5, C18)."
+  },
+  {
+   "name": "SNAC: Beale, Edward Fitzgerald, 1822–1893",
+   "url": "https://snaccooperative.org/ark:/99166/w62z15gt",
+   "points_to": "Authority record linking the LoC and Huntington collections."
+  },
+  {
+   "name": "LA County Board of Supervisors minutes, 1854 and 1863–64",
+   "url": "(no verified URL)",
+   "points_to": "Custody likely the Executive Office of the Board of Supervisors (historical minutes) or LA County Archives: NEEDS_VERIFICATION. Ripley transcribes the Dec 23, 1863 action via the LA Star of Dec 26, 1863."
+  },
+  {
+   "name": "Statutes of California 1861 p.303; 1862 p.282",
+   "url": "(no verified URL)",
+   "points_to": "Cited by Ripley; digitized copies likely on HathiTrust or the Assembly clerk's site: NEEDS_VERIFICATION."
+  }
+ ]
+}

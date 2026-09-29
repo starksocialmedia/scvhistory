@@ -1,0 +1,1964 @@
+{
+ "subject": "Ygnacio del Valle",
+ "craft_person_id": 293,
+ "compiled": "2026-09-29",
+ "vitals": {
+  "birth": {
+   "date": "1808-07-01",
+   "place": "Nueva Galicia (site: Jalisco; one genealogy: Compostela, now Nayarit)",
+   "status": "date agreed; place NEEDS_VERIFICATION at parish level"
+  },
+  "death": {
+   "date": "1880-03-30",
+   "place": "Rancho Camulos (Ventura County)",
+   "age": 71,
+   "burial": "Camulos family plot; parish burial entry Mission San Buenaventura 1880-04-01 reported (NEEDS_VERIFICATION); reinterred Calvary Cemetery 1905 per tradition (NEEDS_VERIFICATION)",
+   "status": "date agreed by independent sources"
+  }
+ },
+ "counts": {
+  "fetched_urls": 122,
+  "fetched_http200": 120,
+  "http404": [
+   "delvalle.htm",
+   "gif/galleries/lw2793/"
+  ],
+  "pages_parsed": 120,
+  "classified_pages": 71,
+  "by_group": {
+   "A bio": 19,
+   "B rsf": 18,
+   "C camulos": 18,
+   "D gold": 7,
+   "F ramona": 5,
+   "G indigenous": 2,
+   "H index": 2
+  },
+  "peripheral_checked": 49,
+  "camulos_index_link_lines": 217,
+  "lw2052_sidebar_links": 27,
+  "inventory_urls_mentioning_del_valle": 319,
+  "inventory_urls_del_valle_in_title": 145,
+  "inventory_urls_mentioning_ygnacio_or_ignacio": 98,
+  "within_lifetime": 13,
+  "conflicts": 21,
+  "live_errors": 12,
+  "archive_beats": 9,
+  "corrections": 7,
+  "cc_person": "#293 Ygnacio del Valle"
+ },
+ "pages": [
+  {
+   "code": "lw2052",
+   "group": "A bio",
+   "date": "live page (text undated)",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "biography page + office list",
+   "originating_archive": "SCVHistory (Leon Worden); office list from LA City records",
+   "notes": "b. July 1 1808 Jalisco; mother \"María Josepha (Carillo)\"; RSF \"48,829-acre\"; partition 13,599/21,307/6x4,684; \"where he was mayor\"; \"first Legislature\" 1850; council 1852-53, 1856; moved to Camulos 1861",
+   "conflicts": [
+    "C1",
+    "C2",
+    "C3",
+    "C5",
+    "C6",
+    "C7",
+    "C9",
+    "C15",
+    "C17",
+    "C19",
+    "L1",
+    "L2",
+    "L3"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2052.htm",
+   "title": "LW2052 | People | Ygnacio del Valle"
+  },
+  {
+   "code": "penpictures_ydelvalle",
+   "group": "A bio",
+   "date": "1889",
+   "date_source": "publication",
+   "within_lifetime": "after (9 yrs)",
+   "type": "county history biography",
+   "originating_archive": "Pen Pictures from the Garden of the World (Lewis Publishing 1889) pp.442-443",
+   "notes": "b. July 1 1808 Jalisco; came 1825 with Echeandía; 1841 settled on RSF; Tejon concession 1843 with J.A. Aguirre (22 leagues); treasurer 1846; alcalde 1850; council + Legislature; married 2nd 1851; 6 children living; quotes Judge Y. Sepúlveda's death notice",
+   "conflicts": [
+    "C1",
+    "C13",
+    "C15",
+    "C16",
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/penpictures_ydelvalle.htm",
+   "title": "People | Ygnacio del Valle, SCV Landowner & L.A. Civic Leader (Pen Pictures L.A. County 1889)."
+  },
+  {
+   "code": "times111101",
+   "group": "A bio",
+   "date": "11-11-2001",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper feature (reprint)",
+   "originating_archive": "Los Angeles Times (Cecilia Rasmussen)",
+   "notes": "48,612 acres; Ygnacio \"carved out 1,800 acres\"; died 1880 \"at age 72\"; Juventino \"illegitimate son\"; 12 children, 5 adults; 1905 exhumation told as fact",
+   "conflicts": [
+    "C1",
+    "C10",
+    "C13",
+    "C14",
+    "L9"
+   ],
+   "url": "https://scvhistory.com/scvhistory/times111101.htm",
+   "title": "People | Del Valle Family Played a Starring Role in Early California."
+  },
+  {
+   "code": "reynolds part14",
+   "group": "A bio",
+   "date": "book 1992; web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS (Jerry Reynolds; based on Wally Smith 1958)",
+   "notes": "b. July 1 1808 Jalisco; landed Monterey July 27 1825; 1832 battle vs father; grant Jan 22 1839; \"eleven leagues, or 48,829 acres\"; Antonio d. June 21 1841 intestate; deathbed offer of western portion only",
+   "conflicts": [
+    "C1",
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part14.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 14: Lord and Master"
+  },
+  {
+   "code": "reynolds part15",
+   "group": "A bio",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "resigned 1840; secularization of San Gabriel, Dolores, Santa Cruz; married Jan 1 1842; Juventino born before marriage; Jacoba's \"four sons and two daughters\"; 13,599/21,307/6x4,684; four-room adobe pre-existing; 1861",
+   "conflicts": [
+    "C3",
+    "C7",
+    "C11",
+    "C13",
+    "C16",
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part15.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 15: Family Squabbles"
+  },
+  {
+   "code": "reynolds part29",
+   "group": "A bio",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "1861 20-room adobe; majordomo quarters 1854; Bard bought from Wolfskill $53,320, deed Apr 29 1865; \"original grant of 16,599 acres\"; Camulos 1,340 acres; eleven children; d. March 30 1880, family crypt; Reginaldo \"then a state senator\"; HHJ visit Jan 23 1882",
+   "conflicts": [
+    "C7",
+    "C9",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C20",
+    "L7"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part29.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 29: Barbaric Elegance"
+  },
+  {
+   "code": "reynolds notes",
+   "group": "A bio",
+   "date": "web ©1998 (notes later)",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "editorial notes",
+   "originating_archive": "SCVHS / SCVHistory",
+   "notes": "note 4: \"Ygnacio\" spelling per grave marker; note 5: chs 14-15 based on Wally Smith 1958; notes 6-7 on gold; note 1 on Tataviam descendants",
+   "conflicts": [
+    "C18",
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/notes.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | Notes"
+  },
+  {
+   "code": "lw2752",
+   "group": "A bio",
+   "date": "2001 (tree); page live",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "family tree (image)",
+   "originating_archive": "Del Valle family reunion 5-5-2001, via RanchoCamulos.org",
+   "notes": "Ygnacio \"one of seven children\"; \"ranch was divided among his widow and children\"; tree gives Juventino 1841-1919, Ysabel 1837-1905; page warns of errors in later generations (living descendants not listed here)",
+   "conflicts": [
+    "C3",
+    "C7",
+    "C13",
+    "L4"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2752.htm",
+   "title": "LW2752 | Del Valle Family | Ygnacio del Valle Family Tree."
+  },
+  {
+   "code": "sg090199a",
+   "group": "A bio",
+   "date": "9-1-1999",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper feature (reprint)",
+   "originating_archive": "The Signal (Marci Wormser)",
+   "notes": "Antonio \"a Mexican-born missionary\"; Antonio d. June 21 1841; names a living descendant (not repeated here)",
+   "conflicts": [
+    "C3",
+    "C5",
+    "L10"
+   ],
+   "url": "https://scvhistory.com/scvhistory/sg090199a.htm",
+   "title": "Del Valle descendant pursues her roots (The Signal, 1999)"
+  },
+  {
+   "code": "penpictures_rdelvalle",
+   "group": "A bio",
+   "date": "1889",
+   "date_source": "publication",
+   "within_lifetime": "after (9 yrs)",
+   "type": "county history biography",
+   "originating_archive": "Pen Pictures 1889 pp.189-190",
+   "notes": "Ygnacio \"died in 1880, at the age of seventy-two years\"; Reginaldo elected State Senator 1882",
+   "conflicts": [
+    "C1",
+    "C12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/penpictures_rdelvalle.htm",
+   "title": "People | Reginaldo F. Del Valle, Politician & SCV Landowner: Biography During Life (Pen Pictures L.A. County 1889)."
+  },
+  {
+   "code": "lw3768",
+   "group": "A bio",
+   "date": "live page",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "object page + bio",
+   "originating_archive": "SCVHistory",
+   "notes": "Ygnacio (1808-1880); \"state Legislature at statehood in 1850\"; council 1852",
+   "conflicts": [
+    "C15",
+    "L3"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3768.htm",
+   "title": "LW3768 | Rancho Camulos | Envelope Mailed from R.F. del Valle to Ysabel del Valle, 1877-1883."
+  },
+  {
+   "code": "lw2532",
+   "group": "A bio",
+   "date": "live page",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "bio page",
+   "originating_archive": "SCVHistory",
+   "notes": "same text as lw3768 on Ygnacio's offices",
+   "conflicts": [
+    "C15",
+    "L3"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2532.htm",
+   "title": "LW2532 | People | Reginaldo Del Valle, Politician"
+  },
+  {
+   "code": "lat18900822delvalle",
+   "group": "A bio",
+   "date": "8-22-1890",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper",
+   "originating_archive": "Los Angeles Times",
+   "notes": "Reginaldo in Assembly 1880-81 (editor's note)",
+   "conflicts": [
+    "C12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lat18900822delvalle.htm",
+   "title": "Rancho Camulos | SoCal Favorite Son Reginaldo del Valle Nominated for Lieutenant Governor, 1890."
+  },
+  {
+   "code": "obituary_ysabelvareladelvalle",
+   "group": "A bio",
+   "date": "3-30-1905",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "obituary",
+   "originating_archive": "San Francisco Chronicle",
+   "notes": "family moved to Camulos 1861; four living children named (all long dead; historical)",
+   "conflicts": [
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/obituary_ysabelvareladelvalle.htm",
+   "title": "Obituaries | Ysabel Varela del Valle, Senora at Rancho Camulos, 1837-1905."
+  },
+  {
+   "code": "lp1501",
+   "group": "A bio",
+   "date": "1900-1910 (postcard); 1915 (Getz)",
+   "date_source": "postcard publisher data",
+   "within_lifetime": "after",
+   "type": "postcard + caption",
+   "originating_archive": "M. Rieder; Thomas P. Getz; collection Lauren Parker / Leon Worden",
+   "notes": "\"approx. 1,800-acre Rancho Camulos\"; above-ground coffin; 1905 move \"Or so the story goes\"",
+   "conflicts": [
+    "C10",
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lp1501.htm",
+   "title": "LP1501 | Rancho Camulos | Camulos Cemetery Postcard, 1900-1910."
+  },
+  {
+   "code": "ra20070929",
+   "group": "A bio",
+   "date": "9-29-2007",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "photo gallery",
+   "originating_archive": "Rancho Camulos Museum collection",
+   "notes": "\"onetime owner of 48,000 acres\"; \"is said to have had his body exhumed\"",
+   "conflicts": [
+    "C6",
+    "C14"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ra20070929.htm",
+   "title": "Rancho Camulos | Photo Gallery: Cleanup Day at Camulos Cemetery, 9-29-2007."
+  },
+  {
+   "code": "lp_oxnardpresscourier061119",
+   "group": "A bio",
+   "date": "6-11-1919",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper",
+   "originating_archive": "(Oxnard) Press-Courier",
+   "notes": "Juventino probate",
+   "conflicts": [
+    "C13"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lp_oxnardpresscourier061119.htm",
+   "title": "Del Valle Estate | Filing of Probate Petition, Death of Juventino Del Valle, 1919."
+  },
+  {
+   "code": "ra_imagefiledelvalle",
+   "group": "A bio",
+   "date": "n.d. (photocopies)",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "image file (pdf)",
+   "originating_archive": "Rancho Camulos Museum",
+   "notes": "family photos; no dates checked",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/ra_imagefiledelvalle.htm",
+   "title": "Rancho Camulos Historic Image File (Photocopies): Del Valle Family Members"
+  },
+  {
+   "code": "rcm102817",
+   "group": "A bio",
+   "date": "10-28-2017",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "news/photo page",
+   "originating_archive": "Rancho Camulos Museum",
+   "notes": "del Valle portrait returned",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/rcm102817.htm",
+   "title": "Rancho Camulos | Iconic Camulos Bell, Del Valle Portrait Come Home, 10-28-2017."
+  },
+  {
+   "code": "perkins-rsf-1957",
+   "group": "B rsf",
+   "date": "June 1957",
+   "date_source": "HSSC Quarterly / Newhall Library ms",
+   "within_lifetime": "after",
+   "type": "later article (documentary)",
+   "originating_archive": "A.B. Perkins; cites Bancroft, probate, deed books, LA Star",
+   "notes": "petition/grant Jan 22 1839; further petition Apr 5 1839 (right from ~1825, 1833); Antonio d. June 12 1841; Carrillo 1843 nullified; Recorder; Magdalena's share bought ~$6,000; Hancock survey 1858; deed to Bard Mar 18 [1865] $47,519.71; Thompson survey 102,025 ac; 1870 partition (L.F. Cooper) 2/21 = Camulos 1,340 ac, effective July 30; patent Feb 12 1875; Newhall deed Jan 15 1875 $90,000; fn26 Magdalena full sister",
+   "conflicts": [
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "C10",
+    "C15",
+    "C16",
+    "C17",
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+   "title": "Rancho San Francisco: A Study of a California Land Grant, by Arthur B. Perkins."
+  },
+  {
+   "code": "perkins part02",
+   "group": "B rsf",
+   "date": "1940s series (Signal)",
+   "date_source": "Perkins \"Story of Our Valley\"",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "A.B. Perkins",
+   "notes": "RSF \"over 102,000 acres\" as mission claim",
+   "conflicts": [
+    "C6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part02.html",
+   "title": "The Story Of Our Valley by A.B. Perkins | Part 2: Rancho San Francisco. THE STORY OF OUR VALLEY BY A.B. PERKINS [ NEXT ]"
+  },
+  {
+   "code": "robinson_storyofvalencia_1967",
+   "group": "B rsf",
+   "date": "Nov 1967 (report); 2022 summary",
+   "date_source": "title; byline",
+   "within_lifetime": "after",
+   "type": "company report + editor's summary",
+   "originating_archive": "W.W. Robinson for California Land Co.; summary by Leon Worden 2022",
+   "notes": "Ygnacio undivided 5/11; Salazars 6/11; adobe begun 1854, finished 1861; drought 1862-64; Bard paid $53,320 to Wolfskill, Ygnacio and José 1865; Bard sold back 1,300-acre Camulos for $500; Fernald & Richards 1873 $33,000; sheriff's sale called off; Newhall Jan 15 1875 $90,000; 1879 mortgage to Newhall $15,776; two Indigenous village names given (not repeated)",
+   "conflicts": [
+    "C7",
+    "C9",
+    "C10",
+    "C11",
+    "C19",
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/robinson_storyofvalencia_1967.htm",
+   "title": "Rancho San Francisco | The Story of Valencia and Its Rancho Background (Robinson 1967)."
+  },
+  {
+   "code": "lastar18640514wolfskill",
+   "group": "B rsf",
+   "date": "5-14-1864 (notice); note undated",
+   "date_source": "newspaper date",
+   "within_lifetime": "within",
+   "type": "legal notice + editor's note",
+   "originating_archive": "Los Angeles Star",
+   "notes": "sheriff's sale notice, Wolfskill v. Salazar, Feliz de Salazar, Ignacio del Valle et al.; note: 48,612 acres; sale to Bard March 1865 $47,519.71; retained 1,350 acres; \"Newhall bought the 46,460 acres ... at a sheriff's sale in 1875\"",
+   "conflicts": [
+    "C6",
+    "C9",
+    "C10",
+    "L6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lastar18640514wolfskill.htm",
+   "title": "Rancho San Francisco | Legal Notice: Wolfskill Tries to Foreclose on Del Valles' L.A., SCV Property, 5-14-1864."
+  },
+  {
+   "code": "hl7101",
+   "group": "B rsf",
+   "date": "1871 (map)",
+   "date_source": "map date",
+   "within_lifetime": "within",
+   "type": "map + essay",
+   "originating_archive": "survey map (source NEEDS_VERIFICATION) overlain on Google Maps 2020",
+   "notes": "Ygnacio's LA property; 48,612 acres; reduced to 1,350 acres; \"Ygnacio's stepfather borrowed $8,500\" (1858)",
+   "conflicts": [
+    "C9",
+    "C10",
+    "L8"
+   ],
+   "url": "https://scvhistory.com/scvhistory/hl7101.htm",
+   "title": "HL7101 | Rancho Camulos | Map: SCV Landowner Ygnacio del Valle's Los Angeles Property, 1871."
+  },
+  {
+   "code": "gallery-lw2706",
+   "group": "B rsf",
+   "date": "June-July 1853",
+   "date_source": "document",
+   "within_lifetime": "within",
+   "type": "ledger (original found at Camulos 2014)",
+   "originating_archive": "Del Valle family; photographed by Leon Worden 2014",
+   "notes": "livestock accounts for Jacoba Feliz; José Ygnacio & Concepción; Ygnacio & Magdalena; María; caption: mother \"Maria Josepha Carillo\"; Magdalena a half-sister; \"since about 1824 ... formal possession 1839\"; \"the year they built their adobe\"",
+   "conflicts": [
+    "C2",
+    "C3",
+    "C5",
+    "C11"
+   ],
+   "url": "https://scvhistory.com/gif/galleries/lw2706/",
+   "title": "Rancho San Francisco (SCV) | Del Valle Family Livestock Ledger, June-July 1853."
+  },
+  {
+   "code": "lw2570a",
+   "group": "B rsf",
+   "date": "early 1840s (map); NHM signage 1854",
+   "date_source": "page reasoning",
+   "within_lifetime": "within",
+   "type": "diseño (reproduction, NHM exhibit)",
+   "originating_archive": "Natural History Museum of LA County",
+   "notes": "signed by Micheltorena (gov. 1842-45), so not 1854; quotes Rolle 1991 on 1855 and 1858; Carrillo overlap",
+   "conflicts": [
+    "C5",
+    "C6",
+    "C8"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2570a.htm",
+   "title": "LW2570a | Natural History Museum | Diseno of Rancho San Francisco, Early 1840s(?)"
+  },
+  {
+   "code": "lw2570b",
+   "group": "B rsf",
+   "date": "early 1840s",
+   "date_source": "page",
+   "within_lifetime": "within",
+   "type": "diseño detail",
+   "originating_archive": "NHM",
+   "notes": "detail of lw2570a",
+   "conflicts": [
+    "C6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2570b.htm",
+   "title": "LW2570b | Natural History Museum | Diseno of Rancho San Francisco, Early 1840s(?)"
+  },
+  {
+   "code": "lw2570c",
+   "group": "B rsf",
+   "date": "early 1840s",
+   "date_source": "page",
+   "within_lifetime": "within",
+   "type": "diseño detail",
+   "originating_archive": "NHM",
+   "notes": "detail of lw2570a",
+   "conflicts": [
+    "C6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2570c.htm",
+   "title": "LW2570c | Natural History Museum | Diseno of Rancho San Francisco, Early 1840s(?)"
+  },
+  {
+   "code": "lw2526a",
+   "group": "B rsf",
+   "date": "1830s-40s (object)",
+   "date_source": "NHM signage",
+   "within_lifetime": "within",
+   "type": "branding iron (NHM exhibit)",
+   "originating_archive": "NHM",
+   "notes": "signage \"48,612 acres ... 1834-1844\" questioned by the page",
+   "conflicts": [
+    "C5",
+    "C6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2526a.htm",
+   "title": "LW2526a | Rancho San Francisco | Del Valle Cattle Branding Iron, 1830s-40s"
+  },
+  {
+   "code": "engelhardt_sanfernando56",
+   "group": "B rsf",
+   "date": "1927 text; 2014 intro",
+   "date_source": "publication; byline",
+   "within_lifetime": "after",
+   "type": "book excerpt + intro",
+   "originating_archive": "Zephyrin Engelhardt, San Fernando Rey (1927); intro Leon Worden 2014",
+   "notes": "Antonio mayordomo 1834-37; Pico's assembly incl. Ygnacio (1845); del Valles took possession \"against the will of the neophytes\"; 1875 paperwork",
+   "conflicts": [
+    "C5",
+    "C15",
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/engelhardt_sanfernando56.htm",
+   "title": "Early California | Antonio & Ygnacio Del Valle's Roles in Privatizing Mission San Fernando (from Engelhardt)."
+  },
+  {
+   "code": "worden lw082896",
+   "group": "B rsf",
+   "date": "8-28-1996",
+   "date_source": "column date",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Leon Worden",
+   "notes": "Asistencia built 1804 (context)",
+   "conflicts": [
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/lw082896.htm",
+   "title": "Latins Invade, Conquer Western SCV Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In Picture"
+  },
+  {
+   "code": "lwhist",
+   "group": "B rsf",
+   "date": "Feb 1997",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Leon Worden",
+   "notes": "gold Mar 9 1842; RSF summary",
+   "conflicts": [
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lwhist.htm",
+   "title": "Concise History of the Santa Clarita Valley Santa Clarita: Where It All Started. By Leon Worden | February 1997 ©1997 SC"
+  },
+  {
+   "code": "lp_oaklandtrib110418",
+   "group": "B rsf",
+   "date": "11-4-1918 (letter); notes 2014",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper letter + notes",
+   "originating_archive": "Oakland Tribune (from Standard Oil Bulletin)",
+   "notes": "Juventino's version: gold 1844; note 2: Ygnacio \"owned the entire Rancho San Francsico\" before \"the Great Drought of 1864-65\"",
+   "conflicts": [
+    "C18",
+    "C19",
+    "L12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lp_oaklandtrib110418.htm",
+   "title": "Pico Canyon | Writer Links Y. Del Valle to Perea's Pico Canyon Oil Discovery."
+  },
+  {
+   "code": "reynolds part25",
+   "group": "B rsf",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "\"The mayor of the town, Don Ygnacio del Valle ... formed the California Rangers\"",
+   "conflicts": [
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part25.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 25: Rest Stop"
+  },
+  {
+   "code": "reynolds part26",
+   "group": "B rsf",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "flood of 1856; mortgages at 4%/month",
+   "conflicts": [
+    "C19"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part26.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 26: Twilight of the Dons"
+  },
+  {
+   "code": "reynolds part41",
+   "group": "B rsf",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "Rangers by 1855; W.W. Jenkins claim on Castaic Creek 1872, settled 1878 (no del Valle sale)",
+   "conflicts": [
+    "C9",
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part41.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 46: Surrey"
+  },
+  {
+   "code": "reynolds part17",
+   "group": "B rsf",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "caption: Rancho Temescal granted to Francisco Lopez 1842 (diseño in Bancroft)",
+   "conflicts": [
+    "C17"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part17.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 17: Yanks Infiltrate."
+  },
+  {
+   "code": "camulos-nrhp1",
+   "group": "C camulos",
+   "date": "1996",
+   "date_source": "title",
+   "within_lifetime": "after",
+   "type": "NRHP nomination",
+   "originating_archive": "Judith P. Triem & Mitch Stone, San Buenaventura Research Associates",
+   "notes": "four-room adobe \"constructed by Ygnacio del Valle in 1853\"; completed by 1880; \"1,800 acre ranch\" (1996)",
+   "conflicts": [
+    "C10",
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/camulos-nrhp1.htm",
+   "title": "Rancho Camulos: A Comprehensive History. Rancho Camulos. National Register of Historic Places Nomination. By JUDITH P. T"
+  },
+  {
+   "code": "gallery-lo3401",
+   "group": "C camulos",
+   "date": "3-22-1934 (photos); page notes later",
+   "date_source": "HABS date",
+   "within_lifetime": "after",
+   "type": "HABS survey photos + text",
+   "originating_archive": "Historic American Buildings Survey CA-38; editor's notes",
+   "notes": "HABS: grant 1839; Antonio d. \"1841 or 1842\"; Rubel dates older portion 1841, rest 1846; editor: Antonio d. June 21 1841; adobe \"generally believed\" 1853",
+   "conflicts": [
+    "C4",
+    "C11"
+   ],
+   "url": "https://scvhistory.com/gif/galleries/lo3401/",
+   "title": "Rancho Camulos Historic American Buildings Survey, 3-22-1934."
+  },
+  {
+   "code": "lw3903",
+   "group": "C camulos",
+   "date": "1876 (certificate); photographed 3-17-2023",
+   "date_source": "document; page",
+   "within_lifetime": "within",
+   "type": "tax certificate + boilerplate text",
+   "originating_archive": "Rancho Camulos Museum; Leon Worden",
+   "notes": "Juventino manager; 1865 sale to Bard by Ygnacio, José and Wolfskill; Temescal 13,339 ac bought 1857; drought 1863-64; \"1,500-acre Camulos section\"; \"owned by just two families since the end of war for Mexican independence\"",
+   "conflicts": [
+    "C5",
+    "C9",
+    "C10",
+    "C17",
+    "C19",
+    "L5",
+    "L11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3903.htm",
+   "title": "LW3903 | Rancho Camulos | Liquor Tax Certificate and Coupons, 1876, Issued to Del Valle Family."
+  },
+  {
+   "code": "lw2463a",
+   "group": "C camulos",
+   "date": "1867 (building); photos 2013",
+   "date_source": "page",
+   "within_lifetime": "within (building)",
+   "type": "building photos + boilerplate",
+   "originating_archive": "SCVHistory",
+   "notes": "same boilerplate as lw3903 (1,500 acres; two families)",
+   "conflicts": [
+    "C10",
+    "L5",
+    "L11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2463a.htm",
+   "title": "LW2463a | Rancho Camulos | 1867 Del Valle Winery"
+  },
+  {
+   "code": "lw2633a",
+   "group": "C camulos",
+   "date": "c.1867-1900 (object)",
+   "date_source": "page",
+   "within_lifetime": "within (object)",
+   "type": "object photos + boilerplate",
+   "originating_archive": "SCVHistory",
+   "notes": "same boilerplate",
+   "conflicts": [
+    "C10",
+    "L5",
+    "L11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2633a.htm",
+   "title": "LW2633a | Rancho Camulos | Del Valle Brandy Still (In Use Circa 1867-1900)"
+  },
+  {
+   "code": "lw2695",
+   "group": "C camulos",
+   "date": "pre-1924 (label)",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "label + boilerplate",
+   "originating_archive": "SCVHistory",
+   "notes": "same boilerplate",
+   "conflicts": [
+    "C10",
+    "L5",
+    "L11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2695.htm",
+   "title": "LW2695 | Rancho Camulos | Del Valle Citrus Label (Pre-1924), Discovered 2014"
+  },
+  {
+   "code": "delcastillo1980",
+   "group": "C camulos",
+   "date": "Spring 1980",
+   "date_source": "journal",
+   "within_lifetime": "after",
+   "type": "journal article (scholarly)",
+   "originating_archive": "Richard Griswold del Castillo, California History 59:1",
+   "notes": "Reginaldo 1930: 1,800-acre partition, \"dwindled to 1,340 acres by 1886\"; Carrillo contest 1841, Micheltorena for Carrillo, settled 1855; Tejon; Temescal bought 1857 $4,000; 16 of 20 rooms after 1850; drought 1863, sold interests for $21,000; mortgages to Newhall 1876 $10,000 and later $15,776; 1878 management to Juventino; HHJ visit Jan 23 1883",
+   "conflicts": [
+    "C8",
+    "C9",
+    "C10",
+    "C11",
+    "C12",
+    "C17",
+    "C19",
+    "C20",
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/delcastillo1980.htm",
+   "title": "Rancho Camulos | The Del Valle Family and the Fantasy Heritage (Del Castillo 1980)."
+  },
+  {
+   "code": "dac18530727camulos",
+   "group": "C camulos",
+   "date": "7-27-1853",
+   "date_source": "newspaper date",
+   "within_lifetime": "within",
+   "type": "newspaper",
+   "originating_archive": "Daily Alta California (from LA Star 7-16-1853)",
+   "notes": "citizens' meeting July 15 1853 organizing volunteers; robbers at \"rancho Gamulos\" maltreat majordomo",
+   "conflicts": [
+    "C15"
+   ],
+   "url": "https://scvhistory.com/scvhistory/dac18530727camulos.htm",
+   "title": "Rancho Camulos | Outlaws Steal Horses, Hog-tie Ranch Foreman, July 1853."
+  },
+  {
+   "code": "venturasignal18790712vc",
+   "group": "C camulos",
+   "date": "7-12-1879",
+   "date_source": "newspaper date",
+   "within_lifetime": "within",
+   "type": "newspaper",
+   "originating_archive": "Ventura Signal (Thomas J. Newby, for SF Call)",
+   "notes": "Camulos described in 1879 (within lifetime)",
+   "conflicts": [
+    "C10"
+   ],
+   "url": "https://scvhistory.com/scvhistory/venturasignal18790712vc.htm",
+   "title": "Description of Ventura County, Incl. Camulos, Oil, More; July 1879."
+  },
+  {
+   "code": "lw3664",
+   "group": "C camulos",
+   "date": "late 1910s (photos)",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "photos + caption",
+   "originating_archive": "family photographs",
+   "notes": "Juventino ranch manager 1862-1886 (Triem & Stone 1996); father's death 1880",
+   "conflicts": [
+    "C12"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw3664.htm",
+   "title": "LW3664 | Rancho Camulos | Juventino del Valle, Black Walnut Tree, (5) Important Camulos Views, 1910s."
+  },
+  {
+   "code": "christopher0917",
+   "group": "C camulos",
+   "date": "Sept-Oct 2017; painting 1877",
+   "date_source": "byline",
+   "within_lifetime": "after (painting within)",
+   "type": "later article",
+   "originating_archive": "Heritage Junction Dispatch (Maria Christopher)",
+   "notes": "living room \"of the adobe that had been added in 1862\"",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/christopher0917.htm",
+   "title": "Rancho Camulos | The Vaquero Mysteries: Del Valle Artwork by James Walker | Story by Maria Christopher, 2017."
+  },
+  {
+   "code": "ap0617",
+   "group": "C camulos",
+   "date": "late 1880s-1890s (photo)",
+   "date_source": "page estimate",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "SCVHistory",
+   "notes": "del Valle adobe south veranda",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ap0617.htm",
+   "title": "AP0617 | Rancho Camulos | Del Valle Adobe: South Veranda 1800s"
+  },
+  {
+   "code": "ap1324",
+   "group": "C camulos",
+   "date": "late 1880s-1890s (photo)",
+   "date_source": "page estimate",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "SCVHistory",
+   "notes": "inner courtyard",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/ap1324.htm",
+   "title": "AP1324 | Rancho Camulos | Del Valle Adobe: Inner Courtyard 1800s"
+  },
+  {
+   "code": "mu0538",
+   "group": "C camulos",
+   "date": "~1890 (photo)",
+   "date_source": "page estimate",
+   "within_lifetime": "after",
+   "type": "photo",
+   "originating_archive": "SCVHistory",
+   "notes": "\"built the main adobe home in 1853\"",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/mu0538.htm",
+   "title": "MU0538 | Rancho Camulos | Del Valle Bedroom ~1890"
+  },
+  {
+   "code": "latta1976ramona",
+   "group": "C camulos",
+   "date": "1976 (book)",
+   "date_source": "publication",
+   "within_lifetime": "after",
+   "type": "oral history in book",
+   "originating_archive": "Frank F. Latta, Saga of Rancho El Tejon (José Jesús López)",
+   "notes": "editor: adobe built 1853; López: \"There was no 'Ramona' such as Helen Hunt Jackson created\"",
+   "conflicts": [
+    "C11",
+    "C20"
+   ],
+   "url": "https://scvhistory.com/scvhistory/latta1976ramona.htm",
+   "title": "Rancho Camulos | I Knew the Real Ramona and Alessandro (Alejandro), As Told by Jose Jesus Lopez (1853-1939)."
+  },
+  {
+   "code": "gallery-lw2792",
+   "group": "C camulos",
+   "date": "~1850 (buggy); photos 2014",
+   "date_source": "page",
+   "within_lifetime": "within (object)",
+   "type": "object photos",
+   "originating_archive": "SCVHistory",
+   "notes": "del Valle buggy",
+   "conflicts": [],
+   "url": "https://scvhistory.com/gif/galleries/lw2792/",
+   "title": "Rancho Camulos | ~1850 Del Valle Buggy, Restored 2009."
+  },
+  {
+   "code": "reynolds part16",
+   "group": "D gold",
+   "date": "web ©1998",
+   "date_source": "Reynolds",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "SCVHS",
+   "notes": "Lopez uncle of Jacoba; Mar 9 1842; Ygnacio named encargado May 3 1842; 125 pounds by 1848; Temescal to Lopez",
+   "conflicts": [
+    "C17",
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part16.html",
+   "title": "History of the Santa Clarita Valley by Jerry Reynolds | 16: Golden Dreams."
+  },
+  {
+   "code": "perkins part03",
+   "group": "D gold",
+   "date": "1940s series (Signal)",
+   "date_source": "Perkins",
+   "within_lifetime": "after",
+   "type": "later article (quotes documents)",
+   "originating_archive": "A.B. Perkins; Bancroft original",
+   "notes": "transcribes Lopez-Cota-Bermudez petition Santa Barbara Apr 4 1842 (\"the late Don Antonio del Valle\"); Arguello letter to Ygnacio May 3 1842; 2,000 oz by end of 1843 (Bancroft); raids closed camp 1844",
+   "conflicts": [
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part03.html",
+   "title": "The Story Of Our Valley by A.B. Perkins | Part 3 THE STORY OF OUR VALLEY BY A.B. PERKINS [ NEXT ][ PREVIOUS ][ CONTENTS "
+  },
+  {
+   "code": "worden lw012496",
+   "group": "D gold",
+   "date": "1-24-1996",
+   "date_source": "column date",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Leon Worden",
+   "notes": "\"1,300 pounds of gold\" 1842-47; Lopez's 40th birthday",
+   "conflicts": [
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/worden/lw012496.htm",
+   "title": "The real story of California's first gold discovery Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV H"
+  },
+  {
+   "code": "worden-coinage1005",
+   "group": "D gold",
+   "date": "Oct 2005",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "magazine article",
+   "originating_archive": "COINage (Leon Worden)",
+   "notes": "Lopez \"herding cattle on his niece's ranch\"; Ygnacio encargado; 125 pounds",
+   "conflicts": [
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/coins/worden-coinage1005.htm",
+   "title": "California's REAL First Gold Leon Worden Index SCVTV.com Local Television for Santa Clarita SCV History In Pictures SCV "
+  },
+  {
+   "code": "lat042396",
+   "group": "D gold",
+   "date": "4-23-1896",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper + notes",
+   "originating_archive": "Los Angeles Times",
+   "notes": "Francisco Garcia claim; Prudhomme 1922",
+   "conflicts": [
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lat042396.htm",
+   "title": "People | Francisco Garcia: Centenarian Says He and Lopez Discovered Gold (Story 1896)."
+  },
+  {
+   "code": "hssc1928belderrain",
+   "group": "D gold",
+   "date": "1928",
+   "date_source": "publication",
+   "within_lifetime": "after",
+   "type": "journal article",
+   "originating_archive": "HSSC Quarterly (Francisca L. de Belderrain)",
+   "notes": "Lopez family; Francisco Lopez b. 1802",
+   "conflicts": [
+    "C18"
+   ],
+   "url": "https://scvhistory.com/scvhistory/hssc1928belderrain.htm",
+   "title": "People | A Lopez Family Who's Who and What's What, by Francisca L. de Belderrain, HSSC 1928."
+  },
+  {
+   "code": "perkins part05",
+   "group": "D gold",
+   "date": "1940s series",
+   "date_source": "Perkins",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "A.B. Perkins",
+   "notes": "San Feliciano; W.W. Jenkins district recorder (no del Valle sale)",
+   "conflicts": [
+    "C9"
+   ],
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+   "title": "The Story Of Our Valley by A.B. Perkins | Part 5: Mining. THE STORY OF OUR VALLEY BY A.B. PERKINS [ NEXT ][ PREVIOUS ][ "
+  },
+  {
+   "code": "lw2963",
+   "group": "F ramona",
+   "date": "1939 (book)",
+   "date_source": "publication",
+   "within_lifetime": "after",
+   "type": "book excerpt",
+   "originating_archive": "Ruth Odell, Helen Hunt Jackson (1939)",
+   "notes": "HHJ's visit and Camulos",
+   "conflicts": [
+    "C20"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2963.htm",
+   "title": "About Helen Hunt Jackson's Visit to Rancho Camulos (Odell 1939)."
+  },
+  {
+   "code": "edwardsroberts_ramonashome",
+   "group": "F ramona",
+   "date": "1886",
+   "date_source": "publication",
+   "within_lifetime": "after",
+   "type": "newspaper/book epilogue",
+   "originating_archive": "SF Chronicle 1886 (Edwards Roberts), repr. 1905",
+   "notes": "Camulos as \"Ramona's Home\"",
+   "conflicts": [
+    "C20"
+   ],
+   "url": "https://scvhistory.com/scvhistory/edwardsroberts_ramonashome.htm",
+   "title": "Rancho Camulos | Ramona's Home: A Visit to Scenes Described by H.H. | By Edwards Roberts, 1886"
+  },
+  {
+   "code": "carter-ramona1902",
+   "group": "F ramona",
+   "date": "1902 (written May 1900)",
+   "date_source": "publication",
+   "within_lifetime": "after",
+   "type": "book chapter",
+   "originating_archive": "Charles F. Carter, Some By-Ways of California",
+   "notes": "Coronel \"elected mayor of Los Angeles in 1853\"",
+   "conflicts": [
+    "C15",
+    "C20"
+   ],
+   "url": "https://scvhistory.com/scvhistory/carter-ramona1902.htm",
+   "title": "Camulos | 'The Home of Ramona' by Charles Franklin Carter, 1902 (1900)."
+  },
+  {
+   "code": "sg103098d",
+   "group": "F ramona",
+   "date": "10-30-1998",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Leon Worden",
+   "notes": "Ramona myth",
+   "conflicts": [
+    "C20"
+   ],
+   "url": "https://scvhistory.com/scvhistory/sg103098d.htm",
+   "title": "Leon Worden | Myth of Ramona Revived in Ventura, 1998."
+  },
+  {
+   "code": "tv1703",
+   "group": "G indigenous",
+   "date": "Feb 2017",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "object photo + caption",
+   "originating_archive": "Rancho Camulos Museum; Smithsonian loan",
+   "notes": "\"Tataviam Mortar and Pestle\"; no location given here",
+   "conflicts": [
+    "C21"
+   ],
+   "url": "https://scvhistory.com/scvhistory/tv1703.htm",
+   "title": "TV1703 | Rancho Camulos | Tataviam Mortar and Pestle, On Loan to Smithsonian Institution, 2017."
+  },
+  {
+   "code": "lw2632a",
+   "group": "G indigenous",
+   "date": "June 2014 photo",
+   "date_source": "page",
+   "within_lifetime": "after",
+   "type": "object photos + boilerplate",
+   "originating_archive": "SCVHistory",
+   "notes": "\"Native American grinding stones\" in Rubel museum; same 1,500-acre boilerplate",
+   "conflicts": [
+    "C10",
+    "C21",
+    "L5"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lw2632a.htm",
+   "title": "LW2632a | Rancho Camulos | Native American Grinding Stones, ex-Rubel Museum in Del Valle Winery"
+  },
+  {
+   "code": "wood_overtherange",
+   "group": "C camulos",
+   "date": "1896 (1884 text); note later",
+   "date_source": "publication",
+   "within_lifetime": "after",
+   "type": "book excerpt + editor's note",
+   "originating_archive": "Stanley Wood, Over the Range to the Golden Gate (R.R. Donnelley)",
+   "notes": "editor: del Valles held onto 1,340 acres",
+   "conflicts": [
+    "C10"
+   ],
+   "url": "https://scvhistory.com/scvhistory/wood_overtherange.htm",
+   "title": "'Over the Range to the Golden Gate' (Excerpts: Descriptions of Newhall, Camulos, Tehachapi Loop, etc., 1896) Over the Ra"
+  },
+  {
+   "code": "lp_oxnardpresscourier092657",
+   "group": "C camulos",
+   "date": "9-26-1957",
+   "date_source": "newspaper date",
+   "within_lifetime": "after",
+   "type": "newspaper",
+   "originating_archive": "(Oxnard) Press-Courier",
+   "notes": "\"The 1,500-acre ranch is part of a 45,000-acre grant\"; \"only two families\"",
+   "conflicts": [
+    "C10",
+    "C6"
+   ],
+   "url": "https://scvhistory.com/scvhistory/lp_oxnardpresscourier092657.htm",
+   "title": "Rancho Camulos | Peter Rubel, 22, Killed in Game of Russian Roulette, 1957"
+  },
+  {
+   "code": "carewe1928ramona",
+   "group": "F ramona",
+   "date": "3-30-2014",
+   "date_source": "byline",
+   "within_lifetime": "after",
+   "type": "later article",
+   "originating_archive": "Leon Worden",
+   "notes": "\"the Del Valle family's 1853 adobe home\"",
+   "conflicts": [
+    "C11"
+   ],
+   "url": "https://scvhistory.com/scvhistory/carewe1928ramona.htm",
+   "title": "Edwin Carewe's Ramona | Lost SCV-Related 1928 Film Reappears After Falling to Nazis, Soviets"
+  },
+  {
+   "code": "camulos",
+   "group": "H index",
+   "date": "live index",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "index page",
+   "originating_archive": "SCVHistory",
+   "notes": "217 link lines; del Valle period section",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/camulos.htm",
+   "title": "Rancho Camulos on SCVHistory.com VISIT RANCHO CAMULOS \"Our California\" 2017 Visit Camulos (I) Visit Camulos (II) Video T"
+  },
+  {
+   "code": "people",
+   "group": "H index",
+   "date": "live index",
+   "date_source": "page",
+   "within_lifetime": "n/a",
+   "type": "index page",
+   "originating_archive": "SCVHistory",
+   "notes": "people index",
+   "conflicts": [],
+   "url": "https://scvhistory.com/scvhistory/people.htm",
+   "title": "People Autobiographical Videos And Audiotaped Oral Histories (bottom) ADRIAN ADAMS (2004: Legacy) GREG AMSLER (2009: SCV"
+  }
+ ],
+ "peripheral_pages": [
+  {
+   "code": "SunsetVol33No1_0714_120-122",
+   "url": "https://scvhistory.com/scvhistory/SunsetVol33No1_0714_120-122.htm"
+  },
+  {
+   "code": "alaska_ArchimandriteJoasaph",
+   "url": "https://scvhistory.com/scvhistory/alaska_ArchimandriteJoasaph.htm"
+  },
+  {
+   "code": "camulos19581009",
+   "url": "https://scvhistory.com/scvhistory/camulos19581009.htm"
+  },
+  {
+   "code": "carewe1928hughmunroneely",
+   "url": "https://scvhistory.com/scvhistory/carewe1928hughmunroneely.htm"
+  },
+  {
+   "code": "delvallecolaborrecords",
+   "url": "https://scvhistory.com/scvhistory/delvallecolaborrecords.htm"
+  },
+  {
+   "code": "engelhardt_camulosbell",
+   "url": "https://scvhistory.com/scvhistory/engelhardt_camulosbell.htm"
+  },
+  {
+   "code": "general",
+   "url": "https://scvhistory.com/scvhistory/general.htm"
+  },
+  {
+   "code": "getty1994earthquake_camulos",
+   "url": "https://scvhistory.com/scvhistory/getty1994earthquake_camulos.htm"
+  },
+  {
+   "code": "jb_oaklandtribmag070823",
+   "url": "https://scvhistory.com/scvhistory/jb_oaklandtribmag070823.htm"
+  },
+  {
+   "code": "lat18981024train",
+   "url": "https://scvhistory.com/scvhistory/lat18981024train.htm"
+  },
+  {
+   "code": "lp_oxnardcourier111716",
+   "url": "https://scvhistory.com/scvhistory/lp_oxnardcourier111716.htm"
+  },
+  {
+   "code": "lw2119a",
+   "url": "https://scvhistory.com/scvhistory/lw2119a.htm"
+  },
+  {
+   "code": "lw2453",
+   "url": "https://scvhistory.com/scvhistory/lw2453.htm"
+  },
+  {
+   "code": "lw2528a",
+   "url": "https://scvhistory.com/scvhistory/lw2528a.htm"
+  },
+  {
+   "code": "lw2725",
+   "url": "https://scvhistory.com/scvhistory/lw2725.htm"
+  },
+  {
+   "code": "lw2727",
+   "url": "https://scvhistory.com/scvhistory/lw2727.htm"
+  },
+  {
+   "code": "lw2757",
+   "url": "https://scvhistory.com/scvhistory/lw2757.htm"
+  },
+  {
+   "code": "lw2871",
+   "url": "https://scvhistory.com/scvhistory/lw2871.htm"
+  },
+  {
+   "code": "lw2988",
+   "url": "https://scvhistory.com/scvhistory/lw2988.htm"
+  },
+  {
+   "code": "lw3543",
+   "url": "https://scvhistory.com/scvhistory/lw3543.htm"
+  },
+  {
+   "code": "lw3736",
+   "url": "https://scvhistory.com/scvhistory/lw3736.htm"
+  },
+  {
+   "code": "mrsgriffith_ramona1925",
+   "url": "https://scvhistory.com/scvhistory/mrsgriffith_ramona1925.htm"
+  },
+  {
+   "code": "mu3580",
+   "url": "https://scvhistory.com/scvhistory/mu3580.htm"
+  },
+  {
+   "code": "ncis1102camulos",
+   "url": "https://scvhistory.com/scvhistory/ncis1102camulos.htm"
+  },
+  {
+   "code": "oa245b",
+   "url": "https://scvhistory.com/scvhistory/oa245b.htm"
+  },
+  {
+   "code": "outland_oldshoebox",
+   "url": "https://scvhistory.com/scvhistory/outland_oldshoebox.htm"
+  },
+  {
+   "code": "oxnardcourier19100407ramona",
+   "url": "https://scvhistory.com/scvhistory/oxnardcourier19100407ramona.htm"
+  },
+  {
+   "code": "perkins part04",
+   "url": "https://scvhistory.com/scvhistory/signal/perkins/part04.html"
+  },
+  {
+   "code": "ra1001",
+   "url": "https://scvhistory.com/scvhistory/ra1001.htm"
+  },
+  {
+   "code": "ra5501",
+   "url": "https://scvhistory.com/scvhistory/ra5501.htm"
+  },
+  {
+   "code": "ra_appraisal1939",
+   "url": "https://scvhistory.com/scvhistory/ra_appraisal1939.htm"
+  },
+  {
+   "code": "ra_culturallandscape2005",
+   "url": "https://scvhistory.com/scvhistory/ra_culturallandscape2005.htm"
+  },
+  {
+   "code": "ra_examiner1920hwpatton",
+   "url": "https://scvhistory.com/scvhistory/ra_examiner1920hwpatton.htm"
+  },
+  {
+   "code": "ra_museumvision1997",
+   "url": "https://scvhistory.com/scvhistory/ra_museumvision1997.htm"
+  },
+  {
+   "code": "ra_ramonascreenshots",
+   "url": "https://scvhistory.com/scvhistory/ra_ramonascreenshots.htm"
+  },
+  {
+   "code": "ra_shirleyrubel20020402",
+   "url": "https://scvhistory.com/scvhistory/ra_shirleyrubel20020402.htm"
+  },
+  {
+   "code": "ra_shirleyrubel20081111",
+   "url": "https://scvhistory.com/scvhistory/ra_shirleyrubel20081111.htm"
+  },
+  {
+   "code": "ra_vcstar19510516",
+   "url": "https://scvhistory.com/scvhistory/ra_vcstar19510516.htm"
+  },
+  {
+   "code": "ra_vfp18990728_piru08",
+   "url": "https://scvhistory.com/scvhistory/ra_vfp18990728_piru08.htm"
+  },
+  {
+   "code": "ramona-text",
+   "url": "https://scvhistory.com/scvhistory/ramona-text.htm"
+  },
+  {
+   "code": "rc8701a",
+   "url": "https://scvhistory.com/scvhistory/rc8701a.htm"
+  },
+  {
+   "code": "readingeagle052472",
+   "url": "https://scvhistory.com/scvhistory/readingeagle052472.htm"
+  },
+  {
+   "code": "reynolds part13",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part13.html"
+  },
+  {
+   "code": "reynolds part20",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part20.html"
+  },
+  {
+   "code": "reynolds part21",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part21.html"
+  },
+  {
+   "code": "reynolds part34",
+   "url": "https://scvhistory.com/scvhistory/signal/reynolds/part34.html"
+  },
+  {
+   "code": "sg050601a",
+   "url": "https://scvhistory.com/scvhistory/sg050601a.htm"
+  },
+  {
+   "code": "sw_sfcall090113",
+   "url": "https://scvhistory.com/scvhistory/sw_sfcall090113.htm"
+  },
+  {
+   "code": "tlp_laherald18860520",
+   "url": "https://scvhistory.com/scvhistory/tlp_laherald18860520.htm"
+  }
+ ],
+ "conflicts": [
+  {
+   "id": "C1",
+   "topic": "Birth date and place; age at death",
+   "pages": [
+    "lw2052, reynolds part14, penpictures_ydelvalle (1889): born July 1, 1808, Jalisco",
+    "times111101 and penpictures_rdelvalle (1889): died 1880 'at age 72' / 'at the age of seventy-two years'; the lw2752 tree carries a handwritten '72 yrs'",
+    "reynolds part14: 'the lad of seventeen' landed at Monterey July 27, 1825 (fits 1808)"
+   ],
+   "outside": "Wikipedia: July 1, 1808, New Galicia (Jalisco). Wikidata Q8053412: P569 1808-07-01, P19 Jalisco (unreferenced). JoinCalifornia: July 1, 1808, Jalisco. NHM GC 1002 finding aid: 'Ygnacio (1808-80), born in Jalisco'. Schwald family genealogy (secondary): 'Abt. 1808, Compostela, Nayarit'.",
+   "favors": "July 1, 1808 is consistent everywhere. Place: 'Jalisco' and 'Compostela' can both be right, because Compostela lay in Nueva Galicia (the Guadalajara intendancy) in 1808 and is in today's Nayarit. Use 'Nueva Galicia (now Jalisco/Nayarit)' until a baptismal entry is seen: NEEDS_VERIFICATION. Age at death: born July 1, 1808 and died March 30, 1880 makes him **71**, not 72.",
+   "settle": "Baptismal register (Compostela parish or Archdiocese of Guadalajara; FamilySearch Mexico Catholic records); Ygnacio's hoja de servicio (Archivo General de la Nación, Mexico, or Bancroft Provincial State Papers); NHM GC 1002."
+  },
+  {
+   "id": "C2",
+   "topic": "Mother's name",
+   "pages": [
+    "lw2052: 'María Josepha (Carillo) del Valle'",
+    "gallery-lw2706 (1853 ledger caption): 'his first wife, Maria Josepha Carillo'"
+   ],
+   "outside": "Schwald family genealogy: mother 'Josefa de la Peña'. Wikipedia and Wikidata do not name her.",
+   "favors": "Unresolved: NEEDS_VERIFICATION. The site's 'Carillo' may come from confusion with Ygnacio's first wife, María de los Angeles Carrillo. Do not migrate a maiden name until a sacramental record is seen.",
+   "settle": "Ygnacio's baptism; Antonio del Valle's first marriage record (Jalisco); Antonio's military service file; NHM GC 1002 (Antonio's papers from 1789)."
+  },
+  {
+   "id": "C3",
+   "topic": "Antonio's children and the heirs (Magdalena; how many)",
+   "pages": [
+    "perkins-rsf-1957 text: Antonio 'mourned by his widow, two children from his first marriage, and four children from his second marriage'; fn 26: Jacoba bore 'five children'; 'Ygnacio and sister Magdalena, by first wife'",
+    "reynolds part14: 'María remained in Mexico'; lists Jacoba's household as José Antonio (called illegitimate), Victor, newborn Magdalena, unborn José Ygnacio, then María Concepción (born four months after Antonio's death): 'a total of eight children'",
+    "reynolds part15 / lw2052: Jacoba had 'four sons and two daughters'; 'each of her six children received 4,684 acres'",
+    "lw2752: Ygnacio was 'one of seven children'",
+    "gallery-lw2706: Magdalena was Jacoba's daughter and Ygnacio's half-sister; María was a first-wife daughter"
+   ],
+   "outside": "Wikipedia is silent on the count. NHM GC 1002: Antonio Seferino del Valle (1788–1841).",
+   "favors": "Most site sources make Magdalena Jacoba's daughter (Perkins fn 26 is the outlier). Count of heirs: 6 to 8, NEEDS_VERIFICATION. Perkins says Ygnacio bought Magdalena's share for about $6,000.",
+   "settle": "Land Case 303 SD claimant list ('Jacoba Feliz et al.'); LA County Probate Court's first three cases (1850, estate of Antonio del Valle); baptismal registers of Missions Santa Barbara and San Fernando (Huntington ECPP database)."
+  },
+  {
+   "id": "C4",
+   "topic": "Antonio del Valle's death date",
+   "pages": [
+    "reynolds part14, lw2052, sg090199a, gallery-lo3401 (editor's note): June 21, 1841",
+    "perkins-rsf-1957: 'June 12, 1841'",
+    "gallery-lo3401 (HABS 1934 text): 'until his death in 1841 or 1842'"
+   ],
+   "outside": "NHM GC 1002 gives the year only (1841).",
+   "favors": "1841 is certain (the April 4, 1842 gold petition, transcribed on perkins part03, calls him 'the late Don Antonio del Valle'). Day: June 21 is the majority reading; June 12 may be a transposition. NEEDS_VERIFICATION.",
+   "settle": "Burial register (Mission San Fernando or Santa Barbara; ECPP); probate filings, 1850."
+  },
+  {
+   "id": "C5",
+   "topic": "Antonio vs Ygnacio: who held what, and from when (grant basis)",
+   "pages": [
+    "reynolds part14: Alvarado signed the grant on January 22, 1839; the deathbed offer to Ygnacio was only 'the place extending from the portsuelo ... towards the west', half a Santa Barbara house and 300 cattle",
+    "perkins-rsf-1957: Antonio 'petitioned ... January 22, 1839'; a further petition of April 5, 1839 claims a right 'from about 1825, with further rights as of 1833'; possible del Valle grazing from 1824; the Mission protested a Camulos grant to Francisco Avila in 1804",
+    "lw2052 / gallery-lw2706: 'formal possession' January 22, 1839, having held it 'since about 1824'",
+    "lw3903 boilerplate: Camulos 'owned by just two families since the end of war for Mexican independence' (1821)",
+    "penpictures_ydelvalle: 'In 1841 he settled on the San Francisco Rancho'; reynolds part15: he did not live there until 1861",
+    "sg090199a: Antonio 'a Mexican-born missionary who owned 48,000 acres'",
+    "lw2526a: NHM signage 'Owned by Antonio del Valle / 48,612 acres / 1834-1844' (the page questions the dates)"
+   ],
+   "outside": "Bancroft/Calisphere description of Land Case 303 SD: two grants to Antonio del Valle: Sespe, by Figueroa, Nov 20, 1833 (6 leagues), and San Francisco, by Alvarado, Jan 22, 1839 (about 4 leagues). Wikipedia: Antonio's deathbed letter offered Ygnacio 'several properties, including the 48,612-acre Rancho San Francisco' (cited to sg090199a).",
+   "favors": "**Antonio** was the grantee (Jan 22, 1839). **Ygnacio** held an undivided heir's share from 1841–42 (5/11 by the 1850s, per Robinson), and after the 1870 partition held Camulos alone. Earlier del Valle occupancy (1824/1825/1833) is claimed, not proven. How the 1833 Sespe grant relates to the 11-league total can only be settled from the case file: NEEDS_VERIFICATION. Wikipedia's 'offered him Rancho San Francisco' overstates the offer (see A9).",
+   "settle": "Land Case 303 SD (Bancroft, BANC MSS Land Case Files; includes the expediente and testimony); Spanish Archives (California State Archives / NARA copies) for the 1838–39 petitions; Bancroft diseño collection."
+  },
+  {
+   "id": "C6",
+   "topic": "Size and boundaries of Rancho San Francisco",
+   "pages": [
+    "reynolds part14 and lw2052: 'eleven leagues, or 48,829 acres' (11 × 4,439 acres)",
+    "times111101, lastar18640514wolfskill, hl7101, lw2526a signage: 48,612 acres; ra20070929, lw3903 and others: '48,000 acres'",
+    "perkins-rsf-1957 and perkins part02: mission-era claim of 'over 102,000 acres'; the Hancock survey (1858) was 'just under' 11 leagues; Scott's Thompson survey (1865) took in 102,025 acres; 'about 11,000 acres' fell in Ventura County",
+    "lw2570a (Rolle 1991): 1858 survey described 'some one hundred thousand acres'",
+    "reynolds part14: boundary from Arroyo Piru east to the Arroyo Taburga (the grant's own description); perkins-rsf-1957: 'up to and including a place called La Soledad'"
+   ],
+   "outside": "Land Case 303 SD: patent Feb 12, 1875 for **48,611.88 acres** (Los Angeles County 37,870.32; Ventura County 10,741.56); GLO plat 399. Wikipedia: 48,612 acres.",
+   "favors": "Patented area 48,611.88 acres (Hancock-based survey). The 48,829 figure is nominal (11 square leagues at 4,439 acres), not a survey result, so the page should say so. The 100,000+ figures are the mission claim and the rejected 1865 Thompson survey, not the grant.",
+   "settle": "US patent and GLO plat 399 (BLM General Land Office Records; Bancroft Land Case Map collection); Hancock (1858) and Thompson (1865) survey field notes (BLM/NARA RG 49)."
+  },
+  {
+   "id": "C7",
+   "topic": "Partition: the 13,599 / 21,307 / 4,684-acre award, and later shares",
+   "pages": [
+    "reynolds part15 and lw2052: a judge awarded 13,599 acres to Ygnacio, 21,307 to Jacoba and 4,684 to each of her six children. **Total 62,010 acres**, about 13,400 more than the patented 48,612",
+    "reynolds part29: 'From the original grant of **16,599** acres inherited from his father'",
+    "robinson_storyofvalencia_1967: Ygnacio held an **undivided 5/11**; the Salazars 6/11",
+    "lw2052: the 1861 Wolfskill deal gave Ygnacio the 'western five-elevenths'",
+    "perkins-rsf-1957: estate distributed 'by undivided portions'; 'The land could not be partitioned before title confirmation'; formal partition in 1870 (L.F. Cooper; effective July 30, signed by Judge Pablo de la Guerra): Ygnacio's undivided 2/21 carried Camulos, 1,340 acres",
+    "lw2752: 'Upon Antonio's death ... the ranch was divided among his widow and children'"
+   ],
+   "outside": "Wikipedia repeats 13,599 / 21,307 / 4,684 and calls the 13,599-acre share 'Rancho Camulos'.",
+   "favors": "The Reynolds/Wally Smith figures cannot all be right: they exceed the grant. The documented sequence is undivided shares (1841–1870), then a partition decree in 1870. A Mexican-era judicial division ('the juez') is NEEDS_VERIFICATION. Do not migrate the three figures without the decree.",
+   "settle": "The 1870 partition decree (LA County District Court, 1st Judicial District; the LA Superior Court Archives or the Huntington's LA County court records: NEEDS_VERIFICATION); LA County probate case files, 1850–52; Wally Smith, 'The Camulos Story' (1958), for where the figures came from."
+  },
+  {
+   "id": "C8",
+   "topic": "The Carrillo contest; Land Commission and patent dates",
+   "pages": [
+    "perkins-rsf-1957 / lw2570a: 'In 1843, the title of Camulos was momentarily clouded by a grant to Pedro Carrillo' and the grant 'was nullified'",
+    "delcastillo1980: Pedro Carrillo applied in 1841; 'a year later, governor Micheltorena ruled in Carrillo's favor'; the del Valles faced losing 'over 17,000 acres'; final settlement in 1855 by the Board of Land Commissioners",
+    "lw2570a (Rolle 1991): competing claims dismissed only in 1855; first patent survey 1858",
+    "perkins-rsf-1957: claim filed Sept 1852; patent Feb 12, 1875"
+   ],
+   "outside": "Land Case 303 SD: petition filed Sept 2, 1852; confirmed by the Board Jan 2, 1855; appeal dismissed June 8, 1857; patent Feb 12, 1875. hometownstation.com gives the patent as 'March 18, 1875' (see A8).",
+   "favors": "Land Commission dates as in the case file. Patent **Feb 12, 1875**. The Carrillo episode: 1841–43 to 1855, outcome favoring the del Valles; the two accounts differ on whether Micheltorena first ruled for Carrillo: NEEDS_VERIFICATION.",
+   "settle": "Land Case 303 SD (Bancroft); the Carrillo petition in the Spanish Archives / Bancroft Archives of California; the Board of Land Commissioners docket (NARA San Bruno RG 49 / Bancroft)."
+  },
+  {
+   "id": "C9",
+   "topic": "Losing Rancho San Francisco: who sold what to whom, when and for how much (incl. 'Jenkins / Newhall 1875')",
+   "pages": [
+    "perkins-rsf-1957: 1858 Salazar borrowed $8,500 from Wolfskill on 6 leagues; 1859 Jacoba's mortgaged equities deeded to Ygnacio for $1,000; sheriff's deeds to Wolfskill 1863 and 1864; deeds from the heirs to Ygnacio from 1865, 'culminating in a deed from Ygnacio del Valle to Thomas R. Bard, as of March 18' [1865] for the LA County lands, **$47,519.71**; to Philadelphia & California Petroleum Co.; 1873 sheriff's deed to Fernald & Richards; **deeded to Henry M. Newhall, $90,000, January 15, 1875**",
+    "lastar18640514wolfskill (note): sold to Bard March 1865 for $47,519.71; 'Henry Newhall bought the 46,460 acres ... at a sheriff's sale in 1875'",
+    "reynolds part29: 'Bard acquired Rancho San Francisco from William Wolfskill for **$53,320** by deed dated **April 29, 1865**'",
+    "robinson_storyofvalencia_1967: Bard paid **$53,320** to Wolfskill, Ygnacio and José del Valle; Fernald & Richards bought in 1873 for $33,000 at a sheriff's auction; a second sheriff's sale was 'called off when a private buyer was found'; Newhall Jan 15, 1875, $90,000",
+    "delcastillo1980: Ygnacio wrote to J.L. Brent (1863) that he had sold interests for **$21,000** to a petroleum company",
+    "lw2052: lost the ranch 'to financiers, then oil speculators'; it went to Newhall in 1875",
+    "reynolds part41 / perkins part05: W.W. Jenkins (Ranger captain) staked a Castaic Creek claim in 1872 and settled in 1878. **No del Valle sale to Jenkins appears on any page.**"
+   ],
+   "outside": "hometownstation.com ownership list: Ygnacio del Valle, Thomas R. Bard, Robert H. Gratz, Philadelphia & California Petroleum Co., Newhall 1875. Wikipedia: lost to financiers after the drought.",
+   "favors": "Ygnacio's sale was in **1865, to Bard** (two prices, perhaps two deeds: $47,519.71 on Mar 18 for the LA County lands, and $53,320 on Apr 29 from Wolfskill: NEEDS_VERIFICATION). **Newhall bought in 1875 from the post-1873 holders, not from Ygnacio.** Whether that was a sheriff's sale or a private sale is disputed; Robinson (private) is better documented. **The brief's 'sale to Jenkins' is not supported by anything seen:** NEEDS_VERIFICATION in LA County deed indexes.",
+   "settle": "LA County Recorder, Deeds (grantor-grantee indexes 1858–1875; Books of Deeds for Mar–Apr 1865 and Jan 15, 1875); Ventura (then Santa Barbara) County deeds; J.L. Brent papers (Huntington, Brent collection: NEEDS_VERIFICATION); District Court case files, Wolfskill v. Salazar (1863–64)."
+  },
+  {
+   "id": "C10",
+   "topic": "How much of Rancho San Francisco Ygnacio kept (Camulos acreage)",
+   "pages": [
+    "robinson_storyofvalencia_1967: Bard 'sold back the **1,300**-acre Camulos area to Ygnacio alone for $500'",
+    "perkins-rsf-1957, reynolds part29, wood_overtherange: **1,340** acres (Perkins: the 1870 partition)",
+    "delcastillo1980: Reginaldo (1930) remembered an 1,800-acre partition, but 'Actually, this had dwindled to **1,340** acres by 1886'",
+    "lastar18640514wolfskill, hl7101: 'westernmost **1,350** acres'",
+    "lw3903, lw2463a, lw2633a, lw2632a, lw2695 (shared boilerplate): 'the **1,500**-acre Camulos section'; lp_oxnardpresscourier092657 (1957): '1,500-acre ranch'",
+    "times111101: Ygnacio 'carved out **1,800** acres'; lp1501, ra20070929, camulos-nrhp1 (1996): Camulos today is about 1,800 acres"
+   ],
+   "outside": "Wikipedia: kept 1,500 acres of Camulos.",
+   "favors": "**About 1,340 acres** at the 1870 partition (Perkins, citing the decree) is the best-supported figure for what Ygnacio kept; 1,300 and 1,350 are roundings. 1,800 is the **modern** ranch (NRHP 1996) and Reginaldo's recollection, and should not be read back to 1870. 1,500 has no source.",
+   "settle": "1870 partition decree and map (LA District Court); Ventura County assessor rolls 1873–1880; the Ventura County deed for Bard's reconveyance ($500)."
+  },
+  {
+   "id": "C11",
+   "topic": "When the Camulos adobe was built",
+   "pages": [
+    "camulos-nrhp1 (Triem & Stone 1996): 'a four-room adobe, was constructed by Ygnacio del Valle in 1853'; the site repeats 1853 on mu0538, lw3903, lw2463a, latta1976ramona notes, carewe1928ramona, oxnardcourier19100407ramona, ncis1102camulos",
+    "gallery-lw2706: 1853 'the year they built their adobe home'",
+    "robinson_storyofvalencia_1967: 'Begun in 1854 ... completed in 1861'",
+    "reynolds part29: 'majordomo's quarters, four rooms built in 1854'; '1861 a 20-room adobe home rose'",
+    "reynolds part15: Ygnacio 'found a four-room adobe' already standing; 'No one knows exactly when the adobe was built'",
+    "gallery-lo3401 (HABS 1934): owner Rubel 'gives the date of erection as 1841 for the older portion, the balance having been added in 1846'; editor: 'generally believed ... 1853'",
+    "christopher0917: living room 'of the adobe that had been added in 1862'",
+    "delcastillo1980: '16 of the 20 rooms ... were built after 1850'"
+   ],
+   "outside": "Wikipedia (Rancho Camulos article not fetched; Ygnacio article silent). The NRHP/NHL nomination is the formal record.",
+   "favors": "The first four rooms date to 1853 (NRHP; Triem & Stone), with expansion to about 20 rooms by the 1860s–70s. The 1841/1846 (HABS/Rubel) and pre-existing-adobe (Reynolds) claims are unsupported. The exact date is NEEDS_VERIFICATION (no dated primary source seen).",
+   "settle": "NRHP/NHL nomination files (NPS; Triem & Stone's sources); HABS CA-38 data pages (Library of Congress); the del Valle papers (Rancho Camulos Museum; NHM GC 1002) for 1850s building accounts."
+  },
+  {
+   "id": "C12",
+   "topic": "Who managed Camulos, and Reginaldo's office in 1880",
+   "pages": [
+    "lw3664: Juventino was ranch manager 1862–1886 (citing Triem & Stone)",
+    "delcastillo1980: 'In 1878, Ygnacio retired and turned the management ... over to Joventino'",
+    "reynolds part29: after Ygnacio's death, 'Management of the estate passed to his eldest surviving son, Reginaldo, who was then a state senator'",
+    "penpictures_rdelvalle (1889): Reginaldo elected State Senator in 1882; lat18900822delvalle: Assembly 1880–81; lw2752: Juventino (1841–1919) was older"
+   ],
+   "outside": "Rancho Camulos Museum finding aid (OAC): Josefa del Valle Forster helped her mother manage the ranch after 1880.",
+   "favors": "In March 1880 Reginaldo was not a state senator (Assembly 1880–81; Senate from 1882), and he was not the eldest surviving son (Juventino). Management passed to Ysabel, with Juventino and later Josefa and Ulpiano.",
+   "settle": "Assembly and Senate journals 1880–83; Rancho Camulos Museum del Valle Family Papers (ranch accounts)."
+  },
+  {
+   "id": "C13",
+   "topic": "Marriages and children",
+   "pages": [
+    "reynolds part15: married María de los Angeles Carrillo, Jan 1, 1842 (before Bishop Durán); a son Juventino was born before the marriage",
+    "penpictures_ydelvalle (1889): 'no children by the first marriage'; second marriage 'in 1851'; 'Six children' by Ysabel, all living in 1889",
+    "times111101: Juventino was 'Ygnacio's illegitimate son'; Ysabel and Ygnacio 'had 12 children, five of whom lived to adulthood'",
+    "reynolds part29: raised 'eleven children'",
+    "lw2752: Juventino 1841–1919; Ysabel 1837–1905",
+    "obituary_ysabelvareladelvalle (1905): four living children named"
+   ],
+   "outside": "Wikipedia: first marriage 1842 (ECPP); second marriage **1851 (infobox) vs 1852 (text)**, 'at the age of 44 married 15-year-old'. Schwald family genealogy (citing the Plaza Church register #238): married Dec 7, 1851 at the Plaza Church, LA; also lists 'other spouse' María del Rosario Lorenzana (NEEDS_VERIFICATION).",
+   "favors": "Second marriage Dec 7, 1851 (Pen Pictures 1889 and the register citation agree), so Ysabel (b. 1837) was 14 or 15. Children: 12 born, with 5 or 6 surviving, depending on the date and on whether Juventino is counted (born 1841, about the time of the Jan 1842 marriage). 'Illegitimate' is a characterization to attribute, not state.",
+   "settle": "Plaza Church (Nuestra Señora la Reina de Los Angeles) marriage and baptismal registers (Archdiocese of Los Angeles Archival Center: NEEDS_VERIFICATION); Mission Santa Barbara marriage register 1842 (ECPP); 1850, 1860, 1870 and 1880 US censuses (NARA; LA County and, for 1880, Ventura County)."
+  },
+  {
+   "id": "C14",
+   "topic": "Death date, place and burial",
+   "pages": [
+    "reynolds part29: 'On March 30, 1880, Don Ignacio del Valle died and was buried in the family crypt' at Camulos",
+    "penpictures_ydelvalle (1889): at his death in 1880 'his home was on the beautiful Camulos Rancho'; quotes Judge Ygnacio Sepúlveda's published death notice",
+    "lp1501: 'initially interred in an above-ground coffin or vault'; the 1905 move to Calvary is 'Or so the story goes'; ra20070929: 'is said to have had his body exhumed'",
+    "times111101: the 1905 exhumation and shared coffin told as fact",
+    "most site pages give only '1808-1880'"
+   ],
+   "outside": "Wikipedia: died March 30, 1880 at Rancho Camulos (infobox); buried at the rancho, exhumed 1905 to Calvary. Wikidata: P570 '1880' (year only); P20 'United States'. JoinCalifornia: died March 30, 1880 'in Los Angeles, CA'. Schwald: died Mar 30, 1880, Ventura County; burial **Apr 1, 1880, Mission San Buenaventura** (register).",
+   "favors": "**March 30, 1880** (independent agreement). Place: Camulos (Ventura County) is best supported; JoinCalifornia's 'Los Angeles' is unsupported (A4). The Mission San Buenaventura entry is most likely the parish burial record for a burial at the Camulos family plot (Camulos lay within that parish): NEEDS_VERIFICATION. The 1905 re-interment at Calvary is family tradition: NEEDS_VERIFICATION against Calvary records.",
+   "settle": "Mission San Buenaventura burial register, 1880 (Archdiocese of LA / ECPP); LA newspapers, Mar 31–Apr 3, 1880 (LA Herald and LA Express on CDNC; CDNC blocked this crawl); Calvary Cemetery (Catholic Cemeteries, Archdiocese of LA) interment records, 1905; the 1880 census mortality schedule (Ventura County)."
+  },
+  {
+   "id": "C15",
+   "topic": "Civic offices: alcalde, 'mayor', Recorder, Assembly, Council, and the Rangers",
+   "pages": [
+    "penpictures_ydelvalle (1889): treasurer 1846; 'in 1850 he was alcalde [similar to mayor] of Los Angeles; and later was a member of the city council and also of the State Legislature'",
+    "perkins-rsf-1957: Junta 1845; treasurer 1846; alcalde 1850; 'At the first election under new laws, was elected County Recorder'; 'Served as assemblyman in 1852 and 1856'",
+    "lw2052: 'Ygnacio lived at Los Angeles, where he was mayor'; 'When statehood came in 1850, Ygnacio served a short stint in the first Legislature'; office list: City Council May 4, 1852 – May 3, 1853 and May 7, 1856 – resigned Dec 15, 1856; committees to 1859",
+    "lw2532, lw3768: 'after serving in the state Legislature at statehood in 1850 he was elected to the L.A. City Council in 1852'",
+    "reynolds part25: 'The mayor of the town, Don Ygnacio del Valle ... formed the California Rangers'; reynolds part41: the Rangers had made the town safe 'by 1855'",
+    "dac18530727camulos (Daily Alta, July 27, 1853): LA citizens met July 15, 1853 and organized volunteers against robbers",
+    "engelhardt_sanfernando56: Ygnacio sat on Pico's 1845 assembly",
+    "carter-ramona1902: Antonio F. Coronel 'elected mayor of Los Angeles in 1853'"
+   ],
+   "outside": "JoinCalifornia (Ignacio Del Valle): elected **Sept 3, 1851, AD-02**; biography line '1853: Mayor, City of Los Angeles?'. Wikipedia infobox: de facto mayor (alcalde) Jan 1 – Jul 1, 1850; Assembly, 2nd district, Jan 5, 1852 – Jan 3, 1853; Common Council 1852 and 1856. Wikipedia text: founded the Los Angeles Rangers during his 1850 alcalde term; 'remained on the City Council for five years'.",
+   "favors": "Alcalde 1850 (the pre-incorporation office, sometimes called 'de facto mayor'); County Recorder 1850; Assembly **1852 session** (elected 1851), **not the first Legislature (1849–50)**; Council 1852–53 and 1856. He was never mayor of the incorporated city (the 1853 mayor was A.F. Coronel). The Rangers were organized in 1853; his role is NEEDS_VERIFICATION. The 1856 Assembly term in Perkins is NEEDS_VERIFICATION (possibly confused with the 1856 Council term).",
+   "settle": "Journal of the California Assembly, 3rd Session (1852), roll of members; Chronological Record of Los Angeles City Officials 1850–1938 (LA Municipal Reference Library/LAPL); LA County election returns 1850 (County Recorder); Horace Bell, Reminiscences of a Ranger (1881); LA Star, July–Aug 1853 (CDNC)."
+  },
+  {
+   "id": "C16",
+   "topic": "Arrival and military career; which missions he secularized",
+   "pages": [
+    "reynolds part14: landed at Monterey July 27, 1825; 2nd lieutenant March 1828; later captain and chief customs officer at San Diego",
+    "penpictures_ydelvalle: came with Echeandía in 1825; lieutenant 1828–1840; 1834 secularization commissioner for Santa Cruz and Dolores",
+    "reynolds part15: 1834 commissioner for 'Missions San Gabriel, San Francisco Dolores and Santa Cruz'; resigned 1840",
+    "perkins-rsf-1957 fn: captain and customs officer at San Diego until 1833; Monterey to 1836; discharged 1840; 'Commandante in secularization of the missions in 1834'"
+   ],
+   "outside": "Wikipedia: cadet 1825 at the Santa Barbara Presidio; 2nd lieutenant 1828; secularized Mission Santa Cruz and Mission San Francisco de Asís.",
+   "favors": "Santa Cruz and San Francisco de Asís (Dolores) are agreed. San Gabriel (Reynolds only) is NEEDS_VERIFICATION. Arrival in 1825 is agreed; whether he landed at Monterey or came in by Santa Barbara is unresolved.",
+   "settle": "Bancroft, Pioneer Register (del Valle entry) and Provincial State Papers; secularization inventories of Santa Cruz and Dolores, 1834–35 (Bancroft / Santa Barbara Mission Archive-Library)."
+  },
+  {
+   "id": "C17",
+   "topic": "Rancho El Tejon and Rancho Temescal",
+   "pages": [
+    "penpictures_ydelvalle: 'Don Ygnacio and Don J.A. Aguirre received a concession in 1843 of the rancho of Tejon, twenty-two Spanish leagues', 'which now belongs to General E.F. Beale'",
+    "perkins-rsf-1957 fn: 'With Jose Antonio Aguirre, received grant of the 97,000 acre Tejon rancho in 1843'",
+    "lw2052: 'Gen. Edward F. Beale had already picked up the deed to Rancho Tejon to satisfy some of the Del Valle creditors'",
+    "reynolds part16/part17: Temescal granted to Francisco Lopez (1842 diseño); delcastillo1980: Ygnacio bought Temescal in 1857 for $4,000; lw3903: 'bought the adjacent 13,339-acre Rancho Temescal' in 1857"
+   ],
+   "outside": "Wikipedia: del Valle received Rancho El Tejon in 1843 'for his military service' and later sold it to pay debts (no co-grantee named). Beale dossier (edward-f-beale-sources.md C8): Beale acquired El Tejon (97,612 acres) in 1865; the chain of title there is also NEEDS_VERIFICATION.",
+   "favors": "Tejon was a joint 1843 concession with J.A. Aguirre (A2). The 'Beale picked up the deed ... for Del Valle creditors' line needs the Kern County deed trail: NEEDS_VERIFICATION. Temescal: granted to Lopez, bought by Ygnacio in 1857 (the accounts can be reconciled).",
+   "settle": "Land Case files for El Tejon (Bancroft; claimants de la Guerra/Aguirre heirs and del Valle: NEEDS_VERIFICATION) and for Temescal; Kern and LA County deeds; Beale papers (LoC)."
+  },
+  {
+   "id": "C18",
+   "topic": "The 1842 gold discovery and the del Valles",
+   "pages": [
+    "reynolds part16, perkins part03, lwhist, worden-coinage1005: Francisco Lopez, March 9, 1842; the petition of April 4, 1842 (transcribed on perkins part03) places it 'at the place of San Francisco, appertaining to the late Don Antonio del Valle'",
+    "perkins part03 / reynolds part16: Prefect Santiago Arguello named Ygnacio 'encargado de justicia' of the placer, **May 3, 1842** (original letter in the Bancroft Library, per Perkins); perkins-rsf-1957 fn: 'In 1843, was Juez ... at mining district of San Francisquito'",
+    "lp_oaklandtrib110418 (1918, from Juventino): gold found 'in 1844' and shipped 'to England'",
+    "output: reynolds part16 '125 pounds of ore' by 1848; worden lw012496 '1,300 pounds of gold' 1842–47; perkins part03 (Bancroft) '2,000 ounces' by end of 1843; camp closed by raids in 1844 (Perkins) vs 'petered out in 1848' (Reynolds)",
+    "Lopez's relationship: uncle of Doña Jacoba (reynolds part16); 'his niece's ranch' (worden-coinage1005); 'a relative' (robinson)"
+   ],
+   "outside": "Wikipedia: the gold discovery was on the disputed land. The Huntington's Abel Stearns papers cover 'the gold discoveries in Southern California in 1842' (OAC).",
+   "favors": "March 9, 1842 on the del Valle estate land (Placerita), with Ygnacio appointed the placer's justice on May 3, 1842 (contemporary document). The 1844 date is a late family recollection. Production figures conflict and should be attributed.",
+   "settle": "Bancroft: Arguello's appointment of May 3, 1842 and the Lopez petition of April 4, 1842 (Archives of California / Departmental State Papers); Abel Stearns papers (Huntington) for assay and shipments; US Mint deposit records, 1842–43 (NARA RG 104)."
+  },
+  {
+   "id": "C19",
+   "topic": "Drought dates and what Ygnacio owned before it",
+   "pages": [
+    "lw2052, robinson_storyofvalencia_1967: drought 1862–64",
+    "lw3903: 'the drought of 1863-64 that followed the torrential rains of 1861-62'",
+    "lp_oaklandtrib110418 note: 'Prior to the Great Drought of 1864-65, he owned the entire Rancho San Francsico'",
+    "delcastillo1980: 1863; reynolds part26: flood of 1856 and mortgages",
+    "gallery-lw2706: in 1853 'the Del Valles were in possession of the entire 48,000-acre Rancho San Francisco' (the family collectively)"
+   ],
+   "outside": "Wikipedia: flooding, then drought, early 1860s.",
+   "favors": "Drought 1862–64 (the standard dating; 1864–65 is wrong). Before the drought Ygnacio held an undivided share (5/11 by Robinson), not the entire rancho.",
+   "settle": "LA Star / Daily Alta weather and cattle reports, 1862–65 (CDNC); LA County assessment rolls 1860–65."
+  },
+  {
+   "id": "C20",
+   "topic": "Ramona and Camulos: Helen Hunt Jackson's visit",
+   "pages": [
+    "reynolds part29: 'Jackson arrived at Camulos on Jan. 23, 1882'",
+    "delcastillo1980: visited 'on January 23, 1883', 'for about four hours'; none of the elder del Valles were home",
+    "latta1976ramona (José Jesús López): 'There was no \"Ramona\" such as Helen Hunt Jackson created'",
+    "lw2963 (Odell 1939), edwardsroberts_ramonashome (1886), carter-ramona1902: the Camulos-as-Ramona's-home tradition"
+   ],
+   "outside": "Not checked against HHJ's letters in this pass.",
+   "favors": "The day (Jan 23) agrees; the year does not. 1882 fits the known timeline (Ramona written in New York in 1883–84), but it is NEEDS_VERIFICATION against Jackson's dated letters. Either way the visit was after Ygnacio's death: he had no personal role in the novel.",
+   "settle": "Helen Hunt Jackson papers (Colorado College Special Collections; Huntington HHJ collection): letters of Jan 1882/1883."
+  },
+  {
+   "id": "C21",
+   "topic": "Indigenous content (Tataviam, Chumash) at Camulos (CARE)",
+   "pages": [
+    "reynolds part15: at Camulos 'the grass huts of the Tataviam Indians'; the name means 'juniper tree' in Spanish, but Ygnacio 'preferred the Chumash translation, \"House of Refuge\"'",
+    "times111101: 'the former Indian village of Camulos, which means juniper tree'",
+    "robinson_storyofvalencia_1967 (editor): Camulos 'had been a Tataviam Indian village' and gives two village names (not repeated here)",
+    "engelhardt_sanfernando56: the del Valles took possession 'against the will of the neophytes'",
+    "delcastillo1980: Reginaldo's 1930 history told of 'burying a dead Indian child in the walls'; almost 200 'Indians and Mexicans' lived on the rancho",
+    "tv1703: 'Tataviam Mortar and Pestle' (Smithsonian loan, 2017); lw2632a: 'Native American grinding stones'",
+    "reynolds notes (note 1): Tataviam descendants; cites a spiritual leader of the Fernandeño-Tataviam tribe"
+   ],
+   "outside": "Self-name verified: Fernandeño Tataviam Band of Mission Indians (tataviam-nsn.us). Chumash representation for the Santa Clara River valley would need to be identified with the tribes. Not further verified here.",
+   "favors": "**Flag for tribal consultation; do not settle.** The meaning and origin of 'Camulos' (Spanish 'juniper' vs 'Chumash' 'House of Refuge' vs a Tataviam village name), the 'grass huts' description, the burial-in-walls story, and the artifact labels all need review by the Fernandeño Tataviam Band (and Chumash representatives where Chumash attribution is made). No coordinates or site locations are given in this dossier; the Camulos cemetery and artifact find-spots are not located here.",
+   "settle": "Consultation: Fernandeño Tataviam Band of Mission Indians; appropriate Chumash tribal governments. Documents: Mission San Fernando registers (ECPP) for Camulos-origin baptisms; Rancho Camulos Museum and Smithsonian loan records for tv1703."
+  }
+ ],
+ "live_errors": [
+  {
+   "id": "L1",
+   "page": "lw2052 (Ygnacio del Valle); same figures in reynolds part15",
+   "quote": "\"a judge awarded 13,599 acres to Ygnacio, 21,307 acres to Jacoba, and 4,684 acres to each of Jacoba's six children\"",
+   "correct": "The three figures add up to 62,010 acres, about 13,400 more than the whole rancho (48,611.88 acres patented). They cannot all be right. Add an editor's note, or replace them with the documented sequence: undivided shares 1841–1870, then the 1870 partition that gave Ygnacio Camulos (about 1,340 acres). reynolds part29 gives yet another figure, 'original grant of 16,599 acres'.",
+   "evidence": "Arithmetic; patent acreage (Land Case 303 SD, Bancroft/Calisphere); perkins-rsf-1957 ('could not be partitioned before title confirmation'; 1870 partition, 2/21, 1,340 acres); robinson_storyofvalencia_1967 (undivided 5/11)."
+  },
+  {
+   "id": "L2",
+   "page": "lw2052",
+   "quote": "\"Instead, Ygnacio lived at Los Angeles, where he was mayor. Acutally, Ygnacio was a California state legislator, too\"",
+   "correct": "'where he was alcalde (1850) and later a city councilman'. Fix the typo 'Acutally'. The page's own office list shows only City Council terms (May 4, 1852 – May 3, 1853; May 7 – Dec 15, 1856).",
+   "evidence": "Same page's office list; penpictures_ydelvalle (1889): 'in 1850 he was alcalde'; carter-ramona1902: A.F. Coronel was mayor in 1853; Wikipedia infobox: alcalde ('de facto mayor') Jan–Jul 1850, succeeded by A.P. Hodges, first mayor under the city charter."
+  },
+  {
+   "id": "L3",
+   "page": "lw2052; lw2532; lw3768",
+   "quote": "lw2052: \"When statehood came in 1850, Ygnacio served a short stint in the first Legislature\"; lw2532/lw3768: \"after serving in the state Legislature at statehood in 1850\"",
+   "correct": "He was elected on Sept 3, 1851 (2nd Assembly District) and sat in the 1852 session (Jan 5, 1852 – Jan 3, 1853), not the first Legislature of 1849–50.",
+   "evidence": "JoinCalifornia record 'Ignacio Del Valle' (09-03-1851, AD-02, Win); Wikipedia infobox. Confirming entry in the Assembly Journal, 1852: NEEDS_VERIFICATION."
+  },
+  {
+   "id": "L4",
+   "page": "lw2752 (family tree)",
+   "quote": "\"Upon Antonio's death two years later, the ranch was divided among his widow and children. Son Ygnacio ended up with the western portion\"",
+   "correct": "The heirs held undivided shares from 1841. Title was confirmed in 1855–57, and the rancho was formally partitioned only in 1870, when Ygnacio's share was set off as Camulos.",
+   "evidence": "perkins-rsf-1957 (estate distributed 'by undivided portions'; 1870 partition, effective July 30); robinson_storyofvalencia_1967 (the explanation of 'undivided')."
+  },
+  {
+   "id": "L5",
+   "page": "lw3903, lw2463a, lw2633a, lw2632a, lw2695 (shared Camulos boilerplate)",
+   "quote": "\"Ygnacio, a big-league L.A. politician, worked a deal to keep the 1,500-acre Camulos section\"",
+   "correct": "About 1,340 acres (1870 partition). Other site pages say 1,300 (Robinson) or 1,350 (lastar18640514wolfskill, hl7101). No site page gives a source for 1,500.",
+   "evidence": "perkins-rsf-1957; reynolds part29; delcastillo1980 ('dwindled to 1,340 acres by 1886'); robinson_storyofvalencia_1967."
+  },
+  {
+   "id": "L6",
+   "page": "lastar18640514wolfskill (webmaster's note)",
+   "quote": "\"They retained the westernmost 1,350 acres, which became the separate Rancho Camulos when Henry Newhall bought the 46,460 acres that remained of the old Rancho San Francisco at a sheriff's sale in 1875\"",
+   "correct": "Newhall's Jan 15, 1875 purchase ($90,000) was not a sheriff's sale. The 1873 sheriff's sale went to Fernald & Richards; a second sheriff's sale was called off when a private buyer (Newhall) was found.",
+   "evidence": "The site's own robinson_storyofvalencia_1967 summary; perkins-rsf-1957 ('deeded to Henry M. Newhall, consideration $90,000, January 15, 1875'). The acreage (46,460) is NEEDS_VERIFICATION."
+  },
+  {
+   "id": "L7",
+   "page": "signal/reynolds/part29.html (reprint)",
+   "quote": "\"Management of the estate passed to his eldest surviving son, Reginaldo, who was then a state senator\"",
+   "correct": "In March 1880 Reginaldo was an Assemblyman-elect or Assemblyman (1880–81) and became State Senator only in 1882. Juventino (b. 1841) was older. Add an editor's note.",
+   "evidence": "penpictures_rdelvalle (1889: 'in 1882 he was unanimously nominated as State Senator'); lat18900822delvalle note (Assembly 1880–81); lw2752 (Juventino 1841–1919); lw3664 (Juventino manager 1862–1886)."
+  },
+  {
+   "id": "L8",
+   "page": "hl7101",
+   "quote": "\"back in 1858, Ygnacio's stepfather borrowed $8,500\"",
+   "correct": "José Salazar was the second husband of Ygnacio's stepmother, Jacoba Feliz, not his stepfather. Suggest: 'his stepmother's husband, José Salazar'.",
+   "evidence": "reynolds part15; perkins-rsf-1957; lastar18640514wolfskill ('Jose Salazar, the new husband of Antonio del Valle's widow')."
+  },
+  {
+   "id": "L9",
+   "page": "times111101 (reprint); penpictures_rdelvalle (1889 original)",
+   "quote": "\"When Del Valle died in 1880, at age 72\"; \"He died in 1880, at the age of seventy-two years\"",
+   "correct": "71 (born July 1, 1808; died March 30, 1880). Add [sic] notes; the originals should not be altered.",
+   "evidence": "lw2052 / reynolds part14 (born July 1, 1808); reynolds part29 (died March 30, 1880)."
+  },
+  {
+   "id": "L10",
+   "page": "sg090199a (1999 Signal reprint)",
+   "quote": "\"Antonio del Valle, a Mexican-born missionary who owned 48,000 acres\"",
+   "correct": "Antonio was a soldier (lieutenant, San Blas Company) and later the civil administrator (mayordomo) of Mission San Fernando, not a missionary. Add an editor's note. The article also names a living private descendant; this dossier does not repeat the name.",
+   "evidence": "reynolds part14; perkins-rsf-1957 fn 26; engelhardt_sanfernando56; NHM GC 1002 ('came to California in the Spanish army in 1819')."
+  },
+  {
+   "id": "L11",
+   "page": "lw3903, lw2463a, lw2633a, lw2632a, lw2695 (shared boilerplate)",
+   "quote": "\"Camulos has been owned by just two families since the end of war for Mexican independence from Spain\"",
+   "correct": "Ownership by the del Valles dates from the 1839 grant (with claimed use from about 1824–25). The site itself notes an 1804 grant attempt (Avila) and a 1820s Carrillo attempt. Suggest: 'since 1839' or 'since the Mexican era'.",
+   "evidence": "perkins-rsf-1957 (1804 protest; Carrillo's 1820s attempt; grant Jan 22, 1839; 'the exact current status ... is a little clouded' before 1839); Land Case 303 SD."
+  },
+  {
+   "id": "L12",
+   "page": "lp_oaklandtrib110418 (webmaster's note 2)",
+   "quote": "\"Prior to the Great Drought of 1864-65, he owned the entire Rancho San Francsico\"",
+   "correct": "Before the drought of 1862–64, Ygnacio held an undivided share (about 5/11) alongside his stepmother, her husband and his half-siblings. Fix the typo 'Francsico'.",
+   "evidence": "robinson_storyofvalencia_1967 (5/11; drought 1862–64); lw2052 (drought 1862–64); perkins-rsf-1957."
+  }
+ ],
+ "archive_beats_outside": [
+  {
+   "id": "A1",
+   "outside": "Wikipedia 'Ygnacio del Valle' (text)",
+   "claim": "'In 1852, at the age of 44, he married 15-year-old Ysabel Varela' (its own infobox says 1851)",
+   "archive": "penpictures_ydelvalle (1889, written while Ysabel was alive): 'His second wife, whom he married in 1851'",
+   "verdict": "The archive is right on the year (the Schwald transcription of the Plaza Church register gives Dec 7, 1851). Wikipedia contradicts itself. He was 43 at the time."
+  },
+  {
+   "id": "A2",
+   "outside": "Wikipedia",
+   "claim": "Del Valle 'received Rancho El Tejon' in 1843 'for his military service'",
+   "archive": "penpictures_ydelvalle (1889): 'Don Ygnacio and Don J.A. Aguirre received a concession in 1843 of the rancho of Tejon, twenty-two Spanish leagues'; perkins-rsf-1957 fn (97,000 acres, with José Antonio Aguirre)",
+   "verdict": "The archive names the co-grantee. Wikipedia omits him. The basis 'for military service' is NEEDS_VERIFICATION."
+  },
+  {
+   "id": "A3",
+   "outside": "Wikipedia",
+   "claim": "During his 1850 alcalde term 'he established the Los Angeles Rangers'",
+   "archive": "dac18530727camulos (Daily Alta, July 27, 1853, from the LA Star of July 16): the citizens' meeting of July 15, 1853 that organized volunteers; reynolds part25/part41 and lw2052: Rangers formed in the early 1850s, effective 'by 1855'",
+   "verdict": "The archive's contemporary 1853 report dates the organizing to 1853, three years after his alcalde term. Wikipedia's timing is wrong. His personal role in founding the Rangers is NEEDS_VERIFICATION (Horace Bell, 1881)."
+  },
+  {
+   "id": "A4",
+   "outside": "JoinCalifornia",
+   "claim": "Died March 30, 1880 'in Los Angeles, CA'; '1853: Mayor, City of Los Angeles?'",
+   "archive": "penpictures_ydelvalle (1889): at his death 'his home was on the beautiful Camulos Rancho'; reynolds part29: died and was buried at Camulos; lw2052 office list (Council 1852–53); carter-ramona1902 (A.F. Coronel mayor, 1853)",
+   "verdict": "The archive favors death at Camulos (Ventura County) and shows he was not mayor in 1853. The date agrees."
+  },
+  {
+   "id": "A5",
+   "outside": "Natural History Museum of LA County exhibit signage ('Becoming Los Angeles')",
+   "claim": "The Rancho San Francisco diseño dates to 1854; the branding iron is labeled '1834-1844'",
+   "archive": "lw2570a: the diseño bears Governor Micheltorena's signature (in office 1842–45), so it cannot be from 1854; lw2526a questions the '1834-1844' label",
+   "verdict": "The archive's reasoning is sound. Early 1840s (Micheltorena era) for the diseño."
+  },
+  {
+   "id": "A6",
+   "outside": "Wikidata Q8053412",
+   "claim": "P570 '1880' (year only); P20 place of death 'United States'; no references",
+   "archive": "reynolds part29: March 30, 1880 at Camulos; penpictures_ydelvalle: home at Camulos at death",
+   "verdict": "The archive gives the day and the place (agreeing with the Wikipedia infobox and JoinCalifornia). Wikidata could be refined to 1880-03-30 and Rancho Camulos / Ventura County once a primary source is cited (NEEDS_VERIFICATION: death notice, 1880)."
+  },
+  {
+   "id": "A7",
+   "outside": "Wikipedia",
+   "claim": "Del Valle 'kept 1,500 acres' of Camulos",
+   "archive": "perkins-rsf-1957 (1870 partition: 2/21 share, 1,340 acres); delcastillo1980 (1,340 acres by 1886); robinson_storyofvalencia_1967 (1,300)",
+   "verdict": "The archive's documented figure is about 1,340. 1,500 is unsourced (and repeated on five site pages: L5)."
+  },
+  {
+   "id": "A8",
+   "outside": "hometownstation.com (Rancho San Francisco history)",
+   "claim": "US patent issued 'March 18, 1875'",
+   "archive": "perkins-rsf-1957: patent Feb 12, 1875; March 18 is the date of the [1865] deed from Ygnacio del Valle to Thomas R. Bard",
+   "verdict": "The archive agrees with the Bancroft Land Case 303 SD record (Feb 12, 1875) and explains the March 18 confusion."
+  },
+  {
+   "id": "A9",
+   "outside": "Wikipedia (citing sg090199a)",
+   "claim": "Antonio's deathbed letter offered Ygnacio properties 'including the 48,612-acre Rancho San Francisco'",
+   "archive": "reynolds part14: the offer was a half-interest in a Santa Barbara house, 300 cattle and 'the place extending from the portsuelo of [Rancho] San Francisco towards the west' (the Camulos end)",
+   "verdict": "The archive is more precise; Wikipedia overstates the offer. The original letter is NEEDS_VERIFICATION (Wally Smith 1958 was Reynolds' source)."
+  }
+ ],
+ "corrections": [
+  "**'Sales to Jenkins / Newhall (1875)'** (from the brief): nothing seen supports a del Valle sale to W.W. Jenkins. Jenkins appears only as a Ranger captain, Castaic claimant (1872) and district recorder. **Ygnacio's sale was to Thomas R. Bard in 1865.** Henry M. Newhall bought in Jan 1875 from the post-1873 holders, not from Ygnacio. Ygnacio later mortgaged Camulos to Newhall (1876, $10,000; 1879, $15,776).",
+  "**'Camulos ≈ 1,800 acres'** (working note from lp1501 and times111101): 1,800 is the modern ranch (NRHP 1996) and Reginaldo's 1930 recollection. What Ygnacio kept after the 1870 partition was about 1,340 acres.",
+  "**'48,829 acres on lw2052 is an error'** (working note): withdrawn as a live error. 48,829 is the nominal 11 square leagues at 4,439 acres per league (Perkins). It should be labeled nominal, but it is not wrong. The patent figure is 48,611.88.",
+  "**The Land Case record (Bancroft/Calisphere) describes two grants**: Sespe (Figueroa, 1833, 6 leagues) and San Francisco (Alvarado, Jan 22, 1839, about 4 leagues). This is not simply the single '11-league 1839 grant' assumed earlier. How they add up to the 48,611.88-acre patent must be read in the case file (NEEDS_VERIFICATION; the Bancroft page returned 403 on recheck, so this rests on the earlier read and a search snippet).",
+  "**hometownstation's 'March 18, 1875' patent date**, noted earlier as a straight conflict, is explained as confusion with the March 18, [1865] deed to Bard (A8).",
+  "**Magdalena del Valle**: an early working note followed Perkins fn 26 (Ygnacio's full sister). Most site sources, including the 1853 ledger caption, make her Jacoba's daughter (half-sister). Left open in C3.",
+  "**Huntington holdings**: no 'del Valle family papers' collection was found at the Huntington (web search; catalog.huntington.org returned 403). The verified repositories are NHM Seaver Center GC 1002 and P-14, and the Rancho Camulos Museum. The Huntington's Abel Stearns papers (OAC) are relevant for 1842 gold and business dealings."
+ ],
+ "open_questions": [
+  {
+   "q": "Partition figures 13,599 / 21,307 / 4,684",
+   "note": "Find the source (Wally Smith 1958?) and whether any Mexican-era judicial division existed; the 1870 decree governs."
+  },
+  {
+   "q": "Mother's maiden name (Carillo vs de la Peña)",
+   "note": "Ygnacio's baptism (Nueva Galicia) or Antonio's first marriage record."
+  },
+  {
+   "q": "Two 1865 deed prices ($47,519.71 Mar 18 vs $53,320 Apr 29)",
+   "note": "LA County Deeds, 1865; possibly two instruments (del Valles; Wolfskill)."
+  },
+  {
+   "q": "Assembly 1856 (Perkins)",
+   "note": "Assembly Journal 1856; likely confused with the 1856 Council term."
+  },
+  {
+   "q": "Mission San Buenaventura burial entry (Apr 1, 1880)",
+   "note": "Register image; does it record burial at Camulos?"
+  },
+  {
+   "q": "HHJ visit 1882 vs 1883",
+   "note": "Jackson's dated letters."
+  },
+  {
+   "q": "Camulos cemetery 'Census' page",
+   "note": "Linked from lp1501's sidebar (not machine-parseable); not fetched. A burial list may include private individuals, so any use needs a privacy review."
+  }
+ ],
+ "finding_aids": [
+  {
+   "name": "Bancroft Library: Land Case 303 SD, 'San Francisco [Los Angeles and Ventura County] Jacoba Feliz et al., Claimants'",
+   "url": "https://digicoll.lib.berkeley.edu/record/268929 (Calisphere: https://calisphere.org/item/565388b00f0d01cabcefb36eefcd335f/)",
+   "points_to": "Grants of 1833 (Sespe) and Jan 22, 1839; filed Sept 2, 1852; confirmed Jan 2, 1855; appeal dismissed June 8, 1857; patent Feb 12, 1875, 48,611.88 acres (LA 37,870.32; Ventura 10,741.56); GLO map 399; BANC MSS Land Case Files 303 SD. (403 on recheck today.)"
+  },
+  {
+   "name": "NHM Seaver Center GC 1002, Del Valle Family Papers, 1789–1929",
+   "url": "https://nhm.org/sites/default/files/2019-06/gc1002_web_finding_aid.pdf_0.pdf (OAC ark:/13030/c8c827qr)",
+   "points_to": "13 legal boxes; Antonio Seferino (1788–1841), Ygnacio (1808–80, 'born in Jalisco'), Reginaldo, Ysabel; chronological; by appointment. Related: P-14 Del Valle photograph collection; GC 1001 Coronel papers."
+  },
+  {
+   "name": "Rancho Camulos Museum, del Valle Family Papers, 1847–1924",
+   "url": "https://oac.cdlib.org/findaid/ark:/13030/c8st7wmd/",
+   "points_to": "10 boxes; ranch and winery records, mortgages, letters; Josefa del Valle Forster helped manage after Ygnacio's death in 1880."
+  },
+  {
+   "name": "Huntington: Abel Stearns papers, 1821–1935",
+   "url": "https://oac.cdlib.org/findaid/ark:/13030/tf3v19n6ft/",
+   "points_to": "Covers 'the gold discoveries in Southern California in 1842' and ranching; Stearns handled the Placerita gold. No separate del Valle collection found at the Huntington (catalog 403): NEEDS_VERIFICATION."
+  },
+  {
+   "name": "Huntington: Early California Population Project (ECPP)",
+   "url": "https://www.huntington.org/ecpp (cited by Wikipedia; URL NEEDS_VERIFICATION)",
+   "points_to": "Mission sacramental records: 1842 Santa Barbara marriage, Antonio's burial, the heirs' baptisms."
+  },
+  {
+   "name": "Wikipedia 'Ygnacio del Valle' (Good Article)",
+   "url": "https://en.wikipedia.org/wiki/Ygnacio_del_Valle",
+   "points_to": "Infobox: b. July 1, 1808; d. March 30, 1880 at Rancho Camulos; alcalde 1850; Assembly 1852; marriage 1851 vs 1852 in the text (A1); El Tejon (A2); Rangers (A3); 1,500 acres (A7). Cites the Chronological Record of LA City Officials 1850–1938 (WPA 1938)."
+  },
+  {
+   "name": "Wikidata Q8053412",
+   "url": "https://www.wikidata.org/wiki/Q8053412",
+   "points_to": "P569 1808-07-01; P570 1880; P19 Jalisco; P20 United States; unreferenced; WikiTree Del_Valle-19; father item Q132146447."
+  },
+  {
+   "name": "JoinCalifornia: Ignacio Del Valle",
+   "url": "https://www.joincalifornia.com/candidate/9202",
+   "points_to": "Elected 09-03-1851, AD-02; b. July 1, 1808, Jalisco; d. March 30, 1880 'in Los Angeles' (A4); '1853: Mayor?' (A4)."
+  },
+  {
+   "name": "Schwald family genealogy: Ygnacio Ramón de Jesús del Valle",
+   "url": "https://schwaldfamily.org/getperson.php?personID=I26039&tree=RodSchwald",
+   "points_to": "Secondary. b. abt 1808 Compostela; mother Josefa de la Peña; m. Dec 7, 1851, Plaza Church (register #238); first marriage Jan 1, 1842, Santa Barbara; d. Mar 30, 1880; burial Apr 1, 1880, Mission San Buenaventura. A lead to the registers, not an authority."
+  },
+  {
+   "name": "Fernandeño Tataviam Band of Mission Indians (self-name)",
+   "url": "https://www.tataviam-nsn.us/",
+   "points_to": "For consultation on C21."
+  },
+  {
+   "name": "Triem & Stone 1996, Rancho Camulos NRHP nomination (NHL 2000/2001)",
+   "url": "on site: camulos-nrhp1; NPS NRHP files (NEEDS_VERIFICATION)",
+   "points_to": "1853 adobe; 1,800-acre ranch (1996)."
+  },
+  {
+   "name": "hometownstation.com (Rancho San Francisco ownership list)",
+   "url": "(URL from earlier search; not re-fetched)",
+   "points_to": "Patent 'March 18, 1875' (A8); owner chain del Valle, Bard, Gratz, Phila. & Calif. Petroleum Co., Newhall."
+  }
+ ]
+}
