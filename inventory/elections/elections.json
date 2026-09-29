@@ -1,0 +1,1954 @@
+{
+ "built_by": "scripts/import/parse_election_results.py",
+ "documents": {
+  "summary": "historical-results-7.pdf",
+  "res129": "resolutionNo129-6.pdf",
+  "r2014": "2014ElectionResultsbyPreci-5.pdf",
+  "sov2016": "2016StatementofVotesCast-4.pdf",
+  "sov2018": "LACountyFinalVoteCount-3.pdf",
+  "sov2020": "Final-Election-Canvass-Res-2.pdf",
+  "sov2022": "Final-Certficate-of-Canvas-1.pdf",
+  "sov2024": "10880.pdf"
+ },
+ "elections": [
+  {
+   "printed": "November 3, 1987",
+   "date": "1987-11-03",
+   "kind": "general",
+   "consolidatedWith": "County of Los Angeles consolidated election",
+   "doc": "summary",
+   "ballots": "21,918",
+   "registered": "",
+   "absentee": "1,733",
+   "precinct": "20,185",
+   "candidates": [
+    {
+     "name": "Vernon H. Pera",
+     "votes": "1.133",
+     "value": 1133,
+     "rank": 21,
+     "topN": false
+    },
+    {
+     "name": "Frank A. Parkhurst",
+     "votes": "726",
+     "value": 726,
+     "rank": 26,
+     "topN": false
+    },
+    {
+     "name": "Richard M. Vacar",
+     "votes": "5,935",
+     "value": 5935,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Bill Hilton",
+     "votes": "2,374",
+     "value": 2374,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Janice Heidt",
+     "votes": "8,402",
+     "value": 8402,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Monty Harrell",
+     "votes": "1,309",
+     "value": 1309,
+     "rank": 19,
+     "topN": false
+    },
+    {
+     "name": "Dennis M. Koontz",
+     "votes": "6,164",
+     "value": 6164,
+     "rank": 5,
+     "topN": true
+    },
+    {
+     "name": "Gail Klein",
+     "votes": "1,756",
+     "value": 1756,
+     "rank": 16,
+     "topN": false
+    },
+    {
+     "name": "Kenneth Dean",
+     "votes": "1,306",
+     "value": 1306,
+     "rank": 20,
+     "topN": false
+    },
+    {
+     "name": "Jo Anne Darcy",
+     "votes": "7,601",
+     "value": 7601,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Ronald J. (Ron) Nolan",
+     "votes": "848",
+     "value": 848,
+     "rank": 24,
+     "topN": false
+    },
+    {
+     "name": "Robert Silverstein",
+     "votes": "2,116",
+     "value": 2116,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Linda Hovis Storli",
+     "votes": "5,550",
+     "value": 5550,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Edmund (Ed) G. Stevens",
+     "votes": "936",
+     "value": 936,
+     "rank": 23,
+     "topN": false
+    },
+    {
+     "name": "Maurice D. Ungar",
+     "votes": "2.000",
+     "value": 2000,
+     "rank": 13,
+     "topN": false
+    },
+    {
+     "name": "Roger A. Meurer",
+     "votes": "1,976",
+     "value": 1976,
+     "rank": 14,
+     "topN": false
+    },
+    {
+     "name": "Andy Martin",
+     "votes": "2,203",
+     "value": 2203,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Howard P. “Buck” McKeon",
+     "votes": "9,855",
+     "value": 9855,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Dennis Conn",
+     "votes": "788",
+     "value": 788,
+     "rank": 25,
+     "topN": false
+    },
+    {
+     "name": "Jeffrey D. Christensen",
+     "votes": "974",
+     "value": 974,
+     "rank": 22,
+     "topN": false
+    },
+    {
+     "name": "H. G. “Gil” Callowhill",
+     "votes": "1,813",
+     "value": 1813,
+     "rank": 15,
+     "topN": false
+    },
+    {
+     "name": "Michael D. Lyons",
+     "votes": "3,111",
+     "value": 3111,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "William J. Broyles",
+     "votes": "1,341",
+     "value": 1341,
+     "rank": 18,
+     "topN": false
+    },
+    {
+     "name": "Louis E. Brathwaite",
+     "votes": "3,408",
+     "value": 3408,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Carl Boyer, III",
+     "votes": "6,585",
+     "value": 6585,
+     "rank": 4,
+     "topN": true
+    },
+    {
+     "name": "Donald “Don” Benton",
+     "votes": "1,687",
+     "value": 1687,
+     "rank": 17,
+     "topN": false
+    }
+   ],
+   "measures": [
+    {
+     "letter": "U",
+     "subject": "Incorporation of City of Santa Clarita",
+     "yes": "14,723",
+     "no": "6,597",
+     "yesValue": 14723,
+     "noValue": 6597
+    },
+    {
+     "letter": "V",
+     "subject": "Council elected by district or at large (Yes: by district; No: at large)",
+     "yes": "7,905",
+     "no": "11.166",
+     "yesValue": 7905,
+     "noValue": 11166
+    }
+   ],
+   "ballotsValue": 21918,
+   "absenteeValue": 1733,
+   "precinctValue": 20185,
+   "seats": 5,
+   "seatsEvidence": "retrospective"
+  },
+  {
+   "printed": "April 10, 1990",
+   "date": "1990-04-10",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "9.432",
+   "registered": "53,186",
+   "absentee": "1,050",
+   "precinct": "8,295",
+   "candidates": [
+    {
+     "name": "Carl Boyer",
+     "votes": "4,042",
+     "value": 4042,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Jo Anne Darcy",
+     "votes": "3,548",
+     "value": 3548,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Kenneth Dean",
+     "votes": "3,015",
+     "value": 3015,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Dennis Koontz",
+     "votes": "2,155",
+     "value": 2155,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Jill Klajic",
+     "votes": "4,081",
+     "value": 4081,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Vera Johnson",
+     "votes": "2,804",
+     "value": 2804,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Andy Martin",
+     "votes": "1,643",
+     "value": 1643,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Herb Wolfe",
+     "votes": "2,699",
+     "value": 2699,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Wayne Carter",
+     "votes": "983",
+     "value": 983,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Linda Calvert",
+     "votes": "1,772",
+     "value": 1772,
+     "rank": 8,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 9432,
+   "registeredValue": 53186,
+   "absenteeValue": 1050,
+   "precinctValue": 8295,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 14, 1992",
+   "date": "1992-04-14",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "18,638",
+   "registered": "57,870",
+   "absentee": "3,688",
+   "precinct": "14,950",
+   "candidates": [
+    {
+     "name": "Jan Heidt",
+     "votes": "6,748",
+     "value": 6748,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "George L.Pederson",
+     "votes": "5,693",
+     "value": 5693,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Mike Lyons",
+     "votes": "3,571",
+     "value": 3571,
+     "rank": 3,
+     "topN": false
+    },
+    {
+     "name": "Linda H. Storli",
+     "votes": "3,325",
+     "value": 3325,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Gary Johnson",
+     "votes": "3,227",
+     "value": 3227,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Vera J. Johnson",
+     "votes": "2,675",
+     "value": 2675,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Lee Schramling",
+     "votes": "2,642",
+     "value": 2642,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Kenneth Dean",
+     "votes": "1,318",
+     "value": 1318,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "William H. French",
+     "votes": "1,243",
+     "value": 1243,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Linda Calvert",
+     "votes": "1,175",
+     "value": 1175,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Andy Martin",
+     "votes": "751",
+     "value": 751,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Bruce K. Bell",
+     "votes": "435",
+     "value": 435,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Wayne Carter",
+     "votes": "434",
+     "value": 434,
+     "rank": 13,
+     "topN": false
+    },
+    {
+     "name": "Ed Stevens",
+     "votes": "394",
+     "value": 394,
+     "rank": 14,
+     "topN": false
+    },
+    {
+     "name": "Randall K. Pfiester",
+     "votes": "388",
+     "value": 388,
+     "rank": 15,
+     "topN": false
+    },
+    {
+     "name": "Gregory M. Goyette",
+     "votes": "223",
+     "value": 223,
+     "rank": 16,
+     "topN": false
+    }
+   ],
+   "measures": [
+    {
+     "letter": "A-92",
+     "subject": "Growth Control",
+     "yes": "7,960",
+     "no": "10,332",
+     "yesValue": 7960,
+     "noValue": 10332
+    }
+   ],
+   "ballotsValue": 18638,
+   "registeredValue": 57870,
+   "absenteeValue": 3688,
+   "precinctValue": 14950,
+   "seats": 2,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 12, 1994",
+   "date": "1994-04-12",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "10,426",
+   "registered": "65,287",
+   "absentee": "2,554",
+   "precinct": "7,872",
+   "candidates": [
+    {
+     "name": "Jo Anne Darcy",
+     "votes": "5,460",
+     "value": 5460,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Carl Boyer",
+     "votes": "4,216",
+     "value": 4216,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Clyde Smyth",
+     "votes": "3,804",
+     "value": 3804,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Jill Klajic",
+     "votes": "3,788",
+     "value": 3788,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Fred Heiser",
+     "votes": "2,985",
+     "value": 2985,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Dennis Farnham",
+     "votes": "2,784",
+     "value": 2784,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Linda H. Storli",
+     "votes": "2,406",
+     "value": 2406,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Tim M. Jorgensen",
+     "votes": "1,295",
+     "value": 1295,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Rosalind Wayman",
+     "votes": "822",
+     "value": 822,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Larry L. Bird",
+     "votes": "559",
+     "value": 559,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Craig Wanek",
+     "votes": "481",
+     "value": 481,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Kenneth Dean",
+     "votes": "332",
+     "value": 332,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Theodore De Vries",
+     "votes": "274",
+     "value": 274,
+     "rank": 13,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 10426,
+   "registeredValue": 65287,
+   "absenteeValue": 2554,
+   "precinctValue": 7872,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 9, 1996",
+   "date": "1996-04-09",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "10,948",
+   "registered": "65,626",
+   "absentee": "3,433",
+   "precinct": "7,515",
+   "candidates": [
+    {
+     "name": "Andy Martin",
+     "votes": "669",
+     "value": 669,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Laurene Weste",
+     "votes": "3,104",
+     "value": 3104,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Louis E. Brathwaite",
+     "votes": "1,011",
+     "value": 1011,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Larry L. Bird",
+     "votes": "555",
+     "value": 555,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Timothy Ben Boydston",
+     "votes": "282",
+     "value": 282,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Paul J. Bond",
+     "votes": "887",
+     "value": 887,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Rein J. Schuerger",
+     "votes": "627",
+     "value": 627,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Jan Heidt",
+     "votes": "3,422",
+     "value": 3422,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Gary Johnson",
+     "votes": "3,049",
+     "value": 3049,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Frank Ferry",
+     "votes": "3,208",
+     "value": 3208,
+     "rank": 3,
+     "topN": false
+    },
+    {
+     "name": "James Rose",
+     "votes": "34",
+     "value": 34,
+     "rank": 13,
+     "topN": false
+    },
+    {
+     "name": "Kevin M. Keyes",
+     "votes": "325",
+     "value": 325,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Jill Klajic",
+     "votes": "3,584",
+     "value": 3584,
+     "rank": 1,
+     "topN": true
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 10948,
+   "registeredValue": 65626,
+   "absenteeValue": 3433,
+   "precinctValue": 7515,
+   "seats": 2,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 14, 1998",
+   "date": "1998-04-14",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "13,837",
+   "registered": "72,199",
+   "absentee": "6,178",
+   "precinct": "7,659",
+   "candidates": [
+    {
+     "name": "Jeffrey O’Keefe",
+     "votes": "1,068",
+     "value": 1068,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Bob Nolan",
+     "votes": "389",
+     "value": 389,
+     "rank": 14,
+     "topN": false
+    },
+    {
+     "name": "David L. Ends",
+     "votes": "1,240",
+     "value": 1240,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Michael Egan",
+     "votes": "918",
+     "value": 918,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Marsha McLean",
+     "votes": "4,531",
+     "value": 4531,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Dennis Conn",
+     "votes": "412",
+     "value": 412,
+     "rank": 13,
+     "topN": false
+    },
+    {
+     "name": "Kent Carlson",
+     "votes": "1,426",
+     "value": 1426,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Laurene Weste",
+     "votes": "5,770",
+     "value": 5770,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Cameron Smyth",
+     "votes": "4,826",
+     "value": 4826,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Chuck Simons",
+     "votes": "343",
+     "value": 343,
+     "rank": 15,
+     "topN": false
+    },
+    {
+     "name": "Wendell C.Simms",
+     "votes": "2,079",
+     "value": 2079,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Ed Stevens",
+     "votes": "508",
+     "value": 508,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Frank Ferry",
+     "votes": "6,583",
+     "value": 6583,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Jo Anne Darcy",
+     "votes": "7,129",
+     "value": 7129,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Ryan Lawrence Krell",
+     "votes": "722",
+     "value": 722,
+     "rank": 11,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 13837,
+   "registeredValue": 72199,
+   "absenteeValue": 6178,
+   "precinctValue": 7659,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 11, 2000",
+   "date": "2000-04-11",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "12,723",
+   "registered": "74,202",
+   "absentee": "7,053",
+   "precinct": "5,670",
+   "candidates": [
+    {
+     "name": "Marsha McLean",
+     "votes": "4,201",
+     "value": 4201,
+     "rank": 3,
+     "topN": false
+    },
+    {
+     "name": "Bob Kellar",
+     "votes": "4,844",
+     "value": 4844,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Bob Heinisch",
+     "votes": "756",
+     "value": 756,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Diane Trautman",
+     "votes": "3,556",
+     "value": 3556,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Bob Jonsen",
+     "votes": "1,412",
+     "value": 1412,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Eileen Connolly",
+     "votes": "1,904",
+     "value": 1904,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Cameron Smyth",
+     "votes": "5.461",
+     "value": 5461,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "T. Michael Shanklin",
+     "votes": "177",
+     "value": 177,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "John Steffen",
+     "votes": "324",
+     "value": 324,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Rein Schuerger",
+     "votes": "921",
+     "value": 921,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Joe Nocella",
+     "votes": "423",
+     "value": 423,
+     "rank": 9,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 12723,
+   "registeredValue": 74202,
+   "absenteeValue": 7053,
+   "precinctValue": 5670,
+   "seats": 2,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 9, 2002",
+   "date": "2002-04-09",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "13,312",
+   "registered": "76,697",
+   "absentee": "6,902",
+   "precinct": "6,410",
+   "candidates": [
+    {
+     "name": "Lee W. Rich",
+     "votes": "519",
+     "value": 519,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "David J. Albee",
+     "votes": "1096",
+     "value": 1096,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Frank Ferry",
+     "votes": "6684",
+     "value": 6684,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Marsha McLean",
+     "votes": "6117",
+     "value": 6117,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "John Grannis",
+     "votes": "4101",
+     "value": 4101,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Duane R. Harte",
+     "votes": "3767",
+     "value": 3767,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Michael L. Hainline",
+     "votes": "1663",
+     "value": 1663,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Jan Heidt",
+     "votes": "5111",
+     "value": 5111,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "John B. Steffen",
+     "votes": "447",
+     "value": 447,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Laurene Weste",
+     "votes": "5516",
+     "value": 5516,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Jan Bilson",
+     "votes": "439",
+     "value": 439,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Dennis Conn",
+     "votes": "665",
+     "value": 665,
+     "rank": 9,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 13312,
+   "registeredValue": 76697,
+   "absenteeValue": 6902,
+   "precinctValue": 6410,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 13, 2004",
+   "date": "2004-04-13",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "10,723",
+   "registered": "74,723",
+   "absentee": "6,588",
+   "precinct": "4,135",
+   "candidates": [
+    {
+     "name": "Bob Kellar",
+     "votes": "5,777",
+     "value": 5777,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Henry Schultz",
+     "votes": "4,976",
+     "value": 4976,
+     "rank": 3,
+     "topN": false
+    },
+    {
+     "name": "Cameron Smyth",
+     "votes": "7,164",
+     "value": 7164,
+     "rank": 1,
+     "topN": true
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 10723,
+   "registeredValue": 74723,
+   "absenteeValue": 6588,
+   "precinctValue": 4135,
+   "seats": 2,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 11, 2006",
+   "date": "2006-04-11",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "11,982",
+   "registered": "79,164",
+   "absentee": "7,319",
+   "precinct": "4,663",
+   "candidates": [
+    {
+     "name": "Mark Hershey",
+     "votes": "4,312",
+     "value": 4312,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "JoAnn Smith Curtis",
+     "votes": "731",
+     "value": 731,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Michael Cruz",
+     "votes": "1,743",
+     "value": 1743,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Laurene Weste",
+     "votes": "5,241",
+     "value": 5241,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Frank Ferry",
+     "votes": "5,500",
+     "value": 5500,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Lynne Plambeck",
+     "votes": "3,097",
+     "value": 3097,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Ken Dean",
+     "votes": "714",
+     "value": 714,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Henry Schultz",
+     "votes": "3,562",
+     "value": 3562,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Jack Murphy",
+     "votes": "634",
+     "value": 634,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Marsha McLean",
+     "votes": "5,564",
+     "value": 5564,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Dwight McDonald",
+     "votes": "1,838",
+     "value": 1838,
+     "rank": 7,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 11982,
+   "registeredValue": 79164,
+   "absenteeValue": 7319,
+   "precinctValue": 4663,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 8, 2008",
+   "date": "2008-04-08",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "14,220",
+   "registered": "82,253",
+   "absentee": "9,905",
+   "precinct": "4,315",
+   "candidates": [
+    {
+     "name": "Laurie Ender",
+     "votes": "6,180",
+     "value": 6180,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Bob Kellar",
+     "votes": "6,135",
+     "value": 6135,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Bob Spierer",
+     "votes": "5,089",
+     "value": 5089,
+     "rank": 3,
+     "topN": false
+    },
+    {
+     "name": "Diane Trautman",
+     "votes": "4,959",
+     "value": 4959,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Maria Gutzeit",
+     "votes": "2,800",
+     "value": 2800,
+     "rank": 5,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 14220,
+   "registeredValue": 82253,
+   "absenteeValue": 9905,
+   "precinctValue": 4315,
+   "seats": 2,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 13, 2010",
+   "date": "2010-04-13",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "14,947",
+   "registered": "89,060",
+   "absentee": "10,052",
+   "precinct": "4,895",
+   "candidates": [
+    {
+     "name": "Daniel B. Henriquez",
+     "votes": "951",
+     "value": 951,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "David Gauny",
+     "votes": "6,478",
+     "value": 6478,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "David Galvan",
+     "votes": "1,024",
+     "value": 1024,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Henry Schultz",
+     "votes": "1,952",
+     "value": 1952,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Harrison Katz",
+     "votes": "2,045",
+     "value": 2045,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Frank Ferry",
+     "votes": "6,510",
+     "value": 6510,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "TimBen Boydston",
+     "votes": "5,863",
+     "value": 5863,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Laurene Weste",
+     "votes": "6,698",
+     "value": 6698,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Marsha McLean",
+     "votes": "6,831",
+     "value": 6831,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Kenneth W. Mann",
+     "votes": "800",
+     "value": 800,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Johnny Pride",
+     "votes": "357",
+     "value": 357,
+     "rank": 11,
+     "topN": false
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 14947,
+   "registeredValue": 89060,
+   "absenteeValue": 10052,
+   "precinctValue": 4895,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "April 10, 2012",
+   "date": "2012-04-10",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "summary",
+   "ballots": "15,390",
+   "registered": "90,714",
+   "absentee": "11,607",
+   "precinct": "3,783",
+   "candidates": [
+    {
+     "name": "Ed Colley",
+     "votes": "4,438",
+     "value": 4438,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Bob Kellar",
+     "votes": "7,519",
+     "value": 7519,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Jon Hatami",
+     "votes": "3,915",
+     "value": 3915,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Laurie Ender",
+     "votes": "5,408",
+     "value": 5408,
+     "rank": 3,
+     "topN": false
+    },
+    {
+     "name": "TimBen Boydston",
+     "votes": "6,145",
+     "value": 6145,
+     "rank": 2,
+     "topN": true
+    }
+   ],
+   "measures": [],
+   "ballotsValue": 15390,
+   "registeredValue": 90714,
+   "absenteeValue": 11607,
+   "precinctValue": 3783,
+   "seats": 2,
+   "seatsEvidence": "certified"
+  },
+  {
+   "printed": "April 8, 2014",
+   "date": "2014-04-08",
+   "kind": "general",
+   "consolidatedWith": "",
+   "doc": "r2014",
+   "ballots": "15,871",
+   "registered": "111,661",
+   "absentee": "",
+   "precinct": "",
+   "measures": [],
+   "candidates": [
+    {
+     "name": "Acosta",
+     "votes": "4937",
+     "surnameOnly": true,
+     "value": 4937,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Bull",
+     "votes": "1316",
+     "surnameOnly": true,
+     "value": 1316,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Chowdhury",
+     "votes": "1260",
+     "surnameOnly": true,
+     "value": 1260,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Conn",
+     "votes": "447",
+     "surnameOnly": true,
+     "value": 447,
+     "rank": 13,
+     "topN": false
+    },
+    {
+     "name": "Daniels",
+     "votes": "1141",
+     "surnameOnly": true,
+     "value": 1141,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Ferdman",
+     "votes": "4833",
+     "surnameOnly": true,
+     "value": 4833,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Harper",
+     "votes": "928",
+     "surnameOnly": true,
+     "value": 928,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Gutzeit",
+     "votes": "4472",
+     "surnameOnly": true,
+     "value": 4472,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Harte",
+     "votes": "4506",
+     "surnameOnly": true,
+     "value": 4506,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "McLean",
+     "votes": "5677",
+     "surnameOnly": true,
+     "value": 5677,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Mercado-Fortine",
+     "votes": "4633",
+     "surnameOnly": true,
+     "value": 4633,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Weste",
+     "votes": "6210",
+     "surnameOnly": true,
+     "value": 6210,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Wieczorek",
+     "votes": "1098",
+     "surnameOnly": true,
+     "value": 1098,
+     "rank": 11,
+     "topN": false
+    }
+   ],
+   "ballotsValue": 15871,
+   "registeredValue": 111661,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "November 8, 2016",
+   "date": "2016-11-08",
+   "kind": "general",
+   "consolidatedWith": "County of Los Angeles general election",
+   "doc": "sov2016",
+   "reading": "grand total, text layer; names, page 1 image",
+   "ballots": "90947",
+   "registered": "117972",
+   "absentee": "",
+   "precinct": "",
+   "measures": [],
+   "district": "",
+   "candidates": [
+    {
+     "name": "Bob Kellar",
+     "votes": "32216",
+     "value": 32216,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Mark White",
+     "votes": "3976",
+     "value": 3976,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Paul J Wieczorek",
+     "votes": "2806",
+     "value": 2806,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Cameron Smyth",
+     "votes": "30109",
+     "value": 30109,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Kenneth Dean",
+     "votes": "10101",
+     "value": 10101,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "David Ruelas",
+     "votes": "3918",
+     "value": 3918,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Sandra L Nichols",
+     "votes": "5730",
+     "value": 5730,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Brett Haddock",
+     "votes": "3955",
+     "value": 3955,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Matthew J Hargett",
+     "votes": "5486",
+     "value": 5486,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Alan Ferdman",
+     "votes": "12106",
+     "value": 12106,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "TimBen Boydston",
+     "votes": "17108",
+     "value": 17108,
+     "rank": 3,
+     "topN": false
+    }
+   ],
+   "ballotsValue": 90947,
+   "registeredValue": 117972,
+   "seats": 2,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "November 6, 2018",
+   "date": "2018-11-06",
+   "kind": "general",
+   "consolidatedWith": "County of Los Angeles general election",
+   "doc": "sov2018",
+   "reading": "grand totals, page images 9 and 18",
+   "ballots": "85607",
+   "registered": "125206",
+   "absentee": "",
+   "precinct": "",
+   "measures": [],
+   "district": "",
+   "candidates": [
+    {
+     "name": "Ken Dean",
+     "votes": "14951",
+     "value": 14951,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Matthew J Hargett",
+     "votes": "7093",
+     "value": 7093,
+     "rank": 10,
+     "topN": false
+    },
+    {
+     "name": "Brett Haddock",
+     "votes": "11427",
+     "value": 11427,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Sankalp B Varma",
+     "votes": "2595",
+     "value": 2595,
+     "rank": 15,
+     "topN": false
+    },
+    {
+     "name": "Sandra L Nichols",
+     "votes": "5049",
+     "value": 5049,
+     "rank": 13,
+     "topN": false
+    },
+    {
+     "name": "Diane Trautman",
+     "votes": "16479",
+     "value": 16479,
+     "rank": 4,
+     "topN": false
+    },
+    {
+     "name": "Laurene Weste",
+     "votes": "25603",
+     "value": 25603,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Sean Weber",
+     "votes": "5072",
+     "value": 5072,
+     "rank": 12,
+     "topN": false
+    },
+    {
+     "name": "Paul J Wieczorek",
+     "votes": "4903",
+     "value": 4903,
+     "rank": 14,
+     "topN": false
+    },
+    {
+     "name": "Marsha McLean",
+     "votes": "25273",
+     "value": 25273,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Bill Miranda",
+     "votes": "18885",
+     "value": 18885,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Cherry E Ortega",
+     "votes": "6499",
+     "value": 6499,
+     "rank": 11,
+     "topN": false
+    },
+    {
+     "name": "Logan Smith",
+     "votes": "12871",
+     "value": 12871,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Jason Gibbs",
+     "votes": "10008",
+     "value": 10008,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "TimBen Boydston",
+     "votes": "12857",
+     "value": 12857,
+     "rank": 7,
+     "topN": false
+    }
+   ],
+   "ballotsValue": 85607,
+   "registeredValue": 125206,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "November 3, 2020",
+   "date": "2020-11-03",
+   "kind": "general",
+   "consolidatedWith": "County of Los Angeles general election",
+   "doc": "sov2020",
+   "reading": "grand total, Exhibit A, page 7 image",
+   "ballots": "121458",
+   "registered": "142880",
+   "absentee": "",
+   "precinct": "",
+   "measures": [],
+   "district": "",
+   "candidates": [
+    {
+     "name": "TimBen Boydston",
+     "votes": "17724",
+     "value": 17724,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Aakash Ahuja",
+     "votes": "14300",
+     "value": 14300,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Selina Thomas",
+     "votes": "13554",
+     "value": 13554,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Jason Gibbs",
+     "votes": "29474",
+     "value": 29474,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Cameron M Smyth",
+     "votes": "56919",
+     "value": 56919,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Kenneth Dean",
+     "votes": "2750",
+     "value": 2750,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Kelvin Driscoll",
+     "votes": "26282",
+     "value": 26282,
+     "rank": 3,
+     "topN": false
+    },
+    {
+     "name": "Douglas Fraser",
+     "votes": "871",
+     "value": 871,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "Chris Werthe",
+     "votes": "20194",
+     "value": 20194,
+     "rank": 4,
+     "topN": false
+    }
+   ],
+   "ballotsValue": 121458,
+   "registeredValue": 142880,
+   "seats": 2,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "November 8, 2022",
+   "date": "2022-11-08",
+   "kind": "general",
+   "consolidatedWith": "County of Los Angeles general election",
+   "doc": "sov2022",
+   "reading": "grand total, page 10 image",
+   "ballots": "79288",
+   "registered": "145251",
+   "absentee": "",
+   "precinct": "",
+   "measures": [],
+   "district": "",
+   "candidates": [
+    {
+     "name": "Kody Amour",
+     "votes": "1679",
+     "value": 1679,
+     "rank": 9,
+     "topN": false
+    },
+    {
+     "name": "David Barlavi",
+     "votes": "12359",
+     "value": 12359,
+     "rank": 7,
+     "topN": false
+    },
+    {
+     "name": "Selina M Thomas",
+     "votes": "14121",
+     "value": 14121,
+     "rank": 6,
+     "topN": false
+    },
+    {
+     "name": "Bill Miranda",
+     "votes": "32306",
+     "value": 32306,
+     "rank": 2,
+     "topN": true
+    },
+    {
+     "name": "Jeffrey Malick",
+     "votes": "14560",
+     "value": 14560,
+     "rank": 5,
+     "topN": false
+    },
+    {
+     "name": "Marsha McLean",
+     "votes": "28352",
+     "value": 28352,
+     "rank": 3,
+     "topN": true
+    },
+    {
+     "name": "Douglas Fraser",
+     "votes": "3865",
+     "value": 3865,
+     "rank": 8,
+     "topN": false
+    },
+    {
+     "name": "Laurene Weste",
+     "votes": "32886",
+     "value": 32886,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Denise Lite",
+     "votes": "25552",
+     "value": 25552,
+     "rank": 4,
+     "topN": false
+    }
+   ],
+   "ballotsValue": 79288,
+   "registeredValue": 145251,
+   "seats": 3,
+   "seatsEvidence": "uncited"
+  },
+  {
+   "printed": "November 5, 2024",
+   "date": "2024-11-05",
+   "kind": "general",
+   "consolidatedWith": "County of Los Angeles general election",
+   "doc": "sov2024",
+   "reading": "grand total, text layer; names, page 1",
+   "ballots": "15,508",
+   "registered": "23,054",
+   "absentee": "",
+   "precinct": "",
+   "measures": [],
+   "district": "District 1",
+   "candidates": [
+    {
+     "name": "Bryce Jepsen",
+     "votes": "4,142",
+     "value": 4142,
+     "rank": 2,
+     "topN": false
+    },
+    {
+     "name": "Patsy Ayala",
+     "votes": "4,563",
+     "value": 4563,
+     "rank": 1,
+     "topN": true
+    },
+    {
+     "name": "Tim Burkhart",
+     "votes": "4,108",
+     "value": 4108,
+     "rank": 3,
+     "topN": false
+    }
+   ],
+   "ballotsValue": 15508,
+   "registeredValue": 23054,
+   "seats": 1,
+   "seatsEvidence": "contemporary"
+  }
+ ],
+ "faults": [
+  {
+   "record": "candidacy",
+   "date": "2000-04-11",
+   "name": "Cameron Smyth",
+   "field": "votesAsPrinted",
+   "asPrinted": "5.461",
+   "reading": "5461",
+   "basis": "a decimal point printed where a thousands separator belongs"
+  },
+  {
+   "record": "election",
+   "date": "1990-04-10",
+   "field": "ballots",
+   "asPrinted": "9.432",
+   "reading": "9432",
+   "basis": "a decimal point printed where a thousands separator belongs"
+  },
+  {
+   "record": "candidacy",
+   "date": "1987-11-03",
+   "name": "Vernon H. Pera",
+   "field": "votesAsPrinted",
+   "asPrinted": "1.133",
+   "reading": "1133",
+   "basis": "a decimal point printed where a thousands separator belongs"
+  },
+  {
+   "record": "candidacy",
+   "date": "1987-11-03",
+   "name": "Maurice D. Ungar",
+   "field": "votesAsPrinted",
+   "asPrinted": "2.000",
+   "reading": "2000",
+   "basis": "a decimal point printed where a thousands separator belongs"
+  },
+  {
+   "record": "measure",
+   "date": "1987-11-03",
+   "measure": "V",
+   "field": "no",
+   "asPrinted": "11.166",
+   "reading": "11166",
+   "basis": "a decimal point printed where a thousands separator belongs"
+  }
+ ]
+}
