@@ -132,6 +132,22 @@ says about itself:
 | roster | the count, and the council ledger Leon Worden kept for SCVHistory.com (record #4967), which agree at every election | 1990 to 2018 |
 | derived | the count alone, the seats up from the staggered terms | 2020, 2022, 2024 |
 
+**CEDA** (California Elections Data Archive), the state's yearly compilation
+of the counties' returns, was accepted as a source on 29 September 2026. It is
+cited as a compilation, never as a certified return, and supports "roster". It
+agrees with every council election it holds, 2004 to 2024, on seats, votes and
+winners, and it gives 2014's full names, which the City printed as surnames.
+
+**More than one body.** An election carries `electionBody` (the City for the
+council, a district for its board) and `electionDistrict`, a place record with
+`districtKind` (trustee-area, council-district, water-division) and
+`districtNumber`, tied to its body by `placeOrganizations`. One election record
+is one contest: body, date, district, and full or short term. `/elections`
+keeps the council's turnout story and lists the boards beneath it; a district's
+page lists its elections; `/places` lists districts at the end, by body. Seats
+filled by appointment in lieu of election have no contest and no votes; the
+County's lists of cancelled elections are the record of them.
+
 The ledger check is two-sided: the top N of the count are exactly the members it
 shows serving on, and no one below them is, so it confirms the seat count too.
 `council_winners_and_terms.php` refuses if any election fails it. Person pages

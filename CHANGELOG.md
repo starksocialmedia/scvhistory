@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-09-29 (evening)
+
+- Agent: Claude Code
+- Date: 2026-09-29
+- Done: CEDA accepted and read (parse_ceda.py: 30 yearly files checksummed into inventory/elections/ceda-manifest.json, the valley's rows into ceda-scv.json). add_election_body.php (electionBody, electionDistrict, council-district and water-division, a title format with body and district). council_ceda.php: every council election CEDA holds checked against it, 2020-2024 lifted to roster, 2014 linked on CEDA's full names, 24 repeat candidates, Council Districts 1 and 3, the CEDA and County cancelled-list documents. import_ceda_school_boards.php: 25 trustee areas, SCV Water Divisions 1-3, 62 school board contests, 214 candidacies, 40 repeat candidates. Templates: /elections lists the boards under the council; election pages name their body, district and compilation; district pages list their elections; /places lists districts by body; ELECTIONS STOOD names the body.
+- Decisions: one election record per contest. A person under two first names (Ken and Kenneth Dean, Tom and Thomas Caesar, Bob and Robert Wagenaar, Joe and Joseph Messina, Bob and Robert Jensen) is held, not joined. A suffix on some printings only (Philip C. Ellis and Philip Ellis, Jr.; Lester M. Freeman and Lester M. Freeman, III) is held: it may be a father and a son. CEDA's misspellings (Doydston, Wieczoek, Michael.) are reported, never adopted. A person's title is the shortest printing without initials or nicknames; every printing is an alias.
+- Blockers: the official CEDA portal cannot be downloaded from; the files are the unmodified copies in github.com/justindbk/ceda at 38705c7. CEDA has no Santa Clarita rows before 2004 and no water bodies. The title format column holds 255 characters; the first format was longer and failed in test.
+- Result: CEDA and the archive agree on every council election 2004-2024 except two spellings in CEDA. Testing all three scripts in one rolled-back transaction left a cached menu naming a person the rollback removed; template caches are outside the database, and the test harness now invalidates them.
+- Next: Nathan on the held names; office holdings for the school boards, which need the appointed seats; SCV Water and CLWA elections from the County's returns.
+
 2026-09-29
 
 - Agent: Claude Code

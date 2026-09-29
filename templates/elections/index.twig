@@ -1,5 +1,5 @@
 {% extends "_layouts/base" %}
-{% set metaDescription = 'Every Santa Clarita City Council election from incorporation in 1987 to 2024: the candidates, the votes, and who turned out.' %}
+{% set metaDescription = 'Every Santa Clarita City Council election from incorporation in 1987 to 2024, and the valley\'s school board elections since 1995: the candidates, the votes, and who turned out.' %}
 {% block head %}
 {% include "_partials/scv-extra-css" %}
 {% css %}
@@ -27,7 +27,14 @@
 {% endblock %}
 
 {% block content %}
-{% set elections = craft.entries().section('elections').orderBy('electionDateEdtf asc').all() %}
+{% set everyElection = craft.entries().section('elections').orderBy('electionDateEdtf asc').all() %}
+{#- The council's elections carry the City as their body (or no body, before
+    add_election_body.php); every other body's are the boards, listed below. -#}
+{% set hasBody = craft.app.fields.getFieldByHandle('electionBody') is not null %}
+{% set bodyOf = {} %}
+{% for e in everyElection %}{% set b = hasBody and 'electionBody' in e.fieldLayout.customFields|map(f => f.handle) ? e.electionBody.one() : null %}{% set bodyOf = bodyOf|merge({ ('e' ~ e.id): b }) %}{% endfor %}
+{% set elections = everyElection|filter(e => not bodyOf['e' ~ e.id] or bodyOf['e' ~ e.id].slug == 'city-of-santa-clarita') %}
+{% set boardEls = everyElection|filter(e => bodyOf['e' ~ e.id] and bodyOf['e' ~ e.id].slug != 'city-of-santa-clarita') %}
 {#- Turnout, where both counts are held, and the April/November split the story
     turns on: computed from the records, not typed into the page. -#}
 {% set rows = [] %}
@@ -47,14 +54,15 @@
   <section class="scv-band el-band">
     <div class="scv-band-in el-band-in">
       <div class="el-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Elections</span></div>
-      <div class="el-kicker">SANTA CLARITA CITY COUNCIL</div>
-      <h1>Elections{% if rows|length %}, {{ (rows|first).y }} to {{ (rows|last).y }}{% endif %}</h1>
-      <p>Every council election since the city was incorporated: {{ elections|length }} elections and every candidate, winners and losers alike, from the City Clerk's records and the County's statements of votes.
+      <div class="el-kicker">THE COUNCIL AND THE BOARDS</div>
+      <h1>Elections{% if everyElection|length %}, {{ (everyElection|first).electionDateEdtf|slice(0, 4) }} to {{ (everyElection|last).electionDateEdtf|slice(0, 4) }}{% endif %}</h1>
+      <p>Every Santa Clarita City Council election since the city was incorporated, {{ elections|length }} of them{% if boardEls|length %}, and {{ boardEls|length }} school board contests since 1995{% endif %}: every candidate, winners and losers alike, from the City Clerk's records, the County's statements of votes and the state's compilation of local results.
       {% if aprilOrd|length and nov|length %}April elections drew {{ aMin|round }} to {{ aMax|round }} percent of registered voters{% if y1992 %}, except in 1992, when {{ y1992.t|round }} percent turned out with growth control, Measure A-92, on the ballot{% endif %}. Consolidated with the November general election, turnout rose to {{ nMin|round }} to {{ nMax|round }} percent.{% endif %}</p>
     </div>
   </section>
 
   <main class="scv-band-in el-main">
+    <h2 class="el-h2" id="council" style="font-size:13px">THE CITY COUNCIL</h2>
     <h2 class="el-h2">WHO TURNED OUT</h2>
     <div class="el-chart">
       {% set W = 980 %}{% set H = 280 %}{% set pad = 36 %}{% set n = rows|filter(r => r.t is not null)|length %}
@@ -97,7 +105,34 @@
       </tbody>
     </table>
     {% set roster = craft.entries().section('organizations').slug('city-of-santa-clarita').one() %}
-    <p class="el-note">Winners are named on the strongest record the archive holds, and each election's page says which. Resolution 12-9 declares the winners of April 2012, and the City's own account names the first council of 1987. For 1990 to 2018 no declaring resolution is held, but the vote count and the council roster held in the archive agree at every election: the top of the count are exactly the members the roster shows serving on. For 2020 to 2024, marked &dagger;, the winners are read from the count alone, until the declaring resolutions are obtained.{% if roster %} Who served, and when: <a href="{{ roster.url }}#council" style="color:#7A5C1B">the council roster</a>.{% endif %}</p>
+    <p class="el-note">Winners are named on the strongest record the archive holds, and each election's page says which. Resolution 12-9 declares the winners of April 2012, and the City's own account names the first council of 1987. For every other election no declaring resolution is held yet, but the count agrees with two compilations: the council ledger held in the archive, 1990 to 2018, and CEDA, the state's compilation of local results, 2004 to 2024. Any winner still resting on the count alone is marked &dagger;.{% if roster %} Who served, and when: <a href="{{ roster.url }}#council" style="color:#7A5C1B">the council roster</a>.{% endif %}</p>
+
+    {% if boardEls|length %}
+      {% set countyDoc = craft.entries().section('documents').search('"cancelled elections"').one() %}
+      <h2 class="el-h2" id="boards" style="margin-top:56px;font-size:13px">THE SCHOOL BOARDS</h2>
+      <p class="el-note" style="margin:0 0 20px">Every contested school board election in the valley from 1995 to 2024, from CEDA, the state's compilation of local results, which marks the winners. A seat with no more candidates than places went unvoted and was filled by appointment; those contests are not here{% if countyDoc %}, and the County's <a href="{{ countyDoc.url }}" style="color:#7A5C1B">lists of cancelled elections</a> name them{% endif %}. The boards moved from at-large seats to trustee areas between 2015 and 2020.</p>
+      {% set byBody = {} %}
+      {% for e in boardEls|reverse %}{% set b = bodyOf['e' ~ e.id] %}{% set byBody = byBody|merge({ ('b' ~ b.id): (byBody['b' ~ b.id] ?? { body: b, els: [] })|merge({ els: ((byBody['b' ~ b.id] ?? { els: [] }).els)|merge([e]) }) }) %}{% endfor %}
+      {% for g in byBody|sort((a, b) => a.body.title <=> b.body.title) %}
+        <h3 id="{{ g.body.slug }}" style="font-family:'Playfair Display',serif;font-weight:500;font-size:24px;color:#17254C;margin:30px 0 10px"><a href="{{ g.body.url }}" style="color:inherit;text-decoration:none">{{ g.body.title }}</a> <span style="font-family:'Jost',sans-serif;font-size:13px;color:#8A93A3">{{ g.els|length }}</span></h3>
+        <table class="el-table">
+          <thead><tr><th>ELECTION</th><th>SEAT</th><th>CANDIDATES</th><th>ELECTED</th></tr></thead>
+          <tbody>
+          {% for e in g.els %}
+            {% set d = e.electionDistrict.one() %}
+            {% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all() %}
+            {% set won = cands|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited')|sort((a, b) => (b.votes ?? 0) <=> (a.votes ?? 0)) %}
+            <tr>
+              <td><a href="{{ e.url }}">{{ e.electionDate }}</a></td>
+              <td>{{ d ? 'Trustee Area ' ~ d.districtNumber : 'At large' }}{% if 'short term' in (e.footnotes ?? [])|map(r => r.note ?? '')|join(' ')|lower %} <span class="dim">(short term)</span>{% endif %}<div class="dim">{{ e.seatsUp }} seat{{ e.seatsUp == 1 ? '' : 's' }}</div></td>
+              <td>{{ cands|length }}</td>
+              <td>{{ won|map(c => (c.candidacyPerson.one() ? '<a href="' ~ c.candidacyPerson.one().url ~ '">' ~ c.nameAsPrinted|e ~ '</a>' : c.nameAsPrinted|e))|join(', ')|raw }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      {% endfor %}
+    {% endif %}
   </main>
 </div>
 {% endblock %}

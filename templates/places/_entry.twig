@@ -74,6 +74,18 @@
 
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'Places', sidebar: true } only %}
+        {#- An electoral district: its body, and every election held for it. -#}
+        {% if 'districtKind' in entry.fieldLayout.customFields|map(f => f.handle) and entry.districtKind.value %}
+          {% set dBody = entry.placeOrganizations.one() %}
+          {% set dEls = craft.app.fields.getFieldByHandle('electionDistrict') ? craft.entries().section('elections').relatedTo({ targetElement: entry, field: 'electionDistrict' }).orderBy('electionDateEdtf desc').all() : [] %}
+          <div class="rec-box"><div class="rec-lab">ELECTORAL DISTRICT</div>
+            <div class="rec-rows">
+              {% if dBody %}<div class="k">BODY</div><div class="v"><a href="{{ dBody.url }}">{{ dBody.title }}</a></div>{% endif %}
+              {% for el in dEls %}<div class="k">{{ el.electionDateEdtf|slice(0, 4) }}</div><div class="v"><a href="{{ el.url }}">{{ el.electionDate }}</a></div>{% endfor %}
+              {% if not dEls|length %}<div class="k">ELECTIONS</div><div class="v">None held in the archive</div>{% endif %}
+            </div>
+          </div>
+        {% endif %}
         {% include "_partials/record/source-link" with { el: entry } only %}
         {% if hasMap %}
           <div class="rec-box">

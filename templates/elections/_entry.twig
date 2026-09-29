@@ -42,6 +42,15 @@
 
 {% block content %}
 {% set e = entry %}
+{#- The body and district, read off the layout: the fields arrive with
+    add_election_body.php. No body is the council, as every election was before. -#}
+{% set eh = e.fieldLayout.customFields|map(f => f.handle) %}
+{% set body = 'electionBody' in eh ? e.electionBody.one() : null %}
+{% set dist = 'electionDistrict' in eh ? e.electionDistrict.one() : null %}
+{% set isCouncil = not body or body.slug == 'city-of-santa-clarita' %}
+{% set bodyLabel = isCouncil ? 'Santa Clarita City Council' : body.title ~ ' board' %}
+{% set distLabel = dist ? ({'trustee-area': 'Trustee Area', 'council-district': 'District', 'water-division': 'Division'}[dist.districtKind.value] ?? 'District') ~ ' ' ~ dist.districtNumber : '' %}
+{% set fnText = (e.footnotes ?? [])|map(r => r.note ?? '')|join(' ') %}
 {% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all()|sort((a, b) => (b.votes ?? 0) <=> (a.votes ?? 0)) %}
 {% set total = cands|reduce((s, c) => s + (c.votes ?? 0), 0) %}
 {% set top = (cands|first).votes ?? 0 %}
@@ -53,8 +62,8 @@
 <div class="el">
   <section class="scv-band el-band">
     <div class="scv-band-in el-band-in">
-      <div class="el-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('elections') }}">Elections</a> &rsaquo; <span>{{ e.electionDate }}</span></div>
-      <div class="el-kicker">SANTA CLARITA CITY COUNCIL{% if e.consolidatedWith %} &middot; {{ e.consolidatedWith|upper }}{% endif %}</div>
+      <div class="el-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('elections') }}">Elections</a> &rsaquo; {% if body %}<a href="{{ body.url }}{{ isCouncil ? '#council' : '' }}">{{ bodyLabel }}</a> &rsaquo; {% endif %}<span>{{ e.electionDate }}</span></div>
+      <div class="el-kicker">{{ bodyLabel|upper }}{% if dist %} &middot; <a href="{{ dist.url }}" style="color:inherit">{{ distLabel|upper }}</a>{% endif %}{% if e.consolidatedWith %} &middot; {{ e.consolidatedWith|upper }}{% endif %}</div>
       <h1>{{ e.title }}</h1>
       <div class="el-facts">
         <div><div class="n">{{ cands|length }}</div><div class="l">CANDIDATES</div></div>
@@ -85,14 +94,16 @@
     </table>
     {% set nS = e.seatsUp %}{% set sS = nS == 1 ? '' : 's' %}
     {% if wonEv == 'roster' %}
-      <p class="el-callout">No declaring resolution is held for this election. The {{ nS == 1 ? 'winner is' : nS ~ ' winners are' }} the first {{ nS }} of the count, and the council roster held in the archive agrees: it shows {{ nS == 1 ? 'that candidate' : 'each of them' }} serving from this election and none of the others. The notes below give the roster's entries.</p>
+      {#- Which compilation: Worden's council ledger, CEDA, or both. -#}
+      {% set srcs = ('Worden' in fnText ? ['the council ledger held in the archive'] : [])|merge('CEDA' in fnText ? ["CEDA, the state's compilation of local results"] : []) %}
+      <p class="el-callout">No declaring {{ isCouncil ? 'resolution' : 'document' }} is held for this election. The {{ nS == 1 ? 'winner is' : nS ~ ' winners are' }} the first {{ nS }} of the count, and {{ srcs|length ? srcs|join(' and ') : 'a compiled record' }} {{ srcs|length > 1 ? 'agree' : 'agrees' }}. The notes below give the sources; the marks become certified when the declaration is obtained.</p>
     {% elseif wonEv == 'derived' %}
       <p class="el-callout">No document the archive holds declares this election's winners, and the council roster ends in 2020. {{ nS == 1 ? 'The candidate' : 'The ' ~ nS ~ ' candidates' }} marked "by the count" {{ nS == 1 ? 'is' : 'are' }} the first {{ nS }} of the vote, with {{ nS }} seat{{ sS }} up; the marks will be confirmed when the declaring resolution is obtained.</p>
     {% elseif wonEv == 'uncited' %}
       <p class="el-callout">No document the archive holds declares this election's winners. The order above is the order of the vote; with {{ nS }} seat{{ sS }} up, the first {{ nS }} would have been elected, but the declaring resolution is not yet held, so no one is marked elected here.</p>
     {% endif %}
-    {% if cands|filter(c => c.candidacyPerson.one() is null)|length and e.electionDateEdtf == '2014-04-08' %}
-      <p class="el-callout">The 2014 results print surnames only, so none of these candidates is linked to a person record: the archive matches on full first names, never on a surname alone.</p>
+    {% if e.electionDateEdtf == '2014-04-08' and isCouncil %}
+      <p class="el-callout">The City's 2014 results print surnames only. The full names, and the links to people, come from CEDA's 2014 file, which gives the same vote for every candidate; each candidate's record says so.</p>
     {% endif %}
 
     {% set measures = (e.ballotMeasures ?? [])|filter(m => m.letter ?? false) %}
