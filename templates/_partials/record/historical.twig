@@ -46,3 +46,36 @@
   {%- endif -%}
   {%- if yes %}1{% endif -%}
 {% endmacro %}
+
+{#
+  The one exception to the family rule (Nathan, 29 September 2026): kinship
+  between two documented public officeholders, when the relationship is itself
+  public record. A father and son who served on the same council are history
+  of the council, not private family structure.
+
+  Both conditions, never one:
+    1. each person holds at least one officeHolding record (holdingPerson);
+    2. the holder's own footnotes cite a source that names the relationship:
+       a footnote whose text names the other person and a kinship word.
+  Called with the child as holder for a parent link, either way for siblings.
+  Never for spouses, never for a relative without an office, never for an
+  unsourced link. It takes effect only when officeHolding has records; until
+  then it passes nobody.
+
+  Prints '1' when both hold, nothing otherwise.
+#}
+{% macro publicKin(holder, other) %}
+  {%- set office = (craft.app.sections.getSectionByHandle('officeHoldings') ?? null) is not null -%}
+  {%- set a = office and craft.entries().section('officeHoldings').relatedTo({ targetElement: holder, field: 'holdingPerson' }).exists() -%}
+  {%- set b = a and craft.entries().section('officeHoldings').relatedTo({ targetElement: other, field: 'holdingPerson' }).exists() -%}
+  {%- set sourced = false -%}
+  {%- if b and holder.fieldLayout and holder.fieldLayout.getFieldByHandle('footnotes') -%}
+    {%- for r in (holder.getFieldValue('footnotes') ?? []) -%}
+      {%- set t = (r.note ?? '') ~ '' -%}
+      {%- if not sourced and other.title and t matches '/' ~ other.title|replace({'/': '\\/', '.': '\\.'}) ~ '/' and t matches '/\\b(son|daughter|father|mother|brother|sister|child|parent)s?\\b/i' -%}
+        {%- set sourced = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if b and sourced %}1{% endif -%}
+{% endmacro %}

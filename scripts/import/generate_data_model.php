@@ -255,6 +255,20 @@ $RELATIONS = [
 ];
 foreach ($RELATIONS as $r) { $lines[] = '| `' . $r[0] . '` | ' . $r[1] . ' | ' . $r[2] . ' |'; }
 $lines[] = '';
+$lines[] = '### Kinship on the page';
+$lines[] = '';
+$lines[] = '`childOf`, `siblingOf` and `spouseOf` are stored for anyone, and published only between two';
+$lines[] = 'historical people, by the test in `templates/_partials/record/historical.twig`, which treats';
+$lines[] = 'undetermined as living. The archive does not publish a family graph of living people.';
+$lines[] = '';
+$lines[] = '**One exception, no wider** (Nathan, 29 September 2026): a parent, child or sibling link';
+$lines[] = 'publishes when both people hold documented public office, each with at least one';
+$lines[] = '`officeHolding` record, and the relationship is itself sourced, in a footnote on the';
+$lines[] = 'holder\'s record that names the other person and the relation. Both conditions, never one;';
+$lines[] = 'never spouses. A father and son on the same council are public record, not private family';
+$lines[] = 'structure. The test is `publicKin` in the same file. **It takes effect only when';
+$lines[] = '`officeHoldings` has records; until then it passes nobody.**';
+$lines[] = '';
 
 /* ------------------------------------------------------------ the types */
 

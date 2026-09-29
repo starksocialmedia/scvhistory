@@ -108,6 +108,20 @@ emitted from whichever side schema.org expects.
 | `placePeople` | place to person | no direct term; emitted as about on the place |
 | `derivedImageLinks` | record to record | local: images derived from a record, not curated for it |
 
+### Kinship on the page
+
+`childOf`, `siblingOf` and `spouseOf` are stored for anyone, and published only between two
+historical people, by the test in `templates/_partials/record/historical.twig`, which treats
+undetermined as living. The archive does not publish a family graph of living people.
+
+**One exception, no wider** (Nathan, 29 September 2026): a parent, child or sibling link
+publishes when both people hold documented public office, each with at least one
+`officeHolding` record, and the relationship is itself sourced, in a footnote on the
+holder's record that names the other person and the relation. Both conditions, never one;
+never spouses. A father and son on the same council are public record, not private family
+structure. The test is `publicKin` in the same file. **It takes effect only when
+`officeHoldings` has records; until then it passes nobody.**
+
 ## Entry types
 
 ### Articles — `articles/article`

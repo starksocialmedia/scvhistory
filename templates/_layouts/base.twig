@@ -22,6 +22,11 @@
       person's page never names a living relative. The relation stays stored
       and visible in the control panel; this is a display rule.
 
+      ONE EXCEPTION, NO WIDER: a parent, child or sibling link publishes when
+      both people hold documented public office (officeHolding records) and the
+      relationship is itself sourced, by hist.publicKin in historical.twig.
+      Never spouses. It passes nobody until officeHolding has records.
+
       LIVE RECORDS ONLY. No query here takes status(null): a disabled relative
       is hidden, which is what disabling a record is for.
 
@@ -38,21 +43,22 @@
     {%- endfor -%}
     {%- if 'childOf' in famH -%}
       {%- set selfHistorical = hist.historical(entry)|trim -%}
-      {%- set kin = { parents: [], children: [], siblings: [], spouses: [] } -%}
-      {%- if selfHistorical -%}
-        {%- set kin = {
-          parents: craft.entries().relatedTo({ sourceElement: entry, field: 'childOf' }).all(),
-          children: craft.entries().relatedTo({ targetElement: entry, field: 'childOf' }).all(),
-          siblings: 'siblingOf' in famH
-            ? craft.entries().relatedTo({ sourceElement: entry, field: 'siblingOf' }).all()
-              |merge(craft.entries().relatedTo({ targetElement: entry, field: 'siblingOf' }).all())
-            : [],
-          spouses: 'spouseOf' in famH
-            ? craft.entries().relatedTo({ sourceElement: entry, field: 'spouseOf' }).all()
-              |merge(craft.entries().relatedTo({ targetElement: entry, field: 'spouseOf' }).all())
-            : []
-        } -%}
-      {%- endif -%}
+      {#- Parents, children and siblings are read for everyone, because the
+          public-officeholder exception can publish them on a living person's
+          page; spouses only for a historical subject, as before. Each relative
+          is then held to the tests in the loop below. -#}
+      {%- set kin = {
+        parents: craft.entries().relatedTo({ sourceElement: entry, field: 'childOf' }).all(),
+        children: craft.entries().relatedTo({ targetElement: entry, field: 'childOf' }).all(),
+        siblings: 'siblingOf' in famH
+          ? craft.entries().relatedTo({ sourceElement: entry, field: 'siblingOf' }).all()
+            |merge(craft.entries().relatedTo({ targetElement: entry, field: 'siblingOf' }).all())
+          : [],
+        spouses: selfHistorical and 'spouseOf' in famH
+          ? craft.entries().relatedTo({ sourceElement: entry, field: 'spouseOf' }).all()
+            |merge(craft.entries().relatedTo({ targetElement: entry, field: 'spouseOf' }).all())
+          : []
+      } -%}
       {#- The loose relation fields, read both ways. They are curated links, not
           kinship claims, so they are not held to the historical test; the box
           shows a living one by name only. Anyone already placed as kin is
@@ -69,7 +75,12 @@
         {%- set seen = seenAll -%}
         {%- set out = [] -%}
         {%- for e in list -%}
-          {%- if e.id not in seen and e.id != entry.id and (k == 'other' or hist.historical(e)|trim) -%}
+          {%- set keep = k == 'other'
+              or (selfHistorical and hist.historical(e)|trim)
+              or (k == 'parents' and hist.publicKin(entry, e)|trim)
+              or (k == 'children' and hist.publicKin(e, entry)|trim)
+              or (k == 'siblings' and (hist.publicKin(entry, e)|trim or hist.publicKin(e, entry)|trim)) -%}
+          {%- if e.id not in seen and e.id != entry.id and keep -%}
             {%- set seen = seen|merge([e.id]) -%}
             {%- set out = out|merge([e]) -%}
           {%- endif -%}
