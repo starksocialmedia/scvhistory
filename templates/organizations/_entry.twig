@@ -15,6 +15,7 @@
 {% endblock %}
 
 {% block content %}
+{% import "_partials/record/portrait" as portrait %}
 
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}
@@ -138,7 +139,7 @@
               {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
               {% set pp = p.title|split(' ')|filter(x => x|trim) %}
               <a class="rec-person" href="{{ p.url }}">
-                <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: pimg} only %}>{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
+                <div class="th">{% if pimg %}{{ portrait.img(pimg, 1, '', true) }}{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>
                 <div style="min-width:0"><div class="n">{{ p.title }}</div>{% if p.occupation is defined and p.occupation %}<div class="r">{{ p.occupation }}</div>{% endif %}</div>
               </a>
             {% endfor %}

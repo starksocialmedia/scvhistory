@@ -23,6 +23,7 @@
 #}
 
 {% block content %}
+{% import "_partials/record/portrait" as portrait %}
 
 {% set all = craft.entries().section('warMemorials').status('live').all() %}
 {% set CONFLICT_ORDER = ['World War I', 'World War II', 'Korean War', 'Vietnam War', 'War on Terror'] %}
@@ -99,7 +100,7 @@
             <a class="wm-card" href="{{ r.e.url }}">
               <div class="wm-face{{ r.img ? '' : ' wm-face--plate' }}">
                 {% if r.img %}
-                  <img src="{{ r.img.url }}" alt="{{ r.name }}"{% include '_partials/record/img-pos.twig' with {img: r.img} only %}>
+                  {{ portrait.img(r.img, 5/4, r.name, true) }}
                 {% else %}
                   <span class="nm" style="font-size:{{ size }}px">{{ r.name }}</span>
                   {% if r.rank %}<span class="rk">{{ r.rank }}</span>{% endif %}

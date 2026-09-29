@@ -1,0 +1,43 @@
+{#
+  A person's picture cropped to head and shoulders.
+
+  Anchoring on a focal point (img-pos.twig) moves the frame; it cannot make it
+  smaller. A full-length photograph in a portrait box still shows the whole
+  person, waist and all, only moved (Cameron Smyth, 29 September 2026). So an
+  image listed in _data/portrait-crops.json is drawn larger than its box, by
+  that image's own zoom, and placed so its focal point sits centred across and
+  a third of the way down, never showing past the photograph's own edges. The
+  zoom is per image because the need is: a painted bust needs none, a standing
+  figure in a landscape frame nearly three times.
+
+  An image not listed is drawn as before: object-fit cover, anchored on its
+  focal point where it has one, else the top.
+
+  Params
+    img    the asset, or null
+    ratio  the box's height over its width: 4/3 for a 3:4 card, 5/4 for the
+           4:5 record portrait, 1 for the round thumbnails
+    alt    alt text
+    fill   true when the parent already has a fixed size (cards, thumbnails);
+           false to give the box its own aspect ratio (the record portrait)
+#}
+{% macro img(img, ratio, alt, fill) %}
+  {%- if img -%}
+    {%- set crops = source('_data/portrait-crops.json', ignore_missing = true)|json_decode -%}
+    {%- set crop = crops ? (crops[img.id ~ ''] ?? null) : null -%}
+    {%- if crop and img.width and img.height and img.getHasFocalPoint() -%}
+      {%- set fp = img.getFocalPoint() -%}
+      {%- set a = img.width / img.height -%}
+      {%- set h = ratio -%}
+      {%- set z = crop.zoom -%}
+      {#- The image covering the box at zoom 1, in units of the box's width. -#}
+      {%- set rw = max(1, h * a) * z -%}
+      {%- set rh = rw / a -%}
+      {%- set left = min(0, max(1 - rw, 0.5 - fp.x * rw)) -%}
+      {%- set top = min(0, max(h - rh, h * 0.34 - fp.y * rh)) -%}
+      <span class="pcrop" style="display:block;position:relative;overflow:hidden;width:100%;{{ fill ? 'height:100%' : 'aspect-ratio:1/' ~ h }}"><img src="{{ img.url }}" alt="{{ alt }}" style="position:absolute;max-width:none;height:auto;aspect-ratio:auto;object-fit:fill;width:{{ (rw * 100)|round(2) }}%;left:{{ (left * 100)|round(2) }}%;top:{{ (top / h * 100)|round(2) }}%"></span>
+    {%- else -%}
+      <img src="{{ img.url }}" alt="{{ alt }}"{% include '_partials/record/img-pos.twig' with {img: img} only %}>
+    {%- endif -%}
+  {%- endif -%}
+{% endmacro %}

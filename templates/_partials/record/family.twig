@@ -41,6 +41,7 @@
     fam  the derived family, or null
 #}
 {% import "_partials/record/historical" as hist %}
+{% import "_partials/record/portrait" as portrait %}
 {% if fam %}
   {% set rows = [
     ['PARENTS', fam.parents],
@@ -101,7 +102,7 @@
 
             <a class="p" href="{{ p.url }}">
               {% if img %}
-                <div class="th"><img src="{{ img.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: img} only %}></div>
+                <div class="th">{{ portrait.img(img, 1, '', true) }}</div>
               {% else %}
                 <div class="th ini" aria-hidden="true">{{ ini }}</div>
               {% endif %}

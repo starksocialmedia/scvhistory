@@ -5,6 +5,7 @@
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 
 {% block content %}
+{% import "_partials/record/portrait" as portrait %}
 {#
   Search, with facets beside the results.
 
@@ -311,7 +312,7 @@
                   {% if r.years|length %}{% set bits = bits|merge([r.years|first]) %}{% endif %}
                   <li>
                     <a href="{{ e.url }}">
-                      <span class="th">{% if img %}<img src="{{ img.url }}" alt="" loading="lazy"{% include '_partials/record/img-pos.twig' with {img: img} only %}>{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
+                      <span class="th">{% if img %}{{ portrait.img(img, 1, '', true) }}{% else %}<span aria-hidden="true">{{ initials|upper }}</span>{% endif %}</span>
                       <span style="min-width:0">
                         <span class="k">{{ LABEL[r.kind] ?? r.kind }}</span>
                         <span class="t">{{ label }}</span>
