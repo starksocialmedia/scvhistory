@@ -65,6 +65,8 @@
   </section>
 
   <main class="scv-band-in sc-main">
+    <h2 class="sc-h2">THE DISTRICTS AND THEIR SCHOOLS</h2>
+    {% include "_partials/school-map" %}
     {% if districts|length and hasSpan %}
       <h2 class="sc-h2">WHO TEACHES WHICH GRADES</h2>
       <div class="sc-grid" role="table" aria-label="Grades taught by each district">
@@ -89,14 +91,12 @@
       <div class="sc-cards">
         {% for d in districts %}
           {% set kids = craft.entries().section('organizations').relatedTo({ targetElement: d, field: 'parentOrganization' }).orderBy('title asc').all() %}
-          {% set into = hasFeeds ? d.feedsInto.all() : [] %}
-          {#- No "takes pupils from" here: each feeder's card already says where its
-              pupils go, and listing them again made the Hart card twice the height
-              of the rest (Nathan, 29 September 2026). The district's own page keeps it. -#}
+          {#- No feed lists on the cards: the grades grid and its key show who
+              goes on to whom, and the lists doubled the Hart card's height
+              (Nathan, 29 September 2026). Each district's own page keeps them. -#}
           <div class="sc-card">
             <h3><a href="{{ d.url }}">{{ d.title }}</a></h3>
             <div class="meta">{{ hasSpan and d.gradeSpan ? 'GRADES ' ~ d.gradeSpan|upper : 'SCHOOL DISTRICT' }}</div>
-            {% if into|length %}<div class="k">PUPILS GO ON TO</div><ul>{% for x in into %}<li><a href="{{ x.url }}">{{ x.title }}</a></li>{% endfor %}</ul>{% endif %}
             <div class="k">SCHOOLS IN THE ARCHIVE</div>
             {% if kids|length %}<ul>{% for k in kids %}<li><a href="{{ k.url }}">{{ k.title }}</a>{% if hasSpan and k.gradeSpan %} <span style="color:#5B6472;font-size:13px">({{ k.gradeSpan }})</span>{% endif %}</li>{% endfor %}</ul>
             {% else %}<div class="none">None yet.</div>{% endif %}

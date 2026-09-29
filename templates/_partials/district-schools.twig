@@ -1,0 +1,39 @@
+{#
+  A district's schools, every one the NCES directory lists, not only those the
+  archive holds a record for: open schools with their grades, then the closed
+  ones with the last year each was listed. From templates/_data/school-directory.json
+  (scripts/import/build_school_map.py). A school the archive holds links to it.
+
+  Params
+    leaid  the district's NCES id
+#}
+{% set dir = source('_data/school-directory.json', ignore_missing = true)|json_decode %}
+{% set d = dir ? (dir.districts[leaid] ?? null) : null %}
+{% if d %}
+  {% set recs = {} %}
+  {% for o in craft.entries().section('organizations').orgType('school').all() %}
+    {% if o.ncesId|trim %}{% set recs = recs|merge({ (o.ncesId|trim): o }) %}{% endif %}
+  {% endfor %}
+  {% macro nice(n) %}{{ n == n|upper ? n|lower|title : n }}{% endmacro %}
+  {% import _self as m %}
+  <h2 class="rec-h2">Schools in the district</h2>
+  <p style="font-size:14px;color:#5B6472;margin:-6px 0 14px">{{ d.open|length }} open, {{ d.closed|length }} closed, as the federal school directory lists them from 1987. Schools the archive holds a record for are linked.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:15px;margin-bottom:28px">
+    <thead><tr style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B"><th style="padding:6px 8px 6px 0">SCHOOL</th><th style="padding:6px 8px">GRADES</th><th style="padding:6px 8px">CITY</th><th style="padding:6px 0 6px 8px">OPEN SINCE</th></tr></thead>
+    <tbody>
+    {% for s in d.open %}
+      {% set r = recs[s.nces] ?? null %}
+      <tr style="border-top:1px solid #EFE6D0"><td style="padding:7px 8px 7px 0">{% if r %}<a href="{{ r.url }}" style="color:#7A5C1B">{{ m.nice(s.name) }}</a>{% else %}{{ m.nice(s.name) }}{% endif %}{% if s.charter %} <span style="font-size:12px;color:#5B6472">charter</span>{% endif %}</td><td style="padding:7px 8px">{{ s.grades }}</td><td style="padding:7px 8px">{{ m.nice(s.city) }}</td><td style="padding:7px 0 7px 8px">{{ s.opened == 1987 ? 'by 1987' : s.opened }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if d.closed|length %}
+    <h3 style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#7A5C1B;margin:0 0 8px">CLOSED</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:15px;margin-bottom:28px"><tbody>
+    {% for s in d.closed %}
+      {% set r = recs[s.nces] ?? null %}
+      <tr style="border-top:1px solid #EFE6D0"><td style="padding:7px 8px 7px 0">{% if r %}<a href="{{ r.url }}" style="color:#7A5C1B">{{ m.nice(s.name) }}</a>{% else %}{{ m.nice(s.name) }}{% endif %}</td><td style="padding:7px 8px">{{ s.grades }}</td><td style="padding:7px 0 7px 8px;color:#5B6472">listed {{ s.opened == 1987 ? 'to' : s.opened ~ ' to' }} {{ s.lastListed }}</td></tr>
+    {% endfor %}
+    </tbody></table>
+  {% endif %}
+{% endif %}

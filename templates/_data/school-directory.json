@@ -1,0 +1,670 @@
+{
+ "meta": {
+  "built": "2026-09-29",
+  "by": "scripts/import/build_school_map.py",
+  "latestYear": 2024,
+  "note": "Schools from 1987 on (NCES). Earlier schools are not in the federal directory; the archive holds Felton School (1885-1932), not yet located.",
+  "dropped": [
+   "NEWHALL ELEMENTARY SCHOOL",
+   "SULPHUR SPRINGS UNION ELEM",
+   "WILLIAM S HART UNION HIGH"
+  ],
+  "unplaced": [
+   "HONBY ELEMENTARY",
+   "SOLEDAD CANYON COMMUNITY ELEME",
+   "PASSPORT ACADEMY"
+  ]
+ },
+ "districts": {
+  "0642510": {
+   "title": "William S. Hart Union High School District",
+   "slug": "william-s-hart-union-high-school-district",
+   "open": [
+    {
+     "name": "Academy of the Canyons",
+     "nces": "064251008517",
+     "grades": "9-12",
+     "opened": 2000,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Arroyo Seco Junior High",
+     "nces": "064251006956",
+     "grades": "7-8",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Bowman (Jereann) High (Continuation)",
+     "nces": "064251006957",
+     "grades": "9-12",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Canyon High",
+     "nces": "064251006958",
+     "grades": "9-12",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Castaic High",
+     "nces": "064251014393",
+     "grades": "9-12",
+     "opened": 2018,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Castaic"
+    },
+    {
+     "name": "Golden Valley High",
+     "nces": "064251010912",
+     "grades": "9-12",
+     "opened": 2004,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "La Mesa Junior High",
+     "nces": "064251003268",
+     "grades": "7-8",
+     "opened": 1994,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Learning Post Academy (Alternative)",
+     "nces": "064251007369",
+     "grades": "7-12",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Placerita Junior High",
+     "nces": "064251006960",
+     "grades": "7-8",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Newhall"
+    },
+    {
+     "name": "Rancho Pico Junior High",
+     "nces": "064251010913",
+     "grades": "7-8",
+     "opened": 2004,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Stevenson Ranch"
+    },
+    {
+     "name": "Rio Norte Junior High",
+     "nces": "064251011320",
+     "grades": "7-8",
+     "opened": 2003,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Saugus High",
+     "nces": "064251006961",
+     "grades": "9-12",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "Sierra Vista Junior High",
+     "nces": "064251006962",
+     "grades": "7-8",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Valencia High",
+     "nces": "064251003264",
+     "grades": "9-12",
+     "opened": 1994,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "West Ranch High",
+     "nces": "064251010914",
+     "grades": "9-12",
+     "opened": 2004,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "William S. Hart High",
+     "nces": "064251006959",
+     "grades": "9-12",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Newhall"
+    }
+   ],
+   "closed": [
+    {
+     "name": "PASSPORT ACADEMY",
+     "nces": "064251008112",
+     "grades": "",
+     "opened": 1999,
+     "lastListed": 2002,
+     "charter": false,
+     "city": "SANTA CLARITA"
+    },
+    {
+     "name": "SANTA CLARITA VALLEY EARLY COLLEGE HIGH",
+     "nces": "064251012145",
+     "grades": "9-10",
+     "opened": 2007,
+     "lastListed": 2009,
+     "charter": false,
+     "city": "CANYON COUNTRY"
+    },
+    {
+     "name": "Transitional Learning Center Charter",
+     "nces": "064251010915",
+     "grades": "9-12",
+     "opened": 2004,
+     "lastListed": 2014,
+     "charter": true,
+     "city": "SANTA CLARITA"
+    },
+    {
+     "name": "Albert Einstein Academy for Letters Arts and Sciences",
+     "nces": "064251012655",
+     "grades": "",
+     "opened": 2010,
+     "lastListed": 2017,
+     "charter": true,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Mission View Public",
+     "nces": "064251011906",
+     "grades": "K-12",
+     "opened": 2006,
+     "lastListed": 2017,
+     "charter": true,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Opportunities for Learning - Santa Clarita",
+     "nces": "064251008070",
+     "grades": "7-12",
+     "opened": 1999,
+     "lastListed": 2017,
+     "charter": true,
+     "city": "Valencia"
+    },
+    {
+     "name": "Santa Clarita Valley International",
+     "nces": "064251012191",
+     "grades": "K-12",
+     "opened": 2008,
+     "lastListed": 2017,
+     "charter": true,
+     "city": "Castaic"
+    },
+    {
+     "name": "Sequoia",
+     "nces": "064251011675",
+     "grades": "",
+     "opened": 2005,
+     "lastListed": 2020,
+     "charter": false,
+     "city": "Santa Clarita"
+    }
+   ]
+  },
+  "0627180": {
+   "title": "Newhall School District",
+   "slug": "newhall-school-district",
+   "open": [
+    {
+     "name": "Dr. J. Michael McGrath Elementary",
+     "nces": "062718011317",
+     "grades": "K-6",
+     "opened": 2003,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Newhall"
+    },
+    {
+     "name": "Meadows Elementary",
+     "nces": "062718004094",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Newhall Elementary",
+     "nces": "062718004095",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Newhall"
+    },
+    {
+     "name": "Oak Hills Elementary",
+     "nces": "062718010904",
+     "grades": "K-6",
+     "opened": 2004,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Old Orchard Elementary",
+     "nces": "062718004096",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Peachland Avenue Elementary",
+     "nces": "062718004097",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Newhall"
+    },
+    {
+     "name": "Pico Canyon Elementary",
+     "nces": "062718011329",
+     "grades": "K-6",
+     "opened": 2003,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Stevenson Ranch"
+    },
+    {
+     "name": "Stevenson Ranch Elementary",
+     "nces": "062718004595",
+     "grades": "K-6",
+     "opened": 1995,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Stevenson Ranch"
+    },
+    {
+     "name": "Valencia Valley Elementary",
+     "nces": "062718009410",
+     "grades": "K-6",
+     "opened": 1988,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Wiley Canyon Elementary",
+     "nces": "062718004098",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Newhall"
+    }
+   ],
+   "closed": []
+  },
+  "0635970": {
+   "title": "Saugus Union School District",
+   "slug": "saugus-union-school-district",
+   "open": [
+    {
+     "name": "Bouquet Canyon Early Learning Academy",
+     "nces": "063597014722",
+     "grades": "",
+     "opened": 2023,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "Bridgeport Elementary",
+     "nces": "063597010535",
+     "grades": "K-6",
+     "opened": 2002,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Cedarcreek Elementary",
+     "nces": "063597006153",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Charles Helmers Elementary",
+     "nces": "063597009193",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Emblem Academy",
+     "nces": "063597006154",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "Highlands Elementary",
+     "nces": "063597006155",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "James Foster Elementary",
+     "nces": "063597009637",
+     "grades": "K-6",
+     "opened": 1989,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "Mountainview Elementary",
+     "nces": "063597003259",
+     "grades": "K-6",
+     "opened": 1994,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "North Park Elementary",
+     "nces": "063597008063",
+     "grades": "K-6",
+     "opened": 1999,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "Plum Canyon Elementary",
+     "nces": "063597007532",
+     "grades": "K-6",
+     "opened": 1998,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "Rio Vista Elementary",
+     "nces": "063597006157",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Rosedell Elementary",
+     "nces": "063597006158",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    },
+    {
+     "name": "Skyblue Mesa Elementary",
+     "nces": "063597006160",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Tesoro del Valle Elementary",
+     "nces": "063597010910",
+     "grades": "K-6",
+     "opened": 2004,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    },
+    {
+     "name": "West Creek Academy",
+     "nces": "063597012401",
+     "grades": "K-6",
+     "opened": 2008,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Valencia"
+    }
+   ],
+   "closed": [
+    {
+     "name": "HONBY ELEMENTARY",
+     "nces": "063597006156",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 1990,
+     "charter": false,
+     "city": ""
+    },
+    {
+     "name": "BOUQUET CANYON ELEMENTARY",
+     "nces": "063597009638",
+     "grades": "K-6",
+     "opened": 1989,
+     "lastListed": 2010,
+     "charter": false,
+     "city": "SAUGUS"
+    },
+    {
+     "name": "Santa Clarita Elementary",
+     "nces": "063597006159",
+     "grades": "",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Saugus"
+    }
+   ]
+  },
+  "0638220": {
+   "title": "Sulphur Springs Union School District",
+   "slug": "sulphur-springs-union-school-district",
+   "open": [
+    {
+     "name": "Canyon Springs Community Elementary",
+     "nces": "063822010249",
+     "grades": "K-6",
+     "opened": 1991,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Fair Oaks Ranch Community",
+     "nces": "063822010536",
+     "grades": "K-6",
+     "opened": 2002,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Golden Oak Community",
+     "nces": "063822012288",
+     "grades": "K-6",
+     "opened": 2008,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Leona H. Cox Community Elementary",
+     "nces": "063822006446",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Mint Canyon Community Elementary",
+     "nces": "063822006447",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Mitchell Community Elementary",
+     "nces": "063822006448",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Pinetree Community Elementary",
+     "nces": "063822009448",
+     "grades": "K-6",
+     "opened": 1988,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Sulphur Springs Community Elementary",
+     "nces": "063822006450",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Canyon Country"
+    },
+    {
+     "name": "Sulphur Springs Special Education Consortia",
+     "nces": "063822014133",
+     "grades": "K-6",
+     "opened": 2017,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Santa Clarita"
+    },
+    {
+     "name": "Valley View Community Elementary",
+     "nces": "063822007883",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Newhall"
+    }
+   ],
+   "closed": [
+    {
+     "name": "SOLEDAD CANYON COMMUNITY ELEME",
+     "nces": "063822006449",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 1990,
+     "charter": false,
+     "city": ""
+    }
+   ]
+  },
+  "0607740": {
+   "title": "Castaic Union School District",
+   "slug": "castaic-union-school-district",
+   "open": [
+    {
+     "name": "Castaic Elementary",
+     "nces": "060774000738",
+     "grades": "K-6",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Castaic"
+    },
+    {
+     "name": "Castaic Middle",
+     "nces": "060774009121",
+     "grades": "7-8",
+     "opened": 1987,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Castaic"
+    },
+    {
+     "name": "Live Oak Elementary",
+     "nces": "060774009341",
+     "grades": "K-6",
+     "opened": 1988,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Castaic"
+    },
+    {
+     "name": "Non-RIS Preschool CMS",
+     "nces": "060774013468",
+     "grades": "",
+     "opened": 2012,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Castaic"
+    },
+    {
+     "name": "Northlake Hills Elementary",
+     "nces": "060774011330",
+     "grades": "K-7",
+     "opened": 2003,
+     "lastListed": 2024,
+     "charter": false,
+     "city": "Castaic"
+    }
+   ],
+   "closed": []
+  }
+ }
+}

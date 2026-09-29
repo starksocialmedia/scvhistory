@@ -70,6 +70,7 @@
     'cc-by-sa-4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
     'cc-by-3.0': 'https://creativecommons.org/licenses/by/3.0/',
     'cc-by-sa-3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
+    'cc-by-sa-2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
     'courtesy': siteUrl ~ 'about#rights' } %}
 {% set licVal = ('license' in H and asset.license) ? asset.license.value : '' %}
 {% set creditLine = [credit, courtesy ? 'Courtesy of ' ~ courtesy : '']|filter(x => x|trim)|join(' · ') %}

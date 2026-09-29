@@ -1,0 +1,61 @@
+{#
+  The school districts and their schools on one map, from web/data/schools.geojson
+  (scripts/import/build_school_map.py): the Census Bureau's district boundaries,
+  and every school the NCES directory has listed in them since 1987, open as a
+  filled dot, closed as a hollow one. A school the archive holds a record for
+  links to it.
+
+  Params
+    leaid  optional: one district's NCES id, to show only its boundary and schools
+    height optional: map height in pixels, default 460
+#}
+{% set leaid = leaid ?? null %}
+{% set mapId = 'schoolMap' ~ (leaid ?: 'all') %}
+{#- Versioned by the directory built with the map, so a rebuilt map is never drawn from cache. -#}
+{% set geoV = (source('_data/school-directory.json', ignore_missing = true)|hash)|slice(0, 12) %}
+{#- The archive's own records, by NCES id, so a dot can link to the page. -#}
+{% set recs = {} %}
+{% for o in craft.entries().section('organizations').orgType('school').all() %}
+  {% if o.ncesId|trim %}{% set recs = recs|merge({ (o.ncesId|trim): o.url }) %}{% endif %}
+{% endfor %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<div class="sc-map" style="background:#fff;border:1px solid #E2E4E8;padding:12px;margin-bottom:32px">
+  <div id="{{ mapId }}" role="img" aria-label="Map of the school district boundaries and schools" style="height:{{ height ?? 460 }}px;background:#EEF0F4"></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#5B6472;margin-top:10px">
+    <span><i style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#17254C;vertical-align:-1px;margin-right:6px"></i>School, open</span>
+    <span><i style="display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #8A93A3;background:#fff;vertical-align:-2px;margin-right:6px"></i>School, closed</span>
+    {% if not leaid %}<span><i style="display:inline-block;width:16px;height:0;border-top:2px dashed #17254C;vertical-align:3px;margin-right:6px"></i>High school district</span>
+    <span><i style="display:inline-block;width:12px;height:12px;background:rgba(196,160,49,.25);border:1px solid #C4A031;vertical-align:-1px;margin-right:6px"></i>Elementary districts</span>{% endif %}
+  </div>
+  <p style="font-size:13px;color:#5B6472;margin:8px 0 0;line-height:1.55">Boundaries: U.S. Census Bureau. Schools: the NCES directory, 1987 on; schools before 1987 are not in it.</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var el = document.getElementById({{ mapId|json_encode|raw }});
+  if (!el || typeof L === 'undefined') { return; }
+  var ONLY = {{ leaid ? leaid|json_encode|raw : 'null' }};
+  var RECS = {{ recs|json_encode|raw }};
+  var map = L.map(el, { scrollWheelZoom: false });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function nice(n){ return n === n.toUpperCase() ? n.toLowerCase().replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); }) : n; }
+  fetch({{ (siteUrl ~ 'data/schools.geojson?v=' ~ geoV)|json_encode|raw }}).then(function(r){ return r.json(); }).then(function(g){
+    var fs = (g.features || []).filter(function(f){ return !ONLY || f.properties.leaid === ONLY; });
+    var districts = L.geoJSON(fs.filter(function(f){ return f.properties.kind === 'district'; }), {
+      style: function(f){ return f.properties.role === 'high'
+        ? { color: '#17254C', weight: 2.5, dashArray: '6 5', fill: !!ONLY, fillColor: '#17254C', fillOpacity: .05 }
+        : { color: '#C4A031', weight: 1.5, fillColor: '#C4A031', fillOpacity: .18 }; },
+      onEachFeature: function(f, l){ l.bindTooltip(esc(f.properties.title) + ' (grades ' + esc(f.properties.censusGrades) + ', per the Census)'); }
+    }).addTo(map);
+    L.geoJSON(fs.filter(function(f){ return f.properties.kind === 'school'; }), {
+      pointToLayer: function(f, ll){ var open = f.properties.status === 'open';
+        return L.circleMarker(ll, { radius: open ? 5 : 4.5, color: open ? '#17254C' : '#8A93A3', weight: 2, fillColor: open ? '#17254C' : '#fff', fillOpacity: 1 }); },
+      onEachFeature: function(f, l){ var p = f.properties, u = RECS[p.nces];
+        var line = [p.grades ? 'Grades ' + esc(p.grades) : '', p.status === 'open' ? 'Open' : 'Closed, last listed ' + esc(p.lastListed), p.charter ? 'Charter' : ''].filter(Boolean).join(' &middot; ');
+        l.bindPopup('<b>' + (u ? '<a href="' + esc(u) + '">' + esc(nice(p.name)) + '</a>' : esc(nice(p.name))) + '</b><br>' + line); }
+    }).addTo(map);
+    if (districts.getLayers().length) { map.fitBounds(districts.getBounds(), { padding: [10, 10] }); }
+  });
+})();
+</script>
