@@ -1,0 +1,196 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  7199dd1b-155c-4733-a1e1-5a5861b3f0b0:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0721e45c-25f6-48cf-aecc-4dfea125e149 # As printed in the source
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a8120506-a8d8-447f-972a-3f2eb14af743
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d54e509d-ef90-4360-966e-8fd81d0fe30a # What we publish instead
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4d3f7849-0701-4f02-819c-609c2aedcdca
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 34961b27-c7cc-4084-bbdf-a64ced7814c6 # On what basis
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2b1a433c-2396-4708-8799-ca49be6edfa2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 01ddd4db-fe7b-4852-8361-1cef992b3278 # Decided by
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bb3685ba-ad46-4e88-b2cc-95dea359394a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3b221f90-9135-43dd-8348-a3f032c9e343 # The record it is in
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c1016bdc-0ac4-43ca-a21c-b29a8aee8eb2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 009e72e7-3b1a-4b63-ae64-00fe0cff5f5b # The field it is in
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ff121f44-a264-446f-9310-d5853515a953
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 939732e2-23f3-4f3a-acf5-d3ec30ff7bea # Footnotes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e87cc5f6-d755-4975-a24e-dabeb39e0465
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 42cc5706-8791-4935-b463-28f759b078cf # Notes Are On
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7b0596b9-94ab-40f8-bd10-f0ff5d35d5b8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6327ebb7-725a-49b6-89a2-92f1ba79fe25 # Editor's Notes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: deabb565-22f7-4271-9263-8e277b64e0c9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6dbb0ffe-ecb5-494d-a363-94afc2a918af # Record Provenance
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 83f50d6b-0e7e-4828-9eac-1111c162cec1
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'The fault'
+        uid: e76fb9c6-8472-4ee6-bc3d-0cde6d656a40
+        userCondition: null
+    thumbFieldKey: null
+handle: SourceFault
+hasTitleField: false
+icon: null
+name: 'Source Fault'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: "{asPrinted|default('?')} → {reading|default('?')}"
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

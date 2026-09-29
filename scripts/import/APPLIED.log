@@ -107,3 +107,7 @@
 2026-09-29 07:05:25 PDT	retitle_nadeau_grandson.php	scvhistory-web	1 rows	verified	Remi Nadeau (grandson), with the conflation note
 2026-09-29 07:05:28 PDT	add_education.php	scvhistory-web	9 rows	verified: section, type, 11 fields, URLs off	education as records: person, school, years, class, outcome, evidence
 2026-09-29 07:05:33 PDT	import_wm_high_schools.php	scvhistory-web	9 rows	verified	nine casualties linked to their valley high schools; four schools created
+2026-09-29 07:40:29 PDT	build_scofield_profile.php	scvhistory-web	2 rows	verified	Scofield career 1873-1917; Commons portrait, PD-US-1923 on an unnamed 1911 publication
+2026-09-29 07:40:31 PDT	add_elections_schema.php	scvhistory-web	32 rows	verified: 3 sections, 3 types, 26 new fields, candidacyElection resolved	the event, the standing and the transcription fault, each its own record; turnout computed at render
+2026-09-29 07:40:38 PDT	apply_review_fixes_0929.php	scvhistory-web	11 rows	verified	aliases, Gutzeit water, Smyth birthday, holdings and portrait, Nadeau, war memorial slugs
+2026-09-29 07:40:42 PDT	build_nadeau_and_gutzeit_runs.php	scvhistory-web	2 rows	verified	Remi Nadeau (1867-1941) profile; Gutzeit candidacies 2008, 2014, Congress 2016 withdrawn

@@ -1,0 +1,55 @@
+columnSuffix: null
+handle: electionKind
+instructions: null
+name: 'Kind of election'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'General municipal'
+        -
+          - value
+          - general
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Special municipal'
+        -
+          - value
+          - special
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Recall
+        -
+          - value
+          - recall
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Runoff
+        -
+          - value
+          - runoff
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

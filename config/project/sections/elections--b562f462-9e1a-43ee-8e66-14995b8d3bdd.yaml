@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 195a8546-7955-4695-a2c4-2c04db778c02 # Election
+handle: elections
+maxAuthors: 1
+minAuthors: 1
+name: Elections
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
+    enabledByDefault: true
+    hasUrls: true
+    template: elections/_entry
+    uriFormat: 'elections/{slug}'
+type: channel

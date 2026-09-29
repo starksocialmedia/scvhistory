@@ -1,0 +1,95 @@
+columnSuffix: null
+handle: ballotMeasures
+instructions: 'Measures on the same ballot. Carried is ticked only where the source says so; leave it clear rather than inferring it from the two vote columns, because a measure can need a supermajority.'
+name: 'Ballot measures'
+searchable: false
+settings:
+  addRowLabel: 'Add a measure'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Letter
+            -
+              - handle
+              - letter
+            -
+              - width
+              - 8%
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Subject
+            -
+              - handle
+              - subject
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Yes'
+            -
+              - handle
+              - 'yes'
+            -
+              - width
+              - 10%
+            -
+              - type
+              - number
+      -
+        - col4
+        -
+          __assoc__:
+            -
+              - heading
+              - 'No'
+            -
+              - handle
+              - 'no'
+            -
+              - width
+              - 10%
+            -
+              - type
+              - number
+      -
+        - col5
+        -
+          __assoc__:
+            -
+              - heading
+              - Carried
+            -
+              - handle
+              - carried
+            -
+              - width
+              - 8%
+            -
+              - type
+              - lightswitch
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

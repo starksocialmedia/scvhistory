@@ -1,0 +1,230 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  5de7cdc9-a30c-47d7-8184-3aa7af8b3d83:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6b0e6684-33ed-4cc9-a850-8ad83416424e # Election
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e578b0fa-45ad-4bac-88f6-ec1930a35b10
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f291fc46-7075-4cf2-8076-940134cba755 # Person
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9f29c517-a82a-4dfa-9be3-ce66d9f52b0f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 76421c7b-0231-4561-bd66-5b895aa1d602 # Name, as printed on the canvass
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6fdf0caa-851b-43fe-ac8f-e8684a0c4d70
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f5dc8647-c3e6-4d35-a2c2-d9ebd5ec336d # Votes, as printed
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 02462597-a37c-43d4-89cc-3fa01f845537
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ee0739e4-de7c-4865-b1f7-7d8f65f42e02 # Votes, as we read them
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 94baf0f5-ccf0-4117-898c-559e2bf2899a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a2fc649c-0e66-4d27-a0c3-28085dd2aa37 # Outcome
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9cd2b81e-9c32-42c9-b3fe-78762aaeca28
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 9a6c796d-8a46-403c-a63c-ffc42ea4f189 # Evidence for the outcome
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e665f29c-19bd-40cc-9f8b-04b0c21aed50
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: bb651837-f349-40f3-af28-a0c2e7b72a0e # District
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9c45391d-55a4-4f7f-a04f-046c5bd61763
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 939732e2-23f3-4f3a-acf5-d3ec30ff7bea # Footnotes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8934f977-2082-4594-a4a3-eeb9e970f7b9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 42cc5706-8791-4935-b463-28f759b078cf # Notes Are On
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 584d1489-db04-4559-a793-efc7fb1d038b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6327ebb7-725a-49b6-89a2-92f1ba79fe25 # Editor's Notes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 49fbebfe-bc50-4ee5-9e43-73e875fc5512
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6dbb0ffe-ecb5-494d-a363-94afc2a918af # Record Provenance
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7dbfd1cf-b69e-4ff8-aaf6-36bb7272aa75
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'The candidacy'
+        uid: 72bbac27-ade9-41b4-b064-7827e968d265
+        userCondition: null
+    thumbFieldKey: null
+handle: Candidacy
+hasTitleField: false
+icon: null
+name: Candidacy
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: "{nameAsPrinted|default('Unnamed candidate')} — {candidacyElection.one().title ?? 'unknown election'}"
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

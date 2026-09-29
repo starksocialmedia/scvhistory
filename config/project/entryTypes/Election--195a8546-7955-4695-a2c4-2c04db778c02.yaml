@@ -1,0 +1,298 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  30cc2fb3-36c4-45b3-bbdc-ee773ec45eec:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e64d153a-5110-4450-9e7a-cad4c6b4ad0c # Election date, as printed
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2339d34f-b2dc-4dca-b82d-23dcc7a97c1b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a80266c5-80ec-4ded-8179-9f0aefd265bd # Election date, EDTF
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3c293f71-b825-4f33-918b-3120dc14ea93
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 40145306-cc8b-4a0c-ad21-946ee0da19cf # Kind of election
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b9182772-1a47-4cd6-89b7-57f1db40804f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: cc9c5024-50e6-41a2-a2f5-e7ee6b91c1c9 # Consolidated with
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 22a47011-e912-4261-b702-08a41a4c974a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 060b3fc3-4fe3-42f9-8da5-e82593364683 # Registered voters
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f9e30b75-71ef-4066-bc5d-c7a14e630590
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 76bcaf47-5aba-46f0-b613-2093646de2c2 # Ballots cast
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9bbb2142-a793-4d24-a210-7b869e0522d7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 873bad24-6321-4392-9cf3-5a2b7d4bdcce # Ballots cast by mail
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2f873d00-62e6-447a-a7c8-517dafe7f807
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f0a31bd1-e2a5-49a3-81a2-edece2d2d264 # Ballots cast at precincts
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c67dea7d-7ad9-4148-a89b-7d92e22ba3b2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1705ec9a-a84e-4aac-9353-597c08ed617f # Seats up
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 57fc6f77-6443-433b-8b6d-a0a621c860e2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8469bef3-f7f2-4729-bc9b-299f14bed931 # Evidence for the seat count
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 76de0ff5-be16-4aac-85a4-24905f84a6cd
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 803424a0-a5b1-4bbc-845a-f94a70457aca # Source documents
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c95ec222-f2c4-469f-ab04-f8cbe8789e7b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e7426ee2-b66d-4e7b-b8a9-b661cd0d3d3d # Ballot measures
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ce05eae7-1b9d-4e7c-b1c3-113ba637de8e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 939732e2-23f3-4f3a-acf5-d3ec30ff7bea # Footnotes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: af581813-3af2-4eb7-b619-b844e3182b0a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 42cc5706-8791-4935-b463-28f759b078cf # Notes Are On
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7de2cb48-2600-4fe3-8ffd-e2953244ce63
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6327ebb7-725a-49b6-89a2-92f1ba79fe25 # Editor's Notes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f6a87cf6-0edf-49bc-b70d-a52f69cab37a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6dbb0ffe-ecb5-494d-a363-94afc2a918af # Record Provenance
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e21903ba-6657-4ded-a9e5-05e5b1e82d82
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'The election'
+        uid: 612170b6-f3ec-45e8-8860-bd61ceb07f35
+        userCondition: null
+    thumbFieldKey: null
+handle: Election
+hasTitleField: false
+icon: null
+name: Election
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

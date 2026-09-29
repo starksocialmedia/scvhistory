@@ -177,6 +177,25 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `recordDates` | Table | **local** | no external equivalent |
 | `bandImage` | Assets | schema.org `image` | presentation only |
 
+### Candidacies — `candidacies/Candidacy`
+
+12 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `candidacyElection` | Entries | **local** | no external equivalent |
+| `candidacyPerson` | Entries | **local** | no external equivalent |
+| `nameAsPrinted` | PlainText | **local** | no external equivalent |
+| `votesAsPrinted` | PlainText | **local** | no external equivalent |
+| `votes` | Number | **local** | no external equivalent |
+| `outcome` | Dropdown | **local** | no external equivalent |
+| `outcomeEvidence` | Dropdown | **local** | no external equivalent |
+| `candidacyDistrict` | Entries | **local** | no external equivalent |
+| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
+| `footnotesOn` | Entries | schema.org `citation` |  |
+| `editorNotes` | Table | **local** | no external equivalent |
+| `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+
 ### Collections — `collections/collection`
 
 33 fields.
@@ -266,6 +285,29 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `classOf` | PlainText | **local** | the graduating class as printed; names a year, not a diploma |
 | `educationOutcome` | Dropdown | **local** | graduated only where a source says so |
 | `educationEvidence` | Dropdown | **local** | the officeHolding scale: certified, contemporary, retrospective, roster, uncited |
+| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
+| `footnotesOn` | Entries | schema.org `citation` |  |
+| `editorNotes` | Table | **local** | no external equivalent |
+| `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+
+### Elections — `elections/Election`
+
+16 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `electionDate` | PlainText | **local** | no external equivalent |
+| `electionDateEdtf` | PlainText | **local** | no external equivalent |
+| `electionKind` | Dropdown | **local** | no external equivalent |
+| `consolidatedWith` | PlainText | **local** | no external equivalent |
+| `registeredVoters` | Number | **local** | no external equivalent |
+| `ballotsCast` | Number | **local** | no external equivalent |
+| `votesByMail` | Number | **local** | no external equivalent |
+| `votesAtPrecinct` | Number | **local** | no external equivalent |
+| `seatsUp` | Number | **local** | no external equivalent |
+| `seatsUpEvidence` | Dropdown | **local** | no external equivalent |
+| `sourceDocuments` | Entries | **local** | no external equivalent |
+| `ballotMeasures` | Table | **local** | no external equivalent |
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
@@ -794,6 +836,23 @@ a skip means the queue has not been settled, and an external means it has.
 | --- | --- | --- | --- |
 | `roleWikidataId` | PlainText | **local** | no external equivalent |
 
+### Source Faults — `sourceFaults/SourceFault`
+
+10 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `asPrinted` | PlainText | **local** | no external equivalent |
+| `reading` | PlainText | **local** | no external equivalent |
+| `basis` | PlainText | **local** | no external equivalent |
+| `decidedBy` | PlainText | **local** | no external equivalent |
+| `faultRecord` | Entries | **local** | no external equivalent |
+| `faultField` | PlainText | **local** | no external equivalent |
+| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
+| `footnotesOn` | Entries | schema.org `citation` |  |
+| `editorNotes` | Table | **local** | no external equivalent |
+| `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+
 ### War Memorials — `warMemorials/warMemorial`
 
 54 fields.
@@ -868,13 +927,17 @@ local unless the note says otherwise.
 - **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`.
 - **`educationEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`educationOutcome`** — `graduated`, `attended`, `unknown`.
+- **`electionKind`** — `general`, `special`, `recall`, `runoff`.
 - **`endEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
 - **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `serving`, `unknown`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
+- **`outcome`** — `unknown`, `elected`, `not-elected`, `withdrew`, `disqualified`.
+- **`outcomeEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`, `settlement`, `district`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
 - **`schoolLevel`** — `elementary`, `middle`, `high`, `college`, `district`. Drives the schema.org School subtype: ElementarySchool, MiddleSchool, HighSchool, CollegeOrUniversity. A district has no schema.org subtype and stays Organization.
+- **`seatsUpEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`selectionMethod`** — `elected`, `appointed`, `rotated`, `exofficio`, `succeeded`.
 - **`startEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 

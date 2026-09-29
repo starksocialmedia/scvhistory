@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: outcome
+instructions: null
+name: Outcome
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Unknown
+        -
+          - value
+          - unknown
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - Elected
+        -
+          - value
+          - elected
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Not elected'
+        -
+          - value
+          - not-elected
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Withdrew
+        -
+          - value
+          - withdrew
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Disqualified
+        -
+          - value
+          - disqualified
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

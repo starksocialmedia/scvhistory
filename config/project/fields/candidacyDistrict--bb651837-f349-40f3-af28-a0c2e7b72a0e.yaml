@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: candidacyDistrict
+instructions: null
+name: District
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:2783613e-042b-4eba-aff6-22af40915baf' # Places
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

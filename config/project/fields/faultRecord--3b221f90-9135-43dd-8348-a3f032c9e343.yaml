@@ -1,0 +1,27 @@
+columnSuffix: null
+handle: faultRecord
+instructions: null
+name: 'The record it is in'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:b562f462-9e1a-43ee-8e66-14995b8d3bdd' # Elections
+    - 'section:f630e016-6834-4223-91df-d8763ae37976' # Candidacies
+    - 'section:fefda696-1d19-4719-a755-88d6c46b068f' # Documents
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries
