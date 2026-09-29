@@ -23,7 +23,7 @@
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v11-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v12-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -258,7 +258,7 @@
 {#- CIVIC: the public record. It appears when the elections have records, by the
     nav-link rule, with no one having to remember (STRUCTURE.md). -#}
 {% set colsCivic = not cElections ? [] : [
-  { label: 'THE CITY', items: [{ t: 'The City Council', n: cityRec ? 1 : 0, u: cityRec ? cityRec.url : '' }] },
+  { label: 'THE CITY', items: [{ t: 'The City Council', n: cityRec ? 1 : 0, u: cityRec ? cityRec.url ~ '#council' : '' }] },
   { label: 'ELECTIONS', items: [{ t: 'Elections', n: cElections, u: url('elections') }] },
   { label: 'BODIES', items: [{ t: 'Government bodies', n: cGov, u: url('organizations') ~ '#government' }] }
 ] %}

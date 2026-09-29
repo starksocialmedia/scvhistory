@@ -239,7 +239,7 @@ foreach (Entry::find()->section('officeHoldings')->status(null)->relatedTo(['tar
 
 /* Read back. */
 $short = [];
-$nE = Entry::find()->section('elections')->status(null)->count(); $nC = Entry::find()->section('candidacies')->status(null)->count(); $nF = Entry::find()->section('sourceFaults')->status(null)->count();
+$nE = (int)Entry::find()->section('elections')->status(null)->count(); $nC = (int)Entry::find()->section('candidacies')->status(null)->count(); $nF = (int)Entry::find()->section('sourceFaults')->status(null)->count();   /* count() returns a string: cast, or the read-back fails on equal numbers (it did, 29 September) */
 if ($nE !== count($data['elections'])) { $short[] = "elections $nE, expected " . count($data['elections']); }
 if ($nC !== $nCand) { $short[] = "candidacies $nC, expected $nCand"; }
 if ($nF !== count($data['faults'])) { $short[] = "faults $nF, expected " . count($data['faults']); }

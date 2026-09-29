@@ -1,0 +1,109 @@
+{#
+  The roster of a body: everyone who has held its seats, when, and how, drawn
+  from officeHolding records (Nathan, 29 September 2026: "the page this whole
+  civic track was for"). STRUCTURE.md, the council roster.
+
+    body    the organization (the City of Santa Clarita for the council)
+    seats   how many seats the body has, for the line on who is missing
+
+  A timeline first, one row per person and one bar per term: navy where the
+  term rests on a document or on the count read against the roster, pale where
+  it rests on the count alone, gold where the person was appointed. Then a table
+  of the same people with their elections. Rotating offices (the mayoralty) are
+  not seats and are listed apart.
+#}
+{%- set all = craft.entries().section('officeHoldings').relatedTo({ targetElement: body, field: 'holdingBody' }).all() -%}
+{%- set terms = all|filter(h => h.selectionMethod.value != 'rotated') -%}
+{%- set rotated = all|filter(h => h.selectionMethod.value == 'rotated') -%}
+{% if terms|length %}
+{%- set Y0 = 1987 -%}
+{%- set NOW = now|date('Y') + (now|date('n') - 1) / 12 -%}
+{#- An EDTF date to a decimal year. A bare year is placed mid-year: the record
+    does not say which month. -#}
+{%- set dec = [] -%}
+{%- set people = {} -%}
+{% for h in terms|sort((a, b) => a.termStartEdtf <=> b.termStartEdtf) %}
+  {% set p = h.holdingPerson.one() %}
+  {% if p %}
+    {% set sp = h.termStartEdtf|split('-') %}
+    {% set s = sp[0] + ((sp[1] ?? null) ? (sp[1] - 1) / 12 : 0.5) + ((sp[2] ?? null) ? (sp[2] - 1) / 365 : 0) %}
+    {% if h.termEndEdtf %}
+      {% set ep = h.termEndEdtf|split('-') %}
+      {% set e = ep[0] + ((ep[1] ?? null) ? (ep[1] - 1) / 12 : 0.5) + ((ep[2] ?? null) ? (ep[2] - 1) / 365 : 0) %}
+    {% else %}{% set e = NOW %}{% endif %}
+    {% set k = 'p' ~ p.id %}
+    {% set row = people[k] ?? { person: p, first: s, bars: [] } %}
+    {% set people = people|merge({ (k): row|merge({ bars: row.bars|merge([{ h: h, s: s, e: e }]) }) }) %}
+  {% endif %}
+{% endfor %}
+{%- set rows = people|sort((a, b) => a.first <=> b.first ?: a.person.title <=> b.person.title) -%}
+{%- set current = terms|filter(h => not h.termEnd)|length -%}
+{%- set W = 980 -%}{%- set L = 178 -%}{%- set R = 24 -%}{%- set TOP = 30 -%}{%- set RH = 26 -%}
+{%- set H = TOP + rows|length * RH + 8 -%}
+{%- set span = NOW + 0.4 - Y0 -%}
+
+<h2 class="rec-h2" id="council">The council, {{ Y0 }} to now</h2>
+<p style="font-size:17px;line-height:1.65;color:#4A5260;margin:0 0 20px;max-width:720px">
+  {{ rows|length }} people have held a seat on the Santa Clarita City Council since the first council took office on 15 December 1987{% set appointed = terms|filter(h => h.selectionMethod.value == 'appointed')|length %}{% if appointed %}, {{ appointed == 1 ? 'one' : appointed }} of those terms by appointment{% endif %}.
+  {% if seats is defined and current < seats %}The archive records {{ current }} of the council's {{ seats }} present members; the term of the other{{ seats - current > 1 ? 's' : '' }} is not yet held.{% endif %}
+  Every election they stood in, and everyone who stood against them, is in <a href="{{ url('elections') }}" style="color:#7A5C1B">the elections</a>.
+</p>
+
+<div style="background:#fff;border:1px solid #E2E4E8;padding:16px 12px 10px;overflow-x:auto;margin-bottom:10px">
+  <svg viewBox="0 0 {{ W }} {{ H }}" style="display:block;min-width:720px;width:100%;height:auto" role="img" aria-label="Timeline of Santa Clarita City Council members' terms, {{ Y0 }} to now">
+    {% for y in range(1988, NOW|round(0, 'floor'), 2) %}
+      {% set x = L + (y - Y0) / span * (W - L - R) %}
+      <line x1="{{ x }}" x2="{{ x }}" y1="{{ TOP - 6 }}" y2="{{ H - 4 }}" stroke="{{ y % 4 == 2 ? '#E6E8EC' : '#F3F4F6' }}"/>
+      {% if y % 4 == 2 %}<text x="{{ x }}" y="{{ TOP - 12 }}" font-size="11" fill="#8A93A3" text-anchor="middle" font-family="Jost, sans-serif">{{ y }}</text>{% endif %}
+    {% endfor %}
+    {% for r in rows %}
+      {% set y = TOP + (loop.index0) * RH %}
+      <a href="{{ r.person.url }}"><text x="{{ L - 10 }}" y="{{ y + 17 }}" font-size="13" fill="#17254C" text-anchor="end" font-family="Public Sans, system-ui, sans-serif">{{ r.person.title }}</text></a>
+      {% for b in r.bars %}
+        {% set x1 = L + (b.s - Y0) / span * (W - L - R) %}{% set x2 = L + (b.e - Y0) / span * (W - L - R) %}
+        {% set fill = b.h.selectionMethod.value == 'appointed' ? '#C4A031' : (b.h.startEvidence.value == 'derived' ? '#9AA6C4' : '#17254C') %}
+        <rect x="{{ x1 }}" y="{{ y + 7 }}" width="{{ max(x2 - x1 - 1.5, 3) }}" height="13" fill="{{ fill }}"><title>{{ r.person.title }}: {{ b.h.termStart }} to {{ b.h.termEnd ?: 'now' }}, {{ b.h.selectionMethod.value }}{{ b.h.startEvidence.value == 'derived' ? ', read from the count' : '' }}</title></rect>
+      {% endfor %}
+    {% endfor %}
+  </svg>
+</div>
+<div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#5B6472;margin-bottom:28px">
+  <span><i style="display:inline-block;width:12px;height:12px;background:#17254C;vertical-align:-1px;margin-right:6px"></i>Elected: declared, or the count confirmed by the council roster</span>
+  <span><i style="display:inline-block;width:12px;height:12px;background:#9AA6C4;vertical-align:-1px;margin-right:6px"></i>Elected on the count alone, not yet confirmed</span>
+  <span><i style="display:inline-block;width:12px;height:12px;background:#C4A031;vertical-align:-1px;margin-right:6px"></i>Appointed</span>
+</div>
+
+<table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;font-size:15px">
+  <thead><tr>
+    <th style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0">MEMBER</th>
+    <th style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0">SERVED</th>
+    <th style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0">ELECTIONS</th>
+  </tr></thead>
+  <tbody>
+  {% for r in rows %}
+    {#- Contiguous terms read as one span of service. -#}
+    {% set spans = [] %}
+    {% for b in r.bars %}
+      {% set sy = b.h.termStartEdtf|slice(0, 4) %}{% set ey = b.h.termEnd ? b.h.termEndEdtf|slice(0, 4) : 'now' %}
+      {% if spans|length and (spans|last)[1] != 'now' and sy <= (spans|last)[1] %}
+        {% set spans = spans|slice(0, spans|length - 1)|merge([[(spans|last)[0], ey]]) %}
+      {% else %}
+        {% set spans = spans|merge([[sy, ey]]) %}
+      {% endif %}
+    {% endfor %}
+    {% set stood = craft.entries().section('candidacies').relatedTo({ targetElement: r.person, field: 'candidacyPerson' }).all() %}
+    {% set won = stood|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited')|length %}
+    {% set appt = r.bars|filter(b => b.h.selectionMethod.value == 'appointed')|length %}
+    <tr>
+      <td style="padding:10px 14px;border-top:1px solid #F0F1F4"><a href="{{ r.person.url }}" style="color:#17254C;font-weight:500">{{ r.person.title }}</a></td>
+      <td style="padding:10px 14px;border-top:1px solid #F0F1F4;font-variant-numeric:tabular-nums">{{ spans|map(s => s[0] == s[1] ? s[0] : s[0] ~ '–' ~ s[1])|join(', ') }}{% if appt %} <span style="color:#5B6472;font-size:13.5px">(appointed {{ r.bars|filter(b => b.h.selectionMethod.value == 'appointed')|map(b => b.h.termStartEdtf|slice(0, 4))|join(', ') }})</span>{% endif %}</td>
+      <td style="padding:10px 14px;border-top:1px solid #F0F1F4;color:#4A5260;font-size:14px">{% if stood|length %}stood {{ stood|length }}, elected {{ won }}{% else %}<span style="color:#8A93A3">none held</span>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% if rotated|length %}
+  <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:14px 0 0">The mayoralty rotates among the members each year and is not a seat. Recorded so far: {{ rotated|map(h => (h.holdingPerson.one().title ?? '') ~ ' (' ~ h.termStart ~ ')')|join('; ') }}.</p>
+{% endif %}
+<p style="font-size:14px;line-height:1.6;color:#5B6472;margin:10px 0 0">Terms are built from the vote counts and read against the council ledger Leon Worden kept for SCVHistory.com, which runs to 2020. Where the two agree, the term is shown as confirmed; where only the count stands, it is marked, and each term's own record states its sources.</p>
+{% endif %}

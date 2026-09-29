@@ -1,0 +1,58 @@
+{#
+  A person's public service, read from the records rather than the prose
+  (Nathan, 29 September 2026): the offices held, one row per term, and every
+  election stood, won or lost.
+
+    entry   the person
+
+  A term won on the count alone (startEvidence "derived") is marked with a
+  dagger and says so beneath. An end that is derived (the April terms the move
+  to November extended) is explained in the term's own notes, not marked. Appointed terms say "appointed".
+  Both boxes are left out when there is nothing to show.
+#}
+{%- set holdings = craft.app.entries.getSectionByHandle('officeHoldings') ? craft.entries().section('officeHoldings').relatedTo({ targetElement: entry, field: 'holdingPerson' }).orderBy('termStartEdtf asc').all() : [] -%}
+{%- set cands = craft.app.entries.getSectionByHandle('candidacies') ? craft.entries().section('candidacies').relatedTo({ targetElement: entry, field: 'candidacyPerson' }).all() : [] -%}
+{%- set derivedAny = false -%}
+{% if holdings|length %}
+  {#- Grouped by office and body, in the order first held. -#}
+  {% set groups = {} %}
+  {% for h in holdings %}
+    {% set o = h.holdingOffice.one() %}{% set b = h.holdingBody.one() %}
+    {% set k = 'g' ~ (o.id ?? 0) ~ '-' ~ (b.id ?? 0) %}
+    {% set groups = groups|merge({ (k): (groups[k] ?? { office: o, body: b, terms: [] })|merge({ terms: ((groups[k] ?? { terms: [] }).terms)|merge([h]) }) }) %}
+  {% endfor %}
+  <div class="rec-box"><div class="rec-lab">OFFICES HELD</div>
+    {% for g in groups %}
+      <div style="font-size:15px;line-height:1.45;margin:{{ loop.first ? '0' : '14px' }} 0 6px"><b style="font-weight:600;color:#17254C">{{ g.office.title ?? 'Office' }}</b>{% if g.body %}, <a href="{{ g.body.url }}{{ g.body.slug == 'city-of-santa-clarita' ? '#council' : '' }}" style="color:#17254C">{{ g.body.title }}</a>{% endif %}</div>
+      <div class="rec-rows">
+        {% for h in g.terms %}
+          {% set d = h.startEvidence.value == 'derived' %}
+          {% if d %}{% set derivedAny = true %}{% endif %}
+          <div class="k">{{ h.selectionMethod.value == 'appointed' ? 'APPOINTED' : (h.selectionMethod.value == 'rotated' ? 'ROTATION' : 'TERM') }}</div>
+          <div class="v">{{ h.termStart }} to {{ h.termEnd ?: 'now' }}{% if d %}&dagger;{% endif %}{% if h.howEnded.value == 'left' %} <span style="color:#5B6472;font-size:13.5px">(left office)</span>{% endif %}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    {% if derivedAny %}<p style="font-size:13px;line-height:1.5;color:#5B6472;margin:12px 0 0">&dagger; Won on the vote count, with the seats up derived from the staggered terms; no declaring document is held yet.</p>{% endif %}
+  </div>
+{% endif %}
+{% if cands|length %}
+  {% set rows = [] %}
+  {% for c in cands %}
+    {% set el = c.candidacyElection.one() %}
+    {% if el %}
+      {% set n = craft.entries().section('candidacies').relatedTo({ targetElement: el, field: 'candidacyElection' }).count() %}
+      {% set place = craft.entries().section('candidacies').relatedTo({ targetElement: el, field: 'candidacyElection' }).votes('> ' ~ (c.votes ?? 0)).count() + 1 %}
+      {% set rows = rows|merge([{ el: el, c: c, n: n, place: place }]) %}
+    {% endif %}
+  {% endfor %}
+  <div class="rec-box"><div class="rec-lab">ELECTIONS STOOD</div>
+    <div class="rec-rows">
+      {% for r in rows|sort((a, b) => a.el.electionDateEdtf <=> b.el.electionDateEdtf) %}
+        {% set won = r.c.outcome.value == 'elected' and r.c.outcomeEvidence.value != 'uncited' %}
+        <div class="k">{{ r.el.electionDateEdtf|slice(0, 4) }}{{ r.el.electionDateEdtf|slice(5, 2) == '11' ? ' NOV' : '' }}</div>
+        <div class="v"><a href="{{ r.el.url }}">{{ won ? 'Elected' : (r.c.outcome.value == 'not-elected' ? 'Not elected' : 'Stood') }}{{ won and r.c.outcomeEvidence.value == 'derived' ? '†' : '' }}</a>{% set sfx = r.place % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][r.place % 10] ?? 'th') %}<span style="color:#5B6472;font-size:13.5px">, {{ r.place ~ sfx }} of {{ r.n }}, {{ r.c.votes|number_format }} votes</span></div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

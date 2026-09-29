@@ -2,11 +2,12 @@
 {#
   One council election: every candidate and every vote, losers first-class.
 
-  "Elected" is printed only where a document says so (outcomeEvidence certified,
-  contemporary or retrospective). Where the winners are read from the vote
-  order and a derived seat count, the page gives the order of finish and says
-  the declaring resolution is not held, rather than marking a winner the
-  archive cannot source. Figures printed wrongly in the source (a decimal point
+  "Elected" is printed on the strength of the record behind it, and the page says
+  which: a declaring document (certified, contemporary, retrospective), the
+  count read against the council roster held in the archive (roster), or the
+  count alone (derived, marked "by the count"). Uncited outcomes are not marked
+  at all; the page gives the order of finish and says the declaring document is
+  not held. Figures printed wrongly in the source (a decimal point
   for a thousands separator) show as printed beside the reading, with the fault
   record's basis.
 #}
@@ -33,6 +34,7 @@
 .el-table a{color:#17254C;font-weight:500}
 .el-bar{height:8px;background:#C4A031;border-radius:1px}
 .el-badge{display:inline-block;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;padding:2px 7px;border:1px solid #17254C;color:#17254C;margin-left:8px}
+.el-badge--count{border-style:dashed;color:#4A5260;border-color:#8A93A3}
 .el-dim{color:#5B6472;font-size:13.5px}
 .el-callout{background:#fff;border-left:3px solid #C4A031;padding:12px 16px;font-size:14.5px;line-height:1.6;color:#4A5260;margin:14px 0 0}
 {% endcss %}
@@ -43,7 +45,7 @@
 {% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all()|sort((a, b) => (b.votes ?? 0) <=> (a.votes ?? 0)) %}
 {% set total = cands|reduce((s, c) => s + (c.votes ?? 0), 0) %}
 {% set top = (cands|first).votes ?? 0 %}
-{% set sourced = cands|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited')|length > 0 %}
+{% set wonEv = (cands|filter(c => c.outcome.value == 'elected')|first).outcomeEvidence.value ?? 'uncited' %}
 {% set turnout = e.registeredVoters and e.ballotsCast ? e.ballotsCast / e.registeredVoters * 100 : null %}
 {% set faults = craft.entries().section('sourceFaults').relatedTo({ targetElement: [e.id]|merge(cands|map(c => c.id)), field: 'faultRecord' }).all() %}
 {% set faultOf = {} %}{% for f in faults %}{% for t in f.faultRecord.ids() %}{% set faultOf = faultOf|merge({ ('r' ~ t ~ f.faultField): f }) %}{% endfor %}{% endfor %}
@@ -56,7 +58,7 @@
       <h1>{{ e.title }}</h1>
       <div class="el-facts">
         <div><div class="n">{{ cands|length }}</div><div class="l">CANDIDATES</div></div>
-        <div><div class="n">{{ e.seatsUp }}</div><div class="l">SEATS{{ e.seatsUpEvidence.value == 'uncited' ? ', DERIVED' : '' }}</div></div>
+        <div><div class="n">{{ e.seatsUp }}</div><div class="l">SEATS{{ e.seatsUpEvidence.value in ['uncited', 'derived'] ? ', DERIVED' : '' }}</div></div>
         {% if e.ballotsCast %}<div><div class="n">{{ e.ballotsCast|number_format }}</div><div class="l">BALLOTS CAST</div></div>{% endif %}
         {% if e.registeredVoters %}<div><div class="n">{{ e.registeredVoters|number_format }}</div><div class="l">REGISTERED</div></div>{% endif %}
         {% if turnout %}<div><div class="n">{{ turnout|number_format(1) }}%</div><div class="l">TURNOUT</div></div>{% endif %}
@@ -74,15 +76,20 @@
         {% set f = faultOf['r' ~ c.id ~ 'votesAsPrinted'] ?? null %}
         <tr>
           <td class="el-dim">{{ loop.index }}</td>
-          <td>{% if p %}<a href="{{ p.url }}">{{ c.nameAsPrinted }}</a>{% else %}{{ c.nameAsPrinted }}{% endif %}{% if c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited' %}<span class="el-badge">ELECTED</span>{% endif %}</td>
+          <td>{% if p %}<a href="{{ p.url }}">{{ c.nameAsPrinted }}</a>{% else %}{{ c.nameAsPrinted }}{% endif %}{% if c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited' %}<span class="el-badge{{ c.outcomeEvidence.value == 'derived' ? ' el-badge--count' : '' }}">{{ c.outcomeEvidence.value == 'derived' ? 'ELECTED, BY THE COUNT' : 'ELECTED' }}</span>{% endif %}</td>
           <td class="num">{{ c.votes|number_format }}{% if f %}<div class="el-dim">printed "{{ f.asPrinted }}"</div>{% endif %}</td>
           <td><div class="el-bar" style="width:{{ top ? (c.votes / top * 100)|round(1) : 0 }}%"></div><span class="el-dim">{{ total ? (c.votes / total * 100)|number_format(1) : '' }}%</span></td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
-    {% if not sourced %}
-      <p class="el-callout">No document the archive holds declares this election's winners. The order above is the order of the vote; with {{ e.seatsUp }} seat{{ e.seatsUp == 1 ? '' : 's' }} up, the first {{ e.seatsUp }} would have been elected, but the seat count is derived and the declaring resolution is not yet held, so no one is marked elected here.</p>
+    {% set nS = e.seatsUp %}{% set sS = nS == 1 ? '' : 's' %}
+    {% if wonEv == 'roster' %}
+      <p class="el-callout">No declaring resolution is held for this election. The {{ nS == 1 ? 'winner is' : nS ~ ' winners are' }} the first {{ nS }} of the count, and the council roster held in the archive agrees: it shows {{ nS == 1 ? 'that candidate' : 'each of them' }} serving from this election and none of the others. The notes below give the roster's entries.</p>
+    {% elseif wonEv == 'derived' %}
+      <p class="el-callout">No document the archive holds declares this election's winners, and the council roster ends in 2020. {{ nS == 1 ? 'The candidate' : 'The ' ~ nS ~ ' candidates' }} marked "by the count" {{ nS == 1 ? 'is' : 'are' }} the first {{ nS }} of the vote, with {{ nS }} seat{{ sS }} up; the marks will be confirmed when the declaring resolution is obtained.</p>
+    {% elseif wonEv == 'uncited' %}
+      <p class="el-callout">No document the archive holds declares this election's winners. The order above is the order of the vote; with {{ nS }} seat{{ sS }} up, the first {{ nS }} would have been elected, but the declaring resolution is not yet held, so no one is marked elected here.</p>
     {% endif %}
     {% if cands|filter(c => c.candidacyPerson.one() is null)|length and e.electionDateEdtf == '2014-04-08' %}
       <p class="el-callout">The 2014 results print surnames only, so none of these candidates is linked to a person record: the archive matches on full first names, never on a surname alone.</p>

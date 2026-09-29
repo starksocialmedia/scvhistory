@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-09-29
+
+- Agent: Claude Code
+- Date: 2026-09-29
+- Done: council winners and terms (council_winners_and_terms.php, dry run clean; tested for real inside a rolled-back transaction): 17 elections re-evidenced, 44 officeHolding records, 7 people (Koontz, Ferry, McLean, Ender, Miranda, Gibbs, Ayala), 23 candidacies linked, the Janice Heidt alias, and three holding corrections. add_derived_evidence.php adds "derived" to the four council evidence fields. The council roster (_partials/civic/roster.twig) on /organizations/city-of-santa-clarita#council, OFFICES HELD and ELECTIONS STOOD on person pages (_partials/record/offices.twig), and evidence-aware winners on /elections. The import_elections.php read-back fixed (count() is a string, so equal counts reported SHORT).
+- Decisions: the archive already held a council roster, Leon Worden's ledger on record #4967, with every member's years to 2020. At every election 1990-2018 the top N of the count are exactly the members it shows serving on and no one below them is, which confirms both the winners and the seat count; those outcomes are "roster", not "derived". 2020-2024 rest on the count alone and are "derived". Every winner becomes a person record. Terms turn over in December after a November election; the April 2012 and 2014 terms ran to December 2016 and 2018, so the Kellar and Boydston holdings' April 2016 end is corrected and marked derived. The ledger's two appointments (Boydston 2006-08, Miranda 2017) are holdings. 2014 surname links are behind $LINK_2014, off, for Nathan.
+- Blockers: the 2024 District 3 election was cancelled (LA County list of cancelled elections, November 2024), so there is no canvass to ask for; the appointment in lieu of election is. organize_orgs_places.php missed Ruiz Cemetery's type on apply (the option was added in the same request); a re-run applies it and nothing else.
+- Result: CEDA (California Elections Data Archive) agrees with every council election 2004-2024 on seats, winners and votes, and prints 2014's first names. Dante Acosta's body said he was elected in November 2014; it was April. School and water board data: CEDA 1995-2024 for the five school districts (no water bodies), LA County scanned returns for everything before that, precinct spreadsheets from 2016.
+- Next: Nathan's answers on CEDA as a source, the 2014 links, and person records for repeat candidates; then electionBody for the school and water boards.
+
 2026-09-25
 
 - Agent: Claude Code

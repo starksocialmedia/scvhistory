@@ -106,6 +106,38 @@ stays at `/organizations/` because it *is* an organization, and
 rendering into it; a parallel `/civic/bodies/` would give the City Council two
 URLs and split its inbound links.
 
+## The council roster
+
+**Built 29 September 2026**: `_partials/civic/roster.twig`, on the City's own
+record at `/organizations/city-of-santa-clarita#council`, where the menu's "The
+City Council" points. The body page is the council page; one record, one URL.
+
+There was no council timeline in this document before; this is it. One row per
+person who has held a seat, one bar per term, from the officeHolding records:
+navy where the term rests on a document or on the count confirmed by the roster,
+pale where it rests on the count alone, gold for an appointment. Below it, a
+table of the same people with their years of service and the elections they
+stood in. The mayoralty rotates, is not a seat, and is listed apart. A body gets
+the roster by having seats: `SEATS` in `organizations/_entry.twig` gives the
+count, and the line "the archive records 4 of the council's 5 present members"
+says what is missing rather than hiding it.
+
+**How a term is established**, strongest first, and what each election and term
+says about itself:
+
+| Evidence | What stands behind the winner | Elections |
+|---|---|---|
+| certified | the declaring resolution | 2012 (Resolution 12-9) |
+| retrospective | the City's own account of its first council | 1987 |
+| roster | the count, and the council ledger Leon Worden kept for SCVHistory.com (record #4967), which agree at every election | 1990 to 2018 |
+| derived | the count alone, the seats up from the staggered terms | 2020, 2022, 2024 |
+
+The ledger check is two-sided: the top N of the count are exactly the members it
+shows serving on, and no one below them is, so it confirms the seat count too.
+`council_winners_and_terms.php` refuses if any election fails it. Person pages
+carry the same records as OFFICES HELD and ELECTIONS STOOD
+(`_partials/record/offices.twig`); a term won on the count alone is marked.
+
 ## The guard pattern, and the bug it caused
 
 `_partials/header/site-header.twig` builds the mega menu from live counts:

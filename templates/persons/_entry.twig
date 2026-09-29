@@ -135,6 +135,8 @@
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
+        {#- Public service from the officeHolding and candidacy records, not the prose. -#}
+        {% include "_partials/record/offices" with { entry: entry } only %}
         {% include "_partials/record/education" with { entry: entry, as: 'person' } only %}
         {# Family is derived from childOf in _layouts/base.twig and handed here
            and to the JSON-LD, so the box and the graph cannot disagree. #}

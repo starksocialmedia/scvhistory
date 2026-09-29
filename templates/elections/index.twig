@@ -85,18 +85,19 @@
       {% for r in rows|reverse %}
         {% set e = r.e %}
         {% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all() %}
-        {% set won = cands|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited') %}
+        {% set won = cands|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited')|sort((a, b) => (b.votes ?? 0) <=> (a.votes ?? 0)) %}
         <tr>
           <td><a href="{{ e.url }}">{{ e.electionDate }}</a>{% if e.consolidatedWith %}<div class="dim">{{ e.consolidatedWith }}</div>{% endif %}</td>
           <td>{{ cands|length }}</td>
-          <td>{{ e.seatsUp }}{% if e.seatsUpEvidence.value == 'uncited' %} <span class="dim">(derived)</span>{% endif %}</td>
+          <td>{{ e.seatsUp }}{% if e.seatsUpEvidence.value in ['uncited', 'derived'] %} <span class="dim">(derived)</span>{% endif %}</td>
           <td>{{ r.t is not null ? r.t|number_format(1) ~ '%' : '—' }}</td>
-          <td>{% if won|length %}{{ won|map(c => c.candidacyPerson.one() ? '<a href="' ~ c.candidacyPerson.one().url ~ '">' ~ c.nameAsPrinted ~ '</a>' : c.nameAsPrinted)|join(', ')|raw }}{% else %}<span class="dim">Not declared in the documents held</span>{% endif %}</td>
+          <td>{% if won|length %}{{ won|map(c => (c.candidacyPerson.one() ? '<a href="' ~ c.candidacyPerson.one().url ~ '">' ~ c.nameAsPrinted|e ~ '</a>' : c.nameAsPrinted|e) ~ (c.outcomeEvidence.value == 'derived' ? '&dagger;' : ''))|join(', ')|raw }}{% else %}<span class="dim">Not declared in the documents held</span>{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
-    <p class="el-note">A winner is named here only where a document declares one: Resolution 12-9 for April 2012, the City's own account of its first council for 1987, and the single-seat District 1 election of 2024. Every other election's page gives the full vote and the order of finish, and says that the declaring resolution is not yet held.</p>
+    {% set roster = craft.entries().section('organizations').slug('city-of-santa-clarita').one() %}
+    <p class="el-note">Winners are named on the strongest record the archive holds, and each election's page says which. Resolution 12-9 declares the winners of April 2012, and the City's own account names the first council of 1987. For 1990 to 2018 no declaring resolution is held, but the vote count and the council roster held in the archive agree at every election: the top of the count are exactly the members the roster shows serving on. For 2020 to 2024, marked &dagger;, the winners are read from the count alone, until the declaring resolutions are obtained.{% if roster %} Who served, and when: <a href="{{ roster.url }}#council" style="color:#7A5C1B">the council roster</a>.{% endif %}</p>
   </main>
 </div>
 {% endblock %}

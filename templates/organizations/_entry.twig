@@ -97,6 +97,10 @@
         {% if prose %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: prose, images: recImages , footnotesFor: entry } %}</div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}{% endif %}
         {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
+        {#- A body with seats gets its roster: every member, every term, from the
+            officeHolding records (STRUCTURE.md, the council roster). -#}
+        {% set SEATS = { 'city-of-santa-clarita': 5 } %}
+        {% if SEATS[entry.slug] is defined %}{% include "_partials/civic/roster" with { body: entry, seats: SEATS[entry.slug] } only %}{% endif %}
         {#- A district's page carries its map and every school in it, not only the
             ones the archive holds (Nathan, 29 September 2026). -#}
         {% if isDistrict and entry.ncesId|trim %}
@@ -136,6 +140,11 @@
         {% set holders = craft.entries().section('officeHoldings')
             .relatedTo({ targetElement: entry, field: 'holdingBody' }).all()
             |map(h => h.holdingPerson.one())|filter(p => p) %}
+        {#- One row per person, however many terms; and none where the roster
+            above already lists them. -#}
+        {% set seen = [] %}{% set uniq = [] %}
+        {% for p in holders %}{% if p.id not in seen %}{% set seen = seen|merge([p.id]) %}{% set uniq = uniq|merge([p]) %}{% endif %}{% endfor %}
+        {% set holders = entry.slug == 'city-of-santa-clarita' ? [] : uniq %}
         {% set peopleBoxes = [
           { lab: 'FOUNDED BY', rows: entry.orgFoundedBy.all() },
           { lab: 'ASSOCIATED PEOPLE', rows: entry.orgAssociatedPersons.all() },
