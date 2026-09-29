@@ -239,6 +239,16 @@ foreach ($want as $path => $what) {
 echo 'NAV COVERAGE: ' . count($want) . ' destinations with records; ' . count($footerOnly) . ' in the footer only; ' . count($unreached) . ' reachable from neither' . PHP_EOL;
 foreach ($footerOnly as $x) { echo '   footer only  ' . $x . PHP_EOL; }
 foreach ($unreached as $x) { echo '   UNREACHABLE  ' . $x . PHP_EOL; }
+/* And every link the header and footer carry must land: the header linked
+   /donate, which had no page, on every page of the site. */
+$dead = [];
+foreach (array_unique(array_merge($inMenu, $inFooter)) as $p) {
+    $ch = curl_init($base . '/' . $p);
+    curl_setopt_array($ch, [CURLOPT_NOBODY => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_TIMEOUT => 20, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0]);
+    curl_exec($ch); $st = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE); curl_close($ch);
+    if ($st !== 200) { $dead[] = "/$p ($st)"; }
+}
+if ($dead) { $fail++; echo 'NAV LINKS FAIL: ' . implode(', ', $dead) . PHP_EOL; } else { echo 'nav links: all ' . count(array_unique(array_merge($inMenu, $inFooter))) . ' land' . PHP_EOL; }
 if ($unreached) { $fail++; echo 'NAV COVERAGE FAIL: link each from the menu or the footer, or name it in templates/_data/nav-exempt.json with a reason' . PHP_EOL; }
 
 /* The data model has to keep up with the schema. A field added without

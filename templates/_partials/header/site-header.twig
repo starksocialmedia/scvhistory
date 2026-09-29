@@ -22,7 +22,7 @@
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v7-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v8-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -296,7 +296,6 @@
     <div class="scv-hdr-util" style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap">
       <div class="scv-hdr-links" style="display: flex; gap: 18px; font-family: 'Jost', sans-serif; font-size: 12.5px; letter-spacing: .1em">
         <a href="{{ url('about') }}" style="color: rgba(255,255,255,.72)">ABOUT</a>
-        <a href="{{ url('donate') }}" style="color: rgba(255,255,255,.72)">DONATE</a>
       </div>
       {#- The account element, drawn in design/article-source.html. It is a
           placeholder: there is no account system, so this carries no menu, no

@@ -45,6 +45,55 @@ the body stays hidden.** It does not become an article by nobody: an unsigned,
 uncited biography published as a record would claim a standing it has not
 earned.
 
+## Jerry Reynolds as a source: the reliability rule
+
+Nathan, 29 September 2026, from Grok's Reynolds dossier
+(`inventory/review/jerry-reynolds-sources.md`, section 2). Grok tested 74 of his
+claims against contemporary sources: **18 held, 41 were wrong, partly wrong or
+superseded, and 15 are unresolved.** The errors are not random. They fall into
+five kinds:
+
+1. **Numbers**: acreage, money, ages, headcounts. The weakest point, and some
+   are inconsistent between his own chapters (the del Valle partition figures
+   add up to 13,400 acres more than the rancho).
+2. **Dates of smaller events**, which slip by a year or several. Dates of major
+   documented events are usually right.
+3. **Dramatic stories**: the cowboy-suit burial, the Hap-A-Lan morgue, the
+   Harrison meal at Saugus. Often wrong, or unprovable.
+4. **Titles that did not exist yet, or were never held**: Naval Academy,
+   mayor, state senator, "Colonel" Porter.
+5. **Two people merged into one**: the two Remi Nadeaus, the Jenks Harris
+   robbery built from several crimes.
+
+The usual mechanism is inheritance, not invention: many errors trace to a
+secondary source he used (Wally Smith 1958, the 1889 history).
+
+**The rule.** An uncorroborated Reynolds **date for a major event** is accepted
+provisionally, and attributed to him in the text. Anything else uncorroborated
+(a figure, an age, a sum, an acreage, a rank or title, a "first" or other
+superlative, the identity of a minor figure, a vivid story) needs verification
+before a profile states it: look for Perkins, a newspaper or a deed first, and
+until then give it as his, or leave it out.
+
+**What "Reynolds part NN" is.** The pages `signal/reynolds/partNN.html` are
+chapter NN of the **1998 web edition**, *History of the Santa Clarita Valley*,
+edited by Leon Worden for the SCV Historical Society, two years after Reynolds'
+death. It was drawn from his 1992 book *Santa Clarita: Valley of the Golden
+Dream* and his Signal columns of 1976 to 1994, and it is edited: some chapters
+were adapted, some errors corrected silently. So it is not always his words.
+Chapter 59, Mixville, was rewritten by Robert S. Birchard; chapter 56 includes a
+section excerpted from Leon's work of 1996, and chapter 60 is adapted in part
+from Leon's of 1997; chapter 70 was reworked by another contributor. **Cite the
+chapters as the 1998 edition** (Reynolds, *History of the Santa Clarita Valley*,
+ed. Worden, 1998, chapter NN), not as Reynolds' Signal column, and not as his
+own words where the edition says otherwise.
+
+**Care.** His column of 14 December 1984 on Bowers Cave tells readers how to find
+an archaeological site. Grok flagged it for tribal consultation. It had
+already been imported, as article #2177; it is disabled until consultation
+(`disable_bowers_cave.php`), and its locational passage is not quoted anywhere
+(`inventory/review/live-errors.md`, RL8).
+
 ## The shape that worked
 
 1. **Extract** the sources verbatim from the Reggie mirror into

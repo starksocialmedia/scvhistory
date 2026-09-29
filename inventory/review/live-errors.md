@@ -11,7 +11,7 @@ Built by `scripts/import/build_live_errors_list.php` from Grok's four final doss
 
 **IN CRAFT**: the wrong text is in a Craft record now. **RECORD, NOT FOUND**: a Craft record carries the page but the text was not found in it; check by eye. **LEGACY ONLY**: no Craft record carries the page (an index, a title tag, a page not migrated): fix in the migration or on the live site. **ARCHIVE DATA**: an error in our own records.
 
-**CARE: RL8, Bowers Cave (Reynolds column of 14 December 1984).** The page tells readers how to find an archaeological site. Grok flagged it for tribal consultation. Do not import it, and do not quote the locational passage in any record, note or report.
+**CARE: RL8, Bowers Cave (Reynolds column of 14 December 1984).** The page tells readers how to find an archaeological site. Grok flagged it for tribal consultation. It was already imported, as article #2177; `disable_bowers_cave.php` takes it off the site until consultation. Do not quote the locational passage in any record, note or report.
 
 ## 1. Hart L1: IN CRAFT
 
@@ -338,7 +338,7 @@ Built by `scripts/import/build_live_errors_list.php` from Grok's four final doss
 - **Correction:** Not a factual error. Flag for tribal consultation about redacting the locational description before migration.
 - **Source:** CARE policy for this project: no site locations.
 - **Craft:** #2177 articles
-- **CARE:** TRIBAL CONSULTATION FIRST. The Bowers Cave column tells readers how to find an archaeological site. Do not import it; do not quote the locational passage anywhere. Consult before any migration (Nathan, 29 September 2026).
+- **CARE:** TRIBAL CONSULTATION FIRST. The Bowers Cave column tells readers how to find an archaeological site. It was already imported, as article #2177, live at /articles/bowers-cave: disable it (disable_bowers_cave.php) until consultation; do not quote the locational passage anywhere (Nathan, 29 September 2026).
 
 ## 44. Reynolds RL9: IN CRAFT
 

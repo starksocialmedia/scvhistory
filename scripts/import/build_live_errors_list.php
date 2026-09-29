@@ -21,7 +21,7 @@
 
 $root = \Craft::getAlias('@root');
 $DOSSIERS = ['william-s-hart' => 'Hart', 'edward-f-beale' => 'Beale', 'ygnacio-del-valle' => 'del Valle', 'jerry-reynolds' => 'Reynolds'];
-$CARE = ['RL8' => 'TRIBAL CONSULTATION FIRST. The Bowers Cave column tells readers how to find an archaeological site. Do not import it; do not quote the locational passage anywhere. Consult before any migration (Nathan, 29 September 2026).'];
+$CARE = ['RL8' => 'TRIBAL CONSULTATION FIRST. The Bowers Cave column tells readers how to find an archaeological site. It was already imported, as article #2177, live at /articles/bowers-cave: disable it (disable_bowers_cave.php) until consultation; do not quote the locational passage anywhere (Nathan, 29 September 2026).'];
 
 /* Every record's legacy identifiers, and its content for the quote search. */
 $rows = (new \craft\db\Query())->select(['es.elementId', 'es.title', 'es.content', 'sec' => 's.handle', 'el.enabled'])
@@ -79,7 +79,7 @@ foreach (['IN CRAFT', 'RECORD, NOT FOUND', 'LEGACY ONLY', 'ARCHIVE DATA'] as $k)
 $md[] = '';
 $md[] = '**IN CRAFT**: the wrong text is in a Craft record now. **RECORD, NOT FOUND**: a Craft record carries the page but the text was not found in it; check by eye. **LEGACY ONLY**: no Craft record carries the page (an index, a title tag, a page not migrated): fix in the migration or on the live site. **ARCHIVE DATA**: an error in our own records.';
 $md[] = '';
-$md[] = '**CARE: RL8, Bowers Cave (Reynolds column of 14 December 1984).** The page tells readers how to find an archaeological site. Grok flagged it for tribal consultation. Do not import it, and do not quote the locational passage in any record, note or report.';
+$md[] = '**CARE: RL8, Bowers Cave (Reynolds column of 14 December 1984).** The page tells readers how to find an archaeological site. Grok flagged it for tribal consultation. It was already imported, as article #2177; `disable_bowers_cave.php` takes it off the site until consultation. Do not quote the locational passage in any record, note or report.';
 $md[] = '';
 foreach ($out as $x) {
     $md[] = '## ' . $x['n'] . '. ' . $x['dossier'] . ' ' . $x['id'] . ': ' . $x['where'] . ($x['care'] ? ' **(CARE)**' : '');
