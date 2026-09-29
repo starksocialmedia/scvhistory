@@ -54,6 +54,17 @@ settings:
       __assoc__:
         -
           - label
+          - 'Derived: read from the count'
+        -
+          - value
+          - derived
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
           - Uncited
         -
           - value
