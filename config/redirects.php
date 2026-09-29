@@ -31,6 +31,8 @@ $moved = [
     'organizations/mission-san-gabriel-arcangel'  => 'places/mission-san-gabriel-arcángel',
     'organizations/mission-san-francisco-de-asis' => 'places/mission-san-francisco-de-asís',
     'organizations/mission-santa-cruz'            => 'places/mission-santa-cruz',
+    /* #16356 renamed from Bill Hart, 29 September 2026 (import_hart_portrait.php). */
+    'persons/bill-hart'                           => 'persons/william-s-hart',
 ];
 
 return array_map(fn($from, $to) => ['from' => $from, 'to' => $to, 'statusCode' => 301],
