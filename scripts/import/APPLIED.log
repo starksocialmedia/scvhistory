@@ -84,3 +84,5 @@
 2026-09-27 23:19:55 PDT	add_caption_corrections.php	scvhistory-web	1 rows	verified 1 of 1; captions unchanged	correcting notes from link-fixes/corrections.json; lw2320 waits for its import
 2026-09-28 00:18:24 PDT	set_photo_legacy_category.php	scvhistory-web	1338 rows	verified 1338 of 1338	breadcrumb copied verbatim into legacyCategory; bodies untouched; 188 topics
 2026-09-28 20:31:20 PDT	import_hart_portrait.php	scvhistory-web	2 rows	verified: portrait and rename	asset #21573 LoC cph.3c03842, public domain, via Commons; #16356 Bill Hart -> William S. Hart
+2026-09-28 20:44:18 PDT	add_asset_provenance_fields.php	scvhistory-web	5 rows	verified: fields, layout, licence options	provenanceKind, sourceUrl, acquiredDate; permission and CC BY / BY-SA 3.0 and 4.0
+2026-09-28 20:44:53 PDT	set_asset_provenance.php	scvhistory-web	4309 rows	verified	{"outside":1,"legacy-mirror":4223,"commissioned":7,"legacy-wordpress":78}
