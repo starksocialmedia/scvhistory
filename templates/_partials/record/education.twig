@@ -1,0 +1,37 @@
+{#
+  Education, read from the educations section (add_education.php): on a school's
+  page, the people in the archive who studied there; on a person's or a
+  casualty's page, the schools they attended. One record per person per school,
+  so a class year and whether they graduated travel with it.
+
+  Renders nothing until the section exists and the query finds something, so an
+  install without the schema, and a person with no schooling recorded, cost the
+  page nothing.
+
+  Params
+    entry  the record the page is about
+    as     'school' for a school's page, 'person' for a person's or casualty's
+#}
+{% if craft.app.entries.getSectionByHandle('educations') %}
+  {% set rows = as == 'school'
+      ? craft.entries().section('educations').relatedTo({ targetElement: entry, field: 'educationSchool' }).all()
+      : craft.entries().section('educations').relatedTo({ targetElement: entry, field: 'educationPerson' }).all() %}
+  {% set items = [] %}
+  {% for r in rows %}
+    {% set other = as == 'school' ? r.educationPerson.one() : r.educationSchool.one() %}
+    {% if other %}
+      {% set bits = [r.classOf|trim ? 'class of ' ~ r.classOf|trim : '', r.educationOutcome.value == 'graduated' ? 'graduated' : ''] %}
+      {% set items = items|merge([{ e: other, sub: bits|filter(b => b)|join(', '), sort: (r.classOf|trim ?: '9999') ~ other.title }]) %}
+    {% endif %}
+  {% endfor %}
+  {% if items|length %}
+    <div class="rec-box"><div class="rec-lab">{{ as == 'school' ? 'ALUMNI IN THE ARCHIVE' : 'EDUCATION' }}</div>
+      <div class="rec-rows">
+        {% for it in items|sort((a, b) => a.sort <=> b.sort) %}
+          <div class="k">{{ as == 'school' ? (it.e.section.handle == 'warMemorials' ? 'MEMORIAL' : 'PERSON') : 'SCHOOL' }}</div>
+          <div class="v"><a href="{{ it.e.url }}">{{ it.e.title }}</a>{% if it.sub %}<br><span style="color:#5B6472;font-size:13px">{{ it.sub }}</span>{% endif %}</div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

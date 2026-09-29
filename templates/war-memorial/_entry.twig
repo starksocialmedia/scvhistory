@@ -126,6 +126,7 @@
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'War Memorial', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
+        {% include "_partials/record/education" with { entry: entry, as: 'person' } only %}
         {# Renders nothing until the casualty record carries childOf; see
            scripts/import/settle_family_relations.php. #}
         {% include "_partials/record/family" with { fam: fam } only %}

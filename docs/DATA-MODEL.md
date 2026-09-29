@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 28 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 29 September 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -101,6 +101,7 @@ emitted from whichever side schema.org expects.
 | `relatedArticles` | article to article | relatedLink |
 | `parentOrganization` | organization to organization | parentOrganization, inverse subOrganization |
 | `feedsInto` | school or district to the one its pupils go on to | local; held on the feeder, read from both ends |
+| `educationPerson / educationSchool` | an education record joining a person to a school | alumniOf |
 | `spouseOf` | person to person | spouse |
 | `childOf` | person to person | parent |
 | `siblingOf` | person to person | sibling |

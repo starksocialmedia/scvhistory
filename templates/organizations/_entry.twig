@@ -105,6 +105,7 @@
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'Organizations', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
+        {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/education" with { entry: entry, as: 'school' } only %}{% endif %}
         {% if gradeSpan %}
           <div class="rec-box"><div class="rec-lab">{{ isDistrict ? 'SCHOOL DISTRICT' : 'SCHOOL' }}</div>
             <div class="rec-rows"><div class="k">GRADES</div><div class="v">{{ gradeSpan }}</div>{% if isDistrict %}<div class="k">ALL</div><div class="v"><a href="{{ url('schools') }}">Schools of the valley</a></div>{% endif %}</div>
