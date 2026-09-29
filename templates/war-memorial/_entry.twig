@@ -60,6 +60,11 @@
 {# The wall reference is a panel and line on current data, never a URL, but the
    legacy pages are inconsistent enough that a URL has to render as a link. #}
 {% set wallIsUrl = F.wmWallReference starts with 'http://' or F.wmWallReference starts with 'https://' %}
+{#- The narrative is the summary and the body is the record (Nathan, 29
+    September 2026). Where a record holds both and they differ, both show, each
+    under its own heading, rather than one hiding the other: Rudy Acosta's page
+    showed 426 characters and hid 2,318. Where there is one, it shows alone. -#}
+{% set bothTexts = F.wmNarrative and F.body and F.wmNarrative|trim != F.body|trim %}
 {% set narrative = F.wmNarrative ?: F.body %}
 {% set died = F.wmIncidentDate ?: F.deathDate %}
 {% set kick = [F.wmBranch, F.wmCombatOperations ?: F.wmConflict]|filter(x => x) %}
@@ -100,7 +105,14 @@
         {% include "_partials/record/tools" with { entry: entry, text: narrative, textId: 'recText' } only %}
         {% include "_partials/record/note" with { text: noteTop } only %}
 
-        {% if narrative %}
+        {% if bothTexts %}
+          <h2 class="rec-h2" style="margin-top:8px">Summary</h2>
+          <div class="rec-body">{% include "_partials/prose" with { text: F.wmNarrative, images: [], footnotesFor: null } %}</div>
+          <h2 class="rec-h2">The record</h2>
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages , footnotesFor: entry } %}</div>
+{% include "_partials/record/footnotes" with { entry: entry } only %}
+          {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
+        {% elseif narrative %}
           <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages , footnotesFor: entry } %}</div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}
           {% include "_partials/record/images" with { images: recImages, body: narrative, entry: entry } only %}

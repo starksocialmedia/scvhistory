@@ -91,6 +91,20 @@ not to index it and nothing else looks wrong.
 
 ## 2. Every deploy from here
 
+A push to `main` deploys. **Before the push, on the MacBook**, run the pre-deploy
+check, which is check_render and then the full rendered-body check, every page
+whose record has a body looked at for its words (section 9). About eight
+minutes, against shipping a site where a tenth of the articles are silently
+cut off, which is what it found on 29 September 2026. It exits non-zero on any
+failure, so the push only happens if it passes:
+
+```
+MacBook
+scripts/predeploy.sh && git push
+```
+
+Then on the server:
+
 ```
 Server
 cd ~/public_html
@@ -476,7 +490,8 @@ is not done until the rendered page has been checked:
    which fetches every page whose record has a body and looks for a run of its
    words. `SHOWN` is done. `WITHHELD` is a rule saying no (an unclassified
    WordPress body). `MISSING` is a failure, whatever the read-back said.
-2. `check_render.php` runs the same check on a sample of every section (the
-   full run takes about seven minutes), so a template change that hides bodies
-   fails there before it is committed.
+2. `check_render.php` runs the same check on a sample of every section, so a
+   template change that hides bodies fails there before it is committed.
+   **The full run is part of every deploy** (`scripts/predeploy.sh`, section 2),
+   not only the sample.
 3. When a publish rule changes, run the full check, not the sample.

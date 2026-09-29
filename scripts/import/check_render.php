@@ -257,7 +257,7 @@ if ($unreached) { $fail++; echo 'NAV COVERAGE FAIL: link each from the menu or t
 $SAMPLE = 15;
 $rb = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_rendered_bodies.php'));
 if (is_array($rb) && !($rb['ok'] ?? true)) {
-    $known = ['warMemorials #526'];   /* narrative shown instead of a longer body: a decision for Nathan, 29 September 2026 */
+    $known = [];   /* a failure Nathan has decided to accept goes here, with the date and the reason */
     $real = array_filter($rb['fails'], fn($f) => !array_filter($known, fn($k) => str_contains($f, $k)));
     if ($real) { $fail++; echo 'RENDERED BODIES FAIL' . PHP_EOL; }
 }
