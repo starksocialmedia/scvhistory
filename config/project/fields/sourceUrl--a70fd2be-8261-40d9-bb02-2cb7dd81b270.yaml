@@ -1,0 +1,14 @@
+columnSuffix: null
+handle: sourceUrl
+instructions: 'Where an outside image was obtained: the catalogue record or the file page, not the image file itself. Empty for the mirror, whose path is in legacySourcePath.'
+name: 'Source URL'
+searchable: false
+settings:
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: false
+  types:
+    - url
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Link

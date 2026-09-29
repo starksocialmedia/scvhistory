@@ -1,0 +1,77 @@
+columnSuffix: null
+handle: provenanceKind
+instructions: 'How the archive came to hold this image. Empty means it has not been established yet, which is itself a fact worth seeing. There is no value for a generated image: generated images do not enter the archive.'
+name: Provenance
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Not yet established'
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - 'The legacy site mirror (Reggie)'
+        -
+          - value
+          - legacy-mirror
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - "The WordPress site's media library"
+        -
+          - value
+          - legacy-wordpress
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'An outside source'
+        -
+          - value
+          - outside
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Made for SCVHistory'
+        -
+          - value
+          - commissioned
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Given by a depositor'
+        -
+          - value
+          - donated
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

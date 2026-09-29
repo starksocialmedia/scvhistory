@@ -86,3 +86,5 @@
 2026-09-28 20:31:20 PDT	import_hart_portrait.php	scvhistory-web	2 rows	verified: portrait and rename	asset #21573 LoC cph.3c03842, public domain, via Commons; #16356 Bill Hart -> William S. Hart
 2026-09-28 20:44:18 PDT	add_asset_provenance_fields.php	scvhistory-web	5 rows	verified: fields, layout, licence options	provenanceKind, sourceUrl, acquiredDate; permission and CC BY / BY-SA 3.0 and 4.0
 2026-09-28 20:44:53 PDT	set_asset_provenance.php	scvhistory-web	4309 rows	verified	{"outside":1,"legacy-mirror":4223,"commissioned":7,"legacy-wordpress":78}
+2026-09-28 21:07:16 PDT	fix_stacks_city_alias_hart.php	scvhistory-web	3 rows	verified	Stack's removed from 3 articles and trashed, city alias removed, Hart acquiredDate and source
+2026-09-28 21:07:23 PDT	import_smyth_portrait.php	scvhistory-web	2 rows	verified: portrait and featuredImage	asset #21579 by Nathan Imhoff, licence scvhistory, outside; featured on #16380 Cameron Smyth

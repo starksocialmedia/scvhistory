@@ -50,6 +50,61 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Used with written permission'
+        -
+          - value
+          - permission
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Creative Commons Attribution 4.0 (CC BY 4.0)'
+        -
+          - value
+          - cc-by-4.0
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)'
+        -
+          - value
+          - cc-by-sa-4.0
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Creative Commons Attribution 3.0 (CC BY 3.0)'
+        -
+          - value
+          - cc-by-3.0
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)'
+        -
+          - value
+          - cc-by-sa-3.0
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown
