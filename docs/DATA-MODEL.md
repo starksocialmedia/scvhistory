@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 27 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 28 September 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -877,6 +877,30 @@ record names its image as `primaryImageOfPage`.
 web about what this archive holds, and what it holds is the scan. An upscaled version
 has pixels a model invented, and publishing it under the archive's name would be a
 false claim however good it looks. Where one is attached, its original is emitted.
+
+## Provenance and rights
+
+**Having a file is not holding the rights to it.** Two questions, answered by separate
+fields. Provenance says where the file came from: `provenanceKind`, `sourceUrl`,
+`acquiredDate`, `source`, `legacySourcePath`. Rights say whether the archive may publish
+it: `license`, `rightsHolder`, `creator`, `courtesyOf`. A file can be fully provenanced
+and still unpublishable, like a campaign photograph received during campaign work, whose
+copyright belongs to someone else. Knowing exactly where it came from settles nothing
+about the licence, and an empty licence is not permission.
+
+**Provenance is recorded at the point of receipt.** Craft re-encodes every image on
+import: the Hart portrait arrived a progressive JPEG and is stored a baseline one, with
+different bytes. A checksum taken from a stored asset therefore proves nothing about the
+original, and any embedded metadata, a content-credentials (C2PA) manifest included, is
+gone from the stored copy. So an import script records the file as received, its name
+and SHA-256, in `source`, and refuses any other file; and the check for generated images,
+`scan_content_credentials.py`, reads the originals (the incoming file, the mirror, the
+WordPress upload), never `web/uploads/`. A generated image does not enter the archive,
+and `provenanceKind` has no value for one.
+
+`acquiredDate` is the calendar date in the site's timezone, America/Los_Angeles, the one
+Craft records `dateCreated` in. A file received in the evening in California is already
+dated the next day on a machine set to European time; the archive date is the California one.
 
 ## Dates
 

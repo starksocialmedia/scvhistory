@@ -27,7 +27,7 @@ exiftool does not confirm is reported separately, never counted as a finding.
 
 The WordPress originals (85 files) are on the WordPress host. They are not
 fetched unless --wordpress is given, because that is a request to an outside
-host and Nathan decides it.
+host and Nathan decides it. One request every two seconds.
 
 Needs storage/runtime/asset_origins.json from export_asset_origins.php.
 Writes storage/runtime/content_credentials.json. Reads only.
@@ -40,6 +40,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -103,7 +104,9 @@ def main():
         elif a['origin'] == 'wordpress' and fetch_wp:
             with tempfile.NamedTemporaryFile(suffix=os.path.splitext(a['original'])[1]) as t:
                 try:
-                    t.write(urllib.request.urlopen(a['original'], timeout=60).read())
+                    time.sleep(2)  # rate limit: one request every two seconds
+                    req = urllib.request.Request(a['original'], headers={'User-Agent': 'SCVHistory archive provenance check'})
+                    t.write(urllib.request.urlopen(req, timeout=60).read())
                     t.flush()
                     record('assets', key, t.name, 'wordpress original')
                 except Exception as e:
