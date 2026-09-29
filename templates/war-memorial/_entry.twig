@@ -39,11 +39,11 @@
    show lettering. The field-layout check is the only reliable test: a custom
    field reads as defined on an element whose type does not have it. #}
 {% set bandImg = present['bandImage'] is defined and entry.bandImage ? entry.bandImage.one() ?? null : null %}
-{% set img = bandImg ?? (entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null) %}
+{% set img = bandImg ?? ('featuredImage' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.featuredImage.one() ?? null : null) %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
 {% set awards = F.wmAwards ? F.wmAwards|replace({',': ';'})|split(';')|map(a => a|trim)|filter(a => a) : [] %}
-{% set era = entry.historicalEra is defined ? entry.historicalEra.one() ?? null : null %}
-{% set related = entry.wmRelatedPerson is defined ? entry.wmRelatedPerson.one() ?? null : null %}
+{% set era = 'historicalEra' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.historicalEra.one() ?? null : null %}
+{% set related = 'wmRelatedPerson' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.wmRelatedPerson.one() ?? null : null %}
 
 {# Overflow rows from the legacy service record: labels with no field of their own.
    The field-layout check is the only reliable test, since a custom field reads as
@@ -153,7 +153,7 @@
            is recorded and under Other relations otherwise. It still renders on
            a record with no family at all, so nothing is lost. #}
         {% if related and not fam %}
-          {% set rimg = related.featuredImage is defined ? related.featuredImage.one() ?? null : null %}
+          {% set rimg = 'featuredImage' in (related.fieldLayout ? related.fieldLayout.customFields|map(f => f.handle) : []) ? related.featuredImage.one() ?? null : null %}
           <div class="rec-box"><div class="rec-lab">RELATED PERSON</div>
             <a class="rec-person" href="{{ related.url }}">
               <div class="th">{% if rimg %}<img src="{{ rimg.url }}" alt="">{% endif %}</div>

@@ -52,7 +52,7 @@
       {% if rows|length %}
         <div class="scv-cards">
           {% for r in rows %}
-            {% set imgs = r.recordImages is defined and r.recordImages ? r.recordImages.all() : [] %}
+            {% set imgs = 'recordImages' in (r.fieldLayout ? r.fieldLayout.customFields|map(f => f.handle) : []) ? r.recordImages.all() : [] %}
             {% set img = imgs|length ? imgs|first : null %}
             {% set parts = (r.title ?: r.slug)|split(' ')|filter(x => x|trim) %}
             {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : (r.title ?: r.slug)|slice(0,1) %}

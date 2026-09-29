@@ -251,6 +251,17 @@ foreach (array_unique(array_merge($inMenu, $inFooter)) as $p) {
 if ($dead) { $fail++; echo 'NAV LINKS FAIL: ' . implode(', ', $dead) . PHP_EOL; } else { echo 'nav links: all ' . count(array_unique(array_merge($inMenu, $inFooter))) . ' land' . PHP_EOL; }
 if ($unreached) { $fail++; echo 'NAV COVERAGE FAIL: link each from the menu or the footer, or name it in templates/_data/nav-exempt.json with a reason' . PHP_EOL; }
 
+/* Read-back is not the page: a body can be in the database and absent from
+   its page (DEPLOY-RUNBOOK section 9). A sample of every section here; run
+   check_rendered_bodies.php with $SAMPLE = 0 for all of them. */
+$SAMPLE = 15;
+$rb = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_rendered_bodies.php'));
+if (is_array($rb) && !($rb['ok'] ?? true)) {
+    $known = ['warMemorials #526'];   /* narrative shown instead of a longer body: a decision for Nathan, 29 September 2026 */
+    $real = array_filter($rb['fails'], fn($f) => !array_filter($known, fn($k) => str_contains($f, $k)));
+    if ($real) { $fail++; echo 'RENDERED BODIES FAIL' . PHP_EOL; }
+}
+
 /* The data model has to keep up with the schema. A field added without
    regenerating docs/DATA-MODEL.md fails here, because a data model that drifts
    is consulted and believed. */

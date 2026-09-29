@@ -90,7 +90,7 @@
         </div>
         <h1>{{ entry.title ?: entry.slug }}</h1>
         {% if F.sourceLine %}<p class="rec-sub">{{ F.sourceLine }}</p>{% endif %}
-        {% set coms = entry.neighborhood is defined ? entry.neighborhood.all() : [] %}
+        {% set coms = 'neighborhood' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.neighborhood.all() : [] %}
         {% if coms|length %}
           <div class="rec-chips">
             {% for c in coms %}<a class="rec-chip solid" href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a>{% endfor %}
@@ -121,14 +121,19 @@
               <div class="tp-grp" id="g-{{ g.key }}"><h2>{{ g.label }}</h2><span class="rule"></span><span class="n">{{ rows|length }}</span></div>
               <ul class="tp-rows">
                 {% for r in rows %}
-                  {% set ri = (r.featuredImage is defined and r.featuredImage) ? r.featuredImage.one() ?? null : null %}
-                  {% set ri = ri ?? ((r.recordImages is defined and r.recordImages and r.recordImages.one()) ? r.recordImages.one() : null) %}
+                  {#- Handles read off the row's own layout: `is defined` answers true
+                      for a field the type does not have, and reading it throws. A
+                      collection of mixed record types took this page down with
+                      writtenBy on 29 September 2026. -#}
+                  {% set rh = r.fieldLayout ? r.fieldLayout.customFields|map(f => f.handle) : [] %}
+                  {% set ri = 'featuredImage' in rh ? r.featuredImage.one() ?? null : null %}
+                  {% set ri = ri ?? ('recordImages' in rh ? r.recordImages.one() ?? null : null) %}
                   {% set words = (r.title ?: r.slug)|split(' ')|filter(x => x|trim) %}
                   {% set meta = [] %}
-                  {% if r.writtenBy is defined and r.writtenBy.one() %}{% set meta = meta|merge([r.writtenBy.one().title]) %}{% endif %}
-                  {% if r.originalPublishDate is defined and r.originalPublishDate %}{% set meta = meta|merge([r.originalPublishDate]) %}{% endif %}
-                  {% if r.occupation is defined and r.occupation %}{% set meta = meta|merge([r.occupation]) %}{% endif %}
-                  {% if r.photoDate is defined and r.photoDate %}{% set meta = meta|merge([r.photoDate]) %}{% endif %}
+                  {% if 'writtenBy' in rh and r.writtenBy.one() %}{% set meta = meta|merge([r.writtenBy.one().title]) %}{% endif %}
+                  {% if 'originalPublishDate' in rh and r.originalPublishDate %}{% set meta = meta|merge([r.originalPublishDate]) %}{% endif %}
+                  {% if 'occupation' in rh and r.occupation %}{% set meta = meta|merge([r.occupation]) %}{% endif %}
+                  {% if 'photoDate' in rh and r.photoDate %}{% set meta = meta|merge([r.photoDate]) %}{% endif %}
                   <li><a href="{{ r.url }}">
                     <span class="tp-th">
                       {%- if ri %}<img src="{{ ri.getUrl({ width: 88, height: 88, mode: 'crop' }) ?: ri.url }}" alt="" loading="lazy">

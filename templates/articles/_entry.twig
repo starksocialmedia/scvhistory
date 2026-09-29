@@ -587,7 +587,7 @@
       {% set total = chapters|length %}
       {% set pos = idx is not null ? idx + 1 : 0 %}
       {% set pct = total ? (pos / total * 100)|round : 0 %}
-      {% set cAuthor = collection.writtenBy is defined ? collection.writtenBy.one() ?? null : null %}
+      {% set cAuthor = 'writtenBy' in (collection.fieldLayout ? collection.fieldLayout.customFields|map(f => f.handle) : []) ? collection.writtenBy.one() ?? null : null %}
       {% set cBand = null %}
       {% for f in collection.fieldLayout.customFields %}{% if f.handle == 'bandImage' %}{% set cBand = collection.bandImage.one() ?? null %}{% endif %}{% endfor %}
 

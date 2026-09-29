@@ -134,6 +134,12 @@ type. Still `$APPLY`-gated.
 
 ## Verify before handing over
 
+**Read-back is not the page.** A body that reads back correctly can still be
+absent from the page (the bodyAuthorship bug, September 2026). After any apply
+that writes something a page displays, check the rendered page, or run
+`scripts/import/check_rendered_bodies.php` (DEPLOY-RUNBOOK section 9). Say which
+you did in the report.
+
 Test writes with a temporary fixture record, read it back, then hard-delete it
 with `deleteElement($el, true)` and confirm it is gone. Do not test by applying
 to real records. If you do apply something, snapshot first and restore, and say

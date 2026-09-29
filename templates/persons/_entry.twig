@@ -31,7 +31,7 @@
   {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
 {% endfor %}
 {% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
-{% set img = bandImg ?? (entry.featuredImage is defined ? entry.featuredImage.one() ?? null : null) %}
+{% set img = bandImg ?? ('featuredImage' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.featuredImage.one() ?? null : null) %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
@@ -57,7 +57,7 @@
 {% set orgs = entry.personOrganizations.all() %}
 
 {% macro person(p, badge) %}
-  {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
+  {% set pimg = 'featuredImage' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.featuredImage.one() ?? null : null %}
   {% set pparts = p.title|split(' ')|filter(x => x|trim) %}
   {% set pini = pparts|length > 1 ? (pparts|first|slice(0,1) ~ pparts|last|slice(0,1)) : p.title|slice(0,1) %}
   {% set life = [p.birthDate is defined ? p.birthDate : null, p.deathDate is defined ? p.deathDate : null]|filter(x => x)|join(' – ') %}
@@ -142,7 +142,7 @@
         {% if orgs|length %}
           <div class="rec-box"><div class="rec-lab">ORGANIZATIONS</div>
             {% for o in orgs %}
-              {% set oimg = o.featuredImage is defined ? o.featuredImage.one() ?? null : null %}
+              {% set oimg = 'featuredImage' in (o.fieldLayout ? o.fieldLayout.customFields|map(f => f.handle) : []) ? o.featuredImage.one() ?? null : null %}
               <a class="rec-person" href="{{ o.url }}">
                 <div class="th">{% if oimg %}<img src="{{ oimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: oimg} only %}>{% else %}{{ o.title|slice(0,1)|upper }}{% endif %}</div>
                 <div style="min-width:0"><div class="n">{{ o.title }}</div>{% if o.dateFounded is defined and o.dateFounded %}<div class="r">Founded {{ o.dateFounded }}</div>{% endif %}</div>

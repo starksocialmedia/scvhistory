@@ -452,3 +452,31 @@ Plugging the drive in while DDEV runs is not enough: restart to mount it (warn
 first, then wait for Mutagen). DDEV v1.25.1 runs pre-start hooks before it
 writes the compose config, so the restart that follows plugging in is the one
 that mounts it.
+
+## 9. Applied, read back, and still invisible
+
+**A record can be applied, read-back verified, and still not on the page.**
+Read-back proves the data landed. It does not prove the page shows it.
+
+For a week in September 2026 every person body classed `legacy-leon` or
+`editorial-2026` (Mentry, the Smyths, Gutzeit, Scofield) was in the database,
+read back correctly, and never rendered: the publish test in
+`_partials/body-authorship.twig` compared a dropdown object with strings, and
+Twig's `in` is strict for objects, so it never matched. Nathan asked for the
+same bodies again and again because they were not there to see. The same audit
+found 76 articles and photographs whose text stopped at a dateline or a
+`* * *` line after a `[lines]` block (the prose partial glued the line onto the
+closing fence), and one collection page returning 500.
+
+**The rule.** Anything that writes a body, or any other field a page displays,
+is not done until the rendered page has been checked:
+
+1. After the apply, open the record's page, or run
+   `ddev craft exec '$SAMPLE = 0; eval(file_get_contents("scripts/import/check_rendered_bodies.php"));'`
+   which fetches every page whose record has a body and looks for a run of its
+   words. `SHOWN` is done. `WITHHELD` is a rule saying no (an unclassified
+   WordPress body). `MISSING` is a failure, whatever the read-back said.
+2. `check_render.php` runs the same check on a sample of every section (the
+   full run takes about seven minutes), so a template change that hides bodies
+   fails there before it is committed.
+3. When a publish rule changes, run the full check, not the sample.

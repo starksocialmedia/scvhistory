@@ -77,7 +77,7 @@
         {% for b in peopleBoxes %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
             {% for p in b.rows %}
-              {% set pimg = p.featuredImage is defined ? p.featuredImage.one() ?? null : null %}
+              {% set pimg = 'featuredImage' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.featuredImage.one() ?? null : null %}
               {% set pp = p.title|split(' ')|filter(x => x|trim) %}
               <a class="rec-person" href="{{ p.url }}">
                 <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt="">{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</div>

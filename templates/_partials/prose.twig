@@ -244,7 +244,12 @@
   {%- set letterless = l matches '/^[^\\p{L}]+$/u' -%}
   {%- set continues = l matches CONT -%}
   {%- set dangling = not (l matches ENDS) and (nxt matches CONT) -%}
-  {%- set joinable = lines|length and not isTok and not afterTok
+  {#- Never onto a fence. A dateline such as "12-22-2013" is letterless, and
+      glued to the "[/lines]" above it the block never closed, so everything
+      after it vanished from the page: found 29 September 2026 by
+      check_rendered_bodies.php on the Lang Station photograph. -#}
+  {%- set afterFence = lines|length and (lines|last matches '/^\\[\\/?[a-z]+\\]$/') -%}
+  {%- set joinable = lines|length and not isTok and not afterTok and not afterFence
       and (letterless or continues or dangling) -%}
   {%- if joinable -%}
     {%- set glue = (letterless or l matches '/^[,;:)]/') ? '' : ' ' -%}

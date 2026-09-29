@@ -217,7 +217,7 @@
     <div class="hp-head"><h2>Recently added</h2><a class="hp-link" href="{{ url('articles') }}">All articles &rarr;</a></div>
     <div class="hp-recent">
       {% if featCol %}
-        {% set fimg = featCol.featuredImage is defined ? featCol.featuredImage.one() ?? null : null %}
+        {% set fimg = 'featuredImage' in (featCol.fieldLayout ? featCol.fieldLayout.customFields|map(f => f.handle) : []) ? featCol.featuredImage.one() ?? null : null %}
         {% set fauthor = featCol.writtenBy.one() ?? null %}
         {% set ordered = featCol.articlesInCollection.all() %}
         <a class="hp-feat" href="{{ featCol.url }}">
@@ -237,7 +237,7 @@
             linking to '#'. A record with no URI is an internal one by
             definition: fixes, roles, office holdings. -#}
         {% for e in craft.entries().uri(':notempty:').orderBy('dateUpdated desc').limit(7).all() %}
-          {% set img = e.featuredImage is defined ? e.featuredImage.one() ?? null : null %}
+          {% set img = 'featuredImage' in (e.fieldLayout ? e.fieldLayout.customFields|map(f => f.handle) : []) ? e.featuredImage.one() ?? null : null %}
           {% set sub = '' %}
           {% if e.section.handle == 'persons' and e.occupation is defined %}{% set sub = e.occupation %}
           {% elseif e.section.handle == 'warMemorials' %}{% set sub = [e.wmRank, e.wmBranch]|filter(v => v)|join(' · ') %}

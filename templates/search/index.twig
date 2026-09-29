@@ -303,8 +303,8 @@
               <ul class="scv-results">
                 {% for r in results %}
                   {% set e = r.e %}
-                  {% set imgs = e.recordImages is defined and e.recordImages ? e.recordImages.all() : [] %}
-                  {% set img = (e.featuredImage is defined and e.featuredImage) ? e.featuredImage.one() ?? null : (imgs|length ? imgs|first : null) %}
+                  {% set imgs = 'recordImages' in (e.fieldLayout ? e.fieldLayout.customFields|map(f => f.handle) : []) ? e.recordImages.all() : [] %}
+                  {% set img = 'featuredImage' in (e.fieldLayout ? e.fieldLayout.customFields|map(f => f.handle) : []) ? e.featuredImage.one() ?? (imgs|length ? imgs|first : null) : (imgs|length ? imgs|first : null) %}
                   {% set label = e.title ?: e.slug %}
                   {% set parts = label|split(' ')|filter(x => x|trim) %}
                   {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : label|slice(0,1) %}

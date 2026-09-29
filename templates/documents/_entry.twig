@@ -194,7 +194,7 @@
 
         {% set boxes = [
           { lab: 'ABOUT', key: 'PERSON', rows: subjects },
-          { lab: 'RELATED IMAGES', key: 'RECORD', rows: (entry.derivedImageLinks is defined ? entry.derivedImageLinks.all() : []) }
+          { lab: 'RELATED IMAGES', key: 'RECORD', rows: ('derivedImageLinks' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.derivedImageLinks.all() : []) }
         ]|filter(b => b.rows|length) %}
         {% for b in boxes %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>

@@ -63,7 +63,7 @@
         {% include "_partials/record/cite" with { entry: entry, label: 'Obituaries', date: F.obitDatePublished, sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
         {% if subject %}
-          {% set simg = subject.featuredImage is defined ? subject.featuredImage.one() ?? null : null %}
+          {% set simg = 'featuredImage' in (subject.fieldLayout ? subject.fieldLayout.customFields|map(f => f.handle) : []) ? subject.featuredImage.one() ?? null : null %}
           {% set sp = subject.title|split(' ')|filter(x => x|trim) %}
           <div class="rec-box"><div class="rec-lab">SUBJECT</div>
             <a class="rec-person" href="{{ subject.url }}">
