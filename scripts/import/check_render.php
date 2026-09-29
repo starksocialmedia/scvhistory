@@ -168,6 +168,79 @@ foreach ($urls as $url => $what) {
 echo str_repeat('=', 76) . PHP_EOL;
 echo 'checked ' . $checked . ' pages, ' . $ldTotal . ' JSON-LD blocks parsed' . PHP_EOL;
 
+/* ------------------------------------------------ navigation coverage
+
+   A nav link disappears when its page is empty (the rule in the header), but
+   nothing made a link appear when a page filled: /schools had records for an
+   hour before anyone could find it, and Photographs sat for weeks under a
+   submenu. So every place a visitor could be sent is listed here from the site
+   itself, not from memory: every section and category group with URLs and live
+   records, every top-level index template, and every static page. Each must be
+   linked from the header menu or the footer, or named in
+   templates/_data/nav-exempt.json with a reason. Anything else fails the check,
+   so new material cannot land unreachable and be reported as done. */
+$fetch = function (string $u): string {
+    $ch = curl_init($u);
+    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_TIMEOUT => 30, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0]);
+    $b = (string)curl_exec($ch); curl_close($ch); return $b;
+};
+$home = $fetch($base . '/');
+$hdrEnd = strpos($home, '</header>') ?: 0;
+$ftrStart = strrpos($home, '<footer') ?: strlen($home);
+$pathsIn = function (string $html) use ($base): array {
+    preg_match_all('~href="' . preg_quote($base, '~') . '/?([^"#]*)"~', $html, $m);
+    return array_values(array_unique(array_map(fn($h) => trim(rawurldecode(parse_url('/' . $h, PHP_URL_PATH) ?? ''), '/'), $m[1])));
+};
+$inMenu = $pathsIn(substr($home, 0, $hdrEnd));
+$inFooter = $pathsIn(substr($home, $ftrStart));
+$top = fn(array $paths) => array_values(array_unique(array_map(fn($p) => explode('/', $p)[0], $paths)));
+$menuTop = $top($inMenu); $footerTop = $top($inFooter);
+$exempt = json_decode((string)@file_get_contents(\Craft::getAlias('@templates') . '/_data/nav-exempt.json'), true) ?: [];
+unset($exempt['_about']);
+
+$want = [];   /* path => what it is, only where there are records */
+foreach (Craft::$app->getEntries()->getAllSections() as $s) {
+    $n = \craft\elements\Entry::find()->section($s->handle)->count();
+    if (!$n) { continue; }
+    foreach ($s->getSiteSettings() as $ss) {
+        if (!$ss->hasUrls) { continue; }
+        $prefix = explode('/', trim($ss->uriFormat, '/'))[0];
+        if (str_contains($prefix, '{')) {
+            foreach (\craft\elements\Entry::find()->section($s->handle)->all() as $e) { $want[trim($e->uri, '/')] = 'page: ' . $e->title; }
+        } else { $want[$prefix] = 'section ' . $s->handle . ' (' . $n . ')'; }
+    }
+}
+foreach (Craft::$app->getCategories()->getAllGroups() as $g) {
+    $n = \craft\elements\Category::find()->group($g->handle)->count();
+    foreach ($g->getSiteSettings() as $ss) { if ($n && $ss->hasUrls) { $want[explode('/', trim($ss->uriFormat, '/'))[0]] = 'category group ' . $g->handle . ' (' . $n . ')'; } }
+}
+foreach (glob(\Craft::getAlias('@templates') . '/*/index.twig') as $f) {
+    $dir = basename(dirname($f));
+    if ($dir[0] === '_' || str_starts_with($dir, 'admin-') || $dir === 'graph' || isset($want[$dir])) { continue; }
+    $n = match ($dir) {
+        'schools' => \craft\elements\Entry::find()->section('organizations')->orgType('school')->count(),
+        'on-this-day' => \craft\elements\Entry::find()->section(['articles', 'events'])->count(),
+        'tags' => \craft\elements\Category::find()->group('tag')->count(),
+        'military-profiles' => \craft\elements\Entry::find()->section('militaryProfiles')->count(),
+        default => null,
+    };
+    if ($n === 0) { continue; }
+    $want[$dir] = 'index template /' . $dir . ($n !== null ? ' (' . $n . ')' : '');
+}
+ksort($want);
+$unreached = []; $footerOnly = [];
+foreach ($want as $path => $what) {
+    $t = explode('/', $path)[0];
+    if (in_array($t, $menuTop, true)) { continue; }
+    if (in_array($path, $inFooter, true) || in_array($t, $footerTop, true)) { $footerOnly[] = "/$path, $what"; continue; }
+    if (isset($exempt[$t])) { continue; }
+    $unreached[] = "/$path, $what";
+}
+echo 'NAV COVERAGE: ' . count($want) . ' destinations with records; ' . count($footerOnly) . ' in the footer only; ' . count($unreached) . ' reachable from neither' . PHP_EOL;
+foreach ($footerOnly as $x) { echo '   footer only  ' . $x . PHP_EOL; }
+foreach ($unreached as $x) { echo '   UNREACHABLE  ' . $x . PHP_EOL; }
+if ($unreached) { $fail++; echo 'NAV COVERAGE FAIL: link each from the menu or the footer, or name it in templates/_data/nav-exempt.json with a reason' . PHP_EOL; }
+
 /* The data model has to keep up with the schema. A field added without
    regenerating docs/DATA-MODEL.md fails here, because a data model that drifts
    is consulted and believed. */

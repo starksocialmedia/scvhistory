@@ -11,17 +11,18 @@
 #}
 
 {% set seg1 = craft.app.request.getSegment(1) %}
+{#- The four doors of STRUCTURE.md: ARCHIVE, what we hold; PEOPLE, who acted;
+    PLACES, what is located; TIME. CIVIC is the fifth, and waits for elections. -#}
 {% set activeMap = {
-  'persons': 'people', 'groups': 'people', 'obituaries': 'people',
-  'war-memorial': 'people', 'military-profiles': 'people',
-  'places': 'places', 'communities': 'places', 'organizations': 'people',
-  'collections': 'collections',
-  'articles': 'articles', 'events': 'articles',
-  'photographs': 'articles', 'documents': 'articles'
+  'collections': 'archive', 'photographs': 'archive', 'articles': 'archive', 'documents': 'archive',
+  'persons': 'people', 'organizations': 'people', 'schools': 'people', 'groups': 'people',
+  'obituaries': 'people', 'war-memorial': 'people', 'military-profiles': 'people',
+  'places': 'places', 'communities': 'places',
+  'events': 'time', 'on-this-day': 'time'
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v6-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v7-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -49,6 +50,8 @@
 {% set cPhotos    = craft.entries().section('photographs').count() %}
 {% set cDocs      = craft.entries().section('documents').count() %}
 {% set cEraTerms  = craft.categories().group('historicalEra').count() %}
+{#- On this day draws on every dated record; the articles and events stand for them. -#}
+{% set cOnThisDay = cArticles + cEvents %}
 
 {# PEOPLE #}
 {#- Organizations are here, not under PLACES (STRUCTURE.md, 28 September 2026):
@@ -56,14 +59,16 @@
     bodies are a view of the same index, not a second home. (Comments go
     outside array and hash literals: inside one, Twig fails to parse.) -#}
 {% set colsPeople = [
-  { label: 'RECORDS', items: [
-    { t: 'All people',       n: cPersons, u: url('persons') },
-    { t: 'Pioneer families', n: cGroups,  u: url('groups') }
+  { label: 'PEOPLE', items: [
+    { t: 'People',   n: cPersons, u: url('persons') },
+    { t: 'Families', n: cGroups,  u: url('groups') }
   ] },
   { label: 'ORGANIZATIONS', items: [
-    { t: 'All organizations', n: cOrgs, u: url('organizations') },
-    { t: 'Government bodies', n: cGov,  u: url('organizations', { kind: 'government' }) },
-    { t: 'Schools',           n: cSchools, u: url('schools') }
+    { t: 'Organizations',     n: cOrgs, u: url('organizations') },
+    { t: 'Government bodies', n: cGov,  u: url('organizations', { kind: 'government' }) }
+  ] },
+  { label: 'SCHOOLS', items: [
+    { t: 'Schools and districts', n: cSchools, u: url('schools') }
   ] },
   { label: 'MEMORIAL', items: [
     { t: 'Obituaries',   n: cObits, u: url('obituaries') },
@@ -84,11 +89,11 @@
 {#- What is located. Communities go to their map, not three of 35 as text rows.
     Organizations moved to PEOPLE. -#}
 {% set colsPlaces = [
-  { label: 'GEOGRAPHY', items: [
-    { t: 'All places', n: cPlaces, u: url('places') }
+  { label: 'PLACES', items: [
+    { t: 'Places', n: cPlaces, u: url('places') }
   ] },
   { label: 'COMMUNITIES', items: [
-    { t: 'Community map', n: cComms, u: url('communities') }
+    { t: 'Communities', n: cComms, u: url('communities') }
   ] }
 ] %}
 
@@ -156,17 +161,14 @@
 {% set majorRows  = majorRows|sort((a, b) => b.n - a.n) %}
 {% set seriesRows = seriesRows|sort((a, b) => b.n - a.n)|slice(0, 3) %}
 
-{% set colsColls = [] %}
-{% if majorRows|length %}
-  {% set colsColls = colsColls|merge([{ label: 'MAJOR WORKS', items: majorRows }]) %}
-{% endif %}
-{% if seriesRows|length %}
-  {% set colsColls = colsColls|merge([{ label: 'SERIES', items: seriesRows }]) %}
-{% endif %}
-{% set colsColls = colsColls|merge([{ label: 'BROWSE', items: [
-  { t: 'All collections', n: cColls,    u: url('collections') },
-  { t: 'By era',          n: cEraTerms, u: url('articles', { view: 'era' }) }
-] }]) %}
+{#- ARCHIVE: Collections, Photographs, Articles, Documents, in that order.
+    The collections column leads with the index, then the major works. -#}
+{% set colsArchive = [
+  { label: 'COLLECTIONS', items: [{ t: 'Collections', n: cColls, u: url('collections') }]|merge(majorRows|slice(0, 4)) },
+  { label: 'PHOTOGRAPHS', items: [{ t: 'Photographs', n: cPhotos, u: url('photographs') }] },
+  { label: 'ARTICLES',    items: [{ t: 'Articles',    n: cArticles, u: url('articles') }] },
+  { label: 'DOCUMENTS',   items: [{ t: 'Documents',   n: cDocs, u: url('documents') }] }
+] %}
 
 {% set featColls = null %}
 {% if topMajor %}
@@ -194,19 +196,6 @@
   } %}
 {% endif %}
 
-{# ARTICLES #}
-{% set mediaItems = [
-  { t: 'Photographs', n: cPhotos, u: url('photographs') },
-  { t: 'Documents',   n: cDocs,   u: url('documents') }
-] %}
-
-{% set colsArticles = [
-  { label: 'WRITING', items: [{ t: 'All articles', n: cArticles, u: url('articles') }] },
-  { label: 'EVENTS',  items: [{ t: 'All events',   n: cEvents,   u: url('events') }] }
-] %}
-{% if mediaItems|length %}
-  {% set colsArticles = colsArticles|merge([{ label: 'MEDIA', items: mediaItems }]) %}
-{% endif %}
 
 {% set fArticle = craft.entries().section('articles').orderBy('dateUpdated DESC').one() %}
 {% set featArticles = null %}
@@ -243,12 +232,13 @@
   {% endif %}
 {% endfor %}
 
-{% set colsEra = [] %}
-{% for label, items in eraBuckets %}
-  {% if items|length %}
-    {% set colsEra = colsEra|merge([{ label: label, items: items }]) %}
-  {% endif %}
-{% endfor %}
+{#- TIME: By era, On this day, Events. -#}
+{% set colsEra = [
+  { label: 'BY ERA', items: [{ t: 'By era', n: cEraTerms, u: url('articles', { view: 'era' }) }] },
+  { label: 'ON THIS DAY', items: [{ t: 'On this day', n: cOnThisDay, u: url('on-this-day') }] },
+  { label: 'EVENTS', items: [{ t: 'Events', n: cEvents, u: url('events') }] }
+] %}
+
 
 {% set featEra = {
   kicker: 'TIMELINE',
@@ -258,12 +248,14 @@
   u:      url('articles', { view: 'era' })
 } %}
 
+{#- STRUCTURE.md, the nav: four items today. CIVIC is added here when the
+    elections import lands, and the nav-link rule below keeps it out until its
+    pages have records. -#}
 {% set menus = [
-  { id: 'articles',    label: 'ARTICLES',    kicker: 'SINGLE PIECES & EVENTS',          columns: colsArticles, feature: featArticles },
-  { id: 'collections', label: 'COLLECTIONS', kicker: 'MULTI-PART WORKS, READ IN ORDER', columns: colsColls,    feature: featColls },
-  { id: 'people',      label: 'PEOPLE',      kicker: 'PEOPLE, FAMILIES & ORGANIZATIONS', columns: colsPeople,   feature: featPeople },
-  { id: 'places',      label: 'PLACES',      kicker: 'LAND, SITES & COMMUNITIES',       columns: colsPlaces,   feature: featPlaces },
-  { id: 'era',         label: 'BY ERA',      kicker: 'BROWSE THE TIMELINE',             columns: colsEra,      feature: featEra }
+  { id: 'archive', label: 'ARCHIVE', kicker: 'WHAT WE HOLD',             columns: colsArchive, feature: featColls ?? featArticles },
+  { id: 'people',  label: 'PEOPLE',  kicker: 'WHO ACTED',                columns: colsPeople,  feature: featPeople },
+  { id: 'places',  label: 'PLACES',  kicker: 'WHAT IS LOCATED',          columns: colsPlaces,  feature: featPlaces },
+  { id: 'time',    label: 'TIME',    kicker: 'ERAS, DAYS AND EVENTS',    columns: colsEra,     feature: featEra }
 ] %}
 
 {#- THE NAV-LINK RULE (STRUCTURE.md): a link appears only when its page exists

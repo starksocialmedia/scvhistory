@@ -41,10 +41,12 @@ fifth slot for CIVIC without growing the bar.
 | Item | Columns |
 |---|---|
 | **ARCHIVE** — what we hold | Collections · Photographs · Articles · Documents |
-| **PEOPLE** — who acted | People · Organizations · Families · Obituaries · War Memorial · Military |
+| **PEOPLE** — who acted | People · Organizations · Schools · Families · Obituaries · War Memorial · Military (when it has records) |
 | **PLACES** — what is located | Places · Communities |
 | **CIVIC** — the public record | The City Council · Elections · Bodies · Officeholders |
-| **TIME** | By era · On this day · Events · The timeline |
+| **TIME** | By era · On this day · Events · The timeline (when it exists) |
+
+**Built 29 September 2026**, four items, CIVIC waiting: `templates/_partials/header/site-header.twig`.
 
 **Organizations are under PEOPLE, not PLACES** (Nathan, 28 September 2026). An
 organization acts: it decides, employs, publishes. Filing it under PLACES said an
@@ -67,6 +69,17 @@ count alone proves only that there is something to fail to show (the
 `/photographs` 404); a template alone gives a room with nothing in it (the
 `/military-profiles` index). This applies to every item, column and row of the
 menu, and to landers: a door opens when there is something behind it.
+
+### The rule that makes links appear
+
+The nav-link rule only takes links away. Nothing put one in when a page filled:
+`/schools` had records for an hour before anyone could reach it. So
+`scripts/import/check_render.php` lists every destination from the site itself
+(each section and category group with URLs and live records, each top-level
+index template, each static page) and fails unless each is linked from the
+header menu or the footer, or is named in `templates/_data/nav-exempt.json`
+with a reason. The render check runs before every commit that touches a
+template, so new material cannot land unreachable and be reported as done.
 
 Photographs are 1,544 of 2,644 records, the largest holding and the most
 browsable thing here. They belong in the first column of the first item, not the
