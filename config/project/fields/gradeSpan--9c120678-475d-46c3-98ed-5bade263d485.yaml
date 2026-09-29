@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: gradeSpan
+instructions: 'The grades taught, as "K-6", "7-12", "9-12". From the NCES directory unless a footnote says otherwise.'
+name: Grades
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
