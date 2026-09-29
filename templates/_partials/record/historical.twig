@@ -65,7 +65,7 @@
   Prints '1' when both hold, nothing otherwise.
 #}
 {% macro publicKin(holder, other) %}
-  {%- set office = (craft.app.sections.getSectionByHandle('officeHoldings') ?? null) is not null -%}
+  {%- set office = (craft.app.entries.getSectionByHandle('officeHoldings') ?? null) is not null -%}
   {%- set a = office and craft.entries().section('officeHoldings').relatedTo({ targetElement: holder, field: 'holdingPerson' }).exists() -%}
   {%- set b = a and craft.entries().section('officeHoldings').relatedTo({ targetElement: other, field: 'holdingPerson' }).exists() -%}
   {%- set sourced = false -%}
