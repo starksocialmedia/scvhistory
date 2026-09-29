@@ -22,7 +22,7 @@
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v8-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v9-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -65,7 +65,7 @@
   ] },
   { label: 'ORGANIZATIONS', items: [
     { t: 'Organizations',     n: cOrgs, u: url('organizations') },
-    { t: 'Government bodies', n: cGov,  u: url('organizations', { kind: 'government' }) }
+    { t: 'Government bodies', n: cGov,  u: url('organizations') ~ '#government' }
   ] },
   { label: 'SCHOOLS', items: [
     { t: 'Schools and districts', n: cSchools, u: url('schools') }
@@ -270,7 +270,7 @@
   {% for col in menu.columns %}
     {% set items = [] %}
     {% for it in col.items %}
-      {% set path = it.u|replace({ (siteUrl): '' })|split('?')|first|trim('/') %}
+      {% set path = it.u|replace({ (siteUrl): '' })|split('?')|first|split('#')|first|trim('/') %}
       {% set isIndex = path and '/' not in path %}
       {% if (it.n ?? 0) > 0 and (not isIndex or craft.app.view.doesTemplateExist(path)) %}
         {% set items = items|merge([it]) %}

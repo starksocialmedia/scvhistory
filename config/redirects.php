@@ -39,6 +39,10 @@ $moved = [
     'persons/kit-carson-2'                        => 'persons/kit-carson',
     'persons/henry-m-newhall'                     => 'persons/henry-mayo-newhall',
     'persons/james-marshall'                      => 'persons/james-w-marshall',
+    /* Retired into the one record for the same subject, 29 September 2026
+       (organize_orgs_places.php). */
+    'organizations/rancho-camulos'                => 'places/rancho-camulos',
+    'places/lake-hughes'                          => 'communities/lake-hughes',
     /* War memorial records renamed from their legacy page keys to their names,
        29 September 2026 (apply_review_fixes_0929.php). */
     'war-memorial/ww2-tomross'                    => 'war-memorial/thomas-milton-ross-jr',

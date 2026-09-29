@@ -109,27 +109,6 @@
         {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('organizations', keep|merge({community: c.slug})) }}">{{ c.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
 
-      {% if hasKinds %}
-        {% set keepCom = comSlug ? {community: comSlug} : {} %}
-        <div class="pl-lab" style="margin-top:14px">KIND</div>
-        <a class="pl-chip {{ not kind ? 'on' : '' }}" href="{{ url('organizations', keepCom) }}">All kinds</a>
-        {% for k, label in KINDS %}
-          {% set n = kindCounts[k] ?? 0 %}
-          {% if n %}<a class="pl-chip {{ kind == k ? 'on' : '' }}" href="{{ url('organizations', keepCom|merge({kind: k})) }}">{{ label }} ({{ n }})</a>{% endif %}
-        {% endfor %}
-
-        {#- The level row appears only when schools are the kind on screen,
-            because a level means nothing beside a newspaper. -#}
-        {% if hasLevels and kind == 'school' %}
-          <div class="pl-lab" style="margin-top:14px">LEVEL</div>
-          <a class="pl-chip {{ not level ? 'on' : '' }}" href="{{ url('organizations', keepCom|merge({kind: 'school'})) }}">All levels</a>
-          {% for lv, label in LEVELS %}
-            {% set n = levelCounts[lv] ?? 0 %}
-            {% if n %}<a class="pl-chip {{ level == lv ? 'on' : '' }}" href="{{ url('organizations', keepCom|merge({kind: 'school', level: lv})) }}">{{ label }} ({{ n }})</a>{% endif %}
-          {% endfor %}
-        {% endif %}
-      {% endif %}
-
       <div class="pl-count">{{ comSlug or kind or level ? places|length ~ ' of ' ~ all|length : all|length }} organizations</div>
     </div>
   </section>
@@ -148,9 +127,34 @@
         initialValley: true
       } only %}
 
+      {#- Grouped by kind, not filtered (Nathan, 29 September 2026): 35 records fit
+          on a screen, and sections show everything the archive holds at once.
+          Each record is in exactly one section, because orgType holds one value;
+          school districts and schools are separate because a district governs and
+          a school teaches. Past about 60 records this becomes chips on the same
+          groups (STRUCTURE.md). -#}
+      {% set GROUPS = [
+        { key: 'government', label: 'Government', note: 'School districts are governing bodies too; they are listed under School districts.' },
+        { key: 'districts',  label: 'School districts' },
+        { key: 'schools',    label: 'Schools' },
+        { key: 'business',   label: 'Businesses' },
+        { key: 'nonprofit',  label: 'Nonprofits' },
+        { key: 'media',      label: 'Newspapers' },
+        { key: 'club',       label: 'Clubs and associations' },
+        { key: 'other',      label: 'Other' }
+      ] %}
+      {% set groupOf = {} %}
+      {% for p in places %}
+        {% set t = hasKinds ? (p.orgType.value ?: 'other') : 'other' %}
+        {% set g = t == 'school' ? (hasLevels and p.schoolLevel.value == 'district' ? 'districts' : 'schools') : (t in ['government', 'business', 'nonprofit', 'media', 'club'] ? t : 'other') %}
+        {% set groupOf = groupOf|merge({ (g): (groupOf[g] ?? [])|merge([p]) }) %}
+      {% endfor %}
       {% if places|length %}
+      {% for grp in GROUPS %}{% if groupOf[grp.key] is defined %}
+      <h2 class="pl-group" id="{{ grp.key }}">{{ grp.label }} <span>{{ groupOf[grp.key]|length }}</span></h2>
+      {% if grp.note is defined %}<p class="pl-groupnote">{{ grp.note }}</p>{% endif %}
       <div class="pl-cards">
-        {% for p in places %}
+        {% for p in groupOf[grp.key] %}
           {% set img = 'featuredImage' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.featuredImage.one() ?? null : null %}
           {% set coms = p.neighborhood.all()|map(c => c.title)|join(' · ') %}
           <a class="pl-card" id="card{{ p.id }}" data-id="{{ p.id }}" href="{{ p.url }}">
@@ -163,6 +167,7 @@
           </a>
         {% endfor %}
       </div>
+      {% endif %}{% endfor %}
       {% else %}
         <div class="pl-empty">No organizations in this community yet. <a href="{{ url('organizations') }}" style="color:#7A5C1B">Show all</a></div>
       {% endif %}

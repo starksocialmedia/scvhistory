@@ -177,6 +177,24 @@ all editorial. Somebody has to write them.
 
 ## Still proposed, not decided
 
-The civic layer's data model: a `jurisdictionLevel` field on organizations, and
-how a body links to the territory it governs over time. See the proposal of
-2026-09-25. Nothing there is built.
+How a governing body links to the territory it governs over time: the city's
+annexations, a district's boundary as it changed. The school districts now carry
+their current boundaries (from the Census Bureau, on their pages); history of
+territory is not modelled.
+
+**Dropped, 29 September 2026: `jurisdictionLevel`.** It was proposed twice
+(2026-09-25) to mark government bodies and their level, and never built.
+Government is an `orgType` value, which is enough: /organizations groups by it,
+the menu links to it, and the archive's bodies are few enough that each record
+says whether it is the City, the County or a district. It is not in the schema
+and not in DATA-MODEL.
+
+## How the indexes group
+
+/organizations and /places are **grouped into sections** by `orgType` and
+`placeType` (Nathan, 29 September 2026), each record in exactly one section. On
+/organizations school districts and schools are separate sections, because a
+district governs and a school teaches; Government carries a line pointing to
+the districts rather than listing them twice. **An index becomes filter chips on
+the same groups once it passes about 60 records**, the point where sections stop
+fitting on two screens.

@@ -27,7 +27,10 @@
   building: 'Buildings',
   park:     'Parks',
   site:     'Sites',
-  trail:    'Trails and routes'
+  trail:    'Trails and routes',
+  settlement: 'Settlements',
+  district: 'Districts',
+  cemetery: 'Cemeteries'
 } %}
 {% set KIND_ONE = {
   natural:  'Natural feature',
@@ -35,8 +38,11 @@
   ranch:    'Ranch',
   building: 'Building',
   park:     'Park',
-  site:     'Site',
-  trail:    'Trail'
+  site:     'Historic site',
+  trail:    'Trail',
+  settlement: 'Settlement',
+  district: 'District',
+  cemetery: 'Cemetery'
 } %}
 
 {% set query = craft.entries().section('places').orderBy('title asc') %}
@@ -105,15 +111,6 @@
         {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('places', kind ? {community: c.slug, kind: kind} : {community: c.slug}) }}">{{ c.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
 
-      {% if hasKinds %}
-        <div class="pl-lab" style="margin-top:14px">KIND</div>
-        <a class="pl-chip {{ not kind ? 'on' : '' }}" href="{{ url('places', comSlug ? {community: comSlug} : {}) }}">All kinds</a>
-        {% for k, label in KINDS %}
-          {% set n = kindCounts[k] ?? 0 %}
-          {% if n %}<a class="pl-chip {{ kind == k ? 'on' : '' }}" href="{{ url('places', comSlug ? {community: comSlug, kind: k} : {kind: k}) }}">{{ label }} ({{ n }})</a>{% endif %}
-        {% endfor %}
-      {% endif %}
-
       <div class="pl-count">{{ comSlug or kind ? places|length ~ ' of ' ~ all|length : all|length }} places</div>
     </div>
   </section>
@@ -132,9 +129,33 @@
         initialValley: true
       } only %}
 
+      {#- Grouped by kind, not filtered (Nathan, 29 September 2026): 49 records fit
+          on a screen, and sections show everything at once. Each place is in one
+          section, because placeType holds one value. Past about 60 records this
+          becomes chips on the same groups (STRUCTURE.md). -#}
+      {% set GROUPS = [
+        { key: 'natural', label: 'Natural features' },
+        { key: 'road', label: 'Roads and passes' },
+        { key: 'ranch', label: 'Ranches' },
+        { key: 'site', label: 'Historic sites' },
+        { key: 'building', label: 'Buildings' },
+        { key: 'park', label: 'Parks' },
+        { key: 'settled', label: 'Settlements and districts' },
+        { key: 'cemetery', label: 'Cemeteries' },
+        { key: 'trail', label: 'Trails and routes' },
+        { key: 'unset', label: 'Not yet classified' }
+      ] %}
+      {% set groupOf = {} %}
+      {% for p in places %}
+        {% set t = hasKinds ? (p.placeType.value ?: 'unset') : 'unset' %}
+        {% set g = t in ['settlement', 'district'] ? 'settled' : t %}
+        {% set groupOf = groupOf|merge({ (g): (groupOf[g] ?? [])|merge([p]) }) %}
+      {% endfor %}
       {% if places|length %}
+      {% for grp in GROUPS %}{% if groupOf[grp.key] is defined %}
+      <h2 class="pl-group" id="{{ grp.key }}">{{ grp.label }} <span>{{ groupOf[grp.key]|length }}</span></h2>
       <div class="pl-cards">
-        {% for p in places %}
+        {% for p in groupOf[grp.key] %}
           {% set img = 'featuredImage' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.featuredImage.one() ?? null : null %}
           {% set com = p.neighborhood.one() ?? null %}
           <a class="pl-card" id="card{{ p.id }}" data-id="{{ p.id }}" href="{{ p.url }}">
@@ -147,6 +168,7 @@
           </a>
         {% endfor %}
       </div>
+      {% endif %}{% endfor %}
       {% else %}
         <div class="pl-empty">No places match these filters yet. <a href="{{ url('places') }}" style="color:#7A5C1B">Show all</a></div>
       {% endif %}
