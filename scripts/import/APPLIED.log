@@ -111,3 +111,9 @@
 2026-09-29 07:40:31 PDT	add_elections_schema.php	scvhistory-web	32 rows	verified: 3 sections, 3 types, 26 new fields, candidacyElection resolved	the event, the standing and the transcription fault, each its own record; turnout computed at render
 2026-09-29 07:40:38 PDT	apply_review_fixes_0929.php	scvhistory-web	11 rows	verified	aliases, Gutzeit water, Smyth birthday, holdings and portrait, Nadeau, war memorial slugs
 2026-09-29 07:40:42 PDT	build_nadeau_and_gutzeit_runs.php	scvhistory-web	2 rows	verified	Remi Nadeau (1867-1941) profile; Gutzeit candidacies 2008, 2014, Congress 2016 withdrawn
+2026-09-29 09:47:39 PDT	build_scofield_profile.php	scvhistory-web	2 rows	verified	Scofield career 1873-1917; Commons portrait, PD-US-1923 on an unnamed 1911 publication
+2026-09-29 09:47:41 PDT	add_elections_schema.php	scvhistory-web	0 rows	verified: 3 sections, 3 types, 26 new fields, candidacyElection resolved	the event, the standing and the transcription fault, each its own record; turnout computed at render
+2026-09-29 09:47:42 PDT	apply_review_fixes_0929.php	scvhistory-web	0 rows	verified	aliases, Gutzeit water, Smyth birthday, holdings and portrait, Nadeau, war memorial slugs
+2026-09-29 09:47:44 PDT	build_nadeau_and_gutzeit_runs.php	scvhistory-web	2 rows	verified	Remi Nadeau (1867-1941) profile; Gutzeit candidacies 2008, 2014, Congress 2016 withdrawn
+2026-09-29 09:47:51 PDT	add_license_cc_by_sa_2.php	scvhistory-web	1 rows	verified	licence option CC BY-SA 2.0
+2026-09-29 09:47:54 PDT	import_city_hall_csun_photos.php	scvhistory-web	2 rows	verified	City Hall (Flickr, CC BY-SA 2.0) and CSUN (Commons, CC BY-SA 3.0)

@@ -105,6 +105,17 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Creative Commons Attribution-ShareAlike 2.0 (CC BY-SA 2.0)'
+        -
+          - value
+          - cc-by-sa-2.0
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown
