@@ -118,6 +118,10 @@
   {% if a %}{% set imageOf = imageOf|merge({ ('p' ~ p.id): a }) %}{% endif %}
 {% endfor %}
 {% set withImage = imageOf|length %}
+{#- Records whose legacy page has no picture at all (video, pdf, index or text
+    pages) are not missing an image, and the tile says what they are instead.
+    Grok's live check of 29 September 2026. -#}
+{% set noPicture = source('_data/photographs-no-picture.json', ignore_missing = true)|json_decode %}{% if not noPicture %}{% set noPicture = {} %}{% endif %}
 
 {#- The list for the current view, pictures first, then paged. -#}
 {% set list = [] %}
@@ -135,10 +139,11 @@
 {% set pages = max(1, (list|length / PER)|round(0, 'ceil')) %}
 {% set pageList = list|slice((page - 1) * PER, PER) %}
 
-{% macro tile(p, img) %}
+{% macro tile(p, img, noPic) %}
   <a class="ph-tile" href="{{ p.url }}">
     <div class="ph-img">
       {% if img %}<img src="{{ img.getUrl({ width: 480, height: 360, mode: 'crop' }) }}" alt="{{ p.title }}" loading="lazy">
+      {% elseif noPic %}{% set KIND_LABEL = { video: 'A VIDEO', pdf: 'A PDF PUBLICATION', index: 'AN INDEX PAGE', text: 'A TEXT PAGE' } %}<span class="none">{{ KIND_LABEL[noPic.kind] ?? 'NO PICTURE' }}<br>NO PICTURE TO HOLD</span>
       {% else %}<span class="none">IMAGE NOT YET HELD<br>{{ (p.photoSourceCode ?: p.legacyKey)|upper }}</span>{% endif %}
     </div>
     <div class="ph-cap">
@@ -221,7 +226,7 @@
 
     {% elseif pageList|length %}
       <div class="ph-grid">
-        {% for p in pageList %}{{ m.tile(p, imageOf['p' ~ p.id] ?? null) }}{% endfor %}
+        {% for p in pageList %}{{ m.tile(p, imageOf['p' ~ p.id] ?? null, noPicture[p.id ~ ''] ?? null) }}{% endfor %}
       </div>
       {% if pages > 1 %}
         <nav class="ph-pages" aria-label="Pages">
