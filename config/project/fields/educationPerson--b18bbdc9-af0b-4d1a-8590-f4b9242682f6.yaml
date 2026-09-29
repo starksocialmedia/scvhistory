@@ -1,0 +1,26 @@
+columnSuffix: null
+handle: educationPerson
+instructions: null
+name: Person
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:9d0087fe-8a7b-4f5e-941b-b7e89febe4e9' # Persons
+    - 'section:47acf174-5c11-495d-bb94-0f9e2dc637a2' # War Memorials
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

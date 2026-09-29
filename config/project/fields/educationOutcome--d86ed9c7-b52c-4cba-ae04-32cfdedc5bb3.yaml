@@ -1,0 +1,44 @@
+columnSuffix: null
+handle: educationOutcome
+instructions: null
+name: Outcome
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Graduated
+        -
+          - value
+          - graduated
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Attended
+        -
+          - value
+          - attended
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Not known'
+        -
+          - value
+          - unknown
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

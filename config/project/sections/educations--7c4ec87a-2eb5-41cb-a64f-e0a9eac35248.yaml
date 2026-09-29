@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: bbe2e39f-d79b-4f05-bec2-974f94c2bce0 # Education
+handle: educations
+maxAuthors: 1
+minAuthors: 1
+name: Education
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  3ae144ef-e15a-4685-8fec-8ac0dfa20b68: # SCV History
+    enabledByDefault: true
+    hasUrls: false
+    template: null
+    uriFormat: null
+type: channel

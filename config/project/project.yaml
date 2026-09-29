@@ -1,4 +1,4 @@
-dateModified: 1790656582
+dateModified: 1790690728
 email:
   fromEmail: nathan@starksocial.com
   fromName: 'SCV History'
@@ -83,9 +83,11 @@ meta:
     7b5da2bc-f3cd-4678-a175-6a58bd58f008: Page # Page
     7c04bff4-9186-475c-b3fa-8f0bd2940044: 'GNIS ID' # GNIS ID
     7c3d38e7-2d1a-47a3-be5d-08a44fb0b834: 'Roles Probe' # Roles Probe
+    7c4ec87a-2eb5-41cb-a64f-e0a9eac35248: Education # Education
     7ce3598f-7711-4df6-8f99-ac10d904f0e2: 'Place Longitude' # Place Longitude
     7eadd519-a55c-433a-8391-a6ec84fa97e7: 'MP Related Obituaries' # MP Related Obituaries
     7f2b776b-bbf7-4fd8-8f9f-4f9e5b3ef56b: 'Person Find A Grave URL' # Person Find A Grave URL
+    7fd14b04-01af-4391-abc8-796c18a34f6e: Evidence # Evidence
     8a1309e9-6990-4d93-9c45-6b2a0cdd0855: 'Photo Sequence' # Photo Sequence
     8adc6b3c-e2e4-436e-99fa-260b78fdb802: 'Place Type' # Place Type
     8aedd655-2938-4f84-8e3d-45d493cefea9: 'How the term ended' # How the term ended
@@ -191,6 +193,7 @@ meta:
     859dcc97-3458-4901-8659-37043953a91e: 'MP Date of Death' # MP Date of Death
     869c1a3c-de72-4539-9c4f-c2a66302a5ad: 'Person Legacy URL' # Person Legacy URL
     886afeb7-184f-4030-8d35-d7538d0c362b: 'Role Probe' # Role Probe
+    910e7b26-342f-425b-93e0-25256f79d0c6: 'Years, EDTF' # Years, EDTF
     915e06ff-2663-43af-bd6b-ec40a3206421: 'Parent Organization' # Parent Organization
     926bf40e-0b97-438f-a964-5b3bf7d19f4a: 'Vietnam Memorial Wall' # Vietnam Memorial Wall
     951e7477-bc46-44c3-8aa1-4d5b5ffb2371: 'Kind of district' # Kind of district
@@ -252,6 +255,7 @@ meta:
     a7d29285-f1cd-4793-8d5a-9f83c09cab99: 'MP Has Siblings' # MP Has Siblings
     a8ef966a-768e-4643-9830-6aa0d566a047: 'Legacy Key' # Legacy Key
     a9d40f84-91b6-40fe-b6c1-14b3a4315c67: Neighborhood # Neighborhood
+    a9dd50ac-3058-40fc-88f0-97c82342f1af: 'Years, as printed' # Years, as printed
     a70fd2be-8261-40d9-bb02-2cb7dd81b270: 'Source URL' # Source URL
     a215f091-faba-486a-85f7-2c2dad943767: 'Place CHL URL' # Place CHL URL
     a1969145-2261-41ba-b15b-9385f97f5f0f: Subheadline # Subheadline
@@ -269,6 +273,7 @@ meta:
     b7cd4f62-4e1b-404b-abbb-be7461ca3ecd: Birthplace # Birthplace
     b8c3d45b-5cc2-4abf-9fe6-268b52ef38f3: 'Office Holding' # Office Holding
     b9d1def6-30f2-4133-8bb0-2b222faad34e: 'Burial Place' # Burial Place
+    b18bbdc9-af0b-4d1a-8590-f4b9242682f6: Person # Person
     b20e0e7d-aa77-4614-a377-46760055a3e1: 'Part of Collection' # Part of Collection
     b20f82ad-7fa5-44c7-ba5e-0a0890f4819c: Parts # Parts
     b58aa9b7-ca9a-4189-8422-b0d07956fa62: License # License
@@ -279,6 +284,8 @@ meta:
     ba80cc74-a8ca-455c-b406-7836e2a3ff54: 'Org Wikipedia URL' # Org Wikipedia URL
     bb08d01a-acf3-432e-8b98-261865127073: 'Photo People' # Photo People
     bbe026c4-9dd3-4081-a43d-ba3d44432715: 'MP Combat Operations' # MP Combat Operations
+    bbe2e39f-d79b-4f05-bec2-974f94c2bce0: Education # Education
+    bcf7a914-193f-4bb8-94a9-12a93c707ef8: 'Class of, as printed' # Class of, as printed
     be6f4e82-53c5-4654-8398-9a23d0b66251: 'Source Line' # Source Line
     bed77614-e166-47dd-b910-b1d4ff5bc37b: 'Place Wikipedia URL' # Place Wikipedia URL
     beddf6b8-b0e9-476e-b624-db1f64e8f170: 'MP Webmaster Note Top' # MP Webmaster Note Top
@@ -303,6 +310,7 @@ meta:
     d2b024d2-8694-4b50-a0b0-995d5e2644a0: 'Grade at Loss' # Grade at Loss
     d18e03d6-ba55-488f-9ae0-6bf53e5f19a9: 'Depicts Place' # Depicts Place
     d78c1773-e157-47b4-9e4b-a7644b394685: 'WM Unit' # WM Unit
+    d86ed9c7-b52c-4cba-ae04-32cfdedc5bb3: Outcome # Outcome
     d128c8cb-5a5c-4c17-b8ec-025770ae4070: 'Extended Caption' # Extended Caption
     d487d693-b6f8-4637-9f22-86552a6e75bb: 'Obit Date of Death' # Obit Date of Death
     d766bbd9-36cd-4ed2-9625-641a7616587d: 'Specialty / MOS' # Specialty / MOS
@@ -341,6 +349,7 @@ meta:
     f4a71c17-3c33-43f1-a285-d8e7ecae62fb: 'Related Photographs' # Related Photographs
     f4ccb290-b8d9-4d71-a8d9-fd8a94107187: 'Age at Loss' # Age at Loss
     f5eb4908-d535-4b94-9a6c-ecc1b3828387: 'Archive URL' # Archive URL
+    f19f0c58-d8b9-41be-bef0-fa2087a99d73: School # School
     f32eae51-5e21-4625-9edf-19e38d4a92b7: 'Org Latitude' # Org Latitude
     f82c4f23-b4f8-4edd-8b9d-e4e5024dc76b: 'Birth Date Edtf' # Birth Date Edtf
     f93e01ae-4939-48d8-8151-268836846a7c: 'MP Specialty MOS' # MP Specialty MOS

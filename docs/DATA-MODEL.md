@@ -253,6 +253,24 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `recordDates` | Table | **local** | no external equivalent |
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
 
+### Education — `educations/education`
+
+11 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `educationPerson` | Entries | schema.org `alumniOf` | emitted from the person: the person is an alumnus of the school |
+| `educationSchool` | Entries | schema.org `alumniOf` | the school side of the same statement |
+| `educationYears` | PlainText | **local** | no external equivalent |
+| `educationYearsEdtf` | PlainText | **local** | no external equivalent |
+| `classOf` | PlainText | **local** | the graduating class as printed; names a year, not a diploma |
+| `educationOutcome` | Dropdown | **local** | graduated only where a source says so |
+| `educationEvidence` | Dropdown | **local** | the officeHolding scale: certified, contemporary, retrospective, roster, uncited |
+| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
+| `footnotesOn` | Entries | schema.org `citation` |  |
+| `editorNotes` | Table | **local** | no external equivalent |
+| `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+
 ### Events — `events/event`
 
 41 fields.
@@ -848,6 +866,8 @@ local unless the note says otherwise.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
 - **`deathEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`.
+- **`educationEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
+- **`educationOutcome`** — `graduated`, `attended`, `unknown`.
 - **`endEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.

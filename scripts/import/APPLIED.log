@@ -104,3 +104,6 @@
 2026-09-28 22:51:29 PDT	fix_csun_alias.php	scvhistory-web	1 rows	verified	dropped the system name from CSUN aliases
 2026-09-28 22:51:31 PDT	disable_bowers_cave.php	scvhistory-web	1 rows	verified	Bowers Cave column off the site pending tribal consultation
 2026-09-29 06:57:08 PDT	merge_duplicate_persons.php	scvhistory-web	8 rows	verified	Beale, Carson, Newhall, Marshall duplicates retired; Nadeau links sorted
+2026-09-29 07:05:25 PDT	retitle_nadeau_grandson.php	scvhistory-web	1 rows	verified	Remi Nadeau (grandson), with the conflation note
+2026-09-29 07:05:28 PDT	add_education.php	scvhistory-web	9 rows	verified: section, type, 11 fields, URLs off	education as records: person, school, years, class, outcome, evidence
+2026-09-29 07:05:33 PDT	import_wm_high_schools.php	scvhistory-web	9 rows	verified	nine casualties linked to their valley high schools; four schools created

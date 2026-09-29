@@ -1,0 +1,213 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  3132b4fc-a49e-4914-accb-ac075c881185:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b18bbdc9-af0b-4d1a-8590-f4b9242682f6 # Person
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8424961a-8af8-472e-8210-5611d9d7e429
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f19f0c58-d8b9-41be-bef0-fa2087a99d73 # School
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6e5236d9-cafb-48c0-a98e-696b2a726df8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: a9dd50ac-3058-40fc-88f0-97c82342f1af # Years, as printed
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4ae9a180-8f76-4ee1-a31f-de238e8512c5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 910e7b26-342f-425b-93e0-25256f79d0c6 # Years, EDTF
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d71fa4db-8f21-4478-80fb-b1eedbd86941
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: bcf7a914-193f-4bb8-94a9-12a93c707ef8 # Class of, as printed
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 085ad455-96e7-4e93-95e7-9f0383ad2e4a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: d86ed9c7-b52c-4cba-ae04-32cfdedc5bb3 # Outcome
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 32302b99-46ab-48db-85ba-df3feb425a77
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 7fd14b04-01af-4391-abc8-796c18a34f6e # Evidence
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6794a0a9-4659-4dc7-af34-519c2b38e53c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 939732e2-23f3-4f3a-acf5-d3ec30ff7bea # Footnotes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8934659c-6ce0-4177-ab22-02e0f18e9a3c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 42cc5706-8791-4935-b463-28f759b078cf # Notes Are On
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1b5eec19-4f4c-45c6-a15b-b076409b1598
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6327ebb7-725a-49b6-89a2-92f1ba79fe25 # Editor's Notes
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3695f56d-9f9d-45c7-9b46-e3925682ba56
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6dbb0ffe-ecb5-494d-a363-94afc2a918af # Record Provenance
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6dd857d9-d48b-43e6-ae08-343c672d4be9
+            userCondition: null
+            warning: null
+            width: 100
+        name: Education
+        uid: 6964b49a-b30b-440a-8bff-c013de7f54b4
+        userCondition: null
+    thumbFieldKey: null
+handle: education
+hasTitleField: false
+icon: null
+name: Education
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: "{educationPerson.one().title ?? 'Unknown person'} at {educationSchool.one().title ?? 'unknown school'}"
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'
