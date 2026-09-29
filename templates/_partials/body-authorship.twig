@@ -29,5 +29,5 @@
   {%- for f in entry.fieldLayout.customFields -%}
     {%- if f.handle == 'bodyAuthorship' %}{% set has = true %}{% endif -%}
   {%- endfor -%}
-  {%- if has and entry.bodyAuthorship in ['legacy-leon', 'editorial-2026'] %}1{% endif -%}
+  {%- if has and (entry.bodyAuthorship.value ?? entry.bodyAuthorship ~ '') in ['legacy-leon', 'editorial-2026'] %}1{% endif -%}
 {% endmacro %}
