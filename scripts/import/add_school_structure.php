@@ -26,11 +26,11 @@
  * The grade at which pupils move on is not stored: it is the feeder's top
  * grade plus one, and a second copy of it could only disagree.
  *
- * THE FEEDS WAIT FOR A SOURCE. That these four districts feed the Hart
- * district is common knowledge and follows from the spans and the map, but it
- * is a claim, and the archive holds claims to a source. Until $FEEDS_SOURCE
- * names one (an official statement, being looked for on 29 September), the
- * feedsInto relations are planned and HELD, and the dry run says so.
+ * THE FEEDS HAVE A SOURCE. The Hart district's attendance-boundaries page
+ * says the K-6 schools of the three elementary districts roll over to its
+ * junior highs and that Castaic pupils go to Castaic High after grade 8; the
+ * Newhall district says the same from its side. $FEEDS_SOURCE carries that
+ * footnote. Were it emptied, the feeds would be planned and HELD.
  *
  * NESTING. parentOrganization, which the organization page already reads,
  * nests William S. Hart High School (#16052) and Valencia High School
@@ -58,7 +58,7 @@ use craft\elements\Entry;
 $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $FIX_NEWHALL_NCES = false;
-$FEEDS_SOURCE = null;   /* the footnote text for the feeder claim, once an official source is read */
+$FEEDS_SOURCE = 'William S. Hart Union High School District, Attendance Boundaries, https://www.hartdistrict.org/apps/pages/attendance-boundaries, read 29 September 2026: pupils of the K-6 schools of the Newhall, Saugus Union and Sulphur Springs Union districts "will automatically rollover to the junior high listed"; for Castaic residents, "your child will attend Castaic High School after the completion of 8th grade." Newhall School District, About Us, https://www.newhallschooldistrict.com/about-us: grades UPK-6, working with the Hart district on the move to grade 7. The Hart district states its own span on https://www.hartdistrict.org/apps/pages/about-the-district: "grades 7-12."';
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL . str_repeat('=', 78) . PHP_EOL;
 
 $ccdD = fn(string $leaid) => 'National Center for Education Statistics, Common Core of Data, district directory 2022-23, NCES district ID ' . $leaid

@@ -100,6 +100,7 @@ emitted from whichever side schema.org expects.
 | `partOfCollection` | article to collection | isPartOf |
 | `relatedArticles` | article to article | relatedLink |
 | `parentOrganization` | organization to organization | parentOrganization, inverse subOrganization |
+| `feedsInto` | school or district to the one its pupils go on to | local; held on the feeder, read from both ends |
 | `spouseOf` | person to person | spouse |
 | `childOf` | person to person | parent |
 | `siblingOf` | person to person | sibling |
@@ -453,7 +454,7 @@ emitted from whichever side schema.org expects.
 
 ### Organizations — `organizations/organization`
 
-52 fields.
+54 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -499,6 +500,8 @@ emitted from whichever side schema.org expects.
 | `neighborhood` | Categories | Dublin Core `spatial` | local vocabulary of valley communities |
 | `orgType` | Dropdown | **local** | drives the schema.org @type |
 | `schoolLevel` | Dropdown | **local** | drives the schema.org School subtype |
+| `gradeSpan` | PlainText | **local** | grades taught, as K-6 or 9-12, from the NCES directory unless footnoted |
+| `feedsInto` | Entries | **local** | the district or school a body's pupils go on to; the grade of the move is the feeder's top grade plus one |
 | `legacyKey` | PlainText | **local** | no external equivalent |
 | `legacyUrl` | PlainText | Dublin Core `source` | where it stood on the legacy site |
 | `sourcePath` | PlainText | Dublin Core `source` |  |

@@ -7,7 +7,10 @@
       one fact in one home. Computed here as well because head renders first. -#}
   {% set headMapPlace = (entry.orgLat and entry.orgLng) ? null : (craft.entries().section('places')
       .relatedTo({ targetElement: entry, field: 'placeOrganizations' }).placeLat(':notempty:').placeLng(':notempty:').one() ?? null) %}
-  {% if (entry.orgLat and entry.orgLng) or headMapPlace %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
+  {#- A government whose territory is drawn in communities.geojson shows that
+      outline, not only a pin. Keyed by the record's slug to the feature's slug. -#}
+  {% set ORG_BOUNDARIES = { 'city-of-santa-clarita': 'santa-clarita' } %}
+  {% if (entry.orgLat and entry.orgLng) or headMapPlace or ORG_BOUNDARIES[entry.slug] is defined %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
   {% css %}.rec-map{height:220px;background:#EEF0F4;margin:-18px -20px 14px;width:calc(100% + 40px)}{% endcss %}
 {% endblock %}
 
@@ -40,7 +43,9 @@
 {% set mapLat = mapPlace ? mapPlace.placeLat : entry.orgLat %}
 {% set mapLng = mapPlace ? mapPlace.placeLng : entry.orgLng %}
 {% set mapTitle = mapPlace ? mapPlace.title : entry.title %}
-{% set hasMap = mapLat and mapLng %}
+{% set ORG_BOUNDARIES = { 'city-of-santa-clarita': 'santa-clarita' } %}
+{% set boundarySlug = ORG_BOUNDARIES[entry.slug] ?? null %}
+{% set hasMap = (mapLat and mapLng) or boundarySlug %}
 {% set parent = entry.parentOrganization.one() ?? null %}
 {% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).orderBy('title asc').all() %}
 {#- Documents as well as articles: a school's yearbooks are documents it published. -#}
@@ -193,10 +198,25 @@
 document.addEventListener('DOMContentLoaded', function(){
   var el = document.getElementById('recMap');
   if (!el || typeof L === 'undefined') { return; }
-  var map = L.map(el, { scrollWheelZoom: false }).setView([{{ mapLat }}, {{ mapLng }}], 15);
+  var map = L.map(el, { scrollWheelZoom: false });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+  {% if mapLat and mapLng %}
+  map.setView([{{ mapLat }}, {{ mapLng }}], 15);
   L.marker([{{ mapLat }}, {{ mapLng }}]).addTo(map)
     .bindPopup({{ ('<b>' ~ mapTitle ~ '</b>' ~ (mapPlace ? '' : F.orgAddress))|json_encode|raw }});
+  {% endif %}
+  {% if boundarySlug %}
+  {#- Versioned like the index map, so a changed boundary is never drawn from cache. -#}
+  {% set geoVersion = (source('_data/community-neighbors.json', ignore_missing = true)|hash)|slice(0, 12) %}
+  fetch({{ (siteUrl ~ 'data/communities.geojson?v=' ~ geoVersion)|json_encode|raw }})
+    .then(function (r) { return r.json(); })
+    .then(function (g) {
+      var f = (g.features || []).filter(function (x) { return x.properties && x.properties.slug === {{ boundarySlug|json_encode|raw }}; })[0];
+      if (!f) { return; }
+      var layer = L.geoJSON(f, { style: { color: '#17254C', weight: 2, fillColor: '#C4A031', fillOpacity: 0.12 } }).addTo(map);
+      map.fitBounds(layer.getBounds(), { padding: [8, 8] });
+    });
+  {% endif %}
 });
 </script>
 {% endif %}
