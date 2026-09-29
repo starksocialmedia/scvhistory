@@ -33,6 +33,12 @@ $moved = [
     'organizations/mission-santa-cruz'            => 'places/mission-santa-cruz',
     /* #16356 renamed from Bill Hart, 29 September 2026 (import_hart_portrait.php). */
     'persons/bill-hart'                           => 'persons/william-s-hart',
+    /* Duplicate person records retired into the full record, 29 September 2026
+       (merge_duplicate_persons.php). */
+    'persons/edward-f-beale'                      => 'persons/edward-fitzgerald-beale',
+    'persons/kit-carson-2'                        => 'persons/kit-carson',
+    'persons/henry-m-newhall'                     => 'persons/henry-mayo-newhall',
+    'persons/james-marshall'                      => 'persons/james-w-marshall',
 ];
 
 return array_map(fn($from, $to) => ['from' => $from, 'to' => $to, 'statusCode' => 301],
