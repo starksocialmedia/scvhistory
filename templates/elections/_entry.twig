@@ -1,0 +1,116 @@
+{% extends "_layouts/base" %}
+{#
+  One council election: every candidate and every vote, losers first-class.
+
+  "Elected" is printed only where a document says so (outcomeEvidence certified,
+  contemporary or retrospective). Where the winners are read from the vote
+  order and a derived seat count, the page gives the order of finish and says
+  the declaring resolution is not held, rather than marking a winner the
+  archive cannot source. Figures printed wrongly in the source (a decimal point
+  for a thousands separator) show as printed beside the reading, with the fault
+  record's basis.
+#}
+{% block head %}
+{% include "_partials/record/css" %}
+{% include "_partials/scv-extra-css" %}
+{% css %}
+.el{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.el-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}
+.el-band-in{padding-top:40px;padding-bottom:40px}
+.el-crumbs{font-size:13px;color:#5B6472;margin-bottom:20px}
+.el-crumbs a{color:#7A5C1B;text-decoration:none}
+.el-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:12px}
+.el-band h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,46px);line-height:1.08;margin:0 0 18px;color:#17254C}
+.el-facts{display:flex;gap:34px;flex-wrap:wrap}
+.el-facts .n{font-family:'Playfair Display',serif;font-size:30px;line-height:1;color:#17254C}
+.el-facts .l{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;margin-top:6px}
+.el-main{padding-top:36px;padding-bottom:96px;max-width:980px}
+.el-h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#7A5C1B;margin:34px 0 12px}
+.el-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;font-size:15px}
+.el-table th{text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0}
+.el-table td{padding:10px 14px;border-top:1px solid #F0F1F4;vertical-align:middle}
+.el-table td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.el-table a{color:#17254C;font-weight:500}
+.el-bar{height:8px;background:#C4A031;border-radius:1px}
+.el-badge{display:inline-block;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;padding:2px 7px;border:1px solid #17254C;color:#17254C;margin-left:8px}
+.el-dim{color:#5B6472;font-size:13.5px}
+.el-callout{background:#fff;border-left:3px solid #C4A031;padding:12px 16px;font-size:14.5px;line-height:1.6;color:#4A5260;margin:14px 0 0}
+{% endcss %}
+{% endblock %}
+
+{% block content %}
+{% set e = entry %}
+{% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all()|sort((a, b) => (b.votes ?? 0) <=> (a.votes ?? 0)) %}
+{% set total = cands|reduce((s, c) => s + (c.votes ?? 0), 0) %}
+{% set top = (cands|first).votes ?? 0 %}
+{% set sourced = cands|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited')|length > 0 %}
+{% set turnout = e.registeredVoters and e.ballotsCast ? e.ballotsCast / e.registeredVoters * 100 : null %}
+{% set faults = craft.entries().section('sourceFaults').relatedTo({ targetElement: [e.id]|merge(cands|map(c => c.id)), field: 'faultRecord' }).all() %}
+{% set faultOf = {} %}{% for f in faults %}{% for t in f.faultRecord.ids() %}{% set faultOf = faultOf|merge({ ('r' ~ t ~ f.faultField): f }) %}{% endfor %}{% endfor %}
+
+<div class="el">
+  <section class="scv-band el-band">
+    <div class="scv-band-in el-band-in">
+      <div class="el-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('elections') }}">Elections</a> &rsaquo; <span>{{ e.electionDate }}</span></div>
+      <div class="el-kicker">SANTA CLARITA CITY COUNCIL{% if e.consolidatedWith %} &middot; {{ e.consolidatedWith|upper }}{% endif %}</div>
+      <h1>{{ e.title }}</h1>
+      <div class="el-facts">
+        <div><div class="n">{{ cands|length }}</div><div class="l">CANDIDATES</div></div>
+        <div><div class="n">{{ e.seatsUp }}</div><div class="l">SEATS{{ e.seatsUpEvidence.value == 'uncited' ? ', DERIVED' : '' }}</div></div>
+        {% if e.ballotsCast %}<div><div class="n">{{ e.ballotsCast|number_format }}</div><div class="l">BALLOTS CAST</div></div>{% endif %}
+        {% if e.registeredVoters %}<div><div class="n">{{ e.registeredVoters|number_format }}</div><div class="l">REGISTERED</div></div>{% endif %}
+        {% if turnout %}<div><div class="n">{{ turnout|number_format(1) }}%</div><div class="l">TURNOUT</div></div>{% endif %}
+      </div>
+    </div>
+  </section>
+
+  <main class="scv-band-in el-main">
+    <h2 class="el-h2" style="margin-top:0">THE CANDIDATES</h2>
+    <table class="el-table">
+      <thead><tr><th>#</th><th>CANDIDATE, AS PRINTED</th><th style="text-align:right">VOTES</th><th style="width:28%">SHARE</th></tr></thead>
+      <tbody>
+      {% for c in cands %}
+        {% set p = c.candidacyPerson.one() %}
+        {% set f = faultOf['r' ~ c.id ~ 'votesAsPrinted'] ?? null %}
+        <tr>
+          <td class="el-dim">{{ loop.index }}</td>
+          <td>{% if p %}<a href="{{ p.url }}">{{ c.nameAsPrinted }}</a>{% else %}{{ c.nameAsPrinted }}{% endif %}{% if c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited' %}<span class="el-badge">ELECTED</span>{% endif %}</td>
+          <td class="num">{{ c.votes|number_format }}{% if f %}<div class="el-dim">printed "{{ f.asPrinted }}"</div>{% endif %}</td>
+          <td><div class="el-bar" style="width:{{ top ? (c.votes / top * 100)|round(1) : 0 }}%"></div><span class="el-dim">{{ total ? (c.votes / total * 100)|number_format(1) : '' }}%</span></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% if not sourced %}
+      <p class="el-callout">No document the archive holds declares this election's winners. The order above is the order of the vote; with {{ e.seatsUp }} seat{{ e.seatsUp == 1 ? '' : 's' }} up, the first {{ e.seatsUp }} would have been elected, but the seat count is derived and the declaring resolution is not yet held, so no one is marked elected here.</p>
+    {% endif %}
+    {% if cands|filter(c => c.candidacyPerson.one() is null)|length and e.electionDateEdtf == '2014-04-08' %}
+      <p class="el-callout">The 2014 results print surnames only, so none of these candidates is linked to a person record: the archive matches on full first names, never on a surname alone.</p>
+    {% endif %}
+
+    {% set measures = (e.ballotMeasures ?? [])|filter(m => m.letter ?? false) %}
+    {% if measures|length %}
+      <h2 class="el-h2">ON THE SAME BALLOT</h2>
+      <table class="el-table">
+        <thead><tr><th>MEASURE</th><th>SUBJECT</th><th style="text-align:right">YES</th><th style="text-align:right">NO</th></tr></thead>
+        <tbody>{% for m in measures %}
+          {% set fy = faultOf['r' ~ e.id ~ 'ballotMeasures (' ~ m.letter ~ ', yes)'] ?? null %}{% set fno = faultOf['r' ~ e.id ~ 'ballotMeasures (' ~ m.letter ~ ', no)'] ?? null %}
+          <tr><td>{{ m.letter }}</td><td>{{ m.subject }}</td><td class="num">{{ m.yes|number_format }}{% if fy %}<div class="el-dim">printed "{{ fy.asPrinted }}"</div>{% endif %}</td><td class="num">{{ m.no|number_format }}{% if fno %}<div class="el-dim">printed "{{ fno.asPrinted }}"</div>{% endif %}</td></tr>
+        {% endfor %}</tbody>
+      </table>
+    {% endif %}
+
+    {% set ef = faults|filter(f => f.faultField in ['ballotsCast', 'registeredVoters', 'votesByMail', 'votesAtPrecinct']) %}
+    {% if faults|length %}
+      <h2 class="el-h2">WHERE THE SOURCE IS WRONG</h2>
+      {% for f in faults %}<p class="el-callout">Printed <b>{{ f.asPrinted }}</b>, read as <b>{{ f.reading|number_format }}</b> ({{ f.faultField }}). {{ f.basis }}</p>{% endfor %}
+    {% endif %}
+
+    <h2 class="el-h2">SOURCES</h2>
+    <ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.7">
+      {% for d in e.sourceDocuments.all() %}<li><a href="{{ d.url }}" style="color:#7A5C1B">{{ d.title }}</a>{% set fl = d.documentFiles.one() %}{% if fl %} &middot; <a href="{{ fl.url }}" style="color:#7A5C1B">PDF</a>{% endif %}</li>{% endfor %}
+    </ul>
+    {% include "_partials/record/footnotes" with { entry: e } only %}
+  </main>
+</div>
+{% endblock %}

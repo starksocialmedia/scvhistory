@@ -1,0 +1,102 @@
+{% extends "_layouts/base" %}
+{% set metaDescription = 'Every Santa Clarita City Council election from incorporation in 1987 to 2024: the candidates, the votes, and who turned out.' %}
+{% block head %}
+{% include "_partials/scv-extra-css" %}
+{% css %}
+.el{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.el-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}
+.el-band-in{padding-top:44px;padding-bottom:44px}
+.el-crumbs{font-size:13px;color:#5B6472;margin-bottom:22px}
+.el-crumbs a{color:#7A5C1B;text-decoration:none}
+.el-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:14px}
+.el-band h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,54px);line-height:1.06;margin:0 0 16px;color:#17254C}
+.el-band p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:720px}
+.el-main{padding-top:40px;padding-bottom:96px}
+.el-h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#7A5C1B;margin:0 0 14px}
+.el-chart{background:#fff;border:1px solid #E2E4E8;padding:20px 16px 12px;margin-bottom:40px;overflow-x:auto}
+.el-chart svg{display:block;min-width:640px;width:100%;height:auto}
+.el-key{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#5B6472;margin-top:8px}
+.el-key i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px}
+.el-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;font-size:15px}
+.el-table th{text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:12px 14px;border-bottom:1px solid #EFE6D0}
+.el-table td{padding:11px 14px;border-top:1px solid #F0F1F4;vertical-align:top}
+.el-table a{color:#17254C;font-weight:500}
+.el-table .dim{color:#5B6472;font-size:13.5px}
+.el-note{font-size:14px;line-height:1.6;color:#5B6472;margin-top:24px;max-width:760px}
+{% endcss %}
+{% endblock %}
+
+{% block content %}
+{% set elections = craft.entries().section('elections').orderBy('electionDateEdtf asc').all() %}
+{#- Turnout, where both counts are held, and the April/November split the story
+    turns on: computed from the records, not typed into the page. -#}
+{% set rows = [] %}
+{% for e in elections %}
+  {% set t = e.registeredVoters and e.ballotsCast ? (e.ballotsCast / e.registeredVoters * 100) : null %}
+  {% set nov = e.electionDateEdtf|slice(5, 2) == '11' %}
+  {% set rows = rows|merge([{ e: e, t: t, nov: nov, y: e.electionDateEdtf|slice(0, 4) }]) %}
+{% endfor %}
+{% set april = rows|filter(r => not r.nov and r.t is not null) %}
+{% set aprilOrd = april|filter(r => r.y != '1992') %}
+{% set y1992 = (april|filter(r => r.y == '1992')|first) ?: null %}
+{% set nov = rows|filter(r => r.nov and r.t is not null) %}
+{% set aMin = aprilOrd|length ? min(aprilOrd|map(r => r.t)) : 0 %}{% set aMax = aprilOrd|length ? max(aprilOrd|map(r => r.t)) : 0 %}
+{% set nMin = nov|length ? min(nov|map(r => r.t)) : 0 %}{% set nMax = nov|length ? max(nov|map(r => r.t)) : 0 %}
+
+<div class="el">
+  <section class="scv-band el-band">
+    <div class="scv-band-in el-band-in">
+      <div class="el-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Elections</span></div>
+      <div class="el-kicker">SANTA CLARITA CITY COUNCIL</div>
+      <h1>Elections{% if rows|length %}, {{ (rows|first).y }} to {{ (rows|last).y }}{% endif %}</h1>
+      <p>Every council election since the city was incorporated: {{ elections|length }} elections and every candidate, winners and losers alike, from the City Clerk's records and the County's statements of votes.
+      {% if aprilOrd|length and nov|length %}April elections drew {{ aMin|round }} to {{ aMax|round }} percent of registered voters{% if y1992 %}, except in 1992, when {{ y1992.t|round }} percent turned out with growth control, Measure A-92, on the ballot{% endif %}. Consolidated with the November general election, turnout rose to {{ nMin|round }} to {{ nMax|round }} percent.{% endif %}</p>
+    </div>
+  </section>
+
+  <main class="scv-band-in el-main">
+    <h2 class="el-h2">WHO TURNED OUT</h2>
+    <div class="el-chart">
+      {% set W = 980 %}{% set H = 280 %}{% set pad = 36 %}{% set n = rows|filter(r => r.t is not null)|length %}
+      {% set bw = n ? (W - pad * 2) / n : 0 %}
+      <svg viewBox="0 0 {{ W }} {{ H + 40 }}" role="img" aria-label="Turnout at each Santa Clarita City Council election, as a share of registered voters">
+        {% for g in [0, 25, 50, 75, 100] %}
+          {% set gy = H - g / 100 * (H - 20) %}
+          <line x1="{{ pad }}" x2="{{ W - pad }}" y1="{{ gy }}" y2="{{ gy }}" stroke="#EEF0F4"/>
+          <text x="{{ pad - 6 }}" y="{{ gy + 4 }}" font-size="11" fill="#8A93A3" text-anchor="end" font-family="Jost, sans-serif">{{ g }}%</text>
+        {% endfor %}
+        {% set i = 0 %}
+        {% for r in rows|filter(r => r.t is not null) %}
+          {% set h = r.t / 100 * (H - 20) %}{% set x = pad + i * bw + bw * 0.18 %}
+          <a href="{{ r.e.url }}"><title>{{ r.e.title }}: {{ r.t|number_format(1) }}% turnout</title>
+            <rect x="{{ x }}" y="{{ H - h }}" width="{{ bw * 0.64 }}" height="{{ h }}" fill="{{ r.nov ? '#17254C' : (r.y == '1992' ? '#A9842B' : '#C4A031') }}"/></a>
+          <text x="{{ x + bw * 0.32 }}" y="{{ H - h - 6 }}" font-size="11" fill="#17254C" text-anchor="middle" font-family="Jost, sans-serif">{{ r.t|round }}</text>
+          <text x="{{ x + bw * 0.32 }}" y="{{ H + 18 }}" font-size="11.5" fill="#5B6472" text-anchor="middle" font-family="Jost, sans-serif">{{ r.nov ? 'Nov ' : '' }}{{ r.y }}</text>
+          {% set i = i + 1 %}
+        {% endfor %}
+      </svg>
+      <div class="el-key"><span><i style="background:#C4A031"></i>April, the city's own election</span><span><i style="background:#A9842B"></i>April 1992, with Measure A-92</span><span><i style="background:#17254C"></i>November, consolidated with the general election</span></div>
+    </div>
+
+    <h2 class="el-h2">EVERY ELECTION</h2>
+    <table class="el-table">
+      <thead><tr><th>ELECTION</th><th>CANDIDATES</th><th>SEATS</th><th>TURNOUT</th><th>ELECTED</th></tr></thead>
+      <tbody>
+      {% for r in rows|reverse %}
+        {% set e = r.e %}
+        {% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all() %}
+        {% set won = cands|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited') %}
+        <tr>
+          <td><a href="{{ e.url }}">{{ e.electionDate }}</a>{% if e.consolidatedWith %}<div class="dim">{{ e.consolidatedWith }}</div>{% endif %}</td>
+          <td>{{ cands|length }}</td>
+          <td>{{ e.seatsUp }}{% if e.seatsUpEvidence.value == 'uncited' %} <span class="dim">(derived)</span>{% endif %}</td>
+          <td>{{ r.t is not null ? r.t|number_format(1) ~ '%' : '—' }}</td>
+          <td>{% if won|length %}{{ won|map(c => c.candidacyPerson.one() ? '<a href="' ~ c.candidacyPerson.one().url ~ '">' ~ c.nameAsPrinted ~ '</a>' : c.nameAsPrinted)|join(', ')|raw }}{% else %}<span class="dim">Not declared in the documents held</span>{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="el-note">A winner is named here only where a document declares one: Resolution 12-9 for April 2012, the City's own account of its first council for 1987, and the single-seat District 1 election of 2024. Every other election's page gives the full vote and the order of finish, and says that the declaring resolution is not yet held.</p>
+  </main>
+</div>
+{% endblock %}

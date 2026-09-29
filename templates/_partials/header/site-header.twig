@@ -18,11 +18,12 @@
   'persons': 'people', 'organizations': 'people', 'schools': 'people', 'groups': 'people',
   'obituaries': 'people', 'war-memorial': 'people', 'military-profiles': 'people',
   'places': 'places', 'communities': 'places',
-  'events': 'time', 'on-this-day': 'time'
+  'events': 'time', 'on-this-day': 'time',
+  'elections': 'civic'
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v9-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v11-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -52,6 +53,9 @@
 {% set cEraTerms  = craft.categories().group('historicalEra').count() %}
 {#- On this day draws on every dated record; the articles and events stand for them. -#}
 {% set cOnThisDay = cArticles + cEvents %}
+{#- CIVIC: sections that may not exist on an install without the elections schema. -#}
+{% set cElections = craft.app.entries.getSectionByHandle('elections') ? craft.entries().section('elections').count() : 0 %}
+{% set cityRec = craft.entries().section('organizations').slug('city-of-santa-clarita').one() %}
 
 {# PEOPLE #}
 {#- Organizations are here, not under PLACES (STRUCTURE.md, 28 September 2026):
@@ -251,10 +255,25 @@
 {#- STRUCTURE.md, the nav: four items today. CIVIC is added here when the
     elections import lands, and the nav-link rule below keeps it out until its
     pages have records. -#}
+{#- CIVIC: the public record. It appears when the elections have records, by the
+    nav-link rule, with no one having to remember (STRUCTURE.md). -#}
+{% set colsCivic = not cElections ? [] : [
+  { label: 'THE CITY', items: [{ t: 'The City Council', n: cityRec ? 1 : 0, u: cityRec ? cityRec.url : '' }] },
+  { label: 'ELECTIONS', items: [{ t: 'Elections', n: cElections, u: url('elections') }] },
+  { label: 'BODIES', items: [{ t: 'Government bodies', n: cGov, u: url('organizations') ~ '#government' }] }
+] %}
+{% set featCivic = cElections ? {
+  kicker: 'THE COUNCIL, 1987 TO NOW',
+  title: 'Every council election',
+  meta: 'Every candidate and every vote, and how turnout changed when the city moved its elections to November.',
+  cta: 'Open the elections',
+  u: url('elections')
+} : null %}
 {% set menus = [
   { id: 'archive', label: 'ARCHIVE', kicker: 'WHAT WE HOLD',             columns: colsArchive, feature: featColls ?? featArticles },
   { id: 'people',  label: 'PEOPLE',  kicker: 'WHO ACTED',                columns: colsPeople,  feature: featPeople },
   { id: 'places',  label: 'PLACES',  kicker: 'WHAT IS LOCATED',          columns: colsPlaces,  feature: featPlaces },
+  { id: 'civic',   label: 'CIVIC',   kicker: 'THE PUBLIC RECORD',        columns: colsCivic,   feature: featCivic },
   { id: 'time',    label: 'TIME',    kicker: 'ERAS, DAYS AND EVENTS',    columns: colsEra,     feature: featEra }
 ] %}
 

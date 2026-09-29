@@ -222,6 +222,7 @@ foreach (glob(\Craft::getAlias('@templates') . '/*/index.twig') as $f) {
         'on-this-day' => \craft\elements\Entry::find()->section(['articles', 'events'])->count(),
         'tags' => \craft\elements\Category::find()->group('tag')->count(),
         'military-profiles' => \craft\elements\Entry::find()->section('militaryProfiles')->count(),
+        'elections' => Craft::$app->getEntries()->getSectionByHandle('elections') ? \craft\elements\Entry::find()->section('elections')->count() : 0,
         default => null,
     };
     if ($n === 0) { continue; }
