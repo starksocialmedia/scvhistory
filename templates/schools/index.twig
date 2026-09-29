@@ -1,0 +1,123 @@
+{% extends "_layouts/base" %}
+{% set metaDescription = 'The school districts of the Santa Clarita Valley, the grades each teaches, which feeds which, and the schools the archive holds.' %}
+{% block head %}
+{% include "_partials/scv-extra-css" %}
+{% css %}
+.sc{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.sc-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}
+.sc-band-in{padding-top:44px;padding-bottom:48px}
+.sc-crumbs{font-size:13px;color:#5B6472;margin-bottom:22px}
+.sc-crumbs a{color:#7A5C1B;text-decoration:none}
+.sc-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:14px}
+.sc-band h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,54px);line-height:1.06;margin:0 0 16px;color:#17254C}
+.sc-band p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:640px}
+.sc-main{padding-top:40px;padding-bottom:96px}
+.sc-h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#7A5C1B;margin:0 0 14px}
+.sc-grid{background:#fff;border:1px solid #E2E4E8;padding:20px;margin-bottom:40px;overflow-x:auto}
+.sc-row{display:grid;grid-template-columns:minmax(150px,240px) repeat(13,minmax(22px,1fr));align-items:center;gap:0;min-width:520px}
+.sc-row+.sc-row{margin-top:8px}
+.sc-row .nm{font-size:14px;line-height:1.3;padding-right:12px;color:#17254C}
+.sc-row .nm a{color:#17254C;text-decoration:none}
+.sc-row .nm a:hover{text-decoration:underline}
+.sc-row .g{height:26px;border-left:1px solid #EEF0F4}
+.sc-row .g.on{background:#17254C}
+.sc-row .g.on.feeder{background:#C4A031}
+.sc-row.hd .g{height:auto;border:0;text-align:center;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;color:#5B6472}
+.sc-key{font-size:13px;color:#5B6472;margin-top:14px;display:flex;gap:18px;flex-wrap:wrap}
+.sc-key i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px}
+.sc-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.sc-card{background:#fff;border:1px solid #E2E4E8;padding:20px 20px 18px}
+.sc-card h3{font-family:'Playfair Display',serif;font-weight:500;font-size:21px;line-height:1.2;margin:0 0 6px}
+.sc-card h3 a{color:#17254C;text-decoration:none}
+.sc-card .meta{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.1em;color:#7A5C1B;margin-bottom:12px}
+.sc-card .k{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;color:#5B6472;margin:12px 0 4px}
+.sc-card ul{list-style:none;margin:0;padding:0;font-size:15px;line-height:1.6}
+.sc-card a{color:#7A5C1B}
+.sc-card .none{font-size:14px;color:#5B6472}
+.sc-other{margin-top:40px}
+.sc-note{font-size:14px;line-height:1.6;color:#5B6472;margin-top:32px;max-width:720px}
+{% endcss %}
+{% endblock %}
+
+{% block content %}
+{#- gradeSpan and feedsInto arrive with scripts/import/add_school_structure.php.
+    The handles are read off the layout: `is defined` answers true for a field
+    the type lacks and Craft then throws when the value is read. -#}
+{% set schools = craft.entries().section('organizations').orgType('school').orderBy('title asc').all() %}
+{% set handles = schools|length ? schools[0].fieldLayout.customFields|map(f => f.handle) : [] %}
+{% set hasSpan = 'gradeSpan' in handles %}
+{% set hasFeeds = 'feedsInto' in handles %}
+{% set districts = schools|filter(s => s.schoolLevel.value == 'district') %}
+{#- Feeders first, the district they feed last: the order a pupil moves in. -#}
+{% set fed = hasFeeds ? districts|filter(d => d.feedsInto.exists()) : [] %}
+{% set rest = districts|filter(d => d not in fed) %}
+{% set districts = fed|merge(rest) %}
+{% set GRADES = ['K','1','2','3','4','5','6','7','8','9','10','11','12'] %}
+
+<div class="sc">
+  <section class="scv-band sc-band">
+    <div class="scv-band-in sc-band-in">
+      <div class="sc-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('organizations') }}">Organizations</a> &rsaquo; <span>Schools</span></div>
+      <div class="sc-kicker">SCHOOLS AND DISTRICTS</div>
+      <h1>Schools of the Santa Clarita Valley</h1>
+      <p>Four elementary districts teach the early grades, and one high school district takes their pupils on. The districts, the grades each teaches, and the schools the archive holds.</p>
+    </div>
+  </section>
+
+  <main class="scv-band-in sc-main">
+    {% if districts|length and hasSpan %}
+      <h2 class="sc-h2">WHO TEACHES WHICH GRADES</h2>
+      <div class="sc-grid" role="table" aria-label="Grades taught by each district">
+        <div class="sc-row hd" role="row"><div class="nm" role="columnheader"></div>{% for g in GRADES %}<div class="g" role="columnheader">{{ g }}</div>{% endfor %}</div>
+        {% for d in districts %}
+          {% set span = d.gradeSpan|trim %}
+          {% set parts = span|split('-') %}
+          {% set lo = parts|length == 2 ? (parts[0] == 'K' ? 0 : parts[0] + 0) : null %}
+          {% set hi = parts|length == 2 ? parts[1] + 0 : null %}
+          {% set feeds = hasFeeds and d.feedsInto.exists() %}
+          <div class="sc-row" role="row">
+            <div class="nm" role="rowheader"><a href="{{ d.url }}">{{ d.title }}</a></div>
+            {% for i in 0..12 %}<div class="g{{ lo is not null and i >= lo and i <= hi ? ' on' ~ (feeds ? ' feeder' : '') : '' }}" role="cell" aria-label="{{ GRADES[i] }}{{ lo is not null and i >= lo and i <= hi ? ': taught' : '' }}"></div>{% endfor %}
+          </div>
+        {% endfor %}
+        {% if hasFeeds %}<div class="sc-key"><span><i style="background:#C4A031"></i>An elementary district, whose pupils go on to another</span><span><i style="background:#17254C"></i>A district that takes pupils on</span></div>{% endif %}
+      </div>
+    {% endif %}
+
+    {% if districts|length %}
+      <h2 class="sc-h2">THE DISTRICTS</h2>
+      <div class="sc-cards">
+        {% for d in districts %}
+          {% set kids = craft.entries().section('organizations').relatedTo({ targetElement: d, field: 'parentOrganization' }).orderBy('title asc').all() %}
+          {% set into = hasFeeds ? d.feedsInto.all() : [] %}
+          {% set from = hasFeeds ? craft.entries().section('organizations').relatedTo({ targetElement: d, field: 'feedsInto' }).orderBy('title asc').all() : [] %}
+          <div class="sc-card">
+            <h3><a href="{{ d.url }}">{{ d.title }}</a></h3>
+            <div class="meta">{{ hasSpan and d.gradeSpan ? 'GRADES ' ~ d.gradeSpan|upper : 'SCHOOL DISTRICT' }}</div>
+            {% if into|length %}<div class="k">PUPILS GO ON TO</div><ul>{% for x in into %}<li><a href="{{ x.url }}">{{ x.title }}</a></li>{% endfor %}</ul>{% endif %}
+            {% if from|length %}<div class="k">TAKES PUPILS FROM</div><ul>{% for x in from %}<li><a href="{{ x.url }}">{{ x.title }}</a></li>{% endfor %}</ul>{% endif %}
+            <div class="k">SCHOOLS IN THE ARCHIVE</div>
+            {% if kids|length %}<ul>{% for k in kids %}<li><a href="{{ k.url }}">{{ k.title }}</a>{% if hasSpan and k.gradeSpan %} <span style="color:#5B6472;font-size:13px">({{ k.gradeSpan }})</span>{% endif %}</li>{% endfor %}</ul>
+            {% else %}<div class="none">None yet.</div>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% set others = schools|filter(s => s.schoolLevel.value != 'district' and not s.parentOrganization.exists()) %}
+    {% if others|length %}
+      <div class="sc-other">
+        <h2 class="sc-h2">OTHER SCHOOLS IN THE ARCHIVE</h2>
+        <div class="sc-cards">
+          {% for s in others %}
+            <div class="sc-card"><h3><a href="{{ s.url }}">{{ s.title }}</a></h3>
+              <div class="meta">{{ (s.schoolLevel.label ?: 'SCHOOL')|upper }}{% if hasSpan and s.gradeSpan %} · GRADES {{ s.gradeSpan|upper }}{% endif %}</div></div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <p class="sc-note">Grades are from the National Center for Education Statistics directory, cited on each district's page. The archive holds the schools its sources are about; a district's full list of schools is on its own site.</p>
+  </main>
+</div>
+{% endblock %}

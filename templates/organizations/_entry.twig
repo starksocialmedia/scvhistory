@@ -43,7 +43,15 @@
 {% set hasMap = mapLat and mapLng %}
 {% set parent = entry.parentOrganization.one() ?? null %}
 {% set subjectArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectOrganization' }).orderBy('title asc').all() %}
-{% set publishedArticles = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'publishedBy' }).orderBy('title asc').all() %}
+{#- Documents as well as articles: a school's yearbooks are documents it published. -#}
+{% set publishedArticles = craft.entries().section(['articles', 'documents']).relatedTo({ targetElement: entry, field: 'publishedBy' }).orderBy('title asc').all() %}
+{#- Schools. gradeSpan and feedsInto arrive with add_school_structure.php and are
+    read off the layout, never with `is defined`. -#}
+{% set orgHandles = entry.fieldLayout.customFields|map(f => f.handle) %}
+{% set isDistrict = 'schoolLevel' in orgHandles and entry.schoolLevel.value == 'district' %}
+{% set gradeSpan = 'gradeSpan' in orgHandles ? entry.gradeSpan|trim : '' %}
+{% set feedsTo = 'feedsInto' in orgHandles ? entry.feedsInto.all() : [] %}
+{% set feedsFrom = 'feedsInto' in orgHandles ? craft.entries().section('organizations').relatedTo({ targetElement: entry, field: 'feedsInto' }).orderBy('title asc').all() : [] %}
 {#- termNotes was retired with the board fields: a term belongs in an
     officeHolding record, not in a paragraph on the body. -#}
 {% set prose = F.body %}
@@ -91,6 +99,11 @@
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'Organizations', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
+        {% if gradeSpan %}
+          <div class="rec-box"><div class="rec-lab">{{ isDistrict ? 'SCHOOL DISTRICT' : 'SCHOOL' }}</div>
+            <div class="rec-rows"><div class="k">GRADES</div><div class="v">{{ gradeSpan }}</div>{% if isDistrict %}<div class="k">ALL</div><div class="v"><a href="{{ url('schools') }}">Schools of the valley</a></div>{% endif %}</div>
+          </div>
+        {% endif %}
         {% if hasMap %}
           <div class="rec-box">
             <div class="rec-lab">LOCATION</div>
@@ -133,7 +146,9 @@
             .relatedTo({ targetElement: entry, field: 'parentOrganization' }).all() %}
         {% set boxes = [
           { lab: 'PARENT ORGANIZATION', key: 'PARENT', rows: parent ? [parent] : [] },
-          { lab: 'BOARDS AND SUBSIDIARIES', key: 'BOARD', rows: subBodies },
+          { lab: isDistrict ? 'SCHOOLS' : 'BOARDS AND SUBSIDIARIES', key: isDistrict ? 'SCHOOL' : 'BOARD', rows: subBodies },
+          { lab: 'PUPILS GO ON TO', key: 'SCHOOL', rows: feedsTo },
+          { lab: 'TAKES PUPILS FROM', key: 'SCHOOL', rows: feedsFrom },
           { lab: 'PLACES', key: 'PLACE', rows: orgPlaces },
           { lab: 'EVENTS', key: 'EVENT', rows: entry.orgEvents.all() },
           { lab: 'ARTICLES', key: 'ARTICLE', rows: subjectArticles },

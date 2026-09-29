@@ -21,7 +21,7 @@
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v5-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v6-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -41,6 +41,7 @@
 {% set cPlaces    = craft.entries().section('places').count() %}
 {% set cOrgs      = craft.entries().section('organizations').count() %}
 {% set cGov       = craft.entries().section('organizations').orgType('government').count() %}
+{% set cSchools   = craft.entries().section('organizations').orgType('school').count() %}
 {% set cComms     = craft.categories().group('neighborhood').count() %}
 {% set cColls     = craft.entries().section('collections').count() %}
 {% set cArticles  = craft.entries().section('articles').count() %}
@@ -61,7 +62,8 @@
   ] },
   { label: 'ORGANIZATIONS', items: [
     { t: 'All organizations', n: cOrgs, u: url('organizations') },
-    { t: 'Government bodies', n: cGov,  u: url('organizations', { kind: 'government' }) }
+    { t: 'Government bodies', n: cGov,  u: url('organizations', { kind: 'government' }) },
+    { t: 'Schools',           n: cSchools, u: url('schools') }
   ] },
   { label: 'MEMORIAL', items: [
     { t: 'Obituaries',   n: cObits, u: url('obituaries') },
