@@ -72,6 +72,28 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Council district'
+        -
+          - value
+          - council-district
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Water board division'
+        -
+          - value
+          - water-division
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

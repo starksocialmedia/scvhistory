@@ -292,7 +292,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Elections — `elections/Election`
 
-16 fields.
+18 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -312,6 +312,8 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+| `electionBody` | Entries | **local** | no external equivalent |
+| `electionDistrict` | Entries | **local** | no external equivalent |
 
 ### Events — `events/event`
 
@@ -924,7 +926,7 @@ local unless the note says otherwise.
 - **`burialEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
 - **`deathEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
-- **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`.
+- **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`, `council-district`, `water-division`.
 - **`educationEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`educationOutcome`** — `graduated`, `attended`, `unknown`.
 - **`electionKind`** — `general`, `special`, `recall`, `runoff`.
