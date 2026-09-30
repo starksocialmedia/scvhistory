@@ -148,6 +148,14 @@ page lists its elections; `/places` lists districts at the end, by body. Seats
 filled by appointment in lieu of election have no contest and no votes; the
 County's lists of cancelled elections are the record of them.
 
+**The water boards** (30 September 2026): Castaic Lake Water Agency 2016 and
+Santa Clarita Valley Water 2020 to 2024, from the County's certified returns;
+the earlier years wait for one pass through the County's scanned volumes, with
+the school boards before 1995. Where a division reaches into Ventura County the
+page says every figure is Los Angeles County's share. A winner is "roster" when
+the agency's own list of directors names them with the term that election
+began, "derived" otherwise.
+
 The ledger check is two-sided: the top N of the count are exactly the members it
 shows serving on, and no one below them is, so it confirms the seat count too.
 `council_winners_and_terms.php` refuses if any election fails it. Person pages

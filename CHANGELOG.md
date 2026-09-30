@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-09-30
+
+- Agent: Claude Code
+- Date: 2026-09-30
+- Done: merge_held_names.php (Ken into Kenneth Dean; Tom Caesar, Bob Wagenaar and Joe Messina as records; Gloria Mercado into Gloria Mercado-Fortine, #25435 retired and redirected). retitle_hart_high.php (#16052 to Hart High School, slug and redirect). parse_county_svc.py and import_water_boards.php: 14 water contests from the County's certified returns, CLWA as its own record succeeded by #402, CLWA Divisions 1-3, 7 people, the returns and the directors list as documents. /elections lists the water boards; election pages say when figures are Los Angeles County's share. Draft: inventory/review/drafts/board-ladder.md.
+- Decisions: the 2016 and 2022 spreadsheets print no "VOTE FOR", so seats come from the Official Election Returns (scans, OCR and by eye), whose totals must equal the spreadsheet sums; the 2022 public spreadsheets run a vote under the returns for two candidates, and the returns are used. Seven contests were shared with Ventura County, whose share is not held. A water winner is "roster" when SCV Water's own director list names them with that term, "derived" otherwise.
+- Blockers: Bob Jensen and Robert N. Jensen, Jr. held (a suffix the list shown to Nathan left out); Bill and William Cooper held; "G Mercado-Fortine" (Hart 2015, marked incumbent) unlinked: an initial. The 2024 returns are not published.
+- Result: the merge script's first test run moved nothing for the three new people (the move list was computed before they existed); the read-back caught it inside the rolled-back test. The OCR check caught NIKOLAT for NIKOLAI.
+- Next: Nathan on the held pairs and the suffix sources; the school fields; the county-volume pass.
+
 2026-09-29 (evening)
 
 - Agent: Claude Code

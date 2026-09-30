@@ -33,6 +33,10 @@ $moved = [
     'organizations/mission-santa-cruz'            => 'places/mission-santa-cruz',
     /* #16356 renamed from Bill Hart, 29 September 2026 (import_hart_portrait.php). */
     'persons/bill-hart'                           => 'persons/william-s-hart',
+    /* #16052 retitled Hart High School, 30 September 2026 (retitle_hart_high.php). */
+    'organizations/william-s-hart-high-school'    => 'organizations/hart-high-school',
+    /* #25435 Gloria Mercado merged into #25445, 30 September 2026 (merge_held_names.php). */
+    'persons/gloria-mercado'                      => 'persons/gloria-mercado-fortine',
     /* Duplicate person records retired into the full record, 29 September 2026
        (merge_duplicate_persons.php). */
     'persons/edward-f-beale'                      => 'persons/edward-fitzgerald-beale',

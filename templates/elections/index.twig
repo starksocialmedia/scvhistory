@@ -34,7 +34,8 @@
 {% set bodyOf = {} %}
 {% for e in everyElection %}{% set b = hasBody and 'electionBody' in e.fieldLayout.customFields|map(f => f.handle) ? e.electionBody.one() : null %}{% set bodyOf = bodyOf|merge({ ('e' ~ e.id): b }) %}{% endfor %}
 {% set elections = everyElection|filter(e => not bodyOf['e' ~ e.id] or bodyOf['e' ~ e.id].slug == 'city-of-santa-clarita') %}
-{% set boardEls = everyElection|filter(e => bodyOf['e' ~ e.id] and bodyOf['e' ~ e.id].slug != 'city-of-santa-clarita') %}
+{% set boardEls = everyElection|filter(e => bodyOf['e' ~ e.id] and bodyOf['e' ~ e.id].slug != 'city-of-santa-clarita' and bodyOf['e' ~ e.id].orgType.value == 'school') %}
+{% set waterEls = everyElection|filter(e => bodyOf['e' ~ e.id] and bodyOf['e' ~ e.id].slug != 'city-of-santa-clarita' and bodyOf['e' ~ e.id].orgType.value != 'school') %}
 {#- Turnout, where both counts are held, and the April/November split the story
     turns on: computed from the records, not typed into the page. -#}
 {% set rows = [] %}
@@ -56,7 +57,7 @@
       <div class="el-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Elections</span></div>
       <div class="el-kicker">THE COUNCIL AND THE BOARDS</div>
       <h1>Elections{% if everyElection|length %}, {{ (everyElection|first).electionDateEdtf|slice(0, 4) }} to {{ (everyElection|last).electionDateEdtf|slice(0, 4) }}{% endif %}</h1>
-      <p>Every Santa Clarita City Council election since the city was incorporated, {{ elections|length }} of them{% if boardEls|length %}, and {{ boardEls|length }} school board contests since 1995{% endif %}: every candidate, winners and losers alike, from the City Clerk's records, the County's statements of votes and the state's compilation of local results.
+      <p>Every Santa Clarita City Council election since the city was incorporated, {{ elections|length }} of them{% if boardEls|length %}, {{ boardEls|length }} school board contests since 1995{% endif %}{% if waterEls|length %} and {{ waterEls|length }} water board contests since 2016{% endif %}: every candidate, winners and losers alike, from the City Clerk's records, the County's statements of votes and the state's compilation of local results.
       {% if aprilOrd|length and nov|length %}April elections drew {{ aMin|round }} to {{ aMax|round }} percent of registered voters{% if y1992 %}, except in 1992, when {{ y1992.t|round }} percent turned out with growth control, Measure A-92, on the ballot{% endif %}. Consolidated with the November general election, turnout rose to {{ nMin|round }} to {{ nMax|round }} percent.{% endif %}</p>
     </div>
   </section>
@@ -132,6 +133,29 @@
           </tbody>
         </table>
       {% endfor %}
+    {% endif %}
+
+    {% if waterEls|length %}
+      <h2 class="el-h2" id="water" style="margin-top:56px;font-size:13px">THE WATER BOARDS</h2>
+      <p class="el-note" style="margin:0 0 20px">The Castaic Lake Water Agency in 2016, and the Santa Clarita Valley Water Agency that replaced it in 2018, from the County's certified returns. Several divisions reach into Ventura County, whose share of the vote is not held; those pages say so. Earlier elections are in the County's scanned volumes and are still to be read.</p>
+      <table class="el-table">
+        <thead><tr><th>ELECTION</th><th>SEAT</th><th>TURNOUT</th><th>ELECTED</th></tr></thead>
+        <tbody>
+        {% for e in waterEls|reverse %}
+          {% set d = e.electionDistrict.one() %}
+          {% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all() %}
+          {% set won = cands|filter(c => c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited')|sort((a, b) => (b.votes ?? 0) <=> (a.votes ?? 0)) %}
+          {% set fnt = (e.footnotes ?? [])|map(r => r.note ?? '')|join(' ') %}
+          <tr>
+            <td><a href="{{ e.url }}">{{ e.electionDate }}</a><div class="dim">{{ bodyOf['e' ~ e.id].title }}</div></td>
+            <td>{{ d ? d.title|split(', ')|last : 'At large' }}{% if 'two-year term' in fnt|lower %} <span class="dim">(two-year term)</span>{% endif %}<div class="dim">{{ e.seatsUp }} seat{{ e.seatsUp == 1 ? '' : 's' }}{{ 'SHARED W/VENTURA' in fnt ? ', part in Ventura County' : '' }}</div></td>
+            <td>{{ e.registeredVoters ? (e.ballotsCast / e.registeredVoters * 100)|number_format(1) ~ '%' : '—' }}</td>
+            <td>{{ won|map(c => (c.candidacyPerson.one() ? '<a href="' ~ c.candidacyPerson.one().url ~ '">' ~ c.nameAsPrinted|e ~ '</a>' : c.nameAsPrinted|e) ~ (c.outcomeEvidence.value == 'derived' ? '&dagger;' : ''))|join(', ')|raw }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p class="el-note">&dagger; Read from the count alone: SCV Water's own list of its directors confirms the rest.</p>
     {% endif %}
   </main>
 </div>

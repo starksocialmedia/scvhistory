@@ -95,12 +95,15 @@
     {% set nS = e.seatsUp %}{% set sS = nS == 1 ? '' : 's' %}
     {% if wonEv == 'roster' %}
       {#- Which compilation: Worden's council ledger, CEDA, or both. -#}
-      {% set srcs = ('Worden' in fnText ? ['the council ledger held in the archive'] : [])|merge('CEDA' in fnText ? ["CEDA, the state's compilation of local results"] : []) %}
+      {% set srcs = ('Worden' in fnText ? ['the council ledger held in the archive'] : [])|merge('CEDA' in fnText ? ["CEDA, the state's compilation of local results"] : [])|merge("SCV Water's own list" in fnText ? ["the agency's own list of its directors"] : []) %}
       <p class="el-callout">No declaring {{ isCouncil ? 'resolution' : 'document' }} is held for this election. The {{ nS == 1 ? 'winner is' : nS ~ ' winners are' }} the first {{ nS }} of the count, and {{ srcs|length ? srcs|join(' and ') : 'a compiled record' }} {{ srcs|length > 1 ? 'agree' : 'agrees' }}. The notes below give the sources; the marks become certified when the declaration is obtained.</p>
     {% elseif wonEv == 'derived' %}
-      <p class="el-callout">No document the archive holds declares this election's winners, and the council roster ends in 2020. {{ nS == 1 ? 'The candidate' : 'The ' ~ nS ~ ' candidates' }} marked "by the count" {{ nS == 1 ? 'is' : 'are' }} the first {{ nS }} of the vote, with {{ nS }} seat{{ sS }} up; the marks will be confirmed when the declaring resolution is obtained.</p>
+      <p class="el-callout">No document the archive holds declares this election's winners{{ isCouncil ? ', and the council roster ends in 2020' : '' }}. {{ nS == 1 ? 'The candidate' : 'The ' ~ nS ~ ' candidates' }} marked "by the count" {{ nS == 1 ? 'is' : 'are' }} the first {{ nS }} of the vote, with {{ nS }} seat{{ sS }} up; the marks will be confirmed when the declaration is obtained.</p>
     {% elseif wonEv == 'uncited' %}
       <p class="el-callout">No document the archive holds declares this election's winners. The order above is the order of the vote; with {{ nS }} seat{{ sS }} up, the first {{ nS }} would have been elected, but the declaring resolution is not yet held, so no one is marked elected here.</p>
+    {% endif %}
+    {% if 'SHARED W/VENTURA CO' in fnText %}
+      <p class="el-callout">Part of this {{ dist ? 'division' : 'district' }} votes in Ventura County. Every figure on this page is Los Angeles County's share; Ventura County's is not held{% if 'could have decided it' in fnText %}, and the last winning margin is close enough that it could have changed the result{% endif %}.</p>
     {% endif %}
     {% if e.electionDateEdtf == '2014-04-08' and isCouncil %}
       <p class="el-callout">The City's 2014 results print surnames only. The full names, and the links to people, come from CEDA's 2014 file, which gives the same vote for every candidate; each candidate's record says so.</p>
