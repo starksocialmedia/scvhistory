@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: candidateKey
+instructions: 'Not shown. The same key on two candidacies means one person stood both times, whether or not that person has a record.'
+name: 'Candidate key'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

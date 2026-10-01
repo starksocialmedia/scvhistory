@@ -180,7 +180,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Candidacies — `candidacies/Candidacy`
 
-12 fields.
+13 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -196,6 +196,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+| `candidateKey` | PlainText | **local** | no external equivalent |
 
 ### Collections — `collections/collection`
 
