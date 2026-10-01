@@ -1,0 +1,90 @@
+{#-
+  A person's works: /persons/<slug>/works?role=wrote|edited|about|pictured&section=<handle>
+
+  The person page carries counts and links; the lists live here, across every
+  section that relates a person in that role. "About" and "pictured" leave out
+  what the person wrote themselves: author wins (Nathan, 1 October 2026).
+-#}
+{% extends "_layouts/base" %}
+{% set person = craft.entries().section('persons').slug(personSlug).one() %}
+{% if not person %}{% exit 404 %}{% endif %}
+{% set ROLES = {
+  wrote:    { label: 'Wrote',       heading: 'Written by',     field: 'writtenBy',     sections: null },
+  edited:   { label: 'Edited',      heading: 'Edited by',      field: 'editedBy',      sections: null },
+  about:    { label: 'About',       heading: 'About',          field: 'subjectPerson', sections: ['articles', 'documents'] },
+  pictured: { label: 'Photographs', heading: 'Photographs of', field: 'photoPeople',   sections: ['photographs'] },
+} %}
+{% set role = craft.app.request.getParam('role') %}
+{% set role = role in ROLES|keys ? role : 'wrote' %}
+{% set wroteIds = craft.entries().relatedTo({ targetElement: person, field: 'writtenBy' }).ids() %}
+{% set notMine = (role in ['about', 'pictured'] and wroteIds|length) ? ['not']|merge(wroteIds) : null %}
+{% set base = craft.entries().relatedTo({ targetElement: person, field: ROLES[role].field }).id(notMine) %}
+{% if ROLES[role].sections %}{% set base = base.section(ROLES[role].sections) %}{% endif %}
+{% set secCounts = {} %}
+{% for e in clone(base).all() %}{% set h = e.section.handle %}{% set secCounts = secCounts|merge({ (h): (secCounts[h] ?? 0) + 1 }) %}{% endfor %}
+{% set sec = craft.app.request.getParam('section') %}
+{% set sec = sec in secCounts|keys ? sec : null %}
+{% set query = clone(base).section(sec ?? (ROLES[role].sections ?? null)).orderBy('title asc') %}
+{% set roleCounts = {} %}
+{% for k, r in ROLES %}
+  {% set q = craft.entries().relatedTo({ targetElement: person, field: r.field }) %}
+  {% if k in ['about', 'pictured'] and wroteIds|length %}{% set q = q.id(['not']|merge(wroteIds)) %}{% endif %}
+  {% if r.sections %}{% set q = q.section(r.sections) %}{% endif %}
+  {% set roleCounts = roleCounts|merge({ (k): q.count() }) %}
+{% endfor %}
+{% set metaDescription = ROLES[role].heading ~ ' ' ~ person.title ~ ': records in the SCVHistory.com archive.' %}
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% css %}
+  .wk-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .wk-chip{font-family:'Jost',sans-serif;font-size:13px;color:#7A5C1B;border:1px solid #C4A031;padding:6px 12px;border-radius:3px;text-decoration:none;background:#fff}
+  .wk-chip.on{background:#17254C;border-color:#17254C;color:#fff}
+  .wk-chip.sm{font-size:12px;padding:4px 10px;border-color:#DCC98F}
+  .wk-list{background:#fff;border:1px solid #E2E4E8}
+  .wk-list a{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid #EFE6D0;text-decoration:none;color:#17254C}
+  .wk-list a:last-child{border-bottom:0}
+  .wk-list a:hover{background:#FDF7EA}
+  .wk-list .s{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.1em;color:#5B6472;text-transform:uppercase;white-space:nowrap}
+  .wk-pager{display:flex;gap:12px;align-items:center;margin-top:16px;font-size:14px;color:#5B6472}
+  .wk-pager a{color:#7A5C1B}
+  {% endcss %}
+{% endblock %}
+{% block content %}
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('persons') }}">People</a> &rsaquo; <a href="{{ person.url }}">{{ person.title }}</a> &rsaquo; <span>Works</span></div>
+      <div class="rec-head rec-head--noart"><div>
+        <div class="rec-kick"><span class="a">IN THE ARCHIVE</span></div>
+        <h1>{{ ROLES[role].heading }} {{ person.title }}</h1>
+        <p class="rec-sub">{{ query.count()|number_format }} record{{ query.count() == 1 ? '' : 's' }}{{ sec ? ' in ' ~ sec : '' }}</p>
+      </div></div>
+    </div>
+  </section>
+  <div class="rec-wrap">
+    <main class="rec-main rec-main--wide"><article style="min-width:0">
+      <nav class="wk-bar" aria-label="Role">
+        {% for k, r in ROLES %}{% if roleCounts[k] %}<a class="wk-chip {{ k == role ? 'on' : '' }}" href="?role={{ k }}">{{ r.label }} ({{ roleCounts[k]|number_format }})</a>{% endif %}{% endfor %}
+      </nav>
+      {% if secCounts|length > 1 %}
+      <nav class="wk-bar" aria-label="Section">
+        <a class="wk-chip sm {{ not sec ? 'on' : '' }}" href="?role={{ role }}">All</a>
+        {% for h, n in secCounts %}<a class="wk-chip sm {{ h == sec ? 'on' : '' }}" href="?role={{ role }}&amp;section={{ h }}">{{ h|capitalize }} ({{ n }})</a>{% endfor %}
+      </nav>
+      {% endif %}
+      {% paginate query.limit(60) as pageInfo, rows %}
+      <div class="wk-list">
+        {% for e in rows %}<a href="{{ e.url }}"><span>{{ e.title }}</span><span class="s">{{ e.section.name }}</span></a>{% else %}<p style="padding:16px">Nothing here.</p>{% endfor %}
+      </div>
+      {% if pageInfo.totalPages > 1 %}
+      <div class="wk-pager">
+        {% set qs = 'role=' ~ role ~ (sec ? '&section=' ~ sec : '') %}
+        {% if pageInfo.prevUrl %}<a href="{{ '?' in pageInfo.prevUrl ? pageInfo.prevUrl : pageInfo.prevUrl ~ '?' ~ qs }}">&larr; Previous</a>{% endif %}
+        <span>Page {{ pageInfo.currentPage }} of {{ pageInfo.totalPages }}</span>
+        {% if pageInfo.nextUrl %}<a href="{{ '?' in pageInfo.nextUrl ? pageInfo.nextUrl : pageInfo.nextUrl ~ '?' ~ qs }}">Next &rarr;</a>{% endif %}
+      </div>
+      {% endif %}
+    </article></main>
+  </div>
+</div>
+{% endblock %}

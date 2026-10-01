@@ -16,4 +16,8 @@ return [
        is the subject rather than the illustration, and it is what the lightbox
        and the ImageObject both point at when no photograph record exists. */
     'media/<assetId:\\d+>' => ['template' => 'media/_entry'],
+    /* A person's works (Nathan, 1 October 2026): what they wrote, edited, or are
+       the subject of, across every section, filtered by role and section. The
+       person page carries only the counts and links here. */
+    'persons/<personSlug:[^/]+>/works' => ['template' => 'persons/_works'],
 ];

@@ -75,12 +75,20 @@
 {% set died = [F.deathDate, F.burialPlace]|filter(x => x)|join(' · ') %}
 {% set residence = communities|map(c => c.title)|join(' · ') %}
 
-{% set written = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'writtenBy' }).orderBy('title asc').all() %}
-{% set about = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectPerson' }).orderBy('title asc').all() %}
-{#- Documents about the person and photographs of them. Neither was listed here before 1 October 2026, so a source document or a photograph
-    tied to a person reached the page only through a footnote. #}
-{% set aboutDocs = craft.entries().section('documents').relatedTo({ targetElement: entry, field: 'subjectPerson' }).orderBy('title asc').all() %}
-{% set pictured = craft.entries().section('photographs').relatedTo({ targetElement: entry, field: 'photoPeople' }).orderBy('title asc').all() %}
+{#- Authorship (Nathan, 1 October 2026): wrote and edited are counts with a link to the person's works page, never lists, because Leon
+    Worden's would run to a thousand; what is about the person stays a short list, the record being about them. Where a person both wrote a
+    piece and is its subject, author wins: it counts as their work and is left out of what others say about them. #}
+{% set worksUrl = url('persons/' ~ entry.slug ~ '/works') %}
+{% set wroteIds = craft.entries().relatedTo({ targetElement: entry, field: 'writtenBy' }).ids() %}
+{% set nWrote = wroteIds|length %}
+{% set nEdited = craft.entries().relatedTo({ targetElement: entry, field: 'editedBy' }).count() %}
+{% set notMine = wroteIds|length ? ['not']|merge(wroteIds) : null %}
+{% set aboutQ = craft.entries().section(['articles', 'documents']).relatedTo({ targetElement: entry, field: 'subjectPerson' }).id(notMine).orderBy('title asc') %}
+{% set nAbout = aboutQ.count() %}
+{% set about = aboutQ.limit(10).all() %}
+{% set picQ = craft.entries().section('photographs').relatedTo({ targetElement: entry, field: 'photoPeople' }).id(notMine).orderBy('title asc') %}
+{% set nPictured = picQ.count() %}
+{% set pictured = picQ.limit(10).all() %}
 {% set livedPlaces = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placePeople' }).orderBy('title asc').all() %}
 {% set obits = entry.personObituaries.all() %}
 {% set orgs = entry.personOrganizations.all() %}
@@ -206,27 +214,26 @@
           </div>
         {% endif %}
 
-        {% if written|length %}
-          <div class="rec-box"><div class="rec-lab">WRITTEN BY {{ entry.title|upper }}</div>
-            <div class="rec-links">{% for a in written %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}</div>
+        {% if nWrote or nEdited %}
+          <div class="rec-box"><div class="rec-lab">IN THE ARCHIVE</div>
+            <div class="rec-links">
+              {% if nWrote %}<a href="{{ worksUrl }}?role=wrote">Wrote {{ nWrote|number_format }} piece{{ nWrote == 1 ? '' : 's' }} in the archive <span>&rarr;</span></a>{% endif %}
+              {% if nEdited %}<a href="{{ worksUrl }}?role=edited">Edited {{ nEdited|number_format }} <span>&rarr;</span></a>{% endif %}
+            </div>
           </div>
         {% endif %}
 
-        {% if about|length %}
-          <div class="rec-box"><div class="rec-lab">ARTICLES ABOUT</div>
-            <div class="rec-links">{% for a in about %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}</div>
+        {% if nAbout %}
+          <div class="rec-box"><div class="rec-lab">ABOUT {{ entry.title|upper }}</div>
+            <div class="rec-links">{% for a in about %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}
+              {% if nAbout > about|length %}<a href="{{ worksUrl }}?role=about"><strong>All {{ nAbout|number_format }}</strong> <span>&rarr;</span></a>{% endif %}</div>
           </div>
         {% endif %}
 
-        {% if aboutDocs|length %}
-          <div class="rec-box"><div class="rec-lab">DOCUMENTS ABOUT</div>
-            <div class="rec-links">{% for a in aboutDocs %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}</div>
-          </div>
-        {% endif %}
-
-        {% if pictured|length %}
+        {% if nPictured %}
           <div class="rec-box"><div class="rec-lab">PHOTOGRAPHS</div>
-            <div class="rec-links">{% for a in pictured %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}</div>
+            <div class="rec-links">{% for a in pictured %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}
+              {% if nPictured > pictured|length %}<a href="{{ worksUrl }}?role=pictured"><strong>All {{ nPictured|number_format }}</strong> <span>&rarr;</span></a>{% endif %}</div>
           </div>
         {% endif %}
 
