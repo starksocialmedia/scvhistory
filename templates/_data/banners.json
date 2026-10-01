@@ -1,6 +1,6 @@
 {
  "_rule": "An AI-generated image may be page decoration, clearly labelled. It is never a record, a portrait, or a relation to the person or thing it depicts. Banners are files in web/banners, listed here and nowhere else: not assets, not in any volume, not in any field, never in JSON-LD. check_render.php enforces it (docs/DATA-MODEL.md, Generated images).",
- "_fields": "file: the name in web/banners. sha256: of that file. record: section and id of the page it decorates, with the title as a check. kind: always ai-generated-illustration. tool, sourcePhotograph, generatedOn: how it was made; null means not yet recorded, and the page says so. commissionedBy (shown), commissionedByPerson (not shown), received, receivedAs: how the archive came to have it.",
+ "_fields": "file: the name in web/banners. sha256: of that file. record: section and id of the page it decorates, with the title as a check. kind: always ai-generated-illustration. tool, sourcePhotograph, generatedOn: how it was made; null means not yet recorded, and the page says so. commissionedBy (shown), commissionedByPerson (not shown), received, receivedAs: how the archive came to have it. scrimClear (optional): where the scrim behind the type becomes clear, default 50%.",
  "persons:16356": {
   "file": "william-s-hart.jpg",
   "sha256": "fe2bed1ec24c0aec552fd44092f865699d3786ab5d8378c562d79bc859519a40",
@@ -108,5 +108,23 @@
   "commissionedByPerson": "Nathan Imhoff",
   "received": "2026-10-01",
   "receivedAs": "inventory/incoming/aakash-ahuja-collection-banner.jpg"
+ },
+ "persons:25191": {
+  "file": "alan-ferdman.jpg",
+  "sha256": "23f9bde898a8a1dbc5b51befdfbd7415c8b75d4a1d9cb5e7459d8935160d5ddf",
+  "record": {
+   "section": "persons",
+   "id": 25191,
+   "title": "Alan Ferdman"
+  },
+  "kind": "ai-generated-illustration",
+  "style": "engraved-style illustration on a map ground",
+  "tool": null,
+  "sourcePhotograph": null,
+  "generatedOn": null,
+  "commissionedBy": "SCVHistory.com",
+  "commissionedByPerson": "Nathan Imhoff",
+  "received": "2026-10-01",
+  "receivedAs": "inventory/incoming/alan-ferdman-collection-banner.jpg"
  }
 }

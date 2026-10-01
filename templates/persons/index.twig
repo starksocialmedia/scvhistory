@@ -57,7 +57,11 @@
   {% set dy = p.deathDate ? p.deathDate|slice(-4) : '' %}
   {% set dyear = dy matches '/^\\d{4}$/' ? dy : '' %}
   {% if byear and (earliest is null or byear < earliest) %}{% set earliest = byear %}{% endif %}
-  {% set rows = rows|merge([{e: p, by: byear ?? 9999, dates: (byear ?: (p.birthDate ? 'c. ' ~ by : '?')) ~ (dyear ? '–' ~ dyear : '')}]) %}
+  {#- A missing date is left blank, never "?": a question mark reads as a claim
+      that the date is in dispute, which is a different thing from not knowing it
+      (Nathan, 1 October 2026). A year with no birth year reads "died 1871". -#}
+  {% set dates = byear and dyear ? byear ~ '–' ~ dyear : (byear ? 'born ' ~ byear : (dyear ? 'died ' ~ dyear : '')) %}
+  {% set rows = rows|merge([{e: p, by: byear ?? 9999, dates: dates}]) %}
 {% endfor %}
 {% if sort == 'birth' %}{% set rows = rows|sort((a, b) => a.by <=> b.by) %}{% endif %}
 
@@ -119,7 +123,7 @@
           <div class="pp-body">
             <div class="pp-name">{{ p.title }}</div>
             {% if p.occupation %}<div class="pp-role">{{ p.occupation }}</div>{% endif %}
-            <div class="pp-dates">{{ r.dates }}</div>
+            {% if r.dates %}<div class="pp-dates">{{ r.dates }}</div>{% endif %}
           </div>
         </a>
       {% endfor %}

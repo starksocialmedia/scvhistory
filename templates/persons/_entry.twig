@@ -11,7 +11,14 @@
   /* A banner (docs/DATA-MODEL.md, Generated images): decoration behind the band,
      the subject drawn at the right, the text over the plain ground at the left.
      No portrait slot over it: the photograph moves to the sidebar. */
-  .rec-band--banner{background:#F4EADA var(--banner) right center/cover no-repeat}
+    .rec-band--banner{background:var(--rec-band-bg) var(--banner) right center/cover no-repeat}
+  /* The scrim: the band's own paper colour, solid at the left and clear by the
+     midpoint, so the type always sits on a clean field. It never reaches the
+     right third, where the figure is: darkening a drawing is worse than leaving
+     it. A banner can move its clear point (scrimClear in banners.json). */
+  .rec-band--banner::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:linear-gradient(90deg,var(--rec-band-bg) 0%,var(--rec-band-bg) var(--scrim-solid,26%),transparent var(--scrim-clear,50%))}
+  .rec-band--banner>.rec-wrap{position:relative;z-index:1}
   .rec-band--banner .rec-head{display:block;max-width:560px}
   .rec-band--banner .rec-head>div{padding-bottom:44px}
   .bn-credit{position:absolute;right:14px;bottom:12px;max-width:340px;font-size:12px;line-height:1.45;color:#2C2C2C;z-index:2}
@@ -22,7 +29,8 @@
   .bn-more dt{color:#5B6472}
   .bn-more dd{margin:0}
   @media(max-width:800px){
-    .rec-band--banner{background:#F4EADA var(--banner) right top/auto 220px no-repeat;padding-top:200px}
+    .rec-band--banner{background:var(--rec-band-bg) var(--banner) right top/auto 220px no-repeat;padding-top:200px}
+    .rec-band--banner::before{display:none}
     .bn-credit{top:176px;bottom:auto;left:12px;right:12px;max-width:none}
     .bn-credit summary{display:inline-block}
   }
@@ -98,7 +106,7 @@
 {% import _self as ui %}
 
 <div class="rec">
-  <section class="rec-band{{ banner ? ' rec-band--banner' }}"{% if banner %} style="--banner:url('{{ siteUrl }}banners/{{ banner.file }}')"{% endif %}>
+  <section class="rec-band{{ banner ? ' rec-band--banner' }}"{% if banner %} style="--banner:url('{{ siteUrl }}banners/{{ banner.file }}'){% if banner.scrimClear ?? false %};--scrim-clear:{{ banner.scrimClear }}{% endif %}"{% endif %}>
     {% if banner %}{% include "_partials/record/banner-credit" with { banner: banner } only %}{% endif %}
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('persons') }}">People</a> &rsaquo; <span>{{ entry.title }}</span></div>

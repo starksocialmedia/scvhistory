@@ -35,7 +35,7 @@
     <div class="rec-rows">
       {% for r in ident %}
         <div class="k">{{ (r.kind ?? '')|upper }}</div>
-        <div class="v">{{ r.value }}{% if r.from or r.to %} <span style="color:#5B6472;font-size:13px">({{ r.from ?: '?' }} to {{ r.to ?: 'now' }})</span>{% endif %}<div style="color:#5B6472;font-size:12.5px">{{ r.statedBy ? 'as stated by ' ~ r.statedBy : '' }}{{ r.readOn ? ', read ' ~ r.readOn : '' }}</div></div>
+        <div class="v">{{ r.value }}{% if r.from %} <span style="color:#5B6472;font-size:13px">({{ r.from }} to {{ r.to ?: 'now' }})</span>{% elseif r.to %} <span style="color:#5B6472;font-size:13px">(until {{ r.to }})</span>{% endif %}<div style="color:#5B6472;font-size:12.5px">{{ r.statedBy ? 'as stated by ' ~ r.statedBy : '' }}{{ r.readOn ? ', read ' ~ r.readOn : '' }}</div></div>
       {% endfor %}
     </div>
     <p style="font-size:12.5px;line-height:1.5;color:#5B6472;margin:10px 0 0">The school's own description of itself, not a finding of the archive.</p>

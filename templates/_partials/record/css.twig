@@ -39,7 +39,9 @@
    two rows, so moving between chapters does not move the page under the reader.
    It costs blank cream above the tools row on a short record, which is the
    trade and is deliberate. */
-.rec-band{position:relative;overflow:hidden;background:#FDF7EA;border-bottom:1px solid #E8E0CC;
+/* The band's paper colour as a variable, so a banner's scrim (persons/_entry) and
+   any later dark theme set it in one place. */
+.rec-band{--rec-band-bg:#FDF7EA;position:relative;overflow:hidden;background:var(--rec-band-bg);border-bottom:1px solid #E8E0CC;
           --rec-band-floor:473px}
 .rec-band>.rec-wrap{min-height:var(--rec-band-floor);display:flex;flex-direction:column}
 .rec-band .rec-bandcol{max-width:560px}
