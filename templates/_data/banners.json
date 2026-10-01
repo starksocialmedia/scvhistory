@@ -1,6 +1,6 @@
 {
  "_rule": "An AI-generated image may be page decoration, clearly labelled. It is never a record, a portrait, or a relation to the person or thing it depicts. Banners are files in web/banners, listed here and nowhere else: not assets, not in any volume, not in any field, never in JSON-LD. check_render.php enforces it (docs/DATA-MODEL.md, Generated images).",
- "_fields": "file: the name in web/banners. sha256: of that file. record: section and id of the page it decorates, with the title as a check. kind: always ai-generated-illustration. tool, sourcePhotograph, generatedOn: how it was made; null means not yet recorded, and the page says so. commissionedBy (shown), commissionedByPerson (not shown), received, receivedAs: how the archive came to have it. scrimClear (optional): where the scrim behind the type becomes clear, default 50%.",
+ "_fields": "file: the name in web/banners. sha256: of that file. record: section and id of the page it decorates, with the title as a check. kind: always ai-generated-illustration. tool, sourcePhotograph, generatedOn: how it was made; null means not yet recorded, and the page says so. commissionedBy (shown), commissionedByPerson (not shown), received, receivedAs: how the archive came to have it. scrimClear (optional): where the scrim behind the type becomes clear, default 50%. formerAsset (optional): the archive asset this image was, before the rule; check_render fails while that asset still exists.",
  "persons:16356": {
   "file": "william-s-hart.jpg",
   "sha256": "fe2bed1ec24c0aec552fd44092f865699d3786ab5d8378c562d79bc859519a40",
@@ -162,5 +162,81 @@
   "commissionedByPerson": "Nathan Imhoff",
   "received": "2026-10-01",
   "receivedAs": "inventory/incoming/clyde-smyth-collection-banner.jpg"
+ },
+ "persons:281": {
+  "file": "jerry-reynolds.png",
+  "sha256": "e689f31353839faa70cef76b3bb8f6e1b57ea993760a5b089d70af22fe861af6",
+  "record": {
+   "section": "persons",
+   "id": 281,
+   "title": "Jerry Reynolds"
+  },
+  "kind": "ai-generated-illustration",
+  "style": "engraved-style illustration on a map ground",
+  "tool": null,
+  "sourcePhotograph": null,
+  "generatedOn": null,
+  "commissionedBy": "SCVHistory.com",
+  "commissionedByPerson": "Nathan Imhoff",
+  "received": "2026-09-17",
+  "receivedAs": "archive asset #1409, collection-band-2400x1000.png, the band of History of the Santa Clarita Valley (#871)",
+  "formerAsset": 1409
+ },
+ "collections:871": {
+  "file": "jerry-reynolds.png",
+  "sha256": "e689f31353839faa70cef76b3bb8f6e1b57ea993760a5b089d70af22fe861af6",
+  "record": {
+   "section": "collections",
+   "id": 871,
+   "title": "History of the Santa Clarita Valley"
+  },
+  "kind": "ai-generated-illustration",
+  "style": "engraved-style illustration on a map ground",
+  "tool": null,
+  "sourcePhotograph": null,
+  "generatedOn": null,
+  "commissionedBy": "SCVHistory.com",
+  "commissionedByPerson": "Nathan Imhoff",
+  "received": "2026-09-17",
+  "receivedAs": "archive asset #1409, collection-band-2400x1000.png",
+  "formerAsset": 1409
+ },
+ "persons:333": {
+  "file": "arthur-b-perkins.png",
+  "sha256": "6c0032a4c22e673360dc36b3dffe76a357f4452cd9328005f729e98907e5fa84",
+  "record": {
+   "section": "persons",
+   "id": 333,
+   "title": "Arthur Burnett Perkins"
+  },
+  "kind": "ai-generated-illustration",
+  "style": "engraved-style illustration on a map ground",
+  "tool": null,
+  "sourcePhotograph": null,
+  "generatedOn": null,
+  "commissionedBy": "SCVHistory.com",
+  "commissionedByPerson": "Nathan Imhoff",
+  "received": "2026-09-17",
+  "receivedAs": "archive asset #1413, story-of-our-valley-band-2400x1000.png, the band of Story of Our Valley (#873)",
+  "formerAsset": 1413
+ },
+ "collections:873": {
+  "file": "arthur-b-perkins.png",
+  "sha256": "6c0032a4c22e673360dc36b3dffe76a357f4452cd9328005f729e98907e5fa84",
+  "record": {
+   "section": "collections",
+   "id": 873,
+   "title": "Story of Our Valley"
+  },
+  "kind": "ai-generated-illustration",
+  "style": "engraved-style illustration on a map ground",
+  "tool": null,
+  "sourcePhotograph": null,
+  "generatedOn": null,
+  "commissionedBy": "SCVHistory.com",
+  "commissionedByPerson": "Nathan Imhoff",
+  "received": "2026-09-17",
+  "receivedAs": "archive asset #1413, story-of-our-valley-band-2400x1000.png",
+  "formerAsset": 1413
  }
 }

@@ -39,6 +39,15 @@
    two rows, so moving between chapters does not move the page under the reader.
    It costs blank cream above the tools row on a short record, which is the
    trade and is deliberate. */
+/* The credit on a banner, an AI-generated illustration (docs/DATA-MODEL.md,
+   Generated images): on the image itself, on every page that shows one. */
+.bn-credit{position:absolute;right:14px;bottom:12px;max-width:340px;font-size:12px;line-height:1.45;color:#2C2C2C;z-index:2}
+.bn-credit summary{cursor:pointer;background:rgba(253,247,234,.92);border:1px solid #D9CCAE;padding:4px 9px;list-style:none;font-family:'Jost',sans-serif;letter-spacing:.04em}
+.bn-credit summary::-webkit-details-marker{display:none}
+.bn-more{background:#FDF7EA;border:1px solid #D9CCAE;border-top:0;padding:10px 12px}
+.bn-more dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:8px 0 0}
+.bn-more dt{color:#5B6472}
+.bn-more dd{margin:0}
 /* The band's paper colour as a variable, so a banner's scrim (persons/_entry) and
    any later dark theme set it in one place. */
 .rec-band{--rec-band-bg:#FDF7EA;position:relative;overflow:hidden;background:var(--rec-band-bg);border-bottom:1px solid #E8E0CC;

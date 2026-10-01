@@ -36,6 +36,11 @@
   {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
 {% endfor %}
 {% set hero = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+{#- An AI-generated banner is never a band image asset: it comes from the
+    registry, with its credit (docs/DATA-MODEL.md, Generated images). -#}
+{% set BANNERS = source('_data/banners.json')|json_decode %}
+{% set banner = BANNERS['collections:' ~ entry.id] ?? null %}
+{% set banner = banner and banner.kind == 'ai-generated-illustration' and banner.record.id == entry.id ? banner : null %}
 {% set hero = hero ?? ((entry.featuredImage is defined and entry.featuredImage) ? entry.featuredImage.one() ?? null : null) %}
 {% set hero = hero ?? (recImages|length ? recImages|first : null) %}
 {% set author = entry.writtenBy.one() ?? null %}
@@ -146,9 +151,10 @@
   {#- The shared band. One image layer and one gradient, and every value comes
       from _partials/record/css.twig so this band cannot drift from the article's
       or any other record type's. -#}
-  <section class="rec-band{{ hero ? ' rec-band--art' : '' }}">
-    {% if hero %}
-      <div class="rec-bandart" style="background-image:url('{{ hero.url }}')" role="presentation"></div>
+  <section class="rec-band{{ hero or banner ? ' rec-band--art' : '' }}">
+    {% if hero or banner %}
+      <div class="rec-bandart" style="background-image:url('{{ banner ? siteUrl ~ 'banners/' ~ banner.file : hero.url }}')" role="presentation"></div>
+      {% if banner %}{% include "_partials/record/banner-credit" with { banner: banner } only %}{% endif %}
       <div class="rec-bandfade" role="presentation"></div>
     {% endif %}
     <div class="rec-wrap">

@@ -281,6 +281,7 @@ foreach ($bn as $key => $b) {
     $rec = \craft\elements\Entry::find()->section($sec)->id($b['record']['id'] ?? 0)->one();
     if (!$rec || $rec->title !== ($b['record']['title'] ?? null)) { $bnBad[] = "$key: the record is not {$b['record']['title']}"; continue; }
     if (\craft\elements\Asset::find()->filename([$b['file'], basename((string)($b['receivedAs'] ?? ''))])->exists()) { $bnBad[] = "$key: an asset has the banner's file name"; }
+    if (!empty($b['formerAsset']) && \craft\elements\Asset::find()->id((int)$b['formerAsset'])->exists()) { $bnBad[] = "$key: the archive still holds it as asset #{$b['formerAsset']} (run detach_ai_collection_bands.php)"; }
     $ch = curl_init($rec->url); curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 30, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0]);
     $html = (string)curl_exec($ch); curl_close($ch);
     if (!str_contains($html, 'AI-generated illustration. Not a photograph.')) { $bnBad[] = "$key: {$rec->url} does not carry the credit"; }
