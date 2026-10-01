@@ -291,6 +291,26 @@ foreach ($bn as $key => $b) {
 }
 if ($bnBad) { $fail++; echo 'BANNERS FAIL: ' . implode('; ', $bnBad) . PHP_EOL; } else { echo 'banners: ' . count(array_filter(array_keys($bn), fn($k) => $k[0] !== '_')) . ' decoration only, credited, not in JSON-LD, not assets' . ($bnOpen ? '; provenance not yet recorded: ' . implode(', ', $bnOpen) : '') . PHP_EOL; }
 
+/* Today's date, on the two pages that print it. On 1 October 2026 staging's On
+   This Day read 3 September: the pages sent no Cache-Control, so a proxy or the
+   browser could keep a stale copy. Each must show the date the check is run on,
+   in the site's own time zone, and must say no-store. */
+$today = new \DateTime('now', new \DateTimeZone(Craft::$app->getTimeZone()));
+$dateBad = [];
+foreach (['/on-this-day' => '~<h1>\s*([^<]+?)\s*</h1>~', '/' => '~<h2>On this day</h2>\s*<div class="hp-kick">\s*([^<]+?)\s*</div>~'] as $p => $re) {
+    $ch = curl_init($base . $p);
+    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HEADER => true, CURLOPT_TIMEOUT => 30, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0]);
+    $raw = (string)curl_exec($ch); $hs = (int)curl_getinfo($ch, CURLINFO_HEADER_SIZE); curl_close($ch);
+    $head = substr($raw, 0, $hs); $html = substr($raw, $hs);
+    $want = $p === '/' ? strtoupper($today->format('F j')) : $today->format('F j');
+    $shown = preg_match($re, $html, $m) ? html_entity_decode(trim($m[1])) : '(no date found)';
+    /* The home page's section is hidden on a day with no confirmed dates; then only the header is checked. */
+    if ($p === '/' && $shown === '(no date found)' && !str_contains($html, '<h2>On this day</h2>')) { $shown = $want; }
+    if ($shown !== $want) { $dateBad[] = "$p shows \"$shown\", today is \"$want\""; }
+    if (!preg_match('~^cache-control:[^\r\n]*no-store~im', $head)) { $dateBad[] = "$p does not send Cache-Control: no-store"; }
+}
+if ($dateBad) { $fail++; echo 'TODAY FAIL: ' . implode('; ', $dateBad) . PHP_EOL; } else { echo 'today: /on-this-day and / both show ' . $today->format('j F Y') . ' and send no-store' . PHP_EOL; }
+
 /* The data model has to keep up with the schema. A field added without
    regenerating docs/DATA-MODEL.md fails here, because a data model that drifts
    is consulted and believed. */
