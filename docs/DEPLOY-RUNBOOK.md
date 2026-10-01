@@ -467,6 +467,19 @@ first, then wait for Mutagen). DDEV v1.25.1 runs pre-start hooks before it
 writes the compose config, so the restart that follows plugging in is the one
 that mounts it.
 
+**"file exists" with the drive connected: restart Docker.** If DDEV was started
+while the drive was absent, Docker Desktop can keep a stale
+`/host_mnt/Volumes/Reggie`. Plugging the drive back in and restarting DDEV then
+fails with "file exists", even though the hook finds the drive. Restarting
+Docker Desktop clears it; then start DDEV and wait for Mutagen to report ok
+(Nathan, 1 October 2026).
+
+**`ddev craft` starts a stopped project.** Any `ddev craft exec` against a
+stopped project starts it first, recreating the containers and applying the
+drive mount, with no prompt. On 1 October that is how a start happened before
+Nathan was warned. When DDEV may be stopped (after Docker restarts, after a
+drive change), check `ddev describe` before running a script, and warn first.
+
 ## 9. Applied, read back, and still invisible
 
 **A record can be applied, read-back verified, and still not on the page.**

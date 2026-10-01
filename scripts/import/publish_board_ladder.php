@@ -4,8 +4,9 @@
  * record, with the three blind spots in the body rather than as a note. The
  * caveats are part of the finding").
  *
- * Runs after merge_cooper.php: Bill and William Cooper as one person make
- * nineteen people on more than one body.
+ * Runs after merge_cooper.php (Bill and William Cooper as one person make
+ * nineteen people on more than one body) and build_mckeon_profile.php (his Hart
+ * board years, the ladder's clearest case and the first blind spot's proof).
  *
  * Every figure in the text is checked against the archive's own records before
  * anything is written: each named result (the year, the body, won or lost, the
@@ -32,11 +33,13 @@ $TITLE = 'The ladder that runs the other way';
 $fn = fn(array $notes): array => array_map(fn($i, $n) => ['number' => (string)($i + 1), 'note' => $n, 'source' => 'editorial-2026'], array_keys($notes), $notes);
 
 $BODY = <<<TXT
-The usual story of local politics is a ladder: a school board seat first, then the city council. In the Santa Clarita Valley the archive's records show that ladder hardly used, and never climbed.
+The usual story of local politics is a ladder: a school board seat first, then the city council. In the Santa Clarita Valley the city's first mayor climbed it, and since then the archive's records show it hardly used.
 
 The archive holds every Santa Clarita City Council election since 1987, every contested school board election in the valley's five school districts since 1995, and the water board elections since 2016.[1][2] Nineteen people appear as candidates for more than one of those bodies. None of the people who have sat on the council, nineteen in all, is among them.
 
-Sitting board members who ran for the council lost. Gloria Mercado-Fortine had been on the Hart district board since 2003 when she stood for the council in 2014; she came fifth of thirteen. David Barlavi, elected to the Saugus Union board in 2018, stood for the council in 2022 and came seventh of nine. Maria Gutzeit stood for the council in 2008 and 2014, fifth of five and seventh of thirteen, while serving on the board of the Newhall County Water District, as her own record sets out.[3]
+Buck McKeon was a trustee of the Hart district, and chairman of its board, until 1987, when he came first of twenty-six candidates in the cityhood election and was chosen mayor at the council's first meeting.[5] He is the clearest case of the ladder in the valley, and one the election records cannot show by themselves: the school board results they hold begin in 1995.
+
+Since then, sitting board members who ran for the council lost. Gloria Mercado-Fortine had been on the Hart district board since 2003 when she stood for the council in 2014; she came fifth of thirteen. David Barlavi, elected to the Saugus Union board in 2018, stood for the council in 2022 and came seventh of nine. Maria Gutzeit stood for the council in 2008 and 2014, fifth of five and seventh of thirteen, while serving on the board of the Newhall County Water District, as her own record sets out.[3]
 
 Council candidates who lost went on to win board seats. Linda Storli stood for the council in 1987, 1992 and 1994 and was elected to the Hart board in 2015 and 2020. Aakash Ahuja stood for the council in 2020 and won a Hart seat in 2024. Ed Colley came fourth of five for the council in 2012 and won a Santa Clarita Valley Water seat in 2020.
 
@@ -44,7 +47,7 @@ The ladder that does show runs between the boards. Paul Strickland was elected t
 
 What the records cannot see is part of the finding, and there are three things they cannot see.
 
-- Before 1995 for the school boards, and before 2016 for the water boards. The state's compilation of local results begins in 1995, and the County's earlier returns are scanned volumes not yet read. A council member of the city's first decade who came up through a school board would not show here.
+- Before 1995 for the school boards, and before 2016 for the water boards. The state's compilation of local results begins in 1995, and the County's earlier returns are scanned volumes not yet read. A council member of the city's first decade who came up through a school board does not show here: Buck McKeon is one, known from the Congressional Biographical Directory, not from any election result.
 - Seats filled without a vote. Where no more candidates filed than there were seats, the County cancelled the contest and the board appointed someone. The County's lists name twenty such school board seats in the valley in 2020, 2022 and 2024, and the council's District 3 in 2024, but not the people who filled them.[4] Those careers leave no candidacy behind.
 - Names. The archive joins candidacies on the full first name and surname. Two people can share a name: the Paula Olivares who won a Hart seat in 1995 and the one who stood for the water board in 2024 are joined by that rule alone. Names printed with a suffix on some ballots and not others are kept apart until a source settles them.
 
@@ -55,6 +58,7 @@ $NOTES = [
     'City of Santa Clarita, City Clerk, election records 1987 to 2024; County of Los Angeles, Registrar-Recorder/County Clerk, statements of votes cast and official election returns, 2016 to 2024. Each election\'s page in the archive names its sources.',
     'Maria Gutzeit\'s record in the archive: elected to the board of the Newhall County Water District in 2003, serving until 2020, with its sources.',
     'County of Los Angeles, Registrar-Recorder/County Clerk, final lists of cancelled elections, November 2020, 2022 and 2024. Archive record: "Final lists of cancelled elections: November 2020, 2022 and 2024".',
+    'Biographical Directory of the United States Congress, M000508: "chairman and trustee, William S. Hart School District ... 1979-1987; ... mayor and council member of Santa Clarita Valley, Calif., 1987-1992." His own account (mckeon.house.gov, 2006): chosen "Santa Clarita\'s first mayor" at "the city council\'s first meeting." City of Santa Clarita, City Clerk: 3 November 1987, first of twenty-six, 9,855 votes. All on his archive record.',
 ];
 
 /* ------------------------------------------------ every figure, checked */
@@ -78,6 +82,7 @@ $CLAIMS = [   /* person, year, body (substring), won, place, of: null where the 
     ['Suzan Solomon', 1999, 'Newhall', true, null, null], ['Suzan Solomon', 2003, 'Newhall', true, null, null], ['Suzan Solomon', 2007, 'Newhall', true, null, null], ['Suzan Solomon', 2009, 'Hart', false, null, null],
     ['Teresa Todd', 1999, 'Sulphur Springs', true, null, null], ['Teresa Todd', 2003, 'Hart', false, null, null],
     ['Paula Olivares', 1995, 'Hart', true, null, null], ['Paula Olivares', 2024, 'Santa Clarita Valley Water', false, null, null],
+    ['Buck McKeon', 1987, 'Council', true, 1, 26],
 ];
 $bad = [];
 foreach ($CLAIMS as [$who, $y, $body, $won, $pl, $of]) {
@@ -93,7 +98,12 @@ if ($crossed) { $bad[] = 'council members who stood for a board: ' . implode(', 
 echo 'FIGURES CHECKED: ' . count($CLAIMS) . ' results, 19 on more than one body, 19 council members, none crossing' . ($bad ? PHP_EOL . 'DO NOT MATCH: ' . implode(' | ', $bad) : ', all match') . PHP_EOL;
 
 /* ------------------------------------------------ relations */
-$SUBJECTS = ['Gloria Mercado-Fortine', 'David Barlavi', 'Maria Gutzeit', 'Linda Storli', 'Aakash Ahuja', 'Ed Colley', 'Paul Strickland', 'Suzan Solomon', 'Teresa Todd', 'Paula Olivares'];
+/* McKeon's years on the Hart board are an office holding (build_mckeon_profile.php, which runs first). */
+$mck = Entry::find()->section('persons')->title('Buck McKeon')->one();
+$hartId = Entry::find()->section('organizations')->slug('william-s-hart-union-high-school-district')->one()?->id ?? 0;
+$mckBoard = $mck && Entry::find()->section('officeHoldings')->status(null)->relatedTo(['and', ['targetElement' => $mck, 'field' => 'holdingPerson'], ['targetElement' => $hartId, 'field' => 'holdingBody']])->exists();
+if (!$mckBoard) { $bad[] = 'Buck McKeon\'s Hart board term is not on the record: run build_mckeon_profile.php first'; }
+$SUBJECTS = ['Buck McKeon', 'Gloria Mercado-Fortine', 'David Barlavi', 'Maria Gutzeit', 'Linda Storli', 'Aakash Ahuja', 'Ed Colley', 'Paul Strickland', 'Suzan Solomon', 'Teresa Todd', 'Paula Olivares'];
 $pids = array_map(fn($t) => $rows[$t][0]['pid'] ?? null, $SUBJECTS);
 if (in_array(null, $pids, true)) { $bad[] = 'a named person has no record'; }
 $orgs = array_merge([394, 402], array_map(fn($s) => Entry::find()->section('organizations')->slug($s)->one()?->id, ['william-s-hart-union-high-school-district', 'saugus-union-school-district', 'newhall-school-district', 'sulphur-springs-union-school-district', 'castaic-union-school-district', 'castaic-lake-water-agency']));

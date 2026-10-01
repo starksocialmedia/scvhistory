@@ -29,7 +29,8 @@
   than probed with `is defined`, which answers true for a field the type does
   not have.
 
-  A LIVING PERSON IS A NAME. Anyone who fails the historical test in
+  A LIVING PERSON IS A NAME, unless they hold public office in the archive's
+  records, when the portrait and occupation show (never a birth year). Anyone else who fails the historical test in
   _partials/record/historical.twig (undetermined counts as living) is listed by
   name alone, behind the initials circle: no portrait, no occupation, no birth
   year. They are not the subject of this page, and a birth year is a routine
@@ -94,9 +95,14 @@
             {% set role = 'occupation' in ph ? p.occupation|trim : ('wmRank' in ph ? p.wmRank|trim : ('mpRank' in ph ? p.mpRank|trim : '')) %}
             {% set sub = role ?: span %}
             {% if role and span %}{% set sub = role ~ ' · ' ~ span %}{% endif %}
-            {% if living %}{% set sub = '' %}{% endif %}
+            {#- A living public officeholder (an officeHolding record, the test the
+                family exception uses) shows the portrait and the occupation the
+                archive publishes on their own page; never a birth year (Nathan,
+                1 October 2026). Every other living person stays a name. -#}
+            {% set officeholder = living and craft.app.entries.getSectionByHandle('officeHoldings') and craft.entries().section('officeHoldings').relatedTo({ targetElement: p, field: 'holdingPerson' }).exists() %}
+            {% if living %}{% set sub = officeholder and role ? role : '' %}{% endif %}
 
-            {% set img = not living and 'featuredImage' in ph ? p.featuredImage.one() ?? null : null %}
+            {% set img = (not living or officeholder) and 'featuredImage' in ph ? p.featuredImage.one() ?? null : null %}
             {% set words = (p.title ?: p.slug)|trim|split(' ')|filter(w => w|trim) %}
             {% set ini = (words|first|slice(0, 1) ~ (words|length > 1 ? words|last|slice(0, 1) : ''))|upper %}
 
