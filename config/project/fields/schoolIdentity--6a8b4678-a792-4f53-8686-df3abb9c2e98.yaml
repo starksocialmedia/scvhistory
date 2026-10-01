@@ -1,0 +1,127 @@
+columnSuffix: null
+handle: schoolIdentity
+instructions: 'Branding, attributed rather than graded: mascot, colours, motto, nickname, as the school (or whoever is named) states it, with the years it applied and where it was read.'
+name: 'As the school describes itself'
+searchable: false
+settings:
+  addRowLabel: 'Add a description'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Kind
+            -
+              - handle
+              - kind
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Value
+            -
+              - handle
+              - value
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - 'From (EDTF)'
+            -
+              - handle
+              - from
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col4
+        -
+          __assoc__:
+            -
+              - heading
+              - 'To (EDTF)'
+            -
+              - handle
+              - to
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col5
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Stated by'
+            -
+              - handle
+              - statedBy
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col6
+        -
+          __assoc__:
+            -
+              - heading
+              - Source
+            -
+              - handle
+              - source
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col7
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Read on'
+            -
+              - handle
+              - readOn
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

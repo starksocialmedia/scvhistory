@@ -1,0 +1,77 @@
+columnSuffix: null
+handle: foundedEvidence
+instructions: "How the founding date is known, on the archive's evidence scale."
+name: 'Evidence for the founding date'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - "Certified: the body's own record"
+        -
+          - value
+          - certified
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Contemporary report'
+        -
+          - value
+          - contemporary
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Retrospective account'
+        -
+          - value
+          - retrospective
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Undated roster'
+        -
+          - value
+          - roster
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Derived: read from the count'
+        -
+          - value
+          - derived
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Uncited
+        -
+          - value
+          - uncited
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

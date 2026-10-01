@@ -1,0 +1,79 @@
+columnSuffix: null
+handle: enrolment
+instructions: 'Pupils enrolled, one row per school year, with the source. From the NCES Common Core of Data unless the source says otherwise.'
+name: Enrolment
+searchable: false
+settings:
+  addRowLabel: 'Add a year'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - 'School year'
+            -
+              - handle
+              - schoolYear
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Fall of'
+            -
+              - handle
+              - fallYear
+            -
+              - width
+              - ''
+            -
+              - type
+              - number
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - Enrolled
+            -
+              - handle
+              - count
+            -
+              - width
+              - ''
+            -
+              - type
+              - number
+      -
+        - col4
+        -
+          __assoc__:
+            -
+              - heading
+              - Source
+            -
+              - handle
+              - source
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table
