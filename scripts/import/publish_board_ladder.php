@@ -33,32 +33,34 @@ $TITLE = 'The ladder that runs the other way';
 $fn = fn(array $notes): array => array_map(fn($i, $n) => ['number' => (string)($i + 1), 'note' => $n, 'source' => 'editorial-2026'], array_keys($notes), $notes);
 
 $BODY = <<<TXT
-The usual story of local politics is a ladder: a school board seat first, then the city council. In the Santa Clarita Valley the city's first mayor climbed it, and since then the archive's records show it hardly used.
+The usual story of local politics is a ladder: a school board seat first, then the city council. In the Santa Clarita Valley the archive's records show it climbed once, at the very start, by the man who then went further than anyone else in them.
 
-The archive holds every Santa Clarita City Council election since 1987, every contested school board election in the valley's five school districts since 1995, and the water board elections since 2016.[1][2] Nineteen people appear as candidates for more than one of those bodies. None of the people who have sat on the council, nineteen in all, is among them.
+Buck McKeon was a trustee of the William S. Hart Union High School District from 1979, and chairman of its board, until 1987. That November he came first of twenty-six candidates in the cityhood election, and at the council's first meeting its members chose him as the city's first mayor. He left the council in 1992 for the House of Representatives, where he served twenty-two years and chaired first the Committee on Education and the Workforce and then the Committee on Armed Services.[5]
 
-Buck McKeon was a trustee of the Hart district, and chairman of its board, until 1987, when he came first of twenty-six candidates in the cityhood election and was chosen mayor at the council's first meeting.[5] He is the clearest case of the ladder in the valley, and one the election records cannot show by themselves: the school board results they hold begin in 1995.
+The archive holds every Santa Clarita City Council election since 1987, every contested school board election in the valley's five school districts since 1995, and the water board elections since 2016.[1][2] Nineteen people appear in them as candidates for more than one of those bodies. McKeon is not among them: his years on the Hart board end before the state's school board records begin, and the archive knows of them from the Congressional Biographical Directory, not from a result. Of the nineteen people who have sat on the council, he is the only one the archive can place on a school board.
 
-Since then, sitting board members who ran for the council lost. Gloria Mercado-Fortine had been on the Hart district board since 2003 when she stood for the council in 2014; she came fifth of thirteen. David Barlavi, elected to the Saugus Union board in 2018, stood for the council in 2022 and came seventh of nine. Maria Gutzeit stood for the council in 2008 and 2014, fifth of five and seventh of thirteen, while serving on the board of the Newhall County Water District, as her own record sets out.[3]
+Since then the ladder has run the other way. Sitting board members who ran for the council lost. Gloria Mercado-Fortine had been on the Hart district board since 2003 when she stood for the council in 2014; she came fifth of thirteen. David Barlavi, elected to the Saugus Union board in 2018, stood for the council in 2022 and came seventh of nine. Maria Gutzeit stood for the council in 2008 and 2014, fifth of five and seventh of thirteen, while serving on the board of the Newhall County Water District, as her own record sets out.[3]
 
 Council candidates who lost went on to win board seats. Linda Storli stood for the council in 1987, 1992 and 1994 and was elected to the Hart board in 2015 and 2020. Aakash Ahuja stood for the council in 2020 and won a Hart seat in 2024. Ed Colley came fourth of five for the council in 2012 and won a Santa Clarita Valley Water seat in 2020.
 
-The ladder that does show runs between the boards. Paul Strickland was elected to the Sulphur Springs board in 1995 and then to the Hart board in 2001, 2005 and 2009. In 1999 a Hart seat went to Philip C. Ellis, whose ballot designation was "School Board Member"; a Philip C. Ellis, Jr. had won a Newhall seat in 1995, and whether they are one man is not yet settled. Suzan Solomon, three times elected to the Newhall board, and Teresa Todd, elected to Sulphur Springs, both tried for Hart and lost. The step from an elementary district to the high school district is the one people take.
+The step people take most often is between the boards. Paul Strickland was elected to the Sulphur Springs board in 1995 and then to the Hart board in 2001, 2005 and 2009. In 1999 a Hart seat went to Philip C. Ellis, whose ballot designation was "School Board Member"; a Philip C. Ellis, Jr. had won a Newhall seat in 1995, and whether they are one man is not yet settled. Suzan Solomon, three times elected to the Newhall board, and Teresa Todd, elected to Sulphur Springs, both tried for Hart and lost.
+
+So the ladder runs both ways, and rarely; and the one person who climbed it went furthest.
 
 What the records cannot see is part of the finding, and there are three things they cannot see.
 
-- Before 1995 for the school boards, and before 2016 for the water boards. The state's compilation of local results begins in 1995, and the County's earlier returns are scanned volumes not yet read. A council member of the city's first decade who came up through a school board does not show here: Buck McKeon is one, known from the Congressional Biographical Directory, not from any election result.
+- Before 1995 for the school boards, and before 2016 for the water boards. The state's compilation of local results begins in 1995, and the County's earlier returns are scanned volumes not yet read. McKeon shows what that hides: the archive knows his school board career from the Directory, not from any election result, and there may be others.
 - Seats filled without a vote. Where no more candidates filed than there were seats, the County cancelled the contest and the board appointed someone. The County's lists name twenty such school board seats in the valley in 2020, 2022 and 2024, and the council's District 3 in 2024, but not the people who filled them.[4] Those careers leave no candidacy behind.
 - Names. The archive joins candidacies on the full first name and surname. Two people can share a name: the Paula Olivares who won a Hart seat in 1995 and the one who stood for the water board in 2024 are joined by that rule alone. Names printed with a suffix on some ballots and not others are kept apart until a source settles them.
 
-Each person named here has a page listing every election behind these figures.
+Each person named here has a page listing every election and office behind these figures.
 TXT;
 $NOTES = [
     'California Elections Data Archive (CEDA), Center for California Studies and Institute for Social Research, California State University, Sacramento, with the Secretary of State: the candidate files for 1995 to 2024, a compilation of the counties\' returns. Archive record: "California Elections Data Archive (CEDA): candidate files, 1995 to 2024".',
     'City of Santa Clarita, City Clerk, election records 1987 to 2024; County of Los Angeles, Registrar-Recorder/County Clerk, statements of votes cast and official election returns, 2016 to 2024. Each election\'s page in the archive names its sources.',
     'Maria Gutzeit\'s record in the archive: elected to the board of the Newhall County Water District in 2003, serving until 2020, with its sources.',
     'County of Los Angeles, Registrar-Recorder/County Clerk, final lists of cancelled elections, November 2020, 2022 and 2024. Archive record: "Final lists of cancelled elections: November 2020, 2022 and 2024".',
-    'Biographical Directory of the United States Congress, M000508: "chairman and trustee, William S. Hart School District ... 1979-1987; ... mayor and council member of Santa Clarita Valley, Calif., 1987-1992." His own account (mckeon.house.gov, 2006): chosen "Santa Clarita\'s first mayor" at "the city council\'s first meeting." City of Santa Clarita, City Clerk: 3 November 1987, first of twenty-six, 9,855 votes. All on his archive record.',
+    'Biographical Directory of the United States Congress, M000508: "chairman and trustee, William S. Hart School District ... 1979-1987; ... mayor and council member of Santa Clarita Valley, Calif., 1987-1992; elected ... to the One Hundred Third and to the ten succeeding Congresses (January 3, 1993-January 3, 2015); chair, Committee on Education and the Workforce ...; chair, Committee on Armed Services." His own account (mckeon.house.gov, 2006): chosen "Santa Clarita\'s first mayor" at "the city council\'s first meeting." City of Santa Clarita, City Clerk: 3 November 1987, first of twenty-six, 9,855 votes. All on his archive record.',
 ];
 
 /* ------------------------------------------------ every figure, checked */
@@ -95,6 +97,17 @@ $crossed = array_filter(array_keys($members), fn($t) => isset($multi[$t]));
 if (count($multi) !== 19) { $bad[] = 'people on more than one body: ' . count($multi) . ', the text says nineteen (with Bill and William Cooper one person: run merge_cooper.php first)'; }
 if (count($members) !== 19) { $bad[] = 'council members: ' . count($members) . ', the text says nineteen'; }
 if ($crossed) { $bad[] = 'council members who stood for a board: ' . implode(', ', $crossed); }
+/* "Of the nineteen ... he is the only one the archive can place on a school board": a school
+   board office or a school board candidacy, among the council's members. */
+$onBoard = [];
+foreach (array_keys($members) as $t) {
+    $pp = Entry::find()->section('persons')->title($t)->one(); if (!$pp) { continue; }
+    $bodiesHeld = array_map(fn($h) => $h->holdingBody->one(), Entry::find()->section('officeHoldings')->relatedTo(['targetElement' => $pp, 'field' => 'holdingPerson'])->all());
+    $school = array_filter($bodiesHeld, fn($b) => $b && (string)$b->orgType->value === 'school');
+    $schoolCand = array_filter($rows[$t] ?? [], fn($r) => str_contains($r['body'], 'School District'));
+    if ($school || $schoolCand) { $onBoard[] = $t; }
+}
+if ($onBoard !== ['Buck McKeon']) { $bad[] = 'council members the archive places on a school board: ' . (implode(', ', $onBoard) ?: 'none') . '; the text says McKeon alone'; }
 echo 'FIGURES CHECKED: ' . count($CLAIMS) . ' results, 19 on more than one body, 19 council members, none crossing' . ($bad ? PHP_EOL . 'DO NOT MATCH: ' . implode(' | ', $bad) : ', all match') . PHP_EOL;
 
 /* ------------------------------------------------ relations */
@@ -118,12 +131,13 @@ if ($bad) { echo 'REFUSING: the text no longer matches the records' . PHP_EOL; r
 $sec = $svc->getSectionByHandle('articles');
 $a = $have ?: new Entry();
 if (!$have) { $a->sectionId = $sec->id; $a->setTypeId($sec->getEntryTypes()[0]->id); $a->title = $TITLE; }
-$a->setFieldValues(['subheadline' => 'Candidates for the city council, the school boards and the water boards of the Santa Clarita Valley, 1987 to 2024',
+$PROVENANCE_NOTE = ['heading' => 'How this article was checked', 'position' => 'bottom', 'note' => 'Every figure in this article is checked against the archive\'s own records by the script that publishes it, which refuses to write a text the records contradict. Its first draft said the board-to-council ladder was never climbed. When Buck McKeon\'s years on the Hart board were added to his record on 1 October 2026, the check refused to publish that draft, and the article was rewritten around him. The guard caught the archive\'s own text, which is what it is for.'];
+$a->setFieldValues(['editorNotes' => [$PROVENANCE_NOTE], 'recordProvenance' => 'publish_board_ladder.php, 1 October 2026: written by SCVHistory.com; every figure checked against the records at publication; the first draft refused by that check and rewritten', 'subheadline' => 'Candidates for the city council, the school boards and the water boards of the Santa Clarita Valley, 1987 to 2024',
     'body' => $BODY, 'footnotes' => $fn($NOTES), 'originalPublishDate' => 'October 1, 2026', 'originalPublishDateEdtf' => '2026-10-01',
     'publishedBy' => [378], 'subjectPerson' => array_values($pids), 'subjectOrganization' => array_values($orgs)]);
 if (!$elements->saveElement($a)) { throw new \RuntimeException(json_encode($a->getFirstErrors())); }
 $r = Entry::find()->section('articles')->title($TITLE)->one();
-$ok = $r && str_contains((string)$r->body, 'Nineteen people') && count($r->subjectPerson->ids()) === count($SUBJECTS);
+$ok = $r && str_contains((string)$r->body, 'the one person who climbed it went furthest') && count($r->subjectPerson->ids()) === count($SUBJECTS);
 echo 'READ-BACK ' . ($ok ? 'OK: ' . $r->url : 'SHORT') . PHP_EOL;
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('publish_board_ladder.php', 1, $ok ? 'verified' : 'SHORT', 'the board-ladder article');

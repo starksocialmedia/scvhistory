@@ -113,7 +113,7 @@ try {
        the value would be dropped without a word (found in rehearsal, 1 October 2026):
        refuse instead. Run add_bioguide_field.php in its own request first. */
     if (!in_array('bioguideId', $h, true)) { throw new \RuntimeException('bioguideId is not on the person layout this request sees: run add_bioguide_field.php first, separately'); }
-    $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'fullName' => 'Howard P. "Buck" McKeon', 'personAliases' => "Howard P. McKeon\nHoward P. \"Buck\" McKeon\nHoward McKeon",
+    $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'personAliases' => "Howard P. McKeon\nHoward P. \"Buck\" McKeon\nHoward McKeon",
         'occupation' => 'Congressman; first mayor of Santa Clarita', 'birthDate' => '1938', 'birthDateEdtf' => '1938', 'birthEvidence' => 'certified',
         'bioguideId' => 'M000508', 'wikidataId' => 'Q461981', 'personWikipediaUrl' => 'https://en.wikipedia.org/wiki/Buck_McKeon', 'featuredImage' => [$asset->id],
         'roles' => array_values(array_unique(array_merge($e->roles->ids(), [$CONGRESSMAN, $role->id]))),
