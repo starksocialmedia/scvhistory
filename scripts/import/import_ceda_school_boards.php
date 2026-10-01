@@ -185,7 +185,8 @@ foreach ($groups as $k => $is) {
         if ($cedaDoc) { $refused[] = "$k: stood for the council more than once and has no record"; continue; }
         $pending[$k] = true; $pid = "pending:$k";   /* council_ceda.php creates it; at apply time it exists */
     }
-    elseif (count($is) >= 2) {
+    /* RULE WITHDRAWN (Nathan, 1 October 2026): standing more than once no longer earns a person record; significance does (docs/DATA-MODEL.md, PROFILES.md). This branch never creates; a re-run links only to people who already have records. */
+    elseif (false && count($is) >= 2) {
         $printings = array_values(array_unique(array_map(fn($i) => $stood[$i][0], $is)));
         $title = $titleOf($printings);
         $pid = "new:$k"; $create[$k] = ['title' => $title, 'aliases' => array_values(array_diff($printings, [$title])), 'is' => $is];

@@ -65,6 +65,8 @@ $CEDA_CITE = fn(int $y) => "California Elections Data Archive (CEDA), Center for
 $rows = array_values(array_filter($ceda['rows'], fn($r) => $r['body'] === 'city-of-santa-clarita'));
 $byDate = []; foreach ($rows as $r) { $byDate[$r['date']][] = $r; }
 $els = Entry::find()->section('elections')->status(null)->orderBy('electionDateEdtf asc')->all();
+/* The council's elections only: the boards' share their dates (found on re-running after the school and water imports). */
+if ($schemaReady) { $els = array_values(array_filter($els, fn($e) => !$e->electionBody->ids() || in_array($CITY, $e->electionBody->ids()))); }
 $cands = []; foreach ($els as $e) { $c = Entry::find()->section('candidacies')->status(null)->relatedTo(['targetElement' => $e, 'field' => 'candidacyElection'])->all(); usort($c, fn($a, $b) => ($b->votes ?? 0) <=> ($a->votes ?? 0)); $cands[$e->id] = $c; }
 $norm = fn($s) => strtolower(trim(preg_replace('~[^A-Za-z -]~', '', \craft\helpers\StringHelper::toAscii((string)$s))));
 $sur = fn($name) => $norm(preg_replace('~.*\s~', '', trim(preg_replace(['~,?\s*\b(Jr|Sr|II|III|IV)\b\.?~', '~\([^)]*\)~'], '', (string)$name))));
@@ -176,7 +178,8 @@ foreach ($groups as $k => $cids) {
     $existing = $pIndex[$k] ?? [];
     if (count($existing) > 1) { $refused[] = "$k matches " . count($existing) . ' people'; continue; }
     $pid = $existing ? array_key_first($existing) : null;
-    if (!$pid && count($cids) >= 2) {
+    /* RULE WITHDRAWN (Nathan, 1 October 2026): standing more than once no longer earns a person record; significance does (docs/DATA-MODEL.md, PROFILES.md). This branch never creates; a re-run links only to people who already have records. */
+    if (false && !$pid && count($cids) >= 2) {
         $printings = array_values(array_unique(array_map(fn($cid) => $fullName[$cid], $cids)));
         usort($printings, fn($a, $b) => strlen($a) <=> strlen($b));
         /* The title is the first name and surname, the middle names and initials

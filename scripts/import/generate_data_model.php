@@ -396,6 +396,15 @@ foreach (Craft::$app->categories->getAllGroups() as $g) {
 }
 $lines[] = '';
 
+$lines[] = '## Who gets a person record';
+$lines[] = '';
+$lines[] = '**A person record requires significance to SCV history, not appearance in a result** (Nathan, 1 October 2026). Standing for office, even often, is persistence, not significance; the rule of 25 September that standing more than once earned a record is withdrawn.';
+$lines[] = '';
+$lines[] = '- **Keep**: held office in the archive\'s records (an officeHolding, or an election won), or is the subject of an article, photograph, document, obituary or war memorial record, or has a sourced profile, or is pointed at by a place, organization or another person.';
+$lines[] = '- **No record**: nothing but candidacies, none won. The candidacy keeps `nameAsPrinted` and its votes; the election page prints the name unlinked. Nothing is lost.';
+$lines[] = '- **Nathan decides**: the borderline, such as a candidate notable for something the archive does not yet hold, or a winner in a body with thin data.';
+$lines[] = '- The audit is `scripts/import/audit_person_significance.php`. The election imports no longer create people for repeated candidacy.';
+$lines[] = '';
 $lines[] = '## Generated images';
 $lines[] = '';
 $lines[] = '**An AI-generated image may be page decoration, clearly labelled. It may never be a record, a portrait, or a relation to the subject it depicts** (Nathan, 1 October 2026).';

@@ -155,7 +155,8 @@ foreach ($groups as $k => $is) {
     $ex = $pIndex[$k] ?? [];
     if (count($ex) > 1) { $refused[] = "$k matches " . count($ex) . ' people'; continue; }
     if ($ex) { $pid = array_key_first($ex); }
-    elseif (count($is) >= 2) {
+    /* RULE WITHDRAWN (Nathan, 1 October 2026): standing more than once no longer earns a person record; significance does (docs/DATA-MODEL.md, PROFILES.md). This branch never creates; a re-run links only to people who already have records. */
+    elseif (false && count($is) >= 2) {
         $mixed = array_values(array_filter(array_map(fn($i) => $stood[$i][0], $is), fn($n) => $n !== strtoupper($n)));
         $base = $mixed ? $mixed : array_map(fn($i) => $tc($stood[$i][0]), $is);
         usort($base, fn($a, $b) => strlen($a) <=> strlen($b));

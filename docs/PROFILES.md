@@ -4,6 +4,25 @@ How a person record gets a 2026 editorial body (`bodyAuthorship: editorial-2026`
 the rule before writing, the shape that worked, and what it costs. Written after
 the Charles Alexander Mentry pilot (#18648, applied 28 September 2026).
 
+## Who gets a person record
+
+**A person record requires significance to SCV history, not appearance in a
+result** (Nathan, 1 October 2026, correcting his own rule of 25 September that
+standing more than once earned a record; it produced about 64 people whose only
+trace was losing elections). Repeated candidacy is persistence, not significance.
+
+A person gets a record when the archive holds something about them beyond a
+result: an office held, an article, photograph, document, obituary or war
+memorial record about them, a profile with sources, or a place, organization or
+person that points at them. A losing candidate stays a name and a vote count on
+the election page, which loses nothing: the page prints the name as the ballot
+did, linked only where a record exists. Winning an election is office, and keeps
+a record; where the body's data is thin, Nathan decides.
+
+`scripts/import/audit_person_significance.php` reports every record against
+this bar (`inventory/review/person-significance.md`). The import scripts that
+created records on the old rule no longer do.
+
 ## Before writing: count the source set
 
 Nathan, 28 September 2026. Before any profile is written, count:

@@ -1,0 +1,177 @@
+# Person records against the significance rule
+
+Read only, 30 September 2026. 165 person records: KEEP 85, REMOVE 32, ASK 48. Rule: a person record requires significance to SCV history, not appearance in a result (Nathan, 1 October 2026).
+
+## REMOVE (32)
+
+- #25191 Alan Ferdman: 2 candidacies, 0 won [City Council]
+- #25163 Andy Martin: 5 candidacies, 0 won [William S. Hart Union High School District, City Council]
+- #26544 Bob Wagenaar: 3 candidacies, 0 won [William S. Hart Union High School District]
+- #25199 Brett Haddock: 2 candidacies, 0 won [City Council]
+- #25447 Chris Werthe: 2 candidacies, 0 won [William S. Hart Union High School District, City Council]
+- #25169 Dennis Conn: 4 candidacies, 0 won [City Council]
+- #25183 Diane Trautman: 3 candidacies, 0 won [City Council]
+- #25203 Douglas Fraser: 2 candidacies, 0 won [City Council]
+- #25187 Duane Harte: 2 candidacies, 0 won [City Council]
+- #25167 Ed Stevens: 3 candidacies, 0 won [City Council]
+- #25177 Gary Johnson: 2 candidacies, 0 won [City Council]
+- #25189 Henry Schultz: 3 candidacies, 0 won [City Council]
+- #25413 Jesus Henao: 2 candidacies, 0 won [Saugus Union School District]
+- #25185 John Steffen: 2 candidacies, 0 won [City Council]
+- #25165 Kenneth Dean: 8 candidacies, 0 won [City Council]
+- #25179 Larry Bird: 2 candidacies, 0 won [City Council]
+- #25173 Linda Calvert: 2 candidacies, 0 won [City Council]
+- #25159 Louis Brathwaite: 2 candidacies, 0 won [City Council]
+- #25421 Mark White: 2 candidacies, 0 won [Saugus Union School District, City Council]
+- #25197 Matthew Hargett: 2 candidacies, 0 won [City Council]
+- #25161 Mike Lyons: 2 candidacies, 0 won [City Council]
+- #25193 Paul Wieczorek: 3 candidacies, 0 won [City Council]
+- #25181 Rein Schuerger: 2 candidacies, 0 won [City Council]
+- #26595 Sage Rafferty: 2 candidacies, 0 won [Santa Clarita Valley Water, Saugus Union School District]
+- #25393 Sandra Bull: 2 candidacies, 0 won [Newhall School District, City Council]
+- #25195 Sandra Nichols: 2 candidacies, 0 won [City Council]
+- #25201 Selina Thomas: 2 candidacies, 0 won [City Council]
+- #25417 Sharlene Duzick: 2 candidacies, 0 won [Saugus Union School District]
+- #26585 Stacy Fortner: 3 candidacies, 0 won [Santa Clarita Valley Water, Castaic Lake Water Agency]
+- #25443 Steven Herskovitz: 2 candidacies, 0 won [William S. Hart Union High School District]
+- #25171 Vera Johnson: 2 candidacies, 0 won [City Council]
+- #25175 Wayne Carter: 2 candidacies, 0 won [City Council]
+
+## ASK (48)
+
+- #25449 Aakash Ahuja: 2 candidacies, 1 won [William S. Hart Union High School District, City Council]
+- #25391 Brian Walters: 2 candidacies, 1 won [Newhall School District]
+- #323 Cave Johnson Couts: unpublished body (wordpress-import-unsourced); image; dates; 6 outbound relations
+- #25409 Chris Trunkey: 2 candidacies, 1 won [Saugus Union School District]
+- #25389 Christy Smith: 3 candidacies, 2 won [Newhall School District]
+- #25411 David Barlavi: 2 candidacies, 1 won [Saugus Union School District, City Council]
+- #25439 Dennis King: 3 candidacies, 3 won [William S. Hart Union High School District]
+- #25395 Donna Robert: 2 candidacies, 1 won [William S. Hart Union High School District, Newhall School District]
+- #25403 Douglas Bryce: 4 candidacies, 2 won [Saugus Union School District]
+- #26589 Ed Colley: 2 candidacies, 1 won [Santa Clarita Valley Water, City Council]
+- #26587 Gary Martin: 2 candidacies, 2 won [Santa Clarita Valley Water]
+- #25399 Gary Murr: 2 candidacies, 1 won [Saugus Union School District]
+- #25445 Gloria Mercado-Fortine: 8 candidacies, 4 won [William S. Hart Union High School District, City Council]
+- #26549 Joe Messina: 6 candidacies, 3 won [William S. Hart Union High School District]
+- #25377 John Kunak: 2 candidacies, 2 won [Castaic Union School District]
+- #337 John Timothy Gifford: unpublished body (wordpress-import-unsourced); image; dates; 6 outbound relations
+- #329 José Antonio Aguirre: unpublished body (wordpress-import-unsourced); image; dates; 5 outbound relations
+- #325 Juan Bandini: unpublished body (wordpress-import-unsourced); image; dates; 4 outbound relations
+- #305 Juan José Francisco de Gracia ("Chico") Lopez: unpublished body (wordpress-import-unsourced); dates; 4 outbound relations
+- #25401 Judy Umeck: 4 candidacies, 3 won [Saugus Union School District]
+- #25419 Katherine Cooper: 2 candidacies, 2 won [Saugus Union School District]
+- #26593 Kathye Armitage: 2 candidacies, 2 won [Santa Clarita Valley Water]
+- #25431 Kerry Clegg: 2 candidacies, 2 won [Sulphur Springs Union School District]
+- #25415 Laura Arrowsmith: 2 candidacies, 1 won [Saugus Union School District]
+- #25379 Laura Pearson: 2 candidacies, 2 won [Castaic Union School District]
+- #25157 Linda Storli: 6 candidacies, 2 won [William S. Hart Union High School District, City Council]
+- #25423 Marilyn Sparks: 2 candidacies, 2 won [Sulphur Springs Union School District]
+- #25429 Michael Hogan: 3 candidacies, 1 won [Sulphur Springs Union School District]
+- #25387 Michael Shapiro: 2 candidacies, 2 won [Newhall School District]
+- #25373 Nora Emmons: 2 candidacies, 2 won [Castaic Union School District]
+- #25437 Patricia Hanrion: 3 candidacies, 3 won [William S. Hart Union High School District]
+- #25407 Paul de la Cerda: 2 candidacies, 2 won [Saugus Union School District]
+- #25425 Paul Strickland: 5 candidacies, 4 won [William S. Hart Union High School District, Sulphur Springs Union School District]
+- #26597 Paula Olivares: 2 candidacies, 1 won [Santa Clarita Valley Water, William S. Hart Union High School District]
+- #26591 Piotr Orzechowski: 2 candidacies, 2 won [Santa Clarita Valley Water]
+- #25433 Rochelle Weinstein: 2 candidacies, 2 won [Sulphur Springs Union School District]
+- #25383 Ron Winkler: 2 candidacies, 2 won [Newhall School District]
+- #25405 Rose Diaz: 2 candidacies, 1 won [Saugus Union School District]
+- #25397 Rose Koscielny: 3 candidacies, 3 won [Saugus Union School District]
+- #25375 Steven Sansone: 3 candidacies, 2 won [Castaic Union School District]
+- #25441 Steven Sturgeon: 6 candidacies, 5 won [William S. Hart Union High School District]
+- #25381 Susan Christopher: 2 candidacies, 1 won [Castaic Union School District]
+- #25385 Suzan Solomon: 5 candidacies, 4 won [William S. Hart Union High School District, Newhall School District]
+- #25427 Teresa Todd: 3 candidacies, 1 won [William S. Hart Union High School District, Sulphur Springs Union School District]
+- #311 Thomas O. Larkin: unpublished body (wordpress-import-unsourced); image; dates; 3 outbound relations
+- #26540 Tom Caesar: 2 candidacies, 2 won [Castaic Union School District]
+- #16411 Ward Connerly: nothing
+- #25371 Wendy Gingrich: 2 candidacies, 2 won [Castaic Union School District]
+
+## KEEP (85)
+
+- #309 Abel Stearns: 1 articles; unpublished body (wordpress-import-unsourced); image; dates; 7 outbound relations
+- #317 Andrés Pico: 1 places; 1 organizations; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 6 outbound relations
+- #291 Antonio del Valle: 2 articles; 1 places; 1 organizations; 1 groups; 1 persons; unpublished body (wordpress-import-unsourced); dates; 5 outbound relations
+- #333 Arthur Burnett Perkins: 15 articles; 2 photographs; 1 organizations; 1 collections; unpublished body (wordpress-import-unsourced); image; dates; 12 outbound relations
+- #23089 Bill Miranda: 3 office holdings; 2 candidacies, 2 won [City Council]
+- #21944 Bob Kellar: 5 office holdings; 5 candidacies, 5 won [City Council]
+- #18791 Buck McKeon: 1 office holding; 6 articles; 1 candidacy, 1 won [City Council]
+- #16380 Cameron Smyth: 2 office holdings; 6 articles; published profile (editorial-2026); image; dates; 3 outbound relations; 5 candidacies, 4 won [City Council]
+- #15808 Carl Boyer: 3 office holdings; 13 articles; 1 photographs; 3 candidacies, 3 won [City Council]
+- #15967 Carol Rock: 7 articles
+- #2532 Cephas L. Bard: 1 articles; dates
+- #18648 Charles Alexander Mentry: 13 articles; 2 photographs; 4 documents; 1 organizations; published profile (editorial-2026); image; dates; 2 outbound relations
+- #18689 Charles Barber: 11 articles
+- #16388 Charles Crocker: 6 articles
+- #315 Christopher Houston Carson: 7 articles; 1 places; 1 organizations; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 5 outbound relations
+- #16418 Connie Worden: 5 articles
+- #18616 Dan Hon: 15 articles
+- #341 Dante Acosta: 1 office holding; 3 photographs; 1 warMemorials; unpublished body (wordpress-import-unsourced); image; dates; 6 outbound relations; 1 candidacy, 1 won [City Council]
+- #2579 Darryl Manzer: 1 collections
+- #21584 Demetrius G. Scofield: 1 organizations; published profile (editorial-2026); image; dates; 2 outbound relations
+- #23081 Dennis Koontz: 1 office holding; 1 photographs; 2 candidacies, 1 won [City Council]
+- #18813 Doña Jacoba: 5 articles
+- #327 Edward Fitzgerald Beale: 9 articles; 3 places; 1 organizations; unpublished body (wordpress-import-unsourced); image; dates; 5 outbound relations
+- #313 Edwin Bryant: 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 5 outbound relations
+- #289 Father Francisco Garcés: 1 places; 1 organizations; unpublished body (wordpress-import-unsourced); image; dates; 6 outbound relations
+- #18834 Francisco Lopez: 5 articles
+- #23083 Frank Ferry: 4 office holdings; 5 candidacies, 4 won [City Council]
+- #295 Gaspar de Portolá: 1 places; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 8 outbound relations
+- #16396 George Caravalho: 6 articles
+- #18726 George Pederson: 1 office holding; 9 articles; 1 photographs; 1 candidacy, 1 won [City Council]
+- #18747 George Runner: 7 articles
+- #15985 H. Clyde Smyth: 2 office holdings; 7 articles; 1 photographs; 1 persons; published profile (editorial-2026); image; dates; 3 outbound relations; 1 candidacy, 1 won [City Council]
+- #15919 Harry Carey: 8 articles
+- #331 Henry Clay Wiley: 1 articles; 1 obituaries; 1 organizations; 1 events; unpublished body (wordpress-import-unsourced); image; dates; 7 outbound relations
+- #283 Henry Mayo Newhall: 10 articles; 1 photographs; 1 places; 2 organizations; 1 groups; published profile (legacy-leon); image; dates; 9 outbound relations
+- #319 James Wilson Marshall: 7 articles; unpublished body (wordpress-import-unsourced); image; dates; 5 outbound relations
+- #15737 Jan Heidt: 3 office holdings; 25 articles; 4 candidacies, 3 won [City Council]
+- #23091 Jason Gibbs: 1 office holding; 2 candidacies, 1 won [City Council]
+- #281 Jerry Reynolds: 27 articles; 1 collections; unpublished body (mixed); image; dates; 6 outbound relations
+- #15874 Jill Klajic: 2 office holdings; 10 articles; 3 candidacies, 2 won [City Council]
+- #16140 Jo Anne Darcy: 4 office holdings; 21 articles; 4 candidacies, 4 won [City Council]
+- #2576 John Boston: 1 collections
+- #307 John C. Frémont: 8 photographs; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 5 outbound relations
+- #18820 John Lang: 5 articles
+- #16235 John Wayne: 11 articles; 1 photographs
+- #301 Juan Bautista de Anza: 1 articles; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 4 outbound relations
+- #297 Juan Crespí: 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 7 outbound relations
+- #299 Junípero Serra: 4 articles; 6 photographs; 2 places; 2 organizations; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 5 outbound relations
+- #303 Juventino del Valle: 1 articles; 2 places; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 9 outbound relations
+- #15929 Laurene Weste: 7 office holdings; 8 articles; 8 candidacies, 7 won [City Council]
+- #23087 Laurie Ender: 1 office holding; 2 candidacies, 1 won [City Council]
+- #279 Leon Worden: 215 articles; 1 organizations; 2 collections; unpublished body (wordpress-import-unsourced); image; dates; 10 outbound relations
+- #15897 Lynne Plambeck: 9 articles; 3 candidacies, 0 won [Santa Clarita Valley Water, Castaic Lake Water Agency, City Council]
+- #21582 Maria Gutzeit: published profile (editorial-2026); image; 2 outbound relations; 4 candidacies, 1 won [Santa Clarita Valley Water, City Council]
+- #23085 Marsha McLean: 6 office holdings; 8 candidacies, 6 won [City Council]
+- #18848 Michael Freedman: 5 articles
+- #18765 Michael White: 7 articles
+- #23093 Patsy Ayala: 1 office holding; 1 candidacy, 1 won [City Council]
+- #2591 Patti Rasmussen: 24 articles; 1 collections
+- #2594 Pauline Harte: 38 articles; 1 collections
+- #287 Pedro Fages: 1 articles; 1 photographs; 1 places; 1 organizations; 2 groups; unpublished body (wordpress-import-unsourced); image; dates; 6 outbound relations
+- #18714 Phineas Banning: 10 articles
+- #18663 Randy Wicks: 12 articles; 1 photographs
+- #339 Remi Allen Nadeau: 5 articles; 1 photographs; 1 persons; unpublished body (wordpress-import-unsourced); image; dates; 4 outbound relations
+- #18869 Remi Nadeau: 2 articles; 1 photographs; published profile (editorial-2026); dates; 1 outbound relations
+- #2585 Richard Rioux: 32 articles; 1 collections
+- #343 Rodolfo Acosta: 1 groups; 1 persons; unpublished body (wordpress-import-unsourced); image; dates; 2 outbound relations
+- #15477 Ruth Newhall: 14 articles; 1 photographs
+- #20224 Sanford Lyon: 1 places; 1 events; published profile (editorial-2026); dates; 1 outbound relations
+- #335 Scott Thomas Wilk Sr.: 1 organizations; unpublished body (wordpress-import-unsourced); image; dates; 7 outbound relations
+- #2582 Sol Taylor: 1 collections
+- #16372 Ted Lamkin: 6 articles
+- #285 Tiburcio Vasquez: 1 articles; 1 documents; 1 places; image; dates; 6 outbound relations
+- #2588 Tim Whyte: 37 articles; 1 collections
+- #21946 TimBen Boydston: 2 office holdings; 6 candidacies, 1 won [City Council]
+- #18774 Tom Campbell: 7 articles
+- #18783 Tom Frew: 6 articles
+- #18702 Tom Mix: 10 articles; 2 photographs
+- #18756 Val Thomas: 7 articles
+- #16439 Vincent Gelcich: 5 articles
+- #321 William Lewis Manly: 1 articles; 1 places; 1 organizations; 1 groups; unpublished body (wordpress-import-unsourced); image; dates; 6 outbound relations
+- #16432 William Mulholland: 5 articles
+- #16356 William S. Hart: 6 articles; 5 photographs; image; 1 outbound relations
+- #20226 William Wirt Jenkins: 1 events; published profile (editorial-2026); dates; 1 outbound relations
+- #293 Ygnacio del Valle: 6 articles; 2 photographs; 4 places; 2 organizations; 1 groups; 1 persons; unpublished body (wordpress-import-unsourced); image; dates; 10 outbound relations
