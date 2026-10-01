@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-01 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-01
+- Done: Scofield's 1 MB file checked (Adobe Firefly, generated in part: not used); banner scrim from the band's own colour; person cards without "?"; Alan Ferdman's banner and profile (build_ferdman_profile.php); the person-significance audit and the corrected rule (DATA-MODEL, PROFILES), the election imports no longer creating people for repeated candidacy; NCES enrolment fetched (inventory/schools/nces-enrolment.json); Cameron and Clyde Smyth built out with Cameron's Hart High education record (build_smyth_careers.php); trustee-area boundary sources found.
+- Decisions: Alan-Ferdman.jpg is Firefly-generated in part and is not a portrait. A suffix, an initial, or one source stays as it is. Clyde's degrees and birth date come from the City's 1998 biography on record #4533; the Man and Woman of the Year page and the Education Foundation's Hall of Fame share wording and count as one source.
+- Blockers: Docker returned 500s for a time; when it came back, `ddev craft exec` started the project on its own (containers recreated, the Reggie mount applied) before Nathan was warned. Mutagen reported ok afterwards. build_smyth_profiles.php was overwritten by mistake and restored from git; the new script is build_smyth_careers.php.
+- Result: all eight pending scripts pass together in a rolled-back rehearsal, in apply order.
+- Next: Nathan on the audit's groups and a non-public candidate key; the body page; trustee boundaries from the County layer.
+
 2026-10-01
 
 - Agent: Claude Code
