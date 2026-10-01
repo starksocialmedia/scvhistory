@@ -263,6 +263,33 @@ if (is_array($rb) && !($rb['ok'] ?? true)) {
     if ($real) { $fail++; echo 'RENDERED BODIES FAIL' . PHP_EOL; }
 }
 
+/* Generated images (docs/DATA-MODEL.md): a banner is decoration, listed in
+   templates/_data/banners.json, a file in web/banners and nothing else. It fails
+   here if its file is missing or changed, if the same picture is in the
+   archive's asset store, if its page does not carry the credit, or if the
+   page's JSON-LD mentions it. Provenance not yet recorded is reported, not failed:
+   the page says "not recorded". */
+$bn = json_decode((string)file_get_contents(\Craft::getAlias('@root') . '/templates/_data/banners.json'), true) ?: [];
+$bnBad = []; $bnOpen = [];
+$assetHashes = null;
+foreach ($bn as $key => $b) {
+    if (str_starts_with($key, '_')) { continue; }
+    $f = \Craft::getAlias('@root') . '/web/banners/' . ($b['file'] ?? '');
+    if (($b['kind'] ?? '') !== 'ai-generated-illustration') { $bnBad[] = "$key: kind is not ai-generated-illustration"; continue; }
+    if (!is_file($f) || hash_file('sha256', $f) !== ($b['sha256'] ?? '')) { $bnBad[] = "$key: web/banners/{$b['file']} is missing or changed"; continue; }
+    [$sec] = explode(':', $key);
+    $rec = \craft\elements\Entry::find()->section($sec)->id($b['record']['id'] ?? 0)->one();
+    if (!$rec || $rec->title !== ($b['record']['title'] ?? null)) { $bnBad[] = "$key: the record is not {$b['record']['title']}"; continue; }
+    if (\craft\elements\Asset::find()->filename([$b['file'], basename((string)($b['receivedAs'] ?? ''))])->exists()) { $bnBad[] = "$key: an asset has the banner's file name"; }
+    $ch = curl_init($rec->url); curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 30, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0]);
+    $html = (string)curl_exec($ch); curl_close($ch);
+    if (!str_contains($html, 'AI-generated illustration. Not a photograph.')) { $bnBad[] = "$key: {$rec->url} does not carry the credit"; }
+    preg_match_all('~<script[^>]+application/ld\+json[^>]*>(.*?)</script>~s', $html, $ld);
+    if (array_filter($ld[1], fn($j) => str_contains($j, 'banners/') || str_contains($j, $b['file']))) { $bnBad[] = "$key: the banner is in the page's JSON-LD"; }
+    foreach (['tool', 'sourcePhotograph', 'generatedOn'] as $k) { if (empty($b[$k])) { $bnOpen[] = "$key $k"; } }
+}
+if ($bnBad) { $fail++; echo 'BANNERS FAIL: ' . implode('; ', $bnBad) . PHP_EOL; } else { echo 'banners: ' . count(array_filter(array_keys($bn), fn($k) => $k[0] !== '_')) . ' decoration only, credited, not in JSON-LD, not assets' . ($bnOpen ? '; provenance not yet recorded: ' . implode(', ', $bnOpen) : '') . PHP_EOL; }
+
 /* The data model has to keep up with the schema. A field added without
    regenerating docs/DATA-MODEL.md fails here, because a data model that drifts
    is consulted and believed. */

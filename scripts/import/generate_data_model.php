@@ -396,6 +396,16 @@ foreach (Craft::$app->categories->getAllGroups() as $g) {
 }
 $lines[] = '';
 
+$lines[] = '## Generated images';
+$lines[] = '';
+$lines[] = '**An AI-generated image may be page decoration, clearly labelled. It may never be a record, a portrait, or a relation to the subject it depicts** (Nathan, 1 October 2026).';
+$lines[] = '';
+$lines[] = '- **Not in the archive.** A generated image is never an asset in a volume, never a photograph or document record, and never the value of any field: not `featuredImage`, `bandImage`, `recordImages`, `photoPeople` or any relation. Everything in the archive\'s volumes is a record, and a generated image is not evidence of anything.';
+$lines[] = '- **Where it lives.** A banner is a file in `web/banners/`, listed in `templates/_data/banners.json` under the record it decorates (`persons:16356`). The registry is the only place the connection exists, so nothing in the database can join the image to the person and nothing that reads the database can emit it.';
+$lines[] = '- **What it records.** `kind` (always `ai-generated-illustration`), the file\'s SHA-256, the record and its title, the style, `tool`, `sourcePhotograph` and `generatedOn` (null until known; the page then says "not recorded", never a guess), who commissioned it, and when and as what the archive received it.';
+$lines[] = '- **On the page.** The banner is the band\'s background, not the portrait: the person\'s photograph, where there is one, moves to the sidebar as PORTRAIT with its own credit. The banner carries its credit on the image itself, "AI-generated illustration. Not a photograph.", which opens to what is recorded about how it was made. It is never in the page\'s JSON-LD and has an empty alternative text.';
+$lines[] = '- **Enforced.** `check_render.php` fails if a banner file is missing or changed, if an asset carries its file name, if its page lacks the credit, or if its page\'s JSON-LD mentions it. Missing provenance is reported, not failed.';
+$lines[] = '';
 $lines[] = '## Images as objects';
 $lines[] = '';
 $lines[] = 'Every image a page shows is emitted as a schema.org `ImageObject` in the page graph,';

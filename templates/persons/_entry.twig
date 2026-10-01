@@ -8,6 +8,24 @@
   .rec-head--left>.rec-portrait{order:-1}
   .rec-head--left>div:last-child{padding-bottom:44px}
   .rec-head--left>div:first-child{padding-bottom:0}
+  /* A banner (docs/DATA-MODEL.md, Generated images): decoration behind the band,
+     the subject drawn at the right, the text over the plain ground at the left.
+     No portrait slot over it: the photograph moves to the sidebar. */
+  .rec-band--banner{background:#F4EADA var(--banner) right center/cover no-repeat}
+  .rec-band--banner .rec-head{display:block;max-width:560px}
+  .rec-band--banner .rec-head>div{padding-bottom:44px}
+  .bn-credit{position:absolute;right:14px;bottom:12px;max-width:340px;font-size:12px;line-height:1.45;color:#2C2C2C;z-index:2}
+  .bn-credit summary{cursor:pointer;background:rgba(253,247,234,.92);border:1px solid #D9CCAE;padding:4px 9px;list-style:none;font-family:'Jost',sans-serif;letter-spacing:.04em}
+  .bn-credit summary::-webkit-details-marker{display:none}
+  .bn-more{background:#FDF7EA;border:1px solid #D9CCAE;border-top:0;padding:10px 12px}
+  .bn-more dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:8px 0 0}
+  .bn-more dt{color:#5B6472}
+  .bn-more dd{margin:0}
+  @media(max-width:800px){
+    .rec-band--banner{background:#F4EADA var(--banner) right top/auto 220px no-repeat;padding-top:200px}
+    .bn-credit{top:176px;bottom:auto;left:12px;right:12px;max-width:none}
+    .bn-credit summary{display:inline-block}
+  }
   {% endcss %}
 {% endblock %}
 
@@ -31,6 +49,12 @@
   {% if f.handle == 'bandImage' %}{% set hasBandImage = true %}{% endif %}
 {% endfor %}
 {% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
+{#- A banner is not an asset and not a field: a file in web/banners listed in
+    templates/_data/banners.json, so nothing can relate it to the person or emit
+    it as their image. -#}
+{% set BANNERS = source('_data/banners.json')|json_decode %}
+{% set banner = BANNERS['persons:' ~ entry.id] ?? null %}
+{% set banner = banner and banner.kind == 'ai-generated-illustration' and banner.record.id == entry.id ? banner : null %}
 {% set img = bandImg ?? ('featuredImage' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.featuredImage.one() ?? null : null) %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
 {% set era = entry.historicalEra.one() ?? null %}
@@ -74,10 +98,12 @@
 {% import _self as ui %}
 
 <div class="rec">
-  <section class="rec-band">
+  <section class="rec-band{{ banner ? ' rec-band--banner' }}"{% if banner %} style="--banner:url('{{ siteUrl }}banners/{{ banner.file }}')"{% endif %}>
+    {% if banner %}{% include "_partials/record/banner-credit" with { banner: banner } only %}{% endif %}
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('persons') }}">People</a> &rsaquo; <span>{{ entry.title }}</span></div>
       <div class="rec-head rec-head--left">
+        {% if not banner %}
         <div class="rec-portrait">
           {#- A portrait is drawn into a 4:5 crop a few hundred pixels wide. Where the
               file is bigger than that, the crop is worth escaping and the picture opens.
@@ -89,6 +115,7 @@
                 data-credit="{{ img.photoCredit|default('')|trim }}"
                 aria-label="Open the full picture">{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}</button>{% else %}{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}{% endif %}{% else %}<div class="ph">{{ initials|upper }}</div>{% endif %}
         </div>
+        {% endif %}
         <div>
           <div class="rec-kick"><span class="a">PEOPLE</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title }}</h1>
@@ -135,6 +162,14 @@
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
+        {#- With a banner the photograph leaves the band and stands here, as the
+            person's portrait, with its own credit. -#}
+        {% if banner and img %}
+          <div class="rec-box"><div class="rec-lab">PORTRAIT</div>
+            {{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}
+            {% if img.photoCredit|default('')|trim %}<div style="font-size:12.5px;color:#5B6472;margin-top:8px">{{ img.photoCredit }}</div>{% endif %}
+          </div>
+        {% endif %}
         {#- Public service from the officeHolding and candidacy records, not the prose. -#}
         {% include "_partials/record/offices" with { entry: entry } only %}
         {% include "_partials/record/education" with { entry: entry, as: 'person' } only %}

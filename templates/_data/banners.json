@@ -1,0 +1,40 @@
+{
+ "_rule": "An AI-generated image may be page decoration, clearly labelled. It is never a record, a portrait, or a relation to the person or thing it depicts. Banners are files in web/banners, listed here and nowhere else: not assets, not in any volume, not in any field, never in JSON-LD. check_render.php enforces it (docs/DATA-MODEL.md, Generated images).",
+ "_fields": "file: the name in web/banners. sha256: of that file. record: section and id of the page it decorates, with the title as a check. kind: always ai-generated-illustration. tool, sourcePhotograph, generatedOn: how it was made; null means not yet recorded, and the page says so. commissionedBy (shown), commissionedByPerson (not shown), received, receivedAs: how the archive came to have it.",
+ "persons:16356": {
+  "file": "william-s-hart.jpg",
+  "sha256": "fe2bed1ec24c0aec552fd44092f865699d3786ab5d8378c562d79bc859519a40",
+  "record": {
+   "section": "persons",
+   "id": 16356,
+   "title": "William S. Hart"
+  },
+  "kind": "ai-generated-illustration",
+  "style": "engraved-style illustration on a map ground",
+  "tool": null,
+  "sourcePhotograph": null,
+  "generatedOn": null,
+  "commissionedBy": "SCVHistory.com",
+  "received": "2026-09-30",
+  "receivedAs": "inventory/incoming/hart.jpg",
+  "commissionedByPerson": "Nathan Imhoff"
+ },
+ "persons:21582": {
+  "file": "maria-gutzeit.jpg",
+  "sha256": "0fd913b83c559f92ce2085f1c551d0690d29347cf9e40df28c1f865a9c451716",
+  "record": {
+   "section": "persons",
+   "id": 21582,
+   "title": "Maria Gutzeit"
+  },
+  "kind": "ai-generated-illustration",
+  "style": "engraved-style illustration on a map ground",
+  "tool": null,
+  "sourcePhotograph": null,
+  "generatedOn": null,
+  "commissionedBy": "SCVHistory.com",
+  "received": "2026-09-30",
+  "receivedAs": "inventory/incoming/Gutziet.jpg",
+  "commissionedByPerson": "Nathan Imhoff"
+ }
+}

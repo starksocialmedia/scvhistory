@@ -1,0 +1,20 @@
+{#
+  The credit that sits on every banner (docs/DATA-MODEL.md, Generated images).
+  It is on the image itself, not under it, so it cannot be scrolled past or
+  separated from the picture by a screenshot of the band. What is not recorded
+  is said to be not recorded.
+
+    banner   one entry from templates/_data/banners.json
+#}
+<details class="bn-credit">
+  <summary>AI-generated illustration. Not a photograph.</summary>
+  <div class="bn-more">
+    An illustration made for this page as decoration. It is not a photograph, not a portrait, and not a record in the archive.
+    <dl>
+      <dt>Made with</dt><dd>{{ banner.tool ?: 'not recorded' }}</dd>
+      <dt>From</dt><dd>{{ banner.sourcePhotograph ?: 'not recorded' }}</dd>
+      <dt>Made</dt><dd>{{ banner.generatedOn ?: 'not recorded' }}</dd>
+      <dt>For</dt><dd>{{ banner.commissionedBy }}</dd>
+    </dl>
+  </div>
+</details>
