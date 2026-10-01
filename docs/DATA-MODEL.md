@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 30 September 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 1 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -967,9 +967,13 @@ local unless the note says otherwise.
 - **Nathan decides**: the borderline, such as a candidate notable for something the archive does not yet hold, or a winner in a body with thin data.
 - The audit is `scripts/import/audit_person_significance.php`. The election imports no longer create people for repeated candidacy.
 
-## Generated images
+## Generated and edited images
 
-**An AI-generated image may be page decoration, clearly labelled. It may never be a record, a portrait, or a relation to the subject it depicts** (Nathan, 1 October 2026).
+**The archivist decides. An image enters the archive on Nathan Imhoff's word, and what he says about it is recorded. The content-credentials scanner reports; it never blocks** (Nathan, 1 October 2026, correcting the rule of the same morning, which had treated every content credential as disqualifying).
+
+- **Edited photographs.** A crop, an upscale, a removed bystander, a cleaned background or a cropped edge filled in is ordinary archival practice and has been since before digital. Provenance covers what was done, not whether software was involved. Adobe writes a content credential (C2PA) for any Firefly-assisted edit, including one that invents nothing, and labels an upscale as algorithmic media; a credential is a record of an edit, kept as a note.
+- **What an edited asset records.** The original: `enhancedFrom` when the archive holds it, and its source in `source` as Nathan gives it. Where his word is the only evidence of the source, `source` says so ("per Nathan Imhoff"), which is a different thing from established provenance; where he has given none, it reads "Source per Nathan Imhoff." What was changed, in `enhancementMethod`. Who, `enhancedBy`. When, `enhancedDate`. And `contentCredentials`: the manifest's address and each step it records. Craft re-encodes the file on import and the stored copy loses its manifest, so this field is the only place the credential survives. `scripts/import/import_edited_portraits.php` is the pattern.
+- **Generated banners.** The engraved banners are illustrations made for the site, not photographs of anything. They are page decoration, labelled on the image, and are not archive records, portraits or relations to the person they depict. The rest of this section is about those.
 
 - **Not in the archive.** A generated image is never an asset in a volume, never a photograph or document record, and never the value of any field: not `featuredImage`, `bandImage`, `recordImages`, `photoPeople` or any relation. Everything in the archive's volumes is a record, and a generated image is not evidence of anything.
 - **Where it lives.** A banner is a file in `web/banners/`, listed in `templates/_data/banners.json` under the record it decorates (`persons:16356`). The registry is the only place the connection exists, so nothing in the database can join the image to the person and nothing that reads the database can emit it.
@@ -1022,10 +1026,11 @@ import: the Hart portrait arrived a progressive JPEG and is stored a baseline on
 different bytes. A checksum taken from a stored asset therefore proves nothing about the
 original, and any embedded metadata, a content-credentials (C2PA) manifest included, is
 gone from the stored copy. So an import script records the file as received, its name
-and SHA-256, in `source`, and refuses any other file; and the check for generated images,
+and SHA-256, in `source`, and refuses any other file; and the content-credentials check,
 `scan_content_credentials.py`, reads the originals (the incoming file, the mirror, the
-WordPress upload), never `web/uploads/`. A generated image does not enter the archive,
-and `provenanceKind` has no value for one.
+WordPress upload), never `web/uploads/`. It runs on everything and reports what each
+credential records; the report goes into `contentCredentials` as a note. It never blocks
+an import: whether an image enters is the archivist's decision.
 
 `acquiredDate` is the calendar date in the site's timezone, America/Los_Angeles, the one
 Craft records `dateCreated` in. A file received in the evening in California is already

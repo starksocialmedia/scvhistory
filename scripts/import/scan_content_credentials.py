@@ -61,15 +61,29 @@ def read_manifest(url):
         m = urllib.request.urlopen(req, timeout=30).read()
     except Exception as e:
         return f'could not fetch {url}: {e}'
-    if b'compositeWithTrainedAlgorithmicMedia' in m:
-        kind = 'GENERATED IN PART (compositeWithTrainedAlgorithmicMedia)'
+    # Read the chain, not a single label (Nathan, 1 October 2026). Adobe writes a
+    # credential for any Firefly-assisted edit and labels an upscale
+    # trainedAlgorithmicMedia, so the label alone cannot tell a generated image
+    # from a cleaned photograph. An ingredient the first step opened is an
+    # original; a chain that starts with c2pa.created and no ingredient is not.
+    steps = []
+    for act in re.finditer(rb'action.{0,3}(c2pa\.[a-z_]+).{0,8}when.{0,3}(\d{4}-\d\d-\d\dT\d\d:\d\d)', m, re.S):
+        tail = m[act.end():act.end() + 700]
+        name = re.search(rb'dname.([A-Z][A-Za-z0-9 _]{3,40}?)j?parameters', tail)
+        op = re.search(rb'operation.(text_to_image|creative-upsampler|generative_[a-z]+|[a-z_-]{4,40}?)(?=[a-z]?(?:com|digital|\\x0a|x\\b|$))', tail)
+        what = (op.group(1).decode() if op else (name.group(1).decode().strip() if name else ''))
+        if act.group(1) == b'c2pa.opened':
+            continue
+        steps.append(f"{act.group(2).decode().replace('T', ' ')} {act.group(1).decode()[5:]}" + (f' ({what})' if what else ''))
+    has_original = bool(re.search(rb'relationship.{0,3}(parentOf|inputTo)', m))
+    if has_original:
+        kind = 'EDITED from an original (' + ('generative steps present' if b'TrainedAlgorithmicMedia' in m or b'trainedAlgorithmicMedia' in m else 'no generative step') + ')'
     elif b'trainedAlgorithmicMedia' in m:
-        kind = 'GENERATED (trainedAlgorithmicMedia)'
+        kind = 'GENERATED: no original ingredient (a report; the archivist decides)'
     else:
         kind = 'no generative source type declared'
     agents = sorted({a.decode('latin-1') for a in re.findall(rb'(Adobe Firefly|Adobe Photoshop|Lightroom|DALL-E|OpenAI|Midjourney)', m)})
-    ops = sorted({o.decode('latin-1') for o in re.findall(rb'text_to_image|generative_fill|generative_expand', m)})
-    return kind + (', by ' + ', '.join(agents) if agents else '') + (', ' + ', '.join(ops) if ops else '')
+    return kind + (', by ' + ', '.join(agents) if agents else '') + ('; steps: ' + ' > '.join(dict.fromkeys(steps)) if steps else '')
 
 
 def scan(path):
