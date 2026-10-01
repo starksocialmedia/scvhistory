@@ -42,6 +42,33 @@
 {%- set H = TOP + rows|length * RH + 8 -%}
 {%- set span = NOW + 0.4 - Y0 -%}
 
+{#- The council today (Nathan, 1 October 2026): the sitting members first, with their portraits, before the history. A member is
+    sitting when a term has no end date. Someone the archive cannot yet place in a current term is not shown here; the paragraph below
+    says how many of the seats are held. #}
+{% import "_partials/record/portrait" as portrait %}
+{%- set sitting = terms|filter(h => not h.termEnd)|sort((a, b) => a.termStartEdtf <=> b.termStartEdtf) -%}
+{% if sitting|length %}
+<h2 class="rec-h2" id="council-today">The council today</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;margin:0 0 34px">
+  {% for h in sitting %}
+    {% set sp = h.holdingPerson.one() %}
+    {% if sp %}
+      {% set img = 'featuredImage' in sp.fieldLayout.customFields|map(f => f.handle) ? sp.featuredImage.one() : null %}
+      {% set firstTerm = craft.entries().section('officeHoldings').relatedTo(['and', { targetElement: sp, field: 'holdingPerson' }, { targetElement: body, field: 'holdingBody' }]).orderBy('termStartEdtf asc').one() %}
+      {% set dist = h.holdingDistrict is defined ? h.holdingDistrict.one() : null %}
+      <a href="{{ sp.url }}" style="display:block;background:#fff;border:1px solid #E2E4E8;text-decoration:none;color:#17254C">
+        <div style="aspect-ratio:4/5;background:#FDF7EA;overflow:hidden;display:flex;align-items:center;justify-content:center">
+          {% if img %}{{ portrait.img(img, 0.8, sp.title, true) }}{% else %}<span style="font-family:'Playfair Display',serif;font-size:40px;color:#C4A031">{{ sp.title|split(' ')|map(w => w|slice(0,1))|join('')|slice(0,2) }}</span>{% endif %}
+        </div>
+        <div style="padding:12px 14px 14px">
+          <div style="font-family:'Playfair Display',serif;font-size:18px;line-height:1.2">{{ sp.title }}</div>
+          <div style="font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.1em;color:#7A5C1B;margin-top:6px;text-transform:uppercase">{{ dist ? dist.title ~ ' · ' : '' }}on the council since {{ (firstTerm ?? h).termStartEdtf|slice(0,4) }}</div>
+        </div>
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
 <h2 class="rec-h2" id="council">The council, {{ Y0 }} to now</h2>
 <p style="font-size:17px;line-height:1.65;color:#4A5260;margin:0 0 20px;max-width:720px">
   {{ rows|length }} people have held a seat on the Santa Clarita City Council since the first council took office on 15 December 1987{% set appointed = terms|filter(h => h.selectionMethod.value == 'appointed')|length %}{% if appointed %}, {{ appointed == 1 ? 'one' : appointed }} of those terms by appointment{% endif %}.
