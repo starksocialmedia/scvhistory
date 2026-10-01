@@ -55,9 +55,13 @@
 {%- set notes = [] -%}
 {%- if rows|length -%}
   {%- for r in rows -%}
-    {%- set rs = (r.source ?? '')|trim ?: 'editor' -%}
+    {#- Anything but "author" is the editor's: rows written since 29 September carry
+        "editorial-2026", which matched nothing here, so 652 notes on profiles,
+        elections and holdings went unrendered and the page said its markers had no
+        notes (found on Cameron Smyth's page, 1 October 2026). -#}
+    {%- set rs = (r.source ?? '')|trim == 'author' ? 'author' : 'editor' -%}
     {%- if rs == want -%}
-      {%- set notes = notes|merge([{ n: (r.number ?? '')|trim ?: loop.index, t: (r.note ?? '')|trim }]) -%}
+      {%- set notes = notes|merge([{ n: (r.number ?? '')|trim ?: loop.index, t: (r.note ?? '')|trim, archive: (r.source ?? '')|trim == 'editorial-2026' }]) -%}
     {%- endif -%}
   {%- endfor -%}
 {%- elseif want == 'editor' and prose|lower|split('[mfn')|length > 1 -%}
@@ -109,7 +113,8 @@
     {%- if want != 'author' %}<div class="rule"></div>{% endif %}
     <div class="lab">{{ want == 'author' ? 'AUTHOR&rsquo;S NOTES' : 'EDITOR&rsquo;S NOTES' }}</div>
     {%- if want != 'author' %}
-    <div class="by">Notes by {{ editor is defined and editor ? editor.title : 'Leon Worden' }}, SCVHistory.com</div>
+    {#- Notes the archive wrote in 2026 ("editorial-2026") are the archive's, not Leon Worden's. -#}
+    <div class="by">{% if editor is defined and editor %}Notes by {{ editor.title }}, SCVHistory.com{% elseif notes|filter(x => x.archive)|length == notes|length %}Notes by SCVHistory.com, 2026{% else %}Notes by Leon Worden, SCVHistory.com{% endif %}</div>
     {%- endif %}
     <ol>
       {% for note in notes %}

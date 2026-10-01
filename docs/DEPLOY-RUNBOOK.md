@@ -470,9 +470,10 @@ that mounts it.
 **"file exists" with the drive connected: restart Docker.** If DDEV was started
 while the drive was absent, Docker Desktop can keep a stale
 `/host_mnt/Volumes/Reggie`. Plugging the drive back in and restarting DDEV then
-fails with "file exists", even though the hook finds the drive. Restarting
-Docker Desktop clears it; then start DDEV and wait for Mutagen to report ok
-(Nathan, 1 October 2026).
+fails with "file exists", even though the hook finds the drive. To clear it:
+quit Docker Desktop, click "Stop processes" on the dialog about lingering
+processes, and start Docker again; then start DDEV and wait for Mutagen to
+report ok (Nathan, 1 October 2026).
 
 **`ddev craft` starts a stopped project.** Any `ddev craft exec` against a
 stopped project starts it first, recreating the containers and applying the

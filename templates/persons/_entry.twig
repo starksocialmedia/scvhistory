@@ -168,9 +168,7 @@
       </article>
 
       <aside class="rec-side">
-        {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
-        {% include "_partials/record/source-link" with { el: entry } only %}
-        {#- With a banner the photograph leaves the band and stands here, as the
+        {#- With a banner the photograph leaves the band and stands here, at the top of the sidebar beside the opening paragraph (Nathan, 1 October 2026), as the
             person's portrait, with its own credit. -#}
         {% if banner and img %}
           <div class="rec-box"><div class="rec-lab">PORTRAIT</div>
@@ -178,6 +176,8 @@
             {% if img.photoCredit|default('')|trim %}<div style="font-size:12.5px;color:#5B6472;margin-top:8px">{{ img.photoCredit }}</div>{% endif %}
           </div>
         {% endif %}
+        {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
         {#- Public service from the officeHolding and candidacy records, not the prose. -#}
         {% include "_partials/record/offices" with { entry: entry } only %}
         {% include "_partials/record/education" with { entry: entry, as: 'person' } only %}
