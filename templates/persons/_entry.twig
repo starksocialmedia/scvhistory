@@ -77,6 +77,10 @@
 
 {% set written = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'writtenBy' }).orderBy('title asc').all() %}
 {% set about = craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'subjectPerson' }).orderBy('title asc').all() %}
+{#- Documents about the person and photographs of them. Neither was listed here before 1 October 2026, so a source document or a photograph
+    tied to a person reached the page only through a footnote. #}
+{% set aboutDocs = craft.entries().section('documents').relatedTo({ targetElement: entry, field: 'subjectPerson' }).orderBy('title asc').all() %}
+{% set pictured = craft.entries().section('photographs').relatedTo({ targetElement: entry, field: 'photoPeople' }).orderBy('title asc').all() %}
 {% set livedPlaces = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placePeople' }).orderBy('title asc').all() %}
 {% set obits = entry.personObituaries.all() %}
 {% set orgs = entry.personOrganizations.all() %}
@@ -211,6 +215,18 @@
         {% if about|length %}
           <div class="rec-box"><div class="rec-lab">ARTICLES ABOUT</div>
             <div class="rec-links">{% for a in about %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% if aboutDocs|length %}
+          <div class="rec-box"><div class="rec-lab">DOCUMENTS ABOUT</div>
+            <div class="rec-links">{% for a in aboutDocs %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% if pictured|length %}
+          <div class="rec-box"><div class="rec-lab">PHOTOGRAPHS</div>
+            <div class="rec-links">{% for a in pictured %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}</div>
           </div>
         {% endif %}
 
