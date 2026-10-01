@@ -91,9 +91,19 @@ foreach ($CLAIMS as [$who, $y, $body, $won, $pl, $of]) {
     $hit = array_filter($rows[$who] ?? [], fn($r) => $r['y'] === $y && str_contains($r['body'], $body) && $r['won'] === $won && ($pl === null || ($r['place'] === $pl && $r['of'] === $of)));
     if (!$hit) { $bad[] = "$who $y $body " . ($won ? 'won' : 'lost') . ($pl ? " $pl of $of" : ''); }
 }
-$multi = array_filter($rows, fn($r) => count(array_unique(array_column($r, 'body'))) > 1);
+/* People who stood for more than one body, counted by candidate key where there is
+   one (a person removed under the significance rule keeps the key on their
+   candidacies), and by person record otherwise. */
+$byKey = [];
+$keyed = (bool)Craft::$app->getFields()->getFieldByHandle('candidateKey');
+foreach (Entry::find()->section('candidacies')->all() as $c) {
+    $pp = $c->candidacyPerson->one(); $e = $c->candidacyElection->one(); if (!$e) { continue; }
+    $k = ($keyed ? trim((string)$c->candidateKey) : '') ?: ($pp ? 'person:' . $pp->slug : ''); if ($k === '') { continue; }
+    $b = $e->electionBody->one(); $byKey[$k][] = !$b || $b->id == 394 ? 'Council' : $b->title;
+}
+$multi = array_filter($byKey, fn($bs) => count(array_unique($bs)) > 1);
 $members = []; foreach (Entry::find()->section('officeHoldings')->relatedTo(['targetElement' => 394, 'field' => 'holdingBody'])->all() as $h) { $members[$h->holdingPerson->one()->title] = 1; }
-$crossed = array_filter(array_keys($members), fn($t) => isset($multi[$t]));
+$crossed = array_filter(array_keys($members), fn($t) => ($pp = Entry::find()->section('persons')->title($t)->one()) && isset($multi['person:' . $pp->slug]));
 if (count($multi) !== 19) { $bad[] = 'people on more than one body: ' . count($multi) . ', the text says nineteen (with Bill and William Cooper one person: run merge_cooper.php first)'; }
 if (count($members) !== 19) { $bad[] = 'council members: ' . count($members) . ', the text says nineteen'; }
 if ($crossed) { $bad[] = 'council members who stood for a board: ' . implode(', ', $crossed); }
