@@ -1,0 +1,43 @@
+{#
+  A school's facts and its own description, kept apart because they are two
+  kinds of claim (Nathan, 1 October 2026; add_school_fields.php).
+
+    entry   the school or district
+
+  ENROLMENT is a fact with a source and a year: the latest figure, the run of
+  years drawn as bars, and where the figures come from. AS THE SCHOOL DESCRIBES
+  ITSELF is branding, attributed and dated, never presented as a finding. Each
+  box is left out when its field is absent or empty: the fields arrive with
+  add_school_fields.php and are read off the layout, never with `is defined`.
+#}
+{%- set sh = entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : [] -%}
+{%- set enrol = 'enrolment' in sh ? (entry.enrolment ?? [])|filter(r => (r.count ?? '') ~ '' != '')|sort((a, b) => (a.fallYear ?? 0) <=> (b.fallYear ?? 0)) : [] -%}
+{% if enrol|length %}
+  {% set last = enrol|last %}
+  {% set top = max(enrol|map(r => r.count)) %}
+  <div class="rec-box"><div class="rec-lab">ENROLMENT</div>
+    <div style="font-family:'Playfair Display',serif;font-size:30px;color:#17254C;line-height:1">{{ last.count|number_format }}</div>
+    <div style="font-size:13px;color:#5B6472;margin:6px 0 12px">pupils, {{ last.schoolYear }}</div>
+    {% if enrol|length > 2 %}
+      {% set W = 260 %}{% set H = 54 %}{% set bw = W / enrol|length %}
+      <svg viewBox="0 0 {{ W }} {{ H + 14 }}" style="display:block;width:100%;height:auto" role="img" aria-label="Enrolment by school year, {{ (enrol|first).schoolYear }} to {{ last.schoolYear }}">
+        {% for r in enrol %}{% set h = top ? r.count / top * H : 0 %}<rect x="{{ loop.index0 * bw + 0.5 }}" y="{{ H - h }}" width="{{ max(bw - 1, 1) }}" height="{{ h }}" fill="{{ loop.last ? '#17254C' : '#C4A031' }}"><title>{{ r.schoolYear }}: {{ r.count|number_format }}</title></rect>{% endfor %}
+        <text x="0" y="{{ H + 12 }}" font-size="10" fill="#8A93A3" font-family="Jost, sans-serif">{{ (enrol|first).fallYear }}</text>
+        <text x="{{ W }}" y="{{ H + 12 }}" font-size="10" fill="#8A93A3" text-anchor="end" font-family="Jost, sans-serif">{{ last.fallYear }}</text>
+      </svg>
+    {% endif %}
+    <p style="font-size:12.5px;line-height:1.5;color:#5B6472;margin:10px 0 0">{{ (enrol|last).source }}. Each year is the school year beginning that fall.</p>
+  </div>
+{% endif %}
+{%- set ident = 'schoolIdentity' in sh ? (entry.schoolIdentity ?? [])|filter(r => (r.value ?? '')|trim) : [] -%}
+{% if ident|length %}
+  <div class="rec-box"><div class="rec-lab">AS THE SCHOOL DESCRIBES ITSELF</div>
+    <div class="rec-rows">
+      {% for r in ident %}
+        <div class="k">{{ (r.kind ?? '')|upper }}</div>
+        <div class="v">{{ r.value }}{% if r.from or r.to %} <span style="color:#5B6472;font-size:13px">({{ r.from ?: '?' }} to {{ r.to ?: 'now' }})</span>{% endif %}<div style="color:#5B6472;font-size:12.5px">{{ r.statedBy ? 'as stated by ' ~ r.statedBy : '' }}{{ r.readOn ? ', read ' ~ r.readOn : '' }}</div></div>
+      {% endfor %}
+    </div>
+    <p style="font-size:12.5px;line-height:1.5;color:#5B6472;margin:10px 0 0">The school's own description of itself, not a finding of the archive.</p>
+  </div>
+{% endif %}

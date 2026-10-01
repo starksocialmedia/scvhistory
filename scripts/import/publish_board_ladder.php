@@ -4,6 +4,9 @@
  * record, with the three blind spots in the body rather than as a note. The
  * caveats are part of the finding").
  *
+ * Runs after merge_cooper.php: Bill and William Cooper as one person make
+ * nineteen people on more than one body.
+ *
  * Every figure in the text is checked against the archive's own records before
  * anything is written: each named result (the year, the body, won or lost, the
  * place and the field), the count of people on more than one body, the count of
@@ -31,7 +34,7 @@ $fn = fn(array $notes): array => array_map(fn($i, $n) => ['number' => (string)($
 $BODY = <<<TXT
 The usual story of local politics is a ladder: a school board seat first, then the city council. In the Santa Clarita Valley the archive's records show that ladder hardly used, and never climbed.
 
-The archive holds every Santa Clarita City Council election since 1987, every contested school board election in the valley's five school districts since 1995, and the water board elections since 2016.[1][2] Eighteen people appear as candidates for more than one of those bodies. None of the nineteen people who have sat on the council is among them.
+The archive holds every Santa Clarita City Council election since 1987, every contested school board election in the valley's five school districts since 1995, and the water board elections since 2016.[1][2] Nineteen people appear as candidates for more than one of those bodies. None of the people who have sat on the council, nineteen in all, is among them.
 
 Sitting board members who ran for the council lost. Gloria Mercado-Fortine had been on the Hart district board since 2003 when she stood for the council in 2014; she came fifth of thirteen. David Barlavi, elected to the Saugus Union board in 2018, stood for the council in 2022 and came seventh of nine. Maria Gutzeit stood for the council in 2008 and 2014, fifth of five and seventh of thirteen, while serving on the board of the Newhall County Water District, as her own record sets out.[3]
 
@@ -84,10 +87,10 @@ foreach ($CLAIMS as [$who, $y, $body, $won, $pl, $of]) {
 $multi = array_filter($rows, fn($r) => count(array_unique(array_column($r, 'body'))) > 1);
 $members = []; foreach (Entry::find()->section('officeHoldings')->relatedTo(['targetElement' => 394, 'field' => 'holdingBody'])->all() as $h) { $members[$h->holdingPerson->one()->title] = 1; }
 $crossed = array_filter(array_keys($members), fn($t) => isset($multi[$t]));
-if (count($multi) !== 18) { $bad[] = 'people on more than one body: ' . count($multi) . ', the text says eighteen'; }
+if (count($multi) !== 19) { $bad[] = 'people on more than one body: ' . count($multi) . ', the text says nineteen (with Bill and William Cooper one person: run merge_cooper.php first)'; }
 if (count($members) !== 19) { $bad[] = 'council members: ' . count($members) . ', the text says nineteen'; }
 if ($crossed) { $bad[] = 'council members who stood for a board: ' . implode(', ', $crossed); }
-echo 'FIGURES CHECKED: ' . count($CLAIMS) . ' results, 18 on more than one body, 19 council members, none crossing' . ($bad ? PHP_EOL . 'DO NOT MATCH: ' . implode(' | ', $bad) : ', all match') . PHP_EOL;
+echo 'FIGURES CHECKED: ' . count($CLAIMS) . ' results, 19 on more than one body, 19 council members, none crossing' . ($bad ? PHP_EOL . 'DO NOT MATCH: ' . implode(' | ', $bad) : ', all match') . PHP_EOL;
 
 /* ------------------------------------------------ relations */
 $SUBJECTS = ['Gloria Mercado-Fortine', 'David Barlavi', 'Maria Gutzeit', 'Linda Storli', 'Aakash Ahuja', 'Ed Colley', 'Paul Strickland', 'Suzan Solomon', 'Teresa Todd', 'Paula Olivares'];
@@ -110,7 +113,7 @@ $a->setFieldValues(['subheadline' => 'Candidates for the city council, the schoo
     'publishedBy' => [378], 'subjectPerson' => array_values($pids), 'subjectOrganization' => array_values($orgs)]);
 if (!$elements->saveElement($a)) { throw new \RuntimeException(json_encode($a->getFirstErrors())); }
 $r = Entry::find()->section('articles')->title($TITLE)->one();
-$ok = $r && str_contains((string)$r->body, 'Eighteen people') && count($r->subjectPerson->ids()) === count($SUBJECTS);
+$ok = $r && str_contains((string)$r->body, 'Nineteen people') && count($r->subjectPerson->ids()) === count($SUBJECTS);
 echo 'READ-BACK ' . ($ok ? 'OK: ' . $r->url : 'SHORT') . PHP_EOL;
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
 $applyLog('publish_board_ladder.php', 1, $ok ? 'verified' : 'SHORT', 'the board-ladder article');

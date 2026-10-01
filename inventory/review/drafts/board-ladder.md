@@ -10,7 +10,7 @@ ladder hardly being used, and not being climbed.
 
 The archive now holds every Santa Clarita City Council election since 1987,
 every contested school board election in the valley's five districts since
-1995, and the water board elections since 2016. Eighteen people appear as
+1995, and the water board elections since 2016. Nineteen people appear as
 candidates for more than one of those bodies. None of the nineteen people who
 have sat on the council is among them.
 

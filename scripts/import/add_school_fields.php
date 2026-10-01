@@ -53,7 +53,7 @@ $NEW = [
         'col6' => ['heading' => 'Source', 'handle' => 'source', 'width' => '', 'type' => 'singleline'],
         'col7' => ['heading' => 'Read on', 'handle' => 'readOn', 'width' => '', 'type' => 'singleline'],
     ], 'Add a description'],
-    'foundedEvidence' => ['Evidence for the founding date', 'dropdown', 'How the founding date is known, on the archive\'s evidence scale.', $EVIDENCE],
+    'foundedEvidence' => ['Evidence for the founding date', 'dropdown', 'How the founding date is known, on the archive\'s evidence scale.', $EVIDENCE, ''],
 ];
 $inLayout = array_map(fn($f) => $f->handle, $type->getFieldLayout()->getCustomFields());
 $todo = 0;

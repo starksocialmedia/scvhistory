@@ -73,7 +73,7 @@
           {% if F.orgAliases %}<div class="rec-sub">Also known as {{ F.orgAliases }}</div>{% endif %}
           {% if F.dateFounded or F.orgAddress %}
             <div class="rec-facts">
-              {% if F.dateFounded %}<div><div class="l">FOUNDED</div><div class="v">{{ F.dateFounded }}</div></div>{% endif %}
+              {% if F.dateFounded %}<div><div class="l">FOUNDED</div><div class="v">{{ F.dateFounded }}{% if 'foundedEvidence' in orgHandles and entry.foundedEvidence.value in ['uncited', 'derived'] %} <span style="font-size:12px;color:#5B6472">({{ entry.foundedEvidence.value == 'uncited' ? 'not yet sourced' : 'derived' }})</span>{% endif %}</div></div>{% endif %}
               {% if F.orgAddress %}<div><div class="l">ADDRESS</div><div class="v">{{ F.orgAddress }}</div></div>{% endif %}
             </div>
           {% endif %}
@@ -117,6 +117,7 @@
         {% include "_partials/record/cite" with { entry: entry, label: 'Organizations', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
         {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/education" with { entry: entry, as: 'school' } only %}{% endif %}
+        {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/school-facts" with { entry: entry } only %}{% endif %}
         {% if gradeSpan %}
           <div class="rec-box"><div class="rec-lab">{{ isDistrict ? 'SCHOOL DISTRICT' : 'SCHOOL' }}</div>
             <div class="rec-rows"><div class="k">GRADES</div><div class="v">{{ gradeSpan }}</div>{% if isDistrict %}<div class="k">ALL</div><div class="v"><a href="{{ url('schools') }}">Schools of the valley</a></div>{% endif %}</div>

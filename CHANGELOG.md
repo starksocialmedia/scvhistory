@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-01
+
+- Agent: Claude Code
+- Date: 2026-10-01
+- Done: banners as decoration outside the archive (web/banners, templates/_data/banners.json, credit on the image, the real portrait to the sidebar, check_render guard, the Generated images rule in DATA-MODEL); six applied. merge_cooper.php (and the 2022 Division 1 result to roster). add_school_fields.php (enrolment, schoolIdentity, foundedEvidence), fetch_nces_enrolment.py, import_nces_enrolment.php and the school-facts box. publish_board_ladder.php (the article, every figure checked). build_stearns_profile.php (the Santa Cruz Sentinel document and a sourced profile). build_ahuja_profile.php (public-life profile, two citations each, the Hart board page, School Board Member role and office).
+- Decisions: a banner is never an asset or a field, so no relation or JSON-LD can reach it. Where the primary source and the secondary disagree, the primary wins (Stearns's gold: $344.75, not the "reputed" $35,000). Campaign-only claims are left out of a living person's profile. A school's mascot and colours are attributed, not graded.
+- Blockers: the NCES portal rate-limited this machine (Cloudflare 1015); the fetch now asks for one summary per record and retries. Banner provenance (tool, source photograph, date) is not recorded in the files and is Nathan's to supply.
+- Result: the rolled-back tests caught two faults before any apply: the school fields script's dropdown entry was one element short, and the article's count moves from 18 to 19 once the Coopers are one person, so the merge must run first.
+- Next: NCES enrolment when the portal answers; trustee area boundaries; the body page proposal.
+
 2026-09-30
 
 - Agent: Claude Code
