@@ -128,3 +128,6 @@
 2026-09-29 21:17:40 PDT	add_election_body.php	scvhistory-web	5 rows	verified	electionBody and electionDistrict; council-district and water-division; the title format
 2026-09-29 21:17:49 PDT	council_ceda.php	scvhistory-web	97 rows	verified	council read against CEDA; 2020-2024 to roster; 2014 names; repeat candidates; council districts 1 and 3
 2026-09-29 21:18:08 PDT	import_ceda_school_boards.php	scvhistory-web	344 rows	verified	five school boards 1995-2024 from CEDA; 25 trustee areas; SCV Water divisions
+2026-09-30 20:09:28 PDT	merge_held_names.php	scvhistory-web	5 rows	verified	Dean, Caesar, Wagenaar, Messina, Mercado-Fortine: one person each
+2026-09-30 20:09:30 PDT	retitle_hart_high.php	scvhistory-web	1 rows	verified	William S. Hart High School -> Hart High School
+2026-09-30 20:09:37 PDT	import_water_boards.php	scvhistory-web	52 rows	verified	CLWA 2016 and SCV Water 2020-2024 from the County's returns
