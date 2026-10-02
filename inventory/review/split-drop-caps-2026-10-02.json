@@ -1,0 +1,590 @@
+{
+ "_about": "Split drop caps in [lines] bodies: a lone capital, a blank line, then a [lines] block whose first word lost that capital. Decided 2 October 2026 for fix_split_drop_caps.php: join, keep a space, drop a duplicated letter, or hold.",
+ "cases": [
+  {
+   "id": 15434,
+   "field": "body",
+   "letter": "I",
+   "next": "f",
+   "join": true,
+   "why": "single-letter continuation: If",
+   "action": "join"
+  },
+  {
+   "id": 15430,
+   "field": "body",
+   "letter": "D",
+   "next": "onn",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15426,
+   "field": "body",
+   "letter": "E",
+   "next": "lizabeth",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15420,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15416,
+   "field": "body",
+   "letter": "H",
+   "next": "e",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15406,
+   "field": "body",
+   "letter": "S",
+   "next": "ince",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15402,
+   "field": "body",
+   "letter": "N",
+   "next": "ew",
+   "join": "hold",
+   "why": "\"N\" + \"ew New York\": the original could not be read (mirror refused access); held for Nathan",
+   "action": "hold"
+  },
+  {
+   "id": 15392,
+   "field": "body",
+   "letter": "A",
+   "next": "ttorney",
+   "join": true,
+   "why": "Attorney is a word",
+   "action": "join"
+  },
+  {
+   "id": 15390,
+   "field": "body",
+   "letter": "M",
+   "next": "aybe",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15388,
+   "field": "body",
+   "letter": "A",
+   "next": "collector",
+   "join": false,
+   "why": "collector is a word, Acollector is not",
+   "action": "space"
+  },
+  {
+   "id": 15360,
+   "field": "body",
+   "letter": "I",
+   "next": "n",
+   "join": true,
+   "why": "single-letter continuation: In",
+   "action": "join"
+  },
+  {
+   "id": 15358,
+   "field": "body",
+   "letter": "A",
+   "next": "coin",
+   "join": false,
+   "why": "A coin \"variety\"",
+   "action": "space"
+  },
+  {
+   "id": 15356,
+   "field": "body",
+   "letter": "B",
+   "next": "efore",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15354,
+   "field": "body",
+   "letter": "I",
+   "next": "had",
+   "join": false,
+   "why": "had is a word, Ihad is not",
+   "action": "space"
+  },
+  {
+   "id": 15352,
+   "field": "body",
+   "letter": "O",
+   "next": "ne",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15350,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15348,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15344,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15300,
+   "field": "body",
+   "letter": "A",
+   "next": "round",
+   "join": true,
+   "why": "Around 1942",
+   "action": "join"
+  },
+  {
+   "id": 15290,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15288,
+   "field": "body",
+   "letter": "A",
+   "next": "s",
+   "join": true,
+   "why": "single-letter continuation: As",
+   "action": "join"
+  },
+  {
+   "id": 15286,
+   "field": "body",
+   "letter": "S",
+   "next": "tarting",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15284,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15282,
+   "field": "body",
+   "letter": "U",
+   "next": "nlike",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15278,
+   "field": "body",
+   "letter": "I",
+   "next": "n",
+   "join": true,
+   "why": "single-letter continuation: In",
+   "action": "join"
+  },
+  {
+   "id": 15274,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15272,
+   "field": "body",
+   "letter": "O",
+   "next": "f",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15268,
+   "field": "body",
+   "letter": "A",
+   "next": "s",
+   "join": true,
+   "why": "single-letter continuation: As",
+   "action": "join"
+  },
+  {
+   "id": 15266,
+   "field": "body",
+   "letter": "D",
+   "next": "ue",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15264,
+   "field": "body",
+   "letter": "C",
+   "next": "hances",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15256,
+   "field": "body",
+   "letter": "B",
+   "next": "efore",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15254,
+   "field": "body",
+   "letter": "T",
+   "next": "hose",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15252,
+   "field": "body",
+   "letter": "T",
+   "next": "eachers",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15250,
+   "field": "body",
+   "letter": "M",
+   "next": "ost",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15162,
+   "field": "body",
+   "letter": "M",
+   "next": "any",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15158,
+   "field": "body",
+   "letter": "I",
+   "next": "t",
+   "join": true,
+   "why": "single-letter continuation: It",
+   "action": "join"
+  },
+  {
+   "id": 15156,
+   "field": "body",
+   "letter": "W",
+   "next": "orld",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15148,
+   "field": "body",
+   "letter": "M",
+   "next": "any,",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15146,
+   "field": "body",
+   "letter": "I",
+   "next": "n",
+   "join": true,
+   "why": "single-letter continuation: In",
+   "action": "join"
+  },
+  {
+   "id": 15144,
+   "field": "body",
+   "letter": "M",
+   "next": "aurice",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15142,
+   "field": "body",
+   "letter": "O",
+   "next": "ne",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15140,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15138,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15136,
+   "field": "body",
+   "letter": "T",
+   "next": "his",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15062,
+   "field": "body",
+   "letter": "W",
+   "next": "hen",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15060,
+   "field": "body",
+   "letter": "M",
+   "next": "any",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15058,
+   "field": "body",
+   "letter": "O",
+   "next": "ne",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15056,
+   "field": "body",
+   "letter": "B",
+   "next": "efore",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15054,
+   "field": "body",
+   "letter": "T",
+   "next": "hose",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15050,
+   "field": "body",
+   "letter": "A",
+   "next": "recent",
+   "join": false,
+   "why": "recent is a word, Arecent is not",
+   "action": "space"
+  },
+  {
+   "id": 15036,
+   "field": "body",
+   "letter": "S",
+   "next": "tarting",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15018,
+   "field": "body",
+   "letter": "A",
+   "next": "A",
+   "join": "drop",
+   "why": "the letter is duplicated: the text already begins \"A title\"",
+   "action": "drop"
+  },
+  {
+   "id": 15004,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15002,
+   "field": "body",
+   "letter": "R",
+   "next": "ecently",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 15000,
+   "field": "body",
+   "letter": "T",
+   "next": "oys",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 14998,
+   "field": "body",
+   "letter": "B",
+   "next": "enjamin",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 14996,
+   "field": "body",
+   "letter": "E",
+   "next": "very",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 14974,
+   "field": "body",
+   "letter": "I",
+   "next": "n",
+   "join": true,
+   "why": "single-letter continuation: In",
+   "action": "join"
+  },
+  {
+   "id": 14950,
+   "field": "body",
+   "letter": "P",
+   "next": "erhaps",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 14942,
+   "field": "body",
+   "letter": "I",
+   "next": "n",
+   "join": true,
+   "why": "single-letter continuation: In",
+   "action": "join"
+  },
+  {
+   "id": 12218,
+   "field": "body",
+   "letter": "E",
+   "next": "Eleven",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 12212,
+   "field": "body",
+   "letter": "I",
+   "next": "f",
+   "join": true,
+   "why": "single-letter continuation: If",
+   "action": "join"
+  },
+  {
+   "id": 12156,
+   "field": "body",
+   "letter": "S",
+   "next": "even",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  },
+  {
+   "id": 12144,
+   "field": "body",
+   "letter": "I",
+   "next": "want",
+   "join": false,
+   "why": "want is a word, Iwant is not",
+   "action": "space"
+  },
+  {
+   "id": 12144,
+   "field": "body",
+   "letter": "T",
+   "next": "he",
+   "join": true,
+   "why": "single letter",
+   "action": "join"
+  }
+ ]
+}

@@ -68,7 +68,9 @@
   {% set flat = src|striptags|replace({'&nbsp;': ' '})|trim %}
   {# [image:N] is a placement token for _partials/prose, not prose. Drop it
      rather than letting it into og:description and the meta description. #}
-  {% set flat = flat|split("\n")|filter(l => l|trim and not (l|trim matches '/^\\[image:\\d+\\]$/'))|join(' ')|trim %}
+  {#- So is a fence such as [lines] or [/lines], which marks a block whose line breaks are kept: 1,770 records carry one, and
+      it was showing in their descriptions and social cards (Nathan, 1 October 2026). -#}
+  {% set flat = flat|split("\n")|filter(l => l|trim and not (l|trim matches '/^\\[image:\\d+\\]$/') and not (l|trim matches '/^\\[\\/?[a-z]+\\]$/'))|join(' ')|trim %}
   {% if flat|length > 160 %}
     {% set cut = flat|slice(0, 160) %}
     {% set words = cut|split(' ') %}

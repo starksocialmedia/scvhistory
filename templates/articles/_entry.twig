@@ -240,7 +240,10 @@
   {% set firstHasNote = paras|length > 1 and (
        paras|first|lower matches '/\\[mfn/'
        or paras|first matches '/\\[\\s*\\d{1,3}\\s*\\](?!\\d)/') %}
-  {% if paras|length > 1 and not firstHasNote %}
+  {#- Nor a [lines] block: in the Gazette pieces it is the masthead (paper, issue, title, byline), which belongs in the body,
+      where the prose partial keeps its line breaks. Promoted, it printed its markers in the lead. -#}
+  {% set firstIsBlock = paras|length and (paras|first|trim matches '/^\\[[a-z]+\\]/') %}
+  {% if paras|length > 1 and not firstHasNote and not firstIsBlock %}
     {% set lead = paras|first|striptags|trim %}
     {% set bodyText = paras|slice(1)|join('\n\n') %}
   {% endif %}
