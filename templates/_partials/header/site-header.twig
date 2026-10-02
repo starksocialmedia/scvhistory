@@ -23,7 +23,7 @@
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v13-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v14-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -55,6 +55,7 @@
 {% set cOnThisDay = cArticles + cEvents %}
 {#- CIVIC: sections that may not exist on an install without the elections schema. -#}
 {% set cElections = craft.app.entries.getSectionByHandle('elections') ? craft.entries().section('elections').count() : 0 %}
+{% set cDistricts = craft.app.fields.getFieldByHandle('districtKind') ? craft.entries().section('places').districtKind(':notempty:').count() : 0 %}
 {% set cityRec = craft.entries().section('organizations').slug('city-of-santa-clarita').one() %}
 
 {# PEOPLE #}
@@ -259,7 +260,7 @@
     nav-link rule, with no one having to remember (STRUCTURE.md). -#}
 {% set colsCivic = not cElections ? [] : [
   { label: 'THE CITY', items: [{ t: 'The City Council', n: cityRec ? 1 : 0, u: cityRec ? cityRec.url ~ '#council' : '' }] },
-  { label: 'ELECTIONS', items: [{ t: 'Elections', n: cElections, u: url('elections') }] },
+  { label: 'ELECTIONS', items: [{ t: 'Elections', n: cElections, u: url('elections') }, { t: 'Districts', n: cDistricts, u: url('districts') }] },
   { label: 'BODIES', items: [{ t: 'Government bodies', n: cGov, u: url('organizations') ~ '#government' }] }
 ] %}
 {% set featCivic = cElections ? {

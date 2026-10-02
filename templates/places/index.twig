@@ -7,7 +7,10 @@
 {% block content %}
 {% set comSlug = craft.app.request.getParam('community') %}
 {% set kind = craft.app.request.getParam('kind') %}
-{% set all = craft.entries().section('places').orderBy('title asc').all() %}
+{#- Council districts, trustee areas and water divisions are place records but are listed under Civic, on /districts
+    (Nathan, 2 October 2026), not here. -#}
+{% set noDistricts = craft.app.fields.getFieldByHandle('districtKind') ? { districtKind: ':empty:' } : {} %}
+{% set all = craft.entries(noDistricts).section('places').orderBy('title asc').all() %}
 
 {#- placeType is added by scripts/import/add_place_type_field.php and may not be
     on the layout yet. Read the handles off the layout rather than asking `is
@@ -45,7 +48,7 @@
   cemetery: 'Cemetery'
 } %}
 
-{% set query = craft.entries().section('places').orderBy('title asc') %}
+{% set query = craft.entries(noDistricts).section('places').orderBy('title asc') %}
 {% if comSlug %}{% set term = craft.categories().group('neighborhood').slug(comSlug).one() %}{% if term %}{% set query = query.relatedTo(term) %}{% endif %}{% endif %}
 {#- A Dropdown hands back a SingleOptionFieldData object, not a string. It is
     truthy even when nothing is selected, so `p.placeType` alone passes an
@@ -143,34 +146,17 @@
         { key: 'settled', label: 'Settlements and districts' },
         { key: 'cemetery', label: 'Cemeteries' },
         { key: 'trail', label: 'Trails and routes' },
-        { key: 'unset', label: 'Not yet classified' },
-        { key: 'electoral', label: 'Electoral districts' }
+        { key: 'unset', label: 'Not yet classified' }
       ] %}
       {% set groupOf = {} %}
       {% for p in places %}
         {% set t = hasKinds ? (p.placeType.value ?: 'unset') : 'unset' %}
         {% set g = t in ['settlement', 'district'] ? 'settled' : t %}
-        {#- A trustee area, water division or council district is a place record
-            (it is what a seat is elected from) but not a place to visit: listed
-            at the end by body, not as a card with no picture. -#}
-        {% if 'districtKind' in handles and p.districtKind.value %}{% set g = 'electoral' %}{% endif %}
         {% set groupOf = groupOf|merge({ (g): (groupOf[g] ?? [])|merge([p]) }) %}
       {% endfor %}
       {% if places|length %}
       {% for grp in GROUPS %}{% if groupOf[grp.key] is defined %}
       <h2 class="pl-group" id="{{ grp.key }}">{{ grp.label }} <span>{{ groupOf[grp.key]|length }}</span></h2>
-      {% if grp.key == 'electoral' %}
-        <p class="pl-groupnote">The areas and divisions the valley's councils and boards are elected from. Each lists its elections.</p>
-        {% set byBody = {} %}
-        {% for p in groupOf.electoral %}{% set b = p.placeOrganizations.one() %}{% set bk = b ? b.title : 'Other' %}{% set byBody = byBody|merge({ (bk): (byBody[bk] ?? [])|merge([p]) }) %}{% endfor %}
-        <div style="columns:2 280px;column-gap:32px;font-size:15px;line-height:1.7;margin-bottom:28px">
-          {% for bk, ps in byBody|sort((a, b) => 0) %}
-            <div style="break-inside:avoid;margin-bottom:14px"><div style="font-weight:600;color:#17254C">{{ bk }}</div>
-              {% for p in ps|sort((a, b) => a.districtNumber <=> b.districtNumber) %}<a href="{{ p.url }}" style="color:#7A5C1B;margin-right:12px;white-space:nowrap">{{ {'trustee-area': 'Trustee Area', 'council-district': 'District', 'water-division': 'Division'}[p.districtKind.value] ?? 'District' }} {{ p.districtNumber }}</a>{% endfor %}
-            </div>
-          {% endfor %}
-        </div>
-      {% else %}
       <div class="pl-cards">
         {% for p in groupOf[grp.key] %}
           {% set img = 'featuredImage' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.featuredImage.one() ?? null : null %}
@@ -185,7 +171,6 @@
           </a>
         {% endfor %}
       </div>
-      {% endif %}
       {% endif %}{% endfor %}
       {% else %}
         <div class="pl-empty">No places match these filters yet. <a href="{{ url('places') }}" style="color:#7A5C1B">Show all</a></div>

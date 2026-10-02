@@ -59,6 +59,7 @@ foreach ([
     '' => 'home', 'articles' => 'index', 'persons' => 'index', 'places' => 'index',
     'collections' => 'index', 'war-memorial' => 'index', 'obituaries' => 'index',
     'on-this-day' => 'index', 'search?q=newhall' => 'search',
+    'war-memorial?view=roll' => 'index', 'districts' => 'index', 'elections' => 'index', 'events' => 'index',
     /* The two indexes that 404ed for months while the menu linked to them. */
     'photographs' => 'index', 'photographs?view=all&page=2' => 'index', 'documents' => 'index', 'schools' => 'index',
     /* The unlisted pages are admin-only now, so an anonymous request gets a

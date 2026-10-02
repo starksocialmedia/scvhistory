@@ -44,6 +44,9 @@
     conflict: (e.wmConflict is defined and e.wmConflict) ? e.wmConflict|trim : '',
     place: (e.wmIncidentLocation is defined and e.wmIncidentLocation) ? e.wmIncidentLocation|trim : '',
     year: year,
+    death: (e.deathDate is defined and e.deathDate) ? e.deathDate|trim : '',
+    home: (e.wmHomeOfRecord is defined and e.wmHomeOfRecord) ? e.wmHomeOfRecord|trim : '',
+    age: (e.wmAgeAtLoss is defined and e.wmAgeAtLoss) ? e.wmAgeAtLoss|trim : '',
     img: (e.featuredImage is defined and e.featuredImage) ? e.featuredImage.one() ?? null : null
   }]) %}
 {% endfor %}
@@ -83,7 +86,32 @@
     </div>
   </section>
 
+  {#- A memorial is read whole, so the bar jumps rather than filters: a conflict bar, a find-a-name box, and a roll view
+      for printing and reading aloud (Nathan, 2 October 2026; inventory/review/site-proposals-2026-10-02.md). -#}
+  {% set view = craft.app.request.getParam('view') == 'roll' ? 'roll' : 'wall' %}
+  <nav class="wm-bar" aria-label="Conflicts">
+    <div class="wm-wrap wm-barin">
+      {% for c in conflicts %}{% set n = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c)|length %}<a class="wm-jump" href="{{ view == 'roll' ? '#r-' : '#c-' }}{{ c|lower|replace({' ': '-'}) }}">{{ c }} <span>{{ n }}</span></a>{% endfor %}
+      <span class="wm-barright">
+        <input id="wmFind" type="search" placeholder="Find a name" aria-label="Find a name" autocomplete="off">
+        <a class="wm-jump" href="{{ view == 'roll' ? url('war-memorial') : url('war-memorial', { view: 'roll' }) }}">{{ view == 'roll' ? 'Wall of names' : 'Roll' }}</a>
+      </span>
+    </div>
+  </nav>
+
   <main class="wm-wrap wm-main">
+    {% if view == 'roll' %}
+      {% for c in conflicts %}
+        {% set items = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c)|sort((a, b) => (a.year ?: '9999') ~ a.name <=> (b.year ?: '9999') ~ b.name)|values %}
+        <h2 class="wm-rollh" id="r-{{ c|lower|replace({' ': '-'}) }}">{{ c }}</h2>
+        {#- The legacy dates are typed every way (4-27-1919, 04/27/1919, "Friday, 04/18/1969"); the roll reads them as one style, without changing the records. -#}
+        {% set MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'] %}
+        <table class="wm-roll">
+          <thead><tr><th>Name</th><th>Rank</th><th>Branch</th><th>Date of loss</th><th>Age</th><th>Home</th></tr></thead>
+          <tbody>{% for r in items %}<tr data-name="{{ r.name|lower }}"><td><a href="{{ r.e.url }}">{{ r.name }}</a></td><td>{{ r.rank }}</td><td>{{ r.branch }}</td>{% set dd = r.death|split(', ')|last|replace({'-': '/'}) %}{% set dp = dd|split('/') %}<td>{% if dp|length == 3 and dp[0] matches '/^[0-9]{1,2}$/' and dp[1] matches '/^[0-9]{1,2}$/' and dp[2] matches '/^[0-9]{4}$/' %}{{ MONTHS[dp[0] - 1] }} {{ dp[1] * 1 }}, {{ dp[2] }}{% else %}{{ r.death }}{% endif %}</td><td>{{ r.age }}</td><td>{{ r.home }}</td></tr>{% endfor %}</tbody>
+        </table>
+      {% endfor %}
+    {% else %}
     {% for c in conflicts %}
       {% set items = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c)|values %}
       {% set items = items|sort((a, b) => (a.year ?: '9999') != (b.year ?: '9999')
@@ -91,13 +119,13 @@
           : (a.name < b.name ? -1 : 1))|values %}
       {% set years = items|filter(r => r.year)|map(r => r.year)|values %}
 
-      <section class="wm-conflict">
+      <section class="wm-conflict" id="c-{{ c|lower|replace({' ': '-'}) }}">
         <h2>{{ c }}</h2>
         <div class="wm-grid">
           {% for r in items %}
             {% set len = r.name|length %}
             {% set size = len <= 13 ? 30 : (len <= 18 ? 26 : (len <= 23 ? 22 : 19)) %}
-            <a class="wm-card" href="{{ r.e.url }}">
+            <a class="wm-card" href="{{ r.e.url }}" data-name="{{ r.name|lower }}">
               <div class="wm-face{{ r.img ? '' : ' wm-face--plate' }}">
                 {% if r.img %}
                   {{ portrait.img(r.img, 5/4, r.name, true) }}
@@ -112,7 +140,8 @@
                   {% if r.rank %}<div class="rk">{{ r.rank }}</div>{% endif %}
                 {% endif %}
                 {% if r.branch %}<div class="br">{{ r.branch }}</div>{% endif %}
-                {% if r.year %}<div class="yr">{{ r.year }}</div>{% endif %}
+                {% if r.year %}<div class="yr">{{ r.year }}{{ r.age ? ', age ' ~ r.age : '' }}</div>{% endif %}
+                {% if r.home %}<div class="hm">{{ r.home }}</div>{% endif %}
               </div>
             </a>
           {% endfor %}
@@ -125,13 +154,43 @@
       </section>
     {% endfor %}
 
+    {% endif %}
     {% if not rows|length %}
       <p class="wm-count">No memorial records yet.</p>
     {% endif %}
   </main>
 </div>
 
+{% js %}
+(function () {
+  var box = document.getElementById('wmFind'); if (!box) return;
+  box.addEventListener('input', function () {
+    var q = box.value.trim().toLowerCase(), first = null;
+    document.querySelectorAll('[data-name]').forEach(function (el) {
+      var hit = q.length > 1 && el.getAttribute('data-name').indexOf(q) !== -1;
+      el.classList.toggle('wm-hit', hit);
+      if (hit && !first) first = el;
+    });
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+{% endjs %}
 {% css %}
+.wm-bar{background:#fff;border-bottom:1px solid #E2E4E8;position:sticky;top:0;z-index:5}
+.wm-barin{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;padding-top:12px;padding-bottom:12px}
+.wm-jump{font-family:'Jost',sans-serif;font-size:13px;color:#7A5C1B;border:1px solid #C4A031;padding:6px 12px;border-radius:3px;text-decoration:none;background:#fff}
+.wm-jump span{color:#5B6472;margin-left:4px}
+.wm-jump:hover{background:#FDF7EA}
+.wm-barright{margin-left:auto;display:flex;gap:10px;align-items:center}
+#wmFind{font:inherit;font-size:14px;padding:6px 10px;border:1px solid #E2E4E8;border-radius:3px;width:200px}
+.wm-hit{outline:3px solid #C4A031;outline-offset:2px}
+.wm-meta .hm{font-size:12.5px;color:#5B6472;margin-top:2px}
+.wm-rollh{font-family:'Playfair Display',serif;font-weight:500;font-size:26px;color:#17254C;margin:34px 0 12px;padding-top:12px;border-top:3px solid #C4A031}
+.wm-roll{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;font-size:15px}
+.wm-roll th{text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:10px 12px;border-bottom:1px solid #EFE6D0}
+.wm-roll td{padding:9px 12px;border-bottom:1px solid #F1F2F4;vertical-align:top}
+.wm-roll a{color:#17254C}
+@media print{.wm-bar{display:none}}
 .wm{background:#F6F7F9}
 .wm-wrap{max-width:1320px;margin:0 auto;padding:0 40px}
 .wm-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}

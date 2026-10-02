@@ -1,0 +1,80 @@
+{% extends "_layouts/base" %}
+{% set metaDescription = 'The council districts, school trustee areas and water divisions the Santa Clarita Valley\'s public bodies are elected from: who holds each seat now, and every election held in each.' %}
+{#- Districts under Civic (Nathan, 2 October 2026; inventory/review/site-proposals-2026-10-02.md, item 17).
+    A district stays a place record, because it is a territory with a boundary; this page is its home in
+    the Civic menu, grouped by the body elected from it. Boundaries are not drawn until the bodies'
+    files are in hand (item 18). -#}
+{% block head %}
+{% include "_partials/scv-extra-css" %}
+{% css %}
+.ds{font-family:'Public Sans',system-ui,sans-serif;color:#2C2C2C;background:#F6F7F9}
+.ds-band{background:#FDF7EA;border-bottom:1px solid #EFE6D0}
+.ds-band-in{padding-top:44px;padding-bottom:44px}
+.ds-crumbs{font-size:13px;color:#5B6472;margin-bottom:22px}
+.ds-crumbs a{color:#7A5C1B;text-decoration:none}
+.ds-kicker{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;color:#7A5C1B;margin-bottom:14px}
+.ds-band h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,54px);line-height:1.06;margin:0 0 16px;color:#17254C}
+.ds-band p{font-size:18px;line-height:1.65;margin:0;color:#4A5260;max-width:720px}
+.ds-main{padding-top:36px;padding-bottom:96px}
+.ds-jump{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.ds-jump a{font-family:'Jost',sans-serif;font-size:13px;color:#7A5C1B;border:1px solid #C4A031;padding:6px 12px;border-radius:3px;text-decoration:none;background:#fff}
+.ds-body{margin-bottom:40px}
+.ds-body h2{font-family:'Playfair Display',serif;font-weight:500;font-size:26px;color:#17254C;margin:0 0 4px}
+.ds-body h2 a{color:inherit;text-decoration:none}
+.ds-sub{font-size:14px;color:#5B6472;margin:0 0 14px}
+.ds-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;font-size:15px}
+.ds-table th{text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0}
+.ds-table td{padding:10px 14px;border-top:1px solid #F0F1F4;vertical-align:top}
+.ds-table a{color:#17254C}
+.ds-table .dim{color:#5B6472}
+.ds-note{font-size:14px;line-height:1.6;color:#5B6472;margin-top:28px;max-width:760px}
+@media (max-width:640px){.ds-table .ds-el{display:none}}
+{% endcss %}
+{% endblock %}
+
+{% block content %}
+{% set districts = craft.entries().section('places').districtKind(':notempty:').all() %}
+{% set KIND = {'trustee-area': 'Trustee Area', 'council-district': 'District', 'water-division': 'Division'} %}
+{% set byBody = {} %}{% set bodies = {} %}
+{% for p in districts %}
+  {% set b = p.placeOrganizations.one() %}
+  {% if b %}
+    {% set byBody = byBody|merge({ ('b' ~ b.id): (byBody['b' ~ b.id] ?? [])|merge([p]) }) %}
+    {% set bodies = bodies|merge({ ('b' ~ b.id): b }) %}
+  {% endif %}
+{% endfor %}
+{#- The City first, then the schools, then water; within each, bodies that still exist before dissolved ones. -#}
+{% set order = bodies|sort((x, y) => ((x.slug == 'city-of-santa-clarita' ? 0 : (x.orgType.value == 'school' ? 1 : 2)) ~ (x.dateDissolved ? 1 : 0) ~ x.title) <=> ((y.slug == 'city-of-santa-clarita' ? 0 : (y.orgType.value == 'school' ? 1 : 2)) ~ (y.dateDissolved ? 1 : 0) ~ y.title)) %}
+<div class="ds">
+  <section class="ds-band"><div class="wrap ds-band-in">
+    <div class="ds-crumbs"><a href="{{ siteUrl }}">Home</a> / Civic / Districts</div>
+    <div class="ds-kicker">CIVIC</div>
+    <h1>Districts</h1>
+    <p>The council districts, school trustee areas and water divisions that the valley's public bodies are elected from. Each district lists who holds its seat now and the elections the archive holds for it.</p>
+  </div></section>
+  <main class="wrap ds-main">
+    <nav class="ds-jump" aria-label="Bodies">{% for k, b in order %}<a href="#{{ b.slug }}">{{ b.title|replace({'The City of Santa Clarita': 'City Council'}) }}</a>{% endfor %}</nav>
+    {% for k, b in order %}
+      <section class="ds-body" id="{{ b.slug }}">
+        <h2><a href="{{ b.url }}">{{ b.slug == 'city-of-santa-clarita' ? 'Santa Clarita City Council' : b.title }}</a></h2>
+        <p class="ds-sub">{{ byBody[k]|length }} {{ byBody[k]|first.districtKind.value == 'water-division' ? 'division' : (byBody[k]|first.districtKind.value == 'council-district' ? 'district' : 'trustee area') }}{{ byBody[k]|length == 1 ? '' : 's' }} in the archive{% if b.dateDissolved %}; the body was dissolved {{ b.dateDissolved }}{% endif %}</p>
+        <table class="ds-table">
+          <thead><tr><th>District</th><th>Holds the seat now</th><th class="ds-el">Elections</th></tr></thead>
+          <tbody>
+          {% for p in byBody[k]|sort((x, y) => x.districtNumber <=> y.districtNumber) %}
+            {% set now = craft.entries().section('officeHoldings').relatedTo({ targetElement: p, field: 'holdingDistrict' }).all()|filter(h => not h.termEndEdtf and (h.howEnded.value ?? '') in ['', 'serving']) %}
+            {% set els = craft.entries().section('elections').relatedTo({ targetElement: p, field: 'electionDistrict' }).orderBy('electionDateEdtf asc').all() %}
+            <tr>
+              <td><a href="{{ p.url }}">{{ KIND[p.districtKind.value] ?? 'District' }} {{ p.districtNumber }}</a></td>
+              <td>{% for h in now %}{% set who = h.holdingPerson.one() %}{% if who %}<a href="{{ who.url }}">{{ who.title }}</a>{% if h.termStart %} <span class="dim">since {{ h.termStart|split(' ')|last }}</span>{% endif %}{% if not loop.last %}<br>{% endif %}{% endif %}{% else %}<span class="dim">{{ b.dateDissolved ? 'Body dissolved' : 'Not yet in the archive' }}</span>{% endfor %}</td>
+              <td class="ds-el">{% for e in els %}<a href="{{ e.url }}">{{ e.electionDateEdtf|slice(0, 4) }}</a>{% if not loop.last %}, {% endif %}{% else %}<span class="dim">None yet</span>{% endfor %}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    {% endfor %}
+    <p class="ds-note">Boundary maps will be drawn when the bodies' district files are in hand; no public source has them yet. A district's boundary can change at each redistricting, and the County Registrar-Recorder is the authority on which district an address is in.</p>
+  </main>
+</div>
+{% endblock %}
