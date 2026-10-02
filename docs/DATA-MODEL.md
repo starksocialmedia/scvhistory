@@ -78,6 +78,7 @@ this rule each time it runs.
 | `wikidataId` | Wikidata item | `https://www.wikidata.org/wiki/{id}` | - |
 | `viafId` | VIAF cluster | `https://viaf.org/viaf/{id}` | P214 |
 | `bioguideId` | Biographical Directory of the U.S. Congress | `https://bioguide.congress.gov/search/bio/{id}` | P1157 |
+| `imdbId` | IMDb | `https://www.imdb.com/name/{id}/` | P345 |
 | `ein` | IRS Employer Identification Number | `https://apps.irs.gov/app/eos/ (no direct row URL)` | P1297 |
 | `cdsCode` | CDE county-district-school code | `https://www.cde.ca.gov/SchoolDirectory/details?cdscode={id}` | P2183 |
 | `ncesId` | NCES school or district id | `https://nces.ed.gov/ccd/schoolsearch/school_detail.asp?ID={id}` | P2696 |
@@ -617,7 +618,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Persons — `persons/person`
 
-55 fields.
+56 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -644,6 +645,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `deathEvidence` | Dropdown | **local** | no external equivalent |
 | `burialEvidence` | Dropdown | **local** | no external equivalent |
 | `bioguideId` | PlainText | Biographical Directory of the U.S. Congress `member ID` | Wikidata P1157; emitted as sameAs |
+| `imdbId` | PlainText | IMDb `name ID` | Wikidata P345; emitted as sameAs |
 | `spouseOf` | Entries | schema.org `spouse` |  |
 | `childOf` | Entries | schema.org `parent` | inverse of schema.org children |
 | `siblingOf` | Entries | schema.org `sibling` |  |

@@ -1,0 +1,23 @@
+{#-
+  The photograph topics this record is the subject of, from
+  templates/_data/topic-subjects.json: a count and a link to each topic's page.
+  A topic is one segment of a photograph's legacyCategory ("PEOPLE > WILLIAM S.
+  HART"), matched whole, so WILLIAM S. HART does not count WILLIAM S. HART PARK.
+
+  Params:
+    el    the record
+-#}
+{%- set tsRaw = source('_data/topic-subjects.json', ignore_missing = true) -%}
+{%- set map = tsRaw ? tsRaw|json_decode(true) : {} -%}
+{%- set key = el.section.handle ~ ':' ~ el.id -%}
+{%- set mine = map|filter((v, k) => v == key and k|first != '_')|keys -%}
+{% if mine|length %}
+  <div class="rec-box"><div class="rec-lab">IN THE PHOTOGRAPH FILES</div>
+    <div class="rec-links">
+      {% for t in mine %}
+        {% set n = craft.entries().section('photographs').legacyCategory([t, '* > ' ~ t, t ~ ' > *', '* > ' ~ t ~ ' > *']).count() %}
+        {% if n %}<a href="{{ url('photographs', { topic: t }) }}">{{ n|number_format }} photograph{{ n == 1 ? '' : 's' }} filed under {{ t }} <span>&rarr;</span></a>{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

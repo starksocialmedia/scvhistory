@@ -44,7 +44,7 @@
     still runs, because an empty EDTF means the printed form did not parse and
     guessing at render time will not do better. -#}
 {% for h in ['fullName','birthDate','deathDate','birthDateEdtf','deathDateEdtf','burialPlace','birthplace','occupation','personAliases',
-             'wikidataId','viafId','bioguideId','personWikipediaUrl','personGraveUrl','legacyUrl','sourcePath',
+             'wikidataId','viafId','bioguideId','imdbId','personWikipediaUrl','personGraveUrl','legacyUrl','sourcePath',
              'placeAddress','placeLat','placeLng','placeAliases','dateEstablished','dateEstablishedEdtf','placeChlNumber','gnisId',
              'scvhlNumber','nrhpReference','nrhpListedDate','placeScvhlCheckbox',
              'placeWikipediaUrl','placeChlUrl','placeScvhlUrl','placeWebsite',
@@ -232,6 +232,7 @@
   wikidataId: { name: 'Wikidata', url: 'https://www.wikidata.org/wiki/' },
   viafId:  { name: 'VIAF', url: 'https://viaf.org/viaf/' },
   bioguideId: { name: 'Bioguide', url: 'https://bioguide.congress.gov/search/bio/' },
+  imdbId: { name: 'IMDb', url: 'https://www.imdb.com/name/' },
   gnisId:  { name: 'GNIS', url: 'https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' },
   nrhpReference: { name: 'NRHP', url: 'https://npgallery.nps.gov/NRHP/AssetDetail?assetID=' }
 } %}
@@ -257,6 +258,7 @@
 {% if V.viafId ?? '' %}{% set sameAs = sameAs|merge(['https://viaf.org/viaf/' ~ V.viafId]) %}{% endif %}
 {#- The Biographical Directory of the United States Congress, for anyone who served there. -#}
 {% if V.bioguideId ?? '' %}{% set sameAs = sameAs|merge(['https://bioguide.congress.gov/search/bio/' ~ V.bioguideId]) %}{% endif %}
+{% if V.imdbId ?? '' %}{% set sameAs = sameAs|merge(['https://www.imdb.com/name/' ~ V.imdbId ~ '/']) %}{% endif %}
 {#- GNIS, the federal authority for the canyons, creeks, passes and stations
     that make up most of the place list, which Wikidata does not reach. -#}
 {% if V.gnisId ?? '' %}{% set sameAs = sameAs|merge(['https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/' ~ V.gnisId]) %}{% endif %}

@@ -166,6 +166,12 @@
             <div class="ph-note">Browsing by the archive's own filing: the topics Leon Worden filed each picture under, places and subjects together, as he kept them.</div>
           {% elseif topic %}
             <div class="ph-note">One of the archive's own filings, as Leon Worden kept it.</div>
+            {#- The record this topic is about, from templates/_data/topic-subjects.json. -#}
+            {% set tsRaw = source('_data/topic-subjects.json', ignore_missing = true) %}
+            {% set tsMap = tsRaw ? tsRaw|json_decode(true) : {} %}
+            {% set tsKey = tsMap[topic] ?? null %}
+            {% set tsRec = tsKey ? craft.entries().section(tsKey|split(':')|first).id(tsKey|split(':')|last).one() : null %}
+            {% if tsRec %}<div class="ph-note" style="margin-top:8px">The archive's record: <a href="{{ tsRec.url }}" style="color:#7A5C1B">{{ tsRec.title }} &rarr;</a></div>{% endif %}
           {% endif %}
         </div>
         <div class="ph-stats">
