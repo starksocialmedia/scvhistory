@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-02
+
+- Agent: Claude Code
+- Date: 2026-10-01 to 2026-10-02
+- Done: Profiles for Perkins, Antonio del Valle (with Perkins's 1957 history as a document), Couts, Patsy Ayala, Leon Worden, McLean, Gibbs, Miranda, Weste (with her SC1311 council portrait), Dante Acosta (SC1311-style SC1401 photograph record), Andrés Pico, Bill Cooper and William S. Hart. Six edited portraits imported on Nathan's word; contentCredentials on assets; the scanner reports and never blocks. Authorship: counts and a works page per person. IMDb ID as an authority field. Photograph topics linked to their subjects (topic-subjects.json). Namesakes: namedFor and namingNote on places, organizations and communities, 13 set with stated sources. The council today on the City page; Gibbs's derived term end corrected. Offices Held leads with the body; alumni in the page body. [lines] leaks fixed in descriptions and leads, and 66 split drop caps rejoined. Collection cards fall back to the banner registry. Families menu renamed Groups. War memorial lead images for 37 records and a completeness audit. Wiley obituary clippings reattached. Newhall County Water District record. The Planning Commission folded under the City. The eras pass: 47 assigned. On This Day sends no-store and is checked daily.
+- Decisions: The archivist decides; an edited photograph enters with its edit recorded (DATA-MODEL). Author wins when someone is both author and subject. A namesake is set only where a source states it. A person's era is the era of their public acts, office years weighted, two thirds to assign automatically.
+- Blockers: macOS refused this session's reads of the Reggie mirror and ~/Downloads from midday 2 October; one drop cap is held. No public source for Santa Clarita's council-district boundaries, so district and election maps wait for the City's file.
+- Next: see inventory/review/site-proposals-2026-10-02.md (war memorial index, districts in Civic, boundary maps, address lookup, the commissions, /events); the 25 era decisions in inventory/review/person-eras.md; the SCV Water consolidation as the first event record.
+
 2026-10-01 (evening)
 
 - Agent: Claude Code
