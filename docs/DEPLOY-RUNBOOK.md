@@ -593,6 +593,13 @@ Both should report nothing: the imported database already carries the schema
 the committed config declares. **If the diff shows anything, stop** and report
 it before applying; it means the dump and the commit do not match.
 
+**`craft up` comes after the import, never before.** Run before it, `craft up`
+applies the new schema to the old staging database: it succeeds and then
+reports nothing pending, which looks like success but proves nothing about the
+content, which is not there yet. If it has run early (it did on 2 October), no
+harm is done to the import: finish step 5, then run step 6 again, both commands,
+and treat that second diff as the one that counts.
+
 ### 7. The images  — **MacBook**
 
 ```
