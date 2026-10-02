@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-02 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-02
+- Done: On This Day works: the calendar reads the date fields records already hold (471 items on 175 days) and lists publication dates apart (335 of 366 days in all); 34 queue rows confirmed, 31 marked "Not for the calendar" (a new recordDates column, so they are never proposed again). Wilk trimmed to public life; living birth dates cut to the year (Wilk, Smyth). Editor notes now render on persons, organizations, places, war memorials and the other record pages: they were saved but never shown, so earlier corrections (del Valle among them) were invisible until now. War memorial: "no likeness known" on the 16 records whose legacy portrait tags were commented out; Wingfield's correction (missing in action, Walls of the Missing, Manila). The sourcing pilot: North, Cordova, Acuna, Smith and Larsen footnoted from NARA, the 1946 Honor List and a Defense Department release, with a facts-and-sources table (factSources); North's date of death corrected to April 7, 1919.
+- Decisions: publication dates are a separate, labelled line. A rejected date row is kept, not deleted. Article publication-date rows are rejected, not confirmed, since the separate line covers them. The 34 confirmed rows show the date field's label ("Died"), not their prose fragment.
+- Blockers: North's death has no federal record online (a World War I death in a California camp). The 490 remaining date decisions wait for the review screen.
+- Next: the rest of the memorial records in batches of about ten, on the pilot's pattern; the 490 date decisions.
+
 2026-10-02 (later)
 
 - Agent: Claude Code

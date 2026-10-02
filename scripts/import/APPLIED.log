@@ -176,3 +176,11 @@
 2026-10-01 22:54:47 PDT	apply_era_decisions.php	scvhistory-web	25 rows	verified	the 25 era decisions; McKeon Cityhood, Weste Mall & Growth; Nadeau noted low confidence
 2026-10-01 23:10:23 PDT	apply_multi_eras.php	scvhistory-web	44 rows	verified	every qualifying era added after the primary; Hart Postwar Boom by hand; Tataviam era by hand only
 2026-10-01 23:16:58 PDT	fix_live_errors_in_craft.php	scvhistory-web	51 rows	verified	the 18 live errors in Craft: correction notes, one date field; text not rewritten
+2026-10-01 23:28:40 PDT	create_scv_water_event.php	scvhistory-web	1 rows	verified	event: the SCV Water consolidation, 1 January 2018, the first anchor event
+2026-10-01 23:54:49 PDT	trim_living_birth_dates.php	scvhistory-web	2 rows	verified	living people: birth dates cut to the year in fields, recordDates and body
+2026-10-02 00:10:14 PDT	add_record_dates_rejected.php	scvhistory-web	1 rows	verified	recordDates: "Not for the calendar" column
+2026-10-02 00:12:05 PDT	decide_record_dates.php	scvhistory-web	65 rows	verified	recordDates: {"confirm":34,"reject: dateline":13,"reject: list":10,"reject: publication date":8}
+2026-10-02 00:18:18 PDT	trim_wilk_to_public_life.php	scvhistory-web	1 rows	verified	Wilk: family, pasted citation labels and the garbled sentence removed
+2026-10-02 00:22:46 PDT	note_wm_no_likeness.php	scvhistory-web	16 rows	verified	war memorial: no likeness known on 16 records (portrait tags commented out on the legacy pages); Wingfield missing in action, Walls of the Missing
+2026-10-02 00:30:34 PDT	add_fact_sources_field.php	scvhistory-web	1 rows	verified	factSources table on war memorial records
+2026-10-02 00:33:12 PDT	source_wm_pilot.php	scvhistory-web	5 rows	verified	war memorial sourcing pilot: North, Cordova, Acuna, Smith, Larsen; footnotes, facts and their sources, North's date of death corrected to April 7, 1919
