@@ -1,18 +1,37 @@
 {#
-  A person's public service, read from the records rather than the prose
-  (Nathan, 29 September 2026): the offices held, one row per term, and every
-  election stood, won or lost.
+  A person's public life, read from the records rather than the prose: each
+  office, its terms, and under each term the election that won it; then every
+  other race stood (Nathan, 2 October 2026: "an office and the election that won
+  it are one thing"). Before that, offices held and elections stood were two
+  boxes that repeated the same years.
 
     entry   the person
 
-  A term won on the count alone (startEvidence "derived") is marked with a
-  dagger and says so beneath. An end that is derived (the April terms the move
-  to November extended) is explained in the term's own notes, not marked. Appointed terms say "appointed".
-  Both boxes are left out when there is nothing to show.
+  A term is matched to a winning candidacy for the same body (an election with
+  no body is the City Council's) held within eight months before the term began;
+  each candidacy is used once. Appointed and rotated terms have none. Races that
+  match no term (lost, or won where no term is recorded) follow under Other
+  races. How each term is known is said beside it (_partials/record/evidence).
 #}
 {%- set holdings = craft.app.entries.getSectionByHandle('officeHoldings') ? craft.entries().section('officeHoldings').relatedTo({ targetElement: entry, field: 'holdingPerson' }).orderBy('termStartEdtf asc').all() : [] -%}
 {%- set cands = craft.app.entries.getSectionByHandle('candidacies') ? craft.entries().section('candidacies').relatedTo({ targetElement: entry, field: 'candidacyPerson' }).all() : [] -%}
 {%- set derivedAny = false -%}
+{#- Each race with its election, place and field, once. -#}
+{%- set races = [] -%}
+{%- for c in cands -%}
+  {%- set el = c.candidacyElection.one() -%}
+  {%- if el -%}
+    {%- set n = craft.entries().section('candidacies').relatedTo({ targetElement: el, field: 'candidacyElection' }).count() -%}
+    {%- set place = craft.entries().section('candidacies').relatedTo({ targetElement: el, field: 'candidacyElection' }).votes('> ' ~ (c.votes ?? 0)).count() + 1 -%}
+    {%- set eb = 'electionBody' in el.fieldLayout.customFields|map(f => f.handle) ? el.electionBody.one() : null -%}
+    {%- set ed = 'electionDistrict' in el.fieldLayout.customFields|map(f => f.handle) ? el.electionDistrict.one() : null -%}
+    {%- set races = races|merge([{ c: c, el: el, n: n, place: place, bodyId: eb ? eb.id : 0, bodySlug: eb ? eb.slug : 'city-of-santa-clarita', bodyLabel: not eb or eb.slug == 'city-of-santa-clarita' ? 'City Council' : eb.title ~ ' board', dist: ed, won: c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited', date: el.electionDateEdtf }]) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set races = races|sort((a, b) => a.date <=> b.date) -%}
+{%- set usedRaces = [] -%}
+{% macro raceLine(r) %}{% set sfx = r.place % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][r.place % 10] ?? 'th') %}<a href="{{ r.el.url }}">{{ r.won ? 'Elected' : (r.c.outcome.value == 'not-elected' ? 'Not elected' : 'Stood') }}</a>{% if r.won and r.c.outcomeEvidence.value == 'derived' %}{% include "_partials/record/evidence" with { ev: r.c.outcomeEvidence } only %}{% endif %} {{ r.el.electionDate ?: r.date|slice(0, 4) }}<span style="color:#5B6472">, {{ r.place ~ sfx }} of {{ r.n }}, {{ r.c.votes|number_format }} votes</span>{% endmacro %}
+{% import _self as PL %}
 {% if holdings|length %}
   {#- Grouped by office and body, in the order first held. -#}
   {% set groups = {} %}
@@ -21,7 +40,7 @@
     {% set k = 'g' ~ (o.id ?? 0) ~ '-' ~ (b.id ?? 0) %}
     {% set groups = groups|merge({ (k): (groups[k] ?? { office: o, body: b, terms: [] })|merge({ terms: ((groups[k] ?? { terms: [] }).terms)|merge([h]) }) }) %}
   {% endfor %}
-  <div class="rec-box"><div class="rec-lab">OFFICES HELD</div>
+  <div class="rec-box"><div class="rec-lab">PUBLIC LIFE</div>
     {% for g in groups %}
       {#- The body first, with its avatar as in the Organizations box, then the office and seat beneath (Nathan, 1 October 2026). -#}
       {% set bimg = g.body and 'featuredImage' in (g.body.fieldLayout ? g.body.fieldLayout.customFields|map(f => f.handle) : []) ? g.body.featuredImage.one() ?? null : null %}
@@ -43,29 +62,39 @@
           <div class="k">{{ h.selectionMethod.value == 'appointed' ? 'APPOINTED' : (h.selectionMethod.value == 'rotated' ? 'ROTATION' : 'TERM') }}</div>
           {#- How each end of the term is known; once after the range when both ends are known the same way. -#}
           {% set sameEv = not h.termEnd or (h.startEvidence.value ?? '') == (h.endEvidence.value ?? '') %}
-          <div class="v">{{ h.termStart }}{% if not sameEv %}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}{% endif %} to {{ h.termEnd ?: 'now' }}{% include "_partials/record/evidence" with { ev: sameEv ? h.startEvidence : h.endEvidence } only %}{% if h.howEnded.value == 'left' %} <span style="color:#5B6472;font-size:13.5px">(left office)</span>{% endif %}</div>
+          {#- The election that won this term: same body, won, within eight months before the term began, not used already. -#}
+          {% set hb = h.holdingBody.one() %}
+          {% set ts = h.termStartEdtf|default('')|slice(0, 10) %}
+          {% set win = null %}
+          {% if h.selectionMethod.value not in ['appointed', 'rotated'] and ts %}
+            {#- Months, since terms are often recorded to the month ("1998-04"): the election falls 0 to 8 months before the term's start month. -#}
+            {#- A term known only to the year ("2000") matches an election that year or the year before. -#}
+            {% set yearOnly = ts|length == 4 %}
+            {% set tsM = (ts|slice(0, 4)) * 12 + ((ts|slice(5, 2)) ?: 1) %}
+            {% for r in races %}{% set rM = (r.date|slice(0, 4)) * 12 + ((r.date|slice(5, 2)) ?: 1) %}{% set gap = yearOnly ? (ts|slice(0, 4)) - (r.date|slice(0, 4)) : tsM - rM %}{% if not win and r.won and r.c.id not in usedRaces and (hb ? r.bodyId == hb.id or (r.bodyId == 0 and hb.slug == 'city-of-santa-clarita') : true) and gap >= 0 and gap <= (yearOnly ? 1 : 8) %}{% set win = r %}{% endif %}{% endfor %}
+          {% endif %}
+          {% if win %}{% set usedRaces = usedRaces|merge([win.c.id]) %}{% endif %}
+          {#- Re-elections inside one recorded term (Smyth's 2000 to 2006 holds his 2000 and 2004 wins): same body, won, after the start and before the end. -#}
+          {% set again = [] %}
+          {% if ts %}
+            {% set te = h.termEndEdtf|default('')|slice(0, 10) %}
+            {% set startY = ts|slice(0, 4) %}{% set endY = te ? te|slice(0, 4) : '9999' %}
+            {% for r in races %}{% if r.won and r.c.id not in usedRaces and (hb ? r.bodyId == hb.id or (r.bodyId == 0 and hb.slug == 'city-of-santa-clarita') : true) and (r.date|slice(0, 4)) > startY and (r.date|slice(0, 4)) < endY %}{% set again = again|merge([r]) %}{% set usedRaces = usedRaces|merge([r.c.id]) %}{% endif %}{% endfor %}
+          {% endif %}
+          <div class="v">{{ h.termStart }}{% if not sameEv %}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}{% endif %} to {{ h.termEnd ?: 'now' }}{% include "_partials/record/evidence" with { ev: sameEv ? h.startEvidence : h.endEvidence } only %}{% if h.howEnded.value == 'left' %} <span style="color:#5B6472;font-size:13.5px">(left office)</span>{% endif %}{% if win %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(win) }}</div>{% endif %}{% for r in again %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(r) }}</div>{% endfor %}</div>
         {% endfor %}
       </div>
     {% endfor %}
     {% if derivedAny %}<p style="font-size:13px;line-height:1.5;color:#5B6472;margin:12px 0 0">A term "read from the count" was won on the vote totals, with the seats up derived from the staggered terms; no declaring document is held yet.</p>{% endif %}
   </div>
 {% endif %}
-{% if cands|length %}
-  {% set rows = [] %}
-  {% for c in cands %}
-    {% set el = c.candidacyElection.one() %}
-    {% if el %}
-      {% set n = craft.entries().section('candidacies').relatedTo({ targetElement: el, field: 'candidacyElection' }).count() %}
-      {% set place = craft.entries().section('candidacies').relatedTo({ targetElement: el, field: 'candidacyElection' }).votes('> ' ~ (c.votes ?? 0)).count() + 1 %}
-      {% set rows = rows|merge([{ el: el, c: c, n: n, place: place }]) %}
-    {% endif %}
-  {% endfor %}
-  <div class="rec-box"><div class="rec-lab">ELECTIONS STOOD</div>
+{% set others = races|filter(r => r.c.id not in usedRaces) %}
+{% if others|length %}
+  <div class="rec-box"><div class="rec-lab">{{ holdings|length ? 'OTHER RACES' : 'ELECTIONS STOOD' }}</div>
     <div class="rec-rows">
-      {% for r in rows|sort((a, b) => a.el.electionDateEdtf <=> b.el.electionDateEdtf) %}
-        {% set won = r.c.outcome.value == 'elected' and r.c.outcomeEvidence.value != 'uncited' %}
-        <div class="k">{{ r.el.electionDateEdtf|slice(0, 4) }}{{ r.el.electionDateEdtf|slice(5, 2) == '11' ? ' NOV' : '' }}</div>
-        <div class="v"><a href="{{ r.el.url }}">{{ won ? 'Elected' : (r.c.outcome.value == 'not-elected' ? 'Not elected' : 'Stood') }}{{ won and r.c.outcomeEvidence.value == 'derived' ? '†' : '' }}</a>{% set sfx = r.place % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][r.place % 10] ?? 'th') %}<span style="color:#5B6472;font-size:13.5px">, {{ r.place ~ sfx }} of {{ r.n }}, {{ r.c.votes|number_format }} votes</span>{% set eb = 'electionBody' in r.el.fieldLayout.customFields|map(f => f.handle) ? r.el.electionBody.one() : null %}{% set ed = eb and 'electionDistrict' in r.el.fieldLayout.customFields|map(f => f.handle) ? r.el.electionDistrict.one() : null %}<div style="color:#5B6472;font-size:13px;line-height:1.4">{{ not eb or eb.slug == 'city-of-santa-clarita' ? 'City Council' : eb.title ~ ' board' }}{% if ed %}, {{ {'trustee-area': 'Trustee Area', 'council-district': 'District', 'water-division': 'Division'}[ed.districtKind.value] ?? 'District' }} {{ ed.districtNumber }}{% endif %}</div></div>
+      {% for r in others %}
+        <div class="k">{{ r.date|slice(0, 4) }}{{ r.date|slice(5, 2) == '11' ? ' NOV' : '' }}</div>
+        <div class="v">{{ PL.raceLine(r) }}<div style="color:#5B6472;font-size:13px;line-height:1.4">{{ r.bodyLabel }}{% if r.dist %}, {{ {'trustee-area': 'Trustee Area', 'council-district': 'District', 'water-division': 'Division'}[r.dist.districtKind.value] ?? 'District' }} {{ r.dist.districtNumber }}{% endif %}</div></div>
       {% endfor %}
     </div>
   </div>

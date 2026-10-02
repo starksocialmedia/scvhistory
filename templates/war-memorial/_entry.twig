@@ -8,6 +8,17 @@
   .wm-unit .seal img{width:72px;height:72px;object-fit:contain}
   .wm-unit .br{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#C4A031}
   .wm-unit .un{font-family:'Playfair Display',serif;font-size:18px;margin-top:6px;line-height:1.3}
+  .wm-legacy{border:1px dashed #D5C79A;background:#FFFDF6;padding:10px 14px;margin:0 0 20px;font-size:14px;color:#5B6472;line-height:1.55}
+  .wm-legacy summary{cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:.04em;color:#7A5C1B}
+  .wm-legacy p{margin:8px 0 0}
+  .wm-extra{background:#fff;border:1px solid #E2E4E8;padding:14px 18px;margin:20px 0}
+  .wm-extra-h{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin-bottom:6px}
+  .wm-extra p{margin:0;font-size:15px;line-height:1.65}
+  .wm-facts-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+  .wm-pill{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.08em;border:1px solid #C9A659;color:#7A5C1B;background:#fff;padding:2px 8px;border-radius:10px;white-space:nowrap}
+  .wm-nr{font-size:10.5px;vertical-align:super;color:#7A5C1B;text-decoration:none;margin-left:2px}
+  .wm-nr::before{content:'['}.wm-nr::after{content:']'}
+  .wm-diff{display:block;font-size:12.6px;line-height:1.45;color:#8A5A12;margin-top:3px;padding-left:9px;border-left:2px solid #E2C27A}
   .rec-cta{background:#17254C;color:#fff;border-top:3px solid #C4A031}
   .rec-cta .rec-wrap{padding:44px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
   .rec-cta .k{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#C4A031}
@@ -66,6 +77,17 @@
     showed 426 characters and hid 2,318. Where there is one, it shows alone. -#}
 {% set bothTexts = F.wmNarrative and F.body and F.wmNarrative|trim != F.body|trim %}
 {% set narrative = F.wmNarrative ?: F.body %}
+{#- Leon's fact list (Nathan, 2 October 2026: "Leon's fact list folds into a closed panel. It is legacy data that the sourced facts
+    supersede, and a reader should be able to open it rather than wade through it"). Many legacy bodies open with the old page's service
+    record flattened into short lines ("Birthplace:" / "Newhall, CA" ...). The lines before the first sentence of prose (twelve words or
+    more, not a "Label:" line) are that list; they render in a closed panel, unchanged, and the narrative starts the page. Nothing in the
+    record is altered: this is presentation only. A body that opens with prose has no panel. -#}
+{% set bodyText = bothTexts ? F.body : narrative %}
+{% set paras = bodyText|replace({"\r": ''})|split("\n") %}
+{% set cut = 0 %}{% set found = false %}
+{% for p in paras %}{% if not found %}{% set t = p|striptags|trim %}{% if t|split(' ')|length >= 12 and not (t matches '/^[A-Z][A-Za-z ()&\\/.-]{1,40}:/') %}{% set found = true %}{% else %}{% set cut = cut + 1 %}{% endif %}{% endif %}{% endfor %}
+{% set legacyList = found and cut > 2 ? paras|slice(0, cut)|map(x => x|striptags|trim)|filter(x => x) : [] %}
+{% set bodyRest = legacyList|length ? paras|slice(cut)|join("\n") : bodyText %}
 {#- DIED is the date of death. It used to prefer the incident date, which for the missing is the day they were lost and the death date a later
     determination (Jimmie Ball), but which for the wounded is not the death at all: Edward Guy North's header said he died in September 1918, when he
     was shot, not April 1919, when he died (2 October 2026). Both show where they differ. -#}
@@ -112,30 +134,42 @@
         {#- The archive's own notes (editorNotes), which this page did not render before 2 October 2026: corrections and readers' notes were saved but not shown. -#}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'top' } only %}
 
+        {#- Short rows of the legacy service record (Branch Code, Height, Enlistment City) are legacy data like Leon's list, and join it in
+            the closed panel; long ones (a transcription, an oral history) read in the column below. -#}
+        {% set shortExtra = serviceExtra|filter(r => r.value|length <= 200) %}
+        {% if legacyList|length or shortExtra|length %}
+          <details class="wm-legacy"><summary>The service record as the legacy page set it out</summary>
+            {% if legacyList|length %}<p>{{ legacyList|join(' · ') }}</p>{% endif %}
+            {% if shortExtra|length %}<p>{% for r in shortExtra %}{{ r.label }}{{ r.label ? ': ' : '' }}{{ r.value }}{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
+          </details>
+        {% endif %}
         {% if bothTexts %}
           <h2 class="rec-h2" style="margin-top:8px">Summary</h2>
           <div class="rec-body">{% include "_partials/prose" with { text: F.wmNarrative, images: [], footnotesFor: null } %}</div>
           <h2 class="rec-h2">The record</h2>
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages , footnotesFor: entry } %}</div>
-{% include "_partials/record/footnotes" with { entry: entry } only %}
-          {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: bodyRest, images: recImages , footnotesFor: entry } %}</div>
         {% elseif narrative %}
-          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: narrative, images: recImages , footnotesFor: entry } %}</div>
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: bodyRest, images: recImages , footnotesFor: entry } %}</div>
+        {% endif %}
+        {#- The overflow rows of the legacy service record (a clipping's transcription, further reading) read in the column, beside the
+            narrative they belong to, not as a sidebar box (2 October 2026); not at all where the narrative already carries the same text. -#}
+        {% set bodyFlat = (F.body ~ ' ' ~ F.wmNarrative)|striptags|replace({"\n": ' '})|lower %}
+        {% for r in serviceExtra|filter(r => r.value|length > 200 and (r.value|striptags|replace({"\n": ' '})|lower|slice(0, 80)|trim) not in bodyFlat) %}
+          <div class="wm-extra"><div class="wm-extra-h">{{ r.label ?: 'From the service record' }}</div><p>{{ r.value }}</p></div>
+        {% endfor %}
+        {% if narrative %}
 {% include "_partials/record/footnotes" with { entry: entry } only %}
           {% include "_partials/record/images" with { images: recImages, body: narrative, entry: entry } only %}
         {% endif %}
 
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
-        {% include "_partials/record/fact-sources" with { entry: entry } only %}
         {% include "_partials/record/note" with { text: F.wmNotes, bottom: true } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
 
       </article>
 
       <aside class="rec-side">
-        {% include "_partials/record/cite" with { entry: entry, label: 'War Memorial', sidebar: true } only %}
-        {% include "_partials/record/source-link" with { el: entry } only %}
         {% include "_partials/record/education" with { entry: entry, as: 'person' } only %}
         {# Renders nothing until the casualty record carries childOf; see
            scripts/import/settle_family_relations.php. #}
@@ -150,24 +184,38 @@
         </div>
         {% endif %}
 
-        {% set svc = [['BRANCH', F.wmBranch], ['RANK', F.wmRank], ['GRADE AT LOSS', F.wmGradeAtLoss], ['SPECIALTY', F.wmSpecialty], ['SERVICE ID', F.wmServiceId], ['UNIT', F.wmUnit], ['BASE', F.wmBase], ['TOUR', F.wmStartTour], ['SERVICE', F.wmLengthOfService], ['OPERATION', F.wmCombatOperations], ['CONFLICT', F.wmConflict], ['BIRTHPLACE', F.wmBirthplace]]|filter(r => r[1]) %}
-        {% if svc|length %}
-        <div class="rec-box"><div class="rec-lab">SERVICE RECORD</div>
-          <div class="rec-rows">{% for r in svc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
-        </div>
-        {% endif %}
-
-        {% set inc = [['DATE', F.wmIncidentDate], ['LOCATION', F.wmIncidentLocation], ['AGE', F.wmAgeAtLoss], ['REASON', F.wmCasualtyReason], ['TYPE', F.wmCasualtyType], ['DETAIL', F.wmCasualtyDetail]]|filter(r => r[1]) %}
-        {% if inc|length %}
-        <div class="rec-box"><div class="rec-lab">INCIDENT</div>
-          <div class="rec-rows">{% for r in inc %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
-        </div>
-        {% endif %}
-
-        {% set life = [['HOME', F.wmHomeOfRecord], ['BORN', F.wmDateOfBirth], ['HIGH SCHOOL', F.wmHighSchool], ['FAMILY', F.wmFamily], ['DRAFT REGISTERED', F.wmSelectiveServiceDate], ['BURIAL', F.burialPlace]]|filter(r => r[1]) %}
-        {% if life|length %}
-        <div class="rec-box"><div class="rec-lab">LIFE</div>
-          <div class="rec-rows">{% for r in life %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+        {#- ONE PLACE PER FACT (Nathan, 2 October 2026, approving the mockup): one box in the order of a life. On a sourced record the
+            rows are its factSources: each value with the notes that support it, and, where the sources differ, a line saying what each
+            says. Fields the table does not cover follow, unmarked. An unsourced record shows its fields in the same order. -#}
+        {% set fieldRows = [['BORN', F.wmDateOfBirth], ['BIRTHPLACE', F.wmBirthplace], ['HOME', F.wmHomeOfRecord], ['HIGH SCHOOL', F.wmHighSchool], ['FAMILY', F.wmFamily], ['DRAFT REGISTERED', F.wmSelectiveServiceDate], ['BRANCH', F.wmBranch], ['RANK', F.wmRank], ['GRADE AT LOSS', F.wmGradeAtLoss], ['SPECIALTY', F.wmSpecialty], ['SERVICE NUMBER', F.wmServiceId], ['UNIT', F.wmUnit], ['BASE', F.wmBase], ['TOUR', F.wmStartTour], ['SERVICE', F.wmLengthOfService], ['OPERATION', F.wmCombatOperations], ['CONFLICT', F.wmConflict], ['INCIDENT', F.wmIncidentDate], ['PLACE', F.wmIncidentLocation], ['REASON', F.wmCasualtyReason], ['TYPE', F.wmCasualtyType], ['DETAIL', F.wmCasualtyDetail], ['DATE OF DEATH', F.deathDate], ['AGE', F.wmAgeAtLoss], ['BURIAL', F.burialPlace]]|filter(r => r[1]) %}
+        {% set facts = present['factSources'] is defined ? (entry.factSources ?? [])|filter(r => (r.fact ?? '')|trim) : [] %}
+        {#- A field is covered when a fact row says the same thing; these are the labels each field's fact rows use. -#}
+        {% set COVERS = { 'BORN': ['born'], 'BIRTHPLACE': ['birthplace', 'born'], 'HOME': ['home', 'home, 1919'], 'HIGH SCHOOL': ['high school'], 'DRAFT REGISTERED': ['registered for the draft', 'enlisted'], 'BRANCH': ['branch'], 'RANK': ['rank'], 'SERVICE NUMBER': ['service number'], 'UNIT': ['unit', 'ship'], 'BASE': ['base'], 'TOUR': ['tour began', 'enlisted', 'entered service'], 'OPERATION': ['operation'], 'INCIDENT': ['wounded', 'casualty', 'date of death'], 'PLACE': ['place', 'place of death'], 'REASON': ['cause', 'cause of death', 'casualty', 'circumstances'], 'TYPE': ['casualty', 'cause'], 'DETAIL': ['cause of death', 'cause'], 'DATE OF DEATH': ['date of death'], 'AGE': ['age'], 'BURIAL': ['burial', 'memorial', 'remains'], 'SPECIALTY': ['specialty'] } %}
+        {% set factLabels = facts|map(r => (r.fact ?? '')|lower|trim) %}
+        {#- Covered only when a fact row with a matching label also says the same thing: the opening words of one appear in the other.
+            Ward's "Born" row covers his birth date, not his birthplace; Larsen's "Memorial" row is the cenotaph, not where his ashes went.
+            A field that is not covered shows as its own row, so nothing the record holds goes missing from the page. -#}
+        {% set extra = [] %}
+        {% for r in fieldRows %}
+          {% set fv = r[1]|lower|replace({'(': '', ')': '', ',': '', '.': '', ';': ''})|split(' ')|filter(w => w)|join(' ') %}
+          {% set covered = false %}
+          {% for f in facts %}{% if not covered and ((f.fact ?? '')|lower|trim) in (COVERS[r[0]] ?? []) %}
+            {% set xv = (f.value ?? '')|lower|replace({'(': '', ')': '', ',': '', '.': '', ';': ''})|split(' ')|filter(w => w)|join(' ') %}
+            {% if (fv|slice(0, 16)) in xv or (xv|slice(0, 16)) in fv %}{% set covered = true %}{% endif %}
+          {% endif %}{% endfor %}
+          {% if not covered %}{% set extra = extra|merge([r]) %}{% endif %}
+        {% endfor %}
+        {% set noteCount = present['footnotes'] is defined ? (entry.footnotes ?? [])|filter(n => (n.note ?? '')|trim)|length : 0 %}
+        {% set differ = facts|filter(r => (r.agreement ?? '')|trim)|length %}
+        {% if facts|length or extra|length %}
+        <div class="rec-box wm-facts"><div class="wm-facts-h"><span class="rec-lab" style="margin:0">SERVICE AND LIFE</span>{% if facts|length %}<span class="wm-pill">{{ noteCount }} SOURCE{{ noteCount == 1 ? '' : 'S' }}{% if differ %} · {{ differ }} DIFFER{% endif %}</span>{% endif %}</div>
+          <div class="rec-rows">
+            {% for r in facts %}
+              <div class="k">{{ r.fact|upper }}</div>
+              <div class="v">{{ r.value }}{% for n in (r.notes ?? '')|split(',')|map(x => x|trim)|filter(x => x) %}<a class="wm-nr" href="#fn-{{ n }}">{{ n }}</a>{% endfor %}{% if (r.agreement ?? '')|trim %}<span class="wm-diff">{{ r.agreement }}</span>{% endif %}</div>
+            {% endfor %}
+            {% for r in extra %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}
+          </div>
         </div>
         {% endif %}
 
@@ -185,15 +233,6 @@
           </div>
         {% endif %}
 
-        {% if serviceExtra|length %}
-          <div class="rec-box"><div class="rec-lab">FROM THE SERVICE RECORD</div>
-            <div class="rec-rows">
-              {% for r in serviceExtra %}
-                <div class="k">{{ r.label|upper }}</div><div class="v">{{ r.value }}</div>
-              {% endfor %}
-            </div>
-          </div>
-        {% endif %}
 
         {% include "_partials/record/documents" with { docs: recDocs } only %}
 
@@ -214,6 +253,9 @@
           {% endif %}
         </div>
         {% endif %}
+        {#- Tools, not content: below the facts (2 October 2026). -#}
+        {% include "_partials/record/cite" with { entry: entry, label: 'War Memorial', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
       </aside>
     </main>
   </div>

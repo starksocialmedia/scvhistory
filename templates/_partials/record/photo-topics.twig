@@ -6,18 +6,20 @@
 
   Params:
     el    the record
+    bare  true: the links only, with a subheading, for inside another box
+          (the person page's In the archive, 2 October 2026)
 -#}
 {%- set tsRaw = source('_data/topic-subjects.json', ignore_missing = true) -%}
 {%- set map = tsRaw ? tsRaw|json_decode(true) : {} -%}
 {%- set key = el.section.handle ~ ':' ~ el.id -%}
 {%- set mine = map|filter((v, k) => v == key and k|first != '_')|keys -%}
 {% if mine|length %}
-  <div class="rec-box"><div class="rec-lab">IN THE PHOTOGRAPH FILES</div>
+  {% if bare|default(false) %}<div class="rec-sublab">In the photograph files</div>{% else %}<div class="rec-box"><div class="rec-lab">IN THE PHOTOGRAPH FILES</div>{% endif %}
     <div class="rec-links">
       {% for t in mine %}
         {% set n = craft.entries().section('photographs').legacyCategory([t, '* > ' ~ t, t ~ ' > *', '* > ' ~ t ~ ' > *']).count() %}
         {% if n %}<a href="{{ url('photographs', { topic: t }) }}">{{ n|number_format }} photograph{{ n == 1 ? '' : 's' }} filed under {{ t }} <span>&rarr;</span></a>{% endif %}
       {% endfor %}
     </div>
-  </div>
+  {% if not bare|default(false) %}</div>{% endif %}
 {% endif %}

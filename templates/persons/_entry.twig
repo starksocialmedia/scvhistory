@@ -188,8 +188,6 @@
             {% if img.photoCredit|default('')|trim %}<div style="font-size:12.5px;color:#5B6472;margin-top:8px">{{ img.photoCredit }}</div>{% endif %}
           </div>
         {% endif %}
-        {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
-        {% include "_partials/record/source-link" with { el: entry } only %}
         {#- Public service from the officeHolding and candidacy records, not the prose. -#}
         {% include "_partials/record/offices" with { entry: entry } only %}
         {% include "_partials/record/education" with { entry: entry, as: 'person' } only %}
@@ -216,7 +214,6 @@
         {% endif %}
 
         {% include "_partials/record/named-for" with { el: entry } only %}
-        {% include "_partials/record/photo-topics" with { el: entry } only %}
 
         {% if livedPlaces|length %}
           <div class="rec-box"><div class="rec-lab">PLACES</div>
@@ -224,26 +221,28 @@
           </div>
         {% endif %}
 
-        {% if nWrote or nEdited %}
+        {#- IN THE ARCHIVE, one box (Nathan, 2 October 2026, approving the layout mockup): what the person wrote or edited, as counts;
+            what is about them; photographs of them. Three boxes before, each with its own heading. -#}
+        {% set photoFiles = include('_partials/record/photo-topics', { el: entry, bare: true }, with_context = false)|trim %}
+        {% if nWrote or nEdited or nAbout or nPictured or photoFiles %}
           <div class="rec-box"><div class="rec-lab">IN THE ARCHIVE</div>
+            {% if nWrote or nEdited %}
             <div class="rec-links">
               {% if nWrote %}<a href="{{ worksUrl }}?role=wrote">Wrote {{ nWrote|number_format }} piece{{ nWrote == 1 ? '' : 's' }} in the archive <span>&rarr;</span></a>{% endif %}
               {% if nEdited %}<a href="{{ worksUrl }}?role=edited">Edited {{ nEdited|number_format }} <span>&rarr;</span></a>{% endif %}
             </div>
-          </div>
-        {% endif %}
-
-        {% if nAbout %}
-          <div class="rec-box"><div class="rec-lab">ABOUT {{ entry.title|upper }}</div>
-            <div class="rec-links">{% for a in about %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}
-              {% if nAbout > about|length %}<a href="{{ worksUrl }}?role=about"><strong>All {{ nAbout|number_format }}</strong> <span>&rarr;</span></a>{% endif %}</div>
-          </div>
-        {% endif %}
-
-        {% if nPictured %}
-          <div class="rec-box"><div class="rec-lab">PHOTOGRAPHS</div>
-            <div class="rec-links">{% for a in pictured %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}
-              {% if nPictured > pictured|length %}<a href="{{ worksUrl }}?role=pictured"><strong>All {{ nPictured|number_format }}</strong> <span>&rarr;</span></a>{% endif %}</div>
+            {% endif %}
+            {% if nAbout %}
+              <div class="rec-sublab">About {{ entry.title }}</div>
+              <div class="rec-links">{% for a in about %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}
+                {% if nAbout > about|length %}<a href="{{ worksUrl }}?role=about"><strong>All {{ nAbout|number_format }}</strong> <span>&rarr;</span></a>{% endif %}</div>
+            {% endif %}
+            {% if nPictured %}
+              <div class="rec-sublab">Photographs</div>
+              <div class="rec-links">{% for a in pictured %}<a href="{{ a.url }}">{{ a.title }} <span>&rarr;</span></a>{% endfor %}
+                {% if nPictured > pictured|length %}<a href="{{ worksUrl }}?role=pictured"><strong>All {{ nPictured|number_format }}</strong> <span>&rarr;</span></a>{% endif %}</div>
+            {% endif %}
+            {{ photoFiles|raw }}
           </div>
         {% endif %}
 
@@ -270,6 +269,9 @@
             <div class="rec-links">{% for l in links %}<a href="{{ l.u }}" target="_blank" rel="noopener">{{ l.t }} <span>&nearr;</span></a>{% endfor %}</div>
           </div>
         {% endif %}
+        {#- Tools, not content: last (2 October 2026). -#}
+        {% include "_partials/record/cite" with { entry: entry, label: 'People', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
       </aside>
     </main>
   </div>

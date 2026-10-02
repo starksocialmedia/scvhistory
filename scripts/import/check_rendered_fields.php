@@ -105,9 +105,15 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
             if ($mode === 'number' && is_numeric(trim((string)$v))) { $ns = [number_format((float)trim((string)$v))]; }
             if ($mode === 'evidence') { $W = ['certified' => "the body's own record", 'contemporary' => 'reported at the time', 'retrospective' => 'recalled later', 'roster' => 'from an undated roster', 'derived' => 'read from the count', 'uncited' => 'not yet sourced']; $ns = [isset($W[(string)($v->value ?? '')]) ? strtolower($W[(string)$v->value]) : '']; }
             if ($mode === 'list') { $ns = [$probe(trim(preg_split('~[;,]~', (string)$v)[0]))]; }
+            /* On a sourced record (war memorials), a field's value may show in its sourced form, as the fact row that says the same thing
+               ("Hart High School, class of 1967" for "Hart High School (class of 1967)"). The same test as the template: the opening words of
+               one in the other. */
+            $nz = fn($x) => trim(preg_replace('~\s+~', ' ', str_replace(['(', ')', ',', '.', ';'], '', mb_strtolower(strip_tags((string)$x)))));
+            $factVals = $e->getFieldLayout()->getFieldByHandle('factSources') ? array_map(fn($r) => $nz($r['value'] ?? ''), array_filter($e->factSources ?? [], 'is_array')) : [];
             foreach ($ns as $n) {
                 $checks++;
                 if ($n === '' || str_contains($text, $n)) { continue; }
+                if ($factVals && is_scalar($v) || (is_object($v) && method_exists($v, '__toString'))) { $fv = $nz((string)$v); $hit = false; foreach ($factVals as $xv) { if ($xv !== '' && (str_contains($xv, mb_substr($fv, 0, 16)) || str_contains($fv, mb_substr($xv, 0, 16))) && str_contains($nz($text), mb_substr($xv, 0, 16))) { $hit = true; break; } } if ($hit) { continue; } }
                 $line = "{$sec->handle}.{$f->handle}  #$id {$e->title}  \"" . mb_substr($n, 0, 60) . '"';
                 if (!empty($fieldsOf[$f->handle]['unless'])) { $excused[] = $line . '  (' . $fieldsOf[$f->handle]['unless'] . ')'; } else { $fails[] = 'MISSING  ' . $line; }
                 break;
