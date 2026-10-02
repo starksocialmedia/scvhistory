@@ -61,13 +61,19 @@
       that the date is in dispute, which is a different thing from not knowing it
       (Nathan, 1 October 2026). A year with no birth year reads "died 1871". -#}
   {% set dates = byear and dyear ? byear ~ '–' ~ dyear : (byear ? 'born ' ~ byear : (dyear ? 'died ' ~ dyear : '')) %}
-  {% set rows = rows|merge([{e: p, by: byear ?? 9999, dates: dates}]) %}
+  {% set pera = p.historicalEra.one() %}
+  {% set rows = rows|merge([{e: p, by: byear ?? 9999, dates: dates, era: pera}]) %}
 {% endfor %}
 {% if sort == 'birth' %}{% set rows = rows|sort((a, b) => a.by <=> b.by) %}{% endif %}
 
-{% set eraCount = 0 %}
+{#- A person can be in several eras; the first-listed is their primary (Nathan, 2 October 2026). The chips count primaries only,
+    so a career across four eras is counted once, and a filtered era shows the people known for it as cards and everyone else
+    active in it as a line of names. -#}
 {% set eras = craft.categories().group('historicalEra').all() %}
-{% for e in eras %}{% if craft.entries().section('persons').relatedTo(e).count() %}{% set eraCount = eraCount + 1 %}{% endif %}{% endfor %}
+{% set primaryCount = {} %}
+{% for p in craft.entries().section('persons').all() %}{% set pe = p.historicalEra.one() %}{% if pe %}{% set primaryCount = primaryCount|merge({ ('e' ~ pe.id): (primaryCount['e' ~ pe.id] ?? 0) + 1 }) %}{% endif %}{% endfor %}
+{% set eraCount = primaryCount|length %}
+{% set eraTerm = eraSlug ? craft.categories().group('historicalEra').slug(eraSlug).one() : null %}
 
 <div class="pp">
   <section class="scv-band pp-band">
@@ -93,7 +99,7 @@
       <div class="pp-lab">ERA</div>
       <a class="pp-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('persons', sort != 'alpha' ? {sort: sort} : {}) }}">All</a>
       {% for e in eras %}
-        {% set n = craft.entries().section('persons').relatedTo(e).count() %}
+        {% set n = primaryCount['e' ~ e.id] ?? 0 %}
         {% if n %}<a class="pp-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('persons', sort != 'alpha' ? {era: e.slug, sort: sort} : {era: e.slug}) }}">{{ e.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
       <div class="pp-right">
@@ -107,9 +113,12 @@
   </section>
 
   <main class="scv-band-in pp-main">
+    {% set cardRows = eraTerm ? rows|filter(r => r.era and r.era.id == eraTerm.id) : rows %}
+    {% set alsoRows = eraTerm ? rows|filter(r => not (r.era and r.era.id == eraTerm.id)) : [] %}
     {% if rows|length %}
+    {% if eraTerm %}<h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:24px;color:#17254C;margin:0 0 18px">Known for this era <span style="font-size:16px;color:#5B6472">({{ cardRows|length }})</span></h2>{% endif %}
     <div class="pp-grid">
-      {% for r in rows %}
+      {% for r in cardRows %}
         {% set p = r.e %}
         {% set img = null %}
         {% for handle in ['featuredImage', 'scvPhotos'] %}
@@ -124,10 +133,15 @@
             <div class="pp-name">{{ p.title }}</div>
             {% if p.occupation %}<div class="pp-role">{{ p.occupation }}</div>{% endif %}
             {% if r.dates %}<div class="pp-dates">{{ r.dates }}</div>{% endif %}
+            {% if r.era and not eraTerm %}<div class="pp-dates" style="color:#7A5C1B">{{ r.era.title|split(' (')|first }}</div>{% endif %}
           </div>
         </a>
       {% endfor %}
     </div>
+    {% if alsoRows|length %}
+      <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:22px;color:#17254C;margin:40px 0 12px">Also active in this era <span style="font-size:16px;color:#5B6472">({{ alsoRows|length }})</span></h2>
+      <p style="font-size:15.5px;line-height:1.9;color:#4A5260;margin:0">{% for r in alsoRows %}<a href="{{ r.e.url }}" style="color:#17254C">{{ r.e.title }}</a>{% if r.era %} <span style="color:#5B6472;font-size:13px">({{ r.era.title|split(' (')|first }})</span>{% endif %}{{ not loop.last ? ' · ' : '' }}{% endfor %}</p>
+    {% endif %}
     {% else %}
       <div class="pp-empty">No people in this era yet. <a href="{{ url('persons') }}" style="color:#7A5C1B">Show all</a></div>
     {% endif %}
