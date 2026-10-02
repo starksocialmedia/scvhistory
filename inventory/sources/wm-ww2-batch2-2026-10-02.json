@@ -1,0 +1,30 @@
+{
+  "_about": "Sources read 2 October 2026 for World War II batch 2 of the war memorial sourcing. The Navy's California list and Oklahoma's Army Honor List downloaded from the NARA catalog (Nathan approved both) to inventory/legacy/fetched/nara-navy-ca/ and nara-honor-list-ok/ (the PDFs are not committed: 150 MB and 23 MB; re-downloadable from the catalog); entries read by eye from rendered pages. California Army Honor List lines read by eye from inventory/legacy/fetched/nara-honor-list-ca/.",
+  "navyList": {
+    "source": "Navy Department, State Summary of War Casualties from World War II for Navy, Marine Corps, and Coast Guard Personnel from California (1946), NARA NAID 305189, Dead section",
+    "entries": {
+      "510 Whitmore": {"pdfPage": 97, "text": "WHITMORE, Frank Pike, Soundman 3c, USN. Parents, Mr. and Mrs. George Fred Whitmore, 1445 Walnut St., Newhall."},
+      "572 Cherry": {"pdfPage": 18, "text": "CHERRY, Perry Leon, Seaman 2c, USN. Parents, Mr. and Mrs. Frank John Cherry, 3200 1/2 W. 109th St., Inglewood."},
+      "578 Fose": {"pdfPage": 32, "text": "FOSE, Robert Remy, Seaman 2c, USNR. Wife, Mrs. Lucretia Maryan Fose, 2115 Valentine St., Los Angeles."}
+    },
+    "notFound": "James Robert Ball, Lawrence E. Kenaston and Thomas Milton Ross Jr. are not in the California list, dead or missing (read by eye where they would sort); the list is filed by the next of kin's state."
+  },
+  "honorListCA": {
+    "source": "War Department, World War II Honor List of Dead and Missing Army and Army Air Forces Personnel from California (1946), Los Angeles County, NARA NAID 305280",
+    "lines": {
+      "564 Redmond": {"page": "28-2524a", "line": "REDMOND JAMES M 19179914 S SG KIA"},
+      "1407 Pineau": {"page": "28-2523a", "line": "PINEAU WILLIAM E 39693386 AV C DNB"}
+    },
+    "notFound": "Robert Russell Cone is not in the Los Angeles County list (CONDON is followed by CONFER)."
+  },
+  "honorListOK": {
+    "source": "War Department, World War II Honor List of Dead and Missing Army and Army Air Forces Personnel from Oklahoma (1946), Lincoln County, NARA NAID 305311, PDF page 16",
+    "lines": {"520 Beall": "BEALL ARCHIBALD K 38154662 PFC KIA"}
+  },
+  "abmc": {
+    "564 Redmond": "American Battle Monuments Commission memorial certificate, held in this archive (ww2_jamesmredmond_certificate.jpg): James M. Redmond, Staff Sergeant, U.S. Army, 299th Engineer Combat Battalion; date of death December 21, 1944; Ardennes American Cemetery, Neupré, Belgium"
+  },
+  "local": {
+    "1407 Pineau": "World War II draft registration card, William Ernest Pineau, registered June 30, 1942, Local Board No. 175, Palmdale (National Archives, Record Group 147), held in this archive (ww2_williamernestpineau_draft_large.jpg): place of residence Agua Dulce Canyon, Saugus, Los Angeles County; born April 30, 1924, Albuquerque, New Mexico"
+  }
+}
