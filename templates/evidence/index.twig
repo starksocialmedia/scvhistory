@@ -1,0 +1,32 @@
+{% extends "_layouts/base" %}
+{% set metaDescription = 'How SCVHistory.com says how it knows a date or a fact: the six levels of evidence shown beside births, deaths, terms of office, schooling and elections.' %}
+{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% block content %}
+{#- The scale behind every "(recalled later)" on a record (2 October 2026). -#}
+{% set LEVELS = [
+  { v: 'certified', w: 'the body\'s own record', t: 'Certified', d: 'The record of the body that made the fact: a city clerk\'s certificate of an election, a school\'s own register, a death certificate, a War Department report of death. The strongest kind of evidence the archive holds.' },
+  { v: 'contemporary', w: 'reported at the time', t: 'Contemporary report', d: 'Written when it happened, by someone in a position to know: a newspaper story that week, a yearbook, a program, a letter.' },
+  { v: 'retrospective', w: 'recalled later', t: 'Retrospective account', d: 'Written afterward: an obituary, a memoir, a history, a biography, a later article. Often right, but a step removed, and where it disagrees with a record made at the time, the record is preferred.' },
+  { v: 'roster', w: 'from an undated roster', t: 'Undated roster', d: 'A list that says who held a seat or belonged to a body but not when it was made, so the date is placed from other evidence.' },
+  { v: 'derived', w: 'read from the count', t: 'Derived', d: 'Worked out rather than stated: a winner read from the vote totals and the number of seats up, or a term read from the election that began it. Correct as arithmetic; no document declaring it is held yet.' },
+  { v: 'uncited', w: 'not yet sourced', t: 'Uncited', d: 'The archive holds the fact but not yet a source for it. It is shown because hiding it would be worse, and marked so a reader knows to weigh it.' }
+] %}
+<div class="scv-page">
+  <section class="scv-hero"><div class="scv-wrap">
+    <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>How we know</span></div>
+    <div class="scv-kicker">How we know</div>
+    <h1>Evidence</h1>
+    <p class="scv-lede">Beside a date of birth, a term of office or a school year, the archive says how the fact is known. These are the six levels, strongest first.</p>
+  </div></section>
+  <main class="scv-main"><div class="scv-wrap" style="max-width:760px">
+    {% for l in LEVELS %}
+      <section id="{{ l.v }}" style="padding:18px 0;border-top:1px solid #E2E4E8">
+        <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:24px;color:#17254C;margin:0 0 4px">{{ l.t }}</h2>
+        <div style="font-size:13.5px;color:#7A5C1B;margin-bottom:8px">Shown as <span style="color:#5B6472">({{ l.w }})</span></div>
+        <p style="font-size:16px;line-height:1.65;margin:0;max-width:64ch">{{ l.d }}</p>
+      </section>
+    {% endfor %}
+    <p style="font-size:14.5px;color:#5B6472;margin-top:24px;max-width:64ch">Where sources disagree, the record shows both and says so, rather than choosing silently. Where nothing is recorded about the evidence, nothing is said.</p>
+  </div></main>
+</div>
+{% endblock %}

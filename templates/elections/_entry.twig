@@ -69,7 +69,7 @@
       <h1>{{ e.title }}</h1>
       <div class="el-facts">
         <div><div class="n">{{ cands|length }}</div><div class="l">CANDIDATES</div></div>
-        <div><div class="n">{{ e.seatsUp }}</div><div class="l">SEATS{{ e.seatsUpEvidence.value in ['uncited', 'derived'] ? ', DERIVED' : '' }}</div></div>
+        <div><div class="n">{{ e.seatsUp }}</div><div class="l">SEATS{% include "_partials/record/evidence" with { ev: e.seatsUpEvidence } only %}</div></div>
         {% if e.ballotsCast %}<div><div class="n">{{ e.ballotsCast|number_format }}</div><div class="l">BALLOTS CAST</div></div>{% endif %}
         {% if e.registeredVoters %}<div><div class="n">{{ e.registeredVoters|number_format }}</div><div class="l">REGISTERED</div></div>{% endif %}
         {% if turnout %}<div><div class="n">{{ turnout|number_format(1) }}%</div><div class="l">TURNOUT</div></div>{% endif %}

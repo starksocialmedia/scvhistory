@@ -24,7 +24,7 @@
     {% set other = as == 'school' ? r.educationPerson.one() : r.educationSchool.one() %}
     {% if other %}
       {% set bits = [r.classOf|trim ? 'class of ' ~ r.classOf|trim : '', r.educationOutcome.value == 'graduated' ? 'graduated' : ''] %}
-      {% set items = items|merge([{ e: other, sub: bits|filter(b => b)|join(', '), sort: (r.classOf|trim ?: '9999') ~ other.title }]) %}
+      {% set items = items|merge([{ e: other, sub: bits|filter(b => b)|join(', '), sort: (r.classOf|trim ?: '9999') ~ other.title, ev: r.educationEvidence ?? null }]) %}
     {% endif %}
   {% endfor %}
   {% if items|length and as == 'school' and (place ?? '') == 'body' %}
@@ -52,7 +52,7 @@
       <div class="rec-rows">
         {% for it in items|sort((a, b) => a.sort <=> b.sort) %}
           <div class="k">{{ as == 'school' ? (it.e.section.handle == 'warMemorials' ? 'MEMORIAL' : 'PERSON') : 'SCHOOL' }}</div>
-          <div class="v"><a href="{{ it.e.url }}">{{ it.e.title }}</a>{% if it.sub %}<br><span style="color:#5B6472;font-size:13px">{{ it.sub }}</span>{% endif %}</div>
+          <div class="v"><a href="{{ it.e.url }}">{{ it.e.title }}</a>{% if it.sub or it.ev %}<br><span style="color:#5B6472;font-size:13px">{{ it.sub }}</span>{% include "_partials/record/evidence" with { ev: it.ev } only %}{% endif %}</div>
         {% endfor %}
       </div>
     </div>

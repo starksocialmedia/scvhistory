@@ -103,6 +103,7 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
             $ns = $needles($f, $v);
             if ($mode === 'href') { $u = trim((string)$v); $path = parse_url($u, PHP_URL_PATH) ?: $u; $ns = [str_contains($html, $u) || str_contains($html, htmlspecialchars($u)) || ($path !== '/' && str_contains($html, $path)) ? '' : $u]; }
             if ($mode === 'number' && is_numeric(trim((string)$v))) { $ns = [number_format((float)trim((string)$v))]; }
+            if ($mode === 'evidence') { $W = ['certified' => "the body's own record", 'contemporary' => 'reported at the time', 'retrospective' => 'recalled later', 'roster' => 'from an undated roster', 'derived' => 'read from the count', 'uncited' => 'not yet sourced']; $ns = [isset($W[(string)($v->value ?? '')]) ? strtolower($W[(string)$v->value]) : '']; }
             if ($mode === 'list') { $ns = [$probe(trim(preg_split('~[;,]~', (string)$v)[0]))]; }
             foreach ($ns as $n) {
                 $checks++;

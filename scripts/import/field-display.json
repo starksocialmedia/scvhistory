@@ -73,8 +73,8 @@
    "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
   },
   "birthEvidence": {
-   "show": "gap",
-   "why": "how a birth date is known (confidence)"
+   "show": "page",
+   "mode": "evidence"
   },
   "birthplace": {
    "show": "page"
@@ -89,8 +89,8 @@
    "why": "steers the template (grouping, labels or what is published), not printed as its value"
   },
   "burialEvidence": {
-   "show": "gap",
-   "why": "how a burial is known (confidence)"
+   "show": "page",
+   "mode": "evidence"
   },
   "burialPlace": {
    "show": "page"
@@ -217,8 +217,8 @@
    "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
   },
   "deathEvidence": {
-   "show": "gap",
-   "why": "how a death date is known (confidence)"
+   "show": "page",
+   "mode": "evidence"
   },
   "decidedBy": {
    "show": "internal",
@@ -248,8 +248,8 @@
    "show": "page"
   },
   "educationEvidence": {
-   "show": "gap",
-   "why": "how a school attendance is known (confidence)"
+   "show": "page",
+   "mode": "evidence"
   },
   "educationOutcome": {
    "show": "page"
@@ -298,8 +298,8 @@
    "show": "page"
   },
   "endEvidence": {
-   "show": "gap",
-   "why": "how an office end is known (a confidence level, which the content rules say a claim keeps)"
+   "show": "page",
+   "mode": "evidence"
   },
   "enhancedBy": {
    "show": "page"
@@ -407,7 +407,8 @@
    "show": "page"
   },
   "foundedEvidence": {
-   "show": "page"
+   "show": "page",
+   "mode": "evidence"
   },
   "fullName": {
    "show": "schema",
@@ -967,8 +968,8 @@
    "show": "page"
   },
   "seatsUpEvidence": {
-   "show": "gap",
-   "why": "how the seats up are known (a confidence level)"
+   "show": "page",
+   "mode": "evidence"
   },
   "selectionMethod": {
    "show": "page"
@@ -998,8 +999,8 @@
    "show": "page"
   },
   "startEvidence": {
-   "show": "gap",
-   "why": "how a start date is known, for an office or an event (a confidence level)"
+   "show": "page",
+   "mode": "evidence"
   },
   "subheadline": {
    "show": "page"

@@ -1,0 +1,28 @@
+{#
+  How a fact is known, said beside it (Nathan, 2 October 2026: "Evidence quality
+  is the archive's whole argument and it is currently invisible"). One scale for
+  every evidence field: birthEvidence, deathEvidence, burialEvidence,
+  educationEvidence, startEvidence, endEvidence, seatsUpEvidence, foundedEvidence.
+  The words link to /evidence, which explains the scale. Nothing prints when the
+  field is empty: no claim about the evidence is made where none is recorded.
+
+  Params:
+    ev   the dropdown value (SingleOptionFieldData) or its value as a string
+#}
+{%- set v = (ev.value ?? ev ?? '')|trim -%}
+{%- set WORDS = {
+  certified: 'the body\'s own record',
+  contemporary: 'reported at the time',
+  retrospective: 'recalled later',
+  roster: 'from an undated roster',
+  derived: 'read from the count',
+  uncited: 'not yet sourced'
+} -%}
+{%- if v and WORDS[v] is defined -%}
+  {%- css -%}
+  .ev{font-family:'Public Sans',system-ui,sans-serif;font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:#5B6472;text-decoration:none;border-bottom:1px dotted #B9BEC7;white-space:nowrap;margin-left:6px}
+  .ev:hover{color:#7A5C1B;border-bottom-color:#C4A031}
+  .ev--uncited,.ev--derived,.ev--roster{color:#8A5A12;border-bottom-color:#E2C27A}
+  {%- endcss -%}
+  <a class="ev ev--{{ v }}" href="{{ url('evidence') }}#{{ v }}" title="How this is known: {{ WORDS[v] }}">({{ WORDS[v] }})</a>
+{%- endif -%}

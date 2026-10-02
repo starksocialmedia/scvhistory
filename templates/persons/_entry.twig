@@ -135,8 +135,10 @@
           {% if F.occupation %}<div class="rec-sub">{{ F.occupation }}</div>{% endif %}
           {% if born or died or residence %}
             <div class="rec-facts">
-              {% if born %}<div><div class="l">BORN</div><div class="v">{{ born }}</div></div>{% endif %}
-              {% if died %}<div><div class="l">DIED</div><div class="v">{{ died }}</div></div>{% endif %}
+              {#- Each date with how it is known (_partials/record/evidence.twig, 2 October 2026). -#}
+              {% set evH = entry.fieldLayout.customFields|map(f => f.handle) %}
+              {% if born %}<div><div class="l">BORN</div><div class="v">{{ F.birthDate }}{% if 'birthEvidence' in evH and F.birthDate %}{% include "_partials/record/evidence" with { ev: entry.birthEvidence } only %}{% endif %}{{ F.birthDate and F.birthplace ? ' · ' : '' }}{{ F.birthplace }}</div></div>{% endif %}
+              {% if died %}<div><div class="l">DIED</div><div class="v">{{ F.deathDate }}{% if 'deathEvidence' in evH and F.deathDate %}{% include "_partials/record/evidence" with { ev: entry.deathEvidence } only %}{% endif %}{{ F.deathDate and F.burialPlace ? ' · ' : '' }}{{ F.burialPlace }}{% if 'burialEvidence' in evH and F.burialPlace %}{% include "_partials/record/evidence" with { ev: entry.burialEvidence } only %}{% endif %}</div></div>{% endif %}
               {% if residence %}<div><div class="l">RESIDENCE</div><div class="v">{{ residence }}</div></div>{% endif %}
             </div>
           {% endif %}

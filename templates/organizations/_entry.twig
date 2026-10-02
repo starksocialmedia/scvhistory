@@ -82,7 +82,7 @@
           {% for o in craft.entries().section('organizations').relatedTo({ targetElement: entry, field: 'succeededBy' }).all() %}{% if o.id not in fromIds %}{% set formedFrom = formedFrom|merge([o]) %}{% set fromIds = fromIds|merge([o.id]) %}{% endif %}{% endfor %}
           {% if F.dateFounded or F.orgAddress or dissolved or became|length or formedFrom|length %}
             <div class="rec-facts">
-              {% if F.dateFounded %}<div><div class="l">FOUNDED</div><div class="v">{{ F.dateFounded }}{% if 'foundedEvidence' in orgHandles and entry.foundedEvidence.value in ['uncited', 'derived'] %} <span style="font-size:12px;color:#5B6472">({{ entry.foundedEvidence.value == 'uncited' ? 'not yet sourced' : 'derived' }})</span>{% endif %}</div></div>{% endif %}
+              {% if F.dateFounded %}<div><div class="l">FOUNDED</div><div class="v">{{ F.dateFounded }}{% if 'foundedEvidence' in orgHandles %}{% include "_partials/record/evidence" with { ev: entry.foundedEvidence } only %}{% endif %}</div></div>{% endif %}
               {% if dissolved %}<div><div class="l">DISSOLVED</div><div class="v">{{ dissolved }}</div></div>{% endif %}
               {% if formedFrom|length %}<div><div class="l">FORMED FROM</div><div class="v">{% for o in formedFrom|sort((x, y) => x.title <=> y.title) %}<a href="{{ o.url }}">{{ o.title }}</a>{%- if not loop.last %}; {% endif -%}{% endfor %}</div></div>{% endif %}
               {% if became|length %}<div><div class="l">BECAME</div><div class="v">{% for o in became %}<a href="{{ o.url }}">{{ o.title }}</a>{%- if not loop.last %}; {% endif -%}{% endfor %}</div></div>{% endif %}

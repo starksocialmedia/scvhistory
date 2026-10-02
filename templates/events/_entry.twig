@@ -79,7 +79,7 @@
         {% set detail = [['DATE', F.eventDate], ['BEGAN', F.eventDateStart], ['ENDED', F.eventDateEnd], ['SIGNIFICANCE', F.eventSignificance], ['LANDMARK', F.eventChlNumber ? 'CHL No. ' ~ F.eventChlNumber : ''], ['RECURS', entry.eventRecurring ? F.eventFrequency : ''], ['NEXT', entry.eventRecurring ? F.eventNextOccurrence : '']]|filter(r => r[1]) %}
         {% if detail|length %}
           <div class="rec-box"><div class="rec-lab">THE EVENT</div>
-            <div class="rec-rows">{% for r in detail %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}</div>
+            <div class="rec-rows">{% for r in detail %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}{% if r[0] in ['DATE', 'BEGAN'] and 'startEvidence' in entry.fieldLayout.customFields|map(f => f.handle) %}{% include "_partials/record/evidence" with { ev: entry.startEvidence } only %}{% endif %}</div>{% endfor %}</div>
           </div>
         {% endif %}
 

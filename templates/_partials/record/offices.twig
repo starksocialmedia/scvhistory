@@ -41,11 +41,13 @@
           {% set d = h.startEvidence.value == 'derived' %}
           {% if d %}{% set derivedAny = true %}{% endif %}
           <div class="k">{{ h.selectionMethod.value == 'appointed' ? 'APPOINTED' : (h.selectionMethod.value == 'rotated' ? 'ROTATION' : 'TERM') }}</div>
-          <div class="v">{{ h.termStart }} to {{ h.termEnd ?: 'now' }}{% if d %}&dagger;{% endif %}{% if h.howEnded.value == 'left' %} <span style="color:#5B6472;font-size:13.5px">(left office)</span>{% endif %}</div>
+          {#- How each end of the term is known; once after the range when both ends are known the same way. -#}
+          {% set sameEv = not h.termEnd or (h.startEvidence.value ?? '') == (h.endEvidence.value ?? '') %}
+          <div class="v">{{ h.termStart }}{% if not sameEv %}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}{% endif %} to {{ h.termEnd ?: 'now' }}{% include "_partials/record/evidence" with { ev: sameEv ? h.startEvidence : h.endEvidence } only %}{% if h.howEnded.value == 'left' %} <span style="color:#5B6472;font-size:13.5px">(left office)</span>{% endif %}</div>
         {% endfor %}
       </div>
     {% endfor %}
-    {% if derivedAny %}<p style="font-size:13px;line-height:1.5;color:#5B6472;margin:12px 0 0">&dagger; Won on the vote count, with the seats up derived from the staggered terms; no declaring document is held yet.</p>{% endif %}
+    {% if derivedAny %}<p style="font-size:13px;line-height:1.5;color:#5B6472;margin:12px 0 0">A term "read from the count" was won on the vote totals, with the seats up derived from the staggered terms; no declaring document is held yet.</p>{% endif %}
   </div>
 {% endif %}
 {% if cands|length %}
