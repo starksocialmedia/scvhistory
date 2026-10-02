@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-02 (later)
+
+- Agent: Claude Code
+- Date: 2026-10-02
+- Done: The era decisions applied, significance first; multi-era people (48 eras added to 44 people, primary kept first) and the /persons era chips counting primaries. Correction notes for the 18 live errors held in Craft (51 records; #5333's date field). The runbook warns that craft up runs after the staging import. /war-memorial: a conflict bar, find a name, home and age on cards, and a roll view (?view=roll) with the legacy dates read as one style. /districts under Civic, grouped by body, with current holders and elections; districts no longer listed on /places. /events as a timeline by era, recurring events apart, an On this day link only where the calendar lists the event; the SCV Water consolidation is its first anchor event.
+- Decisions: Hart and McKeon multi-era as Nathan set them; Tataviam and the two event eras by hand only. A district stays a place record; Civic is its home. Scott Wilk is not linked to SB 634 until the bill itself is read.
+- Blockers: the 16 imageless war memorial records' portraits are not in the mirror (only their .htm pages are); they need the live site or another source. Boundaries still wait for the City. On this day is empty until recordDates rows are confirmed (0 of 432).
+- Next: the remaining anchor events, each with sources; boundary maps and the address lookup when files arrive.
+
 2026-10-02
 
 - Agent: Claude Code
