@@ -1,0 +1,25 @@
+{#-
+  Namesakes (Nathan, 1 October 2026): a place or body says whom it is named for,
+  with what the sources say about the naming; a person's page lists what is
+  named for them. Renders nothing when there is nothing to say.
+
+  Params:
+    el    the record (a place, an organization, or a person)
+-#}
+{%- set h = el.fieldLayout ? el.fieldLayout.customFields|map(f => f.handle) : [] -%}
+{% if 'namedFor' in h %}
+  {%- set who = el.namedFor.all() -%}
+  {% if who|length %}
+    <div class="rec-box"><div class="rec-lab">NAMED FOR</div>
+      <div class="rec-links">{% for p in who %}<a href="{{ p.url }}">{{ p.title }} <span>&rarr;</span></a>{% endfor %}</div>
+      {% if el.namingNote|trim %}<div style="font-size:13.5px;line-height:1.55;color:#4A5260;margin-top:10px">{{ el.namingNote|nl2br }}</div>{% endif %}
+    </div>
+  {% endif %}
+{% elseif el.section is defined and el.section.handle == 'persons' and craft.app.fields.getFieldByHandle('namedFor') %}
+  {%- set named = craft.entries().section(['places', 'organizations']).relatedTo({ targetElement: el, field: 'namedFor' }).orderBy('title asc').all() -%}
+  {% if named|length %}
+    <div class="rec-box"><div class="rec-lab">NAMED FOR {{ el.title|upper }}</div>
+      <div class="rec-links">{% for n in named %}<a href="{{ n.url }}">{{ n.title }} <span>&rarr;</span></a>{% endfor %}</div>
+    </div>
+  {% endif %}
+{% endif %}

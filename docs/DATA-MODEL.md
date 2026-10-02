@@ -533,7 +533,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Organizations — `organizations/organization`
 
-57 fields.
+59 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -569,6 +569,8 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `enrolment` | Table | **local** | no external equivalent |
 | `schoolIdentity` | Table | **local** | no external equivalent |
 | `foundedEvidence` | Dropdown | **local** | no external equivalent |
+| `namedFor` | Entries | **local** | no external equivalent |
+| `namingNote` | PlainText | **local** | no external equivalent |
 | `hasParentOrg` | Lightswitch | **local** | no external equivalent |
 | `parentOrganization` | Entries | schema.org `parentOrganization` | inverse emitted as subOrganization |
 | `orgFoundedBy` | Entries | **local** | no external equivalent |
@@ -766,7 +768,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Places — `places/place`
 
-56 fields.
+58 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -801,6 +803,8 @@ a skip means the queue has not been settled, and an external means it has.
 | `districtKind` | Dropdown | **local** | no external equivalent |
 | `effectiveFrom` | PlainText | **local** | no external equivalent |
 | `effectiveTo` | PlainText | **local** | no external equivalent |
+| `namedFor` | Entries | **local** | no external equivalent |
+| `namingNote` | PlainText | **local** | no external equivalent |
 | `placePeople` | Entries | **local** | no external equivalent |
 | `placeOrganizations` | Entries | **local** | no external equivalent |
 | `relatedPlaces` | Entries | **local** | no external equivalent |

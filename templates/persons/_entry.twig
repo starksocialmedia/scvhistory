@@ -208,6 +208,8 @@
           </div>
         {% endif %}
 
+        {% include "_partials/record/named-for" with { el: entry } only %}
+
         {% if livedPlaces|length %}
           <div class="rec-box"><div class="rec-lab">PLACES</div>
             <div class="rec-rows">{% for p in livedPlaces %}<div class="k">PLACE</div><div class="v"><a href="{{ p.url }}">{{ p.title }}</a></div>{% endfor %}</div>

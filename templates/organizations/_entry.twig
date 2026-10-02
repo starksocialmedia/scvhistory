@@ -116,6 +116,7 @@
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'Organizations', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
+        {% include "_partials/record/named-for" with { el: entry } only %}
         {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/education" with { entry: entry, as: 'school' } only %}{% endif %}
         {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/school-facts" with { entry: entry } only %}{% endif %}
         {% if gradeSpan %}

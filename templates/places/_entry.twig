@@ -74,6 +74,7 @@
 
       <aside class="rec-side">
         {% include "_partials/record/cite" with { entry: entry, label: 'Places', sidebar: true } only %}
+        {% include "_partials/record/named-for" with { el: entry } only %}
         {#- An electoral district: its body, and every election held for it. -#}
         {% if 'districtKind' in entry.fieldLayout.customFields|map(f => f.handle) and entry.districtKind.value %}
           {% set dBody = entry.placeOrganizations.one() %}
