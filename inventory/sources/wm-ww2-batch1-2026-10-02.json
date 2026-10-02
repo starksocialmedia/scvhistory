@@ -1,0 +1,49 @@
+{
+  "_about": "Sources read 2 October 2026 for the first World War II batch of the war memorial sourcing (Nathan: 'run the rest in batches of about ten on the same pattern ... start there' with the 88 Honor List pages). Honor List lines read by eye from the page images in inventory/legacy/fetched/nara-honor-list-ca/ (the OCR text is not relied on); enlistment records from NARA AAD (RG 64) in a browser; ABMC from its Burial and Memorialization Directory in a browser; the archive's own documents from web/uploads/archive-media/legacy/.",
+  "honorList": {
+    "source": "War Department, World War II Honor List of Dead and Missing Army and Army Air Forces Personnel from California (1946), NARA NAID 305280",
+    "lines": {
+      "522 Moore": {"page": "28-2520a", "county": "Los Angeles", "line": "MOORE ALBERT L 39161137 PVT DNB"},
+      "516 Contreras": {"page": "28-2506a", "county": "Los Angeles", "line": "CONTRERAS EDWARD D 39225373 SGT KIA"},
+      "512 Darr": {"page": "28-2507a", "county": "Los Angeles", "line": "DARR EUGENE E 39728618 SGT KIA"},
+      "560 Wingfield": {"page": "28-2531a", "county": "Los Angeles", "line": "WINGFIELD GARRY 19003636 PVT DNB"},
+      "562 Harland": {"page": "28-2512a", "county": "Los Angeles", "line": "HARLAND JACK L O-704928 2 LT DNB"},
+      "566 Bartlett": {"page": "28-2502a", "county": "Los Angeles", "line": "BARTLETT JAMES A 39273316 SGT KIA"},
+      "570 Ward": {"page": "28-2548a", "county": "San Diego", "line": "WARD JOHN A 39587129 PVT KIA"},
+      "1400 Balsz": {"page": "28-2502a", "county": "Los Angeles", "line": "BALSZ JOSEPH B 39262290 PFC DNB"},
+      "574 Smart": {"page": "28-2527a", "county": "Los Angeles", "line": "SMART OZAL R 19048795 SGT KIA"},
+      "520 Beall": {"note": "Not in the California list: he enlisted as a resident of Lincoln County, Oklahoma, so he would be in Oklahoma's, which has not been read."}
+    }
+  },
+  "enlistment": {
+    "source": "National Archives, World War II Army Enlistment Records (RG 64), Electronic Army Serial Number Merged File",
+    "records": {
+      "522 Moore": "39161137; Los Angeles County; enlisted Los Angeles, July 9, 1941; born 1916",
+      "520 Beall": "38154662; Lincoln County, Oklahoma; enlisted Oklahoma City, July 8, 1942; born 1921, Oklahoma",
+      "516 Contreras": "39225373; Los Angeles County; enlisted Los Angeles, January 20, 1941; born 1912",
+      "512 Darr": "39728618; Los Angeles County; enlisted Los Angeles, September 19, 1944; born 1923, Oklahoma",
+      "560 Wingfield": "19003636; Los Angeles County; enlisted Los Angeles, August 26, 1941; born 1921, California",
+      "566 Bartlett": "39273316; Los Angeles County; enlisted Los Angeles, December 28, 1942; born 1915, California; occupation firemen, fire department",
+      "570 Ward": "39587129; San Diego County; enlisted Fort MacArthur, May 27, 1944; born 1918",
+      "1400 Balsz": "39262290; Los Angeles County; enlisted Los Angeles, October 24, 1942; born 1919, California",
+      "574 Smart": "19048795; Los Angeles County; enlisted Fort MacArthur, September 27, 1940; born 1914, Oklahoma"
+    }
+  },
+  "abmc": {
+    "source": "American Battle Monuments Commission, Burial and Memorialization Directory",
+    "records": {
+      "516 Contreras": "Sgt. Edward D. Contreras, 39225373, 30th Infantry Regiment, 3rd Infantry Division; died February 9, 1944; Sicily-Rome American Cemetery, Plot J, Row 4, Grave 7; Purple Heart",
+      "566 Bartlett": "Sgt. James A. Bartlett, 39273316, U.S. Army Air Forces, 32nd Photographic Squadron, 5th Reconnaissance Group; died April 20, 1944; missing in action; North Africa American Cemetery (Tunisia); Purple Heart",
+      "1400 Balsz": "Pfc. Joseph B. Balsz, 39262290, 230th Military Police Company; died August 31, 1944; North Africa American Cemetery, Plot F, Row 2, Grave 12",
+      "560 Wingfield": "see abmc-war-memorial-2026-10-02.json: missing in action, Manila, Bronze Star",
+      "574 Smart": "see abmc-war-memorial-2026-10-02.json: Netherlands American Cemetery, Plot D, Row 11, Grave 29; Purple Heart",
+      "512 Darr": "not listed (returned home)"
+    }
+  },
+  "local": {
+    "516 Contreras": "Los Angeles Times, April 20, 1944, \"Four Southland Men Listed as Killed in Action\": \"Sgt. Edward D. Contreras, Newhall\" (tlp_lat042044_large.jpg)",
+    "1400 Balsz": "The Newhall Signal and Saugus Enterprise, Friday, Sept. 22, 1944, \"Pfc. Balsz loses life in Algiers accident\": Mr. and Mrs. Bart Balsz of Honby; a vehicle accident in Algiers on August 31 (sg19440922balsz.jpg)",
+    "570 Ward": "Letter, Col. Daniel B. Strickler, 110th Infantry, 9 March 1945, to Mrs. Dorothy M. Ward, Escondido: Private John A. Ward, 39 587 129, Company B, 110th Infantry Regiment, 28th Infantry Division, killed in action in France on 1 February 1945 (johnamosward030945.jpg); letter, San Francisco Port of Embarkation, 30 December 1948, to Mrs. Ward, Valley Center, on the return of his remains (johnamosward123048.jpg)",
+    "520 Beall": "Miami (Okla.) Daily News-Record, November 23, 1947, \"Army's List of Returning War Dead Is Announced\": Archibald K. Beall, USA, Pfc., James Beall, Cushing Route 1 (tlp_miamidailynewsrecord112347.jpg)"
+  }
+}

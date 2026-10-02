@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-02 (night)
+
+- Agent: Claude Code
+- Date: 2026-10-02
+- Done: The rendered-field check (check_rendered_fields.php, field-display.json) runs in check_render; runbook section 9 states the rule for every field. Three more applied-but-unrendered cases fixed (document top notes, a person's bottom note when the body is withheld, the memorial header printing the incident date as the date of death). A report of the 22 fields that hold data and do not show (inventory/review/unshown-fields-2026-10-02.md). World War II batch 1 sourced: Moore, Beall, Contreras, Darr, Wingfield, Harland, Bartlett, Ward, Balsz, Smart, from the 1946 Honor List, NARA enlistment records and ABMC; Bartlett's date of death corrected to April 20, 1944; Contreras's and Balsz's set from ABMC. A layout proposal for the memorial page (one place per fact) published for Nathan.
+- Decisions: the Honor List lines are read from the page images, not the OCR. A fact a source does not state is not inferred (Wingfield's captivity, Darr's return).
+- Blockers: the record-page layout waits on Nathan. Beall needs Oklahoma's Honor List; batch 2 needs the Navy's 1946 list.
+- Next: batch 2 (Redmond, Cone, Pineau, Rubel, and the six Navy and Marine records); the gaps in the report, one by one, as Nathan decides.
+
 2026-10-02 (evening)
 
 - Agent: Claude Code
