@@ -47,6 +47,21 @@
     saying it had. -#}
 {% if hasLevels and kind == 'school' and level and LEVELS[level] is defined %}{% set query = query.schoolLevel(level) %}{% endif %}
 {% set places = query.all() %}
+{#- A body of another body (the Planning Commission of the City) is not its peer (Nathan, 1 October 2026): it is folded into its
+    parent's card when the parent is on the page, and listed at the top level only when it is not. -#}
+{% set onPage = places|map(p => p.id) %}
+{% set childrenOf = {} %}
+{% set tops = [] %}
+{% for p in places %}
+  {% set par = 'parentOrganization' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.parentOrganization.one() : null %}
+  {#- Schools keep their own cards under their district's kind: only governing sub-bodies fold. -#}
+  {% if par and par.id in onPage and p.orgType.value != 'school' %}
+    {% set childrenOf = childrenOf|merge({ ('o' ~ par.id): (childrenOf['o' ~ par.id] ?? [])|merge([p]) }) %}
+  {% else %}
+    {% set tops = tops|merge([p]) %}
+  {% endif %}
+{% endfor %}
+{% set places = tops %}
 
 {% set kindCounts = {} %}
 {% set levelCounts = {} %}
@@ -163,6 +178,7 @@
               <h3>{{ p.title }}</h3>
               {% if p.dateFounded %}<div class="pl-meta">Est. {{ p.dateFounded }}</div>{% endif %}
               <div class="pl-comm">{{ coms ?: 'Beyond the valley' }}{% if hasKinds and p.orgType.value %} &middot; {{ KIND_ONE[p.orgType.value] ?? p.orgType.value }}{% if hasLevels and p.orgType.value == 'school' and p.schoolLevel.value %}, {{ LEVELS[p.schoolLevel.value]|lower }}{% endif %}{% endif %}</div>
+              {% if childrenOf['o' ~ p.id] is defined %}<div class="pl-meta" style="margin-top:6px">Includes {{ childrenOf['o' ~ p.id]|map(c => c.title)|join(', ') }}</div>{% endif %}
             </div>
           </a>
         {% endfor %}
