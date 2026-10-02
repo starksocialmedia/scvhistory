@@ -509,3 +509,125 @@ is not done until the rendered page has been checked:
    **The full run is part of every deploy** (`scripts/predeploy.sh`, section 2),
    not only the sample.
 3. When a publish rule changes, run the full check, not the sample.
+
+---
+
+## 10. Refreshing staging with the local work (October 2026)
+
+Staging was last refreshed on 25 September. Everything since is in the local
+database and on the branch `templates-batch-9`: 165 commits, three new sections,
+about 30 new fields, the banners, and the profiles. A refresh repeats the first
+deployment (section 3), whole and deliberate. The full procedure, with the
+reasons for each step, is docs/DEPLOY.md steps 1 to 8; these are the commands
+in order, with the paths filled in.
+
+**Before starting:** `scripts/predeploy.sh` has passed on the MacBook, the
+branch is pushed, and nobody has edited records on staging (any such edit is
+overwritten, section 3).
+
+### 1. Code to main  — **MacBook** (Nathan: only Nathan pushes to main)
+
+```
+cd ~/scvhistory
+git checkout main
+git pull
+git merge --ff-only templates-batch-9
+git push origin main
+git checkout templates-batch-9
+```
+
+`--ff-only` refuses rather than making a merge commit if main has moved. On
+2 October main was 165 commits behind and had nothing the branch lacked.
+
+### 2. Dump the database  — **MacBook**
+
+```
+cd ~/scvhistory
+D=$(date +%Y%m%d)
+ddev export-db --gzip=false --file=/tmp/scvh-$D.sql
+gzip -9 /tmp/scvh-$D.sql
+scp /tmp/scvh-$D.sql.gz <user>@<host>:/home/1656314.cloudwaysapps.com/ufppzhwvbk/private_html/
+```
+
+### 3. Prove /review/ is blocked  — **MacBook**
+
+```
+read -s "AUTH?user:password for staging basic auth: "; echo
+HOST=https://phpstack-1656314-6593553.cloudwaysapps.com AUTH="$AUTH" scripts/deploy/check_review_exposure.sh
+```
+
+It must exit 0 (DEPLOY.md step 3 explains 1 and 2).
+
+### 4. Pull  — **Server**
+
+```
+APP=/home/1656314.cloudwaysapps.com/ufppzhwvbk
+cd $APP/public_html
+grep -E '^CRAFT_(ENVIRONMENT|DB_SERVER|DB_TABLE_PREFIX)=' .env
+git branch --show-current
+git status --short
+git pull
+composer install --no-dev --optimize-autoloader
+```
+
+The environment must read `staging`, the server `127.0.0.1` and the prefix
+`scvh`; `git status` must be empty; pull whichever branch is checked out.
+
+### 5. Back up, then import  — **Server**
+
+```
+cd $APP/private_html
+mysqldump -h 127.0.0.1 -u <db_user> -p <db_name> | gzip -9 > before-import-$(date +%Y%m%d).sql.gz
+gunzip -c scvh-<date>.sql.gz | mysql -h 127.0.0.1 -u <db_user> -p <db_name>
+```
+
+### 6. Migrations and config  — **Server**
+
+```
+cd $APP/public_html
+php craft up
+php craft project-config/diff
+```
+
+Both should report nothing: the imported database already carries the schema
+the committed config declares. **If the diff shows anything, stop** and report
+it before applying; it means the dump and the commit do not match.
+
+### 7. The images  — **MacBook**
+
+```
+cd ~/scvhistory
+rsync -avz --partial --progress \
+  --exclude='_*/' \
+  web/uploads/archive-media/ \
+  <user>@<host>:/home/1656314.cloudwaysapps.com/ufppzhwvbk/public_html/web/uploads/archive-media/
+```
+
+Only what changed since 25 September moves: the edited portraits, the legacy
+scans imported for the profiles (SC1311, SC1401), and the rest. No `--delete`.
+The banners are in git (`web/banners/`) and came with the pull.
+
+### 8. Clear and check  — **Server**, then **MacBook**
+
+```
+cd /home/1656314.cloudwaysapps.com/ufppzhwvbk/public_html
+php craft clear-caches/all
+```
+
+```
+S=https://phpstack-1656314-6593553.cloudwaysapps.com
+for p in / /persons/william-s-hart /persons/laurene-weste /organizations/city-of-santa-clarita /persons/leon-worden/works /war-memorial /on-this-day; do
+  printf "%-42s %s\n" "$p" "$(curl -u "$AUTH" -o /dev/null -sw '%{http_code}' "$S$p")"
+done
+curl -u "$AUTH" -sI $S/on-this-day | grep -i '^cache-control'
+curl -u "$AUTH" -s $S/on-this-day | grep -o '<h1>[^<]*</h1>'
+```
+
+Every line 200; the Cache-Control line must say `no-store`, and the heading must
+be today's date (the 3 September bug of 1 October was a cached page).
+
+### Afterwards
+
+- Delete the dump from `private_html` once the site is checked; keep the
+  `before-import` backup for a week.
+- Record the refresh in CHANGELOG.md with the commit it carried.
