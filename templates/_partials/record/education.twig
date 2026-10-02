@@ -11,6 +11,9 @@
   Params
     entry  the record the page is about
     as     'school' for a school's page, 'person' for a person's or casualty's
+    place  'body' to render a school's alumni as a section of the page body,
+           grouped by class year (Nathan, 1 October 2026: Hart High will get
+           large); otherwise a sidebar box
 #}
 {% if craft.app.entries.getSectionByHandle('educations') %}
   {% set rows = as == 'school'
@@ -24,7 +27,27 @@
       {% set items = items|merge([{ e: other, sub: bits|filter(b => b)|join(', '), sort: (r.classOf|trim ?: '9999') ~ other.title }]) %}
     {% endif %}
   {% endfor %}
-  {% if items|length %}
+  {% if items|length and as == 'school' and (place ?? '') == 'body' %}
+    {% set years = {} %}
+    {% for it in items|sort((a, b) => a.sort <=> b.sort) %}
+      {% set y = it.sub matches '/^class of /' ? it.sub|split(',')|first|replace({'class of ': ''}) : 'Year not recorded' %}
+      {% set years = years|merge({ (y): (years[y] ?? [])|merge([it]) }) %}
+    {% endfor %}
+    <h2 class="rec-h2" id="alumni">Alumni in the archive</h2>
+    <p style="font-size:15px;color:#5B6472;margin:0 0 14px">{{ items|length }} {{ items|length == 1 ? 'person' : 'people' }} in the archive studied here.</p>
+    {% for y, its in years %}
+      <div style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#7A5C1B;margin:18px 0 8px">{{ y|upper }}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">
+        {% for it in its %}
+          {% set pimg = 'featuredImage' in (it.e.fieldLayout ? it.e.fieldLayout.customFields|map(f => f.handle) : []) ? it.e.featuredImage.one() ?? null : null %}
+          <a class="rec-person" href="{{ it.e.url }}" style="background:#fff;border:1px solid #E2E4E8;padding:8px 10px">
+            <div class="th">{% if pimg %}<img src="{{ pimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: pimg} only %}>{% else %}{{ it.e.title|slice(0,1)|upper }}{% endif %}</div>
+            <div style="min-width:0"><div class="n">{{ it.e.title }}</div><div class="r">{{ it.e.section.handle == 'warMemorials' ? 'War memorial' : '' }}{{ it.sub matches '/graduated/' ? (it.e.section.handle == 'warMemorials' ? ', graduated' : 'Graduated') : '' }}</div></div>
+          </a>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  {% elseif items|length %}
     <div class="rec-box"><div class="rec-lab">{{ as == 'school' ? 'ALUMNI IN THE ARCHIVE' : 'EDUCATION' }}</div>
       <div class="rec-rows">
         {% for it in items|sort((a, b) => a.sort <=> b.sort) %}

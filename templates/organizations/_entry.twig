@@ -108,6 +108,7 @@
           {% include "_partials/school-map" with { leaid: entry.ncesId|trim, height: 420 } %}
           {% include "_partials/district-schools" with { leaid: entry.ncesId|trim } only %}
         {% endif %}
+        {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/education" with { entry: entry, as: 'school', place: 'body' } only %}{% endif %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
         {% include "_partials/record/fine-print" with { value: F.orgFinePrint } only %}
@@ -118,7 +119,6 @@
         {% include "_partials/record/source-link" with { el: entry } only %}
         {% include "_partials/record/named-for" with { el: entry } only %}
         {% include "_partials/record/photo-topics" with { el: entry } only %}
-        {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/education" with { entry: entry, as: 'school' } only %}{% endif %}
         {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/school-facts" with { entry: entry } only %}{% endif %}
         {% if gradeSpan %}
           <div class="rec-box"><div class="rec-lab">{{ isDistrict ? 'SCHOOL DISTRICT' : 'SCHOOL' }}</div>

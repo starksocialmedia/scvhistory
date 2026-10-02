@@ -23,7 +23,19 @@
   {% endfor %}
   <div class="rec-box"><div class="rec-lab">OFFICES HELD</div>
     {% for g in groups %}
-      <div style="font-size:15px;line-height:1.45;margin:{{ loop.first ? '0' : '14px' }} 0 6px"><b style="font-weight:600;color:#17254C">{{ g.office.title ?? 'Office' }}</b>{% if g.body %}, <a href="{{ g.body.url }}{{ g.body.slug == 'city-of-santa-clarita' ? '#council' : '' }}" style="color:#17254C">{{ g.body.title }}</a>{% endif %}</div>
+      {#- The body first, with its avatar as in the Organizations box, then the office and seat beneath (Nathan, 1 October 2026). -#}
+      {% set bimg = g.body and 'featuredImage' in (g.body.fieldLayout ? g.body.fieldLayout.customFields|map(f => f.handle) : []) ? g.body.featuredImage.one() ?? null : null %}
+      {% set last = g.terms|last %}
+      {% set seat = last.seatLabel|default('')|trim %}
+      {% set dist = not seat and 'holdingDistrict' in last.fieldLayout.customFields|map(f => f.handle) ? last.holdingDistrict.one() : null %}
+      {% if g.body %}
+        <a class="rec-person" href="{{ g.body.url }}{{ g.body.slug == 'city-of-santa-clarita' ? '#council' : '' }}" style="margin:{{ loop.first ? '0' : '16px' }} 0 4px">
+          <div class="th">{% if bimg %}<img src="{{ bimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: bimg} only %}>{% else %}{{ g.body.title|slice(0,1)|upper }}{% endif %}</div>
+          <div style="min-width:0"><div class="n">{{ g.body.title }}</div><div class="r">{{ g.office.title ?? 'Office' }}{{ seat ? ', ' ~ seat : (dist ? ', ' ~ dist.title|split(', ')|last : '') }}</div></div>
+        </a>
+      {% else %}
+        <div style="font-size:15px;line-height:1.45;margin:{{ loop.first ? '0' : '14px' }} 0 6px"><b style="font-weight:600;color:#17254C">{{ g.office.title ?? 'Office' }}</b></div>
+      {% endif %}
       <div class="rec-rows">
         {% for h in g.terms %}
           {% set d = h.startEvidence.value == 'derived' %}
