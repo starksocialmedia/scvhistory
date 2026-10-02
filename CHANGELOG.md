@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-02 (late night)
+
+- Agent: Claude Code
+- Date: 2026-10-02
+- Done: The record layout as approved (memorial sidebar: each fact once with its notes and differences, Leon's flattened list in a closed panel; persons: Public life with each term's election, one In the archive box, Cite last). The war memorial sourcing finished its first pass: 41 of 54 records sourced, 23 meeting the two-source rule in full and 18 in half; Korea (5), Vietnam (13, each with a valley home of record in the federal file) and the War on Terror (3) this round; "searched, not found" notes on the 13 unsourced. The Signal founded February 7, 1919, not 2019 (the founding-date audit). A pasted-label check by shape across every non-legacy body. /evidence rewritten for a first-time reader.
+- Decisions: Four "January 1" Korea birth dates cut to the year the federal files give. "Body recovered" moved out of the burial field on all fourteen Vietnam records. A field is covered by a fact row only when the row says the same thing.
+- Blockers: the Defense Department's 2007-2011 releases are not findable by name; four deaths outside a theater of war need the VA gravesite locator, which Nathan has not approved.
+- Next: Ball, Ross, Kenaston, Cone, Rubel; the eight War on Terror records; Prosser's home (Frazier Park, outside the valley) for Nathan.
+
 2026-10-02 (night)
 
 - Agent: Claude Code
