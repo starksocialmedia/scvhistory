@@ -35,6 +35,8 @@
 
 {% set rows = [] %}
 {% set totalPieces = 0 %}
+{% set bnRaw = source('_data/banners.json', ignore_missing = true) %}
+{% set BANNERS = bnRaw ? bnRaw|json_decode(true) : {} %}
 {% for c in cols %}
   {% set kind = ck.of(c)|trim %}
   {% set n = c.articlesInCollection.count()
@@ -45,6 +47,9 @@
   {% set hasBand = false %}
   {% for f in c.fieldLayout.customFields %}{% if f.handle == 'bandImage' %}{% set hasBand = true %}{% endif %}{% endfor %}
   {% set band = hasBand and c.bandImage ? c.bandImage.one() ?? null : null %}
+  {#- A collection whose band left the archive for web/banners (a generated illustration is decoration, not a record) is
+      found in the registry, as its own page finds it; the card then says what it is. -#}
+  {% set reg = not band ? (BANNERS['collections:' ~ c.id] ?? null) : null %}
 
   {#- The era span, from the pieces themselves. A collection has no era of its
       own and asserting one would be inventing it. -#}
@@ -57,7 +62,7 @@
   {% endif %}
 
   {% set desc = (c.body is defined and c.body) ? sum.firstSentence(c.body) : '' %}
-  {% set rows = rows|merge([{
+  {% set rows = rows|merge([{ reg: reg,
     c: c, kind: kind, n: n, author: author, editor: editor, band: band,
     eras: eras, desc: desc,
     ord: (KINDORDER[kind] ?? 5) * 1000 + (n > 0 ? 0 : 500)
@@ -135,6 +140,7 @@
         <a class="cx-card" href="{{ r.c.url }}">
           <div class="cx-art">
             {% if r.band %}<img src="{{ r.band.getUrl({ width: 640, height: 360, mode: 'crop', position: 'right-center' }) ?: r.band.url }}" alt="" loading="lazy">
+            {% elseif r.reg %}<img src="{{ siteUrl }}banners/{{ r.reg.file }}" alt="" loading="lazy" style="object-position:right center"><span style="position:absolute;left:8px;bottom:6px;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.06em;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.7)">AI-generated illustration</span>
             {% else %}<span class="none">{{ (r.c.title|slice(0,1))|upper }}</span>{% endif %}
           </div>
           <div class="cx-body">

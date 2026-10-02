@@ -23,7 +23,7 @@
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v12-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v13-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -65,7 +65,7 @@
 {% set colsPeople = [
   { label: 'PEOPLE', items: [
     { t: 'People',   n: cPersons, u: url('persons') },
-    { t: 'Families', n: cGroups,  u: url('groups') }
+    { t: 'Groups', n: cGroups,  u: url('groups') }
   ] },
   { label: 'ORGANIZATIONS', items: [
     { t: 'Organizations',     n: cOrgs, u: url('organizations') },
