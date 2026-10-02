@@ -143,6 +143,7 @@
         <aside class="scv-side">
           {% include "_partials/sidebar/meta" with { entry: term, readTime: false } only %}
           {% include "_partials/sidebar/cite" with { entry: term, label: 'Communities', url: term.url ?? url('communities/' ~ term.slug) } only %}
+          {% include "_partials/record/named-for" with { el: term } only %}
 
           {% set nbSlugs = (nbData.neighbors ?? {})[term.slug] ?? [] %}
           {% if nbSlugs|length %}

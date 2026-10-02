@@ -16,7 +16,8 @@
     </div>
   {% endif %}
 {% elseif el.section is defined and el.section.handle == 'persons' and craft.app.fields.getFieldByHandle('namedFor') %}
-  {%- set named = craft.entries().section(['places', 'organizations']).relatedTo({ targetElement: el, field: 'namedFor' }).orderBy('title asc').all() -%}
+  {%- set named = craft.entries().section(['places', 'organizations']).relatedTo({ targetElement: el, field: 'namedFor' }).orderBy('title asc').all()
+      |merge(craft.categories().group('neighborhood').relatedTo({ targetElement: el, field: 'namedFor' }).all()) -%}
   {% if named|length %}
     <div class="rec-box"><div class="rec-lab">NAMED FOR {{ el.title|upper }}</div>
       <div class="rec-links">{% for n in named %}<a href="{{ n.url }}">{{ n.title }} <span>&rarr;</span></a>{% endfor %}</div>
