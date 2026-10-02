@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 1 October 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 2 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -869,7 +869,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### War Memorials — `warMemorials/warMemorial`
 
-54 fields.
+55 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -886,6 +886,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `wmFamily` | PlainText | **local** | no external equivalent |
 | `wmSelectiveServiceDate` | PlainText | **local** | no external equivalent |
 | `wikidataId` | PlainText | Wikidata `QID` | emitted as schema.org sameAs |
+| `factSources` | Table | **local** | no external equivalent |
 | `wmBranch` | PlainText | **local** | no external equivalent |
 | `wmRank` | PlainText | **local** | no external equivalent |
 | `wmUnit` | PlainText | **local** | no external equivalent |
@@ -981,6 +982,19 @@ local unless the note says otherwise.
 - **Significance decides.** The weighting counts years, and years can mislead: Buck McKeon spent more of them in Congress, but the city's first mayor is what makes him matter here, so he is in the Cityhood Era; Laurene Weste has more years in the Contemporary era, but the development and open-space fights she is known for belong to Mall & Growth. A split is settled by asking what the person is in this archive for.
 - **Every era they acted in; the first is the primary** (Nathan, 2 October 2026). `historicalEra` holds several, in order. A person gets each era with an office year, a race, or two other dated acts in their lifetime (`scripts/import/apply_multi_eras.php`); the pass never sets or moves the primary, which is what a card and its label show. Legacy after death (Hart's park, Postwar Boom) is added by hand. Never by the pass: the event eras (St. Francis Dam, Northridge Recovery) and Tataviam & Native Peoples, since a year cannot say where something happened. A low-confidence placement says so in an editor note (Remi Nadeau).
 - **On /persons**, an era's chip counts the people whose primary it is; the filtered page shows them as cards, "Known for this era", and everyone else active in it as a line of names with their primary era.
+
+## Sourcing war memorial records
+
+**Two independent sources for each death: one federal, and one that ties him to the valley** (Nathan, 2 October 2026: "That second one is what makes this archive's memorial different from a national database").
+
+- **Federal sources by conflict.** World War II: the War Department's 1946 Honor List by county (NARA NAID 305280 for California, page images in `inventory/legacy/fetched/nara-honor-list-ca/`), the Navy's State Summary of War Casualties, NARA's WWII Army Enlistment Records, and ABMC for burials and the missing abroad. Korea: NARA's Korean War Casualty File (Army, RG 407) and Korean Conflict Casualty File (RG 330). Vietnam: NARA's Combat Area Casualties Current File, with the Coffelt Database for unit and panel. War on Terror: Defense Department casualty releases and NARA's DCAS file. World War I has none online for a death at home; the record says so.
+- **`footnotes`** carry the sources, numbered. **`factSources`** is a table, one row per fact: the fact, its value as the record holds it, the note numbers that support it, and, where the sources differ, what each says. A difference is shown, never silently settled.
+- **The legacy text is not rewritten.** A fact field is corrected only where the sources settle it (Edward Guy North died April 7, 1919, not April 27), with a "Correction, 2026" editor note; a "Sources, 2026" note says whether the record meets the rule. `scripts/import/source_wm_pilot.php` is the pattern; the readings are in `inventory/sources/wm-pilot-2026-10-02.json`.
+- **No likeness known.** Where no portrait exists, an editor note headed Likeness says so and why, as a fact rather than a gap (`scripts/import/note_wm_no_likeness.php`).
+
+## On This Day
+
+`templates/_data/calendar.json`, built by `scripts/import/build_calendar_index.php`, reads two things (Nathan, 2 October 2026). The exact dates records hold in their own date fields, which were set from sources and need no review: events, elections, deaths, foundings and dissolutions, places established, office terms begun, photographs, war memorial deaths, and births of historical people only. And `recordDates` rows a person has ticked Confirmed. Article and document publication dates are listed apart, as "Published on this day", never mixed with what happened. A `recordDates` row ticked "Not for the calendar" (`rejected`: a newspaper dateline, a date in a list) is kept so the proposer never offers it again, and is never read.
 
 ## Generated and edited images
 

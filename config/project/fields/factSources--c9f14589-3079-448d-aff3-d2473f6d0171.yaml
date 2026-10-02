@@ -1,0 +1,79 @@
+columnSuffix: null
+handle: factSources
+instructions: 'One row per fact on the record: the fact, its value, the footnote numbers that support it, and what the sources say where they disagree.'
+name: 'Facts and their sources'
+searchable: false
+settings:
+  addRowLabel: 'Add a fact'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - Fact
+            -
+              - handle
+              - fact
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - Value
+            -
+              - handle
+              - value
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - Notes
+            -
+              - handle
+              - notes
+            -
+              - width
+              - ''
+            -
+              - type
+              - singleline
+      -
+        - col4
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Where the sources differ'
+            -
+              - handle
+              - agreement
+            -
+              - width
+              - ''
+            -
+              - type
+              - multiline
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

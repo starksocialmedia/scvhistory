@@ -122,6 +122,7 @@
 
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
+        {% include "_partials/record/fact-sources" with { entry: entry } only %}
         {% include "_partials/record/note" with { text: F.wmNotes, bottom: true } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
 
