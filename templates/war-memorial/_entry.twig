@@ -66,7 +66,11 @@
     showed 426 characters and hid 2,318. Where there is one, it shows alone. -#}
 {% set bothTexts = F.wmNarrative and F.body and F.wmNarrative|trim != F.body|trim %}
 {% set narrative = F.wmNarrative ?: F.body %}
-{% set died = F.wmIncidentDate ?: F.deathDate %}
+{#- DIED is the date of death. It used to prefer the incident date, which for the missing is the day they were lost and the death date a later
+    determination (Jimmie Ball), but which for the wounded is not the death at all: Edward Guy North's header said he died in September 1918, when he
+    was shot, not April 1919, when he died (2 October 2026). Both show where they differ. -#}
+{% set died = F.deathDate ?: F.wmIncidentDate %}
+{% set incident = F.wmIncidentDate and F.deathDate and F.wmIncidentDate|trim != F.deathDate|trim ? F.wmIncidentDate : '' %}
 {% set kick = [F.wmBranch, F.wmCombatOperations ?: F.wmConflict]|filter(x => x) %}
 {% set sub = [F.wmRank, F.wmSpecialty]|filter(x => x)|join(', ') %}
 {% set total = craft.entries().section('warMemorials').count() %}
@@ -83,6 +87,7 @@
           {% if F.wmDateOfBirth or died or F.wmHomeOfRecord %}
           <div class="rec-facts">
             {% if F.wmDateOfBirth %}<div><div class="l">BORN</div><div class="v">{{ F.wmDateOfBirth }}</div></div>{% endif %}
+            {% if incident %}<div><div class="l">INCIDENT</div><div class="v">{{ incident }}</div></div>{% endif %}
             {% if died %}<div><div class="l">DIED</div><div class="v">{{ died }}{% if F.wmAgeAtLoss %} · Age {{ F.wmAgeAtLoss }}{% endif %}</div></div>{% endif %}
             {% if F.wmHomeOfRecord %}<div><div class="l">HOME OF RECORD</div><div class="v">{{ F.wmHomeOfRecord }}</div></div>{% endif %}
           </div>

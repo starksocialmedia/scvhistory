@@ -98,6 +98,7 @@
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: bodyText, textId: 'recText', words: words } only %}
         {% include "_partials/record/note" with { text: F.webmasterNoteTop } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.editorNotes is defined ? entry.editorNotes : []), position: 'top' } only %}
 
         {% if plate %}
           <figure class="ph-plate">
@@ -148,6 +149,7 @@
 
         {% include "_partials/record/images" with { images: recImages, body: bodyText, entry: entry } only %}
         {% include "_partials/record/note" with { text: F.webmasterNoteBottom, bottom: true } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.editorNotes is defined ? entry.editorNotes : []), position: 'inline' } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.editorNotes is defined ? entry.editorNotes : []), position: 'bottom' } only %}
       </article>
 

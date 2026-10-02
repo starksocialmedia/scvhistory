@@ -264,6 +264,13 @@ if (is_array($rb) && !($rb['ok'] ?? true)) {
     if ($real) { $fail++; echo 'RENDERED BODIES FAIL' . PHP_EOL; }
 }
 
+/* Every other field, the same way (DEPLOY-RUNBOOK section 9, 2 October 2026):
+   each section's fewest records that hold every displayed field, fetched once,
+   each value looked for on the page. A field holding data with no entry in
+   scripts/import/field-display.json fails, so a new field says where it shows. */
+$rf = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_rendered_fields.php'));
+if (is_array($rf) && !($rf['ok'] ?? true)) { $fail++; echo 'RENDERED FIELDS FAIL' . PHP_EOL; }
+
 /* Generated images (docs/DATA-MODEL.md): a banner is decoration, listed in
    templates/_data/banners.json, a file in web/banners and nothing else. It fails
    here if its file is missing or changed, if the same picture is in the

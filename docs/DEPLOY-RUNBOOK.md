@@ -510,6 +510,27 @@ is not done until the rendered page has been checked:
    not only the sample.
 3. When a publish rule changes, run the full check, not the sample.
 
+**The rule, made general (Nathan, 2 October 2026).** Any script that writes a
+field a template must display is not done until the rendered page has been
+checked for that field, not the record. It happened three times in one session:
+person bodies; editor notes on persons, organizations and places, which only
+articles, documents and photographs rendered, so dated corrections were
+invisible; and, in the audit that followed, a person's bottom webmaster note
+hidden whenever the body was withheld, a document's top editor note, and a
+memorial header that printed the incident date as the date of death.
+
+4. **Every field has a class** in `scripts/import/field-display.json`: `page`
+   (a template shows it), `schema` (JSON-LD or meta only), `internal` (never
+   shown, with the reason) or `gap` (should show, not built yet). A new field
+   is added there in the same commit as the script that fills it.
+5. **`scripts/import/check_rendered_fields.php`** fetches, for each section, the
+   fewest records that between them hold every `page` field, and looks for each
+   value on the rendered page. `MISSING` fails. A field holding data with no
+   class fails as `UNCLASSIFIED`. `gap` and values with a recorded `unless` are
+   reported, not failed. `check_render.php` runs it every time.
+6. **After an apply**, open one written record's page and find the value, or
+   run the checker. A read-back line in the apply output is not this check.
+
 ---
 
 ## 10. Refreshing staging with the local work (October 2026)

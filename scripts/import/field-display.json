@@ -1,0 +1,1155 @@
+{
+ "_about": "Where each field shows. Read by scripts/import/check_rendered_fields.php, which fails on a page field whose value is not on its page, and on any field holding data that is not listed here. page: a template shows it; schema: JSON-LD or meta only, on purpose; internal: never shown, on purpose, with why; gap: should show, not built yet (reported, not failed). notOn: sections where a page field is deliberately not shown. unless: a known reason a value may be absent (reported, not failed). Nathan, 2 October 2026; DEPLOY-RUNBOOK section 9.",
+ "fields": {
+  "accessionBatch": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "acquiredDate": {
+   "show": "gap",
+   "why": "when an image was acquired; not on /media"
+  },
+  "archivalFiles": {
+   "show": "page"
+  },
+  "archiveUrl": {
+   "show": "page"
+  },
+  "articleEvents": {
+   "show": "page"
+  },
+  "articleLat": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "articleLng": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "articleThemes": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "articlesAbout": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "articlesInCollection": {
+   "show": "page"
+  },
+  "asPrinted": {
+   "show": "page"
+  },
+  "authorBio": {
+   "show": "internal",
+   "why": "shown with an author's byline on their writing, not on their record page"
+  },
+  "ballotMeasures": {
+   "show": "page"
+  },
+  "ballotsCast": {
+   "show": "page",
+   "mode": "number"
+  },
+  "bandImage": {
+   "show": "page"
+  },
+  "basis": {
+   "show": "page"
+  },
+  "batchSequence": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "bioguideId": {
+   "show": "page"
+  },
+  "birthDate": {
+   "show": "page"
+  },
+  "birthDateEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "birthEvidence": {
+   "show": "gap",
+   "why": "how a birth date is known (confidence)"
+  },
+  "birthplace": {
+   "show": "page"
+  },
+  "body": {
+   "show": "page",
+   "mode": "body",
+   "why": "checked by check_rendered_bodies.php, which knows the publish rules"
+  },
+  "bodyAuthorship": {
+   "show": "internal",
+   "why": "steers the template (grouping, labels or what is published), not printed as its value"
+  },
+  "burialEvidence": {
+   "show": "gap",
+   "why": "how a burial is known (confidence)"
+  },
+  "burialPlace": {
+   "show": "page"
+  },
+  "candidacyDistrict": {
+   "show": "gap",
+   "why": "the district a candidate ran in, now that council and board seats are by district"
+  },
+  "candidacyElection": {
+   "show": "page"
+  },
+  "candidacyPerson": {
+   "show": "page"
+  },
+  "candidateKey": {
+   "show": "internal",
+   "why": "the key that matches a candidate across elections"
+  },
+  "cdsCode": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "childOf": {
+   "show": "page"
+  },
+  "classOf": {
+   "show": "page"
+  },
+  "collectionFrozen": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "collectionGroups": {
+   "show": "page"
+  },
+  "collectionIsMajor": {
+   "show": "page"
+  },
+  "collectionKind": {
+   "show": "internal",
+   "why": "steers the template (grouping, labels or what is published), not printed as its value"
+  },
+  "collectionParts": {
+   "show": "page",
+   "unless": "part headings show on book collections only; a series (Reynolds) lists its chapters without them"
+  },
+  "communityAliases": {
+   "show": "page"
+  },
+  "communityLat": {
+   "show": "page"
+  },
+  "communityLng": {
+   "show": "page"
+  },
+  "communityType": {
+   "show": "page"
+  },
+  "consolidatedWith": {
+   "show": "page"
+  },
+  "contentCredentials": {
+   "show": "gap",
+   "why": "an edited image's content credential; DATA-MODEL says this field is the only place it survives, and no page shows it"
+  },
+  "courtesyOf": {
+   "show": "page"
+  },
+  "creator": {
+   "show": "page"
+  },
+  "creditDpi": {
+   "show": "page"
+  },
+  "creditKind": {
+   "show": "page"
+  },
+  "creditName": {
+   "show": "page"
+  },
+  "creditProcess": {
+   "show": "page"
+  },
+  "creditRaw": {
+   "show": "page"
+  },
+  "culturalSensitivityNote": {
+   "show": "page"
+  },
+  "dateAsPrinted": {
+   "show": "page"
+  },
+  "dateDissolved": {
+   "show": "page"
+  },
+  "dateDissolvedEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "dateEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "dateEstablished": {
+   "show": "page"
+  },
+  "dateEstablishedEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "dateFounded": {
+   "show": "page"
+  },
+  "dateFoundedEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "deathDate": {
+   "show": "page"
+  },
+  "deathDateEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "deathEvidence": {
+   "show": "gap",
+   "why": "how a death date is known (confidence)"
+  },
+  "decidedBy": {
+   "show": "internal",
+   "why": "sourceFaults are the archive's own review queue"
+  },
+  "depictsPlace": {
+   "show": "page"
+  },
+  "derivedImageLinks": {
+   "show": "page",
+   "unless": "listed on articles only; photographs and places do not show derived images yet"
+  },
+  "districtKind": {
+   "show": "internal",
+   "why": "steers the template (grouping, labels or what is published), not printed as its value"
+  },
+  "districtNumber": {
+   "show": "page"
+  },
+  "documentFiles": {
+   "show": "page"
+  },
+  "editedBy": {
+   "show": "page"
+  },
+  "editorNotes": {
+   "show": "page"
+  },
+  "educationEvidence": {
+   "show": "gap",
+   "why": "how a school attendance is known (confidence)"
+  },
+  "educationOutcome": {
+   "show": "page"
+  },
+  "educationPerson": {
+   "show": "page"
+  },
+  "educationSchool": {
+   "show": "page"
+  },
+  "educationYears": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "educationYearsEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "effectiveFrom": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "effectiveTo": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "ein": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "electionBody": {
+   "show": "page"
+  },
+  "electionDate": {
+   "show": "page"
+  },
+  "electionDateEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "electionDistrict": {
+   "show": "page",
+   "unless": "printed as its short label, \"Division 3\" or \"Trustee Area 2\""
+  },
+  "electionKind": {
+   "show": "gap",
+   "why": "general, special or primary: a reader needs to know which"
+  },
+  "endEvidence": {
+   "show": "gap",
+   "why": "how an office end is known (a confidence level, which the content rules say a claim keeps)"
+  },
+  "enhancedBy": {
+   "show": "page"
+  },
+  "enhancedDate": {
+   "show": "page"
+  },
+  "enhancedFrom": {
+   "show": "page"
+  },
+  "enhancementMethod": {
+   "show": "page"
+  },
+  "enrolment": {
+   "show": "page"
+  },
+  "eventArticles": {
+   "show": "page"
+  },
+  "eventChlNumber": {
+   "show": "page"
+  },
+  "eventDate": {
+   "show": "page"
+  },
+  "eventDateEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "eventDateEnd": {
+   "show": "page"
+  },
+  "eventDateStart": {
+   "show": "page"
+  },
+  "eventFrequency": {
+   "show": "page"
+  },
+  "eventGroups": {
+   "show": "page"
+  },
+  "eventLegacyUrl": {
+   "show": "page"
+  },
+  "eventNextOccurrence": {
+   "show": "page"
+  },
+  "eventOrganizations": {
+   "show": "page"
+  },
+  "eventPersons": {
+   "show": "page"
+  },
+  "eventPlaces": {
+   "show": "page"
+  },
+  "eventRecurring": {
+   "show": "page"
+  },
+  "eventSignificance": {
+   "show": "page"
+  },
+  "eventWikipediaUrl": {
+   "show": "page",
+   "mode": "href"
+  },
+  "factSources": {
+   "show": "page"
+  },
+  "faultField": {
+   "show": "page"
+  },
+  "faultRecord": {
+   "show": "page"
+  },
+  "featuredImage": {
+   "show": "page"
+  },
+  "feedsInto": {
+   "show": "page"
+  },
+  "finePrint": {
+   "show": "page",
+   "unless": "the site-wide rights line is in the footer, not under each record (_partials/record/fine-print.twig); other fine print shows"
+  },
+  "fixLegacyUrl": {
+   "show": "page"
+  },
+  "fixNote": {
+   "show": "page"
+  },
+  "fixRecord": {
+   "show": "page"
+  },
+  "fixSeenOn": {
+   "show": "page"
+  },
+  "fixStatus": {
+   "show": "page"
+  },
+  "footnotes": {
+   "show": "page"
+  },
+  "footnotesOn": {
+   "show": "page"
+  },
+  "foundedEvidence": {
+   "show": "page"
+  },
+  "fullName": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "gnisId": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "gradeSpan": {
+   "show": "page"
+  },
+  "graveCensus": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "groupAliases": {
+   "show": "page"
+  },
+  "groupDateEnd": {
+   "show": "page"
+  },
+  "groupDateStart": {
+   "show": "page"
+  },
+  "groupEvents": {
+   "show": "page"
+  },
+  "groupLegacyUrl": {
+   "show": "page"
+  },
+  "groupPersons": {
+   "show": "page"
+  },
+  "groupWebsite": {
+   "show": "page"
+  },
+  "hasParentOrg": {
+   "show": "internal",
+   "why": "a structural flag; the parent shows through its relation"
+  },
+  "hauntedAccount": {
+   "show": "gap",
+   "why": "as hauntedStatus"
+  },
+  "hauntedSource": {
+   "show": "gap",
+   "why": "as hauntedStatus"
+  },
+  "hauntedStatus": {
+   "show": "gap",
+   "why": "the haunted-places layer: shown, or kept back as a later phase? Nathan to decide"
+  },
+  "historicalEra": {
+   "show": "page"
+  },
+  "historicalPeriod": {
+   "show": "page"
+  },
+  "holdingBody": {
+   "show": "page"
+  },
+  "holdingDistrict": {
+   "show": "page"
+  },
+  "holdingOffice": {
+   "show": "page"
+  },
+  "holdingPerson": {
+   "show": "page"
+  },
+  "howEnded": {
+   "show": "page"
+  },
+  "imdbId": {
+   "show": "page"
+  },
+  "legacyCategory": {
+   "show": "page"
+  },
+  "legacyHtml": {
+   "show": "internal",
+   "why": "the legacy page as captured, kept for the record; the body is what shows"
+  },
+  "legacyKey": {
+   "show": "page"
+  },
+  "legacySourcePath": {
+   "show": "page"
+  },
+  "legacyUrl": {
+   "show": "page",
+   "mode": "href"
+  },
+  "license": {
+   "show": "page"
+  },
+  "mpAgeAtLoss": {
+   "show": "page"
+  },
+  "mpAwards": {
+   "show": "page"
+  },
+  "mpBase": {
+   "show": "page"
+  },
+  "mpBurialPlace": {
+   "show": "page"
+  },
+  "mpChildren": {
+   "show": "page"
+  },
+  "mpCombatOperations": {
+   "show": "page"
+  },
+  "mpDateOfBirth": {
+   "show": "page"
+  },
+  "mpDateOfDeath": {
+   "show": "page"
+  },
+  "mpEvents": {
+   "show": "page"
+  },
+  "mpFindAGraveUrl": {
+   "show": "page"
+  },
+  "mpFinePrint": {
+   "show": "page"
+  },
+  "mpGroups": {
+   "show": "page"
+  },
+  "mpHasChildren": {
+   "show": "page"
+  },
+  "mpHasParents": {
+   "show": "page"
+  },
+  "mpHasSiblings": {
+   "show": "page"
+  },
+  "mpHasSpouse": {
+   "show": "page"
+  },
+  "mpHighSchool": {
+   "show": "page"
+  },
+  "mpHomeOfRecord": {
+   "show": "page"
+  },
+  "mpLegacyUrl": {
+   "show": "page"
+  },
+  "mpNarrative": {
+   "show": "page"
+  },
+  "mpOrganizations": {
+   "show": "page"
+  },
+  "mpParents": {
+   "show": "page"
+  },
+  "mpPlaces": {
+   "show": "page"
+  },
+  "mpRank": {
+   "show": "page"
+  },
+  "mpRelatedObituaries": {
+   "show": "page"
+  },
+  "mpRelatedPersons": {
+   "show": "page"
+  },
+  "mpServiceEnd": {
+   "show": "page"
+  },
+  "mpServiceStart": {
+   "show": "page"
+  },
+  "mpSiblings": {
+   "show": "page"
+  },
+  "mpSpecialty": {
+   "show": "page"
+  },
+  "mpSpouse": {
+   "show": "page"
+  },
+  "mpSubject": {
+   "show": "page"
+  },
+  "mpUnit": {
+   "show": "page"
+  },
+  "mpWebmasterNoteBottom": {
+   "show": "page"
+  },
+  "mpWebmasterNoteTop": {
+   "show": "page"
+  },
+  "mpWikipediaUrl": {
+   "show": "page"
+  },
+  "nameAsPrinted": {
+   "show": "page"
+  },
+  "namedFor": {
+   "show": "page"
+  },
+  "namingNote": {
+   "show": "page"
+  },
+  "ncesId": {
+   "show": "internal",
+   "why": "steers the template (grouping, labels or what is published), not printed as its value"
+  },
+  "neighborhood": {
+   "show": "page"
+  },
+  "nrhpListedDate": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "nrhpReference": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "obitDateOfDeath": {
+   "show": "page"
+  },
+  "obitDatePublished": {
+   "show": "page"
+  },
+  "obitGraveUrl": {
+   "show": "page"
+  },
+  "obitGroup": {
+   "show": "page"
+  },
+  "obitLegacyUrl": {
+   "show": "page"
+  },
+  "obitPublishedIn": {
+   "show": "page"
+  },
+  "obitRelatedMilitary": {
+   "show": "page"
+  },
+  "obitRelatedPersons": {
+   "show": "page"
+  },
+  "obitSubject": {
+   "show": "page"
+  },
+  "obitWebmasterNoteBottom": {
+   "show": "page"
+  },
+  "obitWebmasterNoteTop": {
+   "show": "page"
+  },
+  "occupation": {
+   "show": "page"
+  },
+  "orgAddress": {
+   "show": "page"
+  },
+  "orgAliases": {
+   "show": "page"
+  },
+  "orgAssociatedPersons": {
+   "show": "page"
+  },
+  "orgEvents": {
+   "show": "page"
+  },
+  "orgFinePrint": {
+   "show": "page"
+  },
+  "orgFoundedBy": {
+   "show": "page"
+  },
+  "orgLat": {
+   "show": "page"
+  },
+  "orgLegacyUrl": {
+   "show": "page"
+  },
+  "orgLng": {
+   "show": "page"
+  },
+  "orgType": {
+   "show": "internal",
+   "why": "steers the template (grouping, labels or what is published), not printed as its value"
+  },
+  "orgWebsite": {
+   "show": "page",
+   "mode": "href"
+  },
+  "orgWikipediaUrl": {
+   "show": "page",
+   "mode": "href"
+  },
+  "originalPublishDate": {
+   "show": "page"
+  },
+  "originalPublishDateEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "originallyPublishedTitle": {
+   "show": "page"
+  },
+  "outcome": {
+   "show": "page"
+  },
+  "outcomeEvidence": {
+   "show": "page"
+  },
+  "parentOf": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "parentOrganization": {
+   "show": "page"
+  },
+  "partOfCollection": {
+   "show": "page"
+  },
+  "personAliases": {
+   "show": "gap",
+   "why": "other names a person is known by; only in JSON-LD"
+  },
+  "personEvents": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "personFinePrint": {
+   "show": "page"
+  },
+  "personGraveUrl": {
+   "show": "page",
+   "mode": "href"
+  },
+  "personGroups": {
+   "show": "page"
+  },
+  "personLegacyUrl": {
+   "show": "page"
+  },
+  "personObituaries": {
+   "show": "page"
+  },
+  "personOrganizations": {
+   "show": "page"
+  },
+  "personWebmasterNoteBottom": {
+   "show": "page"
+  },
+  "personWebmasterNoteTop": {
+   "show": "page"
+  },
+  "personWikipediaUrl": {
+   "show": "page",
+   "mode": "href"
+  },
+  "photoArticles": {
+   "show": "page"
+  },
+  "photoCaptionExt": {
+   "show": "page"
+  },
+  "photoCredit": {
+   "show": "page"
+  },
+  "photoDate": {
+   "show": "page"
+  },
+  "photoDateEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "photoEvents": {
+   "show": "page"
+  },
+  "photoGroups": {
+   "show": "page"
+  },
+  "photoOrganizations": {
+   "show": "page"
+  },
+  "photoPeople": {
+   "show": "page"
+  },
+  "photoPlaces": {
+   "show": "page"
+  },
+  "photoSequence": {
+   "show": "internal",
+   "why": "steers the template (grouping, labels or what is published), not printed as its value"
+  },
+  "photoSourceCode": {
+   "show": "page"
+  },
+  "photoSources": {
+   "show": "page"
+  },
+  "placeAddress": {
+   "show": "page"
+  },
+  "placeAliases": {
+   "show": "page"
+  },
+  "placeArticles": {
+   "show": "page"
+  },
+  "placeChlNumber": {
+   "show": "page"
+  },
+  "placeChlUrl": {
+   "show": "page",
+   "mode": "href"
+  },
+  "placeEvents": {
+   "show": "page"
+  },
+  "placeFeatured": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "placeLat": {
+   "show": "page"
+  },
+  "placeLegacyUrl": {
+   "show": "page",
+   "mode": "href",
+   "unless": "the source link shows legacyUrl when a place has both"
+  },
+  "placeLng": {
+   "show": "page"
+  },
+  "placeOrganizations": {
+   "show": "page"
+  },
+  "placePeople": {
+   "show": "page"
+  },
+  "placeScvhlCheckbox": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "placeScvhlUrl": {
+   "show": "page"
+  },
+  "placeType": {
+   "show": "internal",
+   "why": "steers the template (grouping, labels or what is published), not printed as its value"
+  },
+  "placeWebsite": {
+   "show": "page",
+   "mode": "href"
+  },
+  "placeWikipediaUrl": {
+   "show": "page",
+   "mode": "href"
+  },
+  "precededBy": {
+   "show": "gap",
+   "why": "what a body grew out of"
+  },
+  "provenanceKind": {
+   "show": "gap",
+   "why": "how an image came to the archive; the /media page does not say"
+  },
+  "publicationDetails": {
+   "show": "page"
+  },
+  "publishedBy": {
+   "show": "page"
+  },
+  "reading": {
+   "show": "page"
+  },
+  "recordDates": {
+   "show": "internal",
+   "why": "feeds On This Day (calendar.json), not the record page"
+  },
+  "recordDocuments": {
+   "show": "page"
+  },
+  "recordImages": {
+   "show": "page"
+  },
+  "recordProvenance": {
+   "show": "internal",
+   "why": "which script or import wrote the record; the audit trail, not content"
+  },
+  "recordTags": {
+   "show": "page"
+  },
+  "registeredVoters": {
+   "show": "page",
+   "mode": "number"
+  },
+  "relatedArticles": {
+   "show": "gap",
+   "why": "articles an article points to"
+  },
+  "relatedEvents": {
+   "show": "page"
+  },
+  "relatedMilitary": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "relatedPersons": {
+   "show": "page"
+  },
+  "relatedPhotographs": {
+   "show": "page"
+  },
+  "relatedPlaces": {
+   "show": "page"
+  },
+  "rightsHolder": {
+   "show": "page"
+  },
+  "roleMatch": {
+   "show": "internal",
+   "why": "the text a role was matched on"
+  },
+  "roleWikidataId": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "roles": {
+   "show": "page"
+  },
+  "schoolIdentity": {
+   "show": "page"
+  },
+  "schoolLevel": {
+   "show": "page"
+  },
+  "scvhlNumber": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "seatCount": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
+  },
+  "seatLabel": {
+   "show": "page"
+  },
+  "seatsUp": {
+   "show": "page"
+  },
+  "seatsUpEvidence": {
+   "show": "gap",
+   "why": "how the seats up are known (a confidence level)"
+  },
+  "selectionMethod": {
+   "show": "page"
+  },
+  "siblingOf": {
+   "show": "page"
+  },
+  "source": {
+   "show": "page"
+  },
+  "sourceDocuments": {
+   "show": "page"
+  },
+  "sourceLine": {
+   "show": "page"
+  },
+  "sourcePath": {
+   "show": "page",
+   "mode": "href"
+  },
+  "sourceUrl": {
+   "show": "gap",
+   "why": "where an image came from; not on /media"
+  },
+  "spouseOf": {
+   "show": "page"
+  },
+  "startEvidence": {
+   "show": "gap",
+   "why": "how a start date is known, for an office or an event (a confidence level)"
+  },
+  "subheadline": {
+   "show": "page"
+  },
+  "subjectGroup": {
+   "show": "page"
+  },
+  "subjectOrganization": {
+   "show": "page"
+  },
+  "subjectPerson": {
+   "show": "page"
+  },
+  "succeededBy": {
+   "show": "gap",
+   "why": "what a dissolved body became (Newhall County Water District to SCV Water)"
+  },
+  "termEnd": {
+   "show": "page"
+  },
+  "termEndEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "termStart": {
+   "show": "page"
+  },
+  "termStartEdtf": {
+   "show": "schema",
+   "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
+  },
+  "viafId": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "votes": {
+   "show": "page"
+  },
+  "votesAsPrinted": {
+   "show": "page"
+  },
+  "votesAtPrecinct": {
+   "show": "gap",
+   "why": "mail and precinct counts; the election page uses them only to flag source faults"
+  },
+  "votesByMail": {
+   "show": "gap",
+   "why": "mail and precinct counts; the election page uses them only to flag source faults"
+  },
+  "webmasterNoteBottom": {
+   "show": "page"
+  },
+  "webmasterNoteTop": {
+   "show": "page"
+  },
+  "wikidataId": {
+   "show": "schema",
+   "why": "emitted in JSON-LD; the printed or related form shows on the page"
+  },
+  "wmAgeAtLoss": {
+   "show": "page"
+  },
+  "wmAwards": {
+   "show": "page",
+   "mode": "list"
+  },
+  "wmBase": {
+   "show": "page"
+  },
+  "wmBirthplace": {
+   "show": "page"
+  },
+  "wmBranch": {
+   "show": "page"
+  },
+  "wmCasualtyDetail": {
+   "show": "page"
+  },
+  "wmCasualtyReason": {
+   "show": "page"
+  },
+  "wmCasualtyType": {
+   "show": "page"
+  },
+  "wmCombatOperations": {
+   "show": "page"
+  },
+  "wmConflict": {
+   "show": "page"
+  },
+  "wmDateOfBirth": {
+   "show": "page"
+  },
+  "wmFamily": {
+   "show": "page"
+  },
+  "wmGradeAtLoss": {
+   "show": "page"
+  },
+  "wmHighSchool": {
+   "show": "page"
+  },
+  "wmHomeOfRecord": {
+   "show": "page"
+  },
+  "wmIncidentDate": {
+   "show": "page"
+  },
+  "wmIncidentLocation": {
+   "show": "page"
+  },
+  "wmLengthOfService": {
+   "show": "page"
+  },
+  "wmNarrative": {
+   "show": "page",
+   "mode": "body",
+   "why": "checked by check_rendered_bodies.php, which knows the publish rules"
+  },
+  "wmNotes": {
+   "show": "page"
+  },
+  "wmRank": {
+   "show": "page"
+  },
+  "wmRelatedPerson": {
+   "show": "page"
+  },
+  "wmSelectiveServiceDate": {
+   "show": "page"
+  },
+  "wmServiceExtra": {
+   "show": "page"
+  },
+  "wmServiceId": {
+   "show": "page"
+  },
+  "wmSpecialty": {
+   "show": "page"
+  },
+  "wmStartTour": {
+   "show": "page"
+  },
+  "wmUnit": {
+   "show": "page"
+  },
+  "wmWallReference": {
+   "show": "page"
+  },
+  "writtenBy": {
+   "show": "page"
+  }
+ }
+}

@@ -166,8 +166,9 @@
           </div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}
           {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
-          {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% endif %}
+        {#- The bottom webmaster note shows whether or not the body does: Vasquez's says when he was born, and his body is withheld (2 October 2026). -#}
+        {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
 
