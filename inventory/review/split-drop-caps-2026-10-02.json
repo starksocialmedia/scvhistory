@@ -585,6 +585,33 @@
    "join": true,
    "why": "single letter",
    "action": "join"
+  },
+  {
+   "id": 15092,
+   "field": "body",
+   "letter": "\"A",
+   "next": "dvertising",
+   "join": true,
+   "why": "opening quotation mark and capital split from the word",
+   "action": "join"
+  },
+  {
+   "id": 15006,
+   "field": "body",
+   "letter": "\"N",
+   "next": "umismatic",
+   "join": true,
+   "why": "opening quotation mark and capital split from the word",
+   "action": "join"
+  },
+  {
+   "id": 12382,
+   "field": "body",
+   "letter": "\"D",
+   "next": "owntown",
+   "join": true,
+   "why": "opening quotation mark and capital split from the word",
+   "action": "join"
   }
  ]
 }

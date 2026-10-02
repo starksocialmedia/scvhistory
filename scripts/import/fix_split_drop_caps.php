@@ -2,7 +2,7 @@
  * Split drop caps (Nathan, 1 October 2026: "[lines] and [/lines] markers appear
  * in article bodies"). Most markers are correct: [lines] keeps a block's line
  * breaks, and the leaks were in the description and the lead, fixed in the
- * templates. But in 65 fields the import split an article's drop cap from its
+ * templates. But in 68 fields the import split an article's drop cap from its
  * word: a lone capital, a blank line, then a [lines] block starting "ew New..."
  * or "ttorney...". The page printed "N [lines] ew".
  *
@@ -52,5 +52,5 @@ foreach ($plan as $id => $fields) {
 }
 echo 'READ-BACK ' . ($short ? 'SHORT: ' . implode(', ', $short) : "OK: $done records") . PHP_EOL;
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php';
-$applyLog('fix_split_drop_caps.php', $done, $short ? 'SHORT' : 'verified', 'split drop caps rejoined in [lines] bodies; one held');
+$applyLog('fix_split_drop_caps.php', $done, $short ? 'SHORT' : 'verified', 'split drop caps rejoined in [lines] bodies; one held, 3 more found with an opening quotation mark');
 if ($short) { throw new \RuntimeException('fix_split_drop_caps: ' . implode(', ', $short)); }
