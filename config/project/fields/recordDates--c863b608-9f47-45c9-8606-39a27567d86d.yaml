@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: recordDates
-instructions: 'Dates this record is about, for the on-this-day index. Enter the date as it is printed in the source, then the ISO date and how precise it is. Tick Confirmed once a person has checked the row.'
+instructions: 'Dates this record is about, for the on-this-day index. Enter the date as it is printed in the source, then the ISO date and how precise it is. Tick Confirmed once a person has checked the row; tick Not for the calendar for a date that is not an event (a dateline, a list) so it is never proposed again.'
 name: 'Dates in this record'
 searchable: false
 settings:
@@ -128,6 +128,22 @@ settings:
             -
               - handle
               - confirmed
+            -
+              - width
+              - ''
+            -
+              - type
+              - checkbox
+      -
+        - col6
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Not for the calendar'
+            -
+              - handle
+              - rejected
             -
               - width
               - ''

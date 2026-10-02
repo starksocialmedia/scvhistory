@@ -22,6 +22,8 @@
 {% set raw = source('_data/calendar.json', true) %}
 {% set data = raw ? raw|json_decode(true) : {} %}
 {% set days = data.days ?? {} %}
+{#- Publication dates are kept apart and labelled as publication, never mixed into what happened (Nathan, 2 October 2026). -#}
+{% set published = data.published ?? {} %}
 
 {% set today = now|date('m-d') %}
 {% set asked = craft.app.request.getParam('d') %}
@@ -29,6 +31,8 @@
 {% set isToday = key == today %}
 
 {% set entries = days[key] ?? [] %}
+{% set pubs = published[key] ?? [] %}
+{% set KIND = {died: 'Died', born: 'Born', election: 'Election day', founded: 'Founded', dissolved: 'Dissolved', established: 'Established', office: 'Took office', photographed: 'Photographed', event: 'Event', published: 'Published'} %}
 {% set MONTHS = {'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'} %}
 {% set mm = key|slice(0,2) %}
 {% set dd = key|slice(3,2) %}
@@ -41,9 +45,9 @@
 
 {# nearest day with entries, for when this one is empty #}
 {% set nearest = null %}
-{% if not entries|length and days|length %}
+{% if not entries|length and not pubs|length and (days|length or published|length) %}
   {% set best = null %}
-  {% for k, rows in days %}
+  {% for k, rows in days|merge(published) %}
     {% set a = (key|slice(0,2))|number_format * 31 + (key|slice(3,2))|number_format %}
     {% set b = (k|slice(0,2))|number_format * 31 + (k|slice(3,2))|number_format %}
     {% set gap = (a - b)|abs %}
@@ -60,7 +64,7 @@
         <div>
           <div class="rec-kick"><span class="a">ON THIS DAY</span>{% if not isToday %}<span class="sep"></span><span class="b">{{ 'TODAY IS ' ~ (MONTHS[today|slice(0,2)] ~ ' ' ~ (today|slice(3,2)|trim('0')))|upper }}</span>{% endif %}</div>
           <h1>{{ prettyDate }}</h1>
-          <p class="rec-sub">{{ entries|length ? entries|length ~ (entries|length == 1 ? ' record in the archive carries this date' : ' records in the archive carry this date') : 'Nothing in the archive carries this date yet' }}</p>
+          <p class="rec-sub">{% if entries|length %}{{ entries|length }} {{ entries|length == 1 ? 'thing that happened' : 'things that happened' }} on this day{% if pubs|length %}, and {{ pubs|length }} {{ pubs|length == 1 ? 'piece' : 'pieces' }} first published on it{% endif %}{% elseif pubs|length %}{{ pubs|length }} {{ pubs|length == 1 ? 'piece' : 'pieces' }} in the archive first published on this day{% else %}Nothing in the archive is dated this day yet{% endif %}</p>
         </div>
       </div>
     </div>
@@ -79,7 +83,7 @@
           <div class="otd-days">
             {% for d in 1..monthLen %}
               {% set dk = mm ~ '-' ~ (d < 10 ? '0' ~ d : d) %}
-              {% set n = (days[dk] ?? [])|length %}
+              {% set n = (days[dk] ?? [])|length + (published[dk] ?? [])|length %}
               <a class="otd-d {{ dk == key ? 'on' : '' }} {{ n ? 'has' : '' }}"
                  href="{{ url('on-this-day', {d: dk}) }}"
                  {% if n %}title="{{ n }} record{{ n == 1 ? '' : 's' }}"{% endif %}>{{ d }}</a>
@@ -98,21 +102,36 @@
                 <span style="min-width:0">
                   <span class="dt">{{ e.printed ?: e.iso }}</span>
                   <span class="t">{{ e.title }}</span>
-                  {% if e.label %}<span class="lb">{{ e.label }}</span>{% endif %}
+                  {% if e.label %}<span class="lb">{{ e.label }}</span>{% elseif KIND[e.kind ?? ''] is defined %}<span class="lb">{{ KIND[e.kind] }}</span>{% endif %}
                   <span class="sc">{{ e.section }}</span>
                 </span>
               </a>
             {% endfor %}
           </div>
-        {% else %}
+        {% endif %}
+        {% if pubs|length %}
+          <h2 class="otd-pubh">Published on this day</h2>
+          <p class="otd-pubnote">The days these articles and documents first appeared in print. They are dates of publication, not of the events they describe.</p>
+          <div class="otd-cards otd-cards--pub">
+            {% for e in pubs %}
+              <a class="otd-card" href="{{ e.url }}">
+                <span class="ph">{% if e.image %}<img src="{{ e.image }}" alt="">{% else %}<span class="yr" aria-hidden="true">{{ e.year }}</span>{% endif %}</span>
+                <span style="min-width:0">
+                  <span class="dt">Published {{ e.printed }}</span>
+                  <span class="t">{{ e.title }}</span>
+                  <span class="sc">{{ e.section }}</span>
+                </span>
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if not entries|length and not pubs|length %}
           <div class="otd-empty">
             <p>Nothing in the archive is dated {{ prettyDate }}.</p>
             {% if nearest %}
               {% set nm = MONTHS[nearest.key|slice(0,2)] %}
               {% set nd = nearest.key|slice(3,2)|trim('0') %}
               <p>The nearest day with entries is <a href="{{ url('on-this-day', {d: nearest.key}) }}">{{ nm }} {{ nd }}</a>, with {{ nearest.rows|length }} record{{ nearest.rows|length == 1 ? '' : 's' }}.</p>
-            {% elseif not days|length %}
-              <p>No dates have been confirmed yet. The index is built from recordDates rows once a person has ticked Confirmed, by running <code>scripts/import/build_calendar_index.php</code>.</p>
             {% endif %}
           </div>
         {% endif %}
@@ -136,6 +155,9 @@
 .otd-d:hover{border-color:#C4A031;color:#7A5C1B}
 .otd-d.has{color:#7A5C1B;border-color:#DCC98F;font-weight:500}
 .otd-d.on{background:#C4A031;border-color:#C4A031;color:#17254C;font-weight:500}
+.otd-pubh{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7A5C1B;margin:36px 0 6px;font-weight:500}
+.otd-pubnote{font-size:14px;color:#5B6472;margin:0 0 14px;max-width:680px}
+.otd-cards--pub .otd-card{background:#FBFAF7}
 .otd-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
 .otd-card{display:flex;gap:15px;background:#fff;border:1px solid #E2E4E8;padding:14px 16px;text-decoration:none;color:inherit}
 .otd-card:hover{border-color:#C4A031;background:#FDF7EA}
