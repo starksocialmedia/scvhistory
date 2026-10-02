@@ -75,6 +75,8 @@
       <div class="scv-layout">
         <div>
           {% include "_partials/record/note" with { text: term.webmasterNoteTop is defined ? term.webmasterNoteTop : null } only %}
+          {#- The archive's own notes (editorNotes), which this page did not render before 2 October 2026: corrections and readers' notes were saved but not shown. -#}
+          {% include "_partials/record/editor-notes" with { rows: (term.fieldLayout and 'editorNotes' in term.fieldLayout.customFields|map(f => f.handle) ? term.editorNotes : []), position: 'top' } only %}
 
           {% if term.body is defined and term.body %}
             <article class="scv-card">
@@ -89,6 +91,8 @@
           {% endif %}
 
           {% include "_partials/record/images" with { images: recImages, body: term.body is defined ? term.body : '', entry: term } only %}
+          {% include "_partials/record/editor-notes" with { rows: (term.fieldLayout and 'editorNotes' in term.fieldLayout.customFields|map(f => f.handle) ? term.editorNotes : []), position: 'inline' } only %}
+          {% include "_partials/record/editor-notes" with { rows: (term.fieldLayout and 'editorNotes' in term.fieldLayout.customFields|map(f => f.handle) ? term.editorNotes : []), position: 'bottom' } only %}
           {% include "_partials/record/note" with { text: term.webmasterNoteBottom is defined ? term.webmasterNoteBottom : null, bottom: true } only %}
 
           {% if hasBoundary or hasPin %}

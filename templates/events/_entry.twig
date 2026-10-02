@@ -62,9 +62,13 @@
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
         {% include "_partials/record/note" with { text: noteTop } only %}
+        {#- The archive's own notes (editorNotes), which this page did not render before 2 October 2026: corrections and readers' notes were saved but not shown. -#}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'top' } only %}
         {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages , footnotesFor: entry } %}</div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}{% endif %}
         {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
       </article>

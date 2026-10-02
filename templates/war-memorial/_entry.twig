@@ -104,6 +104,8 @@
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: narrative, textId: 'recText' } only %}
         {% include "_partials/record/note" with { text: noteTop } only %}
+        {#- The archive's own notes (editorNotes), which this page did not render before 2 October 2026: corrections and readers' notes were saved but not shown. -#}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'top' } only %}
 
         {% if bothTexts %}
           <h2 class="rec-h2" style="margin-top:8px">Summary</h2>
@@ -118,6 +120,8 @@
           {% include "_partials/record/images" with { images: recImages, body: narrative, entry: entry } only %}
         {% endif %}
 
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
         {% include "_partials/record/note" with { text: F.wmNotes, bottom: true } only %}
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
 

@@ -157,6 +157,8 @@
       <article style="min-width:0">
         {% include "_partials/record/tools" with { entry: entry, text: prose, textId: 'recText' } only %}
         {% include "_partials/record/note" with { text: noteTop } only %}
+        {#- The archive's own notes (editorNotes), which this page did not render before 2 October 2026: corrections and readers' notes were saved but not shown. -#}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'top' } only %}
 
         {% if prose %}
           <div class="rec-body" id="recText">
@@ -166,6 +168,8 @@
           {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
           {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% endif %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
+        {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
 
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
         {% include "_partials/record/fine-print" with { value: F.personFinePrint } only %}
