@@ -1,19 +1,63 @@
 {% extends "_layouts/base" %}
-{% set metaDescription = 'Things that happened in the Santa Clarita Valley: disasters, arrivals, incidents and the days the valley still remembers.' %}
-{% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
+{% set metaDescription = 'The Santa Clarita Valley\'s timeline: the events that shaped it, era by era, from the rancho grants to the present, and the gatherings it holds every year.' %}
+{#- /events is the valley's timeline (Nathan, 2 October 2026; inventory/review/site-proposals-2026-10-02.md,
+    item 24): events read in date order within the same era categories the people carry, with an
+    On this day link where the day is known. Recurring events, which have no single date, are their
+    own group at the end. An event's era is its first historicalEra; with none set, the era its year
+    falls in (never one of the two event eras, which are only ever chosen by hand). -#}
+{% block head %}
+{% include "_partials/scv-extra-css" %}
+{% css %}
+.ev-era{margin:0 0 44px}
+.ev-era h2{font-family:'Playfair Display',serif;font-weight:500;font-size:28px;color:#17254C;margin:0 0 4px;padding-top:14px;border-top:3px solid #C4A031}
+.ev-era h2 span{font-family:'Jost',sans-serif;font-size:14px;color:#7A5C1B;margin-left:8px;letter-spacing:.04em}
+.ev-line{list-style:none;margin:18px 0 0;padding:0 0 0 22px;border-left:2px solid #EFE6D0}
+.ev-item{position:relative;margin:0 0 22px}
+.ev-item:before{content:'';position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #C4A031}
+.ev-when{font-family:'Jost',sans-serif;font-size:12.5px;letter-spacing:.1em;color:#7A5C1B;text-transform:uppercase}
+.ev-item h3{font-family:'Playfair Display',serif;font-weight:500;font-size:21px;margin:3px 0 4px}
+.ev-item h3 a{color:#17254C;text-decoration:none}
+.ev-item h3 a:hover{text-decoration:underline}
+.ev-sig{font-size:15.5px;line-height:1.55;color:#4A5260;max-width:720px}
+.ev-otd{font-size:13px;color:#7A5C1B;margin-left:6px}
+.ev-empty{font-size:15px;color:#5B6472}
+{% endcss %}
+{% endblock %}
 
 {% block content %}
 {% set eraSlug = craft.app.request.getParam('era') %}
-{% set all = craft.entries().section('events').orderBy('title asc').all() %}
-{% set query = craft.entries().section('events').orderBy('title asc') %}
-{% if eraSlug %}
-  {% set term = craft.categories().group('historicalEra').slug(eraSlug).one() %}
-  {% if term %}{% set query = query.relatedTo(term) %}{% endif %}
-{% endif %}
-{% set events = query.all() %}
+{% set eras = craft.categories().group('historicalEra').all() %}
+{% set EVENT_ERAS = ['st-francis-dam-era-1926-1928', 'northridge-recovery-1994-2000'] %}
+{% set all = craft.entries().section('events').all() %}
+{#- On this day lists only confirmed recordDates rows (calendar.json), so the link appears when the calendar has the event on that day, not before. -#}
+{% set calRaw = source('_data/calendar.json', true) %}
+{% set calDays = (calRaw ? calRaw|json_decode(true) : {}).days ?? {} %}
+{% set MONTHS = {'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'} %}
 
-{% set periodIds = [] %}
-{% for e in all %}{% for p in e.historicalPeriod.all() %}{% if p.id not in periodIds %}{% set periodIds = periodIds|merge([p.id]) %}{% endif %}{% endfor %}{% endfor %}
+{#- Each event: its era, a sort key from its EDTF date (an X digit sorts as 0), and the day for On this day. -#}
+{% set rows = [] %}{% set recurring = [] %}
+{% for ev in all %}
+  {% set edtf = (ev.eventDateEdtf ?: '')|trim %}
+  {% set y = edtf|slice(0, 4)|replace({'X': '0', 'x': '0'}) %}
+  {% if ev.eventRecurring %}
+    {% set recurring = recurring|merge([ev]) %}
+  {% else %}
+    {% set era = ev.historicalEra.one() %}
+    {% if not era and y matches '/^[0-9]{4}$/' %}
+      {% for c in eras|filter(c => c.slug not in EVENT_ERAS) %}
+        {% set span = c.title|split('(')|last|trim(')')|split('–') %}
+        {% set from = span|length > 1 ? span[0] * 1 : 0 %}
+        {% set to = (span|last == 'present' or span|length == 1) ? (span|length == 1 ? (span[0]|replace({'to ': ''}) * 1) : 9999) : span|last * 1 %}
+        {% if not era and y * 1 >= from and y * 1 <= to %}{% set era = c %}{% endif %}
+      {% endfor %}
+    {% endif %}
+    {% set day = edtf matches '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/' ? edtf|slice(5, 5) : '' %}
+    {% set day = day and ev.url in ((calDays[day] ?? [])|map(c => c.url ?? '')) ? day : '' %}
+    {% set rows = rows|merge([{ ev: ev, era: era, sort: (y ?: '9999') ~ edtf|slice(4) ~ ev.title, day: day }]) %}
+  {% endif %}
+{% endfor %}
+{% set rows = rows|sort((a, b) => a.sort <=> b.sort) %}
+{% set shown = eraSlug ? rows|filter(r => r.era and r.era.slug == eraSlug) : rows %}
 
 <div class="scv-page">
   <section class="scv-hero">
@@ -21,13 +65,13 @@
       <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Events</span></div>
       <div class="scv-herogrid">
         <div>
-          <div class="scv-kicker">Days the valley changed</div>
+          <div class="scv-kicker">The valley's timeline</div>
           <h1>Events</h1>
-          <p class="scv-lede">Things that happened in the Santa Clarita Valley: disasters, arrivals, incidents, and the days the valley still remembers.</p>
+          <p class="scv-lede">The events that shaped the Santa Clarita Valley, era by era, each with the people, places and records the archive holds for it.</p>
         </div>
         <div class="scv-stat">
-          <div><b>{{ all|length }}</b><span>{{ all|length == 1 ? 'Event' : 'Events' }}</span></div>
-          {% if periodIds|length %}<div><b>{{ periodIds|length }}</b><span>Periods</span></div>{% endif %}
+          <div><b>{{ rows|length }}</b><span>{{ rows|length == 1 ? 'Event' : 'Events' }}</span></div>
+          {% if recurring|length %}<div><b>{{ recurring|length }}</b><span>Recurring</span></div>{% endif %}
         </div>
       </div>
     </div>
@@ -37,35 +81,47 @@
     <div class="scv-wrap">
       <div class="scv-lab">Era</div>
       <a class="scv-chip {{ not eraSlug ? 'on' : '' }}" href="{{ url('events') }}">All</a>
-      {% for e in craft.categories().group('historicalEra').all() %}
-        {% set n = craft.entries().section('events').relatedTo(e).count() %}
-        {% if n %}<a class="scv-chip {{ eraSlug == e.slug ? 'on' : '' }}" href="{{ url('events', { era: e.slug }) }}">{{ e.title }} ({{ n }})</a>{% endif %}
+      {% for c in eras %}
+        {% set n = rows|filter(r => r.era and r.era.id == c.id)|length %}
+        {% if n %}<a class="scv-chip {{ eraSlug == c.slug ? 'on' : '' }}" href="{{ url('events', { era: c.slug }) }}">{{ c.title|split(' (')|first }} ({{ n }})</a>{% endif %}
       {% endfor %}
-      <div class="scv-count">{{ eraSlug ? events|length ~ ' of ' ~ all|length : all|length }} events</div>
+      <div class="scv-count">{{ eraSlug ? shown|length ~ ' of ' ~ rows|length : rows|length }} events</div>
     </div>
   </section>
 
   <main class="scv-main">
     <div class="scv-wrap">
-      {% if events|length %}
-        <div class="scv-cards">
-          {% for ev in events %}
-            {% set img = (ev.featuredImage is defined and ev.featuredImage) ? ev.featuredImage.one() ?? null : null %}
-            {% set period = ev.historicalPeriod.one() ?? null %}
-            {% set when = ev.eventDate ?: ev.eventDateStart %}
-            <a class="scv-tile" href="{{ ev.url }}">
-              <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ (ev.title ?: ev.slug)|slice(0,1)|upper }}</span>{% endif %}</div>
-              <div class="scv-tilebody">
-                <h3>{{ ev.title ?: ev.slug }}</h3>
-                {% if when %}<div class="scv-tilemeta">{{ when }}</div>{% endif %}
-                {% if ev.eventSignificance %}<div class="scv-tilemeta">{{ ev.eventSignificance }}</div>{% endif %}
-                <div class="scv-tilefoot">{{ period ? period.title : 'Period not set' }}</div>
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      {% else %}
-        <div class="scv-empty">No events in this era yet. <a href="{{ url('events') }}">Show all</a></div>
+      {% for c in eras|merge([null]) %}
+        {% set items = shown|filter(r => c ? (r.era and r.era.id == c.id) : not r.era) %}
+        {% if items|length %}
+          <section class="ev-era" id="{{ c ? c.slug : 'era-not-set' }}">
+            <h2>{{ c ? c.title|split(' (')|first : 'Era not yet set' }}{% if c %}<span>{{ c.title|split('(')|last|trim(')') }}</span>{% endif %}</h2>
+            <ol class="ev-line">
+              {% for r in items %}
+                <li class="ev-item">
+                  <div class="ev-when">{{ r.ev.eventDate ?: r.ev.eventDateStart ?: 'Date not recorded' }}{% if r.day %}<a class="ev-otd" href="{{ url('on-this-day', { d: r.day }) }}">On this day, {{ MONTHS[r.day|slice(0, 2)] }} {{ r.day|slice(3, 2) * 1 }}</a>{% endif %}</div>
+                  <h3><a href="{{ r.ev.url }}">{{ r.ev.title }}</a></h3>
+                  {% if r.ev.eventSignificance %}<div class="ev-sig">{{ r.ev.eventSignificance }}</div>{% endif %}
+                </li>
+              {% endfor %}
+            </ol>
+          </section>
+        {% endif %}
+      {% endfor %}
+      {% if not shown|length %}<p class="ev-empty">No events in this era yet. <a href="{{ url('events') }}">Show all</a></p>{% endif %}
+      {% if recurring|length and not eraSlug %}
+        <section class="ev-era" id="recurring">
+          <h2>Every year</h2>
+          <ol class="ev-line">
+            {% for ev in recurring|sort((a, b) => a.title <=> b.title) %}
+              <li class="ev-item">
+                <div class="ev-when">{{ ev.eventFrequency ?: 'Recurring' }}</div>
+                <h3><a href="{{ ev.url }}">{{ ev.title }}</a></h3>
+                {% if ev.eventSignificance %}<div class="ev-sig">{{ ev.eventSignificance }}</div>{% endif %}
+              </li>
+            {% endfor %}
+          </ol>
+        </section>
       {% endif %}
     </div>
   </main>
