@@ -71,9 +71,21 @@
           <div class="rec-kick"><span class="a">ORGANIZATIONS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
           {% if F.orgAliases %}<div class="rec-sub">Also known as {{ F.orgAliases }}</div>{% endif %}
-          {% if F.dateFounded or F.orgAddress %}
+          {#- The chain of bodies (Nathan, 2 October 2026): what a body became and what it was formed from, read from both ends, so SCV Water
+              lists Newhall County Water District though only the district's record carries the link. -#}
+          {% set dissolved = 'dateDissolved' in orgHandles ? entry.dateDissolved|trim : '' %}
+          {% set became = 'succeededBy' in orgHandles ? entry.succeededBy.all() : [] %}
+          {% set becameIds = became|map(o => o.id) %}
+          {% for o in craft.entries().section('organizations').relatedTo({ targetElement: entry, field: 'precededBy' }).all() %}{% if o.id not in becameIds %}{% set became = became|merge([o]) %}{% set becameIds = becameIds|merge([o.id]) %}{% endif %}{% endfor %}
+          {% set formedFrom = 'precededBy' in orgHandles ? entry.precededBy.all() : [] %}
+          {% set fromIds = formedFrom|map(o => o.id) %}
+          {% for o in craft.entries().section('organizations').relatedTo({ targetElement: entry, field: 'succeededBy' }).all() %}{% if o.id not in fromIds %}{% set formedFrom = formedFrom|merge([o]) %}{% set fromIds = fromIds|merge([o.id]) %}{% endif %}{% endfor %}
+          {% if F.dateFounded or F.orgAddress or dissolved or became|length or formedFrom|length %}
             <div class="rec-facts">
               {% if F.dateFounded %}<div><div class="l">FOUNDED</div><div class="v">{{ F.dateFounded }}{% if 'foundedEvidence' in orgHandles and entry.foundedEvidence.value in ['uncited', 'derived'] %} <span style="font-size:12px;color:#5B6472">({{ entry.foundedEvidence.value == 'uncited' ? 'not yet sourced' : 'derived' }})</span>{% endif %}</div></div>{% endif %}
+              {% if dissolved %}<div><div class="l">DISSOLVED</div><div class="v">{{ dissolved }}</div></div>{% endif %}
+              {% if formedFrom|length %}<div><div class="l">FORMED FROM</div><div class="v">{% for o in formedFrom|sort((x, y) => x.title <=> y.title) %}<a href="{{ o.url }}">{{ o.title }}</a>{%- if not loop.last %}; {% endif -%}{% endfor %}</div></div>{% endif %}
+              {% if became|length %}<div><div class="l">BECAME</div><div class="v">{% for o in became %}<a href="{{ o.url }}">{{ o.title }}</a>{%- if not loop.last %}; {% endif -%}{% endfor %}</div></div>{% endif %}
               {% if F.orgAddress %}<div><div class="l">ADDRESS</div><div class="v">{{ F.orgAddress }}</div></div>{% endif %}
             </div>
           {% endif %}

@@ -6,8 +6,9 @@
    "why": "empty on every record and in no template"
   },
   "acquiredDate": {
-   "show": "gap",
-   "why": "when an image was acquired; not on /media"
+   "show": "page",
+   "on": "media",
+   "mode": "date"
   },
   "archivalFiles": {
    "show": "page"
@@ -95,8 +96,8 @@
    "show": "page"
   },
   "candidacyDistrict": {
-   "show": "gap",
-   "why": "the district a candidate ran in, now that council and board seats are by district"
+   "show": "internal",
+   "why": "the same district as its election on all 94 candidacies; the district shows through the election, on the election page and a person's elections"
   },
   "candidacyElection": {
    "show": "page"
@@ -152,8 +153,9 @@
    "show": "page"
   },
   "contentCredentials": {
-   "show": "gap",
-   "why": "an edited image's content credential; DATA-MODEL says this field is the only place it survives, and no page shows it"
+   "show": "page",
+   "on": "media",
+   "mode": "first-line"
   },
   "courtesyOf": {
    "show": "page"
@@ -293,8 +295,7 @@
    "unless": "printed as its short label, \"Division 3\" or \"Trustee Area 2\""
   },
   "electionKind": {
-   "show": "gap",
-   "why": "general, special or primary: a reader needs to know which"
+   "show": "page"
   },
   "endEvidence": {
    "show": "gap",
@@ -875,12 +876,11 @@
    "mode": "href"
   },
   "precededBy": {
-   "show": "gap",
-   "why": "what a body grew out of"
+   "show": "page"
   },
   "provenanceKind": {
-   "show": "gap",
-   "why": "how an image came to the archive; the /media page does not say"
+   "show": "page",
+   "on": "media"
   },
   "publicationDetails": {
    "show": "page"
@@ -990,8 +990,9 @@
    "mode": "href"
   },
   "sourceUrl": {
-   "show": "gap",
-   "why": "where an image came from; not on /media"
+   "show": "page",
+   "on": "media",
+   "mode": "href"
   },
   "spouseOf": {
    "show": "page"
@@ -1013,8 +1014,7 @@
    "show": "page"
   },
   "succeededBy": {
-   "show": "gap",
-   "why": "what a dissolved body became (Newhall County Water District to SCV Water)"
+   "show": "page"
   },
   "termEnd": {
    "show": "page"

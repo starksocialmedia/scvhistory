@@ -114,6 +114,30 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
         }
     }
 }
+/* Assets have their own page, /media/<id>. The fields marked "on": "media" are looked for there, on the fewest assets that hold them all. */
+$mediaFields = array_keys(array_filter($fieldsOf, fn($v) => ($v['on'] ?? '') === 'media' && ($v['show'] ?? '') === 'page'));
+$left = array_flip($mediaFields); $base = rtrim(\craft\helpers\UrlHelper::siteUrl(), '/');
+foreach (\craft\elements\Asset::find()->each(200) as $a) {
+    if (!$left) { break; }
+    $lay = $a->getFieldLayout(); if (!$lay) { continue; }
+    $has = [];
+    foreach (array_keys($left) as $h) { if (!$lay->getFieldByHandle($h)) { continue; } try { $v = $a->getFieldValue($h); } catch (\Throwable $t) { continue; } if ($v instanceof \craft\fields\data\SingleOptionFieldData ? (string)$v->value !== '' : ($v instanceof \DateTimeInterface || trim((string)$v) !== '')) { $has[$h] = $v; } }
+    if (!$has) { continue; }
+    $ch = curl_init("$base/media/{$a->id}"); curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 40, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0]);
+    $html = (string)curl_exec($ch); curl_close($ch); $pages++; $text = $plain($html);
+    foreach ($has as $h => $v) {
+        $mode = $fieldsOf[$h]['mode'] ?? 'text'; $checks++;
+        if ($v instanceof \craft\fields\data\SingleOptionFieldData) { $n = $probe((string)$v->label); }
+        elseif ($v instanceof \DateTimeInterface) { $n = strtolower($v->format('F j, Y')); }
+        elseif ($mode === 'date') { $n = strtolower(date('F j, Y', strtotime((string)$v))); }
+        elseif ($mode === 'href') { $n = str_contains($html, trim((string)$v)) ? '' : trim((string)$v); }
+        elseif ($mode === 'first-line') { $n = $probe(explode(',', strtok((string)$v, "\n"))[0]); }
+        else { $n = $probe((string)$v); }
+        if ($n !== '' && !str_contains($text, $n)) { $fails[] = "MISSING  media.$h  asset #{$a->id} {$a->filename}  \"" . mb_substr($n, 0, 60) . '"'; }
+        unset($left[$h]);
+    }
+}
+
 foreach ($unclassified as $h => $secs) { $fails[] = "UNCLASSIFIED  $h holds data on " . implode(', ', array_keys($secs)) . ': add it to scripts/import/field-display.json'; }
 echo "$pages pages fetched, $checks values looked for" . PHP_EOL;
 if ($gaps) { echo 'GAPS (known, should show, not built yet): ' . implode('; ', array_map(fn($h, $s) => "$h on " . implode(', ', array_map(fn($k, $n) => "$k ($n)", array_keys($s), $s)), array_keys($gaps), $gaps)) . PHP_EOL; }

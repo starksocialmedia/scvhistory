@@ -63,7 +63,9 @@
   <section class="scv-band el-band">
     <div class="scv-band-in el-band-in">
       <div class="el-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('elections') }}">Elections</a> &rsaquo; {% if body %}<a href="{{ body.url }}{{ isCouncil ? '#council' : '' }}">{{ bodyLabel }}</a> &rsaquo; {% endif %}<span>{{ e.electionDate }}</span></div>
-      <div class="el-kicker">{{ bodyLabel|upper }}{% if dist %} &middot; <a href="{{ dist.url }}" style="color:inherit">{{ distLabel|upper }}</a>{% endif %}{% if e.consolidatedWith %} &middot; {{ e.consolidatedWith|upper }}{% endif %}</div>
+      {#- The kind of election, general, special, recall or runoff (2 October 2026: it was held on every record and printed on none). -#}
+      {% set kindLabel = 'electionKind' in eh and e.electionKind.value ? e.electionKind.label ~ ' election' : '' %}
+      <div class="el-kicker">{% if kindLabel %}{{ kindLabel|upper }} &middot; {% endif %}{{ bodyLabel|upper }}{% if dist %} &middot; <a href="{{ dist.url }}" style="color:inherit">{{ distLabel|upper }}</a>{% endif %}{% if e.consolidatedWith %} &middot; {{ e.consolidatedWith|upper }}{% endif %}</div>
       <h1>{{ e.title }}</h1>
       <div class="el-facts">
         <div><div class="n">{{ cands|length }}</div><div class="l">CANDIDATES</div></div>

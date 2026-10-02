@@ -150,9 +150,37 @@
         <div class="md-row"><div class="md-k">FILE</div><div class="md-v mono">{{ asset.filename }}</div></div>
       </div>
 
-      {% if legacyCode or legacyPath %}
-      <div class="md-card">
+      {#- PROVENANCE, always (Nathan, 2 October 2026: "Content credentials and source links not showing on /media is the one that matters
+          most ... That makes the provenance work invisible to anyone but us"). How the archive came to hold the file, when, from where,
+          and, for an edited image, what was done, by whom, when, from which original, and its content credential, which survives only in
+          this field because the stored copy is re-encoded on import (DATA-MODEL, Generated and edited images). -#}
+      {% set pk = 'provenanceKind' in H ? asset.provenanceKind : null %}
+      {% set acquired = 'acquiredDate' in H and asset.acquiredDate ? asset.acquiredDate : null %}
+      {% set srcUrl = F.v(asset, H, 'sourceUrl')|trim %}
+      {% set original = 'enhancedFrom' in H ? asset.enhancedFrom.one() : null %}
+      {% set derivative = 'enhancedFrom' in H ? craft.assets().relatedTo({ targetElement: asset, field: 'enhancedFrom' }).one() : null %}
+      {% set method = F.v(asset, H, 'enhancementMethod')|trim %}
+      {% set by = F.v(asset, H, 'enhancedBy')|trim %}
+      {% set when = 'enhancedDate' in H and asset.enhancedDate ? asset.enhancedDate : null %}
+      {% set cc = F.v(asset, H, 'contentCredentials')|trim %}
+      <div class="md-card" id="provenance">
         <div class="md-lab">PROVENANCE</div>
+        <div class="md-row"><div class="md-k">HOW IT CAME</div><div class="md-v">{{ pk and pk.value ? pk.label : 'Not yet established' }}</div></div>
+        {% if acquired %}<div class="md-row"><div class="md-k">ACQUIRED</div><div class="md-v">{{ acquired|date('F j, Y') }}</div></div>{% endif %}
+        {% if srcUrl %}<div class="md-row"><div class="md-k">FROM</div><div class="md-v mono"><a href="{{ srcUrl }}" target="_blank" rel="noopener">{{ srcUrl|replace({'https://': '', 'http://': ''}) }}</a></div></div>{% endif %}
+        {% if method or by or when or original %}
+          <div class="md-row"><div class="md-k">EDITED</div><div class="md-v">{{ method ?: 'Edited' }}{% if by and by not in method %} By {{ by }}.{% endif %}{% if when %} {{ when|date('F j, Y') }}.{% endif %}</div></div>
+          {% if original %}<div class="md-row"><div class="md-k">ORIGINAL</div><div class="md-v"><a href="{{ url('media/' ~ original.id) }}">{{ original.title }}</a></div></div>
+          {% else %}<div class="md-row"><div class="md-k">ORIGINAL</div><div class="md-v">Not held in the archive</div></div>{% endif %}
+        {% endif %}
+        {% if derivative %}<div class="md-row"><div class="md-k">EDITED COPY</div><div class="md-v"><a href="{{ url('media/' ~ derivative.id) }}">{{ derivative.title }}</a></div></div>{% endif %}
+        {% if cc %}
+          {% set ccUrl = (cc matches '/https?:\\/\\/\\S+/') ? cc|split('https://')|last|split(' ')|first|split('\n')|first : '' %}
+          <div class="md-row"><div class="md-k">CONTENT CREDENTIAL</div><div class="md-v">{{ cc|split('\n')|first|split(',')|first }}{% if ccUrl %}<br><a class="mono" href="https://{{ ccUrl }}" target="_blank" rel="noopener">View the manifest</a>{% endif %}
+            {% set steps = cc|split('\n')|slice(1)|filter(l => l|trim) %}
+            {% if steps|length %}<div style="margin-top:6px;color:#5B6472;font-size:13px;line-height:1.5">{{ steps|join(' ') }}</div>{% endif %}
+          </div></div>
+        {% endif %}
         {% if legacyCode %}<div class="md-row"><div class="md-k">LEGACY CODE</div><div class="md-v mono">{{ legacyCode }}</div></div>{% endif %}
         {% if legacyPath %}
           <div class="md-row"><div class="md-k">MIRROR PATH</div><div class="md-v mono">{{ legacyPath }}</div></div>
@@ -163,10 +191,9 @@
               https:///gif/mugs/reynolds_jerry.jpg. -#}
           {% set legacyHost = craft.app.config.custom.legacyHost|default('https://scvhistory.com') %}
           {% set originalUrl = legacyHost ~ '/' ~ legacyPath|trim('/') %}
-          <div class="md-row"><div class="md-k">ORIGINAL</div><div class="md-v mono"><a href="{{ originalUrl }}" target="_blank" rel="noopener">{{ originalUrl }}</a></div></div>
+          <div class="md-row"><div class="md-k">ON THE LEGACY SITE</div><div class="md-v mono"><a href="{{ originalUrl }}" target="_blank" rel="noopener">{{ originalUrl }}</a></div></div>
         {% endif %}
       </div>
-      {% endif %}
 
       {% if users|length %}
       <div class="md-card">
