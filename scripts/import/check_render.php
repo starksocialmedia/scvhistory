@@ -271,6 +271,10 @@ if (is_array($rb) && !($rb['ok'] ?? true)) {
 $rf = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_rendered_fields.php'));
 if (is_array($rf) && !($rf['ok'] ?? true)) { $fail++; echo 'RENDERED FIELDS FAIL' . PHP_EOL; }
 
+/* Source labels pasted into text with a chatbot's answer (2 October 2026): checked by shape in every non-legacy body, whatever the record's authorship field says. */
+$pl = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_pasted_labels.php'));
+if (is_array($pl) && !($pl['ok'] ?? true)) { $fail++; echo 'PASTED LABELS FAIL' . PHP_EOL; }
+
 /* Generated images (docs/DATA-MODEL.md): a banner is decoration, listed in
    templates/_data/banners.json, a file in web/banners and nothing else. It fails
    here if its file is missing or changed, if the same picture is in the

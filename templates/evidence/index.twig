@@ -1,32 +1,46 @@
 {% extends "_layouts/base" %}
-{% set metaDescription = 'How SCVHistory.com says how it knows a date or a fact: the six levels of evidence shown beside births, deaths, terms of office, schooling and elections.' %}
+{% set metaDescription = 'SCVHistory.com is a free public archive of Santa Clarita Valley history. Beside a date or a fact, it says how that fact is known. This page explains the six levels, with examples from the archive.' %}
 {% block head %}{% include "_partials/scv-extra-css" %}{% endblock %}
 {% block content %}
-{#- The scale behind every "(recalled later)" on a record (2 October 2026). -#}
+{#- The page behind every "(recalled later)" on a record (Nathan, 2 October 2026: "it is now the page that explains what the archive
+    is for"). Written for a reader who has never heard of the project: what the archive is, why it grades its facts, what each grade
+    means, with a real case from the records, and what to do when you know better. -#}
 {% set LEVELS = [
-  { v: 'certified', w: 'the body\'s own record', t: 'Certified', d: 'The record of the body that made the fact: a city clerk\'s certificate of an election, a school\'s own register, a death certificate, a War Department report of death. The strongest kind of evidence the archive holds.' },
-  { v: 'contemporary', w: 'reported at the time', t: 'Contemporary report', d: 'Written when it happened, by someone in a position to know: a newspaper story that week, a yearbook, a program, a letter.' },
-  { v: 'retrospective', w: 'recalled later', t: 'Retrospective account', d: 'Written afterward: an obituary, a memoir, a history, a biography, a later article. Often right, but a step removed, and where it disagrees with a record made at the time, the record is preferred.' },
-  { v: 'roster', w: 'from an undated roster', t: 'Undated roster', d: 'A list that says who held a seat or belonged to a body but not when it was made, so the date is placed from other evidence.' },
-  { v: 'derived', w: 'read from the count', t: 'Derived', d: 'Worked out rather than stated: a winner read from the vote totals and the number of seats up, or a term read from the election that began it. Correct as arithmetic; no document declaring it is held yet.' },
-  { v: 'uncited', w: 'not yet sourced', t: 'Uncited', d: 'The archive holds the fact but not yet a source for it. It is shown because hiding it would be worse, and marked so a reader knows to weigh it.' }
+  { v: 'certified', w: 'the body\'s own record', t: 'The body\'s own record', d: 'The fact comes from the record kept by whoever made it happen: a city clerk\'s certificate of an election, a school\'s register, a death certificate, the War Department\'s report of a soldier\'s death. This is the strongest evidence the archive holds.', ex: 'Henry Acuna, killed in Korea in 1950. The War Department\'s own report of his death gives his home as Saugus.', exUrl: 'war-memorial/henry-acuna' },
+  { v: 'contemporary', w: 'reported at the time', t: 'Reported at the time', d: 'Written when it happened, by someone in a position to know: a newspaper story that week, a yearbook, a program, a letter. Close to the event, though a reporter can be wrong.', ex: 'Edward Guy North, a soldier born in Newhall. The Los Angeles Times of April 9, 1919, reported that he had died "Monday," which was April 7.', exUrl: 'war-memorial/edward-guy-north' },
+  { v: 'retrospective', w: 'recalled later', t: 'Recalled later', d: 'Written afterward: an obituary, a memoir, a history, a later article. Often right, but a step removed. Where it disagrees with something written at the time, the archive prefers the record made at the time and shows both.', ex: 'The Signal, the valley\'s newspaper. Its founding on February 7, 1919, comes from a history written decades later.', exUrl: 'organizations/the-santa-clarita-valley-signal' },
+  { v: 'roster', w: 'from an undated roster', t: 'From an undated roster', d: 'A list that says who held a seat or belonged to a body, but not when the list was made. The dates are placed from other evidence, so they can be off by a term.', ex: 'Many terms of office in the archive, placed from lists of who served on a board.', exUrl: null },
+  { v: 'derived', w: 'read from the count', t: 'Read from the count', d: 'Worked out rather than stated. A winner read from the vote totals and the number of seats up, or a term read from the election that began it. The arithmetic is right; no document declaring it has been found yet.', ex: 'Council members whose election is known from the results but not yet from a certificate.', exUrl: 'elections' },
+  { v: 'uncited', w: 'not yet sourced', t: 'Not yet sourced', d: 'The archive holds the fact but not yet a source for it. It is shown, because hiding it would hide what is known, and it is marked, so you know to weigh it.', ex: null, exUrl: null }
 ] %}
 <div class="scv-page">
   <section class="scv-hero"><div class="scv-wrap">
     <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>How we know</span></div>
     <div class="scv-kicker">How we know</div>
-    <h1>Evidence</h1>
-    <p class="scv-lede">Beside a date of birth, a term of office or a school year, the archive says how the fact is known. These are the six levels, strongest first.</p>
+    <h1>Every fact says how it is known</h1>
+    <p class="scv-lede">SCVHistory.com is a free public archive of the history of the Santa Clarita Valley in Southern California: its people, places, events and records, from the Tataviam to today. Beside a date of birth, a term of office or a date of death, it tells you how that fact is known.</p>
   </div></section>
   <main class="scv-main"><div class="scv-wrap" style="max-width:760px">
+    <section style="padding:6px 0 22px">
+      <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:26px;color:#17254C;margin:0 0 10px">Why it matters</h2>
+      <p style="font-size:16.5px;line-height:1.7;margin:0 0 12px;max-width:64ch">History is mostly copied. A date written once in an old article gets repeated until nobody remembers where it came from, and a mistake travels with it. For years this site's own page for one valley soldier gave the wrong day he died. Two documents written at the time, his family's card for the state and a newspaper report, both gave another day, and the record now shows it.</p>
+      <p style="font-size:16.5px;line-height:1.7;margin:0;max-width:64ch">So this archive grades its facts. A small note in grey, such as <span style="color:#5B6472">(recalled later)</span>, sits beside a date and links here. Notes and numbered sources at the foot of a record say exactly where each fact came from. Where sources disagree, the record shows both and says so. It does not choose silently.</p>
+    </section>
+    <h2 style="font-family:'Jost',sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#7A5C1B;margin:10px 0 4px">The six levels, strongest first</h2>
     {% for l in LEVELS %}
       <section id="{{ l.v }}" style="padding:18px 0;border-top:1px solid #E2E4E8">
-        <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:24px;color:#17254C;margin:0 0 4px">{{ l.t }}</h2>
-        <div style="font-size:13.5px;color:#7A5C1B;margin-bottom:8px">Shown as <span style="color:#5B6472">({{ l.w }})</span></div>
+        <h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:22px;color:#17254C;margin:0 0 4px">{{ l.t }}</h3>
+        <div style="font-size:13.5px;color:#7A5C1B;margin-bottom:8px">Shown beside a fact as <span style="color:#5B6472">({{ l.w }})</span></div>
         <p style="font-size:16px;line-height:1.65;margin:0;max-width:64ch">{{ l.d }}</p>
+        {% if l.ex %}<p style="font-size:14.5px;line-height:1.6;color:#4A5260;margin:8px 0 0;max-width:64ch"><span style="font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B">FOR EXAMPLE</span> &nbsp;{% if l.exUrl %}<a href="{{ url(l.exUrl) }}" style="color:#17254C">{{ l.ex }}</a>{% else %}{{ l.ex }}{% endif %}</p>{% endif %}
       </section>
     {% endfor %}
-    <p style="font-size:14.5px;color:#5B6472;margin-top:24px;max-width:64ch">Where sources disagree, the record shows both and says so, rather than choosing silently. Where nothing is recorded about the evidence, nothing is said.</p>
+    <section style="padding:22px 0 0;border-top:1px solid #E2E4E8">
+      <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:22px;color:#17254C;margin:0 0 8px">Where nothing is said</h2>
+      <p style="font-size:16px;line-height:1.65;margin:0 0 18px;max-width:64ch">Many older records have not been graded yet. A fact with no note beside it has not been weighed; it is not vouched for either way.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:22px;color:#17254C;margin:0 0 8px">If you know better</h2>
+      <p style="font-size:16px;line-height:1.65;margin:0;max-width:64ch">If you hold a document that settles a fact, or shows one is wrong, the archive wants to hear from you. <a href="{{ url('contact') }}" style="color:#7A5C1B">Get in touch</a>, and say where the document comes from.</p>
+    </section>
   </div></main>
 </div>
 {% endblock %}
