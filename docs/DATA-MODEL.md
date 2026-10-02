@@ -973,6 +973,14 @@ local unless the note says otherwise.
 - **Nathan decides**: the borderline, such as a candidate notable for something the archive does not yet hold, or a winner in a body with thin data.
 - The audit is `scripts/import/audit_person_significance.php`. The election imports no longer create people for repeated candidacy.
 
+## Eras
+
+**A person's era is where they mattered, not where most of their years fell. Where years and significance disagree, significance wins** (Nathan, 2 October 2026).
+
+- **The pass proposes.** `scripts/import/assign_person_eras.php` places a person by the years of their public acts (every year of every office, every race, dated rows, photographs and events within the life) and assigns an era only when one holds two thirds of them. It never overwrites an era already set.
+- **Significance decides.** The weighting counts years, and years can mislead: Buck McKeon spent more of them in Congress, but the city's first mayor is what makes him matter here, so he is in the Cityhood Era; Laurene Weste has more years in the Contemporary era, but the development and open-space fights she is known for belong to Mall & Growth. A split is settled by asking what the person is in this archive for.
+- **One era each**, the primary. Event eras (St. Francis Dam, Northridge Recovery) are not assigned to people by the pass. A low-confidence placement says so in an editor note (Remi Nadeau).
+
 ## Generated and edited images
 
 **The archivist decides. An image enters the archive on Nathan Imhoff's word, and what he says about it is recorded. The content-credentials scanner reports; it never blocks** (Nathan, 1 October 2026, correcting the rule of the same morning, which had treated every content credential as disqualifying).

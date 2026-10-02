@@ -23,6 +23,9 @@
  *      and a second is a decision.
  *   6. A person who already has an era keeps it; the report says where the rule
  *      would disagree.
+ *   7. The pass proposes; significance decides. Where years and significance
+ *      disagree, significance wins (Nathan, 2 October 2026: McKeon in the
+ *      Cityhood Era as the first mayor, Weste in Mall & Growth). DATA-MODEL, Eras.
  * Writes inventory/review/person-eras.md. Fills empty eras only. Idempotent.
  * Dry run by default. Set $APPLY = true to write the automatic assignments.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/assign_person_eras.php'))"
