@@ -45,3 +45,9 @@ review/photo-links.json
 # Written at start by .ddev/drive-mount.sh when the Reggie drive is connected.
 .ddev/docker-compose.drive.yaml
 review/photographs-without-image.json
+
+# NARA page images and PDFs: re-obtainable from NARA, too large for git (the PDF of 3 October 2026 was 143 MB).
+# Their text and manifest.json (url, sha256) are committed beside them.
+inventory/legacy/fetched/nara-*/*.jpg
+inventory/legacy/fetched/nara-*/*.gif
+inventory/legacy/fetched/nara-*/*.pdf
