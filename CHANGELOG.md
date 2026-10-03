@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (later)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: Nine council members from their legacy council pages (build_council_profiles_batch1.php): Boyer, Darcy, Heidt, Klajic, Ferry, Boydston and Ender (each page imported as a photograph record, the scan as portrait); Pederson and Koontz (their photograph records and scans were both already in the archive, never joined; now attached). Boyer, Darcy and Pederson are dead by legacy obituaries and have full dates; the other six are treated as living (birth year only, family passages and street addresses dropped from the new captions, said in brackets). Then Reynolds (from Leon's Preface, replacing the WordPress paraphrase), Rioux (his own sketch, McKeon's tribute, Leon's columns), Harte, Whyte and Rasmussen (their 1997 columns) (build_profiles_batch2.php). 41 person pages now show a biography, up from 26. A survey of the legacy site for pages about one person (survey_legacy_person_pages.py; inventory/review/legacy-person-pages-2026-10-03.md).
+- Decisions: birth dates from Leon's notes are retrospective; Kellar's and Weste's corrected to match. Differences shown, not resolved: Darcy's mayoral years, her start in the Historical Society, Koontz's fire department, Heidt's Navy dates. A first run set Boyer's and Pederson's full names as their titles (titles are built from fullName); restored, the full forms kept as aliases.
+- Blockers: none.
+- Next: the editor notes reviewed for a public reader; the WordPress facts traced to the legacy site; Ygnacio del Valle's withheld body is 96 percent Leon's LW2052 and wants relabelling, not rewriting.
+
 2026-10-03
 
 - Agent: Claude Code
