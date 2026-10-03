@@ -833,6 +833,21 @@ if ($HOLD_BODIES) {
     echo PHP_EOL . 'HELD, not written this run: ' . implode(', ', array_map(fn($b) => $ALLB[$b], $HOLD_BODIES)) . '. Writing ' . count($plan) . ' holdings, ' . count($newP) . ' people, ' . count($links) . ' candidacy links.' . PHP_EOL;
     $byB = []; foreach ($plan as $t) { $byB[$ALLB[$t['b']]] = ($byB[$ALLB[$t['b']]] ?? 0) + 1; } echo '   holdings by body: ' . json_encode($byB) . PHP_EOL;
 }
+/* McKEON'S HART TENURE (#26978), corrected from Leon's roster when Hart is written (Nathan, 3 October 2026:
+   "Yes, correct McKeon to resigned, 7 December 1987. Leon's roster is primary"). The roster: "McKeon (elected
+   3-6-1979 to complete Wullschleger's unexpired term)" and "McKeon (resigned eff. 12-7-1987 upon election to
+   Santa Clarita City Council)". The start gains the same line's precision. */
+$mcFix = null;
+if (in_array(21588, $ONLY_BODIES, true)) {
+    $mc = $get(26978); $roster = json_encode(json_decode(file_get_contents("$root/inventory/legacy/hart-board-roster.json"), true), JSON_UNESCAPED_UNICODE);
+    $q1 = "McKeon (elected 3-6-1979 to complete Wullschleger's unexpired term)"; $q2 = 'McKeon (resigned eff. 12-7-1987 upon election to Santa Clarita City Council)';
+    if (!$mc || $mc->holdingPerson->one()?->id !== 18791 || $mc->holdingBody->one()?->id !== 21588) { $bad[] = '#26978 is not McKeon\'s Hart holding'; }
+    elseif (!str_contains($roster, $q1) || !str_contains($roster, $q2)) { $bad[] = 'the roster does not read the McKeon lines'; }
+    elseif ($mc->termEndEdtf !== '1987-12-07') {
+        $mcFix = ['q1' => $q1, 'q2' => $q2];
+        echo PHP_EOL . "CORRECTION #26978 McKeon, Hart: {$mc->termStartEdtf} to {$mc->termEndEdtf} ({$mc->howEnded}) -> 1979-03-06 (elected) to 1987-12-07 (resigned), roster evidence" . PHP_EOL;
+    }
+}
 echo PHP_EOL . 'SUMMARY: ' . count($newP) . ' people, ' . count($plan) . ' holdings, ' . count($skipped) . ' skipped as covered, ' . count($links) . ' candidacies linked, ' . count($fixes) . ' correction.' . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', array_unique($bad)) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
@@ -877,6 +892,13 @@ try {
         $h->setFieldValues(['termEnd' => 'January 2023', 'termEndEdtf' => '2023-01', 'endEvidence' => 'derived', 'footnotes' => $rows]);
         if (!$elements->saveElement($h)) { throw new \RuntimeException("fix #$id"); }
     }
+    if ($mcFix) {
+        $mc = $get(26978);
+        $rows = array_map(fn($r) => ['number' => $r['number'] ?? '', 'note' => $r['note'] ?? '', 'source' => $r['source'] ?? ''], $mc->footnotes ?? []);
+        $rows[] = ['number' => (string)(count($rows) + 1), 'note' => 'Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "' . $mcFix['q1'] . '" and "' . $mcFix['q2'] . '"', 'source' => 'editorial-2026'];
+        $mc->setFieldValues(['termStart' => 'March 6, 1979', 'termStartEdtf' => '1979-03-06', 'termEnd' => 'December 7, 1987', 'termEndEdtf' => '1987-12-07', 'selectionMethod' => 'elected', 'howEnded' => 'resigned', 'startEvidence' => 'roster', 'endEvidence' => 'roster', 'footnotes' => $rows]);
+        if (!$elements->saveElement($mc)) { throw new \RuntimeException('#26978: ' . json_encode($mc->getFirstErrors())); }
+    }
     $tx->commit();
 } catch (\Throwable $e) { $tx->rollBack(); echo 'ROLLED BACK, nothing was written: ' . $e->getMessage() . PHP_EOL; throw $e; }
 
@@ -886,6 +908,7 @@ foreach ($plan as $t) { $pid = $pidOf($t['who']);
     if (!Entry::find()->section('officeHoldings')->status(null)->relatedTo(['and', ['targetElement' => $pid, 'field' => 'holdingPerson'], ['targetElement' => $t['b'], 'field' => 'holdingBody']])->termStartEdtf($t['se'])->exists()) { $short[] = $whoName($t['who']) . ' ' . $t['se']; } }
 foreach ($links as $l) { [$cid, $k] = $l; if (($get($cid)->candidacyPerson->status(null)->ids()[0] ?? null) !== ($l[3] ?? $ids["new:$k"])) { $short[] = "link #$cid"; } }
 if ($fixes && $get(28219)->termEndEdtf !== '2023-01') { $short[] = 'Plambeck end'; }
+if ($mcFix && ($get(26978)->termEndEdtf !== '1987-12-07' || (string)$get(26978)->howEnded !== 'resigned')) { $short[] = 'McKeon #26978'; }
 echo 'READ-BACK ' . ($short ? 'SHORT: ' . implode('; ', $short) : 'OK: ' . count($plan) . ' holdings, ' . count($newP) . ' people, ' . count($links) . ' links, ' . count($fixes) . ' correction') . PHP_EOL;
 $applyLog = require "$root/scripts/import/_apply_log.php";
 $applyLog('derive_board_holdings.php', count($plan) + count($newP) + count($links) + count($fixes), $short ? 'SHORT: ' . implode('; ', $short) : 'verified', 'a holding for every school and water board term, on the 16 board-term decisions');
