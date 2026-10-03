@@ -1,0 +1,1219 @@
+{
+ "generated": "2026-10-03",
+ "method": "Quotes are exact substrings of <source>.txt after collapsing whitespace and converting curly quotes to straight. HTML text via textutil; PDF text via pdftotext -layout. CEDA facts cited in startDetail/endDetail/notes come from inventory/elections/ceda-scv.json and county returns from inventory/elections/county-svc-water.json; they are not quoted evidence.",
+ "sources": {
+  "plambeck-resolution-scv-321": {
+   "url": "https://www.YourSCVWater.com/sites/default/files/SCVWA/approved-resolutions/SCV-Water-Approved-Resolution-122022-Resolution-SCV-321.pdf",
+   "published": "2022-12-20",
+   "read": "2026-10-03",
+   "htmlSha256": "606db98e90b2e28b77227bf57406ded16d7399bd6a4975cf727d784d0c31fff3",
+   "file": "plambeck-resolution-scv-321.pdf",
+   "title": "Resolution No. SCV-321: Honoring and Commending Lynne Plambeck for Her Service and Dedication",
+   "byline": "Santa Clarita Valley Water Agency Board of Directors"
+  },
+  "plambeck-4-more-years": {
+   "url": "https://scvnews.com/4-more-years-for-plambeck-mortensen-on-water-board/",
+   "published": "2011-11-17T00:20:26+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "a8204bd8bae6c941e542c70892b522264f7a246ee2d6ec92b6f4e1610234f58d",
+   "file": "plambeck-4-more-years.html",
+   "title": "4 More Years for Plambeck, Mortensen on Water Board",
+   "byline": "Leon Worden, SCVNews.com"
+  },
+  "scv-water-board-member-ed-colley-resigns-seat": {
+   "url": "https://scvnews.com/scv-water-board-member-ed-colley-resigns-seat",
+   "published": "2024-08-09T03:24:02+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "9051e7d5842e13111b6a576b3612bf113527fff0c82343108aa900f7ec5f448d",
+   "file": "scv-water-board-member-ed-colley-resigns-seat.html",
+   "title": "SCV Water Board Member Ed Colley Resigns Seat",
+   "byline": "Press Release (SCV Water)",
+   "note": "Copied from the 2026-10-03 recount scratchpad."
+  },
+  "clwa-candidates-file": {
+   "url": "https://scvnews.com/candidates-file-for-clwa-governing-board-election",
+   "published": "2014-08-11T22:19:52+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "36d1f36d7993a2ff015be1eee6c80e9113cbd9505fec8d700f6c216cb3d5477c",
+   "file": "clwa-candidates-file.html",
+   "title": "Candidates File For CLWA Governing Board Election",
+   "byline": "KHTS, Hometownstation.com"
+  },
+  "scvwater-board": {
+   "url": "https://yourscvwater.com/governance/board-directors",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "364a7d6c4298bdc903db4c275b0ac757f33e963e46a582a797e302ee8909f43e",
+   "file": "scvwater-board.html",
+   "title": "Board of Directors | Santa Clarita Valley Water",
+   "byline": "Santa Clarita Valley Water Agency (official page)",
+   "note": "Copied from the 2026-10-03 recount scratchpad. Ed Colley's biography (\"has served on the CLWA Board of Directors since 2003\") is in this HTML only inside an HTML comment, so it is not in the .txt and is not quoted."
+  },
+  "scv-water-2019-leadership": {
+   "url": "https://www.yourscvwater.com/sites/default/files/SCVWA/newscenter/Press%20Release/2019/Press-Release-SCV-Water-Board-Leadership-in-2019-020719.pdf",
+   "published": "2019-02-07",
+   "read": "2026-10-03",
+   "htmlSha256": "e62e1e436a2275763bc179038607729890629aacc33317abd8985d6b98c9ebc9",
+   "file": "scv-water-2019-leadership.pdf",
+   "title": "SCV Water Board Leadership in 2019 (news release)",
+   "byline": "SCV Water"
+  },
+  "scv-water-2020-leadership": {
+   "url": "https://www.yourscvwater.com/sites/default/files/SCVWA/newscenter/Press%20Release/2020/2020.02.12-SCV-Water-2020-Board-Leadership.pdf",
+   "published": "2020-02-12",
+   "read": "2026-10-03",
+   "htmlSha256": "7f48ccffc42d34c94e5607b6cfadca68ec547a4608fb907f1c4db3f616113fb3",
+   "file": "scv-water-2020-leadership.pdf",
+   "title": "SCV Water 2020 Board Leadership: Gary Martin Elected as Board President (news release)",
+   "byline": "SCV Water"
+  },
+  "scv-water-2021-leadership": {
+   "url": "https://www.yourscvwater.com/sites/default/files/SCVWA/newscenter/Press%20Release/2021/SCV-Water-Seats-2021-Board-Leadership.pdf",
+   "published": "2021-01-08",
+   "read": "2026-10-03",
+   "htmlSha256": "dc4d2e5f91b18ff652740d6b498e3b5ffe9dee62f327421bd7b4898e3f7fd691",
+   "file": "scv-water-2021-leadership.pdf",
+   "title": "SCV Water Seats 2021 Board Leadership (news release)",
+   "byline": "SCV Water"
+  },
+  "scv-water-2023-leadership": {
+   "url": "https://www.YourSCVWater.com/sites/default/files/SCVWA/newscenter/Press%20Release/2023/SCV-Water-2023-Board-Leadership-5th-Anniversary-011923.pdf",
+   "published": "2023-01-19",
+   "read": "2026-10-03",
+   "htmlSha256": "6a047dc8fc94a699a7a9d790bffc0cec5031220693f8c92ff0a0095e09b4c774",
+   "file": "scv-water-2023-leadership.pdf",
+   "title": "SCV Water Seats 2023 Board Leadership and Celebrates its Fifth Anniversary (news release)",
+   "byline": "SCV Water"
+  },
+  "dcdca-martin": {
+   "url": "https://dcdca.org/?p=4605",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "f4015da2a507aca20d266854ae0e97a3fb02162a3df04eb530ed40a6cca6b723",
+   "file": "dcdca-martin.html",
+   "title": "Gary Martin - DCA",
+   "byline": "Delta Conveyance Design and Construction Authority (official page)"
+  },
+  "kavounas-quits-clwa": {
+   "url": "https://scvnews.com/kavounas-quits-clwa-agency-taking-names-to-fill-seat",
+   "published": "2013-12-03T20:26:13+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "65d4fe5cbe9432e8af318f137e6661b15ebbb45e660a5cd7c1e206dcdf349f63",
+   "file": "kavounas-quits-clwa.html",
+   "title": "Kavounas Quits CLWA; Agency Taking Names to Fill Seat",
+   "byline": "Perry Smith, Hometownstation.com"
+  },
+  "clwa-elects-2017-officers": {
+   "url": "https://scvnews.com/clwa-elects-board-president-vice-president",
+   "published": "2017-01-10T18:45:36+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "87f5e944d0dbff789bfe33439a4c1bcfb9db5512cdcf8bbede382fbebb285a2e",
+   "file": "clwa-elects-2017-officers.html",
+   "title": "CLWA Elects Board President, Vice President",
+   "byline": "Press Release (CLWA)"
+  },
+  "longtime-susd-board-members-farewell": {
+   "url": "https://scvnews.com/longtime-susd-governing-board-members-bid-farewell",
+   "published": "2018-12-14T00:07:58+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "68756371b75a6b8c0824b7f52b3b4da7e41142450b0fb28975802563f25ba0e6",
+   "file": "longtime-susd-board-members-farewell.html",
+   "title": "Longtime SUSD Governing Board Members Bid Farewell",
+   "byline": "Press Release (Saugus Union SD)"
+  },
+  "de-la-cerda-head-saugus": {
+   "url": "https://scvnews.com/de-la-cerda-selected-to-head-saugus-school-board/",
+   "published": "2013-12-20T01:28:34+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "23ad14360eaeaba83650a2269f27f5056e2cd15b426e910b0440cb1f22f77ebf",
+   "file": "de-la-cerda-head-saugus.html",
+   "title": "De La Cerda Selected to Head Saugus School Board",
+   "byline": "Press Release (Saugus Union SD)"
+  },
+  "bryce-saugus-trustee-leaving-sept-30-for-san-diego": {
+   "url": "https://scvnews.com/bryce-saugus-trustee-leaving-sept-30-for-san-diego",
+   "published": "2014-09-05T04:51:28+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "7b4a4b02e3c4f7c57aab1b6cb5f49b4da671dd88345f46c95ac627e2e13cc023",
+   "file": "bryce-saugus-trustee-leaving-sept-30-for-san-diego.html",
+   "title": "Bryce, Saugus Trustee, Leaving Sept. 30 for San Diego",
+   "byline": "Press Release (Saugus Union SD)",
+   "note": "Copied from the 2026-10-03 recount scratchpad."
+  },
+  "bryce-moving-to-san-diego": {
+   "url": "https://scvnews.com/bryce-of-saugus-school-board-moving-to-san-diego",
+   "published": "2014-05-26T19:54:33+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "5e8918d1f3b31b26fbb90b7afcbb67fe91efb03af93f4ff28ce6cdef92189cf1",
+   "file": "bryce-moving-to-san-diego.html",
+   "title": "Bryce, of Saugus School Board, Moving to San Diego",
+   "byline": "SCVNews.com"
+  },
+  "trunkey-to-fill-vacancy": {
+   "url": "https://scvnews.com/trunkey-to-fill-vacancy-on-saugus-school-board/",
+   "published": "2014-11-19T18:04:54+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "a57b797239a9bc0394cb4e24659329dd53f9051d0f7d0052559b360c3ac1e02c",
+   "file": "trunkey-to-fill-vacancy.html",
+   "title": "Trunkey to Fill Vacancy on Saugus School Board",
+   "byline": "Perry Smith, Hometownstation.com"
+  },
+  "scvnews-election-results": {
+   "url": "https://scvnews.com/election-results",
+   "published": "2013-11-06T04:14:00+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "bdebf9469607a88cce357eeda612c81a20e79a8a9cf3f78ac85c007a5c2fd4a4",
+   "file": "scvnews-election-results.html",
+   "title": "ELECTION RESULTS: Upset in Sulphur Springs",
+   "byline": "SCVNews.com"
+  },
+  "strickland-moving-away-quits-hart-board-arts-commission": {
+   "url": "https://scvnews.com/strickland-moving-away-quits-hart-board-arts-commission",
+   "published": "2013-04-18T17:53:39+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "34a3681c3fa0f3fb032b7a27e29f094198aff4792f606fc8adb59c2a8095a91d",
+   "file": "strickland-moving-away-quits-hart-board-arts-commission.html",
+   "title": "Strickland Moving Away; Quits Hart Board, Arts Commission",
+   "byline": "Hart School District (release)",
+   "note": "Copied from the 2026-10-03 recount scratchpad."
+  },
+  "hart-taps-chris-fall": {
+   "url": "https://scvnews.com/hart-board-taps-chris-fall-to-fill-strickland-seat",
+   "published": "2013-06-06T01:01:49+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "a8661294cfd6623334c74df9fd0e9ff8e3025e36aca066a21f4e03aae7b3f23d",
+   "file": "hart-taps-chris-fall.html",
+   "title": "Hart Board Taps Chris Fall to Fill Strickland Seat",
+   "byline": "Perry Smith, Hometownstation.com"
+  },
+  "hart-vacancy-agenda": {
+   "url": "https://scvnews.com/vacancy-teacher-honorees-on-agenda-for-hart-board",
+   "published": "2013-09-10T21:16:45+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "21ea20d1e93d4c4d86d38fcf5f45af8c7a4297cd40aa4c32c82cbe1a650b22ec",
+   "file": "hart-vacancy-agenda.html",
+   "title": "Vacancy, Teacher Honorees on Agenda for Hart Board",
+   "byline": "Perry Smith, Hometownstation.com"
+  },
+  "chris-fall-quits": {
+   "url": "https://scvnews.com/chris-fall-quits-hart-board-due-to-business-conflict",
+   "published": "2013-08-16T20:16:51+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "a5b1b8ea03aa3c5128fb9d8b524c980ee71442257f748899665a1c6f56b82549",
+   "file": "chris-fall-quits.html",
+   "title": "Chris Fall Quits Hart Board Due to Business Conflict",
+   "byline": "Hart School District (release)"
+  },
+  "messina-second-term": {
+   "url": "https://scvnews.com/messina-hart-school-board-prez-to-seek-2nd-term",
+   "published": "2013-07-17T00:09:00+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "4f64201746d39abcd7b871a633b2c33a1c4e3f90053f16fae4f09e498dfe318a",
+   "file": "messina-second-term.html",
+   "title": "Messina, Hart School Board Prez, to Seek 2nd Term",
+   "byline": "Press Release (Messina campaign)"
+  },
+  "ballotpedia-messina": {
+   "url": "https://ballotpedia.org/Joe_Messina",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "92f30b578076cd4479c0bbd16a53da5b33b2df03ad9213a7ad62e99766d19446",
+   "file": "ballotpedia-messina.html",
+   "title": "Joe Messina - Ballotpedia",
+   "byline": "Ballotpedia"
+  },
+  "hart": {
+   "url": "https://www.hartdistrict.org/apps/pages/governing-board-members",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "18c87caa31b186a1997ba6cdcb8656562fc948b332414a6a14abb66ce26c76af",
+   "file": "hart.html",
+   "title": "Governing Board Members - William S. Hart Union High School District",
+   "byline": "Hart district (official page)",
+   "note": "Copied from the 2026-10-03 recount scratchpad (fetched that day)."
+  },
+  "susd-new-president-clerk-sworn-in": {
+   "url": "https://scvnews.com/susd-appoints-new-president-clerk-new-members-sworn-in",
+   "published": "2018-12-13T22:26:49+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "b7321cfe0ea772cdc80e092eb23c47e4865d2a2ef8e70129f395b540def9f152",
+   "file": "susd-new-president-clerk-sworn-in.html",
+   "title": "SUSD Appoints New President, Clerk; New Members Sworn In",
+   "byline": "Press Release (Saugus Union SD)"
+  },
+  "signal-arrowsmith-resigns": {
+   "url": "https://signalscv.com/2022/09/saugus-district-board-member-resigns/",
+   "published": "2022-09-14T22:52:27+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "8efd8ff7f23acfefc924fcb286a14dd75170ec8ca7f8bd150c04e46616637c1b",
+   "file": "signal-arrowsmith-resigns.html",
+   "title": "Saugus district board member resigns",
+   "byline": "Jose Herrera, The Signal",
+   "note": "signalscv.com returns 403 to curl. Article paragraphs were copied verbatim from the page rendered in Chrome on 2026-10-03 into a minimal HTML file; htmlSha256 is of that file, not of the live page."
+  },
+  "signal-arrowsmith-hands-of-voters": {
+   "url": "https://signalscv.com/2022/09/in-the-hands-of-the-voters/",
+   "published": "2022-09-16T00:42:35+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "98f6857994c0406bbb1eb127651fd6a9816847ab08482d81c60860e7852b39d7",
+   "file": "signal-arrowsmith-hands-of-voters.html",
+   "title": "In the hands of the voters",
+   "byline": "Jose Herrera, The Signal",
+   "note": "As signal-arrowsmith-resigns: browser-extracted paragraphs, some omitted."
+  },
+  "ballotpedia-arrowsmith": {
+   "url": "https://ballotpedia.org/Laura_Arrowsmith",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "a6eda5fbac22e423149c532913d3e9058010df99ba09f21b19e3545cb7fb6249",
+   "file": "ballotpedia-arrowsmith.html",
+   "title": "Laura Arrowsmith - Ballotpedia",
+   "byline": "Ballotpedia"
+  },
+  "newhall-members": {
+   "url": "https://www.newhallschooldistrict.com/governing-board-members",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "c7b199ff56fb9611a3236d858dcf9afb0df6a9c735671317d88bcdfc750b6df4",
+   "file": "newhall-members.html",
+   "title": "Newhall School District - Governing Board Members",
+   "byline": "Newhall School District (official page)",
+   "note": "Copied from the 2026-10-03 recount scratchpad."
+  },
+  "newhall-officers-2014": {
+   "url": "https://scvnews.com/newhall-school-board-selects-officers-for-2014",
+   "published": "2013-12-25T22:15:36+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "41a24d6970b2fe178017b690646b884791ff55915abd887421abd24f37eace10",
+   "file": "newhall-officers-2014.html",
+   "title": "Newhall School Board Selects Officers for 2014",
+   "byline": "KHTS, Hometownstation.com"
+  },
+  "castaic-board": {
+   "url": "https://www.castaicusd.com/apps/pages/index.jsp?uREC_ID=799367&type=d&pREC_ID=1188877",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "906b1d77c41a0b3498efbbfe3d77258751a31dda2e4169e19742daa757d0f0b5",
+   "file": "castaic-board.html",
+   "title": "Meet Our Board of Trustees - Castaic Union School District",
+   "byline": "Castaic Union SD (official page)",
+   "note": "Copied from the 2026-10-03 recount scratchpad."
+  },
+  "signal-castaic-2017-officers": {
+   "url": "https://signalscv.com/2017/12/castaic-governing-board-elects-new-president-clerk/",
+   "published": "2017-12-08T20:24:35+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "1cfe80c39cd8ea231a9ca4d3a4199160238bc67fec36f1ab832938c5fb1a9aa3",
+   "file": "signal-castaic-2017-officers.html",
+   "title": "Castaic Governing Board elects new president, clerk",
+   "byline": "Christina Cox, The Signal",
+   "note": "Browser-extracted paragraphs (Signal blocks curl)."
+  },
+  "signal-castaic-2018-elections": {
+   "url": "https://signalscv.com/2018/04/castaic-union-to-hold-elections-for-four-seats-in-november/",
+   "published": "2018-04-16T13:55:47+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "92c79a4215dab7b125aec7b641a8c804daebecf578629b6078ca18bbf60c57dd",
+   "file": "signal-castaic-2018-elections.html",
+   "title": "Castaic Union to hold elections for four seats in November",
+   "byline": "Perry Smith, The Signal",
+   "note": "Browser-extracted paragraphs (Signal blocks curl)."
+  },
+  "huffaker-castaic": {
+   "url": "https://scvnews.com/huffaker-takes-helm-of-castaic-school-board",
+   "published": "2013-12-13T23:12:47+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "e0887f0575e56dc3390976d2b34959ceeb36cf5dbffc93b33d643a26da354602",
+   "file": "huffaker-castaic.html",
+   "title": "Huffaker Takes Helm of Castaic School Board",
+   "byline": "Allison Pari, Hometownstation.com"
+  },
+  "castaic-seeks-area-d": {
+   "url": "https://scvnews.com/castaic-school-district-seeks-new-board-member-for-area-d/",
+   "published": "2018-09-26T23:00:57+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "a38de3f9b5d3da225d6a535429ec276249ef3efb24bea6949883c3c4ffe971de",
+   "file": "castaic-seeks-area-d.html",
+   "title": "Castaic School District Seeks New Board Member for Area D",
+   "byline": "Press Release (Castaic Union SD)"
+  },
+  "sulphur-board": {
+   "url": "https://www.sssd.k12.ca.us/members",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "4fd0f2cbd5ce044a9c86c0930c87b273f2e25979254b0806eaad2e6991ef0a03",
+   "file": "sulphur-board.html",
+   "title": "Sulphur Springs Union School District - Members",
+   "byline": "Sulphur Springs Union SD (official page)",
+   "note": "Copied from the 2026-10-03 recount scratchpad."
+  },
+  "clegg-2014-president": {
+   "url": "https://scvnews.com/clegg-to-lead-sulphur-springs-school-board-in-2014",
+   "published": "2013-12-25T22:21:33+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "fd2cb77542b9bc41b62956a9a20e8b1fae919ed9bf3469015a845f666a73b065",
+   "file": "clegg-2014-president.html",
+   "title": "Clegg to Lead Sulphur Springs School Board in 2014",
+   "byline": "Allison Pari, Hometownstation.com"
+  },
+  "signal-clegg-goodbye": {
+   "url": "https://signalscv.com/2018/12/community-says-goodbye-to-longtime-board-member-kerry-clegg/",
+   "published": "2018-12-06T19:00:36+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "5178386b5a3adec258a3e714c550234a01f585d22096d50aef80bf9ed7587198",
+   "file": "signal-clegg-goodbye.html",
+   "title": "Community says goodbye to longtime board member Kerry Clegg",
+   "byline": "Brennon Dixson, The Signal",
+   "note": "Browser-extracted first paragraph only (Signal blocks curl)."
+  },
+  "winkler-wont-fight": {
+   "url": "https://scvnews.com/winkler-says-he-wont-fight-boards-decision-to-oust-him",
+   "published": "2013-06-19T21:02:45+00:00",
+   "read": "2026-10-03",
+   "htmlSha256": "7425adda5795e850964a188d0e0e584fd41cbc28be2830db7f07a18a886a9573",
+   "file": "winkler-wont-fight.html",
+   "title": "Winkler Says He Won't Fight Ouster from School Board",
+   "byline": "Perry Smith, Hometownstation.com"
+  },
+  "canyons-mercado-fortine-bio": {
+   "url": "https://www.canyons.edu/community/womensconference/bio-gloriamercado-fortine.php",
+   "published": null,
+   "read": "2026-10-03",
+   "htmlSha256": "4fa484a2f17dc4a31717bb4ab5c9c97e5554ee5a52f47304de5d6fea6b17f3f4",
+   "file": "canyons-mercado-fortine-bio.html",
+   "title": "Gloria Mercado-Fortine (Women's Conference speaker bio)",
+   "byline": "College of the Canyons (official page)"
+  },
+  "scmag-2015-hart-candidates": {
+   "url": "https://santaclarita.mydigitalpublication.com/article/Meet+The+Candidates+Hart+District+Governing+Board+Election+Heats+Up/2275233/273663/article.html",
+   "published": "2015-10",
+   "read": "2026-10-03",
+   "htmlSha256": "b71e368a22805c4d89d0d12e3e9e122f6e10e15ca74f72bb9d42a341bdee292d",
+   "file": "scmag-2015-hart-candidates.html",
+   "title": "Meet The Candidates: Hart District Governing Board Election Heats Up (Santa Clarita Magazine, October 2015)",
+   "byline": "Candidate statements, Santa Clarita Magazine"
+  },
+  "boyer2015ch14-page5": {
+   "url": "https://scvhistory.com/scvhistory/files/boyer2015ch14/files/basic-html/page5.html",
+   "published": "2015",
+   "read": "2026-10-03",
+   "htmlSha256": "66195614d3135afb43326e4ac80ea1fd8a0891fc3e3d8463aa2fe5d7a512b922",
+   "file": "boyer2015ch14-page5.html",
+   "title": "Carl Boyer, Santa Clarita (2015), chapter 14, p. 204 (flipbook page 5)",
+   "byline": "Carl Boyer",
+   "note": "Copied from the read-only legacy mirror (/Volumes/Reggie/SCVHistory/scvhistory.com), not fetched live."
+  }
+ },
+ "people": [
+  {
+   "id": 15897,
+   "name": "Lynne Plambeck",
+   "holdings": [
+    {
+     "body": "Newhall County Water District",
+     "start": "November 1993",
+     "startEdtf": "1993-11",
+     "selection": "elected",
+     "end": "December 1997",
+     "endEdtf": "1997-12",
+     "howEnded": "expired",
+     "offices": [],
+     "evidence": [
+      {
+       "source": "plambeck-resolution-scv-321",
+       "quote": "Lynne Plambeck was elected to the Newhall County Water District (NCWD) Board of Directors in November of 1993 and served through December of 1997"
+      },
+      {
+       "source": "plambeck-4-more-years",
+       "quote": "Plambeck has served on the NCWD board since 1993 except for a two-year period (1998-1999) when a challenger unseated her"
+      }
+     ],
+     "confidence": "two sources",
+     "endDetail": "lost reelection, November 1997"
+    },
+    {
+     "body": "Newhall County Water District",
+     "start": "December 1999",
+     "startEdtf": "1999-12",
+     "selection": "elected",
+     "end": "December 2017",
+     "endEdtf": "2017-12",
+     "howEnded": "left",
+     "offices": [
+      "vice president 2002",
+      "president 2004"
+     ],
+     "evidence": [
+      {
+       "source": "plambeck-resolution-scv-321",
+       "quote": "was re-elected to the Newhall County Water District Board of Directors in November of 1999 and served through December of 2017"
+      },
+      {
+       "source": "plambeck-resolution-scv-321",
+       "quote": "Ms. Plambeck served as NCWD Board Vice President in 2002 and Board President in 2004"
+      },
+      {
+       "source": "plambeck-4-more-years",
+       "quote": "the \"appointment in lieu of election\" of Plambeck and Mortensen to another term on the Newhall County Water District board"
+      },
+      {
+       "source": "plambeck-4-more-years",
+       "quote": "Plambeck and Mortensen were last elected in 2007"
+      }
+     ],
+     "confidence": "two sources",
+     "endDetail": "NCWD ceased to exist when it merged into SCV Water on Jan. 1, 2018; she moved to the SCV Water board. Re-elected 2003 and 2007; seated in lieu of election 2011 (Board of Supervisors appointment, no opponent). The resolution says \"re-elected ... in November of 1999\", so the startEdtf month of seating (December) is inferred from the usual December seating."
+    },
+    {
+     "body": "Santa Clarita Valley Water Agency",
+     "start": "January 2018",
+     "startEdtf": "2018-01",
+     "selection": "appointed",
+     "end": "December 2022",
+     "endEdtf": "2022-12",
+     "howEnded": "expired",
+     "offices": [],
+     "evidence": [
+      {
+       "source": "plambeck-resolution-scv-321",
+       "quote": "Ms. Plambeck served on the Santa Clarita Valley Water Agency (Agency) Board of Directors from January 2018 to December 2022"
+      }
+     ],
+     "confidence": "one source",
+     "selectionDetail": "Not elected or appointed in the usual sense: the inaugural SCV Water board was made up of the sitting directors of the merged agencies (CLWA, NCWD) under the enabling legislation (SB 634). Choose the closest value your schema allows; \"appointed\" is a placeholder.",
+     "endDetail": "lost the November 2022 Division 3 election to Maria Gutzeit (county returns: Gutzeit 13,633, Plambeck 12,846; inventory/elections/county-svc-water.json)"
+    }
+   ],
+   "notes": "Correction to the claim: NCWD service was NOT continuous 1993 to 2017. She lost in 1997 and was off the board 1998 to 1999. So two NCWD holdings. The resolution totals 27 years of service (NCWD plus SCV Water)."
+  },
+  {
+   "id": 26589,
+   "name": "Ed Colley",
+   "holdings": [
+    {
+     "body": "Castaic Lake Water Agency",
+     "start": "2003",
+     "startEdtf": "2003",
+     "selection": "elected",
+     "end": "December 2017",
+     "endEdtf": "2017-12-31",
+     "howEnded": "left",
+     "offices": [],
+     "evidence": [
+      {
+       "source": "scv-water-board-member-ed-colley-resigns-seat",
+       "quote": "Colley was first elected to the Castaic Lake Water Agency Board of Directors in 2003. He continued as a board member when SCV Water was formed on Jan. 1, 2018."
+      },
+      {
+       "source": "clwa-candidates-file",
+       "quote": "Brooks is scheduled to run against incumbent Ed Colley to represent division one"
+      }
+     ],
+     "confidence": "one source",
+     "endDetail": "CLWA ceased to exist Jan. 1, 2018 (merged into SCV Water).",
+     "startDetail": "\"First elected ... in 2003\" is the release's wording. CLWA elections were held in November of even-numbered years (clwa-elects-2017-officers), so this is probably the November 2002 election with seating in January 2003, or a 2003 appointment. Not resolved. Recognized in Aug 2024 for \"nearly 22 years of service on water boards\", which fits a start in late 2002 or early 2003. Division 1 incumbent in 2014."
+    },
+    {
+     "body": "Santa Clarita Valley Water Agency",
+     "start": "January 1, 2018",
+     "startEdtf": "2018-01-01",
+     "selection": "appointed",
+     "end": "August 7, 2024",
+     "endEdtf": "2024-08-07",
+     "howEnded": "resigned",
+     "offices": [],
+     "evidence": [
+      {
+       "source": "scv-water-board-member-ed-colley-resigns-seat",
+       "quote": "He continued as a board member when SCV Water was formed on Jan. 1, 2018."
+      },
+      {
+       "source": "scv-water-board-member-ed-colley-resigns-seat",
+       "quote": "resigned his seat effective Wednesday, Aug. 7. Colley's resignation was prompted by his planned move out of his district, and California, to Texas."
+      }
+     ],
+     "confidence": "one source",
+     "selectionDetail": "Inaugural director carried over from CLWA (not a fresh election). Re-elected Division 2 in November 2020 (county returns: ED COLLEY 22,703, first of two seats; inventory/elections/county-svc-water.json). \"appointed\" is a placeholder."
+    }
+   ],
+   "notes": "Only one readable independent text for the dates (the SCV News release, Aug 8, 2024). The agency's own bio saying \"has served on the CLWA Board of Directors since 2003\" exists only inside an HTML comment in scvwater-board.html, so it agrees but cannot be quoted from the .txt. The 2014 CLWA article confirms he was an incumbent then. Do not confuse with Kathy Colley (NCWD, then SCV Water, lost 2022)."
+  },
+  {
+   "id": 26587,
+   "name": "Gary Martin",
+   "holdings": [
+    {
+     "body": "Castaic Lake Water Agency",
+     "start": "2013",
+     "startEdtf": "2013",
+     "selection": "appointed",
+     "end": "December 2017",
+     "endEdtf": "2017-12-31",
+     "howEnded": "left",
+     "offices": [
+      "vice president 2017"
+     ],
+     "evidence": [
+      {
+       "source": "scv-water-2019-leadership",
+       "quote": "In 2013, he was initially selected as a member of the CLWA Board of Directors, where he filled an at-large vacancy."
+      },
+      {
+       "source": "kavounas-quits-clwa",
+       "quote": "The process likely will be similar to the appointment process used in selecting board member Gary Martin, who was chosen for an at-large spot on the board."
+      },
+      {
+       "source": "dcdca-martin",
+       "quote": "Gary also served on the board of SCV Water's predecessor agency, Castaic Lake Water Agency (CLWA) from 2013 to 2017."
+      },
+      {
+       "source": "clwa-candidates-file",
+       "quote": "Fortner is expected to run against incumbents Gary Martin and Tom Campbell for a seat as a member at large"
+      },
+      {
+       "source": "scvwater-board",
+       "quote": "Mr. Martin was Vice President of the Castaic Lake Water Agency (CLWA) Board of Directors in 2017."
+      }
+     ],
+     "confidence": "two sources",
+     "startDetail": "Month not established: \"February 2013\" appears only in a search-engine summary, not in any text read. Appointed at-large 2013; ran as an at-large incumbent in the November 2014 election (result not in our data).",
+     "officesDetail": "CLWA \"vice president 2017\" is from SCV Water's own bio, but the Jan 10, 2017 CLWA release (clwa-elects-2017-officers) names William Pecsi as vice president elected Jan 3, 2017. Possibly Martin succeeded Pecsi later in 2017; treat \"vice president 2017\" as one source in conflict.",
+     "conflictEvidence": [
+      {
+       "source": "clwa-elects-2017-officers",
+       "quote": "the Board of Directors elected Robert J. DiPrimio as Board President and William Pecsi as Board Vice President"
+      }
+     ]
+    },
+    {
+     "body": "Santa Clarita Valley Water Agency",
+     "start": "January 1, 2018",
+     "startEdtf": "2018-01-01",
+     "selection": "appointed",
+     "end": null,
+     "endEdtf": null,
+     "howEnded": "serving",
+     "offices": [
+      "vice president 2019",
+      "president 2020",
+      "president 2021",
+      "president 2022",
+      "president 2023",
+      "president 2024",
+      "vice president 2026"
+     ],
+     "evidence": [
+      {
+       "source": "scv-water-2019-leadership",
+       "quote": "Mr. Martin was a member of the inaugural SCV Water Board of Directors."
+      },
+      {
+       "source": "scv-water-2019-leadership",
+       "quote": "Maria Gutzeit and Gary Martin were appointed to serve as vice presidents."
+      },
+      {
+       "source": "scv-water-2020-leadership",
+       "quote": "The SCV Water Board of Directors has selected Gary Martin to serve as SCV Water's president for its third year of operation."
+      },
+      {
+       "source": "scv-water-2021-leadership",
+       "quote": "I am very honored to be re-elected by my colleagues to serve as the board president for the next two years"
+      },
+      {
+       "source": "scv-water-2023-leadership",
+       "quote": "He served as a Board Vice President in 2019 and as the Board President since January 2021."
+      },
+      {
+       "source": "scv-water-2023-leadership",
+       "quote": "Gary Martin has been re-elected by the SCV Water Board of Directors to serve as board president for another two-year term."
+      },
+      {
+       "source": "scvwater-board",
+       "quote": "Gary R. Martin - Vice President"
+      }
+     ],
+     "confidence": "two sources",
+     "selectionDetail": "Inaugural director carried over from CLWA; elected Division 1 in November 2020 and re-elected November 2024 (county returns, inventory/elections/county-svc-water.json). \"appointed\" is a placeholder.",
+     "officesDetail": "President from Feb 2020 (not 2021): the 2023 release says \"since January 2021\" but the Feb 12, 2020 release shows him elected president for 2020, and the 2021 release says \"re-elected\". Vice president as of the board page read 2026-10-03; when that began (2025?) is not established."
+    }
+   ],
+   "notes": "Claim corrected: board president from 2020 (not 2021) through 2024; vice president now. The start month in 2013 is unverified."
+  },
+  {
+   "id": 25401,
+   "name": "Judy Umeck",
+   "holdings": [
+    {
+     "body": "Saugus Union School District",
+     "start": "1996",
+     "startEdtf": "1996",
+     "selection": "appointed",
+     "end": "December 11, 2018",
+     "endEdtf": "2018-12-11",
+     "howEnded": "expired",
+     "offices": [
+      "president 2013"
+     ],
+     "evidence": [
+      {
+       "source": "longtime-susd-board-members-farewell",
+       "quote": "Umeck, who was a member of the Saugus Board since first being appointed to fill a vacancy in 1996"
+      },
+      {
+       "source": "longtime-susd-board-members-farewell",
+       "quote": "Judy Egan Umeck, who served for 22 years, and Paul De La Cerda, who served for 13 years, left the Board following ceremonies at the Dec. 11, 2018 special meeting."
+      },
+      {
+       "source": "de-la-cerda-head-saugus",
+       "quote": "Umeck begins her fifth term and was honored for her service as Board President for 2013."
+      },
+      {
+       "source": "longtime-susd-board-members-farewell",
+       "quote": "She served the Governing Board as President and Clerk on multiple occasions"
+      }
+     ],
+     "confidence": "two sources",
+     "endDetail": "lost the November 2018 Area 2 election to Laura Arrowsmith (CEDA: Arrowsmith 4,301, Umeck 3,198).",
+     "startDetail": "\"October 1996\" is not in any text read; only the year 1996 is sourced. CEDA 1997 lists her designation as \"SUSD Board Trustee\", consistent with an appointed incumbent. Elected 1997, 2001, 2005, 2009, 2013 (fifth term from Dec 2013)."
+    }
+   ],
+   "notes": "Continuous 1996 to Dec 11, 2018. Month of appointment not established."
+  },
+  {
+   "id": 25403,
+   "name": "Douglas Bryce",
+   "holdings": [
+    {
+     "body": "Saugus Union School District",
+     "start": "about 2001",
+     "startEdtf": "2001~",
+     "selection": "unknown",
+     "end": "September 30, 2014",
+     "endEdtf": "2014-09-30",
+     "howEnded": "resigned",
+     "offices": [
+      "clerk 2014"
+     ],
+     "evidence": [
+      {
+       "source": "bryce-saugus-trustee-leaving-sept-30-for-san-diego",
+       "quote": "Saugus Union School Board member Doug Bryce announced this week that he will be resigning from his position effective Sept. 30 due to a new career opportunity he has accepted in the San Diego area."
+      },
+      {
+       "source": "bryce-saugus-trustee-leaving-sept-30-for-san-diego",
+       "quote": "Bryce has served as a Governing Board Trustee for the Saugus Union School District for more than 14 years."
+      },
+      {
+       "source": "bryce-moving-to-san-diego",
+       "quote": "He has served on the Saugus School Board for 12 years"
+      },
+      {
+       "source": "de-la-cerda-head-saugus",
+       "quote": "Bryce begins his fourth term and was elected to the position of Board Clerk for 2014."
+      },
+      {
+       "source": "trunkey-to-fill-vacancy",
+       "quote": "Bryce stepped down at the end of September in order to pursue a job opportunity in San Diego."
+      }
+     ],
+     "confidence": "conflict",
+     "startDetail": "Sources disagree on the start. May 2014: \"12 years\" (start about 2002). Sept 2014: \"more than 14 years\" (start before Sept 2000). Dec 2013: \"fourth term\" (terms from Dec 2001, 2005, 2009, 2013). The two that agree (12 years, fourth term) point to Dec 2001 (Saugus had no CEDA contest in 2001, so probably seated unopposed). The \"more than 14 years\" likely counts an EARLIER tenure too (see notes). selection unknown: elected unopposed in 2001 is likely but unsourced."
+    }
+   ],
+   "notes": "CEDA evidence (inventory/elections/ceda-scv.json, not a .txt source): in the 1997 Saugus election \"Douglas A. Bryce\" ran with ballot designation \"Incumbent\" and LOST (1,131 votes; Murr, Myl, Umeck won). He also lost in 1999 as a non-incumbent. So he was on the board before November 1997 (probably appointed, dates unknown) until December 1997: a separate, earlier tenure not created here because no text gives its start. That earlier service would explain \"more than 14 years\". Trustee Chris Trunkey was appointed to his seat Nov 2014 (trunkey-to-fill-vacancy)."
+  },
+  {
+   "id": 25425,
+   "name": "Paul Strickland",
+   "holdings": [
+    {
+     "body": "Sulphur Springs Union School District",
+     "start": "December 1995",
+     "startEdtf": "1995-12",
+     "selection": "elected",
+     "end": null,
+     "endEdtf": null,
+     "howEnded": "unknown",
+     "offices": [],
+     "evidence": [
+      {
+       "source": "strickland-moving-away-quits-hart-board-arts-commission",
+       "quote": "Prior to serving on the Hart School District board, Strickland was an elected trustee for the Sulphur Springs School District."
+      }
+     ],
+     "confidence": "one source",
+     "startDetail": "Year from CEDA 1995 (won, 1,149 votes); seating month inferred.",
+     "endDetail": "End not found. He ran for Hart in 1999 (lost) and won Hart in 2001; whether he left Sulphur Springs at the end of his term (Dec 1999) or later is unknown. Do not create an end date."
+    },
+    {
+     "body": "William S. Hart Union High School District",
+     "start": "December 2001",
+     "startEdtf": "2001-12",
+     "selection": "elected",
+     "end": "May 1, 2013",
+     "endEdtf": "2013-05-01",
+     "howEnded": "resigned",
+     "offices": [
+      "president (year not stated)"
+     ],
+     "evidence": [
+      {
+       "source": "strickland-moving-away-quits-hart-board-arts-commission",
+       "quote": "Since first elected to the school board in 2001"
+      },
+      {
+       "source": "strickland-moving-away-quits-hart-board-arts-commission",
+       "quote": "Hart School District elected school board member and past president, Paul Strickland, has tendered his resignation from the school board, with plans to move out of state in May."
+      },
+      {
+       "source": "hart-taps-chris-fall",
+       "quote": "The seat was vacated May 1, when former board member Paul Strickland vacated his spot for a career opportunity in Florida."
+      },
+      {
+       "source": "hart-vacancy-agenda",
+       "quote": "Fall was appointed by the Hart district to replace Paul Strickland, who resigned effective May 1 in order to pursue a career opportunity in Florida."
+      }
+     ],
+     "confidence": "two sources",
+     "startDetail": "Elected Nov 2001 (CEDA), re-elected 2005 and 2009 (CEDA; Ballotpedia)."
+    }
+   ],
+   "notes": "Resignation effective May 1, 2013 (two sources). Chris Fall was appointed June 2013 to the seat and resigned Aug 2013 (chris-fall-quits). Also chaired the City Arts Commission (served since Dec 2009), resigned April 2013. Ballotpedia still lists him among the 2013 Hart candidates, which is stale."
+  },
+  {
+   "id": 25415,
+   "name": "Laura Arrowsmith",
+   "holdings": [
+    {
+     "body": "Saugus Union School District",
+     "start": "December 2018",
+     "startEdtf": "2018-12",
+     "selection": "elected",
+     "end": "September 2022",
+     "endEdtf": "2022-09",
+     "howEnded": "resigned",
+     "offices": [
+      "president 2020",
+      "president 2021"
+     ],
+     "evidence": [
+      {
+       "source": "susd-new-president-clerk-sworn-in",
+       "quote": "The three sworn in include two new trustees"
+      },
+      {
+       "source": "susd-new-president-clerk-sworn-in",
+       "quote": "Arrowsmith, a longtime history teacher in the Hart Union School District, joins the Board as Trustee for Area 2."
+      },
+      {
+       "source": "signal-arrowsmith-resigns",
+       "quote": "Laura Arrowsmith, who represents Trustee Area No. 2 for the Saugus Union School District, announced her resignation Tuesday evening during a special session meeting, citing she would be moving away from the area."
+      },
+      {
+       "source": "signal-arrowsmith-resigns",
+       "quote": "Superintendent Colleen Hawkins confirmed Arrowsmith resigned on Wednesday."
+      },
+      {
+       "source": "signal-arrowsmith-resigns",
+       "quote": "Mrs. Arrowsmith served as board president during the remainder of Ms. (Julie) Olsen's term and also served as board president the following year"
+      },
+      {
+       "source": "signal-arrowsmith-hands-of-voters",
+       "quote": "It's too late for her name to be removed from the ballot"
+      },
+      {
+       "source": "signal-arrowsmith-hands-of-voters",
+       "quote": "We made the decision to move, as I later found out, after the deadline to remove my name from the ballot had passed."
+      },
+      {
+       "source": "signal-arrowsmith-hands-of-voters",
+       "quote": "who indicated Arrowsmith's resignation occurred following the close of filing."
+      }
+     ],
+     "confidence": "two sources",
+     "endDetail": "Announced at a special meeting Tuesday Sept. 13, 2022; district confirmed she had resigned Wednesday Sept. 14 (article dated Sept. 14, 2022). Exact effective day not stated, so endEdtf is the month. Seat left vacant to the December organizational meeting.",
+     "officesDetail": "President from mid-2020 (finishing Julie Olsen's presidential term; Olsen stepped down in July 2020 per a Signal headline not read) and for 2021. Year boundaries are approximate.",
+     "conflictDetail": "Ballotpedia says \"She left office on December 9, 2022\", which is its default end-of-term date; the Signal reports a September resignation. Prefer the Signal.",
+     "conflictEvidence": [
+      {
+       "source": "ballotpedia-arrowsmith",
+       "quote": "She left office on December 9, 2022."
+      }
+     ]
+    }
+   ],
+   "notes": "Resolved: she resigned in September 2022 after the candidate filing deadline, so her name stayed on the November 2022 ballot. She did not campaign and lost to Anna Griese (CEDA: Arrowsmith 3,392, \"incumbent\", not elected). The CEDA row is hers and correct as a ballot fact; it is not a sign she served to December. The two Signal files are browser-copied article paragraphs (Signal blocks curl)."
+  },
+  {
+   "id": 25385,
+   "name": "Suzan Solomon",
+   "holdings": [
+    {
+     "body": "Newhall School District",
+     "start": "December 1999",
+     "startEdtf": "1999-12",
+     "selection": "elected",
+     "end": null,
+     "endEdtf": null,
+     "howEnded": "serving",
+     "offices": [
+      "clerk 2026",
+      "president (several years, not stated)"
+     ],
+     "evidence": [
+      {
+       "source": "newhall-members",
+       "quote": "Mrs. Solomon was first elected to the Newhall School Board in 1999 and has served multiple times as school board president."
+      },
+      {
+       "source": "newhall-members",
+       "quote": "Governing Board Clerk Trustee Area 5 Trustee Area 5 Current Term: 2024 - 2028"
+      },
+      {
+       "source": "newhall-officers-2014",
+       "quote": "Continuing service on the board is 10-year board member Mike Shapiro and 14-year veteran Suzan Solomon."
+      }
+     ],
+     "confidence": "two sources",
+     "startDetail": "Elected Nov 1999 (CEDA); re-elected 2003, 2007 (CEDA), 2011 and later without a CEDA contest (presumably uncontested), 2024 Area 5 (CEDA)."
+    }
+   ],
+   "notes": "Continuous since 1999. Her 2009 run for the Hart board (lost) was while she sat on the Newhall board and did not interrupt it. \"14-year veteran\" in Dec 2013 fits continuity."
+  },
+  {
+   "id": 25379,
+   "name": "Laura Pearson",
+   "holdings": [
+    {
+     "body": "Castaic Union School District",
+     "start": "December 2005",
+     "startEdtf": "2005-12",
+     "selection": "elected",
+     "end": null,
+     "endEdtf": null,
+     "howEnded": "serving",
+     "offices": [
+      "clerk 2013",
+      "president 2018",
+      "president 2026"
+     ],
+     "evidence": [
+      {
+       "source": "signal-castaic-2017-officers",
+       "quote": "This marks the third time Pearson, first elected to the board in 2005, will serve as the president of the CUSD Governing Board."
+      },
+      {
+       "source": "signal-castaic-2017-officers",
+       "quote": "The Castaic Union School District elected Laura Pearson as its new president and Stacy Dobbs as its new clerk during its annual organizational meeting Thursday."
+      },
+      {
+       "source": "huffaker-castaic",
+       "quote": "Board members Susan Christopher, Laura Pearson and Victor Torres, who were unopposed in this year's school board elections, were also sworn in for new four-year terms that end in 2017."
+      },
+      {
+       "source": "huffaker-castaic",
+       "quote": "Steve Teeman, replacing Pearson as clerk"
+      },
+      {
+       "source": "castaic-board",
+       "quote": "Laura Pearson, President Trustee Area B Term: November 2022 to December 2026"
+      }
+     ],
+     "confidence": "two sources",
+     "startDetail": "Elected Nov 2005 and re-elected 2009 (CEDA); unopposed 2013; 2018 and 2022 seats not in CEDA (presumably uncontested).",
+     "officesDetail": "President three times by Dec 2017 (earlier years not stated); \"president 2018\" is the Dec 2017 election; president now per the board page. Clerk in 2013 (replaced by Teeman for 2014)."
+    }
+   ],
+   "notes": "Continuous since Dec 2005. Current term Nov 2022 to Dec 2026, Area B."
+  },
+  {
+   "id": 25433,
+   "name": "Rochelle \"Shelley\" Weinstein",
+   "holdings": [
+    {
+     "body": "Sulphur Springs Union School District",
+     "start": "December 2003",
+     "startEdtf": "2003-12",
+     "selection": "elected",
+     "end": null,
+     "endEdtf": null,
+     "howEnded": "serving",
+     "offices": [
+      "clerk 2014",
+      "president 2026"
+     ],
+     "evidence": [
+      {
+       "source": "sulphur-board",
+       "quote": "Mrs. Weinstein has served on the Board of Trustees since 2003."
+      },
+      {
+       "source": "sulphur-board",
+       "quote": "Board President: Shelley Weinstein"
+      },
+      {
+       "source": "clegg-2014-president",
+       "quote": "Member Shelley Weinstein replaces Clegg and clerk."
+      }
+     ],
+     "confidence": "two sources",
+     "startDetail": "Elected Nov 2003 as \"Rochelle \\\"Shelly\\\" Weinstein\" (CEDA); re-elected 2011 (CEDA); other terms without a CEDA contest."
+    }
+   ],
+   "notes": "Continuous since 2003. The second source (Dec 2013) shows her on the board, not her start; the start year rests on the district page plus CEDA 2003."
+  },
+  {
+   "id": 26549,
+   "name": "Joe Messina",
+   "holdings": [
+    {
+     "body": "William S. Hart Union High School District",
+     "start": "December 2009",
+     "startEdtf": "2009-12",
+     "selection": "elected",
+     "end": null,
+     "endEdtf": null,
+     "howEnded": "serving",
+     "offices": [
+      "president 2013",
+      "president 2026"
+     ],
+     "evidence": [
+      {
+       "source": "messina-second-term",
+       "quote": "When he was elected in 2009, Messina promised"
+      },
+      {
+       "source": "ballotpedia-messina",
+       "quote": "He assumed office in 2009. His current term ends on December 11, 2026."
+      },
+      {
+       "source": "ballotpedia-messina",
+       "quote": "Joe Messina ran against two other candidates, including fellow incumbents Paul B. Strickland and Bob Jensen for three seats in the general election on November 5, 2013. The election has been canceled and will not appear on the official ballot."
+      },
+      {
+       "source": "hart-vacancy-agenda",
+       "quote": "an oath of office will be administered Dec. 11 to board President Joe Messina and Bob Jensen, who are running unopposed"
+      },
+      {
+       "source": "chris-fall-quits",
+       "quote": "Hart School Board President Joe Messina announced the resignation Friday of recently appointed board member Chris Fall."
+      },
+      {
+       "source": "hart",
+       "quote": "Joe Messina Trustee Area No. 5 representative President"
+      },
+      {
+       "source": "hart",
+       "quote": "current term 2022 - 2026"
+      }
+     ],
+     "confidence": "two sources",
+     "startDetail": "Elected Nov 2009 (CEDA). Re-seated unopposed Dec 2013 (no contest held). The 2013 term ran to Dec 2018 because Hart moved elections to even years (Bob Jensen, elected 2009 with him, \"was re-elected to the Hart Board in 2013 and 2018\" per the hart page). Won Area 5 in 2018 and 2022 (CEDA)."
+    }
+   ],
+   "notes": "Resolved: continuous 2009 to now. There is no 2013 to 2018 gap: the 2013 seat was uncontested (cancelled election), so CEDA has no row. Board president 2013 and now (2026); other president years not established."
+  },
+  {
+   "id": 25381,
+   "name": "Susan Christopher",
+   "holdings": [
+    {
+     "body": "Castaic Union School District",
+     "start": "December 2009",
+     "startEdtf": "2009-12",
+     "selection": "elected",
+     "end": "December 2018",
+     "endEdtf": "2018-12",
+     "howEnded": "expired",
+     "offices": [
+      "president 2013"
+     ],
+     "evidence": [
+      {
+       "source": "huffaker-castaic",
+       "quote": "She has been a CUSD board member since 2009 and is up for reelection in 2017."
+      },
+      {
+       "source": "huffaker-castaic",
+       "quote": "Huffaker replaced Christopher as president"
+      },
+      {
+       "source": "signal-castaic-2018-elections",
+       "quote": "Susan Christopher, an attorney from Castaic who will have served nine years on the board as of this fall"
+      },
+      {
+       "source": "signal-castaic-2018-elections",
+       "quote": "I have had two full terms and this term was actually extended so we could move our elections to even-yeared terms"
+      },
+      {
+       "source": "castaic-seeks-area-d",
+       "quote": "Susan Christopher has decided not to run for re-election for her seat in Area D of the Castaic Union School District Board of Trustees"
+      }
+     ],
+     "confidence": "two sources",
+     "endDetail": "Did not seek re-election in 2018; term ended at the December 2018 organizational meeting (exact day not sourced). Successor appointed in lieu of election (castaic-seeks-area-d)."
+    }
+   ],
+   "notes": "Continuous Dec 2009 to Dec 2018 (elected 2009 per CEDA, unopposed 2013, term extended to 2018). Board president for 2013."
+  },
+  {
+   "id": 25387,
+   "name": "Michael Shapiro",
+   "holdings": [
+    {
+     "body": "Newhall School District",
+     "start": "December 2003",
+     "startEdtf": "2003-12",
+     "selection": "elected",
+     "end": null,
+     "endEdtf": null,
+     "howEnded": "unknown",
+     "offices": [
+      "clerk 2014"
+     ],
+     "evidence": [
+      {
+       "source": "newhall-officers-2014",
+       "quote": "Shapiro has been a member of the board since 2003."
+      },
+      {
+       "source": "newhall-officers-2014",
+       "quote": "Walters replaces Ellis as president of the Newhall School District board, and Shapiro takes Walters' place as clerk."
+      }
+     ],
+     "confidence": "one source",
+     "startDetail": "Elected Nov 2003, re-elected 2007 (CEDA); 2011 seat not in CEDA (presumably uncontested).",
+     "endDetail": "End not found. Lead, unverified: the Newhall page says Isaiah Talley \"was first appointed to the Newhall School Board on September 6, 2016\" to a \"vacated seat\"; that may be Shapiro's seat. Do not use without a source."
+    }
+   ],
+   "notes": "Still on the board as clerk for 2014. When and how he left is unresolved."
+  },
+  {
+   "id": 25405,
+   "name": "Rose Diaz",
+   "holdings": [
+    {
+     "body": "Saugus Union School District",
+     "start": "December 1999",
+     "startEdtf": "1999-12",
+     "selection": "elected",
+     "end": "December 2011",
+     "endEdtf": "2011-12",
+     "howEnded": "expired",
+     "offices": [],
+     "evidence": [
+      {
+       "source": "scvnews-election-results",
+       "quote": "Two years earlier, Winkler ousted longtime board member Rose Diaz, who blamed herself for a lack of aggressive campaigning."
+      },
+      {
+       "source": "winkler-wont-fight",
+       "quote": "Rose Diaz, the incumbent candidate who was defeated by Winkler in 2011"
+      }
+     ],
+     "confidence": "one source",
+     "startDetail": "Elected Nov 1999 (CEDA, 2,740 votes, non-incumbent). 2003 and 2007 seats have no CEDA rows (Saugus had no contest those years), so three terms 1999, 2003, 2007 is an inference; no text read says \"three-term\".",
+     "endDetail": "Lost as incumbent in Nov 2011 to Stephen Winkler (CEDA; two SCV News texts). Seat ended at the December 2011 organizational meeting (day not sourced)."
+    }
+   ],
+   "notes": "Start rests on CEDA only; texts confirm she was a longtime incumbent who lost in 2011. \"one source\" refers to the text support for continuity."
+  },
+  {
+   "id": 25431,
+   "name": "Kerry Clegg",
+   "holdings": [
+    {
+     "body": "Sulphur Springs Union School District",
+     "start": "1989",
+     "startEdtf": "1989",
+     "selection": "unknown",
+     "end": "December 2018",
+     "endEdtf": "2018-12",
+     "howEnded": "expired",
+     "offices": [
+      "president 2014",
+      "president (four times by 2014)"
+     ],
+     "evidence": [
+      {
+       "source": "clegg-2014-president",
+       "quote": "Clegg has served on the board continuously since 1989, including four times as president."
+      },
+      {
+       "source": "clegg-2014-president",
+       "quote": "Clegg replaces Board Member Denis DeFigueiredo as president"
+      },
+      {
+       "source": "signal-clegg-goodbye",
+       "quote": "to bid a farewell to longtime board member Kerry Clegg, who is retiring after 29 years of community service."
+      }
+     ],
+     "confidence": "two sources",
+     "endDetail": "Retired; did not run in 2018. Farewell at the meeting of Wednesday Dec. 5, 2018 (article Dec. 6, 2018); successor seated then. \"29 years\" fits 1989 to 2018.",
+     "selectionDetail": "How he first joined in 1989 (election or appointment) is not stated."
+    }
+   ],
+   "notes": "Also a director of the California School Boards Association 1998 to 2012 (clegg-2014-president: \"Clegg also served as director of the state School Boards Association from 1998 to 2012.\"), a separate office if wanted."
+  },
+  {
+   "id": 25445,
+   "name": "Gloria Mercado-Fortine",
+   "holdings": [
+    {
+     "body": "William S. Hart Union High School District",
+     "start": "December 1997",
+     "startEdtf": "1997-12",
+     "selection": "elected",
+     "end": "December 2001",
+     "endEdtf": "2001-12",
+     "howEnded": "expired",
+     "offices": [],
+     "evidence": [
+      {
+       "source": "boyer2015ch14-page5",
+       "quote": "Gloria Mercado served on the William S. Hart Union High School District board from 1997 to 2001."
+      }
+     ],
+     "confidence": "one source",
+     "startDetail": "CEDA 1997: \"Gloria E. Mercado\", designation Educator, elected (5,379 votes, 3 seats).",
+     "endDetail": "CEDA 2001: \"Gloria Mercado\", designation Incumbent, not elected (9,510 votes, 3 seats)."
+    },
+    {
+     "body": "William S. Hart Union High School District",
+     "start": "December 2003",
+     "startEdtf": "2003-12",
+     "selection": "elected",
+     "end": "December 2015",
+     "endEdtf": "2015-12",
+     "howEnded": "expired",
+     "offices": [
+      "president (four times, years not stated)"
+     ],
+     "evidence": [
+      {
+       "source": "scmag-2015-hart-candidates",
+       "quote": "It's been an honor and a privilege to serve as governing board member of the William S. Hart Union High School District for the past 16 years."
+      },
+      {
+       "source": "scmag-2015-hart-candidates",
+       "quote": "incumbents Gloria Mercado-Fortine (Trustee Area No. 1) and Steve Sturgeon (Trustee Area No. 4) are up for re-election, and Linda Storli and Andrew Taban are challenging each seat"
+      },
+      {
+       "source": "scmag-2015-hart-candidates",
+       "quote": "I served four times as president"
+      },
+      {
+       "source": "canyons-mercado-fortine-bio",
+       "quote": "Gloria served four terms (16 years) as a publicly elected official on the Governing Board of the William S. Hart High School District."
+      }
+     ],
+     "confidence": "two sources",
+     "startDetail": "CEDA 2003: \"Gloria Mercado\", Educator, elected as a non-incumbent; re-elected 2007 and 2011 as \"Gloria Mercado-Fortine\".",
+     "endDetail": "CEDA 2015 Area 1: \"G Mercado-Fortine\", incumbent, not elected (1,078 of 2,506); Linda Storli won. Term ended Dec 2015."
+    }
+   ],
+   "notes": "Resolved, with evidence: the CEDA rows are hers and are right. \"Gloria E. Mercado\" (1997) and \"Gloria Mercado\" (2001, 2003) are the same person before the hyphenated name: Boyer (2015) independently says \"Gloria Mercado served on the ... Hart ... board from 1997 to 2001\", and her own statements count \"four terms (16 years)\", which equals 1997 to 2001 (one term) plus 2003 to 2015 (three terms). \"2000 to 2016\" in the recount was a misreading; she never served 2016. So two Hart holdings with a 2001 to 2003 gap, ending Dec 2015 after losing to Storli. Castaic Union board: her 2015 statement says \"12 years\", the canyons.edu bio says \"ten years\". No dates; CEDA (from 1995) has no Castaic Union row for her, so it was before 1995 or uncontested. Not created as a holding; needs a source. Her 2015 statement also says she was a founding member of the Castaic Town Council."
+  }
+ ]
+}

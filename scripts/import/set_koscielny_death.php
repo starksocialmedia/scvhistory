@@ -46,7 +46,7 @@ if (!$APPLY || $done) { echo 'nothing was written.' . ($APPLY ? '' : ' Set $APPL
 if ($bad) { echo 'REFUSING' . PHP_EOL; return; }
 $h = array_map(fn($f) => $f->handle, $p->getFieldLayout()->getCustomFields());
 $vals = ['deathDate' => 'August 13, 2026', 'deathDateEdtf' => '2026-08-13', 'deathEvidence' => 'contemporary', 'birthDate' => 'July 8, 1952', 'birthDateEdtf' => '1952-07-08', 'birthEvidence' => 'retrospective',
-    'fullName' => 'Rosemarie Koscielny', 'personAliases' => 'Rosemarie Koscielny', 'recordProvenance' => trim((string)$p->recordProvenance . $PROV)];
+    'fullName' => 'Rosemarie Koscielny', 'personAliases' => 'Rose Koscielny', 'recordProvenance' => trim((string)$p->recordProvenance . $PROV)];
 $p->setFieldValues(array_intersect_key($vals, array_flip($h)));
 if (!Craft::$app->getElements()->saveElement($p)) { throw new \RuntimeException(json_encode($p->getFirstErrors())); }
 $r = Entry::find()->id(25397)->status(null)->one(); $ok = $r->deathDateEdtf === '2026-08-13' && $r->birthDateEdtf === '1952-07-08';

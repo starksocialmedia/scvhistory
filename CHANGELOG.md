@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (afternoon)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: The Reggie mirror read again (Full Disk Access renewed; runbook line). The Bennett-Arcan party kept: four mirror pages name it, and Reynolds chapter 19. The four blocked records (Bennett-Arcan, Henry Mayo Newhall Memorial Hospital, SCV Chamber of Commerce, SCV Water) written from 29 manifest-matched pages (build_blank_records_4.php, applied by Nathan); Reynolds's unconfirmed figures for the party then attributed to him (fix_bennett_arcan_figures.php). Christy Smith (#25389) from the Secretary of State's returns and two SCVTV pages, Wikipedia a finding aid only; Chris Trunkey (#25409) from the Saugus Union district's biography and KHTS's 2014 reports, his 2022 candidacy joined, the Hart district related for the Measure V committee. Both portraits imported, licence unknown, photographers named (Jeff Walters; Jennifer Emery). Koscielny (#25397) recorded as died 13 August 2026 from KHTS and SCVNews. 23 office holdings the civic records lacked (create_office_gap_holdings.php, 43 saved sources in inventory/news/office-gaps-2026-10-03/): Plambeck (three), Colley, Martin (two each), Umeck, Bryce, Strickland (two), Arrowsmith, Solomon, Pearson, Weinstein, Messina, Christopher, Shapiro, Diaz, Clegg, Mercado-Fortine (two), Koscielny. Cameron Smyth's portrait swapped (#21579 kept). District marks beside each card on /schools. Brian Walters drafted (build_walters_profile.php, dry run): thirteen years on the Newhall board, 2009 to 2022. Research: the recount of the 42 (25 of 37 writable), Walters's sources, Connie Worden's sources (inventory/review/).
+- Decisions: Nathan: the Smith portrait is not public domain (the Public Records Act excludes the Legislature; the file names Jeff Walters); reading Wayback captures is fine (AGENTS.md reworded); district biographies before campaign material; the Walters district bio is self-written, so what rests on it alone is attributed. SCV Water's founding board is "succeeded", not elected or appointed. Holdings are one per continuous tenure where the sources give tenures.
+- Blockers: none. Held for Nathan: de la Cerda (the court record, below in the report), Connie Worden (findings before writing), the term-by-term derivation of board holdings from the election results.
+- Next: Walters apply on Nathan's word; Connie Worden on his decision; the board holdings derivation; Smith's 2016 Assembly race (the mirror's citycouncilresults2016.htm).
+
 2026-10-03 (noon)
 
 - Agent: Claude Code

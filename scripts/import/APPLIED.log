@@ -245,3 +245,6 @@
 2026-10-03 11:04:18 PDT	set_koscielny_death.php	scvhistory-web	1 rows	verified	Rose Koscielny: died 13 August 2026, confirmed from two reports
 2026-10-03 11:29:10 PDT	fix_portrait_provenance_2026_10_03.php	scvhistory-web	2 rows	verified	Smith and Trunkey portraits: checksum to sourceChecksum, plain source sentences
 2026-10-03 11:38:50 PDT	fix_smith_note_paths.php	scvhistory-web	5 rows	verified	Christy Smith: repository paths out of five footnotes
+2026-10-03 11:53:21 PDT	set_koscielny_death.php (alias corrected)	scvhistory-web	1 rows	verified	Koscielny: alias Rose Koscielny, the name she was known by
+2026-10-03 11:53:34 PDT	create_office_gap_holdings.php	scvhistory-web	23 rows	verified	office holdings the civic records lacked: water boards, appointments, resignations, uncontested seats
+2026-10-03 11:53:54 PDT	swap_smyth_portrait.php	scvhistory-web	1 rows	verified	Cameron Smyth: new portrait, rights not recorded; #21579 kept
