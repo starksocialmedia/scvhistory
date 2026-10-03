@@ -26,9 +26,9 @@
  * The lead says what ties him here, and that it is thin. Every quotation is
  * checked against the page it comes from (_source_texts.php: byte copies of the
  * mirror pages with their hashes) or against the archive record it cites. The
- * search behind every remaining "no source" note on the record is written into
- * an editorNotes row (docs/PROFILES.md, "A note that says no source exists
- * records the search").
+ * search behind every "no source" note on the record is not written to it: it is
+ * in inventory/source-searches.json under persons:323 (docs/PROFILES.md, "A note
+ * that says no source exists records the search").
  *
  * Refuses unless the body and footnotes are exactly as read on 3 October (hashes
  * below). Nothing removed comes back: the new text is checked against
@@ -101,8 +101,6 @@ foreach ([[4743, 'Mr. Cave Couts, son of Major Couts'], [863, 'The nest of thiev
     echo ($ok ? 'record ok  ' : 'RECORD MISSING ') . "#$rid: \"$q\"" . PHP_EOL; if (!$ok) { $bad[] = "#$rid does not read \"$q\""; }
 }
 
-/* The search behind each "no source" note on the record (docs/PROFILES.md). */
-$SEARCHED = 'Searched 3 October 2026 by a Python script reading every one of the 84,849 text pages of the legacy SCVHistory.com site (its pages, the flipbook books\' text and their search files, each read as cp1252 so no page is skipped), and the archive\'s own records. "Couts", "Coutts", "Cave J." and "Cave Johnson" find 23 pages; "Guajome" 28 files. None gives a dated act of his in the valley (the 1852 letter\'s "Santa Clara" is undetermined). Nothing found for: a birth on 6 November 1821 or in Smith County (searched "Smith County", "November 6, 1821", "6 November 1821" on pages naming Couts); his burial place ("Campo Santo", "buried", "cemetery", "interred" within 250 characters of his name); his trials ("murder", "acquit", "trial", "indict" within 300 characters); an earlier source for the roof-railing story than Reynolds ("Ysidora" or "Isidora" within 300 characters of "railing" or "roof").';
 $NOT_COVERED_OLD = 'Smythe\'s 1907 account is the only biography of Couts in the archive. It is an admiring one, and it says nothing of how Couts treated the Native workers whose labor he secured as sub-agent. Wikipedia, used here only as a finding aid, reports that he was tried on several charges, including murder, and acquitted. The archive holds no source for this yet, and the profile will say more when it does.';
 $NOT_COVERED_NEW = 'Smythe\'s 1907 account is the only biography of Couts in the archive, and an admiring one; it says nothing of how he treated the Native workers whose labor he secured as sub-agent. Leon Worden, citing Akins and Bauer (2021), writes that Couts used Indian slave labor to build the adobe at Rancho Guajome, and the profile says so. Wikipedia, used here only as a finding aid, reports that he was tried on several charges, including murder, and acquitted. No source in the archive, searched 3 October 2026, speaks of the trials.';
 
@@ -110,20 +108,18 @@ $curBody = (string)$p->body; $curFn = $p->footnotes;
 $done = trim($curBody) === trim($BODY);
 if (!$done && hash('sha256', $curBody) !== $OLD_BODY_SHA) { $bad[] = 'the body is not the one read on 3 October (fix_couts_tie.php\'s text); refusing to replace it'; }
 if (!$done && hash('sha256', json_encode($curFn)) !== $OLD_FN_SHA) { $bad[] = 'the footnotes are not the ones read on 3 October'; }
-$R = $rows($p); $newRows = []; $nc = 0; $hasSearch = false;
+$R = $rows($p); $newRows = []; $nc = 0;
 foreach ($R as $r) {
     if ($r['note'] === $NOT_COVERED_OLD) { $r['note'] = $NOT_COVERED_NEW; $r['heading'] = 'Not yet covered'; $nc++; }
     elseif ($r['note'] === $NOT_COVERED_NEW) { $nc++; }
-    if ($r['heading'] === 'How the archive was searched') { $hasSearch = true; if ($r['note'] !== $SEARCHED) { $bad[] = 'a different search note is already on the record'; } }
     $newRows[] = $r;
 }
 if ($nc !== 1) { $bad[] = 'the "does not yet cover" note is not exactly as read'; }
-if (!$hasSearch) { $newRows[] = ['heading' => 'How the archive was searched', 'position' => 'bottom', 'note' => $SEARCHED]; }
 
 /* Nothing removed comes back. */
 $REG = json_decode((string)file_get_contents("$root/scripts/import/removed-claims.json"), true);
 foreach ($REG['claims'] ?? [] as $c) { if (str_contains($ws($BODY . $BIO), $ws($c['claim']))) { $bad[] = 'a removed claim is in the new text: ' . mb_substr($c['claim'], 0, 60); } }
-$all = $BODY . implode('', $NOTES) . $BIO . $SEARCHED . $NOT_COVERED_NEW;
+$all = $BODY . implode('', $NOTES) . $BIO . $NOT_COVERED_NEW;
 if (preg_match('~\x{2014}|inventory/|\.json~u', $all)) { $bad[] = 'an em dash or a repository path in the text'; }
 preg_match_all('~\[(\d+)\]~', $BODY, $m); $used = array_values(array_unique(array_map('intval', $m[1])));
 if (count($used) !== count($NOTES) || max($used) !== count($NOTES)) { $bad[] = 'notes used ' . json_encode($used) . ' of ' . count($NOTES); }
@@ -140,7 +136,9 @@ echo '  ' . str_replace("\n\n", PHP_EOL . '  ' . PHP_EOL . '  ', $BODY) . PHP_EO
 echo 'FOOTNOTES OLD: ' . count($curFn) . ' -> NEW: ' . count($NOTES) . PHP_EOL; foreach ($NOTES as $i => $n) { echo '  [' . ($i + 1) . "] $n" . PHP_EOL; }
 echo 'AUTHOR BIO OLD: ' . $p->authorBio . PHP_EOL . 'AUTHOR BIO NEW: ' . $BIO . PHP_EOL;
 echo 'EDITOR NOTE "What this profile does not yet cover" OLD: ' . $NOT_COVERED_OLD . PHP_EOL . '  NEW ("Not yet covered"): ' . $NOT_COVERED_NEW . PHP_EOL;
-echo 'EDITOR NOTE ' . ($hasSearch ? 'present' : 'ADD') . ' "How the archive was searched": ' . $SEARCHED . PHP_EOL;
+$log = json_decode((string)@file_get_contents("$root/inventory/source-searches.json"), true)['records']['persons:323'] ?? [];
+if (!$log) { $bad[] = 'inventory/source-searches.json has no search for persons:323'; }
+echo 'Search log: inventory/source-searches.json, persons:323, ' . count($log) . ' entries' . PHP_EOL;
 echo 'PROVENANCE: ' . $prov . ' (' . mb_strlen($prov) . ' chars)' . PHP_EOL;
 echo 'Mirror mounted for a live hash check: ' . ($SRC['mirror'] ? 'yes' : 'no (checked against the byte copies only)') . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', $bad) : 'none') . PHP_EOL;
@@ -155,8 +153,8 @@ try {
     $tx->commit();
 } catch (\Throwable $t) { $tx->rollBack(); echo 'ROLLED BACK, nothing was written: ' . $t->getMessage() . PHP_EOL; throw $t; }
 $r = $get($ID);
-$ok = trim((string)$r->body) === trim($BODY) && count($r->footnotes) === count($NOTES) && (bool)array_filter($r->editorNotes, fn($x) => ($x['note'] ?? '') === $SEARCHED);
+$ok = trim((string)$r->body) === trim($BODY) && count($r->footnotes) === count($NOTES) && (bool)array_filter($r->editorNotes, fn($x) => ($x['note'] ?? '') === $NOT_COVERED_NEW);
 echo 'READ-BACK ' . ($ok ? 'OK: ' . $r->url : 'SHORT') . PHP_EOL;
 $applyLog = require "$root/scripts/import/_apply_log.php";
-$applyLog('widen_couts_profile.php', 1, $ok ? 'verified' : 'SHORT', 'Couts widened: Worden\'s "felt in the valley", Guajome and Camulos, slave labor, SCVHS holdings; search recorded');
+$applyLog('widen_couts_profile.php', 1, $ok ? 'verified' : 'SHORT', 'Couts widened: Worden\'s "felt in the valley", Guajome and Camulos, slave labor, SCVHS holdings');
 if (!$ok) { throw new \RuntimeException('widen_couts_profile: read-back failed'); }

@@ -19,16 +19,19 @@
  *      error on #18869 (the freighter called "Remi Allen Nadeau"). The other
  *      two are done by their own scripts: Couts (#323) by widen_couts_profile.php,
  *      the California Battalion (#946) by restore_california_battalion.php.
- *   2. Adds to each record whose note was re-searched one editorNotes row, "How
- *      the archive was searched": what was searched, where, how and when, one
- *      sentence per note. The public note keeps its plain sentence.
+ *   2. The search behind every one of the 80 notes is NOT written to the
+ *      records: it is in inventory/source-searches.json, keyed by record (Nathan,
+ *      3 October 2026: "The note says what is not known, the file says what was
+ *      searched and how"). The public notes keep their plain sentences.
+ *   2b. Date and evidence fields on Rodolfo Acosta (#343) and Andrés Pico
+ *      (#317), as Nathan approved (3 October 2026), each guarded on its value.
  *   3. removed-claims.json: the search beside the three retirements that rested
  *      on "nothing found" (De Anza Expedition, the two missions), and an entry
  *      for Ward Connerly (#16411, removed 1 October), whose removal reason ("the
  *      archive's only mention") was wrong though the decision stands. Written
  *      only on apply, after the database commits.
  *   4. Lists, without touching them, other notes on this week's records that
- *      say something was not found and are not covered here.
+ *      say something was not found and have no entry in source-searches.json.
  * Quotations are checked against byte copies of the mirror pages
  * (_source_texts.php) or the archive records they cite.
  * One transaction; read-back; apply log. Idempotent. Dry run by default.
@@ -49,203 +52,6 @@ $rowsOf = fn($e) => array_values(array_map(fn($r) => ['heading' => (string)($r['
 $fnOf = fn($e) => array_values(array_map(fn($r) => ['number' => (string)($r['number'] ?? ''), 'note' => (string)($r['note'] ?? ''), 'source' => (string)($r['source'] ?? 'editorial-2026')], array_filter($e->footnotes ?? [], fn($r) => is_array($r) && trim((string)($r['note'] ?? '')) !== '')));
 $DATA = json_decode(<<<'JSON'
 {
- "pre": "Searched 3 October 2026 by a Python script reading every one of the 84,849 text pages of the legacy SCVHistory.com site (its pages, the flipbook books' text and their search files, each read as cp1252 so no page is skipped), and the archive's own records.",
- "search": {
-  "339": [
-   "The name Allen: \"Remi Allen\", \"Allen Nadeau\" and \"R. A. Nadeau\" on pages naming Nadeau. One page gives it, to the freighter's great-great-grandson, the author born in 1920 (caption to record #3695); none gives it to the freighter.",
-   "His burial place: \"buried\", \"cemetery\", \"interred\", \"entombed\" and \"funeral\" within 300 characters of \"Nadeau\". His 1887 obituary gives only the funeral from his home; nothing gives the grave."
-  ],
-  "18869": [
-   "The name of his grandfather, the freighter: \"Remi Allen\", \"Allen Nadeau\". The only page with the name Allen gives it to the author born in 1920, not to the freighter."
-  ],
-  "315": [
-   "Carson in the valley: every one of the 50 pages naming \"Kit Carson\" read. Leon Worden's column of June 24, 1998 says he and Frémont \"rode through the area in the mid-1840s\"; no other page places him here (Cullimore has him at Tejon Pass, outside the valley).",
-   "His dates and burial: Dr. Alan Pollack's story read in full; \"1868\", \"buried\" and \"Taos\" near \"Carson\". Pollack gives the day of death and the burial at Taos; no page gives December 24, 1809 or Madison County."
-  ],
-  "343": [
-   "Acosta in the valley and his dates: all 8 pages naming \"Rodolfo Acosta\" read, and \"Rudy Acosta\". His own legacy page (LW3399) gives his birth from his Texas birth certificate, his death, and films made in the valley. Burial: \"Forest Lawn\", \"buried\" within 200 characters of his name; nothing."
-  ],
-  "2588": [
-   "Others describing him: all 109 pages naming \"Tim Whyte\" read, and the 10 archive records. Pauline Harte's 1997 columns, the Citizen of 1988 as annotated, and his Signal bylines of 1990 to 2003 describe or name him."
-  ],
-  "285": [
-   "His burial place: \"buried\", \"cemetery\", \"interred\", \"grave\" and \"Santa Clara Mission\" within 200 characters of \"Tiburcio\" or \"Vasquez\" (25 pages). Dick Cox (Real West, 1965) gives the Catholic Cemetery at Santa Clara.",
-   "A birth on April 7, 1835: \"April 7, 1835\", \"7 April 1835\", \"Apr. 7\" within 300 characters of \"Vasquez\". Nothing."
-  ],
-  "297": [
-   "His dates and burial: \"1782\", \"1721\", \"March 1\", \"buried\", \"interred\", \"Carmel\", \"died\", \"death\" within 200 characters of \"Crespí\" or \"Crespi\" (11 pages). Leon Worden's Carmel Mission galleries give the day of death and the crypt; nothing gives March 1, 1721."
-  ],
-  "299": [
-   "His burial place: \"buried\", \"interred\", \"entombed\", \"grave\", \"tomb\" within 200 characters of \"Serra\" (37 pages). Leon Worden's Carmel Mission galleries give it."
-  ],
-  "317": [
-   "His dates, burial and offices: \"1810\", \"November 18\", \"born\", \"1876\", \"buried\", \"interred\", \"cemetery\", \"funeral\", \"Assembly\", \"senator\" near \"Andrés Pico\", \"Andres Pico\", \"Gen. Pico\", \"Don Andrés\". His death date and his Senate seat are found; his birthplace (San Diego) but not the date; nothing on his burial."
-  ],
-  "287": [
-   "The town of Guissona: \"Guissona\" anywhere, and \"born\", \"birth\", \"native of\" within 150 characters of \"Fages\". Nothing."
-  ],
-  "303": [
-   "His birth: \"Santa Barbara\", \"1841\" and \"born\" within 200 characters of \"Juventino\" (9 pages). The year 1841 only; nothing on the place or the months before the marriage."
-  ],
-  "307": [
-   "His burial place: \"buried\", \"interred\", \"Rockland\", \"Trinity\", \"grave\", \"cemetery\" within 200 characters of \"Frémont\" or \"Fremont\" (20 pages). Nothing on his grave."
-  ],
-  "309": [
-   "The day: \"February 9\", \"Feb. 9\", \"9 February\", \"1798\" within 200 characters of \"Stearns\". The year only."
-  ],
-  "327": [
-   "His burial place: \"buried\", \"interred\", \"Rock Creek\", \"cemetery\", \"entombed\" within 200 characters of \"Beale\" (39 pages), and Bonsal's 1912 biography read at his death. It tells of the interment but not where."
-  ],
-  "333": [
-   "The middle name Burnett: \"Arthur Burnett\", \"Burnett Perkins\", \"A. Burnett\". Nothing."
-  ],
-  "341": [
-   "A Sacramento birthplace: \"Sacramento\" and \"born\" within 250 characters of \"Dante Acosta\". The City's biography (born and raised in Southern California) only."
-  ],
-  "311": [
-   "Larkin in the valley: \"Santa Clara\", \"Newhall\", \"San Feliciano\", \"Placerita\", \"San Francisquito\", \"Piru\", \"Castaic\" within 300 characters of \"Larkin\". Perkins has him writing from Monterey; nothing places him here.",
-   "His dates: \"1802\", \"1858\", \"Charlestown\", \"born\", \"died\" within 200 characters of \"Larkin\". Nothing."
-  ],
-  "281": [
-   "His burial place: \"Eternal Valley\", \"buried\", \"interred\", \"cemetery\", \"ashes\", \"scattered\", \"services\" within 300 characters of \"Jerry Reynolds\" (13 pages), and his memorial page read. Nothing."
-  ],
-  "16356": [
-   "The Lindbergh story: \"Lindbergh\" within 400 characters of \"Hart\". Leon Worden's captions repeat it as \"unproved rumors\"; no source for it.",
-   "A birth record: \"birth certificate\", \"birth record\", \"baptism\" within 200 characters of \"Hart\". Leon Worden writes that the Newburgh records were lost to fire."
-  ],
-  "21584": [
-   "The middle name and the birth date: \"Gustavus\" anywhere; \"1843\", \"January 28\", \"born\" within 200 characters of \"Scofield\". Nothing."
-  ],
-  "291": [
-   "A record of his death: \"1841\", \"died\", \"death\", \"burial\" within 200 characters of \"Antonio del Valle\" (42 pages). Dates given; no record of the death itself."
-  ],
-  "21582": [
-   "Her professional career: every page naming \"Gutzeit\" (15) read. Board minutes, rosters and sponsor lists; nothing on her profession."
-  ],
-  "25391": [
-   "Other sources on him: \"Brian Walters\", \"Brian D. Walters\", and \"WiSH\" or \"Hart District Education Foundation\" near \"Walters\". No page of the legacy site names him."
-  ],
-  "28264": [
-   "Other sources on him: \"Brian Walters\", \"Brian D. Walters\", and \"WiSH\" or \"Hart District Education Foundation\" near \"Walters\". No page of the legacy site names him."
-  ],
-  "28208": [
-   "The date she left the board: \"Christy Smith\" within 250 characters of \"board\", \"trustee\", \"resign\". Only the October 2017 video naming her board president."
-  ],
-  "25409": [
-   "A 2016 contest for his seat: \"Trunkey\" anywhere. No page of the legacy site names him; the absence rests on the County's returns as compiled by the California Elections Data Archive."
-  ],
-  "394": [
-   "An official source for 39.5 square miles: \"39.5 square\", \"39.5-square\", \"39.79\". Leon Worden's cityhood pages give 39.5 as the commission's figure; no official document gives it."
-  ],
-  "16039": [
-   "A source of 1876 for 16 June: \"June 16, 1876\", \"16 June 1876\". Two later sources give it (Standard Oil's Among Ourselves, 1929, and Leon Worden's stock-certificate caption); neither is of the time.",
-   "Where the oldest-in-the-world claim is made: \"oldest existing refinery\", \"oldest refinery\" and variants (42 pages). The City's 1991 General Plan and Leon Worden's captions say it, citing nothing.",
-   "Scofield's testimony: \"750 gallons\". Only the ASME text that quotes it."
-  ],
-  "12290": [
-   "Where Hart criticized Ford: \"lead horses\", \"Remington\" within 300 characters of \"Ford\". Only this column and copies of it, which credit the 1929 autobiography the note rules out."
-  ],
-  "12370": [
-   "Where Hart criticized Ford: \"lead horses\", \"Remington\" within 300 characters of \"Ford\". Only this column and copies of it, which credit the 1929 autobiography the note rules out."
-  ],
-  "512": [
-   "His name and its variants (\"Eugene Darr\", \"Gene Darr\", \"Darr\") on every page, leaving out the memorial pages themselves. Only the casualty index and later Darrs in Hart yearbooks. No source ties him to the valley beyond the legacy page.",
-   "His burial place: \"Darr\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "522": [
-   "His name and its variants (\"Albert Lee Moore\", \"Albert L. Moore\") on every page, leaving out the memorial pages themselves. Only the casualty index. No source ties him to the valley beyond the legacy page."
-  ],
-  "560": [
-   "His name and its variants (\"Garry Wingfield\", \"Wingfield\") on every page, leaving out the memorial pages themselves. Other Wingfields only. No source ties him to the valley beyond the legacy page."
-  ],
-  "566": [
-   "His name and its variants (\"James Bartlett\", \"Jim Bartlett\") on every page, leaving out the memorial pages themselves. Nothing. No source ties him to the valley beyond the legacy page."
-  ],
-  "574": [
-   "His name and its variants (\"Ozal\", \"O. R. Smart\") on every page, leaving out the memorial pages themselves. Only the casualty index. No source ties him to the valley beyond the legacy page."
-  ],
-  "520": [
-   "His name and its variants (\"Archibald Beall\", \"Archie Beall\", \"Beall\") on every page, leaving out the memorial pages themselves. Other Bealls only. No source ties him to the valley beyond the legacy page."
-  ],
-  "546": [
-   "His name and its variants (\"Brian Prosser\", \"Brian Cody Prosser\") on every page, leaving out the memorial pages themselves. Nothing. No source ties him to the valley beyond the legacy page."
-  ],
-  "542": [
-   "His name and its variants (\"Dean Todd\", \"Dean Glenn Todd\") on every page, leaving out the memorial pages themselves. Nothing; no home is given anywhere."
-  ],
-  "562": [
-   "His name and its variants (\"Jack Harland\", \"Jack L. Harland\", \"Harland\") on every page, leaving out the memorial pages themselves. The Newhall School commencement program of 1929 lists a Jack Harland among its graduates."
-  ],
-  "548": [
-   "His name and its variants (\"Whisler\") on every page, leaving out the memorial pages themselves. The day of birth: nothing beyond the federal files."
-  ],
-  "554": [
-   "His name and its variants (\"Gilbert Montenegro\") on every page, leaving out the memorial pages themselves. The day of birth: nothing beyond the federal files."
-  ],
-  "556": [
-   "His name and its variants (\"Morissett\") on every page, leaving out the memorial pages themselves. The day of birth: nothing beyond the federal files."
-  ],
-  "558": [
-   "His name and its variants (\"Albert Thomas\", \"Albert Edward Thomas\") on every page, leaving out the memorial pages themselves. The day of birth: nothing beyond the federal files."
-  ],
-  "1356": [
-   "His burial place: \"Bruce St. Louis\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1358": [
-   "His burial place: \"Radtke\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1360": [
-   "His burial place: \"Charles Clarence Smith\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1362": [
-   "His burial place: \"David Reeder\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1364": [
-   "His burial place: \"Ables\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1366": [
-   "His burial place: \"Frank Ortega\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1368": [
-   "His burial place: \"Monteleone\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1370": [
-   "His burial place: \"Gary Turnbull\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1372": [
-   "His burial place: \"Henry Klinger\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1374": [
-   "His burial place: \"John Borders\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1376": [
-   "His burial place: \"Joseph Godwin\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1378": [
-   "His burial place: \"Michael Fay\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1380": [
-   "His burial place: \"Stephen Peterson\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "1382": [
-   "His burial place: \"Gemas\" within reach of \"buried\", \"cemetery\", \"interred\", \"burial\", \"laid to rest\", and his memorial page read. Nothing."
-  ],
-  "568": [
-   "A record of promotion: \"Private\", \"PFC\", \"rank\" within 300 characters of \"Johnny Cordova\" (25 pages). The timeline calls him PFC; no record of a promotion."
-  ],
-  "514": [
-   "The note is about a federal register the legacy site does not hold; the register is as the note says. \"Kenaston\" on every page of the legacy site: only the memorial pages name him."
-  ],
-  "576": [
-   "The note is about a federal register the legacy site does not hold; the register is as the note says. \"Robert Cone\", \"Robert Russell Cone\" on every page of the legacy site: only the memorial pages name him."
-  ],
-  "580": [
-   "The note is about a federal register the legacy site does not hold; the register is as the note says. \"Thomas Milton Ross\", \"Tom Ross\" on every page of the legacy site: only the memorial pages name him."
-  ],
-  "1395": [
-   "The note is about a federal register the legacy site does not hold; the register is as the note says. \"Jimmie Ball\", \"James Robert Ball\" on every page of the legacy site: only the memorial pages name him."
-  ]
- },
  "reg": {
   "942": "Searched 3 October 2026 (Python over all 84,849 text pages of the legacy site, read as cp1252, and the archive's records): \"De Anza Expedition\", \"Anza Expedition\", and \"Anza\" within 300 characters of \"Santa Clara\", \"Newhall\", \"Castaic\", \"Tejon\", \"San Fernando\", \"Soledad\" or \"valley\". Anza Drive, the Anza trail on trail maps and a library title; Reynolds has the 1776 expedition at the Colorado River only. Nothing puts it in the valley.",
   "16515": "Searched 3 October 2026 (Python over all 84,849 text pages of the legacy site, read as cp1252, and the archive's records): \"Mission San Francisco de Asís\", \"Mission Dolores\" within 400 characters of \"Santa Clar\", \"Newhall\", \"San Fernando\", \"Castaic\", \"Tataviam\", \"Camulos\". A list of missions and a library title only.",
@@ -262,7 +68,6 @@ $DATA = json_decode(<<<'JSON'
  }
 }
 JSON, true);
-$HEAD = 'How the archive was searched';
 
 /* 1. The corrections. 'note' replaces a substring of one editorNotes row,
    'body' a substring of the body, 'fnadd' appends a footnote, 'fn' replaces a
@@ -280,7 +85,7 @@ $FIX = [
    'Leon Worden notes that a few of the films and television episodes he appeared in were made in the Santa Clarita Valley, among them Apache Warrior (1957), which used Vasquez Rocks; no source in the archive places him here otherwise.[3]'],
  ['PARTLY', 343, 'fnadd', '3', 'Leon Worden, "Rodolfo Acosta Co-stars in \'Apache Warrior\' (1957)," LW3399, as carried on SCVHistory.com, /scvhistory/lw3399.htm: "A few of the motion pictures and television episodes that featured Acosta were made in the Santa Clarita Valley"; "According to his Texas birth certificate, Rodolfo entered the world as a U.S. citizen on July 29, 1920"; "Acosta succumbed to cancer November 7, 1974, at the Motion Picture Home in Woodland Hills."'],
  ['PARTLY', 343, 'note', 'This record formerly gave his birth as July 29, 1920, in El Paso, Texas, and his death as November 7, 1974. The source here gives the years only. No source has been found for his burial place.',
-   'This record gives the years only, but Leon Worden, citing his Texas birth certificate, gives his birth as July 29, 1920, in El Paso, and his death on November 7, 1974, at the Motion Picture Home in Woodland Hills (note 3). No source has been found for his burial place.'],
+   'This record\'s dates follow Leon Worden, who cites his Texas birth certificate for his birth on July 29, 1920, in El Paso, and gives his death on November 7, 1974, at the Motion Picture Home in Woodland Hills (note 3); the archive does not hold the certificate. No source has been found for his burial place.'],
  ['WRONG', 2588, 'body', 'No other source in the archive describes him, so these columns are this record\'s only source.',
    'Pauline Harte\'s columns of 1997 call him the managing editor of The Signal, and his byline is on Signal news stories in the archive from 1990 to 2003; the introduction to The Citizen of 1988 on SCVHistory.com recalls him joining The Signal as a cub reporter, and notes he was back there in 2018.[3][4]'],
  ['WRONG', 2588, 'fnadd', '3', 'Pauline Harte, "Little glitches make the best memories," July 22, 1997, article #12745 in this archive: Tim Whyte, "the managing editor of The Mighty Signal"; and her column of April 29, 1997, article #12757: "the illustrious, multi-talented managing editor of this provocatively unique newspaper."'],
@@ -327,9 +132,9 @@ foreach ([[3695, 'Remi Allen Nadeau'], [12334, 'Explorers John C. Fremont and Ki
     $ok = str_contains($ws($t), $ws($q)); echo ($ok ? 'record ok  ' : 'RECORD MISSING ') . "#$rid: \"$q\"" . PHP_EOL; if (!$ok) { $bad[] = "#$rid does not read \"$q\""; }
 }
 
-/* Plan every record: the fixes first, then the search row. */
+/* Plan every record's corrections. */
 $plan = []; $nFix = 0; $nFixDone = 0;
-$ids = array_values(array_unique(array_merge(array_column($FIX, 1), array_map('intval', array_keys($DATA['search'])))));
+$ids = array_values(array_unique(array_column($FIX, 1)));
 foreach ($ids as $id) {
     $e = $get($id); if (!$e) { $bad[] = "#$id not found"; continue; }
     $L = $e->getFieldLayout(); $body = $L->getFieldByHandle('body') ? (string)$e->body : null; $rows = $rowsOf($e); $fns = $fnOf($e); $changed = [];
@@ -359,13 +164,41 @@ foreach ($ids as $id) {
         echo "#$id {$e->title} [$cls] FOOTNOTE [$num]" . PHP_EOL . "  OLD: $o" . PHP_EOL . "  NEW: $n" . PHP_EOL;
         $fns[$k[0]]['note'] = str_replace($o, $n, $fns[$k[0]]['note']); $changed['footnotes'] = true;
     }
-    if (isset($DATA['search'][(string)$id])) {
-        $note = $DATA['pre'] . ' ' . implode(' ', $DATA['search'][(string)$id]);
-        $have = array_values(array_filter($rows, fn($r) => $r['heading'] === $HEAD));
-        if (!$have) { $rows[] = ['heading' => $HEAD, 'position' => 'bottom', 'note' => $note]; $changed['editorNotes'] = true; echo "#$id {$e->title} SEARCH NOTE ADD: $note" . PHP_EOL; }
-        elseif ($have[0]['note'] !== $note) { $bad[] = "#$id already has a different \"$HEAD\" note"; }
-    }
     if ($changed) { $plan[$id] = ['body' => isset($changed['body']) ? $body : null, 'editorNotes' => isset($changed['editorNotes']) ? $rows : null, 'footnotes' => isset($changed['footnotes']) ? $fns : null]; }
+}
+
+/* 2b. Date and evidence fields (Nathan, 3 October 2026: "Keeping a value and
+   marking it uncited is the right pattern ... The Vasquez and Crespí precedents
+   hold"). Each field must read exactly as below before it is changed. Rodolfo
+   Acosta's dates follow Leon Worden's LW3399, which cites his Texas birth
+   certificate (not held by the archive); Pico's death date follows Leon Worden's
+   timeline (the Los Angeles Evening Express item is not held). */
+$FIELDS = [
+ [343, 'birthDate', '1920', 'July 29, 1920'], [343, 'birthDateEdtf', '1920', '1920-07-29'], [343, 'birthplace', '', 'El Paso, Texas'], [343, 'birthEvidence', 'retrospective', 'retrospective'],
+ [343, 'deathDate', '1974', 'November 7, 1974'], [343, 'deathDateEdtf', '1974', '1974-11-07'], [343, 'deathEvidence', 'retrospective', 'retrospective'],
+ [343, 'burialPlace', 'Forest Lawn Memorial Park, Hollywood Hills, California', 'Forest Lawn Memorial Park, Hollywood Hills, California'], [343, 'burialEvidence', 'uncited', 'uncited'],
+ [317, 'deathDate', 'February 14, 1876', 'February 14, 1876'], [317, 'deathDateEdtf', '1876-02-14', '1876-02-14'], [317, 'deathEvidence', 'uncited', 'retrospective'],
+ [317, 'birthDate', 'November 18, 1810', 'November 18, 1810'], [317, 'birthEvidence', 'uncited', 'uncited'],
+ [317, 'burialPlace', 'Mission San Fernando Rey de España, Mission Hills, California', 'Mission San Fernando Rey de España, Mission Hills, California'], [317, 'burialEvidence', 'uncited', 'uncited'],
+];
+$fv = function ($e, $h) { $v = $e->getFieldValue($h); if ($v instanceof \DateTimeInterface) { return $v->format('Y-m-d'); } if (is_object($v) && property_exists($v, 'value')) { return (string)$v->value; } return trim((string)$v); };
+foreach (['birthEvidence', 'deathEvidence', 'burialEvidence'] as $h) {
+    $f = Craft::$app->getFields()->getFieldByHandle($h); $opts = $f ? array_column($f->options, 'value') : [];
+    foreach (['certified', 'contemporary', 'retrospective', 'roster', 'uncited'] as $o) { if (!in_array($o, $opts, true)) { $bad[] = "$h has no option \"$o\""; } }
+}
+foreach ([343 => [['lw3399', 'According to his Texas birth certificate , Rodolfo entered the world as a U.S. citizen on July 29, 1920'], ['lw3399', 'He was born in the family home at 609 E. 3rd Avenue in El Paso'], ['lw3399', 'Acosta succumbed to cancer November 7, 1974, at the Motion Picture Home in Woodland Hills']],
+          317 => [['timeline', 'February 14: Gen. Andres Pico dies at his home at 203 Main St., Los Angeles'], ['ripley14', '1876, February 14. Los Angeles Evening Express']]] as $fid => $qs) {
+    foreach ($qs as [$k, $q]) { if (!$SRC['has']($k, $q)) { $bad[] = "#$fid date source: $k does not read \"" . mb_substr($q, 0, 60) . '"'; } }
+}
+echo 'deathPlace field: ' . (Craft::$app->getFields()->getFieldByHandle('deathPlace') ? 'exists (not set here; the place is in the note)' : 'none; the place of death is in the note only') . PHP_EOL;
+foreach ($FIELDS as [$id, $h, $old, $new]) {
+    $e = $get($id); if (!$e->getFieldLayout()->getFieldByHandle($h)) { $bad[] = "#$id has no field $h"; continue; }
+    $cur = $fv($e, $h);
+    if ($cur === $new) { echo "#$id {$e->title} $h: \"$cur\"" . ($old === $new ? ' (kept)' : ' (already set)') . PHP_EOL; continue; }
+    if ($cur !== $old) { $bad[] = "#$id $h reads \"$cur\", not \"$old\""; continue; }
+    echo "#$id {$e->title} $h: \"$old\" -> \"$new\"" . PHP_EOL;
+    $plan[$id] = $plan[$id] ?? ['body' => null, 'editorNotes' => null, 'footnotes' => null];
+    $plan[$id]['fields'][$h] = $new;
 }
 
 /* 3. removed-claims.json, shown; written only on apply. */
@@ -384,16 +217,18 @@ if (!array_filter($reg['removedRecords'], fn($x) => ($x['record'] ?? 0) === $C['
 }
 
 /* 4. Other notes this week saying something was not found, not covered here. */
-$covered = array_merge($ids, [323, 946]); $other = [];
+$logged = array_map(fn($k) => (int)explode(':', $k)[1], array_keys(json_decode((string)@file_get_contents("$root/inventory/source-searches.json"), true)['records'] ?? []));
+if (!$logged) { $bad[] = 'inventory/source-searches.json is missing or empty'; }
+$covered = array_merge($ids, $logged, [323, 946]); $other = [];
 foreach (Entry::find()->status(null)->dateUpdated('>= 2026-09-26')->limit(null)->each(200) as $e) {
     if (in_array($e->id, $covered, true) || !$e->getFieldLayout() || !$e->getFieldLayout()->getFieldByHandle('editorNotes')) { continue; }
     foreach ($rowsOf($e) as $r) { if (preg_match('~(has|have) (not )?been (found|seen)|no source|not found|no record of~i', $r['note']) && !preg_match('~^(Searched|Correction)~', $r['note'])) { $other[] = "#{$e->id} {$e->title} \"{$r['heading']}\": " . mb_substr(strip_tags($r['note']), 0, 160); } }
 }
 echo PHP_EOL . 'NOT COVERED (other notes this week that say something was not found; listed, not changed): ' . count($other) . PHP_EOL . ($other ? '  ' . implode(PHP_EOL . '  ', $other) . PHP_EOL : '');
 
-$text = json_encode([$FIX, $DATA['search']], JSON_UNESCAPED_UNICODE);
+$text = json_encode($FIX, JSON_UNESCAPED_UNICODE);
 if (preg_match('~\x{2014}|inventory/|\.json~u', $text)) { $bad[] = 'an em dash or a repository path in the public text'; }
-echo PHP_EOL . "Corrections: $nFix (" . ($nFix - $nFixDone) . ' to make, ' . $nFixDone . ' already made). Records to save: ' . count($plan) . '. Records with a search note: ' . count($DATA['search']) . '. Registry: ' . ($regChanged ? 'to write' : 'unchanged') . '.' . PHP_EOL;
+echo PHP_EOL . "Corrections: $nFix (" . ($nFix - $nFixDone) . ' to make, ' . $nFixDone . ' already made). Records to save: ' . count($plan) . '. Search log: inventory/source-searches.json (' . count(array_unique($logged)) . ' records). Registry: ' . ($regChanged ? 'to write' : 'unchanged') . '.' . PHP_EOL;
 echo 'Mirror mounted for a live hash check: ' . ($SRC['mirror'] ? 'yes' : 'no (checked against the byte copies only)') . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
@@ -405,6 +240,7 @@ try {
     foreach ($plan as $id => $v) {
         $e = $get($id); $L = $e->getFieldLayout();
         foreach (['body', 'editorNotes', 'footnotes'] as $h) { if ($v[$h] !== null) { $e->setFieldValue($h, $v[$h]); } }
+        foreach ($v['fields'] ?? [] as $h => $val) { $e->setFieldValue($h, $val); }
         if ($L->getFieldByHandle('recordProvenance') && !str_contains((string)$e->recordProvenance, 'fix_no_source_notes_2026_10_03.php')) {
             $p = trim((string)$e->recordProvenance . $PROV); if (mb_strlen($p) <= 255) { $e->setFieldValue('recordProvenance', $p); }
         }
@@ -419,8 +255,9 @@ foreach ($plan as $id => $v) {
     if ($v['body'] !== null && (string)$e->body !== $v['body']) { $short[] = "#$id body"; }
     if ($v['editorNotes'] !== null && $rowsOf($e) != $v['editorNotes']) { $short[] = "#$id editorNotes"; }
     if ($v['footnotes'] !== null && count($fnOf($e)) !== count($v['footnotes'])) { $short[] = "#$id footnotes"; }
+    foreach ($v['fields'] ?? [] as $h => $val) { if ($fv($e, $h) !== $val) { $short[] = "#$id $h"; } }
 }
 echo 'READ-BACK ' . ($short ? 'SHORT: ' . implode(', ', $short) : 'OK, ' . count($plan) . ' records') . PHP_EOL;
 $applyLog = require "$root/scripts/import/_apply_log.php";
-$applyLog('fix_no_source_notes_2026_10_03.php', count($plan), $short ? 'SHORT' : 'verified', "no-source notes: $nFix corrections; the search recorded on " . count($DATA['search']) . ' records; registry ' . ($regChanged ? 'updated' : 'unchanged'));
+$applyLog('fix_no_source_notes_2026_10_03.php', count($plan), $short ? 'SHORT' : 'verified', "no-source notes: $nFix corrections; date fields on #343 and #317; registry " . ($regChanged ? 'updated' : 'unchanged'));
 if ($short) { throw new \RuntimeException('fix_no_source_notes_2026_10_03: read-back failed'); }

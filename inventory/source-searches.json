@@ -1,0 +1,1041 @@
+{
+ "about": "What was searched, where, how and when, behind each archive note that says a source does not exist or was not found (docs/PROFILES.md, 'A note that says no source exists records the search'; Nathan, 3 October 2026: 'The note says what is not known, the file says what was searched and how'). Keyed by '<section>:<record id>'. result: SURVIVES (the absence holds), WRONG (a source exists; see found), PARTLY (part holds), OUTSIDE (the note concerns a register the mirror does not hold). Removals resting on 'nothing found' keep their search in scripts/import/removed-claims.json beside the removal; they are repeated here for completeness. First entries: the re-search of 3 October 2026 (inventory/review/no-source-notes-2026-10-03.md).",
+ "records": {
+  "articles:12290": [
+   {
+    "note": "where Hart said it has not been found.",
+    "field": "editorNotes, 'Correction, 2026'",
+    "searched": "Ford within 300 of lead horses|Remington (7 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "LW2172 and the docent manual repeat the autobiography attribution the note refutes; no other source.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "articles:12370": [
+   {
+    "note": "where Hart said it has not been found.",
+    "field": "editorNotes, 'Correction, 2026'",
+    "searched": "Ford within 300 of lead horses|Remington (7 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "LW2172 and the docent manual repeat the autobiography attribution the note refutes; no other source.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "groups:942": [
+   {
+    "note": "Retired: no source in the archive puts the expedition in the Santa Clarita Valley.",
+    "field": "removed-claims.json; fold_and_retire_records.php",
+    "searched": "\\bAnza\\b within 300 of Santa Clar|Newhall|Castaic|Tejon|San Fernando|Soledad|valley (19 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Anza Drive, the Anza Trail on trail maps, a library title. Reynolds part 10 has 1776 at the Colorado River only (as the audit found). Note: the unsourced WordPress bodies of Garcés (#289) and Anza (#301) still claim Garcés 'entered the Santa Clarita Valley' in 1776.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "groups:946": [
+   {
+    "note": "Folded into John C. Frémont (#307): no source here names a California Battalion; the sources tell of Frémont's \"buckskin battalion\", and his record holds it.",
+    "field": "removed-claims.json removedRecords 'why'; fold_and_retire_records.php $GO note and header; the redirect's note",
+    "searched": "'california battalion' over the whole mirror; Craft content for 'California Battalion'",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "WRONG",
+    "found": "3 mirror files. Dr. Alan Pollack, \"Kit Carson, Ned Beale Cross Paths and Alter California's Future\" (Heritage Junction Dispatch, Nov.-Dec. 2014): \"Fremont's men, now referred to as the California Battalion, met up with U.S. Commodore Robert Stockton in Monterey.\" Two environmental reports go further and place it here: NorthLake Specific Plan Draft Supplemental EIR (May 2017), section 5.3 Cultural Resources, and Tesoro del Valle Supplemental Draft EIR (Feb. 2018), section 5.5: \"Fremont in command of the California Battalion ... Fremont's battalion marched through the Santa Clara River Valley and south to Mission San Fernando.\" The mirror-grep audit found only Pollack. In Craft, the unsourced WordPress bodies of Edwin Bryant (#313) and the recordDates of Carson (#315) and Pico (#317) also use the name; they are not sources.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "officeHoldings:28208": [
+   {
+    "note": "No source in hand gives the date she left the board.",
+    "field": "footnotes[2]",
+    "searched": "Christy Smith within 250 of board|trustee|resign",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only nsd102617 (board president, Oct. 2017).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "officeHoldings:28264": [
+   {
+    "note": "how his appointment carried on to the 2013 election is not established.",
+    "field": "footnotes[1]",
+    "searched": "Brian Walters; McGrath in Newhall School pages",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 relevant hits.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "organizations:16039": [
+   {
+    "note": "The date often given for the incorporation, 16 June 1876, has not been found in a source of the time. / No source of the time found gives 16 June.",
+    "field": "body; footnote 1",
+    "searched": "June 16,? 1876|16 June 1876",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Not of the time, but in the archive: W.J. Held, Among Ourselves (Standard Oil), 1929 (SZ2901), and Leon Worden's LW3555 caption ('Incorporated June 16, 1876 [records that say July 8 are incorrect]'). Worth adding to footnote 1.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "That it is the oldest surviving refinery in the world is said in City of Santa Clarita tourism copy and in online encyclopedias, with no source",
+    "field": "body; footnote 10",
+    "searched": "oldest (existing|operating)? (oil )?refinery (42 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "The 'no source' half holds. But the claim is also in the archive itself: the City's 1991 General Plan historic resources list ('This is the oldest existing oil refinery in the world'), Leon Worden's captions (AP2522 and a dozen more: 'believed to be the oldest existing refinery in the world'), CH9802, and the Old Town Newhall Gazette ('oldest existing refinery in the Western Hemisphere').",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "ASME quotes Scofield's own testimony ...; the testimony itself has not been found.",
+    "field": "footnote 8",
+    "searched": "750 gallons",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only pioneer-asme-ii (the ASME text).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "organizations:394": [
+   {
+    "note": "the figure usually given, 39.5, has not been found in an official source.",
+    "field": "body",
+    "searched": "39.5 square|39.79|39.5-square (7 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Leon Worden's cityhood pages (LW2612, LW2614, LW2691, LW3071, LW8602, LW9502, SC9301) all give 39.5 as the LAFCO figure, none an official document. The narrow claim holds; the body could say where 39.5 comes from.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:16356": [
+   {
+    "note": "The rumor that Charles Lindbergh hid at the Hart house after the kidnapping of 1932 has no source.",
+    "field": "editorNotes, 'Left out'",
+    "searched": "Lindbergh within 400 of Hart",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "LW2824/LW2950/LW3044 (Leon Worden) repeat it as \"unproved rumors\"; no source for it. Consider naming where the rumor is told.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "No birth record has been seen.",
+    "field": "editorNotes, 'Middle name'",
+    "searched": "Hart within 200 of birth certificate|birth record|baptism",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "LW2289/LW2318: Newburgh records lost to fire in the late 1800s. Consistent.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:16411": [
+   {
+    "note": "\"remove unless he has a valley connection\": none found, the archive's only mention being Leon Worden's 1996 column on meeting him in Fresno",
+    "field": "remove_insignificant_persons.php header (reason for removal)",
+    "searched": "Connerly (6 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "Four Leon Worden columns of 1996 name him, not one: Jan. 31 (#12274/#12282, Fresno), Sept. 4 (#12442), Oct. 9 (#12436), Nov. 13 (#12354), all on Proposition 209. None places him in the valley, so the removal reason stands; 'only mention' is wrong.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:21582": [
+   {
+    "note": "Her professional career rests on this, her official biography, alone.",
+    "field": "footnotes[0]",
+    "searched": "Gutzeit (15 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Board minutes, agency rosters, sponsor lists; nothing on her profession.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:21584": [
+   {
+    "note": "His middle name, given elsewhere as Gustavus, has not been found in a record of his life ... the date later accounts give, 28 January 1843, has not been found in a record.",
+    "field": "editorNotes 'Not yet established'; body; footnote 1",
+    "searched": "Gustavus; Scofield within 200 of 1843|January 28|born",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 hits.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:25391": [
+   {
+    "note": "The district's biography of him ... adds what no other source in hand confirms",
+    "field": "body",
+    "searched": "Brian (D.) Walters; WiSH|Hart Education Foundation",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 hits for Brian Walters in any mirror file.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "how his appointment carried on to the 2013 election is not established.",
+    "field": "footnotes[1]",
+    "searched": "Brian Walters; McGrath in Newhall School pages",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 relevant hits.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:25409": [
+   {
+    "note": "the archive has no record of a 2016 race for his seat",
+    "field": "body",
+    "searched": "Trunkey (0 files in the mirror)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No mirror page names him; the claim rests on CEDA as stated.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:2588": [
+   {
+    "note": "No other source in the archive describes him, so these columns are this record's only source.",
+    "field": "body",
+    "searched": "'whyte' files, regex Tim Whyte (109 files); Craft content for 'Tim Whyte' (10 elements)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "WRONG",
+    "found": "Pauline Harte, 'Little glitches make the best memories' (July 22, 1997, article #12745): \"Tim Whyte, the managing editor of The Mighty Signal\"; Harte, April 29, 1997 (#12757): \"The illustrious, multi-talented managing editor of this provocatively unique newspaper\". The Santa Clarita Valley Citizen, Sept. 18, 1988, with Leon Worden's note: \"a cub reporter named Tim Whyte who, with ... John Boston, would create a whole new legacy for The Mighty Signal. Twice. (Tim is back as of 2018 ...)\". Signal news bylines: May 2, 1990 (jd9002), Sept. 24 and Nov. 18, 1991 (hs_vtc_art_1992, gt8703), Oct. 29, 2003 (Pico Canyon fire). Also named in Randy Wicks pages (#4957, #4983, #18663).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:281": [
+   {
+    "note": "His burial place, Eternal Valley Memorial Park in Newhall, has no reliable source ... No other source has been found.",
+    "field": "editorNotes, 'His burial place'",
+    "searched": "Jerry Reynolds within 300 of Eternal Valley|buried|interred|cemetery|ashes|scattered|services (13 files); LW2184 read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "None about his own burial.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:285": [
+   {
+    "note": "No source has been found for his burial place, given here as Santa Clara. The New York Tribune reported only that his body was given to his friends.",
+    "field": "editorNotes, 'His burial place'",
+    "searched": "Tiburcio|Vasquez within 200 of buried|cemetery|interred|grave|Santa Clara Mission",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "WRONG",
+    "found": "Dick Cox, 'Tiburcio Vasquez, Lover-Bandit,' Real West, November 1965 (vasquez-cox): \"After the execution he was taken to Santa Clara ... She guarded the grave night and day for nearly a week ... Since then Vasquez's corpse has been allowed to rest peacefully in the Catholic Cemetery at Santa Clara, Calif.\" Rambo's Vasquez pamphlet (rambo_vasquez p. 39) has the grave opened on March 25.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "This record formerly gave his birth as April 7, 1835, with no source.",
+    "field": "editorNotes, 'His birth date'",
+    "searched": "Vasquez within 300 of April 7,? 1835|7 April 1835|Apr. 7",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 hits.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:287": [
+   {
+    "note": "no source for the town [Guissona] has been found.",
+    "field": "editorNotes, 'His birthplace'",
+    "searched": "Guissona; Fages within 150 of born|birth|native of",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 hits for Guissona.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:291": [
+   {
+    "note": "no record of the death itself has been seen",
+    "field": "body",
+    "searched": "Antonio del Valle within 200 of 1841|died|death|burial (42 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Dates only (LO3401: 'died June 21, 1841'); no death record.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:297": [
+   {
+    "note": "This record formerly gave his birth as March 1, 1721; the source here gives the year only. No source has been found for the day of his death, January 1, 1782, or for his burial place.",
+    "field": "editorNotes, 'His dates'",
+    "searched": "Cresp[ií] within 200 of 1782|buried|interred|Carmel|died|death (11 files); within 200 of 1721|March 1",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "Leon Worden's 2014 Carmel Mission galleries: LW2654, \"Frs. Serra, Crespi and Lasuen are entombed in crypts beneath the headstones next to the altar\"; LW2655 (the basilica's text, photographed): \"On Jan. 1, 1782, Padre Juan Crespí, friend and co-worker with Serra, passed to his reward ... Junipero Serra died on Aug. 28, 1784, and at his request was buried beside Padre Crespí before the main altar\". Birth: Pollack gives 1721 only (survives).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:299": [
+   {
+    "note": "No source in this archive gives his burial place.",
+    "field": "editorNotes, 'His burial place'",
+    "searched": "Serra within 200 of buried|interred|entombed|grave|tomb|rests (37 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "WRONG",
+    "found": "LW2654 (graves gallery, 2014): Serra, Crespí and Lasuén \"entombed in crypts beneath the headstones next to the altar\" of the Carmel Mission Basilica; LW2655: \"at his request was buried beside Padre Crespí before the main altar here at the Carmel Mission\"; LW2656: \"Serra is interred nearby next to the altar in the basilica.\"",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:303": [
+   {
+    "note": "The sources here give 1841 and no birthplace; no source for the rest has been found.",
+    "field": "editorNotes, 'His dates'",
+    "searched": "Juventino within 200 of Santa Barbara|1841|born (9 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "1841 (LW3664) only; 'Santa Barbara' hits are the 'Trees of Santa Barbara' book.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:307": [
+   {
+    "note": "No source has been found for his burial place.",
+    "field": "editorNotes, 'His burial place'",
+    "searched": "Fr[eé]mont within 200 of buried|interred|Rockland|Trinity|grave|cemetery (20 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Hits are Eternal Valley Cemetery as a landmark of his 1847 camp. Aside: the record's value, Trinity Church Cemetery, is not what outside references give (Rockland Cemetery, Sparkill, N.Y.); it is unsourced either way.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:309": [
+   {
+    "note": "No source has been found for the day, 9 February.",
+    "field": "editorNotes, 'Birth date'",
+    "searched": "Stearns within 200 of February 9|Feb. 9|9 February|1798",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Year only (lp_santacruzsentinel082785; a library title).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:311": [
+   {
+    "note": "No source in this archive places him in the Santa Clarita Valley.",
+    "field": "body",
+    "searched": "Larkin within 300 of Santa Clara|Newhall|San Feliciano|Placerita|San Francisquito|Piru|Castaic (5 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Perkins part 5 has him writing from Monterey; the rest are other Larkins. Aside: LW3325 lists Larkin among the interments at Cypress Lawn, Colma, which contradicts the record's burialPlace (Mountain View Cemetery, Oakland).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "No source has been found for his dates of birth and death as given here.",
+    "field": "editorNotes, 'His dates'",
+    "searched": "Larkin within 200 of 1802|1858|Charlestown|Mountain View|born|died",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No hit for him.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:315": [
+   {
+    "note": "No source in this archive places him in the Santa Clarita Valley.",
+    "field": "body",
+    "searched": "'kit carson' over the whole mirror (50 files), each read; Pollack's page read in full",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "WRONG",
+    "found": "Leon Worden, \"Beale's Cut, parade, the 'Marsha question',\" The Signal, June 24, 1998 (article #12334): \"Explorers John C. Fremont and Kit Carson rode through the area in the mid-1840s\", the area being the pass between the San Fernando and Santa Clarita valleys. Pollack's own narrative has Carson at San Pasqual in December 1846 while Frémont came south, so Worden's line may run the two together; but a source does place him here. Cullimore (1949) has him through Tejon Pass in 1829 and 1854, outside the valley.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "This record formerly gave his birth as December 24, 1809, in Madison County, Kentucky; the sources here give only 1809 and Kentucky. No source has been found for the day of his death, May 23, 1868, or for his burial place.",
+    "field": "editorNotes, 'His dates'",
+    "searched": "pollack1114kitcarson read in full; Carson within 200 of 1868|buried|Taos",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "Pollack: \"Carson died of a ruptured aortic aneurysm at Fort Lyons, Colo., on May 23, 1868. His remains were taken for burial near his old home at Taos. There, his grave can be visited at Kit Carson Memorial State Park.\" Birth: \"Born in Kentucky in 1809\" only, so the birth half holds.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:317": [
+   {
+    "note": "No source has yet been found for his dates of birth and death, his burial place or his later public offices, so the profile does not repeat them.",
+    "field": "editorNotes, 'Dates and burial'",
+    "searched": "Andr[eé]s Pico|Gen. Pico|Don Andrés within 300 of 1810|1876|buried|Assembly|senator; within 200 of born|1810|November 18; within 250 of buried|interred|cemetery|funeral",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "Death: Leon Worden's timeline, \"February 14: Gen. Andres Pico dies at his home at 203 Main St., Los Angeles\"; Ripley (1948, part 14) quotes the Los Angeles Evening Express editorial of February 14, 1876, on his death. Office: Hill, La Reina (1929), \"in 1859 Senator Andres Pico ... succeeded in putting through both houses a resolution\" to divide the state. Birth: San Diego-born (glossary; HS9029), no date. Burial: nothing.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:323": [
+   {
+    "note": "That letter is his only tie to this valley in the archive's sources, and it may not be one: \"the Santa Clara\" may as well be the valley around San Jose, where the drive ended, and no source here places Couts in the Santa Clarita Valley.",
+    "field": "body, end of first paragraph",
+    "searched": "\\bCouts\\b over the whole mirror (26 files); Coutts|Cave J\\.|Cave Johnson; Guajome (28 files); Craft: every element's content for 'Couts'",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "WRONG",
+    "found": "Leon Worden's caption repeated on HS3001 and HS3003 to HS3016 (15 pages; HS3002 does not name him): Couts, \"whose presence incidentally was felt in the Santa Clarita Valley at one time or another,\" \"ultimately gave up on his claim\" that Guajome was the Ramona home. LW3758 (Leon Worden) sets Couts's Guajome against the del Valles' Camulos, \"the 'Home of Ramona' at the west end of the historic Rancho San Francisco (SCV)\". Neither gives a date or an act; the caption calls him \"Cave Couts Jr.\" while describing the Tennessee-born father. The sentence \"no source here places Couts in the Santa Clarita Valley\" is false as written; the narrower claim (no source gives a dated act of his in the valley) holds.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "Smythe's 1907 account is the only biography of Couts in the archive. It is an admiring one, and it says nothing of how Couts treated the Native workers whose labor he secured as sub-agent. Wikipedia ... reports that he was tried on several charges, including murder, and acquitted. The archive holds no source for this yet ...",
+    "field": "editorNotes, 'What this profile does not yet cover'",
+    "searched": "Couts within 300 characters of murder|acquit|tried|trial|indict|whip|slave; Couts within 250 of buried|cemetery|died|death",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "Nothing on the trials (survives). But the archive does speak to his use of Native labor: Leon Worden's HS3001-HS3016 caption, \"a slaveholder from Tennessee ... used Indian slave labor at his Rancho Guajome (Akins & Bauer 2021:141-142)\", and LW3758, \"used Indian slave labor (Akins & Bauer 2021:141-142) to build the adobe at Guajome\". Odell 1939 (photograph #4743) reports the legend that Helen Hunt Jackson quarrelled with \"the young son of the house over his treatment of Indians employed on the ranch\". 'Only biography' holds (the NRHP nomination and Odell give sketches, not biographies).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "This record formerly gave his birth as 6 November 1821, in Smith County, Tennessee, for which no source has been found.",
+    "field": "editorNotes, 'Birth'",
+    "searched": "'couts' files, regex Smith County|November 6, 1821|6 November 1821|Springfield",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 hits.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "No source has been found for the burial place.",
+    "field": "editorNotes, 'Burial'",
+    "searched": "Couts within 250 characters of Campo Santo|buried|cemetery|interred|died|death",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No hit about Couts (7 false hits on 'scouts').",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "it is Reynolds's story, and no earlier source for it is in the archive",
+    "field": "body",
+    "searched": "Ysidora|Isidora within 300 of railing|roof",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only Reynolds chapter 20 (#861).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:327": [
+   {
+    "note": "No source has been found for his burial place.",
+    "field": "editorNotes, 'His burial place'",
+    "searched": "Beale within 200 of buried|interred|Rock Creek|cemetery|entombed|Chester (39 files); Bonsal 1912 biography read at his death",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Bonsal records the death on April 22, 1893 and 'the simple service of the interment' but not where.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:333": [
+   {
+    "note": "no source for \"Burnett\" has been found",
+    "field": "editorNotes, 'Name'",
+    "searched": "Arthur Burnett|Burnett Perkins|A. Burnett",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "0 relevant hits.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:339": [
+   {
+    "note": "This record formerly called him Remi Allen Nadeau. No source for the middle name Allen has been found; the sources call him Remi or Rémi Nadeau.",
+    "field": "editorNotes, 'His name'",
+    "searched": "'nadeau' files, regex Remi Allen|Allen Nadeau|R\\. ?A\\. Nadeau; Craft content for 'Remi Allen'",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "WRONG",
+    "found": "1 mirror file, LW2449 (Craft photograph #3695, the deer park): \"the author Remi Allen Nadeau (aka Remi Nadeau III), born Aug. 30, 1920, is the great-great-grandson of the L.A. freighter.\" A source gives the name, to a different man; none gives it to the freighter. In Craft, #18869's note 'Two men named Remi Nadeau' (29 Sept) still calls the freighter \"Remi Allen Nadeau (1821-1887)\", the very error, and should change with this one.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "No source has been found for his burial place.",
+    "field": "editorNotes, 'His burial place'",
+    "searched": "Nadeau within 300 of buried|cemetery|interred|entombed|funeral",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "obituary_reminadeau1887 (#28079) gives only the funeral from his residence; obit-nadeauremi is the grandson's.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:341": [
+   {
+    "note": "This record formerly gave his birthplace as Sacramento, California, for which no source has been found.",
+    "field": "editorNotes, 'Birthplace'",
+    "searched": "Dante Acosta within 250 of Sacramento|born",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "SC1401: 'born and raised in Southern California' only.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "persons:343": [
+   {
+    "note": "No source in this archive places him in the Santa Clarita Valley.",
+    "field": "body",
+    "searched": "'rodolfo' files (8); Rodolfo|Rudy Acosta within 200 of El Paso|1920|Forest Lawn|buried; LW3399 (this record's own legacy page) read in full",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "LW3399 (Leon Worden): \"A few of the motion pictures and television episodes that featured Acosta were made in the Santa Clarita Valley, such as 1957's 'Apache Warrior' ... which used Vasquez Rocks, and the TV series 'Zorro' and 'Have Gun-Will Travel,' which used several SCV locations.\" LW3630: City of Bad Men (1953) 'partially filmed at Vasquez Rocks'. Filming, not residence; under Nathan's rule a location credit is not a connection, but the sentence as written is not true.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "This record formerly gave his birth as July 29, 1920, in El Paso, Texas, and his death as November 7, 1974. The source here gives the years only. No source has been found for his burial place.",
+    "field": "editorNotes, 'His dates'",
+    "searched": "LW3399 and LW3330 read in full; Rodolfo within 200 of Forest Lawn|buried",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "LW3399 and LW3330: \"According to his Texas birth certificate, Rodolfo entered the world as a U.S. citizen on July 29, 1920 ... in El Paso\"; \"Acosta succumbed to cancer November 7, 1974, at the Motion Picture Home in Woodland Hills.\" LW3399 is this record's own personLegacyUrl. Burial: nothing (survives).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "places:16515": [
+   {
+    "note": "Retired: nothing in the archive holds it to the Santa Clarita Valley.",
+    "field": "removed-claims.json",
+    "searched": "Mission (San Francisco de As[ií]s|Dolores) within 400 of Santa Clar|Newhall|San Fernando|Castaic|Tataviam|Camulos",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Perkins manuscript lists it among missions; a library title.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "places:16517": [
+   {
+    "note": "Retired: nothing in the archive holds it to the Santa Clarita Valley.",
+    "field": "removed-claims.json",
+    "searched": "Mission Santa Cruz (1 file)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "A UC NAGPRA agenda about Santa Cruz County remains.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1356": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1358": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1360": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1362": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1364": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1366": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1368": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1370": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1372": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1374": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1376": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1378": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1380": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1382": [
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:1395": [
+   {
+    "note": "He does not appear in the Navy's 1946 State Summary ... (NAID 305189)",
+    "field": "editorNotes",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query). The register the note names is outside the mirror and was not re-read.",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "OUTSIDE",
+    "found": "The claim is about an outside register the mirror does not hold; the mirror cannot confirm or refute it. Mirror pages naming him: memorial pages and the errata index only.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "ABMC's Burial and Memorialization Directory ... has no record of him.",
+    "field": "editorNotes",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query). The register the note names is outside the mirror and was not re-read.",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "OUTSIDE",
+    "found": "The claim is about an outside register the mirror does not hold; the mirror cannot confirm or refute it. Mirror pages naming him: memorial pages and the errata index only.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:512": [
+   {
+    "note": "no source tying him to the valley has been found beyond the legacy page.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only the errata page's index and Hart yearbooks naming a Glen/G. Darr (1950-54), not him.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "where he is buried has not been found.",
+    "field": "factSources 'Remains'/'Burial'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read; every vietnam_*.htm and ww2_eugenedarr read for buried|cemetery|interred|burial|laid to rest",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No burial on the legacy pages; no other page names them in a burial context.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:514": [
+   {
+    "note": "He does not appear in the Navy's 1946 State Summary of War Casualties for California (NAID 305189)",
+    "field": "editorNotes",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query). The register the note names is outside the mirror and was not re-read.",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "OUTSIDE",
+    "found": "The claim is about an outside register the mirror does not hold; the mirror cannot confirm or refute it. Mirror pages naming him: memorial pages and the errata index only.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:520": [
+   {
+    "note": "his tie to the valley rests on the legacy page alone.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Other Bealls (Sybil Beall, Newhall 1933 games; B.L. Beall at Fort Tejon; 1978 yearbooks).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:522": [
+   {
+    "note": "no source tying him to the valley has been found beyond the legacy page.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only the errata index.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:542": [
+   {
+    "note": "No home is given ... on the legacy page, and no record found gives one.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No Dean Todd outside the memorial pages.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:546": [
+   {
+    "note": "no source yet ties him to the Santa Clarita Valley itself.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No Brian Prosser outside the memorial pages.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:548": [
+   {
+    "note": "the federal casualty files give the year only ..., and no source for the day has been found.",
+    "field": "editorNotes 'Correction, 2026' and factSources 'Born' (same claim)",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only the Korea memorial pages and nav lists (other Whislers and Morissetts in yearbooks are later people).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:554": [
+   {
+    "note": "the federal casualty files give the year only ..., and no source for the day has been found.",
+    "field": "editorNotes 'Correction, 2026' and factSources 'Born' (same claim)",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only the Korea memorial pages and nav lists (other Whislers and Morissetts in yearbooks are later people).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:556": [
+   {
+    "note": "the federal casualty files give the year only ..., and no source for the day has been found.",
+    "field": "editorNotes 'Correction, 2026' and factSources 'Born' (same claim)",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only the Korea memorial pages and nav lists (other Whislers and Morissetts in yearbooks are later people).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:558": [
+   {
+    "note": "the federal casualty files give the year only ..., and no source for the day has been found.",
+    "field": "editorNotes 'Correction, 2026' and factSources 'Born' (same claim)",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only the Korea memorial pages and nav lists (other Whislers and Morissetts in yearbooks are later people).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:560": [
+   {
+    "note": "no source tying him to the valley has been found beyond the legacy page.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Other Wingfields (George, 1927 mines report; Howard, 1988 parade story; 1960s yearbooks).",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:562": [
+   {
+    "note": "no source tying him to the valley has been found beyond the legacy page, which does not give his home.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "PARTLY",
+    "found": "Newhall School Commencement Program, 1929 (KU2902a/b, the Kupcha collection), graduates: \"Harland, Jack\" (with a Frances Harland; a Mae Harland plays tennis in Newhall in 1933). Harland was 28 in March 1944, so born about 1915-16, the right age for an eighth-grade class of 1929. Probably him; not proved.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:566": [
+   {
+    "note": "no source tying him to the valley has been found beyond the legacy page.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "No James/Jim Bartlett outside the memorial pages.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:568": [
+   {
+    "note": "A promotion after October 1944 would explain the difference; no record of one has been seen.",
+    "field": "factSources 'Rank'",
+    "searched": "Johnny Cordova within 300 of Private|PFC|rank (25 files)",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "The timeline says 'PFC Johnny Cordova of Castaic'; no promotion record.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:574": [
+   {
+    "note": "no source tying him to the valley has been found beyond the legacy page.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query).",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "SURVIVES",
+    "found": "Only the errata index.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:576": [
+   {
+    "note": "He does not appear in the War Department's 1946 Honor List for California (NAID 305280), Los Angeles County",
+    "field": "editorNotes",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query). The register the note names is outside the mirror and was not re-read.",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "OUTSIDE",
+    "found": "The claim is about an outside register the mirror does not hold; the mirror cannot confirm or refute it. Mirror pages naming him: memorial pages and the errata index only.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "warMemorials:580": [
+   {
+    "note": "He does not appear in the Navy's 1946 State Summary of War Casualties for California (NAID 305189)",
+    "field": "editorNotes",
+    "searched": "Each name and its variants over the whole mirror, excluding the memorial pages themselves (warmemorial/*, scvhistory/ww2_|korea_|vietnam_|terror_*), each remaining hit read",
+    "where": "The Reggie mirror of the legacy SCVHistory.com site: all 84,849 .htm, .html, .xml and .txt files (pages, flipbook basic-html pages and flipbook search XML), each decoded cp1252; and the archive's own records (Craft elements_sites content, read-only query). The register the note names is outside the mirror and was not re-read.",
+    "how": "Python: each file read as bytes, decoded cp1252 with errors='replace', tags stripped, case-insensitive regex; most terms as proximity searches (a name within N characters of a term), every hit read. Never the agent shell's grep.",
+    "when": "2026-10-03",
+    "result": "OUTSIDE",
+    "found": "The claim is about an outside register the mirror does not hold; the mirror cannot confirm or refute it. Mirror pages naming him: memorial pages and the errata index only.",
+    "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ]
+ }
+}

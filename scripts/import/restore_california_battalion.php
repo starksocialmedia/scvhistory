@@ -28,13 +28,15 @@
  *      Carson (#315) and Bryant (#313), subjectGroup on Reynolds ch. 18 (#857),
  *      which keeps Frémont as subjectPerson. Andrés Pico (#317), who fought the
  *      battalion, was a member in the WordPress data; he is not put back, and
- *      #946's own groupPersons drops him (for Nathan to confirm).
+ *      #946's own groupPersons drops him (Nathan, 3 October 2026: "Pico off the
+ *      Battalion: yes").
  *   3. Takes 'groups/california-battalion' out of config/redirects.php (and the
  *      battalion out of the comment above it) and #946 out of removedRecords in
  *      removed-claims.json, which would otherwise fail check_removed_claims.php.
  *      Both files are edited only on apply, after the database commits.
- *   4. editorNotes: what happened, and the search (docs/PROFILES.md, "A note that
- *      says no source exists records the search").
+ *   4. editorNotes: one row for readers, saying why the record is back. The
+ *      search is not on the record: it is in inventory/source-searches.json
+ *      under groups:946 (docs/PROFILES.md).
  * Left as they are: withheldBody (the WordPress text, unsourced) and recordDates
  * (WordPress-derived). The group layout has no recordProvenance and no
  * groupKind field.
@@ -61,9 +63,8 @@ $NOTES = [
     'County of Los Angeles, NorthLake Specific Plan Project, Draft Supplemental Environmental Impact Report, May 2017, section 5.3, Cultural Resources, as carried on SCVHistory.com, /scvhistory/northlakehills_deir_0517.htm: "Fremont in command of the California Battalion for the United States."',
     'Tesoro del Valle Phases A-B-C, Supplemental Draft Environmental Impact Report, February 2018, section 5.5, Cultural Resources, as carried on SCVHistory.com, /scvhistory/tesoro_sdeir0218.htm.',
 ];
-$SEARCHED = 'Searched 3 October 2026 by a Python script reading every one of the 84,849 text pages of the legacy SCVHistory.com site (its pages, the flipbook books\' text and their search files, each read as cp1252 so no page is skipped), and the archive\'s own records. "California Battalion" is on three pages: Dr. Alan Pollack\'s Kit Carson story (2014) and the NorthLake (2017) and Tesoro del Valle (2018) environmental impact reports. "Battalion" within 300 characters of "Bryant" finds Reynolds\'s chapter 18 and Vernette Snyder Ripley\'s "The San Fernando (Newhall) Pass" (1948), part 16.';
-$RESTORED = 'This record was folded into John C. Frémont\'s on 3 October 2026, on the finding that no source in the archive names a California Battalion. That search had skipped part of the legacy site; three sources name it, and two place it in the valley. It was restored the same day.';
-$ROWS = [['heading' => 'Restored, 3 October 2026', 'position' => 'bottom', 'note' => $RESTORED], ['heading' => 'How the archive was searched', 'position' => 'bottom', 'note' => $SEARCHED]];
+$RESTORED = 'This record was briefly merged into John C. Frémont\'s on 3 October 2026, on the mistaken view that no source names a California Battalion. Three sources in the archive name it, and two place it in this valley, so it has its own record again.';
+$ROWS = [['heading' => 'Restored, 3 October 2026', 'position' => 'bottom', 'note' => $RESTORED]];
 
 /* Quotations, against their pages and records. */
 foreach ([['pollack1114kitcarson', 'Three months later, Fremont\'s men, now referred to as the California Battalion, met up with U.S. Commodore Robert Stockton in Monterey'],
@@ -101,6 +102,9 @@ foreach ($LINK as $sid => $h) {
     echo "  #$sid {$s->title} $h " . json_encode($ids) . ($has ? ' holds #946' : ' -> add #946') . PHP_EOL;
     if (!$has) { $linkPlan[$sid] = [$h, array_merge($ids, [$ID])]; }
 }
+$log = json_decode((string)@file_get_contents("$root/inventory/source-searches.json"), true)['records']['groups:946'] ?? [];
+if (!$log) { $bad[] = 'inventory/source-searches.json has no search for groups:946'; }
+echo 'Search log: inventory/source-searches.json, groups:946, ' . count($log) . ' entries' . PHP_EOL;
 echo 'groupKind: ' . (Craft::$app->getFields()->getFieldByHandle('groupKind') ? 'exists, not set by this script' : 'no such field yet; nothing to set') . PHP_EOL;
 
 /* The two files, shown exactly; written only on apply. */
@@ -113,7 +117,7 @@ echo 'config/redirects.php: ' . ($redirDone ? 'no battalion rule (done)' : 'REPL
 $REGF = "$root/scripts/import/removed-claims.json"; $reg = json_decode((string)file_get_contents($REGF), true);
 $entry = array_values(array_filter($reg['removedRecords'] ?? [], fn($x) => ($x['record'] ?? 0) === $ID));
 echo 'removed-claims.json removedRecords: ' . ($entry ? 'REMOVE ' . json_encode($entry[0], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : 'no #946 entry (done)') . PHP_EOL;
-if (preg_match('~\x{2014}|inventory/|\.json~u', $BODY . implode('', $NOTES) . $SEARCHED . $RESTORED)) { $bad[] = 'an em dash or a repository path in the text'; }
+if (preg_match('~\x{2014}|inventory/|\.json~u', $BODY . implode('', $NOTES) . $RESTORED)) { $bad[] = 'an em dash or a repository path in the text'; }
 preg_match_all('~\[(\d+)\]~', $BODY, $m); if (array_values(array_unique(array_map('intval', $m[1]))) !== range(1, count($NOTES))) { $bad[] = 'notes are not used once each, in order'; }
 echo 'Mirror mounted for a live hash check: ' . ($SRC['mirror'] ? 'yes' : 'no (checked against the byte copies only)') . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', $bad) : 'none') . PHP_EOL;
