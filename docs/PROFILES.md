@@ -159,12 +159,15 @@ The note keeps its plain reader's sentence, and the record keeps the search:
 - **How and when**: the tool (`LC_ALL=C /usr/bin/grep -rlia`, or Python reading
   latin-1; never the shell's `grep`) and the date.
 
-The search goes in the record's editorNotes (internal), not the public footnote,
-which says only what a reader needs: "No source in the archive, searched
-3 October 2026, names him in the valley." A note with no recorded search is
-treated as unverified and re-searched before anything rests on it. A removal
-or a cut made because "nothing was found" carries the same record, in
-removed-claims.json beside the removal.
+The search goes in a file, `inventory/source-searches.json`, keyed by record,
+not on the record (Nathan, 3 October 2026: "The reader needs to know a claim is
+unsourced; they do not need our search log. The note says what is not known, the
+file says what was searched and how"). editorNotes render on the public page, so
+they are not the place for it. The public note says only what a reader needs:
+"No source in the archive names him in the valley." A note with no recorded
+search in that file is treated as unverified and re-searched before anything
+rests on it. A removal or a cut made because "nothing was found" carries the
+same record, in removed-claims.json beside the removal.
 
 ## The shape that worked
 
