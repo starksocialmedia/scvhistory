@@ -1,0 +1,1251 @@
+{
+ "meta": {
+  "source": "Reggie mirror, /Volumes/Reggie/SCVHistory/scvhistory.com",
+  "manifest": "/Volumes/Reggie/SCVHistory/scvhistory-manifest-2026-08-20.sha256",
+  "extracted": "2026-10-03",
+  "extracted_by": "Claude Code (ad hoc extractor in session scratchpad; on the pattern of scripts/import/extract_mentry_sources.py)",
+  "person": 16418,
+  "note": "Verbatim, whitespace closed up. body is the source; webmasterNoteTop is commentary; webmasterNoteBottom is credits and apparatus. Every page and file is sha256-checked against the manifest. Flipbook items were transcribed from the page image and checked against the OCR; see ocr_status. Every claim is an exact substring of its body (paragraphs joined with a blank line).",
+  "left_out": "Elderberry Canyon dig pages (lw2597a-d, lw2598a-e, lw2599): TATAVIAM_AUDIT.md applies; excluded by default."
+ },
+ "pages": {
+  "cw9901": {
+   "path": "/scvhistory/cw9901.htm",
+   "sha256": "1740104ed3531f916a2c8ea0d1fc6506cf861be6ba507f8578c344ae8a01278e",
+   "manifest_matched": true,
+   "title": "SCVHistory.com CW9901 | City of Santa Clarita | A Brief History of the Push for Self-Government in Santa Clarita, by Connie Worden-Roberts, 1999."
+  },
+  "scvhs2000minutes": {
+   "path": "/scvhistory/files/scvhs2000minutes/scvhs2000minutes.pdf",
+   "sha256": "ea0c5809546119e0330fddc3c46dd0ba7c5611fbd9c1d420fb6c7b5d98ff5902",
+   "manifest_matched": true,
+   "title": "Santa Clarita Valley Historical Society board minutes (2000s volume), flipbook",
+   "pages_used": {
+    "414": {
+     "ocr": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/search/search414.xml",
+      "sha256": "dc304912310e7ab429cfb1435d17665bcf5b68e88c42938a0758f322e03caeb4",
+      "manifest_matched": true
+     },
+     "image": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/mobile/414.jpg",
+      "sha256": "6bdb41c37f5b4391ac4a6a967e32325c4f3e84a290507d09e0771409cf488f1f",
+      "manifest_matched": true
+     }
+    },
+    "425": {
+     "ocr": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/search/search425.xml",
+      "sha256": "136fcccfee6451e9e152606c85431c1bcbbda6dd8014aa8428922184dec39193",
+      "manifest_matched": true
+     },
+     "image": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/mobile/425.jpg",
+      "sha256": "978ad993e87ee9e7b3f7b6927011137aea7af94da2f042eaa25b450fe77d5a1c",
+      "manifest_matched": true
+     }
+    },
+    "427": {
+     "ocr": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/search/search427.xml",
+      "sha256": "ec7d930d231bc83bb40caee0f516dbb322be9389a51d61d6125a969c8f260a9a",
+      "manifest_matched": true
+     },
+     "image": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/mobile/427.jpg",
+      "sha256": "970f89869d73c5da140315e820aa6006a18c1df7edaff6ce1492ca1a23c460e8",
+      "manifest_matched": true
+     }
+    },
+    "428": {
+     "ocr": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/search/search428.xml",
+      "sha256": "5e4ac958bb9af30a978ac571cf9093f30fb84e02b3469a3cf5105dcb2a7fe19a",
+      "manifest_matched": true
+     },
+     "image": {
+      "path": "/scvhistory/files/scvhs2000minutes/files/mobile/428.jpg",
+      "sha256": "d22c785834d7e02004de3d3f8a5b11828ea383c0d41cf390a222acc4d1037aeb",
+      "manifest_matched": true
+     }
+    }
+   }
+  },
+  "sc19872007": {
+   "path": "/scvhistory/files/sc19872007/files/search/search71.xml",
+   "sha256": "61a8019ef6e08067386fc645cfc3f55b85720d7ed12bb5b4ed31f452ee2aac2b",
+   "manifest_matched": true,
+   "title": "City of Santa Clarita 1987-2007 (20th anniversary book), flipbook page 71 = printed page 67",
+   "image": {
+    "path": "/scvhistory/files/sc19872007/files/mobile/71.jpg",
+    "sha256": "195852f4bd589002902100e465d44993a9ec7e6c281b4cddc194e2792afbc27b",
+    "manifest_matched": true
+   },
+   "contents_page_ocr": {
+    "path": "/scvhistory/files/sc19872007/files/search/search9.xml",
+    "sha256": "3e2653821271199fbbe711b0f94427cc99953a39d6e3edf9b2643e4dfb1ad9cf",
+    "manifest_matched": true
+   }
+  },
+  "key": {
+   "path": "/scvhistory/key.htm",
+   "sha256": "9af13a9b89cea2f1b004bcb344cfffc0879f1db2cdc2f5c035ff8d70ebb0661b",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | Santa Clarita Valley History In Pictures | Key to Photos"
+  },
+  "vannuysvalleynews052775": {
+   "path": "/scvhistory/vannuysvalleynews052775.htm",
+   "sha256": "639781d6a8de7db29ee9240913d454767a937db3f66d85b9c0a9383bbfd00b70",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | Chamber of Commerce | Rene Veluzat, Connie Worden Named 1975 SCV Man, Woman of the Year."
+  },
+  "gt8702": {
+   "path": "/scvhistory/gt8702.htm",
+   "sha256": "c53a17a7108d44c4a0355eadd59a264c9b6239e623b96068d26bbd235b378b9a",
+   "manifest_matched": true,
+   "title": "SCVHistory.com GT8702 | Photo Gallery: Santa Clarita Cityhood? First Public Forum, 1-13-1987."
+  },
+  "sg110185": {
+   "path": "/scvhistory/sg110185.htm",
+   "sha256": "8a7846c3a7c9a0dfffc272a081918f191fac3e2e3350ebaa109c9c95481e6755",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | Saugus | L.A. Mayor's Saugus State Prison Plan Fans Flames of Cityhood, 1985."
+  },
+  "fh8101": {
+   "path": "/scvhistory/fh8101.htm",
+   "sha256": "376f3a3010eff554158f65e14450a783c7e3470632c152cb4d5d997e7ebb35f3",
+   "manifest_matched": true,
+   "title": "SCVHistory.com FH8101 | Friends of Hart Park: Original Bylaws and Initial Directors, 1981."
+  },
+  "tl8601": {
+   "path": "/scvhistory/tl8601.htm",
+   "sha256": "62ef11a0fbbb5251e528914237742b87b46813ed2a827714e731a48cab33f66c",
+   "manifest_matched": true,
+   "title": "SCVHistory.com TL8601 | William S. Hart Park | Resolution: Founders, Friends of Hart Park, 1986."
+  },
+  "hartschoolboardmembers": {
+   "path": "/scvhistory/hartschoolboardmembers.htm",
+   "sha256": "fd7447bf36f07946dad9828ae094e3277a0d42d443ecd5c175fff6fd77fc5c0e",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | Wm. S. Hart High School Board Members, 1945 to Date."
+  },
+  "citycommissioners": {
+   "path": "/scvhistory/citycommissioners.htm",
+   "sha256": "fff1924c7dd627df15455a38a6ca5fceb051a380afa1756503622cdca168216a",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | City of Santa Clarita Commissioners, 1988-Present"
+  },
+  "khts081214": {
+   "path": "/scvhistory/khts081214.htm",
+   "sha256": "5019d3f50db89a91463ef5235477aa6e7bc45ff403b8af95161ec90eaa06db74",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | Obituaries | Connie Worden Roberts, City Co-Founder, 1930-2014"
+  },
+  "sc1708": {
+   "path": "/scvhistory/sc1708.htm",
+   "sha256": "2a4c3bf732c7f763a95ed05916ba0a7bcf537f07498d2fa10839690b909d51f7",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | City of Santa Clarita | Time-Lapse Video: Construction of Connie Worden-Roberts Memorial Bridge at Golden Valley/SR-14, 2016."
+  },
+  "acr89_2015": {
+   "path": "/scvhistory/acr89_2015.htm",
+   "sha256": "842629842740f63c6f4f36916cf68dafb0931f7de31434778fee325efe385fac",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | Roads | Assembly Concurrent Resolution 89 (Wilk-Runner): Connie Worden-Roberts Memorial Bridge, 2015.",
+   "note": "Related, not extracted: bill history only (introduced June 18, 2015; adopted by Assembly August 17, 2015; by Senate September 3, 2015)."
+  },
+  "lw8501": {
+   "path": "/scvhistory/lw8501.htm",
+   "sha256": "6828da83512b6d34ec82dc4b249553403eab30b8469ed9061decfed2f0ba8ff2",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | History of Cityhood | Press Kit: City of Santa Clarita Feasibility Committee, 1985."
+  },
+  "lw2612": {
+   "path": "/scvhistory/lw2612.htm",
+   "sha256": "57832427666e09f6ae57259381dc799d05fd2dc974d33fc35e6350458c025f9b",
+   "manifest_matched": true,
+   "title": "SCVHistory.com LW2612 | City of Santa Clarita | Cityhood Petition No. 1"
+  },
+  "lw3060": {
+   "path": "/scvhistory/lw3060.htm",
+   "sha256": "6b61babd1f244d86d020939bed8428c2b9e91b3a195ecc74ade471d8b47f5eeb",
+   "manifest_matched": true,
+   "title": "SCVHistory.com | City Formation Committee Kicks Off Voter Registration Program to Get More Funds From State, 12-1-1987."
+  }
+ },
+ "items": [
+  {
+   "key": "cw9901",
+   "kind": "document",
+   "page": "cw9901",
+   "existing_craft_id": null,
+   "title": "A Brief History of the Push for Self-Government in Santa Clarita",
+   "originally_published_title": "A Brief History of the Push for Self-Government in Santa Clarita",
+   "date": {
+    "printed": "January 18, 1999",
+    "edtf": "1999-01-18",
+    "from": "dateline: Santa Clarita, California | January 18, 1999."
+   },
+   "author": "Connie Worden-Roberts",
+   "byline": "By Connie Worden-Roberts.",
+   "body": [
+    "A) Canyon County.",
+    "In 1976-77, as co-chairman of the Canyon County effort with local attorney Daniel Hon, and helped by a group of dedicated volunteers, we 1) circulated petitions (collecting 25 percent of the registered voters in a 250-square-mile area); 2) made innumerable speeches; 3) wrote and circulated hundreds of press releases; 4) appeared on television and radio programs throughout [Los Angeles] County; 5) garnered support from the Chamber of Commerce and most of the organized clubs in the affected area.",
+    "(Signatures were obtained by house-to-house solicitation of valid registered voters.)",
+    "After verification of the adequacy of the petition signatures, a commission was appointed by the governor to study the possibility of secession of Canyon County from Los Angeles County. Headed by Professor Donald Hagman from UCLA, the commission spent a year analyzing the formation and, while recognizing Canyon County could become a wealthy, if small, governmental entity, recommended against county formation.",
+    "The recommendation did not affect the thrust of law, which was to allow the vote to occur. While the balance of the county voted by 4 to 1 against letting Canyon County be formed, in two successive votes, the local citizenry opted for self-government by approximately 60 percent.",
+    "Arguments for forming a county were basically the same as city formation — to bring government closer to the residents and to have a bigger voice in decisions that affect every-day life. There was a general level of dissatisfaction with the remote county government whose county employees rarely even knew where the Santa Clarita Valley was located.",
+    "The most positive thing that came out of the Canyon County movement was that for the first time, the disparate little communities of Newhall, Saugus, Valencia and Canyon Country all voted together for local government.",
+    "In effect, this set the stage for city formation to come later. Among the local leaders who were involved in this effort were Jo Anne Darcy, Jan Heidt, Carl Boyer and Clyde Smyth.",
+    "There are many stories, some funny, to flesh out the Canyon County portion of local history. My files were given to the Historical Society for safekeeping.",
+    "Following the Canyon County effort for local government, a couple of small groups formed to explore City Formation. It was not until 1985 when Louis Garasi and I co-chaired the effort that the successful \"big push\" occurred.",
+    "B) City of Santa Clarita.",
+    "The successful drive for Cityhood began in 1985 with a strong endorsement by the Chamber of Commerce and subsequent involvement by many clubs and organizations. By this time, the area had grown substantially, and with the new residents came a strong desire for self-determination.",
+    "The inadequacy of infrastructure was an important component in selling \"city formation.\" The need for roads, more parks and recreation facilities were explained as items more easily obtained with a locally elected council. Not having to drive 50 to 75 miles to Los Angeles was another feature of city formation.",
+    "A City Formation Committee was formed and included many members of the Chamber, many members from clubs and some members who were new to the area and to volunteerism. Among them were Jill Klajic and Allan Cameron. Weekly meetings were held, and many of the same procedures developed for county formation were now used in trying to form a city. A solid relationship was established with the Local Agency Formation Commission (which had no direct involvement in the county effort, as that is a state-driven function), and Ruth Benell and Miehe Takahashi received numerous visits by the City Formation Committee.",
+    "Once again, petitions were circulated and more than 25 percent of the signatures of registered voters were obtained. This time, house-to-house drives were augmented by signature gathering in shopping centers and supermarkets. Extensive public relations efforts were employed, hundreds of speeches given, and written reports appeared in local and regional papers as well as periodicals.",
+    "Louis Garasi found his time commitment at his business would preclude his continuance as co-chair. Consequently, he was replaced by Carl Boyer, and then when Carl filed for a seat on the City Council, Art Donnelly chaired the committee. Getting the message out to the public in a consistent manner and influencing decision makers was deemed important. I continued to speak and write for the Formation Committee and volunteered in this capacity.",
+    "The City of Santa Clarita became reality in November of 1987, and the first organizational meeting was held on a bitterly cold night at College of the Canyons in December. The weather did not preclude attendance by well over 2,000 members of the public whose enthusiasm and delight in achieving self-government warmed the cavernous gymnasium.",
+    "Both the Canyon County and City Formation efforts demonstrated the ability of a broad spectrum of individuals and groups working cooperatively to effect change. While many factors can be considered as instrumental in achieving a governmental restructure, certainly the most important is the willing cooperation of hundreds of volunteers."
+   ],
+   "webmasterNoteTop": [
+    "Connie Worden-Roberts, co-chair of the Canyon County Formation Committee (1976) and the subsequent City of Santa Clarita Formation Committee, summarized the recent history of the drive for self-government for Stacy Miller, then with the city's Economic Development Division, who was compiling information for the city's application to enter the All-America City contest in Philadelphia in 1999. A first-time applicant, the city was one of 30 finalists."
+   ],
+   "webmasterNoteBottom": [
+    "CW9901: CW prefix = \"Materials from the collection of Connie Worden-Roberts\" (key.htm). The mirror also holds her typescript as files/cw9901/cw9901.pdf and cw9901_001-004.tif."
+   ],
+   "credit": "CW9901 (collection of Connie Worden-Roberts, per key.htm)",
+   "scan": {
+    "path": "/scvhistory/files/cw9901/cw9901.pdf",
+    "sha256": "01a663270e78b20e5f33891896297f5ee00ec0cb38cc1e9207c3bf7302b1bd2b",
+    "manifest_matched": true
+   },
+   "ocr": false,
+   "why": "Her own account of both self-government campaigns, and her own statement that her Canyon County files went to the Historical Society.",
+   "claims": [
+    "In 1976-77, as co-chairman of the Canyon County effort with local attorney Daniel Hon",
+    "collecting 25 percent of the registered voters in a 250-square-mile area",
+    "the local citizenry opted for self-government by approximately 60 percent",
+    "My files were given to the Historical Society for safekeeping.",
+    "It was not until 1985 when Louis Garasi and I co-chaired the effort that the successful \"big push\" occurred.",
+    "I continued to speak and write for the Formation Committee and volunteered in this capacity."
+   ],
+   "body_text": "A) Canyon County.\n\nIn 1976-77, as co-chairman of the Canyon County effort with local attorney Daniel Hon, and helped by a group of dedicated volunteers, we 1) circulated petitions (collecting 25 percent of the registered voters in a 250-square-mile area); 2) made innumerable speeches; 3) wrote and circulated hundreds of press releases; 4) appeared on television and radio programs throughout [Los Angeles] County; 5) garnered support from the Chamber of Commerce and most of the organized clubs in the affected area.\n\n(Signatures were obtained by house-to-house solicitation of valid registered voters.)\n\nAfter verification of the adequacy of the petition signatures, a commission was appointed by the governor to study the possibility of secession of Canyon County from Los Angeles County. Headed by Professor Donald Hagman from UCLA, the commission spent a year analyzing the formation and, while recognizing Canyon County could become a wealthy, if small, governmental entity, recommended against county formation.\n\nThe recommendation did not affect the thrust of law, which was to allow the vote to occur. While the balance of the county voted by 4 to 1 against letting Canyon County be formed, in two successive votes, the local citizenry opted for self-government by approximately 60 percent.\n\nArguments for forming a county were basically the same as city formation — to bring government closer to the residents and to have a bigger voice in decisions that affect every-day life. There was a general level of dissatisfaction with the remote county government whose county employees rarely even knew where the Santa Clarita Valley was located.\n\nThe most positive thing that came out of the Canyon County movement was that for the first time, the disparate little communities of Newhall, Saugus, Valencia and Canyon Country all voted together for local government.\n\nIn effect, this set the stage for city formation to come later. Among the local leaders who were involved in this effort were Jo Anne Darcy, Jan Heidt, Carl Boyer and Clyde Smyth.\n\nThere are many stories, some funny, to flesh out the Canyon County portion of local history. My files were given to the Historical Society for safekeeping.\n\nFollowing the Canyon County effort for local government, a couple of small groups formed to explore City Formation. It was not until 1985 when Louis Garasi and I co-chaired the effort that the successful \"big push\" occurred.\n\nB) City of Santa Clarita.\n\nThe successful drive for Cityhood began in 1985 with a strong endorsement by the Chamber of Commerce and subsequent involvement by many clubs and organizations. By this time, the area had grown substantially, and with the new residents came a strong desire for self-determination.\n\nThe inadequacy of infrastructure was an important component in selling \"city formation.\" The need for roads, more parks and recreation facilities were explained as items more easily obtained with a locally elected council. Not having to drive 50 to 75 miles to Los Angeles was another feature of city formation.\n\nA City Formation Committee was formed and included many members of the Chamber, many members from clubs and some members who were new to the area and to volunteerism. Among them were Jill Klajic and Allan Cameron. Weekly meetings were held, and many of the same procedures developed for county formation were now used in trying to form a city. A solid relationship was established with the Local Agency Formation Commission (which had no direct involvement in the county effort, as that is a state-driven function), and Ruth Benell and Miehe Takahashi received numerous visits by the City Formation Committee.\n\nOnce again, petitions were circulated and more than 25 percent of the signatures of registered voters were obtained. This time, house-to-house drives were augmented by signature gathering in shopping centers and supermarkets. Extensive public relations efforts were employed, hundreds of speeches given, and written reports appeared in local and regional papers as well as periodicals.\n\nLouis Garasi found his time commitment at his business would preclude his continuance as co-chair. Consequently, he was replaced by Carl Boyer, and then when Carl filed for a seat on the City Council, Art Donnelly chaired the committee. Getting the message out to the public in a consistent manner and influencing decision makers was deemed important. I continued to speak and write for the Formation Committee and volunteered in this capacity.\n\nThe City of Santa Clarita became reality in November of 1987, and the first organizational meeting was held on a bitterly cold night at College of the Canyons in December. The weather did not preclude attendance by well over 2,000 members of the public whose enthusiasm and delight in achieving self-government warmed the cavernous gymnasium.\n\nBoth the Canyon County and City Formation efforts demonstrated the ability of a broad spectrum of individuals and groups working cooperatively to effect change. While many factors can be considered as instrumental in achieving a governmental restructure, certainly the most important is the willing cooperation of hundreds of volunteers."
+  },
+  {
+   "key": "scvhs_minutes_20030519",
+   "kind": "document",
+   "page": "scvhs2000minutes",
+   "flipbook_pages": [
+    414,
+    425
+   ],
+   "existing_craft_id": null,
+   "title": "Santa Clarita Valley Historical Society board minutes, May 19, 2003 (excerpt)",
+   "originally_published_title": "Minutes of the Santa Clarita Valley Historical Society for May 19, 2003",
+   "date": {
+    "printed": "May 19, 2003",
+    "edtf": "2003-05-19",
+    "from": "minutes heading"
+   },
+   "author": "Pat Saletore (minutes, \"Respectfully Submitted\", flipbook p. 426)",
+   "byline": "",
+   "excerpt": true,
+   "body": [
+    "[Agenda, flipbook p. 414] Santa Clarita Valley Historical Society Regular Board Meeting - Saugus Train Station Monday, May 19, 2003 7 p.m. ... Guest - Connie Worden Roberts Foundation Board & Fund-raising",
+    "[Minutes, flipbook p. 425] Minutes of the Santa Clarita Valley Historical Society for May 19, 2003",
+    "The meeting was called to order by President Leon Worden at 7:05 pm at the Saugus Station. A quorum had been achieved.",
+    "Visitor: Connie Worden suggested that we create a foundation for the organization. She also presented an idea for a fundraiser. Her report is on file. It was decided to table the idea to next month pending committee consideration. Carol Rock, Mary Ann Colf, Pat Saletore, Connie Worden and Sue Yurosek plan to meet at Mary Ann's House June 12 at 6:30 pm.",
+    "Glen Rollins will look into the idea of a foundation.",
+    "[Attendance box] Visitors: Connie Worden"
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "Scanned minutes volume (flipbook) hosted on SCVHistory.com; no credit line on the flipbook."
+   ],
+   "credit": "",
+   "ocr": true,
+   "ocr_status": "p. 414 agenda lines quoted from OCR, which reads them cleanly (image not checked). p. 425 transcribed from the page image and checked against OCR; OCR misreads \"Colf\" as \"Coif\", \"foundation\" as \"foundati8n\", and interleaves the attendance box with the text column.",
+   "why": "Contemporary record of her proposing a foundation and a fundraiser to the Society; shows she came as a visitor, not an officer.",
+   "claims": [
+    "Guest - Connie Worden Roberts Foundation Board & Fund-raising",
+    "Visitor: Connie Worden suggested that we create a foundation for the organization.",
+    "She also presented an idea for a fundraiser. Her report is on file.",
+    "It was decided to table the idea to next month pending committee consideration."
+   ],
+   "body_text": "[Agenda, flipbook p. 414] Santa Clarita Valley Historical Society Regular Board Meeting - Saugus Train Station Monday, May 19, 2003 7 p.m. ... Guest - Connie Worden Roberts Foundation Board & Fund-raising\n\n[Minutes, flipbook p. 425] Minutes of the Santa Clarita Valley Historical Society for May 19, 2003\n\nThe meeting was called to order by President Leon Worden at 7:05 pm at the Saugus Station. A quorum had been achieved.\n\nVisitor: Connie Worden suggested that we create a foundation for the organization. She also presented an idea for a fundraiser. Her report is on file. It was decided to table the idea to next month pending committee consideration. Carol Rock, Mary Ann Colf, Pat Saletore, Connie Worden and Sue Yurosek plan to meet at Mary Ann's House June 12 at 6:30 pm.\n\nGlen Rollins will look into the idea of a foundation.\n\n[Attendance box] Visitors: Connie Worden"
+  },
+  {
+   "key": "scvhs_cwr_report_20030519",
+   "kind": "document",
+   "page": "scvhs2000minutes",
+   "flipbook_pages": [
+    427,
+    428
+   ],
+   "existing_craft_id": null,
+   "title": "\"A Look Back in Time\": proposal for the Historical Society's first annual fund raiser, by Connie Worden-Roberts, 2003",
+   "originally_published_title": "A Look Back in Time",
+   "date": {
+    "printed": "May 19, 2003",
+    "edtf": "2003-05-19",
+    "from": "heading: \"BOARD MEETING: May 19, 2003\""
+   },
+   "author": "Connie Worden-Roberts",
+   "byline": "Respectfully submitted, Connie Worden-Roberts Member",
+   "body": [
+    "HISTORICAL SOCIETY",
+    "BOARD MEETING: May 19, 2003",
+    "Subject: “A Look Back in Time” The SCV Historical Society’s First ANNUAL Fund Raiser",
+    "History – One of the most important aspects of the Santa Clarita Vly. With respect to fund raising activities, draw on what has been successful in the past.",
+    "Precede an expanded Old Newhall Fair and Exposition with a spectacular dinner and entertainment at the Gene Autry Melody Ranch the night before. Emphasis on foods as prepared in the 19th Century and the early 20th Century for the dinner. Encourage entertainment by youngsters, seniors and professional dancers attired in period costumes and performing dances and skits as they might have been done in the “olden days”.",
+    "Emphasis should be given to 3rd graders as they are exposed to local history at this grade. They can become the entertainers either for the dinner and or for the Fair the next day. All parents of third graders (and perhaps the second graders) should be invited to attend the Historical Society event. These parents would represent a “new public”.",
+    "Guests at the dinner event should number at least 500. The dinner must be priced to raise money for the Society.",
+    "Follow up the next day with an expanded version of the “FAIR” at Hart Park. Open every historical building (whether completed or not!) and have sufficient staff at the museum and all buildings. Have docents in each building giving 20 minute tours for all visitors. Have a “special” item for sale in each building (consider using the Sierra Vista Jr. High School History Book as one sale item.) Tailor the items for sale to fit the original use of the building –wherever possible. Run continuous loop films in the depot. Consider sack races and or games as they might have been played by youngsters in this era. Signage must be everywhere announcing the activity and times for the events. Mount as many large historic photos throughout the park buildings as can be obtained.",
+    "Be certain the photos have sufficient captions. Feature a projector review of some of the most outstanding historic photos. (Example: Wm. S. Hart, dam break and follow-up, blacksmith shop, old hotel and dance hall, etc.,etc.)",
+    "Publish an Historical Tour Guide Map similar to the City Tour Guide, but emphasize all historical sites throughout the Santa Clarita Valley.",
+    "Sell :Small key chains, Calendars, pens and/or pencils, or copies of something historical (all with the Historic Society logo). Sell historical society memberships. Sell kettle corn, home-made ice cream, etc, etc.",
+    "One of the most difficult things to decide is “when” to have the event. It would be best if it could be held in the late spring or early fall when the weather is nice and school is still in session. Finding a free weekend because of the busy calendar in the Santa Clarita Valley will be a challenge.",
+    "Respectfully submitted,",
+    "Connie Worden-Roberts Member"
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "Bound into the Society's minutes volume after the May 19, 2003 minutes (\"Her report is on file\")."
+   ],
+   "credit": "",
+   "ocr": true,
+   "ocr_status": "Transcribed from the page images (mobile/427.jpg, 428.jpg), checked against OCR. OCR drops the line \"item for sale in each building (consider using the Sierra Vista\" and the words \"at\" and \"is\", splits superscripts (19th, 20th, 3rd), and reads \"by youngsters\" as \"byyoungsters\". Superscripts are written inline here. The typescript's own spellings are kept (\"Vly.\", \"and or\", \"Historic Society logo\", \"Sell :Small\").",
+   "why": "Her own signed proposal to the Society; the only document in the archive written by her for the Society itself.",
+   "claims": [
+    "The SCV Historical Society’s First ANNUAL Fund Raiser",
+    "History – One of the most important aspects of the Santa Clarita Vly.",
+    "Precede an expanded Old Newhall Fair and Exposition with a spectacular dinner and entertainment at the Gene Autry Melody Ranch the night before.",
+    "Publish an Historical Tour Guide Map similar to the City Tour Guide, but emphasize all historical sites throughout the Santa Clarita Valley.",
+    "Connie Worden-Roberts Member"
+   ],
+   "body_text": "HISTORICAL SOCIETY\n\nBOARD MEETING: May 19, 2003\n\nSubject: “A Look Back in Time” The SCV Historical Society’s First ANNUAL Fund Raiser\n\nHistory – One of the most important aspects of the Santa Clarita Vly. With respect to fund raising activities, draw on what has been successful in the past.\n\nPrecede an expanded Old Newhall Fair and Exposition with a spectacular dinner and entertainment at the Gene Autry Melody Ranch the night before. Emphasis on foods as prepared in the 19th Century and the early 20th Century for the dinner. Encourage entertainment by youngsters, seniors and professional dancers attired in period costumes and performing dances and skits as they might have been done in the “olden days”.\n\nEmphasis should be given to 3rd graders as they are exposed to local history at this grade. They can become the entertainers either for the dinner and or for the Fair the next day. All parents of third graders (and perhaps the second graders) should be invited to attend the Historical Society event. These parents would represent a “new public”.\n\nGuests at the dinner event should number at least 500. The dinner must be priced to raise money for the Society.\n\nFollow up the next day with an expanded version of the “FAIR” at Hart Park. Open every historical building (whether completed or not!) and have sufficient staff at the museum and all buildings. Have docents in each building giving 20 minute tours for all visitors. Have a “special” item for sale in each building (consider using the Sierra Vista Jr. High School History Book as one sale item.) Tailor the items for sale to fit the original use of the building –wherever possible. Run continuous loop films in the depot. Consider sack races and or games as they might have been played by youngsters in this era. Signage must be everywhere announcing the activity and times for the events. Mount as many large historic photos throughout the park buildings as can be obtained.\n\nBe certain the photos have sufficient captions. Feature a projector review of some of the most outstanding historic photos. (Example: Wm. S. Hart, dam break and follow-up, blacksmith shop, old hotel and dance hall, etc.,etc.)\n\nPublish an Historical Tour Guide Map similar to the City Tour Guide, but emphasize all historical sites throughout the Santa Clarita Valley.\n\nSell :Small key chains, Calendars, pens and/or pencils, or copies of something historical (all with the Historic Society logo). Sell historical society memberships. Sell kettle corn, home-made ice cream, etc, etc.\n\nOne of the most difficult things to decide is “when” to have the event. It would be best if it could be held in the late spring or early fall when the weather is nice and school is still in session. Finding a free weekend because of the busy calendar in the Santa Clarita Valley will be a challenge.\n\nRespectfully submitted,\n\nConnie Worden-Roberts Member"
+  },
+  {
+   "key": "sc19872007_p67",
+   "kind": "document",
+   "page": "sc19872007",
+   "flipbook_pages": [
+    71
+   ],
+   "existing_craft_id": null,
+   "title": "City Formation Committee Member Connie Worden-Roberts Remembers, 2007",
+   "originally_published_title": "City Formation Committee Member: Connie Worden-Roberts Remembers ...",
+   "date": {
+    "printed": "2007 (book: City of Santa Clarita 1987-2007)",
+    "edtf": "2007",
+    "from": "book title; no day printed on the page"
+   },
+   "author": "Connie Worden-Roberts (first person)",
+   "byline": "Connie Worden-Roberts Remembers ...",
+   "body": [
+    "Looking back at the time prior to City formation, my original involvement was primarily stimulated by Ruth and Scott Newhall, who did not favor a city, but instead favored new county formation.",
+    "I initially championed that group that preferred Santa Clarita County, and whereas we did get sufficient votes from local areas we were voted down 4 to 1 by the County (of Los Angeles).",
+    "The volunteers still favored getting more local government, so, in a couple of years prior to formation, in about 1985, we took out the petitions to form a city and we met weekly for a two-year period.",
+    "We collected signatures, which was required, from 25 percent of the local citizenry. We actually collected much more than that, well in excess of 24,000 signatures. I personally collected 2,000 of them by standing in front of grocery stores and asking people (for their signature).",
+    "“Form your own government,” I’d say. “Elect your own City Council, have the authority to do some of your own planning and direction. Don’t be dependent on five county supervisors who are in a distant Los Angeles area.”",
+    "In that original city formation we asked for about 70 square miles. We asked to include Castaic and the area that was to become Stevenson Ranch, but LAFCO (the Local Agency Formation Commission, which has the authority) cut us down to 39 square miles, and included Valencia, Saugus, Canyon Country and Newhall – everything west of the I-5 was excluded.",
+    "We were disappointed, to tell the truth, that we couldn’t get the whole contiguous populated area. We felt that we would work together well as a larger (area) and we looked forward to forming our own city and then, in the future, annexing.",
+    "We were very proud that when the vote was taken there was an overwhelming vote to favor the city formation and at the same time elect the city mothers and fathers for the City Council.",
+    "I believe strongly that the City of Santa Clarita has demonstrated its outstanding capabilities, that it has become a strong, very good city that has recognized the diversity of its population, has provided parks and remarkable recreational facilities, and has made considerable improvements in both transportation and construction of roads. The City is recognized as being not only a safe city, but also a city that has provided services to its citizens."
+   ],
+   "webmasterNoteTop": [
+    "[Sidebar box printed in the book, the publisher's words, not hers:] Connie Worden-Roberts became a member of the City’s Planning Commission shortly after incorporation. She has chaired numerous transportation committees and is an avid transportation and road advocate for the Santa Clarita Valley."
+   ],
+   "webmasterNoteBottom": [
+    "City of Santa Clarita, \"City of Santa Clarita 1987-2007\" (2007), p. 67; flipbook page 71. The page also carries a color portrait of her (no photo credit printed on the page)."
+   ],
+   "credit": "",
+   "ocr": true,
+   "ocr_status": "Transcribed from the page image (mobile/71.jpg) and checked against OCR. OCR reads two columns out of order, separates the drop cap (\"ooking\"), and reads the en dash after \"Newhall\" as a hyphen. Text matches the image otherwise.",
+   "why": "Her own first-person account of the campaign, published by the city she helped form.",
+   "claims": [
+    "my original involvement was primarily stimulated by Ruth and Scott Newhall, who did not favor a city, but instead favored new county formation.",
+    "I initially championed that group that preferred Santa Clarita County",
+    "in about 1985, we took out the petitions to form a city and we met weekly for a two-year period.",
+    "I personally collected 2,000 of them by standing in front of grocery stores",
+    "cut us down to 39 square miles"
+   ],
+   "body_text": "Looking back at the time prior to City formation, my original involvement was primarily stimulated by Ruth and Scott Newhall, who did not favor a city, but instead favored new county formation.\n\nI initially championed that group that preferred Santa Clarita County, and whereas we did get sufficient votes from local areas we were voted down 4 to 1 by the County (of Los Angeles).\n\nThe volunteers still favored getting more local government, so, in a couple of years prior to formation, in about 1985, we took out the petitions to form a city and we met weekly for a two-year period.\n\nWe collected signatures, which was required, from 25 percent of the local citizenry. We actually collected much more than that, well in excess of 24,000 signatures. I personally collected 2,000 of them by standing in front of grocery stores and asking people (for their signature).\n\n“Form your own government,” I’d say. “Elect your own City Council, have the authority to do some of your own planning and direction. Don’t be dependent on five county supervisors who are in a distant Los Angeles area.”\n\nIn that original city formation we asked for about 70 square miles. We asked to include Castaic and the area that was to become Stevenson Ranch, but LAFCO (the Local Agency Formation Commission, which has the authority) cut us down to 39 square miles, and included Valencia, Saugus, Canyon Country and Newhall – everything west of the I-5 was excluded.\n\nWe were disappointed, to tell the truth, that we couldn’t get the whole contiguous populated area. We felt that we would work together well as a larger (area) and we looked forward to forming our own city and then, in the future, annexing.\n\nWe were very proud that when the vote was taken there was an overwhelming vote to favor the city formation and at the same time elect the city mothers and fathers for the City Council.\n\nI believe strongly that the City of Santa Clarita has demonstrated its outstanding capabilities, that it has become a strong, very good city that has recognized the diversity of its population, has provided parks and remarkable recreational facilities, and has made considerable improvements in both transportation and construction of roads. The City is recognized as being not only a safe city, but also a city that has provided services to its citizens."
+  },
+  {
+   "key": "key_cw",
+   "kind": "document",
+   "page": "key",
+   "existing_craft_id": null,
+   "title": "SCVHistory.com Key to Photos: the CW prefix",
+   "originally_published_title": "",
+   "date": {
+    "printed": "",
+    "edtf": null,
+    "from": "undated site page; the key is cumulative"
+   },
+   "author": "Leon Worden (SCVHistory.com)",
+   "byline": "",
+   "excerpt": true,
+   "body": [
+    "Photo Sources",
+    "CWxxxx = Materials from the collection of Connie Worden-Roberts",
+    "LWxxxx = Photographs from the collection of Leon Worden"
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [],
+   "credit": "",
+   "ocr": false,
+   "why": "The site's own definition of her collection as a named source of the archive.",
+   "note_for_profile": "Most items from her files are numbered LW (the LW prefix is \"the collection of Leon Worden\") and carry her name in the credit line instead; only CW8601 and CW9901 use the CW prefix. See collection_evidence.",
+   "claims": [
+    "CWxxxx = Materials from the collection of Connie Worden-Roberts"
+   ],
+   "body_text": "Photo Sources\n\nCWxxxx = Materials from the collection of Connie Worden-Roberts\n\nLWxxxx = Photographs from the collection of Leon Worden"
+  },
+  {
+   "key": "vannuysvalleynews052775",
+   "kind": "document",
+   "page": "vannuysvalleynews052775",
+   "existing_craft_id": null,
+   "title": "Rene Veluzat, Connie Worden Named 1975 SCV Man, Woman of the Year (Van Nuys Valley News)",
+   "originally_published_title": "Peter Pitchess to Speak at Newhall CC Luncheon",
+   "masthead": "Van Nuys Valley News | May 27, 1975.",
+   "date": {
+    "printed": "May 27, 1975",
+    "edtf": "1975-05-27",
+    "from": "masthead"
+   },
+   "author": "",
+   "byline": "(no byline printed)",
+   "body": [
+    "(Photo caption): Spotlighted as Newhall-Saugus-Valencia Chamber of Commerce's Man, Woman of the Year, Connie Worden and Rene Veluzat receive their awards from CC officials Dick Millar and Bobbie Trueblood. From left are Millar, chamber president; Mrs. Worden, school board member; Veluzat, untiring chamber member; and Mrs. Trueblood, chairman of committee of past honorees who made selection.",
+    "(News story): Sheriff Peter Pitchess will be guest speaker at today's noon luncheon meeting of the Newhall-Saugus-Valencia Chamber of Commerce at the Ranch House Inn. Co-sponsored by the Canyon Country Chamber of Commerce, it will be the first speaking appearance the Los Angeles County Sheriff has made in the Santa Clarita Valley.",
+    "N-S-V Chamber members are invited to a monthly mixer hosted by Dr. Joseph Farinella at Golden State Hospital this evening. A buffet will be served at the hospital with dancing to follow later at Valencia Golfhouse to the music of Cindy and Company. Among special guests will be the Chamber's Man and Woman of the Year, Rene Veluzat and Connie Worden.",
+    "Made Selection",
+    "The two problem solvers with organizational powers and the capability of tackling community needs with plenty of cheerful goodwill were honored as Newhall-Saugus-Valencia CC's Man and Woman for 1975. Their selection was announced at the CC's April general meeting.",
+    "Bobbie Trueblood was chairman of committee of past honorees who made the selection. She also chaired the presentation made by 1974 honorees Judge C.M. MacDougall and Florence Chesebrough and introduced the legislative representatives who presented official proclamations of congratulations.",
+    "Veluzat has worked untiringly to recruit small and large business members for the growing chamber. He has faithfully served on the joint Chambers of Commerce road committee and sat through hours of discussion for the chamber. His own family-owned grocery store on San Fernando Road, Newhall, was closed in March when projected widening of the roadway was to have taken the parking lot and storefront.",
+    "Credits Told",
+    "Now unemployed, he has learned the widening has been postponed indefinitely and perhaps forever because of a drop in road funds and a slowing in the projected growth in the area.",
+    "Veluzat grew up in San Francisquito Canyon and is an experienced horseman and movie stuntman. Among his latest credits are a stint in now defunct \"Planet of the Apes\" television series.",
+    "School board member Mrs. Worden is active also on North County Planning Commission, serves as speaker for the Henry Mayo Newhall Memorial Hospital, and is past president of the Santa Clarita Valley League of Women Voters.",
+    "A worker for incorporation of the valley as a county and in countless other civic projects, Mrs. Worden, in accepting her citations, thanked her husband for his understanding support of her involvements."
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "News reports, April-May 1975."
+   ],
+   "credit": "",
+   "ocr": false,
+   "why": "The 1975 Woman of the Year honor as reported at the time, with her offices then.",
+   "claims": [
+    "Mrs. Worden, school board member",
+    "Spotlighted as Newhall-Saugus-Valencia Chamber of Commerce's Man, Woman of the Year, Connie Worden and Rene Veluzat receive their awards",
+    "School board member Mrs. Worden is active also on North County Planning Commission, serves as speaker for the Henry Mayo Newhall Memorial Hospital, and is past president of the Santa Clarita Valley League of Women Voters.",
+    "A worker for incorporation of the valley as a county and in countless other civic projects"
+   ],
+   "body_text": "(Photo caption): Spotlighted as Newhall-Saugus-Valencia Chamber of Commerce's Man, Woman of the Year, Connie Worden and Rene Veluzat receive their awards from CC officials Dick Millar and Bobbie Trueblood. From left are Millar, chamber president; Mrs. Worden, school board member; Veluzat, untiring chamber member; and Mrs. Trueblood, chairman of committee of past honorees who made selection.\n\n(News story): Sheriff Peter Pitchess will be guest speaker at today's noon luncheon meeting of the Newhall-Saugus-Valencia Chamber of Commerce at the Ranch House Inn. Co-sponsored by the Canyon Country Chamber of Commerce, it will be the first speaking appearance the Los Angeles County Sheriff has made in the Santa Clarita Valley.\n\nN-S-V Chamber members are invited to a monthly mixer hosted by Dr. Joseph Farinella at Golden State Hospital this evening. A buffet will be served at the hospital with dancing to follow later at Valencia Golfhouse to the music of Cindy and Company. Among special guests will be the Chamber's Man and Woman of the Year, Rene Veluzat and Connie Worden.\n\nMade Selection\n\nThe two problem solvers with organizational powers and the capability of tackling community needs with plenty of cheerful goodwill were honored as Newhall-Saugus-Valencia CC's Man and Woman for 1975. Their selection was announced at the CC's April general meeting.\n\nBobbie Trueblood was chairman of committee of past honorees who made the selection. She also chaired the presentation made by 1974 honorees Judge C.M. MacDougall and Florence Chesebrough and introduced the legislative representatives who presented official proclamations of congratulations.\n\nVeluzat has worked untiringly to recruit small and large business members for the growing chamber. He has faithfully served on the joint Chambers of Commerce road committee and sat through hours of discussion for the chamber. His own family-owned grocery store on San Fernando Road, Newhall, was closed in March when projected widening of the roadway was to have taken the parking lot and storefront.\n\nCredits Told\n\nNow unemployed, he has learned the widening has been postponed indefinitely and perhaps forever because of a drop in road funds and a slowing in the projected growth in the area.\n\nVeluzat grew up in San Francisquito Canyon and is an experienced horseman and movie stuntman. Among his latest credits are a stint in now defunct \"Planet of the Apes\" television series.\n\nSchool board member Mrs. Worden is active also on North County Planning Commission, serves as speaker for the Henry Mayo Newhall Memorial Hospital, and is past president of the Santa Clarita Valley League of Women Voters.\n\nA worker for incorporation of the valley as a county and in countless other civic projects, Mrs. Worden, in accepting her citations, thanked her husband for his understanding support of her involvements."
+  },
+  {
+   "key": "gt8702_sg011187",
+   "kind": "document",
+   "page": "gt8702",
+   "existing_craft_id": null,
+   "title": "Cityhood forum announced, The Signal, January 11, 1987",
+   "originally_published_title": "",
+   "masthead": "The Newhall Signal and Saugus Enterprise | Sunday, January 11, 1987.",
+   "date": {
+    "printed": "Sunday, January 11, 1987",
+    "edtf": "1987-01-11",
+    "from": "masthead"
+   },
+   "author": "",
+   "byline": "(brief; no byline)",
+   "body": [
+    "The cityhood movement is going public.",
+    "Cityhood backers will hold the first of a series of public forums at 7:30 p.m. Tuesday at the Skate 'N Place, 21616 Soledad Canyon Road.",
+    "Cityhood Formation Committee Chairman Carl Boyer will discuss revenue sources, whether local taxes will increase and what he sees as the benefits of incorporation.",
+    "The cityhood steering committee will be on hand to answer any questions.",
+    "Future cityhood forums will be held on the second and fourth Tuesday of each month at the Skate 'N Place site.",
+    "\"The bottom line is the pocketbook,\" said cityhood spokesman Connie Worden, referring to the most commonly asked questions about incorporation.",
+    "\"If we couldn't pay for the city I'd champion a cause for no city at all,\" she said."
+   ],
+   "webmasterNoteTop": [
+    "January 13, 1987 — Santa Clarita City Formation Committee holds its first public forum at the Skate 'N Place, 21616 Soledad Canyon Road. Voters approved cityhood November 3, 1987.",
+    "Photos by Gary Thornhill/The Signal."
+   ],
+   "webmasterNoteBottom": [
+    "[Brief.] (the page's label; no headline printed)",
+    "GT8702: Download original images here."
+   ],
+   "credit": "Photos by Gary Thornhill/The Signal (GT prefix: \"Photographs by Gary Thornhill\")",
+   "ocr": false,
+   "why": "Contemporary: names her as cityhood spokesman and quotes her on cost.",
+   "claims": [
+    "\"The bottom line is the pocketbook,\" said cityhood spokesman Connie Worden",
+    "\"If we couldn't pay for the city I'd champion a cause for no city at all,\" she said."
+   ],
+   "body_text": "The cityhood movement is going public.\n\nCityhood backers will hold the first of a series of public forums at 7:30 p.m. Tuesday at the Skate 'N Place, 21616 Soledad Canyon Road.\n\nCityhood Formation Committee Chairman Carl Boyer will discuss revenue sources, whether local taxes will increase and what he sees as the benefits of incorporation.\n\nThe cityhood steering committee will be on hand to answer any questions.\n\nFuture cityhood forums will be held on the second and fourth Tuesday of each month at the Skate 'N Place site.\n\n\"The bottom line is the pocketbook,\" said cityhood spokesman Connie Worden, referring to the most commonly asked questions about incorporation.\n\n\"If we couldn't pay for the city I'd champion a cause for no city at all,\" she said."
+  },
+  {
+   "key": "gt8702_sg010487",
+   "kind": "document",
+   "page": "gt8702",
+   "existing_craft_id": null,
+   "title": "Cityhood Backers: Who Are They? (Laurel Suomisto, The Signal, January 4, 1987)",
+   "originally_published_title": "Cityhood Backers — Who Are They?",
+   "masthead": "The Newhall Signal and Saugus Enterprise | Sunday, January 4, 1987.",
+   "date": {
+    "printed": "Sunday, January 4, 1987",
+    "edtf": "1987-01-04",
+    "from": "masthead"
+   },
+   "author": "Laurel Suomisto",
+   "byline": "By Laurel Suomisto",
+   "body": [
+    "When Carl Boyer moved into his Santa Clarita Valley condominium in 1967, he thought he had found a quiet residential neighborhood.",
+    "That was before he learned of a developer's plan to build an auto dealership on the residentially zoned vacant land across the street.",
+    "Having received no notice of the plan change, Boyer found out about the county Planning Commission hearing on the proposal at the last moment — and spent the next three years fighting it downtown",
+    "\"It was a business of taking repeated days off from work,\" Boyer recalls.",
+    "Today, he brings up that experience to explain his involvement in the move to form the City of Santa Clarita.",
+    "Boyer's dissatisfaction with having to deal with a \"local\" government 35 miles away is typical of the motivations of the baker's dozen of people who comprise the cityhood steering committee.",
+    "The committee's members cite the desire for local control, hearings held here at night, better planning and more consistent enforcement of land plans as the major reasons for forming a city.",
+    "Although he effort is nonpartisan, the cityhood committee's members are mostly Republican. They come from all over the SCV.",
+    "The financial feasibility of the proposed city, which would encompass the communities of Newhall, Saugus, Valencia, Canyon Country and Castaic, is now being formally reviewed by the county's Local Agency Formation Commission, in accordance with state law. Public hearings on the proposal will be held early this spring.",
+    "City backers, loath to wait for the county's hearings, will be holding their own public forums, starting Jan 13.",
+    "The forums are part of a stepped up drive to gain visibility for the movement, ending a yearlong period during which steering committee meetings were closed and press coverage was, if not shunned, not actively sought.",
+    "The low-profile first phase of the city campaign, in which signatures were collected on a petition to LAFCO, led to uncertainty in some quarters about the motivations of its backers.",
+    "Developers in particular feared that cityhood could stop growth. City backers deny the charge.",
+    "\"I'm definitely not a negative-growth person,\" said Jim Schutte, co-chair of the cityhood committee and owner of Canyon Lumber & Hardware.",
+    "\"I can't be, in the business I'm in,\" added the 44-year-old Canyon Country resident. \"I would just like to see a bit of planning to go with the growth.\"",
+    "The phrases \"planned growth,\" \"controlled growth\" and even \"slow growth\" are sprinkled throughout the conversations of city backers, but \"no-growth\" has so far not made an appearance.",
+    "Jill Klajic, of Canyon Country, said the drive for cityhood is \"not an anti-growth movement at all — it's controlled growth, organized growth.\"",
+    "Louis Brathwaite, 53, a Valencia resident and former Hart School District board member, said his principal reason for supporting cityhood is the desire for local control.",
+    "\"I feel that the area is growing, and that growth should continue,\" Brathwaite, the owner of a computer furniture firm, said.",
+    "\"However, the people who are affected by that growth should have more of a direct say about it.\"",
+    "Glo Donnelly of Valencia, 42, who with her husband Art acts as fundraiser for the committee, agreed.",
+    "\"It's easier to get to city councilmen than it is getting to the Board of Supervisors or the Regional Planning Commission or any of those agencies,\" said Donnelly, who operates a Newhall insurance agency with her husband.",
+    "Carla Swift, 39, a Canyon Country resident who assists cityhood spokesman Connie Worden with public relations, said SCV residents \"just need someone close by that understands why we moved out here. We moved out here to get out of the crunch.",
+    "\"We're getting railroaded out here,\" she added. \"People go down to try to represent their community, and they get insulted.\"",
+    "Other recurring themes in the interviews with city backers were the county's apparent lack of coordination between road-building and tract-building, and the increased visibility of a city at higher levels of government where major road projects are approved and funded.",
+    "\"It's going to give us a heck of a lot better representation with the county and the state,\" said Boyer, a 49-year-old Newhall resident.",
+    "Bill Roberts, 58, an Auto Club district manager who has spent years on the Chamber of Commerce transportation group lobbying for local road projects, said cityhood would allow SCV taxpayers a \"better accounting\" of where their road dollars are going.",
+    "In addition, said Donnelly, \"We'll be keeping more of our tax dollars in our community.\"",
+    "\"We need to continue to develop and we need to continue to grow ... but the related services, the roads and sewers, ought to be addressed,\" she said.",
+    "\"There hasn't been as much forethought and planning for that enormous amount of growth as there could have been.\"",
+    "Lou Garasi, 52, who serves with Schutte as committee co-chair, said roads \"don't necessarily have to go in before the houses, but typically, the way it's been handled in the past is the houses are built and then the traffic jams build up.\"",
+    "The county has made some progress in the last four years by establishing benefit assessment districts, but things move too slowly, he said. It took eight years to build the Bouquet Canyon bridge, and the Whites Canyon hookup with Via Princessa — the first of a series of major road improvements planned by the county — to be completed this spring should have gone in four years ago, he said.",
+    "\"I think under local control we could do it probably faster and more cost-effectively, and that would make it easier for everyone concerned,\" Garasi said.",
+    "Connie Worden, spokesman for the cityhood committee, acknowledged that a city would not be the solution to all the SCV's gripes.",
+    "\"Roads will never be easy,\" Worden said.",
+    "Garasi said he would wait until LAFCO's report before drawing final conclusions about the benefit of cityhood.",
+    "\"I'm not supporting cityhood at all costs,\" he said.",
+    "But, he added, echoing other committee members, \"I think we're large enough economically and population-wise to become a city.\"",
+    "Boyer, the high school teacher who won his fight with the Planning Commission, agreed.",
+    "\"Most of all, we're ready for self-government,\" he said.",
+    "\"This idea of being a colonial outpost of Los Angeles County has got to stop.\""
+   ],
+   "webmasterNoteTop": [
+    "January 13, 1987 — Santa Clarita City Formation Committee holds its first public forum at the Skate 'N Place, 21616 Soledad Canyon Road. Voters approved cityhood November 3, 1987.",
+    "Photos by Gary Thornhill/The Signal."
+   ],
+   "webmasterNoteBottom": [
+    "About the photographer: Photojournalist Gary Thornhill chronicled the history of the Santa Clarita Valley as it unfolded in the 1970s, '80s and '90s. From car races in Saugus to fatal car wrecks in Valencia; from topless beauty contests in Canyon Country to fires and floods in the various canyons; from city formation in 1987 to the Northridge earthquake in 1994 — Thornhill's photographs were published in The Los Angeles Times, The Newhall Signal, The Santa Clarita Valley Citizen newspaper, California Highway Patrolman magazine and elsewhere. He penned the occasional breaking news story for Signal and Citizen editors Scott and Ruth Newhall under the pseudonym of Victor Valencia, and he was the Santa Clarita Valley Sheriff Station's very first volunteer — and only the second in the entire LASD. Thornhill retained the rights to the images he created; in 2012, he donated his SCV photographs to two nonprofit organizations — SCVTV and the Santa Clarita Valley Historical Society — so that his work might continue to educate and inform the public."
+   ],
+   "credit": "The Newhall Signal and Saugus Enterprise",
+   "ocr": false,
+   "living_people_flag": "Verbatim 1987 story gives ages, home communities and businesses of committee members (Boyer, Schutte, Klajic, Brathwaite, Glo Donnelly, Swift, Roberts, Garasi). Kept verbatim; review against the living-person rule before publishing.",
+   "why": "Contemporary profile of the steering committee; calls her \"spokesman for the cityhood committee\" and quotes her.",
+   "claims": [
+    "Carla Swift, 39, a Canyon Country resident who assists cityhood spokesman Connie Worden with public relations",
+    "Connie Worden, spokesman for the cityhood committee, acknowledged that a city would not be the solution to all the SCV's gripes.",
+    "\"Roads will never be easy,\" Worden said."
+   ],
+   "body_text": "When Carl Boyer moved into his Santa Clarita Valley condominium in 1967, he thought he had found a quiet residential neighborhood.\n\nThat was before he learned of a developer's plan to build an auto dealership on the residentially zoned vacant land across the street.\n\nHaving received no notice of the plan change, Boyer found out about the county Planning Commission hearing on the proposal at the last moment — and spent the next three years fighting it downtown\n\n\"It was a business of taking repeated days off from work,\" Boyer recalls.\n\nToday, he brings up that experience to explain his involvement in the move to form the City of Santa Clarita.\n\nBoyer's dissatisfaction with having to deal with a \"local\" government 35 miles away is typical of the motivations of the baker's dozen of people who comprise the cityhood steering committee.\n\nThe committee's members cite the desire for local control, hearings held here at night, better planning and more consistent enforcement of land plans as the major reasons for forming a city.\n\nAlthough he effort is nonpartisan, the cityhood committee's members are mostly Republican. They come from all over the SCV.\n\nThe financial feasibility of the proposed city, which would encompass the communities of Newhall, Saugus, Valencia, Canyon Country and Castaic, is now being formally reviewed by the county's Local Agency Formation Commission, in accordance with state law. Public hearings on the proposal will be held early this spring.\n\nCity backers, loath to wait for the county's hearings, will be holding their own public forums, starting Jan 13.\n\nThe forums are part of a stepped up drive to gain visibility for the movement, ending a yearlong period during which steering committee meetings were closed and press coverage was, if not shunned, not actively sought.\n\nThe low-profile first phase of the city campaign, in which signatures were collected on a petition to LAFCO, led to uncertainty in some quarters about the motivations of its backers.\n\nDevelopers in particular feared that cityhood could stop growth. City backers deny the charge.\n\n\"I'm definitely not a negative-growth person,\" said Jim Schutte, co-chair of the cityhood committee and owner of Canyon Lumber & Hardware.\n\n\"I can't be, in the business I'm in,\" added the 44-year-old Canyon Country resident. \"I would just like to see a bit of planning to go with the growth.\"\n\nThe phrases \"planned growth,\" \"controlled growth\" and even \"slow growth\" are sprinkled throughout the conversations of city backers, but \"no-growth\" has so far not made an appearance.\n\nJill Klajic, of Canyon Country, said the drive for cityhood is \"not an anti-growth movement at all — it's controlled growth, organized growth.\"\n\nLouis Brathwaite, 53, a Valencia resident and former Hart School District board member, said his principal reason for supporting cityhood is the desire for local control.\n\n\"I feel that the area is growing, and that growth should continue,\" Brathwaite, the owner of a computer furniture firm, said.\n\n\"However, the people who are affected by that growth should have more of a direct say about it.\"\n\nGlo Donnelly of Valencia, 42, who with her husband Art acts as fundraiser for the committee, agreed.\n\n\"It's easier to get to city councilmen than it is getting to the Board of Supervisors or the Regional Planning Commission or any of those agencies,\" said Donnelly, who operates a Newhall insurance agency with her husband.\n\nCarla Swift, 39, a Canyon Country resident who assists cityhood spokesman Connie Worden with public relations, said SCV residents \"just need someone close by that understands why we moved out here. We moved out here to get out of the crunch.\n\n\"We're getting railroaded out here,\" she added. \"People go down to try to represent their community, and they get insulted.\"\n\nOther recurring themes in the interviews with city backers were the county's apparent lack of coordination between road-building and tract-building, and the increased visibility of a city at higher levels of government where major road projects are approved and funded.\n\n\"It's going to give us a heck of a lot better representation with the county and the state,\" said Boyer, a 49-year-old Newhall resident.\n\nBill Roberts, 58, an Auto Club district manager who has spent years on the Chamber of Commerce transportation group lobbying for local road projects, said cityhood would allow SCV taxpayers a \"better accounting\" of where their road dollars are going.\n\nIn addition, said Donnelly, \"We'll be keeping more of our tax dollars in our community.\"\n\n\"We need to continue to develop and we need to continue to grow ... but the related services, the roads and sewers, ought to be addressed,\" she said.\n\n\"There hasn't been as much forethought and planning for that enormous amount of growth as there could have been.\"\n\nLou Garasi, 52, who serves with Schutte as committee co-chair, said roads \"don't necessarily have to go in before the houses, but typically, the way it's been handled in the past is the houses are built and then the traffic jams build up.\"\n\nThe county has made some progress in the last four years by establishing benefit assessment districts, but things move too slowly, he said. It took eight years to build the Bouquet Canyon bridge, and the Whites Canyon hookup with Via Princessa — the first of a series of major road improvements planned by the county — to be completed this spring should have gone in four years ago, he said.\n\n\"I think under local control we could do it probably faster and more cost-effectively, and that would make it easier for everyone concerned,\" Garasi said.\n\nConnie Worden, spokesman for the cityhood committee, acknowledged that a city would not be the solution to all the SCV's gripes.\n\n\"Roads will never be easy,\" Worden said.\n\nGarasi said he would wait until LAFCO's report before drawing final conclusions about the benefit of cityhood.\n\n\"I'm not supporting cityhood at all costs,\" he said.\n\nBut, he added, echoing other committee members, \"I think we're large enough economically and population-wise to become a city.\"\n\nBoyer, the high school teacher who won his fight with the Planning Commission, agreed.\n\n\"Most of all, we're ready for self-government,\" he said.\n\n\"This idea of being a colonial outpost of Los Angeles County has got to stop.\""
+  },
+  {
+   "key": "sg110185_lutz",
+   "kind": "document",
+   "page": "sg110185",
+   "existing_craft_id": null,
+   "title": "City Backers Join Prison Furor (Karina Lutz, The Signal, November 1, 1985)",
+   "originally_published_title": "City Backers Join Prison Furor",
+   "masthead": "The Signal | Friday, November 1, 1985.",
+   "date": {
+    "printed": "Friday, November 1, 1985",
+    "edtf": "1985-11-01",
+    "from": "masthead"
+   },
+   "author": "Karina Lutz",
+   "byline": "By Karina Lutz.",
+   "body": [
+    "Santa Clarita Valley city hood advocates had their own reaction to the news from the big city down south yesterday.",
+    "\"Were we a city — not that this couldn't happen — we would have more clout, more opportunity to stop it,\" said Connie Worden, spokesman for the Cityhood Feasibility Subcommittee of the Canyon Country and Santa Clarita Valley chambers of commerce.",
+    "\"I'm surprised we didn't get any notification from the county beforehand,\" said committee member Jeannette Sharar.",
+    "\"To me this is so political ... a sneak attack like this,\" Worden said. \"Both chambers of commerce are on record opposing a prison in this area.\"",
+    "Worden and Sharar tried to attend the press conference, as did other community activists, but no one but the press was allowed in until after Bradley spoke.",
+    "Part of the problem for the SCV as unincorporated county, Worden said, is that \"viewed from Los Angeles standards, this is out in the boonies.\" But those of us who live here, she said, know that the suggested site is in a residential area, and is an inappropriate site for the prison.",
+    "If the Santa Clarita Valley was incorporated as a city, Sharar said, \"everything could be handled here, rather than having the county represent us. ... We would be a step closer to controlling our own destiny.",
+    "\"I think (Bradley's proposal) will do a lot to help city formation,\" Sharar said.",
+    "The cityhood committee plans to talk about the prison proposal at its next public meeting, at 7:30 Monday evening in the Hart High School cafeteria."
+   ],
+   "webmasterNoteTop": [
+    "It was the perfect setup for The Signal's firebreathing editorialist: L.A. Mayor Tom Bradley decided he'd meet L.A.'s obligation to host a state prison by sticking it far from the City of Angels — right here in L.A.'s traditional dumping ground, the Santa Clarita Valley, where Bradley's megalopolis just happened to own a piece of land. Maybe.",
+    "Modern conspiracists might assume it was a farce cooked up by our humble valley's would-be city creators to rally support for self-rule. Indeed, Santa Clarita backer and future city commissioner Jeannette Sharar predicted the prison threat would \"do a lot to help city formation,\" while future city councilor Jo Anne Darcy, speaking for Supervisor Mike Antonovich, vowed to \"fight it to the death.\"",
+    "But it was real.",
+    "And it did die. But not before it joined the litany of mistreatments that prompted the fine people of Santa Clarita to grab the bull by the horns and become a force unto their own."
+   ],
+   "webmasterNoteBottom": [
+    "One of several Signal and Los Angeles Times items on the page sg110185; only this story is extracted."
+   ],
+   "credit": "The Signal",
+   "ocr": false,
+   "why": "Contemporary: her first role in the 1985 drive, spokesman for the chambers' feasibility subcommittee.",
+   "claims": [
+    "said Connie Worden, spokesman for the Cityhood Feasibility Subcommittee of the Canyon Country and Santa Clarita Valley chambers of commerce.",
+    "\"Were we a city — not that this couldn't happen — we would have more clout, more opportunity to stop it,\"",
+    "\"Both chambers of commerce are on record opposing a prison in this area.\""
+   ],
+   "body_text": "Santa Clarita Valley city hood advocates had their own reaction to the news from the big city down south yesterday.\n\n\"Were we a city — not that this couldn't happen — we would have more clout, more opportunity to stop it,\" said Connie Worden, spokesman for the Cityhood Feasibility Subcommittee of the Canyon Country and Santa Clarita Valley chambers of commerce.\n\n\"I'm surprised we didn't get any notification from the county beforehand,\" said committee member Jeannette Sharar.\n\n\"To me this is so political ... a sneak attack like this,\" Worden said. \"Both chambers of commerce are on record opposing a prison in this area.\"\n\nWorden and Sharar tried to attend the press conference, as did other community activists, but no one but the press was allowed in until after Bradley spoke.\n\nPart of the problem for the SCV as unincorporated county, Worden said, is that \"viewed from Los Angeles standards, this is out in the boonies.\" But those of us who live here, she said, know that the suggested site is in a residential area, and is an inappropriate site for the prison.\n\nIf the Santa Clarita Valley was incorporated as a city, Sharar said, \"everything could be handled here, rather than having the county represent us. ... We would be a step closer to controlling our own destiny.\n\n\"I think (Bradley's proposal) will do a lot to help city formation,\" Sharar said.\n\nThe cityhood committee plans to talk about the prison proposal at its next public meeting, at 7:30 Monday evening in the Hart High School cafeteria."
+  },
+  {
+   "key": "fh8101",
+   "kind": "document",
+   "page": "fh8101",
+   "existing_craft_id": null,
+   "title": "Friends of Hart Park: original bylaws and initial directors, 1981",
+   "originally_published_title": "",
+   "date": {
+    "printed": "1981",
+    "edtf": "1981",
+    "from": "dateline: Newhall, California | 1981."
+   },
+   "author": "Friends of Hart Park",
+   "byline": "",
+   "body": [
+    "Founding Board of Directors:",
+    "Betty Burke",
+    "Louis T. Lamkin",
+    "Eva Mitchell",
+    "Tony Newhall",
+    "Betty Houghton Pember",
+    "Jean Perkins",
+    "Richard A. White",
+    "Connie Worden",
+    "Jessie Wyatt"
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "Bylaws of Friends of Hart Park. Newhall, California | 1981.",
+    "Download original pdf here."
+   ],
+   "credit": "FH prefix: \"Photographs courtesy of the Friends of Hart Park and Museum\"",
+   "ocr": false,
+   "why": "Contemporary 1981 document listing her as a founding director.",
+   "note_for_profile": "The page transcribes only the director list. The bylaws themselves are in the flipbook files/fh8101 (OCR, not used); it reportedly gives her home address, which stays out.",
+   "claims": [
+    "Founding Board of Directors:",
+    "Connie Worden"
+   ],
+   "body_text": "Founding Board of Directors:\n\nBetty Burke\n\nLouis T. Lamkin\n\nEva Mitchell\n\nTony Newhall\n\nBetty Houghton Pember\n\nJean Perkins\n\nRichard A. White\n\nConnie Worden\n\nJessie Wyatt"
+  },
+  {
+   "key": "tl8601",
+   "kind": "document",
+   "page": "tl8601",
+   "existing_craft_id": null,
+   "title": "Resolution: Founders, Friends of Hart Park, 1986",
+   "originally_published_title": "RESOLUTION",
+   "date": {
+    "printed": "November 25, 1986",
+    "edtf": "1986-11-25",
+    "from": "approval line"
+   },
+   "author": "Friends of Hart Park Board of Directors (James G. Yaple, President; Cathy Kincheloe, Secretary)",
+   "byline": "",
+   "body": [
+    "RESOLUTION",
+    "WHEREAS: Betty Burke, Louis (Ted) Lamkin, Eva Mitchell, Tony Newhall, Betty Houghton Pember, Jean Perkins, Richard A. White, Connie Worden and Jessie Wyatt were the initial Directors of the Friends of Hart Park, and",
+    "WHEREAS: These Directors have given much of themselves, their time, their talents and their resources, both individually and in concert, and",
+    "WHEREAS: The efforts of these Directors did result in the founding of the Friends of Hart Park, and",
+    "WHEREAS: These foundations have provided the solid framework on which to build a lasting, productive organization for the betterment of William S. Hart Park, therefore be it",
+    "RESOLVED: That these Nine Individuals be now and forevermore, individually and collectively known as \"FOUNDERS\" and it be further resolved that these FOUNDERS shall be extended all the rights and priviliges of HONORARY membership for the life of the Corporation and be it further resolved that a copy of this Resolution be forwarded to these Nine Founders along with such appropriate mementoes as deemed appropriate.",
+    "As approved at the Regular Meeting of the Board of Directors of the Friends of Hart Park, November 25, 1986.",
+    "/s/",
+    "James G. Yaple, President",
+    "/s/",
+    "Cathy Kincheloe, Secretary"
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "TL8601: 9600 dpi jpeg from original documents. Ted Lamkin Collection."
+   ],
+   "credit": "TL8601: 9600 dpi jpeg from original documents. Ted Lamkin Collection.",
+   "ocr": false,
+   "why": "The Friends' own resolution naming her one of the nine founders.",
+   "claims": [
+    "Connie Worden and Jessie Wyatt were the initial Directors of the Friends of Hart Park",
+    "That these Nine Individuals be now and forevermore, individually and collectively known as \"FOUNDERS\"",
+    "As approved at the Regular Meeting of the Board of Directors of the Friends of Hart Park, November 25, 1986."
+   ],
+   "body_text": "RESOLUTION\n\nWHEREAS: Betty Burke, Louis (Ted) Lamkin, Eva Mitchell, Tony Newhall, Betty Houghton Pember, Jean Perkins, Richard A. White, Connie Worden and Jessie Wyatt were the initial Directors of the Friends of Hart Park, and\n\nWHEREAS: These Directors have given much of themselves, their time, their talents and their resources, both individually and in concert, and\n\nWHEREAS: The efforts of these Directors did result in the founding of the Friends of Hart Park, and\n\nWHEREAS: These foundations have provided the solid framework on which to build a lasting, productive organization for the betterment of William S. Hart Park, therefore be it\n\nRESOLVED: That these Nine Individuals be now and forevermore, individually and collectively known as \"FOUNDERS\" and it be further resolved that these FOUNDERS shall be extended all the rights and priviliges of HONORARY membership for the life of the Corporation and be it further resolved that a copy of this Resolution be forwarded to these Nine Founders along with such appropriate mementoes as deemed appropriate.\n\nAs approved at the Regular Meeting of the Board of Directors of the Friends of Hart Park, November 25, 1986.\n\n/s/\n\nJames G. Yaple, President\n\n/s/\n\nCathy Kincheloe, Secretary"
+  },
+  {
+   "key": "hartschoolboardmembers",
+   "kind": "document",
+   "page": "hartschoolboardmembers",
+   "existing_craft_id": null,
+   "title": "William S. Hart Union High School District governing board members, 1974-1979 (excerpt)",
+   "originally_published_title": "",
+   "date": {
+    "printed": "",
+    "edtf": null,
+    "from": "compiled list, undated; excerpt covers 1974-1979",
+    "covers_edtf": "1974-07-01/1979-11"
+   },
+   "author": "SCVHistory.com, compiled",
+   "byline": "",
+   "excerpt": true,
+   "body": [
+    "Governing Board Members",
+    "William S. Hart Union High School District",
+    "1945 to Date.",
+    "7-1-1974 to 6-30-1975",
+    "Ruth Kelley, President",
+    "Kenneth C. Wullschleger, Clerk",
+    "Thomas Hanson",
+    "Robert Crozier",
+    "Connie Worden (12-1-1974)",
+    "4-1-1975 to 3-31-1976",
+    "Kenneth C. Wullschleger, President",
+    "Thomas Hanson",
+    "Robert Crozier",
+    "Connie Worden, Clerk",
+    "Dr. Patrick Shaughnessy",
+    "4-1-1976 to 4-3-1977",
+    "Robert Crozier, President",
+    "Dr. Patrick Shaughnessy, Clerk",
+    "Thomas Hanson",
+    "Connie Worden",
+    "Kenneth C. Wullschleger",
+    "4-1-1977 to 3-31-1978",
+    "Connie Worden, President",
+    "Louis Brathwaite, Clerk (4-12-1977)",
+    "Kenneth C. Wullschleger",
+    "Patrick Shaughnessy",
+    "Thomas Hanson (reelected 3-1977, resigned 5-25-1977)",
+    "Sheldon Allen (appointed to complete Hanson's unexpired term, until 3-1979)",
+    "1-10-1978 to 3-31-1979",
+    "Connie Worden, President",
+    "Louis Brathwaite, Clerk",
+    "Kenneth C. Wullschleger",
+    "Sheldon Allen",
+    "Jim Shuman (appointed to complete the unexpired term of Shaughnessy, who resigned)",
+    "7-19-1978 to 11-1979",
+    "Louis Brathwaite, President",
+    "Sheldon Allen, Clerk",
+    "Connie Worden",
+    "Kenneth C. Wullschleger (resigned eff. 1-23-1979)",
+    "James Putjenter (appointed to complete unexpired term of Shuman, who resigned)",
+    "Howard P. \"Buck\" McKeon (elected 3-6-1979 to complete Wullschleger's unexpired term)"
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "Source documents (partial):",
+    "• 1948-1991 (Hart District, .pdf)"
+   ],
+   "credit": "Source documents (partial): • 1948-1991 (Hart District, .pdf)",
+   "ocr": false,
+   "why": "Her board seat (from 12-1-1974), clerk 1975-76, and presidency.",
+   "conflict": "The list gives her as President for \"4-1-1977 to 3-31-1978\" and again for \"1-10-1978 to 3-31-1979\", then lists Brathwaite as President for \"7-19-1978 to 11-1979\"; the periods overlap. Keep as printed; check against the district source pdf.",
+   "claims": [
+    "Connie Worden (12-1-1974)",
+    "Connie Worden, Clerk",
+    "Connie Worden, President"
+   ],
+   "body_text": "Governing Board Members\n\nWilliam S. Hart Union High School District\n\n1945 to Date.\n\n7-1-1974 to 6-30-1975\n\nRuth Kelley, President\n\nKenneth C. Wullschleger, Clerk\n\nThomas Hanson\n\nRobert Crozier\n\nConnie Worden (12-1-1974)\n\n4-1-1975 to 3-31-1976\n\nKenneth C. Wullschleger, President\n\nThomas Hanson\n\nRobert Crozier\n\nConnie Worden, Clerk\n\nDr. Patrick Shaughnessy\n\n4-1-1976 to 4-3-1977\n\nRobert Crozier, President\n\nDr. Patrick Shaughnessy, Clerk\n\nThomas Hanson\n\nConnie Worden\n\nKenneth C. Wullschleger\n\n4-1-1977 to 3-31-1978\n\nConnie Worden, President\n\nLouis Brathwaite, Clerk (4-12-1977)\n\nKenneth C. Wullschleger\n\nPatrick Shaughnessy\n\nThomas Hanson (reelected 3-1977, resigned 5-25-1977)\n\nSheldon Allen (appointed to complete Hanson's unexpired term, until 3-1979)\n\n1-10-1978 to 3-31-1979\n\nConnie Worden, President\n\nLouis Brathwaite, Clerk\n\nKenneth C. Wullschleger\n\nSheldon Allen\n\nJim Shuman (appointed to complete the unexpired term of Shaughnessy, who resigned)\n\n7-19-1978 to 11-1979\n\nLouis Brathwaite, President\n\nSheldon Allen, Clerk\n\nConnie Worden\n\nKenneth C. Wullschleger (resigned eff. 1-23-1979)\n\nJames Putjenter (appointed to complete unexpired term of Shuman, who resigned)\n\nHoward P. \"Buck\" McKeon (elected 3-6-1979 to complete Wullschleger's unexpired term)"
+  },
+  {
+   "key": "citycommissioners",
+   "kind": "document",
+   "page": "citycommissioners",
+   "existing_craft_id": null,
+   "title": "City of Santa Clarita Planning Commission, 1988-1990 (excerpt)",
+   "originally_published_title": "",
+   "date": {
+    "printed": "",
+    "edtf": null,
+    "from": "compiled list, undated; excerpt covers 1988-1990",
+    "covers_edtf": "1988/1990"
+   },
+   "author": "SCVHistory.com, compiled",
+   "byline": "",
+   "excerpt": true,
+   "body": [
+    "City of Santa Clarita Commissioners, 1988-Present",
+    "Planning Commission",
+    "1988",
+    "Louis Brathwaite",
+    "Rita Garasi",
+    "Pat Modugno",
+    "Jeannette Sharar",
+    "Connie Worden",
+    "Jerry Cherrington",
+    "1988-1990",
+    "Louis Brathwaite",
+    "Rita Garasi",
+    "Pat Modugno",
+    "Jerry Cherrington",
+    "Connie Worden",
+    "Jack Woodrow"
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "No source is cited on the page."
+   ],
+   "credit": "",
+   "ocr": false,
+   "why": "Her seat on the city's first Planning Commission.",
+   "claims": [
+    "Planning Commission\n\n1988",
+    "Connie Worden"
+   ],
+   "body_text": "City of Santa Clarita Commissioners, 1988-Present\n\nPlanning Commission\n\n1988\n\nLouis Brathwaite\n\nRita Garasi\n\nPat Modugno\n\nJeannette Sharar\n\nConnie Worden\n\nJerry Cherrington\n\n1988-1990\n\nLouis Brathwaite\n\nRita Garasi\n\nPat Modugno\n\nJerry Cherrington\n\nConnie Worden\n\nJack Woodrow"
+  },
+  {
+   "key": "khts081214",
+   "kind": "document",
+   "page": "khts081214",
+   "existing_craft_id": null,
+   "title": "Connie Worden Roberts, City Co-Founder (Perry Smith, KHTS, August 12, 2014)",
+   "originally_published_title": "",
+   "masthead": "By Perry Smith, AM-1220 KHTS | Tuesday, August 12, 2014",
+   "date": {
+    "printed": "Tuesday, August 12, 2014",
+    "edtf": "2014-08-12",
+    "from": "byline line"
+   },
+   "author": "Perry Smith",
+   "byline": "By Perry Smith, AM-1220 KHTS | Tuesday, August 12, 2014",
+   "body": [
+    "A longtime Santa Clarita Valley woman praised for decades of community building and her key role in the city's formation, Connie Worden-Roberts died Tuesday at 5:50 p.m. in Canyon Country from a months-long illness, according to family members. She was 83.",
+    "Nearly 100 longtime Santa Clarita Valley residents and officials were on hand as Worden-Roberts was given a key to the city of Santa Clarita and a Lifetime Achievement Award on May 16.",
+    "The influential member of a group that helped push for the city's formation, funding for the Cross Valley Connector and for the original clubhouse of the Santa Clarita Valley Boys & Girls Club, Worden-Roberts was named Santa Clarita Valley Woman of the Year in 1975.",
+    "Worden-Roberts one of the original members of the Santa Clarita's first Planning Commission and a leader in the formation of Santa Clarita as a city in 1987 after having led an effort a decade earlier to form the breakaway Canyon County.",
+    "Worden-Roberts personally gathered 2,000 of the 24,000 signatures needed for the petition for cityhood.",
+    "Here are the contents of a page dedicated to Worden-Roberts created by the Santa Clarita Valley Man and Woman of the Year:",
+    "Worden-Roberts, who has epitomized community building and leadership in its finest for almost four decades, was honored as Santa Clarita Valley Woman of the Year back in 1975.",
+    "In the 31 years that have passed, this remarkable lady has neither slowed down nor has withdrawn from public service or her volunteer contributions.",
+    "While the title of SCV Woman of the Year may be bestowed on an individual only once, Connie has deserved it many times. In fact, she has also been named \"Woman of the Year\" three times by the California State Legislature, and was recipient of the \"Lifetime Achievement Award\" by the SCV Press Club.",
+    "Connie Worden grew up in Minnesota and graduated with a B.A. in English from San Jose State College. She did accounting work while in college.",
+    "She moved to the Santa Clarita Valley in 1970, and worked with programs for gifted children at CSUN. During this time she was active in numerous civic and volunteer organizations in the Santa Clarita Valley. In 1974, she was among the first women elected to the Boys & Girls Club governing board. She worked on the Club's benefit auction during its formative years, and served as Auction Coordinator in 1980 when the Auction first surpassed the $100,000 revenue mark.",
+    "In 1975 she was elected to the Board of the (then-named) Newhall-Saugus-Valencia Chamber of Commerce. She organized and headed for many years the Chamber's Transportation Committee which operated as a quasi-civic body to oversee local traffic needs and road construction.",
+    "Also in the '70s she was elected to the Hart School Board of Trustees, the North County Citizens Planning Council, the Henry Mayo Newhall Hospital speakers bureau, and the Placerita Canyon Nature Center Association.",
+    "In early 1980, she worked as a special assistant to the president of HR Textron, and then with Assemblywoman Marian La Follette.",
+    "Connie was an active leader in the Canyon County Formation Committee which attempted twice in the late '70s to form the Santa Clarita Valley into a separate county. She was equally active a decade later in the incorporation of the City of Santa Clarita.",
+    "She also found time to serve as chair of the League of Women Voters. And she worked on special programs for children at Wiley Canyon Elementary School.",
+    "In 1990, Connie started her own business as the Transportation Management Association. She was appointed by Supervisor Michael Antonovich to the North County Transportation Coalition. She has been active as a board member in the Valley Industrial Association and she serves as the co-chair of the SCV Transportation Alliance.",
+    "Even after 30 years, Connie Worden was still serving on the governing board of the SCV Boys & Girls Club, and was re-elected to the SCV Chamber of Commerce Board for 2005-2008.",
+    "Worden-Roberts said in 2005 of her 30-year-old honor of SCV Woman of the Year:",
+    "\"It has been a great and continuing honor to have been selected by my peers to such a number of awards. It has been a distinct pleasure to have served in a variety of interesting capacities. I have had the privilege of learning a great deal about this fascinating Valley and the wonderful people who reside here.\""
+   ],
+   "webmasterNoteTop": [
+    "Connie Worden Roberts | Co-Founder, City of Santa Clarita | November 19, 1930 — August 12, 2014"
+   ],
+   "webmasterNoteBottom": [
+    "Photo captions on the page (authorship not stated): Connie, a longtime SCV Boys & Girls Club board member, at the 1986 benefit auction with supporter Mike Kline (left) and club executive Jim Ventress (right). Click to enlarge. / Connie envisioning the future cross-valley connector in October 1993. Click to enlarge. / Connie: Front and center at a groundbreaking for the cross-valley connector in 2008. Click to enlarge."
+   ],
+   "credit": "AM-1220 KHTS",
+   "ocr": false,
+   "why": "Contemporary obituary; carries the 2005 SCV Man and Woman of the Year profile and her own 2005 statement. Not yet in Craft (the Goldman tribute #28047 is).",
+   "claims": [
+    "Connie Worden-Roberts died Tuesday at 5:50 p.m. in Canyon Country from a months-long illness, according to family members. She was 83.",
+    "Worden-Roberts was given a key to the city of Santa Clarita and a Lifetime Achievement Award on May 16.",
+    "Worden-Roberts personally gathered 2,000 of the 24,000 signatures needed for the petition for cityhood.",
+    "In 1974, she was among the first women elected to the Boys & Girls Club governing board.",
+    "In 1990, Connie started her own business as the Transportation Management Association.",
+    "\"It has been a great and continuing honor to have been selected by my peers to such a number of awards."
+   ],
+   "body_text": "A longtime Santa Clarita Valley woman praised for decades of community building and her key role in the city's formation, Connie Worden-Roberts died Tuesday at 5:50 p.m. in Canyon Country from a months-long illness, according to family members. She was 83.\n\nNearly 100 longtime Santa Clarita Valley residents and officials were on hand as Worden-Roberts was given a key to the city of Santa Clarita and a Lifetime Achievement Award on May 16.\n\nThe influential member of a group that helped push for the city's formation, funding for the Cross Valley Connector and for the original clubhouse of the Santa Clarita Valley Boys & Girls Club, Worden-Roberts was named Santa Clarita Valley Woman of the Year in 1975.\n\nWorden-Roberts one of the original members of the Santa Clarita's first Planning Commission and a leader in the formation of Santa Clarita as a city in 1987 after having led an effort a decade earlier to form the breakaway Canyon County.\n\nWorden-Roberts personally gathered 2,000 of the 24,000 signatures needed for the petition for cityhood.\n\nHere are the contents of a page dedicated to Worden-Roberts created by the Santa Clarita Valley Man and Woman of the Year:\n\nWorden-Roberts, who has epitomized community building and leadership in its finest for almost four decades, was honored as Santa Clarita Valley Woman of the Year back in 1975.\n\nIn the 31 years that have passed, this remarkable lady has neither slowed down nor has withdrawn from public service or her volunteer contributions.\n\nWhile the title of SCV Woman of the Year may be bestowed on an individual only once, Connie has deserved it many times. In fact, she has also been named \"Woman of the Year\" three times by the California State Legislature, and was recipient of the \"Lifetime Achievement Award\" by the SCV Press Club.\n\nConnie Worden grew up in Minnesota and graduated with a B.A. in English from San Jose State College. She did accounting work while in college.\n\nShe moved to the Santa Clarita Valley in 1970, and worked with programs for gifted children at CSUN. During this time she was active in numerous civic and volunteer organizations in the Santa Clarita Valley. In 1974, she was among the first women elected to the Boys & Girls Club governing board. She worked on the Club's benefit auction during its formative years, and served as Auction Coordinator in 1980 when the Auction first surpassed the $100,000 revenue mark.\n\nIn 1975 she was elected to the Board of the (then-named) Newhall-Saugus-Valencia Chamber of Commerce. She organized and headed for many years the Chamber's Transportation Committee which operated as a quasi-civic body to oversee local traffic needs and road construction.\n\nAlso in the '70s she was elected to the Hart School Board of Trustees, the North County Citizens Planning Council, the Henry Mayo Newhall Hospital speakers bureau, and the Placerita Canyon Nature Center Association.\n\nIn early 1980, she worked as a special assistant to the president of HR Textron, and then with Assemblywoman Marian La Follette.\n\nConnie was an active leader in the Canyon County Formation Committee which attempted twice in the late '70s to form the Santa Clarita Valley into a separate county. She was equally active a decade later in the incorporation of the City of Santa Clarita.\n\nShe also found time to serve as chair of the League of Women Voters. And she worked on special programs for children at Wiley Canyon Elementary School.\n\nIn 1990, Connie started her own business as the Transportation Management Association. She was appointed by Supervisor Michael Antonovich to the North County Transportation Coalition. She has been active as a board member in the Valley Industrial Association and she serves as the co-chair of the SCV Transportation Alliance.\n\nEven after 30 years, Connie Worden was still serving on the governing board of the SCV Boys & Girls Club, and was re-elected to the SCV Chamber of Commerce Board for 2005-2008.\n\nWorden-Roberts said in 2005 of her 30-year-old honor of SCV Woman of the Year:\n\n\"It has been a great and continuing honor to have been selected by my peers to such a number of awards. It has been a distinct pleasure to have served in a variety of interesting capacities. I have had the privilege of learning a great deal about this fascinating Valley and the wonderful people who reside here.\""
+  },
+  {
+   "key": "sc1708",
+   "kind": "document",
+   "page": "sc1708",
+   "existing_craft_id": null,
+   "title": "Connie Worden-Roberts Memorial Bridge dedicated, Golden Valley Road at SR-14, 2016",
+   "originally_published_title": "",
+   "date": {
+    "printed": "Tuesday, October 4, 2016 (event); text undated",
+    "edtf": "2016",
+    "from": "the text names the dedication date; the release itself is undated",
+    "event_edtf": "2016-10-04"
+   },
+   "author": "City of Santa Clarita",
+   "byline": "[City of Santa Clarita]",
+   "body": [
+    "[City of Santa Clarita] - On Tuesday, October 4, 2016, the City of Santa Clarita hosted a public ribbon cutting event to celebrate the completion of the Golden Valley Road Bridge Widening Project and to host a dedication ceremony of the Connie Worden-Roberts Memorial Bridge.",
+    "The Golden Valley Road Bridge widening over the 14 Freeway at Golden Valley Road will improve traffic flow entering and exiting the 14 Freeway. The project added an additional two lanes of travel, one in each direction, for a total of four through lanes. Improvements also included a dedicated left turn lane for the southbound 14 Freeway, two left turn lanes for the northbound 14 Freeway and a protected path for pedestrians and cyclists on the south side of the bridge.",
+    "The Golden Valley Road Bridge was renamed in honor of Connie Worden-Roberts, a local advocate and Santa Clarita community leader known for her vital role in the formation of the City of Santa Clarita in 1987 and often referred to as the \"Road Warrior\" for her efforts behind the development of the Cross-Valley Connector.",
+    "This multi-million dollar project was made possible with funding partner Metro and in conjunction with Caltrans."
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [
+    "Time-lapse video from City of Santa Clarita webcam, 2016. Silent."
+   ],
+   "credit": "City of Santa Clarita (SC prefix: \"Photographs courtesy of the City of Santa Clarita\")",
+   "ocr": false,
+   "why": "The city's own statement of why the bridge bears her name. ACR 89 (acr89_2015.htm, sha256 842629842740f63c...) holds only the bill history, so it is listed as related, not extracted.",
+   "claims": [
+    "host a dedication ceremony of the Connie Worden-Roberts Memorial Bridge",
+    "known for her vital role in the formation of the City of Santa Clarita in 1987 and often referred to as the \"Road Warrior\" for her efforts behind the development of the Cross-Valley Connector."
+   ],
+   "body_text": "[City of Santa Clarita] - On Tuesday, October 4, 2016, the City of Santa Clarita hosted a public ribbon cutting event to celebrate the completion of the Golden Valley Road Bridge Widening Project and to host a dedication ceremony of the Connie Worden-Roberts Memorial Bridge.\n\nThe Golden Valley Road Bridge widening over the 14 Freeway at Golden Valley Road will improve traffic flow entering and exiting the 14 Freeway. The project added an additional two lanes of travel, one in each direction, for a total of four through lanes. Improvements also included a dedicated left turn lane for the southbound 14 Freeway, two left turn lanes for the northbound 14 Freeway and a protected path for pedestrians and cyclists on the south side of the bridge.\n\nThe Golden Valley Road Bridge was renamed in honor of Connie Worden-Roberts, a local advocate and Santa Clarita community leader known for her vital role in the formation of the City of Santa Clarita in 1987 and often referred to as the \"Road Warrior\" for her efforts behind the development of the Cross-Valley Connector.\n\nThis multi-million dollar project was made possible with funding partner Metro and in conjunction with Caltrans."
+  },
+  {
+   "key": "lw8501",
+   "kind": "photograph",
+   "page": "lw8501",
+   "existing_craft_id": 5701,
+   "import": false,
+   "action": "relate to person #16418; do not re-import",
+   "title": "Press Kit: City of Santa Clarita Feasibility Committee, 1985",
+   "excerpt": true,
+   "body": [
+    "CONNIE WORDEN, Public Affairs Spokesperson",
+    "Documents from the files of Connie Worden-Roberts."
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [],
+   "credit": "Documents from the files of Connie Worden-Roberts.",
+   "ocr": false,
+   "craft_note": "Craft #5701 has an EMPTY creditRaw; the page credits \"Documents from the files of Connie Worden-Roberts.\"",
+   "why": "Representative city-formation item credited to her collection.",
+   "claims": [
+    "CONNIE WORDEN, Public Affairs Spokesperson",
+    "Documents from the files of Connie Worden-Roberts."
+   ],
+   "body_text": "CONNIE WORDEN, Public Affairs Spokesperson\n\nDocuments from the files of Connie Worden-Roberts."
+  },
+  {
+   "key": "lw2612",
+   "kind": "photograph",
+   "page": "lw2612",
+   "existing_craft_id": 4255,
+   "import": false,
+   "action": "relate to person #16418; do not re-import",
+   "title": "Cityhood Petition No. 1",
+   "excerpt": true,
+   "body": [
+    "The signers of the first petition were (in order): 1. Farnham; 2. Martin; 3. James A . Schutte; 4. Connie Worden; 5. Harry G. (Gil) Callowhill; 6. Michael Djordjevich; 7. Donald E. Hale; 8; Jeannette Sharar; and 9. Louis A. Garasi.",
+    "LW2612: 19200 dpi jpeg from photocopy of petition | Collection of Connie Worden-Roberts."
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [],
+   "credit": "LW2612: 19200 dpi jpeg from photocopy of petition | Collection of Connie Worden-Roberts.",
+   "ocr": false,
+   "craft_note": "creditRaw in Craft matches the page.",
+   "why": "Representative city-formation item credited to her collection.",
+   "claims": [
+    "4. Connie Worden",
+    "LW2612: 19200 dpi jpeg from photocopy of petition | Collection of Connie Worden-Roberts."
+   ],
+   "body_text": "The signers of the first petition were (in order): 1. Farnham; 2. Martin; 3. James A . Schutte; 4. Connie Worden; 5. Harry G. (Gil) Callowhill; 6. Michael Djordjevich; 7. Donald E. Hale; 8; Jeannette Sharar; and 9. Louis A. Garasi.\n\nLW2612: 19200 dpi jpeg from photocopy of petition | Collection of Connie Worden-Roberts."
+  },
+  {
+   "key": "lw3060",
+   "kind": "photograph",
+   "page": "lw3060",
+   "existing_craft_id": 4861,
+   "import": false,
+   "action": "relate to person #16418; do not re-import",
+   "title": "City Formation Committee voter registration release, 12-1-1987",
+   "excerpt": true,
+   "body": [
+    "Contact: Connie Worden",
+    "The committee kicked off the voter registration program this week with an advertisement in The Signal stating \"Your Name is Worth $432.00.\" And according to Connie Worden, Vice Chairman of the City Formation Committee, the response has been great. \"We have received a large number of phone calls from people wanting us to help them register to vote.\"",
+    "LW3060: pdf of photostat of letter, collection of Connie Worden Roberts. Download pages here."
+   ],
+   "webmasterNoteTop": [],
+   "webmasterNoteBottom": [],
+   "credit": "LW3060: pdf of photostat of letter, collection of Connie Worden Roberts. Download pages here.",
+   "ocr": false,
+   "craft_note": "Craft #4861 creditRaw has sidebar text appended (\"SANTA CLARITA CITY FORMATION Santa Clarita at 30 FULL BOOK • G. Reynolds\").",
+   "why": "Representative city-formation item credited to her collection.",
+   "claims": [
+    "Contact: Connie Worden",
+    "according to Connie Worden, Vice Chairman of the City Formation Committee",
+    "LW3060: pdf of photostat of letter, collection of Connie Worden Roberts. Download pages here."
+   ],
+   "body_text": "Contact: Connie Worden\n\nThe committee kicked off the voter registration program this week with an advertisement in The Signal stating \"Your Name is Worth $432.00.\" And according to Connie Worden, Vice Chairman of the City Formation Committee, the response has been great. \"We have received a large number of phone calls from people wanting us to help them register to vote.\"\n\nLW3060: pdf of photostat of letter, collection of Connie Worden Roberts. Download pages here."
+  }
+ ],
+ "collection_evidence": {
+  "key_line": "CWxxxx = Materials from the collection of Connie Worden-Roberts",
+  "her_statement": "My files were given to the Historical Society for safekeeping. (CW9901, 1999)",
+  "city_formation_sidebar": {
+   "source": "/scvhistory/cw9901.htm, \"SANTA CLARITA CITY FORMATION\" sidebar (shared by the city-formation pages)",
+   "primary_items_1985_1987": 17,
+   "credited_to_her_collection": [
+    "lw8501",
+    "lw2614",
+    "lw3197",
+    "lw8602",
+    "lw2612",
+    "lw2691",
+    "lw3070",
+    "lw3071",
+    "lw3059",
+    "lw3072",
+    "lw3060"
+   ],
+   "other_sources": {
+    "bw8601": "Bob Weber",
+    "bw8704": "Bob Weber",
+    "bw8703": "Bob Weber",
+    "gt8702": "Gary Thornhill/The Signal",
+    "cc121587audio": "audio recording",
+    "cc121587slideshow": "slide show"
+   },
+   "reading": "11 of the 17 primary 1985-1987 items the site lists for city formation carry a \"collection of\" or \"files of Connie Worden-Roberts\" credit; the other six are Weber and Thornhill photographs and the council-night audio and slides. Her own 1999 history (CW9901) closes the list."
+  },
+  "credited_pages": [
+   {
+    "key": "cw8601",
+    "path": "/scvhistory/cw8601.htm",
+    "sha256": "911f81bc3435b0a8a34c6339c41019d183d7b22d9c1591f2695ec27a55f5b22d",
+    "manifest_matched": true,
+    "title": "SCVHistory.com CW8601 | Magic Mountain | SFMM Fact Sheet: Shock Wave, 1986.",
+    "credit_line": "CW8601: (Photo) 9600 dpi jpeg from original photograph. From Connie Worden-Roberts' City Formation files; to photo file.",
+    "craft_id": null
+   },
+   {
+    "key": "elsmere0584",
+    "path": "/scvhistory/elsmere0584.htm",
+    "sha256": "3bdc6cd8dec91d7b02eb056ea89f67f53c669a60f19aa80512cabc0bf085b5bb",
+    "manifest_matched": true,
+    "title": "SCVHistory.com | Elsmere Canyon | Preliminary Feasibility Study: Elsmere Canyon Landfill (May 1984).",
+    "credit_line": "Download original pdf here. Collection of Connie Worden-Roberts.",
+    "craft_id": null
+   },
+   {
+    "key": "lw2612",
+    "path": "/scvhistory/lw2612.htm",
+    "sha256": "57832427666e09f6ae57259381dc799d05fd2dc974d33fc35e6350458c025f9b",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW2612 | City of Santa Clarita | Cityhood Petition No. 1",
+    "credit_line": "LW2612: 19200 dpi jpeg from photocopy of petition | Collection of Connie Worden-Roberts.",
+    "craft_id": 4255
+   },
+   {
+    "key": "lw2614",
+    "path": "/scvhistory/lw2614.htm",
+    "sha256": "cec2e2671eedbac3d988a621585feecc00da844b7eb574f4aaf2b11ae3d182a8",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW2614 | City of Santa Clarita | Santa Clarita Valley City Formation Committee Membership-Donor Form, ~1985",
+    "credit_line": "LW2614: 19200 dpi jpeg from original card in files of Connie Worden-Roberts.",
+    "craft_id": 4261
+   },
+   {
+    "key": "lw2691",
+    "path": "/scvhistory/lw2691.htm",
+    "sha256": "e9086fe18d0da70e873f7a5eb20b5a1c03d3f1a66921f90426833de64d62ed97",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW2691 | Cityhood | City of Santa Clarita Formation Committee Logo 1987",
+    "credit_line": "LW2691: 19200 dpi jpeg from original letterhead | Collection of Connie Worden-Roberts.",
+    "craft_id": 4385
+   },
+   {
+    "key": "lw2805",
+    "path": "/scvhistory/lw2805.htm",
+    "sha256": "7724e15ba34504363d49043f728464e7355b68d4377824944fee451aca3d6270",
+    "manifest_matched": true,
+    "title": "SCVHistory.com | Transportation | Program: Santa Clarita Metrolink Station Grand Opening Dedication, 10-24-1992.",
+    "credit_line": "LW2805: Pdf from original program, collection of Connie Worden-Roberts.",
+    "craft_id": 4519
+   },
+   {
+    "key": "lw2809",
+    "path": "/scvhistory/lw2809.htm",
+    "sha256": "c113b7cf34a25b6cbdc12bb649f1c04726a6fe88143689ebe9d2671b2576ad5f",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW2809 | Hart School District | H. Clyde Smyth, Ed.D., Superintendent",
+    "credit_line": "CS9601: 9600 dpi jpeg from original 5x7 glossy print, collection of Connie Worden-Roberts.",
+    "craft_id": 4533
+   },
+   {
+    "key": "lw2818",
+    "path": "/scvhistory/lw2818.htm",
+    "sha256": "e0e9f05e6c5e68879b810c833feaec008e489e5a807721a56ad845499af482dd",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW2818 | SCV Exonumia | Margo's Boutique, Newhall: $25 Good-for Token, 1980s.",
+    "credit_line": "LW2818: 9600 dpi jpeg from original token, collection of Connie Worden-Roberts.",
+    "craft_id": 4545
+   },
+   {
+    "key": "lw3007",
+    "path": "/scvhistory/lw3007.htm",
+    "sha256": "32c86db49d006f84753f47c9b94a554b80660a29672f5424a2b3a3ff6000a189",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3007 | SCV School District Reorganization Plan (Failed), 1970-71.",
+    "credit_line": "LW3007: Estate of Connie Worden-Roberts. Download individual pages and pdf here.",
+    "craft_id": 4801
+   },
+   {
+    "key": "lw3028",
+    "path": "/scvhistory/lw3028.htm",
+    "sha256": "9e53ea254fe54fda14faadc02e736a5028aae620e663f8b21b651b0d4c1cc84c",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3028 | Newhall Land | Newhall Ranch Marketing Brochure, 1990s.",
+    "credit_line": "LW3028: pdf of original brochure, collection of Connie Worden-Roberts. Download original images here.",
+    "craft_id": 4821
+   },
+   {
+    "key": "lw3029",
+    "path": "/scvhistory/lw3029.htm",
+    "sha256": "89d0fb759fa45a749344e0e2f6948457be0a10fd0e07c3b6989c03346a9ef39a",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3029 | Piru | Brochure: (History of) The Piru Mansion, 1988.",
+    "credit_line": "LW3029: pdf of original brochure, collection of Connie Worden-Roberts. Download original images here.",
+    "craft_id": 4823
+   },
+   {
+    "key": "lw3030",
+    "path": "/scvhistory/lw3030.htm",
+    "sha256": "012f7f99b6a404ffbb6402145d2cceb287cac3b5a589248b7911f6ada22d26af",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3030 | People | Program Book: Dedication of Randy Wicks Memorial Wall at Valencia Library, 1997.",
+    "credit_line": "LW3030: pdf of program book, collection of Connie Worden-Roberts. Download individual pages here.",
+    "craft_id": null
+   },
+   {
+    "key": "lw3031",
+    "path": "/scvhistory/lw3031.htm",
+    "sha256": "0aedb35a024a956d5a52c449b801442db2165094a28b14fd90e7d865cecad0ea",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3031 | People | A Tribute to Ruth Waldo Newhall, 1-21-2004.",
+    "credit_line": "LW3031: pdf of original program book, collection of Connie Worden-Roberts. Download original images here.",
+    "craft_id": null
+   },
+   {
+    "key": "lw3032",
+    "path": "/scvhistory/lw3032.htm",
+    "sha256": "2d76485ec0930551dd40b9fb5398b6de478dfbc9f459a2689bcd25e7a8f006d8",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3032 | Business | First? Valencia Industrial Association (VIA) Luncheon, 1981 or 1982.",
+    "credit_line": "LW3032: 9600 dpi jpeg from original photograph, collection of Connie Worden-Roberts.",
+    "craft_id": 4825
+   },
+   {
+    "key": "lw3033",
+    "path": "/scvhistory/lw3033.htm",
+    "sha256": "09839405048ef9b88591b55f7050a9abe181d97ebc5ff8bb1f2b343efae71109",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3033 | Business | Valencia Industrial Association (VIA)'s First Symposium, 10-26-1983.",
+    "credit_line": "LW3033: 9600 dpi jpeg from original photograph, collection of Connie Worden-Roberts.",
+    "craft_id": 4827
+   },
+   {
+    "key": "lw3059",
+    "path": "/scvhistory/lw3059.htm",
+    "sha256": "a3b608a653a6cda7664ee0bfddb5c2bbb4680884592873a9a0b51e609eb7f2eb",
+    "manifest_matched": true,
+    "title": "SCVHistory.com | City Formation | Arthur Young CPAs Predict 22% Budget Windfall for Proposed City of Santa Clarita, 9-18-1987.",
+    "credit_line": "LW3059: pdf of photostat of letter, collection of Connie Worden Roberts. Download pages here.",
+    "craft_id": 4859
+   },
+   {
+    "key": "lw3060",
+    "path": "/scvhistory/lw3060.htm",
+    "sha256": "6b61babd1f244d86d020939bed8428c2b9e91b3a195ecc74ade471d8b47f5eeb",
+    "manifest_matched": true,
+    "title": "SCVHistory.com | City Formation Committee Kicks Off Voter Registration Program to Get More Funds From State, 12-1-1987.",
+    "credit_line": "LW3060: pdf of photostat of letter, collection of Connie Worden Roberts. Download pages here.",
+    "craft_id": 4861
+   },
+   {
+    "key": "lw3061",
+    "path": "/scvhistory/lw3061.htm",
+    "sha256": "3f53025e39ac61caefc8024052d664e4f5a10034eaa884b3ffa62f64a084222a",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3061 | College of the Canyons | Program Book: Dedication of Permanent COC Campus, 10-26-1970.",
+    "credit_line": "LW3061: pdf of original program book, collection of Connie Worden-Roberts. Download pages and pdf here.",
+    "craft_id": 4863
+   },
+   {
+    "key": "lw3070",
+    "path": "/scvhistory/lw3070.htm",
+    "sha256": "5c871ead3a7312032db408368415560ca9e23e69f6e828695e425538fcf0e5d5",
+    "manifest_matched": true,
+    "title": "SCVHistory.com | Public Opinion Poll Results: Question of Santa Clarita Cityhood, February 1987.",
+    "credit_line": "LW3070: From the collection of Connie Worden-Roberts. Download pdf here.",
+    "craft_id": 4875
+   },
+   {
+    "key": "lw3071",
+    "path": "/scvhistory/lw3071.htm",
+    "sha256": "f883fac5fe0d9d21de99469c67ba73d7dfd218ab73fd846375dacac8d93583c4",
+    "manifest_matched": true,
+    "title": "SCVHistory.com | City of Santa Clarita | The Case for Cityhood: Formation Committee Addresses LAFCO, 2-25-1987.",
+    "credit_line": "LW3071: Collection of Connie Worden-Roberts. Download pdf here.",
+    "craft_id": 4877
+   },
+   {
+    "key": "lw3072",
+    "path": "/scvhistory/lw3072.htm",
+    "sha256": "1e181e5df561de3bbcb4eb1be2dca62f57d564c1120bb120897656cbc911bef9",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3072 | City of Santa Clarita | Storyboard for Cityhood Campaign TV Commercial, 1987.",
+    "credit_line": "LW3072: Collection of Connie Worden-Roberts. Download pdf here.",
+    "craft_id": 4879
+   },
+   {
+    "key": "lw3149",
+    "path": "/scvhistory/lw3149.htm",
+    "sha256": "cf8f78a50cf2c862d3146e14b9e17ac4f0b523bc0e64aa732efcfc1ca1651fc6",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3149 | City of Santa Clarita | 1st City Council Members' New Year's Resolutions, SCV Magazine, Winter 1987-88.",
+    "credit_line": "LW3149: pdf of original program book, collection of Connie Worden-Roberts. Download individual pages here. Ledger file.",
+    "craft_id": 4967
+   },
+   {
+    "key": "lw3197",
+    "path": "/scvhistory/lw3197.htm",
+    "sha256": "a2baac92cf3ceee2e205e95336a27e24eff03a08e10c8334600c2266d777bc5d",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW3197 | Application for the Incorporation of the City of 'Santa Clarita,' 12-17-1985.",
+    "credit_line": "LW3197: Download pdf here. Collection of Connie Worden-Roberts.",
+    "craft_id": 5019
+   },
+   {
+    "key": "lw8501",
+    "path": "/scvhistory/lw8501.htm",
+    "sha256": "6828da83512b6d34ec82dc4b249553403eab30b8469ed9061decfed2f0ba8ff2",
+    "manifest_matched": true,
+    "title": "SCVHistory.com | History of Cityhood | Press Kit: City of Santa Clarita Feasibility Committee, 1985.",
+    "credit_line": "Documents from the files of Connie Worden-Roberts.",
+    "craft_id": 5701
+   },
+   {
+    "key": "lw8602",
+    "path": "/scvhistory/lw8602.htm",
+    "sha256": "ba50ff52c4a3b298b4ec461d408afa4863befbe77bc4c73e37a54202192d8fec",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW8602 | City of Santa Clarita | Boundary Map of Proposed 90-Square-Mile City, 1-2-1986",
+    "credit_line": "LW8602: 19200 dpi jpeg from photocopy in files of Connie Worden-Roberts.",
+    "craft_id": 5703
+   },
+   {
+    "key": "lw2810",
+    "path": "/gif/galleries/lw2810/index.html",
+    "sha256": "7395130eb61f8354702c0f9c96ae8fee6071350fe3f204429887859af93793af",
+    "manifest_matched": true,
+    "title": "SCVHistory.com LW2810 | 1994 Northridge Earthquake | Demolition of 23918 Via Onda, Valencia.",
+    "credit_line": "9600 dpi jpegs from 3x3-inch Polaroid prints | Collection of Connie Worden-Roberts.",
+    "craft_id": null
+   }
+  ]
+ }
+}
