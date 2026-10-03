@@ -44,7 +44,7 @@
   "conflicts": 21,
   "live_errors": 12,
   "archive_beats": 9,
-  "corrections": 7,
+  "corrections": 10,
   "cc_person": "#293 Ygnacio del Valle"
  },
  "pages": [
@@ -116,7 +116,7 @@
   {
    "code": "reynolds part14",
    "group": "A bio",
-   "date": "book 1992; web ©1998",
+   "date": "book 1992; web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -135,7 +135,7 @@
   {
    "code": "reynolds part15",
    "group": "A bio",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -155,7 +155,7 @@
   {
    "code": "reynolds part29",
    "group": "A bio",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -178,7 +178,7 @@
   {
    "code": "reynolds notes",
    "group": "A bio",
-   "date": "web ©1998 (notes later)",
+   "date": "web ed. ©1998; text written 1976–94 (notes later)",
    "date_source": "page",
    "within_lifetime": "after",
    "type": "editorial notes",
@@ -621,7 +621,7 @@
   {
    "code": "reynolds part25",
    "group": "B rsf",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -636,13 +636,14 @@
   {
    "code": "reynolds part26",
    "group": "B rsf",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
    "originating_archive": "SCVHS",
    "notes": "flood of 1856; mortgages at 4%/month",
    "conflicts": [
+    "C17",
     "C19"
    ],
    "url": "https://scvhistory.com/scvhistory/signal/reynolds/part26.html",
@@ -651,7 +652,7 @@
   {
    "code": "reynolds part41",
    "group": "B rsf",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -667,7 +668,7 @@
   {
    "code": "reynolds part17",
    "group": "B rsf",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -943,7 +944,7 @@
   {
    "code": "reynolds part16",
    "group": "D gold",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -1428,7 +1429,8 @@
    "topic": "Mother's name",
    "pages": [
     "lw2052: 'María Josepha (Carillo) del Valle'",
-    "gallery-lw2706 (1853 ledger caption): 'his first wife, Maria Josepha Carillo'"
+    "gallery-lw2706 (1853 ledger caption): 'his first wife, Maria Josepha Carillo'",
+    "reynolds part13 (written 1976–94; web ed. 1998): Antonio 'married María Josepha Carillo' — earliest site occurrence; lw2052 and lw2706 caption likely derivative; part13 source unstated [added 2026-09-29]"
    ],
    "outside": "Schwald family genealogy: mother 'Josefa de la Peña'. Wikipedia and Wikidata do not name her.",
    "favors": "Unresolved: NEEDS_VERIFICATION. The site's 'Carillo' may come from confusion with Ygnacio's first wife, María de los Angeles Carrillo. Do not migrate a maiden name until a sacramental record is seen.",
@@ -1645,7 +1647,8 @@
     "penpictures_ydelvalle: 'Don Ygnacio and Don J.A. Aguirre received a concession in 1843 of the rancho of Tejon, twenty-two Spanish leagues', 'which now belongs to General E.F. Beale'",
     "perkins-rsf-1957 fn: 'With Jose Antonio Aguirre, received grant of the 97,000 acre Tejon rancho in 1843'",
     "lw2052: 'Gen. Edward F. Beale had already picked up the deed to Rancho Tejon to satisfy some of the Del Valle creditors'",
-    "reynolds part16/part17: Temescal granted to Francisco Lopez (1842 diseño); delcastillo1980: Ygnacio bought Temescal in 1857 for $4,000; lw3903: 'bought the adjacent 13,339-acre Rancho Temescal' in 1857"
+    "reynolds part16/part17: Temescal granted to Francisco Lopez (1842 diseño); delcastillo1980: Ygnacio bought Temescal in 1857 for $4,000; lw3903: 'bought the adjacent 13,339-acre Rancho Temescal' in 1857",
+    "reynolds part26: 'He had already sold Rancho Tejon to General Beale to satisfy the creditors of his in-laws' (pre-1861 narrative) — contradicted by Beale's 1865 El Tejon acquisition (Beale dossier C8); lw2052 likely derivative [added 2026-09-29]"
    ],
    "outside": "Wikipedia: del Valle received Rancho El Tejon in 1843 'for his military service' and later sold it to pay debts (no co-grantee named). Beale dossier (edward-f-beale-sources.md C8): Beale acquired El Tejon (97,612 acres) in 1865; the chain of title there is also NEEDS_VERIFICATION.",
    "favors": "Tejon was a joint 1843 concession with J.A. Aguirre (A2). The 'Beale picked up the deed ... for Del Valle creditors' line needs the Kern County deed trail: NEEDS_VERIFICATION. Temescal: granted to Lopez, bought by Ygnacio in 1857 (the accounts can be reconciled).",
@@ -1867,7 +1870,10 @@
   "**The Land Case record (Bancroft/Calisphere) describes two grants**: Sespe (Figueroa, 1833, 6 leagues) and San Francisco (Alvarado, Jan 22, 1839, about 4 leagues). This is not simply the single '11-league 1839 grant' assumed earlier. How they add up to the 48,611.88-acre patent must be read in the case file (NEEDS_VERIFICATION; the Bancroft page returned 403 on recheck, so this rests on the earlier read and a search snippet).",
   "**hometownstation's 'March 18, 1875' patent date**, noted earlier as a straight conflict, is explained as confusion with the March 18, [1865] deed to Bard (A8).",
   "**Magdalena del Valle**: an early working note followed Perkins fn 26 (Ygnacio's full sister). Most site sources, including the 1853 ledger caption, make her Jacoba's daughter (half-sister). Left open in C3.",
-  "**Huntington holdings**: no 'del Valle family papers' collection was found at the Huntington (web search; catalog.huntington.org returned 403). The verified repositories are NHM Seaver Center GC 1002 and P-14, and the Rancho Camulos Museum. The Huntington's Abel Stearns papers (OAC) are relevant for 1842 gold and business dealings."
+  "**Huntington holdings**: no 'del Valle family papers' collection was found at the Huntington (web search; catalog.huntington.org returned 403). The verified repositories are NHM Seaver Center GC 1002 and P-14, and the Rancho Camulos Museum. The Huntington's Abel Stearns papers (OAC) are relevant for 1842 gold and business dealings.",
+  "**(2026-09-29, from the Reynolds dossier, correction 4) C2, mother's name:** the site's 'María Josepha Carillo' traces to reynolds part13, the earliest site occurrence. lw2052 and the lw2706 caption are later and should not count as independent confirmation. Part13's own source is unstated. (The Reynolds report said part13 rests on Wally Smith 1958; strictly, the editor's note 5 documents Smith only for chs. 14–15, so that is corrected to 'source unstated'.) C2 stays NEEDS_VERIFICATION. Bullet added to C2.",
+  "**(2026-09-29, from the Reynolds dossier, correction 5) C17, Tejon sale timing:** reynolds part26's statement that Ygnacio 'had already sold Rancho Tejon to General Beale' before 1861 was not logged. It is contradicted by Beale's 1865 acquisition of El Tejon (Beale dossier C8), and lw2052's parallel wording likely derives from it. Bullet added to C17; part26's Section 1 row now carries C17.",
+  "**(2026-09-29, from the Reynolds dossier, correction 3) Reynolds chapter dates:** '©1998' on the signal/reynolds/partNN pages is the date of the SCVHS web edition (ed. Leon Worden). The texts were written 1976–94 (Signal series mid-1970s and mid-1980s; the 1992 book; the prologue and epilogue in 1985) and edited in 1998. Date columns now read 'web ed. ©1998; text written 1976–94'. Treat these chapters as later secondary accounts with an unknown per-chapter composition date."
  ],
  "open_questions": [
   {
@@ -1959,6 +1965,12 @@
    "name": "hometownstation.com (Rancho San Francisco ownership list)",
    "url": "(URL from earlier search; not re-fetched)",
    "points_to": "Patent 'March 18, 1875' (A8); owner chain del Valle, Bard, Gratz, Phila. & Calif. Petroleum Co., Newhall."
+  }
+ ],
+ "revisions": [
+  {
+   "date": "2026-09-29",
+   "note": "Back-applied corrections from jerry-reynolds-sources.md"
   }
  ]
 }

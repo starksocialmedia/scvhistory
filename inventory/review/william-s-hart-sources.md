@@ -64,8 +64,8 @@ Read-only research, compiled 2026-09-29 (CEST). All scvhistory.com pages cited w
 | [hs3301b](https://scvhistory.com/scvhistory/hs3301b.htm) | Personal Letter to Marguerite Perkins, 11-1-1933 | 11-1-1933 | letter 11-1-1933 | within | letter | SCVHS Collection |  |  |
 | [al1938](https://scvhistory.com/scvhistory/al1938.htm) | William S. Hart & Andy Jauregui | 1938 | 1938 | within | photo | Jauregui family photo |  |  |
 | [ap1516](https://scvhistory.com/scvhistory/ap1516.htm) | The American Theater, n.d.. | n.d.; building 1940-41 | photo n.d.; text 1999 (Bill Crowl) | later | photo + later article | not stated | 1940 announce / 11-7-1940 deed / 5-23-1941 dedication | C13 |
-| [reynolds part65](https://scvhistory.com/scvhistory/signal/reynolds/part65.html) | 65: Transitions | ©1998 (secondary) | book ©1998 | later | book chapter | Jerry Reynolds, Santa Clarita Valley history (via The Signal) | American Theater "1940"; Hart High claim corrected by editor | C13, C14 |
-| [reynolds part53](https://scvhistory.com/scvhistory/signal/reynolds/part53.html) | 53: Two-Gun Bill | ©1998 (secondary) | book ©1998 | later | book chapter | Jerry Reynolds | born "around December 6, 1870"; 254 acres Feb 1921 | C1, C5, C6, C7, C9, C10, C17, C18, C20 |
+| [reynolds part65](https://scvhistory.com/scvhistory/signal/reynolds/part65.html) | 65: Transitions | web ed. ©1998; text written 1976–94 (secondary) | web ed. ©1998 | later | book chapter | Jerry Reynolds, Santa Clarita Valley history (via The Signal) | American Theater "1940"; Hart High claim corrected by editor | C13, C14 |
+| [reynolds part53](https://scvhistory.com/scvhistory/signal/reynolds/part53.html) | 53: Two-Gun Bill | web ed. ©1998; text written 1976–94 (secondary) | web ed. ©1998 | later | book chapter | Jerry Reynolds | born "around December 6, 1870"; 254 acres Feb 1921 | C1, C5, C6, C7, C9, C10, C17, C18, C20 |
 | [cp19440909](https://scvhistory.com/scvhistory/cp19440909.htm) | Last Will and Testament of William S. Hart, 9-9-1944. | 9-9-1944 | will dated Newhall 9-9-1944 | within | legal document (will, PDF) | custody of original not stated (NEEDS_VERIFICATION) |  | C17, C22 |
 | [lae62446a](https://scvhistory.com/scvhistory/lae62446a.htm) | Los Angeles Examiner: Two-Gun William S. Hart Dies, 6-23-1946 (News 6-24-1946). | 6-24-1946 | LA Examiner 6-24-1946 | after (1 day) | newspaper (contemporary obituary) | Los Angeles Examiner | born 1862; "He was 83" | C1, C4, C10, C17, C19 |
 | [lae62446b](https://scvhistory.com/scvhistory/lae62446b.htm) | Los Angeles Examiner: Two-Gun William S. Hart Dies, 6-24-1946. | 6-24-1946 | LA Examiner 6-24-1946 | after (1 day) | newspaper | Los Angeles Examiner |  | C4, C17, C19 |
@@ -96,8 +96,8 @@ Read-only research, compiled 2026-09-29 (CEST). All scvhistory.com pages cited w
 | [lw2271](https://scvhistory.com/scvhistory/lw2271.htm) | Original Ranch House in Photoplay Magazine, 1928. | Photoplay May 1928 | Photoplay May 1928 | within | magazine | Photoplay | "new ranch home"; Leon: completed previous year | C9 |
 | [lw3693](https://scvhistory.com/scvhistory/lw3693.htm) | Original Lobby Card: Tom Mix and Alma Bennett (On Tony) in ''3 Jumps Ahead'' (Fox 1923), Rare. | lobby card 1923; text modern | lobby card 1923; text modern | within | artifact + later text | private | Hart financed American Theater "1941" | C13 |
 | [lw3704](https://scvhistory.com/scvhistory/lw3704.htm) | Newhall Resident Buzz Barton (William A. Lamoreaux), Strip Card ~1928. | ~1928 | ~1928 | within | artifact (strip card) | private |  |  |
-| [reynolds part54](https://scvhistory.com/scvhistory/signal/reynolds/part54.html) | 54: Disaster at 185 Feet | book ©1998 | book ©1998 | later | book chapter | Jerry Reynolds | Hap-A-Lan morgue; cowboy-suit boy to Ruiz | C11 |
-| [reynolds part62](https://scvhistory.com/scvhistory/signal/reynolds/part62.html) | 62: Suddenly Searchlights | book ©1998 | book ©1998 | later | book chapter | Jerry Reynolds |  |  |
+| [reynolds part54](https://scvhistory.com/scvhistory/signal/reynolds/part54.html) | 54: Disaster at 185 Feet | web ed. ©1998; text written 1976–94 | web ed. ©1998 | later | book chapter | Jerry Reynolds | Hap-A-Lan morgue; cowboy-suit boy to Ruiz | C11 |
+| [reynolds part62](https://scvhistory.com/scvhistory/signal/reynolds/part62.html) | 62: Suddenly Searchlights | web ed. ©1998; text written 1976–94 | web ed. ©1998 | later | book chapter | Jerry Reynolds |  |  |
 | [lw2824](https://scvhistory.com/scvhistory/lw2824.htm) | Charles Lindbergh Goes Gliding in Lebec, 1930. | 1930 event; text modern | 1930 event; text modern | within | photo + later text | not stated | Lindbergh-hid-at-Hart rumor | C15 |
 | [lw3044](https://scvhistory.com/scvhistory/lw3044.htm) | Charles Lindbergh Goes Gliding in Lebec, 1930. | 1930 | 1930 | within | photo + later text | not stated | Lindbergh rumor | C15 |
 | [lw2950](https://scvhistory.com/scvhistory/lw2950.htm) | Postal Cover 1980: 50th Anniversary of Lindbergh's 1930 Experimental Glider Flight. | postal cover 1980 | postal cover 1980 | later | artifact + later text | not stated | Lindbergh rumor | C15 |
@@ -409,11 +409,11 @@ Of the 85 local, ranch and borderline pages, **71** are primary: made in Hart's 
 * Billings Gazette: billingsgazette19260627hart
 * NPS Little Bighorn LIBI_00019_00975; LIBI_00603_17730 (Walter C. Nye): np2601
 
-**Later accounts:** barnes_ito2013 (later article, 2013, updated 2019), lw2154k (photo (modern) + later caption, 3-9-2002 (photo); 1928 event), sg051703 (later article (built on Newhall Signal 3-29 & 4-5-1928), 5-17-2003), lat021503 (later article (letter to editor), 2-15-2003), ap1516 (photo + later article, n.d.; building 1940-41), reynolds part65 (book chapter, ©1998 (secondary)), reynolds part53 (book chapter, ©1998 (secondary)), mu8901 (later report (archival survey citing deeds), Feb. 1989 (secondary)), reynolds part54 (book chapter, book ©1998), reynolds part62 (book chapter, book ©1998), lw2950 (artifact + later text, postal cover 1980), lw2616 (artifact (invitation), 9-20-1958), mu0189 (photo, 9-20-1958), al1950 (photo (postcard), ~1950s)
+**Later accounts:** barnes_ito2013 (later article, 2013, updated 2019), lw2154k (photo (modern) + later caption, 3-9-2002 (photo); 1928 event), sg051703 (later article (built on Newhall Signal 3-29 & 4-5-1928), 5-17-2003), lat021503 (later article (letter to editor), 2-15-2003), ap1516 (photo + later article, n.d.; building 1940-41), reynolds part65 (book chapter, web ed. ©1998; text written 1976–94 (secondary)), reynolds part53 (book chapter, web ed. ©1998; text written 1976–94 (secondary)), mu8901 (later report (archival survey citing deeds), Feb. 1989 (secondary)), reynolds part54 (book chapter, web ed. ©1998), reynolds part62 (book chapter, web ed. ©1998), lw2950 (artifact + later text, postal cover 1980), lw2616 (artifact (invitation), 9-20-1958), mu0189 (photo, 9-20-1958), al1950 (photo (postcard), ~1950s)
 
 Key reliability notes:
 * **Sitton 1989 (mu8901)** is later, but it is a deed-by-deed archival survey with book and page citations. It is the best available guide to the ranch assembly; still, check it against the Recorder's books (some page numbers in the PDF text are uncertain, e.g. "12442:305?").
-* **Reynolds 1998 (reynolds part53/54/62/65)** is a popular history. Its specific claims (birth 1870, 254 acres in 1921, cowboy-suit boy, American Theater 1940, Hart High naming) are contradicted elsewhere; one is corrected in an editor's note on the page itself.
+* **Reynolds (written 1976–94; web ed. 1998) (reynolds part53/54/62/65)** is a popular history. Its specific claims (birth 1870, 254 acres in 1921, cowboy-suit boy, American Theater 1940, Hart High naming) are contradicted elsewhere; one is corrected in an editor's note on the page itself.
 * **sg051703 (Worden 2003)** is later but explicitly built on Newhall Signal issues of 3-29 and 4-5-1928.
 * **The 1946 newspaper obituaries** are contemporary but repeat Hart's own age confusion (1862).
 
@@ -524,7 +524,7 @@ Key reliability notes:
 * **lw2077**: marker placed "probably Sunday, March 25, 1928"; design led by deputy sheriff Bogardus. Text: "In memory of those who lost their lives in the Santa Clara flood Mar. 13, 1928 - Erected by the Newhall Cowboys"
 * **lat021503**: Hart to Earp, May 8, 1928: "78 bodies"
 * **ap0115**: Newhall Signal 5-24-1928: Hart and Rev. Evans honor Louis Rivera
-* **Outside:** Toll: 411 (2019 estimate, cited on the site) vs 450 (Reynolds; the original 2003 column).
+* **Outside:** Toll: 411 (2019 estimate, cited on the site) vs 450: Reynolds part54 ('at least 450 dead', written before his death in 1996) and, separately, Leon Worden's 2003 column sg051703 ('An estimated 450 people', with a 2019 footnote giving 411). The 2003 column is not by Reynolds.
 * **Evidence favors:** sg051703 (it rests on contemporary Signal issues). The Reynolds version is a later retelling. The two morgue sites may both be right (several morgues), NEEDS_VERIFICATION.
 
 ### C12. Wyatt Earp letters: dates, place, custody
@@ -723,6 +723,8 @@ These are current errors on the live site (as verified 2026-09-29), not historic
 * **Westover link ("Westover Challenges Will 1950" said to point to cp19440909):** NOT confirmed. All 39 fetched pages carrying the PERSONAL LIFE block, and film.htm, link it correctly to lw2291. It is not counted as a live error. It may be on a page that wasn't fetched, or already fixed.
 * **C21 (stewardship text) and six of the C22 items** now also appear in Section 6 as live errors. The historical conflicts in Section 3 are unchanged.
 * No other finding is overturned. This retrofit uses the existing findings only (no new crawl).
+* **(2026-09-29, from the Reynolds dossier, correction 2) Death toll attribution (C11):** '450 (Reynolds; the original 2003 column)' conflated two sources. '450' is Reynolds' own figure ('at least 450 dead', part54). The 2003 column is sg051703 by Leon Worden, which also says 450 and carries a 2019 footnote giving 411. Reynolds died in 1996 and wrote no 2003 column. Fixed in place in C11.
+* **(2026-09-29, from the Reynolds dossier, correction 3) Reynolds chapter dates:** '©1998' on the signal/reynolds/partNN pages is the date of the SCVHS web edition (ed. Leon Worden). The texts were written 1976–94 (Signal series mid-1970s and mid-1980s; the 1992 book; the prologue and epilogue in 1985) and edited in 1998. Date columns now read 'web ed. ©1998; text written 1976–94'. Treat these chapters as later secondary accounts with an unknown per-chapter composition date.
 
 ---
 Work files: /workspace/review/dossiers/hart-work/ (fetch log, cached HTML, index parse, Sitton PDF text). Privacy: jw4404 names living private individuals; they are deliberately not listed.

@@ -1,0 +1,83 @@
+{
+  "researched": "2026-10-03 PT",
+  "question": "William S. Hart Union High School District Governing Board, Trustee Area 2, November 8, 2022 General Election",
+  "answer": "Trustee Area 2 was on the Nov 8, 2022 ballot and contested. Per the LA County RR/CC Final Official Statement of Votes Cast (election 4300, p.169), incumbent Bob Jensen won with 11,639 votes over Andrew Taban's 5,736 (66.99% / 33.01%; registration 36,496; ballots cast 21,104). RR/CC certified the results on 2022-12-05. Jensen holds the seat with a 2022-2026 term per hartdistrict.org. Our box election data has no Hart 2022 contests at all; the gap is in our data.",
+  "contest_status": "contested_on_ballot",
+  "election": {
+    "name": "General Election",
+    "date": "2022-11-08",
+    "rrcc_election_id": 4300,
+    "certified_date": "2022-12-05",
+    "bos_declaration_scheduled": "2022-12-06"
+  },
+  "contest": {
+    "title_rrcc_text": "WILLIAM S. HART UNION HIGH SCHOOL DISTRICT Governing Board Member, Trustee Area No. 2",
+    "title_rrcc_svc": "WM S. HART UNION HIGH SCH GOV BD MEMBER TR AREA 2",
+    "seats": 1,
+    "registration": 36496,
+    "ballots_cast": 21104,
+    "svc_page": "169 of 430",
+    "results": [
+      {"candidate": "Bob Jensen", "incumbent": true, "votes": 11639, "percent": 66.99, "elected": true, "votes_in_person": 3182, "votes_vbm": 8457},
+      {"candidate": "Andrew Taban", "incumbent": false, "votes": 5736, "percent": 33.01, "elected": false, "votes_in_person": 881, "votes_vbm": 4855}
+    ]
+  },
+  "seat_holder": {
+    "name": "Bob Jensen, CPA",
+    "seat": "Trustee Area No. 2",
+    "board_role_current": "Assistant Clerk",
+    "how_seated": "Elected Nov 8, 2022 (re-election; previously elected 2009, re-elected 2013 and 2018 per district bio)",
+    "term": "2022-2026",
+    "term_start_exact": "NEEDS_VERIFICATION"
+  },
+  "other_hart_2022_contests_rrcc_text": [
+    {"area": 3, "results": [{"candidate": "Cherise Moore", "votes": 7355, "percent": 62.51}, {"candidate": "Teresa Todd", "votes": 4412, "percent": 37.49}]},
+    {"area": 5, "results": [{"candidate": "Joe Messina", "votes": 12552, "percent": 59.62}, {"candidate": "Rebecca Hindman", "votes": 8502, "percent": 40.38}]}
+  ],
+  "area_cycle": "Areas 2, 3, 5 elected 2018/2022/2026; Areas 1, 4 elected 2020/2024 (hartdistrict.org 2015 trustee-area article; consistent with 2022 ballot and current terms)",
+  "prior_cycle_2018_rrcc": {
+    "source": "https://results.lavote.gov/text-results/3861",
+    "area_2": [{"candidate": "Bob Jensen", "votes": 8874, "percent": 47.98}, {"candidate": "Donna Robert", "votes": 8292, "percent": 44.83}, {"candidate": "Chris Werthe", "votes": 1329, "percent": 7.19}]
+  },
+  "sources": [
+    {"title": "LA County RR/CC Final Official Statement of Votes Cast, General Election 11/08/22 (p.169)", "url": "https://content.lavote.gov/docs/rrcc/svc/4300_final_svc_countywide.pdf?v=2", "type": "primary_official", "fetched": "2026-10-03"},
+    {"title": "LA County RR/CC Election Results Text Version, election 4300 (results as of 12/05/2022 12:15:21)", "url": "https://results.lavote.gov/text-results/4300", "type": "primary_official", "fetched": "2026-10-03"},
+    {"title": "RR/CC news release: Certified Election Results for the 2022 General Election (Dec 5, 2022)", "url": "https://www.lavote.gov/docs/rrcc/news-releases/11082022_certified-results.pdf", "type": "primary_official", "fetched": "2026-10-03"},
+    {"title": "Hart district Governing Board Members page", "url": "https://www.hartdistrict.org/apps/pages/governing-board-members", "type": "primary_district", "fetched": "2026-10-03"},
+    {"title": "Hart district: Trustee Area Voting Map (published July 23, 2015)", "url": "https://www.hartdistrict.org/apps/news/article/479738", "type": "primary_district", "fetched": "2026-10-03"},
+    {"title": "RR/CC Election Results Text Version, Nov 6, 2018 General (election 3861)", "url": "https://results.lavote.gov/text-results/3861", "type": "primary_official", "fetched": "2026-10-03"},
+    {"title": "The Signal: Incumbents lead in school board elections (Nov 9, 2022; early unofficial returns)", "url": "https://signalscv.com/2022/11/incumbents-lead-in-school-board-elections/", "type": "secondary_news", "fetched": "2026-10-03"},
+    {"title": "Ballotpedia: William S. Hart Union High School District elections (2022)", "url": "https://ballotpedia.org/William_S._Hart_Union_High_School_District,_California,_elections_(2022)", "type": "secondary", "fetched": "search snippet only; WebFetch timed out"}
+  ],
+  "our_data_findings": {
+    "searched": ["/workspace/scvhistory", "/workspace/scvhistory-data", "/workspace/cc-review"],
+    "election_named_files": [],
+    "trustee_area_hits": 0,
+    "hart_2022_contests_found": [],
+    "notes": "No file named for elections, results, contests or ballots. 'Hart Union' appears only as an organization/relation name. The only 2020s election item is the legacy page cc20200319elections (City of Santa Clarita district elections, 3/19/2020). The 'election data' the user mentions is not on the box, or is not in these paths."
+  },
+  "recommended_data_change": {
+    "action": "add_contest_record",
+    "record": {
+      "election_date": "2022-11-08",
+      "jurisdiction": "William S. Hart Union High School District",
+      "office": "Governing Board Member, Trustee Area No. 2",
+      "candidates": [
+        {"name": "Bob Jensen", "incumbent": true, "votes": 11639, "percent": 66.99, "elected": true},
+        {"name": "Andrew Taban", "incumbent": false, "votes": 5736, "percent": 33.01, "elected": false}
+      ],
+      "registration": 36496,
+      "ballots_cast": 21104,
+      "term": "2022-2026",
+      "source": "LA County RR/CC Final Official SOVC, election 4300, p.169"
+    },
+    "optional": "Also add the 2022 Area 3 and Area 5 contests from the same RR/CC source, after checking their SOVC pages.",
+    "do_not": "Do not record this seat as 'appointed in lieu of election' or 'not up in 2022'."
+  },
+  "needs_verification": [
+    "Exact start and swearing-in date of Jensen's 2022-2026 term (confirm with the December 2022 Hart board organizational meeting minutes; Education Code 5017 not fetched)",
+    "The BOS's actual 2022-12-06 declaration of results (the RR/CC release says only 'scheduled'; confirm with the BOS Statement of Proceedings 2022-12-06)",
+    "Why no Trustee Area 3 contest appears in the 2018 RR/CC results (possibly appointed in lieu of election; not relevant to Area 2 in 2022)",
+    "Area 3 and Area 5 2022 totals were taken from the RR/CC text page only, not from their SOVC pages"
+  ]
+}

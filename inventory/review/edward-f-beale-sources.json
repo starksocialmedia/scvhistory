@@ -262,7 +262,7 @@
   {
    "code": "reynolds part27",
    "group": "A cut",
-   "date": "book 1992; web ©1998",
+   "date": "book 1992; web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -277,7 +277,7 @@
   {
    "code": "reynolds part28",
    "group": "A cut",
-   "date": "book 1992; web ©1998",
+   "date": "book 1992; web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -1041,7 +1041,7 @@
   {
    "code": "reynolds part59",
    "group": "B film",
-   "date": "book 1992; web ©1998",
+   "date": "book 1992; web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -1275,7 +1275,7 @@
   {
    "code": "reynolds part26",
    "group": "C tejon",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -1290,7 +1290,7 @@
   {
    "code": "reynolds part30",
    "group": "C tejon",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -1570,7 +1570,7 @@
   {
    "code": "reynolds part23",
    "group": "E camels",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -1631,7 +1631,7 @@
   {
    "code": "reynolds part31",
    "group": "F oil",
-   "date": "web ©1998",
+   "date": "web ed. ©1998; text written 1976–94",
    "date_source": "Reynolds",
    "within_lifetime": "after",
    "type": "book chapter",
@@ -2198,7 +2198,7 @@
    "topic": "Film myths at the Cut: earliest film, Ford, Tom Mix, Hart",
    "pages": [
     "brokenways1913: \"the earliest known motion picture to use Beale's Cut\" (D.W. Griffith, 1913)",
-    "reynolds part59: Ford's \"first effort was Straight Shooting, using Beale's Cut\" (1917); Hart \"was using the streets of Newhall and the Walker Ranch... as early as 1914\"",
+    "reynolds part59: Ford's \"first effort was Straight Shooting, using Beale's Cut\" (1917); Hart \"was using the streets of Newhall and the Walker Ranch... as early as 1914\" [2026-09-29: chapter rewritten by R.S. Birchard for the 1998 edition; no 'first film at the Cut' claim]",
     "lw2065: Ford used it \"at least three times before\" Stagecoach: Straight Shooting, 3 Jumps Ahead, The Iron Horse",
     "worden lw040997: same shot in 1917 and 1924; \"Big Bill Hart took a crack at the famous director in his autobiography\" over the Stagecoach chase (see L7)",
     "sw_commercejournalwichitatx092123: Mix says he jumped it five or six times; lw2159a: Earl Simpson (per Birchard); Reynolds / lw040997: Richard Talmadge claimed it; Jauregui: dubbed in; all agree Mix and Tony did not jump; the film is lost",
@@ -2423,7 +2423,9 @@
  "corrections": [
   "**Brief premise, 'Cut credited to Andrew Jackson':** not found. None of the 146 fetched pages credits Jackson with the Cut; Jackson appears only as the President who appointed Beale to the Naval School (bealeafb, reynolds part28, WP). What does appear is **Phineas Banning** (the first stage over the 1854 cut) and **the County** (the 1854 $1,000 appropriation; Board-set tolls). See C2 and C12.",
   "**Working note superseded:** 'Army closed the reservation in 1854' (lo8801/2) had been logged as a date conflict. It is a typo for 1864, contradicted by the site's own pages, and is now listed as live error L4.",
-  "**Hart dossier:** nothing overturned. It made no Beale's Cut claims. This dossier adds one Hart-related live error (L7) and confirms that no site page shows Hart filming at the Cut."
+  "**Hart dossier:** nothing overturned. It made no Beale's Cut claims. This dossier adds one Hart-related live error (L7) and confirms that no site page shows Hart filming at the Cut.",
+  "**(2026-09-29, from the Reynolds dossier, correction 1) 'Straight Shooting as the first film at the Cut':** reynolds part59 was rewritten by Robert S. Birchard for the 1998 edition. As it stands it says Straight Shooting was Ford's 'first effort' for Universal and used Beale's Cut; it does not say it was the first film shot there. It is removed from the Reynolds error tally and from A4's outside-claim column. The earliest-use finding (Broken Ways, 1913) stands against Wikipedia. Fixed in place: the Section 1 row for part59, C16 and A4.",
+  "**(2026-09-29, from the Reynolds dossier, correction 3) Reynolds chapter dates:** '©1998' on the signal/reynolds/partNN pages is the date of the SCVHS web edition (ed. Leon Worden). The texts were written 1976–94 (Signal series mid-1970s and mid-1980s; the 1992 book; the prologue and epilogue in 1985) and edited in 1998. Date columns now read 'web ed. ©1998; text written 1976–94'. Treat these chapters as later secondary accounts with an unknown per-chapter composition date."
  ],
  "open_questions": [
   {
@@ -2542,6 +2544,12 @@
    "name": "Statutes of California 1861 p.303; 1862 p.282",
    "url": "(no verified URL)",
    "points_to": "Cited by Ripley; digitized copies likely on HathiTrust or the Assembly clerk's site: NEEDS_VERIFICATION."
+  }
+ ],
+ "revisions": [
+  {
+   "date": "2026-09-29",
+   "note": "Back-applied corrections from jerry-reynolds-sources.md"
   }
  ]
 }
