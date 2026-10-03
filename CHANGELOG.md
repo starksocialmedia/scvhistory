@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (10 a.m.)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: Cave Johnson Couts now opens with his own 1852 letter to Abel Stearns about "the nest of thieves in the Santa Clara" (Reynolds, chapter 21), then the cattle drives, then his San Diego life. Thomas O. Larkin cut to a line (the San Feliciano placers, reported from Monterey); his dates marked unsourced. Juan Bandini and José Antonio Aguirre removed (settle_borrowed_ties.php). Of the 25: the California Battalion folded into Frémont (no source names it; the sources tell of his "buckskin battalion") and the Catalonian Volunteers into the Portolá Expedition, both redirected; the De Anza Expedition and Missions San Francisco de Asís and Santa Cruz retired, and the two organization redirects that pointed at the missions taken out (fold_and_retire_records.php). All five, and Bandini and Aguirre, are in removed-claims.json.
+- Decisions: Nathan's, 3 October. Couts's letter says "the Santa Clara", and that drive ended at San Jose; the profile quotes it as Reynolds does and does not place it.
+- Blockers: none.
+- Next: the 16 local records, Mission San Gabriel, and the lines for Rancho El Tejon, the Los Angeles Herald and the Historical Society of Southern California.
+
 2026-10-03 (9:30 a.m.)
 
 - Agent: Claude Code

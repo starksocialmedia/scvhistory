@@ -26,6 +26,62 @@
             "why": "Jerry Reynolds's name for the gold discoverer, which joins three men: the discoverer's uncle (Juan José Francisco), the discoverer (José Francisco de Gracia) and his cousin Francisco \"Chico\" López. A record standing for two people is worse than none. The discoverer is #18834; Chico has his own record.",
             "removed": "2026-10-03",
             "by": "scripts/import/retire_305_add_chico_lopez.php; /persons/francisco-lopez redirects to the discoverer (config/redirects.php)"
+        },
+        {
+            "record": 325,
+            "title": "Juan Bandini",
+            "section": "persons",
+            "why": "A San Diego ranchero whose tie to the valley ran through his son-in-law, Cave Couts, whose 1849 drive with Bandini's cattle went by the coast. His tie is his son-in-law's, not his own (Nathan, 3 October 2026).",
+            "removed": "2026-10-03",
+            "by": "scripts/import/settle_borrowed_ties.php"
+        },
+        {
+            "record": 329,
+            "title": "José Antonio Aguirre",
+            "section": "persons",
+            "why": "A San Diego merchant who received the Tejon grant with Ygnacio del Valle in 1843. The Tejon is outside the valley (Nathan, 3 October 2026).",
+            "removed": "2026-10-03",
+            "by": "scripts/import/settle_borrowed_ties.php"
+        },
+        {
+            "record": 946,
+            "title": "California Battalion",
+            "section": "groups",
+            "why": "Folded into John C. Frémont (#307): no source here names a California Battalion; the sources tell of Frémont's \"buckskin battalion\", and his record holds it.",
+            "removed": "2026-10-03",
+            "by": "scripts/import/fold_and_retire_records.php"
+        },
+        {
+            "record": 940,
+            "title": "Catalonian Volunteers",
+            "section": "groups",
+            "why": "Folded into the Portolá Expedition (#938): the Volunteers are in this archive as the expedition's soldiers under Pedro Fages.",
+            "removed": "2026-10-03",
+            "by": "scripts/import/fold_and_retire_records.php"
+        },
+        {
+            "record": 942,
+            "title": "De Anza Expedition",
+            "section": "groups",
+            "why": "Retired: no source in the archive puts the expedition in the Santa Clarita Valley.",
+            "removed": "2026-10-03",
+            "by": "scripts/import/fold_and_retire_records.php"
+        },
+        {
+            "record": 16515,
+            "title": "Mission San Francisco de Asís",
+            "section": "places",
+            "why": "Retired: nothing in the archive holds it to the Santa Clarita Valley.",
+            "removed": "2026-10-03",
+            "by": "scripts/import/fold_and_retire_records.php"
+        },
+        {
+            "record": 16517,
+            "title": "Mission Santa Cruz",
+            "section": "places",
+            "why": "Retired: nothing in the archive holds it to the Santa Clarita Valley.",
+            "removed": "2026-10-03",
+            "by": "scripts/import/fold_and_retire_records.php"
         }
     ]
 }

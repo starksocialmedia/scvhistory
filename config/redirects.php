@@ -29,8 +29,9 @@ $moved = [
     'organizations/rancho-san-francisco'          => 'places/rancho-san-francisco',
     'organizations/rancho-el-tejon'               => 'places/rancho-el-tejon',
     'organizations/mission-san-gabriel-arcangel'  => 'places/mission-san-gabriel-arcángel',
-    'organizations/mission-san-francisco-de-asis' => 'places/mission-san-francisco-de-asís',
-    'organizations/mission-santa-cruz'            => 'places/mission-santa-cruz',
+    /* Mission San Francisco de Asís and Mission Santa Cruz were retired on
+       3 October 2026 (fold_and_retire_records.php: nothing holds them to the
+       valley); their organization addresses no longer redirect. */
     /* #16356 renamed from Bill Hart, 29 September 2026 (import_hart_portrait.php). */
     'persons/bill-hart'                           => 'persons/william-s-hart',
     /* #16052 retitled Hart High School, 30 September 2026 (retitle_hart_high.php). */
@@ -47,6 +48,11 @@ $moved = [
        retired 3 October 2026 (retire_305_add_chico_lopez.php); the address
        goes to the discoverer, #18834. Chico has his own, persons/chico-lopez. */
     'persons/francisco-lopez'                     => 'persons/francisco-lopez-2',
+    /* Folded 3 October 2026 (fold_and_retire_records.php): the California
+       Battalion into Frémont, who holds his "buckskin battalion"; the
+       Catalonian Volunteers into the Portolá Expedition they marched with. */
+    'groups/california-battalion'                 => 'persons/john-c-fremont',
+    'groups/catalonian-volunteers'                => 'groups/portola-expedition',
     /* Retired into the one record for the same subject, 29 September 2026
        (organize_orgs_places.php). */
     'organizations/rancho-camulos'                => 'places/rancho-camulos',
