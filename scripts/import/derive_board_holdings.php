@@ -217,7 +217,9 @@ $newP = [];   /* key => [printings, bodies, cands] */
 foreach ($contests as $cid => &$c) { foreach ($c['cands'] as &$x) {
     if ($x['pid']) { $x['who'] = (int)$x['pid']; continue; }
     $k = $keyOfCand($x); $x['key'] = $k;
-    if ($k === 'bob jensen' && $c['county']) { $x['who'] = "new:$k"; continue; }
+    /* The County's 2022 Hart Area 2 contest has no candidacy record. Its winner is the Bob Jensen record once it
+       exists (created by the first run), and a person to create before that, so a rerun stays idempotent. */
+    if ($k === 'bob jensen' && $c['county']) { $jx = Entry::find()->section('persons')->status(null)->title('Bob Jensen')->one(); $x['who'] = $jx ? $jx->id : "new:$k"; if ($jx) { $x['pid'] = $jx->id; } continue; }
     if ($x['won'] && $k) { $newP[$k] ??= ['printings' => [], 'bodies' => [], 'wins' => [], 'cands' => []]; }
 } unset($x); } unset($c);
 /* Any candidacy, won or lost, on these boards that is a new person's. */
@@ -579,6 +581,11 @@ $rosterOnly = [];
 foreach ($pieces as $mk => $ps) { foreach ($ps as $j => $p) {
     if (isset($rMatched["$mk|$j"])) { continue; }
     $w = $rLink[$mk]; $name = $whoName($w);
+    /* Roster service already held by a Hart holding of this person (create_hart_early_members.php holds the
+       tenures of those it created, Hall's open term among them): skipped, by date, not by year. */
+    $pad = fn($d) => str_pad(rtrim((string)$d, '~?'), 10, $d && strlen(rtrim((string)$d, '~?')) === 4 ? '-01-01' : '-01');
+    $held = is_int($w) ? array_filter($existing, fn($x) => $x['pid'] == $w && $x['b'] == 21588 && $pad($x['s']) <= $pad($p['start']) && ($x['e'] === '' || $pad($p['start']) <= str_pad(rtrim($x['e'], '~?'), 10, '-31'))) : [];
+    if ($held) { $skipped[] = [$name, 21588, (string)$p['start'], array_values($held)[0]['id']]; continue; }
     if ($p['end'] === null) { $bad[] = "$name: an open roster term from {$p['start']} matches no term from the election returns"; continue; }
     $n = [];
     $n[] = "Leon Worden's roster of the Hart board lists $name " . $qr($p['startBoard'], $p['startBasis'])
