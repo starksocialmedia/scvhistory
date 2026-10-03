@@ -530,6 +530,20 @@ memorial header that printed the incident date as the date of death.
    reported, not failed. `check_render.php` runs it every time.
 6. **After an apply**, open one written record's page and find the value, or
    run the checker. A read-back line in the apply output is not this check.
+7. **Deleted claims stay deleted.** A claim that is impossible, not merely
+   unsourced, is deleted from its record with a note that quotes it and says
+   why it cannot be true (`scripts/import/delete_impossible_claims.php`). Each
+   one is listed in `scripts/import/removed-claims.json`, and
+   `scripts/import/check_removed_claims.php`, run by `check_render.php`, fails if
+   any of them is found in a record again. The first was Father Francisco
+   Garcés "beatified by Pope John Paul II on September 22, 1787" (3 October
+   2026). The danger it guards against is an old script: the WordPress file
+   (`inventory/wp_content.json`) and the earlier import and profile scripts
+   still hold such sentences as they arrived, and re-running one of them would
+   put a deleted claim back without anyone deciding to. If the check fails,
+   find what wrote the sentence back and remove it again; do not delete the
+   registry entry to make the check pass. A new impossible claim is added to
+   the registry, then the script is run.
 
 ---
 

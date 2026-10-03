@@ -19,6 +19,15 @@ the election page, which loses nothing: the page prints the name as the ballot
 did, linked only where a record exists. Winning an election is office, and keeps
 a record; where the body's data is thin, Nathan decides.
 
+**A person belongs in this archive for what they did here, and a profile leads
+with that** (Nathan, 3 October 2026). Filming here is a location credit, not a
+connection: John Wayne's record was removed on that ground (the name stays in
+the text, and `removed-claims.json` keeps him from coming back). A profile's
+first paragraph is what the person did in the valley; a career elsewhere gets a
+sentence, and the record's Wikipedia link carries the rest. Where the archive
+holds nothing local, the profile says so in a line rather than borrowing a
+career: Kit Carson's and Junípero Serra's are the examples.
+
 `scripts/import/audit_person_significance.php` reports every record against
 this bar (`inventory/review/person-significance.md`). The import scripts that
 created records on the old rule no longer do.

@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-04 (later)
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: The 25, batch 2 (build_profiles_batch4.php): Rémi Nadeau (#339) settled from "Remi Nadeau: Which is Which?" as the freighter, 1821-1887, retitled from "Remi Allen Nadeau" (no source for Allen), with notes on him and on his grandson #18869; his 1887 obituary imported (#28079). Francisco López the gold discoverer (#18834), born 1802, with the Reynolds/Latta disagreement over "Chico" shown; #305 noted as the other man's name. Beale, Frémont, Carson, Serra and Crespí written, replacing withheld WordPress bodies; Crespí's birth narrowed to 1721 and Carson's to 1809, Kentucky, with notes; unsourced death and burial values marked uncited. Then, on Nathan's rule, Carson and Serra cut to what places them (nothing, and never here) and Frémont and Crespí recast to lead with the valley (revise_profiles_batch4.php). John Wayne's record removed (remove_john_wayne.php): 12 relations off, the review decision and name canon marked external so nothing rebuilds him, the record in the trash for 30 days; removed-claims.json now lists removed records too and the check fails if one returns. Connie Worden's son now rests on a source (fix_connie_worden_son.php). DATA-MODEL gains "What checking against the archive cannot catch" and "A person belongs in this archive for what they did here"; PROFILES.md the same rule; the runbook the deleted-claims registry.
+- Decisions: filming here is a location credit, not a connection (Nathan). Crespí's "named the Santa Clara River" not repeated: only the withheld WordPress text says it.
+- Blockers: #305 "Chico" López waits on Nathan: which man the record stands for.
+- Next: batch 3 (Fages, Mix, Carey, Vasquez, Juventino del Valle, Gifford), then the 25 blank group, place and organization records.
+
 2026-10-04
 
 - Agent: Claude Code

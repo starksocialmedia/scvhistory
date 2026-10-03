@@ -70,6 +70,27 @@ it was found on.
 `scripts/import/set_evidence_levels.php` audits every `certified` value against
 this rule each time it runs.
 
+### What checking against the archive cannot catch
+
+The audits that grade a sentence against the archive (`audit_generated_bodies.py`,
+`audit_wordpress_records.py`, `trace_wordpress_facts.py`) look for a page that
+holds the sentence's dates, numbers and names. They cannot tell whether that page
+agrees with it. A sentence can match on every name and date and still say
+something its source denies (Nathan, 3 October 2026).
+
+The example: the Rancho El Tejon record said Edward Fitzgerald Beale "acquired the
+rancho" in 1855 and consolidated some 270,000 acres. Jerry Reynolds, in the
+archive, has Beale, 1855 and the Tejon in the same passage, so the sentence grades
+"found"; but Reynolds says Beale bought Rancho La Liebre on 8 August 1855 and
+added the Tejon later, 297,000 acres in all. The grade found the parts and missed
+the contradiction.
+
+So a match is a lead to a source, never a confirmation. A grade of "none" can
+condemn a sentence (nothing anywhere supports it); a grade of "found" cannot clear
+one. Only reading the source against the claim does, and that is what an evidence
+level records: that someone read it. It is also why a doubtful body is withheld
+whole rather than kept for the sentences that matched.
+
 ## Identifier schemes
 
 | Field | Scheme | URL pattern | Wikidata property |
@@ -683,9 +704,18 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `bandImage` | Assets | schema.org `image` | presentation only |
 
 **Who gets a record.** A person record requires a Santa Clarita Valley connection
-the articles document: lived, worked, owned, built, founded, filmed, buried or
-acted here. The connection has to be in the text. A name appearing in an article
-is not a connection; it is a mention.
+the articles document: lived, worked, owned, built, founded, buried or acted here.
+The connection has to be in the text. A name appearing in an article is not a
+connection; it is a mention. Filming here is not one either: a location credit is
+not a connection to the valley (Nathan, 3 October 2026, removing John Wayne).
+
+**A person belongs in this archive for what they did here, and a profile leads
+with that** (Nathan, 3 October 2026). The first paragraph says what the person did
+in the valley; a career elsewhere gets a sentence at most, and the record's
+Wikipedia link carries the rest. Where the archive holds nothing local, the profile
+says so in a line rather than borrowing a career from elsewhere. Kit Carson's says
+no source here places him in the valley; Junipero Serra's quotes Leon Worden that
+there is no reason to believe he ever set foot in it.
 
 National figures and subject-matter figures a local columnist wrote about get no
 record. Leon Worden covering Proposition 209 does not make Ward Connerly part of
@@ -699,9 +729,11 @@ because nothing in the text places him here.
 
 William Mulholland has a record. He built the aqueduct and the St Francis Dam,
 and the dam broke in this valley and killed people in it; that is as documented
-as a connection gets. So do John Wayne and Tom Mix, who filmed at Melody Ranch,
-Charles Crocker, whose railroad came through, and Kit Carson, who came through
-with Fremont.
+as a connection gets. So do Tom Mix, who lived in Newhall and made his early films
+from there, and Charles Crocker, whose railroad came through. Kit Carson keeps his
+record as Fremont's guide, though no source places him in the valley, and his
+profile says so. John Wayne, kept on 21 September for filming at Melody Ranch,
+was removed on 3 October: the name stays in the text, the record does not.
 
 **Holding an office that represents the valley is a connection.** Somebody who
 sat on a body whose constituency includes the SCV, or held a single-member seat

@@ -217,3 +217,7 @@
 2026-10-03 03:55:02 PDT	add_withheld_body_field.php	scvhistory-web	5 rows	verified	withheldBody (internal) on organizations, places, groups, events, war memorials
 2026-10-03 03:55:37 PDT	withhold_wordpress_bodies.php	scvhistory-web	25 rows	verified	WordPress-origin bodies outside persons withheld (moved to withheldBody): 6 organizations, 8 places, 9 groups, an event, a war memorial
 2026-10-03 04:05:58 PDT	build_profiles_batch3.php	scvhistory-web	10 rows	verified	the 25, batch 1: Worden, Caravalho, R. Newhall, Murr, Hon, Wicks, Wiley, Gelcich, Mulholland, Lang; their obituaries, documents and portraits imported
+2026-10-03 04:21:24 PDT	fix_connie_worden_son.php	scvhistory-web	1 rows	verified	Connie Worden: her son and his founding of the site each cited to what says it
+2026-10-03 04:33:06 PDT	build_profiles_batch4.php	scvhistory-web	9 rows	verified	the 25, batch 2: Nadeau (retitled from Which is Which?), López the discoverer, Beale, Frémont, Carson, Serra, Crespí; notes on #305 and #18869
+2026-10-03 07:38:00 PDT	remove_john_wayne.php	scvhistory-web	12 rows	verified	John Wayne #16235 to the trash; relations off; decision and canon external
+2026-10-03 07:40:27 PDT	revise_profiles_batch4.php	scvhistory-web	4 rows	verified	valley first: Carson and Serra cut to what places them (nothing / never here), Frémont and Crespí lead with the valley
