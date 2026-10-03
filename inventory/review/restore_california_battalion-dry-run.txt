@@ -1,0 +1,47 @@
+
+Output:
+DRY RUN
+==============================================================================
+quote ok   pollack1114kitcarson: "Three months later, Fremont's men, now referred to as the California B"
+quote ok   northlake-deir-2017-p341: "Fremont's battalion marched through the Santa Clara River Valley and s"
+quote ok   northlake-deir-2017-p341: "Fremont in command of the California Battalion for the United States"
+quote ok   tesoro-sdeir-2018-p486: "Fremont's battalion marched through the Santa Clara River Valley and s"
+quote ok   tesoro-sdeir-2018-p486: "Fremont in command of the California Battalion"
+quote ok   reynolds-part18: "Edwin Bryant, a member of the battalion"
+quote ok   ripley16: "Fremont's divided battalion"
+record ok  #857: "Frémont and his hundred-man "buckskin battalion" marched southward alo"
+record ok  #857: "Edwin Bryant, a member of the battalion"
+#946 California Battalion: in the trash since 2026-10-03 09:23, slug california-battalion; restore the same element
+BODY OLD: (empty)
+BODY NEW: The California Battalion was the force John C. Frémont commanded in the American conquest of California. Dr. Alan Pollack writes that in the summer of 1846 Frémont's men, "now referred to as the California Battalion," met Commodore Robert Stockton at Monterey.[1] In January 1847 the battalion came south through this valley. Jerry Reynolds has Frémont's hundred-man "buckskin battalion" arriving at Castaic Junction on the evening of January 9, 1847, and quotes Edwin Bryant, "a member of the battalion," on the rancho where it camped.[2] Two environmental impact reports prepared for projects in the valley, NorthLake (2017) and Tesoro del Valle (2018), say that "Fremont's battalion marched through the Santa Clara River Valley and south to Mission San Fernando."[3][4]
+  [1] Alan Pollack, "Kit Carson, Ned Beale Cross Paths and Alter California's Future," Heritage Junction Dispatch, November-December 2014, as carried on SCVHistory.com, /scvhistory/pollack1114kitcarson.htm: "The Mexican-American War began in April 1846. Three months later, Fremont's men, now referred to as the California Battalion, met up with U.S. Commodore Robert Stockton in Monterey."
+  [2] Jerry Reynolds, "Chapter 18. The Pathfinder," History of the Santa Clarita Valley, article #857 in this archive.
+  [3] County of Los Angeles, NorthLake Specific Plan Project, Draft Supplemental Environmental Impact Report, May 2017, section 5.3, Cultural Resources, as carried on SCVHistory.com, /scvhistory/northlakehills_deir_0517.htm: "Fremont in command of the California Battalion for the United States."
+  [4] Tesoro del Valle Phases A-B-C, Supplemental Draft Environmental Impact Report, February 2018, section 5.5, Cultural Resources, as carried on SCVHistory.com, /scvhistory/tesoro_sdeir0218.htm.
+EDITOR NOTE ADD "Restored, 3 October 2026": This record was folded into John C. Frémont's on 3 October 2026, on the finding that no source in the archive names a California Battalion. That search had skipped part of the legacy site; three sources name it, and two place it in the valley. It was restored the same day.
+EDITOR NOTE ADD "How the archive was searched": Searched 3 October 2026 by a Python script reading every one of the 84,849 text pages of the legacy SCVHistory.com site (its pages, the flipbook books' text and their search files, each read as cp1252 so no page is skipped), and the archive's own records. "California Battalion" is on three pages: Dr. Alan Pollack's Kit Carson story (2014) and the NorthLake (2017) and Tesoro del Valle (2018) environmental impact reports. "Battalion" within 300 characters of "Bryant" finds Reynolds's chapter 18 and Vernette Snyder Ripley's "The San Fernando (Newhall) Pass" (1948), part 16.
+groupPersons OLD [307,317,315,313] -> NEW [307,315,313] (Pico #317 not put back)
+  #307 John C. Frémont personGroups [] -> add #946
+  #315 Christopher Houston Carson personGroups [] -> add #946
+  #313 Edwin Bryant personGroups [] -> add #946
+  #857 Chapter 18. The Pathfinder subjectGroup [] -> add #946
+groupKind: no such field yet; nothing to set
+config/redirects.php: REPLACE
+--- old
+    /* Folded 3 October 2026 (fold_and_retire_records.php): the California
+       Battalion into Frémont, who holds his "buckskin battalion"; the
+       Catalonian Volunteers into the Portolá Expedition they marched with. */
+    'groups/california-battalion'                 => 'persons/john-c-fremont',
++++ new
+    /* Folded 3 October 2026 (fold_and_retire_records.php): the Catalonian
+       Volunteers into the Portolá Expedition they marched with. The California
+       Battalion, folded the same day, was restored as its own record
+       (restore_california_battalion.php). */
+
+removed-claims.json removedRecords: REMOVE {"record":946,"title":"California Battalion","section":"groups","why":"Folded into John C. Frémont (#307): no source here names a California Battalion; the sources tell of Frémont's \"buckskin battalion\", and his record holds it.","removed":"2026-10-03","by":"scripts/import/fold_and_retire_records.php"}
+Mirror mounted for a live hash check: no (checked against the byte copies only)
+REFUSED: none
+==============================================================================
+nothing was written. Set $APPLY = true to apply.
+
+
