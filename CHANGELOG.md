@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-04 (night)
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: Stale review decisions settled (settle_stale_decisions.php). A rerun of create_records_from_review.php would have recreated 13 records the archive had removed or folded away, because their rows still read "approved": Clinton, Roosevelt, Connerly and Harvey Stack (removed as outside the valley) now "external"; Edward F. Beale, Henry M. Newhall, James Marshall, Clyde Smyth, Bill Hart, Alex Mentry, William S. Hart High School, California Petroleum Company and Pioneer Oil Refinery now "merged" into the live records. The creator's dry run now creates 0. check_removed_claims.php fails on any approved row with no live record, or a merge into a record that is not live; tested against the file as it stood (it flags the 13). Juventino del Valle cut to a line, and Remi Nadeau the grandson reordered to lead with his own deer park (revise_inherited_ties.php). DATA-MODEL and PROFILES.md: the connection has to be the person's own.
+- Decisions: the family test, Nathan: a tie through a father's or husband's land or office is inherited.
+- Blockers: #305 "Chico" López, Doña Jacoba and Rodolfo Acosta wait on Nathan.
+- Next: the 25 blank group, place and organization records.
+
 2026-10-04 (evening)
 
 - Agent: Claude Code

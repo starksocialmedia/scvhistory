@@ -26,7 +26,9 @@ the text, and `removed-claims.json` keeps him from coming back). A profile's
 first paragraph is what the person did in the valley; a career elsewhere gets a
 sentence, and the record's Wikipedia link carries the rest. Where the archive
 holds nothing local, the profile says so in a line rather than borrowing a
-career: Kit Carson's and Junípero Serra's are the examples.
+career: Kit Carson's and Junípero Serra's are the examples. The connection
+has to be the person's own: a tie through a father's or husband's land or
+office is inherited (Juventino del Valle's profile is a line for that reason).
 
 `scripts/import/audit_person_significance.php` reports every record against
 this bar (`inventory/review/person-significance.md`). The import scripts that

@@ -717,6 +717,11 @@ says so in a line rather than borrowing a career from elsewhere. Kit Carson's sa
 no source here places him in the valley; Junipero Serra's quotes Leon Worden that
 there is no reason to believe he ever set foot in it.
 
+**The connection has to be the person's own** (Nathan, 3 October 2026). A tie
+that runs through a father's or husband's land or office is inherited, and does
+not by itself earn a profile: Juventino del Valle ran Rancho Camulos, in Ventura
+County, on land his father held, and his profile is a line saying so.
+
 National figures and subject-matter figures a local columnist wrote about get no
 record. Leon Worden covering Proposition 209 does not make Ward Connerly part of
 this valley, and the coin column naming forty numismatists does not make them

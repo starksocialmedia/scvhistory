@@ -861,32 +861,14 @@
             "placeType": "site"
         },
         {
-            "action": "approved",
+            "action": "external",
             "type": "person",
             "name": "Bill Clinton",
             "key": "bill clinton",
-            "articles": [
-                12228,
-                12398,
-                12316,
-                12560,
-                12358,
-                12438,
-                12440,
-                12828,
-                12836,
-                12794,
-                12784,
-                12834,
-                12792,
-                12804
-            ],
-            "aliases": [
-                "Gov. Bill Clinton",
-                "Clinton"
-            ],
             "storeKey": "bill clinton|person",
-            "decidedAt": "2026-09-21T15:16:29-07:00"
+            "decidedAt": "2026-09-21T15:16:29-07:00",
+            "wikidataId": "Q1124",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; removed 21 September as outside the valley (mark_external_people.php); the record was deleted and this row was left approved."
         },
         {
             "key": "wiley canyon",
@@ -982,7 +964,7 @@
         },
         {
             "key": "beale",
-            "action": "approved",
+            "action": "merged",
             "type": "person",
             "name": "Edward F. Beale",
             "articles": [
@@ -998,7 +980,10 @@
             ],
             "aliases": [
                 "Beale"
-            ]
+            ],
+            "into": 327,
+            "intoName": "Edward Fitzgerald Beale",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #327 Edward Fitzgerald Beale, and an approved row would recreate it."
         },
         {
             "key": "puerto rico",
@@ -1195,7 +1180,7 @@
         },
         {
             "key": "clyde smyth",
-            "action": "approved",
+            "action": "merged",
             "type": "person",
             "name": "Clyde Smyth",
             "articles": [
@@ -1206,7 +1191,10 @@
                 12589,
                 12824,
                 12925
-            ]
+            ],
+            "into": 15985,
+            "intoName": "H. Clyde Smyth",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #15985 H. Clyde Smyth, and an approved row would recreate it."
         },
         {
             "key": "lake elizabeth",
@@ -1386,7 +1374,7 @@
             "settledBy": "Nathan, 2026-09-21: the canon makes it an alias of the lake"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "organization",
             "name": "William S. Hart High School",
             "articles": [
@@ -1440,7 +1428,10 @@
                 12674
             ],
             "storeKey": "william s hart high school|organization",
-            "decidedAt": "2026-09-21T13:01:14-07:00"
+            "decidedAt": "2026-09-21T13:01:14-07:00",
+            "into": 16052,
+            "intoName": "Hart High School",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #16052 Hart High School, and an approved row would recreate it."
         },
         {
             "name": "PAIR downtown newhall / downtown newhall merchants",
@@ -1637,8 +1628,8 @@
             "decidedAt": "2026-09-21T13:12:11-07:00"
         },
         {
-            "action": "approved",
-            "type": "organization",
+            "action": "merged",
+            "type": "place",
             "name": "Pioneer Oil Refinery",
             "key": "pioneer oil refinery",
             "articles": [
@@ -1658,7 +1649,10 @@
                 12668
             ],
             "storeKey": "pioneer oil refinery|organization",
-            "decidedAt": "2026-09-21T13:12:17-07:00"
+            "decidedAt": "2026-09-21T13:12:17-07:00",
+            "into": 20131,
+            "intoName": "Pioneer Oil Refinery",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #20131 Pioneer Oil Refinery, and an approved row would recreate it."
         },
         {
             "action": "approved",
@@ -1916,13 +1910,14 @@
             "type": "person",
             "name": "Henry Newhall",
             "key": "henry newhall",
-            "intoName": "Henry M. Newhall",
-            "intoKey": "henry m newhall",
+            "intoName": "Henry Mayo Newhall",
             "storeKey": "henry newhall|person",
-            "decidedAt": "2026-09-21T15:16:21-07:00"
+            "decidedAt": "2026-09-21T15:16:21-07:00",
+            "into": 283,
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #283 Henry Mayo Newhall, and an approved row would recreate it."
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "person",
             "name": "Henry M. Newhall",
             "key": "henry m newhall",
@@ -1942,41 +1937,26 @@
                 "Henry Newhall"
             ],
             "storeKey": "henry m newhall|person",
-            "decidedAt": "2026-09-21T15:16:21-07:00"
+            "decidedAt": "2026-09-21T15:16:21-07:00",
+            "into": 283,
+            "intoName": "Henry Mayo Newhall",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #283 Henry Mayo Newhall, and an approved row would recreate it."
         },
         {
-            "action": "skipped",
+            "action": "external",
             "type": "person",
             "name": "Theodore Roosevelt",
             "key": "theodore roosevelt",
             "storeKey": "theodore roosevelt|person",
             "decidedAt": "2026-09-21T15:16:25-07:00",
-            "settledBy": "Nathan, 2026-09-21: the rename made this a merge into itself"
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; removed 21 September as outside the valley (mark_external_people.php); the record was deleted and this row was left approved.",
+            "wikidataId": "Q33866"
         },
         {
-            "action": "approved",
+            "action": "external",
             "type": "person",
             "name": "Theodore Roosevelt",
             "key": "president theodore roosevelt",
-            "articles": [
-                2117,
-                14962,
-                15370,
-                15198,
-                14948,
-                15290,
-                15454,
-                2107,
-                2113,
-                2115,
-                2181,
-                14976,
-                15392
-            ],
-            "aliases": [
-                "Theodore Roosevelt",
-                "President Theodore Roosevelt"
-            ],
             "storeKey": "president theodore roosevelt|person",
             "decidedAt": "2026-09-21T15:16:25-07:00",
             "wikidataId": "Q33866",
@@ -1986,7 +1966,7 @@
                 "idField": "wikidataId",
                 "name": "Theodore Roosevelt"
             },
-            "settledBy": "Nathan, 2026-09-21: untitled name, titled form as alias"
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; removed 21 September as outside the valley (mark_external_people.php); the record was deleted and this row was left approved."
         },
         {
             "name": "PAIR Theodore Roosevelt / President Theodore Roosevelt",
@@ -2042,14 +2022,14 @@
             "decidedAt": "2026-09-21T15:16:27-07:00"
         },
         {
-            "action": "merged",
+            "action": "external",
             "type": "person",
             "name": "Clinton",
             "key": "clinton",
-            "intoName": "Bill Clinton",
-            "intoKey": "bill clinton",
             "storeKey": "clinton|person",
-            "decidedAt": "2026-09-21T15:16:29-07:00"
+            "decidedAt": "2026-09-21T15:16:29-07:00",
+            "wikidataId": "Q1124",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the deferred merge into Bill Clinton, who is external."
         },
         {
             "name": "PAIR Clinton / Bill Clinton",
@@ -2102,7 +2082,7 @@
             "decidedAt": "2026-09-21T15:20:50-07:00"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "person",
             "name": "Bill Hart",
             "key": "bill hart",
@@ -2115,7 +2095,10 @@
                 12658
             ],
             "storeKey": "bill hart|person",
-            "decidedAt": "2026-09-21T15:21:21-07:00"
+            "decidedAt": "2026-09-21T15:21:21-07:00",
+            "into": 16356,
+            "intoName": "William S. Hart",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #16356 William S. Hart, and an approved row would recreate it."
         },
         {
             "action": "approved",
@@ -2343,19 +2326,14 @@
             "settledBy": "Nathan, 2026-09-21: it is a building"
         },
         {
-            "action": "approved",
+            "action": "external",
             "type": "person",
             "name": "Ward Connerly",
             "key": "ward connerly",
-            "articles": [
-                12354,
-                12436,
-                12442,
-                12274,
-                12282
-            ],
             "storeKey": "ward connerly|person",
-            "decidedAt": "2026-09-21T15:26:11-07:00"
+            "decidedAt": "2026-09-21T15:26:11-07:00",
+            "wikidataId": "Q7968160",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; removed as outside the valley (mark_external_people.php); the record was deleted and this row was left approved."
         },
         {
             "action": "skipped",
@@ -2858,7 +2836,7 @@
             "decidedAt": "2026-09-21T18:34:50-07:00"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "person",
             "name": "Alex Mentry",
             "key": "alex mentry",
@@ -2878,7 +2856,10 @@
                 12372
             ],
             "storeKey": "alex mentry|person",
-            "decidedAt": "2026-09-21T18:34:52-07:00"
+            "decidedAt": "2026-09-21T18:34:52-07:00",
+            "into": 18648,
+            "intoName": "Charles Alexander Mentry",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #18648 Charles Alexander Mentry, and an approved row would recreate it."
         },
         {
             "action": "approved",
@@ -3022,7 +3003,7 @@
             "decidedAt": "2026-09-21T18:35:31-07:00"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "person",
             "name": "James Marshall",
             "key": "james marshall",
@@ -3037,7 +3018,10 @@
                 15294
             ],
             "storeKey": "james marshall|person",
-            "decidedAt": "2026-09-21T18:35:36-07:00"
+            "decidedAt": "2026-09-21T18:35:36-07:00",
+            "into": 319,
+            "intoName": "James Wilson Marshall",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #319 James Wilson Marshall, and an approved row would recreate it."
         },
         {
             "action": "external",
@@ -3186,19 +3170,14 @@
             "decidedAt": "2026-09-21T18:37:39-07:00"
         },
         {
-            "action": "approved",
+            "action": "external",
             "type": "organization",
             "name": "Harvey Stack",
             "key": "harvey stack",
-            "articles": [
-                15076,
-                15450,
-                14944,
-                15444,
-                15166
-            ],
             "storeKey": "harvey stack|organization",
-            "decidedAt": "2026-09-21T18:37:45-07:00"
+            "decidedAt": "2026-09-21T18:37:45-07:00",
+            "wikidataId": "",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; a New York coin dealer with no valley connection; the record was deleted 25 September and its replacement, Stack's, removed 28 September (fix_org_records.php, fix_stacks_city_alias_hart.php)."
         },
         {
             "action": "approved",
@@ -3354,7 +3333,7 @@
             "decidedAt": "2026-09-21T18:39:19-07:00"
         },
         {
-            "action": "approved",
+            "action": "merged",
             "type": "organization",
             "name": "California Petroleum Company",
             "key": "california petroleum company",
@@ -3366,7 +3345,10 @@
                 2099
             ],
             "storeKey": "california petroleum company|organization",
-            "decidedAt": "2026-09-21T18:42:55-07:00"
+            "decidedAt": "2026-09-21T18:42:55-07:00",
+            "into": 18862,
+            "intoName": "Philadelphia and California Petroleum Company",
+            "settledBy": "Nathan, 2026-10-03: stale decision settled; the record was folded into or retitled as #18862 Philadelphia and California Petroleum Company, and an approved row would recreate it."
         },
         {
             "action": "skipped",

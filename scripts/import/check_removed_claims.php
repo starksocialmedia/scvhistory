@@ -24,5 +24,22 @@ if ($C) {
 foreach ($RR as $r) {
     foreach (\craft\elements\Entry::find()->section($r['section'])->status(null)->title($r['title'])->all() as $e) { $fails[] = "REMOVED RECORD BACK  {$r['section']} #{$e->id} {$e->title}: removed {$r['removed']} (" . mb_substr($r['why'], 0, 60) . ')'; }
 }
-echo ($fails ? implode(PHP_EOL, $fails) : 'no removed claim or record has come back (' . count($C) . ' claims, ' . count($RR) . ' records listed)') . PHP_EOL;
+/* A review decision still "approved" for a record that is no longer live would
+   be recreated by create_records_from_review.php (Nathan, 3 October 2026: John
+   Wayne's row was still approved after his record was removed, and so were 13
+   others). A merge must point at a live record. */
+$DEC = \Craft::getAlias('@review') . '/records-decided.json';
+$SEC = ['person' => 'persons', 'place' => 'places', 'organization' => 'organizations'];
+$nDec = 0;
+if (is_file($DEC)) {
+    $live = [];
+    foreach ($SEC as $t => $s) { foreach (\craft\elements\Entry::find()->section($s)->status(null)->limit(null)->all() as $e) { $live[$t][mb_strtolower(trim((string)$e->title))] = true; } }
+    foreach (json_decode((string)file_get_contents($DEC), true)['decisions'] ?? [] as $r) {
+        $t = (string)($r['type'] ?? ''); if (!isset($SEC[$t])) { continue; }
+        $nDec++; $act = (string)($r['action'] ?? '');
+        if ($act === 'approved' && empty($live[$t][mb_strtolower(trim((string)($r['name'] ?? '')))])) { $fails[] = "STALE DECISION  {$r['name']} ($t) is approved in review/records-decided.json but has no live record; a rerun of create_records_from_review.php would recreate it"; }
+        if ($act === 'merged' && !empty($r['into']) && !\craft\elements\Entry::find()->id((int)$r['into'])->status(null)->exists()) { $fails[] = "STALE DECISION  {$r['name']} ($t) is merged into #{$r['into']}, which is not live"; }
+    }
+}
+echo ($fails ? implode(PHP_EOL, $fails) : 'no removed claim, record or stale decision has come back (' . count($C) . ' claims, ' . count($RR) . ' records listed, ' . $nDec . ' decisions checked)') . PHP_EOL;
 return ['ok' => !$fails, 'fails' => $fails];
