@@ -47,6 +47,7 @@
 {% set handles = schools|length ? schools[0].fieldLayout.customFields|map(f => f.handle) : [] %}
 {% set hasSpan = 'gradeSpan' in handles %}
 {% set hasFeeds = 'feedsInto' in handles %}
+{% set hasMark = 'currentMark' in handles %}
 {% set districts = schools|filter(s => s.schoolLevel.value == 'district') %}
 {#- Feeders first, the district they feed last: the order a pupil moves in. -#}
 {% set fed = hasFeeds ? districts|filter(d => d.feedsInto.exists()) : [] %}
@@ -94,9 +95,23 @@
           {#- No feed lists on the cards: the grades grid and its key show who
               goes on to whom, and the lists doubled the Hart card's height
               (Nathan, 29 September 2026). Each district's own page keeps them. -#}
+          {#- The district's current mark beside its name (Nathan, 3 October 2026:
+              "That page is the place a reader actually compares the five"),
+              captioned with where it is shown and when it was retrieved, as on
+              the district's own page. Identification only: not linked to /media. -#}
+          {% set mark = hasMark ? (d.currentMark.one() ?? null) : null %}
           <div class="sc-card">
-            <h3><a href="{{ d.url }}">{{ d.title }}</a></h3>
+            {% if mark %}
+              {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 6px">
+                <h3 style="margin:0"><a href="{{ d.url }}">{{ d.title }}</a></h3>
+                <img src="{{ mark.url }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.width }}" height="{{ mark.height }}" style="height:44px;width:auto;max-width:96px;object-fit:contain;flex:none" loading="lazy">
+              </div>
+            {% else %}
+              <h3><a href="{{ d.url }}">{{ d.title }}</a></h3>
+            {% endif %}
             <div class="meta">{{ hasSpan and d.gradeSpan ? 'GRADES ' ~ d.gradeSpan|upper : 'SCHOOL DISTRICT' }}</div>
+            {% if mark %}<div style="font-size:12px;color:#5B6472;margin:-6px 0 4px">Logo as shown on {{ markHost ?: 'its website' }}{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}.</div>{% endif %}
             <div class="k">SCHOOLS IN THE ARCHIVE</div>
             {% if kids|length %}<ul>{% for k in kids %}<li><a href="{{ k.url }}">{{ k.title }}</a>{% if hasSpan and k.gradeSpan %} <span style="color:#5B6472;font-size:13px">({{ k.gradeSpan }})</span>{% endif %}</li>{% endfor %}</ul>
             {% else %}<div class="none">None yet.</div>{% endif %}

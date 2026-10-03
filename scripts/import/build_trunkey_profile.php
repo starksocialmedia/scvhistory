@@ -116,6 +116,7 @@ echo (in_array(21588, $p?->personOrganizations->ids() ?? []) ? 'Hart already rel
 echo 'Left out: his wife and children, his email address. Resting on campaign material alone: nothing (the magazine is quoted, attributed).' . PHP_EOL;
 if (preg_match('~\x{2014}~u', $BODY . implode('', $NOTES))) { $bad[] = 'an em dash in the text'; }
 preg_match_all('~\[(\d+)\]~', $BODY, $m); if (count(array_unique($m[1])) !== count($NOTES)) { $bad[] = 'notes used ' . json_encode(array_values(array_unique($m[1]))) . ' of ' . count($NOTES); }
+if (mb_strlen(trim((string)$p?->recordProvenance . '; build_trunkey_profile.php, 3 Oct 2026: profile, office, 2022 candidacy, Hart')) > 255) { $bad[] = 'recordProvenance would exceed 255 characters'; }
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
 if ($bad) { echo 'REFUSING: resolve the refusals first' . PHP_EOL; return; }
@@ -134,7 +135,7 @@ try {
     $h = array_map(fn($f) => $f->handle, $p->getFieldLayout()->getCustomFields());
     $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'Film finance executive; school board member', 'fullName' => 'Christopher Trunkey', 'personAliases' => 'Christopher Trunkey',
         'roles' => array_values(array_unique(array_merge($p->roles->ids(), [$ROLE->id]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->ids(), [$SUSD->id, $HART->id]))),
-        'recordProvenance' => trim((string)$p->recordProvenance . '; build_trunkey_profile.php, 3 October 2026: body, office, the 2022 candidacy joined, the Hart district related; public-life facts only')];
+        'recordProvenance' => trim((string)$p->recordProvenance . '; build_trunkey_profile.php, 3 Oct 2026: profile, office, 2022 candidacy, Hart')];
     $p->setFieldValues(array_intersect_key($vals, array_flip($h)));
     if (!$elements->saveElement($p)) { throw new \RuntimeException('#25409: ' . json_encode($p->getFirstErrors())); }
     if (!$C22->candidacyPerson->one()) { $C22->setFieldValue('candidacyPerson', [$ID]); if (!$elements->saveElement($C22)) { throw new \RuntimeException('#25753: ' . json_encode($C22->getFirstErrors())); } }

@@ -86,7 +86,7 @@ $cands = (int)$cands;
 if ($cands !== 3) { $bad[] = "the archive holds $cands candidacies for her, not 3"; }
 
 $CEDA = fn($r) => "California Elections Data Archive (CEDA), {$r['file']}, row {$r['row']}";
-$SOSN = fn($f, $what) => "California Secretary of State, $what, " . $SM[$f]['url'] . ' (inventory/elections/sos/' . $f . ').';
+$SOSN = fn($f, $what) => "California Secretary of State, $what, " . $SM[$f]['url'] . '.';
 $BODY = implode("\n\n", [
     'Christy Smith served on the governing board of the Newhall School District. She first stood in November 2007, as a community volunteer, and came third of four for two seats. In November 2009 she was elected, second of five for three seats, and in 2013 she was re-elected at the head of the poll, first of four.[1][2][3] In October 2017, when the Newhall School auditorium reopened as the Newhall Family Theater for the Performing Arts, she was the board\'s president.[4]',
     'From the school board she went to the State Assembly. In November 2018 she won the 38th District, which takes in the Santa Clarita Valley, from the incumbent, Dante Acosta, 51.5 per cent to 48.5, and she served one term; in March 2019 she attended the dedication of new classrooms at Sierra Vista Junior High as the valley\'s Assemblywoman.[5][6][7] She then stood three times for Congress and lost each time to Mike Garcia: in the special election of May 2020 and the general election of that November for the 25th District, the second by 333 votes of more than 338,000, and in November 2022 for the 27th.[8][9][10]',
@@ -112,6 +112,7 @@ echo 'roles + School Board Member, State Assemblymember; personOrganizations + N
 echo 'Left out: her birth date and birthplace, her family, the 2016 Assembly race (no return in hand), Wikipedia\'s 51.2/48.8.' . PHP_EOL;
 if (preg_match('~\x{2014}~u', $BODY . implode('', $NOTES))) { $bad[] = 'an em dash in the text'; }
 preg_match_all('~\[(\d+)\]~', $BODY, $m); if (count(array_unique($m[1])) !== count($NOTES)) { $bad[] = 'notes used ' . json_encode(array_values(array_unique($m[1]))) . ' of ' . count($NOTES); }
+if (mb_strlen(trim((string)$p?->recordProvenance . '; build_smith_profile.php, 3 Oct 2026: profile and office')) > 255) { $bad[] = 'recordProvenance would exceed 255 characters'; }
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
 if ($bad) { echo 'REFUSING: resolve the refusals first' . PHP_EOL; return; }
@@ -123,7 +124,7 @@ try {
     $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'School board member; State Assemblymember',
         'roles' => array_values(array_unique(array_merge($p->roles->ids(), [$ROLE->id, $ASM->id]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->ids(), [$NSD->id]))),
         'personWikipediaUrl' => 'https://en.wikipedia.org/wiki/Christy_Smith_(politician)',
-        'recordProvenance' => trim((string)$p->recordProvenance . '; build_smith_profile.php, 3 October 2026: body and office; public-life facts only; Wikipedia used as a finding aid, the returns cited')];
+        'recordProvenance' => trim((string)$p->recordProvenance . '; build_smith_profile.php, 3 Oct 2026: profile and office')];
     $p->setFieldValues(array_intersect_key($vals, array_flip($h)));
     if (!$elements->saveElement($p)) { throw new \RuntimeException('#25389: ' . json_encode($p->getFirstErrors())); }
     if (!$holding) {

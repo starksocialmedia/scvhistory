@@ -39,7 +39,7 @@ if (!$have) {
     $have->title = 'Chris Trunkey, campaign image, 2016'; $have->alt = 'Portrait of Chris Trunkey';
     $vals = ['license' => 'unknown', 'provenanceKind' => 'outside', 'acquiredDate' => '2026-10-03', 'rightsHolder' => 'Jennifer Emery', 'creditName' => 'Jennifer Emery',
         'rightsNote' => 'Photograph by Jennifer Emery, who holds the copyright by the file\'s own notice. Made for his campaign in July 2016. No permission to publish is established.',
-        'source' => 'Campaign material. Received from Nathan Imhoff on 3 October 2026 as Trunkey-Chris-scaled.jpg, SHA-256 ' . $SHA . '. Its embedded metadata: Artist "Jennifer Emery", Copyright "(c)Jennifer Emery", description "Christopher Trunkey Campaign", created 12 July 2016. The stored copy is re-encoded on import and differs from the file as received.'];
+        'source' => 'Campaign material, supplied by Nathan Imhoff: a photograph by Jennifer Emery for his campaign, July 2016, as the file\'s own notice records. Permission to publish is not established.', 'sourceChecksum' => 'sha256:' . $SHA];
     $ah = array_map(fn($f) => $f->handle, $have->getFieldLayout()->getCustomFields()); $have->setFieldValues(array_intersect_key($vals, array_flip($ah)));
     if (!$el->saveElement($have)) { throw new \RuntimeException(json_encode($have->getFirstErrors())); }
 }

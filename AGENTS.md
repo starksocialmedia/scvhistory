@@ -36,7 +36,8 @@ Nathan makes all decisions. Leon Worden has preapproved the project, so nothing 
 - Use plan mode for anything beyond reading files. Wait for Nathan's approval of the plan
 - Allowed without asking: reading files, `ddev describe`, `ddev craft` read-only commands, writing new files in the repo
 - Ask first: anything that changes the database, `ddev craft project-config/apply`, installing packages, deleting files, `git push`
-- Never touch production (Cloudways), DNS (Cloudflare), or Archive.org
+- Never touch production (Cloudways) or DNS (Cloudflare)
+- Never upload to, change or delete anything on Archive.org. Reading Wayback Machine captures as sources is fine: that is what a public archive is for (Nathan, 3 October 2026)
 - Never ask for, store, or print credentials. `.env` stays out of commits
 - Docker Desktop must be running before any `ddev` command. If DDEV fails with a Docker socket error, tell Nathan to open Docker Desktop
 
