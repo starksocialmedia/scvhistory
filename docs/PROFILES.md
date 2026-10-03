@@ -124,6 +124,30 @@ already been imported, as article #2177; it is disabled until consultation
 (`disable_bowers_cave.php`), and its locational passage is not quoted anywhere
 (`inventory/review/live-errors.md`, RL8).
 
+## A.B. Perkins as a source: the reliability rule
+
+Nathan, 3 October 2026, from Grok's Perkins dossier
+(`inventory/review/a-b-perkins-sources.md`). Of 58 Perkins claims checked against
+sources from his lifetime and the earlier dossiers, **17 held, 25 were wrong or
+partly wrong, and 16 are open.** He is sound when he quotes a document and weak
+on the dates of lesser events: none of his claims resting on a deed, decree,
+petition, Board minutes or newspaper was contradicted.
+
+**The rule.**
+- **Accept Perkins where he quotes or cites a document.**
+- **Treat as unverified** until a primary source is found: his old-timer hearsay,
+  his film and celebrity stories, his "first" claims, his family-relationship and
+  institutional labels (asistencia, the Assembly against the Common Council), and
+  all of his Indigenous ethnography (which TATAVIAM_AUDIT.md governs). Spot-check
+  his dates for lesser events: typing slips and year slips are common.
+- **Perkins and Reynolds telling the same story are one source, not two.** Six
+  Reynolds errors trace back to Perkins (three copied, three elaborated), so where
+  Reynolds repeats Perkins the archive has been counting one account twice. A
+  claim needs a source independent of both before it counts as corroborated.
+  Reynolds also introduced at least four errors on points Perkins had right, and
+  the 1998 web edition corrects Perkins on seven, so neither simply supersedes
+  the other.
+
 ## Leon Worden's Hart board roster: a primary that contradicts itself once
 
 Nathan, 3 October 2026. The roster (hartschoolboardmembers.htm, extracted

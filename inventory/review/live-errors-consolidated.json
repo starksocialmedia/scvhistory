@@ -1,0 +1,2023 @@
+{
+ "compiled": "2026-10-03",
+ "checked_window": [
+  "2026-10-03 14:01:19 PDT",
+  "2026-10-03 14:02:46 PDT"
+ ],
+ "total": 69,
+ "status_counts": {
+  "STILL PRESENT": 66,
+  "NOT PRESENT on page title": 1,
+  "PARTLY FIXED": 1,
+  "N/A": 1
+ },
+ "by_origin": {
+  "Perkins": 17,
+  "Beale": 11,
+  "Hart": 13,
+  "del Valle": 12,
+  "Reynolds": 16
+ },
+ "citing_dossier": {
+  "Perkins": 18,
+  "Beale": 14,
+  "Hart": 15,
+  "del Valle": 15,
+  "Reynolds": 21
+ },
+ "newhall_hub_live_errors": 0,
+ "entries": [
+  {
+   "id": "CE01",
+   "page": "https://scvhistory.com/scvhistory/ap0828.htm",
+   "also_on": [],
+   "current_text": "Perkins published a manuscript on the history of the Santa Clarita Valley in 1957. In 1962 he wrote a series of articles for The Signal newspaper, appropriately titled \"Story of our Valley.\"",
+   "correction": "In 1957 the HSSC Quarterly published his 'Rancho San Francisco: A Study of a California Land Grant' (June 1957). 'The Story of Our Valley' ran in The Signal in 1954–55 (an earlier version ran in 1946–47).",
+   "source": "perkins intro (Apr 1954–Jan 1955); lat19770102perkins (Apr 1–Dec 30, 1954); the page's own sidebar ('Story of Our Valley 1954-55'); perkins-rsf-1957; sg19470102perkins",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL1"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/ap0828.htm",
+     "kind": "text",
+     "pattern": "In 1962 he wrote",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE02",
+   "page": "https://scvhistory.com/scvhistory/ap0828.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lw3113.htm",
+    "https://scvhistory.com/scvhistory/lw3550.htm"
+   ],
+   "current_text": "link text 'Oustanding Citizen 1964'",
+   "correction": "'Outstanding Citizen 1964'",
+   "source": "spelling",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL3"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/ap0828.htm",
+     "kind": "text",
+     "pattern": "Oustanding Citizen",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3113.htm",
+     "kind": "text",
+     "pattern": "Oustanding Citizen",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3550.htm",
+     "kind": "text",
+     "pattern": "Oustanding Citizen",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE03",
+   "page": "https://scvhistory.com/scvhistory/bealeafb.htm",
+   "also_on": [],
+   "current_text": "\"In 1870 he bought the Decatur House\"",
+   "correction": "1871",
+   "source": "White House Historical Association (operator) and National Trust (owner) both say 1871; WP Beale says 1871 ($60,000). The page reproduces Beale AFB text, so fix it with a [sic] or an editor's note.",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L8"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/bealeafb.htm",
+     "kind": "text",
+     "pattern": "In 1870 he bought the Decatur House",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE04",
+   "page": "https://scvhistory.com/scvhistory/bealescut.htm",
+   "also_on": [],
+   "current_text": "Entry \"Beale's Cut in John Ford's 'The Iron Horse,' 1924\" labeled LW2159, linking https://scvhistory.com/scvhistory/lw2228.htm",
+   "correction": "The label should be LW2228 (LW2159 is the Tom Mix item, listed separately above it).",
+   "source": "Link parse of the live index (bealescut_links.txt): 'LW2159 | .../lw2228.htm'; the lw2228 page title reads 'LW2228 | Beale's Cut | 'The Iron Horse' (1924)'.",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L1"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/bealescut.htm",
+     "kind": "link",
+     "pattern": "LW2159",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE05",
+   "page": "https://scvhistory.com/scvhistory/cp1702.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/mu9067.htm"
+   ],
+   "current_text": "construction views dated \"1925-1926\" and \"circa 1926\"",
+   "correction": "Late 1926–1927. Hart was only 'contemplating building' on July 12, 1926.",
+   "source": "The site's own hartmansion-const letter (C9). Leon's captions already say this; the NHMLA dates on the same pages do not.",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L11"
+   ],
+   "confidence": "medium-high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/cp1702.htm",
+     "kind": "text",
+     "pattern": "1925-1926",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/mu9067.htm",
+     "kind": "text",
+     "pattern": "circa 1926",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE06",
+   "page": "https://scvhistory.com/scvhistory/cp1703.htm",
+   "also_on": [],
+   "current_text": "\"Newly Completed Hart Mansion, 2 Views, 1930\"",
+   "correction": "Completed about 1927–28. Either the photo date or 'newly completed' is wrong.",
+   "source": "The site's own hartmansion-const (July 1926 'contemplating building') and lw2271 (May 1928) (C9).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L10"
+   ],
+   "confidence": "medium",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/cp1703.htm",
+     "kind": "text",
+     "pattern": "Newly Completed Hart Mansion",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE07",
+   "page": "https://scvhistory.com/scvhistory/di5001.htm",
+   "also_on": [],
+   "current_text": "<title> 'SCVHistory.com DO5001 | Newhall | Arthur B. Perkins at Work ...'",
+   "correction": "Probably 'DI5001' (NEEDS_VERIFICATION: check the catalog prefix)",
+   "source": "URL code",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL16"
+   ],
+   "confidence": "low",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/di5001.htm",
+     "kind": "title",
+     "pattern": "DO5001",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE08",
+   "page": "https://scvhistory.com/scvhistory/fh2701.htm",
+   "also_on": [],
+   "current_text": "credit line \"FH2101\"",
+   "correction": "FH2701 (FH2101 is a different item, a lantern slide).",
+   "source": "Page code vs credit line (C22).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L5"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/fh2701.htm",
+     "kind": "text",
+     "pattern": "FH2101",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE09",
+   "page": "https://scvhistory.com/scvhistory/fh2701.htm",
+   "also_on": [],
+   "current_text": "\"purchased the 254-acre Horseshoe Ranch in Newhall in 1921 from Babcock Smith\"",
+   "correction": "Leased in 1918. The first purchase in Feb 1921 was a few lots; the ranch was assembled in about 10 deeds through Oct 1933.",
+   "source": "The site's own mu8901 (Sitton 1989, citing deed books) (C6).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L8"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/fh2701.htm",
+     "kind": "text",
+     "pattern": "254-acre Horseshoe Ranch",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE10",
+   "page": "https://scvhistory.com/scvhistory/fh2701.htm",
+   "also_on": [],
+   "current_text": "\"Completed in 1927\", on a page whose photo is \"under construction, October(?) 1927\"",
+   "correction": "Completed late 1927 or early 1928. The page contradicts itself.",
+   "source": "The page's own caption; lw2271 (Photoplay May 1928, 'new ranch home'); Earp letters to Hollywood until Nov 1927 (C9).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L9"
+   ],
+   "confidence": "medium",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/fh2701.htm",
+     "kind": "text",
+     "pattern": "Completed in 1927",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE11",
+   "page": "https://scvhistory.com/scvhistory/film.htm",
+   "also_on": [],
+   "current_text": "\"LW2341 - ... Pinto Ben on Rudy Vallee's Radio Show, 12-13-1934\" links lw2341.htm",
+   "correction": "It should be LW2342 / lw2342.htm (lw2341 is the 1928 Victor record, which is also listed separately, so LW2341 appears twice).",
+   "source": "Live link parse; page titles of lw2341 and lw2342 (C22).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L3"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/film.htm",
+     "kind": "text",
+     "pattern": "LW2341 - William S\\. Hart Recites His Original Poem, .Pinto Ben,. on Rudy Vallee",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE12",
+   "page": "https://scvhistory.com/scvhistory/hb1806.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/signal/worden/lw032905.htm"
+   ],
+   "current_text": "\"As this is added to the archive in 2018, Beale's Cut is located on private property... Trespassing is prohibited.\" / \"It is private property and you would be trespassing.\"",
+   "correction": "Ownership has changed. On Oct 28, 2025 the Santa Clarita City Council approved buying the approximately 13-acre Forum Engineering Property, which contains Beale's Cut, adding it to the city's Open Space Preservation District. Current access rules: NEEDS_VERIFICATION. Close of escrow: NEEDS_VERIFICATION.",
+   "source": "SCVNews 10-27-2025 (city staff report quoted: 'The property includes the California historical landmark, Beale's Cut'); Signal (Perry Smith) 10-30-2025, 'added 670 acres to its open space Tuesday, including the historic Beale's Cut'; CEQAnet 2025110832 (state grant). Both notes are dated, so this is out-of-date custody text in the same way as the Hart Park example.",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L5"
+   ],
+   "confidence": "medium (escrow and access NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/hb1806.htm",
+     "kind": "text",
+     "pattern": "Trespassing is prohibited",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/worden/lw032905.htm",
+     "kind": "text",
+     "pattern": "you would be trespassing",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE13",
+   "page": "https://scvhistory.com/scvhistory/hl7101.htm",
+   "also_on": [],
+   "current_text": "\"back in 1858, Ygnacio's stepfather borrowed $8,500\"",
+   "correction": "José Salazar was the second husband of Ygnacio's stepmother, Jacoba Feliz, not his stepfather. Suggest: 'his stepmother's husband, José Salazar'.",
+   "source": "reynolds part15; perkins-rsf-1957; lastar18640514wolfskill ('Jose Salazar, the new husband of Antonio del Valle's widow').",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L8"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/hl7101.htm",
+     "kind": "text",
+     "pattern": "Ygnacio's stepfather",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE14",
+   "page": "https://scvhistory.com/scvhistory/hs9032.htm",
+   "also_on": [],
+   "current_text": "'Reynolds' conculsion'",
+   "correction": "'conclusion'",
+   "source": "Typo.",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL10"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/hs9032.htm",
+     "kind": "text",
+     "pattern": "conculsion",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE15",
+   "page": "https://scvhistory.com/scvhistory/lastar18640514wolfskill.htm",
+   "also_on": [],
+   "current_text": "\"They retained the westernmost 1,350 acres, which became the separate Rancho Camulos when Henry Newhall bought the 46,460 acres that remained of the old Rancho San Francisco at a sheriff's sale in 1875\"",
+   "correction": "Newhall's Jan 15, 1875 purchase ($90,000) was not a sheriff's sale. The 1873 sheriff's sale went to Fernald & Richards; a second sheriff's sale was called off when a private buyer (Newhall) was found.",
+   "source": "The site's own robinson_storyofvalencia_1967 summary; perkins-rsf-1957 ('deeded to Henry M. Newhall, consideration $90,000, January 15, 1875'). The acreage (46,460) is NEEDS_VERIFICATION.",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L6"
+   ],
+   "confidence": "high (acreage NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lastar18640514wolfskill.htm",
+     "kind": "text",
+     "pattern": "sheriff'?s sale in 1875",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE16",
+   "page": "https://scvhistory.com/scvhistory/lo8801.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lo8802.htm"
+   ],
+   "current_text": "\"The Army began to shut down the fort when the U.S. Civil War broke out and closed it, and the reservation, for good in 1854.\"",
+   "correction": "1864 (the fort was abandoned Sept 11, 1864, and the Indians were removed to Tule River in 1864).",
+   "source": "The site's own pages: lw2580, reynolds part23, cullimore_oldadobes, forttejonparkinventory2015, tejonranchtimeline (all Sept 11, 1864); the Interior Solicitor's memo (Tule River 1864). The sentence itself puts the closing after the Civil War broke out (1861).",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L4"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lo8801.htm",
+     "kind": "text",
+     "pattern": "for good in 1854",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lo8802.htm",
+     "kind": "text",
+     "pattern": "for good in 1854",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE17",
+   "page": "https://scvhistory.com/scvhistory/lp_oaklandtrib110418.htm",
+   "also_on": [],
+   "current_text": "\"Prior to the Great Drought of 1864-65, he owned the entire Rancho San Francsico\"",
+   "correction": "Before the drought of 1862–64, Ygnacio held an undivided share (about 5/11) alongside his stepmother, her husband and his half-siblings. Fix the typo 'Francsico'.",
+   "source": "robinson_storyofvalencia_1967 (5/11; drought 1862–64); lw2052 (drought 1862–64); perkins-rsf-1957.",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L12"
+   ],
+   "confidence": "high (typo); medium (drought dates)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lp_oaklandtrib110418.htm",
+     "kind": "text",
+     "pattern": "Francsico",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE18",
+   "page": "https://scvhistory.com/scvhistory/lw2052.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/signal/reynolds/part15.html"
+   ],
+   "current_text": "\"a judge awarded 13,599 acres to Ygnacio, 21,307 acres to Jacoba, and 4,684 acres to each of Jacoba's six children\"",
+   "correction": "The three figures add up to 62,010 acres, about 13,400 more than the whole rancho (48,611.88 acres patented). They cannot all be right. Add an editor's note, or replace them with the documented sequence: undivided shares 1841–1870, then the 1870 partition that gave Ygnacio Camulos (about 1,340 acres). reynolds part29 gives yet another figure, 'original grant of 16,599 acres'.",
+   "source": "Arithmetic; patent acreage (Land Case 303 SD, Bancroft/Calisphere); perkins-rsf-1957 ('could not be partitioned before title confirmation'; 1870 partition, 2/21, 1,340 acres); robinson_storyofvalencia_1967 (undivided 5/11).",
+   "dossiers": [
+    "Reynolds",
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L1",
+    "Reynolds reprinted"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2052.htm",
+     "kind": "text",
+     "pattern": "13,599",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part15.html",
+     "kind": "text",
+     "pattern": "13,599",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE19",
+   "page": "https://scvhistory.com/scvhistory/lw2052.htm",
+   "also_on": [],
+   "current_text": "\"Instead, Ygnacio lived at Los Angeles, where he was mayor. Acutally, Ygnacio was a California state legislator, too\"",
+   "correction": "'where he was alcalde (1850) and later a city councilman'. Fix the typo 'Acutally'. The page's own office list shows only City Council terms (May 4, 1852 – May 3, 1853; May 7 – Dec 15, 1856).",
+   "source": "Same page's office list; penpictures_ydelvalle (1889): 'in 1850 he was alcalde'; carter-ramona1902: A.F. Coronel was mayor in 1853; Wikipedia infobox: alcalde ('de facto mayor') Jan–Jul 1850, succeeded by A.P. Hodges, first mayor under the city charter.",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L2"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2052.htm",
+     "kind": "text",
+     "pattern": "where he was mayor",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2052.htm",
+     "kind": "text",
+     "pattern": "Acutally",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE20",
+   "page": "https://scvhistory.com/scvhistory/lw2052.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lw2532.htm",
+    "https://scvhistory.com/scvhistory/lw3768.htm"
+   ],
+   "current_text": "lw2052: \"When statehood came in 1850, Ygnacio served a short stint in the first Legislature\"; lw2532/lw3768: \"after serving in the state Legislature at statehood in 1850\"",
+   "correction": "He was elected on Sept 3, 1851 (2nd Assembly District) and sat in the 1852 session (Jan 5, 1852 – Jan 3, 1853), not the first Legislature of 1849–50.",
+   "source": "JoinCalifornia record 'Ignacio Del Valle' (09-03-1851, AD-02, Win); Wikipedia infobox. Confirming entry in the Assembly Journal, 1852: NEEDS_VERIFICATION.",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L3"
+   ],
+   "confidence": "high (Assembly Journal NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2052.htm",
+     "kind": "text",
+     "pattern": "first Legislature",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2532.htm",
+     "kind": "text",
+     "pattern": "Legislature at statehood in 1850",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3768.htm",
+     "kind": "text",
+     "pattern": "Legislature at statehood in 1850",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE21",
+   "page": "https://scvhistory.com/scvhistory/lw2068.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/fh2701.htm"
+   ],
+   "current_text": "say LA County Parks and NHMLA operate the park and museum; lw2068: NHMLA \"operates the Hart Museum\"",
+   "correction": "Since July 14, 2025, the City of Santa Clarita owns and operates Hart Park and the Hart Museum. NHM's P-75 and P-98 photo collections were transferred to the City. GC 1012 and GC 1192 are still listed at the Seaver Center.",
+   "source": "County approval Aug 6, 2024 (Barger release); Master Agreement Feb 13, 2025; probate court acceptance (City, 5-13-2025); City ownership (City, 7-14-2025); NHM photo guide (C21).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L1"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2068.htm",
+     "kind": "text",
+     "pattern": "operates the (William S\\. )?Hart Museum",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/fh2701.htm",
+     "kind": "text",
+     "pattern": "Natural History Museum|NHMLA|Los Angeles County",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE22",
+   "page": "https://scvhistory.com/scvhistory/lw2208.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lw3451.htm",
+    "https://scvhistory.com/scvhistory/lw3647.htm",
+    "https://scvhistory.com/scvhistory/lw2161.htm"
+   ],
+   "current_text": "\"from Fort Defiance, Texas\" / \"between Ft. Defiance, in Texas, and the Colorado River\"",
+   "correction": "Fort Defiance, New Mexico Territory (today Arizona).",
+   "source": "The site's own lw3491: 'from Fort Defiance, New Mexico Territory, to the Colorado River'; WP further reading: Beale, Wagon Route From Fort Defiance to the Colorado River (H. Ex. Doc. 124, 35th Cong. 1st Sess.).",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L6"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2208.htm",
+     "kind": "text",
+     "pattern": "Defiance,? (in )?Texas",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3451.htm",
+     "kind": "text",
+     "pattern": "Defiance,? (in )?Texas",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3647.htm",
+     "kind": "text",
+     "pattern": "Defiance,? (in )?Texas",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2161.htm",
+     "kind": "text",
+     "pattern": "Defiance,? (in )?Texas",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE23",
+   "page": "https://scvhistory.com/scvhistory/lw2232.htm",
+   "also_on": [],
+   "current_text": "<title> 'SCVHistory.com AP0828 | People | Arthur B. Perkins, Oustanding Citizen 1964.'; heading 'Oustanding Citizen 1964'; body repeats the ap0828 '1957 manuscript' / '1962' sentences",
+   "correction": "Title 'SCVHistory.com LW2232 | ...'; 'Outstanding'; fix the two sentences as in PL1",
+   "source": "URL code; spelling; as PL1",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL2"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2232.htm",
+     "kind": "title",
+     "pattern": "AP0828",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2232.htm",
+     "kind": "text",
+     "pattern": "In 1962 he wrote",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE24",
+   "page": "https://scvhistory.com/scvhistory/lw2298a.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lat19360719hart.htm"
+   ],
+   "current_text": "thumbnail hs9909t.jpg \"Letter: Gift of Buffalo Coat to Rudy Vallee 1936\" links lw3383.htm",
+   "correction": "It should link hs9909.htm (lw3383 is the Earhart letter).",
+   "source": "Live link parse, 2026-09-29 (C22).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L2"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2298a.htm",
+     "kind": "link",
+     "pattern": "hs9909t",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lat19360719hart.htm",
+     "kind": "link",
+     "pattern": "hs9909t",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE25",
+   "page": "https://scvhistory.com/scvhistory/lw2311m.htm",
+   "also_on": [],
+   "current_text": "<title> 'SCVHistory.com LW2311l | Saugus Speedway | Baker Ranch Rodeo Program 4-11-1926 (Page 13 of 26)'",
+   "correction": "'LW2311m'",
+   "source": "URL code; lw2311l is page 12",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL15"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2311m.htm",
+     "kind": "title",
+     "pattern": "LW2311l\\b",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE26",
+   "page": "https://scvhistory.com/scvhistory/lw2752.htm",
+   "also_on": [],
+   "current_text": "\"Upon Antonio's death two years later, the ranch was divided among his widow and children. Son Ygnacio ended up with the western portion\"",
+   "correction": "The heirs held undivided shares from 1841. Title was confirmed in 1855–57, and the rancho was formally partitioned only in 1870, when Ygnacio's share was set off as Camulos.",
+   "source": "perkins-rsf-1957 (estate distributed 'by undivided portions'; 1870 partition, effective July 30); robinson_storyofvalencia_1967 (the explanation of 'undivided').",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L4"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2752.htm",
+     "kind": "text",
+     "pattern": "ranch was divided among his widow",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE27",
+   "page": "https://scvhistory.com/scvhistory/lw3486.htm",
+   "also_on": [],
+   "current_text": "cutline \"Sunday, July 11\"",
+   "correction": "Published Sunday, July 12, 1936 (the page itself notes the cutline error). Make sure the title/date fields use 7-12-1936.",
+   "source": "The page's own note (C22).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L7"
+   ],
+   "confidence": "high (page notes it; check metadata)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "NOT PRESENT on page title (title shows only '1936'; page already annotates the cutline error). Check the CC date field = 1936-07-12.",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3486.htm",
+     "kind": "title",
+     "pattern": "7-11-1936|July 11",
+     "present": false
+    }
+   ]
+  },
+  {
+   "id": "CE28",
+   "page": "https://scvhistory.com/scvhistory/lw3629.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/film.htm"
+   ],
+   "current_text": "titled 3-28-1928",
+   "correction": "November 3, 1928",
+   "source": "The page's own text and cutline: \"Chicago, Nov. 3-28\" (C22).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L4"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3629.htm",
+     "kind": "title",
+     "pattern": "3-28-1928",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/film.htm",
+     "kind": "text",
+     "pattern": "Boy and Man,.?,? 3-28-1928",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE29",
+   "page": "https://scvhistory.com/scvhistory/lw3903.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lw2463a.htm",
+    "https://scvhistory.com/scvhistory/lw2633a.htm",
+    "https://scvhistory.com/scvhistory/lw2632a.htm",
+    "https://scvhistory.com/scvhistory/lw2695.htm"
+   ],
+   "current_text": "\"Camulos has been owned by just two families since the end of war for Mexican independence from Spain\"",
+   "correction": "Ownership by the del Valles dates from the 1839 grant (with claimed use from about 1824–25). The site itself notes an 1804 grant attempt (Avila) and a 1820s Carrillo attempt. Suggest: 'since 1839' or 'since the Mexican era'.",
+   "source": "perkins-rsf-1957 (1804 protest; Carrillo's 1820s attempt; grant Jan 22, 1839; 'the exact current status ... is a little clouded' before 1839); Land Case 303 SD.",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L11"
+   ],
+   "confidence": "medium",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3903.htm",
+     "kind": "text",
+     "pattern": "just two families since the end of",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2463a.htm",
+     "kind": "text",
+     "pattern": "just two families since the end of",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2633a.htm",
+     "kind": "text",
+     "pattern": "just two families since the end of",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2632a.htm",
+     "kind": "text",
+     "pattern": "just two families since the end of",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2695.htm",
+     "kind": "text",
+     "pattern": "just two families since the end of",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE30",
+   "page": "https://scvhistory.com/scvhistory/lw3903.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lw2463a.htm",
+    "https://scvhistory.com/scvhistory/lw2633a.htm",
+    "https://scvhistory.com/scvhistory/lw2632a.htm",
+    "https://scvhistory.com/scvhistory/lw2695.htm"
+   ],
+   "current_text": "\"Ygnacio, a big-league L.A. politician, worked a deal to keep the 1,500-acre Camulos section\"",
+   "correction": "About 1,340 acres (1870 partition). Other site pages say 1,300 (Robinson) or 1,350 (lastar18640514wolfskill, hl7101). No site page gives a source for 1,500.",
+   "source": "perkins-rsf-1957; reynolds part29; delcastillo1980 ('dwindled to 1,340 acres by 1886'); robinson_storyofvalencia_1967.",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L5"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3903.htm",
+     "kind": "text",
+     "pattern": "1,500-acre Camulos",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2463a.htm",
+     "kind": "text",
+     "pattern": "1,500-acre Camulos",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2633a.htm",
+     "kind": "text",
+     "pattern": "1,500-acre Camulos",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2632a.htm",
+     "kind": "text",
+     "pattern": "1,500-acre Camulos",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2695.htm",
+     "kind": "text",
+     "pattern": "1,500-acre Camulos",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE31",
+   "page": "https://scvhistory.com/scvhistory/mu8491.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/film.htm"
+   ],
+   "current_text": "\"1930 or earlier\"",
+   "correction": "About 1934–37: the page cites a Purdue print stamped 04-11-1934, and Hedda Hopper (1941) placed the photo a week before Earhart's 1937 flight.",
+   "source": "The page's own evidence (C22).",
+   "dossiers": [
+    "Hart"
+   ],
+   "source_items": [
+    "Hart L6"
+   ],
+   "confidence": "medium-high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "PARTLY FIXED: mu8491 now dates the photo to 1934; film.htm entry still says '1930 or earlier'",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/mu8491.htm",
+     "kind": "text",
+     "pattern": "1930 or earlier",
+     "present": false
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/film.htm",
+     "kind": "text",
+     "pattern": "Newhall Estate, 1930 or earlier",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE32",
+   "page": "https://scvhistory.com/scvhistory/perkins-desmond.htm",
+   "also_on": [],
+   "current_text": "'American Carrera Marble Co.' / 'A town site, Carrera' / 'Hotel Carrera'; 'they arrived in Newhall in 1918'",
+   "correction": "Carrara (town; company name probably 'American Carrara Marble Co.', NEEDS_VERIFICATION). Add a note that other site sources give 1919 for the arrival.",
+   "source": "GNIS/Wikipedia 'Carrara, Nevada' (post office 1913–24); the site's own lat19770102perkins '[sic: Carrara]'; C1",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL6"
+   ],
+   "confidence": "high (spelling); medium (1918 note)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-desmond.htm",
+     "kind": "text",
+     "pattern": "Carrera",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-desmond.htm",
+     "kind": "text",
+     "pattern": "arrived in Newhall in 1918",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE33",
+   "page": "https://scvhistory.com/scvhistory/perkins-fremont.htm",
+   "also_on": [],
+   "current_text": "By A.B. Perkins | Date unkonwn.",
+   "correction": "'Date unknown.'",
+   "source": "spelling",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL5"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-fremont.htm",
+     "kind": "text",
+     "pattern": "unkonwn",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE34",
+   "page": "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+   "also_on": [],
+   "current_text": "'Mary Pickford and William S. Hart filmed \"Rags\" at the old Newhall Land and Farming Company's deserted warehouse' (note [p] covers only the warehouse); '\"The Virginians,\" and \"The Light of the Eastern Star\"'",
+   "correction": "Add webmaster note: Hart was not in Rags (1915); a Pickford Newhall location is unverified; the two titles are probably The Virginian (1914) and The Light of Western Stars (1918) (NEEDS_VERIFICATION).",
+   "source": "AFI Catalog record 13855 (Rags); Hart dossier C16",
+   "dossiers": [
+    "Hart",
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL10",
+    "Hart C16"
+   ],
+   "confidence": "high (Hart not in cast); low (titles)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+     "kind": "text",
+     "pattern": "Pickford and William S\\. Hart filmed",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE35",
+   "page": "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
+   "also_on": [],
+   "current_text": "'When the hotel burned in 1887, that ended that.'",
+   "correction": "Add note: the Southern Hotel burned Oct 23, 1888",
+   "source": "Webmaster's note on sg19470102perkins; lw2273 ('Perkins liked 1887 and Reynolds used 1888')",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL12"
+   ],
+   "confidence": "medium-high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-picocamp.htm",
+     "kind": "text",
+     "pattern": "burned in 1887",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE36",
+   "page": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+   "also_on": [],
+   "current_text": "[editor's note at 80] 'Sanford Lyon was bured in the family plot'",
+   "correction": "'buried'",
+   "source": "spelling",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL8"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+     "kind": "text",
+     "pattern": "was bured",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE37",
+   "page": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+   "also_on": [],
+   "current_text": "'Served as assemblyman in 1852 and 1856.' (no Ed. note)",
+   "correction": "Add Ed. note: Assembly 1852 session only (elected Sept 3, 1851); in 1856 he sat on the Los Angeles Common Council.",
+   "source": "JoinCalifornia candidate 9202; lw2052 office list; Wikipedia infobox (finding aid). Assembly Journal 1856: NEEDS_VERIFICATION",
+   "dossiers": [
+    "Perkins",
+    "del Valle"
+   ],
+   "source_items": [
+    "Perkins PL9",
+    "del Valle C15"
+   ],
+   "confidence": "medium-high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+     "kind": "text",
+     "pattern": "assemblyman in 1852 and 1856\\.(?! ?\\(Ed)",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE38",
+   "page": "https://scvhistory.com/scvhistory/ridge.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/tataviam.htm"
+   ],
+   "current_text": "\"(Unratified), 1852\"",
+   "correction": "1851",
+   "source": "heizer1972 page title: 'Treaty Between the United States and the Indians of \"Castaic, Tejon, Etc.,\" 1851. With Heizer (1972).'",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L3"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/ridge.htm",
+     "kind": "text",
+     "pattern": "\\(Unratified\\),? 1852",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/tataviam.htm",
+     "kind": "text",
+     "pattern": "\\(Unratified\\),? 1852",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE39",
+   "page": "https://scvhistory.com/scvhistory/sauguscafe.htm",
+   "also_on": [],
+   "current_text": "'Narragansut'; 'limted'; 'plausable'",
+   "correction": "'Narragansett'; 'limited'; 'plausible'",
+   "source": "Spelling.",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL11"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/sauguscafe.htm",
+     "kind": "text",
+     "pattern": "Narragansut|limted|plausable",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE40",
+   "page": "https://scvhistory.com/scvhistory/sg090199a.htm",
+   "also_on": [],
+   "current_text": "\"Antonio del Valle, a Mexican-born missionary who owned 48,000 acres\"",
+   "correction": "Antonio was a soldier (lieutenant, San Blas Company) and later the civil administrator (mayordomo) of Mission San Fernando, not a missionary. Add an editor's note. The article also names a living private descendant; this dossier does not repeat the name.",
+   "source": "reynolds part14; perkins-rsf-1957 fn 26; engelhardt_sanfernando56; NHM GC 1002 ('came to California in the Spanish army in 1819').",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L10"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/sg090199a.htm",
+     "kind": "text",
+     "pattern": "Mexican-born missionary",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE41",
+   "page": "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+   "also_on": [],
+   "current_text": "'completion of the 6,964 ft. railroad tunnel in July 1875' (no note)",
+   "correction": "Add note: the San Fernando tunnel was finished in July 1876, just before the Sept 5, 1876 spike (exact day NEEDS_VERIFICATION)",
+   "source": "reynolds part39; Perkins' own 1954 part04 sequence",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL17"
+   ],
+   "confidence": "medium",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
+     "kind": "text",
+     "pattern": "July 1875",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE42",
+   "page": "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+   "also_on": [],
+   "current_text": "note 8 'Lopez was uncle to Jacopa Feliz'; note 28 'ownership was transfered'",
+   "correction": "'Jacoba Feliz'; 'transferred'",
+   "source": "spelling (Jacoba everywhere else on the site)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL7"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+     "kind": "text",
+     "pattern": "Jacopa",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/notes.html",
+     "kind": "text",
+     "pattern": "transfered",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE43",
+   "page": "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+   "also_on": [],
+   "current_text": "'senior ethnologist, Bureau of American Ethnology, Smithsonlan Institution'",
+   "correction": "'Smithsonian'",
+   "source": "spelling (possibly OCR)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL14"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/part01.html",
+     "kind": "text",
+     "pattern": "Smithsonlan",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE44",
+   "page": "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+   "also_on": [],
+   "current_text": "'The right of way covered one mile each side of the Pass.' / 'Superintendent of Indian Affairs in California and Nevada in 1852' / 'about '86, that the franchise expired'",
+   "correction": "Add editor's notes: two miles either side (1862 statute per Ripley); appointed Mar 3, 1853, Superintendent for California; franchise expired 1883–84. The page's ERRATA block (Ahnert 2019) covers only the Butterfield material.",
+   "source": "Beale dossier C3, C13, C14 (Ripley; appointment record)",
+   "dossiers": [
+    "Beale",
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL13",
+    "Beale C3/C13/C14 (conflicts)"
+   ],
+   "confidence": "medium-high (statute text NEEDS_VERIFICATION)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+     "kind": "text",
+     "pattern": "one mile each side of the Pass",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+     "kind": "text",
+     "pattern": "California and Nevada in 1852",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
+     "kind": "text",
+     "pattern": "about '86",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE45",
+   "page": "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+   "also_on": [],
+   "current_text": "'Dr. Vincent Gelcich ... had married one of the daughters of Andres Pico'",
+   "correction": "Add note: he married María Petra Pico y Bernal, Andrés Pico's niece (1863)",
+   "source": "The site's own perkins-pico-1958 webmaster note c",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL11"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+     "kind": "text",
+     "pattern": "one of the daughters of Andres Pico",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE46",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+   "also_on": [],
+   "current_text": "'Burrows, D.H. \"Del Valle.\" Hist. Society of Southern Calif., 1902.'",
+   "correction": "'Barrows, H.D.' (the year needs checking against the HSSC index: NEEDS_VERIFICATION)",
+   "source": "H.D. Barrows was the HSSC writer on the del Valles, cited by Perkins 1957 (perkins-rsf-1957).",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL2"
+   ],
+   "confidence": "high (year NEEDS_VERIFICATION)",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+     "kind": "text",
+     "pattern": "Burrows, D\\.H\\.",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE47",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+   "also_on": [],
+   "current_text": "'Williamson, R.S. Pacific Railroad Survey. Washington, DC 1952.'",
+   "correction": "The 1850s (Pacific Railroad Reports, vol. 5, 1856); exact edition NEEDS_VERIFICATION",
+   "source": "Williamson's survey was 1853; 1952 duplicates the year on the line above.",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL3"
+   ],
+   "confidence": "high (edition NEEDS_VERIFICATION)",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+     "kind": "text",
+     "pattern": "Pacific Railroad Survey\\.? Washington,? DC,? 1952",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE48",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+   "also_on": [],
+   "current_text": "'Van Valkenberg, R.'",
+   "correction": "'Van Valkenburgh, Richard'",
+   "source": "part04's editor's note spells it Van Valkenburgh.",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL4"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/bibliography.html",
+     "kind": "text",
+     "pattern": "Van Valkenberg",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE49",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part25.html",
+   "also_on": [],
+   "current_text": "'The mayor of the town, Don Ygnacio del Valle'",
+   "correction": "alcalde (1850), later city councilman; never mayor. Add an editor's note.",
+   "source": "penpictures_ydelvalle 1889; lw2052 office list; perkins-rsf-1957 (Reynolds ledger D5; del Valle L2)",
+   "dossiers": [
+    "Reynolds",
+    "del Valle"
+   ],
+   "source_items": [
+    "Reynolds reprinted list",
+    "del Valle ledger D5 via Reynolds; cf. L2"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part25.html",
+     "kind": "text",
+     "pattern": "The mayor of the town, Don Ygnacio",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE50",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part26.html",
+   "also_on": [],
+   "current_text": "'He had already sold Rancho Tejon to General Beale' (set before 1861)",
+   "correction": "Beale acquired El Tejon in 1865–66. Add an editor's note.",
+   "source": "tejonranchtimeline; Beale dossier C8; del Valle C17 (Reynolds ledger D14)",
+   "dossiers": [
+    "Reynolds",
+    "del Valle"
+   ],
+   "source_items": [
+    "Reynolds reprinted list",
+    "del Valle C17 / ledger D14"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part26.html",
+     "kind": "text",
+     "pattern": "had already sold Rancho Tejon",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE51",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part28.html",
+   "also_on": [],
+   "current_text": "'appointed to the U.S. Naval Academy by President Andrew Jackson'",
+   "correction": "the Naval School; the Academy opened in 1845. Add an editor's note.",
+   "source": "Beale dossier (Reynolds ledger B1)",
+   "dossiers": [
+    "Beale",
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds reprinted list",
+    "Beale ledger B1 via Reynolds"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part28.html",
+     "kind": "text",
+     "pattern": "Naval Academy",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE52",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part28.html",
+   "also_on": [],
+   "current_text": "Beale 'got five thousand dollars to do the work'",
+   "correction": "LA Star 4-4-1863 estimated $16,000–18,000. Add an editor's note.",
+   "source": "LA Star 4-4-1863 as transcribed by Perkins (part04) and Ripley (Reynolds ledger B6; Perkins P51)",
+   "dossiers": [
+    "Beale",
+    "Perkins",
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds reprinted list",
+    "Beale ledger B6 via Reynolds",
+    "Perkins P51"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part28.html",
+     "kind": "text",
+     "pattern": "five thousand dollars",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE53",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part29.html",
+   "also_on": [],
+   "current_text": "\"Management of the estate passed to his eldest surviving son, Reginaldo, who was then a state senator\"",
+   "correction": "In March 1880 Reginaldo was an Assemblyman-elect or Assemblyman (1880–81) and became State Senator only in 1882. Juventino (b. 1841) was older. Add an editor's note.",
+   "source": "penpictures_rdelvalle (1889: 'in 1882 he was unanimously nominated as State Senator'); lat18900822delvalle note (Assembly 1880–81); lw2752 (Juventino 1841–1919); lw3664 (Juventino manager 1862–1886).",
+   "dossiers": [
+    "Reynolds",
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L7",
+    "Reynolds reprinted"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part29.html",
+     "kind": "text",
+     "pattern": "then a state senator",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE54",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part41.html",
+   "also_on": [],
+   "current_text": "<title> '... | 46: Surrey'",
+   "correction": "'41: Baron of Casteca'",
+   "source": "The same page's heading and contents.html (C20).",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL1"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part41.html",
+     "kind": "title",
+     "pattern": "46: Surrey",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE55",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part46.html",
+   "also_on": [],
+   "current_text": "'on April 25, a special train ... rolled up to the Saugus Station ... President Benjamin Harrison' ... 'met the president at Saugus'",
+   "correction": "Harrison did not stop at Saugus; he passed on Apr 24, 1891 (reported the 25th); the Santa Barbara delegation met him at Ventura. Add an editor's note, as on sauguscafe.",
+   "source": "The site's own sauguscafe note 4 (rev. 2019).",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL5"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part46.html",
+     "kind": "text",
+     "pattern": "met the president at Saugus",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE56",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part46.html",
+   "also_on": [],
+   "current_text": "'Joseph H. Tolfree started the Saugus Eating House'",
+   "correction": "James Herbert Tolfree (died 1897); Joseph H. may have run it later",
+   "source": "sauguscafe notes 2 and 5 (1897 death reports, grave marker).",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL6"
+   ],
+   "confidence": "medium",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part46.html",
+     "kind": "text",
+     "pattern": "Joseph H\\. Tolfree",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE57",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part53.html",
+   "also_on": [],
+   "current_text": "\"seventeen-year-old\" bride (Winifred Westover)",
+   "correction": "About 22 (born 1898 or 1899).",
+   "source": "The site's own lw3335 ('Winifred Westover, 22') and lw2291 (age 51 in Feb 1950) (C18). Add a [sic] or an editor's note.",
+   "dossiers": [
+    "Hart",
+    "Reynolds"
+   ],
+   "source_items": [
+    "Hart L12",
+    "Reynolds reprinted"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part53.html",
+     "kind": "text",
+     "pattern": "seventeen-year-old",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE58",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part53.html",
+   "also_on": [],
+   "current_text": "Tumbleweeds prologue quoted as \"I loved... yawning chasm... battled ones that remained\"",
+   "correction": "\"I love the art... yawning canyon... baffled ones that remain\"",
+   "source": "The site's own tumbleweedsmonologue transcript of the 1939 sound prologue (C20).",
+   "dossiers": [
+    "Hart",
+    "Reynolds"
+   ],
+   "source_items": [
+    "Hart L13",
+    "Reynolds reprinted"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part53.html",
+     "kind": "text",
+     "pattern": "yawning chasm",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE59",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part54.html",
+   "also_on": [],
+   "current_text": "St. Francis Dam morgue 'inside ... Hap-A-Lan dance hall'; Hart dressed a dead boy 'in a little cowboy suit' and led a procession to the Ruiz family cemetery",
+   "correction": "Morgue was in the Masonic lodge; the boy was buried at Oakwood, Chatsworth (cowboy-suit story is legend). Add an editor's note.",
+   "source": "Newhall Signal 3-29-1928 and 4-5-1928 via sg051703 (Reynolds ledger H3–H4)",
+   "dossiers": [
+    "Hart",
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds reprinted list",
+    "Hart C-ledger H3/H4 via Reynolds"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part54.html",
+     "kind": "text",
+     "pattern": "Hap-A-Lan",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part54.html",
+     "kind": "text",
+     "pattern": "cowboy suit",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE60",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part58.html",
+   "also_on": [],
+   "current_text": "'*See note below' plus a note saying 'The section at the top in italics is inaccurate', but the top section now reads $6,000 (the corrected figure)",
+   "correction": "Reword the note to say the text has been corrected from Reynolds' $11,000 / Dec 17, 1925, and add the 1922 date to the text",
+   "source": "The page itself (C7).",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL12"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part58.html",
+     "kind": "text",
+     "pattern": "inaccurate",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE61",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/reynolds-castaicethnography.htm",
+   "also_on": [],
+   "current_text": "'By Jerry Reynolds For The Signal date?'",
+   "correction": "Supply the column date, or 'date unknown'",
+   "source": "Placeholder is visible on the live page.",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL7"
+   ],
+   "confidence": "high",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/reynolds-castaicethnography.htm",
+     "kind": "text",
+     "pattern": "date\\?",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE62",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/reynolds121484.htm",
+   "also_on": [],
+   "current_text": "The column tells readers how to spot the cave from a named public site entrance (not repeated here)",
+   "correction": "Not a factual error. Flag for tribal consultation about redacting the locational description before migration.",
+   "source": "CARE policy for this project: no site locations.",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL8"
+   ],
+   "confidence": "CARE flag (not a factual error)",
+   "fix": "tribal consultation before migration (CARE)",
+   "live_status": "STILL PRESENT (CARE: locational description; not a factual error)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/reynolds121484.htm",
+     "kind": "text",
+     "pattern": "[Cc]ave",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE63",
+   "page": "https://scvhistory.com/scvhistory/signal/worden/lw011399.htm",
+   "also_on": [],
+   "current_text": "Page title/header: 'Henry Newhall Builds an Empire'; body byline date 'Wednesday, April 24, 2002'",
+   "correction": "The title should be 'E.F. Beale and the Beasts of Tejon'. The date needs checking: the filename encodes 01-13-1999, and the text says the SCVHS '1999 calendar' is 'Available now', which fits Jan 1999, not April 2002.",
+   "source": "Inventory title 'E.F. Beale and the Beasts of Tejon'; filename lw011399 and the '1999 calendar ... Available now' text fit Jan 13, 1999",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L2"
+   ],
+   "confidence": "high (title); medium (date)",
+   "fix": "author's/editor's note on the column",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/worden/lw011399.htm",
+     "kind": "text",
+     "pattern": "Henry Newhall Builds an Empire",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/worden/lw011399.htm",
+     "kind": "text",
+     "pattern": "April 24, 2002",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE64",
+   "page": "https://scvhistory.com/scvhistory/signal/worden/lw011399.htm",
+   "also_on": [],
+   "current_text": "quotes Reynolds on Hi Jolly as dying 'Dec. 16, 1903' at 75",
+   "correction": "Dec 16, 1902, aged 74 (what Reynolds actually wrote in part23)",
+   "source": "reynolds part23; Quartzsite plaque (lw3451)",
+   "dossiers": [
+    "Beale",
+    "Reynolds"
+   ],
+   "source_items": [
+    "Beale L2 (part)",
+    "Reynolds RL9"
+   ],
+   "confidence": "high",
+   "fix": "author's/editor's note on the column",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/worden/lw011399.htm",
+     "kind": "text",
+     "pattern": "Dec\\. 16, 1903",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE65",
+   "page": "https://scvhistory.com/scvhistory/signal/worden/lw040997.htm",
+   "also_on": [],
+   "current_text": "\"Big Bill Hart took a crack at the famous director in his autobiography, saying Ford should have made the chase scene more realistic\" (about Stagecoach, 1939)",
+   "correction": "Hart's autobiography, My Life East and West, was published in 1929, ten years before Stagecoach. The criticism, if Hart made it, must come from another source (NEEDS_VERIFICATION; the column attributes the anecdote to Buscombe's book).",
+   "source": "Stagecoach release 1939 (lw2065, lw2172); Hart autobiography 1929 (Hart dossier; site page hart-wife-son cites 'Hart 1929').",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L7"
+   ],
+   "confidence": "high (date logic); source NEEDS_VERIFICATION",
+   "fix": "author's/editor's note on the column",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/worden/lw040997.htm",
+     "kind": "text",
+     "pattern": "in his autobiography",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE66",
+   "page": "https://scvhistory.com/scvhistory/signal/worden/lw092596.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/signal/worden/old/lw092596.htm"
+   ],
+   "current_text": "He used several in 1962 when he wrote the \"Story of Our Valley\" in successive installments in The Signal.",
+   "correction": "1954–55. This 1996 column is probably where the ap0828 '1962' came from. Add an author's/editor's note rather than changing the column text.",
+   "source": "as PL1",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL4"
+   ],
+   "confidence": "high",
+   "fix": "author's/editor's note on the column",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/worden/lw092596.htm",
+     "kind": "text",
+     "pattern": "in 1962 when he wrote",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/worden/old/lw092596.htm",
+     "kind": "text",
+     "pattern": "in 1962 when he wrote",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE67",
+   "page": "https://scvhistory.com/scvhistory/tejonranchtimeline.htm",
+   "also_on": [],
+   "current_text": "\"1893 — Beale dies at the age of 72.\"",
+   "correction": "71 (Feb 4, 1822 to Apr 22, 1893).",
+   "source": "The site's own bealeafb and reynolds part28 dates; Wikidata Q1292161. The page is Tejon Ranch Co. 2014 text, so add an editor's note.",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L9"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/tejonranchtimeline.htm",
+     "kind": "text",
+     "pattern": "at the age of 72",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE68",
+   "page": "https://scvhistory.com/scvhistory/times111101.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/penpictures_rdelvalle.htm"
+   ],
+   "current_text": "\"When Del Valle died in 1880, at age 72\"; \"He died in 1880, at the age of seventy-two years\"",
+   "correction": "71 (born July 1, 1808; died March 30, 1880). Add [sic] notes; the originals should not be altered.",
+   "source": "lw2052 / reynolds part14 (born July 1, 1808); reynolds part29 (died March 30, 1880).",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L9"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/times111101.htm",
+     "kind": "text",
+     "pattern": "at age 72",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/penpictures_rdelvalle.htm",
+     "kind": "text",
+     "pattern": "seventy-two years",
+     "present": true
+    }
+   ]
+  },
+  {
+   "id": "CE69",
+   "page": "CC migration data (not the live site): person records #327 'Edward Fitzgerald Beale' and #15908 'Edward F. Beale'",
+   "also_on": [],
+   "current_text": "two person records for one man",
+   "correction": "Merge into #327 (the user's canonical record), carrying over #15908's 30 prose-only photo links.",
+   "source": "photo-links namedOnlyInProse: 30 for #15908 and 10 for #327. For the migration team; no live-site change needed.",
+   "dossiers": [
+    "Beale"
+   ],
+   "source_items": [
+    "Beale L10"
+   ],
+   "confidence": "n/a (migration data)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "N/A: CC migration data, not the live site",
+   "check": []
+  }
+ ]
+}
