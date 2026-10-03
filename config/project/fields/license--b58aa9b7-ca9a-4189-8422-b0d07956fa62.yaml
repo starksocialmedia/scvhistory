@@ -116,6 +116,17 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Shown to identify the body whose mark it is'
+        -
+          - value
+          - identifying-use
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

@@ -244,7 +244,7 @@ foreach ($P as $id => $c) {
         if (!$plan[$id]['done']) {
             $notes = array_map(fn($x) => preg_replace_callback('~\{OBIT:([\w-]+)\}~', fn($m) => (string)$ids[$m[1]], $x), $c['notes']);
             $vals += ['body' => $plan[$id]['body'], 'footnotes' => $fn($notes), 'bodyAuthorship' => 'editorial-2026'];
-            $prov = trim((string)$p->recordProvenance . '; build_profiles_batch4.php, 4 Oct 2026', '; '); if (mb_strlen($prov) <= 255) { $vals['recordProvenance'] = $prov; }
+            $prov = trim((string)$p->recordProvenance . '; build_profiles_batch4.php, 3 Oct 2026', '; '); if (mb_strlen($prov) <= 255) { $vals['recordProvenance'] = $prov; }
         }
     }
     $vals = array_intersect_key($vals, array_flip($h));

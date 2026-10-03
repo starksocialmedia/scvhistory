@@ -9,7 +9,7 @@
  * from a summary"; "Searched 2 October 2026 and not found: X" becomes "He does
  * not appear in X"; "has not been read / checked" becomes what the reader can
  * weigh ("a secondary source", "not yet confirmed in"). The 20 notes, old and
- * new, are in research-wording-2026-10-04.json; each is matched by its old
+ * new, are in research-wording-2026-10-03.json; each is matched by its old
  * text, so a note already reworded or since edited is left alone and reported.
  * check_note_wording.php now matches this wording too.
  * Idempotent. Dry run by default. Set $APPLY = true to write.
@@ -22,7 +22,7 @@ $APPLY = false;
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL . str_repeat('=', 78) . PHP_EOL;
 $root = \Craft::getAlias('@root');
-$ROWS = json_decode(file_get_contents("$root/scripts/import/research-wording-2026-10-04.json"), true);
+$ROWS = json_decode(file_get_contents("$root/scripts/import/research-wording-2026-10-03.json"), true);
 $by = []; foreach ($ROWS as $r) { $by[$r['id'] . '|' . $r['field']][] = $r; }
 $plan = []; $held = 0; $miss = [];
 foreach ($by as $k => $rs) {

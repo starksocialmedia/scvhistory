@@ -18,6 +18,12 @@
     type lacks it and then throws when it is read. -#}
 {% set H = [] %}
 {% for f in asset.fieldLayout.customFields %}{% set H = H|merge([f.handle]) %}{% endfor %}
+{#- A body's current mark is not an archive record and has no page here (Nathan, 3 October 2026: "kept out of /media"); its
+    address goes to the record it identifies, where it is shown with its source and retrieval date. -#}
+{% if 'assetRole' in H and (asset.assetRole.value ?? '') == 'current-mark' %}
+  {% set owner = craft.entries().relatedTo({ targetElement: asset, field: 'currentMark' }).status(null).one() %}
+  {% redirect owner ? owner.url : siteUrl 302 %}
+{% endif %}
 {% macro v(asset, H, handle) %}{% if handle in H %}{{ attribute(asset, handle) }}{% endif %}{% endmacro %}
 {% import _self as F %}
 
@@ -145,6 +151,8 @@
         {% if printed %}<div class="md-row"><div class="md-k">DATE</div><div class="md-v">{{ printed }}{% if edtf %} <span style="color:#8A919E">({{ edtf }})</span>{% endif %}</div></div>{% endif %}
         {% if src %}<div class="md-row"><div class="md-k">SOURCE</div><div class="md-v">{{ src }}</div></div>{% endif %}
         {% if rights %}<div class="md-row"><div class="md-k">RIGHTS</div><div class="md-v">{{ rights }}</div></div>{% endif %}
+        {% set rightsNote = F.v(asset, H, 'rightsNote')|trim %}
+        {% if rightsNote %}<div class="md-row"><div class="md-k">RIGHTS NOTE</div><div class="md-v">{{ rightsNote }}</div></div>{% endif %}
         {% if lic %}<div class="md-row"><div class="md-k">LICENSE</div><div class="md-v">{{ lic }}</div></div>{% endif %}
         <div class="md-row"><div class="md-k">DIMENSIONS</div><div class="md-v">{{ asset.width }} &times; {{ asset.height }}</div></div>
         <div class="md-row"><div class="md-k">FILE</div><div class="md-v mono">{{ asset.filename }}</div></div>

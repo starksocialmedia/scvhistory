@@ -1,45 +1,54 @@
 SCVHistory.com — Changelog
 
-2026-10-05
+2026-10-03 (9:30 a.m.)
 
 - Agent: Claude Code
-- Date: 2026-10-05
-- Done: #305 "Juan José Francisco de Gracia ("Chico") Lopez" retired (Reynolds's name, which joins three men; its text was the discoverer's story under Chico's name): to the trash, listed in removed-claims.json, /persons/francisco-lopez redirects to the discoverer, #18834 (config/redirects.php). Francisco "Chico" López created, #28132 at /persons/chico-lopez, from Parks 1929, the 1900 Times obituary, US8502, Belderrain's 1928 note, Perkins and Earle: la Laguna de Chico López (Elizabeth Lake), las montañas de Chico López, the Chicalopes, Chico Lopez Mountain. Both López records say a portrait of Chico is often taken for the discoverer's. Rodolfo Acosta cut to a line (an honour and a son are not a connection); his dates narrowed to the years with a note. 20 public notes that narrated the research ("read as a search summary (the page was blocked)", "Searched 2 October 2026 and not found") reworded to say what the source holds (fix_research_wording.php; research-wording-2026-10-04.json); check_note_wording.php now catches that wording too (tested against the 20 old notes).
+- Date: 2026-10-03
+- Done: Current marks. New fields: assetRole on assets (empty for an archive record, current-mark, decoration), rightsNote on assets, currentMark on organizations, and the licence option identifying-use (add_current_mark_fields.php). Logos fetched from each body's own website on 3 October 2026 and set on currentMark, never the featured image (import_current_marks.php): the Hart, Newhall, Saugus Union, Sulphur Springs and Castaic districts, SCV Water, and the SCV Historical Society (its site shows the Santa Clarita History Center's mark, captioned as such). The files as received, with SHA-256, file URL, server date and size, are in inventory/marks/marks.json; none publishes an SVG; Newhall, Sulphur Springs, Castaic and SCV Water are small. The organization page shows the mark small beside the title, captioned with where it is shown and when retrieved; /media/<id> of a mark redirects to the record; JSON-LD emits it as logo. Hart's site restricts use of its logo; its rightsNote says so and that the archive shows it only to identify the district. Asset #41, the City seal from the WordPress library, now records the City as rights holder (set_city_seal_rights.php). DATA-MODEL: "What a file is, apart from where it came from". check_rendered_fields.php skips current marks (no /media page by design). Also: this session had written 4 and 5 October for work done on 3 October; corrected in CHANGELOG, the scripts, the hash files, removed-claims.json and recordProvenance on 14 records (fix_provenance_dates.php).
+- Decisions: Nathan: Hart is shown as nominative identification, with the reasoning recorded; the Chamber is skipped (its only file is the centennial variant); small files are acceptable at display size.
+- Blockers: the City's current mark (the "Official Signature" or the seal alone) is undecided. Staging and production need the project-config apply and import_current_marks.php.
+- Next: the record decisions of 3 October (Couts, Bandini, Aguirre, Larkin; the 25).
+
+2026-10-03 (8:45 a.m.)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: #305 "Juan José Francisco de Gracia ("Chico") Lopez" retired (Reynolds's name, which joins three men; its text was the discoverer's story under Chico's name): to the trash, listed in removed-claims.json, /persons/francisco-lopez redirects to the discoverer, #18834 (config/redirects.php). Francisco "Chico" López created, #28132 at /persons/chico-lopez, from Parks 1929, the 1900 Times obituary, US8502, Belderrain's 1928 note, Perkins and Earle: la Laguna de Chico López (Elizabeth Lake), las montañas de Chico López, the Chicalopes, Chico Lopez Mountain. Both López records say a portrait of Chico is often taken for the discoverer's. Rodolfo Acosta cut to a line (an honour and a son are not a connection); his dates narrowed to the years with a note. 20 public notes that narrated the research ("read as a search summary (the page was blocked)", "Searched 2 October 2026 and not found") reworded to say what the source holds (fix_research_wording.php; research-wording-2026-10-03.json); check_note_wording.php now catches that wording too (tested against the 20 old notes).
 - Decisions: Doña Jacoba kept (Nathan: winning 21,307 acres in court is her own act). Parks calls the discoverer Chico's uncle and the genealogy makes them cousins; the profile shows both.
 - Blockers: Couts, Bandini, Aguirre, Larkin wait on Nathan; the 25 blank records triaged for Nathan before writing.
 - Next: the 25 blank records.
 
-2026-10-04 (night)
+2026-10-03 (8:20 a.m.)
 
 - Agent: Claude Code
-- Date: 2026-10-04
+- Date: 2026-10-03
 - Done: Stale review decisions settled (settle_stale_decisions.php). A rerun of create_records_from_review.php would have recreated 13 records the archive had removed or folded away, because their rows still read "approved": Clinton, Roosevelt, Connerly and Harvey Stack (removed as outside the valley) now "external"; Edward F. Beale, Henry M. Newhall, James Marshall, Clyde Smyth, Bill Hart, Alex Mentry, William S. Hart High School, California Petroleum Company and Pioneer Oil Refinery now "merged" into the live records. The creator's dry run now creates 0. check_removed_claims.php fails on any approved row with no live record, or a merge into a record that is not live; tested against the file as it stood (it flags the 13). Juventino del Valle cut to a line, and Remi Nadeau the grandson reordered to lead with his own deer park (revise_inherited_ties.php). DATA-MODEL and PROFILES.md: the connection has to be the person's own.
 - Decisions: the family test, Nathan: a tie through a father's or husband's land or office is inherited.
 - Blockers: #305 "Chico" López, Doña Jacoba and Rodolfo Acosta wait on Nathan.
 - Next: the 25 blank group, place and organization records.
 
-2026-10-04 (evening)
+2026-10-03 (8 a.m.)
 
 - Agent: Claude Code
-- Date: 2026-10-04
+- Date: 2026-10-03
 - Done: The 25, batch 3, valley first (build_profiles_batch5.php): Pedro Fages (the 1772 pursuit through the valley; named Agua Dulce and Soledad), Tom Mix (his Newhall movie town and lodgings, 1916 to the mid-1920s), Harry Carey (the San Francisquito Canyon ranch and trading post, 1916-1945), Tiburcio Vasquez (Elizabeth Lake and Soledad Canyon, 1873-74, and the rocks), Juventino del Valle (Rancho Camulos), John T. Gifford (Newhall's first railroad agent). Fields corrected to the sources with notes giving the old values: Vasquez born April 10, 1835 (not April 7, not August 11); Fages's and Juventino's birthplaces and Juventino's birth date; Gifford's birthplace, which held a census comment. Vasquez's burial marked unsourced. 25 legacy pages copied and verified against the manifest (batch5-sha.json).
 - Decisions: where sources disagree the profile shows both (Mix's first year in Newhall, Birchard against the 2001 HABS survey; Vasquez's capture on May 13 or 14, 1874).
 - Blockers: #305 "Chico" López still waits on Nathan. Juventino's connection is Rancho Camulos, which lies west of the valley; flagged for Nathan.
 - Next: the 25 blank group, place and organization records from Leon's pages.
 
-2026-10-04 (later)
+2026-10-03 (7:45 a.m.)
 
 - Agent: Claude Code
-- Date: 2026-10-04
+- Date: 2026-10-03
 - Done: The 25, batch 2 (build_profiles_batch4.php): Rémi Nadeau (#339) settled from "Remi Nadeau: Which is Which?" as the freighter, 1821-1887, retitled from "Remi Allen Nadeau" (no source for Allen), with notes on him and on his grandson #18869; his 1887 obituary imported (#28079). Francisco López the gold discoverer (#18834), born 1802, with the Reynolds/Latta disagreement over "Chico" shown; #305 noted as the other man's name. Beale, Frémont, Carson, Serra and Crespí written, replacing withheld WordPress bodies; Crespí's birth narrowed to 1721 and Carson's to 1809, Kentucky, with notes; unsourced death and burial values marked uncited. Then, on Nathan's rule, Carson and Serra cut to what places them (nothing, and never here) and Frémont and Crespí recast to lead with the valley (revise_profiles_batch4.php). John Wayne's record removed (remove_john_wayne.php): 12 relations off, the review decision and name canon marked external so nothing rebuilds him, the record in the trash for 30 days; removed-claims.json now lists removed records too and the check fails if one returns. Connie Worden's son now rests on a source (fix_connie_worden_son.php). DATA-MODEL gains "What checking against the archive cannot catch" and "A person belongs in this archive for what they did here"; PROFILES.md the same rule; the runbook the deleted-claims registry.
 - Decisions: filming here is a location credit, not a connection (Nathan). Crespí's "named the Santa Clara River" not repeated: only the withheld WordPress text says it.
 - Blockers: #305 "Chico" López waits on Nathan: which man the record stands for.
 - Next: batch 3 (Fages, Mix, Carey, Vasquez, Juventino del Valle, Gifford), then the 25 blank group, place and organization records.
 
-2026-10-04
+2026-10-03 (4 a.m.)
 
 - Agent: Claude Code
-- Date: 2026-10-04
+- Date: 2026-10-03
 - Done: Every WordPress-origin record audited (audit_wordpress_records.py; inventory/review/wordpress-records-2026-10-03.md): 27 articles, an obituary and two people are copies of legacy pages; 12 have been rewritten since; 25 live records outside persons (6 organizations, 8 places, 9 groups, an event, a war memorial) still carried the WordPress text and were withheld, the text moved to a new internal field, withheldBody (withhold_wordpress_bodies.php). The spread found was the WordPress organization records copied into place records (Rancho San Francisco, Rancho El Tejon, three missions). The Garcés beatification deleted with a note saying why it is impossible (delete_impossible_claims.php, registry removed-claims.json, guarded in check_render by check_removed_claims.php), and used on /evidence as the worked example of what "not yet sourced" can hide. Aliases the legacy site uses added to 30 records, each counted in the mirror (add_aliases_2026_10_03.php), and the by-name surveys rerun. Cooper's term start set to January 2023. The 25, batch 1: Connie Worden, Caravalho, Ruth Newhall, Murr, Hon, Wicks, Wiley, Gelcich, Mulholland, Lang, with their five obituaries, two documents and three portraits imported as records (build_profiles_batch3.php). A note that quotes a cited record's title now links the quoted title instead of repeating it.
 - Decisions: a sentence graded "found" is not cleared, since the grade cannot see a contradiction (Rancho El Tejon's 1855 claim grades found and contradicts Reynolds); all 25 were withheld. Tom Frew left the 26: his pages are another Tom Frew's. Nadeau waits until record #339's subject is settled.
 - Blockers: none.

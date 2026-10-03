@@ -1,0 +1,44 @@
+columnSuffix: null
+handle: assetRole
+instructions: "What this file is. Empty means an archive record, which is nearly everything. A current mark is a body's own present logo, shown beside its record's title and kept out of /media and the archive's counts. Where it came from is Provenance, not this."
+name: Role
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'An archive record'
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - "A body's current mark (logo)"
+        -
+          - value
+          - current-mark
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Decoration
+        -
+          - value
+          - decoration
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

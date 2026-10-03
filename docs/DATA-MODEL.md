@@ -557,11 +557,12 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Organizations — `organizations/organization`
 
-60 fields.
+61 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
 | `featuredImage` | Assets | schema.org `image` |  |
+| `currentMark` | Assets | **local** | no external equivalent |
 | `webmasterNoteTop` | PlainText | **local** | no external equivalent |
 | `body` | PlainText | schema.org `text` | also dcterms:description |
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
@@ -1091,6 +1092,21 @@ it: `license`, `rightsHolder`, `creator`, `courtesyOf`. A file can be fully prov
 and still unpublishable, like a campaign photograph received during campaign work, whose
 copyright belongs to someone else. Knowing exactly where it came from settles nothing
 about the licence, and an empty licence is not permission.
+
+**What a file is, apart from where it came from** (Nathan, 3 October 2026). `assetRole`
+says what the file is: empty for an archive record, which is nearly everything;
+`current-mark` for a body's own present logo; `decoration` for an ornament. A logo
+fetched from a district's website is `outside` by provenance and `current-mark` by role.
+A current mark sits in the organization's `currentMark` field, never its featured
+image: a featured image reads as "this is the record", and a logo is not that. It shows
+small beside the title, captioned with where it is shown and when it was retrieved; its
+/media address goes to the record; it is emitted as schema.org `logo`, never as an item
+the archive holds. A historical letterhead or a past logo is an archive record and goes
+with the record's media. When a body changes its mark, the old one leaves `currentMark`.
+Its licence is `identifying-use`; where the body restricts use of its mark, `rightsNote`
+says so and on what footing the archive shows it (the Hart district: identification on
+its own record, as a reference work does). The files as received, their checksums and
+sizes are in `inventory/marks/marks.json`.
 
 **Provenance is recorded at the point of receipt.** Craft re-encodes every image on
 import: the Hart portrait arrived a progressive JPEG and is stored a baseline one, with

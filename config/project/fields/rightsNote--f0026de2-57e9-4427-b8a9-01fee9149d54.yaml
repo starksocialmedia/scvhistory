@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: rightsNote
+instructions: 'A sentence on the rights a reader should know, shown with the file. Say what the rights holder states and on what footing the archive shows it.'
+name: 'Rights note'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -401,6 +401,9 @@
   {% for c in craft.entries().section('organizations').relatedTo({ targetElement: el, field: 'parentOrganization' }).limit(null).all() %}
     {% set subOrgs = subOrgs|merge([{ '@type': 'Organization', '@id': c.url, 'name': c.title, 'url': c.url }]) %}
   {% endfor %}
+  {#- The body's current mark, as schema.org logo (3 October 2026): the body's own image of itself, never an item the archive holds,
+      so it is not among the page's ImageObjects. -#}
+  {% set orgMark = 'currentMark' in H ? (el.currentMark.one() ?? null) : null %}
 
   {% set main = {
     '@type': schemaType,
@@ -415,6 +418,11 @@
     'member': (N.orgAssociatedPersons ?? []),
     'parentOrganization': (N.parentOrganization ?? [])|first,
     'url': V.orgWebsite ?? '',
+    'logo': orgMark ? {
+        '@type': 'ImageObject', 'url': orgMark.url, 'contentUrl': orgMark.url, 'caption': orgMark.title,
+        'width': orgMark.width, 'height': orgMark.height,
+        'copyrightHolder': (orgMark.rightsHolder ?? '')|trim ? { '@type': 'Organization', 'name': orgMark.rightsHolder|trim } : null
+      } : null,
     'sameAs': sameAs,
     'location': communityNode,
     'subjectOf': (N.orgEvents ?? [])

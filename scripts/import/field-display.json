@@ -1159,6 +1159,19 @@
   },
   "writtenBy": {
    "show": "page"
+  },
+  "assetRole": {
+   "show": "internal",
+   "why": "what the file is: an archive record (empty), a body's current mark, or decoration; templates read it to keep current marks out of /media and the counts (3 October 2026)"
+  },
+  "currentMark": {
+   "show": "page",
+   "why": "a body's own present logo, shown small beside the title with its source and retrieval date, and emitted as schema.org logo; never the featured image (3 October 2026)"
+  },
+  "rightsNote": {
+   "show": "page",
+   "why": "a rights sentence shown with the file, e.g. that a district restricts use of its logo and the archive shows it only to identify the district (3 October 2026)",
+   "on": "media"
   }
  }
 }

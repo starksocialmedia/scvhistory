@@ -1,5 +1,5 @@
 /**
- * The two Francisco Lópezes, settled (Nathan, 4 October 2026: "Retire #305,
+ * The two Francisco Lópezes, settled (Nathan, 3 October 2026: "Retire #305,
  * list it in the removed-records registry, and redirect /persons/francisco-
  * lopez to the discoverer"; "Yes to a new record for Chico López. He passes on
  * his own"; "His portrait page noting it is often mistaken for the discoverer
@@ -139,7 +139,7 @@ if (trim((string)$chico->body) !== $cBody) {
     $chico->title = $CHICO['fullName'];
     $chico->setFieldValues(['fullName' => $CHICO['fullName']] + $CHICO['fields'] + ['body' => $cBody, 'footnotes' => $fn($CHICO['notes']), 'bodyAuthorship' => 'editorial-2026',
         'editorNotes' => array_map(fn($x) => ['heading' => $x[0], 'position' => 'bottom', 'note' => $x[1]], $CHICO['notesAdd']),
-        'recordProvenance' => 'retire_305_add_chico_lopez.php, 4 Oct 2026: Nathan, "Yes to a new record for Chico López. He passes on his own"', 'legacyUrl' => '/scvhistory/us8502.htm']);
+        'recordProvenance' => 'retire_305_add_chico_lopez.php, 3 Oct 2026: Nathan, "Yes to a new record for Chico López. He passes on his own"', 'legacyUrl' => '/scvhistory/us8502.htm']);
     if (!$els->saveElement($chico)) { $short[] = 'Chico ' . json_encode($chico->getFirstErrors()); }
 }
 /* the discoverer's note */
@@ -149,7 +149,7 @@ if ($chico->id && !$discHas) {
 }
 /* #305 */
 if (!$inReg) {
-    $reg['removedRecords'][] = ['record' => 305, 'title' => $T305, 'section' => 'persons', 'why' => 'Jerry Reynolds\'s name for the gold discoverer, which joins three men: the discoverer\'s uncle (Juan José Francisco), the discoverer (José Francisco de Gracia) and his cousin Francisco "Chico" López. A record standing for two people is worse than none. The discoverer is #18834; Chico has his own record.', 'removed' => '2026-10-04', 'by' => 'scripts/import/retire_305_add_chico_lopez.php; /persons/francisco-lopez redirects to the discoverer (config/redirects.php)'];
+    $reg['removedRecords'][] = ['record' => 305, 'title' => $T305, 'section' => 'persons', 'why' => 'Jerry Reynolds\'s name for the gold discoverer, which joins three men: the discoverer\'s uncle (Juan José Francisco), the discoverer (José Francisco de Gracia) and his cousin Francisco "Chico" López. A record standing for two people is worse than none. The discoverer is #18834; Chico has his own record.', 'removed' => '2026-10-03', 'by' => 'scripts/import/retire_305_add_chico_lopez.php; /persons/francisco-lopez redirects to the discoverer (config/redirects.php)'];
     file_put_contents($REG, json_encode($reg, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 }
 if ($r305 && !$short) { if (!$els->deleteElement($r305)) { $short[] = 'delete #305'; } }
