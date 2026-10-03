@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: Bob Kellar #21944, public-life profile (297 words, 7 notes): five terms, April 2000 to December 2020, each election checked against the returns, 2012 with Resolution No. 12-9; his career and boards from the City's 2013 biography as SC1310 carries it, the LAPD, the chamber committees and the 1998 Planning Commission appointment second-sourced from three of Leon Worden's columns of 1997 to 1999. His council portrait from SC1310 (Reggie mirror, manifest-matched) imported as photograph #27853 and set as his portrait; birth year 1944 only. A read-only audit of what the archive holds for the 108 people whose pages show no biography (inventory/review/person-profile-sources-2026-10-02.md): 38 writable from archive sources, 3 columnists from their collection introductions, 42 with office records only, 25 needing research; Reynolds's withheld text is a paraphrase of Leon's Preface (#817).
+- Decisions: residence stays on the photograph caption, not the profile; the City's praise and 2013 mayoral goals are not used; only claims with a second source in the archive say so, the rest are attributed to the City.
+- Blockers: Bob-Kellar.jpg was not in inventory/incoming (or anywhere on the MacBook), so SC1310's scan is the portrait.
+- Next: the legacy council portrait pages for the other empty council members: Boyer SC9010, Darcy SC9501, Heidt SC9611, Klajic SC9612, Ferry SC1312, Boydston SC1314, Ender SC0801 (not imported); Pederson LW2529 and Koontz LW2530 (imported as photographs, not yet set as portraits).
+
 2026-10-02 (late night)
 
 - Agent: Claude Code
