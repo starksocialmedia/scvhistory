@@ -1,0 +1,40 @@
+{#-
+  A note that cites another record by its number ("archive record #4967",
+  "article #12850", "records #12490, #12546") shows the record's title, linked
+  (Nathan, 3 October 2026: "A number a reader cannot follow is not a
+  citation"). The number stays in the stored note as a stable key; this is the
+  one place that turns it into a title and a link.
+
+  Only live records are linked; a number that is not a live record is left as
+  it is. HTML entities ("&#8217;") are not numbers, and a number never starts
+  with 0.
+
+  Params: text; escape (true for plain-text notes, footnotes; false for
+  notes that hold HTML, editor notes); strict (true in running text, where only
+  a labelled number, "record #3695", is a citation: Leon's texts have "Engine
+  #12").
+-#}
+{% macro link(text, escape, strict) -%}
+  {%- set t = escape ? (text ~ '')|e : (text ~ '') -%}
+  {%- set parts = t|split('#') -%}
+  {%- set ids = [] -%}
+  {%- if parts|length > 1 -%}
+    {%- for i in 1..(parts|length - 1) -%}
+      {%- if not (parts[i - 1] ends with '&') -%}
+        {%- set d = parts[i]|split(' ')|first|split(',')|first|split(')')|first|split('.')|first|split(';')|first|split(':')|first|split('<')|first -%}
+        {%- if d matches '/^[1-9][0-9]{1,5}$/' and d not in ids %}{% set ids = ids|merge([d]) %}{% endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- set map = {} -%}
+  {%- if ids|length -%}
+    {%- for e in craft.entries().section('*').id(ids).all() -%}
+      {%- set a = '<a href="' ~ e.url ~ '">' ~ (e.title|e) ~ '</a>' -%}
+      {%- set words = ['archive record #', 'archive records #', 'records #', 'record #', 'article #', 'photograph #', 'document #', 'collection #', 'obituary #', 'place #', 'person #', 'organization #', 'event #', 'group #'] -%}
+      {%- for w in (strict|default(false) ? words : words|merge([' #', '(#'])) -%}
+        {%- set map = map|merge({ (w ~ e.id): ((w starts with ' ') ? ' ' : ((w starts with '(') ? '(' : '')) ~ a }) -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {{- (map|length ? t|replace(map) : t)|raw -}}
+{%- endmacro %}

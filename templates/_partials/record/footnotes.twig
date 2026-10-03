@@ -117,10 +117,11 @@
     <div class="by">{% if editor is defined and editor %}Notes by {{ editor.title }}, SCVHistory.com{% elseif notes|filter(x => x.archive)|length == notes|length %}Notes by SCVHistory.com, 2026{% else %}Notes by Leon Worden, SCVHistory.com{% endif %}</div>
     {%- endif %}
     <ol>
+      {% import "_partials/record/record-links" as links %}
       {% for note in notes %}
         <li id="fn-{{ note.n }}">
           <span class="n">{{ note.n }}.</span>
-          <span>{{ note.t|nl2br }}<a class="back" href="#fnref-{{ note.n }}" aria-label="Back to the text">&#8617;</a></span>
+          <span>{{ links.link(note.t, true)|nl2br }}<a class="back" href="#fnref-{{ note.n }}" aria-label="Back to the text">&#8617;</a></span>
         </li>
       {% endfor %}
     </ol>

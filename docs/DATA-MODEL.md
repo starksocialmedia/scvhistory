@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 2 October 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 3 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -1055,7 +1055,8 @@ import: the Hart portrait arrived a progressive JPEG and is stored a baseline on
 different bytes. A checksum taken from a stored asset therefore proves nothing about the
 original, and any embedded metadata, a content-credentials (C2PA) manifest included, is
 gone from the stored copy. So an import script records the file as received, its name
-and SHA-256, in `source`, and refuses any other file; and the content-credentials check,
+and SHA-256, in `sourceChecksum` (internal; the `source` sentence says where the file came from,
+in a reader's words), and refuses any other file; and the content-credentials check,
 `scan_content_credentials.py`, reads the originals (the incoming file, the mirror, the
 WordPress upload), never `web/uploads/`. It runs on everything and reports what each
 credential records; the report goes into `contentCredentials` as a note. It never blocks

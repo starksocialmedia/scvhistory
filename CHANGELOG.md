@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (night)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: Notes that cite another record by number ("archive record #4967", "article #12850") now show its title, linked, in footnotes, editor notes, the in-text note panels and running text (templates/_partials/record/record-links.twig; the number stays in the data as the key). The media provenance sentences simplified for a reader (28 assets); checksums moved to a new internal field, sourceChecksum; the wording check covers them. Gibbs's and Cooper's term ends sourced to the City and SCV Water, replacing "per Nathan Imhoff". Reynolds's Find a Grave link removed: memorial 14716645 is "Jerry Hugh Reynolds", born 1947 in Contra Costa County; his burial place is marked unsourced. Ygnacio del Valle's body is Leon Worden's LW2052, verbatim (someone's copy-edits undone), labelled legacy-leon. The 23 withheld bodies graded sentence by sentence against the mirror and the archive with every WordPress-origin record left out (audit_generated_bodies.py; inventory/review/generated-bodies-2026-10-03.md).
+- Decisions: the chat-tool markup is on 6 of the 90 WordPress records (of the 23 withheld bodies, only Wilk's); all 23 are still treated as suspect. Gibbs's 2028 end is derived and says so.
+- Blockers: none.
+- Next: the name-by-name survey of all 134 people against the mirror, then places and organizations; the 21 biographical pages to import after it.
+
 2026-10-03 (evening)
 
 - Agent: Claude Code

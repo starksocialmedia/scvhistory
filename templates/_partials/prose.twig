@@ -174,6 +174,7 @@
     conversion script checks the same thing and refuses a record where both
     appear. -#}
 {%- set fnSeq = 0 -%}
+{%- import "_partials/record/record-links" as links -%}
 {%- if footnotesFor is defined and footnotesFor -%}
   {%- set fnHandles = [] -%}
   {%- for f in footnotesFor.fieldLayout.customFields -%}{%- set fnHandles = fnHandles|merge([f.handle]) -%}{%- endfor -%}
@@ -574,14 +575,14 @@
         {%- endfor -%}
         {%- set out = built -%}
       {%- endif -%}
-      <p>{{ out|raw }}</p>
+      <p>{{ out matches '/(record|article|photograph|document|collection)s? #[1-9]/' ? links.link(out, false, true) : out|raw }}</p>
       {#- The note opens under the paragraph it was cited in, not at the foot of
           the page. The reader stays where they are and the text moves down. -#}
       {%- for note in paraNotes %}
         <div class="fn-panel" id="fnp-{{ note.n }}" role="note" hidden>
           <span class="fn-n">{{ note.n }}</span>
           <div class="fn-t">
-            {%- if note.kind == 'held' %}{{ note.t }}
+            {%- if note.kind == 'held' %}{{ links.link(note.t, true) }}
             {%- elseif note.kind == 'away' %}This note was published apart from the piece, on <a href="{{ fnHref }}">{{ fnAwayTitle }}</a>.
             {%- else %}The note this marker refers to is not in the source we hold.
             {%- endif -%}

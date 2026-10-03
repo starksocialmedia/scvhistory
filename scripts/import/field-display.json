@@ -27,16 +27,16 @@
    "show": "schema",
    "why": "emitted in JSON-LD; the printed or related form shows on the page"
   },
-  "articleThemes": {
-   "show": "internal",
-   "why": "empty on every record and in no template"
-  },
   "articlesAbout": {
    "show": "schema",
    "why": "emitted in JSON-LD; the printed or related form shows on the page"
   },
   "articlesInCollection": {
    "show": "page"
+  },
+  "articleThemes": {
+   "show": "internal",
+   "why": "empty on every record and in no template"
   },
   "asPrinted": {
    "show": "page"
@@ -713,15 +713,15 @@
    "show": "page",
    "mode": "href"
   },
+  "originallyPublishedTitle": {
+   "show": "page"
+  },
   "originalPublishDate": {
    "show": "page"
   },
   "originalPublishDateEdtf": {
    "show": "schema",
    "why": "the machine form of a printed date; used for sorting, JSON-LD and the calendar"
-  },
-  "originallyPublishedTitle": {
-   "show": "page"
   },
   "outcome": {
    "show": "page"
@@ -940,12 +940,12 @@
    "show": "internal",
    "why": "the text a role was matched on"
   },
+  "roles": {
+   "show": "page"
+  },
   "roleWikidataId": {
    "show": "schema",
    "why": "emitted in JSON-LD; the printed or related form shows on the page"
-  },
-  "roles": {
-   "show": "page"
   },
   "schoolIdentity": {
    "show": "page"
@@ -979,6 +979,10 @@
   },
   "source": {
    "show": "page"
+  },
+  "sourceChecksum": {
+   "show": "internal",
+   "why": "the checksum of the file as received, for verification; the provenance sentence (source) says where it came from (3 October 2026)"
   },
   "sourceDocuments": {
    "show": "page"

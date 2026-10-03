@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: sourceChecksum
+instructions: 'The checksum of the file as the archive received it, "sha256:<hex>" or "sha1:<hex>". For verification, not for readers: the provenance sentence says where the file came from.'
+name: 'Source checksum'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

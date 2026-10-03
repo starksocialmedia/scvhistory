@@ -2,6 +2,7 @@
  * READ ONLY. Notes and footnotes are public (Nathan, 3 October 2026): a reader
  * who knows nothing of how the archive was built should not meet its
  * machinery. Fails on any editor note or footnote, other than Leon Worden's,
+ * or asset provenance sentence (source),
  * that names the import, WordPress, migration, the mirror, file paths,
  * checksums, scripts, to-dos or the people doing the work.
  *
@@ -30,6 +31,12 @@ foreach (\craft\elements\Entry::find()->status(null)->each(200) as $e) {
             if (preg_match($BAD, $t, $m)) { $fails[] = "NOTE WORDING  {$e->section->handle} #{$e->id} {$e->title} ($fld $i): \"{$m[0]}\""; }
         }
     }
+}
+/* Provenance sentences on /media are public too (3 October 2026): checksums belong in sourceChecksum. */
+foreach (\craft\elements\Asset::find()->each(500) as $a) {
+    $l = $a->getFieldLayout(); if (!$l || !$l->getFieldByHandle('source')) { continue; }
+    $t = preg_replace('~https?://\S+~', ' ', (string)$a->getFieldValue('source'));
+    if (preg_match('~\b(SHA-?(1|256)|re-encoded|legacy mirror|manifest|on import|per Nathan)\b~i', $t, $m)) { $fails[] = "PROVENANCE WORDING  asset #{$a->id} {$a->filename}: \"{$m[0]}\""; }
 }
 echo ($fails ? count($fails) . ' public notes name the archive\'s own machinery' . PHP_EOL . implode(PHP_EOL, $fails) : 'no public note names the archive\'s own machinery') . PHP_EOL;
 return ['ok' => !$fails, 'fails' => $fails];

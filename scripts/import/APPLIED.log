@@ -205,3 +205,8 @@
 2026-10-03 01:43:05 PDT	build_profiles_batch2.php	scvhistory-web	5 rows	verified	profiles from archive sources: Reynolds (replacing the WordPress body), Rioux, Harte, Whyte, Rasmussen
 2026-10-03 02:05:02 PDT	reword_public_notes.php	scvhistory-web	68 rows	verified	notes reworded for a public reader (import, mirror, scripts, to-dos out); Reynolds death date sourced to his preface and LW2184
 2026-10-03 02:05:51 PDT	reword_public_notes.php	scvhistory-web	16 rows	verified	notes reworded for a public reader (import, mirror, scripts, to-dos out); Reynolds death date sourced to his preface and LW2184
+2026-10-03 02:38:01 PDT	fix_reynolds_grave.php	scvhistory-web	1 rows	verified	Reynolds: Find a Grave link to a different-born Jerry Hugh Reynolds removed; burial place marked unsourced
+2026-10-03 02:40:54 PDT	relabel_ygnacio_del_valle.php	scvhistory-web	1 rows	verified	Ygnacio del Valle: withheld body is Leon Worden's LW2052; five copy-edits undone; legacy-leon
+2026-10-03 02:45:01 PDT	fix_gibbs_cooper_terms.php	scvhistory-web	2 rows	verified	Gibbs and Cooper term ends sourced to the City and SCV Water, replacing a personal attribution
+2026-10-03 02:51:55 PDT	add_source_checksum_field.php	scvhistory-web	1 rows	verified	sourceChecksum on archiveMedia (internal)
+2026-10-03 02:53:12 PDT	simplify_media_provenance.php	scvhistory-web	28 rows	verified	provenance sentences for readers; checksums moved to sourceChecksum

@@ -18,6 +18,7 @@
     position  top, bottom or inline; only rows at this position render
 #}
 {%- set at = position|default('bottom') -%}
+{%- import "_partials/record/record-links" as links -%}
 {%- set notes = (rows ?? [])|filter(r => (r.note ?? '')|trim != '' and (r.position ?? 'inline') == at) -%}
 
 {% if notes|length %}
@@ -39,7 +40,7 @@
             row has none until somebody writes one. The box reads perfectly well
             without it, and a placeholder would be worse than a gap. -#}
         {% if (n.heading ?? '')|trim %}<p class="h">{{ n.heading }}</p>{% endif %}
-        <div class="t">{{ n.note|trim|raw }}</div>
+        <div class="t">{{ links.link(n.note|trim, false) }}</div>
       </div>
     {% endfor %}
   </div>

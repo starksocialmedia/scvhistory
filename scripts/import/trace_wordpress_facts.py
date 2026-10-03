@@ -59,7 +59,8 @@ def date_forms(s):
     m = re.match(r'^([a-z]+) (\d{1,2}) (\d{4})$', s)
     if m and m.group(1) in MONTHS:
         mo, d, y = m.group(1), str(int(m.group(2))), m.group(3); n = str(MONTHS.index(mo) + 1)
-        return {f'{mo} {d} {y}', f'{ABBR[mo]} {d} {y}', f'{mo[:3]} {d} {y}', f'{n} {d} {y}', f'{n} {d} {y[2:]}', f'{d} {mo} {y}', f'{d} {mo[:3]} {y}'}
+        dd = d.zfill(2)  # Leon's lists pad the day ("May 04, 1852")
+        return {f'{mo} {d} {y}', f'{ABBR[mo]} {d} {y}', f'{mo[:3]} {d} {y}', f'{n} {d} {y}', f'{n} {d} {y[2:]}', f'{d} {mo} {y}', f'{d} {mo[:3]} {y}', f'{mo} {dd} {y}', f'{mo[:3]} {dd} {y}'}
     return {s} if s else set()
 
 def near(text, names, forms, span=400):
