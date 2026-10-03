@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (late night)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: Every person, place and organization searched against the legacy site by name and alias, not page shape (survey_by_name.py; inventory/review/by-name-persons|places|organizations-2026-10-03.md). Each page about a record is listed with its key, kind, its role (about them, by them, an object or film, a place named for them), the words about the record, and whether the archive holds it. People: 58 of 134 have a page about them that would support a profile by the script's rule; read page by page, 56 (26 of the 92 with no text yet, 30 of the 42 that show text). Places (districts left out): 38 of 48, 22 of the 26 with no text. Organizations: 27 of 46, 19 of the 35 with no text.
+- Decisions: a page by a person (their column) is not a source for their life; a lobby card, medal or cartoon is listed apart; a place named for them is listed apart (it sometimes carries the biography: AP0622 does Gifford's).
+- Blockers: names with no alias in the archive are missed (the Signal as "The Signal"); aliases first.
+- Next: import and source the pages that support profiles, starting with the 26 people.
+
 2026-10-03 (night)
 
 - Agent: Claude Code
