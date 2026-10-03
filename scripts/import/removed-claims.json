@@ -1,23 +1,31 @@
 {
- "_about": "Claims deleted from records because they are impossible, not merely unsourced (Nathan, 3 October 2026: 'Anything in that category should be deleted rather than withheld, with a note saying what it claimed and why it is impossible, so nobody restores it later'). check_removed_claims.php fails if any of these sentences is found in a record again; the WordPress file (inventory/wp_content.json) still holds them as they arrived. removedRecords lists person records removed because they do not belong in the archive; the check fails if a live person record by that name returns.",
- "claims": [
-  {
-   "record": 289,
-   "title": "Father Francisco Garcés",
-   "field": "body",
-   "claim": "He was beatified by Pope John Paul II on September 22, 1787.",
-   "why": "Garcés died in 1781, six years before the date it gives (Jerry Reynolds, article #839, gives his dates as 1738–1781), and John Paul II was born in 1920.",
-   "removed": "2026-10-03"
-  }
- ],
- "removedRecords": [
-  {
-   "record": 16235,
-   "title": "John Wayne",
-   "section": "persons",
-   "why": "He filmed here (Placerita Canyon, Beale's Cut, Hoot Gibson's rodeo near Bouquet Junction): a location credit, not a connection to the valley. A person belongs for what they did here.",
-   "removed": "2026-10-03",
-   "by": "scripts/import/remove_john_wayne.php; the review decision and name canon are marked external so a rerun does not rebuild him"
-  }
- ]
+    "_about": "Claims deleted from records because they are impossible, not merely unsourced (Nathan, 3 October 2026: 'Anything in that category should be deleted rather than withheld, with a note saying what it claimed and why it is impossible, so nobody restores it later'). check_removed_claims.php fails if any of these sentences is found in a record again; the WordPress file (inventory/wp_content.json) still holds them as they arrived. removedRecords lists person records removed because they do not belong in the archive; the check fails if a live person record by that name returns.",
+    "claims": [
+        {
+            "record": 289,
+            "title": "Father Francisco Garcés",
+            "field": "body",
+            "claim": "He was beatified by Pope John Paul II on September 22, 1787.",
+            "why": "Garcés died in 1781, six years before the date it gives (Jerry Reynolds, article #839, gives his dates as 1738–1781), and John Paul II was born in 1920.",
+            "removed": "2026-10-03"
+        }
+    ],
+    "removedRecords": [
+        {
+            "record": 16235,
+            "title": "John Wayne",
+            "section": "persons",
+            "why": "He filmed here (Placerita Canyon, Beale's Cut, Hoot Gibson's rodeo near Bouquet Junction): a location credit, not a connection to the valley. A person belongs for what they did here.",
+            "removed": "2026-10-03",
+            "by": "scripts/import/remove_john_wayne.php; the review decision and name canon are marked external so a rerun does not rebuild him"
+        },
+        {
+            "record": 305,
+            "title": "Juan José Francisco de Gracia (\"Chico\") Lopez",
+            "section": "persons",
+            "why": "Jerry Reynolds's name for the gold discoverer, which joins three men: the discoverer's uncle (Juan José Francisco), the discoverer (José Francisco de Gracia) and his cousin Francisco \"Chico\" López. A record standing for two people is worse than none. The discoverer is #18834; Chico has his own record.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/retire_305_add_chico_lopez.php; /persons/francisco-lopez redirects to the discoverer (config/redirects.php)"
+        }
+    ]
 }

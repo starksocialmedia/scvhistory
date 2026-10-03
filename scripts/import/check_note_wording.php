@@ -4,7 +4,10 @@
  * machinery. Fails on any editor note or footnote, other than Leon Worden's,
  * or asset provenance sentence (source),
  * that names the import, WordPress, migration, the mirror, file paths,
- * checksums, scripts, to-dos or the people doing the work.
+ * checksums, scripts, to-dos or the people doing the work, or that narrates
+ * the research itself ("read as a search summary", "searched 2 October and not
+ * found", "has not been read"; Nathan, 3 October 2026): a note says what the
+ * source holds.
  *
  * The earlier scripts that wrote such wording (reworded by
  * reword_public_notes.php) match notes by text, so a re-run of one would add
@@ -19,7 +22,7 @@
  */
 
 ini_set('memory_limit', '2048M');
-$BAD = '~\b(WordPress|the import|on import|imported from|migrated|migration|legacy mirror|in the mirror|inventory/|SHA-?(1|256)|checksums?|manifest|dry run|the script|scripts? (that|which)|next to try|to try next|with Nathan|Nathan\'s|Claude|image tag|commented out|read so far)\b~i';
+$BAD = '~\b(WordPress|the import|on import|imported from|migrated|migration|legacy mirror|in the mirror|inventory/|SHA-?(1|256)|checksums?|manifest|dry run|the script|scripts? (that|which)|next to try|to try next|with Nathan|Nathan\'s|Claude|image tag|commented out|read so far|search summary|page was blocked|ha(s|ve) not been (read|checked)|could not be read|[Ss]earched \d|sources searched|lists searched|release search)\b~i';
 $fails = [];
 foreach (\craft\elements\Entry::find()->status(null)->each(200) as $e) {
     $l = $e->getFieldLayout();

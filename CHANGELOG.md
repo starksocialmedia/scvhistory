@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-05
+
+- Agent: Claude Code
+- Date: 2026-10-05
+- Done: #305 "Juan José Francisco de Gracia ("Chico") Lopez" retired (Reynolds's name, which joins three men; its text was the discoverer's story under Chico's name): to the trash, listed in removed-claims.json, /persons/francisco-lopez redirects to the discoverer, #18834 (config/redirects.php). Francisco "Chico" López created, #28132 at /persons/chico-lopez, from Parks 1929, the 1900 Times obituary, US8502, Belderrain's 1928 note, Perkins and Earle: la Laguna de Chico López (Elizabeth Lake), las montañas de Chico López, the Chicalopes, Chico Lopez Mountain. Both López records say a portrait of Chico is often taken for the discoverer's. Rodolfo Acosta cut to a line (an honour and a son are not a connection); his dates narrowed to the years with a note. 20 public notes that narrated the research ("read as a search summary (the page was blocked)", "Searched 2 October 2026 and not found") reworded to say what the source holds (fix_research_wording.php; research-wording-2026-10-04.json); check_note_wording.php now catches that wording too (tested against the 20 old notes).
+- Decisions: Doña Jacoba kept (Nathan: winning 21,307 acres in court is her own act). Parks calls the discoverer Chico's uncle and the genealogy makes them cousins; the profile shows both.
+- Blockers: Couts, Bandini, Aguirre, Larkin wait on Nathan; the 25 blank records triaged for Nathan before writing.
+- Next: the 25 blank records.
+
 2026-10-04 (night)
 
 - Agent: Claude Code

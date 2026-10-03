@@ -43,6 +43,10 @@ $moved = [
     'persons/kit-carson-2'                        => 'persons/kit-carson',
     'persons/henry-m-newhall'                     => 'persons/henry-mayo-newhall',
     'persons/james-marshall'                      => 'persons/james-w-marshall',
+    /* #305, Reynolds's joined name for the gold discoverer and his cousin Chico,
+       retired 4 October 2026 (retire_305_add_chico_lopez.php); the address
+       goes to the discoverer, #18834. Chico has his own, persons/chico-lopez. */
+    'persons/francisco-lopez'                     => 'persons/francisco-lopez-2',
     /* Retired into the one record for the same subject, 29 September 2026
        (organize_orgs_places.php). */
     'organizations/rancho-camulos'                => 'places/rancho-camulos',
