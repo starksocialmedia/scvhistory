@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (11 a.m.)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: 15 of the 25 blank records written from sources, each opening with what happened here (build_blank_records_1.php to _3.php): Mission San Gabriel (the baptismal registers that name valley villages; Claudio López), lines for Rancho El Tejon, the Los Angeles Herald and the Historical Society of Southern California, the Walk of Western Stars, SCVHistory.com, Rancho San Francisco, Lyons Station, Beale's Cut, the Newhall Pass interchange, the Northridge earthquake (from the archive's own 1994 photographs), the Tataviam, the Portolá Expedition (with Fages's Catalonian soldiers), the del Valle family and the Newhall family. Pages read from the Reggie mirror are in batch7- and batch8-sha.json.
+- Decisions: disagreements shown (the last full-blooded Tataviam: 1916 by Leon Worden, 1921 by Reynolds); Leon Worden's framing of the Tataviam's end is attributed to him. Rudy Alexander Acosta is not written: his page already carries the war memorial's narrative.
+- Blockers: the Reggie mirror became unreadable mid-session ("Operation not permitted", also outside the sandbox: a macOS privacy setting). The Bennett-Arcan party (no source in hand names it), Henry Mayo Newhall Memorial Hospital, the SCV Chamber of Commerce and SCV Water wait on it.
+- Next: those four once the drive is readable; the /schools map proposal is with Nathan.
+- Also: Couts's record now says plainly that the 1852 letter is his only tie and may not be one (fix_couts_tie.php; Nathan: "say so plainly on his record").
+
 2026-10-03 (10 a.m.)
 
 - Agent: Claude Code
