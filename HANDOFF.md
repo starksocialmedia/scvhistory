@@ -44,6 +44,12 @@ entry or when it states a rule.
 
 ## Where the rules live
 
+Each rule lives in one document; this list only points. A rule written as a principle
+("an edited photograph enters with its edit recorded") lasts; a rule that describes a
+state ("war memorial images are related-only") expires when the state changes, and was
+retired on 3 October for that reason (38 of 54 casualties now have portraits). Write
+rules as principles, and date any that describe a state.
+
 - Process, git, safety, the database and other agents, Twig traps: AGENTS.md.
 - What the archive is for and its design: PHILOSOPHY.md.
 - Where each kind of thing goes: DATA-ORGANIZATION.md.

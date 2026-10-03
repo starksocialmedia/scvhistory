@@ -1,0 +1,66 @@
+===== 2016: County 4 contests, CEDA 8
+  both           ('city', '')
+  both           ('saugus', '3')
+  CEDA ONLY      ('scccd', '') ['Santa Monica Community College | SCHOOL BOARD MEMBER', 'Victor Valley Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '1') ['Cerritos Community College | SCHOOL BOARD MEMBER']
+  both           ('scccd', '2')
+  both           ('scccd', '4')
+  CEDA ONLY      ('scccd', '6') ['Cerritos Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '7') ['North Orange Co. Community College | SCHOOL BOARD MEMBER']
+===== 2020: County 9 contests, CEDA 13
+  both           ('city', '')
+  both           ('hart', '')
+  both           ('hart', '1')
+  both           ('hart', '4')
+  both           ('saugus', '3')
+  both           ('saugus', '4')
+  CEDA ONLY      ('scccd', '') ['Santa Monica Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '1') ['Antelope Valley Community College | SCHOOL BOARD MEMBER', 'Cerritos Community College | SCHOOL BOARD MEMBER', 'El Camino Community College | SCHOOL BOARD MEMBER', 'Los Angeles Community College | SCHOOL BOARD MEMBER', 'Mt. San Antonio Community College | SCHOOL BOARD MEMBER']
+  both           ('scccd', '2')
+  both           ('scccd', '3')
+  both           ('scccd', '4')
+  CEDA ONLY      ('scccd', '5') ['Los Angeles Community College | SCHOOL BOARD MEMBER', 'Mt. San Antonio Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '7') ['Los Angeles Community College | SCHOOL BOARD MEMBER', 'Mt. San Antonio Community College | SCHOOL BOARD MEMBER', 'North Orange County Community College | SCHOOL BOARD MEMBER']
+===== 2022: County 10 contests, CEDA 17
+  both           ('castaic-usd', 'E')
+  both           ('city', '')
+  CEDA MISSING   ('hart', '2') ['WM_S._HART_UNION_HIGH-TR_2']
+  both           ('hart', '3')
+  both           ('hart', '5')
+  both           ('newhall-sd', '1')
+  both           ('newhall-sd', '2')
+  both           ('saugus', '1')
+  both           ('saugus', '2')
+  both           ('saugus', '5')
+  CEDA ONLY      ('scccd', '') ['Santa Monica Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '1') ['Compton Community College | SCHOOL BOARD MEMBER', 'Rio Hondo Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '2') ['Antelope Valley Community College | SCHOOL BOARD MEMBER', 'Los Angeles Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '3') ['Citrus Community College | SCHOOL BOARD MEMBER', 'Long Beach Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '4') ['Compton Community College | SCHOOL BOARD MEMBER', 'Los Angeles Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '5') ['Compton Community College | SCHOOL BOARD MEMBER', 'Long Beach Community College | SCHOOL BOARD MEMBER', 'Rio Hondo Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '6') ['Los Angeles Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '7') ['Cerritos Community College | SCHOOL BOARD MEMBER', 'Los Angeles Community College | SCHOOL BOARD MEMBER']
+===== 2024: County 11 contests, CEDA 12
+  both           ('castaic-usd', 'A')
+  CEDA MISSING   ('city', '') ['SANTA_CLARITA_CC-BOT_1_U-T', 'SANTA_CLARITA_CITY-CNC_1']
+  CEDA ONLY      ('city', '1') ['Santa Clarita | CITY COUNCIL']
+  CEDA MISSING   ('city', '3') ['SANTA_CLARITA_D3_-_2-YEAR', 'SANTA_CLARITA_WTER-D3_FULL']
+  both           ('hart', '1')
+  both           ('hart', '4')
+  both           ('newhall-sd', '5')
+  CEDA MISSING   ('saugus', '') ['SAUGUS_UNION_SCHOOL_MEAS_N']
+  both           ('saugus', '3')
+  CEDA ONLY      ('scccd', '1') ['Antelope Valley Community College | SCHOOL BOARD MEMBER', 'Cerritos Community College | SCHOOL BOARD MEMBER', 'Los Angeles Community College | SCHOOL BOARD MEMBER', 'Santa Clarita Community College | SCHOOL BOARD MEMBER']
+  both           ('scccd', '2')
+  both           ('scccd', '3')
+  both           ('scccd', '4')
+  CEDA ONLY      ('scccd', '5') ['Citrus Community College | SCHOOL BOARD MEMBER', 'Los Angeles Community College | SCHOOL BOARD MEMBER', 'Mt. San Antonio Community College | SCHOOL BOARD MEMBER']
+  CEDA ONLY      ('scccd', '7') ['Los Angeles Community College | SCHOOL BOARD MEMBER', 'North Orange County Community College | SCHOOL BOARD MEMBER']
+
+TOTAL County contests in CEDA scope: 34; matched in CEDA: 30; missing from CEDA: 4; in CEDA but not in a County file: 20
+MISSING (2022, ('hart', '2'), ['WM_S._HART_UNION_HIGH-TR_2'])
+MISSING (2024, ('city', ''), ['SANTA_CLARITA_CC-BOT_1_U-T', 'SANTA_CLARITA_CITY-CNC_1'])
+MISSING (2024, ('city', '3'), ['SANTA_CLARITA_D3_-_2-YEAR', 'SANTA_CLARITA_WTER-D3_FULL'])
+MISSING (2024, ('saugus', ''), ['SAUGUS_UNION_SCHOOL_MEAS_N'])
+
+READING (3 October 2026): the four 2024 "missing" rows are the matcher, not CEDA: SANTA_CLARITA_CC-BOT_1_U-T is the college Area 1 short term (in CEDA), CITY-CNC_1 is Council District 1 (in CEDA), the two SANTA_CLARITA_*D3 files are SCV Water (outside CEDA scope), and SAUGUS_UNION_SCHOOL_MEAS_N is a measure. "CEDA ONLY" rows are other districts' colleges the matcher counted as the valley's. Result: 33 candidate contests in scope, 32 in CEDA, missing 2022 Hart Trustee Area 2 only.
