@@ -44,14 +44,6 @@
             "by": "scripts/import/settle_borrowed_ties.php"
         },
         {
-            "record": 946,
-            "title": "California Battalion",
-            "section": "groups",
-            "why": "Folded into John C. Frémont (#307): no source here names a California Battalion; the sources tell of Frémont's \"buckskin battalion\", and his record holds it.",
-            "removed": "2026-10-03",
-            "by": "scripts/import/fold_and_retire_records.php"
-        },
-        {
             "record": 940,
             "title": "Catalonian Volunteers",
             "section": "groups",
@@ -65,7 +57,8 @@
             "section": "groups",
             "why": "Retired: no source in the archive puts the expedition in the Santa Clarita Valley.",
             "removed": "2026-10-03",
-            "by": "scripts/import/fold_and_retire_records.php"
+            "by": "scripts/import/fold_and_retire_records.php",
+            "search": "Searched 3 October 2026 (Python over all 84,849 text pages of the legacy site, read as cp1252, and the archive's records): \"De Anza Expedition\", \"Anza Expedition\", and \"Anza\" within 300 characters of \"Santa Clara\", \"Newhall\", \"Castaic\", \"Tejon\", \"San Fernando\", \"Soledad\" or \"valley\". Anza Drive, the Anza trail on trail maps and a library title; Reynolds has the 1776 expedition at the Colorado River only. Nothing puts it in the valley."
         },
         {
             "record": 16515,
@@ -73,7 +66,8 @@
             "section": "places",
             "why": "Retired: nothing in the archive holds it to the Santa Clarita Valley.",
             "removed": "2026-10-03",
-            "by": "scripts/import/fold_and_retire_records.php"
+            "by": "scripts/import/fold_and_retire_records.php",
+            "search": "Searched 3 October 2026 (Python over all 84,849 text pages of the legacy site, read as cp1252, and the archive's records): \"Mission San Francisco de Asís\", \"Mission Dolores\" within 400 characters of \"Santa Clar\", \"Newhall\", \"San Fernando\", \"Castaic\", \"Tataviam\", \"Camulos\". A list of missions and a library title only."
         },
         {
             "record": 16517,
@@ -81,7 +75,17 @@
             "section": "places",
             "why": "Retired: nothing in the archive holds it to the Santa Clarita Valley.",
             "removed": "2026-10-03",
-            "by": "scripts/import/fold_and_retire_records.php"
+            "by": "scripts/import/fold_and_retire_records.php",
+            "search": "Searched 3 October 2026 (Python over all 84,849 text pages of the legacy site, read as cp1252, and the archive's records): \"Mission Santa Cruz\". One page, about Santa Cruz County remains. Nothing ties it to the valley."
+        },
+        {
+            "record": 16411,
+            "title": "Ward Connerly",
+            "section": "persons",
+            "why": "Removed 1 October 2026 (Nathan: \"remove unless he has a valley connection\"). Four of Leon Worden's 1996 columns mention him, all on Proposition 209 (January 31, September 4, October 9 and November 13), and none places him in the valley. The removal script's reason, that the January 31 column was the archive's only mention, was wrong; the decision stands.",
+            "removed": "2026-10-01",
+            "by": "scripts/import/remove_insignificant_persons.php; this entry added by scripts/import/fix_no_source_notes_2026_10_03.php",
+            "search": "Searched 3 October 2026 (Python over all 84,849 text pages of the legacy site, read as cp1252, and the archive's records): \"Connerly\". Six pages: the four columns and two copies of the column index. None places him in the valley."
         }
     ]
 }

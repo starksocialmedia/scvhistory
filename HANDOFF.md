@@ -1,10 +1,9 @@
-# Handoff, 2026-10-03
+# Handoff, 2026-10-03 (evening)
 
-Supersedes the handoff of 18 September. HANDOFF says where things stand and where the
-rules live; it states no rules of its own, so it has no copy to go stale. It is
-rewritten at the end of every session (AGENTS.md), and `check_handoff.php`, run by
-check_render, fails it when it is more than two days older than the newest CHANGELOG
-entry or when it states a rule.
+HANDOFF says where things stand and where the rules live; it states no rules of its
+own, so it has no copy to go stale. It is rewritten at the end of every session
+(AGENTS.md), and `check_handoff.php`, run by check_render, fails it when it is more
+than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## Start here
 
@@ -15,32 +14,37 @@ entry or when it states a rule.
 
 ## Where things stand
 
-- **Profiles.** 79 of 169 people have a sourced profile. Today: the four records that
-  waited on the Reggie mirror, Christy Smith, Chris Trunkey, Brian Walters, Paul De La
-  Cerda, and Connie Worden rebuilt on the Mentry pattern from 15 imported sources.
-- **The civic layer.** 185 office holdings: the council, every school and water board
-  win since 1995 (derive_board_holdings.php, on the 16 board-term decisions), the Hart
-  board from Leon's roster back to 1945, tenures from 43 saved sources, and bodies for
-  the House, Assembly, Senate and Supervisors.
+- **Staging** was refreshed by Nathan on 3 October and is current; everything applied
+  after the refresh (the held items below) is local only until the next refresh.
+- **People.** 211 records, 79 with a sourced profile. Today: Smith, Trunkey, Walters,
+  De La Cerda, Connie Worden on the Mentry pattern, Couts widened.
+- **The civic layer.** 228 office holdings: the council; every school and water board
+  win since 1995 (derive_board_holdings.php, on the 16 board-term decisions); the Hart
+  board from Leon's roster back to 1945; tenures from saved sources; the House,
+  Assembly, Senate and Supervisors as bodies. The Hart 2022 Trustee Area 2 contest,
+  which CEDA omits, is now held (election #28837).
+- **Applied after the refresh, not yet on staging:** the 19 no-source note
+  corrections with Acosta's and Pico's dates, Couts widened, the California Battalion
+  restored (with its redirect removed), Smyth's former portrait attached, Jensen's
+  certified 11,639 and the Hart 2022 Area 2 records.
 - **The relationship model** (inventory/review/relationship-model-2026-10-03.md) is
-  approved, in this order: state and federal bodies (done), the affiliations section
-  (next; report the 23 disagreements between personOrganizations and
-  orgAssociatedPersons before retiring them), groupKind, fromCollectionOf (Connie
-  Worden's collection first), the Connections block and body pages, then the person
-  index.
-- **The body hub** (inventory/review/body-hub-proposal-2026-10-03.md) is approved: one
-  partial for every body with seats, Hart first. Seat boundaries are not held.
-- **Staging** was last refreshed on 25 September. Nathan runs the refresh
-  (DEPLOY-RUNBOOK.md section 10) once predeploy.sh passes on today's state.
+  approved. Step 1 (state and federal bodies) is done.
+- **The body hub** (inventory/review/body-hub-proposal-2026-10-03.md) is approved:
+  one partial for every body with seats, Hart first. Seat boundaries are not held;
+  Nathan is asking the Hart district and the City.
 
 ## In progress or next
 
-- After the refresh: apply the three held dry runs (fix_no_source_notes_2026_10_03.php,
-  widen_couts_profile.php, restore_california_battalion.php) and attach Smyth's old
-  portrait.
-- Then the affiliations section, then superintendents (affiliations) and the
-  per-district research pass, which also settles the 10 incumbents on the research
-  list.
+1. Step 2 of the model: the affiliations section. Report the 23 disagreements between
+   personOrganizations and orgAssociatedPersons before retiring either field.
+2. groupKind, then fromCollectionOf, starting with Connie Worden's collection; count
+   the photographs and documents that could carry it.
+3. The body hub on the Hart page, then the other districts, SCV Water, the City, the
+   House and Assembly.
+4. Superintendents (after affiliations) and the per-district research pass, which also
+   settles the 10 first-win incumbents (inventory/review/board-holdings-dry-run-2026-10-03.txt,
+   section 4); the districts' online minutes archives are the first place to look.
+5. A pass reading the whole Hart roster for self-contradictions (docs/PROFILES.md).
 
 ## Where the rules live
 
@@ -53,10 +57,11 @@ rules as principles, and date any that describe a state.
 - Process, git, safety, the database and other agents, Twig traps: AGENTS.md.
 - What the archive is for and its design: PHILOSOPHY.md.
 - Where each kind of thing goes: DATA-ORGANIZATION.md.
-- Fields, evidence, media, edited photographs, banners, band and frame:
+- Fields, evidence, CEDA's limits, media, edited photographs, banners, band and frame:
   docs/DATA-MODEL.md (generated by scripts/import/generate_data_model.php).
 - Writing profiles, sources, the Reynolds and roster reliability rules, notes that say
-  no source exists: docs/PROFILES.md.
+  no source exists and where their searches are recorded: docs/PROFILES.md.
 - Import scripts, record templates, review screens: .claude/skills/.
-- Deploying, staging, the Reggie drive, searching the mirror: docs/DEPLOY-RUNBOOK.md.
+- Deploying, staging, large files, the Reggie drive, searching the mirror:
+  docs/DEPLOY-RUNBOOK.md.
 - Errors and the patterns to avoid: ERRORLOG.md.

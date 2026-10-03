@@ -2,12 +2,11 @@
 
 ## Waiting on Nathan
 
-### Current (3 October 2026)
-- Three held until after the staging refresh, drafted as dry runs: the correction of the 16 wrong or partly wrong "no source" notes (with every one of the 80 recording its search), widening Couts's profile, restoring the California Battalion.
-- Jensen's 2022 Hart Area 2 holding cites 11,638 (the County's precinct spreadsheet summed); the certified Statement of Votes Cast, page 169, gives 11,639 (Grok, inventory/review/hart-district-ta2-2022.md). Correct to the certified figure and keep the other, after the refresh. Also create the missing election and candidacy records for that contest (Jensen, Taban).
-- Smyth's old portrait #21579 to be attached to his record's images (the swap rule), after the refresh.
+### Current (3 October 2026, evening)
 - Seat boundary files (trustee areas, council districts, SCV Water divisions): Nathan is asking the Hart district and the City. Nothing is drawn until they are in hand.
 - The research list of 10 first-win incumbents (inventory/review/board-holdings-dry-run-2026-10-03.txt, section 4), with the districts' online minutes archives as the first place to look.
+- The next staging refresh carries what was applied after the 3 October refresh: the 19 no-source corrections, Couts, the California Battalion, Smyth's former portrait, the Hart 2022 Trustee Area 2 records.
+- Done 3 October, evening: the three held dry runs, Smyth's former portrait, Jensen's certified 11,639 and the missing Hart 2022 Area 2 election and candidacies.
 
 ### Carried from the 18 September handoff (not rechecked since, unless marked)
 - 6 community coordinates: fair-oaks-ranch, haskell-canyon, mint-canyon, potrero-canyon, ravenna, towsley-canyon

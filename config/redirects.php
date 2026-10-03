@@ -48,10 +48,10 @@ $moved = [
        retired 3 October 2026 (retire_305_add_chico_lopez.php); the address
        goes to the discoverer, #18834. Chico has his own, persons/chico-lopez. */
     'persons/francisco-lopez'                     => 'persons/francisco-lopez-2',
-    /* Folded 3 October 2026 (fold_and_retire_records.php): the California
-       Battalion into Frémont, who holds his "buckskin battalion"; the
-       Catalonian Volunteers into the Portolá Expedition they marched with. */
-    'groups/california-battalion'                 => 'persons/john-c-fremont',
+    /* Folded 3 October 2026 (fold_and_retire_records.php): the Catalonian
+       Volunteers into the Portolá Expedition they marched with. The California
+       Battalion, folded the same day, was restored as its own record
+       (restore_california_battalion.php). */
     'groups/catalonian-volunteers'                => 'groups/portola-expedition',
     /* Retired into the one record for the same subject, 29 September 2026
        (organize_orgs_places.php). */
