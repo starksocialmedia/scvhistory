@@ -275,6 +275,10 @@ if (is_array($rf) && !($rf['ok'] ?? true)) { $fail++; echo 'RENDERED FIELDS FAIL
 $pl = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_pasted_labels.php'));
 if (is_array($pl) && !($pl['ok'] ?? true)) { $fail++; echo 'PASTED LABELS FAIL' . PHP_EOL; }
 
+/* Notes are public (3 October 2026): none of ours may name the import, the mirror, scripts, to-dos or the people doing the work. */
+$nw = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_note_wording.php'));
+if (is_array($nw) && !($nw['ok'] ?? true)) { $fail++; echo 'NOTE WORDING FAIL' . PHP_EOL; }
+
 /* Generated images (docs/DATA-MODEL.md): a banner is decoration, listed in
    templates/_data/banners.json, a file in web/banners and nothing else. It fails
    here if its file is missing or changed, if the same picture is in the

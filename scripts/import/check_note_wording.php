@@ -1,0 +1,35 @@
+/**
+ * READ ONLY. Notes and footnotes are public (Nathan, 3 October 2026): a reader
+ * who knows nothing of how the archive was built should not meet its
+ * machinery. Fails on any editor note or footnote, other than Leon Worden's,
+ * that names the import, WordPress, migration, the mirror, file paths,
+ * checksums, scripts, to-dos or the people doing the work.
+ *
+ * The earlier scripts that wrote such wording (reworded by
+ * reword_public_notes.php) match notes by text, so a re-run of one would add
+ * its old note back beside the new; this check is what catches that.
+ * A source named as a person ("per Nathan Imhoff, 2 October 2026") is an
+ * attribution, not process, and is not matched; whether to keep it is
+ * Nathan's call (two term ends rest on it).
+ * URLs are set aside before matching ("wp-content/.../migration/" is a City
+ * address, not our process).
+ * Returns ['ok' => bool, 'fails' => [...]] for check_render.php.
+ * Run alone: ddev craft exec "eval(file_get_contents('scripts/import/check_note_wording.php'))"
+ */
+
+ini_set('memory_limit', '2048M');
+$BAD = '~\b(WordPress|the import|on import|imported from|migrated|migration|legacy mirror|in the mirror|inventory/|SHA-?(1|256)|checksums?|manifest|dry run|the script|scripts? (that|which)|next to try|to try next|with Nathan|Nathan\'s|Claude|image tag|commented out|read so far)\b~i';
+$fails = [];
+foreach (\craft\elements\Entry::find()->status(null)->each(200) as $e) {
+    $l = $e->getFieldLayout();
+    foreach (['editorNotes', 'footnotes'] as $fld) {
+        if (!$l->getFieldByHandle($fld)) { continue; }
+        foreach ($e->getFieldValue($fld) ?? [] as $i => $r) {
+            if (!is_array($r) || str_starts_with((string)($r['source'] ?? ''), 'legacy')) { continue; }
+            $t = preg_replace('~https?://\S+|\S+\.(?:com|org|gov|net)/\S*~', ' ', ($r['heading'] ?? '') . ' ' . ($r['note'] ?? ''));
+            if (preg_match($BAD, $t, $m)) { $fails[] = "NOTE WORDING  {$e->section->handle} #{$e->id} {$e->title} ($fld $i): \"{$m[0]}\""; }
+        }
+    }
+}
+echo ($fails ? count($fails) . ' public notes name the archive\'s own machinery' . PHP_EOL . implode(PHP_EOL, $fails) : 'no public note names the archive\'s own machinery') . PHP_EOL;
+return ['ok' => !$fails, 'fails' => $fails];

@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: Notes reworded for a public reader (reword_public_notes.php): 85 notes and footnotes across 84 records no longer name the WordPress import, migration, the mirror, file paths, checksums, scripts or to-dos (four memorial notes had said "with Nathan's approval"). A check in check_render (check_note_wording.php) now fails on any such wording. Reynolds's death date, called unsourced in a note that morning, was in his Preface all along ("February 26, 1996, was a sad day...") and on LW2184; the profile now gives it with both. Antonio del Valle's "Composilla" is on Leon Worden's timeline. The WordPress facts traced to the legacy site (trace_wordpress_facts.py; inventory/review/wordpress-facts-traced-2026-10-03.md): of the people's date and place fields, 54 of 115 found; of their checkable sentences, 281 of 382 found, 147 with a date or number matched. A survey of note wording (audit_note_wording.php).
+- Decisions: Leon Worden's notes are not touched. Two footnotes that cite Nathan Imhoff as the source of a term's end are attributions, left for Nathan.
+- Blockers: none.
+- Next: Nathan's calls on "archive record #NNNN" in 130 footnotes, on the 24 asset provenance texts that show checksums on /media, and on the two personal attributions; source the WordPress facts the trace found, record by record.
+
 2026-10-03 (later)
 
 - Agent: Claude Code
