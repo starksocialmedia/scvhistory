@@ -483,6 +483,14 @@ Terminal off and on again. Then restart DDEV so the container sees
 /mnt/reggie again; until then it reports "Bad file descriptor" there (Nathan,
 3 October 2026).
 
+**Searching the mirror: use the system grep, with -a.** In an agent's shell
+`grep` can be a wrapper around `ugrep -I`, which treats the mirror's
+ISO-8859-1 pages as binary and skips them without a word. On 3 October 2026 it
+found 50 files naming Connie Worden where 207 exist. Search with
+`LC_ALL=C /usr/bin/grep -rlia`, or read the pages in Python as latin-1. A
+sweep made any other way undercounts, and its result should be re-run before
+anything rests on it.
+
 **`ddev craft` starts a stopped project.** Any `ddev craft exec` against a
 stopped project starts it first, recreating the containers and applying the
 drive mount, with no prompt. On 1 October that is how a start happened before
