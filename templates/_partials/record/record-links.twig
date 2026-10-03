@@ -30,10 +30,24 @@
   {%- if ids|length -%}
     {%- for e in craft.entries().section('*').id(ids).all() -%}
       {%- set a = '<a href="' ~ e.url ~ '">' ~ (e.title|e) ~ '</a>' -%}
-      {%- set words = ['archive record #', 'archive records #', 'records #', 'record #', 'article #', 'photograph #', 'document #', 'collection #', 'obituary #', 'place #', 'person #', 'organization #', 'event #', 'group #'] -%}
-      {%- for w in (strict|default(false) ? words : words|merge([' #', '(#'])) -%}
-        {%- set map = map|merge({ (w ~ e.id): ((w starts with ' ') ? ' ' : ((w starts with '(') ? '(' : '')) ~ a }) -%}
+      {#- Where the note already quotes the record's title ("Dan Hon, Signal columnist," ... article #12480), the quoted title
+          becomes the link and the number goes, so the title is not said twice. -#}
+      {%- set qt = (e.title|e)|trim('.') -%}
+      {%- set quoted = null -%}
+      {%- for q in ['&quot;', '"', '“'] -%}
+        {%- if quoted is null and (q ~ qt) in t %}{% set quoted = q %}{% endif -%}
       {%- endfor -%}
+      {%- set words = ['archive record #', 'archive records #', 'records #', 'record #', 'article #', 'photograph #', 'document #', 'collection #', 'obituary #', 'place #', 'person #', 'organization #', 'event #', 'group #'] -%}
+      {%- if quoted is not null -%}
+        {%- set map = map|merge({ (quoted ~ qt): quoted ~ '<a href="' ~ e.url ~ '">' ~ qt ~ '</a>' }) -%}
+        {%- for w in words -%}
+          {%- set map = map|merge({ (' (' ~ w ~ e.id ~ ')'): '', (', ' ~ w ~ e.id ~ ' in this archive'): ', in this archive', (', ' ~ w ~ e.id): '', (w ~ e.id ~ ' in this archive'): 'in this archive', (w ~ e.id): '' }) -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for w in (strict|default(false) ? words : words|merge([' #', '(#'])) -%}
+          {%- set map = map|merge({ (w ~ e.id): ((w starts with ' ') ? ' ' : ((w starts with '(') ? '(' : '')) ~ a }) -%}
+        {%- endfor -%}
+      {%- endif -%}
     {%- endfor -%}
   {%- endif -%}
   {{- (map|length ? t|replace(map) : t)|raw -}}

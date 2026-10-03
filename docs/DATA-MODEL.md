@@ -320,7 +320,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Events — `events/event`
 
-41 fields.
+42 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -365,6 +365,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `recordDates` | Table | **local** | no external equivalent |
 | `bandImage` | Assets | schema.org `image` | presentation only |
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
+| `withheldBody` | PlainText | **local** | no external equivalent |
 
 ### Fixes — `fixes/fix`
 
@@ -380,7 +381,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Groups — `groups/group`
 
-30 fields.
+31 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -414,6 +415,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `recordDates` | Table | **local** | no external equivalent |
 | `bandImage` | Assets | schema.org `image` | presentation only |
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
+| `withheldBody` | PlainText | **local** | no external equivalent |
 
 ### Military Profiles — `militaryProfiles/militaryProfile`
 
@@ -534,7 +536,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Organizations — `organizations/organization`
 
-59 fields.
+60 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -597,6 +599,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `recordDocuments` | Assets | schema.org `associatedMedia` |  |
 | `recordDates` | Table | **local** | no external equivalent |
 | `bandImage` | Assets | schema.org `image` | presentation only |
+| `withheldBody` | PlainText | **local** | no external equivalent |
 
 ### Pages — `pages/page`
 
@@ -770,7 +773,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Places — `places/place`
 
-58 fields.
+59 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -832,6 +835,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `recordDates` | Table | **local** | no external equivalent |
 | `graveCensus` | Table | **local** | no external equivalent |
 | `bandImage` | Assets | schema.org `image` | presentation only |
+| `withheldBody` | PlainText | **local** | no external equivalent |
 
 ### Roles — `roles/role`
 
@@ -869,7 +873,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### War Memorials — `warMemorials/warMemorial`
 
-55 fields.
+56 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -928,6 +932,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `siblingOf` | Entries | schema.org `sibling` |  |
 | `spouseOf` | Entries | schema.org `spouse` |  |
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
+| `withheldBody` | PlainText | **local** | no external equivalent |
 
 ## Controlled values
 

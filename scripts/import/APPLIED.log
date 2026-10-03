@@ -210,3 +210,10 @@
 2026-10-03 02:45:01 PDT	fix_gibbs_cooper_terms.php	scvhistory-web	2 rows	verified	Gibbs and Cooper term ends sourced to the City and SCV Water, replacing a personal attribution
 2026-10-03 02:51:55 PDT	add_source_checksum_field.php	scvhistory-web	1 rows	verified	sourceChecksum on archiveMedia (internal)
 2026-10-03 02:53:12 PDT	simplify_media_provenance.php	scvhistory-web	28 rows	verified	provenance sentences for readers; checksums moved to sourceChecksum
+2026-10-03 03:45:11 PDT	fix_cooper_term_start.php	scvhistory-web	1 rows	verified	Cooper SCV Water term start January 2023 (board page), not December 2022 (read from the count)
+2026-10-03 03:48:18 PDT	add_aliases_2026_10_03.php	scvhistory-web	30 rows	verified	aliases the legacy site uses (The Signal, Newhall Land, Hart Park, Ned Beale ...), each counted in the mirror
+2026-10-03 03:51:45 PDT	delete_impossible_claims.php	scvhistory-web	1 rows	verified	impossible claims deleted with a note (registry: removed-claims.json)
+2026-10-03 03:53:20 PDT	delete_impossible_claims.php	scvhistory-web	1 rows	verified	impossible claims deleted with a note (registry: removed-claims.json)
+2026-10-03 03:55:02 PDT	add_withheld_body_field.php	scvhistory-web	5 rows	verified	withheldBody (internal) on organizations, places, groups, events, war memorials
+2026-10-03 03:55:37 PDT	withhold_wordpress_bodies.php	scvhistory-web	25 rows	verified	WordPress-origin bodies outside persons withheld (moved to withheldBody): 6 organizations, 8 places, 9 groups, an event, a war memorial
+2026-10-03 04:05:58 PDT	build_profiles_batch3.php	scvhistory-web	10 rows	verified	the 25, batch 1: Worden, Caravalho, R. Newhall, Murr, Hon, Wicks, Wiley, Gelcich, Mulholland, Lang; their obituaries, documents and portraits imported

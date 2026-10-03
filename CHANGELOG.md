@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-04
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: Every WordPress-origin record audited (audit_wordpress_records.py; inventory/review/wordpress-records-2026-10-03.md): 27 articles, an obituary and two people are copies of legacy pages; 12 have been rewritten since; 25 live records outside persons (6 organizations, 8 places, 9 groups, an event, a war memorial) still carried the WordPress text and were withheld, the text moved to a new internal field, withheldBody (withhold_wordpress_bodies.php). The spread found was the WordPress organization records copied into place records (Rancho San Francisco, Rancho El Tejon, three missions). The Garcés beatification deleted with a note saying why it is impossible (delete_impossible_claims.php, registry removed-claims.json, guarded in check_render by check_removed_claims.php), and used on /evidence as the worked example of what "not yet sourced" can hide. Aliases the legacy site uses added to 30 records, each counted in the mirror (add_aliases_2026_10_03.php), and the by-name surveys rerun. Cooper's term start set to January 2023. The 25, batch 1: Connie Worden, Caravalho, Ruth Newhall, Murr, Hon, Wicks, Wiley, Gelcich, Mulholland, Lang, with their five obituaries, two documents and three portraits imported as records (build_profiles_batch3.php). A note that quotes a cited record's title now links the quoted title instead of repeating it.
+- Decisions: a sentence graded "found" is not cleared, since the grade cannot see a contradiction (Rancho El Tejon's 1855 claim grades found and contradicts Reynolds); all 25 were withheld. Tom Frew left the 26: his pages are another Tom Frew's. Nadeau waits until record #339's subject is settled.
+- Blockers: none.
+- Next: batches 2 and 3 of the 25; record #339.
+
 2026-10-03 (late night)
 
 - Agent: Claude Code

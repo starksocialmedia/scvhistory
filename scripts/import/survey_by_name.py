@@ -89,6 +89,7 @@ def forms(rec):
         if not f or len(f) < 4: continue
         w = [x for x in f.split() if x not in STOP]
         if KIND == 'persons':
+            if len(w) < 2: continue  # a one-word alias ("Beale") matches every "Beale's Cut"
             if len(w) >= 2:
                 out.add(r'\b' + re.escape(w[0]) + r'(?: \w+){0,2} ' + re.escape(w[-1]) + r'\b'); keys.add(w[-1])
             out.add(r'\b' + re.escape(f) + r'\b')

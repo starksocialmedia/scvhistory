@@ -1,0 +1,13 @@
+{
+ "_about": "Claims deleted from records because they are impossible, not merely unsourced (Nathan, 3 October 2026: 'Anything in that category should be deleted rather than withheld, with a note saying what it claimed and why it is impossible, so nobody restores it later'). check_removed_claims.php fails if any of these sentences is found in a record again; the WordPress file (inventory/wp_content.json) still holds them as they arrived.",
+ "claims": [
+  {
+   "record": 289,
+   "title": "Father Francisco Garcés",
+   "field": "body",
+   "claim": "He was beatified by Pope John Paul II on September 22, 1787.",
+   "why": "Garcés died in 1781, six years before the date it gives (Jerry Reynolds, article #839, gives his dates as 1738–1781), and John Paul II was born in 1920.",
+   "removed": "2026-10-03"
+  }
+ ]
+}

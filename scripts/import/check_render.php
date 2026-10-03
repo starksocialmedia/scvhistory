@@ -279,6 +279,10 @@ if (is_array($pl) && !($pl['ok'] ?? true)) { $fail++; echo 'PASTED LABELS FAIL' 
 $nw = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_note_wording.php'));
 if (is_array($nw) && !($nw['ok'] ?? true)) { $fail++; echo 'NOTE WORDING FAIL' . PHP_EOL; }
 
+/* Claims deleted as impossible (3 October 2026) must not come back: scripts/import/removed-claims.json. */
+$rc = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_removed_claims.php'));
+if (is_array($rc) && !($rc['ok'] ?? true)) { $fail++; echo 'REMOVED CLAIMS FAIL' . PHP_EOL; }
+
 /* Generated images (docs/DATA-MODEL.md): a banner is decoration, listed in
    templates/_data/banners.json, a file in web/banners and nothing else. It fails
    here if its file is missing or changed, if the same picture is in the
