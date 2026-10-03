@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-03 (noon)
+
+- Agent: Claude Code
+- Date: 2026-10-03
+- Done: The /schools map made readable (templates/_partials/school-map.twig). Diagnosis: the overlap is genuine, not a rendering fault; sampling the Census boundaries on a 400 by 400 grid, every point in the Hart district is in exactly one of the four elementary districts (slivers under 0.3 sq km from simplification), and the four do not overlap one another, so they together are Hart's area. The all-districts map now fills the four elementary districts each in its own colour, named on the map, with white edges between them; draws Hart as one navy outline, the frame, in a pane above them; and adds a row of buttons (All five, Hart, and each elementary district) that zooms to one district and dims the other districts and the schools outside it. Picking Hart keeps all four areas and dims the elementary schools. A district's own map is unchanged. The legend no longer gives grades (the Census says K-6 for Castaic where NCES, in the chart below, says K-8).
+- Decisions: Nathan approved the proposal, with schools outside the picked district dimmed.
+- Blockers: the Reggie mirror is still unreadable.
+- Next: the four blocked records; the Bennett-Arcan party (rename or retire, Nathan's call).
+
 2026-10-03 (11 a.m.)
 
 - Agent: Claude Code

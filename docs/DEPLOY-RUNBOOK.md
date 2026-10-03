@@ -475,6 +475,14 @@ quit Docker Desktop, click "Stop processes" on the dialog about lingering
 processes, and start Docker again; then start DDEV and wait for Mutagen to
 report ok (Nathan, 1 October 2026).
 
+**"Operation not permitted" on the drive: renew Full Disk Access.** If
+`ls /Volumes/Reggie/SCVHistory` fails with "Operation not permitted" from
+Terminal, even outside any sandbox, the Full Disk Access grant for Terminal has
+gone stale. In System Settings, Privacy and Security, Full Disk Access, turn
+Terminal off and on again. Then restart DDEV so the container sees
+/mnt/reggie again; until then it reports "Bad file descriptor" there (Nathan,
+3 October 2026).
+
 **`ddev craft` starts a stopped project.** Any `ddev craft exec` against a
 stopped project starts it first, recreating the containers and applying the
 drive mount, with no prompt. On 1 October that is how a start happened before

@@ -5,6 +5,14 @@
   filled dot, closed as a hollow one. A school the archive holds a record for
   links to it.
 
+  All five at once (Nathan, 3 October 2026): the four elementary districts
+  together are the Hart district's area (a point inside Hart is in exactly one
+  of them), so Hart is drawn as a single outline, a frame, and the four are
+  filled, each in its own colour and named. A row of buttons picks one
+  district: the map zooms to it and dims the other districts and the schools
+  outside it. Picking Hart keeps all four areas, since they are its area, and
+  dims the elementary schools. One district's own map (leaid) is unchanged.
+
   Params
     leaid  optional: one district's NCES id, to show only its boundary and schools
     height optional: map height in pixels, default 460
@@ -20,12 +28,14 @@
 {% endfor %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <div class="sc-map" style="background:#fff;border:1px solid #E2E4E8;padding:12px;margin-bottom:32px">
+  {% if not leaid %}<div id="{{ mapId }}Pick" class="sc-pick" role="group" aria-label="Show one district" style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px"></div>
+  <style>.sc-pick button{border:1px solid rgba(23,37,76,.25);background:#fff;color:#17254C;padding:5px 11px;border-radius:14px;font-size:13px;cursor:pointer}.sc-pick button[aria-pressed="true"]{background:#17254C;color:#fff;border-color:#17254C}.sc-lbl{background:none;border:none;box-shadow:none;font-weight:600;font-size:12px;color:#17254C;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff}.sc-lbl:before{display:none}</style>{% endif %}
   <div id="{{ mapId }}" role="img" aria-label="Map of the school district boundaries and schools" style="height:{{ height ?? 460 }}px;background:#EEF0F4"></div>
   <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#5B6472;margin-top:10px">
     <span><i style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#17254C;vertical-align:-1px;margin-right:6px"></i>School, open</span>
     <span><i style="display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #8A93A3;background:#fff;vertical-align:-2px;margin-right:6px"></i>School, closed</span>
-    {% if not leaid %}<span><i style="display:inline-block;width:16px;height:0;border-top:2px dashed #17254C;vertical-align:3px;margin-right:6px"></i>High school district</span>
-    <span><i style="display:inline-block;width:12px;height:12px;background:rgba(196,160,49,.25);border:1px solid #C4A031;vertical-align:-1px;margin-right:6px"></i>Elementary districts</span>{% endif %}
+    {% if not leaid %}<span id="{{ mapId }}Key" style="display:contents"></span>
+    <span><i style="display:inline-block;width:16px;height:0;border-top:3px solid #17254C;vertical-align:3px;margin-right:6px"></i>Hart district (grades 7-12): the outline around all four</span>{% endif %}
   </div>
   <p style="font-size:13px;color:#5B6472;margin:8px 0 0;line-height:1.55">Boundaries: U.S. Census Bureau. Schools: the NCES directory, 1987 on; schools before 1987 are not in it.</p>
 </div>
@@ -36,26 +46,72 @@
   if (!el || typeof L === 'undefined') { return; }
   var ONLY = {{ leaid ? leaid|json_encode|raw : 'null' }};
   var RECS = {{ recs|json_encode|raw }};
-  var map = L.map(el, { scrollWheelZoom: false });
+  var map = L.map(el, { scrollWheelZoom: false, zoomSnap: 0.25 });
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function nice(n){ return n === n.toUpperCase() ? n.toLowerCase().replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); }) : n; }
   fetch({{ (siteUrl ~ 'data/schools.geojson?v=' ~ geoV)|json_encode|raw }}).then(function(r){ return r.json(); }).then(function(g){
     var fs = (g.features || []).filter(function(f){ return !ONLY || f.properties.leaid === ONLY; });
-    var districts = L.geoJSON(fs.filter(function(f){ return f.properties.kind === 'district'; }), {
-      style: function(f){ return f.properties.role === 'high'
-        ? { color: '#17254C', weight: 2.5, dashArray: '6 5', fill: !!ONLY, fillColor: '#17254C', fillOpacity: .05 }
-        : { color: '#C4A031', weight: 1.5, fillColor: '#C4A031', fillOpacity: .18 }; },
-      onEachFeature: function(f, l){ l.bindTooltip(esc(f.properties.title) + ' (grades ' + esc(f.properties.censusGrades) + ', per the Census)'); }
+    var dfs = fs.filter(function(f){ return f.properties.kind === 'district'; });
+    var PALETTE = ['#C4A031', '#3E7C8A', '#B5643C', '#6E8B4E'];
+    var elem = dfs.filter(function(f){ return f.properties.role !== 'high'; }).sort(function(a, b){ return a.properties.title < b.properties.title ? -1 : 1; });
+    var COL = {}; elem.forEach(function(f, i){ COL[f.properties.leaid] = PALETTE[i % PALETTE.length]; });
+    function shortName(t){ return String(t).replace(/ (Union )?(High )?School District$/, ''); }
+    var areas = {};
+    if (!ONLY) { map.createPane('scHart').style.zIndex = 405; map.createPane('scDots').style.zIndex = 410; }
+    var districts = L.geoJSON(dfs.filter(function(f){ return ONLY || f.properties.role !== 'high'; }), {
+      style: function(f){
+        if (ONLY) { return f.properties.role === 'high'
+          ? { color: '#17254C', weight: 2.5, dashArray: '6 5', fill: true, fillColor: '#17254C', fillOpacity: .05 }
+          : { color: '#C4A031', weight: 1.5, fillColor: '#C4A031', fillOpacity: .18 }; }
+        return f.properties.role === 'high'
+          ? { color: '#17254C', weight: 3, fill: false }
+          : { color: '#fff', weight: 2, fillColor: COL[f.properties.leaid], fillOpacity: .4 }; },
+      onEachFeature: function(f, l){
+        var full = esc(f.properties.title) + ' (grades ' + esc(f.properties.censusGrades) + ', per the Census)';
+        if (!ONLY && f.properties.role !== 'high') { l.bindTooltip(esc(shortName(f.properties.title)), { permanent: true, direction: 'center', className: 'sc-lbl' }); l.bindPopup(full); }
+        else { l.bindTooltip(full); }
+        areas[f.properties.leaid] = l; }
     }).addTo(map);
+    var hartLayer = null;
+    if (!ONLY) {
+      L.geoJSON(dfs.filter(function(f){ return f.properties.role === 'high'; }), { pane: 'scHart', interactive: true,
+        style: function(){ return { color: '#17254C', weight: 3, fill: false }; },
+        onEachFeature: function(f, l){ l.bindTooltip(esc(f.properties.title) + ' (grades ' + esc(f.properties.censusGrades) + ', per the Census): all four elementary districts together'); hartLayer = l; }
+      }).addTo(map);
+    }
+    var dots = [];
     L.geoJSON(fs.filter(function(f){ return f.properties.kind === 'school'; }), {
       pointToLayer: function(f, ll){ var open = f.properties.status === 'open';
-        return L.circleMarker(ll, { radius: open ? 5 : 4.5, color: open ? '#17254C' : '#8A93A3', weight: 2, fillColor: open ? '#17254C' : '#fff', fillOpacity: 1 }); },
+        var m = ONLY
+          ? L.circleMarker(ll, { radius: open ? 5 : 4.5, color: open ? '#17254C' : '#8A93A3', weight: 2, fillColor: open ? '#17254C' : '#fff', fillOpacity: 1 })
+          : L.circleMarker(ll, { pane: 'scDots', radius: 3.5, color: open ? '#17254C' : '#8A93A3', weight: 1.5, fillColor: open ? '#17254C' : '#fff', fillOpacity: 1 });
+        dots.push({ m: m, leaid: f.properties.leaid }); return m; },
       onEachFeature: function(f, l){ var p = f.properties, u = RECS[p.nces];
         var line = [p.grades ? 'Grades ' + esc(p.grades) : '', p.status === 'open' ? 'Open' : 'Closed, last listed ' + esc(p.lastListed), p.charter ? 'Charter' : ''].filter(Boolean).join(' &middot; ');
         l.bindPopup('<b>' + (u ? '<a href="' + esc(u) + '">' + esc(nice(p.name)) + '</a>' : esc(nice(p.name))) + '</b><br>' + line); }
     }).addTo(map);
-    if (districts.getLayers().length) { map.fitBounds(districts.getBounds(), { padding: [10, 10] }); }
+    function fit(layer){ if (layer && layer.getBounds) { map.fitBounds(layer.getBounds(), { padding: [10, 10] }); } }
+    if (ONLY) { if (districts.getLayers().length) { fit(districts); } return; }
+    var pick = document.getElementById({{ (mapId ~ 'Pick')|json_encode|raw }});
+    var key = document.getElementById({{ (mapId ~ 'Key')|json_encode|raw }});
+    if (key) { key.outerHTML = elem.map(function(f){ return '<span><i style="display:inline-block;width:12px;height:12px;background:' + COL[f.properties.leaid] + ';opacity:.75;vertical-align:-1px;margin-right:6px"></i>' + esc(shortName(f.properties.title)) + '</span>'; }).join(''); }
+    function show(id){
+      elem.forEach(function(f){ var k = f.properties.leaid, on = !id || id === 'hart' || id === k;
+        areas[k].setStyle({ fillOpacity: on ? .4 : .07, color: id === k ? '#17254C' : '#fff', weight: id === k ? 3 : 2 }); });
+      if (id && areas[id]) { areas[id].bringToFront(); }
+      var hartId = hartLayer ? hartLayer.feature.properties.leaid : null;
+      dots.forEach(function(d){ var on = !id || (id === 'hart' ? d.leaid === hartId : d.leaid === id);
+        d.m.setStyle({ opacity: on ? 1 : .2, fillOpacity: on ? 1 : .2 }); if (on) { d.m.bringToFront(); } });
+      if (pick) { Array.prototype.forEach.call(pick.querySelectorAll('button'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-id') === (id || '') ? 'true' : 'false'); }); }
+      fit(id && id !== 'hart' ? areas[id] : (hartLayer || districts)); }
+    if (pick) {
+      var opts = [['', 'All five']];
+      if (hartLayer) { opts.push(['hart', 'Hart (grades 7-12)']); }
+      elem.forEach(function(f){ opts.push([f.properties.leaid, shortName(f.properties.title)]); });
+      opts.forEach(function(o){ var b = document.createElement('button'); b.type = 'button'; b.textContent = o[1]; b.setAttribute('data-id', o[0]); b.addEventListener('click', function(){ show(o[0]); }); pick.appendChild(b); });
+    }
+    show('');
   });
 })();
 </script>
