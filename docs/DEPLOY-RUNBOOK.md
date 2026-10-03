@@ -483,6 +483,14 @@ Terminal off and on again. Then restart DDEV so the container sees
 /mnt/reggie again; until then it reports "Bad file descriptor" there (Nathan,
 3 October 2026).
 
+**Large files: predeploy.sh checks them first.** Since 3 October 2026,
+`scripts/predeploy.sh` fails before the render checks if any commit not yet pushed
+adds a file over 50 MB, because GitHub rejects files over 100 MB and the push is
+the first place it would otherwise show (a 143 MB NARA PDF did, the same day). A
+path already in the pushed history is allowed (lw-features.json, 53 MB). The fix
+is to take the file out of the unpushed commits, gitignore it, and keep its text
+and a manifest with its URL and checksum, as inventory/legacy/fetched/nara-*/ do.
+
 **Searching the mirror: use the system grep, with -a.** In an agent's shell
 `grep` can be a wrapper around `ugrep -I`, which treats the mirror's
 ISO-8859-1 pages as binary and skips them without a word. On 3 October 2026 it
