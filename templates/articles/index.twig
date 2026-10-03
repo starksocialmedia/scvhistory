@@ -46,13 +46,14 @@
 {% set eraSlug = craft.app.request.getParam('era') %}
 {% set colSlug = craft.app.request.getParam('collection') %}
 {% set view = craft.app.request.getParam('view') == 'era' ? 'era' : 'collection' %}
-{% set query = craft.entries().section('articles').orderBy('title asc') %}
+{#- Eager loading (3 October 2026): the page read each article's author, collection and eras one query at a time, about 1,800 of each, and took ten seconds to render. -#}
+{% set query = craft.entries().section('articles').orderBy('title asc').with(['writtenBy', 'partOfCollection', 'historicalEra']) %}
 {% if eraSlug %}{% set eraTerm = craft.categories().group('historicalEra').slug(eraSlug).one() %}{% if eraTerm %}{% set query = query.relatedTo(eraTerm) %}{% endif %}{% endif %}
 {% if colSlug %}{% set colEntry = craft.entries().section('collections').slug(colSlug).one() %}{% if colEntry %}{% set query = query.relatedTo({targetElement: colEntry, field: 'partOfCollection'}) %}{% endif %}{% endif %}
 {% set entries = query.all() %}
 {% set allArticles = craft.entries().section('articles').count() %}
 {% set authorIds = [] %}
-{% for a in craft.entries().section('articles').all() %}
+{% for a in craft.entries().section('articles').with(['writtenBy']).all() %}
   {% set w = a.writtenBy.one() ?? null %}
   {% if w and w.id not in authorIds %}{% set authorIds = authorIds|merge([w.id]) %}{% endif %}
 {% endfor %}
@@ -121,26 +122,23 @@
           {% set inEra = entries|filter(e => e.historicalEra.ids()|merge([0]) and term.id in e.historicalEra.ids()) %}
           {% if inEra|length %}{% set grouped = grouped|merge({ ('era:' ~ term.slug): inEra }) %}{% endif %}
         {% endfor %}
-        {% set placed = [] %}
-        {% for k, items in grouped %}{% for i in items %}{% set placed = placed|merge([i.id]) %}{% endfor %}{% endfor %}
+        {% set placed = grouped|reduce((carry, items) => carry|merge(items|map(i => i.id)), []) %}
         {% set rest = entries|filter(e => e.id not in placed) %}
         {% if rest|length %}{% set grouped = grouped|merge({ '_other': rest }) %}{% endif %}
       {% else %}
-        {% for e in entries %}
-          {% set c = e.partOfCollection.one() ?? null %}
-          {% set key = c ? c.slug : '_other' %}
-          {% set grouped = grouped|merge({ (key): (grouped[key] ?? [])|merge([e]) }) %}
-        {% endfor %}
+        {#- One pass, in order of first appearance, as the loop of merges did. -#}
+        {% set grouped = entries|group(e => (e.partOfCollection.one() ?? null) ? e.partOfCollection.one().slug : '_other') %}
       {% endif %}
 
       {% for key, items in grouped %}
         {% set isEra = key starts with 'era:' %}
         {% set eraTermHead = isEra ? craft.categories().group('historicalEra').slug(key|replace({'era:': ''})).one() : null %}
         {% set col = (not isEra and key != '_other') ? craft.entries().section('collections').slug(key).one() : null %}
-        {% set ordered = col ? col.articlesInCollection.all() : [] %}
+        {% set ordered = col ? col.articlesInCollection.with(['writtenBy']).all() : [] %}
         {% set list = [] %}
         {% if ordered|length %}
-          {% for a in ordered %}{% for i in items %}{% if i.id == a.id %}{% set list = list|merge([a]) %}{% endif %}{% endfor %}{% endfor %}
+          {% set itemIds = items|map(i => i.id) %}
+          {% set list = ordered|filter(a => a.id in itemIds) %}
         {% else %}
           {% set list = items %}
         {% endif %}

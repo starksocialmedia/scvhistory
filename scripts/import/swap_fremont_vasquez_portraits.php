@@ -32,11 +32,11 @@ $M = 'https://cai-manifests.adobe.com/manifests/';
 $S = [
     ['person' => 307, 'name' => 'John C. Frémont', 'old' => 10, 'file' => 'john-c-fremont-portrait-california-state-library-scaled.jpg', 'as' => 'john-c-fremont-california-state-library-upscaled.jpg',
      'sha' => 'fa6475ec2eb95cd5a5a366e56d85260c2ca5d0bcbf7794cc2c091bcc4c09763a', 'title' => 'John C. Frémont, from the California State Library\'s photograph',
-     'source' => 'Upscaled by Nathan Imhoff from the California State Library\'s photograph of Frémont, per Nathan Imhoff.',
+     'source' => 'The California State Library\'s photograph of Frémont, upscaled by Nathan Imhoff.',
      'cc' => "Adobe content credential (C2PA), {$M}urn-c2pa-4fbb5062-5c25-414e-8c13-99536b84f15e-adobe\nSteps recorded (UTC): 2026-10-03 20:31 created (Adobe Firefly, creative upsampler; digital source type trainedAlgorithmicMedia)\nRead on 3 October 2026. A note, not a refusal: Nathan Imhoff states it is the real photograph, upscaled."],
     ['person' => 285, 'name' => 'Tiburcio Vasquez', 'old' => 16, 'file' => 'tiburcio-vasquez.jpg', 'as' => 'tiburcio-vasquez-1874-upscaled.jpg',
      'sha' => '0a9c628b49529604b1ba074c8d25407cea4724c682d28a2d5e843f02a6a20f32', 'title' => 'Tiburcio Vasquez, from the 1874 photograph',
-     'source' => 'Upscaled by Nathan Imhoff from the 1874 photograph of Vasquez, per Nathan Imhoff.',
+     'source' => 'The 1874 photograph of Vasquez, upscaled by Nathan Imhoff.',
      'cc' => "Adobe content credential (C2PA), {$M}urn-c2pa-bfdaba4d-49a5-4bdc-b5cc-5ad4932513d9-adobe\nSteps recorded (UTC): 2026-10-03 20:38 opened, edited and placed (Adobe Firefly Image); 2026-10-03 20:39 created (Adobe Firefly, creative upsampler; digital source type compositeWithTrainedAlgorithmicMedia). The manifest also names a Firefly text_to_image operation among its ingredients.\nRead on 3 October 2026. A note, not a refusal: Nathan Imhoff states it is the real 1874 photograph, upscaled."],
 ];
 $bad = [];
