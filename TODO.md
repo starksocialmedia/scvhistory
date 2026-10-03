@@ -114,11 +114,10 @@ Leave these 7 Place entries untouched until Nathan decides:
 Also still open: 301 target for community indexes; whether to add the five missing neighborhood terms; Ridge Route / Harry Carey Ranch / Estancia / Melody Ranch community assignment; coins and OTN Gazette collection titles.
 
 ## Deploy pipeline (blocking production)
-- deploy.yml only runs `git pull origin main`. Production never receives schema changes.
-- Fix: after the pull, run `composer install --no-dev --optimize-autoloader`, `php craft project-config/apply`, `php craft up`, then `php craft clear-caches/all`.
-- Also fix the GitHub Actions to Cloudways SSH connection that broke on the new server.
-- Until fixed: do not push main. Merge locally only. Production stays on the old build.
-- After fixed: first deploy must also copy web/uploads/archive-media/site (logos, seals, now tracked) and the Craft assets volume.
+- Updated 3 October 2026: deploy.yml was rewritten (commit 584a868) and is disabled. Its only trigger is workflow_dispatch and the job carries `if: false`, so pushing main deploys nothing. It now targets staging on templates-batch-9 and, when enabled, runs a backup, `composer install`, `craft up` and a cache clear (see its header).
+- Staging is refreshed by hand: DEPLOY-RUNBOOK.md section 10. Check the server's branch (`git branch --show-current`) before choosing to push main or only the branch.
+- To enable automatic deploys (Nathan only): add CLOUDWAYS_SSH_KEY, remove `if: false`, restore the push trigger, as the workflow header says.
+- Production is still on the old build. Its first deploy must also copy web/uploads/archive-media/site (logos, seals, now tracked) and the Craft assets volume.
 
 ## Data gaps noted this session
 - 20 communities have no polygon; coordinates come from set_community_coords.php (batch 4).

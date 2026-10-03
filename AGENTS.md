@@ -28,7 +28,7 @@ Nathan makes all decisions. Leon Worden has preapproved the project, so nothing 
 - Grok Build works on branch `grok-build`. Grok Bot works on branch `grok-bot`. Never commit directly to `main`
 - Pull before starting. Commit small, with clear messages
 - Nathan merges to `main`. Ask before any `git push`
-- **Pushing to `main` auto-deploys to production** via the workflow in `.github/workflows/` (GitHub Actions to Cloudways). Never push to `main`, and never edit the workflow
+- The deploy workflow in `.github/workflows/` is **disabled**: its only trigger is a manual run and the job carries `if: false`, so no push deploys anything (checked 3 October 2026). It targets staging, not production. Staging is refreshed by hand (DEPLOY-RUNBOOK.md section 10). Agents still never push to `main` (Nathan merges), and never edit the workflow: enabling it is Nathan's alone
 - Never rewrite history (no force push, no rebase of shared branches)
 
 ## Safety
