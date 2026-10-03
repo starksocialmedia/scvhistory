@@ -17,7 +17,7 @@
  * storage/cw-scans/ because the container does not see the drive) is attached as
  * a document file.
  *
- * HELD, for Nathan:
+ * FIRST HELD, then imported on Nathan's ruling the same day:
  *   gt8702_sg010487, Laurel Suomisto's "Cityhood Backers: Who Are They?" (The
  *     Signal, January 4, 1987): verbatim, it gives the ages, home communities and
  *     businesses of committee members who may be living. Whether a verbatim 1987
@@ -42,7 +42,9 @@ $src = json_decode(file_get_contents("$root/inventory/legacy/connie-worden-sourc
 $svc = Craft::$app->getEntries(); $el = Craft::$app->getElements();
 $ws = fn($s) => trim(preg_replace('~\s+~u', ' ', (string)$s));
 $para = fn($v) => is_array($v) ? implode("\n\n", array_map('trim', $v)) : trim((string)$v);
-$CW = 16418; $HOLD = ['gt8702_sg010487'];
+$CW = 16418; $HOLD = [];
+/* Suomisto 1987: kept verbatim (Nathan, 3 October 2026: "the archive holds it as published ... do not extract those details into structured fields or person records"). */
+$NOTE = ['gt8702_sg010487' => 'Held as published in 1987. The ages, home communities and businesses it gives for members of the committee are the newspaper\'s, and are not entered in the archive\'s records about those people.'];
 $PUB = ['sg110185_lutz' => 376, 'gt8702_sg011187' => 376, 'sc1708' => 394, 'sc19872007_p67' => 394, 'scvhs_minutes_20030519' => 15493];
 $SCAN = ['cw9901' => "$root/storage/cw-scans/cw9901.pdf"];
 $bad = [];
@@ -64,6 +66,7 @@ foreach ($src['items'] as $it) {
     $bottom = (array)($it['webmasterNoteBottom'] ?? []);
     if (!empty($it['ocr_status'])) { $bottom[] = 'Transcription: ' . (is_array($it['ocr_status']) ? implode(' ', $it['ocr_status']) : $it['ocr_status']); }
     if (!empty($it['excerpt'])) { $bottom[] = 'An excerpt: ' . (is_string($it['excerpt']) ? $it['excerpt'] : 'the part of the page about her.'); }
+    if (isset($NOTE[$k])) { $bottom[] = $NOTE[$k]; }
     if (!empty($it['conflict'])) { $bottom[] = 'As printed: ' . (is_string($it['conflict']) ? $it['conflict'] : json_encode($it['conflict'])); }
     $d = $it['date'] ?? []; $edtf = (string)($d['edtf'] ?? '');
     $gran = preg_match('~^\d{4}-\d{2}-\d{2}$~', $edtf) ? 'day' : (preg_match('~^\d{4}$~', $edtf) ? 'year' : '');
@@ -85,7 +88,7 @@ foreach ($src['items'] as $it) {
     $absent = array_values(array_diff(array_keys($f), $handles));
     $existing = Entry::find()->section('documents')->status(null)->legacyKey($k)->one();
     $scan = $SCAN[$k] ?? null;
-    if ($scan && (!is_file($scan) || hash_file('sha256', $scan) !== $it['scan']['sha256'])) { $bad[] = "$k: the scan copy is missing or changed"; }
+    if ($scan && !$existing && (!is_file($scan) || hash_file('sha256', $scan) !== $it['scan']['sha256'])) { $bad[] = "$k: the scan copy is missing or changed"; }
     $plan[] = ['key' => $k, 'title' => rtrim($it['title'], '.'), 'fields' => $f, 'absent' => $absent, 'existing' => $existing, 'hold' => in_array($k, $HOLD), 'scan' => $scan];
 }
 foreach ($plan as $p) {
