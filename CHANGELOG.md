@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-04 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: The 25, batch 3, valley first (build_profiles_batch5.php): Pedro Fages (the 1772 pursuit through the valley; named Agua Dulce and Soledad), Tom Mix (his Newhall movie town and lodgings, 1916 to the mid-1920s), Harry Carey (the San Francisquito Canyon ranch and trading post, 1916-1945), Tiburcio Vasquez (Elizabeth Lake and Soledad Canyon, 1873-74, and the rocks), Juventino del Valle (Rancho Camulos), John T. Gifford (Newhall's first railroad agent). Fields corrected to the sources with notes giving the old values: Vasquez born April 10, 1835 (not April 7, not August 11); Fages's and Juventino's birthplaces and Juventino's birth date; Gifford's birthplace, which held a census comment. Vasquez's burial marked unsourced. 25 legacy pages copied and verified against the manifest (batch5-sha.json).
+- Decisions: where sources disagree the profile shows both (Mix's first year in Newhall, Birchard against the 2001 HABS survey; Vasquez's capture on May 13 or 14, 1874).
+- Blockers: #305 "Chico" López still waits on Nathan. Juventino's connection is Rancho Camulos, which lies west of the valley; flagged for Nathan.
+- Next: the 25 blank group, place and organization records from Leon's pages.
+
 2026-10-04 (later)
 
 - Agent: Claude Code
