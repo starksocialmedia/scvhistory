@@ -68,14 +68,34 @@
  *      that is a follow-up for the water/school import.
  *  #16 College of the Canyons: not in scope.
  *
+ * HART FROM THE ROSTER (Nathan, 3 October 2026: "Hold Hart ... then rebuild Hart from the
+ * roster ... Leon's own record beats our inference"). Leon Worden's term-by-term roster of the
+ * Hart board, 1945 to the board of 12-11-2013 to 11-30-2014 (hartschoolboardmembers.htm,
+ * extracted verbatim to inventory/legacy/hart-board-roster.json by extract_hart_roster.py), is
+ * read as a second, independent record beside CEDA, on the council ledger's pattern:
+ *  - a CEDA term the roster agrees with (start, end and how it ended) is "roster" at both
+ *    ends, with a footnote quoting the rows; an end the roster does not reach stays "derived";
+ *  - roster service CEDA lacks (pre-1995 terms, appointments, the 2013 seats filled without a
+ *    vote) becomes a holding, "roster", only for a person who has or will have a record
+ *    (an existing person tied to Hart, or a 1995+ winner); nobody is created from the roster;
+ *  - where the two disagree, nothing is resolved: both are footnoted and the case is printed;
+ *  - #8 still holds: terms inside an existing tenure are skipped, and roster against tenure
+ *    conflicts are printed.
+ *
  * Idempotent: a holding for the same person, body and termStartEdtf is skipped;
  * people by title. Dry run by default. Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/derive_board_holdings.php'))"
+ * Hart only: ddev craft exec '$ONLY_BODIES = [21588]; eval(file_get_contents("scripts/import/derive_board_holdings.php"));'
  */
 
 use craft\elements\{Entry, Category};
 
 $APPLY = false;
+/* $HOLD_BODIES are never written (Hart held while the six others were applied, 3 October 2026).
+   $ONLY_BODIES, when given, writes only those bodies and releases them from the hold. */
+$HOLD_BODIES = [21588];
+$ONLY_BODIES = $ONLY_BODIES ?? [];
+if ($ONLY_BODIES) { $HOLD_BODIES = array_values(array_diff($HOLD_BODIES, $ONLY_BODIES)); }
 if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL . str_repeat('=', 78) . PHP_EOL;
 $root = \Craft::getAlias('@root');
@@ -160,7 +180,7 @@ $titleOf = function (array $printings) {
 $pIndex = []; $allPeople = [];
 foreach (Entry::find()->section('persons')->status(null)->all() as $p) {
     $names = [$p->title, (string)$p->fullName]; foreach (preg_split('~\n~', (string)$p->personAliases) as $a) { if (trim($a)) { $names[] = trim($a); } }
-    $allPeople[$p->id] = ['title' => $p->title, 'names' => array_values(array_unique(array_filter($names)))];
+    $allPeople[$p->id] = ['title' => $p->title, 'names' => array_values(array_unique(array_filter($names))), 'prov' => (string)$p->recordProvenance];
     foreach ($names as $n) { foreach ($keysOf($n) as $k) { $pIndex[$canon($k)][$p->id] = $p->title; } }
 }
 
@@ -209,6 +229,16 @@ foreach ($contests as $cid => &$c) { foreach ($c['cands'] as &$x) {
     $newP[$k]['cands'][] = $c['y'] . ' ' . $ALLB[$c['b']] . ($c['area'] !== '' ? ' ' . ($c['b'] === $SCVW || $c['b'] === $CLWA ? 'Div ' : 'Area ') . $c['area'] : '') . ': "' . $x['name'] . '" ' . ($x['won'] ? 'won' : 'lost') . ($c['county'] ? ' (County statement)' : '');
     if ($x['id']) { $links[] = [$x['id'], $k, $c['b']]; }
 } unset($x); } unset($c);
+/* People this script created on 3 October for another body (Bob Jensen, Philip Ellis Jr. at Newhall): their Hart
+   candidacies were held, so they still read as new. Adopt the record; the held candidacies are linked to it. */
+$adopted = [];
+foreach (array_keys($newP) as $k) {
+    $m = array_keys($pIndex[$k] ?? []);
+    if (count($m) === 1 && str_starts_with($allPeople[$m[0]]['prov'], $PROV)) { $adopted[$k] = $m[0]; }
+}
+foreach ($contests as &$c) { foreach ($c['cands'] as &$x) { if (is_string($x['who'] ?? null) && isset($adopted[substr($x['who'], 4)])) { $x['who'] = $adopted[substr($x['who'], 4)]; } } unset($x); } unset($c);
+$links = array_map(fn($l) => isset($adopted[$l[1]]) ? [$l[0], $l[1], $l[2], $adopted[$l[1]]] : $l, $links);
+foreach ($adopted as $k => $id) { unset($newP[$k]); }
 foreach ($newP as $k => &$np) {
     if (isset($pIndex[$k])) { $bad[] = "new person $k matches an existing person: " . implode(', ', $pIndex[$k]); }
     $np['title'] = $TITLE[$k] ?? $titleOf(array_values(array_unique($np['printings'])));
@@ -390,7 +420,7 @@ foreach ($e16 as $c) { foreach ($c['cands'] as $x) { if (!$x['won']) { continue;
 } }
 /* #10: Petersen's appointment, from the agency's list. */
 $pet = array_values(array_filter($scvList['directors'] ?? [], fn($d) => str_starts_with($d['name'], 'Kenneth J. Petersen')));
-$petWho = isset($newP['kenneth petersen']) ? 'new:kenneth petersen' : null;
+$petWho = isset($newP['kenneth petersen']) ? 'new:kenneth petersen' : (count($pIndex['kenneth petersen'] ?? []) === 1 ? array_key_first($pIndex['kenneth petersen']) : null);
 if (!$pet || $pet[0]['appointed'] !== 'September 2022' || !$petWho) { $bad[] = 'Petersen\'s appointment is not on the agency\'s list as expected'; }
 else {
     $d3 = Entry::find()->section('places')->status(null)->title('Santa Clarita Valley Water, Division 3')->one();
@@ -398,6 +428,199 @@ else {
         'sev' => 'roster', 'eev' => 'derived', 'kind' => 'appointed', 'y' => 2022,
         'notes' => ["The agency's list of directors gives Kenneth J. Petersen, Division 3, as appointed in September 2022 ($C_SCVL). Which director's seat he filled is not recorded.",
             'He won a two-year term for Division 3 at the election of November 5, 2024, beginning in January 2025.']];
+}
+
+/* ------------------------------------------------ Hart from Leon Worden's roster */
+$HART = 21588;
+$R = json_decode(@file_get_contents("$root/inventory/legacy/hart-board-roster.json"), true);
+$RHTM = "$root/inventory/legacy/fetched/hartschoolboardmembers.htm";
+if (!$R || !is_file($RHTM) || hash_file('sha256', $RHTM) !== ($R['meta']['sha256'] ?? '') || empty($R['meta']['manifest_matched'])) { $bad[] = 'the Hart roster or its page is missing, or differs from the manifest'; $R = ['meta' => [], 'boards' => [], 'members' => []]; }
+$C_ROSTER = 'Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm';
+$RSTOP = '2014-11';   /* the last board printed ran 12-11-2013 to 11-30-2014 */
+/* A roster name that matches an existing person with no other Hart tie is linked only when confirmed here. */
+$RCONFIRM = [16418 => 'Connie Worden: her sources, imported 3 October 2026, include this roster for her 1974 to 1979 seat'];
+$prE = function (?string $e) {
+    if (!$e) { return ''; }
+    $p = explode('-', $e);
+    return count($p) === 1 ? $p[0] : (count($p) === 2 ? date('F Y', strtotime("$e-01")) : date('F j, Y', strtotime($e)));
+};
+$rm = []; $rLink = []; $rByWho = []; $rNameHit = []; $rKey = [];
+foreach ($R['members'] as $m) {
+    if ($m['student']) { continue; }
+    $rm[$m['key']] = $m;
+    $hits = [];
+    foreach ($m['printings'] as $pn) { foreach ($keysOf($pn) as $k) { $k = $canon($k); $rKey[$k] = $m['key'];
+        foreach (array_keys($pIndex[$k] ?? []) as $id) { $hits[$id] = true; }
+        if (isset($newP[$k])) { $hits["new:$k"] = true; } } }
+    $hits = array_keys($hits);
+    if (count($hits) > 1) { $bad[] = 'roster member ' . $m['printings'][0] . ' matches more than one person: ' . implode(', ', $hits); continue; }
+    if (!$hits) { continue; }
+    $w = $hits[0];
+    $tied = is_string($w) || isset($standings["$w|$HART"]) || array_filter($existing, fn($e) => $e['pid'] == $w && $e['b'] == $HART) || isset($RCONFIRM[$w]);
+    if ($tied) { $rLink[$m['key']] = $w; $rByWho[(string)$w] = $m['key']; } else { $rNameHit[] = [$m, $w]; }
+}
+$boardAt = function (string $ym) use ($R) {
+    foreach ($R['boards'] as $i => $b) { if (strlen($b['start']) >= 7 && substr($b['start'], 0, 7) <= $ym && $b['end'] && substr($b['end'], 0, 7) >= $ym) { return $i; } }
+    return null;
+};
+$listedOn = fn(string $mk, ?int $bi) => $bi === null ? null : (array_values(array_filter($rm[$mk]['rows'], fn($r) => $r['board'] === $bi))[0] ?? null);
+$firstRowFrom = fn(string $mk, string $ym) => array_values(array_filter($rm[$mk]['rows'], fn($r) => strlen($r['boardStart']) >= 7 && substr($r['boardStart'], 0, 7) >= substr($ym, 0, 7)))[0] ?? null;
+$qr = fn(string $label, string $raw) => "on the board of $label as \"$raw\"";
+$RLASTB = end($R['boards'])['label'] ?? '';
+/* how the roster's end row reads: a reelection is printed on the next board, after the election */
+$qEnd = fn(string $how, string $label, string $raw) => $how === 'reelected' ? ", and, after the next election, on the board of $label as \"$raw\"" : ', and last ' . "on the board of $label as \"$raw\"";
+$RHOW = ['expired' => 'ended', 'reelected' => 'ended in reelection', 'resigned' => 'ended in resignation', 'unknown' => 'ended, how not stated', 'recalled' => 'ended in a recall'];
+
+/* Each linked member's roster terms, cut where a CEDA term of the same person starts inside one (Aliano: appointed
+   in 1994, then the 1995 short term). A cut end is "derived" (from the election); a cut start quotes the next row. */
+$hartTs = fn($w) => array_filter($T, fn($t) => $t['b'] === $HART && $t['who'] === $w);
+$pieces = [];   /* mk => [ term + basis ] */
+foreach ($rLink as $mk => $w) {
+    $starts = array_unique(array_map(fn($t) => $t['se'], $hartTs($w)));
+    foreach ($rm[$mk]['terms'] as $rt) {
+        $cuts = array_values(array_filter($starts, fn($s) => $s > $rt['start'] && $s <= $RSTOP && ($rt['end'] === null || $s < $rt['end'])));
+        sort($cuts);
+        $cur = $rt + ['endCut' => false, 'startCut' => false, 'endNote' => null, 'startNote' => null, 'unopposed' => false];
+        foreach ($cuts as $s) {
+            $pieces[$mk][] = array_merge($cur, ['end' => $s, 'howEnded' => 'reelected', 'endCut' => true, 'endNote' => null]);
+            $row = $firstRowFrom($mk, $s);
+            $cur = array_merge($rt, ['start' => $s, 'selection' => 'elected', 'startCut' => true, 'startBasis' => $row['raw'] ?? '', 'startBoard' => $row['boardLabel'] ?? '', 'startNote' => null, 'endCut' => false]);
+        }
+        $pieces[$mk][] = $cur;
+    }
+}
+
+/* The CEDA terms (and bridges) the roster can speak to: start before the roster stops. */
+$hartAgree = []; $hartDis = []; $rMatched = [];
+$dropNine = '~stood as the incumbent(: an earlier appointment|, having served on the board before 1995)~';
+foreach ($T as $i => &$t) {
+    if ($t['b'] !== $HART || !in_array($t['kind'], ['win', 'bridge'], true) || $t['se'] > $RSTOP) { continue; }
+    $w = $t['who']; $name = $whoName($w); $mk = $rByWho[(string)$w] ?? null;
+    $pc = null;
+    if ($mk) { foreach ($pieces[$mk] ?? [] as $j => $p) { if ($p['start'] === $t['se']) { $pc = $p; $rMatched["$mk|$j"] = true; } } }
+    if (!$pc) {
+        $row = $mk ? $firstRowFrom($mk, $t['se']) : null;
+        $hartDis[] = "$name, " . $t['kind'] . ' ' . $t['se'] . ' to ' . ($t['ee'] ?: '(blank)') . ': ' . ($mk ? 'the roster has no term starting then' . ($row ? ' (next listed ' . $qr($row['boardLabel'], $row['raw']) . ')' : '') : 'the roster does not list this person') . '. Footnoted, not resolved.';
+        $t['notes'][] = "Leon Worden's roster of the Hart board does not show a term for $name beginning in " . $prE($t['se']) . " ($C_ROSTER). The term is given here from the election returns.";
+        continue;
+    }
+    /* #9 notes give way to the roster, which dates the earlier service */
+    $hadNine = (bool)preg_grep($dropNine, $t['notes']);
+    $t['notes'] = array_values(array_filter($t['notes'], fn($n) => !preg_match($dropNine, $n)));
+    if ($hadNine) {
+        $research = array_values(array_filter($research, fn($r) => !($r[0] === $name && $r[1] === $HART)));
+        $before = array_values(array_filter($before, fn($r) => !($r[0] === $name && $r[1] === $HART)));
+    }
+    $startTxt = $pc['startBasis'] !== '' ? $qr($pc['startBoard'], $pc['startBasis']) : 'from ' . $prE($pc['start']);
+    $sentence = "Leon Worden's roster of the Hart board lists $name $startTxt";
+    $endAgrees = false; $endTxt = '';
+    if ($pc['end'] === null) {
+        $endTxt = $pc['startBoard'] === $RLASTB ? ', the last board it prints' : ", and on every board after it to the last it prints, $RLASTB";
+        if ($t['ee'] && $t['ee'] <= $RSTOP) { $hartDis[] = "$name, {$t['se']}: CEDA's term ends {$t['ee']} ({$t['how']}), but the roster lists $name on the board of 12-11-2013 to 11-30-2014. Footnoted, not resolved."; $endTxt .= ', after the end given here'; }
+    } elseif ($pc['endCut']) {
+        $endTxt = '';
+    } else {
+        $endTxt = $qEnd((string)$pc['howEnded'], $pc['endBoard'], $pc['endBasis']) . (($pc['endNote'] ?? null) && str_starts_with($pc['endNote'], 'not listed') ? ' (the next board does not list ' . $name . ')' : '');
+        $endAgrees = $pc['end'] === $t['ee'] && $pc['howEnded'] === $t['how'];
+        if (!$endAgrees) {
+            $cv = $coveredBy($w, $HART, $t['se']);
+            $hartDis[] = "$name, {$t['se']}: the election returns give the end as {$t['ee']} ({$t['how']}); the roster gives {$pc['end']} ({$pc['howEnded']}): \"{$pc['endBasis']}\". " . ($cv ? "Skipped as inside #$cv (#8), which already ends as the roster does." : 'Footnoted, not resolved.');
+            $endTxt .= '. The roster\'s end, ' . $prE($pc['end']) . ' (' . ($RHOW[$pc['howEnded']] ?? $pc['howEnded']) . '), differs from the one given here, ' . ($t['ee'] ? $prE($t['ee']) : 'blank') . ' (' . ($RHOW[$t['how']] ?? $t['how']) . '), which follows the election returns';
+        }
+    }
+    $t['notes'][] = $sentence . $endTxt . " ($C_ROSTER).";
+    /* a bridge the roster gives is no longer only an inference */
+    if ($t['kind'] === 'bridge' && $pc['startBasis'] !== '') { $t['notes'] = array_values(array_filter($t['notes'], fn($n) => !str_contains($n, 'this term is inferred from the two'))); }
+    if ($t['kind'] === 'win' || $pc['startBasis'] !== '') { $t['sev'] = 'roster'; }
+    if ($endAgrees) { $t['eev'] = 'roster'; }
+    $t['rosterAgree'] = $endAgrees ? 'both' : ($pc['end'] === null || $pc['endCut'] ? 'start' : 'start, end differs');
+    $hartAgree[] = sprintf('%-24s %-7s %-10s -> %-10s %-10s roster: %s -> %s %s', $name, $t['kind'], $t['se'], $t['ee'] ?: '(blank)', $t['how'], $pc['start'], $pc['end'] ?? 'open', $t['rosterAgree']);
+} unset($t);
+
+/* CEDA's flags and losses against the roster, 1995 to 2013. */
+$candDis = []; $candAgree = 0;
+foreach ($contests as $c) {
+    if ($c['b'] !== $HART || $c['y'] > 2013) { continue; }
+    $bi = $boardAt($c['y'] . '-11');
+    foreach ($c['cands'] as $x) {
+        $mk = isset($x['who']) ? ($rByWho[(string)$x['who']] ?? null) : null;
+        if (!$mk) { foreach ($keysOf($x['name']) as $k) { if (isset($rKey[$canon($k)])) { $mk = $rKey[$canon($k)]; break; } } }
+        $row = $mk ? $listedOn($mk, $bi) : null;
+        $lab = $bi !== null ? $R['boards'][$bi]['label'] : '?';
+        if ($x['inc'] && !$row) {
+            $candDis[] = "{$c['y']} \"{$x['name']}\" " . ($x['won'] ? 'won' : 'lost') . ": CEDA marks the incumbent; the roster does not list this name on the board then sitting ($lab)" . ($x['won'] ? '. Both footnoted on the term, not resolved' : '');
+            if ($x['won'] && isset($x['who'])) { foreach ($T as &$t) { if ($t['b'] === $HART && $t['who'] === $x['who'] && $t['kind'] === 'win' && $t['y'] === $c['y']) {
+                $t['notes'][] = 'The election returns compiled by CEDA mark ' . $whoName($x['who']) . " as the incumbent at this election; Leon Worden's roster of the Hart board does not list him on the board then sitting, $lab ($C_ROSTER).";
+            } } unset($t); }
+        }
+        elseif (!$x['inc'] && $row) { $candDis[] = "{$c['y']} \"{$x['name']}\": on the sitting board ($lab, \"{$row['raw']}\") but CEDA does not mark the incumbent"; }
+        else { $candAgree++; }
+        if (!$x['won'] && $row) {
+            $def = array_filter($row['events'], fn($e) => $e['type'] === 'defeated' && $e['date'] === (string)$c['y']);
+            if ($def) { $candAgree++; } else { $candDis[] = "{$c['y']} \"{$x['name']}\" lost as a sitting member; the roster does not print \"defeated {$c['y']}\" (\"{$row['raw']}\")"; }
+        }
+    }
+}
+foreach ($rm as $mk => $m) { foreach ($m['rows'] as $r) { foreach ($r['events'] as $e) {
+    $ey = (int)substr((string)$e['date'], 0, 4);
+    if ($ey < 1995 || $ey > 2013) { continue; }
+    $stood = array_filter($contests, fn($c) => $c['b'] === $HART && $c['y'] === $ey && array_filter($c['cands'], function ($x) use ($mk, $rByWho, $keysOf, $canon, $rKey) {
+        if (isset($x['who']) && ($rByWho[(string)$x['who']] ?? null) === $mk) { return true; }
+        foreach ($keysOf($x['name']) as $k) { if (($rKey[$canon($k)] ?? null) === $mk) { return true; } } return false; }));
+    if ($e['type'] === 'did not seek reelection' && $stood) {
+        $also = array_filter($m['rows'], fn($r2) => array_filter($r2['events'], fn($e2) => in_array($e2['type'], ['elected', 'reelected'], true) && (string)$e2['date'] === (string)$ey));
+        $candDis[] = "$ey {$m['printings'][0]}: the roster prints \"{$r['raw']}\" on the board of {$r['boardLabel']}, but CEDA has a winning or losing candidacy in $ey" . ($also ? ', and the roster itself prints "' . array_values($also)[0]['raw'] . '" on the next board: the roster contradicts itself; its terms follow the reelection' : '');
+    }
+    if (in_array($e['type'], ['elected', 'reelected'], true) && !$stood) { $candDis[] = "$ey {$m['printings'][0]}: the roster prints \"{$e['text']}\"; CEDA has no Hart contest for this person in $ey (no contest recorded, so CEDA lacks it rather than contradicts it)"; }
+} } }
+
+/* Roster service CEDA lacks, for linked people: a holding from the roster. */
+$rosterOnly = [];
+foreach ($pieces as $mk => $ps) { foreach ($ps as $j => $p) {
+    if (isset($rMatched["$mk|$j"])) { continue; }
+    $w = $rLink[$mk]; $name = $whoName($w);
+    if ($p['end'] === null) { $bad[] = "$name: an open roster term from {$p['start']} matches no term from the election returns"; continue; }
+    $n = [];
+    $n[] = "Leon Worden's roster of the Hart board lists $name " . $qr($p['startBoard'], $p['startBasis'])
+        . ($p['endCut'] ? '' : ($p['endBasis'] !== $p['startBasis'] ? $qEnd((string)$p['howEnded'], $p['endBoard'], $p['endBasis']) : '')
+        . (($p['endNote'] ?? null) && str_starts_with($p['endNote'], 'not listed') ? '; the next board, ' . preg_replace('~^not listed on the next board, ~', '', $p['endNote']) . ', does not list ' . $name : '')
+        . (($p['endNote'] ?? null) && str_starts_with($p['endNote'], 'no date printed') ? ' (the roster prints no date for the resignation)' : '')) . " ($C_ROSTER).";
+    if (($p['startNote'] ?? null) && $p['selection'] === 'appointed') { $n[] = 'The roster prints no date for the appointment' . (($p['predecessorRow'] ?? null) ? ', which completed the term of the member it lists as "' . $p['predecessorRow'] . '"; the year given here is that resignation\'s.' : '; the year given here is the first of the board that lists it.'); }
+    if ($p['endCut']) {
+        $nx = array_values(array_filter($T, fn($t) => $t['b'] === $HART && $t['who'] === $w && $t['se'] === $p['end']))[0] ?? null;
+        $n[] = $p['selection'] === 'appointed' ? "The appointment ran to the election of " . ($nx ? 'November ' . $nx['y'] : $p['end']) . ", at which $name won the seat." : "The term ran to the election of " . ($nx ? 'November ' . $nx['y'] : $p['end']) . ", at which $name won the seat.";
+    }
+    if (strlen($p['start']) === 7 && $p['start'] >= '1979-12' && $p['selection'] === 'elected') { $n[] = $C_5017; }
+    $rosterOnly[] = $T[] = ['who' => $w, 'b' => $HART, 'place' => null, 'area' => '', 'sp' => $prE($p['start']), 'se' => $p['start'], 'ep' => $prE($p['end']), 'ee' => $p['end'], 'sel' => $p['selection'],
+        'how' => $p['howEnded'], 'sev' => 'roster', 'eev' => $p['endCut'] ? 'derived' : 'roster', 'notes' => $n, 'kind' => 'roster', 'y' => (int)substr($p['start'], 0, 4), 'rosterAgree' => 'roster only'];
+} }
+
+/* Roster against the tenures #8 keeps. */
+$tenureCmp = [];
+foreach ($existing as $e) {
+    if ($e['b'] !== $HART || !($mk = $rByWho[(string)$e['pid']] ?? null)) { continue; }
+    $in = array_values(array_filter($pieces[$mk] ?? [], fn($p) => $yr($p['start']) >= $yr($e['s']) && ($e['e'] === '' || $yr($p['start']) < $yr($e['e']))));
+    if (!$in) { $tenureCmp[] = "#{$e['id']} " . $whoName($e['pid']) . " {$e['s']} to " . ($e['e'] ?: 'open') . ': the roster shows no term inside it'; continue; }
+    $first = $in[0]; $last = end($in);
+    $h = $e['h']; $how = (string)$h->howEnded?->value;
+    $diffs = [];
+    if ($yr($first['start']) !== $yr($e['s'])) { $diffs[] = "start {$e['s']} against the roster's {$first['start']}"; }
+    if ($last['end'] === null) { if ($e['e'] !== '' && $e['e'] <= $RSTOP) { $diffs[] = "end {$e['e']}, but the roster lists the member to its last board"; } }
+    else {
+        if ($yr($last['end']) !== $yr($e['e'])) { $diffs[] = "end {$e['e']} against the roster's {$last['end']}"; }
+        if ($how !== $last['howEnded']) { $diffs[] = "howEnded \"$how\" against the roster's \"{$last['howEnded']}\" (\"{$last['endBasis']}\")"; }
+    }
+    $extra = [];
+    foreach ($rm[$mk]['rows'] as $r) { foreach ($r['events'] as $ev) { if ($ev['type'] === 'did not assume office') { $extra[] = "the roster adds, on the board of {$r['boardLabel']}: \"{$r['raw']}\""; } } }
+    $tenureCmp[] = "#{$e['id']} " . $whoName($e['pid']) . " {$e['s']} to " . ($e['e'] ?: 'open') . " ($how): " . ($diffs ? 'CONFLICT: ' . implode('; ', $diffs) : 'agrees with the roster (' . $first['start'] . ' to ' . ($last['end'] ?? 'its last board') . ')') . ($extra ? '; ' . implode('; ', $extra) : '');
+}
+
+/* Roster members with no record: not created (Nathan's call). */
+$rNoRec = ['pre' => [], 'post' => []];
+foreach ($rm as $mk => $m) {
+    if (isset($rLink[$mk])) { continue; }
+    $s = $m['terms'][0]['start'] ?? ''; $e = end($m['terms'])['end'] ?? null;
+    $rNoRec[$s < '1995' ? 'pre' : 'post'][] = [$m, $s, $e];
 }
 
 /* #8 and idempotency */
@@ -421,7 +644,7 @@ foreach ($plan as $t) { foreach ($t['notes'] as $n) {
     if (preg_match($BAD, $u, $m) || preg_match('~\x{2014}|inventory/|\.json~u', $n, $m)) { $bad[] = $whoName($t['who']) . ' ' . $t['se'] . ": a footnote reads \"{$m[0]}\""; }
 } }
 $pProv = "$PROV: elected to a Santa Clarita Valley school or water board (decision 14); public facts only";
-$hProv = fn($t) => "$PROV: " . ['win' => 'a term from the election results', 'bridge' => 'a seat filled without a vote, inferred (decision 5)', 'succeeded' => 'SCV Water founding board, SB 634 (decision 11)', 'appointed' => 'appointment on the agency\'s list (decision 10)'][$t['kind']];
+$hProv = fn($t) => "$PROV: " . ['win' => 'a term from the election results', 'bridge' => 'a seat filled without a vote, inferred (decision 5)', 'succeeded' => 'SCV Water founding board, SB 634 (decision 11)', 'appointed' => 'appointment on the agency\'s list (decision 10)', 'roster' => 'a term from Leon Worden\'s Hart board roster, hartschoolboardmembers.htm'][$t['kind']];
 foreach (array_merge([$pProv], array_map($hProv, $plan)) as $s) { if (mb_strlen($s) > 255) { $bad[] = 'a recordProvenance runs over 255 characters'; break; } }
 
 /* ------------------------------------------------ eras (#14), by the assign_person_eras.php rule */
@@ -452,7 +675,7 @@ foreach ($ALLB as $b => $lab) {
     $cov = count(array_filter(array_merge($skipped, $exists), fn($t) => $t['b'] === $b));
     $der = count(array_filter($plan, fn($t) => $t['b'] === $b && $t['kind'] === 'win' && $t['sev'] !== 'certified'));
     $bri = count(array_filter($plan, fn($t) => $t['b'] === $b && $t['kind'] === 'bridge'));
-    $oth = count(array_filter($plan, fn($t) => $t['b'] === $b && (in_array($t['kind'], ['succeeded', 'appointed'], true) || $t['sev'] === 'certified')));
+    $oth = count(array_filter($plan, fn($t) => $t['b'] === $b && (in_array($t['kind'], ['succeeded', 'appointed', 'roster'], true) || $t['sev'] === 'certified')));
     $all = count(array_filter($plan, fn($t) => $t['b'] === $b));
     $ppl = count(array_filter($newP, fn($np) => array_key_first($np['bodies']) === $b));
     $lnk = count(array_filter($links, fn($l) => $l[2] === $b));
@@ -462,7 +685,7 @@ foreach ($ALLB as $b => $lab) {
     printf("   %-16s %5d %8d %8d %7d %7d %7d %7d %6d %6d\n", $lab, ...$row);
 }
 printf("   %-16s %5d %8d %8d %7d %7d %7d %7d %6d %6d\n", 'TOTAL', ...$tot);
-echo '   wins: every candidacy marked elected, plus the 2022 Hart Area 2 contest (#15). covered: inside an existing holding (#8). derived: a win\'s own term. bridge: #5. other: the County-certified Hart 2022 term (#15), the four SB 634 founding terms (#11) and Petersen\'s appointment (#10). people: counted under the body of their first record.' . PHP_EOL;
+echo '   wins: every candidacy marked elected, plus the 2022 Hart Area 2 contest (#15). covered: inside an existing holding (#8). derived: a win\'s own term. bridge: #5. other: the County-certified Hart 2022 term (#15), the four SB 634 founding terms (#11), Petersen\'s appointment (#10) and Hart terms from the roster alone. people: counted under the body of their first record.' . PHP_EOL;
 $hw = array_count_values(array_map(fn($t) => $t['how'], $plan));
 echo '   howEnded of the holdings to create: ' . implode(', ', array_map(fn($k, $v) => "$k $v", array_keys($hw), $hw)) . PHP_EOL;
 
@@ -473,6 +696,11 @@ foreach ($plan as $t) {
         $t['se'], $t['ee'] ?? '(blank)', $t['sel'], $t['how'], $t['sev'], $t['eev'] ?? '-', $t['kind'] === 'win' ? '' : $t['kind']);
 }
 echo '   (* a person to be created)' . PHP_EOL;
+echo PHP_EOL . 'HART FOOTNOTES, as they would be written:' . PHP_EOL;
+foreach ($plan as $t) { if ($t['b'] !== 21588) { continue; }
+    echo '   ' . $whoName($t['who']) . ' ' . $t['se'] . ' to ' . ($t['ee'] ?: '(blank)') . ' [' . $t['kind'] . ']' . PHP_EOL;
+    foreach ($t['notes'] as $i => $n) { echo '      ' . ($i + 1) . '. ' . $n . PHP_EOL; }
+}
 echo PHP_EOL . 'SKIPPED, inside an existing holding (#8): ' . count($skipped) . PHP_EOL;
 foreach ($skipped as $t) { echo '   ' . $short($t['b']) . str_pad($whoName($t['who']), 24) . str_pad($t['se'], 10) . " inside #{$t['by']}" . PHP_EOL; }
 if ($exists) { echo 'ALREADY HELD (same start): ' . implode('; ', array_map(fn($t) => $whoName($t['who']) . ' ' . $t['se'] . " #{$t['by']}", $exists)) . PHP_EOL; }
@@ -552,15 +780,56 @@ foreach ($research as [$n, $b, $y]) {
 echo '   Incumbents at the first election in these records (1995), earlier service not dated; not appointments by inference, so not on the list: ' . implode('; ', array_map(fn($r) => $r[0] . ' (' . $ALLB[$r[1]] . ')', $before)) . PHP_EOL;
 echo PHP_EOL . 'FOLLOW-UPS: an election and candidacy records for Hart Trustee Area 2, November 8, 2022 (BOB JENSEN JR 11,638, ANDREW TABAN 5,736), which CEDA omits; this script makes only the holding.' . PHP_EOL;
 
+/* (5) Hart from the roster */
+echo PHP_EOL . '(5) HART FROM LEON WORDEN\'S ROSTER (hartschoolboardmembers.htm, sha256 ' . substr($R['meta']['sha256'] ?? '?', 0, 16) . '..., manifest matched: ' . json_encode($R['meta']['manifest_matched'] ?? null)
+    . '; ' . ($R['meta']['board_count'] ?? 0) . ' boards, 1945 to 12-11-2013 to 11-30-2014; ' . ($R['meta']['member_count'] ?? 0) . ' members and ' . ($R['meta']['student_member_count'] ?? 0) . ' student members)' . PHP_EOL;
+echo '   Linked to a person (' . count($rLink) . '): ' . implode('; ', array_map(fn($mk, $w) => $rm[$mk]['printings'][0] . ' = ' . (is_string($w) ? $whoName($w) . ' (new)' : "#$w " . $whoName($w)), array_keys($rLink), $rLink)) . PHP_EOL;
+$hp = array_filter($plan, fn($t) => $t['b'] === $HART);
+echo PHP_EOL . '   HART TERMS TO CREATE BY EVIDENCE (' . count($hp) . '; start/end):' . PHP_EOL;
+$ev = []; foreach ($hp as $t) { $cls = $t['sev'] === 'certified' ? 'certified' : (($t['sev'] === 'roster' && $t['eev'] === 'roster') ? (isset($t['rosterAgree']) ? 'roster' : 'page') : 'derived');
+    $ev[$cls][] = $whoName($t['who']) . ' ' . $t['se'] . ' (' . $t['kind'] . ', ' . $t['sev'] . '/' . ($t['eev'] ?? '-') . (isset($t['rosterAgree']) ? ', roster: ' . $t['rosterAgree'] : '') . ')'; }
+foreach (['roster' => 'roster: Leon Worden\'s roster gives start and end (agreeing with CEDA, or the roster alone)', 'page' => 'roster: CEDA\'s win, and the district\'s own board page gives the end (after the roster stops)', 'derived' => 'derived: an end (or more) inferred from statute and the next election, or past the roster', 'certified' => 'certified: the County\'s statement'] as $k => $lab) {
+    echo '   ' . $lab . ': ' . count($ev[$k] ?? []) . PHP_EOL . '      ' . implode(PHP_EOL . '      ', $ev[$k] ?? []) . PHP_EOL;
+}
+echo PHP_EOL . '   CEDA TERMS THE ROSTER SPEAKS TO (' . count($hartAgree) . '; "both" = start and end agree, "start" = the roster stops or the term was cut at a CEDA win):' . PHP_EOL . '      ' . implode(PHP_EOL . '      ', $hartAgree) . PHP_EOL;
+echo PHP_EOL . '   ROSTER-ONLY TERMS (' . count($rosterOnly) . '), service CEDA lacks; inside an existing tenure = skipped (#8):' . PHP_EOL;
+foreach ($rosterOnly as $t) { $cov = $coveredBy($t['who'], $t['b'], $t['se']);
+    printf("      %-24s %-10s -> %-10s %-9s %-9s start %-6s end %-7s %s\n", $whoName($t['who']) . (is_string($t['who']) ? '*' : ''), $t['se'], $t['ee'], $t['sel'] ?? '(blank)', $t['how'], $t['sev'], $t['eev'], $cov ? "skipped, inside #$cov" : 'TO CREATE'); }
+echo PHP_EOL . '   DISAGREEMENTS, terms (' . count($hartDis) . '):' . ($hartDis ? PHP_EOL . '      ' . implode(PHP_EOL . '      ', $hartDis) : ' none') . PHP_EOL;
+echo '   DISAGREEMENTS AND GAPS, candidacies and roster notes 1995 to 2013 (' . count($candDis) . '; ' . $candAgree . ' checks agree):' . ($candDis ? PHP_EOL . '      ' . implode(PHP_EOL . '      ', $candDis) : ' none') . PHP_EOL;
+echo PHP_EOL . '   ROSTER AGAINST EXISTING HART HOLDINGS (#8 keeps them):' . PHP_EOL . '      ' . implode(PHP_EOL . '      ', $tenureCmp) . PHP_EOL;
+echo PHP_EOL . '   ROSTER NAMES MATCHING AN EXISTING PERSON WITH NO HART TIE, not linked: ' . ($rNameHit ? implode('; ', array_map(fn($h) => $h[0]['printings'][0] . ' = #' . $h[1] . ' ' . $whoName($h[1]), $rNameHit)) : 'none') . PHP_EOL;
+$rv = [];
+foreach ($rm as $mk => $m) { if (isset($rLink[$mk])) { continue; }
+    foreach ($m['printings'] as $pn) { $a = $parts($pn); if (!$a) { continue; }
+        foreach ($allPeople as $pid => $ap) { foreach ($ap['names'] as $nn) { if ($why = $verdict($a, $parts($nn))) { $rv["$mk|$pid"] = "$pn and #$pid {$ap['title']}: $why"; break; } } } } }
+echo '   ROSTER NAMES THAT MIGHT BE AN EXISTING PERSON (name-variant check), not linked: ' . ($rv ? PHP_EOL . '      ' . implode(PHP_EOL . '      ', $rv) : 'none') . PHP_EOL;
+$fmtM = fn($r) => $r[0]['printings'][0] . ' (' . $r[1] . ' to ' . ($r[2] ?? 'the roster\'s end') . ')';
+echo PHP_EOL . '   NOT CREATED, no record (Nathan\'s call):' . PHP_EOL;
+$pre = array_filter($rNoRec['pre'], fn($r) => ($r[2] ?? '9999') < '1995-12');
+$span = array_filter($rNoRec['pre'], fn($r) => ($r[2] ?? '9999') >= '1995-12');
+echo '      pre-1995-only members: ' . count($pre) . PHP_EOL . '         ' . implode('; ', array_map($fmtM, $pre)) . PHP_EOL;
+echo '      served before and after 1995 but won no recorded election from 1995: ' . count($span) . ': ' . implode('; ', array_map($fmtM, $span)) . PHP_EOL;
+echo '      appointed after 1995, no election win: ' . count($rNoRec['post']) . ': ' . implode('; ', array_map($fmtM, $rNoRec['post'])) . PHP_EOL;
+
 /* HELD BODIES (Nathan, 3 October 2026: "Hold Hart. Add the switch, apply the other six, then rebuild Hart
    from the roster"). Nothing is written for a held body: its holdings, the candidacies on it, and any new
-   person whose wins are all on it wait. Hart waits for hartschoolboardmembers.htm, the board's own roster. */
-$HOLD_BODIES = [21588];
+   person whose wins are all on it wait. $HOLD_BODIES and $ONLY_BODIES are set at the top. */
+echo PHP_EOL . 'IDEMPOTENCE, the bodies applied on 3 October: ' . count(array_filter($plan, fn($t) => $t['b'] !== $HART)) . ' holdings, '
+    . count(array_filter($links, fn($l) => $l[2] !== $HART)) . ' candidacy links, ' . count(array_filter($newP, fn($np) => (bool)array_diff(array_keys($np['bodies']), [$HART]))) . ' people and '
+    . count($fixes) . ' corrections still to write (all should be 0); ' . count(array_filter(array_merge($exists, $skipped), fn($t) => $t['b'] !== $HART)) . ' of their terms found already held or covered.' . PHP_EOL;
+if ($ONLY_BODIES) {
+    $plan = array_values(array_filter($plan, fn($t) => in_array($t['b'], $ONLY_BODIES, true)));
+    $links = array_values(array_filter($links, fn($l) => in_array($l[2], $ONLY_BODIES, true)));
+    $newP = array_filter($newP, fn($np) => (bool)array_intersect(array_keys($np['bodies']), $ONLY_BODIES));
+    if (!in_array($SCVW, $ONLY_BODIES, true)) { $fixes = []; }
+    echo 'ONLY: ' . implode(', ', array_map(fn($b) => $ALLB[$b], $ONLY_BODIES)) . '. Writing ' . count($plan) . ' holdings, ' . count($newP) . ' people, ' . count($links) . ' candidacy links.' . PHP_EOL;
+}
 if ($HOLD_BODIES) {
     $plan = array_values(array_filter($plan, fn($t) => !in_array($t['b'], $HOLD_BODIES, true)));
     $links = array_values(array_filter($links, fn($l) => !in_array($l[2], $HOLD_BODIES, true)));
     $newP = array_filter($newP, fn($np) => (bool)array_diff(array_keys($np['bodies']), $HOLD_BODIES));
-    $links = array_values(array_filter($links, fn($l) => isset($newP[$l[1]])));
+    $links = array_values(array_filter($links, fn($l) => isset($newP[$l[1]]) || isset($l[3])));
     echo PHP_EOL . 'HELD, not written this run: ' . implode(', ', array_map(fn($b) => $ALLB[$b], $HOLD_BODIES)) . '. Writing ' . count($plan) . ' holdings, ' . count($newP) . ' people, ' . count($links) . ' candidacy links.' . PHP_EOL;
     $byB = []; foreach ($plan as $t) { $byB[$ALLB[$t['b']]] = ($byB[$ALLB[$t['b']]] ?? 0) + 1; } echo '   holdings by body: ' . json_encode($byB) . PHP_EOL;
 }
@@ -583,9 +852,9 @@ try {
         $ids["new:$k"] = $p->id;
     }
     $pidOf = fn($w) => is_string($w) ? $ids[$w] : $w;
-    foreach ($links as [$cid, $k]) {
+    foreach ($links as $l) { [$cid, $k] = $l;
         $c = $get($cid); if ($c->candidacyPerson->status(null)->ids()) { continue; }
-        $c->setFieldValue('candidacyPerson', [$ids["new:$k"]]);
+        $c->setFieldValue('candidacyPerson', [$l[3] ?? $ids["new:$k"]]);
         if (!$elements->saveElement($c)) { throw new \RuntimeException("candidacy #$cid"); }
     }
     $os = $svc->getSectionByHandle('officeHoldings'); $ot = $svc->getEntryTypeByHandle('officeHolding');
@@ -615,7 +884,7 @@ try {
 $short = [];
 foreach ($plan as $t) { $pid = $pidOf($t['who']);
     if (!Entry::find()->section('officeHoldings')->status(null)->relatedTo(['and', ['targetElement' => $pid, 'field' => 'holdingPerson'], ['targetElement' => $t['b'], 'field' => 'holdingBody']])->termStartEdtf($t['se'])->exists()) { $short[] = $whoName($t['who']) . ' ' . $t['se']; } }
-foreach ($links as [$cid, $k]) { if (($get($cid)->candidacyPerson->status(null)->ids()[0] ?? null) !== $ids["new:$k"]) { $short[] = "link #$cid"; } }
+foreach ($links as $l) { [$cid, $k] = $l; if (($get($cid)->candidacyPerson->status(null)->ids()[0] ?? null) !== ($l[3] ?? $ids["new:$k"])) { $short[] = "link #$cid"; } }
 if ($fixes && $get(28219)->termEndEdtf !== '2023-01') { $short[] = 'Plambeck end'; }
 echo 'READ-BACK ' . ($short ? 'SHORT: ' . implode('; ', $short) : 'OK: ' . count($plan) . ' holdings, ' . count($newP) . ' people, ' . count($links) . ' links, ' . count($fixes) . ' correction') . PHP_EOL;
 $applyLog = require "$root/scripts/import/_apply_log.php";

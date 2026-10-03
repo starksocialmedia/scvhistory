@@ -1,0 +1,393 @@
+= array:1 [
+    0 => 21588
+  ]
+
+Output:
+DRY RUN
+==============================================================================
+
+(1) PER BODY
+   body              wins  covered  derived  bridge   other   TOTAL  people  links  fixes
+   Hart                34       15       22       1       8      31       5     10      0
+   Saugus Union        25       32        0       0       0       0       0      0      0
+   Newhall             21       21        0       0       0       0       0      0      0
+   Sulphur Springs     14       18        0       0       0       0       0      0      0
+   Castaic Union       20       20        0       0       0       0       0      0      0
+   CLWA                 4        4        0       0       0       0       0      0      0
+   SCV Water           15       20        0       0       0       0       0      0      0
+   TOTAL              133      130       22       1       8      31       5     10      0
+   wins: every candidacy marked elected, plus the 2022 Hart Area 2 contest (#15). covered: inside an existing holding (#8). derived: a win's own term. bridge: #5. other: the County-certified Hart 2022 term (#15), the four SB 634 founding terms (#11), Petersen's appointment (#10) and Hart terms from the roster alone. people: counted under the body of their first record.
+   howEnded of the holdings to create: serving 3, unknown 2, expired 9, reelected 17
+
+HOLDINGS TO CREATE (31)
+   Hart             Bob Jensen               at large  2009-12    -> 2013-12     elected    reelected  start roster    end roster   
+   Hart             Bob Jensen               at large  2013-12    -> 2018-12     appointed  reelected  start roster    end derived  bridge
+   Hart             Bob Jensen               Area 2    2018-12    -> 2022-12     elected    reelected  start roster    end derived  
+   Hart             Bob Jensen               Area 2    2022-12    -> 2026-12     elected    serving    start certified end derived  
+   Hart             Cherise Moore*           Area 3    2022-12    -> 2026-12     elected    serving    start roster    end derived  
+   Hart             Connie Worden            at large  1974-12-01 -> 1979-12                unknown    start roster    end roster   roster
+   Hart             Dennis King              at large  1985-12    -> 1989-12     elected    reelected  start roster    end roster   roster
+   Hart             Dennis King              at large  1989-12    -> 1993-12     elected    expired    start roster    end roster   roster
+   Hart             Dennis King              at large  1997-12    -> 2001-12     elected    reelected  start roster    end roster   
+   Hart             Dennis King              at large  2001-12    -> 2005-12     elected    reelected  start roster    end roster   
+   Hart             Dennis King              at large  2005-12    -> 2009-12     elected    expired    start roster    end roster   
+   Hart             Erin Wilson*             Area 4    2024-12    -> 2028-12     elected    serving    start roster    end roster   
+   Hart             George Aliano*           at large  1994       -> 1995-12     appointed  reelected  start roster    end derived  roster
+   Hart             George Aliano*           at large  1995-12    -> 1997-12     elected    expired    start roster    end roster   
+   Hart             James Webb*              Area 4    2020-12    -> (blank)     elected    unknown    start roster    end -        
+   Hart             John Hassel*             at large  1991-12    -> 1995-12     elected    reelected  start roster    end roster   roster
+   Hart             John Hassel*             at large  1995-12    -> 1999-12     elected    expired    start roster    end roster   
+   Hart             Linda Storli             Area 1    2015-12    -> 2020-12     elected    reelected  start roster    end derived  
+   Hart             Linda Storli             Area 1    2020-12    -> 2024-12     elected    expired    start roster    end derived  
+   Hart             Patricia Hanrion         at large  1993-12    -> 1997-12     elected    reelected  start roster    end roster   roster
+   Hart             Patricia Hanrion         at large  1997-12    -> 2001-12     elected    reelected  start roster    end roster   
+   Hart             Patricia Hanrion         at large  2001-12    -> 2005-12     elected    reelected  start roster    end roster   
+   Hart             Patricia Hanrion         at large  2005-12    -> 2009-12     elected    expired    start roster    end roster   
+   Hart             Paula Olivares           at large  1991-12    -> 1995-12     elected    reelected  start roster    end roster   roster
+   Hart             Paula Olivares           at large  1995-12    -> 1999-12     elected    expired    start roster    end roster   
+   Hart             Philip Ellis Jr.         at large  1999-12    -> 2003-12     elected    expired    start roster    end roster   
+   Hart             Steven Sturgeon          at large  1999-12    -> 2003-12     elected    reelected  start roster    end roster   
+   Hart             Steven Sturgeon          at large  2003-12    -> 2007-12     elected    reelected  start roster    end roster   
+   Hart             Steven Sturgeon          at large  2007-12    -> 2011-12     elected    reelected  start roster    end roster   
+   Hart             Steven Sturgeon          at large  2011-12    -> 2015-12     elected    reelected  start roster    end derived  
+   Hart             Steven Sturgeon          Area 4    2015-12    -> 2020-12     elected    expired    start roster    end derived  
+   (* a person to be created)
+
+HART FOOTNOTES, as they would be written:
+   Bob Jensen 2009-12 to 2013-12 [win]
+      1. Elected on November 3, 2009, first of 5 candidates for 3 seats at large, with 8,720 votes (California Elections Data Archive (CEDA), CEDA2009Data.xls, row 1511, a compilation of the County's returns).
+      2. No contest for the seat is recorded at the next election, in 2013: Bob Jensen continued in it, standing as the incumbent at the election of November 6, 2018.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Bob Jensen on the board of 12-9-2009 to 11-30-2010 as "Robert N. Jensen Jr., Asst. Clerk (elected 2009)", and, after the next election, on the board of 12-11-2013 to 11-30-2014 as "Robert N. Jensen Jr., Clerk {relected/unopposed 2013)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+      5. The election returns compiled by CEDA mark Bob Jensen as the incumbent at this election; Leon Worden's roster of the Hart board does not list him on the board then sitting, 12-10-2008 to 11-30-2009 (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Bob Jensen 2013-12 to 2018-12 [bridge]
+      1. No contest for the seat is recorded at the election of 2013: the seat was filled without a vote. Elections Code, section 10515: where no more candidates file than there are seats, the Board of Supervisors appoints them, and they serve exactly as if elected. The County calls this appointment in lieu of election.
+      2. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      3. Leon Worden's roster of the Hart board lists Bob Jensen on the board of 12-11-2013 to 11-30-2014 as "Robert N. Jensen Jr., Clerk {relected/unopposed 2013)", the last board it prints (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Bob Jensen 2018-12 to 2022-12 [win]
+      1. Elected on November 6, 2018, first of 3 candidates for Trustee Area 2, with 8,874 votes (California Elections Data Archive (CEDA), CEDA2018Data.xlsx, row 4958, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 8, 2022, which Bob Jensen won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Bob Jensen 2022-12 to 2026-12 [win]
+      1. Elected on November 8, 2022, first of 2 candidates for Trustee Area 2. County of Los Angeles, Registrar-Recorder/County Clerk, Statement of Votes Cast, General Election, November 8, 2022: Wm. S. Hart Union High, Trustee Area 2 (https://content.lavote.gov/docs/rrcc/svc/4300_svc_excel.zip): Bob Jensen Jr 11,638, Andrew Taban 5,736, of 21,103 ballots cast in the area. The California Elections Data Archive (CEDA) omits this contest.
+      2. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Cherise Moore 2022-12 to 2026-12 [win]
+      1. Elected on November 8, 2022, first of 2 candidates for Trustee Area 3, with 7,355 votes (California Elections Data Archive (CEDA), CEDA2022Data.xlsx, row 5279, a compilation of the County's returns).
+      2. Cherise Moore stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Connie Worden 1974-12-01 to 1979-12 [roster]
+      1. Leon Worden's roster of the Hart board lists Connie Worden on the board of 7-1-1974 to 6-30-1975 as "Connie Worden (12-1-1974)", and last on the board of 7-19-1978 to 11-1979 as "Connie Worden"; the next board, 12-4-1979 to 11-30-1981, does not list Connie Worden (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Dennis King 1985-12 to 1989-12 [roster]
+      1. Leon Worden's roster of the Hart board lists Dennis King on the board of 12-3-1985 to 11-30-1986 as "Dennis V. King (elected 1985)", and, after the next election, on the board of 12-5-1989 to 11-30-1990 as "Dennis V. King (reelected 1989)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+      2. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Dennis King 1989-12 to 1993-12 [roster]
+      1. Leon Worden's roster of the Hart board lists Dennis King on the board of 12-5-1989 to 11-30-1990 as "Dennis V. King (reelected 1989)", and last on the board of 12-9-1992 to 11-30-1993 as "Dennis V. King (did not seek reelection in 1993)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+      2. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Dennis King 1997-12 to 2001-12 [win]
+      1. Elected on November 4, 1997, third of 4 candidates for 3 seats at large, with 4,272 votes (California Elections Data Archive (CEDA), CEDA1997Data.xls, row 1390, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 6, 2001, which Dennis King won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Dennis King on the board of 12-17-1997 to 11-30-1998 as "Dennis V. King, Asst. Clerk (elected 1997)", and, after the next election, on the board of 12-12-2001 to 11-30-2002 as "Dennis V. King (reelected 2001)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Dennis King 2001-12 to 2005-12 [win]
+      1. Elected on November 6, 2001, first of 6 candidates for 3 seats at large, with 11,335 votes (California Elections Data Archive (CEDA), CEDA2001Data.xls, row 1527, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 8, 2005, which Dennis King won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Dennis King on the board of 12-12-2001 to 11-30-2002 as "Dennis V. King (reelected 2001)", and, after the next election, on the board of 12-14-2005 to 11-30-2006 as "Dennis V. King (reelected 2005)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Dennis King 2005-12 to 2009-12 [win]
+      1. Elected on November 8, 2005, third of 8 candidates for 3 seats at large, with 17,261 votes (California Elections Data Archive (CEDA), CEDA2005Data.xls, row 1721, a compilation of the County's returns).
+      2. Dennis King did not stand at the next election for the seat, on November 3, 2009.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Dennis King on the board of 12-14-2005 to 11-30-2006 as "Dennis V. King (reelected 2005)", and last on the board of 12-10-2008 to 11-30-2009 as "Dennis V. King, Clerk (did not seek reelection in 2009)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Erin Wilson 2024-12 to 2028-12 [win]
+      1. Elected on November 5, 2024, first of 2 candidates for Trustee Area 4, with 14,837 votes (California Elections Data Archive (CEDA), CEDA2024Data.xlsx, row 2189, a compilation of the County's returns).
+      2. Erin Wilson stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.
+      3. The district's board page gives this term as 2024 to 2028 (William S. Hart Union High School District, "Governing Board Member Info", https://www.hartdistrict.org/governing-board, read 1 October 2026).
+      4. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   George Aliano 1994 to 1995-12 [roster]
+      1. Leon Worden's roster of the Hart board lists George Aliano on the board of 12-8-1993 to 11-30-1994 as "George Aliano (appointed to complete Warren's unexpired term)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+      2. The roster prints no date for the appointment, which completed the term of the member it lists as "Peter C. Warren (elected 1993, resigned 4-6-1994)"; the year given here is that resignation's.
+      3. The appointment ran to the election of November 1995, at which George Aliano won the seat.
+   George Aliano 1995-12 to 1997-12 [win]
+      1. Elected on November 7, 1995, first of 2 candidates for the seat at large (a short term, the remainder of a vacant term), with 4,659 votes (California Elections Data Archive (CEDA), CEDA1995Data.xls, row 1426, a compilation of the County's returns).
+      2. George Aliano did not stand at the next election for the seat, on November 4, 1997.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists George Aliano on the board of 12-13-1995 to 11-30-1996 as "George Aliano, Asst. Clerk", and last on the board of 12-11-1996 to 11-30-1997 as "George Aliano, Clerk (did not seek reelection in 1997)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   James Webb 2020-12 to (blank) [win]
+      1. Elected on November 3, 2020, first of 2 candidates for Trustee Area 4, with 14,198 votes (California Elections Data Archive (CEDA), CEDA2020Data.xlsx, row 3659, a compilation of the County's returns).
+      2. Erin Wilson stood for Trustee Area 4 at the election of November 5, 2024 as the incumbent (California Elections Data Archive (CEDA), CEDA2024Data.xlsx), so this term ended before then; when, and how, is not recorded.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   John Hassel 1991-12 to 1995-12 [roster]
+      1. Leon Worden's roster of the Hart board lists John Hassel on the board of 12-9-1991 to 11-30-1992 as "John R. Hassel (elected 1991)", and, after the next election, on the board of 12-13-1995 to 11-30-1996 as "John R. Hassel (reelected 1995)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+      2. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   John Hassel 1995-12 to 1999-12 [win]
+      1. Elected on November 7, 1995, first of 4 candidates for 2 seats at large, with 4,323 votes (California Elections Data Archive (CEDA), CEDA1995Data.xls, row 1422, a compilation of the County's returns).
+      2. John Hassel did not stand at the next election for the seat, on November 2, 1999.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists John Hassel on the board of 12-13-1995 to 11-30-1996 as "John R. Hassel (reelected 1995)", and last on the board of 12-16-1998 to 11-30-1999 as "John R. Hassel, President (did not seek reelection in 1999)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Linda Storli 2015-12 to 2020-12 [win]
+      1. Elected on November 3, 2015, first of 2 candidates for Trustee Area 1, with 1,428 votes (California Elections Data Archive (CEDA), CEDA2015Data.xlsx, row 1120, a compilation of the County's returns).
+      2. The district moved its elections from odd to even years: this term, due to end in December 2019, ran to December 2020, the next election for the seat.
+      3. The seat was next filled at the election of November 3, 2020, which Linda Storli won.
+      4. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Linda Storli 2020-12 to 2024-12 [win]
+      1. Elected on November 3, 2020, first of 3 candidates for Trustee Area 1, with 10,140 votes (California Elections Data Archive (CEDA), CEDA2020Data.xlsx, row 6270, a compilation of the County's returns).
+      2. Linda Storli stood again at the election of November 5, 2024 and lost.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Patricia Hanrion 1993-12 to 1997-12 [roster]
+      1. Leon Worden's roster of the Hart board lists Patricia Hanrion on the board of 12-8-1993 to 11-30-1994 as "Patricia A. Hanrion (elected 1993)", and, after the next election, on the board of 12-17-1997 to 11-30-1998 as "Patricia A. Hanrion (reelected 1997)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+      2. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Patricia Hanrion 1997-12 to 2001-12 [win]
+      1. Elected on November 4, 1997, second of 4 candidates for 3 seats at large, with 5,102 votes (California Elections Data Archive (CEDA), CEDA1997Data.xls, row 1389, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 6, 2001, which Patricia Hanrion won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Patricia Hanrion on the board of 12-17-1997 to 11-30-1998 as "Patricia A. Hanrion (reelected 1997)", and, after the next election, on the board of 12-12-2001 to 11-30-2002 as "Patricia A. Hanrion, President (reelected 2001)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Patricia Hanrion 2001-12 to 2005-12 [win]
+      1. Elected on November 6, 2001, third of 6 candidates for 3 seats at large, with 10,102 votes (California Elections Data Archive (CEDA), CEDA2001Data.xls, row 1525, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 8, 2005, which Patricia Hanrion won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Patricia Hanrion on the board of 12-12-2001 to 11-30-2002 as "Patricia A. Hanrion, President (reelected 2001)", and, after the next election, on the board of 12-14-2005 to 11-30-2006 as "Patricia A. Hanrion (reelected 2005)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Patricia Hanrion 2005-12 to 2009-12 [win]
+      1. Elected on November 8, 2005, first of 8 candidates for 3 seats at large, with 18,841 votes (California Elections Data Archive (CEDA), CEDA2005Data.xls, row 1718, a compilation of the County's returns).
+      2. Patricia Hanrion did not stand at the next election for the seat, on November 3, 2009.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Patricia Hanrion on the board of 12-14-2005 to 11-30-2006 as "Patricia A. Hanrion (reelected 2005)", and last on the board of 12-10-2008 to 11-30-2009 as "Patricia A. Hanrion (did not seek reelection in 2009)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Paula Olivares 1991-12 to 1995-12 [roster]
+      1. Leon Worden's roster of the Hart board lists Paula Olivares on the board of 12-9-1991 to 11-30-1992 as "Paula E. Olivares, Asst. Clerk (elected 1991)", and, after the next election, on the board of 12-13-1995 to 11-30-1996 as "Paula E. Olivares (reelected 1995)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+      2. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+   Paula Olivares 1995-12 to 1999-12 [win]
+      1. Elected on November 7, 1995, second of 4 candidates for 2 seats at large, with 3,628 votes (California Elections Data Archive (CEDA), CEDA1995Data.xls, row 1423, a compilation of the County's returns).
+      2. Paula Olivares did not stand at the next election for the seat, on November 2, 1999.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Paula Olivares on the board of 12-13-1995 to 11-30-1996 as "Paula E. Olivares (reelected 1995)", and last on the board of 12-16-1998 to 11-30-1999 as "Paula E. Olivares (did not seek reelection in 1999)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Philip Ellis Jr. 1999-12 to 2003-12 [win]
+      1. Elected on November 2, 1999, first of 7 candidates for 2 seats at large, with 7,007 votes (California Elections Data Archive (CEDA), CEDA1999Data.xls, row 1397, a compilation of the County's returns).
+      2. Philip Ellis Jr. stood again at the election of November 4, 2003 and lost.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Philip Ellis Jr. on the board of 12-7-1999 to 11-30-2000 as "Philip C. Ellis Jr. (elected 1999)", and last on the board of 12-18-2002 to 11-30-2003 as "Philip C. Ellis Jr., President (defeated 2003)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Steven Sturgeon 1999-12 to 2003-12 [win]
+      1. Elected on November 2, 1999, second of 7 candidates for 2 seats at large, with 4,787 votes (California Elections Data Archive (CEDA), CEDA1999Data.xls, row 1401, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 4, 2003, which Steven Sturgeon won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Steven Sturgeon on the board of 12-7-1999 to 11-30-2000 as "Steven M. Sturgeon (elected 1999)", and, after the next election, on the board of 12-17-2003 to 11-30-2004 as "Steven M. Sturgeon, President (reelected 2003)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Steven Sturgeon 2003-12 to 2007-12 [win]
+      1. Elected on November 4, 2003, first of 5 candidates for 2 seats at large, with 4,963 votes (California Elections Data Archive (CEDA), CEDA2003Data.xls, row 1346, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 6, 2007, which Steven Sturgeon won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Steven Sturgeon on the board of 12-17-2003 to 11-30-2004 as "Steven M. Sturgeon, President (reelected 2003)", and, after the next election, on the board of 12-12-2007 to 11-30-2008 as "Steven M. Sturgeon, Clerk (reelected 2007)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Steven Sturgeon 2007-12 to 2011-12 [win]
+      1. Elected on November 6, 2007, second of 3 candidates for 2 seats at large, with 7,182 votes (California Elections Data Archive (CEDA), CEDA2007Data.xls, row 1450, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 8, 2011, which Steven Sturgeon won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Steven Sturgeon on the board of 12-12-2007 to 11-30-2008 as "Steven M. Sturgeon, Clerk (reelected 2007)", and, after the next election, on the board of 12-14-2011 to 11-30-2012 as "Steven M. Sturgeon (reelected 2011)" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Steven Sturgeon 2011-12 to 2015-12 [win]
+      1. Elected on November 8, 2011, second of 3 candidates for 2 seats at large, with 7,065 votes (California Elections Data Archive (CEDA), CEDA2011Data.xlsx, row 1268, a compilation of the County's returns).
+      2. The seat was next filled at the election of November 3, 2015, which Steven Sturgeon won.
+      3. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+      4. Leon Worden's roster of the Hart board lists Steven Sturgeon on the board of 12-14-2011 to 11-30-2012 as "Steven M. Sturgeon (reelected 2011)", and on every board after it to the last it prints, 12-11-2013 to 11-30-2014 (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).
+   Steven Sturgeon 2015-12 to 2020-12 [win]
+      1. Elected on November 3, 2015, first of 2 candidates for Trustee Area 4, with 1,570 votes (California Elections Data Archive (CEDA), CEDA2015Data.xlsx, row 1122, a compilation of the County's returns).
+      2. The district moved its elections from odd to even years: this term, due to end in December 2019, ran to December 2020, the next election for the seat.
+      3. Steven Sturgeon stood again at the election of November 3, 2020 and lost.
+      4. California Education Code, section 5017: a board member elected at a regular election holds office "for a term of four years commencing on the second Friday in December next succeeding his or her election" (the first Friday until AB 2449 took effect in 2019).
+
+SKIPPED, inside an existing holding (#8): 44
+   SCV Water       Gary Martin             2025-01    inside #28227
+   SCV Water       Ed Colley               2021-01    inside #28223
+   SCV Water       Gary Martin             2021-01    inside #28227
+   Hart            Aakash Ahuja            2024-12    inside #26969
+   Hart            Joe Messina             2022-12    inside #28245
+   Hart            Joe Messina             2018-12    inside #28245
+   Hart            Gloria Mercado-Fortine  2011-12    inside #28257
+   Hart            Paul Strickland         2009-12    inside #28235
+   Hart            Joe Messina             2013-12    inside #28245
+   Hart            Gloria Mercado-Fortine  2007-12    inside #28257
+   Hart            Paul Strickland         2005-12    inside #28235
+   Sulphur Springs Kerry Clegg             2013-12    inside #28253
+   Sulphur Springs Rochelle Weinstein      2011-12    inside #28243
+   Sulphur Springs Rochelle Weinstein      2007-12    inside #28243
+   Sulphur Springs Kerry Clegg             2001-12    inside #28253
+   Sulphur Springs Kerry Clegg             2005-12    inside #28253
+   Sulphur Springs Kerry Clegg             2009-12    inside #28253
+   Saugus Union    Christopher Trunkey     2022-12    inside #28205
+   Saugus Union    Christopher Trunkey     2018-12    inside #28205
+   Saugus Union    Judy Umeck              2013-12    inside #28229
+   Saugus Union    Paul Nelson De La Cerda 2013-12    inside #28267
+   Saugus Union    Douglas Bryce           2013-12    inside #28231
+   Saugus Union    Rosemarie Koscielny     2011-12    inside #28259
+   Saugus Union    Judy Umeck              2005-12    inside #28229
+   Saugus Union    Judy Umeck              2009-12    inside #28229
+   Saugus Union    Paul Nelson De La Cerda 2009-12    inside #28267
+   Saugus Union    Douglas Bryce           2005-12    inside #28231
+   Saugus Union    Douglas Bryce           2009-12    inside #28231
+   Saugus Union    Rosemarie Koscielny     1999-12    inside #28259
+   Saugus Union    Rosemarie Koscielny     2003-12    inside #28259
+   Saugus Union    Rosemarie Koscielny     2007-12    inside #28259
+   Saugus Union    Judy Umeck              1997-12    inside #28229
+   Saugus Union    Judy Umeck              2001-12    inside #28229
+   Newhall         Suzan Solomon           2024-12    inside #28239
+   Newhall         Christy Smith           2013-12    inside #28208
+   Newhall         Brian Walters           2013-12    inside #28264
+   Newhall         Christy Smith           2009-12    inside #28208
+   Newhall         Michael Shapiro         2007-12    inside #28249
+   Newhall         Suzan Solomon           2007-12    inside #28239
+   Newhall         Suzan Solomon           2003-12    inside #28239
+   Castaic Union   Laura Pearson           2009-12    inside #28241
+   Hart            Buck McKeon             1979-03-06 inside #26978
+   Hart            Buck McKeon             1981-12    inside #26978
+   Hart            Buck McKeon             1985-12    inside #26978
+ALREADY HELD (same start): Kathye Armitage 2025-01 #28431; Ken Cooper 2025-01 #28433; Piotr Orzechowski 2025-01 #28443; Dan Masnada 2025-01 #28423; Kenneth Petersen 2025-01 #28437; Maria Gutzeit 2023-01 #28439; Dirk Marks 2023-01 #28425; Bill Cooper 2023-01 #27422; BJ Atkins 2021-01 #28415; Kathye Armitage 2021-01 #28429; Piotr Orzechowski 2021-01 #28441; Beth Braunstein 2021-01 #28417; Bill Pecsi 2017-01 #28551; E. G. Gladbach 2017-01 #28553; RJ Kelly 2017-01 #28555; Bill Cooper 2017-01 #28549; Joe Messina 2009-12 #28245; Gloria Mercado-Fortine 2003-12 #28257; Paul Strickland 2001-12 #28235; Gloria Mercado-Fortine 1997-12 #28255; Ken Chase 2013-12 #28501; Lori Macdonald 2013-12 #28503; Denis DeFigueiredo 2011-12 #28499; Rochelle Weinstein 2003-12 #28243; Denis DeFigueiredo 2003-12 #28495; Denis DeFigueiredo 2007-12 #28497; Michael Hogan 2001-12 #28509; Sheldon Wigdor 2001-12 #28511; Marilyn Sparks 1999-12 #28507; Teresa Todd 1999-12 #28513; Marilyn Sparks 1995-12 #28505; Paul Strickland 1995-12 #28233; Katherine Cooper 2024-12 #28485; Anna Griese 2022-12 #28471; Cassandra Nicole Love 2022-12 #28473; Matthew Watson 2020-12 #28487; Matthew Watson 2024-12 #28489; Katherine Cooper 2020-12 #28483; Laura Arrowsmith 2018-12 #28237; David Barlavi 2018-12 #28475; Julie Olsen 2016-12 #28481; Stephen Winkler 2011-12 #28493; Paul Nelson De La Cerda 2005-12 #28267; Rose Diaz 1999-12 #28251; Jonathan Myl 1997-12 #28479; Gary Murr 1997-12 #28477; Rosemarie Koscielny 1995-12 #28259; Michael Kennick 1995-12 #28491; Rachelle Haddoak 2022-12 #28463; Donna Robert 2022-12 #28449; Donna Rose 2018-12 #28451; Philip Ellis Jr. 2013-12 #28461; John Michael McGrath 2009-12 #28455; Philip Ellis Jr. 2009-12 #28459; Steven Tannehill 2005-12 #28469; John Michael McGrath 2005-12 #28453; Bob Jensen 2005-12 #28447; Michael Shapiro 2003-12 #28249; Ron Winkler 1999-12 #28467; Suzan Solomon 1999-12 #28239; Ron Winkler 1995-12 #28465; Philip Ellis Jr. 1995-12 #28457; Erik Richardson 2024-12 #28519; Mayreen Burk 2022-12 #28529; Victor Torres 2009-12 #28543; Susan Christopher 2009-12 #28247; Laura Pearson 2005-12 #28241; John Kunak 2005-12 #28525; Angela Marler 2005-12 #28515; Steven Sansone 2003-12 #28537; David Huffaker 2003-12 #28517; Wendy Gingrich 2001-12 #28547; Nora Emmons 2001-12 #28533; John Kunak 2001-12 #28523; Steven Sansone 1999-12 #28535; Tom Caesar 1999-12 #28541; Wendy Gingrich 1997-12 #28545; Nora Emmons 1997-12 #28531; Gregory Ferrier 1997-12 #28521; Tom Caesar 1995-12 #28539; Lester Freeman 1995-12 #28527; Bill Pecsi 2018-01-01 #28421; E. G. Gladbach 2018-01-01 #28427; RJ Kelly 2018-01-01 #28445; Bill Cooper 2018-01-01 #28419; Kenneth Petersen 2022-09 #28435
+
+CORRECTIONS (#2b): none
+
+(2) PEOPLE TO CREATE (5)
+   Cherise Moore           role School Board Member; era Contemporary (2010–present) (Contemporary (2010–present) 6 of 6)
+      2022 Hart Area 3: "Cherise Moore" won
+   Erin Wilson             role School Board Member; era Contemporary (2010–present) (Contemporary (2010–present) 4 of 6)
+      2024 Hart Area 4: "Erin Wilson" won
+   George Aliano           role School Board Member; era Mall & Growth Era (1994–2009) (Mall & Growth Era (1994–2009) 6 of 6)
+      1995 Hart: "George Aliano" won
+   James Webb              role School Board Member; era Contemporary (2010–present) (Contemporary (2010–present) 8 of 8)
+      2020 Hart Area 4: "James Webb" won
+   John Hassel             role School Board Member; era Mall & Growth Era (1994–2009) (Mall & Growth Era (1994–2009) 8 of 11)
+      1995 Hart: "John R. Hassel" won
+      aliases: John R. Hassel
+
+(3) NAME VARIANTS: each new person against every existing person and every other new person
+   Decided as one person (#14), merged: Bob Jensen = Robert N. Jensen, Jr. (the County prints him "BOB JENSEN JR" in its 2022 Hart Area 2 statement, which supports the merge); Philip C. Ellis = Philip C. Ellis, Jr.; J. Micheal McGrath = John Michael McGrath; Denis F. De Figueiredo = Denis F. DeFigueiredo.
+   Cherise Moore           closest existing: #25419 Katherine Cooper (7); #28132 Francisco "Chico" López (8) | closest new: Erin Wilson (10); George Aliano (11)
+   Erin Wilson             closest existing: #315 Christopher Houston Carson (6); #28346 Julie Olsen (7) | closest new: John Hassel (8); George Aliano (9)
+   George Aliano           closest existing: #18747 George Runner (6); #16396 George Caravalho (6) | closest new: Erin Wilson (9); Cherise Moore (11)
+   James Webb              closest existing: #23091 Jason Gibbs (6); #15737 Jan Heidt (7) | closest new: Erin Wilson (10); John Hassel (10)
+   John Hassel             closest existing: #18820 John Lang (5); #2576 John Boston (5) | closest new: Erin Wilson (8); James Webb (10)
+   FLAGGED, might be one person: none
+   Also: SCV Water's 2016 CLWA winner "BILL PECSI" is "William Pecsi" in the CLWA press release of January 10, 2017 (a nickname, one person; the alias is not added without a decision).
+
+(4) RESEARCH LIST (#9): first recorded win as the incumbent, no holding covers the earlier service (8)
+   Erin Wilson             William S. Hart Union High School District  first recorded win 2024. Settle with: the board's minutes, 2020 to 2024 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 2020.
+   Cherise Moore           William S. Hart Union High School District  first recorded win 2022. Settle with: the board's minutes, 2018 to 2022 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 2018.
+   Michael Hogan           Sulphur Springs Union School District       first recorded win 2001. Settle with: the board's minutes, 1997 to 2001 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 1997.
+   Sheldon Wigdor          Sulphur Springs Union School District       first recorded win 2001. Settle with: the board's minutes, 1997 to 2001 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 1997.
+   Julie Olsen             Saugus Union School District                first recorded win 2016. Settle with: the board's minutes, 2012 to 2016 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 2012.
+   Steven Tannehill        Newhall School District                     first recorded win 2005. Settle with: the board's minutes, 2001 to 2005 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 2001.
+   Mayreen Burk            Castaic Union School District               first recorded win 2022. Settle with: the board's minutes, 2018 to 2022 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 2018.
+   Nora Emmons             Castaic Union School District               first recorded win 1997. Settle with: the board's minutes, 1993 to 1997 (the appointment: date, seat, whom it replaced); the County Registrar's list of appointments in lieu of election for 1993.
+   Incumbents at the first election in these records (1995), earlier service not dated; not appointments by inference, so not on the list: Marilyn Sparks (Sulphur Springs); Lester Freeman (Castaic Union)
+
+FOLLOW-UPS: an election and candidacy records for Hart Trustee Area 2, November 8, 2022 (BOB JENSEN JR 11,638, ANDREW TABAN 5,736), which CEDA omits; this script makes only the holding.
+
+(5) HART FROM LEON WORDEN'S ROSTER (hartschoolboardmembers.htm, sha256 fd7447bf36f07946..., manifest matched: true; 58 boards, 1945 to 12-11-2013 to 11-30-2014; 55 members and 30 student members)
+   Linked to a person (13): Connie Worden = #16418 Connie Worden; Howard P. "Buck" McKeon = #18791 Buck McKeon; Dennis V. King = #25439 Dennis King; John R. Hassel = John Hassel (new); Paula E. Olivares = #26597 Paula Olivares; George Aliano = George Aliano (new); Patricia A. Hanrion = #25437 Patricia Hanrion; Gloria E. Mercado-Fortine = #25445 Gloria Mercado-Fortine; Philip C. Ellis Jr. = #28364 Philip Ellis Jr.; Steven M. Sturgeon = #25441 Steven Sturgeon; Paul B. Strickland = #25425 Paul Strickland; Robert N. Jensen Jr. = #28322 Bob Jensen; Joseph V. Messina = #26549 Joe Messina
+
+   HART TERMS TO CREATE BY EVIDENCE (31; start/end):
+   roster: Leon Worden's roster gives start and end (agreeing with CEDA, or the roster alone): 20
+      Bob Jensen 2009-12 (win, roster/roster, roster: both)
+      Connie Worden 1974-12-01 (roster, roster/roster, roster: roster only)
+      Dennis King 1985-12 (roster, roster/roster, roster: roster only)
+      Dennis King 1989-12 (roster, roster/roster, roster: roster only)
+      Dennis King 1997-12 (win, roster/roster, roster: both)
+      Dennis King 2001-12 (win, roster/roster, roster: both)
+      Dennis King 2005-12 (win, roster/roster, roster: both)
+      George Aliano 1995-12 (win, roster/roster, roster: both)
+      John Hassel 1991-12 (roster, roster/roster, roster: roster only)
+      John Hassel 1995-12 (win, roster/roster, roster: both)
+      Patricia Hanrion 1993-12 (roster, roster/roster, roster: roster only)
+      Patricia Hanrion 1997-12 (win, roster/roster, roster: both)
+      Patricia Hanrion 2001-12 (win, roster/roster, roster: both)
+      Patricia Hanrion 2005-12 (win, roster/roster, roster: both)
+      Paula Olivares 1991-12 (roster, roster/roster, roster: roster only)
+      Paula Olivares 1995-12 (win, roster/roster, roster: both)
+      Philip Ellis Jr. 1999-12 (win, roster/roster, roster: both)
+      Steven Sturgeon 1999-12 (win, roster/roster, roster: both)
+      Steven Sturgeon 2003-12 (win, roster/roster, roster: both)
+      Steven Sturgeon 2007-12 (win, roster/roster, roster: both)
+   roster: CEDA's win, and the district's own board page gives the end (after the roster stops): 1
+      Erin Wilson 2024-12 (win, roster/roster)
+   derived: an end (or more) inferred from statute and the next election, or past the roster: 9
+      Bob Jensen 2013-12 (bridge, roster/derived, roster: start)
+      Bob Jensen 2018-12 (win, roster/derived)
+      Cherise Moore 2022-12 (win, roster/derived)
+      George Aliano 1994 (roster, roster/derived, roster: roster only)
+      James Webb 2020-12 (win, roster/-)
+      Linda Storli 2015-12 (win, roster/derived)
+      Linda Storli 2020-12 (win, roster/derived)
+      Steven Sturgeon 2011-12 (win, roster/derived, roster: start)
+      Steven Sturgeon 2015-12 (win, roster/derived)
+   certified: the County's statement: 1
+      Bob Jensen 2022-12 (win, certified/derived)
+
+   CEDA TERMS THE ROSTER SPEAKS TO (25; "both" = start and end agree, "start" = the roster stops or the term was cut at a CEDA win):
+      Gloria Mercado-Fortine   win     2011-12    -> 2015-12    unknown    roster: 2011-12 -> open start
+      Steven Sturgeon          win     2011-12    -> 2015-12    reelected  roster: 2011-12 -> open start
+      Bob Jensen               win     2009-12    -> 2013-12    reelected  roster: 2009-12 -> 2013-12 both
+      Bob Jensen               bridge  2013-12    -> 2018-12    reelected  roster: 2013-12 -> open start
+      Paul Strickland          win     2009-12    -> 2013-12    unknown    roster: 2009-12 -> 2013-05-01 start, end differs
+      Joe Messina              win     2009-12    -> 2013-12    reelected  roster: 2009-12 -> 2013-12 both
+      Joe Messina              bridge  2013-12    -> 2018-12    reelected  roster: 2013-12 -> open start
+      Gloria Mercado-Fortine   win     2007-12    -> 2011-12    reelected  roster: 2007-12 -> 2011-12 both
+      Steven Sturgeon          win     2007-12    -> 2011-12    reelected  roster: 2007-12 -> 2011-12 both
+      Patricia Hanrion         win     2005-12    -> 2009-12    expired    roster: 2005-12 -> 2009-12 both
+      Paul Strickland          win     2005-12    -> 2009-12    reelected  roster: 2005-12 -> 2009-12 both
+      Dennis King              win     2005-12    -> 2009-12    expired    roster: 2005-12 -> 2009-12 both
+      Steven Sturgeon          win     2003-12    -> 2007-12    reelected  roster: 2003-12 -> 2007-12 both
+      Gloria Mercado-Fortine   win     2003-12    -> 2007-12    reelected  roster: 2003-12 -> 2007-12 both
+      Dennis King              win     2001-12    -> 2005-12    reelected  roster: 2001-12 -> 2005-12 both
+      Paul Strickland          win     2001-12    -> 2005-12    reelected  roster: 2001-12 -> 2005-12 both
+      Patricia Hanrion         win     2001-12    -> 2005-12    reelected  roster: 2001-12 -> 2005-12 both
+      Philip Ellis Jr.         win     1999-12    -> 2003-12    expired    roster: 1999-12 -> 2003-12 both
+      Steven Sturgeon          win     1999-12    -> 2003-12    reelected  roster: 1999-12 -> 2003-12 both
+      Gloria Mercado-Fortine   win     1997-12    -> 2001-12    expired    roster: 1997-12 -> 2001-12 both
+      Patricia Hanrion         win     1997-12    -> 2001-12    reelected  roster: 1997-12 -> 2001-12 both
+      Dennis King              win     1997-12    -> 2001-12    reelected  roster: 1997-12 -> 2001-12 both
+      George Aliano            win     1995-12    -> 1997-12    expired    roster: 1995-12 -> 1997-12 both
+      John Hassel              win     1995-12    -> 1999-12    expired    roster: 1995-12 -> 1999-12 both
+      Paula Olivares           win     1995-12    -> 1999-12    expired    roster: 1995-12 -> 1999-12 both
+
+   ROSTER-ONLY TERMS (10), service CEDA lacks; inside an existing tenure = skipped (#8):
+      Connie Worden            1974-12-01 -> 1979-12    (blank)   unknown   start roster end roster  TO CREATE
+      Buck McKeon              1979-03-06 -> 1981-12    elected   reelected start roster end roster  skipped, inside #26978
+      Buck McKeon              1981-12    -> 1985-12    elected   reelected start roster end roster  skipped, inside #26978
+      Buck McKeon              1985-12    -> 1987-12-07 elected   resigned  start roster end roster  skipped, inside #26978
+      Dennis King              1985-12    -> 1989-12    elected   reelected start roster end roster  TO CREATE
+      Dennis King              1989-12    -> 1993-12    elected   expired   start roster end roster  TO CREATE
+      John Hassel*             1991-12    -> 1995-12    elected   reelected start roster end roster  TO CREATE
+      Paula Olivares           1991-12    -> 1995-12    elected   reelected start roster end roster  TO CREATE
+      George Aliano*           1994       -> 1995-12    appointed reelected start roster end derived TO CREATE
+      Patricia Hanrion         1993-12    -> 1997-12    elected   reelected start roster end roster  TO CREATE
+
+   DISAGREEMENTS, terms (1):
+      Paul Strickland, 2009-12: the election returns give the end as 2013-12 (unknown); the roster gives 2013-05-01 (resigned): "Paul B. Strickland, Asst. Clerk (resigned eff. 5-1-2013)". Skipped as inside #28235 (#8), which already ends as the roster does.
+   DISAGREEMENTS AND GAPS, candidacies and roster notes 1995 to 2013 (6; 48 checks agree):
+      2009 "Bob Jensen" won: CEDA marks the incumbent; the roster does not list this name on the board then sitting (12-10-2008 to 11-30-2009). Both footnoted on the term, not resolved
+      2009 "Suzan Solomon" lost: CEDA marks the incumbent; the roster does not list this name on the board then sitting (12-10-2008 to 11-30-2009)
+      1997 Patricia A. Hanrion: the roster prints "Patricia A. Hanrion, President (did not seek reelection in 1997)" on the board of 12-11-1996 to 11-30-1997, but CEDA has a winning or losing candidacy in 1997, and the roster itself prints "Patricia A. Hanrion (reelected 1997)" on the next board: the roster contradicts itself; its terms follow the reelection
+      2013 Paul B. Strickland: the roster prints "relected/unopposed 2013 due to timing of filing period; did not assume office"; CEDA has no Hart contest for this person in 2013 (no contest recorded, so CEDA lacks it rather than contradicts it)
+      2013 Robert N. Jensen Jr.: the roster prints "relected/unopposed 2013"; CEDA has no Hart contest for this person in 2013 (no contest recorded, so CEDA lacks it rather than contradicts it)
+      2013 Joseph V. Messina: the roster prints "relected/unopposed 2013"; CEDA has no Hart contest for this person in 2013 (no contest recorded, so CEDA lacks it rather than contradicts it)
+
+   ROSTER AGAINST EXISTING HART HOLDINGS (#8 keeps them):
+      #28257 Gloria Mercado-Fortine 2003-12 to 2015-12 (expired): agrees with the roster (2003-12 to its last board)
+      #28255 Gloria Mercado-Fortine 1997-12 to 2001-12 (expired): agrees with the roster (1997-12 to 2001-12)
+      #28245 Joe Messina 2009-12 to open (serving): agrees with the roster (2009-12 to its last board)
+      #28235 Paul Strickland 2001-12 to 2013-05-01 (resigned): agrees with the roster (2001-12 to 2013-05-01); the roster adds, on the board of 12-11-2013 to 11-30-2014: "Paul B. Strickland (relected/unopposed 2013 due to timing of filing period; did not assume office)"
+      #26978 Buck McKeon 1979 to 1987 (expired): CONFLICT: howEnded "expired" against the roster's "resigned" ("Howard P. "Buck" McKeon (resigned eff. 12-7-1987 upon election to Santa Clarita City Council)")
+
+   ROSTER NAMES MATCHING AN EXISTING PERSON WITH NO HART TIE, not linked: none
+   ROSTER NAMES THAT MIGHT BE AN EXISTING PERSON (name-variant check), not linked: 
+      Thomas M. Frew and #18783 Tom Frew: same first name (nicknames folded) and surname
+      Dr. Robert E. Keysor and #21944 Bob Kellar: same given name, surnames close (a married name or a misprint?)
+
+   NOT CREATED, no record (Nathan's call):
+      pre-1995-only members: 39
+         Mary P. Bonelli (1945-03-09 to 1957); Charles Brown (1945-03-09 to 1948); S.S. Donaldson (1945-03-09 to 1953); Thomas M. Frew Jr. (1945-03-09 to 1951); Mildred Gilmour (1945-03-09 to 1956); C.L. Dillenbeck (1948 to 1952); Walter R. Cook (1951 to 1955); Chester A. Allen (1952 to 1956); Howard Blackwell (1953 to 1954); Charleton E. Hadley (1953 to 1959); Julio Lombardi (1955 to 1962); Howard Gulley (1956 to 1962); Ernest Malam (1956 to 1957); Adrian Adams (1957 to 1963); Edith Palmer (1957 to 1968); Dr. W.D. Ross (1959 to 1969); C.R. Huntsinger (1962 to 1970); Earl Schmidt (1962 to 1969); Jereann Bowman (1964 to 1969); Elisha J. Agajanian (1968 to 1972); Edward Duarte (1968 to 1970); Emmett Carraher (1969 to 1970); David Holden (1969 to 1973); T.F. Hanson (1970 to 1977-05-25); C.E. Word (1970 to 1974-06-30); S.A. Wright (1970 to 1973); R.E. Kelley (1971 to 1975-04); R. Crozier (1973 to 1977-04); Kenneth C. Wullschleger (1973 to 1979-01-23); Dr. Patrick Shaughnessy (1975-04-01 to 1978-01); Sheldon Allen (1977 to 1979-12); Louis Brathwaite (1977-04-12 to 1981-12); Jim Shuman (1978 to 1978-07); James Putjenter (1978 to 1979-12); Gerald H. Heidt (1979-12 to 1991-12); Dr. Robert E. Keysor (1979-12 to 1985-12); Clara J. Stroup (1979-12 to 1991-12); Sandra "Sandie" Loberg (1981-12 to 1993-12); Peter C. Warren (1993-12 to 1994-04-06)
+      served before and after 1995 but won no recorded election from 1995: 1: William S. Dinsenbacher (1987-12-07 to 1997-12)
+      appointed after 1995, no election win: 2: Chris Fall (2013-06-05 to 2013-08-16); Robert P. Hall (2013-10-16 to the roster's end)
+
+IDEMPOTENCE, the bodies applied on 3 October: 0 holdings, 0 candidacy links, 0 people and 0 corrections still to write (all should be 0); 115 of their terms found already held or covered.
+ONLY: Hart. Writing 31 holdings, 5 people, 10 candidacy links.
+
+SUMMARY: 5 people, 31 holdings, 44 skipped as covered, 10 candidacies linked, 0 correction.
+REFUSED: none
+==============================================================================
+nothing was written. Set $APPLY = true to apply.
+
+
