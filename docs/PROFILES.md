@@ -124,6 +124,31 @@ already been imported, as article #2177; it is disabled until consultation
 (`disable_bowers_cave.php`), and its locational passage is not quoted anywhere
 (`inventory/review/live-errors.md`, RL8).
 
+## A note that says no source exists records the search
+
+Nathan, 3 October 2026. **A note asserting that no source exists, or that a
+fact was not found, must say what was searched and how, so it can be rechecked
+rather than trusted.** Such a note is a claim about the archive, and it can be
+wrong in a way a citation cannot: on 3 October a faulty search (the agent
+shell's `grep`, which silently skips the mirror's latin-1 pages) had put three
+false ones on public records in a week, among them "no source names a
+California Battalion" and "no source here places Couts in the valley".
+
+The note keeps its plain reader's sentence, and the record keeps the search:
+- **What**: the terms searched, including the variants (Couts, Coutts; Arcan,
+  Arcane).
+- **Where**: the mirror (its pages, flipbook text and scans' text), the archive's
+  own records, and any outside source.
+- **How and when**: the tool (`LC_ALL=C /usr/bin/grep -rlia`, or Python reading
+  latin-1; never the shell's `grep`) and the date.
+
+The search goes in the record's editorNotes (internal), not the public footnote,
+which says only what a reader needs: "No source in the archive, searched
+3 October 2026, names him in the valley." A note with no recorded search is
+treated as unverified and re-searched before anything rests on it. A removal
+or a cut made because "nothing was found" carries the same record, in
+removed-claims.json beside the removal.
+
 ## The shape that worked
 
 1. **Extract** the sources verbatim from the Reggie mirror into

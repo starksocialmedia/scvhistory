@@ -217,6 +217,8 @@ foreach ($newP as $k => &$np) {
     foreach (($scvList['directors'] ?? []) as $d) { if (in_array($k, array_map($canon, $keysOf($d['name'])), true)) { $al[] = preg_replace('~,\s*P\.E\.$~', '', $d['name']); } }
     /* An alias that differs from the title only in case or punctuation ("Bj Atkins", "E G Gladbach") is not a name anyone used. */
     $np['aliases'] = array_values(array_unique(array_filter($al, fn($a) => $norm($a) !== $norm($np['title']) && str_replace(' ', '', $norm($a)) !== str_replace(' ', '', $norm($np['title'])) && str_contains($a, ' '))));
+    /* Nathan, 3 October 2026: "Yes, add 'William Pecsi' as an alias" (the CLWA release of January 10, 2017 names him so). */
+    if ($np['title'] === 'Bill Pecsi') { $np['aliases'][] = 'William Pecsi'; }
 } unset($np);
 $whoName = fn($w) => is_string($w) ? $newP[substr($w, 4)]['title'] : $get($w)->title;
 
@@ -550,6 +552,18 @@ foreach ($research as [$n, $b, $y]) {
 echo '   Incumbents at the first election in these records (1995), earlier service not dated; not appointments by inference, so not on the list: ' . implode('; ', array_map(fn($r) => $r[0] . ' (' . $ALLB[$r[1]] . ')', $before)) . PHP_EOL;
 echo PHP_EOL . 'FOLLOW-UPS: an election and candidacy records for Hart Trustee Area 2, November 8, 2022 (BOB JENSEN JR 11,638, ANDREW TABAN 5,736), which CEDA omits; this script makes only the holding.' . PHP_EOL;
 
+/* HELD BODIES (Nathan, 3 October 2026: "Hold Hart. Add the switch, apply the other six, then rebuild Hart
+   from the roster"). Nothing is written for a held body: its holdings, the candidacies on it, and any new
+   person whose wins are all on it wait. Hart waits for hartschoolboardmembers.htm, the board's own roster. */
+$HOLD_BODIES = [21588];
+if ($HOLD_BODIES) {
+    $plan = array_values(array_filter($plan, fn($t) => !in_array($t['b'], $HOLD_BODIES, true)));
+    $links = array_values(array_filter($links, fn($l) => !in_array($l[2], $HOLD_BODIES, true)));
+    $newP = array_filter($newP, fn($np) => (bool)array_diff(array_keys($np['bodies']), $HOLD_BODIES));
+    $links = array_values(array_filter($links, fn($l) => isset($newP[$l[1]])));
+    echo PHP_EOL . 'HELD, not written this run: ' . implode(', ', array_map(fn($b) => $ALLB[$b], $HOLD_BODIES)) . '. Writing ' . count($plan) . ' holdings, ' . count($newP) . ' people, ' . count($links) . ' candidacy links.' . PHP_EOL;
+    $byB = []; foreach ($plan as $t) { $byB[$ALLB[$t['b']]] = ($byB[$ALLB[$t['b']]] ?? 0) + 1; } echo '   holdings by body: ' . json_encode($byB) . PHP_EOL;
+}
 echo PHP_EOL . 'SUMMARY: ' . count($newP) . ' people, ' . count($plan) . ' holdings, ' . count($skipped) . ' skipped as covered, ' . count($links) . ' candidacies linked, ' . count($fixes) . ' correction.' . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', array_unique($bad)) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
