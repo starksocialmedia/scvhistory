@@ -28,10 +28,10 @@
  * WordPress import and no source has been found for it; it stays as an alias.
  * The title follows fullName.
  *
- * NOT DONE: the replacement portrait arthur-b-perkins-outstanding-citizen-
- * newhall-1964-1.jpg carries content credentials saying it was generated in
- * part with Adobe Firefly, so it does not enter the archive and the current
- * portrait stays.
+ * NOT DONE HERE: the replacement portrait. This script once held it back for its
+ * content credential, under a rule since corrected (DATA-MODEL, "Edited
+ * photographs": the scanner reports, it never blocks). It was imported on Nathan's
+ * word by import_edited_portraits.php on 1 October 2026, its edit recorded.
  *
  * Replaces the body only while it is still the unsourced WordPress text, and the
  * recordDates only while every row is still one derived from that text.
@@ -119,7 +119,7 @@ foreach ($RELATE as $rid) { $r = $get($rid); echo "#$rid {$r->title}: photoPeopl
 echo '#333: title Arthur Burnett Perkins -> Arthur Buckingham Perkins (fullName), alias Arthur Burnett Perkins kept' . PHP_EOL;
 echo '#333 body: ' . ($isNew ? 'already the sourced profile' : 'the unsourced WordPress body -> the sourced profile (' . str_word_count($BODY) . ' words, ' . count($NOTES) . ' notes), bodyAuthorship editorial-2026') . '; every quoted phrase checked in its source (' . array_sum(array_map('count', $MUST)) . ')' . PHP_EOL;
 echo '#333 recordDates: ' . ($datesNew ? 'already rebuilt' : ($datesDerived ? count($rows) . ' rows derived from the old body -> ' . count($DATES) . ' rows from the sources' : 'NOT all derived from the old body: kept')) . PHP_EOL;
-echo 'Portrait: NOT swapped. arthur-b-perkins-outstanding-citizen-newhall-1964-1.jpg is Firefly-generated in part (C2PA manifest); the current portrait stays.' . PHP_EOL;
+echo 'Portrait: not changed by this script (the edited portrait came in through import_edited_portraits.php).' . PHP_EOL;
 echo 'Held for the mirror: the Los Angeles Times clipping as a document (Reggie disconnected).' . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? implode(' | ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }

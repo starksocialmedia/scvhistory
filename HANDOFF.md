@@ -94,8 +94,12 @@ Rudy Acosta's age at loss reads 20 on Leon's page; born May 2 1991, died March 1
 - Never move relations with raw SQL. Craft stores them twice and reads the JSON.
 - Clear storage/runtime/compiled_templates before trusting any before-and-after.
 - An inline `ddev craft exec` containing `!` is mangled by zsh. Write it to a file.
-- No generative restoration on archival images. Upscaling and tonal correction yes;
-  anything that synthesises detail is falsification.
+- The archivist decides on images. An edited photograph (an upscale, a crop, a cleaned
+  background, a Firefly-assisted edit) enters on Nathan's word with its edit recorded:
+  source, enhancementMethod, enhancedBy, contentCredentials (DATA-MODEL, "Edited
+  photographs"). The content-credentials scanner reports; it never blocks. Only a wholly
+  generated image (a banner) stays out of the archive's volumes. (Corrected 3 October
+  2026; the old line here had brought the refusal back twice.)
 - Artwork gets the layered band. Photographs get the portrait frame.
 
 ## The aim
