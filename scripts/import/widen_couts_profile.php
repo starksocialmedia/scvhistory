@@ -102,7 +102,7 @@ foreach ([[4743, 'Mr. Cave Couts, son of Major Couts'], [863, 'The nest of thiev
 }
 
 $NOT_COVERED_OLD = 'Smythe\'s 1907 account is the only biography of Couts in the archive. It is an admiring one, and it says nothing of how Couts treated the Native workers whose labor he secured as sub-agent. Wikipedia, used here only as a finding aid, reports that he was tried on several charges, including murder, and acquitted. The archive holds no source for this yet, and the profile will say more when it does.';
-$NOT_COVERED_NEW = 'Smythe\'s 1907 account is the only biography of Couts in the archive, and an admiring one; it says nothing of how he treated the Native workers whose labor he secured as sub-agent. Leon Worden, citing Akins and Bauer (2021), writes that Couts used Indian slave labor to build the adobe at Rancho Guajome, and the profile says so. Wikipedia, used here only as a finding aid, reports that he was tried on several charges, including murder, and acquitted. No source in the archive, searched 3 October 2026, speaks of the trials.';
+$NOT_COVERED_NEW = 'Smythe\'s 1907 account is the only biography of Couts in the archive, and an admiring one; it says nothing of how he treated the Native workers whose labor he secured as sub-agent. Leon Worden, citing Akins and Bauer (2021), writes that Couts used Indian slave labor to build the adobe at Rancho Guajome, and the profile says so. Wikipedia, used here only as a finding aid, reports that he was tried on several charges, including murder, and acquitted. No source in the archive speaks of the trials.';
 
 $curBody = (string)$p->body; $curFn = $p->footnotes;
 $done = trim($curBody) === trim($BODY);
