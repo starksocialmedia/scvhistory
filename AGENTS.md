@@ -41,6 +41,12 @@ Nathan makes all decisions. Leon Worden has preapproved the project, so nothing 
 - Never ask for, store, or print credentials. `.env` stays out of commits
 - Docker Desktop must be running before any `ddev` command. If DDEV fails with a Docker socket error, tell Nathan to open Docker Desktop
 
+## Working with the database and other agents
+
+- One writer to the database at a time. Readers parallelise freely
+- While another agent is running, no template edits and no branch switching, and never `git add -A`: commit only the files you changed
+- In an interactive zsh (Nathan's terminal), a `!` inside a double-quoted `ddev craft exec "..."` triggers history expansion and mangles the command. Put the PHP in a file and `eval(file_get_contents(...))` it instead. An agent's non-interactive shell is not affected, but commands written for Nathan must avoid it
+
 ## Content rules
 
 - Follow PHILOSOPHY.md and the settled decisions in HANDOFF.md, BUILDPLAN.md, and DATA_MODEL.md. Do not redesign what is already decided
@@ -63,7 +69,7 @@ Nathan makes all decisions. Leon Worden has preapproved the project, so nothing 
 
 ## End of every session
 
-Add a dated entry to `CHANGELOG.md` with: agent name, what was done, decisions made, blockers, next steps. Log any errors and fixes in `ERRORLOG.md`. Propose (do not make) BUILDPLAN.md checkbox updates. Commit.
+Add a dated entry to `CHANGELOG.md` with: agent name, what was done, decisions made, blockers, next steps. Log any errors and fixes in `ERRORLOG.md`. Rewrite `HANDOFF.md` with today's date: where things stand, what is in progress, what is next, and a pointer to TODO.md for what waits on Nathan. HANDOFF states no rules; it points at the documents that hold them (`check_handoff.php`, run by check_render, fails a HANDOFF more than two days older than the newest CHANGELOG entry, or one that states a rule). Propose (do not make) BUILDPLAN.md checkbox updates. Commit.
 
 ## Twig traps in this project
 - `entry.someHandle is defined` is NOT a safe existence test on an Element. It returns true for fields that do not exist, then Craft throws "Calling unknown method" when the value is read. Check the element's field layout instead, the way scripts/import/*.php do. This has broken the site three times: person.sameAs, recordImages on Category elements, recordTags.

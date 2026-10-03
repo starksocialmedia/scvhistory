@@ -4,6 +4,8 @@ Read this before making any decision about structure, content, or design. When a
 
 **Decision authority:** Leon Worden has preapproved the project. **Nathan makes all decisions**, and **design decisions are Nathan's alone.** All questions go to Nathan; he consults Leon at his own discretion. Agents do not wait on Leon's approval. This file explains *why*; BUILDPLAN.md and DATA_MODEL.md explain *what*.
 
+**The aim of the build:** if the database can be rebuilt from `inventory/` plus `scripts/import/`, then the database is a cache and the repository is the archive. Keep it that way: every change to the data is a script in the repository, and every source it reads is saved in `inventory/` with its checksum.
+
 ---
 
 ## 1. What we are building

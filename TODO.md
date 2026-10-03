@@ -2,6 +2,26 @@
 
 ## Waiting on Nathan
 
+### Current (3 October 2026)
+- Three held until after the staging refresh, drafted as dry runs: the correction of the 16 wrong or partly wrong "no source" notes (with every one of the 80 recording its search), widening Couts's profile, restoring the California Battalion.
+- Jensen's 2022 Hart Area 2 holding cites 11,638 (the County's precinct spreadsheet summed); the certified Statement of Votes Cast, page 169, gives 11,639 (Grok, inventory/review/hart-district-ta2-2022.md). Correct to the certified figure and keep the other, after the refresh. Also create the missing election and candidacy records for that contest (Jensen, Taban).
+- Smyth's old portrait #21579 to be attached to his record's images (the swap rule), after the refresh.
+- Seat boundary files (trustee areas, council districts, SCV Water divisions): Nathan is asking the Hart district and the City. Nothing is drawn until they are in hand.
+- The research list of 10 first-win incumbents (inventory/review/board-holdings-dry-run-2026-10-03.txt, section 4), with the districts' online minutes archives as the first place to look.
+
+### Carried from the 18 September handoff (not rechecked since, unless marked)
+- 6 community coordinates: fair-oaks-ranch, haskell-canyon, mint-canyon, potrero-canyon, ravenna, towsley-canyon
+- 8 site page bodies; About and Permissions matter most
+- 35 community write-ups
+- 9 Find A Grave links
+- Confirm the LA County GIS licence and add attribution before launch (now also needed for any seat boundaries taken from the County, 3 October)
+- Story of Our Valley band has pseudo-text on the map; replacement requested from CD
+- Perkins collection order: the Introduction should precede The Birth of Newhall
+- Rudy Acosta's age at loss reads 20 on Leon's page; born May 2 1991, died March 19 2011, so he was 19. Worth telling Leon rather than changing silently.
+- Research, not import: 20 articles with no publish date (Reynolds chapters carry no printed dateline), 19 war memorial narratives, 12 places with no establishment date, 15 casualties with no portrait.
+- Done since, checked 3 October: the jerry-reynolds and dante-acosta bios (both full profiles now); RECORD-CHECKLIST.md already says legacyKey is required only if migrated.
+
+### Older
 Do not change the database until Nathan names the Place slugs to remove and whether to add missing community terms.
 
 ### What created the 52 empty titles

@@ -279,6 +279,10 @@ if (is_array($pl) && !($pl['ok'] ?? true)) { $fail++; echo 'PASTED LABELS FAIL' 
 $nw = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_note_wording.php'));
 if (is_array($nw) && !($nw['ok'] ?? true)) { $fail++; echo 'NOTE WORDING FAIL' . PHP_EOL; }
 
+/* HANDOFF.md (3 October 2026): current, and rule-free; rules live in their own documents. */
+$ho = eval(substr(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_handoff.php'), 5));
+if (is_array($ho) && !($ho['ok'] ?? true)) { $fail++; echo 'HANDOFF FAIL' . PHP_EOL; }
+
 /* Claims deleted as impossible (3 October 2026) must not come back: scripts/import/removed-claims.json. */
 $rc = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_removed_claims.php'));
 if (is_array($rc) && !($rc['ok'] ?? true)) { $fail++; echo 'REMOVED CLAIMS FAIL' . PHP_EOL; }
