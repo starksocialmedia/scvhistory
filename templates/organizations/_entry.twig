@@ -212,7 +212,7 @@
           {#- Capped by display size, whatever the format (Nathan, 4 October 2026: "Cap marks by display size, not by file type"):
               never wider or taller than 600 pixels. A raster file is also served as a copy of that size; the file as handed over
               stays the archive copy. -#}
-          <div class="rec-portrait rec-portrait-mark">{% include "_partials/record/mark-img" with { mark: headMark, cap: 600 } only %}</div>
+          <div class="rec-portrait rec-portrait-mark"><div class="rec-mark-box">{% include "_partials/record/mark-img" with { mark: headMark, cap: 600 } only %}</div></div>
         {% elseif img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
       </div>
     </div>

@@ -29,11 +29,12 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. The City Hall photograph, when Nathan sends it.
-2. Affiliations exist for few people yet; the older person-organization links are still to be read into them.
-3. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
+1. The legislature model: Nathan is deciding whether every district covering part of the valley gets terms, not only the one holding most of it (CHANGELOG, 4 October, later still). No rebuild before then.
+2. The City Hall photograph, when Nathan sends it.
+3. Affiliations exist for few people yet; the older person-organization links are still to be read into them.
+4. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
    district-boards-check-2026-10-04.md); the 17 unsourced term endings (term-endings-2026-10-04.md).
-4. TODO.md, "Waiting on Nathan", for what waits on him.
+5. TODO.md, "Waiting on Nathan", for what waits on him.
 
 ## Where the rules live
 

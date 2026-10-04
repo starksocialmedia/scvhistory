@@ -105,7 +105,7 @@
               {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
               <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 6px">
                 <h3 style="margin:0"><a href="{{ d.url }}">{{ d.title }}</a></h3>
-                {% include "_partials/record/mark-img" with { mark: mark, cap: 200, style: 'height:44px;width:auto;max-width:96px;object-fit:contain;flex:none', lazy: true } only %}
+                {% include "_partials/record/mark-img" with { mark: mark, cap: 200, box: 56, lazy: true } only %}
               </div>
             {% else %}
               <h3><a href="{{ d.url }}">{{ d.title }}</a></h3>

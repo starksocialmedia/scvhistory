@@ -176,7 +176,7 @@
           {% set mk = not img and 'currentMark' in ph ? p.currentMark.one() ?? null : null %}
           {% set coms = p.neighborhood.all()|map(c => c.title)|join(' · ') %}
           <a class="pl-card" id="card{{ p.id }}" data-id="{{ p.id }}" href="{{ p.url }}">
-            <div class="pl-ph">{% if img %}<img src="{{ img.url }}" alt="">{% elseif mk %}{% include "_partials/record/mark-img" with { mark: mk, cap: 400, style: 'object-fit:contain;background:#fff;padding:10px' } only %}{% else %}<span>{{ p.title|slice(0,1) }}</span>{% endif %}</div>
+            <div class="pl-ph">{% if img %}<img src="{{ img.url }}" alt="">{% elseif mk %}<span class="pl-mark">{% include "_partials/record/mark-img" with { mark: mk, cap: 400 } only %}</span>{% else %}<span>{{ p.title|slice(0,1) }}</span>{% endif %}</div>
             <div class="pl-body">
               <h3>{{ p.title }}</h3>
               {% if p.dateFounded %}<div class="pl-meta">Est. {{ p.dateFounded }}</div>{% endif %}
