@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-04 (afternoon)
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: Antonio del Valle died on or before 3 June 1841, from the Mission San Fernando burial register (ECPP index), with the three caveats on the record; both earlier dates (Reynolds's 21 June, Perkins's 12 June) noted as impossible on Reynolds part 14, both Perkins 1957 copies, Ygnacio, the five branding-iron captions and Perkins's profile; Magdalena's 1831 baptism recorded as it reads. One sticky behaviour for every filter bar (base.twig): flush under the fixed header, behind its menus, 16px padding. Portraits: the Hart four and Vierra from the district's site; Walters (missed on 3 October), Griese, Rasmussen, George Runner, Shapiro, Seratti. The four elementary districts and SCV Water: six sitting trustees created, three Sulphur Springs terms added, Weinstein known as Shelley, MacDonald spelled as the district does, five executives as affiliations, board offices dated in templates/_data/board-officers.json and shown on the cards; Jensen's and Moore's public-life profiles. Saugus's redistricting of 1 February 2022 on its record. The City: 19 mayoralties and Ayala as Mayor Pro Tem from the council pages (20 held), shown as a count on each profile and by year on the council page; Ayala's District 1 seat; Weste linked to Mentryville. Commissions: Parks and Arts created under the City; the three rosters dated; Rasmussen, Shapiro, Burkhart, Eichman and Seratti with profiles and seats. Trustee-area and division boundaries found for every body (inventory/review/trustee-area-boundaries-2026-10-04.md). Committees inventoried (inventory/review/committees-held-2026-10-04.md). inventory/incoming sorted: 50 imported files to done/, the 51 left listed in OUTSTANDING.md.
+- Decisions: Nathan: Weinstein is Shelley; Duzick gets no record; commissioners are affiliations, records case by case; committees off the landing page; imported files move to done/.
+- Blockers: none. check_render crashes when another script writes during it (ERRORLOG).
+- Next: the Hart and City pages in tabs, with the trustee-area map on the first tab (boundary source to confirm), board ordered by office, cards in threes, past members compact, past superintendents as a timeline, schools by level; the remaining board corrections (Solomon, Trunkey, Pearson, Gary Martin, the stale open terms); Burkhart's and Eichman's portraits; Knight and Sharon Runner.
+
 2026-10-04
 
 - Agent: Claude Code

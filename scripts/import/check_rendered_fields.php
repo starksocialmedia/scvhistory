@@ -65,7 +65,11 @@ $needles = function ($f, $v) use ($probe, $skipTypes): array {
     return $s === '' ? [] : [$probe($s)];
 };
 $fails = []; $gaps = []; $unclassified = []; $excused = []; $pages = 0; $checks = 0;
+/* Memory (4 October 2026): this walk reached 2,032 MB against a 2 GB limit as the archive grew, and check_render
+   died with nothing printed. The limit is raised here, and each section's element caches are dropped before the next. */
+ini_set('memory_limit', '4096M');
 foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
+    gc_collect_cycles();
     /* Which records hold which page fields; then the fewest records that cover them all. */
     $holds = []; $want = [];
     foreach (Entry::find()->section($sec->handle)->each(200) as $e) {

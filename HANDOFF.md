@@ -1,4 +1,4 @@
-# Handoff, 2026-10-04
+# Handoff, 2026-10-04 (afternoon)
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -31,14 +31,14 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. Nathan's decisions on the tab proposal, then building it for Hart and the City together.
-2. The nine portraits in ~/Downloads (Nathan to move them to inventory/incoming): the four Hart
-   trustees and Vierra to import. Knight, the Runners and Duzick are reported, not imported.
-3. The board corrections for the four districts and SCV Water, from the check file.
-4. The date-field fix (scripts/import/fix_date_field_prose_2026_10_04.php, dry run done).
-5. The double-counting audit's findings (inventory/review/double-counting-audit-2026-10-04.md).
-6. Then, as before: the rest of step 2 (the 23 disagreements), groupKind, fromCollectionOf, and the
-   Hart roster self-contradiction pass.
+1. The body hub in tabs for Hart and the City together (Nathan asked for it built), with: the board
+   ordered by office, cards in threes, past members compact, past superintendents as a timeline,
+   committees off the landing view, schools by level, and the seat's own map when a seat is chosen.
+   Boundary files are in inventory/sources/trustee-areas-2026-10-04/ (the County's layers recommended).
+2. The remaining board corrections in inventory/review/district-boards-check-2026-10-04.md.
+3. inventory/incoming/OUTSTANDING.md: the files still waiting.
+4. The date-field fix (dry run done) and the double-counting audit's findings.
+5. TODO.md, "Waiting on Nathan", for what waits on him.
 
 ## Where the rules live
 
