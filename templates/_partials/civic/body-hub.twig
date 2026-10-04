@@ -23,15 +23,20 @@
 {% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', removed: 'removed from office', died: 'died in office', left: 'left office', unknown: 'end not recorded' } %}
 {% import "_partials/record/portrait" as portrait %}
 {#- How the page speaks of the body's members (Nathan, 4 October 2026: "The board now" is wrong for a body that is not a
-    board). A legislature's seat is the valley's seat, followed across the plans: its members are the valley's members, and
-    each term shows the district number in force (seatLabel). The House's seat is split three ways from 3 January 2027
-    (templates/_data/valley-districts.json, pluralFrom), so from then it speaks of members. Any other body is a board. -#}
-{% set LEG = { now: 'The valley\'s member now', nowPl: 'The valley\'s members now', past: 'Past members for the valley', left: 'who have represented the valley in this seat', gap: 'The archive does not yet hold the present member.', since: 'for the valley since', earlier: 'Earlier for the valley' } %}
+    board). A legislature's members are the valley's members: every district holding part of the valley, each term with
+    its district number (seatLabel) and plan (districtPlan); the heading is plural whenever more than one sits for the
+    valley. Any other body is a board. -#}
+{% set LEG = { now: 'The valley\'s member now', nowPl: 'The valley\'s members now', past: 'Past members for the valley', left: 'who have represented all or part of the valley', gap: 'The archive does not yet hold the present member.', since: 'for the valley since', earlier: 'Earlier for the valley' } %}
 {% set VOICES = { 'california-state-assembly': LEG, 'california-state-senate': LEG, 'united-states-house-of-representatives': LEG,
     'los-angeles-county-board-of-supervisors': { now: 'The valley\'s supervisor now', past: 'Past supervisors for the valley', left: 'who have been the valley\'s supervisor', gap: 'The archive does not yet hold the present supervisor.', since: 'for the valley since', earlier: 'Earlier for the valley' } } %}
 {% set voice = VOICES[body.slug] ?? null %}
-{% set pluralFrom = ((source('_data/valley-districts.json', ignore_missing = true)|json_decode).bodies[body.slug].pluralFrom ?? null) %}
-{% set W = voice ? voice|merge({ now: pluralFrom and now|date('Y-m-d') >= pluralFrom ? voice.nowPl : voice.now }) : { now: 'The board now', past: 'Past members', left: 'who have left the board, or whose last term has no end recorded', gap: 'The archive does not yet hold the present board.', since: 'on the board since', earlier: 'Earlier on the board' } %}
+{#- A legislature's districts and their shares of the valley (templates/_data/valley-districts.json), by plan and number:
+    the valley has had more than one member in a chamber whenever its people were split between districts. -#}
+{% set VDB = (source('_data/valley-districts.json', ignore_missing = true)|json_decode).bodies[body.slug] ?? null %}
+{% set shareOf = {} %}
+{% if VDB %}{% for P in VDB.plans %}{% for X in P.districts %}{% set shareOf = shareOf|merge({ (P.plan ~ '-' ~ X.n): X.share == 'the whole valley' ? 'the whole valley' : X.share ~ ' of the valley' }) %}{% endfor %}{% endfor %}{% endif %}
+{% macro shareFor(h, shareOf) %}{{ h.districtPlan.value ?? false ? (shareOf[h.districtPlan.value ~ '-' ~ ((h.seatLabel|split(' ')|first)|replace({ 'th': '', 'st': '', 'nd': '', 'rd': '' }))] ?? '') : '' }}{% endmacro %}
+{% set W = voice ? voice : { now: 'The board now', past: 'Past members', left: 'who have left the board, or whose last term has no end recorded', gap: 'The archive does not yet hold the present board.', since: 'on the board since', earlier: 'Earlier on the board' } %}
 {#- The seat as each term names it: a legislature's number in force, otherwise the seat record's short name. -#}
 {% macro seatName(h, short, seatOf, voice) %}{{ voice and h.seatLabel ? h.seatLabel : (seatOf['h' ~ h.id] ? short[seatOf['h' ~ h.id]] : '') }}{% endmacro %}
 {% import _self as HB %}
@@ -62,9 +67,11 @@
     {% set rankOf = {} %}
     {% for h in sitting %}{% set o = offs ? (offs.officers[(h.holdingPerson|first).id ~ ''] ?? '') : '' %}{% set rankOf = rankOf|merge({ ('h' ~ h.id): RANK[o|lower] ?? 9 }) %}{% endfor %}
     {% set sitting = sitting|sort((a, b) => rankOf['h' ~ a.id] <=> rankOf['h' ~ b.id] ?: (seatOf['h' ~ a.id] ?: 'zz') <=> (seatOf['h' ~ b.id] ?: 'zz')) %}
+    {#- A legislature's members in order of the share of the valley each holds, largest first. -#}
+    {% if voice and shareOf|length %}{% set sitting = sitting|sort((a, b) => ((HB.shareFor(b, shareOf)|trim|replace({ 'the whole valley': '100', '% of the valley': '' })) * 1) <=> ((HB.shareFor(a, shareOf)|trim|replace({ 'the whole valley': '100', '% of the valley': '' })) * 1)) %}{% endif %}
     {% set heldSeats = sitting|map(h => seatOf['h' ~ h.id])|filter(s => s) %}
     {% set openSeats = seats|filter(s => s.slug not in heldSeats) %}
-    <h2 class="rec-h2 hub-h" id="board">{{ W.now }}</h2>
+    <h2 class="rec-h2 hub-h" id="board">{{ voice and sitting|length > 1 and voice.nowPl is defined ? voice.nowPl : W.now }}</h2>
     {% if sitting|length %}
     {#- A card is not one link: the evidence words inside it link to /evidence, and a link inside a link splits the card. -#}
     <div class="hub-cards" data-seat-list="board">
@@ -85,7 +92,9 @@
           <div class="hub-tx">
             <a class="hub-n" href="{{ p.url }}">{{ p.title }}</a>
             {% set sn = HB.seatName(h, short, seatOf, voice)|trim %}
+            {% set sh = HB.shareFor(h, shareOf)|trim %}
             <div class="hub-m">{{ sn ? sn ~ ' · ' : '' }}{{ since ? W.since ~ ' ' ~ since : W.since|replace({ ' since': '' }) }}</div>
+            {% if sh %}<div class="hub-t">Holds {{ sh }}</div>{% endif %}
             {% if office %}<div class="hub-o">{{ office }}<span>{{ offs.term ? ' for ' ~ offs.term : '' }}, as the body lists it, {{ offs.read }}</span></div>{% endif %}
             <div class="hub-t">{{ h.termEndEdtf ? 'Term ' ~ h.termStartEdtf|slice(0, 4) ~ ' to ' ~ h.termEndEdtf|slice(0, 4) : (h.termStartEdtf ? 'Serving from ' ~ h.termStartEdtf|slice(0, 4) : 'Serving; the years of this term are not given') }}{{ HOW[h.selectionMethod.value] is defined ? ', ' ~ HOW[h.selectionMethod.value] : '' }}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}</div>
             {% if espans|length %}<div class="hub-t">{{ W.earlier }}: {{ espans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}</div>{% endif %}

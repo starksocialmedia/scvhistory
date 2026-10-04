@@ -18,9 +18,8 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
   the next refresh.
 - **People.** About 225 records; ten members for the valley's legislative seats added on 4 October.
 - **The civic layer.** Office holdings on every body with holdings, in tabbed pages. The Assembly,
-  State Senate and House each have one continuous seat for the valley, with the number and plan on
-  each term (inventory/review/legislative-districts-2026-10-04.md; templates/_data/valley-districts.json
-  lists the partial districts). The City has its five council districts. The other districts and SCV
+  State Senate and House show every district that held part of the valley under each plan, with its
+  share and members (inventory/review/legislative-districts-2026-10-04.md; templates/_data/valley-districts.json). The City has its five council districts. The other districts and SCV
   Water are behind their own pages (inventory/review/district-boards-check-2026-10-04.md).
 - **Marks.** Every body with a mark shows it in the header; nine imported on 4 October. Building
   photographs are related images.
@@ -29,7 +28,7 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. The legislature model: Nathan is deciding whether every district covering part of the valley gets terms, not only the one holding most of it (CHANGELOG, 4 October, later still). No rebuild before then.
+1. Porta Bella (an empty, disabled record) and the disabled missions, ranchos and businesses now typed for /organizations: Nathan's call.
 2. The City Hall photograph, when Nathan sends it.
 3. Affiliations exist for few people yet; the older person-organization links are still to be read into them.
 4. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,

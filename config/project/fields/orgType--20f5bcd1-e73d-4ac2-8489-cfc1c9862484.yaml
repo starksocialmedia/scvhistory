@@ -105,6 +105,17 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - Rancho
+        -
+          - value
+          - rancho
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

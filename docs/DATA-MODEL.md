@@ -601,7 +601,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Organizations — `organizations/organization`
 
-61 fields.
+62 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -652,6 +652,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `historicalPeriod` | Categories | Dublin Core `temporal` | local vocabulary |
 | `neighborhood` | Categories | Dublin Core `spatial` | local vocabulary of valley communities |
 | `orgType` | Dropdown | **local** | drives the schema.org @type |
+| `orgLevel` | Dropdown | **local** | no external equivalent |
 | `schoolLevel` | Dropdown | **local** | drives the schema.org School subtype |
 | `gradeSpan` | PlainText | **local** | grades taught, as K-6 or 9-12, from the NCES directory unless footnoted |
 | `feedsInto` | Entries | **local** | the district or school a body's pupils go on to; the grade of the move is the feeder's top grade plus one |
@@ -1038,7 +1039,8 @@ local unless the note says otherwise.
 - **`foundedEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
 - **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `serving`, `unknown`, `removed`.
-- **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
+- **`orgLevel`** — `valley`, `county`, `state`, `federal`.
+- **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`, `rancho`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
 - **`outcome`** — `unknown`, `elected`, `not-elected`, `withdrew`, `disqualified`.
 - **`outcomeEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`, `settlement`, `district`, `cemetery`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.

@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: orgLevel
+instructions: "For a government body: the level it sits at. The valley's own bodies; the County; the State; the federal government. Sets the body's group on /organizations."
+name: Level
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - ''
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - 'The valley'
+        -
+          - value
+          - valley
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - County
+        -
+          - value
+          - county
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - State
+        -
+          - value
+          - state
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Federal
+        -
+          - value
+          - federal
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

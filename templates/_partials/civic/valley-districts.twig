@@ -1,25 +1,42 @@
 {#
-  The districts that covered the valley in each redistricting plan, on the Assembly, State Senate and House
-  pages (Nathan, 4 October 2026: "continuous seat following the district holding most of the valley,
-  partial districts listed on the body page without term records"). Read from templates/_data/valley-districts.json;
-  a body not listed there shows nothing. The district holding most of the valley is the seat whose terms the
-  page lists; a district holding only part of it is named here with its members, who have no terms recorded.
+  Every district that held any part of the valley, plan by plan, with its share of the valley's people and its
+  members, on the Assembly, State Senate and House pages (Nathan, 4 October 2026: "every district that held part of
+  the valley, with its share and members, and 'main' as a label rather than a spine"; "Yes, slivers count. The rule
+  is any part of the valley, with the share shown"). The districts and shares come from templates/_data/valley-districts.json;
+  the members from the office holdings, matched on the plan (districtPlan) and the district number (seatLabel). A body
+  not in the data file shows nothing.
 
     body   the organization
 #}
 {% set VD = source('_data/valley-districts.json', ignore_missing = true)|json_decode %}
 {% set B = VD.bodies[body.slug] ?? null %}
 {% if B %}
+  {%- set terms = craft.entries().section('officeHoldings').relatedTo({ targetElement: body, field: 'holdingBody' }).districtPlan(':notempty:').with(['holdingPerson']).orderBy('termStartEdtf asc').all() -%}
+  {%- set byKey = {} -%}
+  {%- for h in terms -%}
+    {%- set k = h.districtPlan.value ~ '-' ~ ((h.seatLabel|split(' ')|first)|replace({ 'th': '', 'st': '', 'nd': '', 'rd': '' })) -%}
+    {%- set byKey = byKey|merge({ (k): (byKey[k] ?? [])|merge([h]) }) -%}
+  {%- endfor -%}
   <h2 class="rec-h2 hub-h" id="districts">Districts covering the valley</h2>
-  <p class="hub-lede">The valley's seat is followed across the redistricting plans: the district holding most of the valley in each, which changes its number when the lines are redrawn. Districts holding only part of the valley are named with their members; their terms are not recorded here.</p>
+  <p class="hub-lede">Every district that has held any part of the valley, under each set of lines since 1992, with the share of the valley's people it held and the members who sat for it while it did. The district holding the largest share is marked; the others held the rest of the valley at the same time, so in those years the valley had more than one member in this chamber.</p>
   <div class="vd">
     {% for P in B.plans|reverse %}
       <div class="vd-row">
         <div class="vd-k">{{ P.years }}<span>{{ P.label }}</span></div>
         <div class="vd-v">
-          <div class="vd-main"><b>{{ P.main.n }}{{ P.main.n % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][P.main.n % 10] ?? 'th') }} {{ B.noun }}</b> <span class="vd-sh">{{ P.main.share == 'the whole valley' ? 'the whole valley' : P.main.share ~ ' of the valley' }}</span><div>{{ P.main.covers }}.</div></div>
-          {% for X in P.partial %}
-            <div class="vd-part"><b>{{ X.n }}{{ X.n % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][X.n % 10] ?? 'th') }} {{ B.noun }}</b> <span class="vd-sh">part, {{ X.share }}</span><div>{{ X.covers }}. {{ X.members }}.</div></div>
+          {% for X in P.districts %}
+            {% set sfx = X.n % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][X.n % 10] ?? 'th') %}
+            {% set ms = byKey[P.plan ~ '-' ~ X.n] ?? [] %}
+            <div class="{{ X.main ? 'vd-main' : 'vd-part' }}">
+              <b>{{ X.n ~ sfx }} {{ B.noun }}</b> <span class="vd-sh">{{ X.share == 'the whole valley' ? 'the whole valley' : X.share ~ ' of the valley' }}{{ X.main and P.districts|length > 1 ? ', the largest share' : '' }}</span>
+              <div>{{ X.covers }}.</div>
+              {% if X.continues ?? null %}<div class="vd-c">{{ X.continues }}</div>{% endif %}
+              {% if ms|length %}
+                <div class="vd-m">{% for h in ms %}{% set p = h.holdingPerson|first %}<a href="{{ p.url }}">{{ p.title }}</a> {{ h.termStartEdtf|slice(0, 4) }} to {{ h.termEndEdtf ? h.termEndEdtf|slice(0, 4) : (h.howEnded.value == 'serving' ? 'now' : '?') }}{{ not loop.last ? '; ' : '' }}{% endfor %}</div>
+              {% elseif X.pending ?? null %}
+                <div class="vd-m">{{ X.pending }}.</div>
+              {% endif %}
+            </div>
           {% endfor %}
         </div>
       </div>
@@ -36,7 +53,10 @@
 .vd-k span{display:block;text-transform:none;letter-spacing:0;color:#5B6472;font-family:'Public Sans',system-ui,sans-serif;font-size:13px;margin-top:4px}
 .vd-main,.vd-part{font-size:15px;line-height:1.55;color:#2A3140}
 .vd-main b,.vd-part b{color:#17254C;font-weight:600}
-.vd-part{margin-top:10px;padding-left:12px;border-left:2px solid #EFE6D0;font-size:14px}
+.vd-part{margin-top:12px;padding-left:12px;border-left:2px solid #EFE6D0}
 .vd-sh{font-size:13px;color:#5B6472}
+.vd-m{font-size:14px;margin-top:3px}
+.vd-c{font-size:14px;margin-top:4px;padding:6px 10px;background:#FDF7EA;border-left:3px solid #C4A031;color:#2A3140}
+.vd-m a{color:#17254C}
 .vd-src{font-size:12.5px;line-height:1.55;color:#5B6472;margin:0 0 26px;max-width:760px;overflow-wrap:anywhere}
 {% endcss %}

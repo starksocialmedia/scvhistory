@@ -862,6 +862,23 @@ fieldLayouts:
           -
             dateAdded: null
             editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b8f3a57f-4747-43c8-b473-a3260d162e9f # Level
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d21495d3-b21b-4ec7-8656-154806854277
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
             elementCondition:
               class: craft\elements\conditions\entries\EntryCondition
               conditionRules:

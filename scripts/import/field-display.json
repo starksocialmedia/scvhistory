@@ -706,6 +706,10 @@
    "show": "internal",
    "why": "steers the template (grouping, labels or what is published), not printed as its value"
   },
+  "orgLevel": {
+   "show": "internal",
+   "why": "sets the body's group on /organizations (Valley government, or County, state and federal); not printed on the record"
+  },
   "orgWebsite": {
    "show": "page",
    "mode": "href"

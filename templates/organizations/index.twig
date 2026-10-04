@@ -27,12 +27,13 @@
   club:       'Clubs',
   media:      'Newspapers',
   military:   'Military',
+  rancho:     'Ranchos',
   other:      'Other'
 } %}
 {% set KIND_ONE = {
   school: 'School', government: 'Government body', business: 'Business',
   nonprofit: 'Nonprofit', church: 'Church', club: 'Club',
-  media: 'Newspaper', military: 'Military', other: 'Other'
+  media: 'Newspaper', military: 'Military', rancho: 'Rancho', other: 'Other'
 } %}
 {% set LEVELS = {
   elementary: 'Elementary', middle: 'Middle', high: 'High',
@@ -148,12 +149,19 @@
           school districts and schools are separate because a district governs and
           a school teaches. Past about 60 records this becomes chips on the same
           groups (STRUCTURE.md). -#}
+      {#- Government in two groups by the body's level (orgLevel; Nathan, 4 October 2026: "the grouping is a property of the
+          body"): the valley's own bodies, and the county, state and federal bodies that govern or represent it from
+          elsewhere. A body nested in another's card (the City's commissions, the County's Board of Supervisors and Sheriff's
+          Department, the House under Congress) is listed inside that card. -#}
       {% set GROUPS = [
-        { key: 'government', label: 'Government', note: 'School districts are governing bodies too; they are listed under School districts.' },
+        { key: 'government', label: 'Valley government', note: 'School districts are governing bodies too; they are listed under School districts.' },
+        { key: 'beyond',     label: 'County, state and federal', note: 'Bodies seated elsewhere that govern the valley or represent it.' },
         { key: 'districts',  label: 'School districts' },
-        { key: 'schools',    label: 'Schools' },
+        { key: 'schools',    label: 'Schools and colleges' },
         { key: 'business',   label: 'Businesses' },
         { key: 'nonprofit',  label: 'Nonprofits' },
+        { key: 'church',     label: 'Missions and churches' },
+        { key: 'rancho',     label: 'Ranchos' },
         { key: 'media',      label: 'Newspapers' },
         { key: 'club',       label: 'Clubs and associations' },
         { key: 'other',      label: 'Other' }
@@ -161,7 +169,8 @@
       {% set groupOf = {} %}
       {% for p in places %}
         {% set t = hasKinds ? (p.orgType.value ?: 'other') : 'other' %}
-        {% set g = t == 'school' ? (hasLevels and p.schoolLevel.value == 'district' ? 'districts' : 'schools') : (t in ['government', 'business', 'nonprofit', 'media', 'club'] ? t : 'other') %}
+        {% set lvl = 'orgLevel' in handles ? (p.orgLevel.value ?? '') : '' %}
+        {% set g = t == 'school' ? (hasLevels and p.schoolLevel.value == 'district' ? 'districts' : 'schools') : (t == 'government' and lvl in ['county', 'state', 'federal'] ? 'beyond' : (t in ['government', 'business', 'nonprofit', 'church', 'rancho', 'media', 'club'] ? t : 'other')) %}
         {% set groupOf = groupOf|merge({ (g): (groupOf[g] ?? [])|merge([p]) }) %}
       {% endfor %}
       {% if places|length %}

@@ -1226,6 +1226,94 @@
    "read": "2026-10-04",
    "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/1/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
    "what": "Census TIGERweb district polygons: 2026 Senate districts (2021 plan)"
+  },
+  {
+   "file": "census-baf/sldu_2022.zip",
+   "sha256": "3e1138aed2428f4766017c84bfa264295a520a2d0d4c6c94a768dd0b73f2c125",
+   "bytes": 25732755,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/programs-surveys/decennial/rdo/mapping-files/2023/2022-state-legislative-bef/sldu_2022.zip",
+   "what": "Census Bureau 2022 State Legislative District Block Equivalency Files, upper chamber, all states (2020 blocks to 2022 SLDU, i.e. the 2021 CRC Senate plan for California)"
+  },
+  {
+   "file": "census-baf/06_CA_SLDU22.txt",
+   "sha256": "e717427bcad9d8d12dbb4b062545a7a74439ccd51950e362a4420502d55870c2",
+   "bytes": 10914197,
+   "read": "2026-10-04",
+   "url": "extracted from census-baf/sldu_2022.zip",
+   "what": "California file from the 2022 SLDU block equivalency: 2020 block GEOID to 2021-plan Senate district"
+  },
+  {
+   "file": "census-baf/BlockAssign_ST06_CA.zip",
+   "sha256": "edc540d7e782507c080d6caea087b302f3f406c8572629763f0f7017ebe427a1",
+   "bytes": 10681625,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/baf2020/BlockAssign_ST06_CA.zip",
+   "what": "Census Bureau 2020 Census (PL 94-171) Block Assignment Files for California: 2020 blocks to the districts in effect for the 2020 Census (SLDU = 2011 CRC Senate plan), places, etc."
+  },
+  {
+   "file": "census-baf/BlockAssign_ST06_CA_SLDU.txt",
+   "sha256": "c1b15e190fa97e94e3cb5ab14afe9d71bac4246e5c18bf611f29a2dfc05fa0c2",
+   "bytes": 10394477,
+   "read": "2026-10-04",
+   "url": "extracted from census-baf/BlockAssign_ST06_CA.zip",
+   "what": "2020 block to 2011-plan State Senate district"
+  },
+  {
+   "file": "census-baf/BlockAssign_ST06_CA_INCPLACE_CDP.txt",
+   "sha256": "91410973aaf31553fc212f3d59fb21689e09256e8a38fe798bd260fcb6b7c7f6",
+   "bytes": 10833462,
+   "read": "2026-10-04",
+   "url": "extracted from census-baf/BlockAssign_ST06_CA.zip",
+   "what": "2020 block to incorporated place or CDP (2020)"
+  },
+  {
+   "file": "census-baf/tigerweb_2020_block_pop100_06037_06071.json",
+   "sha256": "0ea625492356c6183d986993129f8419d33e73c37935bdd614053dfe240ac944",
+   "bytes": 2936580,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2020/MapServer/10/query (where STATE=06 AND COUNTY in 037, 071; outFields GEOID,POP100; paged 5000)",
+   "what": "2020 Census block population (POP100, unadjusted) for Los Angeles and San Bernardino counties; county totals match the 2020 Census (10,014,009 and 2,181,654)"
+  },
+  {
+   "file": "census-baf/tigerweb_2020_block_pop100_06079_06083_06111.json",
+   "sha256": "a79fc7c21451e224f9a74a50fe68705b7768add7cedf1b6bf36ac8f7df6d30e9",
+   "bytes": 590850,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2020/MapServer/10/query (where STATE=06 AND COUNTY in 079, 083, 111; outFields GEOID,POP100; paged 5000)",
+   "what": "2020 Census block population for San Luis Obispo, Santa Barbara and Ventura counties (to locate the 2021-plan SD 21)"
+  },
+  {
+   "file": "analysis/ca_place_names_2020.json",
+   "sha256": "97829724e1972b10f7e30c9c122fa97c61392013b100b482d594c6b62cafbda0",
+   "bytes": 44057,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2020/MapServer/28 and 26/query (where STATE=06; PLACE, NAME)",
+   "what": "2020 CDP and incorporated place codes to names"
+  },
+  {
+   "file": "analysis/blockpop2020.py",
+   "sha256": "1dcbfaa99d9b251582bb9cf8a67b60102a00b5eece35a03d10369d6815eb1b1c",
+   "bytes": 814,
+   "read": "2026-10-04",
+   "url": "written locally (no download)",
+   "what": "script: fetches the LA and San Bernardino block populations"
+  },
+  {
+   "file": "analysis/sd21_sd23.py",
+   "sha256": "62d07bbcf258196568353189caaa70c639878c283457c27eb1d0f951a8a9a6ef",
+   "bytes": 1681,
+   "read": "2026-10-04",
+   "url": "written locally (no download)",
+   "what": "script: overlap of 2011-plan SD 21 and 2021-plan SD 23 on 2020 blocks"
+  },
+  {
+   "file": "analysis/sd21_sd23_tally.json",
+   "sha256": "52419488b8ff37238c67ac0d880c35b445c540bc00b82bcaba6fc3fe9e831d19",
+   "bytes": 689,
+   "read": "2026-10-04",
+   "url": "written locally (no download)",
+   "what": "output of sd21_sd23.py"
   }
  ]
 }

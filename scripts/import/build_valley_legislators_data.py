@@ -85,6 +85,25 @@ T = [
     ('Mike Garcia', 'house', 25, '2011', '12 May 2020', '3 January 2023', 'reelected', ('Garcia', '2011'), 'Elected at the special election of 12 May 2020 to fill Katie Hill\'s seat; the Biographical Directory dates his service from that day. The day he was sworn in is not yet recorded.'),
     ('Mike Garcia', 'house', 27, '2021', '3 January 2023', '3 January 2025', 'expired', ('Garcia', '2021'), 'He lost the 2024 election to George Whitesides.'),
     ('George Whitesides', 'house', 27, '2021', '3 January 2025', '', 'serving', ('Whitesides', '2021'), ''),
+    # Districts holding only part of the valley (Nathan, 4 October 2026: "every district that held part of the valley, with
+    # its share and members ... Yes, slivers count. The rule is any part of the valley, with the share shown").
+    ('Paula Boland', 'assembly', 38, '1991', '7 December 1992', '2 December 1996', 'expired', ('Boland', '1991'), 'She had sat in the Assembly since December 1990; the term here begins when the 1991 lines took effect. Under them the 38th held the west side of the valley: Castaic, Val Verde and Stevenson Ranch.'),
+    ('Tom McClintock', 'assembly', 38, '1991', '2 December 1996', '4 December 2000', 'left', ('McClintock', '1991'), 'He left the Assembly on his election to the State Senate, 19th District, in 2000.'),
+    ('Keith Richman', 'assembly', 38, '1991', '4 December 2000', '2 December 2002', 'reelected', ('Richman', '1991'), 'Under the 1991 lines the 38th held the west side of the valley; from 2 December 2002, under the 2001 lines, it held most of it, and his service went on in the term that follows.'),
+    ('Tony Strickland', 'assembly', 37, '2001', '2 December 2002', '6 December 2004', 'expired', ('Strickland', '2001'), 'He had sat in the Assembly since December 1998; under the 1991 lines his district held no part of the valley, and the term here begins with the 2001 lines.'),
+    ('Audra Strickland', 'assembly', 37, '2001', '6 December 2004', '6 December 2010', 'expired', ('Audra', '2001'), ''),
+    ('Jeff Gorell', 'assembly', 37, '2001', '6 December 2010', '3 December 2012', 'reelected', ('Gorell', '2001'), 'From 2012 he sat for the 44th District, which held no part of the valley; the term here ends with the 2001 lines.'),
+    ('Steve Fox', 'assembly', 36, '2011', '3 December 2012', '1 December 2014', 'expired', ('Fox', '2011'), 'He lost the 2014 election to Tom Lackey.'),
+    ('Tom Lackey', 'assembly', 36, '2011', '1 December 2014', '5 December 2022', 'reelected', ('Lackey', '2011'), ''),
+    ('Tom Lackey', 'assembly', 34, '2021', '5 December 2022', '', 'serving', ('Lackey', '2021'), 'His term ends in December 2026; he is not on the 2026 ballot.'),
+    ('Cathie Wright', 'senate', 19, '1991', '7 December 1992', '4 December 2000', 'expired', ('Wright', '1991'), ''),
+    ('Tom McClintock', 'senate', 19, '1991', '4 December 2000', '6 December 2004', 'reelected', ('McClintock', '1991'), ''),
+    ('Tom McClintock', 'senate', 19, '2001', '6 December 2004', '1 December 2008', 'expired', ('McClintock', '2001'), ''),
+    ('Tony Strickland', 'senate', 19, '2001', '1 December 2008', '3 December 2012', 'expired', ('Strickland', '2001'), ''),
+    ('Fran Pavley', 'senate', 27, '2011', '3 December 2012', '5 December 2016', 'expired', ('Pavley', '2011'), ''),
+    ('Henry Stern', 'senate', 27, '2011', '5 December 2016', '2 December 2024', 'reelected', ('Stern', '2011'), 'He was re-elected in 2024 for a redrawn 27th District that holds no part of the valley; the term here ends with the 2011 lines.'),
+    ('Bill Thomas', 'house', 22, '2001', '3 January 2003', '3 January 2007', 'expired', ('Thomas', '2001'), 'Under the 2001 lines the 22nd held only Green Valley, about 1,000 people of the valley.'),
+    ('Kevin McCarthy', 'house', 22, '2001', '3 January 2007', '3 January 2013', 'reelected', ('McCarthy', '2001'), 'Under the 2001 lines the 22nd held only Green Valley, about 1,000 people of the valley; from 2013 his district held none of it.'),
 ]
 terms = []
 for p, ch, n, plan, s, e, how, look, note in T:

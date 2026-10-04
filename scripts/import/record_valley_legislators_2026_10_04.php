@@ -24,6 +24,16 @@
  *     record saying so, from KHTS/SCVNews of 2 June 2014 and her College of the Canyons biography. The
  *     City's wording is quoted as the City's and left as it is.
  *  5. United States Congress, with the House nested under it, for the Congress seal Nathan handed over.
+ *
+ * REBUILT the same day on the per-period model (Nathan, 4 October 2026: "Rebuild on the per-period model: every
+ * district that held part of the valley, with its share and members, and 'main' as a label rather than a spine";
+ * "Yes, slivers count"; "Create the dozen person records ... plus Richman's 2000-2002 term"). The three continuous
+ * seat places are retired (soft-deleted, recoverable from the trash) and no term points at them; each term keeps
+ * its district number (seatLabel) and plan (districtPlan), and the shares live in templates/_data/valley-districts.json.
+ * Twelve more members, for the districts holding part of the valley: Paula Boland, Tom McClintock, Tony Strickland,
+ * Audra Strickland, Jeff Gorell, Steve Fox, Tom Lackey, Cathie Wright, Fran Pavley, Henry Stern, Bill Thomas, Kevin
+ * McCarthy. Each term covers only the years the member's district held part of the valley; a footnote says so where
+ * the member sat before or after.
  * Idempotent. Dry run by default. Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/record_valley_legislators_2026_10_04.php'))"
  */
@@ -49,6 +59,9 @@ $NEW = [
     'Sharon Runner' => ['role' => 18387, 'death' => ['July 14, 2016', '2016-07-14', "$SEN_REC, note 189: re-elected at a special primary election, March 17, 2015, \"Died in office July 14, 2016.\""], 'portrait' => ['Sharon-Runner.jpg', 'sharon-runner.jpg', 'Sharon Runner, official portrait', 'From the website of a public body she served, retrieved 4 October 2026 (Nathan Imhoff); which page is not recorded. Permission to republish is not established.']],
     'Steve Knight' => ['role' => 18409, 'portrait' => ['Steve-Knight.jpg', 'steve-knight.jpg', 'Steve Knight, official portrait', 'From the website of a public body he served, retrieved 4 October 2026 (Nathan Imhoff); which page is not recorded. Permission to republish is not established.']],
     'Katie Hill' => ['role' => 18411], 'Mike Garcia' => ['role' => 18409], 'George Whitesides' => ['role' => 18409],
+    'Paula Boland' => ['role' => 18313], 'Tom McClintock' => ['role' => 18387], 'Tony Strickland' => ['role' => 18387], 'Audra Strickland' => ['role' => 18313],
+    'Jeff Gorell' => ['role' => 18313], 'Steve Fox' => ['role' => 18313], 'Tom Lackey' => ['role' => 18313], 'Cathie Wright' => ['role' => 18387],
+    'Fran Pavley' => ['role' => 18387], 'Henry Stern' => ['role' => 18387], 'Bill Thomas' => ['role' => 18409], 'Kevin McCarthy' => ['role' => 18409],
 ];
 $person = fn($n) => isset($EXIST[$n]) ? Entry::find()->id($EXIST[$n])->status(null)->one() : Entry::find()->section('persons')->status(null)->title($n)->one();
 foreach ($EXIST as $n => $id) { $p = $person($n); if (!$p || stripos($p->title, explode(' ', $n)[1]) === false) { $bad[] = "#$id is not $n"; } }
@@ -56,7 +69,7 @@ foreach ($BODY as $k => $id) { if (!Entry::find()->id($id)->status(null)->one())
 foreach ($NEW as $n => $c) { if (isset($c['portrait']) && !is_file("$root/inventory/incoming/{$c['portrait'][0]}") && !is_file("$root/inventory/incoming/done/{$c['portrait'][0]}")) { $bad[] = "{$c['portrait'][0]} missing"; } }
 $smith = Entry::find()->id(28278)->status(null)->one(); $mck = Entry::find()->id(26980)->status(null)->one();
 if ($smith?->holdingPerson->one()?->id !== 25389 || $mck?->holdingPerson->one()?->id !== 18791) { $bad[] = 'Smith #28278 or McKeon #26980 not as expected'; }
-foreach ($SEAT as $k => [$t]) { echo "seat: $t: " . (Entry::find()->section('places')->status(null)->title($t)->exists() ? 'exists' : 'create') . PHP_EOL; }
+foreach ($SEAT as $k => [$t]) { echo "seat: $t: " . (Entry::find()->section('places')->status(null)->title($t)->exists() ? 'exists, to retire' : 'retired') . PHP_EOL; }
 foreach ($NEW as $n => $c) { echo "person: $n: " . ($person($n) ? 'exists' : 'create') . (isset($c['death']) ? ", died in office {$c['death'][0]}" : '') . (isset($c['portrait']) ? ", portrait {$c['portrait'][0]}" : '') . PHP_EOL; }
 foreach ($D as $t) { echo "term: {$t['person']}, {$t['seatLabel']}, {$t['districtPlan']} lines, " . ($t['termStartEdtf'] ?? '(kept)') . ' to ' . ($t['termEndEdtf'] === null ? '(kept)' : ($t['termEndEdtf'] ?: 'now')) . ", {$t['howEnded']}, " . count($t['citations']) . ' citations' . PHP_EOL; }
 echo 'REFUSED: ' . ($bad ? implode(' | ', $bad) : 'none') . PHP_EOL;
@@ -66,15 +79,7 @@ if ($bad) { echo 'REFUSING' . PHP_EOL; return; }
 $n = 0; $fn = fn(array $notes) => array_values(array_map(fn($i, $x) => ['number' => (string)($i + 1), 'note' => $x, 'source' => 'editorial-2026'], array_keys($notes), $notes));
 $tx = Craft::$app->getDb()->beginTransaction();
 try {
-    /* 1. seats */
-    $placeSec = $svc->getSectionByHandle('places'); $placeType = $svc->getEntryTypeByHandle('place'); $seat = [];
-    foreach ($SEAT as $k => [$t, $kind, $body]) {
-        $s = Entry::find()->section('places')->status(null)->title($t)->one();
-        if (!$s) { $s = new Entry(); $s->sectionId = $placeSec->id; $s->setTypeId($placeType->id); $s->title = $t;
-            $s->setFieldValues(['districtKind' => $kind, 'placeOrganizations' => [$BODY[$k]], 'body' => $body, 'recordProvenance' => $PROV]);
-            if (!$el->saveElement($s)) { throw new \RuntimeException("seat $t: " . json_encode($s->getFirstErrors())); } $n++; }
-        $seat[$k] = $s->id;
-    }
+    /* 1. the continuous seats are retired below, once no term points at them */
     /* 3. people */
     $pSec = $svc->getSectionByHandle('persons'); $pType = $svc->getEntryTypeByHandle('person');
     $volume = Craft::$app->getVolumes()->getVolumeByHandle('archiveMedia'); $folder = Craft::$app->getAssets()->findFolder(['volumeId' => $volume->id, 'path' => 'outside/']);
@@ -103,7 +108,7 @@ try {
     $hs = $svc->getSectionByHandle('officeHoldings'); $ht = $svc->getEntryTypeByHandle('officeHolding');
     foreach ($D as $t) {
         $ch = $t['chamber']; $p = $person($t['person']);
-        $v = ['holdingDistrict' => [$seat[$ch]], 'seatLabel' => $t['seatLabel'], 'districtPlan' => $t['districtPlan']];
+        $v = ['holdingDistrict' => [], 'seatLabel' => $t['seatLabel'], 'districtPlan' => $t['districtPlan']];
         if ($t['person'] === 'Christy Smith') { $h = $smith; }
         elseif ($t['person'] === 'Buck McKeon' && $t['districtPlan'] === '1991') { $h = $mck; }
         else {
@@ -151,9 +156,12 @@ try {
     if (!$C) { $C = new Entry(); $C->sectionId = $os->id; $C->setTypeId($os->getEntryTypes()[0]->id); $C->title = 'United States Congress'; $C->setFieldValues(['orgType' => 'government', 'recordProvenance' => $PROV . ': for its seal, with the House under it']);
         if (!$el->saveElement($C)) { throw new \RuntimeException('Congress: ' . json_encode($C->getFirstErrors())); } $n++; }
     $H = Entry::find()->id(28269)->one(); if ($H->parentOrganization->one()?->id !== $C->id) { $H->setFieldValue('parentOrganization', [$C->id]); if (!$el->saveElement($H)) { throw new \RuntimeException('House parent'); } $n++; }
+    /* the continuous seats, retired: soft-deleted, recoverable from the trash */
+    foreach ($SEAT as $k => [$t]) { $s = Entry::find()->section('places')->status(null)->title($t)->one();
+        if ($s && !Entry::find()->section('officeHoldings')->relatedTo(['targetElement' => $s, 'field' => 'holdingDistrict'])->exists()) { if (!$el->deleteElement($s)) { throw new \RuntimeException("retire $t"); } $n++; } }
     $tx->commit();
 } catch (\Throwable $e) { $tx->rollBack(); echo 'ROLLED BACK, nothing was written: ' . $e->getMessage() . PHP_EOL; throw $e; }
-$count = fn($k) => Entry::find()->section('officeHoldings')->relatedTo(['targetElement' => $seat[$k], 'field' => 'holdingDistrict'])->count();
-echo "READ-BACK: $n writes; terms on the seats: Assembly {$count('assembly')}, Senate {$count('senate')}, House {$count('house')}" . PHP_EOL;
+$count = fn($k) => Entry::find()->section('officeHoldings')->relatedTo(['targetElement' => $BODY[$k], 'field' => 'holdingBody'])->districtPlan(':notempty:')->count();
+echo "READ-BACK: $n writes; terms with a district and plan: Assembly {$count('assembly')}, Senate {$count('senate')}, House {$count('house')}" . PHP_EOL;
 $applyLog = require "$root/scripts/import/_apply_log.php";
-$applyLog('record_valley_legislators_2026_10_04.php', $n, 'verified', 'The valley\'s Assembly, Senate and House seats: three seats, 25 terms with plan and number, ten members, two deaths in office, Ayala as staff, United States Congress');
+$applyLog('record_valley_legislators_2026_10_04.php', $n, 'verified', 'The valley\'s Assembly, Senate and House members, per period: every district holding part of the valley; 42 terms, 22 new members, the continuous seats retired');
