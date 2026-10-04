@@ -17,7 +17,7 @@
  * Run alone: ddev craft exec "eval(file_get_contents('scripts/import/check_pasted_labels.php'))"
  */
 
-ini_set('memory_limit', '2048M');
+if ((int)ini_get('memory_limit') !== -1 && (int)ini_get('memory_limit') < 2048) { ini_set('memory_limit', '2048M'); }
 $LBL = 'Wikipedia|Yourscvwater|LinkedIn|Ballotpedia|Britannica|Find a Grave|FamilySearch|Calisphere|HMdb|KHTS|SCVNews|signalscv|Santa Clarita Valley Signal|Hometown Station|Patch|ANCA[^.]{0,25}|Facebook|Instagram|YouTube|IMDb|Ancestry|Newspapers\.com|ca\.gov|\.com|\.org';
 $fails = [];
 foreach (\craft\elements\Entry::find()->status(null)->each(200) as $e) {

@@ -1,0 +1,60 @@
+{#
+  Every term on a body's seats as one bar per term, one row per person, in order of
+  first service (Nathan, 4 October 2026: "a terms timeline on History for every body").
+  Generalised from the council roster's timeline: navy where the term rests on a
+  document or a count confirmed by a roster, pale where it rests on the count alone,
+  gold where the person was appointed. Rotating offices (the mayoralty) are not seats
+  and are left out. A long roster scrolls inside its frame.
+
+    body   the organization
+#}
+{%- set terms = craft.entries().section('officeHoldings').relatedTo({ targetElement: body, field: 'holdingBody' }).with(['holdingPerson']).all()|filter(h => h.selectionMethod.value != 'rotated' and h.termStartEdtf and (h.holdingPerson|first)) -%}
+{% if terms|length %}
+{%- set NOW = now|date('Y') + (now|date('n') - 1) / 12 -%}
+{%- set people = {} -%}
+{% for h in terms|sort((a, b) => a.termStartEdtf <=> b.termStartEdtf) %}
+  {% set p = h.holdingPerson|first %}
+  {% set sp = h.termStartEdtf|replace({'[': ''})|split('-') %}
+  {% set s = sp[0]|slice(0, 4) + ((sp[1] ?? null) ? (sp[1]|slice(0, 2) - 1) / 12 : 0.5) %}
+  {% if h.termEndEdtf %}{% set ep = h.termEndEdtf|split('-') %}{% set e = ep[0]|slice(0, 4) + ((ep[1] ?? null) ? (ep[1]|slice(0, 2) - 1) / 12 : 0.5) %}{% elseif h.howEnded.value == 'serving' %}{% set e = NOW %}{% else %}{% set e = s + 0.5 %}{% endif %}
+  {% set k = 'p' ~ p.id %}
+  {% set row = people[k] ?? { person: p, first: s, bars: [] } %}
+  {% set people = people|merge({ (k): row|merge({ bars: row.bars|merge([{ h: h, s: s, e: e }]) }) }) %}
+{% endfor %}
+{%- set rows = people|sort((a, b) => a.first <=> b.first ?: a.person.title <=> b.person.title) -%}
+{%- set Y0 = ((rows|first).first / 10)|round(0, 'floor') * 10 -%}
+{%- set W = 980 -%}{%- set L = 190 -%}{%- set R = 24 -%}{%- set TOP = 30 -%}{%- set RH = 24 -%}
+{%- set H = TOP + rows|length * RH + 8 -%}
+{%- set span = NOW + 0.4 - Y0 -%}
+{%- set step = span > 50 ? 10 : (span > 24 ? 4 : 2) -%}
+<h2 class="rec-h2 hub-h" id="terms">Every term, {{ Y0 }} to now</h2>
+<p class="hub-lede">{{ rows|length }} people, {{ terms|length }} terms, as the archive holds them. Each term's own record states its sources; the timeline shows every seat.</p>
+<div class="tl-frame">
+  <svg viewBox="0 0 {{ W }} {{ H }}" style="display:block;min-width:720px;width:100%;height:auto" role="img" aria-label="Timeline of {{ body.title }} members' terms, {{ Y0 }} to now">
+    {% for y in range(Y0, NOW|round(0, 'floor'), step) %}
+      {% set x = L + (y - Y0) / span * (W - L - R) %}
+      <line x1="{{ x }}" x2="{{ x }}" y1="{{ TOP - 6 }}" y2="{{ H - 4 }}" stroke="#ECEEF1"/>
+      <text x="{{ x }}" y="{{ TOP - 12 }}" font-size="11" fill="#8A93A3" text-anchor="middle" font-family="Jost, sans-serif">{{ y }}</text>
+    {% endfor %}
+    {% for r in rows %}
+      {% set y = TOP + loop.index0 * RH %}
+      <a href="{{ r.person.url }}"><text x="{{ L - 10 }}" y="{{ y + 16 }}" font-size="12.5" fill="#17254C" text-anchor="end" font-family="Public Sans, system-ui, sans-serif">{{ r.person.title }}</text></a>
+      {% for b in r.bars %}
+        {% set x1 = L + (b.s - Y0) / span * (W - L - R) %}{% set x2 = L + (b.e - Y0) / span * (W - L - R) %}
+        {% set fill = b.h.selectionMethod.value == 'appointed' ? '#C4A031' : (b.h.startEvidence.value == 'derived' ? '#9AA6C4' : '#17254C') %}
+        <rect x="{{ x1 }}" y="{{ y + 6 }}" width="{{ max(x2 - x1 - 1.5, 3) }}" height="12" fill="{{ fill }}"><title>{{ r.person.title }}: {{ b.h.termStart ?: b.h.termStartEdtf }} to {{ b.h.termEnd ?: (b.h.howEnded.value == 'serving' ? 'now' : 'an end not recorded') }}</title></rect>
+      {% endfor %}
+    {% endfor %}
+  </svg>
+</div>
+<div class="tl-key">
+  <span><i style="background:#17254C"></i>Elected: declared, or the count confirmed by a roster</span>
+  <span><i style="background:#9AA6C4"></i>Elected on the count alone</span>
+  <span><i style="background:#C4A031"></i>Appointed</span>
+</div>
+{% css %}
+.tl-frame{background:#fff;border:1px solid #E2E4E8;padding:14px 12px 8px;overflow:auto;max-height:560px;margin-bottom:10px}
+.tl-key{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#5B6472;margin-bottom:28px}
+.tl-key i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px}
+{% endcss %}
+{% endif %}

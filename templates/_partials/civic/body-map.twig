@@ -1,0 +1,101 @@
+{#
+  A body's map on the first tab of its page (Nathan, 4 October 2026: "on a district page the map is the
+  subject, not reference"; "When a trustee area is picked, show a map of that area"). Draws the body's
+  seats from web/data/seats/<slug>.geojson (scripts/import/build_seat_maps.py, from the County
+  Registrar-Recorder's layers), and for a school district its schools from web/data/schools.geojson, open
+  as filled dots and closed as hollow ones. Listens for the seat control's scv:seat event: the chosen seat
+  is outlined and the map zooms to it; "All" shows every seat.
+
+    body    the organization
+    leaid   a school district's NCES id, for its schools (optional)
+    height  map height in pixels
+    pin     optional { lat, lng, title, address }: where the body itself is
+#}
+{% set leaid = leaid ?? null %}
+{% set mapId = 'bodyMap' ~ body.id %}
+{% set seatFile = 'data/seats/' ~ body.slug ~ '.geojson' %}
+{% set hasSeats = body.slug in ((source('_data/seat-maps.json', ignore_missing = true)|json_decode).bodies ?? []) %}
+{% set geoV = (source('_data/school-directory.json', ignore_missing = true)|hash)|slice(0, 12) %}
+{% set recs = {} %}
+{% if leaid %}{% for o in craft.entries().section('organizations').orgType('school').all() %}{% if o.ncesId|trim %}{% set recs = recs|merge({ (o.ncesId|trim): o.url }) %}{% endif %}{% endfor %}{% endif %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<div class="bm">
+  <div id="{{ mapId }}" class="bm-map" role="img" aria-label="Map of {{ body.title }}{{ hasSeats ? ' and its seats' : '' }}" style="height:{{ height ?? 440 }}px"></div>
+  <div class="bm-key">
+    {% if leaid %}<span><i class="dot"></i>School, open</span><span><i class="dot o"></i>School, closed</span>{% endif %}
+    {% if hasSeats %}<span><i class="ln"></i>Seat boundary</span>{% endif %}
+  </div>
+  {% if pin ?? null %}<p class="bm-src"><b style="font-weight:600;color:#17254C">{{ pin.title }}</b>{{ pin.address ? ', ' ~ pin.address : '' }} ({{ pin.lat }}, {{ pin.lng }})</p>{% endif %}
+  <p class="bm-src" id="{{ mapId }}Src">{% if hasSeats %}Seat boundaries: Los Angeles County Registrar-Recorder/County Clerk, for election purposes, not legal boundaries.{% endif %}{% if leaid %} Schools: the NCES directory, 1987 on.{% endif %}</p>
+</div>
+{% css %}
+.bm{background:#fff;border:1px solid #E2E4E8;padding:10px;margin:0 0 26px}
+.bm-map{background:#EEF0F4}
+.bm-key{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:#5B6472;margin-top:8px}
+.bm-key .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#17254C;vertical-align:-1px;margin-right:6px}
+.bm-key .dot.o{background:#fff;border:2px solid #8A93A3;width:8px;height:8px}
+.bm-key .ln{display:inline-block;width:16px;border-top:2px solid #A9842B;vertical-align:3px;margin-right:6px}
+.bm-src{font-size:12.5px;color:#5B6472;margin:6px 0 0;line-height:1.5}
+.bm-lbl{background:none;border:none;box-shadow:none;font-weight:600;font-size:12px;color:#17254C;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff}
+.bm-lbl:before{display:none}
+{% endcss %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var el = document.getElementById({{ mapId|json_encode|raw }});
+  if (!el || typeof L === 'undefined') { return; }
+  var map = L.map(el, { scrollWheelZoom: false, zoomSnap: 0.25 });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+  var RECS = {{ recs|json_encode|raw }}, LEAID = {{ leaid ? leaid|json_encode|raw : 'null' }};
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function nice(n){ return n === n.toUpperCase() ? n.toLowerCase().replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); }) : n; }
+  var seats = {}, all = null, outline = null, chosen = '';
+  function style(slug){ var on = !chosen || chosen === slug;
+    return { color: chosen === slug ? '#17254C' : '#A9842B', weight: chosen === slug ? 3 : 1.6, fillColor: '#C4A031', fillOpacity: chosen ? (on ? .22 : .03) : .1 }; }
+  function show(seat){
+    chosen = seat || '';
+    Object.keys(seats).forEach(function(k){ seats[k].setStyle(style(k)); });
+    if (chosen && seats[chosen]) { seats[chosen].bringToFront(); map.fitBounds(seats[chosen].getBounds(), { padding: [12, 12] }); }
+    else if (all) { map.fitBounds(all.getBounds(), { padding: [10, 10] }); }
+  }
+  var jobs = [];
+  {% if hasSeats %}
+  jobs.push(fetch({{ (siteUrl ~ seatFile ~ '?v=' ~ geoV)|json_encode|raw }}).then(function(r){ return r.json(); }).then(function(g){
+    if (g.note) { var s = document.getElementById({{ (mapId ~ 'Src')|json_encode|raw }}); if (s) { s.textContent += ' ' + g.note; } }
+    all = L.geoJSON(g, {
+      filter: function(f){ return f.properties.role !== 'outline'; },
+      style: function(f){ return style(f.properties.seat); },
+      onEachFeature: function(f, l){ seats[f.properties.seat] = l;
+        l.bindTooltip(esc(f.properties.label), { permanent: true, direction: 'center', className: 'bm-lbl' });
+        l.on('click', function(){ var b = document.querySelector('[data-seat-btn="' + f.properties.seat + '"]'); if (b) { b.click(); } }); }
+    }).addTo(map);
+    var o = (g.features || []).filter(function(f){ return f.properties.role === 'outline'; });
+    if (o.length) { outline = L.geoJSON(o, { interactive: false, style: { color: '#17254C', weight: 2.5, dashArray: '6 5', fill: false } }).addTo(map); }
+  }));
+  {% endif %}
+  {% if leaid %}
+  jobs.push(fetch({{ (siteUrl ~ 'data/schools.geojson?v=' ~ geoV)|json_encode|raw }}).then(function(r){ return r.json(); }).then(function(g){
+    var fs = (g.features || []).filter(function(f){ return f.properties.leaid === LEAID; });
+    var d = fs.filter(function(f){ return f.properties.kind === 'district'; });
+    if (!all && d.length) { all = L.geoJSON(d, { style: { color: '#17254C', weight: 2.5, dashArray: '6 5', fill: false } }).addTo(map); }
+    L.geoJSON(fs.filter(function(f){ return f.properties.kind === 'school'; }), {
+      pointToLayer: function(f, ll){ var open = f.properties.status === 'open';
+        return L.circleMarker(ll, { radius: open ? 5 : 4.5, color: open ? '#17254C' : '#8A93A3', weight: 2, fillColor: open ? '#17254C' : '#fff', fillOpacity: 1 }); },
+      onEachFeature: function(f, l){ var p = f.properties, u = RECS[p.nces];
+        l.bindPopup('<b>' + (u ? '<a href="' + esc(u) + '">' + esc(nice(p.name)) + '</a>' : esc(nice(p.name))) + '</b><br>' + [p.grades ? 'Grades ' + esc(p.grades) : '', p.status === 'open' ? 'Open' : 'Closed, last listed ' + esc(p.lastListed)].filter(Boolean).join(' &middot; ')); }
+    }).addTo(map);
+  }));
+  {% endif %}
+  {% if pin ?? null %}
+  var PIN = L.marker([{{ pin.lat }}, {{ pin.lng }}]).addTo(map).bindPopup({{ ('<b>' ~ pin.title ~ '</b>' ~ (pin.address ? '<br>' ~ pin.address : ''))|json_encode|raw }});
+  if (!jobs.length) { map.setView([{{ pin.lat }}, {{ pin.lng }}], 14); }
+  {% endif %}
+  Promise.all(jobs).then(function(){
+    var start = new URLSearchParams(location.search).get('seat');
+    show(start && seats[start] ? start : '');
+    /* A map drawn while its tab was hidden has no size; redraw when the tab opens. */
+    document.addEventListener('scv:tab', function(){ setTimeout(function(){ map.invalidateSize(); show(chosen); }, 30); });
+  });
+  document.addEventListener('scv:seat', function(e){ show(e.detail.seat); });
+})();
+</script>

@@ -16,17 +16,33 @@
   {% endfor %}
   {% macro nice(n) %}{{ n == n|upper ? n|lower|title : n }}{% endmacro %}
   {% import _self as m %}
-  <h2 class="rec-h2">Schools in the district</h2>
+  <h2 class="rec-h2 hub-h">Schools in the district</h2>
   <p style="font-size:14px;color:#5B6472;margin:-6px 0 14px">{{ d.open|length }} open, {{ d.closed|length }} closed, as the federal school directory lists them from 1987. Schools the archive holds a record for are linked.</p>
-  <table style="width:100%;border-collapse:collapse;font-size:15px;margin-bottom:28px">
-    <thead><tr style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B"><th style="padding:6px 8px 6px 0">SCHOOL</th><th style="padding:6px 8px">GRADES</th><th style="padding:6px 8px">CITY</th><th style="padding:6px 0 6px 8px">OPEN SINCE</th></tr></thead>
-    <tbody>
-    {% for s in d.open %}
-      {% set r = recs[s.nces] ?? null %}
-      <tr style="border-top:1px solid #EFE6D0"><td style="padding:7px 8px 7px 0">{% if r %}<a href="{{ r.url }}" style="color:#7A5C1B">{{ m.nice(s.name) }}</a>{% else %}{{ m.nice(s.name) }}{% endif %}{% if s.charter %} <span style="font-size:12px;color:#5B6472">charter</span>{% endif %}</td><td style="padding:7px 8px">{{ s.grades }}</td><td style="padding:7px 8px">{{ m.nice(s.city) }}</td><td style="padding:7px 0 7px 8px">{{ s.opened == 1987 ? 'by 1987' : s.opened }}</td></tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  {#- By level (Nathan, 4 October 2026: "high schools, then junior highs, then alternative and continuation"): a school whose name
+      says continuation, alternative, opportunity, independent study or community day is alternative; otherwise its grades decide. -#}
+  {% set LEVELS = [['high', 'High schools'], ['junior', 'Junior high and middle schools'], ['elementary', 'Elementary schools'], ['alt', 'Alternative and continuation']] %}
+  {% set levelOf = {} %}
+  {% for s in d.open %}
+    {% set g = s.grades|split('-') %}{% set lo = (g|first) matches '/^[0-9]+$/' ? (g|first) * 1 : 0 %}{% set hi = (g|last) matches '/^[0-9]+$/' ? (g|last) * 1 : 0 %}
+    {% set lv = s.name matches '/continuation|alternative|opportunity|independent|community day/i' ? 'alt' : (lo >= 9 or (lo >= 7 and hi >= 12) ? 'high' : (lo >= 6 and hi <= 9 ? 'junior' : 'elementary')) %}
+    {% set levelOf = levelOf|merge({ (s.nces ~ ''): lv }) %}
+  {% endfor %}
+  {% for L in LEVELS %}
+    {% set rows = d.open|filter(s => levelOf[s.nces ~ ''] == L[0]) %}
+    {% if rows|length %}
+      <h3 class="ds-lv">{{ L[1] }} <span>{{ rows|length }}</span></h3>
+      <table style="width:100%;border-collapse:collapse;font-size:15px;margin-bottom:22px">
+        <thead><tr style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B"><th style="padding:6px 8px 6px 0">SCHOOL</th><th style="padding:6px 8px">GRADES</th><th style="padding:6px 8px">CITY</th><th style="padding:6px 0 6px 8px">OPEN SINCE</th></tr></thead>
+        <tbody>
+        {% for s in rows %}
+          {% set r = recs[s.nces] ?? null %}
+          <tr style="border-top:1px solid #EFE6D0"><td style="padding:7px 8px 7px 0">{% if r %}<a href="{{ r.url }}" style="color:#7A5C1B">{{ m.nice(s.name) }}</a>{% else %}{{ m.nice(s.name) }}{% endif %}{% if s.charter %} <span style="font-size:12px;color:#5B6472">charter</span>{% endif %}</td><td style="padding:7px 8px">{{ s.grades }}</td><td style="padding:7px 8px">{{ m.nice(s.city) }}</td><td style="padding:7px 0 7px 8px">{{ s.opened == 1987 ? 'by 1987' : s.opened }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  {% endfor %}
+  {% css %}.ds-lv{font-family:'Playfair Display',serif;font-weight:500;font-size:20px;color:#17254C;margin:18px 0 8px}.ds-lv span{font-family:'Jost',sans-serif;font-size:12px;color:#7A5C1B;margin-left:6px}{% endcss %}
   {% if d.closed|length %}
     <h3 style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;color:#7A5C1B;margin:0 0 8px">CLOSED</h3>
     <table style="width:100%;border-collapse:collapse;font-size:15px;margin-bottom:28px"><tbody>

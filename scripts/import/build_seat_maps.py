@@ -77,3 +77,9 @@ for slug, (folder, fn, prefix, word, note) in DIVISION.items():
     out = {'type': 'FeatureCollection', 'source': SOURCE, 'note': note, 'features': fs}
     json.dump(out, open(os.path.join(OUT, slug + '.geojson'), 'w'), separators=(',', ':'))
     print(slug, len(fs), 'features')
+
+# The list templates read to know which bodies have a seat file (Twig cannot look in web/).
+bodies = sorted(f[:-8] for f in os.listdir(OUT) if f.endswith('.geojson'))
+json.dump({'_about': 'Bodies with a seat boundary file in web/data/seats/, written by scripts/import/build_seat_maps.py.', 'bodies': bodies},
+          open(os.path.join(ROOT, 'templates', '_data', 'seat-maps.json'), 'w'), indent=1)
+print('seat-maps.json:', len(bodies))

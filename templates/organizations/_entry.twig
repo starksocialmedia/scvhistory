@@ -16,7 +16,45 @@
   .rec-alias .sep{font-style:normal;color:#A9842B;margin:0 .2em}
   .rec-mark img{display:block;width:100%;height:auto;max-height:220px;object-fit:contain;background:#fff;padding:14px;border:1px solid #EFE6D0}
   .rec-mark p{font-size:13px;line-height:1.55;color:#5B6472;margin:10px 0 0}
-  .rec-side .sc-map{margin-bottom:0!important;padding:0!important;border:0!important;background:none!important}{% endcss %}
+  .rec-side .sc-map{margin-bottom:0!important;padding:0!important;border:0!important;background:none!important}
+  /* The hub's tabs: sticky under the header like every filter bar (base.twig), one pane shown at a time once the script runs;
+     with no script, or in print, every pane shows with its heading. */
+  .hub-tabs{background:#fff;border:1px solid #E2E4E8;margin:0 0 18px}
+  .hub-tabs-in{display:flex;gap:4px;overflow-x:auto;padding:0 6px}
+  .hub-tabs a{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.06em;color:#4A5260;text-decoration:none;padding:10px 14px;border-bottom:3px solid transparent;white-space:nowrap}
+  .hub-tabs a[aria-selected="true"]{color:#17254C;border-bottom-color:#C4A031;font-weight:500}
+  .hub-pane-h{font-family:'Playfair Display',serif;font-weight:500;font-size:30px;color:#17254C;margin:6px 0 14px}
+  .js-tabs .hub-pane{display:none}
+  .js-tabs .hub-pane.on{display:block}
+  .js-tabs .hub-pane-h{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .hub-pane{margin-bottom:28px}
+  .hub-pane .rec-h2.hub-h:first-of-type{margin-top:22px}
+  .hub-boxes{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:10px}
+  @media print{.hub-tabs{display:none}.js-tabs .hub-pane{display:block!important}}{% endcss %}
+  {% js %}
+  (function(){
+    var panes = document.querySelector('.hub-panes'); var tabs = document.querySelector('.hub-tabs'); if (!panes || !tabs) { return; }
+    document.documentElement.classList.add('js-tabs');
+    function open(id, scroll){
+      var pane = document.getElementById('t-' + id); if (!pane) { return; }
+      panes.querySelectorAll('.hub-pane').forEach(function(p){ p.classList.toggle('on', p === pane); });
+      tabs.querySelectorAll('[data-tab]').forEach(function(a){ a.setAttribute('aria-selected', a.getAttribute('data-tab') === id ? 'true' : 'false'); });
+      document.dispatchEvent(new CustomEvent('scv:tab', { detail: { tab: id } }));
+      if (scroll) { tabs.scrollIntoView({ block: 'start' }); }
+    }
+    /* A link to anything inside a pane (a footnote, #past-members, #board) opens that pane first. */
+    function fromHash(scroll){
+      var h = location.hash.slice(1); if (!h) { open('main'); return; }
+      if (h.indexOf('t-') === 0) { open(h.slice(2), scroll); return; }
+      var t = document.getElementById(h); var p = t ? t.closest('.hub-pane') : null;
+      if (p) { open(p.getAttribute('data-pane')); setTimeout(function(){ t.scrollIntoView(); }, 20); } else { open('main'); }
+    }
+    tabs.addEventListener('click', function(e){ var a = e.target.closest('[data-tab]'); if (!a) { return; } e.preventDefault(); history.replaceState(null, '', location.pathname + location.search + '#t-' + a.getAttribute('data-tab')); open(a.getAttribute('data-tab'), true); });
+    document.addEventListener('click', function(e){ var a = e.target.closest('[data-tab-link]'); if (!a) { return; } e.preventDefault(); history.replaceState(null, '', location.pathname + location.search + a.getAttribute('href')); fromHash(false); });
+    window.addEventListener('hashchange', function(){ fromHash(false); });
+    fromHash(false);
+  })();
+  {% endjs %}
 {% endblock %}
 
 {% block content %}
@@ -94,6 +132,40 @@
 {% set aliases = [] %}
 {% for a in F.orgAliases|replace({ "\r": '' })|split("\n") %}{% if a|trim and a|trim not in aliases %}{% set aliases = aliases|merge([a|trim]) %}{% endif %}{% endfor %}
 
+{#- What the archive holds about the body: its sub-bodies, schools, places, events, articles, documents, tags. In the sidebar,
+    or on a hub page in the "In the archive" tab (Nathan, 4 October 2026). -#}
+{% set archiveBoxes %}
+        {#- Sub-bodies were entry.subBoards, the inverse of parentOrganization kept
+            in a second place. Read the nesting instead: one fact, one home. -#}
+        {% set subBodies = craft.entries().section('organizations')
+            .relatedTo({ targetElement: entry, field: 'parentOrganization' }).all() %}
+        {% set boxes = [
+          { lab: 'PARENT ORGANIZATION', key: 'PARENT', rows: parent ? [parent] : [] },
+          { lab: isDistrict ? 'SCHOOLS' : 'BOARDS AND SUBSIDIARIES', key: isDistrict ? 'SCHOOL' : 'BOARD', rows: subBodies },
+          { lab: 'PUPILS GO ON TO', key: 'SCHOOL', rows: feedsTo },
+          { lab: 'TAKES PUPILS FROM', key: 'SCHOOL', rows: feedsFrom },
+          { lab: 'PLACES', key: 'PLACE', rows: orgPlaces },
+          { lab: 'EVENTS', key: 'EVENT', rows: entry.orgEvents.all() },
+          { lab: 'ARTICLES', key: 'ARTICLE', rows: subjectArticles },
+          { lab: 'PUBLISHED BY THIS ORGANIZATION', key: 'ARTICLE', rows: publishedArticles }
+        ]|filter(b => b.rows|length) %}
+        {% for b in boxes %}
+          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
+          </div>
+        {% endfor %}
+
+        {% if communities|length %}
+          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
+            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
+
+        {% include "_partials/record/tags" with { el: entry } only %}
+{% endset %}
+
 <div class="rec">
   <section class="rec-band{{ img ? '' : ' rec-band--fit' }}">
     <div class="rec-wrap">
@@ -142,14 +214,64 @@
         {% include "_partials/record/note" with { text: noteTop } only %}
         {#- The archive's own notes (editorNotes), which this page did not render before 2 October 2026: corrections and readers' notes were saved but not shown. -#}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'top' } only %}
+        {% if hasHub %}
+          {#- The body hub in tabs (inventory/review/body-hub-tabs-proposal-2026-10-04.md, approved by Nathan 4 October 2026):
+              the body, History, Schools (districts), Elections, In the archive. Every pane is in the page; scripts show one at a
+              time, and with scripts off or in print all show in order. The seat control sits above the panes and filters all
+              of them. The lead paragraph is on the first tab, the rest of the text under History. -#}
+          {% set scope = 'hub' ~ entry.id %}
+          {% set isCity = ROSTER[entry.slug] is defined %}
+          {% set leadText = prose ? (prose|split("\n\n")|first) : '' %}
+          {% set restText = prose ? (prose|split("\n\n")|slice(1)|join("\n\n")) : '' %}
+          {% set firstLabel = isDistrict ? 'The district' : (isCity ? 'The city' : 'The body') %}
+          {% set TABS = [{ id: 'main', label: firstLabel }, { id: 'history', label: 'History' }]|merge(districtMap ? [{ id: 'schools', label: 'Schools' }] : [])|merge([{ id: 'elections', label: 'Elections' }, { id: 'archive', label: 'In the archive' }]) %}
+          <nav class="hub-tabs" aria-label="Sections of this page"><div class="hub-tabs-in" role="tablist">{% for t in TABS %}<a role="tab" href="#t-{{ t.id }}" data-tab="{{ t.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">{{ t.label }}</a>{% endfor %}</div></nav>
+          <div id="{{ scope }}" class="hub-panes">
+            {% include "_partials/civic/body-hub" with { part: 'control', body: entry, seats: seats, scope: scope } only %}
+            <section class="hub-pane" id="t-main" data-pane="main">
+              <h2 class="hub-pane-h">{{ firstLabel }}</h2>
+              {% if leadText %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: leadText, images: [], footnotesFor: entry } %}</div>{% endif %}
+              {% include "_partials/civic/body-map" with { body: entry, leaid: districtMap ? entry.ncesId|trim : null, height: 460, pin: (mapLat and mapLng) ? { lat: mapLat, lng: mapLng, title: mapTitle, address: mapPlace ? '' : F.orgAddress } : null } only %}
+              {% if isCity %}{% include "_partials/civic/roster" with { body: entry, seats: ROSTER[entry.slug], part: 'today' } only %}{% else %}{% include "_partials/civic/body-hub" with { part: 'board', body: entry, seats: seats } only %}{% endif %}
+            </section>
+            <section class="hub-pane" id="t-history" data-pane="history">
+              <h2 class="hub-pane-h">History</h2>
+              {% if restText %}<div class="rec-body">{% include "_partials/prose" with { text: restText, images: recImages, footnotesFor: entry } %}</div>{% endif %}
+              {% if prose %}{% include "_partials/record/footnotes" with { entry: entry } only %}{% endif %}
+              {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
+              {% if isCity %}{% include "_partials/civic/roster" with { body: entry, seats: ROSTER[entry.slug], part: 'history' } only %}{% else %}
+                {% include "_partials/civic/terms-timeline" with { body: entry } only %}
+                {% include "_partials/civic/body-hub" with { part: 'past', body: entry, seats: seats } only %}
+              {% endif %}
+              {% if EXEC %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'section' } only %}{% endif %}
+              {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
+              {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
+            </section>
+            {% if districtMap %}
+            <section class="hub-pane" id="t-schools" data-pane="schools">
+              <h2 class="hub-pane-h">Schools</h2>
+              {% include "_partials/district-schools" with { leaid: entry.ncesId|trim } only %}
+            </section>
+            {% endif %}
+            <section class="hub-pane" id="t-elections" data-pane="elections">
+              <h2 class="hub-pane-h">Elections</h2>
+              {% include "_partials/civic/body-hub" with { part: 'elections', body: entry, seats: seats } only %}
+            </section>
+            <section class="hub-pane" id="t-archive" data-pane="archive">
+              <h2 class="hub-pane-h">In the archive</h2>
+              {% include "_partials/civic/body-hub" with { part: 'people', body: entry, seats: seats, exclude: execIds } only %}
+              <div class="hub-boxes">{{ archiveBoxes }}</div>
+            </section>
+          </div>
+          {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
+          {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
+          {% include "_partials/record/fine-print" with { value: F.orgFinePrint } only %}
+        {% else %}
         {% if prose %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: prose, images: recImages , footnotesFor: entry } %}</div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}{% endif %}
         {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
         {#- A body with seats gets its roster: every member, every term, from the
             officeHolding records (STRUCTURE.md, the council roster). -#}
-        {% if EXEC %}{% set execSection %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'section' } only %}{% endset %}{% endif %}
-        {% if hasHub %}{% include "_partials/civic/body-hub" with { body: entry, seats: seats, roster: ROSTER[entry.slug] is defined, seatCount: ROSTER[entry.slug] ?? null, exclude: execIds } only %}{% endif %}
-        {{ execSection ?? '' }}
         {#- A district's page carries its map and every school in it, not only the
             ones the archive holds (Nathan, 29 September 2026). -#}
         {% if districtMap %}
@@ -162,6 +284,7 @@
         {% include "_partials/record/note" with { text: noteBottom, bottom: true } only %}
         {% if F.culturalSensitivityNote %}<div class="rec-note" style="margin-top:24px">{{ F.culturalSensitivityNote }}</div>{% endif %}
         {% include "_partials/record/fine-print" with { value: F.orgFinePrint } only %}
+        {% endif %}
       </article>
 
       <aside class="rec-side">
@@ -174,7 +297,7 @@
           </div>
         {% endif %}
         {% if EXEC %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'box' } only %}{% endif %}
-        {% if districtMap and not mapInBody %}
+        {% if districtMap and not mapInBody and not hasHub %}
           <div class="rec-box"><div class="rec-lab">THE DISTRICT</div>
             {% include "_partials/school-map" with { leaid: entry.ncesId|trim, height: 300 } %}
             {% if seats|length > 1 %}<p style="font-size:13px;line-height:1.55;color:#5B6472;margin:8px 0 0">The {{ (seats|first).districtKind.label|lower }} boundaries are not drawn.</p>{% endif %}
@@ -190,7 +313,7 @@
             <div class="rec-rows"><div class="k">GRADES</div><div class="v">{{ gradeSpan }}</div>{% if isDistrict %}<div class="k">ALL</div><div class="v"><a href="{{ url('schools') }}">Schools of the valley</a></div>{% endif %}</div>
           </div>
         {% endif %}
-        {% if hasMap %}
+        {% if hasMap and not hasHub %}
           <div class="rec-box">
             <div class="rec-lab">LOCATION</div>
             <div id="recMap" class="rec-map" role="img" aria-label="Map showing the location of {{ mapTitle }}"></div>
@@ -231,35 +354,8 @@
           </div>
         {% endfor %}
 
-        {#- Sub-bodies were entry.subBoards, the inverse of parentOrganization kept
-            in a second place. Read the nesting instead: one fact, one home. -#}
-        {% set subBodies = craft.entries().section('organizations')
-            .relatedTo({ targetElement: entry, field: 'parentOrganization' }).all() %}
-        {% set boxes = [
-          { lab: 'PARENT ORGANIZATION', key: 'PARENT', rows: parent ? [parent] : [] },
-          { lab: isDistrict ? 'SCHOOLS' : 'BOARDS AND SUBSIDIARIES', key: isDistrict ? 'SCHOOL' : 'BOARD', rows: subBodies },
-          { lab: 'PUPILS GO ON TO', key: 'SCHOOL', rows: feedsTo },
-          { lab: 'TAKES PUPILS FROM', key: 'SCHOOL', rows: feedsFrom },
-          { lab: 'PLACES', key: 'PLACE', rows: orgPlaces },
-          { lab: 'EVENTS', key: 'EVENT', rows: entry.orgEvents.all() },
-          { lab: 'ARTICLES', key: 'ARTICLE', rows: subjectArticles },
-          { lab: 'PUBLISHED BY THIS ORGANIZATION', key: 'ARTICLE', rows: publishedArticles }
-        ]|filter(b => b.rows|length) %}
-        {% for b in boxes %}
-          <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
-            <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
-          </div>
-        {% endfor %}
-
-        {% if communities|length %}
-          <div class="rec-box"><div class="rec-lab">COMMUNITIES</div>
-            <div class="rec-rows">{% for c in communities %}<div class="k">AREA</div><div class="v"><a href="{{ c.url ?? url('communities/' ~ c.slug) }}">{{ c.title }}</a></div>{% endfor %}</div>
-          </div>
-        {% endif %}
-
-        {% include "_partials/record/documents" with { docs: recDocs } only %}
-
-        {% include "_partials/record/tags" with { el: entry } only %}
+        {#- The archive's boxes: in the sidebar, or on a hub page in its "In the archive" tab (built above the page as archiveBoxes). -#}
+        {% if not hasHub %}{{ archiveBoxes }}{% endif %}
 
         {% set links = [] %}
         {% if entry.orgWebsite is defined and entry.orgWebsite %}{% set links = links|merge([{u: entry.orgWebsite, t: 'Official website'}]) %}{% endif %}
@@ -278,7 +374,9 @@
   </div>
 </div>
 
-{% if hasMap %}
+{#- A hub page draws its map in its first tab (_partials/civic/body-map), which loads Leaflet itself; a second copy of Leaflet
+    froze the City's page (4 October 2026). -#}
+{% if hasMap and not hasHub %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){

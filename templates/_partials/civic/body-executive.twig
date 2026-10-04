@@ -39,20 +39,47 @@
   {% else %}
     <p style="font-size:13.5px;line-height:1.55;color:#5B6472;margin:0">The archive has not recorded who the present {{ label|lower }} is.</p>
   {% endfor %}
-  {% if past|length %}<p style="font-size:13.5px;margin:10px 0 0"><a href="#{{ plural|replace({' ': '-'}) }}" style="color:#7A5C1B">All {{ plural }} the archive holds &darr;</a></p>{% endif %}
+  {% if past|length %}<p style="font-size:13.5px;margin:10px 0 0"><a href="#{{ plural|replace({' ': '-'}) }}" style="color:#7A5C1B" data-tab-link="history">Past {{ plural }} &darr;</a></p>{% endif %}
 </div>
-{% elseif affs|length %}
-<h2 class="rec-h2" id="{{ plural|replace({' ': '-'}) }}">{{ plural|capitalize }}</h2>
-<p class="hub-lede">{{ present|length ? 'The present ' ~ label|lower ~ ' and those before, as the archive holds them' : 'Those the archive holds; it has not recorded who the present ' ~ label|lower ~ ' is' }}, most recent first.</p>
-<div class="hub-people">
-  {% for a in present|merge(past) %}
-    {% set p = a.affiliationPerson|first %}
-    {% set pimg = 'featuredImage' in p.fieldLayout.customFields|map(f => f.handle) ? p.featuredImage.one() : null %}
-    {% set pp = p.title|split(' ')|filter(x => x|trim) %}
-    <div class="rec-person">
-      <a class="th" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait.img(pimg, 1, '', true) }}{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</a>
-      <div style="min-width:0"><a class="n" href="{{ p.url }}" style="text-decoration:none">{{ p.title }}</a><div class="r">{{ a.affiliationEnded.value == 'serving' ? (a.termStart ? a.termStart ~ ' to now' : 'Present; start not recorded') : (a.termStart ?: '?') ~ ' to ' ~ (a.termEnd ?: '?') }}{% include "_partials/record/evidence" with { ev: a.endEvidence.value ? a.endEvidence : (a.startEvidence.value ? a.startEvidence : 'certified') } only %}</div></div>
-    </div>
+{% elseif past|length %}
+{#- Past holders only: the present one is in the sidebar (Nathan, 4 October 2026: "drop him from the Superintendents section in
+    the body. Rename it 'Past superintendents' and show it as a timeline or chart rather than cards"). One bar per holder on a
+    shared axis of years; a holder whose years are not recorded is listed beneath the chart with that said. -#}
+{% set dated = past|filter(a => a.termStartEdtf or a.termEndEdtf) %}
+{% set undated = past|filter(a => not (a.termStartEdtf or a.termEndEdtf)) %}
+<h2 class="rec-h2 hub-h" id="{{ plural|replace({' ': '-'}) }}">Past {{ plural }}</h2>
+{% if dated|length %}
+  {% set starts = [] %}{% set ends = [] %}
+  {% for a in dated %}
+    {% set starts = starts|merge([(a.termStartEdtf ?: a.termEndEdtf)|replace({'[': '', ']': ''})|split(',')|first|slice(0, 4) * 1]) %}
+    {% set ends = ends|merge([(a.termEndEdtf ?: a.termStartEdtf)|replace({'[': '', ']': ''})|split(',')|last|slice(0, 4) * 1]) %}
   {% endfor %}
-</div>
+  {% set Y0 = (min(starts) / 10)|round(0, 'floor') * 10 %}{% set Y1 = (max(ends) / 10)|round(0, 'ceil') * 10 %}{% set Y1 = Y1 > Y0 ? Y1 : Y0 + 10 %}
+  <div class="ex-chart">
+    {% for a in dated|sort((x, y) => x.termStartEdtf <=> y.termStartEdtf) %}
+      {% set p = a.affiliationPerson|first %}
+      {% set s0 = (a.termStartEdtf ?: a.termEndEdtf)|replace({'[': '', ']': ''})|split(',')|first|slice(0, 4) * 1 %}
+      {% set e0 = (a.termEndEdtf ?: a.termStartEdtf)|replace({'[': '', ']': ''})|split(',')|last|slice(0, 4) * 1 %}
+      <div class="ex-row">
+        <a class="ex-n" href="{{ p.url }}">{{ p.title }}</a>
+        <div class="ex-track"><span class="ex-bar" style="left:{{ ((s0 - Y0) / (Y1 - Y0) * 100)|round(2) }}%;width:{{ (max(e0 - s0, 1) / (Y1 - Y0) * 100)|round(2) }}%" title="{{ a.termStart ?: '?' }} to {{ a.termEnd ?: '?' }}"></span></div>
+        <div class="ex-y">{{ a.termStart ?: '?' }} to {{ a.termEnd ?: '?' }}{% include "_partials/record/evidence" with { ev: a.endEvidence.value ? a.endEvidence : (a.startEvidence.value ? a.startEvidence : 'certified') } only %}</div>
+      </div>
+    {% endfor %}
+    <div class="ex-axis"><span>{{ Y0 }}</span><span>{{ Y1 }}</span></div>
+  </div>
+{% endif %}
+{% if undated|length %}<p class="hub-lede">Also held, with no years recorded: {{ undated|map(a => (a.affiliationPerson|first).title)|join(', ') }}.</p>{% endif %}
+<p class="hub-lede">The archive holds {{ past|length == 1 ? 'one past ' ~ label|lower : past|length ~ ' past ' ~ plural }} so far; the others are not yet recorded.</p>
+{% css %}
+.ex-chart{background:#fff;border:1px solid #E2E4E8;padding:14px 16px 10px;margin:0 0 12px}
+.ex-row{display:grid;grid-template-columns:170px minmax(0,1fr) 190px;gap:12px;align-items:center;padding:6px 0}
+@media(max-width:700px){.ex-row{grid-template-columns:1fr}}
+.ex-n{color:#17254C;font-family:'Playfair Display',serif;font-size:16px;text-decoration:none}
+.ex-track{position:relative;height:12px;background:#F3F4F6}
+.ex-bar{position:absolute;top:0;height:12px;background:#17254C}
+.ex-y{font-size:13px;color:#5B6472}
+.ex-axis{display:flex;justify-content:space-between;font-family:'Jost',sans-serif;font-size:11px;color:#8A93A3;margin:4px 202px 0 182px}
+@media(max-width:700px){.ex-axis{margin:4px 0 0}}
+{% endcss %}
 {% endif %}

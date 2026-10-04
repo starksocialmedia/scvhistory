@@ -1,4 +1,4 @@
-# Handoff, 2026-10-04 (afternoon)
+# Handoff, 2026-10-04 (evening)
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -31,13 +31,11 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. The body hub in tabs for Hart and the City together (Nathan asked for it built), with: the board
-   ordered by office, cards in threes, past members compact, past superintendents as a timeline,
-   committees off the landing view, schools by level, and the seat's own map when a seat is chosen.
-   Boundary files are in inventory/sources/trustee-areas-2026-10-04/ (the County's layers recommended).
-2. The remaining board corrections in inventory/review/district-boards-check-2026-10-04.md.
-3. inventory/incoming/OUTSTANDING.md: the files still waiting.
-4. The date-field fix (dry run done) and the double-counting audit's findings.
+1. Nathan's review of the tabbed Hart and City pages; every body with holdings already uses them.
+2. The four marks (three in ~/Downloads, the County seal not found) and the City Hall photograph.
+3. Antonovich and Barger: how far their records go is Nathan's call.
+4. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
+   district-boards-check-2026-10-04.md); the 17 unsourced term endings (term-endings-2026-10-04.md).
 5. TODO.md, "Waiting on Nathan", for what waits on him.
 
 ## Where the rules live

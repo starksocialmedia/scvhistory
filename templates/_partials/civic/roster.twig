@@ -49,14 +49,20 @@
     says how many of the seats are held. #}
 {% import "_partials/record/portrait" as portrait %}
 {%- set sitting = terms|filter(h => (h.howEnded.value == 'serving' or (not h.termEndEdtf and h.howEnded.value == '')) and (not h.termEndEdtf or h.termEndEdtf|slice(0, 7) >= ym))|sort((a, b) => a.termStartEdtf <=> b.termStartEdtf) -%}
-{% if sitting|length %}
+{%- set part = part ?? 'all' -%}
+{#- The chair this year (Nathan, 4 October 2026: "the member who is mayor this year carries 'Mayor, 2026' on the card"): a rotated
+    holding recorded as serving, read by person. Never a seat, never a separate card. -#}
+{%- set chairOf = {} -%}
+{% for h in rotated|filter(x => x.howEnded.value == 'serving') %}{% set cp = h.holdingPerson.one() %}{% if cp %}{% set chairOf = chairOf|merge({ ('p' ~ cp.id): (h.holdingOffice.one().title ?? '') }) %}{% endif %}{% endfor %}
+{% if part != 'history' and sitting|length %}
 <h2 class="rec-h2" id="council-today">The council today</h2>
 <div data-seat-list="board" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;margin:0 0 34px">
   {% for h in sitting %}
     {% set sp = h.holdingPerson.one() %}
     {% if sp %}
       {% set img = 'featuredImage' in sp.fieldLayout.customFields|map(f => f.handle) ? sp.featuredImage.one() : null %}
-      {% set firstTerm = craft.entries().section('officeHoldings').relatedTo(['and', { targetElement: sp, field: 'holdingPerson' }, { targetElement: body, field: 'holdingBody' }]).orderBy('termStartEdtf asc').one() %}
+      {#- The first seat term, not a year in the chair (a rotated holding is not a term on the council). -#}
+      {% set firstTerm = craft.entries().section('officeHoldings').relatedTo(['and', { targetElement: sp, field: 'holdingPerson' }, { targetElement: body, field: 'holdingBody' }]).selectionMethod(['not', 'rotated']).termStartEdtf(':notempty:').orderBy('termStartEdtf asc').one() %}
       {% set dist = h.holdingDistrict is defined ? h.holdingDistrict.one() : null %}
       <a href="{{ sp.url }}" data-seat="{{ dist ? dist.slug : '' }}" style="display:block;background:#fff;border:1px solid #E2E4E8;text-decoration:none;color:#17254C">
         <div style="aspect-ratio:4/5;background:#FDF7EA;overflow:hidden;display:flex;align-items:center;justify-content:center">
@@ -65,6 +71,7 @@
         <div style="padding:12px 14px 14px">
           <div style="font-family:'Playfair Display',serif;font-size:18px;line-height:1.2">{{ sp.title }}</div>
           <div style="font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.1em;color:#7A5C1B;margin-top:6px;text-transform:uppercase">{{ dist ? dist.title ~ ' · ' : '' }}on the council since {{ (firstTerm ?? h).termStartEdtf|slice(0,4) }}</div>
+          {% if chairOf['p' ~ sp.id] is defined %}<div style="font-size:13.5px;font-weight:500;margin-top:6px">{{ chairOf['p' ~ sp.id] }}</div>{% endif %}
         </div>
       </a>
     {% endif %}
@@ -72,6 +79,7 @@
 </div>
 <p data-seat-empty="board">The archive does not yet hold a sitting member for this district.</p>
 {% endif %}
+{% if part != 'today' %}
 <h2 class="rec-h2" id="council">The council, {{ Y0 }} to now</h2>
 <p style="font-size:17px;line-height:1.65;color:#4A5260;margin:0 0 20px;max-width:720px">
   {{ rows|length }} people have held a seat on the Santa Clarita City Council since the first council took office on 15 December 1987{% set appointed = terms|filter(h => h.selectionMethod.value == 'appointed')|length %}{% if appointed %}, {{ appointed == 1 ? 'one' : appointed }} of those terms by appointment{% endif %}.
@@ -146,4 +154,5 @@
   <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:14px 0 0">{{ otherRot|map(h => (h.holdingOffice.one().title ?? '') ~ ': ' ~ (h.holdingPerson.one().title ?? '') ~ (h.termStart ? ' (' ~ h.termStart ~ ')' : ''))|join('; ') }}.</p>
 {% endif %}
 <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:10px 0 0">Terms are built from the vote counts and read against the council ledger Leon Worden kept for SCVHistory.com, which runs to 2020. Where the two agree, the term is shown as confirmed; where only the count stands, it is marked, and each term's own record states its sources.</p>
+{% endif %}
 {% endif %}

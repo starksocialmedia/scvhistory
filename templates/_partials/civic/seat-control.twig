@@ -23,7 +23,7 @@
     <button type="button" data-seat-btn="{{ s.slug }}" aria-pressed="false">{{ s.title|split(', ')|last|replace({ 'Trustee Area': 'Area', 'Council District': 'District' }) }}</button>
   {% endfor %}
 </div>
-<p class="seat-note">The boundaries of the {{ noun }} are not drawn: the archive does not yet hold them. Choosing one filters the lists on this page to that seat.</p>
+<p class="seat-note">Choosing one shows it on the map and filters the board, past members and elections to that seat. Boundaries from the Los Angeles County Registrar-Recorder, for election purposes, not legal boundaries.</p>
 {% css %}
 .seat-pick{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
 .seat-pick button{border:1px solid rgba(23,37,76,.25);background:#fff;color:#17254C;padding:6px 13px;border-radius:14px;font-size:13.5px;cursor:pointer;font-family:'Public Sans',system-ui,sans-serif}
@@ -37,6 +37,9 @@
     var scope = document.getElementById(pick.getAttribute('data-seat-scope'));
     if (!scope) { return; }
     function show(seat){
+      /* The map listens for this (_partials/civic/body-map), and the page keeps the seat in its address. */
+      document.dispatchEvent(new CustomEvent('scv:seat', { detail: { seat: seat, scope: scope.id } }));
+      try { var u = new URL(location.href); if (seat) { u.searchParams.set('seat', seat); } else { u.searchParams.delete('seat'); } history.replaceState(null, '', u); } catch (e) {}
       pick.querySelectorAll('[data-seat-btn]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-seat-btn') === seat ? 'true' : 'false'); });
       scope.querySelectorAll('[data-seat]').forEach(function(el){
         var on = !seat || (' ' + el.getAttribute('data-seat') + ' ').indexOf(' ' + seat + ' ') > -1;
@@ -49,6 +52,8 @@
       });
     }
     pick.querySelectorAll('[data-seat-btn]').forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-seat-btn')); }); });
+    var start = new URLSearchParams(location.search).get('seat');
+    if (start && pick.querySelector('[data-seat-btn="' + start + '"]')) { show(start); }
   });
 })();
 {% endjs %}

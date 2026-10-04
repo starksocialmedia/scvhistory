@@ -36,7 +36,7 @@
 
 use craft\elements\Entry;
 
-ini_set('memory_limit', '2048M');
+if ((int)ini_get('memory_limit') !== -1 && (int)ini_get('memory_limit') < 2048) { ini_set('memory_limit', '2048M'); }
 $REG = json_decode((string)file_get_contents(\Craft::getAlias('@root') . '/scripts/import/field-display.json'), true) ?: [];
 $fieldsOf = $REG['fields'] ?? [];
 $skipTypes = ['Assets', 'Lightswitch', 'Matrix'];

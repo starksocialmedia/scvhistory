@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-04 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: The Hart district and City pages in tabs (The district or The city, History, Schools, Elections, In the archive), built once in organizations/_entry.twig and _partials/civic/ (body-hub parts, body-map, terms-timeline, roster parts, body-executive's past holders as a dated chart): the seat control above the panes, the seat's own map from the County Registrar-Recorder's layers (web/data/seats/, scripts/import/build_seat_maps.py; Castaic lettered A to E), the board ordered by office in rows of three, past members compact, the terms timeline on History, schools grouped by level, committees and other connections under In the archive with each person's own role. Every body with holdings gets the same tabs. 23 term endings applied (ten resignations, Gladbach's and Murr's deaths in office, Winkler's removal in June 2014 by quo warranto, later terms for Huffaker, Hogan, Murr). Date fields: 30 records, and a date label never shows prose. Nathan's audit decisions: the Tataviam ethnography held off #913 pending consultation; chapters 59, 69, 70 cited as the 1998 edition; a Worden column counts as independent only where it cites something else (PROFILES.md). The Country Fair duplicate retired and redirected; 52 articles taken out of collections built from legacy folders, bylines set from the page. Keith, Di Thompson and Millar recorded. County of Los Angeles (the Board of Supervisors under it), the Sheriff's Department (for the sheriff's memorials), Antonovich and Barger with their 5th District terms. A second copy of Leaflet froze the City's page; fixed.
+- Decisions: Nathan answered the tabs proposal and the audit (see Done); the County's layers for every body, Castaic's letters shown, SCV Water's Ventura gap accepted with a note.
+- Blockers: three of the four new marks (hart-high.svg, city-of-santa-clarita.svg, lasd.png) are in ~/Downloads, which the agent cannot read; la-county-seal.svg was not found. The City Hall photograph is still to come.
+- Next: the marks once moved (the City seal replacing asset #41, kept as superseded, rights recorded on both); Antonovich's and Barger's records as far as Nathan decides; the remaining board corrections and the Worden duplicate pairs (inventory/review/duplicate-slugs-2026-10-04.md).
+
 2026-10-04 (afternoon)
 
 - Agent: Claude Code

@@ -142,9 +142,9 @@
        fixed (--scv-stuck-h, set by _partials/sticky), below the header's menus (the header is 5 at rest and 300 when
        fixed), and with height of its own from 16px above and below its contents. body plus the class outranks a page's
        own rule, so a page cannot drift back to top:0. A new bar joins by adding its class here. */
-    body :is(.wm-bar,.pp-bar,.ap-filters,.ph-filters,.pl-filters,.scv-filters,.cn-jump){position:sticky;top:var(--scv-stuck-h,0px);z-index:4}
+    body :is(.wm-bar,.pp-bar,.ap-filters,.ph-filters,.pl-filters,.scv-filters,.cn-jump,.hub-tabs){position:sticky;top:var(--scv-stuck-h,0px);z-index:4}
     body :is(.wm-bar,.pp-bar,.ap-filters,.ph-filters,.pl-filters,.scv-filters)>:first-child{padding-top:16px;padding-bottom:16px}
-    .scv-is-stuck body :is(.wm-bar,.pp-bar,.ap-filters,.ph-filters,.pl-filters,.scv-filters,.cn-jump){box-shadow:0 4px 10px rgba(23,37,76,.08)}
+    .scv-is-stuck body :is(.wm-bar,.pp-bar,.ap-filters,.ph-filters,.pl-filters,.scv-filters,.cn-jump,.hub-tabs){box-shadow:0 4px 10px rgba(23,37,76,.08)}
   </style>
   {% block head %}{% endblock %}
 </head>
