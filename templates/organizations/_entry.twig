@@ -225,9 +225,11 @@
           {% set restText = prose ? (prose|split("\n\n")|slice(1)|join("\n\n")) : '' %}
           {% set firstLabel = isDistrict ? 'The district' : (isCity ? 'The city' : 'The body') %}
           {% set TABS = [{ id: 'main', label: firstLabel }, { id: 'history', label: 'History' }]|merge(districtMap ? [{ id: 'schools', label: 'Schools' }] : [])|merge([{ id: 'elections', label: 'Elections' }, { id: 'archive', label: 'In the archive' }]) %}
+          {#- The seat control is a filter on the whole page, so it sits above the tab bar and applies to whichever tab is open
+              (Nathan, 4 October 2026). It filters inside the panes (scope). -#}
+          {% include "_partials/civic/body-hub" with { part: 'control', body: entry, seats: seats, scope: scope } only %}
           <nav class="hub-tabs" aria-label="Sections of this page"><div class="hub-tabs-in" role="tablist">{% for t in TABS %}<a role="tab" href="#t-{{ t.id }}" data-tab="{{ t.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">{{ t.label }}</a>{% endfor %}</div></nav>
           <div id="{{ scope }}" class="hub-panes">
-            {% include "_partials/civic/body-hub" with { part: 'control', body: entry, seats: seats, scope: scope } only %}
             <section class="hub-pane" id="t-main" data-pane="main">
               <h2 class="hub-pane-h">{{ firstLabel }}</h2>
               {% if leadText %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: leadText, images: [], footnotesFor: entry } %}</div>{% endif %}
