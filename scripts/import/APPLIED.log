@@ -282,3 +282,10 @@
 2026-10-04 07:35:28 PDT	import_commission_portraits_2026_10_04.php	scvhistory-web	2 rows	verified	Shapiro and Seratti: the City's Arts Commission portraits, licence unknown
 2026-10-04 08:02:07 PDT	fix_date_field_prose_2026_10_04.php	scvhistory-web	30 rows	verified	date fields holding prose: article datelines set, caption fragments cleared, mastheads to the source line or bottom note, #28307 publish date cleared
 2026-10-04 08:05:40 PDT	fix_winkler_removal_2026_10_04.php	scvhistory-web	1 rows	verified	Stephen Winkler removed from office (residency), board vote 2013, quo warranto granted June 2014; howEnded option "removed"
+2026-10-04 08:29:36 PDT	apply_term_endings_2026_10_04.php	scvhistory-web	28 rows	verified	23 term endings from the survey: resignations, deaths in office, corrected ends; Huffaker, Hogan, Murr later terms; Gladbach and Murr deaths
+2026-10-04 08:31:49 PDT	apply_audit_decisions_2026_10_04.php	scvhistory-web	8 rows	verified	Tataviam ethnography held off #913 pending consultation; chapters 59, 69, 70 cited as the 1998 edition
+2026-10-04 08:32:16 PDT	fix_reworked_chapter_wording_2026_10_04.php	scvhistory-web	2 rows	verified	Hon and Klajic: chapters 69 and 70 named as the 1998 edition
+2026-10-04 08:33:53 PDT	record_three_commissioners_2026_10_04.php	scvhistory-web	11 rows	verified	Keith, Di Thompson, Millar: records, profiles and seats from the City's commission pages
+2026-10-04 08:36:55 PDT	fix_country_fair_and_folder_attribution_2026_10_04.php	scvhistory-web	59 rows	SHORT	Country Fair duplicate retired and redirected; 52 articles out of folder-built collections, bylines from the page; Open Book 25
+2026-10-04 08:37:20 PDT	fix_country_fair_and_folder_attribution_2026_10_04.php (recheck)	scvhistory-web	0 rows	verified	rechecked in a fresh run: #12704 trashed, #12702 on fair.htm, Making Cents 219, Open Book 25, Rioux 34; the SHORT above was the in-request read-back
+2026-10-04 08:39:08 PDT	fix_rock_inn_and_lopez_slug_2026_10_04.php	scvhistory-web	2 rows	verified	Rock Inn photo code LW3098; Francisco López slug without -2

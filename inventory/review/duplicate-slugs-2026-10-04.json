@@ -1,0 +1,4921 @@
+{
+ "generated": "2026-10-04",
+ "scope": "every entry, every section, whose slug ends in -2 to -20, compared with the record holding the base slug",
+ "counts": {
+  "slugsEndingInN": 492,
+  "withBaseRecord": 438,
+  "noBaseRecord": 54,
+  "trueDuplicates": 13,
+  "distinctSharedTitle": 425,
+  "unclear": 0,
+  "supplementaryWordenSameFilePairs": 11
+ },
+ "trueDuplicates": [
+  {
+   "pair": "santa-clarita-valley-country-fair / -2",
+   "keep": 12702,
+   "remove": 12704,
+   "keepSlug": "santa-clarita-valley-country-fair",
+   "removeSlug": "santa-clarita-valley-country-fair-2",
+   "keepUrl": "/oldtownnewhall/patti/fair1197.htm",
+   "removeUrl": "/oldtownnewhall/patti/fair.htm",
+   "canonicalUrl": "/oldtownnewhall/patti/fair.htm",
+   "evidence": "Identical body (1,122 characters, similarity 1.0). fair1197.htm on the mirror is a 107-byte meta-refresh redirect to fair.htm; the crawler followed it, so both records hold the text of fair.htm. fair.htm itself is not on the Reggie mirror (crawl only). Identical relations: partOfCollection Open Book #679, subjectOrganization Newhall Elementary School #15958 and Hart High School #16052, depictsPlace Placerita Canyon Road #18841. Neither has writtenBy, a date, recordImages or featuredImage. Both listed in Open Book articlesInCollection. Nothing else points at either.",
+   "mergeFromLoser": [
+    "legacyUrl, sourcePath and legacyKey: /oldtownnewhall/patti/fair.htm is the real page; keep /oldtownnewhall/patti/fair1197.htm as the redirecting alias"
+   ],
+   "note": "Keep the clean slug, give it the real page's URL. Separately (audit B): neither copy carries Patti Rasmussen's byline; the page is a 2000 Country Fair event page, so the survivor comes out of Open Book. depictsPlace Placerita Canyon Road looks wrong: the page places the fair at Newhall Park, Newhall Ave. and Dalbey Drive."
+  },
+  {
+   "pair": "renaissance-for-black-palm-springs / -2",
+   "keep": 12454,
+   "remove": 12544,
+   "keepSlug": "renaissance-for-black-palm-springs",
+   "removeSlug": "renaissance-for-black-palm-springs-2",
+   "keepUrl": "/scvhistory/signal/worden/old/lw072496.htm",
+   "removeUrl": "/scvhistory/signal/worden/lw072496.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/lw072496.htm",
+   "evidence": "Same column (July 24, 1996), similarity 0.987. Only worden/lw072496.htm is on the mirror and it is the one the Worden index links; old/lw072496.htm is crawl only. Relations identical (writtenBy Leon Worden, depictsPlace #15596, Selections from Leon Worden #665).",
+   "mergeFromLoser": [
+    "legacyUrl, sourcePath, legacyKey (the canonical page)",
+    "body: the canonical page ends \"His commentary appears Wednesdays.\"; the keeper has the caption line \"Academy Award winner Hattie McDaniel\" the other lacks, and the -2 copy repeats the title as its first line. Prefer the canonical page's text without the repeated title"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "latins-invade-conquer-western-scv / -2",
+   "keep": 12486,
+   "remove": 12532,
+   "keepSlug": "latins-invade-conquer-western-scv",
+   "removeSlug": "latins-invade-conquer-western-scv-2",
+   "keepUrl": "/scvhistory/signal/worden/lw082896.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw082896.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/lw082896.htm",
+   "evidence": "Identical body. Keeper holds the page on the mirror and in the index. Relations identical.",
+   "mergeFromLoser": [
+    "nothing (old/ path only, for a redirect)"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "sheriff-celebrating-70-years-in-newhall / -2",
+   "keep": 12292,
+   "remove": 12456,
+   "keepSlug": "sheriff-celebrating-70-years-in-newhall",
+   "removeSlug": "sheriff-celebrating-70-years-in-newhall-2",
+   "keepUrl": "/scvhistory/signal/worden/lw110896.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw110896.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/lw110896.htm",
+   "evidence": "Same column (November 8, 1996), similarity 0.994. Keeper holds the page on the mirror and in the index. Both carry recordImages lasdnwhl.jpg #14928, subjectPerson #18726, depictsPlace #15508.",
+   "mergeFromLoser": [
+    "writtenBy Leon Worden #279 (the keeper has none)",
+    "body formatting: the keeper wraps the whole column in one [lines] block and still opens with the \"By Leon Worden / November 8, 1996\" lines; the -2 copy has clean paragraphs. Worth re-cutting the keeper's body, not copying the old/ text"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "july-4th-an-old-newhall-tradition / -2",
+   "keep": 12378,
+   "remove": 12452,
+   "keepSlug": "july-4th-an-old-newhall-tradition",
+   "removeSlug": "july-4th-an-old-newhall-tradition-2",
+   "keepUrl": "/scvhistory/signal/worden/lw070396.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw070396.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/lw070396.htm",
+   "evidence": "Same column (July 3, 1996), similarity 0.971. Keeper is the page on the mirror and in the index, and is Leon's later text (adds \"* San Fernando Road was renamed Main Street in 2007.\"). Relations identical.",
+   "mergeFromLoser": [
+    "two passages only the old/ text has, both Leon's: \"They say there was a small parade through Newhall in 1926, but the one in 1932 set the tradition that would last to the present.\" and \"-- then a two-room affair south of Tenth Street (Lyons)\" after \"Newhall School\". Nathan to say whether these go into an editor note or are dropped as superseded. Do not edit the canonical prose"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "pointing-fingers-in-death-of-princess-di / -2",
+   "keep": 12342,
+   "remove": 12374,
+   "keepSlug": "pointing-fingers-in-death-of-princess-di",
+   "removeSlug": "pointing-fingers-in-death-of-princess-di-2",
+   "keepUrl": "/scvhistory/signal/worden/lw090397.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw090397.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/lw090397.htm",
+   "evidence": "Identical body. Keeper is on the mirror and in the index. Relations identical.",
+   "mergeFromLoser": [
+    "nothing"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "movie-trivia-from-beales-cut / -2",
+   "keep": 12290,
+   "remove": 12370,
+   "keepSlug": "movie-trivia-from-beales-cut",
+   "removeSlug": "movie-trivia-from-beales-cut-2",
+   "keepUrl": "/scvhistory/signal/worden/lw040997.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw040997.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/lw040997.htm",
+   "evidence": "Identical body. Keeper is on the mirror and in the index. Relations identical.",
+   "mergeFromLoser": [
+    "nothing"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "time-to-take-our-house-numbers-back / -2",
+   "keep": 12288,
+   "remove": 12346,
+   "keepSlug": "time-to-take-our-house-numbers-back",
+   "removeSlug": "time-to-take-our-house-numbers-back-2",
+   "keepUrl": "/scvhistory/signal/worden/lw071697.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw071697.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/old/lw071697.htm (both files exist; the index links old/)",
+   "evidence": "Identical body. Both files are on the mirror; the Worden index links old/lw071697.htm. Relations identical.",
+   "mergeFromLoser": [
+    "optionally the indexed path old/lw071697.htm as legacyUrl; otherwise nothing"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "santa-doesnt-live-at-the-north-pole / -2",
+   "keep": 12266,
+   "remove": 12284,
+   "keepSlug": "santa-doesnt-live-at-the-north-pole",
+   "removeSlug": "santa-doesnt-live-at-the-north-pole-2",
+   "keepUrl": "/scvhistory/signal/worden/old/lw122596.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw122596a.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/old/lw122596.htm",
+   "evidence": "Identical body (December 25, 1996). lw122596.htm is on the mirror and in the index; lw122596a.htm is crawl only and linked from nowhere in the Worden folder. Relations identical.",
+   "mergeFromLoser": [
+    "nothing"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "ward-connerly-one-mans-passion-for-fairness / -2",
+   "keep": 12274,
+   "remove": 12282,
+   "keepSlug": "ward-connerly-one-mans-passion-for-fairness",
+   "removeSlug": "ward-connerly-one-mans-passion-for-fairness-2",
+   "keepUrl": "/scvhistory/signal/worden/lw013196.htm",
+   "removeUrl": "/scvhistory/signal/worden/old/lw013196.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/lw013196.htm",
+   "evidence": "Same column (January 31, 1996), similarity 0.995. Keeper is on the mirror and in the index. Relations identical.",
+   "mergeFromLoser": [
+    "nothing of substance; the keeper's body wraps its paragraphs in [lines] blocks where the old/ copy has clean paragraphs (a re-cut, not a copy)"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "car-guys-neednt-fear-newhall-revitalization / -2",
+   "keep": 12258,
+   "remove": 12280,
+   "keepSlug": "car-guys-neednt-fear-newhall-revitalization",
+   "removeSlug": "car-guys-neednt-fear-newhall-revitalization-2",
+   "keepUrl": "/scvhistory/signal/worden/old/lw110597.htm",
+   "removeUrl": "/scvhistory/signal/worden/lw110597.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/old/lw110597.htm",
+   "evidence": "Identical body. Keeper is on the mirror and in the index; worden/lw110597.htm is crawl only. Relations identical. Neither has writtenBy although the page carries Leon Worden's byline.",
+   "mergeFromLoser": [
+    "nothing"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "dont-let-sign-ordinance-catch-you-off-guard / -2",
+   "keep": 12200,
+   "remove": 12206,
+   "keepSlug": "dont-let-sign-ordinance-catch-you-off-guard",
+   "removeSlug": "dont-let-sign-ordinance-catch-you-off-guard-2",
+   "keepUrl": "/scvhistory/signal/worden/old/lw082097.htm",
+   "removeUrl": "/scvhistory/signal/worden/lw082097.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/old/lw082097.htm",
+   "evidence": "Identical body. Keeper is on the mirror and in the index. Relations identical. Neither has writtenBy.",
+   "mergeFromLoser": [
+    "nothing"
+   ],
+   "note": ""
+  },
+  {
+   "pair": "youll-die-laughing-at-ctgs-drop-dead / -2",
+   "keep": 12188,
+   "remove": 12204,
+   "keepSlug": "youll-die-laughing-at-ctgs-drop-dead",
+   "removeSlug": "youll-die-laughing-at-ctgs-drop-dead-2",
+   "keepUrl": "/scvhistory/signal/worden/old/lw080798eb.htm",
+   "removeUrl": "/scvhistory/signal/worden/lw080798eb.htm",
+   "canonicalUrl": "/scvhistory/signal/worden/old/lw080798eb.htm",
+   "evidence": "Identical body (stage review, August 7, 1998). Keeper is on the mirror and in the index. Neither has writtenBy (page: \"Stage Review by LEON WORDEN\").",
+   "mergeFromLoser": [
+    "nothing"
+   ],
+   "note": ""
+  }
+ ],
+ "distinctArticles": [
+  {
+   "pair": "results-of-nlg-annual-writers-competition-for / -2",
+   "ids": [
+    15446,
+    15448
+   ],
+   "why": "Two different lists: Numismatic Literary Guild results for 2005 (nlg05winners.htm) and 2006 (nlg06winners.htm), similarity 0.51. Both titles are cut off after \"for\": the year was dropped at import. Neither page is by Sol Taylor (see audit B)."
+  },
+  {
+   "pair": "collecting-jefferson-nickels / -2",
+   "ids": [
+    15366,
+    15394
+   ],
+   "why": "Two weekly Sol Taylor columns with the same headline, August 1 and August 8, 2009 (soltaylor080109.html, soltaylor080809.html), similarity 0.16. A two-part piece; titles could carry Part 1 and Part 2."
+  },
+  {
+   "pair": "1996-santa-clarita-city-council-race / -2",
+   "ids": [
+    12524,
+    12526
+   ],
+   "why": "Two Worden columns, March 27 and April 3, 1996 (old/lw032796.htm, old/lw040396.htm), similarity 0.19. Same headline, different pieces."
+  }
+ ],
+ "photographs": {
+  "pairs": 422,
+  "trueDuplicates": 0,
+  "note": "Every pair is two different legacy pages with two different image files (416 confirmed by MD5 of the mirror files; 5 could not be hashed but carry different a/b codes; 1 hashed equal only because of the bug below). Titles and captions are shared because the legacy site captioned series alike.",
+  "bug": {
+   "id": 4911,
+   "slug": "lake-hughes-trading-post-the-rock-inn-rppc-late-1940s-2",
+   "legacyKey": "lw3098",
+   "photoSourceCode": "LW2823",
+   "should": "LW3098",
+   "why": "The legacy page lw3098.htm carries the title \"SCVHistory.com LW2823 | ...\" and the import read the code from it. The page shows lw3098.jpg, a different crop of the same postcard (the caption says so). As stored, the record renders LW2823's image, the same one as #4549."
+  },
+  "pairs_detail": [
+   {
+    "id": 5749,
+    "slug": "valencia-industrial-center-damage-2",
+    "legacyKey": "lw9410i",
+    "baseId": 5747,
+    "base": "valencia-industrial-center-damage",
+    "baseLegacyKey": "lw9410h",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 5745,
+    "slug": "fema-claims-intake-center-canyon-country-park-3",
+    "legacyKey": "lw9410g",
+    "baseId": 5741,
+    "base": "fema-claims-intake-center-canyon-country-park",
+    "baseLegacyKey": "lw9410e",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 5743,
+    "slug": "fema-claims-intake-center-canyon-country-park-2",
+    "legacyKey": "lw9410f",
+    "baseId": 5741,
+    "base": "fema-claims-intake-center-canyon-country-park",
+    "baseLegacyKey": "lw9410e",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 5739,
+    "slug": "cronan-home-site-on-via-onda-valencia-hills-2",
+    "legacyKey": "lw9410d",
+    "baseId": 5737,
+    "base": "cronan-home-site-on-via-onda-valencia-hills",
+    "baseLegacyKey": "lw9410c",
+    "bodySimilarity": 0.995,
+    "sameImageFile": null
+   },
+   {
+    "id": 5735,
+    "slug": "cronan-home-on-via-onda-valencia-hills-2",
+    "legacyKey": "lw9410b",
+    "baseId": 5733,
+    "base": "cronan-home-on-via-onda-valencia-hills",
+    "baseLegacyKey": "lw9410a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": null
+   },
+   {
+    "id": 5719,
+    "slug": "santa-clarita-tent-city-hall-4",
+    "legacyKey": "lw9401d",
+    "baseId": 5713,
+    "base": "santa-clarita-tent-city-hall",
+    "baseLegacyKey": "lw9401a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 5717,
+    "slug": "santa-clarita-tent-city-hall-3",
+    "legacyKey": "lw9401c",
+    "baseId": 5713,
+    "base": "santa-clarita-tent-city-hall",
+    "baseLegacyKey": "lw9401a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 5715,
+    "slug": "santa-clarita-tent-city-hall-2",
+    "legacyKey": "lw9401b",
+    "baseId": 5713,
+    "base": "santa-clarita-tent-city-hall",
+    "baseLegacyKey": "lw9401a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 5699,
+    "slug": "magic-mountain-grand-centennial-excursion-bison-2",
+    "legacyKey": "lw7901b",
+    "baseId": 5697,
+    "base": "magic-mountain-grand-centennial-excursion-bison",
+    "baseLegacyKey": "lw7901a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 5671,
+    "slug": "interrupted-mail-letter-envelope-recovered-from-fatal-plane-crash-11-18-1930-2",
+    "legacyKey": "lw3808",
+    "baseId": 4791,
+    "base": "interrupted-mail-letter-envelope-recovered-from-fatal-plane-crash-11-18-1930",
+    "baseLegacyKey": "lw2998",
+    "bodySimilarity": 0.915,
+    "sameImageFile": false
+   },
+   {
+    "id": 5453,
+    "slug": "fold-out-brochure-indian-dunes-family-motor-recreation-park-n-d-1970s-2",
+    "legacyKey": "lw3607",
+    "baseId": 5417,
+    "base": "fold-out-brochure-indian-dunes-family-motor-recreation-park-n-d-1970s",
+    "baseLegacyKey": "lw3567",
+    "bodySimilarity": 0.973,
+    "sameImageFile": null
+   },
+   {
+    "id": 5211,
+    "slug": "plane-crash-kills-all-8-1-29-1932-future-sheriff-biscailuz-future-gen-hap-arnold-direct-weeklong-search-4",
+    "legacyKey": "lw3370",
+    "baseId": 5117,
+    "base": "plane-crash-kills-all-8-1-29-1932-future-sheriff-biscailuz-future-gen-hap-arnold-direct-weeklong-search",
+    "baseLegacyKey": "lw3288",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 5121,
+    "slug": "plane-crash-kills-all-8-1-29-1932-future-sheriff-biscailuz-future-gen-hap-arnold-direct-weeklong-search-3",
+    "legacyKey": "lw3290",
+    "baseId": 5117,
+    "base": "plane-crash-kills-all-8-1-29-1932-future-sheriff-biscailuz-future-gen-hap-arnold-direct-weeklong-search",
+    "baseLegacyKey": "lw3288",
+    "bodySimilarity": 0.983,
+    "sameImageFile": false
+   },
+   {
+    "id": 5119,
+    "slug": "plane-crash-kills-all-8-1-29-1932-future-sheriff-biscailuz-future-gen-hap-arnold-direct-weeklong-search-2",
+    "legacyKey": "lw3289",
+    "baseId": 5117,
+    "base": "plane-crash-kills-all-8-1-29-1932-future-sheriff-biscailuz-future-gen-hap-arnold-direct-weeklong-search",
+    "baseLegacyKey": "lw3288",
+    "bodySimilarity": 0.982,
+    "sameImageFile": false
+   },
+   {
+    "id": 5081,
+    "slug": "the-locomotive-tom-vernon-wrecked-sprr-engine-no-5042-1940s-2",
+    "legacyKey": "lw3260",
+    "baseId": 4727,
+    "base": "the-locomotive-tom-vernon-wrecked-sprr-engine-no-5042-1940s",
+    "baseLegacyKey": "lw2949",
+    "bodySimilarity": 0.939,
+    "sameImageFile": false
+   },
+   {
+    "id": 5039,
+    "slug": "early-snowfall-in-lebec-october-1949-2",
+    "legacyKey": "lw3227",
+    "baseId": 4749,
+    "base": "early-snowfall-in-lebec-october-1949",
+    "baseLegacyKey": "lw2971",
+    "bodySimilarity": 0.923,
+    "sameImageFile": false
+   },
+   {
+    "id": 4933,
+    "slug": "boating-on-lake-hughes-1940s-3",
+    "legacyKey": "lw3114",
+    "baseId": 3889,
+    "base": "boating-on-lake-hughes-1940s",
+    "baseLegacyKey": "lw2492a",
+    "bodySimilarity": 0.894,
+    "sameImageFile": false
+   },
+   {
+    "id": 4911,
+    "slug": "lake-hughes-trading-post-the-rock-inn-rppc-late-1940s-2",
+    "legacyKey": "lw3098",
+    "baseId": 4549,
+    "base": "lake-hughes-trading-post-the-rock-inn-rppc-late-1940s",
+    "baseLegacyKey": "lw2823",
+    "bodySimilarity": 0.961,
+    "sameImageFile": true
+   },
+   {
+    "id": 4837,
+    "slug": "charles-lindbergh-goes-gliding-in-lebec-1930-2",
+    "legacyKey": "lw3044",
+    "baseId": 4551,
+    "base": "charles-lindbergh-goes-gliding-in-lebec-1930",
+    "baseLegacyKey": "lw2824",
+    "bodySimilarity": 0.836,
+    "sameImageFile": false
+   },
+   {
+    "id": 4797,
+    "slug": "the-strawberry-roan-columbia-pictures-1948-2",
+    "legacyKey": "lw3004",
+    "baseId": 4655,
+    "base": "the-strawberry-roan-columbia-pictures-1948",
+    "baseLegacyKey": "lw2899",
+    "bodySimilarity": 0.95,
+    "sameImageFile": false
+   },
+   {
+    "id": 4673,
+    "slug": "bear-canyon-saugus-ccc-camp-1935-36-5",
+    "legacyKey": "lw2911",
+    "baseId": 4661,
+    "base": "bear-canyon-saugus-ccc-camp-1935-36",
+    "baseLegacyKey": "lw2905",
+    "bodySimilarity": 0.975,
+    "sameImageFile": false
+   },
+   {
+    "id": 4671,
+    "slug": "bear-canyon-saugus-ccc-camp-1935-36-4",
+    "legacyKey": "lw2910",
+    "baseId": 4661,
+    "base": "bear-canyon-saugus-ccc-camp-1935-36",
+    "baseLegacyKey": "lw2905",
+    "bodySimilarity": 0.972,
+    "sameImageFile": false
+   },
+   {
+    "id": 4667,
+    "slug": "bear-canyon-saugus-ccc-camp-1935-36-3",
+    "legacyKey": "lw2908",
+    "baseId": 4661,
+    "base": "bear-canyon-saugus-ccc-camp-1935-36",
+    "baseLegacyKey": "lw2905",
+    "bodySimilarity": 0.95,
+    "sameImageFile": false
+   },
+   {
+    "id": 4665,
+    "slug": "bear-canyon-saugus-ccc-camp-1935-36-2",
+    "legacyKey": "lw2907",
+    "baseId": 4661,
+    "base": "bear-canyon-saugus-ccc-camp-1935-36",
+    "baseLegacyKey": "lw2905",
+    "bodySimilarity": 0.977,
+    "sameImageFile": false
+   },
+   {
+    "id": 4587,
+    "slug": "wrecked-wing-of-lockheed-transport-plane-all-9-killed-1938-2",
+    "legacyKey": "lw2851b",
+    "baseId": 4585,
+    "base": "wrecked-wing-of-lockheed-transport-plane-all-9-killed-1938",
+    "baseLegacyKey": "lw2851a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4557,
+    "slug": "united-flight-34-fatal-crash-12-27-1936-radio-operator-testifies-1-5-1937-2",
+    "legacyKey": "lw2826b",
+    "baseId": 4555,
+    "base": "united-flight-34-fatal-crash-12-27-1936-radio-operator-testifies-1-5-1937",
+    "baseLegacyKey": "lw2826a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4543,
+    "slug": "tips-restaurants-wooden-menu-1950s-2",
+    "legacyKey": "lw2817b",
+    "baseId": 4541,
+    "base": "tips-restaurants-wooden-menu-1950s",
+    "baseLegacyKey": "lw2817a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4531,
+    "slug": "california-indian-coiled-basket-in-ramona-museum-san-gabriel-3",
+    "legacyKey": "lw2808c",
+    "baseId": 4527,
+    "base": "california-indian-coiled-basket-in-ramona-museum-san-gabriel",
+    "baseLegacyKey": "lw2808a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4529,
+    "slug": "california-indian-coiled-basket-in-ramona-museum-san-gabriel-2",
+    "legacyKey": "lw2808b",
+    "baseId": 4527,
+    "base": "california-indian-coiled-basket-in-ramona-museum-san-gabriel",
+    "baseLegacyKey": "lw2808a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4525,
+    "slug": "california-indian-coiled-basket-1875-in-ramona-museum-san-gabriel-3",
+    "legacyKey": "lw2807c",
+    "baseId": 4521,
+    "base": "california-indian-coiled-basket-1875-in-ramona-museum-san-gabriel",
+    "baseLegacyKey": "lw2807a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4523,
+    "slug": "california-indian-coiled-basket-1875-in-ramona-museum-san-gabriel-2",
+    "legacyKey": "lw2807b",
+    "baseId": 4521,
+    "base": "california-indian-coiled-basket-1875-in-ramona-museum-san-gabriel",
+    "baseLegacyKey": "lw2807a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4511,
+    "slug": "fort-tejon-in-ruins-6",
+    "legacyKey": "lw2800f",
+    "baseId": 4501,
+    "base": "fort-tejon-in-ruins",
+    "baseLegacyKey": "lw2800a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4509,
+    "slug": "fort-tejon-in-ruins-5",
+    "legacyKey": "lw2800e",
+    "baseId": 4501,
+    "base": "fort-tejon-in-ruins",
+    "baseLegacyKey": "lw2800a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4507,
+    "slug": "fort-tejon-in-ruins-4",
+    "legacyKey": "lw2800d",
+    "baseId": 4501,
+    "base": "fort-tejon-in-ruins",
+    "baseLegacyKey": "lw2800a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4505,
+    "slug": "fort-tejon-in-ruins-3",
+    "legacyKey": "lw2800c",
+    "baseId": 4501,
+    "base": "fort-tejon-in-ruins",
+    "baseLegacyKey": "lw2800a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4503,
+    "slug": "fort-tejon-in-ruins-2",
+    "legacyKey": "lw2800b",
+    "baseId": 4501,
+    "base": "fort-tejon-in-ruins",
+    "baseLegacyKey": "lw2800a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4499,
+    "slug": "shopping-center-under-construction-25810-sierra-hwy-corner-golden-valley-2015-3",
+    "legacyKey": "lw2799c",
+    "baseId": 4495,
+    "base": "shopping-center-under-construction-25810-sierra-hwy-corner-golden-valley-2015",
+    "baseLegacyKey": "lw2799a",
+    "bodySimilarity": 0.977,
+    "sameImageFile": false
+   },
+   {
+    "id": 4497,
+    "slug": "shopping-center-under-construction-25810-sierra-hwy-corner-golden-valley-2015-2",
+    "legacyKey": "lw2799b",
+    "baseId": 4495,
+    "base": "shopping-center-under-construction-25810-sierra-hwy-corner-golden-valley-2015",
+    "baseLegacyKey": "lw2799a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 4489,
+    "slug": "victim-survivor-carried-from-fatal-plane-crash-site-near-newhall-1-13-1937-2",
+    "legacyKey": "lw2784b",
+    "baseId": 4487,
+    "base": "victim-survivor-carried-from-fatal-plane-crash-site-near-newhall-1-13-1937",
+    "baseLegacyKey": "lw2784a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 4475,
+    "slug": "apartments-under-construction-24514-kansas-street-ex-newhall-school-building-site-2015-2",
+    "legacyKey": "lw2763b",
+    "baseId": 4473,
+    "base": "apartments-under-construction-24514-kansas-street-ex-newhall-school-building-site-2015",
+    "baseLegacyKey": "lw2763a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": null
+   },
+   {
+    "id": 4431,
+    "slug": "solemint-freak-vegetables-postcard-1940s-3",
+    "legacyKey": "lw2721",
+    "baseId": 3951,
+    "base": "solemint-freak-vegetables-postcard-1940s",
+    "baseLegacyKey": "lw2515a",
+    "bodySimilarity": 0.98,
+    "sameImageFile": false
+   },
+   {
+    "id": 4411,
+    "slug": "butterfield-overland-mail-centennial-1858-1958-newhall-participates-10-8-1958-2",
+    "legacyKey": "lw2702b",
+    "baseId": 4409,
+    "base": "butterfield-overland-mail-centennial-1858-1958-newhall-participates-10-8-1958",
+    "baseLegacyKey": "lw2702a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4395,
+    "slug": "way-station-coffee-shop-2",
+    "legacyKey": "lw2697b",
+    "baseId": 4393,
+    "base": "way-station-coffee-shop",
+    "baseLegacyKey": "lw2697a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 4391,
+    "slug": "del-valle-citrus-label-pre-1924-discovered-2014-2",
+    "legacyKey": "lw2695",
+    "baseId": 4389,
+    "base": "del-valle-citrus-label-pre-1924-discovered-2014",
+    "baseLegacyKey": "lw2694",
+    "bodySimilarity": 0.984,
+    "sameImageFile": false
+   },
+   {
+    "id": 4381,
+    "slug": "table-on-which-the-1847-treaty-of-cahuenga-was-signed-2",
+    "legacyKey": "lw2682b",
+    "baseId": 4379,
+    "base": "table-on-which-the-1847-treaty-of-cahuenga-was-signed",
+    "baseLegacyKey": "lw2682a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4377,
+    "slug": "wreckage-of-new-lockheed-transport-plane-9-killed-5-16-1938-2",
+    "legacyKey": "lw2680b",
+    "baseId": 4375,
+    "base": "wreckage-of-new-lockheed-transport-plane-9-killed-5-16-1938",
+    "baseLegacyKey": "lw2680a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4373,
+    "slug": "generic-postcard-newhall-postmark-1-5-1914-2",
+    "legacyKey": "lw2677b",
+    "baseId": 4371,
+    "base": "generic-postcard-newhall-postmark-1-5-1914",
+    "baseLegacyKey": "lw2677a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 4367,
+    "slug": "bill-hart-monument-range-rider-statue-billings-mont-4",
+    "legacyKey": "lw2666",
+    "baseId": 3801,
+    "base": "bill-hart-monument-range-rider-statue-billings-mont",
+    "baseLegacyKey": "lw2472",
+    "bodySimilarity": 0.983,
+    "sameImageFile": false
+   },
+   {
+    "id": 4355,
+    "slug": "castle-oaks-garage-le-chene-1920s-2",
+    "legacyKey": "lw2647b",
+    "baseId": 4353,
+    "base": "castle-oaks-garage-le-chene-1920s",
+    "baseLegacyKey": "lw2647",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4337,
+    "slug": "original-confessional-window-from-chapel-2",
+    "legacyKey": "lw2634b",
+    "baseId": 4335,
+    "base": "original-confessional-window-from-chapel",
+    "baseLegacyKey": "lw2634a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 4333,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-9",
+    "legacyKey": "lw2633i",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4331,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-8",
+    "legacyKey": "lw2633h",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4329,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-7",
+    "legacyKey": "lw2633g",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4327,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-6",
+    "legacyKey": "lw2633f",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4325,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-5",
+    "legacyKey": "lw2633e",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4323,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-4",
+    "legacyKey": "lw2633d",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4321,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-3",
+    "legacyKey": "lw2633c",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 4319,
+    "slug": "del-valle-brandy-still-in-use-circa-1867-1900-2",
+    "legacyKey": "lw2633b",
+    "baseId": 4317,
+    "base": "del-valle-brandy-still-in-use-circa-1867-1900",
+    "baseLegacyKey": "lw2633a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4315,
+    "slug": "native-american-grinding-stones-ex-rubel-museum-in-del-valle-winery-2",
+    "legacyKey": "lw2632b",
+    "baseId": 4313,
+    "base": "native-american-grinding-stones-ex-rubel-museum-in-del-valle-winery",
+    "baseLegacyKey": "lw2632a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4307,
+    "slug": "handmade-clay-tiles-stored-in-1867-del-valle-winery-4",
+    "legacyKey": "lw2630d",
+    "baseId": 4301,
+    "base": "handmade-clay-tiles-stored-in-1867-del-valle-winery",
+    "baseLegacyKey": "lw2630a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4305,
+    "slug": "handmade-clay-tiles-stored-in-1867-del-valle-winery-3",
+    "legacyKey": "lw2630c",
+    "baseId": 4301,
+    "base": "handmade-clay-tiles-stored-in-1867-del-valle-winery",
+    "baseLegacyKey": "lw2630a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4303,
+    "slug": "handmade-clay-tiles-stored-in-1867-del-valle-winery-2",
+    "legacyKey": "lw2630b",
+    "baseId": 4301,
+    "base": "handmade-clay-tiles-stored-in-1867-del-valle-winery",
+    "baseLegacyKey": "lw2630a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4283,
+    "slug": "hart-as-messala-in-ben-hur-on-broadway-1899-1901-8",
+    "legacyKey": "lw2620h",
+    "baseId": 3015,
+    "base": "hart-as-messala-in-ben-hur-on-broadway-1899-1901",
+    "baseLegacyKey": "lw2240",
+    "bodySimilarity": 0.982,
+    "sameImageFile": false
+   },
+   {
+    "id": 4281,
+    "slug": "hart-as-messala-in-ben-hur-on-broadway-1899-1901-7",
+    "legacyKey": "lw2620g",
+    "baseId": 3015,
+    "base": "hart-as-messala-in-ben-hur-on-broadway-1899-1901",
+    "baseLegacyKey": "lw2240",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 4279,
+    "slug": "hart-as-messala-in-ben-hur-on-broadway-1899-1901-6",
+    "legacyKey": "lw2620f",
+    "baseId": 3015,
+    "base": "hart-as-messala-in-ben-hur-on-broadway-1899-1901",
+    "baseLegacyKey": "lw2240",
+    "bodySimilarity": 0.983,
+    "sameImageFile": false
+   },
+   {
+    "id": 4277,
+    "slug": "hart-as-messala-in-ben-hur-on-broadway-1899-1901-5",
+    "legacyKey": "lw2620e",
+    "baseId": 3015,
+    "base": "hart-as-messala-in-ben-hur-on-broadway-1899-1901",
+    "baseLegacyKey": "lw2240",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 4275,
+    "slug": "hart-as-messala-in-ben-hur-on-broadway-1899-1901-4",
+    "legacyKey": "lw2620d",
+    "baseId": 3015,
+    "base": "hart-as-messala-in-ben-hur-on-broadway-1899-1901",
+    "baseLegacyKey": "lw2240",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 4273,
+    "slug": "hart-as-messala-in-ben-hur-on-broadway-1899-1901-3",
+    "legacyKey": "lw2620c",
+    "baseId": 3015,
+    "base": "hart-as-messala-in-ben-hur-on-broadway-1899-1901",
+    "baseLegacyKey": "lw2240",
+    "bodySimilarity": 0.979,
+    "sameImageFile": false
+   },
+   {
+    "id": 4271,
+    "slug": "hart-as-messala-in-ben-hur-on-broadway-1899-1901-2",
+    "legacyKey": "lw2620b",
+    "baseId": 3015,
+    "base": "hart-as-messala-in-ben-hur-on-broadway-1899-1901",
+    "baseLegacyKey": "lw2240",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 4249,
+    "slug": "california-institute-of-the-arts-under-construction-1969-3",
+    "legacyKey": "lw2606c",
+    "baseId": 4245,
+    "base": "california-institute-of-the-arts-under-construction-1969",
+    "baseLegacyKey": "lw2606a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 4247,
+    "slug": "california-institute-of-the-arts-under-construction-1969-2",
+    "legacyKey": "lw2606b",
+    "baseId": 4245,
+    "base": "california-institute-of-the-arts-under-construction-1969",
+    "baseLegacyKey": "lw2606a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 4243,
+    "slug": "bivalve-fossil-in-conglomeration-4",
+    "legacyKey": "lw2603d",
+    "baseId": 4237,
+    "base": "bivalve-fossil-in-conglomeration",
+    "baseLegacyKey": "lw2603a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 4241,
+    "slug": "bivalve-fossil-in-conglomeration-3",
+    "legacyKey": "lw2603c",
+    "baseId": 4237,
+    "base": "bivalve-fossil-in-conglomeration",
+    "baseLegacyKey": "lw2603a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 4239,
+    "slug": "bivalve-fossil-in-conglomeration-2",
+    "legacyKey": "lw2603b",
+    "baseId": 4237,
+    "base": "bivalve-fossil-in-conglomeration",
+    "baseLegacyKey": "lw2603a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 4235,
+    "slug": "circle-of-friends-medal-no-9-john-c-fremont-8",
+    "legacyKey": "lw2602h",
+    "baseId": 4221,
+    "base": "circle-of-friends-medal-no-9-john-c-fremont",
+    "baseLegacyKey": "lw2602a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4233,
+    "slug": "circle-of-friends-medal-no-9-john-c-fremont-7",
+    "legacyKey": "lw2602g",
+    "baseId": 4221,
+    "base": "circle-of-friends-medal-no-9-john-c-fremont",
+    "baseLegacyKey": "lw2602a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4231,
+    "slug": "circle-of-friends-medal-no-9-john-c-fremont-6",
+    "legacyKey": "lw2602f",
+    "baseId": 4221,
+    "base": "circle-of-friends-medal-no-9-john-c-fremont",
+    "baseLegacyKey": "lw2602a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4229,
+    "slug": "circle-of-friends-medal-no-9-john-c-fremont-5",
+    "legacyKey": "lw2602e",
+    "baseId": 4221,
+    "base": "circle-of-friends-medal-no-9-john-c-fremont",
+    "baseLegacyKey": "lw2602a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4227,
+    "slug": "circle-of-friends-medal-no-9-john-c-fremont-4",
+    "legacyKey": "lw2602d",
+    "baseId": 4221,
+    "base": "circle-of-friends-medal-no-9-john-c-fremont",
+    "baseLegacyKey": "lw2602a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4225,
+    "slug": "circle-of-friends-medal-no-9-john-c-fremont-3",
+    "legacyKey": "lw2602c",
+    "baseId": 4221,
+    "base": "circle-of-friends-medal-no-9-john-c-fremont",
+    "baseLegacyKey": "lw2602a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4223,
+    "slug": "circle-of-friends-medal-no-9-john-c-fremont-2",
+    "legacyKey": "lw2602b",
+    "baseId": 4221,
+    "base": "circle-of-friends-medal-no-9-john-c-fremont",
+    "baseLegacyKey": "lw2602a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4219,
+    "slug": "butterfield-overland-mail-co-s-sinks-of-tejon-station-5",
+    "legacyKey": "lw2600e",
+    "baseId": 4211,
+    "base": "butterfield-overland-mail-co-s-sinks-of-tejon-station",
+    "baseLegacyKey": "lw2600a",
+    "bodySimilarity": 0.972,
+    "sameImageFile": false
+   },
+   {
+    "id": 4217,
+    "slug": "butterfield-overland-mail-co-s-sinks-of-tejon-station-4",
+    "legacyKey": "lw2600d",
+    "baseId": 4211,
+    "base": "butterfield-overland-mail-co-s-sinks-of-tejon-station",
+    "baseLegacyKey": "lw2600a",
+    "bodySimilarity": 0.972,
+    "sameImageFile": false
+   },
+   {
+    "id": 4215,
+    "slug": "butterfield-overland-mail-co-s-sinks-of-tejon-station-3",
+    "legacyKey": "lw2600c",
+    "baseId": 4211,
+    "base": "butterfield-overland-mail-co-s-sinks-of-tejon-station",
+    "baseLegacyKey": "lw2600a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 4213,
+    "slug": "butterfield-overland-mail-co-s-sinks-of-tejon-station-2",
+    "legacyKey": "lw2600b",
+    "baseId": 4211,
+    "base": "butterfield-overland-mail-co-s-sinks-of-tejon-station",
+    "baseLegacyKey": "lw2600a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 4195,
+    "slug": "dyer-warmuth-honey-house-4",
+    "legacyKey": "lw2587d",
+    "baseId": 4189,
+    "base": "dyer-warmuth-honey-house",
+    "baseLegacyKey": "lw2587a",
+    "bodySimilarity": 0.993,
+    "sameImageFile": false
+   },
+   {
+    "id": 4193,
+    "slug": "dyer-warmuth-honey-house-3",
+    "legacyKey": "lw2587c",
+    "baseId": 4189,
+    "base": "dyer-warmuth-honey-house",
+    "baseLegacyKey": "lw2587a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4191,
+    "slug": "dyer-warmuth-honey-house-2",
+    "legacyKey": "lw2587b",
+    "baseId": 4189,
+    "base": "dyer-warmuth-honey-house",
+    "baseLegacyKey": "lw2587a",
+    "bodySimilarity": 0.987,
+    "sameImageFile": false
+   },
+   {
+    "id": 4183,
+    "slug": "1972-campaign-ephemera-a-record-of-leadership-2",
+    "legacyKey": "lw2582b",
+    "baseId": 4181,
+    "base": "1972-campaign-ephemera-a-record-of-leadership",
+    "baseLegacyKey": "lw2582a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4167,
+    "slug": "cerro-gordo-ore-carts-3",
+    "legacyKey": "lw2573",
+    "baseId": 4163,
+    "base": "cerro-gordo-ore-carts",
+    "baseLegacyKey": "lw2572a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 4165,
+    "slug": "cerro-gordo-ore-carts-2",
+    "legacyKey": "lw2572b",
+    "baseId": 4163,
+    "base": "cerro-gordo-ore-carts",
+    "baseLegacyKey": "lw2572a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 4161,
+    "slug": "diseno-of-rancho-san-francisco-early-1840s-3",
+    "legacyKey": "lw2570c",
+    "baseId": 4157,
+    "base": "diseno-of-rancho-san-francisco-early-1840s",
+    "baseLegacyKey": "lw2570a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4159,
+    "slug": "diseno-of-rancho-san-francisco-early-1840s-2",
+    "legacyKey": "lw2570b",
+    "baseId": 4157,
+    "base": "diseno-of-rancho-san-francisco-early-1840s",
+    "baseLegacyKey": "lw2570a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4143,
+    "slug": "antelope-valley-indian-museum-state-park-piute-butte-2",
+    "legacyKey": "lw2555i",
+    "baseId": 4141,
+    "base": "antelope-valley-indian-museum-state-park-piute-butte",
+    "baseLegacyKey": "lw2555h",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4139,
+    "slug": "interior-6",
+    "legacyKey": "lw2555g",
+    "baseId": 4129,
+    "base": "interior",
+    "baseLegacyKey": "lw2555b",
+    "bodySimilarity": 0.994,
+    "sameImageFile": false
+   },
+   {
+    "id": 4137,
+    "slug": "interior-5",
+    "legacyKey": "lw2555f",
+    "baseId": 4129,
+    "base": "interior",
+    "baseLegacyKey": "lw2555b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4135,
+    "slug": "interior-4",
+    "legacyKey": "lw2555e",
+    "baseId": 4129,
+    "base": "interior",
+    "baseLegacyKey": "lw2555b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4133,
+    "slug": "interior-3",
+    "legacyKey": "lw2555d",
+    "baseId": 4129,
+    "base": "interior",
+    "baseLegacyKey": "lw2555b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4131,
+    "slug": "interior-2",
+    "legacyKey": "lw2555c",
+    "baseId": 4129,
+    "base": "interior",
+    "baseLegacyKey": "lw2555b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4125,
+    "slug": "del-valles-chinese-import-sewing-table-mid-1800s-4",
+    "legacyKey": "lw2554d",
+    "baseId": 4119,
+    "base": "del-valles-chinese-import-sewing-table-mid-1800s",
+    "baseLegacyKey": "lw2554a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 4123,
+    "slug": "del-valles-chinese-import-sewing-table-mid-1800s-3",
+    "legacyKey": "lw2554c",
+    "baseId": 4119,
+    "base": "del-valles-chinese-import-sewing-table-mid-1800s",
+    "baseLegacyKey": "lw2554a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 4121,
+    "slug": "del-valles-chinese-import-sewing-table-mid-1800s-2",
+    "legacyKey": "lw2554b",
+    "baseId": 4119,
+    "base": "del-valles-chinese-import-sewing-table-mid-1800s",
+    "baseLegacyKey": "lw2554a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 4097,
+    "slug": "freeway-damage-repairs-i-5-210-2",
+    "legacyKey": "lw2548b",
+    "baseId": 4095,
+    "base": "freeway-damage-repairs-i-5-210",
+    "baseLegacyKey": "lw2548a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 4093,
+    "slug": "doobie-brothers-cover-art-collapsed-5-14-freeway-bridges-3",
+    "legacyKey": "lw2547c",
+    "baseId": 4089,
+    "base": "doobie-brothers-cover-art-collapsed-5-14-freeway-bridges",
+    "baseLegacyKey": "lw2547a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4091,
+    "slug": "doobie-brothers-cover-art-collapsed-5-14-freeway-bridges-2",
+    "legacyKey": "lw2547b",
+    "baseId": 4089,
+    "base": "doobie-brothers-cover-art-collapsed-5-14-freeway-bridges",
+    "baseLegacyKey": "lw2547a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4087,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-9",
+    "legacyKey": "lw2545i",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4085,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-8",
+    "legacyKey": "lw2545h",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4083,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-7",
+    "legacyKey": "lw2545g",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4081,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-6",
+    "legacyKey": "lw2545f",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4079,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-5",
+    "legacyKey": "lw2545e",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4077,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-4",
+    "legacyKey": "lw2545d",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4075,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-3",
+    "legacyKey": "lw2545c",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4073,
+    "slug": "vegetation-debris-obstruct-lang-station-historic-markers-2",
+    "legacyKey": "lw2545b",
+    "baseId": 4071,
+    "base": "vegetation-debris-obstruct-lang-station-historic-markers",
+    "baseLegacyKey": "lw2545a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4069,
+    "slug": "the-peter-lebeck-oak-5",
+    "legacyKey": "lw2544e",
+    "baseId": 4061,
+    "base": "the-peter-lebeck-oak",
+    "baseLegacyKey": "lw2544a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4067,
+    "slug": "the-peter-lebeck-oak-4",
+    "legacyKey": "lw2544d",
+    "baseId": 4061,
+    "base": "the-peter-lebeck-oak",
+    "baseLegacyKey": "lw2544a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4065,
+    "slug": "the-peter-lebeck-oak-3",
+    "legacyKey": "lw2544c",
+    "baseId": 4061,
+    "base": "the-peter-lebeck-oak",
+    "baseLegacyKey": "lw2544a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4063,
+    "slug": "the-peter-lebeck-oak-2",
+    "legacyKey": "lw2544b",
+    "baseId": 4061,
+    "base": "the-peter-lebeck-oak",
+    "baseLegacyKey": "lw2544a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4057,
+    "slug": "new-york-aka-governor-gold-mine-2013-13",
+    "legacyKey": "lw2539y",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.985,
+    "sameImageFile": false
+   },
+   {
+    "id": 4055,
+    "slug": "new-york-aka-governor-gold-mine-2013-12",
+    "legacyKey": "lw2539x",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.986,
+    "sameImageFile": false
+   },
+   {
+    "id": 4053,
+    "slug": "new-york-aka-governor-gold-mine-2013-11",
+    "legacyKey": "lw2539w",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.99,
+    "sameImageFile": false
+   },
+   {
+    "id": 4051,
+    "slug": "new-york-aka-governor-gold-mine-2013-10",
+    "legacyKey": "lw2539l",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.989,
+    "sameImageFile": false
+   },
+   {
+    "id": 4049,
+    "slug": "new-york-aka-governor-gold-mine-2013-9",
+    "legacyKey": "lw2539k",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.989,
+    "sameImageFile": false
+   },
+   {
+    "id": 4047,
+    "slug": "new-york-aka-governor-gold-mine-2013-8",
+    "legacyKey": "lw2539j",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.989,
+    "sameImageFile": false
+   },
+   {
+    "id": 4045,
+    "slug": "new-york-aka-governor-gold-mine-2013-7",
+    "legacyKey": "lw2539i",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 4043,
+    "slug": "new-york-aka-governor-gold-mine-2013-6",
+    "legacyKey": "lw2539h",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 4041,
+    "slug": "new-york-aka-governor-gold-mine-2013-5",
+    "legacyKey": "lw2539g",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.993,
+    "sameImageFile": false
+   },
+   {
+    "id": 4039,
+    "slug": "new-york-aka-governor-gold-mine-2013-4",
+    "legacyKey": "lw2539f",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 4037,
+    "slug": "new-york-aka-governor-gold-mine-2013-3",
+    "legacyKey": "lw2539e",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 4035,
+    "slug": "new-york-aka-governor-gold-mine-2013-2",
+    "legacyKey": "lw2539d",
+    "baseId": 4033,
+    "base": "new-york-aka-governor-gold-mine-2013",
+    "baseLegacyKey": "lw2539a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4031,
+    "slug": "red-rover-mine-2013-7",
+    "legacyKey": "lw2538g",
+    "baseId": 4019,
+    "base": "red-rover-mine-2013",
+    "baseLegacyKey": "lw2538a",
+    "bodySimilarity": 0.995,
+    "sameImageFile": false
+   },
+   {
+    "id": 4029,
+    "slug": "red-rover-mine-2013-6",
+    "legacyKey": "lw2538f",
+    "baseId": 4019,
+    "base": "red-rover-mine-2013",
+    "baseLegacyKey": "lw2538a",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 4027,
+    "slug": "red-rover-mine-2013-5",
+    "legacyKey": "lw2538e",
+    "baseId": 4019,
+    "base": "red-rover-mine-2013",
+    "baseLegacyKey": "lw2538a",
+    "bodySimilarity": 0.995,
+    "sameImageFile": false
+   },
+   {
+    "id": 4025,
+    "slug": "red-rover-mine-2013-4",
+    "legacyKey": "lw2538d",
+    "baseId": 4019,
+    "base": "red-rover-mine-2013",
+    "baseLegacyKey": "lw2538a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4023,
+    "slug": "red-rover-mine-2013-3",
+    "legacyKey": "lw2538c",
+    "baseId": 4019,
+    "base": "red-rover-mine-2013",
+    "baseLegacyKey": "lw2538a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 4021,
+    "slug": "red-rover-mine-2013-2",
+    "legacyKey": "lw2538b",
+    "baseId": 4019,
+    "base": "red-rover-mine-2013",
+    "baseLegacyKey": "lw2538a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 4005,
+    "slug": "example-of-spanish-mexican-cattle-1800s-2",
+    "legacyKey": "lw2528b",
+    "baseId": 4003,
+    "base": "example-of-spanish-mexican-cattle-1800s",
+    "baseLegacyKey": "lw2528a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3999,
+    "slug": "del-valle-cattle-branding-iron-1830s-40s-5",
+    "legacyKey": "lw2526e",
+    "baseId": 3991,
+    "base": "del-valle-cattle-branding-iron-1830s-40s",
+    "baseLegacyKey": "lw2526a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3997,
+    "slug": "del-valle-cattle-branding-iron-1830s-40s-4",
+    "legacyKey": "lw2526d",
+    "baseId": 3991,
+    "base": "del-valle-cattle-branding-iron-1830s-40s",
+    "baseLegacyKey": "lw2526a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3995,
+    "slug": "del-valle-cattle-branding-iron-1830s-40s-3",
+    "legacyKey": "lw2526c",
+    "baseId": 3991,
+    "base": "del-valle-cattle-branding-iron-1830s-40s",
+    "baseLegacyKey": "lw2526a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3993,
+    "slug": "del-valle-cattle-branding-iron-1830s-40s-2",
+    "legacyKey": "lw2526b",
+    "baseId": 3991,
+    "base": "del-valle-cattle-branding-iron-1830s-40s",
+    "baseLegacyKey": "lw2526a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3989,
+    "slug": "registration-book-entry-antonio-coronels-counterbrand-2",
+    "legacyKey": "lw2525f",
+    "baseId": 3987,
+    "base": "registration-book-entry-antonio-coronels-counterbrand",
+    "baseLegacyKey": "lw2525e",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3985,
+    "slug": "registration-sample-of-antonio-coronels-counterbrand-2",
+    "legacyKey": "lw2525d",
+    "baseId": 3983,
+    "base": "registration-sample-of-antonio-coronels-counterbrand",
+    "baseLegacyKey": "lw2525c",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3971,
+    "slug": "grave-marker-for-baby-august-adrian-rubel-at-rancho-camulos-museum-3",
+    "legacyKey": "lw2520c",
+    "baseId": 3967,
+    "base": "grave-marker-for-baby-august-adrian-rubel-at-rancho-camulos-museum",
+    "baseLegacyKey": "lw2520a",
+    "bodySimilarity": 0.99,
+    "sameImageFile": false
+   },
+   {
+    "id": 3969,
+    "slug": "grave-marker-for-baby-august-adrian-rubel-at-rancho-camulos-museum-2",
+    "legacyKey": "lw2520b",
+    "baseId": 3967,
+    "base": "grave-marker-for-baby-august-adrian-rubel-at-rancho-camulos-museum",
+    "baseLegacyKey": "lw2520a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3965,
+    "slug": "matchbook-cover-circle-j-ranch-2",
+    "legacyKey": "lw2519b",
+    "baseId": 3963,
+    "base": "matchbook-cover-circle-j-ranch",
+    "baseLegacyKey": "lw2519a",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 3961,
+    "slug": "placerita-oil-field-2013-3",
+    "legacyKey": "lw2518c",
+    "baseId": 3957,
+    "base": "placerita-oil-field-2013",
+    "baseLegacyKey": "lw2518a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3959,
+    "slug": "placerita-oil-field-2013-2",
+    "legacyKey": "lw2518b",
+    "baseId": 3957,
+    "base": "placerita-oil-field-2013",
+    "baseLegacyKey": "lw2518a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3953,
+    "slug": "solemint-freak-vegetables-postcard-1940s-2",
+    "legacyKey": "lw2515b",
+    "baseId": 3951,
+    "base": "solemint-freak-vegetables-postcard-1940s",
+    "baseLegacyKey": "lw2515a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 3949,
+    "slug": "newhall-hardwares-50th-birthday-party-8-16-1997-2",
+    "legacyKey": "lw2513g",
+    "baseId": 3947,
+    "base": "newhall-hardwares-50th-birthday-party-8-16-1997",
+    "baseLegacyKey": "lw2513f",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3921,
+    "slug": "roundabout-traffic-circle-construction-10-2013-7",
+    "legacyKey": "lw2501g",
+    "baseId": 3909,
+    "base": "roundabout-traffic-circle-construction-10-2013",
+    "baseLegacyKey": "lw2501a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3919,
+    "slug": "roundabout-traffic-circle-construction-10-2013-6",
+    "legacyKey": "lw2501f",
+    "baseId": 3909,
+    "base": "roundabout-traffic-circle-construction-10-2013",
+    "baseLegacyKey": "lw2501a",
+    "bodySimilarity": 0.995,
+    "sameImageFile": false
+   },
+   {
+    "id": 3917,
+    "slug": "roundabout-traffic-circle-construction-10-2013-5",
+    "legacyKey": "lw2501e",
+    "baseId": 3909,
+    "base": "roundabout-traffic-circle-construction-10-2013",
+    "baseLegacyKey": "lw2501a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3915,
+    "slug": "roundabout-traffic-circle-construction-10-2013-4",
+    "legacyKey": "lw2501d",
+    "baseId": 3909,
+    "base": "roundabout-traffic-circle-construction-10-2013",
+    "baseLegacyKey": "lw2501a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3913,
+    "slug": "roundabout-traffic-circle-construction-10-2013-3",
+    "legacyKey": "lw2501c",
+    "baseId": 3909,
+    "base": "roundabout-traffic-circle-construction-10-2013",
+    "baseLegacyKey": "lw2501a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3911,
+    "slug": "roundabout-traffic-circle-construction-10-2013-2",
+    "legacyKey": "lw2501b",
+    "baseId": 3909,
+    "base": "roundabout-traffic-circle-construction-10-2013",
+    "baseLegacyKey": "lw2501a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3899,
+    "slug": "natural-gas-metering-station-1955-2",
+    "legacyKey": "lw2495b",
+    "baseId": 3897,
+    "base": "natural-gas-metering-station-1955",
+    "baseLegacyKey": "lw2495a",
+    "bodySimilarity": 0.956,
+    "sameImageFile": false
+   },
+   {
+    "id": 3891,
+    "slug": "boating-on-lake-hughes-1940s-2",
+    "legacyKey": "lw2492b",
+    "baseId": 3889,
+    "base": "boating-on-lake-hughes-1940s",
+    "baseLegacyKey": "lw2492a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3887,
+    "slug": "roundabout-traffic-circle-taking-shape-9-2013-7",
+    "legacyKey": "lw2485g",
+    "baseId": 3875,
+    "base": "roundabout-traffic-circle-taking-shape-9-2013",
+    "baseLegacyKey": "lw2485a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3885,
+    "slug": "roundabout-traffic-circle-taking-shape-9-2013-6",
+    "legacyKey": "lw2485f",
+    "baseId": 3875,
+    "base": "roundabout-traffic-circle-taking-shape-9-2013",
+    "baseLegacyKey": "lw2485a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3883,
+    "slug": "roundabout-traffic-circle-taking-shape-9-2013-5",
+    "legacyKey": "lw2485e",
+    "baseId": 3875,
+    "base": "roundabout-traffic-circle-taking-shape-9-2013",
+    "baseLegacyKey": "lw2485a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3881,
+    "slug": "roundabout-traffic-circle-taking-shape-9-2013-4",
+    "legacyKey": "lw2485d",
+    "baseId": 3875,
+    "base": "roundabout-traffic-circle-taking-shape-9-2013",
+    "baseLegacyKey": "lw2485a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3879,
+    "slug": "roundabout-traffic-circle-taking-shape-9-2013-3",
+    "legacyKey": "lw2485c",
+    "baseId": 3875,
+    "base": "roundabout-traffic-circle-taking-shape-9-2013",
+    "baseLegacyKey": "lw2485a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3877,
+    "slug": "roundabout-traffic-circle-taking-shape-9-2013-2",
+    "legacyKey": "lw2485b",
+    "baseId": 3875,
+    "base": "roundabout-traffic-circle-taking-shape-9-2013",
+    "baseLegacyKey": "lw2485a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3873,
+    "slug": "bill-hart-monument-range-rider-statue-billings-mont-3",
+    "legacyKey": "lw2484",
+    "baseId": 3801,
+    "base": "bill-hart-monument-range-rider-statue-billings-mont",
+    "baseLegacyKey": "lw2472",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3871,
+    "slug": "midget-auto-racing-at-bonelli-stadium-1945-2",
+    "legacyKey": "lw2483b",
+    "baseId": 3869,
+    "base": "midget-auto-racing-at-bonelli-stadium-1945",
+    "baseLegacyKey": "lw2483a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3865,
+    "slug": "small-marine-fossils-2",
+    "legacyKey": "lw2480b",
+    "baseId": 3863,
+    "base": "small-marine-fossils",
+    "baseLegacyKey": "lw2480a",
+    "bodySimilarity": 0.953,
+    "sameImageFile": false
+   },
+   {
+    "id": 3861,
+    "slug": "new-construction-dapper-dans-car-wash-2013-3",
+    "legacyKey": "lw2478c",
+    "baseId": 3857,
+    "base": "new-construction-dapper-dans-car-wash-2013",
+    "baseLegacyKey": "lw2478a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3859,
+    "slug": "new-construction-dapper-dans-car-wash-2013-2",
+    "legacyKey": "lw2478b",
+    "baseId": 3857,
+    "base": "new-construction-dapper-dans-car-wash-2013",
+    "baseLegacyKey": "lw2478a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3855,
+    "slug": "the-1929-rock-inn-hotel-4",
+    "legacyKey": "lw2477w",
+    "baseId": 3827,
+    "base": "the-1929-rock-inn-hotel",
+    "baseLegacyKey": "lw2477i",
+    "bodySimilarity": 0.964,
+    "sameImageFile": false
+   },
+   {
+    "id": 3853,
+    "slug": "the-1929-rock-inn-18",
+    "legacyKey": "lw2477v",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3851,
+    "slug": "the-1929-rock-inn-17",
+    "legacyKey": "lw2477u",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3849,
+    "slug": "the-1929-rock-inn-16",
+    "legacyKey": "lw2477t",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.995,
+    "sameImageFile": false
+   },
+   {
+    "id": 3847,
+    "slug": "the-1929-rock-inn-15",
+    "legacyKey": "lw2477s",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 3845,
+    "slug": "the-1929-rock-inn-14",
+    "legacyKey": "lw2477r",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3843,
+    "slug": "the-1929-rock-inn-13",
+    "legacyKey": "lw2477q",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.993,
+    "sameImageFile": false
+   },
+   {
+    "id": 3841,
+    "slug": "the-1929-rock-inn-12",
+    "legacyKey": "lw2477p",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3839,
+    "slug": "the-1929-rock-inn-11",
+    "legacyKey": "lw2477o",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3837,
+    "slug": "the-1929-rock-inn-10",
+    "legacyKey": "lw2477n",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.992,
+    "sameImageFile": false
+   },
+   {
+    "id": 3835,
+    "slug": "the-1929-rock-inn-9",
+    "legacyKey": "lw2477m",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.989,
+    "sameImageFile": false
+   },
+   {
+    "id": 3833,
+    "slug": "the-1929-rock-inn-8",
+    "legacyKey": "lw2477l",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.986,
+    "sameImageFile": false
+   },
+   {
+    "id": 3831,
+    "slug": "the-1929-rock-inn-hotel-3",
+    "legacyKey": "lw2477k",
+    "baseId": 3827,
+    "base": "the-1929-rock-inn-hotel",
+    "baseLegacyKey": "lw2477i",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 3829,
+    "slug": "the-1929-rock-inn-hotel-2",
+    "legacyKey": "lw2477j",
+    "baseId": 3827,
+    "base": "the-1929-rock-inn-hotel",
+    "baseLegacyKey": "lw2477i",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 3825,
+    "slug": "the-1929-rock-inn-7",
+    "legacyKey": "lw2477h",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3823,
+    "slug": "the-1929-rock-inn-6",
+    "legacyKey": "lw2477g",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.99,
+    "sameImageFile": false
+   },
+   {
+    "id": 3819,
+    "slug": "the-1929-rock-inn-5",
+    "legacyKey": "lw2477e",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3817,
+    "slug": "the-1929-rock-inn-4",
+    "legacyKey": "lw2477d",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3815,
+    "slug": "the-1929-rock-inn-3",
+    "legacyKey": "lw2477c",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3813,
+    "slug": "the-1929-rock-inn-2",
+    "legacyKey": "lw2477b",
+    "baseId": 3811,
+    "base": "the-1929-rock-inn",
+    "baseLegacyKey": "lw2477a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3809,
+    "slug": "monument-to-clarence-austin-town-founder-developer-2",
+    "legacyKey": "lw2476",
+    "baseId": 3807,
+    "base": "monument-to-clarence-austin-town-founder-developer",
+    "baseLegacyKey": "lw2475",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3803,
+    "slug": "bill-hart-monument-range-rider-statue-billings-mont-2",
+    "legacyKey": "lw2473",
+    "baseId": 3801,
+    "base": "bill-hart-monument-range-rider-statue-billings-mont",
+    "baseLegacyKey": "lw2472",
+    "bodySimilarity": 0.982,
+    "sameImageFile": false
+   },
+   {
+    "id": 3799,
+    "slug": "the-rock-inn-1930s-2",
+    "legacyKey": "lw2471b",
+    "baseId": 3797,
+    "base": "the-rock-inn-1930s",
+    "baseLegacyKey": "lw2471a",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 3789,
+    "slug": "sheriff-peter-j-pitchess-1912-1999-1953-1982-2",
+    "legacyKey": "lw2468",
+    "baseId": 2959,
+    "base": "sheriff-peter-j-pitchess-1912-1999-1953-1982",
+    "baseLegacyKey": "lw2175",
+    "bodySimilarity": 0.97,
+    "sameImageFile": false
+   },
+   {
+    "id": 3785,
+    "slug": "movieland-wax-museum-1962-hart-tom-mix-ken-maynard-2",
+    "legacyKey": "lw2466b",
+    "baseId": 3783,
+    "base": "movieland-wax-museum-1962-hart-tom-mix-ken-maynard",
+    "baseLegacyKey": "lw2466a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3781,
+    "slug": "wine-press-from-dominguez-ranch-piru-area-7",
+    "legacyKey": "lw2465g",
+    "baseId": 3769,
+    "base": "wine-press-from-dominguez-ranch-piru-area",
+    "baseLegacyKey": "lw2465a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3779,
+    "slug": "wine-press-from-dominguez-ranch-piru-area-6",
+    "legacyKey": "lw2465f",
+    "baseId": 3769,
+    "base": "wine-press-from-dominguez-ranch-piru-area",
+    "baseLegacyKey": "lw2465a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3777,
+    "slug": "wine-press-from-dominguez-ranch-piru-area-5",
+    "legacyKey": "lw2465e",
+    "baseId": 3769,
+    "base": "wine-press-from-dominguez-ranch-piru-area",
+    "baseLegacyKey": "lw2465a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3775,
+    "slug": "wine-press-from-dominguez-ranch-piru-area-4",
+    "legacyKey": "lw2465d",
+    "baseId": 3769,
+    "base": "wine-press-from-dominguez-ranch-piru-area",
+    "baseLegacyKey": "lw2465a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3773,
+    "slug": "wine-press-from-dominguez-ranch-piru-area-3",
+    "legacyKey": "lw2465c",
+    "baseId": 3769,
+    "base": "wine-press-from-dominguez-ranch-piru-area",
+    "baseLegacyKey": "lw2465a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3771,
+    "slug": "wine-press-from-dominguez-ranch-piru-area-2",
+    "legacyKey": "lw2465b",
+    "baseId": 3769,
+    "base": "wine-press-from-dominguez-ranch-piru-area",
+    "baseLegacyKey": "lw2465a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3767,
+    "slug": "hart-home-in-west-hollywood-1924-2",
+    "legacyKey": "lw2464b",
+    "baseId": 3765,
+    "base": "hart-home-in-west-hollywood-1924",
+    "baseLegacyKey": "lw2464a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3763,
+    "slug": "1867-del-valle-winery-11",
+    "legacyKey": "lw2463k",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3761,
+    "slug": "1867-del-valle-winery-10",
+    "legacyKey": "lw2463j",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3759,
+    "slug": "1867-del-valle-winery-9",
+    "legacyKey": "lw2463i",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3757,
+    "slug": "1867-del-valle-winery-8",
+    "legacyKey": "lw2463h",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3755,
+    "slug": "1867-del-valle-winery-7",
+    "legacyKey": "lw2463g",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3753,
+    "slug": "1867-del-valle-winery-6",
+    "legacyKey": "lw2463f",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3751,
+    "slug": "1867-del-valle-winery-5",
+    "legacyKey": "lw2463e",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3749,
+    "slug": "1867-del-valle-winery-4",
+    "legacyKey": "lw2463d",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3747,
+    "slug": "1867-del-valle-winery-3",
+    "legacyKey": "lw2463c",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3745,
+    "slug": "1867-del-valle-winery-2",
+    "legacyKey": "lw2463b",
+    "baseId": 3743,
+    "base": "1867-del-valle-winery",
+    "baseLegacyKey": "lw2463a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3741,
+    "slug": "christina-aguilera-on-1902-sprr-piru-creek-bridge-2",
+    "legacyKey": "lw2462b",
+    "baseId": 3739,
+    "base": "christina-aguilera-on-1902-sprr-piru-creek-bridge",
+    "baseLegacyKey": "lw2462a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": null
+   },
+   {
+    "id": 3737,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-12",
+    "legacyKey": "lw2461l",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3735,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-11",
+    "legacyKey": "lw2461k",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3733,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-10",
+    "legacyKey": "lw2461j",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3731,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-9",
+    "legacyKey": "lw2461i",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3729,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-8",
+    "legacyKey": "lw2461h",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3727,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-7",
+    "legacyKey": "lw2461g",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3725,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-6",
+    "legacyKey": "lw2461f",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3723,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-5",
+    "legacyKey": "lw2461e",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3721,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-4",
+    "legacyKey": "lw2461d",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3719,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-3",
+    "legacyKey": "lw2461c",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3717,
+    "slug": "southern-pacific-railroads-1902-piru-creek-bridge-2",
+    "legacyKey": "lw2461b",
+    "baseId": 3715,
+    "base": "southern-pacific-railroads-1902-piru-creek-bridge",
+    "baseLegacyKey": "lw2461a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3699,
+    "slug": "pioneer-aviator-passenger-killed-in-crash-of-light-plane-4-9-1937-2",
+    "legacyKey": "lw2450b",
+    "baseId": 3697,
+    "base": "pioneer-aviator-passenger-killed-in-crash-of-light-plane-4-9-1937",
+    "baseLegacyKey": "lw2450a",
+    "bodySimilarity": 0.992,
+    "sameImageFile": false
+   },
+   {
+    "id": 3693,
+    "slug": "broken-watches-fix-time-of-1936-plane-crash-in-rice-canyon-2",
+    "legacyKey": "lw2448b",
+    "baseId": 3691,
+    "base": "broken-watches-fix-time-of-1936-plane-crash-in-rice-canyon",
+    "baseLegacyKey": "lw2448a",
+    "bodySimilarity": 0.995,
+    "sameImageFile": false
+   },
+   {
+    "id": 3677,
+    "slug": "fr-junipero-serra-3",
+    "legacyKey": "lw2441c",
+    "baseId": 3673,
+    "base": "fr-junipero-serra",
+    "baseLegacyKey": "lw2441a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3675,
+    "slug": "fr-junipero-serra-2",
+    "legacyKey": "lw2441b",
+    "baseId": 3673,
+    "base": "fr-junipero-serra",
+    "baseLegacyKey": "lw2441a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3671,
+    "slug": "fr-junipero-serra-19th-cent-sculpture-3",
+    "legacyKey": "lw2440c",
+    "baseId": 3667,
+    "base": "fr-junipero-serra-19th-cent-sculpture",
+    "baseLegacyKey": "lw2440a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3669,
+    "slug": "fr-junipero-serra-19th-cent-sculpture-2",
+    "legacyKey": "lw2440b",
+    "baseId": 3667,
+    "base": "fr-junipero-serra-19th-cent-sculpture",
+    "baseLegacyKey": "lw2440a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3665,
+    "slug": "overland-stage-celerity-wagon-4",
+    "legacyKey": "lw2439d",
+    "baseId": 3659,
+    "base": "overland-stage-celerity-wagon",
+    "baseLegacyKey": "lw2439a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3663,
+    "slug": "overland-stage-celerity-wagon-3",
+    "legacyKey": "lw2439c",
+    "baseId": 3659,
+    "base": "overland-stage-celerity-wagon",
+    "baseLegacyKey": "lw2439a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3661,
+    "slug": "overland-stage-celerity-wagon-2",
+    "legacyKey": "lw2439b",
+    "baseId": 3659,
+    "base": "overland-stage-celerity-wagon",
+    "baseLegacyKey": "lw2439a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3655,
+    "slug": "southern-oaks-tract-under-construction-1999-3",
+    "legacyKey": "lw2435c",
+    "baseId": 3651,
+    "base": "southern-oaks-tract-under-construction-1999",
+    "baseLegacyKey": "lw2435a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3653,
+    "slug": "southern-oaks-tract-under-construction-1999-2",
+    "legacyKey": "lw2435b",
+    "baseId": 3651,
+    "base": "southern-oaks-tract-under-construction-1999",
+    "baseLegacyKey": "lw2435a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3645,
+    "slug": "rescuers-recover-body-from-plane-crash-near-newhall-1937-2",
+    "legacyKey": "lw2431b",
+    "baseId": 3643,
+    "base": "rescuers-recover-body-from-plane-crash-near-newhall-1937",
+    "baseLegacyKey": "lw2431a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3625,
+    "slug": "ed-davis-park-dedication-3",
+    "legacyKey": "lw2415d",
+    "baseId": 3621,
+    "base": "ed-davis-park-dedication",
+    "baseLegacyKey": "lw2415b",
+    "bodySimilarity": 0.967,
+    "sameImageFile": false
+   },
+   {
+    "id": 3623,
+    "slug": "ed-davis-park-dedication-2",
+    "legacyKey": "lw2415c",
+    "baseId": 3621,
+    "base": "ed-davis-park-dedication",
+    "baseLegacyKey": "lw2415b",
+    "bodySimilarity": 0.975,
+    "sameImageFile": false
+   },
+   {
+    "id": 3611,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-9",
+    "legacyKey": "lw2411i",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3609,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-8",
+    "legacyKey": "lw2411h",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3607,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-7",
+    "legacyKey": "lw2411g",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3605,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-6",
+    "legacyKey": "lw2411f",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3603,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-5",
+    "legacyKey": "lw2411e",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.992,
+    "sameImageFile": false
+   },
+   {
+    "id": 3601,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-4",
+    "legacyKey": "lw2411d",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.994,
+    "sameImageFile": false
+   },
+   {
+    "id": 3599,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-3",
+    "legacyKey": "lw2411c",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.986,
+    "sameImageFile": false
+   },
+   {
+    "id": 3597,
+    "slug": "belshaw-house-cerro-gordo-mining-camp-2",
+    "legacyKey": "lw2411b",
+    "baseId": 3595,
+    "base": "belshaw-house-cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2411a",
+    "bodySimilarity": 0.987,
+    "sameImageFile": false
+   },
+   {
+    "id": 3593,
+    "slug": "orit-haj-rammed-earth-artwork-at-vasquez-rocks-interpretive-center-2",
+    "legacyKey": "lw2410b",
+    "baseId": 3591,
+    "base": "orit-haj-rammed-earth-artwork-at-vasquez-rocks-interpretive-center",
+    "baseLegacyKey": "lw2410a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3585,
+    "slug": "victor-beaudrys-smelter-at-cerro-gordo-6",
+    "legacyKey": "lw2385f",
+    "baseId": 3575,
+    "base": "victor-beaudrys-smelter-at-cerro-gordo",
+    "baseLegacyKey": "lw2385a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3583,
+    "slug": "victor-beaudrys-smelter-at-cerro-gordo-5",
+    "legacyKey": "lw2385e",
+    "baseId": 3575,
+    "base": "victor-beaudrys-smelter-at-cerro-gordo",
+    "baseLegacyKey": "lw2385a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3581,
+    "slug": "victor-beaudrys-smelter-at-cerro-gordo-4",
+    "legacyKey": "lw2385d",
+    "baseId": 3575,
+    "base": "victor-beaudrys-smelter-at-cerro-gordo",
+    "baseLegacyKey": "lw2385a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3579,
+    "slug": "victor-beaudrys-smelter-at-cerro-gordo-3",
+    "legacyKey": "lw2385c",
+    "baseId": 3575,
+    "base": "victor-beaudrys-smelter-at-cerro-gordo",
+    "baseLegacyKey": "lw2385a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3577,
+    "slug": "victor-beaudrys-smelter-at-cerro-gordo-2",
+    "legacyKey": "lw2385b",
+    "baseId": 3575,
+    "base": "victor-beaudrys-smelter-at-cerro-gordo",
+    "baseLegacyKey": "lw2385a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3571,
+    "slug": "sterling-borax-mine-dwelling-5",
+    "legacyKey": "lw2381f",
+    "baseId": 3563,
+    "base": "sterling-borax-mine-dwelling",
+    "baseLegacyKey": "lw2381b",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3569,
+    "slug": "sterling-borax-mine-dwelling-4",
+    "legacyKey": "lw2381e",
+    "baseId": 3563,
+    "base": "sterling-borax-mine-dwelling",
+    "baseLegacyKey": "lw2381b",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3567,
+    "slug": "sterling-borax-mine-dwelling-3",
+    "legacyKey": "lw2381d",
+    "baseId": 3563,
+    "base": "sterling-borax-mine-dwelling",
+    "baseLegacyKey": "lw2381b",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3565,
+    "slug": "sterling-borax-mine-dwelling-2",
+    "legacyKey": "lw2381c",
+    "baseId": 3563,
+    "base": "sterling-borax-mine-dwelling",
+    "baseLegacyKey": "lw2381b",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3553,
+    "slug": "cerro-gordo-assay-office-3",
+    "legacyKey": "lw2380c",
+    "baseId": 3549,
+    "base": "cerro-gordo-assay-office",
+    "baseLegacyKey": "lw2380a",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 3551,
+    "slug": "cerro-gordo-assay-office-2",
+    "legacyKey": "lw2380b",
+    "baseId": 3549,
+    "base": "cerro-gordo-assay-office",
+    "baseLegacyKey": "lw2380a",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 3545,
+    "slug": "american-hotel-at-cerro-gordo-20",
+    "legacyKey": "lw2377t",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3543,
+    "slug": "american-hotel-at-cerro-gordo-19",
+    "legacyKey": "lw2377s",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3541,
+    "slug": "american-hotel-at-cerro-gordo-18",
+    "legacyKey": "lw2377r",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3539,
+    "slug": "american-hotel-at-cerro-gordo-17",
+    "legacyKey": "lw2377q",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3537,
+    "slug": "american-hotel-at-cerro-gordo-16",
+    "legacyKey": "lw2377p",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3535,
+    "slug": "american-hotel-at-cerro-gordo-15",
+    "legacyKey": "lw2377o",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3533,
+    "slug": "american-hotel-at-cerro-gordo-14",
+    "legacyKey": "lw2377n",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3531,
+    "slug": "american-hotel-at-cerro-gordo-13",
+    "legacyKey": "lw2377m",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3529,
+    "slug": "american-hotel-at-cerro-gordo-12",
+    "legacyKey": "lw2377l",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.993,
+    "sameImageFile": false
+   },
+   {
+    "id": 3527,
+    "slug": "american-hotel-at-cerro-gordo-11",
+    "legacyKey": "lw2377k",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.987,
+    "sameImageFile": false
+   },
+   {
+    "id": 3525,
+    "slug": "american-hotel-at-cerro-gordo-10",
+    "legacyKey": "lw2377j",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3523,
+    "slug": "american-hotel-at-cerro-gordo-9",
+    "legacyKey": "lw2377i",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3521,
+    "slug": "american-hotel-at-cerro-gordo-8",
+    "legacyKey": "lw2377h",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3519,
+    "slug": "american-hotel-at-cerro-gordo-7",
+    "legacyKey": "lw2377g",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3517,
+    "slug": "american-hotel-at-cerro-gordo-6",
+    "legacyKey": "lw2377f",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3515,
+    "slug": "american-hotel-at-cerro-gordo-5",
+    "legacyKey": "lw2377e",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3513,
+    "slug": "american-hotel-at-cerro-gordo-4",
+    "legacyKey": "lw2377d",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3511,
+    "slug": "american-hotel-at-cerro-gordo-3",
+    "legacyKey": "lw2377c",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3509,
+    "slug": "american-hotel-at-cerro-gordo-2",
+    "legacyKey": "lw2377b",
+    "baseId": 3507,
+    "base": "american-hotel-at-cerro-gordo",
+    "baseLegacyKey": "lw2377a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3505,
+    "slug": "cerro-gordo-general-store-museum-8",
+    "legacyKey": "lw2376n",
+    "baseId": 3483,
+    "base": "cerro-gordo-general-store-museum",
+    "baseLegacyKey": "lw2376a",
+    "bodySimilarity": 0.993,
+    "sameImageFile": false
+   },
+   {
+    "id": 3497,
+    "slug": "cerro-gordo-general-store-museum-7",
+    "legacyKey": "lw2376h",
+    "baseId": 3483,
+    "base": "cerro-gordo-general-store-museum",
+    "baseLegacyKey": "lw2376a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3495,
+    "slug": "cerro-gordo-general-store-museum-6",
+    "legacyKey": "lw2376g",
+    "baseId": 3483,
+    "base": "cerro-gordo-general-store-museum",
+    "baseLegacyKey": "lw2376a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3493,
+    "slug": "cerro-gordo-general-store-museum-5",
+    "legacyKey": "lw2376f",
+    "baseId": 3483,
+    "base": "cerro-gordo-general-store-museum",
+    "baseLegacyKey": "lw2376a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3491,
+    "slug": "cerro-gordo-general-store-museum-4",
+    "legacyKey": "lw2376e",
+    "baseId": 3483,
+    "base": "cerro-gordo-general-store-museum",
+    "baseLegacyKey": "lw2376a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3487,
+    "slug": "cerro-gordo-general-store-museum-3",
+    "legacyKey": "lw2376c",
+    "baseId": 3483,
+    "base": "cerro-gordo-general-store-museum",
+    "baseLegacyKey": "lw2376a",
+    "bodySimilarity": 0.99,
+    "sameImageFile": false
+   },
+   {
+    "id": 3485,
+    "slug": "cerro-gordo-general-store-museum-2",
+    "legacyKey": "lw2376b",
+    "baseId": 3483,
+    "base": "cerro-gordo-general-store-museum",
+    "baseLegacyKey": "lw2376a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 3481,
+    "slug": "yellow-shale-cerro-gordo-2",
+    "legacyKey": "lw2375k",
+    "baseId": 3477,
+    "base": "yellow-shale-cerro-gordo",
+    "baseLegacyKey": "lw2375i",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3473,
+    "slug": "yellow-grade-road-to-cerro-gordo-7",
+    "legacyKey": "lw2375g",
+    "baseId": 3461,
+    "base": "yellow-grade-road-to-cerro-gordo",
+    "baseLegacyKey": "lw2375a",
+    "bodySimilarity": 0.994,
+    "sameImageFile": false
+   },
+   {
+    "id": 3471,
+    "slug": "yellow-grade-road-to-cerro-gordo-6",
+    "legacyKey": "lw2375f",
+    "baseId": 3461,
+    "base": "yellow-grade-road-to-cerro-gordo",
+    "baseLegacyKey": "lw2375a",
+    "bodySimilarity": 0.994,
+    "sameImageFile": false
+   },
+   {
+    "id": 3469,
+    "slug": "yellow-grade-road-to-cerro-gordo-5",
+    "legacyKey": "lw2375e",
+    "baseId": 3461,
+    "base": "yellow-grade-road-to-cerro-gordo",
+    "baseLegacyKey": "lw2375a",
+    "bodySimilarity": 0.99,
+    "sameImageFile": false
+   },
+   {
+    "id": 3467,
+    "slug": "yellow-grade-road-to-cerro-gordo-4",
+    "legacyKey": "lw2375d",
+    "baseId": 3461,
+    "base": "yellow-grade-road-to-cerro-gordo",
+    "baseLegacyKey": "lw2375a",
+    "bodySimilarity": 0.994,
+    "sameImageFile": false
+   },
+   {
+    "id": 3465,
+    "slug": "yellow-grade-road-to-cerro-gordo-3",
+    "legacyKey": "lw2375c",
+    "baseId": 3461,
+    "base": "yellow-grade-road-to-cerro-gordo",
+    "baseLegacyKey": "lw2375a",
+    "bodySimilarity": 0.994,
+    "sameImageFile": false
+   },
+   {
+    "id": 3463,
+    "slug": "yellow-grade-road-to-cerro-gordo-2",
+    "legacyKey": "lw2375b",
+    "baseId": 3461,
+    "base": "yellow-grade-road-to-cerro-gordo",
+    "baseLegacyKey": "lw2375a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3457,
+    "slug": "slag-from-cerro-gordo-2",
+    "legacyKey": "lw2374e",
+    "baseId": 3455,
+    "base": "slag-from-cerro-gordo",
+    "baseLegacyKey": "lw2374d",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3453,
+    "slug": "pig-of-silver-lead-from-cerro-gordo-2",
+    "legacyKey": "lw2374c",
+    "baseId": 3451,
+    "base": "pig-of-silver-lead-from-cerro-gordo",
+    "baseLegacyKey": "lw2374b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3447,
+    "slug": "cerro-gordo-mining-camp-5",
+    "legacyKey": "lw2373g",
+    "baseId": 3439,
+    "base": "cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2373c",
+    "bodySimilarity": 0.993,
+    "sameImageFile": false
+   },
+   {
+    "id": 3445,
+    "slug": "cerro-gordo-mining-camp-4",
+    "legacyKey": "lw2373f",
+    "baseId": 3439,
+    "base": "cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2373c",
+    "bodySimilarity": 0.99,
+    "sameImageFile": false
+   },
+   {
+    "id": 3443,
+    "slug": "cerro-gordo-mining-camp-3",
+    "legacyKey": "lw2373e",
+    "baseId": 3439,
+    "base": "cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2373c",
+    "bodySimilarity": 0.994,
+    "sameImageFile": false
+   },
+   {
+    "id": 3441,
+    "slug": "cerro-gordo-mining-camp-2",
+    "legacyKey": "lw2373d",
+    "baseId": 3439,
+    "base": "cerro-gordo-mining-camp",
+    "baseLegacyKey": "lw2373c",
+    "bodySimilarity": 0.992,
+    "sameImageFile": false
+   },
+   {
+    "id": 3433,
+    "slug": "owens-dry-lake-3",
+    "legacyKey": "lw2372c",
+    "baseId": 3429,
+    "base": "owens-dry-lake",
+    "baseLegacyKey": "lw2372a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3431,
+    "slug": "owens-dry-lake-2",
+    "legacyKey": "lw2372b",
+    "baseId": 3429,
+    "base": "owens-dry-lake",
+    "baseLegacyKey": "lw2372a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3427,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-10",
+    "legacyKey": "lw2371k",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3425,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-9",
+    "legacyKey": "lw2371j",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3423,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-8",
+    "legacyKey": "lw2371i",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3421,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-7",
+    "legacyKey": "lw2371h",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3419,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-6",
+    "legacyKey": "lw2371g",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3417,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-5",
+    "legacyKey": "lw2371f",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3415,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-4",
+    "legacyKey": "lw2371e",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3413,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-3",
+    "legacyKey": "lw2371d",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3411,
+    "slug": "mojave-desert-abandoned-tropico-gold-camp-rosamond-2",
+    "legacyKey": "lw2371c",
+    "baseId": 3409,
+    "base": "mojave-desert-abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw2371b",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3407,
+    "slug": "abandoned-tropico-gold-camp-rosamond-5",
+    "legacyKey": "lw2371a",
+    "baseId": 2693,
+    "base": "abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw102307a",
+    "bodySimilarity": 0.985,
+    "sameImageFile": false
+   },
+   {
+    "id": 3405,
+    "slug": "gold-mine-shaft-entrance-randsburg-6",
+    "legacyKey": "lw2370f",
+    "baseId": 3395,
+    "base": "gold-mine-shaft-entrance-randsburg",
+    "baseLegacyKey": "lw2370a",
+    "bodySimilarity": 0.996,
+    "sameImageFile": false
+   },
+   {
+    "id": 3403,
+    "slug": "gold-mine-shaft-entrance-randsburg-5",
+    "legacyKey": "lw2370e",
+    "baseId": 3395,
+    "base": "gold-mine-shaft-entrance-randsburg",
+    "baseLegacyKey": "lw2370a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3401,
+    "slug": "gold-mine-shaft-entrance-randsburg-4",
+    "legacyKey": "lw2370d",
+    "baseId": 3395,
+    "base": "gold-mine-shaft-entrance-randsburg",
+    "baseLegacyKey": "lw2370a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3399,
+    "slug": "gold-mine-shaft-entrance-randsburg-3",
+    "legacyKey": "lw2370c",
+    "baseId": 3395,
+    "base": "gold-mine-shaft-entrance-randsburg",
+    "baseLegacyKey": "lw2370a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3397,
+    "slug": "gold-mine-shaft-entrance-randsburg-2",
+    "legacyKey": "lw2370b",
+    "baseId": 3395,
+    "base": "gold-mine-shaft-entrance-randsburg",
+    "baseLegacyKey": "lw2370a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3393,
+    "slug": "relics-of-the-butte-mine-mill-at-randsburg-3",
+    "legacyKey": "lw2369c",
+    "baseId": 3389,
+    "base": "relics-of-the-butte-mine-mill-at-randsburg",
+    "baseLegacyKey": "lw2369a",
+    "bodySimilarity": 0.989,
+    "sameImageFile": false
+   },
+   {
+    "id": 3391,
+    "slug": "relics-of-the-butte-mine-mill-at-randsburg-2",
+    "legacyKey": "lw2369b",
+    "baseId": 3389,
+    "base": "relics-of-the-butte-mine-mill-at-randsburg",
+    "baseLegacyKey": "lw2369a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3383,
+    "slug": "garlock-ghost-town-13",
+    "legacyKey": "lw2366j",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3381,
+    "slug": "garlock-ghost-town-12",
+    "legacyKey": "lw2366i",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3379,
+    "slug": "garlock-ghost-town-11",
+    "legacyKey": "lw2366h",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3377,
+    "slug": "garlock-ghost-town-10",
+    "legacyKey": "lw2366g",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3375,
+    "slug": "garlock-ghost-town-9",
+    "legacyKey": "lw2366f",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3373,
+    "slug": "garlock-ghost-town-8",
+    "legacyKey": "lw2366e",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3371,
+    "slug": "garlock-ghost-town-7",
+    "legacyKey": "lw2366d",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3369,
+    "slug": "garlock-ghost-town-6",
+    "legacyKey": "lw2366c",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3367,
+    "slug": "garlock-ghost-town-5",
+    "legacyKey": "lw2366b",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3365,
+    "slug": "garlock-ghost-town-4",
+    "legacyKey": "lw2366a",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3363,
+    "slug": "garlock-ghost-town-3",
+    "legacyKey": "lw2365c",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3361,
+    "slug": "garlock-ghost-town-2",
+    "legacyKey": "lw2365b",
+    "baseId": 3359,
+    "base": "garlock-ghost-town",
+    "baseLegacyKey": "lw2365a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3357,
+    "slug": "garlock-post-office-building-2",
+    "legacyKey": "lw2364b",
+    "baseId": 3355,
+    "base": "garlock-post-office-building",
+    "baseLegacyKey": "lw2364a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3353,
+    "slug": "vasquez-rocks-interpretive-center-coming-soon-to-a-county-park-near-you-3",
+    "legacyKey": "lw2363c",
+    "baseId": 3349,
+    "base": "vasquez-rocks-interpretive-center-coming-soon-to-a-county-park-near-you",
+    "baseLegacyKey": "lw2363a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3351,
+    "slug": "vasquez-rocks-interpretive-center-coming-soon-to-a-county-park-near-you-2",
+    "legacyKey": "lw2363b",
+    "baseId": 3349,
+    "base": "vasquez-rocks-interpretive-center-coming-soon-to-a-county-park-near-you",
+    "baseLegacyKey": "lw2363a",
+    "bodySimilarity": 0.997,
+    "sameImageFile": false
+   },
+   {
+    "id": 3309,
+    "slug": "the-narrows-in-the-last-roundup-1929-2",
+    "legacyKey": "lw2324b",
+    "baseId": 3307,
+    "base": "the-narrows-in-the-last-roundup-1929",
+    "baseLegacyKey": "lw2324a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3285,
+    "slug": "chicken-house-tin-garage-1929-2",
+    "legacyKey": "lw2323p",
+    "baseId": 3281,
+    "base": "chicken-house-tin-garage-1929",
+    "baseLegacyKey": "lw2323n",
+    "bodySimilarity": 0.985,
+    "sameImageFile": false
+   },
+   {
+    "id": 3277,
+    "slug": "felton-school-west-side-1929-2",
+    "legacyKey": "lw2323l",
+    "baseId": 3275,
+    "base": "felton-school-west-side-1929",
+    "baseLegacyKey": "lw2323k",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3263,
+    "slug": "barn-chicken-house-1929-2",
+    "legacyKey": "lw2323e",
+    "baseId": 3259,
+    "base": "barn-chicken-house-1929",
+    "baseLegacyKey": "lw2323c",
+    "bodySimilarity": 0.995,
+    "sameImageFile": false
+   },
+   {
+    "id": 3251,
+    "slug": "hart-attends-sisters-probate-hearing-1944-2",
+    "legacyKey": "lw2318b",
+    "baseId": 3249,
+    "base": "hart-attends-sisters-probate-hearing-1944",
+    "baseLegacyKey": "lw2318a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3243,
+    "slug": "southern-pacific-passenger-train-in-snow-12-19-1970-2",
+    "legacyKey": "lw2312b",
+    "baseId": 3241,
+    "base": "southern-pacific-passenger-train-in-snow-12-19-1970",
+    "baseLegacyKey": "lw2312a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3183,
+    "slug": "surveyors-map-showing-lyons-station-1875-3",
+    "legacyKey": "lw2304c",
+    "baseId": 3179,
+    "base": "surveyors-map-showing-lyons-station-1875",
+    "baseLegacyKey": "lw2304a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3181,
+    "slug": "surveyors-map-showing-lyons-station-1875-2",
+    "legacyKey": "lw2304b",
+    "baseId": 3179,
+    "base": "surveyors-map-showing-lyons-station-1875",
+    "baseLegacyKey": "lw2304a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3177,
+    "slug": "quake-damaged-big-house-2",
+    "legacyKey": "lw2303",
+    "baseId": 3175,
+    "base": "quake-damaged-big-house",
+    "baseLegacyKey": "lw2302",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 3171,
+    "slug": "hart-nurse-at-brown-derby-1938-2",
+    "legacyKey": "lw2298b",
+    "baseId": 3169,
+    "base": "hart-nurse-at-brown-derby-1938",
+    "baseLegacyKey": "lw2298a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3147,
+    "slug": "lamp-posts-from-hotel-lebec-4",
+    "legacyKey": "lw2269d",
+    "baseId": 3141,
+    "base": "lamp-posts-from-hotel-lebec",
+    "baseLegacyKey": "lw2269a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3145,
+    "slug": "lamp-posts-from-hotel-lebec-3",
+    "legacyKey": "lw2269c",
+    "baseId": 3141,
+    "base": "lamp-posts-from-hotel-lebec",
+    "baseLegacyKey": "lw2269a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3143,
+    "slug": "lamp-posts-from-hotel-lebec-2",
+    "legacyKey": "lw2269b",
+    "baseId": 3141,
+    "base": "lamp-posts-from-hotel-lebec",
+    "baseLegacyKey": "lw2269a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3139,
+    "slug": "outhouse-salt-pepper-shakers-from-solemint-store-4",
+    "legacyKey": "lw2268d",
+    "baseId": 3133,
+    "base": "outhouse-salt-pepper-shakers-from-solemint-store",
+    "baseLegacyKey": "lw2268a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3137,
+    "slug": "outhouse-salt-pepper-shakers-from-solemint-store-3",
+    "legacyKey": "lw2268c",
+    "baseId": 3133,
+    "base": "outhouse-salt-pepper-shakers-from-solemint-store",
+    "baseLegacyKey": "lw2268a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3135,
+    "slug": "outhouse-salt-pepper-shakers-from-solemint-store-2",
+    "legacyKey": "lw2268b",
+    "baseId": 3133,
+    "base": "outhouse-salt-pepper-shakers-from-solemint-store",
+    "baseLegacyKey": "lw2268a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 3117,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-20",
+    "legacyKey": "lw2261t",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.978,
+    "sameImageFile": false
+   },
+   {
+    "id": 3115,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-19",
+    "legacyKey": "lw2261s",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 3113,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-18",
+    "legacyKey": "lw2261r",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 3111,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-17",
+    "legacyKey": "lw2261q",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.986,
+    "sameImageFile": false
+   },
+   {
+    "id": 3109,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-16",
+    "legacyKey": "lw2261p",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.972,
+    "sameImageFile": false
+   },
+   {
+    "id": 3107,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-15",
+    "legacyKey": "lw2261o",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.979,
+    "sameImageFile": false
+   },
+   {
+    "id": 3105,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-14",
+    "legacyKey": "lw2261n",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.98,
+    "sameImageFile": false
+   },
+   {
+    "id": 3103,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-13",
+    "legacyKey": "lw2261m",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.981,
+    "sameImageFile": false
+   },
+   {
+    "id": 3101,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-12",
+    "legacyKey": "lw2261l",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.995,
+    "sameImageFile": false
+   },
+   {
+    "id": 3099,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-11",
+    "legacyKey": "lw2261k",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.989,
+    "sameImageFile": false
+   },
+   {
+    "id": 3097,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-10",
+    "legacyKey": "lw2261j",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.979,
+    "sameImageFile": false
+   },
+   {
+    "id": 3095,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-9",
+    "legacyKey": "lw2261i",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 3093,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-8",
+    "legacyKey": "lw2261h",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 3091,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-7",
+    "legacyKey": "lw2261g",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.982,
+    "sameImageFile": false
+   },
+   {
+    "id": 3089,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-6",
+    "legacyKey": "lw2261f",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3087,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-5",
+    "legacyKey": "lw2261e",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3085,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-4",
+    "legacyKey": "lw2261d",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.967,
+    "sameImageFile": false
+   },
+   {
+    "id": 3083,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-3",
+    "legacyKey": "lw2261c",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.964,
+    "sameImageFile": false
+   },
+   {
+    "id": 3081,
+    "slug": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012-2",
+    "legacyKey": "lw2261b",
+    "baseId": 3079,
+    "base": "bobby-clark-gorn-reenacts-fight-with-capt-kirk-star-trek-arena-1967-2012",
+    "baseLegacyKey": "lw2261a",
+    "bodySimilarity": 0.976,
+    "sameImageFile": false
+   },
+   {
+    "id": 3077,
+    "slug": "das-alpenhaus-beer-stein-1974-1980-4",
+    "legacyKey": "lw2260d",
+    "baseId": 3071,
+    "base": "das-alpenhaus-beer-stein-1974-1980",
+    "baseLegacyKey": "lw2260a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3075,
+    "slug": "das-alpenhaus-beer-stein-1974-1980-3",
+    "legacyKey": "lw2260c",
+    "baseId": 3071,
+    "base": "das-alpenhaus-beer-stein-1974-1980",
+    "baseLegacyKey": "lw2260a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3073,
+    "slug": "das-alpenhaus-beer-stein-1974-1980-2",
+    "legacyKey": "lw2260b",
+    "baseId": 3071,
+    "base": "das-alpenhaus-beer-stein-1974-1980",
+    "baseLegacyKey": "lw2260a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3067,
+    "slug": "citrus-orchards-1900-2",
+    "legacyKey": "lw2258i",
+    "baseId": 3063,
+    "base": "citrus-orchards-1900",
+    "baseLegacyKey": "lw2258g",
+    "bodySimilarity": 0.98,
+    "sameImageFile": false
+   },
+   {
+    "id": 3059,
+    "slug": "oil-works-1900-2",
+    "legacyKey": "lw2258e",
+    "baseId": 3057,
+    "base": "oil-works-1900",
+    "baseLegacyKey": "lw2258d",
+    "bodySimilarity": 0.967,
+    "sameImageFile": false
+   },
+   {
+    "id": 3047,
+    "slug": "white-oil-gusher-1900-2",
+    "legacyKey": "lw2257b",
+    "baseId": 3045,
+    "base": "white-oil-gusher-1900",
+    "baseLegacyKey": "lw2257a",
+    "bodySimilarity": 0.986,
+    "sameImageFile": false
+   },
+   {
+    "id": 3041,
+    "slug": "white-oil-seep-5",
+    "legacyKey": "lw2256e",
+    "baseId": 3033,
+    "base": "white-oil-seep",
+    "baseLegacyKey": "lw2256a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 3039,
+    "slug": "white-oil-seep-4",
+    "legacyKey": "lw2256d",
+    "baseId": 3033,
+    "base": "white-oil-seep",
+    "baseLegacyKey": "lw2256a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3037,
+    "slug": "white-oil-seep-3",
+    "legacyKey": "lw2256c",
+    "baseId": 3033,
+    "base": "white-oil-seep",
+    "baseLegacyKey": "lw2256a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 3035,
+    "slug": "white-oil-seep-2",
+    "legacyKey": "lw2256b",
+    "baseId": 3033,
+    "base": "white-oil-seep",
+    "baseLegacyKey": "lw2256a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2981,
+    "slug": "sandbergs-summit-hotel-2",
+    "legacyKey": "lw2202",
+    "baseId": 2735,
+    "base": "sandbergs-summit-hotel",
+    "baseLegacyKey": "lw2032",
+    "bodySimilarity": 0.991,
+    "sameImageFile": false
+   },
+   {
+    "id": 2975,
+    "slug": "needham-ranch-1914-touring-party-2",
+    "legacyKey": "lw2188b",
+    "baseId": 2973,
+    "base": "needham-ranch-1914-touring-party",
+    "baseLegacyKey": "lw2188",
+    "bodySimilarity": 0.983,
+    "sameImageFile": false
+   },
+   {
+    "id": 2971,
+    "slug": "newhall-auto-tunnel-1914-2",
+    "legacyKey": "lw2187b",
+    "baseId": 2969,
+    "base": "newhall-auto-tunnel-1914",
+    "baseLegacyKey": "lw2187a",
+    "bodySimilarity": 0.999,
+    "sameImageFile": false
+   },
+   {
+    "id": 2949,
+    "slug": "hi-jollys-tomb-5",
+    "legacyKey": "lw2161e",
+    "baseId": 2941,
+    "base": "hi-jollys-tomb",
+    "baseLegacyKey": "lw2161a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2947,
+    "slug": "hi-jollys-tomb-4",
+    "legacyKey": "lw2161d",
+    "baseId": 2941,
+    "base": "hi-jollys-tomb",
+    "baseLegacyKey": "lw2161a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2945,
+    "slug": "hi-jollys-tomb-3",
+    "legacyKey": "lw2161c",
+    "baseId": 2941,
+    "base": "hi-jollys-tomb",
+    "baseLegacyKey": "lw2161a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2943,
+    "slug": "hi-jollys-tomb-2",
+    "legacyKey": "lw2161b",
+    "baseId": 2941,
+    "base": "hi-jollys-tomb",
+    "baseLegacyKey": "lw2161a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2937,
+    "slug": "aerial-view-of-valencia-town-center-2002-2",
+    "legacyKey": "lw2157b",
+    "baseId": 2935,
+    "base": "aerial-view-of-valencia-town-center-2002",
+    "baseLegacyKey": "lw2157a",
+    "bodySimilarity": 0.792,
+    "sameImageFile": false
+   },
+   {
+    "id": 2931,
+    "slug": "needham-ranch-tour-2-4-2002-9",
+    "legacyKey": "lw2153i",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.946,
+    "sameImageFile": false
+   },
+   {
+    "id": 2929,
+    "slug": "needham-ranch-tour-2-4-2002-8",
+    "legacyKey": "lw2153h",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.946,
+    "sameImageFile": false
+   },
+   {
+    "id": 2927,
+    "slug": "needham-ranch-tour-2-4-2002-7",
+    "legacyKey": "lw2153g",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.926,
+    "sameImageFile": false
+   },
+   {
+    "id": 2925,
+    "slug": "needham-ranch-tour-2-4-2002-6",
+    "legacyKey": "lw2153f",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.946,
+    "sameImageFile": false
+   },
+   {
+    "id": 2923,
+    "slug": "needham-ranch-tour-2-4-2002-5",
+    "legacyKey": "lw2153e",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.925,
+    "sameImageFile": false
+   },
+   {
+    "id": 2921,
+    "slug": "needham-ranch-tour-2-4-2002-4",
+    "legacyKey": "lw2153d",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.946,
+    "sameImageFile": false
+   },
+   {
+    "id": 2919,
+    "slug": "needham-ranch-tour-2-4-2002-3",
+    "legacyKey": "lw2153c",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.941,
+    "sameImageFile": false
+   },
+   {
+    "id": 2917,
+    "slug": "needham-ranch-tour-2-4-2002-2",
+    "legacyKey": "lw2153b",
+    "baseId": 2915,
+    "base": "needham-ranch-tour-2-4-2002",
+    "baseLegacyKey": "lw2153a",
+    "bodySimilarity": 0.966,
+    "sameImageFile": false
+   },
+   {
+    "id": 2911,
+    "slug": "demolition-24713-arcadia-st-3",
+    "legacyKey": "lw2151c",
+    "baseId": 2907,
+    "base": "demolition-24713-arcadia-st",
+    "baseLegacyKey": "lw2151a",
+    "bodySimilarity": 0.965,
+    "sameImageFile": false
+   },
+   {
+    "id": 2909,
+    "slug": "demolition-24713-arcadia-st-2",
+    "legacyKey": "lw2151b",
+    "baseId": 2907,
+    "base": "demolition-24713-arcadia-st",
+    "baseLegacyKey": "lw2151a",
+    "bodySimilarity": 0.993,
+    "sameImageFile": false
+   },
+   {
+    "id": 2905,
+    "slug": "bermite-home-demo-24867-walnut-st-8",
+    "legacyKey": "lw2150h",
+    "baseId": 2891,
+    "base": "bermite-home-demo-24867-walnut-st",
+    "baseLegacyKey": "lw2150a",
+    "bodySimilarity": 0.986,
+    "sameImageFile": false
+   },
+   {
+    "id": 2903,
+    "slug": "bermite-home-demo-24867-walnut-st-7",
+    "legacyKey": "lw2150g",
+    "baseId": 2891,
+    "base": "bermite-home-demo-24867-walnut-st",
+    "baseLegacyKey": "lw2150a",
+    "bodySimilarity": 0.987,
+    "sameImageFile": false
+   },
+   {
+    "id": 2901,
+    "slug": "bermite-home-demo-24867-walnut-st-6",
+    "legacyKey": "lw2150f",
+    "baseId": 2891,
+    "base": "bermite-home-demo-24867-walnut-st",
+    "baseLegacyKey": "lw2150a",
+    "bodySimilarity": 0.989,
+    "sameImageFile": false
+   },
+   {
+    "id": 2899,
+    "slug": "bermite-home-demo-24867-walnut-st-5",
+    "legacyKey": "lw2150e",
+    "baseId": 2891,
+    "base": "bermite-home-demo-24867-walnut-st",
+    "baseLegacyKey": "lw2150a",
+    "bodySimilarity": 0.983,
+    "sameImageFile": false
+   },
+   {
+    "id": 2897,
+    "slug": "bermite-home-demo-24867-walnut-st-4",
+    "legacyKey": "lw2150d",
+    "baseId": 2891,
+    "base": "bermite-home-demo-24867-walnut-st",
+    "baseLegacyKey": "lw2150a",
+    "bodySimilarity": 0.979,
+    "sameImageFile": false
+   },
+   {
+    "id": 2895,
+    "slug": "bermite-home-demo-24867-walnut-st-3",
+    "legacyKey": "lw2150c",
+    "baseId": 2891,
+    "base": "bermite-home-demo-24867-walnut-st",
+    "baseLegacyKey": "lw2150a",
+    "bodySimilarity": 0.985,
+    "sameImageFile": false
+   },
+   {
+    "id": 2893,
+    "slug": "bermite-home-demo-24867-walnut-st-2",
+    "legacyKey": "lw2150b",
+    "baseId": 2891,
+    "base": "bermite-home-demo-24867-walnut-st",
+    "baseLegacyKey": "lw2150a",
+    "bodySimilarity": 0.988,
+    "sameImageFile": false
+   },
+   {
+    "id": 2885,
+    "slug": "usprr-williamson-expedition-1853-geological-map-3",
+    "legacyKey": "lw2143d",
+    "baseId": 2881,
+    "base": "usprr-williamson-expedition-1853-geological-map",
+    "baseLegacyKey": "lw2143a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 2883,
+    "slug": "usprr-williamson-expedition-1853-geological-map-2",
+    "legacyKey": "lw2143c",
+    "baseId": 2881,
+    "base": "usprr-williamson-expedition-1853-geological-map",
+    "baseLegacyKey": "lw2143a",
+    "bodySimilarity": 0.998,
+    "sameImageFile": false
+   },
+   {
+    "id": 2875,
+    "slug": "harry-carey-ranch-caretakers-house-2001-2",
+    "legacyKey": "lw2142bb",
+    "baseId": 2873,
+    "base": "harry-carey-ranch-caretakers-house-2001",
+    "baseLegacyKey": "lw2142ba",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2867,
+    "slug": "demolition-of-dillenbeck-canyon-market-2",
+    "legacyKey": "lw2139b",
+    "baseId": 2865,
+    "base": "demolition-of-dillenbeck-canyon-market",
+    "baseLegacyKey": "lw2139",
+    "bodySimilarity": 0.941,
+    "sameImageFile": false
+   },
+   {
+    "id": 2861,
+    "slug": "newhall-san-fernando-tunnel-stereo-view-by-carleton-watkins-2",
+    "legacyKey": "lw2137b",
+    "baseId": 2859,
+    "base": "newhall-san-fernando-tunnel-stereo-view-by-carleton-watkins",
+    "baseLegacyKey": "lw2137a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2851,
+    "slug": "enlisted-mens-barracks-2",
+    "legacyKey": "lw2129b",
+    "baseId": 2849,
+    "base": "enlisted-mens-barracks",
+    "baseLegacyKey": "lw2129a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2847,
+    "slug": "bark-inscription-lebeck-oak-2",
+    "legacyKey": "lw2128d",
+    "baseId": 2845,
+    "base": "bark-inscription-lebeck-oak",
+    "baseLegacyKey": "lw2128c",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2835,
+    "slug": "bridge-over-southern-pacific-railroad-newhall-grade-2",
+    "legacyKey": "lw2122a",
+    "baseId": 2833,
+    "base": "bridge-over-southern-pacific-railroad-newhall-grade",
+    "baseLegacyKey": "lw2122",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2829,
+    "slug": "national-historic-landmark-celebration-2001-3",
+    "legacyKey": "lw2119c",
+    "baseId": 2825,
+    "base": "national-historic-landmark-celebration-2001",
+    "baseLegacyKey": "lw2119a",
+    "bodySimilarity": 0.945,
+    "sameImageFile": false
+   },
+   {
+    "id": 2827,
+    "slug": "national-historic-landmark-celebration-2001-2",
+    "legacyKey": "lw2119b",
+    "baseId": 2825,
+    "base": "national-historic-landmark-celebration-2001",
+    "baseLegacyKey": "lw2119a",
+    "bodySimilarity": 0.923,
+    "sameImageFile": false
+   },
+   {
+    "id": 2809,
+    "slug": "blum-ranch-6",
+    "legacyKey": "lw2101f",
+    "baseId": 2799,
+    "base": "blum-ranch",
+    "baseLegacyKey": "lw2101a",
+    "bodySimilarity": 0.87,
+    "sameImageFile": false
+   },
+   {
+    "id": 2807,
+    "slug": "blum-ranch-5",
+    "legacyKey": "lw2101e",
+    "baseId": 2799,
+    "base": "blum-ranch",
+    "baseLegacyKey": "lw2101a",
+    "bodySimilarity": 0.839,
+    "sameImageFile": false
+   },
+   {
+    "id": 2805,
+    "slug": "blum-ranch-4",
+    "legacyKey": "lw2101d",
+    "baseId": 2799,
+    "base": "blum-ranch",
+    "baseLegacyKey": "lw2101a",
+    "bodySimilarity": 0.869,
+    "sameImageFile": false
+   },
+   {
+    "id": 2803,
+    "slug": "blum-ranch-3",
+    "legacyKey": "lw2101c",
+    "baseId": 2799,
+    "base": "blum-ranch",
+    "baseLegacyKey": "lw2101a",
+    "bodySimilarity": 0.869,
+    "sameImageFile": false
+   },
+   {
+    "id": 2801,
+    "slug": "blum-ranch-2",
+    "legacyKey": "lw2101b",
+    "baseId": 2799,
+    "base": "blum-ranch",
+    "baseLegacyKey": "lw2101a",
+    "bodySimilarity": 0.869,
+    "sameImageFile": false
+   },
+   {
+    "id": 2793,
+    "slug": "pardee-house-2",
+    "legacyKey": "lw2095b",
+    "baseId": 2791,
+    "base": "pardee-house",
+    "baseLegacyKey": "lw2095a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2789,
+    "slug": "solemint-store-1950s-1970s-2",
+    "legacyKey": "lw2093b",
+    "baseId": 2787,
+    "base": "solemint-store-1950s-1970s",
+    "baseLegacyKey": "lw2093",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2711,
+    "slug": "callahans-old-west-good-luck-charm-2",
+    "legacyKey": "lw2002b",
+    "baseId": 2709,
+    "base": "callahans-old-west-good-luck-charm",
+    "baseLegacyKey": "lw2002",
+    "bodySimilarity": 0.929,
+    "sameImageFile": false
+   },
+   {
+    "id": 2699,
+    "slug": "abandoned-tropico-gold-camp-rosamond-4",
+    "legacyKey": "lw102307d",
+    "baseId": 2693,
+    "base": "abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw102307a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2697,
+    "slug": "abandoned-tropico-gold-camp-rosamond-3",
+    "legacyKey": "lw102307c",
+    "baseId": 2693,
+    "base": "abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw102307a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2695,
+    "slug": "abandoned-tropico-gold-camp-rosamond-2",
+    "legacyKey": "lw102307b",
+    "baseId": 2693,
+    "base": "abandoned-tropico-gold-camp-rosamond",
+    "baseLegacyKey": "lw102307a",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   },
+   {
+    "id": 2687,
+    "slug": "fish-canyon-bedrock-mortars-cupules-3",
+    "legacyKey": "lw0070d",
+    "baseId": 2683,
+    "base": "fish-canyon-bedrock-mortars-cupules",
+    "baseLegacyKey": "lw0070",
+    "bodySimilarity": 0.992,
+    "sameImageFile": false
+   },
+   {
+    "id": 2685,
+    "slug": "fish-canyon-bedrock-mortars-cupules-2",
+    "legacyKey": "lw0070b",
+    "baseId": 2683,
+    "base": "fish-canyon-bedrock-mortars-cupules",
+    "baseLegacyKey": "lw0070",
+    "bodySimilarity": 1.0,
+    "sameImageFile": false
+   }
+  ]
+ },
+ "noBaseRecord": [
+  {
+   "slug": "hart-district-board-election-november-8-2022-trustee-area-2",
+   "id": 28837,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 2, November 8, 2022"
+  },
+  {
+   "slug": "scv-water-board-election-november-5-2024-division-3",
+   "id": 26697,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water board election, Division 3, November 5, 2024"
+  },
+  {
+   "slug": "scv-water-board-election-november-5-2024-division-2",
+   "id": 26689,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water board election, Division 2, November 5, 2024"
+  },
+  {
+   "slug": "scv-water-board-election-november-8-2022-division-3",
+   "id": 26669,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water board election, Division 3, November 8, 2022"
+  },
+  {
+   "slug": "scv-water-board-election-november-8-2022-division-2",
+   "id": 26661,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water board election, Division 2, November 8, 2022"
+  },
+  {
+   "slug": "scv-water-board-election-november-3-2020-division-3",
+   "id": 26643,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water board election, Division 3, November 3, 2020"
+  },
+  {
+   "slug": "scv-water-board-election-november-3-2020-division-2",
+   "id": 26633,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water board election, Division 2, November 3, 2020"
+  },
+  {
+   "slug": "clwa-board-election-november-8-2016-division-3",
+   "id": 26617,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Castaic Lake Water Agency board election, Division 3, November 8, 2016"
+  },
+  {
+   "slug": "clwa-board-election-november-8-2016-division-2",
+   "id": 26611,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Castaic Lake Water Agency board election, Division 2, November 8, 2016"
+  },
+  {
+   "slug": "castaic-lake-water-agency-division-3",
+   "id": 26570,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Castaic Lake Water Agency, Division 3"
+  },
+  {
+   "slug": "castaic-lake-water-agency-division-2",
+   "id": 26568,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Castaic Lake Water Agency, Division 2"
+  },
+  {
+   "slug": "hart-district-board-election-november-5-2024-trustee-area-4",
+   "id": 25997,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 4, November 5, 2024"
+  },
+  {
+   "slug": "hart-district-board-election-november-8-2022-trustee-area-5",
+   "id": 25983,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 5, November 8, 2022"
+  },
+  {
+   "slug": "hart-district-board-election-november-8-2022-trustee-area-3",
+   "id": 25977,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 3, November 8, 2022"
+  },
+  {
+   "slug": "hart-district-board-election-november-3-2020-trustee-area-4",
+   "id": 25971,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 4, November 3, 2020"
+  },
+  {
+   "slug": "hart-district-board-election-november-6-2018-trustee-area-5",
+   "id": 25955,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 5, November 6, 2018"
+  },
+  {
+   "slug": "hart-district-board-election-november-6-2018-trustee-area-2",
+   "id": 25947,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 2, November 6, 2018"
+  },
+  {
+   "slug": "hart-district-board-election-november-3-2015-trustee-area-4",
+   "id": 25941,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District board election, Trustee Area 4, November 3, 2015"
+  },
+  {
+   "slug": "saugus-union-board-election-november-5-2024-trustee-area-3",
+   "id": 25757,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 3, November 5, 2024"
+  },
+  {
+   "slug": "saugus-union-board-election-november-8-2022-trustee-area-5",
+   "id": 25751,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 5, November 8, 2022"
+  },
+  {
+   "slug": "saugus-union-board-election-november-8-2022-trustee-area-2",
+   "id": 25745,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 2, November 8, 2022"
+  },
+  {
+   "slug": "saugus-union-board-election-november-3-2020-trustee-area-4",
+   "id": 25733,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 4, November 3, 2020"
+  },
+  {
+   "slug": "saugus-union-board-election-november-3-2020-trustee-area-3",
+   "id": 25727,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 3, November 3, 2020"
+  },
+  {
+   "slug": "saugus-union-board-election-november-6-2018-trustee-area-5",
+   "id": 25721,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 5, November 6, 2018"
+  },
+  {
+   "slug": "saugus-union-board-election-november-6-2018-trustee-area-2",
+   "id": 25715,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 2, November 6, 2018"
+  },
+  {
+   "slug": "saugus-union-board-election-november-8-2016-trustee-area-3",
+   "id": 25701,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District board election, Trustee Area 3, November 8, 2016"
+  },
+  {
+   "slug": "newhall-school-district-board-election-november-5-2024-trustee-area-5",
+   "id": 25637,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Newhall School District board election, Trustee Area 5, November 5, 2024"
+  },
+  {
+   "slug": "newhall-school-district-board-election-november-8-2022-trustee-area-2",
+   "id": 25631,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Newhall School District board election, Trustee Area 2, November 8, 2022"
+  },
+  {
+   "slug": "newhall-school-district-board-election-november-6-2018-trustee-area-2",
+   "id": 25617,
+   "section": "elections",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Newhall School District board election, Trustee Area 2, November 6, 2018"
+  },
+  {
+   "slug": "santa-clarita-valley-water-division-3",
+   "id": 25369,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water, Division 3"
+  },
+  {
+   "slug": "santa-clarita-valley-water-division-2",
+   "id": 25367,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita Valley Water, Division 2"
+  },
+  {
+   "slug": "sulphur-springs-union-school-district-trustee-area-5",
+   "id": 25353,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Sulphur Springs Union School District, Trustee Area 5"
+  },
+  {
+   "slug": "sulphur-springs-union-school-district-trustee-area-4",
+   "id": 25351,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Sulphur Springs Union School District, Trustee Area 4"
+  },
+  {
+   "slug": "sulphur-springs-union-school-district-trustee-area-3",
+   "id": 25349,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Sulphur Springs Union School District, Trustee Area 3"
+  },
+  {
+   "slug": "sulphur-springs-union-school-district-trustee-area-2",
+   "id": 25347,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Sulphur Springs Union School District, Trustee Area 2"
+  },
+  {
+   "slug": "newhall-school-district-trustee-area-5",
+   "id": 25343,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Newhall School District, Trustee Area 5"
+  },
+  {
+   "slug": "newhall-school-district-trustee-area-4",
+   "id": 25341,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Newhall School District, Trustee Area 4"
+  },
+  {
+   "slug": "newhall-school-district-trustee-area-3",
+   "id": 25339,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Newhall School District, Trustee Area 3"
+  },
+  {
+   "slug": "newhall-school-district-trustee-area-2",
+   "id": 25337,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Newhall School District, Trustee Area 2"
+  },
+  {
+   "slug": "saugus-union-school-district-trustee-area-5",
+   "id": 25333,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District, Trustee Area 5"
+  },
+  {
+   "slug": "saugus-union-school-district-trustee-area-4",
+   "id": 25331,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District, Trustee Area 4"
+  },
+  {
+   "slug": "saugus-union-school-district-trustee-area-3",
+   "id": 25329,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District, Trustee Area 3"
+  },
+  {
+   "slug": "saugus-union-school-district-trustee-area-2",
+   "id": 25327,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Saugus Union School District, Trustee Area 2"
+  },
+  {
+   "slug": "william-s-hart-union-high-school-district-trustee-area-5",
+   "id": 25323,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District, Trustee Area 5"
+  },
+  {
+   "slug": "william-s-hart-union-high-school-district-trustee-area-4",
+   "id": 25321,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District, Trustee Area 4"
+  },
+  {
+   "slug": "william-s-hart-union-high-school-district-trustee-area-3",
+   "id": 25319,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District, Trustee Area 3"
+  },
+  {
+   "slug": "william-s-hart-union-high-school-district-trustee-area-2",
+   "id": 25317,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "William S. Hart Union High School District, Trustee Area 2"
+  },
+  {
+   "slug": "santa-clarita-city-council-district-3",
+   "id": 25155,
+   "section": "places",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Santa Clarita City Council, District 3"
+  },
+  {
+   "slug": "francisco-lopez-2",
+   "id": 18834,
+   "section": "persons",
+   "class": "no live base record: francisco-lopez was #305, trashed 2026-10-03 when #28132 chico-lopez was created; #18834 is the 1842 gold discoverer, a different man. Not a duplicate; slug can drop -2",
+   "title": "Francisco Lopez"
+  },
+  {
+   "slug": "coin-population-data-part-2",
+   "id": 15176,
+   "section": "articles",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Coin Population Data, Part 2"
+  },
+  {
+   "slug": "the-american-numismatic-association-part-2",
+   "id": 15074,
+   "section": "articles",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "The American Numismatic Association, Part 2"
+  },
+  {
+   "slug": "the-american-numismatic-association-part-3",
+   "id": 15072,
+   "section": "articles",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "The American Numismatic Association, Part 3"
+  },
+  {
+   "slug": "fireball-500-lobby-cards-full-set-of-8",
+   "id": 5035,
+   "section": "photographs",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "'Fireball 500' Lobby Cards (Full Set of 8)."
+  },
+  {
+   "slug": "westbound-210-transition-to-i-5",
+   "id": 4105,
+   "section": "photographs",
+   "class": "no base record (numbered name, not a duplicate)",
+   "title": "Westbound 210 Transition to I-5"
+  }
+ ],
+ "supplementarySameColumnDifferentSlug": [
+  {
+   "file": "lw092596",
+   "keep": 12542,
+   "remove": 12574,
+   "note": "Identical. Keep worden/lw092596.htm (on the mirror, indexed); old/ copy is crawl only. Headlines \"resurface\" vs \"reappear\"."
+  },
+  {
+   "file": "lw021997",
+   "keep": 12216,
+   "remove": 12562,
+   "note": "Similarity 0.995. Both files exist and the index links both. Old copy has the Signal headline \"Hirohito at root of SCV growth\" as a line. Unclear which Leon meant as primary; keeper suggested on the cleaner slug."
+  },
+  {
+   "file": "lw030597",
+   "keep": 12460,
+   "remove": 12558,
+   "note": "old/lw030597.htm is a meta-refresh stub pointing at ../lw030597.htm. Keep 12460."
+  },
+  {
+   "file": "lw081397",
+   "keep": 12550,
+   "remove": 12538,
+   "note": "Identical body, two headlines (\"Newhall Hardware celebrates 50th anniversary\" indexed, old/; \"Big party marks...\" worden/). Keep the indexed one; Nathan picks the headline."
+  },
+  {
+   "file": "lw062597",
+   "keep": 12412,
+   "remove": 12540,
+   "note": "Similarity 0.996. Keep old/ (indexed); the other slug misspells \"revitalizating\". Neither has writtenBy."
+  },
+  {
+   "file": "lw092497",
+   "keep": 12162,
+   "remove": 12536,
+   "note": "Similarity 0.995. Keep old/ (indexed). Two headlines."
+  },
+  {
+   "file": "lw080798ea",
+   "keep": 12498,
+   "remove": 12530,
+   "note": "Identical. Keep old/ (on the mirror, indexed)."
+  },
+  {
+   "file": "lw072498e",
+   "keep": 12502,
+   "remove": 12278,
+   "note": "Similarity 0.994. Keep old/ (on the mirror, indexed)."
+  },
+  {
+   "file": "lw101597",
+   "keep": 12262,
+   "remove": 12458,
+   "note": "Similarity 0.99, both files exist and both are indexed, under two headlines (\"Q&A from the world of scvleon.com\" and \"Who was Darius Towsley?\"). Unclear: Nathan decides whether Leon meant two entries. 12262 has writtenBy Leon Worden; 12458 has none."
+  },
+  {
+   "file": "lw070997",
+   "keep": 12170,
+   "remove": 12372,
+   "note": "Similarity 0.998. Keep worden/ (on the mirror, indexed); old/ is crawl only."
+  },
+  {
+   "file": "lw071598",
+   "keep": 12152,
+   "remove": 12208,
+   "note": "Similarity 0.938. Keep worden/ (on the mirror, indexed): Leon's corrected text (14,700 acres; footnote correcting the year Cook came to California). The old/ copy is the 1998 text (14,000 acres). Neither has writtenBy."
+  }
+ ]
+}

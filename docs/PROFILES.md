@@ -147,6 +147,12 @@ petition, Board minutes or newspaper was contradicted.
   Reynolds also introduced at least four errors on points Perkins had right, and
   the 1998 web edition corrects Perkins on seven, so neither simply supersedes
   the other.
+- **A Leon Worden column counts as independent of Reynolds and Perkins only where
+  it cites something other than them** (Nathan, 4 October 2026). Some of Leon's
+  columns of the 1990s repeat Reynolds word for word: LW2052 is the only source
+  given for the del Valle acreages, and it is Reynolds's chapter 15. Where a
+  column states a point Reynolds or Perkins also gives, and names no other source,
+  it is the same account a third time, not a second witness.
 
 ## Leon Worden's Hart board roster: a primary that contradicts itself once
 

@@ -86,6 +86,15 @@
             "removed": "2026-10-01",
             "by": "scripts/import/remove_insignificant_persons.php; this entry added by scripts/import/fix_no_source_notes_2026_10_03.php",
             "search": "Searched 3 October 2026 (Python over all 84,849 text pages of the legacy site, read as cp1252, and the archive's records): \"Connerly\". Six pages: the four columns and two copies of the column index. None places him in the valley."
+        },
+        {
+            "record": 12704,
+            "title": "Santa Clarita Valley Country Fair",
+            "slug": "santa-clarita-valley-country-fair-2",
+            "section": "articles",
+            "why": "A duplicate of #12702 made by the import: the legacy folder held the page twice, once as a redirect stub (fair1197.htm) and once as the page (fair.htm), and both were imported with the same text. #12702 is kept and now points at fair.htm.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/fix_country_fair_and_folder_attribution_2026_10_04.php; its address redirects to #12702 (config/redirects.php)"
         }
     ]
 }

@@ -95,6 +95,10 @@ $moved = [
     'war-memorial/ww2-ekenaston'                  => 'war-memorial/lawrence-e-kenaston',
     'war-memorial/ww2-eugenedarr'                 => 'war-memorial/eugene-e-darr',
     'war-memorial/ww2-frankwhitmore'              => 'war-memorial/frank-pike-whitmore',
+    /* A duplicate retired 4 October 2026 (scripts/import/fix_country_fair_and_folder_attribution_2026_10_04.php). */
+    'articles/santa-clarita-valley-country-fair-2' => 'articles/santa-clarita-valley-country-fair',
+    /* Francisco López's slug lost its -2 on 4 October 2026, once the base slug was free (scripts/import/fix_rock_inn_and_lopez_slug_2026_10_04.php). */
+    'persons/francisco-lopez-2' => 'persons/francisco-lopez',
 ];
 
 return array_map(fn($from, $to) => ['from' => $from, 'to' => $to, 'statusCode' => 301],

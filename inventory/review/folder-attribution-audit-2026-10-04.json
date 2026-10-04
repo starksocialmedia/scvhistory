@@ -1,0 +1,664 @@
+{
+ "generated": "2026-10-04",
+ "method": "Each article's legacyUrl was opened on the Reggie mirror (/Volumes/Reggie/SCVHistory/scvhistory.com); where the file is absent, the crawl's body_html in inventory/legacy/*.json was read instead (marked). A byline counts when the page itself names the author in a byline, dateline, running head or signature; the copyright footer and the author tagline were noted separately. Every page without a byline was then read by hand.",
+ "collections": {
+  "otn-patti": {
+   "name": "Open Book (#679)",
+   "author": "Patti Rasmussen #2591",
+   "folder": "/oldtownnewhall/patti/",
+   "built": "scripts/import/import_old_town_newhall.php ran the shared engine scripts/import/_series_import.php over every page in oldtownnewhall.json whose path matched #^/oldtownnewhall/patti/#, and set partOfCollection to otn-patti and appended each to articlesInCollection. Membership was decided by folder path alone; the script header says so (\"The directory decides which\"). The collection's author was set by scripts/import/set_collection_authors_2.php from a hand map of folder slug to name (otn-patti => Patti Rasmussen). Article writtenBy was set later by scripts/import/quality_byline_dates.php, only where the page's own dateline (\"Patti Rasmussen · May 24, 1997\") named the collection author; that part is page-based. The two Country Fair records got no writtenBy, but they still show \"Patti Rasmussen\" through the collection box on the article page and the collection listing, which read the collection's writtenBy.",
+   "count": 27,
+   "onPageCounts": {
+    "no byline": 2,
+    "byline on page": 25
+   },
+   "lacking": [
+    {
+     "id": 12704,
+     "slug": "santa-clarita-valley-country-fair-2",
+     "title": "Santa Clarita Valley Country Fair",
+     "legacyUrl": "/oldtownnewhall/patti/fair.htm",
+     "writtenBy": [],
+     "onPage": "no byline",
+     "pageIs": "Santa Clarita Valley Country Fair event page: Newhall Park, Sun. July 2 to Tues. July 4 (2000 calendar), \"**2001 FAIR CANCELED**\", rides, music, auctions, 4th of July parade and 5K links, image hamlet.gif. No author, no Open Book masthead (the columns carry pattitle.gif, \"'Open Book' with Patti Rasmussen\"). Not on the Reggie mirror; text is from the crawl",
+     "source": "crawl body_html (page not on mirror)"
+    },
+    {
+     "id": 12702,
+     "slug": "santa-clarita-valley-country-fair",
+     "title": "Santa Clarita Valley Country Fair",
+     "legacyUrl": "/oldtownnewhall/patti/fair1197.htm",
+     "writtenBy": [],
+     "onPage": "no byline",
+     "pageIs": "107-byte redirect stub (meta refresh to /oldtownnewhall/patti/fair.htm). The record's text was crawled from the target page",
+     "source": "mirror"
+    }
+   ]
+  },
+  "coins": {
+   "name": "Making Cents (#673)",
+   "author": "Sol Taylor #2582",
+   "folder": "/scvhistory/signal/coins/",
+   "built": "scripts/import/import_coins.php ran the same engine with pathFilter #^/scvhistory/signal/coins/#: membership by folder. The script header calls all 259 \"weekly pieces by Dr. Sol Taylor, each with a byline\"; that is not so for 40 of them. Collection author Sol Taylor by set_collection_authors_2.php. No article in the collection has writtenBy, so every one of the 259 is shown under Sol Taylor's name only through the collection.",
+   "count": 259,
+   "onPageCounts": {
+    "byline of someone else": 37,
+    "no byline": 3,
+    "byline on page": 219
+   },
+   "lacking": [
+    {
+     "id": 15454,
+     "slug": "mr-brenners-lincoln-a-profile",
+     "title": "Mr. Brenner's Lincoln: A Profile",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1107b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15452,
+     "slug": "good-timing",
+     "title": "Good Timing",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0207.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15450,
+     "slug": "bowers-what-isnt-in-a-name",
+     "title": "Bowers: What Isn't In a Name?",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0107c.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15448,
+     "slug": "results-of-nlg-annual-writers-competition-for-2",
+     "title": "Results of NLG Annual Writers' Competition for",
+     "legacyUrl": "/scvhistory/signal/coins/nlg06winners.htm",
+     "writtenBy": [],
+     "onPage": "no byline",
+     "pageIs": "Numismatic Literary Guild 2006 writers' competition results list; no author",
+     "source": "mirror"
+    },
+    {
+     "id": 15446,
+     "slug": "results-of-nlg-annual-writers-competition-for",
+     "title": "Results of NLG Annual Writers' Competition for",
+     "legacyUrl": "/scvhistory/signal/coins/nlg05winners.htm",
+     "writtenBy": [],
+     "onPage": "no byline",
+     "pageIs": "Numismatic Literary Guild 2005 writers' competition results list; no author (not on the Reggie mirror; crawl text)",
+     "source": "crawl body_html (page not on mirror)"
+    },
+    {
+     "id": 15444,
+     "slug": "stack-s-anr-two-for-the-money",
+     "title": "Stacks-ANR: Two for the Money",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1206c.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15442,
+     "slug": "third-party-independence",
+     "title": "Third-Party Independence?",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1206b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15440,
+     "slug": "whats-new-in-the-universe",
+     "title": "What's New in the Universe",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1206a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15438,
+     "slug": "50-state-quarters-quarter-ly-art",
+     "title": "50-State Quarters: Quarter-ly Art",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1205b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15436,
+     "slug": "50-state-quarters-credit-where-credit-is-due",
+     "title": "50-State Quarters: Credit Where Credit Is Due",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1205a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15434,
+     "slug": "1933-saints-march-into-national-coin-show",
+     "title": "1933 Saints March Into National Coin Show",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1106c.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15432,
+     "slug": "no-small-change-at-the-mint",
+     "title": "No Small Change at the Mint",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1106a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15430,
+     "slug": "coins-pr-donn-pearlman",
+     "title": "Coins + PR = Donn Pearlman",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1006.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15428,
+     "slug": "after-the-storms",
+     "title": "After the Storms",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0906.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15426,
+     "slug": "walter-ostromecki-mr-numismatics",
+     "title": "Walter Ostromecki: Mr. Numismatics",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0806b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15424,
+     "slug": "the-young-numismatists",
+     "title": "The Young Numismatists",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0806a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15422,
+     "slug": "the-wonderful-world-of-coin-collecting",
+     "title": "The Wonderful World of Coin Collecting",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage07annual.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15420,
+     "slug": "a-question-of-legitimacy",
+     "title": "A Question of Legitimacy",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0706b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15418,
+     "slug": "collecting-hobo-nickels",
+     "title": "Collecting Hobo Nickels",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0706a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\", July 2006",
+     "source": "mirror"
+    },
+    {
+     "id": 15416,
+     "slug": "mr-ana",
+     "title": "'Mr. ANA'",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0506.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15414,
+     "slug": "illegal-double-eagles",
+     "title": "'Illegal' (Double) Eagles",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0307.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15412,
+     "slug": "part-ii-sharing-the-wealth",
+     "title": "Part II: Sharing the Wealth",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0107b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15410,
+     "slug": "part-i-the-greatest-treasure-ever-seized",
+     "title": "Part I: The Greatest Treasure Ever Seized",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0107a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15408,
+     "slug": "1933-double-legal",
+     "title": "1933 Double 'Legal'",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0106b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15406,
+     "slug": "cultural-property-at-odds-with-globalism",
+     "title": "'Cultural Property': At Odds with Globalism",
+     "legacyUrl": "/scvhistory/signal/coins/sg011407-sayles.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Signal guest piece \"By Wayne G. Sayles\", January 14, 2007",
+     "source": "mirror"
+    },
+    {
+     "id": 15402,
+     "slug": "ancient-coin-buyers-beware",
+     "title": "Ancient Coin Buyers, Beware",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1106b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15392,
+     "slug": "mr-brenners-lincoln-forgotten-figures",
+     "title": "Mr. Brenner's Lincoln: Forgotten Figures",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1207a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15390,
+     "slug": "national-treasure",
+     "title": "National Treasure",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0106a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15362,
+     "slug": "coin-columnist-a-double-winner",
+     "title": "Coin Columnist a Double Winner",
+     "legacyUrl": "/scvhistory/signal/coins/sg080205.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Signal news story about Taylor's awards, \"By Leon Worden\"",
+     "source": "crawl body_html (page not on mirror)"
+    },
+    {
+     "id": 15294,
+     "slug": "californias-real-first-gold",
+     "title": "California's REAL First Gold",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1005.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15292,
+     "slug": "coin-blanking-might-be-privatized",
+     "title": "Coin Blanking Might Be Privatized",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0206b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15166,
+     "slug": "stack-bowers-paths-that-keep-crossing",
+     "title": "Stack, Bowers: Paths that Keep Crossing",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1206d.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15164,
+     "slug": "signal-coin-columnist-a-triple-winner",
+     "title": "Signal Coin Columnist a Triple Winner",
+     "legacyUrl": "/scvhistory/signal/coins/sg082606-awards.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Signal news story about Taylor's awards, \"By Signal Staff\"",
+     "source": "crawl body_html (page not on mirror)"
+    },
+    {
+     "id": 15008,
+     "slug": "mastering-the-british-royal-mint",
+     "title": "Mastering the British Royal Mint",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1107a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 15006,
+     "slug": "art-for-artists-sake",
+     "title": "Art for Artists' Sake",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0306a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 14954,
+     "slug": "odyssey-marine-exploration-to-move-new-orleans-shipwreck-attraction-to-new-market",
+     "title": "Odyssey Marine Exploration to Move New Orleans Shipwreck Attraction to New Market",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0906-odyssey.htm",
+     "writtenBy": [],
+     "onPage": "no byline",
+     "pageIs": "Odyssey Marine Exploration press release, August 3, 2006, reproduced; no author",
+     "source": "mirror"
+    },
+    {
+     "id": 14944,
+     "slug": "canada-125-and-the-u-s-50-state-quarters",
+     "title": "'Canada 125' and the U.S. 50-State Quarters",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage1105.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 14942,
+     "slug": "faith-and-fortune",
+     "title": "Faith and Fortune",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0306b.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    },
+    {
+     "id": 14940,
+     "slug": "copper-in-the-hopper",
+     "title": "Copper in the Hopper",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0606.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article \"Copper in the Hopper\", \"By Leon Worden\"; Sol Taylor appears only in a photo caption and as a source",
+     "source": "mirror"
+    },
+    {
+     "id": 14938,
+     "slug": "the-denver-mint-today",
+     "title": "The Denver Mint Today",
+     "legacyUrl": "/scvhistory/signal/coins/worden-coinage0206a.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "COINage magazine article, \"By Leon Worden\"",
+     "source": "mirror"
+    }
+   ]
+  },
+  "otn-rioux": {
+   "name": "Richard 'Doc' Rioux At Large (#683)",
+   "author": "Richard Rioux #2585",
+   "folder": "/oldtownnewhall/rioux/",
+   "built": "Same script and engine, folder /oldtownnewhall/rioux/; collection author by set_collection_authors_2.php. The folder is Leon's memorial site for Rioux, so it holds tributes by other people alongside the columns.",
+   "count": 44,
+   "onPageCounts": {
+    "byline of someone else": 8,
+    "byline on page": 34,
+    "no byline": 2
+   },
+   "lacking": [
+    {
+     "id": 12870,
+     "slug": "a-sad-farewell-to-doc-rioux",
+     "title": "A Sad Farewell to \"Doc\" Rioux",
+     "legacyUrl": "/oldtownnewhall/rioux/rrsigtrb.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Signal editorial, \"A Sad Farewell to Doc Rioux\", April 29, 1997 (tribute; signed \"Signal Editorial\", ©1997 The Signal)",
+     "source": "mirror"
+    },
+    {
+     "id": 12868,
+     "slug": "may-peace-be-with-you",
+     "title": "May Peace Be With You",
+     "legacyUrl": "/oldtownnewhall/rioux/rrvonnie.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Tribute by Vonnie Wang, May 2, 1997 (signed VONNIE WANG)",
+     "source": "mirror"
+    },
+    {
+     "id": 12866,
+     "slug": "the-genius-and-magic-of-doc",
+     "title": "The Genius and Magic of \"Doc\"",
+     "legacyUrl": "/oldtownnewhall/rioux/rrdarcy.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Tribute by Councilwoman Jo Anne Darcy, May 1997 (signed JO ANNE DARCY)",
+     "source": "mirror"
+    },
+    {
+     "id": 12864,
+     "slug": "giant-loss-to-the-recovery-community",
+     "title": "Giant Loss to the Recovery Community",
+     "legacyUrl": "/oldtownnewhall/rioux/miningco.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Tribute by \"Buddy T.\" of The Mining Company, May 14, 1997 (©1997 The Mining Company)",
+     "source": "mirror"
+    },
+    {
+     "id": 12862,
+     "slug": "richard-provided-friendship-and-comfort",
+     "title": "Richard provided friendship and comfort",
+     "legacyUrl": "/oldtownnewhall/rioux/rrmiller.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Tribute by James L. Miller, February 18, 1998 (signed JAMES L. MILLER)",
+     "source": "mirror"
+    },
+    {
+     "id": 12860,
+     "slug": "richard-is-still-working-on-earth",
+     "title": "Richard is still working on Earth",
+     "legacyUrl": "/oldtownnewhall/rioux/rboerner.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Tribute by Rich Boerner, April 6, 1998 (signed RICH BOERNER)",
+     "source": "mirror"
+    },
+    {
+     "id": 12858,
+     "slug": "touched-by-the-web-site",
+     "title": "Touched by the Web site",
+     "legacyUrl": "/oldtownnewhall/rioux/chanson.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Letter by Christina Hanson, August 3, 1998 (signed CHRISTINA HANSON)",
+     "source": "mirror"
+    },
+    {
+     "id": 12854,
+     "slug": "biography",
+     "title": "Biography",
+     "legacyUrl": "/oldtownnewhall/rioux/rrbio.htm",
+     "writtenBy": [],
+     "onPage": "no byline",
+     "pageIs": "\"Biographical Sketch\" of Rioux (BA/MA/PhD, career), unsigned; reads as the author note from his book. About him, not by him",
+     "source": "mirror"
+    },
+    {
+     "id": 12852,
+     "slug": "tributes",
+     "title": "Tributes",
+     "legacyUrl": "/oldtownnewhall/rioux/tributes.htm",
+     "writtenBy": [],
+     "onPage": "no byline",
+     "pageIs": "Index page listing the tributes to Rioux by other writers; no text by Rioux",
+     "source": "mirror"
+    },
+    {
+     "id": 12850,
+     "slug": "tribute-to-dr-richard-rioux",
+     "title": "Tribute to Dr. Richard Rioux",
+     "legacyUrl": "/oldtownnewhall/rioux/hmtrib.htm",
+     "writtenBy": [],
+     "onPage": "byline of someone else",
+     "pageIs": "Congressional Record tribute by Rep. Howard P. \"Buck\" McKeon, May 6, 1997 (signed HOWARD P. \"BUCK\" McKEON)",
+     "source": "mirror"
+    }
+   ]
+  },
+  "otn-pauline": {
+   "name": "Pauline Harte (#681)",
+   "author": "Pauline Harte #2594",
+   "folder": "/oldtownnewhall/pauline/",
+   "built": "Same script and engine as Open Book, folder /oldtownnewhall/pauline/; collection author by set_collection_authors_2.php.",
+   "count": 38,
+   "onPageCounts": {
+    "byline on page": 38
+   },
+   "lacking": []
+  },
+  "otn-whyte": {
+   "name": "Black 'N' Whyte (#685)",
+   "author": "Tim Whyte #2588",
+   "folder": "/oldtownnewhall/whyte/",
+   "built": "Same script and engine, folder /oldtownnewhall/whyte/; collection author by set_collection_authors_2.php.",
+   "count": 37,
+   "onPageCounts": {
+    "byline on page": 37
+   },
+   "lacking": []
+  },
+  "worden": {
+   "name": "Selections from Leon Worden (#665)",
+   "author": "Leon Worden #279",
+   "folder": "/scvhistory/signal/worden/ (and /old/)",
+   "built": "scripts/import/import_worden_columns.php ran the same engine with pathFilter #^/scvhistory/signal/worden/#, so membership is by folder, including /old/. Collection author by set_collection_authors_2.php; article writtenBy (196) set from the page dateline by quality_byline_dates.php.",
+   "count": 219,
+   "onPageCounts": {
+    "byline on page": 219
+   },
+   "lacking": []
+  },
+  "otn-gazette": {
+   "name": "Old Town Newhall Gazette (#677)",
+   "author": "none (a publication)",
+   "folder": "/oldtownnewhall/gazette/",
+   "built": "Same script and engine, folder /oldtownnewhall/gazette/. The collection has no author, so no one is attributed by folder. The pages carry the bylines of many writers; none of the 37 has writtenBy set.",
+   "count": 37,
+   "onPageCounts": {
+    "byline of someone else": 34,
+    "no byline": 3
+   },
+   "lacking": []
+  },
+  "history-of-the-santa-clarita-valley": {
+   "name": "History of the Santa Clarita Valley (#871)",
+   "author": "Jerry Reynolds #281",
+   "folder": "/scvhistory/signal/reynolds/ plus 2 pages in /scvhistory/",
+   "built": "scripts/import/import_reynolds.php: the chapters as listed on the book's contents page, plus four pages picked by hand ($ALSO_BY). Not by folder. scripts/import/set_collection_authors.php then gave writtenBy Jerry Reynolds to every member that lacked one (by membership, not by page); 26 carry it. Every page passes anyway: each chapter carries the running head \"HISTORY OF THE SANTA CLARITA VALLEY BY JERRY REYNOLDS\" and the four extra pieces carry \"By Jerry Reynolds\".",
+   "count": 80,
+   "onPageCounts": {
+    "byline on page": 80
+   },
+   "lacking": []
+  },
+  "story-of-our-valley": {
+   "name": "Story of Our Valley (#873)",
+   "author": "Arthur Buckingham Perkins #333",
+   "folder": "/scvhistory/signal/perkins/ plus 12 pages in /scvhistory/",
+   "built": "scripts/import/import_perkins.php and attach_perkins_collection.php: the 13 series pages from the contents page, plus 7 \"related pages\" that perkins.json lists as his. Not by folder. writtenBy by set_collection_authors.php (membership). Every page passes: series pages carry \"THE STORY OF OUR VALLEY BY A.B. PERKINS\" and the related pages \"By A.B. Perkins\" or \"By Arthur B. Perkins\".",
+   "count": 20,
+   "onPageCounts": {
+    "byline on page": 20
+   },
+   "lacking": []
+  }
+ },
+ "emptyCollections": [
+  "boston #667",
+  "manzer #669",
+  "newsmaker #671",
+  "iraq #675",
+  "mentryville #12135"
+ ],
+ "writtenByNotFromPage": [
+  {
+   "id": 1418,
+   "slug": "introduction",
+   "legacyUrl": "/scvhistory/signal/perkins/intro.html",
+   "writtenBy": "Leon Worden #279",
+   "page": "Unsigned introduction under the running head \"THE STORY OF OUR VALLEY BY A.B. PERKINS\". It opens with a modern editor's note (\"Nearly 50 years ago, between April 1954 and January 1955...\") and then the 1954 Signal introduction. Worden is inferred, not on the page."
+  },
+  {
+   "id": 1432,
+   "slug": "editors-notes",
+   "legacyUrl": "/scvhistory/signal/perkins/notes.html",
+   "writtenBy": "Leon Worden #279",
+   "page": "\"Editor's Notes\", unsigned, under the Perkins running head. Worden is inferred."
+  }
+ ],
+ "otherFindings": [
+  "Open Book count: the archive holds 27 records in the collection (Nathan's 27): 25 columns plus the two Country Fair records. The legacy index lists 25 Open Book columns, 24 May to 15 November 1997, plus one Gazette piece. The profile's \"24 pieces\" is the number with writtenBy: the 15 November 1997 column (#12656, pr111597.htm) carries her byline on the page but has no writtenBy, because its originalPublishDate holds a sentence about \"See How They Run\" instead of the date, so the byline pass skipped it. The profile also ends her run at 8 November; the last column is 15 November. The collection stub body says \"Twenty-six pieces\". The right figure is 25.",
+  "Patti Rasmussen also has two bylined Gazette pieces, \"Newhall Hardware Quits.\" (#12595) and \"Saletore: Young At Hart.\" (#12593), and the Open Book index links a third, \"Marc Winger: New chief for Newhall schools\" (Old Town Newhall Gazette, Sept. 1997). None of these has writtenBy.",
+  "Gazette: 34 of 37 pages carry a byline (Leon Worden's editorials, Pat Saletore, Darryl Manzer, Chris Price, Patti Rasmussen and others); none of the 37 records has writtenBy.",
+  "Worden: 218 pages carry his byline and the 219th (#12558) is a redirect stub to a bylined page. 23 of the 219 are second copies of a column (see duplicate-slugs-2026-10-04.md). #12534 \"The Paul Allen LDS Letter\" is a note signed LEON WORDEN that reprints a letter by Paul Allen; #12144 (lw062605) adds a companion commentary \"By Richard A. Patterson\" after Worden's column.",
+  "set_collection_authors.php gave writtenBy by collection membership for Perkins and Reynolds. Every one of those pages names the author, so no wrong byline came of it. set_collection_authors_2.php set only the collections' authors; no article's writtenBy contradicts its page in any collection checked."
+ ]
+}

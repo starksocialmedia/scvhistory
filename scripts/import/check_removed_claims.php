@@ -22,7 +22,9 @@ if ($C) {
     }
 }
 foreach ($RR as $r) {
-    foreach (\craft\elements\Entry::find()->section($r['section'])->status(null)->title($r['title'])->all() as $e) { $fails[] = "REMOVED RECORD BACK  {$r['section']} #{$e->id} {$e->title}: removed {$r['removed']} (" . mb_substr($r['why'], 0, 60) . ')'; }
+    /* A record removed as a duplicate shares its title with the one kept, so it is listed by slug (4 October 2026). */
+    $q = \craft\elements\Entry::find()->section($r['section'])->status(null); $q = !empty($r['slug']) ? $q->slug($r['slug']) : $q->title($r['title']);
+    foreach ($q->all() as $e) { $fails[] = "REMOVED RECORD BACK  {$r['section']} #{$e->id} {$e->title}: removed {$r['removed']} (" . mb_substr($r['why'], 0, 60) . ')'; }
 }
 /* A review decision still "approved" for a record that is no longer live would
    be recreated by create_records_from_review.php (Nathan, 3 October 2026: John
