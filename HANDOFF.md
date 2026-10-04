@@ -28,7 +28,7 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. Porta Bella (an empty, disabled record) and the disabled missions, ranchos and businesses now typed for /organizations: Nathan's call.
+1. The place record Porta Bella (#20152), live and empty: whether to build it (CHANGELOG, 4 October). The congressional split recheck (inventory/review/scv-congressional-split-2026-10-04.md when it lands).
 2. The City Hall photograph, when Nathan sends it.
 3. Affiliations exist for few people yet; the older person-organization links are still to be read into them.
 4. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,

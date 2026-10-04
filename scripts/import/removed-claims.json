@@ -95,6 +95,51 @@
             "why": "A duplicate of #12702 made by the import: the legacy folder held the page twice, once as a redirect stub (fair1197.htm) and once as the page (fair.htm), and both were imported with the same text. #12702 is kept and now points at fair.htm.",
             "removed": "2026-10-04",
             "by": "scripts/import/fix_country_fair_and_folder_attribution_2026_10_04.php; its address redirects to #12702 (config/redirects.php)"
+        },
+        {
+            "record": 18599,
+            "title": "Porta Bella",
+            "slug": "porta-bella",
+            "section": "organizations",
+            "why": "An empty shell: no text, no type, no sources and no links, created from the review of 21 September and left behind when it was converted to place record #20152 on 25 September. Porta Bella was the development planned for the Whittaker-Bermite site; the place record is where it belongs.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/enable_ranchos_missions_retire_shells_2026_10_04.php; the review decision is marked merged into the place"
+        },
+        {
+            "record": 18876,
+            "title": "Acton Hotel",
+            "slug": "acton-hotel",
+            "section": "organizations",
+            "why": "An empty shell left behind when the record was converted to place record #20109 on 25 September (convert_orgs_to_places.php). The place is the record.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/enable_ranchos_missions_retire_shells_2026_10_04.php; the review decision is marked merged into the place"
+        },
+        {
+            "record": 16260,
+            "title": "Southern Hotel",
+            "slug": "southern-hotel",
+            "section": "organizations",
+            "why": "An empty shell left behind when the record was converted to place record #20118 on 25 September (convert_orgs_to_places.php). The place is the record.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/enable_ranchos_missions_retire_shells_2026_10_04.php; the review decision is marked merged into the place"
+        },
+        {
+            "record": 16425,
+            "title": "Valencia Marketplace",
+            "slug": "valencia-marketplace",
+            "section": "organizations",
+            "why": "An empty shell left behind when the record was converted to place record #20170 on 25 September (convert_orgs_to_places.php). The place is the record.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/enable_ranchos_missions_retire_shells_2026_10_04.php; the review decision is marked merged into the place"
+        },
+        {
+            "record": 18827,
+            "title": "Felton School",
+            "slug": "felton-school",
+            "section": "organizations",
+            "why": "An empty shell left behind when the record was converted to place record #2540 on 25 September (convert_orgs_to_places.php). The place is the record.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/enable_ranchos_missions_retire_shells_2026_10_04.php; the review decision is marked merged into the place"
         }
     ]
 }

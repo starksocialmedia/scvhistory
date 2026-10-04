@@ -1314,6 +1314,134 @@
    "read": "2026-10-04",
    "url": "written locally (no download)",
    "what": "output of sd21_sd23.py"
+  },
+  {
+   "file": "bef/cd118.zip",
+   "sha256": "a2f38d0dd7c207fa144a88b66df9f59f8a6e5c27e932fbd4a32d1bcf587c5763",
+   "bytes": 25922515,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/programs-surveys/decennial/rdo/mapping-files/2023/118-congressional-district-bef/cd118.zip",
+   "what": "U.S. Census Bureau 118th Congressional District block equivalency files (2020 blocks); 06_CA_CD118.txt is the California 2021 CRC plan, in force for the 118th and 119th Congress"
+  },
+  {
+   "file": "bef/AB604_selc_equivalency.csv",
+   "sha256": "ac11292bf0e862a0b2716dc687a9eb91fdc4b480ae115c0a21848f3fbd7173b2",
+   "bytes": 12473355,
+   "read": "2026-10-04",
+   "url": "https://selc.senate.ca.gov/media/604",
+   "what": "AB 604 (Proposition 50) congressional districts block equivalency CSV, Senate Elections and Constitutional Amendments Committee, \"Chaptered 8/21/2025 (Last Updated 8/18/2025)\"; byte-identical to AB604.csv in the Statewide Database zip"
+  },
+  {
+   "file": "bef/swdb_AB604.zip",
+   "sha256": "eb96e7370d4620dedfda9edbbc0a94e60856b750a9496ffd8daea1f85212bad4",
+   "bytes": 1599989,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/d25/AB604.zip",
+   "what": "Statewide Database copy of the AB 604 block equivalency (AB604.csv), identical sha256 to the Senate committee CSV"
+  },
+  {
+   "file": "bef/swdb_AB604_City_Splits_Report.pdf",
+   "sha256": "17b48863c502e5008a964b13cd883659b85034c0c86f695f25cd99b24ce1ec69",
+   "bytes": 305998,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/d25/AB%20604%20City%20Splits%20Report.pdf",
+   "what": "Statewide Database AB 604 city splits report: Santa Clarita city split CD 27 220,589 / CD 30 8,569 of 229,158 (adjusted population)"
+  },
+  {
+   "file": "bef/swdb_AB604_Municipalities_in_district.pdf",
+   "sha256": "f8b47626b179af72e9b52e35119910c9f01d60fc490418762a633239d4b4d220",
+   "bytes": 34948,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/d25/AB%20604%20Municipalities%20in%20district.pdf",
+   "what": "Statewide Database AB 604 municipalities by district"
+  },
+  {
+   "file": "bef/selc_proposed-congressional-map.html",
+   "sha256": "144275169e5e42eef48783cb6266485c2ab09f5624ad17c4a910ae0e9be5a745",
+   "bytes": 35222,
+   "read": "2026-10-04",
+   "url": "https://selc.senate.ca.gov/proposed-congressional-map",
+   "what": "Senate Elections and Constitutional Amendments Committee page listing the AB 604 files (and the replaced 8/15 draft)"
+  },
+  {
+   "file": "lavote/4338_svc_excel_v4.zip",
+   "sha256": "f66536d60703caac5e1f6ba0e3304d89b4b7f3d64a54112f2a3d04daf01c895b",
+   "bytes": 9373832,
+   "read": "2026-10-04",
+   "url": "https://content.lavote.gov/docs/rrcc/svc/4338_svc_excel_v4.zip",
+   "what": "LA County RR/CC Statement of Votes Cast by precinct, Excel, June 2, 2026 Statewide Direct Primary (election 4338), certified June 26, 2026"
+  },
+  {
+   "file": "lavote/4324_final_svc_excel_v2.zip",
+   "sha256": "ea990c57c3e6b18413f064c87a9babe4dc4d82400a82dcb97586c37dcf492e0c",
+   "bytes": 14592259,
+   "read": "2026-10-04",
+   "url": "https://content.lavote.gov/docs/rrcc/svc/4324_final_svc_excel_v2.zip",
+   "what": "LA County RR/CC Statement of Votes Cast by precinct, Excel, November 5, 2024 General Election (election 4324)"
+  },
+  {
+   "file": "lavote/25-20260626_certified-results_v1.pdf",
+   "sha256": "324733facea0f4fb5f65f4666594589b980255ade32d46bbd63da841ac51adb6",
+   "bytes": 314583,
+   "read": "2026-10-04",
+   "url": "https://content.lavote.gov/docs/rrcc/documents/25-20260626_certified-results_v1.pdf",
+   "what": "LA County RR/CC news release, certified results of the June 2, 2026 primary"
+  },
+  {
+   "file": "lavote/past-election-results.html",
+   "sha256": "23f4ec7b98e7967f311e735e638bcef935d565a5a5c5c0a891ae625185c849aa",
+   "bytes": 291580,
+   "read": "2026-10-04",
+   "url": "https://www.lavote.gov/home/voting-elections/current-elections/election-results/past-election-results",
+   "what": "LA County RR/CC past election results page listing the 4338 and 4324 documents"
+  },
+  {
+   "file": "analysis/bef_tally.py",
+   "sha256": "d3f8c3aaf06d832893fcc4735b9dd132337fb6c10a0915f55e24ffeaad6c67b7",
+   "bytes": 2296,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script: valley 2020 blocks to congressional districts by the CD118 BEF and the AB 604 equivalency"
+  },
+  {
+   "file": "analysis/bef_tally.json",
+   "sha256": "b8e1bd2b116a69291d64b4c561e2e3fc56f034f9e0b56903018e768820de3210",
+   "bytes": 1697,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Derived: valley population by congressional district, now (CD118) and 2027 (AB 604), by region and by place"
+  },
+  {
+   "file": "analysis/xls.py",
+   "sha256": "7ec8c9498b57021a345db29e1305534d4b85fda67c77ce41b092733f29355339",
+   "bytes": 4221,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis helper: minimal standard-library reader for legacy .xls (OLE2/BIFF8)"
+  },
+  {
+   "file": "analysis/precinct_cd.py",
+   "sha256": "b9357667cbfd767c5023dfc651a201c390a869f3f639ebc7b88853c4d4ec65ee",
+   "bytes": 1166,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script: congressional contest and registration per precinct from the LA County SVC Excel files"
+  },
+  {
+   "file": "analysis/precinct_cd.json",
+   "sha256": "5b82996809882036ede1e1b8ac74957378ebb79929dec7fde61d69fb470fb2ef",
+   "bytes": 457670,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Derived: precinct to congressional contest, community label, registration and ballots cast, Nov 2024 and June 2026"
+  },
+  {
+   "file": "analysis/area_2027.json",
+   "sha256": "f292e68a65bedc985991f764bee8181ff3e535dd3b584caa3c630feaf450048e",
+   "bytes": 146,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Derived: valley (excluding Acton) and City land area (square metres, 2020 block AREALAND from TIGERweb) by AB 604 district"
   }
  ]
 }
