@@ -84,6 +84,16 @@
       "what": "LA County RR/CC layer \"Division_Boundaries\" (Los Angeles County District Division Boundaries, precinct derived; features re-created 9 September 2026), filtered to this body. GeoJSON, EPSG:4326. Division name in DivisionName, RR/CC code in Code.",
       "contains_geometry": true,
       "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    },
+    {
+      "file": "ordinances-by-district-elections-2023-06-13.pdf",
+      "source_url": "https://santaclarita.gov/wp-content/uploads/2023/11/2023-06-13-ORDINANCES-BY-DISTRICT-ELECTIONS.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "5e8860f873fc0b333a36437ab4946fb529712e9a16e5f443369ec529b66405ef",
+      "bytes": 1005729,
+      "content_type": "application/pdf",
+      "what": "Ordinance No. 23-4, adopted June 2023: Municipal Code section 2.04.005, by-district elections in five single-member districts; Districts 1 and 3 elected in 2024 and every four years after, Districts 2, 4 and 5 in 2026 and every four years after.",
+      "contains_geometry": false
     }
   ]
 }

@@ -1,0 +1,77 @@
+columnSuffix: null
+handle: districtPlan
+instructions: 'The redistricting plan whose lines were in force for this term. The district number in force goes in Seat label.'
+name: 'Redistricting plan'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - ''
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - "1991 lines (drawn by the court's Special Masters)"
+        -
+          - value
+          - '1991'
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - '2001 lines (drawn by the Legislature)'
+        -
+          - value
+          - '2001'
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - '2011 lines (drawn by the Citizens Redistricting Commission)'
+        -
+          - value
+          - '2011'
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - '2021 lines (drawn by the Citizens Redistricting Commission)'
+        -
+          - value
+          - '2021'
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - '2025 congressional lines (Proposition 50)'
+        -
+          - value
+          - '2025'
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

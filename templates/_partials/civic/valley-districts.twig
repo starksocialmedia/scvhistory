@@ -1,0 +1,42 @@
+{#
+  The districts that covered the valley in each redistricting plan, on the Assembly, State Senate and House
+  pages (Nathan, 4 October 2026: "continuous seat following the district holding most of the valley,
+  partial districts listed on the body page without term records"). Read from templates/_data/valley-districts.json;
+  a body not listed there shows nothing. The district holding most of the valley is the seat whose terms the
+  page lists; a district holding only part of it is named here with its members, who have no terms recorded.
+
+    body   the organization
+#}
+{% set VD = source('_data/valley-districts.json', ignore_missing = true)|json_decode %}
+{% set B = VD.bodies[body.slug] ?? null %}
+{% if B %}
+  <h2 class="rec-h2 hub-h" id="districts">Districts covering the valley</h2>
+  <p class="hub-lede">The valley's seat is followed across the redistricting plans: the district holding most of the valley in each, which changes its number when the lines are redrawn. Districts holding only part of the valley are named with their members; their terms are not recorded here.</p>
+  <div class="vd">
+    {% for P in B.plans|reverse %}
+      <div class="vd-row">
+        <div class="vd-k">{{ P.years }}<span>{{ P.label }}</span></div>
+        <div class="vd-v">
+          <div class="vd-main"><b>{{ P.main.n }}{{ P.main.n % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][P.main.n % 10] ?? 'th') }} {{ B.noun }}</b> <span class="vd-sh">{{ P.main.share == 'the whole valley' ? 'the whole valley' : P.main.share ~ ' of the valley' }}</span><div>{{ P.main.covers }}.</div></div>
+          {% for X in P.partial %}
+            <div class="vd-part"><b>{{ X.n }}{{ X.n % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][X.n % 10] ?? 'th') }} {{ B.noun }}</b> <span class="vd-sh">part, {{ X.share }}</span><div>{{ X.covers }}. {{ X.members }}.</div></div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% if B.note ?? null %}<p class="hub-lede">{{ B.note }}</p>{% endif %}
+  <p class="vd-src">{{ VD.method }} Sources: {{ VD.sources|join(' ') }}</p>
+{% endif %}
+{% css %}
+.vd{border-top:1px solid #E2E4E8;margin:0 0 18px}
+.vd-row{display:grid;grid-template-columns:220px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E2E4E8}
+@media(max-width:640px){.vd-row{grid-template-columns:1fr;gap:6px}}
+.vd-k{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.06em;color:#7A5C1B;text-transform:uppercase;line-height:1.4}
+.vd-k span{display:block;text-transform:none;letter-spacing:0;color:#5B6472;font-family:'Public Sans',system-ui,sans-serif;font-size:13px;margin-top:4px}
+.vd-main,.vd-part{font-size:15px;line-height:1.55;color:#2A3140}
+.vd-main b,.vd-part b{color:#17254C;font-weight:600}
+.vd-part{margin-top:10px;padding-left:12px;border-left:2px solid #EFE6D0;font-size:14px}
+.vd-sh{font-size:13px;color:#5B6472}
+.vd-src{font-size:12.5px;line-height:1.55;color:#5B6472;margin:0 0 26px;max-width:760px;overflow-wrap:anywhere}
+{% endcss %}

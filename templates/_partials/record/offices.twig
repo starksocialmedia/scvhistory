@@ -45,8 +45,10 @@
       {#- The body first, with its avatar as in the Organizations box, then the office and seat beneath (Nathan, 1 October 2026). -#}
       {% set bimg = g.body and 'featuredImage' in (g.body.fieldLayout ? g.body.fieldLayout.customFields|map(f => f.handle) : []) ? g.body.featuredImage.one() ?? null : null %}
       {% set last = g.terms|last %}
-      {% set seat = last.seatLabel|default('')|trim %}
-      {% set dist = not seat and 'holdingDistrict' in last.fieldLayout.customFields|map(f => f.handle) ? last.holdingDistrict.one() : null %}
+      {#- A legislature's terms carry their own district number and plan (districtPlan), shown on each term; the heading then names no seat. -#}
+      {% set byPlan = 'districtPlan' in last.fieldLayout.customFields|map(f => f.handle) and g.terms|filter(x => x.districtPlan.value)|length %}
+      {% set seat = byPlan ? '' : last.seatLabel|default('')|trim %}
+      {% set dist = not seat and not byPlan and 'holdingDistrict' in last.fieldLayout.customFields|map(f => f.handle) ? last.holdingDistrict.one() : null %}
       {% if g.body %}
         <a class="rec-person" href="{{ g.body.url }}{{ g.body.slug == 'city-of-santa-clarita' ? '#council' : '' }}" style="margin:{{ loop.first ? '0' : '16px' }} 0 4px">
           <div class="th">{% if bimg %}<img src="{{ bimg.url }}" alt=""{% include '_partials/record/img-pos.twig' with {img: bimg} only %}>{% else %}{{ g.body.title|slice(0,1)|upper }}{% endif %}</div>
@@ -89,7 +91,7 @@
             {% set startY = ts|slice(0, 4) %}{% set endY = te ? te|slice(0, 4) : '9999' %}
             {% for r in races %}{% if r.won and r.c.id not in usedRaces and (hb ? r.bodyId == hb.id or (r.bodyId == 0 and hb.slug == 'city-of-santa-clarita') : true) and (r.date|slice(0, 4)) > startY and (r.date|slice(0, 4)) < endY %}{% set again = again|merge([r]) %}{% set usedRaces = usedRaces|merge([r.c.id]) %}{% endif %}{% endfor %}
           {% endif %}
-          <div class="v">{{ h.termStart }}{% if not sameEv %}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}{% endif %} to {{ h.termEnd ?: (h.howEnded.value == 'serving' ? 'now' : 'an end not yet recorded') }}{% include "_partials/record/evidence" with { ev: sameEv ? h.startEvidence : h.endEvidence } only %}{% if h.howEnded.value in ['left', 'removed', 'resigned', 'recalled', 'died'] %} <span style="color:#5B6472;font-size:13.5px">({{ { left: 'left office', removed: 'removed from office', resigned: 'resigned', recalled: 'recalled', died: 'died in office' }[h.howEnded.value] }})</span>{% endif %}{% if win %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(win) }}</div>{% endif %}{% for r in again %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(r) }}</div>{% endfor %}</div>
+          <div class="v">{{ h.termStart }}{% if not sameEv %}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}{% endif %} to {{ h.termEnd ?: (h.howEnded.value == 'serving' ? 'now' : 'an end not yet recorded') }}{% include "_partials/record/evidence" with { ev: sameEv ? h.startEvidence : h.endEvidence } only %}{% if h.howEnded.value in ['left', 'removed', 'resigned', 'recalled', 'died'] %} <span style="color:#5B6472;font-size:13.5px">({{ { left: 'left office', removed: 'removed from office', resigned: 'resigned', recalled: 'recalled', died: 'died in office' }[h.howEnded.value] }})</span>{% endif %}{% if byPlan and h.districtPlan.value %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px;color:#5B6472">{{ h.seatLabel }}, under the {{ h.districtPlan.label }}</div>{% endif %}{% if win %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(win) }}</div>{% endif %}{% for r in again %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(r) }}</div>{% endfor %}</div>
         {% endfor %}
         {% endif %}
       </div>

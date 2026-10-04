@@ -575,7 +575,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Office Holdings — `officeHoldings/officeHolding`
 
-18 fields.
+19 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -588,6 +588,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `termEnd` | PlainText | **local** | no external equivalent |
 | `termEndEdtf` | PlainText | **local** | no external equivalent |
 | `seatLabel` | PlainText | **local** | no external equivalent |
+| `districtPlan` | Dropdown | **local** | no external equivalent |
 | `selectionMethod` | Dropdown | **local** | no external equivalent |
 | `howEnded` | Dropdown | **local** | no external equivalent |
 | `startEvidence` | Dropdown | **local** | no external equivalent |
@@ -1028,6 +1029,7 @@ local unless the note says otherwise.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
 - **`deathEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`, `council-district`, `water-division`.
+- **`districtPlan`** — `1991`, `2001`, `2011`, `2021`, `2025`.
 - **`educationEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`educationOutcome`** — `graduated`, `attended`, `unknown`.
 - **`electionKind`** — `general`, `special`, `recall`, `runoff`.
@@ -1035,7 +1037,7 @@ local unless the note says otherwise.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
 - **`foundedEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
-- **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `serving`, `unknown`.
+- **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `serving`, `unknown`, `removed`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
 - **`outcome`** — `unknown`, `elected`, `not-elected`, `withdrew`, `disqualified`.
 - **`outcomeEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.

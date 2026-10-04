@@ -51,3 +51,7 @@ review/photographs-without-image.json
 inventory/legacy/fetched/nara-*/*.jpg
 inventory/legacy/fetched/nara-*/*.gif
 inventory/legacy/fetched/nara-*/*.pdf
+
+# Legislative districts research sources (4 October 2026): Statements of Vote, records of members, district block files; 175 MB, re-obtainable from the URLs in the manifest, which is kept.
+inventory/sources/legislative-districts-2026-10-04/*
+!inventory/sources/legislative-districts-2026-10-04/manifest.json

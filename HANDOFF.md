@@ -1,4 +1,4 @@
-# Handoff, 2026-10-04 (evening)
+# Handoff, 2026-10-04 (night)
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -15,25 +15,23 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 ## Where things stand
 
 - **Staging** was refreshed by Nathan on 3 October. Everything applied since is local only until
-  the next refresh: the 3 October held items, the live-error notes, the cancelled lists, and the
-  4 October work below.
-- **People.** 215 records. Michael Vierra added on 4 October.
-- **The civic layer.** 235 office holdings. The Hart board was checked against the district's own
-  page on 4 October (inventory/news/hart-district-2026-10-04/). The other four districts and SCV
-  Water were checked the same way, and the archive is behind them: members missing, old terms open
-  (inventory/review/district-boards-check-2026-10-04.md); nothing corrected yet.
-- **Affiliations** exist (step 2 of the relationship model, started): Hart's two superintendents
-  and Trunkey's Measure V seat. The older person-organization links are not yet re-read into them.
-- **The body hub** is built on every organization page with holdings, without tabs. The tab layout
-  for Hart and the City together is a proposal (inventory/review/body-hub-tabs-proposal-2026-10-04.md),
-  waiting on Nathan. No other body gets its own design until those two are settled.
-- **The war memorial**: 20 of 54 cards show a likeness, the rest initials.
+  the next refresh.
+- **People.** About 225 records; ten members for the valley's legislative seats added on 4 October.
+- **The civic layer.** Office holdings on every body with holdings, in tabbed pages. The Assembly,
+  State Senate and House each have one continuous seat for the valley, with the number and plan on
+  each term (inventory/review/legislative-districts-2026-10-04.md; templates/_data/valley-districts.json
+  lists the partial districts). The City has its five council districts. The other districts and SCV
+  Water are behind their own pages (inventory/review/district-boards-check-2026-10-04.md).
+- **Marks.** Every body with a mark shows it in the header; nine imported on 4 October. Building
+  photographs are related images.
+- **inventory/incoming** is checked by check_render (check_incoming.php); OUTSTANDING.md gives a
+  reason for every file still there.
 
 ## In progress or next
 
-1. Nathan's review of the tabbed Hart and City pages; every body with holdings already uses them.
-2. The four marks (three in ~/Downloads, the County seal not found) and the City Hall photograph.
-3. Antonovich and Barger: how far their records go is Nathan's call.
+1. Gibbs's District 3 term: elected or appointed in lieu of election (CHANGELOG, 4 October night).
+2. Affiliations on person pages (they show on body pages only).
+3. The City Hall photograph, when Nathan sends it.
 4. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
    district-boards-check-2026-10-04.md); the 17 unsourced term endings (term-endings-2026-10-04.md).
 5. TODO.md, "Waiting on Nathan", for what waits on him.

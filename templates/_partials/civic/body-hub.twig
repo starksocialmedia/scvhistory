@@ -22,6 +22,19 @@
 {% set HOW = { appointed: 'appointed', elected: 'elected', succeeded: 'succeeded' } %}
 {% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', removed: 'removed from office', died: 'died in office', left: 'left office', unknown: 'end not recorded' } %}
 {% import "_partials/record/portrait" as portrait %}
+{#- How the page speaks of the body's members (Nathan, 4 October 2026: "The board now" is wrong for a body that is not a
+    board). A legislature's seat is the valley's seat, followed across the plans: its members are the valley's members, and
+    each term shows the district number in force (seatLabel). The House's seat is split three ways from 3 January 2027
+    (templates/_data/valley-districts.json, pluralFrom), so from then it speaks of members. Any other body is a board. -#}
+{% set LEG = { now: 'The valley\'s member now', nowPl: 'The valley\'s members now', past: 'Past members for the valley', left: 'who have represented the valley in this seat', gap: 'The archive does not yet hold the present member.', since: 'for the valley since', earlier: 'Earlier for the valley' } %}
+{% set VOICES = { 'california-state-assembly': LEG, 'california-state-senate': LEG, 'united-states-house-of-representatives': LEG,
+    'los-angeles-county-board-of-supervisors': { now: 'The valley\'s supervisor now', past: 'Past supervisors for the valley', left: 'who have been the valley\'s supervisor', gap: 'The archive does not yet hold the present supervisor.', since: 'for the valley since', earlier: 'Earlier for the valley' } } %}
+{% set voice = VOICES[body.slug] ?? null %}
+{% set pluralFrom = ((source('_data/valley-districts.json', ignore_missing = true)|json_decode).bodies[body.slug].pluralFrom ?? null) %}
+{% set W = voice ? voice|merge({ now: pluralFrom and now|date('Y-m-d') >= pluralFrom ? voice.nowPl : voice.now }) : { now: 'The board now', past: 'Past members', left: 'who have left the board, or whose last term has no end recorded', gap: 'The archive does not yet hold the present board.', since: 'on the board since', earlier: 'Earlier on the board' } %}
+{#- The seat as each term names it: a legislature's number in force, otherwise the seat record's short name. -#}
+{% macro seatName(h, short, seatOf, voice) %}{{ voice and h.seatLabel ? h.seatLabel : (seatOf['h' ~ h.id] ? short[seatOf['h' ~ h.id]] : '') }}{% endmacro %}
+{% import _self as HB %}
 
 {% if part == 'control' %}
   {% if seats|length > 1 %}{% include "_partials/civic/seat-control" with { seats: seats, scope: scope, noun: noun } only %}{% endif %}
@@ -51,7 +64,7 @@
     {% set sitting = sitting|sort((a, b) => rankOf['h' ~ a.id] <=> rankOf['h' ~ b.id] ?: (seatOf['h' ~ a.id] ?: 'zz') <=> (seatOf['h' ~ b.id] ?: 'zz')) %}
     {% set heldSeats = sitting|map(h => seatOf['h' ~ h.id])|filter(s => s) %}
     {% set openSeats = seats|filter(s => s.slug not in heldSeats) %}
-    <h2 class="rec-h2 hub-h" id="board">The board now</h2>
+    <h2 class="rec-h2 hub-h" id="board">{{ W.now }}</h2>
     {% if sitting|length %}
     {#- A card is not one link: the evidence words inside it link to /evidence, and a link inside a link splits the card. -#}
     <div class="hub-cards" data-seat-list="board">
@@ -71,19 +84,21 @@
           <a class="hub-ph" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if img %}{{ portrait.img(img, 0.8, p.title, true, 480) }}{% else %}<span>{{ p.title|split(' ')|map(w => w|slice(0,1))|join('')|slice(0,2) }}</span>{% endif %}</a>
           <div class="hub-tx">
             <a class="hub-n" href="{{ p.url }}">{{ p.title }}</a>
-            <div class="hub-m">{{ seatOf['h' ~ h.id] ? short[seatOf['h' ~ h.id]] ~ ' · ' : '' }}{{ since ? 'on the board since ' ~ since : 'on the board' }}</div>
+            {% set sn = HB.seatName(h, short, seatOf, voice)|trim %}
+            <div class="hub-m">{{ sn ? sn ~ ' · ' : '' }}{{ since ? W.since ~ ' ' ~ since : W.since|replace({ ' since': '' }) }}</div>
             {% if office %}<div class="hub-o">{{ office }}<span>{{ offs.term ? ' for ' ~ offs.term : '' }}, as the body lists it, {{ offs.read }}</span></div>{% endif %}
             <div class="hub-t">{{ h.termEndEdtf ? 'Term ' ~ h.termStartEdtf|slice(0, 4) ~ ' to ' ~ h.termEndEdtf|slice(0, 4) : (h.termStartEdtf ? 'Serving from ' ~ h.termStartEdtf|slice(0, 4) : 'Serving; the years of this term are not given') }}{{ HOW[h.selectionMethod.value] is defined ? ', ' ~ HOW[h.selectionMethod.value] : '' }}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}</div>
-            {% if espans|length %}<div class="hub-t">Earlier on the board: {{ espans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}</div>{% endif %}
+            {% if espans|length %}<div class="hub-t">{{ W.earlier }}: {{ espans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}</div>{% endif %}
           </div>
         </div>
       {% endfor %}
     </div>
-    <p data-seat-empty="board">The archive does not yet hold the present term for this seat.</p>
+    {#- Shown by the seat control when a filter leaves the list empty; with one seat there is no control, so no message. -#}
+    {% if seats|length > 1 %}<p data-seat-empty="board">The archive does not yet hold the present term for this seat.</p>{% endif %}
     {% endif %}
     {% if openSeats|length or not sitting|length %}
       {% set seatless = sitting|filter(h => not seatOf['h' ~ h.id])|map(h => (h.holdingPerson|first).title) %}
-      <p class="hub-gap">{% if not sitting|length %}The archive does not yet hold the present board.{% else %}{% if seatless|length %}The archive does not record which seat {{ seatless|join(', ', ' and ') }} {{ seatless|length > 1 ? 'hold' : 'holds' }}{{ openSeats|length ? ', and holds no present term for ' ~ openSeats|map(s => short[s.slug])|join(', ', ' or ') : '' }}.{% else %}The archive does not yet hold the present term for {{ openSeats|map(s => short[s.slug])|join(', ', ' or ') }}.{% endif %}{% endif %}</p>
+      <p class="hub-gap">{% if not sitting|length %}{{ W.gap }}{% else %}{% if seatless|length %}The archive does not record which seat {{ seatless|join(', ', ' and ') }} {{ seatless|length > 1 ? 'hold' : 'holds' }}{{ openSeats|length ? ', and holds no present term for ' ~ openSeats|map(s => short[s.slug])|join(', ', ' or ') : '' }}.{% else %}The archive does not yet hold the present term for {{ openSeats|map(s => short[s.slug])|join(', ', ' or ') }}.{% endif %}{% endif %}</p>
     {% endif %}
 
   {% else %}
@@ -99,8 +114,8 @@
     {% endfor %}
     {% set pastPeople = byP|sort((a, b) => ((b.terms|last).termEndEdtf ?: (b.terms|last).termStartEdtf) <=> ((a.terms|last).termEndEdtf ?: (a.terms|last).termStartEdtf)) %}
     {% if pastPeople|length %}
-    <h2 class="rec-h2 hub-h" id="past-members">Past members</h2>
-    <p class="hub-lede">{{ pastPeople|length }} {{ pastPeople|length == 1 ? 'person' : 'people' }} who have left the board, or whose last term has no end recorded, most recent first.{% if seats|length > 1 %} A member with no {{ noun|trim('s', 'right') }} served before the board was elected by area, or the seat is not recorded; they show under All.{% endif %}</p>
+    <h2 class="rec-h2 hub-h" id="past-members">{{ W.past }}</h2>
+    <p class="hub-lede">{{ pastPeople|length }} {{ pastPeople|length == 1 ? 'person' : 'people' }} {{ W.left }}, most recent first.{% if seats|length > 1 %} A member with no {{ noun|trim('s', 'right') }} served before the board was elected by area, or the seat is not recorded; they show under All.{% endif %}</p>
     <div class="hub-past" data-seat-list="past">
       {% for r in pastPeople %}
         {% set spans = [] %}
@@ -109,18 +124,19 @@
           {% if spans|length and (spans|last)[1] != '?' and sy <= (spans|last)[1] %}{% set spans = spans|slice(0, spans|length - 1)|merge([[(spans|last)[0], ey]]) %}{% else %}{% set spans = spans|merge([[sy, ey]]) %}{% endif %}
         {% endfor %}
         {% set pseats = [] %}{% for x in r.terms %}{% if seatOf['h' ~ x.id] and seatOf['h' ~ x.id] not in pseats %}{% set pseats = pseats|merge([seatOf['h' ~ x.id]]) %}{% endif %}{% endfor %}
+        {% set pnames = [] %}{% for x in r.terms %}{% set nm = HB.seatName(x, short, seatOf, voice)|trim %}{% if nm and nm not in pnames %}{% set pnames = pnames|merge([nm]) %}{% endif %}{% endfor %}
         {% set l = r.terms|last %}
         {% set pimg = 'featuredImage' in r.person.fieldLayout.customFields|map(f => f.handle) ? r.person.featuredImage.one() : null %}
         {% set pp = r.person.title|split(' ')|filter(x => x|trim) %}
         <div class="rec-person hub-pp" data-seat="{{ pseats|join(' ') }}">
           <a class="th" href="{{ r.person.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait.img(pimg, 1, '', true, 120) }}{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : r.person.title|slice(0,1))|upper }}{% endif %}</a>
           <div style="min-width:0"><a class="n" href="{{ r.person.url }}">{{ r.person.title }}</a>
-            <div class="r">{{ spans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}{{ pseats|length ? ' · ' ~ pseats|map(x => short[x])|join(', ') : '' }}{{ ENDED[l.howEnded.value] is defined and l.howEnded.value not in ['expired', 'unknown', 'reelected'] ? ' · ' ~ ENDED[l.howEnded.value] : '' }}</div>
+            <div class="r">{{ spans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}{{ pnames|length ? ' · ' ~ pnames|join(', ') : '' }}{{ ENDED[l.howEnded.value] is defined and l.howEnded.value not in ['expired', 'unknown', 'reelected'] ? ' · ' ~ ENDED[l.howEnded.value] : '' }}</div>
           </div>
         </div>
       {% endfor %}
     </div>
-    <p data-seat-empty="past">No past member is recorded for this seat.</p>
+    {% if seats|length > 1 %}<p data-seat-empty="past">No past member is recorded for this seat.</p>{% endif %}
     {% endif %}
   {% endif %}
 
@@ -135,7 +151,7 @@
         <li data-seat="{{ d ? d.slug : '' }}"><span class="yr">{{ e.electionDateEdtf|slice(0, 4) }}</span><a href="{{ e.url }}">{{ e.electionDate ?: e.electionDateEdtf }}{{ d ? ', ' ~ (short[d.slug] ?? d.title|split(', ')|last) : '' }}</a></li>
       {% endfor %}
     </ul>
-    <p data-seat-empty="elections">No election is recorded for this seat.</p>
+    {% if seats|length > 1 %}<p data-seat-empty="elections">No election is recorded for this seat.</p>{% endif %}
   {% else %}
     <p class="hub-gap">The archive does not yet hold an election for this body.</p>
   {% endif %}

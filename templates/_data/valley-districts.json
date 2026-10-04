@@ -1,0 +1,241 @@
+{
+ "_about": "The districts that covered the Santa Clarita Valley in each redistricting plan, for _partials/civic/valley-districts.twig on the Assembly, State Senate and House pages (Nathan, 4 October 2026: \"continuous seat following the district holding most of the valley, partial districts listed on the body page without term records\"). From inventory/review/legislative-districts-2026-10-04.md. Shares are of the valley's people, measured by the archive from census blocks and the official district files; the valley is the Census Bureau's Newhall division with Agua Dulce. A partial district's members are named here, not recorded as terms.",
+ "method": "Shares are of the valley's people (the City, Castaic, Stevenson Ranch, Val Verde, Hasley Canyon, Green Valley and Agua Dulce), counted by the archive from census blocks and the official district block files of the Statewide Database and the Census Bureau, on the census nearest each plan.",
+ "sources": [
+  "California Secretary of State, Statements of Vote, general elections 1992 to 2024, the special election of 4 November 2025 and the primary election of 2 June 2026, https://www.sos.ca.gov/elections/prior-elections.",
+  "Citizens Redistricting Commission, Final Report on 2011 Redistricting, 15 August 2011, https://statewidedatabase.org/crc_20110815_2final_report.pdf; and Final Maps Report, 26 December 2021, https://wedrawthelines.ca.gov/wp-content/uploads/sites/64/2023/01/Final-Maps-Report-with-Appendices-12.26.21-230-PM-1.pdf.",
+  "Statewide Database, University of California, Berkeley, district block files for the 1991, 2001 and 2011 plans, https://statewidedatabase.org/; Census Bureau TIGERweb district boundaries for the 2021 plan and the 2025 congressional map."
+ ],
+ "bodies": {
+  "california-state-assembly": {
+   "noun": "Assembly District",
+   "plans": [
+    {
+     "plan": "1991",
+     "label": "1991 lines, drawn by the court's Special Masters",
+     "years": "December 1992 to December 2002",
+     "main": {
+      "n": 36,
+      "share": "84%",
+      "covers": "The whole City of Santa Clarita as it then stood, the unincorporated Canyon Country and Saugus areas, and Agua Dulce"
+     },
+     "partial": [
+      {
+       "n": 38,
+       "share": "16%",
+       "covers": "The unincorporated west side: Castaic, Val Verde and Stevenson Ranch",
+       "members": "Paula Boland (to 1996), Tom McClintock (1996 to 2000), Keith Richman (2000 to 2002)"
+      }
+     ]
+    },
+    {
+     "plan": "2001",
+     "label": "2001 lines, drawn by the Legislature",
+     "years": "December 2002 to December 2012",
+     "main": {
+      "n": 38,
+      "share": "86%",
+      "covers": "The City of Santa Clarita and Stevenson Ranch, with the Simi Valley area and the northern San Fernando Valley"
+     },
+     "partial": [
+      {
+       "n": 37,
+       "share": "14%",
+       "covers": "Castaic, Val Verde, Hasley Canyon, Agua Dulce and Green Valley, in a district that was mostly Ventura County",
+       "members": "Tony Strickland (2002 to 2004), Audra Strickland (2004 to 2010), Jeff Gorell (2010 to 2012)"
+      }
+     ]
+    },
+    {
+     "plan": "2011",
+     "label": "2011 lines, drawn by the Citizens Redistricting Commission",
+     "years": "December 2012 to December 2022",
+     "main": {
+      "n": 38,
+      "share": "93%",
+      "covers": "The City except its northeastern edge, Castaic, Stevenson Ranch, Val Verde and Agua Dulce, with Simi Valley and Porter Ranch"
+     },
+     "partial": [
+      {
+       "n": 36,
+       "share": "7%",
+       "covers": "The northeastern edge: unincorporated land in the Plum, Bouquet, Sand and Mint canyon areas, and Green Valley",
+       "members": "Steve Fox (2012 to 2014), Tom Lackey (2014 to 2022)"
+      }
+     ]
+    },
+    {
+     "plan": "2021",
+     "label": "2021 lines, drawn by the Citizens Redistricting Commission",
+     "years": "December 2022 to now",
+     "main": {
+      "n": 40,
+      "share": "98%",
+      "covers": "The whole City of Santa Clarita, Castaic, Stevenson Ranch, Val Verde and Hasley Canyon, with part of the City of Los Angeles"
+     },
+     "partial": [
+      {
+       "n": 34,
+       "share": "2%",
+       "covers": "Agua Dulce and about 1,700 people in the unincorporated land north of the City, with the Antelope and Victor valleys",
+       "members": "Tom Lackey (2022 to 2026, not standing again)"
+      }
+     ]
+    }
+   ]
+  },
+  "california-state-senate": {
+   "noun": "Senate District",
+   "plans": [
+    {
+     "plan": "1991",
+     "label": "1991 lines, drawn by the court's Special Masters",
+     "years": "December 1992 to December 2004",
+     "main": {
+      "n": 17,
+      "share": "84%",
+      "covers": "The City and the eastern unincorporated valley with Agua Dulce, joined to the Antelope Valley, Inyo County and parts of Kern and San Bernardino counties"
+     },
+     "partial": [
+      {
+       "n": 19,
+       "share": "16%",
+       "covers": "Castaic, Val Verde and Stevenson Ranch, with eastern Ventura County",
+       "members": "Cathie Wright (1992 to 2000), Tom McClintock (2000 to 2004)"
+      }
+     ]
+    },
+    {
+     "plan": "2001",
+     "label": "2001 lines, drawn by the Legislature",
+     "years": "December 2004 to December 2012",
+     "main": {
+      "n": 17,
+      "share": "73%",
+      "covers": "The City except its western neighborhoods, Castaic, Val Verde, Hasley Canyon, Agua Dulce and Green Valley, with the Antelope Valley"
+     },
+     "partial": [
+      {
+       "n": 19,
+       "share": "27%",
+       "covers": "Stevenson Ranch and the City's western neighborhoods, Valencia west of the river",
+       "members": "Tom McClintock (2004 to 2008), Tony Strickland (2008 to 2012)"
+      }
+     ]
+    },
+    {
+     "plan": "2011",
+     "label": "2011 lines, drawn by the Citizens Redistricting Commission",
+     "years": "December 2012 to December 2024",
+     "main": {
+      "n": 21,
+      "share": "79%",
+      "covers": "Most of the valley, with the Antelope and Victor valleys"
+     },
+     "partial": [
+      {
+       "n": 27,
+       "share": "21%",
+       "covers": "Stevenson Ranch and the City's western and southwestern neighborhoods, with eastern Ventura County, Calabasas and Malibu",
+       "members": "Fran Pavley (2012 to 2016), Henry Stern (2016 to 2024)"
+      }
+     ]
+    },
+    {
+     "plan": "2021",
+     "label": "2021 lines, drawn by the Citizens Redistricting Commission",
+     "years": "December 2024 to now",
+     "main": {
+      "n": 23,
+      "share": "the whole valley",
+      "covers": "The whole valley, with Lancaster, Palmdale and the Victor Valley"
+     },
+     "partial": []
+    }
+   ],
+   "note": "A senator serves four years and half the Senate is elected every two, so new lines reach the valley's Senate seat at its next election: the 2001 lines in 2004, the 2021 lines in 2024. Until then the valley kept the senator elected on the old lines."
+  },
+  "united-states-house-of-representatives": {
+   "noun": "Congressional District",
+   "plans": [
+    {
+     "plan": "1991",
+     "label": "1991 lines, drawn by the court's Special Masters",
+     "years": "January 1993 to January 2003",
+     "main": {
+      "n": 25,
+      "share": "the whole valley",
+      "covers": "The whole valley"
+     },
+     "partial": []
+    },
+    {
+     "plan": "2001",
+     "label": "2001 lines, drawn by the Legislature",
+     "years": "January 2003 to January 2013",
+     "main": {
+      "n": 25,
+      "share": "99.6%",
+      "covers": "All the valley but Green Valley"
+     },
+     "partial": [
+      {
+       "n": 22,
+       "share": "0.4%",
+       "covers": "Green Valley only, about 1,000 people",
+       "members": "Bill Thomas, then Kevin McCarthy"
+      }
+     ]
+    },
+    {
+     "plan": "2011",
+     "label": "2011 lines, drawn by the Citizens Redistricting Commission",
+     "years": "January 2013 to January 2023",
+     "main": {
+      "n": 25,
+      "share": "the whole valley",
+      "covers": "The whole valley, with Palmdale, eastern Lancaster and part of Simi Valley"
+     },
+     "partial": []
+    },
+    {
+     "plan": "2021",
+     "label": "2021 lines, drawn by the Citizens Redistricting Commission",
+     "years": "January 2023 to January 2027",
+     "main": {
+      "n": 27,
+      "share": "the whole valley",
+      "covers": "The whole valley, with Lancaster, Palmdale and part of the City of Los Angeles"
+     },
+     "partial": []
+    },
+    {
+     "plan": "2025",
+     "label": "2025 congressional lines, Proposition 50",
+     "years": "from 3 January 2027",
+     "main": {
+      "n": 27,
+      "share": "89%",
+      "covers": "The City except the Sand Canyon area, and Stevenson Ranch"
+     },
+     "partial": [
+      {
+       "n": 26,
+       "share": "8%",
+       "covers": "Castaic, Val Verde and Hasley Canyon",
+       "members": "To be elected on 3 November 2026; the June primary's top two were Jacqui Irwin and Sam Gallucci"
+      },
+      {
+       "n": 30,
+       "share": "3%",
+       "covers": "Agua Dulce and the Sand Canyon area of the City, about 4,200 City residents",
+       "members": "To be elected on 3 November 2026; the June primary's top two were Laura Friedman and Alan Meyers"
+      }
+     ]
+    }
+   ],
+   "note": "Proposition 50, passed on 4 November 2025 with 64.4 per cent of the vote, replaced the 2021 congressional lines with a map drawn by the Legislature. The primary of 2 June 2026 was held on it, and the members elected on 3 November 2026 take their seats on 3 January 2027. From then the valley is split three ways: the 27th keeps about 89 per cent of it, the 26th takes Castaic, Val Verde and Hasley Canyon, and the 30th takes Agua Dulce and the Sand Canyon area of the City. In the 27th the June primary's top two were Jason Gibbs and George Whitesides.",
+   "pluralFrom": "2027-01-03"
+  }
+ }
+}

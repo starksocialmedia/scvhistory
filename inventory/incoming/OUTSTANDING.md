@@ -8,7 +8,7 @@ asset's `sourceChecksum` or a file under `web/uploads` or `web/banners`. 50 file
 here that is neither in `done/MANIFEST.json` nor named below with its reason. A new file is imported when it
 arrives, on its own, or listed here with why it waits.
 
-The 51 files left here fall into three groups.
+The 49 files left here fall into three groups.
 
 ## 1. The record already has an image from another file
 
@@ -38,7 +38,6 @@ imported after editing, or an alternative. Keep it or drop it; nothing waits on 
 
 | File | Why |
 |---|---|
-| Steve-Knight.jpg, Sharon-Runner.jpg | No record yet. Nathan asked what they did in the valley before deciding. |
 | Sharlene-Duzick.jpg, sharlene-headshot.jpg | Dropped: a losing candidate gets no record. |
 | BOM-pg14-shutterstock-185944559.jpg | A Shutterstock image. Its licence would need to be in hand before use. |
 | Firefly.jpg, Firefly (1).jpg, Firefly (2).jpg, grok-image-fb994b75-1760-4be5-a4da-3623d2bc4605.jpg | Generated images. Under the banner rule they are decoration only, in web/banners and never assets. None matches a banner file now. |

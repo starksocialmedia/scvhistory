@@ -79,6 +79,11 @@
 {% set bandImg = hasBandImage and entry.bandImage ? entry.bandImage.one() ?? null : null %}
 {% set img = bandImg ?? ('featuredImage' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.featuredImage.one() ?? null : null) %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
+{#- The mark carries the header (Nathan, 4 October 2026: "The seal is the City's identity and should carry the page ... Same
+    rule for every body: the mark identifies it, a building photograph does not"). A body with a current mark shows it there,
+    whole, and its photographs stay among the record's images. -#}
+{% set headMark = 'currentMark' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.currentMark.one() ?? null : null %}
+{% if headMark %}{% set img = null %}{% endif %}
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
@@ -202,7 +207,11 @@
             </div>
           {% endif %}
         </div>
-        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
+        {% if headMark %}
+          {#- The file as handed over is the archive copy; the header shows a copy no larger than 600 pixels. An SVG is served as is. -#}
+          {% set hmt = headMark.extension|lower == 'svg' ? null : { width: 600, height: 600, mode: 'fit', upscale: false } %}
+          <div class="rec-portrait rec-portrait-mark"><img src="{{ headMark.getUrl(hmt) }}" alt="{{ headMark.alt ?: headMark.title }}" width="{{ headMark.getWidth(hmt) }}" height="{{ headMark.getHeight(hmt) }}"></div>
+        {% elseif img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
       </div>
     </div>
   </section>
@@ -233,8 +242,11 @@
             <section class="hub-pane" id="t-main" data-pane="main">
               <h2 class="hub-pane-h">{{ firstLabel }}</h2>
               {% if leadText %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: leadText, images: [], footnotesFor: entry } %}</div>{% endif %}
-              {% include "_partials/civic/body-map" with { body: entry, leaid: districtMap ? entry.ncesId|trim : null, height: 460, pin: (mapLat and mapLng) ? { lat: mapLat, lng: mapLng, title: mapTitle, address: mapPlace ? '' : F.orgAddress } : null } only %}
+              {#- The map only when it has something to draw: seat boundaries, schools or the body's own location. -#}
+              {% set hasSeatFile = entry.slug in ((source('_data/seat-maps.json', ignore_missing = true)|json_decode).bodies ?? []) %}
+              {% if hasSeatFile or districtMap or (mapLat and mapLng) %}{% include "_partials/civic/body-map" with { body: entry, leaid: districtMap ? entry.ncesId|trim : null, height: 460, pin: (mapLat and mapLng) ? { lat: mapLat, lng: mapLng, title: mapTitle, address: mapPlace ? '' : F.orgAddress } : null } only %}{% endif %}
               {% if isCity %}{% include "_partials/civic/roster" with { body: entry, seats: ROSTER[entry.slug], part: 'today' } only %}{% else %}{% include "_partials/civic/body-hub" with { part: 'board', body: entry, seats: seats } only %}{% endif %}
+              {% include "_partials/civic/valley-districts" with { body: entry } only %}
             </section>
             <section class="hub-pane" id="t-history" data-pane="history">
               <h2 class="hub-pane-h">History</h2>
@@ -292,12 +304,13 @@
       <aside class="rec-side">
         {% if mark %}
           {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
-          <div class="rec-box rec-mark"><div class="rec-lab">{{ isDistrict ? 'THE DISTRICT\'S LOGO' : 'LOGO' }}</div>
-            {#- The asset keeps the file as handed over; the page shows a copy no larger than 600 pixels (Nathan, 4 October 2026: "Keep the full-size file as the archive copy and serve a resized one"). An SVG is served as is. -#}
-            {% set mt = mark.extension|lower == 'svg' ? null : { width: 600, height: 600, mode: 'fit', upscale: false } %}
-            <img src="{{ mark.getUrl(mt) }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.getWidth(mt) }}" height="{{ mark.getHeight(mt) }}">
+          {#- What the mark is, from the asset's title: "Seal of ...", "Star of ...", "Logo of ..." (Nathan, 4 October 2026: "take the label from the image's title, Seal, Star or Logo"). -#}
+          {% set markKind = (mark.title|split(' ')|first|lower) in ['seal', 'star', 'logo', 'badge', 'emblem', 'flag'] ? mark.title|split(' ')|first|lower : 'logo' %}
+          <div class="rec-box rec-mark"><div class="rec-lab">{{ (isDistrict ? 'the district\'s ' ~ markKind : markKind)|upper }}</div>
+            {#- The mark itself is in the header; this box says what it is and where it came from. -#}
             {#- One line (Nathan, 4 October 2026): the rights reasoning stays in the asset's rightsNote, for a researcher, not on the page. -#}
-            <p>{{ isDistrict ? 'The district\'s' : 'Its' }} logo, from {% if mark.sourceUrl %}<a href="{{ mark.sourceUrl }}" rel="noopener">{{ markHost }}</a>{% else %}its website{% endif %}{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}.</p>
+            {#- Where it came from only when the page is recorded; otherwise it was supplied to the archive, and the page says so rather than guess a website. -#}
+            <p>{{ isDistrict ? 'The district\'s' : 'Its' }} {{ markKind }}, {% if mark.sourceUrl %}from <a href="{{ mark.sourceUrl }}" rel="noopener">{{ markHost }}</a>{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}{% else %}supplied to the archive{% if mark.acquiredDate %} on {{ mark.acquiredDate|date('j F Y') }}{% endif %}{% endif %}.</p>
           </div>
         {% endif %}
         {% if EXEC %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'box' } only %}{% endif %}

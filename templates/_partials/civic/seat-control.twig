@@ -23,7 +23,10 @@
     <button type="button" data-seat-btn="{{ s.slug }}" aria-pressed="false">{{ s.title|split(', ')|last|replace({ 'Trustee Area': 'Area', 'Council District': 'District' }) }}</button>
   {% endfor %}
 </div>
-<p class="seat-note">Choosing one shows it on the map and filters the board, past members and elections to that seat. Boundaries from the Los Angeles County Registrar-Recorder, for election purposes, not legal boundaries.</p>
+{#- Seats no member has yet been elected from: the City's Districts 2, 4 and 5 until November 2026, whose members sit at large
+    until then (Ordinance 23-4; Nathan, 4 October 2026: "show what is actually there"). Each seat's record says why. -#}
+{% set unheld = seats|filter(s => not craft.entries().section('officeHoldings').relatedTo({ targetElement: s, field: 'holdingDistrict' }).exists()) %}
+<p class="seat-note">Choosing one shows it on the map and filters the board, past members and elections to that seat. Boundaries from the Los Angeles County Registrar-Recorder, for election purposes, not legal boundaries.{% if unheld|length %} No member has yet been elected from {% for s in unheld %}<a href="{{ s.url }}">{{ s.title|split(', ')|last }}</a>{{ loop.revindex == 2 ? ' or ' : (not loop.last ? ', ' : '') }}{% endfor %}; {{ unheld|length == 1 ? 'its record says' : 'each one\'s record says' }} when its first election is.{% endif %}</p>
 {% css %}
 .seat-pick{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
 .seat-pick button{border:1px solid rgba(23,37,76,.25);background:#fff;color:#17254C;padding:6px 13px;border-radius:14px;font-size:13.5px;cursor:pointer;font-family:'Public Sans',system-ui,sans-serif}

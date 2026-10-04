@@ -7,6 +7,9 @@
  * and Castaic High's were: assetRole current-mark, provenanceKind outside, licence identifying-use, rights
  * held by the body. Where the page a file came from is not recorded, the source says so. Asset #41 (the old
  * City seal PNG) is left as it is: no record uses it, and it keeps its rights holder.
+ * Added the same day: the seals of the United States Congress, the State Assembly and the State Senate (Nathan:
+ * "All as currentMark, labelled Seal, supplied to the archive since no source page is recorded"). The Assembly's is
+ * a WebP, which the volume accepts and GD and Imagick both read, so it is kept as handed over.
  * Idempotent: matched by filename. Dry run by default. Set $APPLY = true to write.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/import_marks_2026_10_04.php'))"
  */
@@ -22,6 +25,9 @@ $MARKS = [
     ['lasd.png', 'lasd-star.png', 29282, 'Los Angeles County Sheriff\'s Department', 'Star of the Los Angeles County Sheriff\'s Department', "The Sheriff's Department's star, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file."],
     ['la-county-seal.svg', 'los-angeles-county-seal.svg', 29279, 'County of Los Angeles', 'Seal of the County of Los Angeles', 'The seal of the County of Los Angeles, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.'],
     ['city-of-santa-clarita.svg', 'city-of-santa-clarita-seal.svg', 394, 'City of Santa Clarita', 'Seal of the City of Santa Clarita', 'The seal of the City of Santa Clarita, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file. It replaces the earlier PNG (asset #41) as the City\'s mark.'],
+    ['Seal_of_the_United_States_Congress.svg', 'united-states-congress-seal.svg', 29393, 'United States Congress', 'Seal of the United States Congress', 'The seal of the United States Congress, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.'],
+    ['california-assembly.webp', 'california-state-assembly-seal.webp', 28271, 'California State Assembly', 'Seal of the California State Assembly', 'The seal of the California State Assembly, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.'],
+    ['california-state-senate.png', 'california-state-senate-seal.png', 28273, 'California State Senate', 'Seal of the California State Senate', 'The seal of the California State Senate, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.'],
 ];
 $volume = Craft::$app->getVolumes()->getVolumeByHandle('archiveMedia'); $folder = Craft::$app->getAssets()->findFolder(['volumeId' => $volume->id, 'path' => 'marks/']);
 foreach ($MARKS as [$in, $fn, $id, $holder, $title, $src]) {
@@ -48,5 +54,5 @@ foreach ($MARKS as [$in, $fn, $id, $holder, $title, $src]) {
     if ($rec->currentMark->one()?->id !== $has->id) { $rec->setFieldValue('currentMark', [$has->id]); if (!$el->saveElement($rec)) { throw new \RuntimeException("#$id currentMark"); } $n++; }
     $done[] = "$in -> #{$has->id} on #$id";
 }
-$applyLog = require "$root/scripts/import/_apply_log.php"; $applyLog('import_marks_2026_10_04.php', $n, 'verified', 'Marks: Hart High, Canyon High, CSUN, LASD, County of Los Angeles, City of Santa Clarita');
+$applyLog = require "$root/scripts/import/_apply_log.php"; $applyLog('import_marks_2026_10_04.php', $n, 'verified', 'Marks: Hart High, Canyon High, CSUN, LASD, Congress, Assembly, Senate, County of Los Angeles, City of Santa Clarita');
 echo implode(PHP_EOL, $done) . PHP_EOL . "done: $n writes" . PHP_EOL;
