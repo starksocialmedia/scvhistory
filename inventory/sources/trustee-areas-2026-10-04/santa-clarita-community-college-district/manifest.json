@@ -1,0 +1,18 @@
+{
+  "body": "santa-clarita-community-college-district",
+  "retrieved": "2026-10-04",
+  "agent": "Claude (research subagent)",
+  "files": [
+    {
+      "file": "rrcc-division-boundaries-scccd.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=District%3D%27SANTA+CLARITA+COMMUNITY+COLLEGE%27",
+      "retrieved": "2026-10-04",
+      "sha256": "c600679a938debb89cd77309a53938cecd7b0468f27109ee49cfd7d85142d7f7",
+      "bytes": 332296,
+      "content_type": "application/geo+json",
+      "what": "LA County RR/CC layer \"Division_Boundaries\" (Los Angeles County District Division Boundaries, precinct derived; features re-created 9 September 2026), filtered to this body. GeoJSON, EPSG:4326. Division name in DivisionName, RR/CC code in Code. Not requested; captured because it came with the same query. 5 trustee areas.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    }
+  ]
+}

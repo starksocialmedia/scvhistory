@@ -134,8 +134,16 @@
   </tbody>
 </table>
 <p data-seat-empty="past">No member of the council is recorded for this district.</p>
-{% if rotated|length %}
-  <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:14px 0 0">The mayoralty rotates among the members each year and is not a seat. Recorded so far: {{ rotated|map(h => (h.holdingPerson.one().title ?? '') ~ ' (' ~ h.termStart ~ ')')|join('; ') }}.</p>
+{#- Mayors by year, then any other rotating office (Mayor Pro Tem), read from the rotated holdings; never a seat or an election. -#}
+{% set mayors = rotated|filter(h => (h.holdingOffice.one().title ?? '') == 'Mayor')|sort((a, b) => a.termStartEdtf|replace({'[': ''})|slice(0, 4) <=> b.termStartEdtf|replace({'[': ''})|slice(0, 4)) %}
+{% set otherRot = rotated|filter(h => (h.holdingOffice.one().title ?? '') != 'Mayor') %}
+{% if mayors|length %}
+  <h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:21px;color:#17254C;margin:30px 0 8px" id="mayors">Mayors</h3>
+  <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:0 0 10px;max-width:720px">The mayoralty rotates among the council's members and is not a seat. The City's pages give each mayoralty by a single year. {{ mayors|length }} recorded so far.</p>
+  <div style="columns:3 200px;column-gap:24px;font-size:14.5px;line-height:1.7">{% for h in mayors %}{% set mp = h.holdingPerson.one() %}<div style="break-inside:avoid"><span style="display:inline-block;width:92px;color:#7A5C1B;font-variant-numeric:tabular-nums">{{ h.termStart }}</span>{% if mp %}<a href="{{ mp.url }}" style="color:#17254C">{{ mp.title }}</a>{% endif %}</div>{% endfor %}</div>
+{% endif %}
+{% if otherRot|length %}
+  <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:14px 0 0">{{ otherRot|map(h => (h.holdingOffice.one().title ?? '') ~ ': ' ~ (h.holdingPerson.one().title ?? '') ~ (h.termStart ? ' (' ~ h.termStart ~ ')' : ''))|join('; ') }}.</p>
 {% endif %}
 <p style="font-size:14px;line-height:1.6;color:#5B6472;margin:10px 0 0">Terms are built from the vote counts and read against the council ledger Leon Worden kept for SCVHistory.com, which runs to 2020. Where the two agree, the term is shown as confirmed; where only the count stands, it is marked, and each term's own record states its sources.</p>
 {% endif %}

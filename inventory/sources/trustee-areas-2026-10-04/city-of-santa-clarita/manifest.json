@@ -1,0 +1,89 @@
+{
+  "body": "city-of-santa-clarita",
+  "retrieved": "2026-10-04",
+  "agent": "Claude (research subagent)",
+  "files": [
+    {
+      "file": "district-elections-page.html",
+      "source_url": "https://santaclarita.gov/district-elections/",
+      "retrieved": "2026-10-04",
+      "sha256": "f5b4954f9b704e2cb8918f34e76af14d71d7e7ce35b6daa6f5750d122d4f9b40",
+      "bytes": 155692,
+      "content_type": "text/html",
+      "what": "City \"District Elections\" page: final map, links to the residency lookup, lawsuit and settlement. States the lines were adjusted to follow parcel lines per the LA County Registrar GIS specification.",
+      "contains_geometry": false
+    },
+    {
+      "file": "district-elections-draft-maps-page.html",
+      "source_url": "https://santaclarita.gov/district-elections/draft-maps/",
+      "retrieved": "2026-10-04",
+      "sha256": "c1a6a626d421cde71499a034b83c23271e03600d57710be8652a76c74192dfc6",
+      "bytes": 157034,
+      "content_type": "text/html",
+      "what": "Draft maps page (Maps 101 to 113, Joint Draft Map) and link to the NDC public mapping app.",
+      "contains_geometry": false
+    },
+    {
+      "file": "citycouncildistricts.pdf",
+      "source_url": "https://filecenter.santa-clarita.com/GIS/citycouncildistricts.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "331c0ccbdeeaa7a1435b5c60f14284263f53f66200642a2c0edb16c35445f4d1",
+      "bytes": 15957422,
+      "content_type": "application/pdf",
+      "what": "Official final council district map PDF, ArcGIS Pro export 5 December 2023. Static.",
+      "contains_geometry": false
+    },
+    {
+      "file": "2023-06-13-ORDINANCES-BY-DISTRICT-ELECTIONS.pdf",
+      "source_url": "https://santaclarita.gov/wp-content/uploads/2023/11/2023-06-13-ORDINANCES-BY-DISTRICT-ELECTIONS.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "5e8860f873fc0b333a36437ab4946fb529712e9a16e5f443369ec529b66405ef",
+      "bytes": 1005729,
+      "content_type": "application/pdf",
+      "what": "Ordinance 23-4, adopted 13 June 2023, establishing by-district elections from the \"City of Santa Clarita District Map\" (Exhibit A); Districts 1 and 3 elected 2024, Districts 2, 4 and 5 in 2026.",
+      "contains_geometry": false
+    },
+    {
+      "file": "Map-113-changes-detailed-for-posting.pdf",
+      "source_url": "https://santaclarita.gov/document-central/wp-content/uploads/sites/42/migration/Map%20113%20changes%20detailed%20for%20posting.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "a12ee6f46a75ad89370f2c329d681b49864c2bec4b9b30019d33e89ab73b6c3e",
+      "bytes": 3854155,
+      "content_type": "application/pdf",
+      "what": "Draft Map 113 change detail (process record).",
+      "contains_geometry": false
+    },
+    {
+      "file": "city-boundary-mapserver-layer17-metadata.json",
+      "source_url": "https://maps.santa-clarita.com/arcgis/rest/services/Boundary/MapServer/17?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "302704d6d8ac5b937c181a8c29c6a954d56b5344dd1cf053b411045ecca77899",
+      "bytes": 9478,
+      "content_type": "application/json",
+      "what": "Layer metadata for \"City Council Districts\" on the City's own ArcGIS Server (used by the City's \"Mapping Your City\" residency app, portal item 4b3cfb271314475db6518999b4747876).",
+      "contains_geometry": false
+    },
+    {
+      "file": "city-gis-city-council-districts-layer17.geojson",
+      "source_url": "https://maps.santa-clarita.com/arcgis/rest/services/Boundary/MapServer/17/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "retrieved": "2026-10-04",
+      "sha256": "0c81789482f9ce00c42f622150dd08403ef76fa31322abfca609195dc345a318",
+      "bytes": 326010,
+      "content_type": "application/geo+json",
+      "what": "City GIS council districts. 5 features, GeoJSON WGS84 (native EPSG:2229). District number in District (integer), name in DistrictName. District 2 is two parts. Matches the RR/CC layer to within 1 percent area per district.",
+      "contains_geometry": true,
+      "licence_or_terms": "No licence on the service. City website Terms and Conditions: content copyright City of Santa Clarita; download permitted for non-commercial use; may not be mirrored without written permission of Technology Services."
+    },
+    {
+      "file": "rrcc-division-boundaries-santa-clarita-council.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=District%3D%27CITY+OF+SANTA+CLARITA%27",
+      "retrieved": "2026-10-04",
+      "sha256": "4a1557319aaaee9b51aae08747383400879a22f5de5d57b4534fdf7bf0365904",
+      "bytes": 321134,
+      "content_type": "application/geo+json",
+      "what": "LA County RR/CC layer \"Division_Boundaries\" (Los Angeles County District Division Boundaries, precinct derived; features re-created 9 September 2026), filtered to this body. GeoJSON, EPSG:4326. Division name in DivisionName, RR/CC code in Code.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    }
+  ]
+}

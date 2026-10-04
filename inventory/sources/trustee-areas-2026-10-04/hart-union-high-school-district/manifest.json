@@ -1,0 +1,120 @@
+{
+  "body": "hart-union-high-school-district",
+  "retrieved": "2026-10-04",
+  "agent": "Claude (research subagent)",
+  "files": [
+    {
+      "file": "trustee-area-voting-map-page.html",
+      "source_url": "https://www.hartdistrict.org/apps/pages/index.jsp?uREC_ID=739893&type=d&pREC_ID=1152469",
+      "retrieved": "2026-10-04",
+      "sha256": "8fa94d92dc57b46c2eb92573391f18bd89b91d7c7bd61ffaefd6c00210d2553d",
+      "bytes": 84460,
+      "content_type": "text/html",
+      "what": "\"Trustee Area Voting Map\" page. States the map was approved in 2015 under the CVRA and updated after each census, most recently January 2022; lists current representatives by area.",
+      "contains_geometry": false
+    },
+    {
+      "file": "hart-map-button.png",
+      "source_url": "https://3.files.edl.io/e8df/22/06/14/231336-debc492c-5a03-49bf-80de-0b6ad9b4fa76.png",
+      "retrieved": "2026-10-04",
+      "sha256": "50eed405c4915bc74bbf621389dc5815b574213a376b031bfe6369f803fabb91",
+      "bytes": 770214,
+      "content_type": "image/png",
+      "what": "Image on the page that links to the interactive map (755 x 589 PNG).",
+      "contains_geometry": false
+    },
+    {
+      "file": "item-e8496474-webapp.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/e8496474353c426b855f360b30633ef2?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "9bcf5430e06b78d59531a9f2d5c4f25d3252a54151fb67e89e2fc0e6b594ecc6",
+      "bytes": 1452,
+      "content_type": "application/json",
+      "what": "ArcGIS item metadata: Web Mapping Application \"WS Hart Union High School District\", owner csok_DDP (Davis Demographics), public. App title \"Trustee Areas - Adopted January 2022, by Davis Demographics\".",
+      "contains_geometry": false
+    },
+    {
+      "file": "item-0c526ac2-webmap.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/0c526ac283dc4c6aba78d369d7a9b626?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "1085d51eb2a603934e66577d9ea5671bacdfb5285b4fef9c9701aff2014ee037",
+      "bytes": 1136,
+      "content_type": "application/json",
+      "what": "ArcGIS item metadata: Web Map \"William S Hart Trustee Areas basemap\".",
+      "contains_geometry": false
+    },
+    {
+      "file": "item-0c526ac2-webmap-data.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/0c526ac283dc4c6aba78d369d7a9b626/data?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "995b433d9fc9c45c0768d1d9807d6cf6b5e30d4ab6be14946b929fd24611f472",
+      "bytes": 11127,
+      "content_type": "application/json",
+      "what": "Web map definition; operational layers Hart_Trustee_Areas/FeatureServer/14 and William_S_Hart_Schools/FeatureServer/18.",
+      "contains_geometry": false
+    },
+    {
+      "file": "item-5876e532-featureservice.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/5876e532709849b09ae3e3f72d0b72d8?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "c716add3c65ac38150f757d8a2f29552ab957e4bddfeae4c6290a76db18a96f3",
+      "bytes": 1327,
+      "content_type": "application/json",
+      "what": "ArcGIS item metadata: Feature Service \"Hart Trustee Areas\", owner csok_DDP, public, licenseInfo empty.",
+      "contains_geometry": false
+    },
+    {
+      "file": "service-metadata.json",
+      "source_url": "https://services.arcgis.com/obpUicnfIYG1DOsR/arcgis/rest/services/Hart_Trustee_Areas/FeatureServer?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "7412ccca756e1ea3058f9419154a23b63f05a9c2febdf293ae1152bf7aaf8b06",
+      "bytes": 3170,
+      "content_type": "application/json",
+      "what": "Feature service metadata.",
+      "contains_geometry": false
+    },
+    {
+      "file": "layer-14-metadata.json",
+      "source_url": "https://services.arcgis.com/obpUicnfIYG1DOsR/arcgis/rest/services/Hart_Trustee_Areas/FeatureServer/14?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "8c386e1a93f9104b95de315e3d50f33bb703ad20db5bf15415cc2ca56322d288",
+      "bytes": 12090,
+      "content_type": "application/json",
+      "what": "Layer metadata: \"HartScenario2_NewTrusteeBoundaries\", polygon, native CRS EPSG:2229 (wkid 102645).",
+      "contains_geometry": false
+    },
+    {
+      "file": "Hart_Trustee_Areas-layer14.geojson",
+      "source_url": "https://services.arcgis.com/obpUicnfIYG1DOsR/arcgis/rest/services/Hart_Trustee_Areas/FeatureServer/14/query?where=1%3D1&outFields=*&f=geojson",
+      "retrieved": "2026-10-04",
+      "sha256": "7426bc40eef986722512fe92813a7cd51b75affbd7965c8beab0fda747f16145",
+      "bytes": 231351,
+      "content_type": "application/geo+json",
+      "what": "Adopted January 2022 trustee areas from the district demographer's public feature service. 5 polygons, GeoJSON WGS84. Area in EQUIZONE (\"District 1\" to \"District 5\"). BoardMember attribute is stale (2022 members, e.g. Linda Storli for Area 1).",
+      "contains_geometry": true,
+      "licence_or_terms": "None stated (item licenseInfo and accessInformation empty)."
+    },
+    {
+      "file": "rrcc-school-districts-trustee-areas-hart.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=DISTRICT_NAME%3D%27WM+S+HART+UNION+HIGH%27",
+      "retrieved": "2026-10-04",
+      "sha256": "b4b4b8495903b064f39fc07edfb3d1912e709a2ed1822ab13e35ab86e29dd556",
+      "bytes": 369318,
+      "content_type": "application/geo+json",
+      "what": "LA County Registrar-Recorder/County Clerk layer \"Registrar Recorder School Districts Trustee Areas\" (item 56e294422060461bb9bf36c95aa4d262, last update September 2026), filtered to this district. GeoJSON, EPSG:4326 (requested outSR=4326; service native CRS EPSG:2229). One feature for the whole district (TRUSTEE_AREA null) plus one per trustee area; area number in TRUSTEE_AREA.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    },
+    {
+      "file": "rrcc-division-boundaries-hart.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=District+LIKE+%27WM+S+HART%25%27",
+      "retrieved": "2026-10-04",
+      "sha256": "67e03416961f527ddeb916e8fc72124e1253b50c7f8e182969a14c36999b32bc",
+      "bytes": 332644,
+      "content_type": "application/geo+json",
+      "what": "LA County RR/CC layer \"Division_Boundaries\" (Los Angeles County District Division Boundaries, precinct derived; features re-created 9 September 2026), filtered to this body. GeoJSON, EPSG:4326. Division name in DivisionName, RR/CC code in Code.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    }
+  ]
+}

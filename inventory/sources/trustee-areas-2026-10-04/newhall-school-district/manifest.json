@@ -1,0 +1,90 @@
+{
+  "body": "newhall-school-district",
+  "retrieved": "2026-10-04",
+  "agent": "Claude (research subagent)",
+  "files": [
+    {
+      "file": "trustee-area-map-page.html",
+      "source_url": "https://www.newhallschooldistrict.com/trustee-area-map",
+      "retrieved": "2026-10-04",
+      "sha256": "8f756e69e9f14c99cd9e0d9a2a9304cacd286df2ee8a2caf86e5a34f5c2ce77c",
+      "bytes": 204391,
+      "content_type": "text/html",
+      "what": "\"Trustee Area Map\" page (ParentSquare site). Embeds one PDF only, via a data-pdf-config attribute.",
+      "contains_geometry": false
+    },
+    {
+      "file": "newhall_trusteeareasmap_wstlabels.pdf",
+      "source_url": "https://files.smartsites.parentsquare.com/7444/newhall_trusteeareasmap_wstlabels.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "e6ba1f1505c93b696450fd089de10fa9f40a3db09e7d9a2fcfc1903b077398b3",
+      "bytes": 2568478,
+      "content_type": "application/pdf",
+      "what": "Static map \"Newhall School District Approved Trustee Areas, April 2022\". Esri ArcMap 10.8.1 export. No extractable geometry.",
+      "contains_geometry": false
+    },
+    {
+      "file": "ndc-item-1f5f05fa-webmap.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/1f5f05fa09274b14a24f417bdec7da68?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "99fdd6da1638b977ec390064acba540b3bfed17aa2092fb6cbc888e084002976",
+      "bytes": 1189,
+      "content_type": "application/json",
+      "what": "ArcGIS item metadata: Web Map \"Newhall School District Trustee Areas\", owner NDCuser1 (National Demographics Corporation), public. Not linked from the district site.",
+      "contains_geometry": false
+    },
+    {
+      "file": "ndc-item-29165391-experience.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/29165391ffff499fa24e7e4f72a13658?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "e8ecec6f5c9cb99147a8fd2b47bc2c38c6eaa86dd192242cefba1672373dfa40",
+      "bytes": 1646,
+      "content_type": "application/json",
+      "what": "ArcGIS item metadata: Web Experience \"Newhall School District Trustee Areas Council Districts\" (NDC), wraps the web map above. Not linked from the district site.",
+      "contains_geometry": false
+    },
+    {
+      "file": "ndc-item-1f5f05fa-webmap-data.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/1f5f05fa09274b14a24f417bdec7da68/data?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "8904cf1706a5239d088007caa594e02fd2096e1ed23871bd5971c7bffb8cae83",
+      "bytes": 117878,
+      "content_type": "application/json",
+      "what": "Web map definition with an embedded feature collection \"Newhall 2015 Adopted Plan County GIS Shapefile\" (Esri JSON, Web Mercator).",
+      "contains_geometry": false
+    },
+    {
+      "file": "ndc-newhall-2015-adopted-plan-derived.geojson",
+      "source_url": "derived (see what)",
+      "retrieved": "2026-10-04",
+      "sha256": "c4047cf48be063c1806cd13da39060ca538c497e912e89542279b3574ee54125",
+      "bytes": 45775,
+      "content_type": "application/geo+json",
+      "what": "DERIVED by this session from ndc-item-1f5f05fa-webmap-data.json (Web Mercator converted to WGS84). The 2015 CVRA plan, 5 polygons, area number in DISTRICT. Historical; compare with the RR/CC current layer.",
+      "contains_geometry": true,
+      "licence_or_terms": "None stated."
+    },
+    {
+      "file": "rrcc-school-districts-trustee-areas-newhall.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=DISTRICT_NAME%3D%27NEWHALL+ELEMENTARY%27",
+      "retrieved": "2026-10-04",
+      "sha256": "4af0bf662a957e02b454184e3732f98660b24ac7b151d3dbb3f92673509db3eb",
+      "bytes": 228741,
+      "content_type": "application/geo+json",
+      "what": "LA County Registrar-Recorder/County Clerk layer \"Registrar Recorder School Districts Trustee Areas\" (item 56e294422060461bb9bf36c95aa4d262, last update September 2026), filtered to this district. GeoJSON, EPSG:4326 (requested outSR=4326; service native CRS EPSG:2229). One feature for the whole district (TRUSTEE_AREA null) plus one per trustee area; area number in TRUSTEE_AREA.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    },
+    {
+      "file": "rrcc-division-boundaries-newhall.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=District+LIKE+%27NEWHALL+ELEM%25%27",
+      "retrieved": "2026-10-04",
+      "sha256": "db7c5d683a641a590c4ce567b9b9d62c320bf72bc5c46dcac7e244c0c01df429",
+      "bytes": 193788,
+      "content_type": "application/geo+json",
+      "what": "LA County RR/CC layer \"Division_Boundaries\" (Los Angeles County District Division Boundaries, precinct derived; features re-created 9 September 2026), filtered to this body. GeoJSON, EPSG:4326. Division name in DivisionName, RR/CC code in Code.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    }
+  ]
+}

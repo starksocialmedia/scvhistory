@@ -205,11 +205,13 @@
 /* The bar sticks under the site header once the header is fixed (its height is --scv-stuck-h, set by _partials/sticky),
    and sits below the header's menus: the header is z-index 5 at rest and 300 when fixed, so 4 keeps every menu in front
    (Nathan, 4 October 2026: a menu opened behind it). */
-/* Flush under the header when it is fixed, one block with the nav (Nathan, 4 October 2026: "they should read as one
-   connected block under the nav"), with height of its own from the padding around its buttons. */
-.wm-bar{background:#fff;border-bottom:1px solid #E2E4E8;position:sticky;top:var(--scv-stuck-h,0px);z-index:4}
-.scv-is-stuck .wm-bar{box-shadow:0 4px 10px rgba(23,37,76,.08)}
-.wm-bar .wm-barin{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;padding-top:16px;padding-bottom:16px}
+.wm-bar{background:#fff;border-bottom:1px solid #E2E4E8}
+.wm-barin{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.wm-period{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.06em;color:#7A5C1B;margin:-8px 0 8px}
+.wm-period .wm-src a{color:#7A5C1B;text-decoration:none;margin-left:2px}
+.wm-lead{font-size:16px;line-height:1.6;color:#4A5260;margin:0 0 20px;max-width:46em}
+.wm-sources{font-size:13px;line-height:1.55;color:#5B6472;margin:40px 0 0;max-width:60em}
+.wm-face--plate .ini{font-family:'Playfair Display',serif;font-size:56px;color:#C4A031;line-height:1}
 .wm-jump{font-family:'Jost',sans-serif;font-size:13px;color:#7A5C1B;border:1px solid #C4A031;padding:6px 12px;border-radius:3px;text-decoration:none;background:#fff}
 .wm-jump span{color:#5B6472;margin-left:4px}
 .wm-jump:hover{background:#FDF7EA}

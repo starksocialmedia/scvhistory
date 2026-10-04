@@ -1,0 +1,110 @@
+{
+  "body": "castaic-union-school-district",
+  "retrieved": "2026-10-04",
+  "agent": "Claude (research subagent)",
+  "files": [
+    {
+      "file": "by-trustee-area-boundary-map-page.html",
+      "source_url": "https://www.castaicusd.com/apps/pages/index.jsp?uREC_ID=799402&type=d&pREC_ID=1383377",
+      "retrieved": "2026-10-04",
+      "sha256": "69abe1a4db0841d86251736adde3c3488e33560012c873d4b09addf625fe5984",
+      "bytes": 54793,
+      "content_type": "text/html",
+      "what": "\"By-Trustee Area Boundary Map\" page: links an interactive map, the board approved map PDF, 2020 census data and Resolution 21/22-16.",
+      "contains_geometry": false
+    },
+    {
+      "file": "board-approved-by-trustee-area-map.pdf",
+      "source_url": "https://4.files.edl.io/6afa/02/01/22/204343-12fb0601-539c-42a2-b367-e96b8fb859a4.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "702159ac7dfdaa1df7a7c2fab873d2a7bbaea96489f99babddbd788e1854b819",
+      "bytes": 242491,
+      "content_type": "application/pdf",
+      "what": "Static map \"Board-Adopted Red II, February 16, 2017\". No extractable geometry.",
+      "contains_geometry": false
+    },
+    {
+      "file": "current-census-data-2020.pdf",
+      "source_url": "https://4.files.edl.io/60b6/02/01/22/204340-80dba158-1f8e-4286-a642-5adca71aae38.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "53a0c9087ca995a0eb2442a3a2f64212a8a4d04aa95d2cfd335e517cbb420414",
+      "bytes": 79415,
+      "content_type": "application/pdf",
+      "what": "Scanned NDC table: current plan population by area A to E with 2020 census (total deviation 7.70 percent).",
+      "contains_geometry": false
+    },
+    {
+      "file": "resolution-21-22-16-trustee-area-plan.pdf",
+      "source_url": "https://4.files.edl.io/0582/02/01/22/204336-62d3ee39-834e-46bd-9972-0e45431c9df5.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "e2633108f4b2c2eb923b4907dde6170be0d05ef22b6b0e8da8d1a9823e8c42f5",
+      "bytes": 119735,
+      "content_type": "application/pdf",
+      "what": "Scanned Resolution 21/22-16, adopted 13 January 2022: readopts the trustee area plan adopted 16 February 2017 without change after the 2020 census (demographer National Demographics Corporation).",
+      "contains_geometry": false
+    },
+    {
+      "file": "item-bbd02335-webapp.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/bbd023355c244e22b1a54e145ef2aee9?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "25d1d4132895b052c3cdaaa3d1c0ffee03e6587802da7b0dd50e0220a7abef39",
+      "bytes": 1257,
+      "content_type": "application/json",
+      "what": "ArcGIS item metadata: \"Castaic Union School District Map Viewer\" (NDC), the page's \"Interactive Trustee Boundary Map\".",
+      "contains_geometry": false
+    },
+    {
+      "file": "item-1e600c98-webmap.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/1e600c98f1f5427394a5265b6c7b50b8?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "74a1d993a42e46ceaf6bd2efb183b46fce1a0de3d0e66039aad9853c22b7e256",
+      "bytes": 1191,
+      "content_type": "application/json",
+      "what": "ArcGIS item metadata: Web Map \"Castaic Union School District\" (NDC), public.",
+      "contains_geometry": false
+    },
+    {
+      "file": "item-1e600c98-webmap-data.json",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/1e600c98f1f5427394a5265b6c7b50b8/data?f=json",
+      "retrieved": "2026-10-04",
+      "sha256": "4c42aae82f1cba422f0a4a368e4ca212a2093c08c5c29885beb03b157ffd0fa2",
+      "bytes": 344915,
+      "content_type": "application/json",
+      "what": "Web map definition with embedded feature collections \"Board-Adopted Red II\" (5 polygons) and \"Populated Areas\" (Esri JSON, Web Mercator).",
+      "contains_geometry": false
+    },
+    {
+      "file": "castaic-board-adopted-red-ii-derived.geojson",
+      "source_url": "derived (see what)",
+      "retrieved": "2026-10-04",
+      "sha256": "c17da6dbbad3eb2939fbafb78327a023fdb2244b7c14ea9e96be4300d7af9f3b",
+      "bytes": 58148,
+      "content_type": "application/geo+json",
+      "what": "DERIVED by this session from item-1e600c98-webmap-data.json (\"Board-Adopted Red II\", converted to WGS84). 5 polygons, area letter in DISTRICT (A to E), NAME carries 2017-era member and term year, POPULATION is 2010 based.",
+      "contains_geometry": true,
+      "licence_or_terms": "None stated."
+    },
+    {
+      "file": "rrcc-school-districts-trustee-areas-castaic.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=DISTRICT_NAME%3D%27CASTAIC+UNION+ELEMENTARY%27",
+      "retrieved": "2026-10-04",
+      "sha256": "0875deaaad38a179b16bd84c2595e73c34d976474d9ce7084373fa8412a8681f",
+      "bytes": 341721,
+      "content_type": "application/geo+json",
+      "what": "LA County Registrar-Recorder/County Clerk layer \"Registrar Recorder School Districts Trustee Areas\" (item 56e294422060461bb9bf36c95aa4d262, last update September 2026), filtered to this district. GeoJSON, EPSG:4326 (requested outSR=4326; service native CRS EPSG:2229). One feature for the whole district (TRUSTEE_AREA null) plus one per trustee area; area number in TRUSTEE_AREA.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    },
+    {
+      "file": "rrcc-division-boundaries-castaic.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=District+LIKE+%27CASTAIC+UNION%25%27",
+      "retrieved": "2026-10-04",
+      "sha256": "de882b509928508f31669ae6c677466a0d57702f99b0eab6858fe7e3b22bebd0",
+      "bytes": 303175,
+      "content_type": "application/geo+json",
+      "what": "LA County RR/CC layer \"Division_Boundaries\" (Los Angeles County District Division Boundaries, precinct derived; features re-created 9 September 2026), filtered to this body. GeoJSON, EPSG:4326. Division name in DivisionName, RR/CC code in Code. Note: RR/CC numbers the areas 1 to 5; the district letters them A to E. By geometry A=1, B=2, C=3, D=4, E=5.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    }
+  ]
+}

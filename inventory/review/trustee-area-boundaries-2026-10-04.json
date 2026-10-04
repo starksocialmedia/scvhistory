@@ -1,0 +1,386 @@
+{
+  "date": "2026-10-04",
+  "agent": "Claude (research subagent)",
+  "sources_folder": "inventory/sources/trustee-areas-2026-10-04/",
+  "recommended_source": {
+    "name": "LA County Registrar-Recorder/County Clerk hosted layers",
+    "school_trustee_areas": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0",
+    "school_trustee_areas_item": "56e294422060461bb9bf36c95aa4d262",
+    "division_boundaries": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+    "last_update": "September 2026",
+    "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+    "terms_url": "https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/"
+  },
+  "bodies": [
+    {
+      "body": "Saugus Union School District",
+      "folder": "saugus-union-school-district",
+      "published": [
+        "pdf",
+        "google_my_maps"
+      ],
+      "urls": {
+        "page": "https://www.saugususd.org/governing-board",
+        "pdf": "https://wsos-cdn.s3.us-west-2.amazonaws.com/uploads/sites/109/Trustee-Area-Map.pdf",
+        "interactive": "https://www.google.com/maps/d/u/0/edit?mid=1BizBoI6gCjAlAKh1h9b_GoSz5_jH-6Jv&usp=sharing",
+        "kml_export": "https://www.google.com/maps/d/kml?mid=1BizBoI6gCjAlAKh1h9b_GoSz5_jH-6Jv&forcekml=1"
+      },
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "Google My Maps KML (district)",
+          "file": "mymaps-1BizBoI6gCjAlAKh1h9b_GoSz5_jH-6Jv.kml",
+          "features": 6,
+          "area_property": "Placemark name \"Trustee Area No. N\" (plus district outline)",
+          "crs_saved": "WGS84",
+          "licence": "none stated"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0",
+          "where": "DISTRICT_NAME='SAUGUS UNION ELEMENTARY'",
+          "features": 6,
+          "area_property": "TRUSTEE_AREA (null on district outline)",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-school-districts-trustee-areas-saugus.geojson"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District LIKE 'SAUGUS UNION%'",
+          "features": 5,
+          "area_property": "DivisionName / Code",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-saugus.geojson"
+        }
+      ],
+      "redistricting": {
+        "date": "2022-02-01",
+        "text_file": "redistricting-2022-text.txt",
+        "consultants": [
+          "Orbach, Huff & Henderson, LLP",
+          "Cooperative Strategies"
+        ],
+        "education_code": [
+          "5019.51",
+          "5019.2"
+        ],
+        "resolution_found": false
+      }
+    },
+    {
+      "body": "William S. Hart Union High School District",
+      "folder": "hart-union-high-school-district",
+      "published": [
+        "interactive_arcgis"
+      ],
+      "urls": {
+        "page": "https://www.hartdistrict.org/apps/pages/index.jsp?uREC_ID=739893&type=d&pREC_ID=1152469",
+        "app": "https://ddp.maps.arcgis.com/apps/webappviewer/index.html?id=e8496474353c426b855f360b30633ef2",
+        "webmap_item": "0c526ac283dc4c6aba78d369d7a9b626",
+        "feature_service_item": "5876e532709849b09ae3e3f72d0b72d8",
+        "feature_service": "https://services.arcgis.com/obpUicnfIYG1DOsR/arcgis/rest/services/Hart_Trustee_Areas/FeatureServer/14"
+      },
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "Davis Demographics public feature service",
+          "file": "Hart_Trustee_Areas-layer14.geojson",
+          "features": 5,
+          "area_property": "EQUIZONE (\"District 1\"..\"District 5\")",
+          "crs_saved": "WGS84",
+          "crs_native": "EPSG:2229",
+          "licence": "none stated",
+          "note": "BoardMember attribute stale (2022)"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0",
+          "where": "DISTRICT_NAME='WM S HART UNION HIGH'",
+          "features": 6,
+          "area_property": "TRUSTEE_AREA",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-school-districts-trustee-areas-hart.geojson"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District LIKE 'WM S HART%'",
+          "features": 5,
+          "area_property": "DivisionName / Code",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-hart.geojson"
+        }
+      ],
+      "redistricting": {
+        "date": "2022-01",
+        "resolution_found": false,
+        "where_to_look": "https://simbli.eboardsolutions.com/SB_Meetings/SB_MeetingListing.aspx?S=36030502"
+      }
+    },
+    {
+      "body": "Newhall School District",
+      "folder": "newhall-school-district",
+      "published": [
+        "pdf"
+      ],
+      "urls": {
+        "page": "https://www.newhallschooldistrict.com/trustee-area-map",
+        "pdf": "https://files.smartsites.parentsquare.com/7444/newhall_trusteeareasmap_wstlabels.pdf",
+        "ndc_webmap_unlinked": "1f5f05fa09274b14a24f417bdec7da68"
+      },
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0",
+          "where": "DISTRICT_NAME='NEWHALL ELEMENTARY'",
+          "features": 6,
+          "area_property": "TRUSTEE_AREA",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-school-districts-trustee-areas-newhall.geojson"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District LIKE 'NEWHALL ELEM%'",
+          "features": 5,
+          "area_property": "DivisionName / Code",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-newhall.geojson"
+        },
+        {
+          "source": "NDC web map feature collection, 2015 adopted plan (historical, derived)",
+          "file": "ndc-newhall-2015-adopted-plan-derived.geojson",
+          "features": 5,
+          "area_property": "DISTRICT",
+          "crs_saved": "WGS84",
+          "licence": "none stated"
+        }
+      ],
+      "redistricting": {
+        "date": "2022",
+        "resolution_found": false,
+        "note": "The Signal (Nov 2021) reports the previous map was readopted; secondary source"
+      }
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "folder": "sulphur-springs-union-school-district",
+      "published": [
+        "pdf"
+      ],
+      "urls": {
+        "page": "https://www.sssd.k12.ca.us/trustee-area-map",
+        "pdf": "https://files.smartsites.parentsquare.com/8476/trustee_area_map_as_of_12182024.pdf"
+      },
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0",
+          "where": "DISTRICT_NAME='SULPHUR SPRINGS UNION ELEMENTARY'",
+          "features": 6,
+          "area_property": "TRUSTEE_AREA",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-school-districts-trustee-areas-sulphur-springs.geojson"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District LIKE 'SULPHUR SPRINGS%'",
+          "features": 5,
+          "area_property": "DivisionName / Code",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-sulphur.geojson"
+        }
+      ],
+      "redistricting": {
+        "date": "2022-02",
+        "resolution_found": false
+      }
+    },
+    {
+      "body": "Castaic Union School District",
+      "folder": "castaic-union-school-district",
+      "published": [
+        "pdf",
+        "interactive_arcgis",
+        "resolution"
+      ],
+      "urls": {
+        "page": "https://www.castaicusd.com/apps/pages/index.jsp?uREC_ID=799402&type=d&pREC_ID=1383377",
+        "app": "http://www.arcgis.com/apps/View/index.html?appid=bbd023355c244e22b1a54e145ef2aee9",
+        "webmap_item": "1e600c98f1f5427394a5265b6c7b50b8",
+        "map_pdf": "https://4.files.edl.io/6afa/02/01/22/204343-12fb0601-539c-42a2-b367-e96b8fb859a4.pdf",
+        "resolution": "https://4.files.edl.io/0582/02/01/22/204336-62d3ee39-834e-46bd-9972-0e45431c9df5.pdf",
+        "census_sheet": "https://4.files.edl.io/60b6/02/01/22/204340-80dba158-1f8e-4286-a642-5adca71aae38.pdf"
+      },
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "NDC web map feature collection \"Board-Adopted Red II\" (derived)",
+          "file": "castaic-board-adopted-red-ii-derived.geojson",
+          "features": 5,
+          "area_property": "DISTRICT (A..E)",
+          "crs_saved": "WGS84",
+          "licence": "none stated"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0",
+          "where": "DISTRICT_NAME='CASTAIC UNION ELEMENTARY'",
+          "features": 6,
+          "area_property": "TRUSTEE_AREA (1..5)",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-school-districts-trustee-areas-castaic.geojson"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District LIKE 'CASTAIC UNION%'",
+          "features": 5,
+          "area_property": "DivisionName / Code",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-castaic.geojson"
+        }
+      ],
+      "label_mapping": {
+        "A": 1,
+        "B": 2,
+        "C": 3,
+        "D": 4,
+        "E": 5
+      },
+      "redistricting": {
+        "date": "2022-01-13",
+        "resolution": "21/22-16",
+        "effect": "readopted the 16 February 2017 map unchanged",
+        "demographer": "National Demographics Corporation",
+        "resolution_found": true
+      }
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "folder": "santa-clarita-valley-water",
+      "published": [
+        "pdf",
+        "boundary_descriptions"
+      ],
+      "urls": {
+        "page": "https://www.yourscvwater.com/governance/redistricting",
+        "current_map": "https://www.yourscvwater.com/sites/default/files/SCVWA/about/governance/board/SCVWA%20Electoral%20Divisions%20Layout%2011x17%20v20250101.pdf"
+      },
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District='SANTA CLARITA VALLEY WATER AGENCY'",
+          "features": 3,
+          "area_property": "DivisionName / Code (19SC001..003)",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-scv-water.geojson",
+          "gap": "LA County only: about 472 sq km of a 507.6 sq km service area; Ventura County part of Division 3 missing"
+        }
+      ],
+      "redistricting": {
+        "date": "2022-03-15",
+        "note": "existing divisions kept, two small annexations; divisions updated 2024-05-13",
+        "resolution_found": false,
+        "packets_saved": true
+      },
+      "licence_on_pdfs": "no warranty; resale prohibited"
+    },
+    {
+      "body": "City of Santa Clarita",
+      "folder": "city-of-santa-clarita",
+      "published": [
+        "pdf",
+        "interactive_arcgis",
+        "city_gis_service"
+      ],
+      "urls": {
+        "page": "https://santaclarita.gov/district-elections/",
+        "map_pdf": "https://filecenter.santa-clarita.com/GIS/citycouncildistricts.pdf",
+        "city_gis_layer": "https://maps.santa-clarita.com/arcgis/rest/services/Boundary/MapServer/17",
+        "ordinance": "https://santaclarita.gov/wp-content/uploads/2023/11/2023-06-13-ORDINANCES-BY-DISTRICT-ELECTIONS.pdf"
+      },
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "City of Santa Clarita GIS",
+          "file": "city-gis-city-council-districts-layer17.geojson",
+          "features": 5,
+          "area_property": "District (integer), DistrictName",
+          "crs_saved": "WGS84",
+          "crs_native": "EPSG:2229",
+          "licence": "City website terms: non-commercial use; no mirroring without written permission"
+        },
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District='CITY OF SANTA CLARITA'",
+          "features": 5,
+          "area_property": "DivisionName / Code (08SK001..005)",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-santa-clarita-council.geojson"
+        }
+      ],
+      "redistricting": {
+        "date": "2023-06-13",
+        "ordinance": "23-4",
+        "demographer": "National Demographics Corporation"
+      }
+    },
+    {
+      "body": "Santa Clarita Community College District (not requested)",
+      "folder": "santa-clarita-community-college-district",
+      "geometry_available": true,
+      "geometry": [
+        {
+          "source": "LA County RR/CC",
+          "service": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+          "where": "District='SANTA CLARITA COMMUNITY COLLEGE'",
+          "features": 5,
+          "area_property": "DivisionName / Code (1061001..005)",
+          "crs_saved": "EPSG:4326",
+          "crs_native": "EPSG:2229",
+          "licence": "LA County GIS Terms of Use: licence to copy, publish, distribute, adapt and exploit, commercial or personal; no endorsement implied; as is. Layer: for election purposes only, not legal boundaries.",
+          "file": "rrcc-division-boundaries-scccd.geojson"
+        }
+      ]
+    }
+  ],
+  "decisions_for_nathan": [
+    "Use the RR/CC layers as the source of record for all bodies (recommended)",
+    "SCV Water Division 3 Ventura County slice: accept LA-only with a note, or ask SCV Water for its GIS",
+    "City GIS terms are non-commercial and no-mirroring; the RR/CC copy avoids them",
+    "Historical (pre-2022) boundaries: only Newhall 2015 and Castaic 2017 found as geometry",
+    "Castaic label: letters A..E (district) or numbers 1..5 (RR/CC)"
+  ]
+}

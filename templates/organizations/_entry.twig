@@ -72,7 +72,9 @@
 {% set seats = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placeOrganizations' }).districtKind(':notempty:').orderBy('districtNumber asc, title asc').all() %}
 {% set seatIds = seats|map(s => s.id) %}
 {#- The chief executive shows in the sidebar (_partials/civic/body-executive), so the hub's lower list of people leaves them out. -#}
-{% set execIds = isDistrict ? craft.entries().section('affiliations').relatedTo({ targetElement: entry, field: 'affiliationBody' }).affiliationTitle('Superintendent').all()|map(a => a.affiliationPerson.one().id ?? 0) : [] %}
+{#- The executive's title, by kind of body: a district's superintendent; SCV Water's general manager. A body not listed has no executive box yet. -#}
+{% set EXEC = isDistrict ? { title: 'Superintendent', label: 'SUPERINTENDENT' } : ({ 'santa-clarita-valley-water': { title: 'General Manager', label: 'GENERAL MANAGER' } }[entry.slug] ?? null) %}
+{% set execIds = EXEC ? craft.entries().section('affiliations').relatedTo({ targetElement: entry, field: 'affiliationBody' }).affiliationTitle(EXEC.title).all()|map(a => a.affiliationPerson.one().id ?? 0) : [] %}
 {% set hasHub = seats|length or craft.entries().section('officeHoldings').relatedTo({ targetElement: entry, field: 'holdingBody' }).exists() %}
 {#- The council's roster partial draws the City's board and its history; the
     other bodies get the hub's own board and past members. -#}
@@ -145,7 +147,7 @@
         {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
         {#- A body with seats gets its roster: every member, every term, from the
             officeHolding records (STRUCTURE.md, the council roster). -#}
-        {% if isDistrict %}{% set execSection %}{% include "_partials/civic/body-executive" with { body: entry, title: 'Superintendent', label: 'SUPERINTENDENT', as: 'section' } only %}{% endset %}{% endif %}
+        {% if EXEC %}{% set execSection %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'section' } only %}{% endset %}{% endif %}
         {% if hasHub %}{% include "_partials/civic/body-hub" with { body: entry, seats: seats, roster: ROSTER[entry.slug] is defined, seatCount: ROSTER[entry.slug] ?? null, exclude: execIds } only %}{% endif %}
         {{ execSection ?? '' }}
         {#- A district's page carries its map and every school in it, not only the
@@ -171,7 +173,7 @@
             <p>{{ isDistrict ? 'The district\'s' : 'Its' }} logo, from {% if mark.sourceUrl %}<a href="{{ mark.sourceUrl }}" rel="noopener">{{ markHost }}</a>{% else %}its website{% endif %}{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}.</p>
           </div>
         {% endif %}
-        {% if isDistrict %}{% include "_partials/civic/body-executive" with { body: entry, title: 'Superintendent', label: 'SUPERINTENDENT', as: 'box' } only %}{% endif %}
+        {% if EXEC %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'box' } only %}{% endif %}
         {% if districtMap and not mapInBody %}
           <div class="rec-box"><div class="rec-lab">THE DISTRICT</div>
             {% include "_partials/school-map" with { leaid: entry.ncesId|trim, height: 300 } %}

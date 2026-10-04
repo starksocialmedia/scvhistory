@@ -1,0 +1,70 @@
+{
+  "body": "saugus-union-school-district",
+  "retrieved": "2026-10-04",
+  "agent": "Claude (research subagent)",
+  "files": [
+    {
+      "file": "redistricting-2022-text.txt",
+      "source_url": "https://www.saugususd.org/governing-board",
+      "retrieved": "2026-10-04",
+      "sha256": "d553a3ca18c74210efa2a9c37efc8ad60948c4e64b21e2b0a52236d25ec3fc1d",
+      "bytes": 1897,
+      "content_type": "text/plain",
+      "what": "Exact wording of the trustee area and 1 February 2022 redistricting section of the governing board page, with its two links. No resolution or report is linked.",
+      "contains_geometry": false
+    },
+    {
+      "file": "governing-board-live.html",
+      "source_url": "https://www.saugususd.org/governing-board",
+      "retrieved": "2026-10-04",
+      "sha256": "0cf3990b977da7acfcf8b30b92dcf043edff39072edaffe1a0d5ced37c4ea9b9",
+      "bytes": 150733,
+      "content_type": "text/html",
+      "what": "Live governing board page (same map links and redistricting text as the saved copy inventory/news/district-boards-2026-10-04/saugus-board.html).",
+      "contains_geometry": false
+    },
+    {
+      "file": "Trustee-Area-Map.pdf",
+      "source_url": "https://wsos-cdn.s3.us-west-2.amazonaws.com/uploads/sites/109/Trustee-Area-Map.pdf",
+      "retrieved": "2026-10-04",
+      "sha256": "3a25db07930f2969c31e6cfab54f089ead93e8fd962d51fe278348cf72d2bca6",
+      "bytes": 3258891,
+      "content_type": "application/pdf",
+      "what": "Static map \"Saugus Union School District Governing Board Trustee Areas, Approved Trustee Areas, May 2022\". Esri ArcMap 10.8.1 export, created 17 May 2022. Image/PDF only, no extractable geometry.",
+      "contains_geometry": false
+    },
+    {
+      "file": "mymaps-1BizBoI6gCjAlAKh1h9b_GoSz5_jH-6Jv.kml",
+      "source_url": "https://www.google.com/maps/d/kml?mid=1BizBoI6gCjAlAKh1h9b_GoSz5_jH-6Jv&forcekml=1",
+      "retrieved": "2026-10-04",
+      "sha256": "99f1a8967a3eefbb2542302c6eacb7f72d0366e563de4bae125267fa74456ac3",
+      "bytes": 314845,
+      "content_type": "application/vnd.google-earth.kml+xml",
+      "what": "KML export of the Google My Maps map linked as \"Interactive\" (https://www.google.com/maps/d/u/0/edit?mid=1BizBoI6gCjAlAKh1h9b_GoSz5_jH-6Jv&usp=sharing). Document \"Saugus Union School District / Governing Board Trustee Areas\". 6 polygons: district outline plus \"Trustee Area No. 1\" to \"No. 5\" (area number in the Placemark name). KML, WGS84 lon/lat. Rings closed; the five areas sum to the district outline within 0.1 percent.",
+      "contains_geometry": true,
+      "licence_or_terms": "None stated on the map. Google My Maps content belongs to its author (the district); Google Maps terms apply to the viewer, not to the exported polygons."
+    },
+    {
+      "file": "rrcc-school-districts-trustee-areas-saugus.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/School_Districts_Trustee_Areas/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=DISTRICT_NAME%3D%27SAUGUS+UNION+ELEMENTARY%27",
+      "retrieved": "2026-10-04",
+      "sha256": "7e23fb2acb796e3d3b86c1b13c5532e0941ebcd3543501b6b5dab1ea371aa846",
+      "bytes": 402195,
+      "content_type": "application/geo+json",
+      "what": "LA County Registrar-Recorder/County Clerk layer \"Registrar Recorder School Districts Trustee Areas\" (item 56e294422060461bb9bf36c95aa4d262, last update September 2026), filtered to this district. GeoJSON, EPSG:4326 (requested outSR=4326; service native CRS EPSG:2229). One feature for the whole district (TRUSTEE_AREA null) plus one per trustee area; area number in TRUSTEE_AREA.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    },
+    {
+      "file": "rrcc-division-boundaries-saugus.geojson",
+      "source_url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0/query?outFields=*&outSR=4326&f=geojson&where=District+LIKE+%27SAUGUS+UNION%25%27",
+      "retrieved": "2026-10-04",
+      "sha256": "b35f632549ed18c21d7081647163f6b6a9ed317601e24e290225d1a254b4cf28",
+      "bytes": 331798,
+      "content_type": "application/geo+json",
+      "what": "LA County RR/CC layer \"Division_Boundaries\" (Los Angeles County District Division Boundaries, precinct derived; features re-created 9 September 2026), filtered to this body. GeoJSON, EPSG:4326. Division name in DivisionName, RR/CC code in Code.",
+      "contains_geometry": true,
+      "licence_or_terms": "LA County GIS Terms of Use (https://egis-lacounty.hub.arcgis.com/pages/terms-of-use/): licence to copy, publish, distribute, adapt and exploit the Data for commercial and/or personal use; no endorsement implied; as is, no warranty. Item licenseInfo adds: informational purposes, not for legal, engineering or surveying use. Layer snippet: for election purposes only, not the districts legal boundaries."
+    }
+  ]
+}
