@@ -140,6 +140,15 @@
             "why": "An empty shell left behind when the record was converted to place record #2540 on 25 September (convert_orgs_to_places.php). The place is the record.",
             "removed": "2026-10-04",
             "by": "scripts/import/enable_ranchos_missions_retire_shells_2026_10_04.php; the review decision is marked merged into the place"
+        },
+        {
+            "record": 29567,
+            "title": "Santa Clarita Water Division",
+            "slug": "santa-clarita-water-division",
+            "section": "organizations",
+            "why": "A retail division of the Castaic Lake Water Agency with no separate existence (SB 634, section 4(h)), not one of the bodies SB 634 reorganized. What it held is in the Castaic Lake Water Agency's record, where it now redirects.",
+            "removed": "2026-10-04",
+            "by": "scripts/import/fix_sb634_two_bodies_2026_10_04.php (Nathan's decision)"
         }
     ]
 }

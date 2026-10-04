@@ -25,6 +25,7 @@ $moved = [
     'organizations/pioneer-oil-refinery'          => 'places/pioneer-oil-refinery',
     'organizations/porta-bella'                   => 'places/porta-bella',
     'organizations/valencia-marketplace'          => 'places/valencia-marketplace',
+    'organizations/santa-clarita-water-division'  => 'organizations/castaic-lake-water-agency',
     'organizations/felton-school'                 => 'places/felton-school',
     'organizations/rancho-san-francisco'          => 'places/rancho-san-francisco',
     'organizations/rancho-el-tejon'               => 'places/rancho-el-tejon',

@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+{#- One template, two pages (Nathan, 4 October 2026: "a civic page under CIVIC holds the bodies that govern or represent").
+    /bodies lists the public bodies: the valley's own government, the school districts, and the county, state and federal
+    bodies. /organizations lists the rest: businesses, nonprofits, missions and churches, ranchos, newspapers, clubs. Schools
+    have their own page. A body's place comes from its data (orgType, orgLevel, schoolLevel), not from this template. -#}
+{% set bodiesMode = (craft.app.request.segments|first) == 'bodies' %}
 {% set comSlug = craft.app.request.getParam('community') %}
 {% set kind = craft.app.request.getParam('kind') %}
 {% set level = craft.app.request.getParam('level') %}
@@ -48,15 +53,28 @@
     saying it had. -#}
 {% if hasLevels and kind == 'school' and level and LEVELS[level] is defined %}{% set query = query.schoolLevel(level) %}{% endif %}
 {% set places = query.all() %}
+{#- Each page holds its own kinds: /bodies the government bodies and the school districts; /organizations everything but those and the schools. -#}
+{#- A dissolved body goes where its successor is, to be shown in the successor's card (the Valencia Water Company, a business, sits under SCV Water). -#}
+{% set civicIds = [] %}
+{% for o in places %}{% if (o.orgType.value ?? '') == 'government' or ((o.orgType.value ?? '') == 'school' and (o.schoolLevel.value ?? '') == 'district') %}{% set civicIds = civicIds|merge([o.id]) %}{% endif %}{% endfor %}
+{% set succOf = {} %}
+{% for o in places %}{% set sc = 'succeededBy' in (o.fieldLayout ? o.fieldLayout.customFields|map(f => f.handle) : []) and o.dateDissolvedEdtf|default('') ? o.succeededBy.one() : null %}{% if sc %}{% set succOf = succOf|merge({ ('o' ~ o.id): sc.id }) %}{% endif %}{% endfor %}
+{% set places = places|filter(o => bodiesMode == (o.id in civicIds or (succOf['o' ~ o.id] ?? 0) in civicIds))|filter(o => bodiesMode or (o.orgType.value ?? '') != 'school') %}
 {#- A body of another body (the Planning Commission of the City) is not its peer (Nathan, 1 October 2026): it is folded into its
     parent's card when the parent is on the page, and listed at the top level only when it is not. -#}
 {% set onPage = places|map(p => p.id) %}
 {% set childrenOf = {} %}
+{% set formedOf = {} %}
 {% set tops = [] %}
 {% for p in places %}
   {% set par = 'parentOrganization' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.parentOrganization.one() : null %}
   {#- Schools keep their own cards under their district's kind: only governing sub-bodies fold. -#}
-  {% if par and par.id in onPage and p.orgType.value != 'school' %}
+  {#- A dissolved body that has a successor on the page is shown in the successor's card, "Formed from", not as an entry of its
+      own (Nathan, 4 October 2026: "They are dissolved bodies and belong under SCV Water as predecessors"). -#}
+  {% set succ = 'succeededBy' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) and p.dateDissolvedEdtf|default('') ? p.succeededBy.one() : null %}
+  {% if succ and succ.id in onPage %}
+    {% set formedOf = formedOf|merge({ ('o' ~ succ.id): (formedOf['o' ~ succ.id] ?? [])|merge([p]) }) %}
+  {% elseif par and par.id in onPage and p.orgType.value != 'school' %}
     {% set childrenOf = childrenOf|merge({ ('o' ~ par.id): (childrenOf['o' ~ par.id] ?? [])|merge([p]) }) %}
   {% else %}
     {% set tops = tops|merge([p]) %}
@@ -96,12 +114,18 @@
 <div class="pl">
   <section class="pl-hero">
     <div class="pl-wrap">
-      <div class="pl-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Organizations</span></div>
+      <div class="pl-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>{{ bodiesMode ? 'Public bodies' : 'Organizations' }}</span></div>
       <div class="pl-grid">
         <div>
+          {% if bodiesMode %}
+          <div class="pl-kicker">CIVIC</div>
+          <h1>Public bodies</h1>
+          <p>The bodies that govern the valley or represent it: its own city and water agency, the school districts, and the county, state and federal bodies seated elsewhere. Schools are on their own page.</p>
+          {% else %}
           <div class="pl-kicker">INSTITUTIONS &amp; ENTERPRISES</div>
           <h1>Organizations</h1>
-          <p>Bodies that act in the valley's history: companies, agencies, missions, ranchos, newspapers, and the institutions that governed, employed, and published.</p>
+          <p>Companies, nonprofits, missions and churches, ranchos, newspapers and clubs in the valley's history. The bodies that govern the valley are on <a href="{{ url('bodies') }}" style="color:#7A5C1B">Public bodies</a>, and its schools on <a href="{{ url('schools') }}" style="color:#7A5C1B">Schools</a>.</p>
+          {% endif %}
         </div>
         <div class="pl-stat">
           <div><b>{{ all|length }}</b><span>ORGANIZATIONS</span></div>
@@ -153,7 +177,7 @@
           body"): the valley's own bodies, and the county, state and federal bodies that govern or represent it from
           elsewhere. A body nested in another's card (the City's commissions, the County's Board of Supervisors and Sheriff's
           Department, the House under Congress) is listed inside that card. -#}
-      {% set GROUPS = [
+      {% set ALLGROUPS = [
         { key: 'government', label: 'Valley government', note: 'School districts are governing bodies too; they are listed under School districts.' },
         { key: 'beyond',     label: 'County, state and federal', note: 'Bodies seated elsewhere that govern the valley or represent it.' },
         { key: 'districts',  label: 'School districts' },
@@ -166,6 +190,12 @@
         { key: 'club',       label: 'Clubs and associations' },
         { key: 'other',      label: 'Other' }
       ] %}
+      {% set CIVIC = ['government', 'beyond', 'districts'] %}
+      {% set GROUPS = bodiesMode ? ALLGROUPS|filter(g => g.key in CIVIC) : ALLGROUPS|filter(g => g.key not in CIVIC and g.key != 'schools') %}
+      {#- Order within the public bodies (Nathan, 4 October 2026): the City first as the valley's own government; Hart first of the
+          districts because it covers all the others; Congress, Senate, Assembly, then the County. Anything not named follows by title. -#}
+      {% set ORDER = ['city-of-santa-clarita', 'santa-clarita-valley-water', 'william-s-hart-union-high-school-district', 'newhall-school-district', 'saugus-union-school-district', 'sulphur-springs-union-school-district', 'castaic-union-school-district', 'united-states-congress', 'california-state-senate', 'california-state-assembly', 'county-of-los-angeles'] %}
+      {% set ORD_IDX = {} %}{% for s in ORDER %}{% set ORD_IDX = ORD_IDX|merge({ (s): loop.index0 }) %}{% endfor %}
       {% set groupOf = {} %}
       {% for p in places %}
         {% set t = hasKinds ? (p.orgType.value ?: 'other') : 'other' %}
@@ -178,7 +208,7 @@
       <h2 class="pl-group" id="{{ grp.key }}">{{ grp.label }} <span>{{ groupOf[grp.key]|length }}</span></h2>
       {% if grp.note is defined %}<p class="pl-groupnote">{{ grp.note }}</p>{% endif %}
       <div class="pl-cards">
-        {% for p in groupOf[grp.key] %}
+        {% for p in groupOf[grp.key]|sort((a, b) => (ORD_IDX[a.slug] ?? 99) <=> (ORD_IDX[b.slug] ?? 99) ?: a.title <=> b.title) %}
           {% set ph = p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : [] %}
           {% set img = 'featuredImage' in ph ? p.featuredImage.one() ?? null : null %}
           {#- A body with no picture shows its current mark, whole, as identification (the record page carries its source and rights note). -#}
@@ -191,6 +221,7 @@
               {% if p.dateFounded %}<div class="pl-meta">Est. {{ p.dateFounded }}</div>{% endif %}
               <div class="pl-comm">{{ coms }}{% if hasKinds and p.orgType.value %}{{ coms ? ' · ' : '' }}{{ KIND_ONE[p.orgType.value] ?? p.orgType.value }}{% if hasLevels and p.orgType.value == 'school' and p.schoolLevel.value %}, {{ LEVELS[p.schoolLevel.value]|lower }}{% endif %}{% endif %}</div>
               {% if childrenOf['o' ~ p.id] is defined %}<div class="pl-meta" style="margin-top:6px">Includes {{ childrenOf['o' ~ p.id]|map(c => c.title)|join(', ') }}</div>{% endif %}
+              {% if formedOf['o' ~ p.id] is defined %}<div class="pl-meta" style="margin-top:6px">Formed from {{ formedOf['o' ~ p.id]|map(c => c.title)|join(', ') }}</div>{% endif %}
             </div>
           </a>
         {% endfor %}
