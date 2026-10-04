@@ -155,6 +155,7 @@
 
   <main class="pl-main">
     <div class="pl-wrap">
+      {#- /civic has no map (Nathan, 4 October 2026: "a map does not help a reader find one"; each body's own page carries its map). -#}
       {% include "_partials/map-index" with {
         pins: pins,
         mapLabel: 'Map of organizations in the Santa Clarita Valley, with community boundaries',
@@ -164,7 +165,8 @@
         hint: 'Select an organization below to locate it, or a pin to jump to its card.',
         fitAllLabel: 'Fit all organizations',
         showFitValley: true,
-        initialValley: true
+        initialValley: true,
+        noMap: bodiesMode
       } only %}
 
       {#- Grouped by kind, not filtered (Nathan, 29 September 2026): 35 records fit

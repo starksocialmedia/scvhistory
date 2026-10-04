@@ -27,6 +27,7 @@
                   pins
     mapHeight     optional css height, defaults to the 460px in the stylesheet
     mapLabel      optional accessible name for the map
+    noMap         true renders the shared styles only, with no map card (the /civic page, Nathan, 4 October 2026)
 #}
 {% do craft.app.view.registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css') %}
 {% css %}
@@ -84,6 +85,7 @@
 .leaflet-tooltip i{display:block;margin-top:4px;font-size:11.5px;color:#5B6472;font-style:italic;line-height:1.4;max-width:260px;white-space:normal}
 .pl-empty{text-align:center;padding:64px 0;color:#5B6472;font-size:16px}
 {% endcss %}
+{% if not (noMap ?? false) %}
 {% set hint = hint ?? 'Select an item below to locate it, or a pin to jump to its card.' %}
 {% set fitAllLabel = fitAllLabel ?? 'Fit all' %}
 {% set showFitValley = showFitValley ?? false %}
@@ -277,3 +279,4 @@ document.addEventListener('DOMContentLoaded', function(){
     .then(function(){ fit({{ initialValley ? 'true' : 'false' }}); });
 });
 </script>
+{% endif %}
