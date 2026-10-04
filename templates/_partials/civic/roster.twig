@@ -54,9 +54,13 @@
     holding recorded as serving, read by person. Never a seat, never a separate card. -#}
 {%- set chairOf = {} -%}
 {% for h in rotated|filter(x => x.howEnded.value == 'serving') %}{% set cp = h.holdingPerson.one() %}{% if cp %}{% set chairOf = chairOf|merge({ ('p' ~ cp.id): (h.holdingOffice.one().title ?? '') }) %}{% endif %}{% endfor %}
+{#- Mayor, then Mayor Pro Tem, then the other members by district, three across like a board's cards (Nathan, 4 October 2026). -#}
+{%- set CHAIR = { 'Mayor': 1, 'Mayor Pro Tem': 2 } -%}
+{%- set distNo = {} -%}{% for h in sitting %}{% set d = h.holdingDistrict is defined ? h.holdingDistrict.one() : null %}{% set distNo = distNo|merge({ ('h' ~ h.id): d ? d.districtNumber * 1 : 99 }) %}{% endfor %}
+{%- set sitting = sitting|sort((a, b) => (CHAIR[chairOf['p' ~ (a.holdingPerson.one().id ?? 0)] ?? ''] ?? 9) <=> (CHAIR[chairOf['p' ~ (b.holdingPerson.one().id ?? 0)] ?? ''] ?? 9) ?: distNo['h' ~ a.id] <=> distNo['h' ~ b.id]) -%}
 {% if part != 'history' and sitting|length %}
 <h2 class="rec-h2" id="council-today">The council today</h2>
-<div data-seat-list="board" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;margin:0 0 34px">
+<div data-seat-list="board" class="ro-now">
   {% for h in sitting %}
     {% set sp = h.holdingPerson.one() %}
     {% if sp %}
@@ -70,7 +74,7 @@
         </div>
         <div style="padding:12px 14px 14px">
           <div style="font-family:'Playfair Display',serif;font-size:18px;line-height:1.2">{{ sp.title }}</div>
-          <div style="font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.1em;color:#7A5C1B;margin-top:6px;text-transform:uppercase">{{ dist ? dist.title ~ ' · ' : '' }}on the council since {{ (firstTerm ?? h).termStartEdtf|slice(0,4) }}</div>
+          <div style="font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.1em;color:#7A5C1B;margin-top:6px;text-transform:uppercase">{{ dist ? (dist.title|split(', ')|last) : 'At large' }} · on the council since {{ (firstTerm ?? h).termStartEdtf|slice(0,4) }}</div>
           {% if chairOf['p' ~ sp.id] is defined %}<div style="font-size:13.5px;font-weight:500;margin-top:6px">{{ chairOf['p' ~ sp.id] }}</div>{% endif %}
         </div>
       </a>
@@ -78,6 +82,11 @@
   {% endfor %}
 </div>
 <p data-seat-empty="board">The archive does not yet hold a sitting member for this district.</p>
+{% css %}
+.ro-now{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0 0 34px}
+@media(max-width:900px){.ro-now{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.ro-now{grid-template-columns:1fr}}
+{% endcss %}
 {% endif %}
 {% if part != 'today' %}
 <h2 class="rec-h2" id="council">The council, {{ Y0 }} to now</h2>

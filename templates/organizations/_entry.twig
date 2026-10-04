@@ -83,6 +83,11 @@
     rule for every body: the mark identifies it, a building photograph does not"). A body with a current mark shows it there,
     whole, and its photographs stay among the record's images. -#}
 {% set headMark = 'currentMark' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.currentMark.one() ?? null : null %}
+{#- A dissolved body has no current mark; the mark it used is among its related images with the role former-mark, dated with the
+    body's years (Nathan, 4 October 2026: "the body's mark as it was, with the body's dates, not as a currentMark"). -#}
+{% set formerMark = not headMark ? (recImages|filter(i => (i.assetRole.value ?? '') == 'former-mark')|first ?: null) : null %}
+{% set headMark = headMark ?? formerMark %}
+{% if formerMark %}{% set recImages = recImages|filter(i => i.id != formerMark.id) %}{% endif %}
 {% if headMark %}{% set img = null %}{% endif %}
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
@@ -132,7 +137,7 @@
 {#- The body's current mark: in the sidebar with its rights note (Nathan, 4
     October 2026: "a proper identifying image with its rights note under it"),
     no longer small beside the title. -#}
-{% set mark = 'currentMark' in orgHandles ? (entry.currentMark.one() ?? null) : null %}
+{% set mark = 'currentMark' in orgHandles ? (entry.currentMark.one() ?? formerMark) : formerMark %}
 {#- Aliases are stored one per line (a few older records list several on one line with commas, which read as written). -#}
 {% set aliases = [] %}
 {% for a in F.orgAliases|replace({ "\r": '' })|split("\n") %}{% if a|trim and a|trim not in aliases %}{% set aliases = aliases|merge([a|trim]) %}{% endif %}{% endfor %}
@@ -236,10 +241,10 @@
           {% set restText = prose ? (prose|split("\n\n")|slice(1)|join("\n\n")) : '' %}
           {% set firstLabel = isDistrict ? 'The district' : (isCity ? 'The city' : 'The body') %}
           {% set TABS = [{ id: 'main', label: firstLabel }, { id: 'history', label: 'History' }]|merge(districtMap ? [{ id: 'schools', label: 'Schools' }] : [])|merge([{ id: 'elections', label: 'Elections' }, { id: 'archive', label: 'In the archive' }]) %}
-          {#- The seat control is a filter on the whole page, so it sits above the tab bar and applies to whichever tab is open
-              (Nathan, 4 October 2026). It filters inside the panes (scope). -#}
-          {% include "_partials/civic/body-hub" with { part: 'control', body: entry, seats: seats, scope: scope } only %}
           <nav class="hub-tabs" aria-label="Sections of this page"><div class="hub-tabs-in" role="tablist">{% for t in TABS %}<a role="tab" href="#t-{{ t.id }}" data-tab="{{ t.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">{{ t.label }}</a>{% endfor %}</div></nav>
+          {#- The seat control filters every pane (scope), whichever tab is open; it sits under the tab bar (Nathan, 4 October 2026:
+              "The district buttons go under the tab bar, where they work, not above it"). -#}
+          {% include "_partials/civic/body-hub" with { part: 'control', body: entry, seats: seats, scope: scope } only %}
           <div id="{{ scope }}" class="hub-panes">
             <section class="hub-pane" id="t-main" data-pane="main">
               <h2 class="hub-pane-h">{{ firstLabel }}</h2>
@@ -304,16 +309,20 @@
       </article>
 
       <aside class="rec-side">
+        {#- A mark shows in the header with no label and no caption (Nathan, 4 October 2026: "A city's seal beside its name needs no
+            explanation. The caption is archive bookkeeping"). Its source and date stay in the asset's data, on its media page. Two
+            things still say something here: a condition of use the body itself states (Hart's site restricts its logos), and, for a
+            dissolved body, that the mark is the one it used, so it is not taken for a current one. -#}
         {% if mark %}
-          {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
-          {#- What the mark is, from the asset's title: "Seal of ...", "Star of ...", "Logo of ..." (Nathan, 4 October 2026: "take the label from the image's title, Seal, Star or Logo"). -#}
-          {% set markKind = (mark.title|split(' ')|first|lower) in ['seal', 'star', 'logo', 'badge', 'emblem', 'flag'] ? mark.title|split(' ')|first|lower : 'logo' %}
-          <div class="rec-box rec-mark"><div class="rec-lab">{{ (isDistrict ? 'the district\'s ' ~ markKind : markKind)|upper }}</div>
-            {#- The mark itself is in the header; this box says what it is and where it came from. -#}
-            {#- One line (Nathan, 4 October 2026): the rights reasoning stays in the asset's rightsNote, for a researcher, not on the page. -#}
-            {#- Where it came from only when the page is recorded; otherwise it was supplied to the archive, and the page says so rather than guess a website. -#}
-            <p>{{ isDistrict ? 'The district\'s' : 'Its' }} {{ markKind }}, {% if mark.sourceUrl %}from <a href="{{ mark.sourceUrl }}" rel="noopener">{{ markHost }}</a>{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}{% else %}supplied to the archive{% if mark.acquiredDate %} on {{ mark.acquiredDate|date('j F Y') }}{% endif %}{% endif %}.</p>
-          </div>
+          {% set isFormer = formerMark and mark.id == formerMark.id %}
+          {% set rn = (mark.rightsNote ?? '')|trim %}
+          {% set condition = rn matches '/may be used only|may not be used|must not be used|prohibit|restrict/i' ? (rn|split('. ')|first|trim('.') ~ '.') : '' %}
+          {% if condition or isFormer %}
+            <div class="rec-box rec-mark">
+              {% if isFormer %}<p style="margin-top:0">The mark it used{{ entry.dateDissolvedEdtf|trim ? ' until ' ~ (entry.dateDissolvedEdtf|slice(0, 4)) : '' }}.</p>{% endif %}
+              {% if condition %}<p style="margin-top:{{ isFormer ? '6px' : '0' }}">{{ condition }}</p>{% endif %}
+            </div>
+          {% endif %}
         {% endif %}
         {% if EXEC %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'box' } only %}{% endif %}
         {% if districtMap and not mapInBody and not hasHub %}

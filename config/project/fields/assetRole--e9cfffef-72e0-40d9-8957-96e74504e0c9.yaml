@@ -39,6 +39,17 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Former mark (of a dissolved body)'
+        -
+          - value
+          - former-mark
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

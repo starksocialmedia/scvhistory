@@ -1,0 +1,254 @@
+{
+ "by": "Claude (research for Nathan), 4 October 2026",
+ "for": "inventory/review/council-transition-2026-10-04.md",
+ "files": [
+  {
+   "file": "SANTA_CLARITA_CITY-CNC_1_11-05-24_by_Precinct_4324-cc9776.xls",
+   "url": "https://content.lavote.gov/docs/rrcc/svc/4324_final_svc_excel_v2.zip",
+   "read": "2026-10-04",
+   "sha256": "6197c01563f25fe38a296023119620497d970c0634fa7b94b576cf0890bdc7c5",
+   "bytes": 44544,
+   "what": "County of Los Angeles RR/CC, Statement of Votes Cast by precinct, General Election 5 November 2024, contest SANTA CLARITA CITY-CNC 1 (cc9776), extracted from the Final SVC Excel zip (zip sha256 ea990c57c3e6b18413f064c87a9babe4dc4d82400a82dcb97586c37dcf492e0c, 14,592,259 bytes). The zip holds no other Santa Clarita City Council contest. Totals summed from the TOTAL rows: registration 23,054, ballots 15,508; Patsy Ayala 4,563, Bryce Jepsen 4,142, Tim Burkhart 4,108."
+  },
+  {
+   "file": "list-of-qualified-candidates-memo.pdf",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2024/08/List-of-Qualified-Candidates-Memo.pdf",
+   "read": "2026-10-04",
+   "sha256": "537acf3d7b2c483768a342817d65679dff21c030960198f0983ed5dc79d7f22f",
+   "bytes": 87323,
+   "what": "City Clerk Mary Cusick, memorandum 'List of Qualified Candidates', 10 August 2024: District 1 Burkhart, Jepsen, Ayala; District 3 Jason Gibbs alone."
+  },
+  {
+   "file": "list-of-qualified-candidates-memo.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "6b367ae8893b0def52f2957197e094d3f93d6bfcacf3d7f969323b772c087a50",
+   "bytes": 1252,
+   "what": "pdftotext -layout of the memo."
+  },
+  {
+   "file": "notice-not-more-candidates-than-offices.pdf",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2024/08/Combined-Notice-That-There-Are-Not-More-Candidates-Than-Offices-To-Be-Electe.pdf",
+   "read": "2026-10-04",
+   "sha256": "1eb6020f41e0b82ea09f4d4dc36e81405b2784fbb92947dc6d27d2a5a9441e9d",
+   "bytes": 155757,
+   "what": "City Clerk's notice under Elections Code 10229, dated 9 August 2024, published and posted 14 August 2024 (English and Spanish): District 3, full term of four years, sole nominee Jason Gibbs; council to meet 19 August 2024."
+  },
+  {
+   "file": "notice-not-more-candidates-than-offices.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "24c9289270fb1da334c3bbb51b9ab2eab14c9ccbeb20e1f4042bd935ec62a01c",
+   "bytes": 3724,
+   "what": "pdftotext -layout of the notice."
+  },
+  {
+   "file": "candidate-handbook-2024.pdf",
+   "url": "https://santaclarita.gov/city-clerk/wp-content/uploads/sites/8/2024/07/Candidate-Handbook-2024_Final.pdf",
+   "read": "2026-10-04",
+   "sha256": "cfdc81e21e9533238e64f3ebb853a54d60c4f6191d4ae6df9c1e823c09a4c5fc",
+   "bytes": 4186670,
+   "what": "City of Santa Clarita, Candidate Handbook 2024: 'General Law City'; 'November 2024 seats: One seat in District 1, One seat in District 3'; 'November 2026 seats: District 2, 4, 5'."
+  },
+  {
+   "file": "candidate-handbook-2024.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "c102ef3aa42cca0ac240a06c16cf0b6dc60ccc469a3ea24fb6291ffa4326da3d",
+   "bytes": 14093,
+   "what": "pdftotext -layout of the handbook."
+  },
+  {
+   "file": "leginfo-elec-10229.html",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=ELEC&sectionNum=10229.",
+   "read": "2026-10-04",
+   "sha256": "c1438e8ef84f8994acd7793f17278028e673a2661b6a059b8293d85aaf50ac09",
+   "bytes": 166660,
+   "what": "Elections Code 10229 as now in force (amended Stats. 2024, ch. 355, AB 1784, effective 1 January 2025)."
+  },
+  {
+   "file": "leginfo-elec-10229.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "a32cda261f7ca3ba54608e4b4c7caef241af08d76231191e514bb91078825b3d",
+   "bytes": 4334,
+   "what": "Text of 10229 extracted from the page."
+  },
+  {
+   "file": "leginfo-elec-10515.html",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=ELEC&sectionNum=10515.",
+   "read": "2026-10-04",
+   "sha256": "aaa1f6af5e9f866fc5ca3bd73ebd1b0c583fe72048b436d72fc385ae02db63dc",
+   "bytes": 165622,
+   "what": "Elections Code 10515 (Uniform District Election Law): appointment when candidates do not exceed offices."
+  },
+  {
+   "file": "leginfo-elec-10515.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "bc37defe9bab6aeb113ab1baab96616f7b4acda9c87f9486a2a9a4b0512eb0c4",
+   "bytes": 2490,
+   "what": "Text of 10515."
+  },
+  {
+   "file": "leginfo-elec-10403.html",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=ELEC&sectionNum=10403.",
+   "read": "2026-10-04",
+   "sha256": "b914b6eea102e5ef9ae865c3580d4f5924114e268af100de68c66e3038812784",
+   "bytes": 164181,
+   "what": "Elections Code 10403: consolidation of a city election with a statewide election."
+  },
+  {
+   "file": "leginfo-elec-10403.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "fbcefbed536ab74cb5666af0c70961391babdff4d676b2bfe4cadd4092475189",
+   "bytes": 1934,
+   "what": "Text of 10403."
+  },
+  {
+   "file": "leginfo-elec-10501.html",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=ELEC&sectionNum=10501.",
+   "read": "2026-10-04",
+   "sha256": "8f28cba858de29cbea7877fb9c5fa82300cae653d2b7faaac17d497cb21e3e60",
+   "bytes": 162613,
+   "what": "Elections Code 10501: purpose of the Uniform District Election Law."
+  },
+  {
+   "file": "leginfo-elec-10501.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "d56d18aacc0df73f48700b5ab622d42d297a67eb3ba0815d042110004de1c1b1",
+   "bytes": 576,
+   "what": "Text of 10501."
+  },
+  {
+   "file": "leginfo-elec-10502.html",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=ELEC&sectionNum=10502.",
+   "read": "2026-10-04",
+   "sha256": "cb3ea692e3819b7d40487382cee33216c9dcfd124a216e2572aa3a30dff238c1",
+   "bytes": 163908,
+   "what": "Elections Code 10502: UDEL applies to districts whose principal acts so provide."
+  },
+  {
+   "file": "leginfo-elec-10502.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "2a92c39aea7a181007bf32157cd11023a179ffaee5118c4a47af2cfa7620584d",
+   "bytes": 2281,
+   "what": "Text of 10502."
+  },
+  {
+   "file": "leginfo-educ-5326.html",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=EDC&sectionNum=5326.",
+   "read": "2026-10-04",
+   "sha256": "d8a20b233e87eaa1d6a7976b9a2a74f5401bafbdb35cc83f1bdb564bcfb1df28",
+   "bytes": 165413,
+   "what": "Education Code 5326: school governing board elections not held when nominees do not exceed seats."
+  },
+  {
+   "file": "leginfo-educ-5326.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "aabf74ec9c92f45a98f4fe10d0d7c88ca720a0cfa2a1e2f12accc33fefc9e5cb",
+   "bytes": 1925,
+   "what": "Text of 5326."
+  },
+  {
+   "file": "leginfo-educ-5328.html",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=EDC&sectionNum=5328.",
+   "read": "2026-10-04",
+   "sha256": "bb83f7c1f328d86da8ad7a446e05e6fd046a6d29545e2ecd6bce8bc1881b6a67",
+   "bytes": 163179,
+   "what": "Education Code 5328: nominees seated 'as if elected at a district election'."
+  },
+  {
+   "file": "leginfo-educ-5328.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "31ba64c6d30aafd99a338733a89886b116df34cd1e4e7f12bddf07b65ab3d5b9",
+   "bytes": 1106,
+   "what": "Text of 5328."
+  },
+  {
+   "file": "scvnews-2024-08-council-meets.html",
+   "url": "https://scvnews.com/aug-19-council-meets-to-discuss-city-council-election/",
+   "read": "2026-10-04",
+   "sha256": "f50ca9ca481d79bd26341436e71818d7b8973ee77bd540ea94ef2fea62963d12",
+   "bytes": 146741,
+   "what": "SCVNews, notice of the 19 August 2024 special meeting: options were to hold the District 3 election or 'adopt a resolution canceling the election for District 3 and appointing Jason Gibbs, the sole nominee'."
+  },
+  {
+   "file": "scvnews-2024-08-council-meets.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "1b795f7ae85a3c842af52ec053b535f59920a962bce860bcda9068b760752c2a",
+   "bytes": 13357,
+   "what": "Text of the page."
+  },
+  {
+   "file": "wb-signal-2024-08-council-names-gibbs.html",
+   "url": "https://web.archive.org/web/2025id_/https://signalscv.com/2024/08/council-names-gibbs-to-district-3-seat",
+   "read": "2026-10-04",
+   "sha256": "6d43e204826e7c7fbbc52a7ef14a3dcec7ecaa7a7a002e78b66fd1a997995201",
+   "bytes": 372858,
+   "what": "The Signal, 'Council names Gibbs to District 3 seat', August 2024 (Wayback capture; signalscv.com refuses direct requests): Weste moved to appoint Gibbs and cancel the election; Gibbs the only filer by 9 August."
+  },
+  {
+   "file": "wb-signal-2024-08-council-names-gibbs.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "5fea15c5ba3701755a0bc03efdcf5ebedb18f65aea6efadf1994863d5613a147",
+   "bytes": 14090,
+   "what": "Text of the capture."
+  },
+  {
+   "file": "wb-signal-2025-12-council-to-choose-mayor.html",
+   "url": "https://web.archive.org/web/20260107091521id_/https://signalscv.com/2025/12/santa-clarita-city-council-to-choose-mayor/",
+   "read": "2026-10-04",
+   "sha256": "c95590ff4e4bfc87b9226817159593fd01a9846f166d08c5876489d1b114c725",
+   "bytes": 375697,
+   "what": "The Signal, 8 December 2025: Weste, mayor pro tem, 'serving her seventh term on the council'; expected to be named mayor."
+  },
+  {
+   "file": "wb-signal-2025-12-council-to-choose-mayor.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "02d9f438931aafa29f9dd4dc4725832ded04df67a070fcb873eca95e62fa3d84",
+   "bytes": 14230,
+   "what": "Text of the capture."
+  },
+  {
+   "file": "wb-signal-2025-12-election-year-is-nigh.html",
+   "url": "https://web.archive.org/web/20260105182407id_/https://signalscv.com/2025/12/election-year-is-nigh-for-santa-clarita-city-council/",
+   "read": "2026-10-04",
+   "sha256": "508aad883665fe2eacaee9ccea311615f8d46c7e976a3495178d9a1fa73db0bf",
+   "bytes": 375601,
+   "what": "The Signal, 26 December 2025: Weste sworn in as mayor for 2026 on 9 December 2025; Miranda and McLean not seeking re-election; Weste may run in District 4 in 2026."
+  },
+  {
+   "file": "wb-signal-2025-12-election-year-is-nigh.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "2bf3391118e33703823da61efcb6efbd63aa2e6afe54419dd81bf08e8dbb4e32",
+   "bytes": 13782,
+   "what": "Text of the capture."
+  },
+  {
+   "file": "scvnews-weste-named-mayor-fifth-time.html",
+   "url": "https://scvnews.com/laurene-weste-named-mayor-for-fifth-time",
+   "read": "2026-10-04",
+   "sha256": "9cafb8c17870e7a9d0c5d69692f1f3b8a6c9eb19a99ed25ee25e5e11c5edfd1e",
+   "bytes": 155109,
+   "what": "SCVNews, 12 December 2017: Weste named mayor for a fifth time; earlier stints 2001, 2006, 2010, 2014 (so the City's mayoral years are years served)."
+  },
+  {
+   "file": "scvnews-weste-named-mayor-fifth-time.txt",
+   "url": "derived",
+   "read": "2026-10-04",
+   "sha256": "3f176e39ef8d3925bc10347c82216579b9bf586f4b9f86ae8d50ac1ec1f5e2f0",
+   "bytes": 12520,
+   "what": "Text of the page."
+  }
+ ]
+}

@@ -191,7 +191,7 @@
     'height': a.height ? { '@type': 'QuantitativeValue', 'value': a.height, 'unitCode': 'E37' } : null,
     'creditText': credit ?: null,
     'copyrightHolder': (val.rightsHolder ?? '')|trim ? { '@type': 'Organization', 'name': val.rightsHolder|trim } : null,
-    'license': lic ? licUrl[lic] : null,
+    'license': lic ? (licUrl[lic] ?? null) : null,
     'acquireLicensePage': siteUrl ~ 'about#rights',
     'isBasedOn': (val.legacySourcePath ?? '')|trim ?: null,
     'encodingFormat': a.mimeType ?? null,
