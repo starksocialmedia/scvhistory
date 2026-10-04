@@ -21,7 +21,9 @@
     fill   true when the parent already has a fixed size (cards, thumbnails);
            false to give the box its own aspect ratio (the record portrait)
 #}
-{% macro img(img, ratio, alt, fill) %}
+{% macro img(img, ratio, alt, fill, w) %}
+  {#- w: optional width in pixels to resize to, for cards that never need the original (the war memorial's wall). -#}
+  {%- set src = (w ?? null) and img and img.width and img.width > w ? img.getUrl({ width: w, mode: 'fit' }) : (img ? img.url : '') -%}
   {%- if img -%}
     {%- set crops = source('_data/portrait-crops.json', ignore_missing = true)|json_decode -%}
     {%- set crop = crops ? (crops[img.id ~ ''] ?? null) : null -%}
@@ -35,9 +37,9 @@
       {%- set rh = rw / a -%}
       {%- set left = min(0, max(1 - rw, 0.5 - fp.x * rw)) -%}
       {%- set top = min(0, max(h - rh, h * 0.34 - fp.y * rh)) -%}
-      <span class="pcrop" style="display:block;position:relative;overflow:hidden;width:100%;{{ fill ? 'height:100%' : 'aspect-ratio:1/' ~ h }}"><img src="{{ img.url }}" alt="{{ alt }}" style="position:absolute;max-width:none;height:auto;aspect-ratio:auto;object-fit:fill;width:{{ (rw * 100)|round(2) }}%;left:{{ (left * 100)|round(2) }}%;top:{{ (top / h * 100)|round(2) }}%"></span>
+      <span class="pcrop" style="display:block;position:relative;overflow:hidden;width:100%;{{ fill ? 'height:100%' : 'aspect-ratio:1/' ~ h }}"><img src="{{ src }}" alt="{{ alt }}" loading="lazy" decoding="async" style="position:absolute;max-width:none;height:auto;aspect-ratio:auto;object-fit:fill;width:{{ (rw * 100)|round(2) }}%;left:{{ (left * 100)|round(2) }}%;top:{{ (top / h * 100)|round(2) }}%"></span>
     {%- else -%}
-      <img src="{{ img.url }}" alt="{{ alt }}"{% include '_partials/record/img-pos.twig' with {img: img} only %}>
+      <img src="{{ src }}" alt="{{ alt }}" loading="lazy" decoding="async"{% include '_partials/record/img-pos.twig' with {img: img} only %}>
     {%- endif -%}
   {%- endif -%}
 {% endmacro %}

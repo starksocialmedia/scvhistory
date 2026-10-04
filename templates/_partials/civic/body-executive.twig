@@ -1,0 +1,58 @@
+{#
+  A body's chief executive, in the sidebar with a portrait (Nathan, 4 October
+  2026: "superintendent in the sidebar with their portrait").
+
+  Read only from affiliation records with years (scripts/import/add_affiliations.php):
+  a superintendent is employed by the board, not elected to it. The present one is
+  the affiliation recorded as serving; when there is none, the box says the archive
+  has not recorded who it is. Everyone else is past, with their years. It was once
+  filled from whoever the archive held with the role, which put H. Clyde Smyth,
+  retired in 1992 and dead since 2012, in the box as if he held the post (Nathan,
+  4 October 2026: "That is the worst kind of error: a reader would take it as
+  fact"). A role with no dated affiliation is never shown here.
+
+    body   the organization
+    title  the title as the affiliations print it ("Superintendent")
+    label  the box's label ("SUPERINTENDENT")
+    as     'box': the sidebar, the present holder only, and a link to the
+           section. 'section': in the body, every holder with years (Nathan,
+           4 October 2026: "The superintendent box will not hold a list ...
+           Past superintendents are a section, not a sidebar item").
+#}
+{% import "_partials/record/portrait" as portrait %}
+{% set affs = craft.entries().section('affiliations').relatedTo({ targetElement: body, field: 'affiliationBody' }).affiliationTitle(title).with(['affiliationPerson']).all()
+    |filter(a => a.affiliationPerson|first) %}
+{% set present = affs|filter(a => a.affiliationEnded.value == 'serving') %}
+{% set past = affs|filter(a => a.affiliationEnded.value != 'serving')|sort((x, y) => (y.termEndEdtf ?: y.termStartEdtf) <=> (x.termEndEdtf ?: x.termStartEdtf)) %}
+{% set as = as ?? 'box' %}
+{% set plural = label|lower ~ 's' %}
+{% if as == 'box' %}
+<div class="rec-box"><div class="rec-lab">{{ label }}</div>
+  {% for a in present %}
+    {% set p = a.affiliationPerson|first %}
+    {% set img = 'featuredImage' in p.fieldLayout.customFields|map(f => f.handle) ? p.featuredImage.one() : null %}
+    <a href="{{ p.url }}" style="display:block;text-decoration:none;color:#17254C;margin-bottom:10px">
+      {% if img %}<div style="aspect-ratio:4/5;max-width:200px;overflow:hidden;background:#EEF0F4;margin-bottom:10px">{{ portrait.img(img, 1.25, p.title, true) }}</div>{% endif %}
+      <div style="font-family:'Playfair Display',serif;font-size:18px">{{ p.title }}</div>
+    </a>
+    <p style="font-size:13.5px;line-height:1.55;color:#5B6472;margin:0 0 4px">{{ a.termStart ? 'Since ' ~ a.termStart : 'Serving; the archive has not recorded since when' }}{% include "_partials/record/evidence" with { ev: a.startEvidence.value ? a.startEvidence : 'certified' } only %}</p>
+  {% else %}
+    <p style="font-size:13.5px;line-height:1.55;color:#5B6472;margin:0">The archive has not recorded who the present {{ label|lower }} is.</p>
+  {% endfor %}
+  {% if past|length %}<p style="font-size:13.5px;margin:10px 0 0"><a href="#{{ plural|replace({' ': '-'}) }}" style="color:#7A5C1B">All {{ plural }} the archive holds &darr;</a></p>{% endif %}
+</div>
+{% elseif affs|length %}
+<h2 class="rec-h2" id="{{ plural|replace({' ': '-'}) }}">{{ plural|capitalize }}</h2>
+<p class="hub-lede">{{ present|length ? 'The present ' ~ label|lower ~ ' and those before, as the archive holds them' : 'Those the archive holds; it has not recorded who the present ' ~ label|lower ~ ' is' }}, most recent first.</p>
+<div class="hub-people">
+  {% for a in present|merge(past) %}
+    {% set p = a.affiliationPerson|first %}
+    {% set pimg = 'featuredImage' in p.fieldLayout.customFields|map(f => f.handle) ? p.featuredImage.one() : null %}
+    {% set pp = p.title|split(' ')|filter(x => x|trim) %}
+    <div class="rec-person">
+      <a class="th" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait.img(pimg, 1, '', true) }}{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</a>
+      <div style="min-width:0"><a class="n" href="{{ p.url }}" style="text-decoration:none">{{ p.title }}</a><div class="r">{{ a.affiliationEnded.value == 'serving' ? (a.termStart ? a.termStart ~ ' to now' : 'Present; start not recorded') : (a.termStart ?: '?') ~ ' to ' ~ (a.termEnd ?: '?') }}{% include "_partials/record/evidence" with { ev: a.endEvidence.value ? a.endEvidence : (a.startEvidence.value ? a.startEvidence : 'certified') } only %}</div></div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}

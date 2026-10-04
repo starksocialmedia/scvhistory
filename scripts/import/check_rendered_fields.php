@@ -104,6 +104,8 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
             if ($mode === 'href') { $u = trim((string)$v); $path = parse_url($u, PHP_URL_PATH) ?: $u; $ns = [str_contains($html, $u) || str_contains($html, htmlspecialchars($u)) || ($path !== '/' && str_contains($html, $path)) ? '' : $u]; }
             if ($mode === 'number' && is_numeric(trim((string)$v))) { $ns = [number_format((float)trim((string)$v))]; }
             if ($mode === 'evidence') { $W = ['certified' => "the body's own record", 'contemporary' => 'reported at the time', 'retrospective' => 'recalled later', 'roster' => 'from an undated roster', 'derived' => 'read from the count', 'uncited' => 'not yet sourced']; $ns = [isset($W[(string)($v->value ?? '')]) ? strtolower($W[(string)$v->value]) : '']; }
+            /* One value per line, each shown as its own name (the organization page separates aliases, 4 October 2026): each line is looked for. */
+            if ($mode === 'lines') { $ns = array_values(array_map($probe, array_filter(array_map('trim', preg_split('~\R~', (string)$v)), 'strlen'))); }
             if ($mode === 'list') { $ns = [$probe(trim(preg_split('~[;,]~', (string)$v)[0]))]; }
             /* On a sourced record (war memorials), a field's value may show in its sourced form, as the fact row that says the same thing
                ("Hart High School, class of 1967" for "Hart High School (class of 1967)"). The same test as the template: the opening words of

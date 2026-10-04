@@ -1,0 +1,88 @@
+columnSuffix: null
+handle: affiliationEnded
+instructions: null
+name: 'How it ended'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Still serving'
+        -
+          - value
+          - serving
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Retired
+        -
+          - value
+          - retired
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Resigned
+        -
+          - value
+          - resigned
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Left
+        -
+          - value
+          - left
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Died in the post'
+        -
+          - value
+          - died
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Dismissed
+        -
+          - value
+          - dismissed
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Unknown
+        -
+          - value
+          - unknown
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

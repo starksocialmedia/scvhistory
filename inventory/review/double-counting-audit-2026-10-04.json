@@ -1,0 +1,454 @@
+{
+ "audit": "Perkins/Reynolds double-counting and reliability audit",
+ "date": "2026-10-04",
+ "agent": "Claude (read-only)",
+ "scope": "111 records: 70 persons with bodyAuthorship editorial-2026, and 41 groups/places/organizations/events whose footnotes are editorial-2026. 39 cite Reynolds or Perkins; all 111 swept for the dossiers' error strings.",
+ "findings": [
+  {
+   "n": 1,
+   "id": 915,
+   "title": "del Valle Family",
+   "section": "groups",
+   "cls": [
+    "D",
+    "A"
+   ],
+   "sev": "high",
+   "sentence": "A judge divided the estate: the westernmost section, 13,599 acres, to his son Ygnacio, 21,307 acres to his widow, Jacoba, and 4,684 acres to each of her six children.",
+   "notes": "[2] Leon Worden, LW2052. LW2052 repeats Reynolds ch. 15 word for word on this point, so the only source is Reynolds.",
+   "ledger": "Reynolds D1 (contradicted): the figures sum to 62,010 acres against a 48,611.88-acre patent. Perkins (P46, confirmed, from the probate and deeds): undivided shares until the 1870 partition, Camulos 1,340 acres.",
+   "rule": "Drop the figures. Give Perkins's document-based sequence; if the figures are kept at all, give them as Reynolds's and say they cannot be right.",
+   "draft": "The heirs held the rancho in undivided shares until it was partitioned in 1870, when Camulos, about 1,340 acres, was set apart for Ygnacio.[3]",
+   "note_change": "Cite note 3 (Perkins 1957, his note 85) for the new sentence; keep note 2 for the 1861 Wolfskill settlement and the move to Camulos."
+  },
+  {
+   "n": 2,
+   "id": 16446,
+   "title": "Rancho San Francisco",
+   "section": "places",
+   "cls": [
+    "D",
+    "C"
+   ],
+   "sev": "high",
+   "sentence": "After Antonio's death the estate was fought over. A judge gave his son Ygnacio the westernmost section, 13,599 acres, which included Camulos; 21,307 acres to Antonio's widow, Jacoba; and 4,684 acres to each of her six children.",
+   "notes": "[2] LW2052 (repeats Reynolds ch. 15), [1] Perkins 1957. Perkins does not give these figures; he says the opposite (no partition before title was confirmed; partition 1870).",
+   "ledger": "Reynolds D1; Perkins P46.",
+   "rule": "Drop the figures. Two notes make it look corroborated, but one is Reynolds at second hand and the other contradicts the sentence.",
+   "draft": "After Antonio's death the estate was fought over. His heirs held the rancho in undivided shares until it was partitioned in 1870, when Camulos, about 1,340 acres, was set apart for Ygnacio.[1]",
+   "note_change": "Note 2 stays on the Wolfskill sentence that follows."
+  },
+  {
+   "n": 3,
+   "id": 16446,
+   "title": "Rancho San Francisco",
+   "section": "places",
+   "cls": [
+    "B"
+   ],
+   "sev": "medium",
+   "sentence": "Rancho San Francisco was the Mexican land grant that held the western Santa Clarita Valley: 48,829 acres, with part of Ventura County as far as Piru.",
+   "notes": "[1] Perkins 1957, [2] LW2052. 48,829 is in LW2052 and Reynolds; Perkins gives eleven leagues, not this figure.",
+   "ledger": "Reynolds number pattern; Antonio del Valle #291 already handles it correctly (nominal size vs the patent).",
+   "rule": "A Reynolds acreage needs a third source. Use the patent figure, as #291 does.",
+   "draft": "Rancho San Francisco was the Mexican land grant that held the western Santa Clarita Valley: eleven square leagues, patented in 1875 at 48,611.88 acres, with part of Ventura County as far as Piru.",
+   "note_change": "Add the patent (Land Case 303 SD) as #291 note 4 cites it."
+  },
+  {
+   "n": 4,
+   "id": 932,
+   "title": "Beale's Cut Stagecoach Pass",
+   "section": "places",
+   "cls": [
+    "D",
+    "A",
+    "C"
+   ],
+   "sev": "high",
+   "sentence": "Edward F. Beale took over Pico's franchise from the Los Angeles supervisors, with five thousand dollars to do the work, and called out troops from Fort Tejon to dig a ninety-foot slash through the mountain with picks and shovels.",
+   "notes": "[1] Reynolds ch. 28 only.",
+   "ledger": "B6 ($5,000; the Los Angeles Star of 4 April 1863, transcribed by Perkins (P51), estimated $16,000 to $18,000); B5/P27 (the ninety-foot slash and the Fort Tejon troops; depth never surveyed; inherited from Perkins); P22 (the franchise was the 1861 act to Brinley, Pico and Vineyard).",
+   "rule": "Drop the sum, the depth and the troops; the Star figure comes in through Perkins's transcription, which the rule accepts.",
+   "draft": "In 1863 the work passed to Edward F. Beale. The Los Angeles Star of 4 April 1863 put its cost at $16,000 to $18,000. The cut's depth was never surveyed: the ninety feet of later accounts, Perkins's and Reynolds's alike, is a single tradition.",
+   "note_change": "Cite Perkins, \"4. Early Transportation\" (#1426), for the Star transcription."
+  },
+  {
+   "n": 5,
+   "id": 932,
+   "title": "Beale's Cut Stagecoach Pass",
+   "section": "places",
+   "cls": [
+    "A",
+    "B"
+   ],
+   "sev": "medium",
+   "sentence": "Andrés Pico began improving the road over the pass in the winter of 1862-63, but floods washed the work out. ... On September 19, 1863, he lent two thousand dollars to A.A. Hudson and Oliver P. Robbins, who built a toll house below the cut, and the pass was a toll road for twenty-one years, until it reverted to the county.",
+   "notes": "[1] Reynolds ch. 28 only.",
+   "ledger": "Minor date, sum and name from Reynolds alone; B13 (Robbins's initials conflict, A.P. or O.P.). Andrés Pico #317 has the Supervisors giving Pico the grade contract in 1861 (Worden, citing the Star and Board minutes).",
+   "rule": "Give as his.",
+   "draft": "Jerry Reynolds writes that Andrés Pico's work on the road was washed out by floods in the winter of 1862-63, and that Beale lent A.A. Hudson and O.P. Robbins the money to build a toll house below the cut. The pass was a toll road until the franchise ran out, about 1884.",
+   "note_change": "Keep note 1; the 1884 date is Ripley's (twenty years from March 1864) as the Beale dossier gives it."
+  },
+  {
+   "n": 6,
+   "id": 327,
+   "title": "Edward Fitzgerald Beale",
+   "section": "persons",
+   "cls": [
+    "D",
+    "A"
+   ],
+   "sev": "high",
+   "sentence": "He took over Andrés Pico's franchise for the road over the pass and got five thousand dollars from the Los Angeles supervisors to do the work.",
+   "notes": "[2] Reynolds ch. 28 only.",
+   "ledger": "B6 (contradicted by the Star via Perkins P51); P22.",
+   "rule": "Drop the sum; replace with the documented estimate.",
+   "draft": "In 1863 he took on the cutting of the road through the Newhall Pass; the Los Angeles Star put the cost of the work at $16,000 to $18,000.",
+   "note_change": "Cite Perkins, \"4. Early Transportation\" (#1426), quoting the Star of 4 April 1863."
+  },
+  {
+   "n": 7,
+   "id": 327,
+   "title": "Edward Fitzgerald Beale",
+   "section": "persons",
+   "cls": [
+    "D"
+   ],
+   "sev": "low",
+   "sentence": "He was superintendent of Indian affairs for California and Nevada from 1853, ...",
+   "notes": "[1] Beale AFB biography, [2] Reynolds ch. 28.",
+   "ledger": "P17 (Perkins, inherited by Reynolds B3): the appointment of 3 March 1853 was for California; Nevada was not a separate jurisdiction until 1861. The AFB biography repeats \"and Nevada\".",
+   "rule": "Correct the label; the AFB biography is not a third source on this point.",
+   "draft": "He was superintendent of Indian affairs for California from 1853, ...",
+   "note_change": "None."
+  },
+  {
+   "n": 8,
+   "id": 327,
+   "title": "Edward Fitzgerald Beale",
+   "section": "persons",
+   "cls": [
+    "B"
+   ],
+   "sev": "low",
+   "sentence": "He bought Rancho La Liebre on August 8, 1855, ...",
+   "notes": "[2] Reynolds, [1] AFB.",
+   "ledger": "B+5: the year is confirmed, the day (August 8) only Reynolds's.",
+   "rule": "Give the day as his.",
+   "draft": "He bought Rancho La Liebre in 1855, on August 8 by Jerry Reynolds's date, ...",
+   "note_change": "None. (The 297,000 acres in the same sentence is already given as Reynolds's beside the AFB's 270,000, which the rule allows; the ledger (B7) calls it contradicted, so it could also be dropped.)"
+  },
+  {
+   "n": 9,
+   "id": 287,
+   "title": "Pedro Fages",
+   "section": "persons",
+   "cls": [
+    "A",
+    "B"
+   ],
+   "sev": "high",
+   "sentence": "In the spring of 1772 six of his soldiers deserted, and Fages went after them by way of the Mojave River and the Antelope Valley ... After two days' rest the party climbed the canyon ... He never found the deserters.",
+   "notes": "[1] Reynolds ch. 9 only, for the whole paragraph (headcount, route, first camp, the chief's misdirection, the two days' rest, Laguna as Lake Elizabeth).",
+   "ledger": "Reynolds's vivid-story and minor-detail pattern; the 1772 passage itself is supported by the 1938 landmark (LW2504).",
+   "rule": "Give as his, or cut to what the landmark supports.",
+   "draft": "In 1772 he came back after deserters. Jerry Reynolds tells the pursuit in detail: six soldiers gone, a route by the Mojave River and the Antelope Valley, a first camp probably near Agua Dulce Springs, and a climb up Castaic Canyon on the word of the Tataviam chief. He never found them.",
+   "note_change": "Keep note 1; add note 2 (LW2504, the landmark) for the 1772 passage."
+  },
+  {
+   "n": 10,
+   "id": 287,
+   "title": "Pedro Fages",
+   "section": "persons",
+   "cls": [
+    "B"
+   ],
+   "sev": "medium",
+   "sentence": "Born about 1734, a Catalonian, he had led the twenty-five Catalonian soldiers on the 1769 march; he later fought Apaches on the Sonoran frontier, served again as governor until 1791, and died in 1796.",
+   "notes": "[1] Reynolds ch. 9 only.",
+   "ledger": "Reynolds gives \"in his early thirties\" in 1769 and no death year; he says accounts differ on how Fages ended. The 1796 is not in the cited source. Standard references give 1794 (NEEDS_VERIFICATION).",
+   "rule": "The death year has no source here; the headcount is his.",
+   "draft": "A Catalonian, he had led the Catalonian Volunteers on the 1769 march, twenty-five of them by Jerry Reynolds's count; he later fought Apaches on the Sonoran frontier and served again as governor until 1791.",
+   "note_change": "Drop the death year until a source is cited."
+  },
+  {
+   "n": 11,
+   "id": 913,
+   "title": "Tataviam",
+   "section": "groups",
+   "cls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "sev": "high (CARE)",
+   "sentence": "Their neighbors the Kitanemuks called them Tataviam, \"dwellers on sunny slopes\"; peoples they had displaced called them Allikliks, \"grunters.\" ... They lived in some twenty-five villages: Kamulus ..., Tochonanga on Newhall Creek, and Chaguayabit, a town of about five hundred, at Castaic Junction. They wove fine baskets but made no pottery, ...",
+   "notes": "[1] Reynolds ch. 4; [1][2] Reynolds ch. 4 and ch. 5 (one author cited twice).",
+   "ledger": "Reynolds B14/R3 pattern (glosses unverified, CARE); Perkins P8 (Alliklik superseded). Ch. 4's own editor's note says Tochonanga's site \"remains a mystery\".",
+   "rule": "Indigenous ethnography from Reynolds is unverified and TATAVIAM_AUDIT governs. Attribute everything, and Nathan decides whether the glosses stay before consultation.",
+   "draft": "Jerry Reynolds wrote that the Kitanemuks called them Tataviam, which he glosses \"dwellers on sunny slopes,\" and that he counted some twenty-five villages, among them Kamulus at what is now Camulos, Piru-U-Bit on Piru Creek and Chaguayabit at Castaic Junction, which he puts at about five hundred people. Tochonanga was in the Newhall area; its exact site is not known. These names and meanings await consultation with the Fernandeño Tataviam Band of Mission Indians.",
+   "note_change": "Cite ch. 4 once; drop the Alliklik gloss pending Nathan."
+  },
+  {
+   "n": 12,
+   "id": 913,
+   "title": "Tataviam",
+   "section": "groups",
+   "cls": [
+    "D"
+   ],
+   "sev": "high (CARE)",
+   "sentence": "He gives 1916 for the death of the last full-blooded Tataviam; Reynolds gives 1921, at the Camulos Ranch.",
+   "notes": "[4] Worden 1996, [2] Reynolds ch. 5.",
+   "ledger": "Reynolds R1 / Perkins P1: Reynolds wrote 1916 and Perkins 1934; the 1921 in the web text is the editor's correction from the Ventura County death certificate (30 June 1921). The sentence credits Reynolds with the correction and leaves open a point a document settles.",
+   "rule": "Give the document's date; cite the 1998 edition, not Reynolds, for the correction.",
+   "draft": "Leon Worden gave 1916 for the death of the last full-blooded Tataviam, as Jerry Reynolds first had; the 1998 edition of Reynolds's history corrects it to 1921, from the Ventura County death certificate.",
+   "note_change": "Note 2 should name the 1998 edition's note 1 on ch. 5."
+  },
+  {
+   "n": 13,
+   "id": 938,
+   "title": "Portolá Expedition",
+   "section": "groups",
+   "cls": [
+    "C",
+    "B"
+   ],
+   "sev": "medium",
+   "sentence": "Governor Gaspar de Portolá had set out from San Diego with sixty-four men to find the Bay of Monterey, leaving Father Junípero Serra behind. His soldiers included the twenty-five Catalonian Volunteers under Lieutenant Pedro Fages.",
+   "notes": "[1] Reynolds ch. 7, [4] Reynolds ch. 9: one author cited twice.",
+   "ledger": "Reynolds figure pattern. The 64 has a third source already in the record: note 2, LW2441a (\"the 64 members of the Portolà expedition\"). The 25 does not.",
+   "rule": "Cite the third source for 64; give 25 as his.",
+   "draft": "Governor Gaspar de Portolá had set out from San Diego with sixty-four men to find the Bay of Monterey, leaving Father Junípero Serra behind. His soldiers included the Catalonian Volunteers under Lieutenant Pedro Fages, twenty-five of them by Jerry Reynolds's count.",
+   "note_change": "Notes [1][2] on the first sentence, [4] on the second."
+  },
+  {
+   "n": 14,
+   "id": 16140,
+   "title": "Jo Anne Darcy",
+   "section": "persons",
+   "cls": [
+    "A"
+   ],
+   "sev": "low",
+   "sentence": "She joined the City Formation Committee soon after it was organized.",
+   "notes": "[6] Reynolds ch. 70 only.",
+   "ledger": "PROFILES: ch. 69-70 were reworked by another contributor, ch. 70 \"adapted from material originally developed by Jerry Reynolds and the SCV Chamber of Commerce\".",
+   "rule": "Attribute, to the 1998 edition.",
+   "draft": "The 1998 History of the Santa Clarita Valley says she joined the City Formation Committee soon after it was organized.",
+   "note_change": "Note 6 to read \"History of the Santa Clarita Valley, 1998 edition, chapter 70\"."
+  },
+  {
+   "n": 15,
+   "id": 15874,
+   "title": "Jill Klajic (also #15737 Jan Heidt, #18616 Dan Hon)",
+   "section": "persons",
+   "cls": [
+    "A"
+   ],
+   "sev": "low",
+   "sentence": "Jerry Reynolds writes that she joined the City Formation Committee soon after it was organized and was paid staff to the campaign. (Heidt: \"Jerry Reynolds counts her among the three cityhood leaders ...\"; Hon: \"Jerry Reynolds writes that he co-chaired ...\")",
+   "notes": "Reynolds ch. 69 / ch. 70.",
+   "ledger": "Same as above: these chapters are not Reynolds's alone.",
+   "rule": "Attributed, but to the wrong author; name the edition.",
+   "draft": "The 1998 History of the Santa Clarita Valley says she joined the City Formation Committee soon after it was organized and was paid staff to the campaign.",
+   "note_change": "Same wording change in Heidt and Hon."
+  },
+  {
+   "n": 16,
+   "id": 376,
+   "title": "The Santa Clarita Valley Signal",
+   "section": "organizations",
+   "cls": [
+    "A"
+   ],
+   "sev": "medium",
+   "sentence": "(editor's note, public) The Signal was founded on February 7, 1919, as The Newhall Signal, not in 2019 as this record gave it (note 1).",
+   "notes": "[1] Reynolds ch. 61 only.",
+   "ledger": "Major-event date from Reynolds alone: accepted provisionally, attributed.",
+   "rule": "Attribute.",
+   "draft": "The Signal was founded as The Newhall Signal in 1919, on February 7 by Jerry Reynolds's date, not in 2019 as this record gave it (note 1).",
+   "note_change": "None."
+  },
+  {
+   "n": 17,
+   "id": 20226,
+   "title": "William Wirt Jenkins",
+   "section": "persons",
+   "cls": [
+    "B",
+    "A"
+   ],
+   "sev": "medium",
+   "sentence": "William Wirt Jenkins was a California Ranger and later a county undersheriff, and from 1878 ranched on Castaic Creek.",
+   "notes": "[1] Reynolds ch. 55 and ch. 41 only.",
+   "ledger": "A title (undersheriff) and a minor date from Reynolds alone. \"Ranger\" has Kreider 1952 (\"Ranger Bill Jenkins\"), already note 2. The occupation field also reads \"undersheriff\".",
+   "rule": "Give the title and the year as his.",
+   "draft": "William Wirt Jenkins was a California Ranger. Jerry Reynolds adds that he was later a county undersheriff and ranched on Castaic Creek from 1878.",
+   "note_change": "[2][1]; the occupation field should drop \"undersheriff\" or carry it as Reynolds's."
+  },
+  {
+   "n": 18,
+   "id": 20224,
+   "title": "Sanford Lyon",
+   "section": "persons",
+   "cls": [
+    "B"
+   ],
+   "sev": "low",
+   "sentence": "He and his twin brother Cyrus were born in Machias, Maine, on 20 November 1831.",
+   "notes": "[2] Pollack 2012 (1831 only) and Reynolds (the day).",
+   "ledger": "Minor date from Reynolds alone.",
+   "rule": "Give the day as his.",
+   "draft": "He and his twin brother Cyrus were born in Machias, Maine, in 1831, on 20 November by Jerry Reynolds's date.",
+   "note_change": "None."
+  },
+  {
+   "n": 19,
+   "id": 311,
+   "title": "Thomas O. Larkin",
+   "section": "persons",
+   "cls": [
+    "B",
+    "A"
+   ],
+   "sev": "medium",
+   "sentence": "Thomas O. Larkin, the American consul at Monterey, wrote to the New York Sun that a common laborer could pick up $2 a day at the San Feliciano placers, in a canyon off Piru Creek.",
+   "notes": "[1] Perkins, Story of Our Valley part 5, only.",
+   "ledger": "Perkins paraphrases the letter in his unsourced 1954 series; he does not quote or cite it, so the document rule does not apply.",
+   "rule": "Give as Perkins's.",
+   "draft": "A.B. Perkins wrote that Thomas O. Larkin, the American consul at Monterey, told the New York Sun a common laborer could pick up $2 a day at the San Feliciano placers, in a canyon off Piru Creek.",
+   "note_change": "None."
+  },
+  {
+   "n": 20,
+   "id": 948,
+   "title": "Bennett-Arcan Party",
+   "section": "groups",
+   "cls": [
+    "B"
+   ],
+   "sev": "low",
+   "sentence": "Manly, twenty-nine, and Rogers, twenty-two, had set out on November 4 with a canteen of water and some jerky.",
+   "notes": "[1] Reynolds ch. 19 only.",
+   "ledger": "Ages and vivid detail from Reynolds alone. The rest of the body attributes correctly (\"Reynolds writes\", \"Reynolds tells\").",
+   "rule": "Give as his, or check Manly's Death Valley in '49.",
+   "draft": "Manly and Rogers had set out on November 4, by Jerry Reynolds's account with a canteen of water and some jerky; he gives their ages as twenty-nine and twenty-two.",
+   "note_change": "None."
+  },
+  {
+   "n": 21,
+   "id": 315,
+   "title": "Christopher Houston Carson (also #307 John C. Frémont)",
+   "section": "persons",
+   "cls": [
+    "B"
+   ],
+   "sev": "low",
+   "sentence": "... the press called Frémont \"the Pathfinder,\" though Carson found most of the paths.",
+   "notes": "#315: [1] Pollack, [2] Reynolds ch. 18; Pollack does not say it. #307: [1] LW2225, [2] Reynolds.",
+   "ledger": "Reynolds's own line (ch. 18), a superlative stated as fact.",
+   "rule": "Drop, or give as his.",
+   "draft": "Christopher \"Kit\" Carson, born in Kentucky in 1809, was a fur trapper and mountain man who guided John C. Frémont, \"the Pathfinder,\" on his expeditions to the Far West.",
+   "note_change": "For #307: \"...an Army explorer the press called 'the Pathfinder', with Kit Carson as his guide, ...\""
+  },
+  {
+   "n": 22,
+   "id": 307,
+   "title": "John C. Frémont",
+   "section": "persons",
+   "cls": [
+    "C"
+   ],
+   "sev": "medium",
+   "sentence": "On January 9, 1847, Frémont and his hundred-man \"buckskin battalion\" reached Castaic Junction from the north and probably stopped overnight at the del Valle ranch house. The next night they camped at the Newhall Pass.",
+   "notes": "[1] Leon Worden LW2225, [2] Reynolds ch. 18.",
+   "ledger": "LW2225 tells the same story in the same words (\"100-man 'buckskin battalion'\", \"probably stopped overnight\"): one account, counted twice. The date of a major event may stand, attributed; the primary is Edwin Bryant's journal, which Reynolds quotes.",
+   "rule": "Treat as one source; attribute, or cite Bryant.",
+   "draft": "By the account Jerry Reynolds and Leon Worden both give, Frémont and his hundred-man \"buckskin battalion\" reached Castaic Junction from the north on January 9, 1847, and probably stopped overnight at the del Valle ranch house; the next night they camped at the Newhall Pass.",
+   "note_change": "Add Bryant, What I Saw in California, when held."
+  },
+  {
+   "n": 23,
+   "id": 291,
+   "title": "Antonio del Valle",
+   "section": "persons",
+   "cls": [
+    "C",
+    "B"
+   ],
+   "sev": "low",
+   "sentence": "(a) \"... and his heirs held it in undivided shares until it was partitioned in 1870.\" [1][2]  (b) \"His birth year is given as 1788: Reynolds has him forty-six in 1834 and fifty-three when he died.\" [2]",
+   "notes": "(a) Perkins and Reynolds; Reynolds ch. 15 says the opposite (a judge's division). (b) Reynolds only.",
+   "ledger": "(a) del Valle L1/D1; (b) Reynolds ages.",
+   "rule": "(a) Cite Perkins only. (b) Say it is inferred from his ages.",
+   "draft": "(b) Jerry Reynolds's ages for him, forty-six in 1834 and fifty-three at his death, would put his birth about 1788.",
+   "note_change": "(a) Drop [2] from the first paragraph's partition clause."
+  },
+  {
+   "n": 24,
+   "id": 297,
+   "title": "Juan Crespí",
+   "section": "persons",
+   "cls": [
+    "B",
+    "C"
+   ],
+   "sev": "low",
+   "sentence": "Father Juan Crespí's diary is the first written account of the Santa Clarita Valley and its people.",
+   "notes": "[1] Reynolds, [2] Worden LW2441a, [3] Perkins; the next sentence then quotes Reynolds and Perkins as the support.",
+   "ledger": "A \"first\" resting on Reynolds and Perkins, who count once.",
+   "rule": "Soften or attribute.",
+   "draft": "Father Juan Crespí's diary, with Miguel Costansó's, is among the earliest written accounts of the Santa Clarita Valley and its people.",
+   "note_change": "None."
+  },
+  {
+   "n": 25,
+   "id": 18702,
+   "title": "Tom Mix (also #15919 Harry Carey)",
+   "section": "persons",
+   "cls": [
+    "C"
+   ],
+   "sev": "low",
+   "sentence": "Tom Mix ... made Newhall his movie town from 1916 into the 1920s. He built one of his \"Mixville\" Western sets in downtown Newhall ...",
+   "notes": "[1] Birchard, King Cowboy (1993), and [3] \"Jerry Reynolds, 59. Mixville\", which the 1998 edition says Birchard rewrote.",
+   "ledger": "PROFILES: do not attribute ch. 59 to Reynolds. Here one author (Birchard) is cited twice, one of them under Reynolds's name. AL3022 is independent, so the claim stands.",
+   "rule": "Fix the note label.",
+   "draft": "(note 3) Robert S. Birchard, \"59. Mixville,\" in Jerry Reynolds, History of the Santa Clarita Valley, 1998 edition, article #2143 in this archive.",
+   "note_change": "Same label for Harry Carey note 3."
+  },
+  {
+   "n": 26,
+   "id": 323,
+   "title": "Cave Johnson Couts",
+   "section": "persons",
+   "cls": [
+    "B"
+   ],
+   "sev": "low",
+   "sentence": "Jerry Reynolds quotes the letter in his history of this valley; the drive reached San Jose on July 12, ...",
+   "notes": "[3] Reynolds ch. 21 only.",
+   "ledger": "Minor date from Reynolds alone; the rest of the profile attributes correctly.",
+   "rule": "Give as his.",
+   "draft": "Jerry Reynolds quotes the letter in his history of this valley and has the drive reaching San Jose on July 12; \"the Santa Clara\" may as well be the valley around San Jose, where it ended.",
+   "note_change": "None."
+  },
+  {
+   "n": 27,
+   "id": 16347,
+   "title": "California State University, Northridge",
+   "section": "organizations",
+   "cls": [
+    "B"
+   ],
+   "sev": "low (CARE)",
+   "sentence": "Archaeologists from CSUN and UCLA recovered 70 items from Elderberry Canyon, in the Castaic Reservoir area, in 1970, ...",
+   "notes": "[2] Reynolds, \"Ethnography of Castaic\" (his curator's list), [3] Worden 1995 for the box only.",
+   "ledger": "A figure from Reynolds alone, though from his own curatorial record; the Ethnography page is flagged for tribal consultation (C16), and a named site is a location.",
+   "rule": "Attribute; Nathan to decide whether the site name stays.",
+   "draft": "Jerry Reynolds, who ran the Castaic Lake visitors center, recorded 70 items recovered by archaeologists from CSUN and UCLA in the Castaic Reservoir area in 1970, and much of the material from the valley's prehistoric sites went into the university's collections.",
+   "note_change": "None."
+  }
+ ]
+}

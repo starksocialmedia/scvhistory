@@ -114,9 +114,14 @@
     if (on) {
       spacer.style.height = hdr.offsetHeight + 'px';
       hdr.classList.add('scv-stuck');
+      /* The fixed header's height, for anything that sticks under it (the war memorial's bar). */
+      document.documentElement.style.setProperty('--scv-stuck-h', hdr.offsetHeight + 'px');
+      document.documentElement.classList.add('scv-is-stuck');
     } else {
       hdr.classList.remove('scv-stuck');
       spacer.style.height = '0px';
+      document.documentElement.style.setProperty('--scv-stuck-h', '0px');
+      document.documentElement.classList.remove('scv-is-stuck');
     }
   }
 

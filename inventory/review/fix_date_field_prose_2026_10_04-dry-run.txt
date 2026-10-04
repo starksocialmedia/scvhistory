@@ -1,0 +1,119 @@
+= null
+
+Output:
+DRY RUN
+==============================================================================
+(a) articles: paragraph in originalPublishDate
+  #12656 Despite weather, some shows will still go on
+     originalPublishDate: ""See How They Run" will be performed on January 8, 12, 14, 16 and 17, 1998. Tickets are $6..." -> "November 15, 1997"
+     originalPublishDateEdtf: "" -> "1997-11-15" (file name pr111597.htm agrees)
+  #12540 Revitalizating Newhall: An 80-Year Saga
+     originalPublishDate: "You might remember the last revitalization attempt. The year was 1980, and the L.A. County..." -> "June 25, 1997"
+     originalPublishDateEdtf: "" -> "1997-06-25" (file name lw062597.htm agrees)
+  #12458 Who was Darius Towsley?
+     originalPublishDate: ""Deep within Towsley Canyon on the Temple claim, the first drilling with steam power ... b..." -> "October 15, 1997"
+     originalPublishDateEdtf: "" -> "1997-10-15" (file name lw101597.htm agrees)
+  #12412 Revitalizing Newhall: An 80-year saga
+     originalPublishDate: "You might remember the last revitalization attempt. The year was 1980, and the L.A. County..." -> "June 25, 1997"
+     originalPublishDateEdtf: "" -> "1997-06-25" (file name lw062597.htm agrees)
+  #12292 Sheriff celebrating 70 years in Newhall
+     originalPublishDate: "Deputy J.E.B. Stewart came up from L.A. to open the new substation on August 26, 1926. Sig..." -> "November 8, 1996"
+     originalPublishDateEdtf: "" -> "1996-11-08" (file name lw110896.htm agrees)
+  #12256 Your pick: poetry, parade or the park
+     originalPublishDate: "A great big cowboy thank-you to John Mann (Triple M Graphics, 251-1909) and Pauline Harte'..." -> "Wednesday, May 6, 1998"
+     originalPublishDateEdtf: "" -> "1998-05-06" (file name lw050698.htm agrees)
+  #12244 Porta Bella facts still coming to light
+     originalPublishDate: "Amir said the violations "occurred over a long time," before DTSC's investigation of the p..." -> "Wednesday, November 11, 1998"
+     originalPublishDateEdtf: "" -> "1998-11-11" (file name lw111198.htm agrees)
+  #12208 The Garden of Eden that might have been
+     originalPublishDate: "(Footnote to historians: Fustero's claim has not been verified. Anecdotal evidence suggest..." -> "Wednesday, July 15, 1998"
+     originalPublishDateEdtf: "" -> "1998-07-15" (file name lw071598.htm agrees)
+  #12206 Don't let sign ordinance catch you off-guard
+     originalPublishDate: "The Council adopted the 28-page sign ordinance back on November 13, 1990 and, at the reque..." -> "August 20, 1997"
+     originalPublishDateEdtf: "" -> "1997-08-20" (file name lw082097.htm agrees)
+  #12200 Don't let sign ordinance catch you off-guard
+     originalPublishDate: "The Council adopted the 28-page sign ordinance back on November 13, 1990 and, at the reque..." -> "August 20, 1997"
+     originalPublishDateEdtf: "" -> "1997-08-20" (file name lw082097.htm agrees)
+  #12168 E.F. Beale and the Beasts of Tejon
+     originalPublishDate: "The Army sold Beale's camels in November 1863. Some went to zoos and circuses, others to m..." -> ""
+     HELD: the page prints "Wednesday, April 24, 2002" (the dateline of lw042402b) but the file is lw011399 (13 January 1999) and the column calls the 1999 calendar "available now"; no date chosen
+  #12152 Piru: The Garden of Eden that might have been
+     originalPublishDate: "(Footnote to historians: Fustero's claim has not been verified. Anecdotal evidence suggest..." -> "Wednesday, July 15, 1998"
+     originalPublishDateEdtf: "" -> "1998-07-15" (file name lw071598.htm agrees)
+  #12140 Wal-Mart's in Valencia; Tesoro del Valle Isn't
+     originalPublishDate: ""The Newhall Land and Farming Co., as successor in interest to California Land and to Vale..." -> "Thursday, Sept. 2, 2004"
+     originalPublishDateEdtf: "" -> "2004-09-02" (file name lw090204.htm agrees)
+
+(a/c) article with the Gazette masthead
+  #12617 Life Lessons From The 'Good Old Days.'
+     sourceLine: "" -> "Old Town Newhall Gazette | March-April 2006 | Year 12, Number 2."
+     originalPublishDate: "Old Town Newhall Gazette | March-April 2006 | Year 12, Number 2." -> "March-April 2006"
+     originalPublishDateEdtf: "" -> "2006-03/2006-04"
+
+(b) photographs: caption fragment in photoDate
+  #5551 Winifred Westover, Hoover Art Co. Photograph, 1918...
+     photoDate: "as published in the Detroit Free Press, January 2, 1919.)" -> ""   (photoDateEdtf empty; body: Hoover Art Co. photograph "circa 1918-1919", undated)
+  #5537 Clint Walker Stars in ''More Dead Than Alive'' (UA...
+     photoDate: "British theaters until March 12, 1972." -> ""   (photoDateEdtf empty; body: British lobby card for the 1972 UK release; no date of its own)
+  #5459 Frontier Days Pinback, ''Brother of the Brush,'' 1...
+     photoDate: "From the 1964 Frontier Days program, published in The Signal, October 8, 1964:" -> ""   (photoDateEdtf empty; body: pinback "early-mid 1960s")
+  #5141 Gene Autry in 'Tumbling Tumbleweeds' (1944 Re-rele...
+     photoDate: "and was released September 5, 1935." -> ""   (photoDateEdtf empty; body: lobby card for the 1944 re-release)
+  #4625 Wreckage of Lockheed Transport Plane, 5-16-1938.
+     photoDate: "Plane crashed 5-16-1938; photograph dated 5-19-1938. Cutline (see below):" -> ""   (photoDateEdtf empty; body: "photograph dated 5-19-1938")
+  #4623 Wreckage of Lockheed Transport Plane, Casualty, 5-...
+     photoDate: "Plane crashed 5-16-1938; photograph dated 5-19-1938. Cutline (see below):" -> ""   (photoDateEdtf empty; body: "photograph dated 5-19-1938")
+  #4383 'The Dukes of Hazzard' Location Then & Now, 1982-2...
+     photoDate: ""Vance's Lady," original air date November 5, 1982." -> ""   (photoDateEdtf empty; body: screenshot of an episode first aired November 5, 1982)
+  #3129 Southern Pacific Train at Ravenna, 9-18-1991
+     photoDate: "The name became official June 12, 1868." -> ""   (photoDateEdtf empty; body and title: "Sept. 18, 1991")
+
+(c) photographs: news-story masthead in photoDate
+  #5511 Andy Jauregui's 1934 Hoot Gibson Ranch Rodeo Ribbo...
+     photoDate: "The Newhall Signal and Saugus Enterprise | Thursday, April 26, 1934." -> ""
+     webmasterNoteBottom: "" -> "News story: The Newhall Signal and Saugus Enterprise | Thursday, April 26, 1934."
+     photoDate left empty; the item's own date, for Nathan: title 1934; body: rodeo of April 22, 1934
+  #5377 Souvenir Program: Baker Ranch Rodeo, Under Directi...
+     photoDate: "The Newhall Signal and Saugus Enterprise | Thursday, May 1, 1930." -> ""
+     webmasterNoteBottom: "" -> "News story: The Newhall Signal and Saugus Enterprise | Thursday, May 1, 1930."
+     photoDate left empty; the item's own date, for Nathan: title 4-27-1930 (the program's date)
+  #5369 Saugus Speedway Trophy Girl Amedee Chabot Crowned ...
+     photoDate: "The Newhall Signal and Saugus Enterprise | Thursday, August 2, 1962." -> ""
+     webmasterNoteBottom: "" -> "News story: The Newhall Signal and Saugus Enterprise | Thursday, August 2, 1962."
+     photoDate left empty; the item's own date, for Nathan: title 1962; body: crowned July 1962
+  #5277 SP Train Derailment in Soledad Canyon, 10-27-1956.
+     photoDate: "The Newhall Signal and Saugus Enterprise | Thursday, November 1, 1956." -> ""
+     webmasterNoteBottom: "News story courtesy of Tricia Lemon Putnam.\nNews story courtesy of Tricia Lemon Putnam." -> "News story courtesy of Tricia Lemon Putnam.\nNews story courtesy of Tricia Lemon Putnam.\nNews story: The Newhall Signal and Saugus Enterprise | Thursday, November 1, 1956."
+     photoDate left empty; the item's own date, for Nathan: title 10-27-1956 (the derailment; the image is an example locomotive, not the one)
+  #5047 Dedication of H.M. Newhall Memorial Pool (1949) an...
+     photoDate: "The Newhall Signal and Saugus Enterprise | Thursday, June 23, 1949." -> ""
+     webmasterNoteBottom: "" -> "News story: The Newhall Signal and Saugus Enterprise | Thursday, June 23, 1949."
+     photoDate left empty; the item's own date, for Nathan: title 1949 and 1950 (pool and park)
+  #4895 Hart's Horseshoe Ranch (Newhall) Used in ''Singer ...
+     photoDate: "The Newhall Signal and Saugus Enterprise | Thursday, July 1, 1926." -> ""
+     webmasterNoteBottom: "News story courtesy of Evan Decker." -> "News story courtesy of Evan Decker.\nNews story: The Newhall Signal and Saugus Enterprise | Thursday, July 1, 1926."
+     photoDate left empty; the item's own date, for Nathan: title 1924 (Singer Jim McKee)
+  #2795 2 Tickets to Hoot Gibson Golden State Ranch Rodeo,...
+     photoDate: "Newhall Signal and Saugus Enterprise | Thursday, May 2, 1935." -> ""
+     webmasterNoteBottom: "" -> "News story: Newhall Signal and Saugus Enterprise | Thursday, May 2, 1935."
+     photoDate left empty; the item's own date, for Nathan: title 4-28-1935 (the rodeo the tickets are for)
+
+(d) 25 Baker Ranch Rodeo program pages (#3191 to #3239): left as they are
+
+(e) #28307
+  #28307 Connie Worden-Roberts Memorial Bridge dedicated, Golden Valley Road at SR-14, 2016
+     originalPublishDate: "Tuesday, October 4, 2016 (event); text undated" -> ""
+     recordDates row: "Tuesday, October 4, 2016 (event); text undated" 2016-01-01 year -> "Tuesday, October 4, 2016" 2016-10-04 day
+     originalPublishDateEdtf left as "2016"
+
+------------------------------------------------------------------------------
+to change: 30 records (a: 13, a/c: 1, b: 8, c: 7, e: 1); already done: 0; recordProvenance on 0 (no layout here carries it)
+datelines set: 13 (incl. the Gazette issue)
+HELD for Nathan: 
+  #12168 E.F. Beale and the Beasts of Tejon: cleared, no date set. the page prints "Wednesday, April 24, 2002" (the dateline of lw042402b) but the file is lw011399 (13 January 1999) and the column calls the 1999 calendar "available now"; no date chosen. originalPublishDateEdtf left as is ("")
+Nothing was invented: no photograph date is set; the candidates above are reported only.
+REFUSED: none
+==============================================================================
+nothing was written. Set $APPLY = true to apply. A second run after an apply is a no-op.
+
+

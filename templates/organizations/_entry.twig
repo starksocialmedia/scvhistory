@@ -6,12 +6,17 @@
       coordinates are where its works stood, and they live on the place record,
       one fact in one home. Computed here as well because head renders first. -#}
   {% set headMapPlace = (entry.orgLat and entry.orgLng) ? null : (craft.entries().section('places')
-      .relatedTo({ targetElement: entry, field: 'placeOrganizations' }).placeLat(':notempty:').placeLng(':notempty:').one() ?? null) %}
+      .relatedTo({ targetElement: entry, field: 'placeOrganizations' }).districtKind(':empty:').placeLat(':notempty:').placeLng(':notempty:').one() ?? null) %}
   {#- A government whose territory is drawn in communities.geojson shows that
       outline, not only a pin. Keyed by the record's slug to the feature's slug. -#}
   {% set ORG_BOUNDARIES = { 'city-of-santa-clarita': 'santa-clarita' } %}
   {% if (entry.orgLat and entry.orgLng) or headMapPlace or ORG_BOUNDARIES[entry.slug] is defined %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">{% endif %}
-  {% css %}.rec-map{height:220px;background:#EEF0F4;margin:-18px -20px 14px;width:calc(100% + 40px)}{% endcss %}
+  {% css %}.rec-map{height:220px;background:#EEF0F4;margin:-18px -20px 14px;width:calc(100% + 40px)}
+  .rec-band--fit{--rec-band-floor:0px}
+  .rec-alias .sep{font-style:normal;color:#A9842B;margin:0 .2em}
+  .rec-mark img{display:block;width:100%;height:auto;max-height:220px;object-fit:contain;background:#fff;padding:14px;border:1px solid #EFE6D0}
+  .rec-mark p{font-size:13px;line-height:1.55;color:#5B6472;margin:10px 0 0}
+  .rec-side .sc-map{margin-bottom:0!important;padding:0!important;border:0!important;background:none!important}{% endcss %}
 {% endblock %}
 
 {% block content %}
@@ -39,7 +44,8 @@
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
-{% set orgPlaces = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placeOrganizations' }).orderBy('title asc').all() %}
+{#- A body's seats are places too, but they are listed by the seat control, not here. -#}
+{% set orgPlaces = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placeOrganizations' }).districtKind(':empty:').orderBy('title asc').all() %}
 {% set mapPlace = (entry.orgLat and entry.orgLng) ? null : (orgPlaces|filter(p => p.placeLat and p.placeLng)|first ?: null) %}
 {% set mapLat = mapPlace ? mapPlace.placeLat : entry.orgLat %}
 {% set mapLng = mapPlace ? mapPlace.placeLng : entry.orgLng %}
@@ -61,29 +67,40 @@
 {#- termNotes was retired with the board fields: a term belongs in an
     officeHolding record, not in a paragraph on the body. -#}
 {% set prose = F.body %}
+{#- The body hub (_partials/civic/body-hub): any body with office holdings or
+    seats. Its seats are the place records tied to it that carry a districtKind. -#}
+{% set seats = craft.entries().section('places').relatedTo({ targetElement: entry, field: 'placeOrganizations' }).districtKind(':notempty:').orderBy('districtNumber asc, title asc').all() %}
+{% set seatIds = seats|map(s => s.id) %}
+{#- The chief executive shows in the sidebar (_partials/civic/body-executive), so the hub's lower list of people leaves them out. -#}
+{% set execIds = isDistrict ? craft.entries().section('affiliations').relatedTo({ targetElement: entry, field: 'affiliationBody' }).affiliationTitle('Superintendent').all()|map(a => a.affiliationPerson.one().id ?? 0) : [] %}
+{% set hasHub = seats|length or craft.entries().section('officeHoldings').relatedTo({ targetElement: entry, field: 'holdingBody' }).exists() %}
+{#- The council's roster partial draws the City's board and its history; the
+    other bodies get the hub's own board and past members. -#}
+{% set ROSTER = { 'city-of-santa-clarita': 5 } %}
+{#- Where the district map sits (Nathan, 4 October 2026: "the body should lead
+    with what the district is and who runs it; the map is reference"). In the
+    sidebar unless the body's slug is listed here, which puts it large in the
+    body; for when the map carries the seat boundaries. -#}
+{% set MAP_IN_BODY = [] %}
+{% set districtMap = isDistrict and entry.ncesId|trim %}
+{% set mapInBody = districtMap and entry.slug in MAP_IN_BODY %}
+{#- The body's current mark: in the sidebar with its rights note (Nathan, 4
+    October 2026: "a proper identifying image with its rights note under it"),
+    no longer small beside the title. -#}
+{% set mark = 'currentMark' in orgHandles ? (entry.currentMark.one() ?? null) : null %}
+{#- Aliases are stored one per line (a few older records list several on one line with commas, which read as written). -#}
+{% set aliases = [] %}
+{% for a in F.orgAliases|replace({ "\r": '' })|split("\n") %}{% if a|trim and a|trim not in aliases %}{% set aliases = aliases|merge([a|trim]) %}{% endif %}{% endfor %}
 
 <div class="rec">
-  <section class="rec-band">
+  <section class="rec-band{{ img ? '' : ' rec-band--fit' }}">
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('organizations') }}">Organizations</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
       <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
         <div>
           <div class="rec-kick"><span class="a">ORGANIZATIONS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
-          {#- The body's current mark (Nathan, 3 October 2026: "shown small beside the title, captioned with the source and retrieval
-              date"). It is the body's own present logo, not an archive record: never the featured image, kept out of /media, emitted as
-              schema.org logo. A historical letterhead or past logo is an archive record and shows with the record's media. -#}
-          {% set mark = 'currentMark' in orgHandles ? (entry.currentMark.one() ?? null) : null %}
-          {% if mark %}
-            {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
-            <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-              <h1 style="margin:0">{{ entry.title ?: entry.slug }}</h1>
-              <img src="{{ mark.url }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.width }}" height="{{ mark.height }}" style="height:56px;width:auto;max-width:100%;flex:none" loading="lazy">
-            </div>
-            <div class="rec-sub" style="font-size:12.5px;opacity:.8;margin-top:6px">{{ mark.title }}, as currently shown on {% if mark.sourceUrl %}<a href="{{ mark.sourceUrl }}" rel="noopener">{{ markHost }}</a>{% else %}its website{% endif %}{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}.{% if mark.rightsNote|trim %} {{ mark.rightsNote }}{% endif %}</div>
-          {% else %}
-            <h1>{{ entry.title ?: entry.slug }}</h1>
-          {% endif %}
-          {% if F.orgAliases %}<div class="rec-sub">Also known as {{ F.orgAliases }}</div>{% endif %}
+          <h1>{{ entry.title ?: entry.slug }}</h1>
+          {% if aliases|length %}<div class="rec-sub rec-alias">Also known as {% for a in aliases %}{% if not loop.first %}<span class="sep"> · </span>{% endif %}<span>{{ a }}</span>{% endfor %}</div>{% endif %}
           {#- The chain of bodies (Nathan, 2 October 2026): what a body became and what it was formed from, read from both ends, so SCV Water
               lists Newhall County Water District though only the district's record carries the link. -#}
           {% set dissolved = 'dateDissolved' in orgHandles ? entry.dateDissolved|trim : '' %}
@@ -93,12 +110,14 @@
           {% set formedFrom = 'precededBy' in orgHandles ? entry.precededBy.all() : [] %}
           {% set fromIds = formedFrom|map(o => o.id) %}
           {% for o in craft.entries().section('organizations').relatedTo({ targetElement: entry, field: 'succeededBy' }).all() %}{% if o.id not in fromIds %}{% set formedFrom = formedFrom|merge([o]) %}{% set fromIds = fromIds|merge([o.id]) %}{% endif %}{% endfor %}
-          {% if F.dateFounded or F.orgAddress or dissolved or became|length or formedFrom|length %}
+          {% if F.dateFounded or F.orgAddress or dissolved or became|length or formedFrom|length or gradeSpan or seats|length > 1 %}
             <div class="rec-facts">
               {% if F.dateFounded %}<div><div class="l">FOUNDED</div><div class="v">{{ F.dateFounded }}{% if 'foundedEvidence' in orgHandles %}{% include "_partials/record/evidence" with { ev: entry.foundedEvidence } only %}{% endif %}</div></div>{% endif %}
               {% if dissolved %}<div><div class="l">DISSOLVED</div><div class="v">{{ dissolved }}</div></div>{% endif %}
               {% if formedFrom|length %}<div><div class="l">FORMED FROM</div><div class="v">{% for o in formedFrom|sort((x, y) => x.title <=> y.title) %}<a href="{{ o.url }}">{{ o.title }}</a>{%- if not loop.last %}; {% endif -%}{% endfor %}</div></div>{% endif %}
               {% if became|length %}<div><div class="l">BECAME</div><div class="v">{% for o in became %}<a href="{{ o.url }}">{{ o.title }}</a>{%- if not loop.last %}; {% endif -%}{% endfor %}</div></div>{% endif %}
+              {% if gradeSpan %}<div><div class="l">GRADES</div><div class="v">{{ gradeSpan }}</div></div>{% endif %}
+              {% if seats|length > 1 %}<div><div class="l">SEATS</div><div class="v">{{ seats|length }} {{ (seats|first).districtKind.label|lower }}s</div></div>{% endif %}
               {% if F.orgAddress %}<div><div class="l">ADDRESS</div><div class="v">{{ F.orgAddress }}</div></div>{% endif %}
             </div>
           {% endif %}
@@ -126,13 +145,13 @@
         {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
         {#- A body with seats gets its roster: every member, every term, from the
             officeHolding records (STRUCTURE.md, the council roster). -#}
-        {% set SEATS = { 'city-of-santa-clarita': 5 } %}
-        {% if SEATS[entry.slug] is defined %}{% include "_partials/civic/roster" with { body: entry, seats: SEATS[entry.slug] } only %}{% endif %}
+        {% if isDistrict %}{% set execSection %}{% include "_partials/civic/body-executive" with { body: entry, title: 'Superintendent', label: 'SUPERINTENDENT', as: 'section' } only %}{% endset %}{% endif %}
+        {% if hasHub %}{% include "_partials/civic/body-hub" with { body: entry, seats: seats, roster: ROSTER[entry.slug] is defined, seatCount: ROSTER[entry.slug] ?? null, exclude: execIds } only %}{% endif %}
+        {{ execSection ?? '' }}
         {#- A district's page carries its map and every school in it, not only the
             ones the archive holds (Nathan, 29 September 2026). -#}
-        {% if isDistrict and entry.ncesId|trim %}
-          <h2 class="rec-h2">The district</h2>
-          {% include "_partials/school-map" with { leaid: entry.ncesId|trim, height: 420 } %}
+        {% if districtMap %}
+          {% if mapInBody %}<h2 class="rec-h2">The district</h2>{% include "_partials/school-map" with { leaid: entry.ncesId|trim, height: 420 } %}{% endif %}
           {% include "_partials/district-schools" with { leaid: entry.ncesId|trim } only %}
         {% endif %}
         {% if 'orgType' in orgHandles and entry.orgType.value == 'school' %}{% include "_partials/record/education" with { entry: entry, as: 'school', place: 'body' } only %}{% endif %}
@@ -144,6 +163,21 @@
       </article>
 
       <aside class="rec-side">
+        {% if mark %}
+          {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
+          <div class="rec-box rec-mark"><div class="rec-lab">{{ isDistrict ? 'THE DISTRICT\'S LOGO' : 'LOGO' }}</div>
+            <img src="{{ mark.url }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.width }}" height="{{ mark.height }}">
+            {#- One line (Nathan, 4 October 2026): the rights reasoning stays in the asset's rightsNote, for a researcher, not on the page. -#}
+            <p>{{ isDistrict ? 'The district\'s' : 'Its' }} logo, from {% if mark.sourceUrl %}<a href="{{ mark.sourceUrl }}" rel="noopener">{{ markHost }}</a>{% else %}its website{% endif %}{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}.</p>
+          </div>
+        {% endif %}
+        {% if isDistrict %}{% include "_partials/civic/body-executive" with { body: entry, title: 'Superintendent', label: 'SUPERINTENDENT', as: 'box' } only %}{% endif %}
+        {% if districtMap and not mapInBody %}
+          <div class="rec-box"><div class="rec-lab">THE DISTRICT</div>
+            {% include "_partials/school-map" with { leaid: entry.ncesId|trim, height: 300 } %}
+            {% if seats|length > 1 %}<p style="font-size:13px;line-height:1.55;color:#5B6472;margin:8px 0 0">The {{ (seats|first).districtKind.label|lower }} boundaries are not drawn.</p>{% endif %}
+          </div>
+        {% endif %}
         {% include "_partials/record/cite" with { entry: entry, label: 'Organizations', sidebar: true } only %}
         {% include "_partials/record/source-link" with { el: entry } only %}
         {% include "_partials/record/named-for" with { el: entry } only %}
@@ -176,10 +210,10 @@
             above already lists them. -#}
         {% set seen = [] %}{% set uniq = [] %}
         {% for p in holders %}{% if p.id not in seen %}{% set seen = seen|merge([p.id]) %}{% set uniq = uniq|merge([p]) %}{% endif %}{% endfor %}
-        {% set holders = entry.slug == 'city-of-santa-clarita' ? [] : uniq %}
+        {% set holders = hasHub ? [] : uniq %}
         {% set peopleBoxes = [
-          { lab: 'FOUNDED BY', rows: entry.orgFoundedBy.all() },
-          { lab: 'ASSOCIATED PEOPLE', rows: entry.orgAssociatedPersons.all() },
+          { lab: 'FOUNDED BY', rows: hasHub ? [] : entry.orgFoundedBy.all() },
+          { lab: 'ASSOCIATED PEOPLE', rows: hasHub ? [] : entry.orgAssociatedPersons.all() },
           { lab: 'BOARD MEMBERS', rows: holders }
         ]|filter(b => b.rows|length) %}
         {% for b in peopleBoxes %}

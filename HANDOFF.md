@@ -1,4 +1,4 @@
-# Handoff, 2026-10-03 (evening)
+# Handoff, 2026-10-04
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -14,37 +14,31 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## Where things stand
 
-- **Staging** was refreshed by Nathan on 3 October and is current; everything applied
-  after the refresh (the held items below) is local only until the next refresh.
-- **People.** 211 records, 79 with a sourced profile. Today: Smith, Trunkey, Walters,
-  De La Cerda, Connie Worden on the Mentry pattern, Couts widened.
-- **The civic layer.** 228 office holdings: the council; every school and water board
-  win since 1995 (derive_board_holdings.php, on the 16 board-term decisions); the Hart
-  board from Leon's roster back to 1945; tenures from saved sources; the House,
-  Assembly, Senate and Supervisors as bodies. The Hart 2022 Trustee Area 2 contest,
-  which CEDA omits, is now held (election #28837).
-- **Applied after the refresh, not yet on staging:** the 19 no-source note
-  corrections with Acosta's and Pico's dates, Couts widened, the California Battalion
-  restored (with its redirect removed), Smyth's former portrait attached, Jensen's
-  certified 11,639 and the Hart 2022 Area 2 records.
-- **The relationship model** (inventory/review/relationship-model-2026-10-03.md) is
-  approved. Step 1 (state and federal bodies) is done.
-- **The body hub** (inventory/review/body-hub-proposal-2026-10-03.md) is approved:
-  one partial for every body with seats, Hart first. Seat boundaries are not held;
-  Nathan is asking the Hart district and the City.
+- **Staging** was refreshed by Nathan on 3 October. Everything applied since is local only until
+  the next refresh: the 3 October held items, the live-error notes, the cancelled lists, and the
+  4 October work below.
+- **People.** 215 records. Michael Vierra added on 4 October.
+- **The civic layer.** 235 office holdings. The Hart board was checked against the district's own
+  page on 4 October (inventory/news/hart-district-2026-10-04/). The other four districts and SCV
+  Water were checked the same way, and the archive is behind them: members missing, old terms open
+  (inventory/review/district-boards-check-2026-10-04.md); nothing corrected yet.
+- **Affiliations** exist (step 2 of the relationship model, started): Hart's two superintendents
+  and Trunkey's Measure V seat. The older person-organization links are not yet re-read into them.
+- **The body hub** is built on every organization page with holdings, without tabs. The tab layout
+  for Hart and the City together is a proposal (inventory/review/body-hub-tabs-proposal-2026-10-04.md),
+  waiting on Nathan. No other body gets its own design until those two are settled.
+- **The war memorial**: 20 of 54 cards show a likeness, the rest initials.
 
 ## In progress or next
 
-1. Step 2 of the model: the affiliations section. Report the 23 disagreements between
-   personOrganizations and orgAssociatedPersons before retiring either field.
-2. groupKind, then fromCollectionOf, starting with Connie Worden's collection; count
-   the photographs and documents that could carry it.
-3. The body hub on the Hart page, then the other districts, SCV Water, the City, the
-   House and Assembly.
-4. Superintendents (after affiliations) and the per-district research pass, which also
-   settles the 10 first-win incumbents (inventory/review/board-holdings-dry-run-2026-10-03.txt,
-   section 4); the districts' online minutes archives are the first place to look.
-5. A pass reading the whole Hart roster for self-contradictions (docs/PROFILES.md).
+1. Nathan's decisions on the tab proposal, then building it for Hart and the City together.
+2. The nine portraits in ~/Downloads (Nathan to move them to inventory/incoming): the four Hart
+   trustees and Vierra to import. Knight, the Runners and Duzick are reported, not imported.
+3. The board corrections for the four districts and SCV Water, from the check file.
+4. The date-field fix (scripts/import/fix_date_field_prose_2026_10_04.php, dry run done).
+5. The double-counting audit's findings (inventory/review/double-counting-audit-2026-10-04.md).
+6. Then, as before: the rest of step 2 (the 23 disagreements), groupKind, fromCollectionOf, and the
+   Hart roster self-contradiction pass.
 
 ## Where the rules live
 

@@ -170,14 +170,17 @@
       {% if grp.note is defined %}<p class="pl-groupnote">{{ grp.note }}</p>{% endif %}
       <div class="pl-cards">
         {% for p in groupOf[grp.key] %}
-          {% set img = 'featuredImage' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.featuredImage.one() ?? null : null %}
+          {% set ph = p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : [] %}
+          {% set img = 'featuredImage' in ph ? p.featuredImage.one() ?? null : null %}
+          {#- A body with no picture shows its current mark, whole, as identification (the record page carries its source and rights note). -#}
+          {% set mk = not img and 'currentMark' in ph ? p.currentMark.one() ?? null : null %}
           {% set coms = p.neighborhood.all()|map(c => c.title)|join(' · ') %}
           <a class="pl-card" id="card{{ p.id }}" data-id="{{ p.id }}" href="{{ p.url }}">
-            <div class="pl-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ p.title|slice(0,1) }}</span>{% endif %}</div>
+            <div class="pl-ph">{% if img %}<img src="{{ img.url }}" alt="">{% elseif mk %}<img src="{{ mk.url }}" alt="{{ mk.alt ?: mk.title }}" style="object-fit:contain;background:#fff;padding:10px">{% else %}<span>{{ p.title|slice(0,1) }}</span>{% endif %}</div>
             <div class="pl-body">
               <h3>{{ p.title }}</h3>
               {% if p.dateFounded %}<div class="pl-meta">Est. {{ p.dateFounded }}</div>{% endif %}
-              <div class="pl-comm">{{ coms ?: 'Beyond the valley' }}{% if hasKinds and p.orgType.value %} &middot; {{ KIND_ONE[p.orgType.value] ?? p.orgType.value }}{% if hasLevels and p.orgType.value == 'school' and p.schoolLevel.value %}, {{ LEVELS[p.schoolLevel.value]|lower }}{% endif %}{% endif %}</div>
+              <div class="pl-comm">{{ coms }}{% if hasKinds and p.orgType.value %}{{ coms ? ' · ' : '' }}{{ KIND_ONE[p.orgType.value] ?? p.orgType.value }}{% if hasLevels and p.orgType.value == 'school' and p.schoolLevel.value %}, {{ LEVELS[p.schoolLevel.value]|lower }}{% endif %}{% endif %}</div>
               {% if childrenOf['o' ~ p.id] is defined %}<div class="pl-meta" style="margin-top:6px">Includes {{ childrenOf['o' ~ p.id]|map(c => c.title)|join(', ') }}</div>{% endif %}
             </div>
           </a>

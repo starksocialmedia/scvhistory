@@ -27,6 +27,9 @@
 
 {% set all = craft.entries().section('warMemorials').status('live').all() %}
 {% set CONFLICT_ORDER = ['World War I', 'World War II', 'Korean War', 'Vietnam War', 'War on Terror'] %}
+{#- Each war's federal period of war (templates/_data/conflicts.json, from 38 CFR 3.2) and, under it, the war as it
+    touched the valley, read from the records themselves: how many, the first and the last (Nathan, 4 October 2026). -#}
+{% set WARS = source('_data/conflicts.json', ignore_missing = true)|json_decode %}
 
 {# year of death, and the four card facts #}
 {% set rows = [] %}
@@ -61,6 +64,24 @@
   {% if c not in conflicts and c not in CONFLICT_ORDER %}{% set conflicts = conflicts|merge([c]) %}{% endif %}
 {% endfor %}
 
+{% set LEDE = {} %}
+{% set NUM = ['No one', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty'] %}
+{% for c in conflicts %}
+  {% set n = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c)|length %}
+  {% set its = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c and r.year)|sort((a, b) => a.year ~ a.name <=> b.year ~ b.name)|values %}
+  {% set f = its|first %}{% set l = its|last %}
+  {% if n == 1 and f %}
+    {% set line = 'One name from the valley: ' ~ f.name ~ ', who died in ' ~ f.year ~ '.' %}
+  {% elseif its|length > 1 and f.year != l.year %}
+    {% set line = (NUM[n] ?? n) ~ ' names from the valley, who died between ' ~ f.year ~ ' and ' ~ l.year ~ ': the first ' ~ f.name ~ ', the last ' ~ l.name ~ '.' %}
+  {% elseif f %}
+    {% set line = (NUM[n] ?? n) ~ ' names from the valley, all of whom died in ' ~ f.year ~ '.' %}
+  {% else %}
+    {% set line = (NUM[n] ?? n) ~ (n == 1 ? ' name' : ' names') ~ ' from the valley.' %}
+  {% endif %}
+  {% set LEDE = LEDE|merge({ (c): line }) %}
+{% endfor %}
+
 {# band line: the total, the first conflict, and where the last casualty fell #}
 {% set allYears = rows|filter(r => r.year)|map(r => r.year)|values %}
 {% set lastRow = null %}
@@ -86,15 +107,17 @@
     </div>
   </section>
 
-  {#- A memorial is read whole, so the bar jumps rather than filters: a conflict bar, a find-a-name box, and a roll view
-      for printing and reading aloud (Nathan, 2 October 2026; inventory/review/site-proposals-2026-10-02.md). -#}
+  {#- A memorial is read whole, so the bar jumps rather than filters: a conflict bar, a find-a-name box, and a table view
+      for printing and reading aloud (Nathan, 2 October 2026; inventory/review/site-proposals-2026-10-02.md). The table
+      was labelled "Roll", which did not say what it is (Nathan, 4 October 2026). It lists every name, by war, in order
+      of the date of loss. -#}
   {% set view = craft.app.request.getParam('view') == 'roll' ? 'roll' : 'wall' %}
   <nav class="wm-bar" aria-label="Conflicts">
     <div class="wm-wrap wm-barin">
       {% for c in conflicts %}{% set n = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c)|length %}<a class="wm-jump" href="{{ view == 'roll' ? '#r-' : '#c-' }}{{ c|lower|replace({' ': '-'}) }}">{{ c }} <span>{{ n }}</span></a>{% endfor %}
       <span class="wm-barright">
         <input id="wmFind" type="search" placeholder="Find a name" aria-label="Find a name" autocomplete="off">
-        <a class="wm-jump" href="{{ view == 'roll' ? url('war-memorial') : url('war-memorial', { view: 'roll' }) }}">{{ view == 'roll' ? 'Wall of names' : 'Roll' }}</a>
+        <a class="wm-jump" href="{{ view == 'roll' ? url('war-memorial') : url('war-memorial', { view: 'roll' }) }}">{{ view == 'roll' ? 'Back to the wall of names' : 'All ' ~ rows|length ~ ' names as a table' }}</a>
       </span>
     </div>
   </nav>
@@ -104,6 +127,8 @@
       {% for c in conflicts %}
         {% set items = rows|filter(r => (r.conflict ?: 'Conflict not recorded') == c)|sort((a, b) => (a.year ?: '9999') ~ a.name <=> (b.year ?: '9999') ~ b.name)|values %}
         <h2 class="wm-rollh" id="r-{{ c|lower|replace({' ': '-'}) }}">{{ c }}</h2>
+        {% if WARS and (WARS.conflicts[c] ?? null) %}<p class="wm-period">Period of war: {{ WARS.conflicts[c] }}.<sup class="wm-src"><a href="#wm-sources" aria-label="Source">*</a></sup></p>{% endif %}
+        <p class="wm-lead">{{ LEDE[c] ?? '' }}</p>
         {#- The legacy dates are typed every way (4-27-1919, 04/27/1919, "Friday, 04/18/1969"); the roll reads them as one style, without changing the records. -#}
         {% set MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'] %}
         <table class="wm-roll">
@@ -121,24 +146,24 @@
 
       <section class="wm-conflict" id="c-{{ c|lower|replace({' ': '-'}) }}">
         <h2>{{ c }}</h2>
+        {% if WARS and (WARS.conflicts[c] ?? null) %}<p class="wm-period">Period of war: {{ WARS.conflicts[c] }}.<sup class="wm-src"><a href="#wm-sources" aria-label="Source">*</a></sup></p>{% endif %}
+        <p class="wm-lead">{{ LEDE[c] ?? '' }}</p>
         <div class="wm-grid">
           {% for r in items %}
-            {% set len = r.name|length %}
-            {% set size = len <= 13 ? 30 : (len <= 18 ? 26 : (len <= 23 ? 22 : 19)) %}
             <a class="wm-card" href="{{ r.e.url }}" data-name="{{ r.name|lower }}">
+              {#- A face only where the record holds his likeness. Otherwise his initials, as elsewhere on the site, never a
+                  crop of another picture (Nathan, 4 October 2026: the Vietnam cards had shown the name on the memorial wall). -#}
+              {% set ini = r.name|replace({'"': '', "'": ''})|split(' ')|filter(w => w matches '/^[A-Z][a-z]/') %}
               <div class="wm-face{{ r.img ? '' : ' wm-face--plate' }}">
                 {% if r.img %}
-                  {{ portrait.img(r.img, 5/4, r.name, true) }}
+                  {{ portrait.img(r.img, 5/4, r.name, true, 420) }}
                 {% else %}
-                  <span class="nm" style="font-size:{{ size }}px">{{ r.name }}</span>
-                  {% if r.rank %}<span class="rk">{{ r.rank }}</span>{% endif %}
+                  <span class="ini" aria-hidden="true">{{ ini|length > 1 ? (ini|first)|slice(0, 1) ~ (ini|last)|slice(0, 1) : r.name|slice(0, 1) }}</span>
                 {% endif %}
               </div>
               <div class="wm-meta">
-                {% if r.img %}
-                  <div class="nm">{{ r.name }}</div>
-                  {% if r.rank %}<div class="rk">{{ r.rank }}</div>{% endif %}
-                {% endif %}
+                <div class="nm">{{ r.name }}</div>
+                {% if r.rank %}<div class="rk">{{ r.rank }}</div>{% endif %}
                 {% if r.branch %}<div class="br">{{ r.branch }}</div>{% endif %}
                 {% if r.year %}<div class="yr">{{ r.year }}{{ r.age ? ', age ' ~ r.age : '' }}</div>{% endif %}
                 {% if r.home %}<div class="hm">{{ r.home }}</div>{% endif %}
@@ -158,6 +183,7 @@
     {% if not rows|length %}
       <p class="wm-count">No memorial records yet.</p>
     {% endif %}
+    {% if WARS %}<p class="wm-sources" id="wm-sources">* {{ WARS.source }} These are the dates of service the law counts as wartime, not the dates of the fighting.</p>{% endif %}
   </main>
 </div>
 
@@ -176,7 +202,18 @@
 })();
 {% endjs %}
 {% css %}
-.wm-bar{background:#fff;border-bottom:1px solid #E2E4E8;position:sticky;top:0;z-index:5}
+/* The bar sticks under the site header once the header is fixed (its height is --scv-stuck-h, set by _partials/sticky),
+   and sits below the header's menus: the header is z-index 5 at rest and 300 when fixed, so 4 keeps every menu in front
+   (Nathan, 4 October 2026: a menu opened behind it). */
+/* A clear gap under the header when stuck (Nathan, 4 October 2026: "so the two bars read as separate"): the bar stands
+   12px below it once the header is fixed (html.scv-is-stuck, set by _partials/sticky), and a strip of page colour above the bar hides the cards scrolling through that gap. */
+.wm-bar{background:#fff;border-bottom:1px solid #E2E4E8;position:sticky;top:var(--scv-stuck-h,0px);z-index:4}
+.scv-is-stuck .wm-bar{top:calc(var(--scv-stuck-h,0px) + 12px);border-top:1px solid #E2E4E8;box-shadow:0 -13px 0 #F6F7F9,0 4px 10px rgba(23,37,76,.08)}
+.wm-period{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.06em;color:#7A5C1B;margin:-8px 0 8px}
+.wm-period .wm-src a{color:#7A5C1B;text-decoration:none;margin-left:2px}
+.wm-lead{font-size:16px;line-height:1.6;color:#4A5260;margin:0 0 20px;max-width:46em}
+.wm-sources{font-size:13px;line-height:1.55;color:#5B6472;margin:40px 0 0;max-width:60em}
+.wm-face--plate .ini{font-family:'Playfair Display',serif;font-size:56px;color:#C4A031;line-height:1}
 .wm-barin{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;padding-top:12px;padding-bottom:12px}
 .wm-jump{font-family:'Jost',sans-serif;font-size:13px;color:#7A5C1B;border:1px solid #C4A031;padding:6px 12px;border-radius:3px;text-decoration:none;background:#fff}
 .wm-jump span{color:#5B6472;margin-left:4px}

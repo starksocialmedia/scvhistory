@@ -127,7 +127,10 @@
       .scv-panel-cols{grid-template-columns:minmax(0,1fr)!important;gap:24px!important}
       .scv-mlabel{display:block}
     }
-    html,body{overflow-x:hidden}
+    /* clip, not hidden (4 October 2026): overflow-x:hidden on both html and body makes body its own scroll container, so
+       nothing inside it can be position:sticky (the war memorial's bar never stuck) and the page scrolls through two
+       boxes. clip cuts the same sideways overflow without making a scroll container. */
+    html,body{overflow-x:clip}
     #content{max-width:none;margin:0;padding:0}
     .scv-footer{background:#17254C;color:#fff}
     .scv-rights{display:block}

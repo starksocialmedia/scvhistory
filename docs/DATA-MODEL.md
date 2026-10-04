@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 3 October 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 4 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -167,6 +167,29 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 `officeHoldings` has records; until then it passes nobody.**
 
 ## Entry types
+
+### Affiliations — `affiliations/affiliation`
+
+16 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `affiliationPerson` | Entries | **local** | no external equivalent |
+| `affiliationBody` | Entries | **local** | no external equivalent |
+| `affiliationKind` | Dropdown | **local** | no external equivalent |
+| `affiliationTitle` | PlainText | **local** | no external equivalent |
+| `affiliationEnded` | Dropdown | **local** | no external equivalent |
+| `termStart` | PlainText | **local** | no external equivalent |
+| `termStartEdtf` | PlainText | **local** | no external equivalent |
+| `termEnd` | PlainText | **local** | no external equivalent |
+| `termEndEdtf` | PlainText | **local** | no external equivalent |
+| `startEvidence` | Dropdown | **local** | no external equivalent |
+| `endEvidence` | Dropdown | **local** | no external equivalent |
+| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
+| `footnotesOn` | Entries | schema.org `citation` |  |
+| `editorNotes` | Table | **local** | no external equivalent |
+| `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
+| `recordDates` | Table | **local** | no external equivalent |
 
 ### Articles — `articles/article`
 
@@ -997,6 +1020,8 @@ a skip means the queue has not been settled, and an external means it has.
 Every dropdown in the schema, with its values. All of these vocabularies are
 local unless the note says otherwise.
 
+- **`affiliationEnded`** — `serving`, `retired`, `resigned`, `left`, `died`, `dismissed`, `unknown`.
+- **`affiliationKind`** — `employed`, `member`, `founder`, `owner`, `nonprofit-board`, `volunteer`.
 - **`birthEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`bodyAuthorship`** — `legacy-leon`, `wordpress-import-unsourced`, `editorial-2026`, `mixed`.
 - **`burialEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.

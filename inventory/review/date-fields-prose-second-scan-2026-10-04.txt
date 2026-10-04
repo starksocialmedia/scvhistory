@@ -1,0 +1,47 @@
+Second scan of date fields, 4 October 2026 (Claude, read-only). 3,919 date-field values plus every recordDates 'printed' cell; the 55 rows of the first scan excluded. Flagged, not changed: nothing here is in fix_date_field_prose_2026_10_04.php.
+
+CLEAR NON-DATES (the value is not this item's date)
+#28287 [documents] originalPublishDate | City Formation Committee Member Connie Worden-Robe | 2007 (book: City of Santa Clarita 1987-2007)
+#18648 [persons] recordDates.printed | Charles Alexander Mentry | 52 years, 6 months, 8 days
+#5649 [photographs] photoDate | Fred R. Wilson: Face Pot, Raku Process, 2001. | (The Signal, December 10, 1964).
+#5589 [photographs] photoDate | Remains of 2 Ancient Bison Found in Castaic, 1950. | (The Signal, September 30, 1938),
+#5483 [photographs] photoDate | Andre's Cafe & Cocktail Lounge, Forrest Park: Matc | (The Signal, July 4, 1946).
+#4629 [photographs] photoDate | Soledad Hotel & Coffee Shop, Today's 24325 Main St | (Perkins, The Signal, 8-20-1964)
+#4563 [photographs] photoDate | LASD Deputy David W. March Memorial Interchange, 2 | • THE NEWHALL INCIDENT 4-5-1970
+#4459 [photographs] photoDate | Whittaker Bermite Service Award Pendant, 12k G.F., | The week of April 22, 1935,
+#4267 [photographs] photoDate | Bermite Powder Co. Advertisement, 1961 | The week of April 22, 1935,
+#4259 [photographs] photoDate | California Peace Officers Memorial, Sacramento | • THE NEWHALL INCIDENT 4-5-1970
+#4155 [photographs] photoDate | Bermite Want Ad & Golden State Fireworks Ad, 1957 | The week of April 22, 1935,
+#4115 [photographs] photoDate | Bermite Powder Co.: Women Assemble Fuses | The week of April 22, 1935,
+#3311 [photographs] photoDate | DTSC Uses Bacteria to Rid Whittaker-Bermite of Per | The week of April 22, 1935,
+#2813 [photographs] photoDate | Bermite Powder Co. Security Badge | The week of April 22, 1935,
+
+NEWSPAPER MASTHEADS OR CITATIONS IN photoDate (same kind as group c; the date is publication, which may or may not be the item's)
+#5765 [photographs] photoDate | Photo Gallery: Sulphur Springs School District Cel | The Signal | Sunday, April 26, 1998.
+#5549 [photographs] photoDate | Fremont Pass Service Station Scene in Hitchcock's  | The Signal | December 24, 1986.
+#5467 [photographs] photoDate | (Ex-)Fremont Pass Service Station Scenes in ''Hall | The Signal | December 24, 1986.
+#5401 [photographs] photoDate | Santa Clarita: The Book by Carl Boyer (Story, 2005 | The Signal | Friday, December 23, 2005.
+#5219 [photographs] photoDate | Baseball Cap: Jerry Quarry's Boxer Training Camp a | The Signal | Wednesday, May 25, 1983.
+#5211 [photographs] photoDate | Plane Crash Kills All 8, 1-29-1932; Future Sheriff | Lebec, California | January 29, 1932
+#5191 [photographs] photoDate | Eugene W. Biscailuz, 27th L.A. County Sheriff 1932 | Los Angeles Times | October 21, 2007.
+#5179 [photographs] photoDate | Newhall-Saugus Lions Club: Los Cantiles Park, Cloi | The Signal | Monday, January 31, 1972.
+#5121 [photographs] photoDate | Plane Crash Kills All 8, 1-29-1932; Future Sheriff | Lebec, California | January 29, 1932
+#5119 [photographs] photoDate | Plane Crash Kills All 8, 1-29-1932; Future Sheriff | Lebec, California | January 29, 1932
+#5117 [photographs] photoDate | Plane Crash Kills All 8, 1-29-1932; Future Sheriff | Lebec, California | January 29, 1932
+#5041 [photographs] photoDate | Hart Describes Gun Work for Latin American Radio A | NBC Photo 3/5/41
+#4893 [photographs] photoDate | Bonelli Stadium Program 9-9-1945: First Postwar Mi | Los Angeles Times | August 31, 1945.
+#4871 [photographs] photoDate | Southern Pacific Locomotive Derailed, Overturned 3 | March 25, 1938 (Photo March 26)
+#4805 [photographs] photoDate | Panning for Gold, April 1934. | Associated Press photo | 4-11-34
+#4735 [photographs] photoDate | Edwin Carewe's 'Ramona' Serialized in French Movie | Cine-Mirror | July 13, 1928.
+#4731 [photographs] photoDate | 1842/1948 Placerita Gold Discovery Medal (Bronze), | The Signal | Thursday, July 1, 1948.
+#4481 [photographs] photoDate | Mama Toni's Italian Restaurant, Matchbook Cover, 1 | Van Nuys News | March 27, 1973.
+#4441 [photographs] photoDate | Placerita White Oil, Piru Oil Displayed at 1901 Pa | | January 3, 2015.
+#4439 [photographs] photoDate | Southern Pacific Connects with Central Pacific, Ma | Map Published 9-9-1876
+#4187 [photographs] photoDate | Some Notes About Alec Mentry's Birth Name. | SCVHistory.com | March 1, 2014
+#3339 [photographs] photoDate | 1842/1948 Placerita Gold Discovery Medal (Cu/Br) | The Signal | Thursday, July 1, 1948.
+#3337 [photographs] photoDate | 1842/1948 Placerita Gold Discovery Medal (Gilt) | The Signal | Thursday, July 1, 1948.
+
+ARTICLES: Gazette issue lines with a stray leading pipe
+#12577 [articles] originalPublishDate | Community Center To Open. | | Year 12, Number 1: January-February 2006.
+
+Not flagged: Gazette issue lines 'November-December 2005 • Year 11, Number 1.' (the house pattern for that newsletter); #913 groupDateStart 'Prehistoric'. EDTF fields: all values parse as EDTF patterns.

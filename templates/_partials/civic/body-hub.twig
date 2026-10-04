@@ -1,0 +1,205 @@
+{#
+  A body's page as the hub for its people and its seats (inventory/review/
+  body-hub-proposal-2026-10-03.md, approved 3 October 2026). One partial for every
+  body with office holdings: the school districts, SCV Water, the water agencies,
+  the City, the House and the Assembly. Nothing here names a body; everything is
+  read from the data.
+
+  In order (Nathan, 4 October 2026): the seat control; the board now, in the
+  body; past members, term by term; the body's elections; and, further down, the
+  other people the archive ties to the body. The chief executive is in the
+  sidebar, from _partials/civic/body-executive.
+
+    body       the organization
+    seats      its seat place records (placeOrganizations, with a districtKind), in order
+    roster     true for a body whose roster partial already draws the board and its
+               history (the City's council), so only the control and the
+               elections are added here
+    exclude    ids of people the sidebar already shows (the chief executive)
+#}
+{% set exclude = exclude ?? [] %}
+{% set seatIds = seats|map(s => s.id) %}
+{% set NOUNS = { 'trustee-area': 'trustee areas', 'water-division': 'divisions', 'council-district': 'council districts' } %}
+{% set noun = seats|length ? (NOUNS[(seats|first).districtKind.value ?? ''] ?? 'seats') : 'seats' %}
+{% set holdings = craft.entries().section('officeHoldings').relatedTo({ targetElement: body, field: 'holdingBody' })
+    .with(['holdingPerson', 'holdingDistrict']).orderBy('termStartEdtf desc').all()
+    |filter(h => h.selectionMethod.value != 'rotated') %}
+{% set seatOf = {} %}
+{% for h in holdings %}{% set d = h.holdingDistrict|first %}{% set seatOf = seatOf|merge({ ('h' ~ h.id): d ? d.slug : '' }) %}{% endfor %}
+{% set short = {} %}
+{% for s in seats %}{% set short = short|merge({ (s.slug): s.title|split(', ')|last }) %}{% endfor %}
+{% set elections = craft.entries().section('elections').relatedTo({ targetElement: body, field: 'electionBody' })
+    .with(['electionDistrict']).orderBy('electionDateEdtf desc').all() %}
+{% set HOW = { appointed: 'appointed', elected: 'elected', succeeded: 'succeeded' } %}
+{% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', left: 'left office', unknown: 'end not recorded' } %}
+{% set scope = 'hub' ~ body.id %}
+
+<div id="{{ scope }}">
+{% if seats|length > 1 %}
+  <h2 class="rec-h2" id="seats" style="margin-top:8px">The {{ noun }}</h2>
+  {% include "_partials/civic/seat-control" with { seats: seats, scope: scope, noun: noun } only %}
+{% endif %}
+
+{% if roster ?? false %}
+  {#- The council's own roster draws the members now and since 1987. -#}
+  {% include "_partials/civic/roster" with { body: body, seats: seatCount ?? null } only %}
+{% else %}
+  {#- The board now: a term recorded as serving whose end, if one is given,
+      has not passed. A term whose end is not recorded is never counted as
+      current (Nathan, 4 October 2026: if the archive does not know who is
+      current, the page says so); it is listed under past members with that
+      said. The same rule as the council roster and /districts. -#}
+  {% import "_partials/record/portrait" as portrait %}
+  {#- A card is not one link: the evidence words inside it link to /evidence, and a link inside a link splits the card. -#}
+  {% set ym = now|date('Y-m') %}
+  {% set sitting = holdings|filter(h => h.howEnded.value == 'serving' and (not h.termEndEdtf or h.termEndEdtf|slice(0, 7) >= ym) and (h.holdingPerson|first))
+      |sort((a, b) => (seatOf['h' ~ a.id] ?: 'zz') <=> (seatOf['h' ~ b.id] ?: 'zz')) %}
+  {% set heldSeats = sitting|map(h => seatOf['h' ~ h.id])|filter(s => s) %}
+  {% set openSeats = seats|filter(s => s.slug not in heldSeats) %}
+  <h2 class="rec-h2" id="board">The board now</h2>
+  {% if sitting|length %}
+  <div class="hub-cards" data-seat-list="board">
+    {% for h in sitting %}
+      {% set p = h.holdingPerson|first %}
+      {% set img = 'featuredImage' in p.fieldLayout.customFields|map(f => f.handle) ? p.featuredImage.one() : null %}
+      {% set since = holdings|filter(x => (x.holdingPerson|first).id ?? null == p.id)|map(x => x.termStartEdtf|slice(0, 4))|sort|first %}
+      {#- A sitting member's earlier terms belong on the card, not among the people who have left (Nathan, 4 October 2026). -#}
+      {% set earlier = holdings|filter(x => (x.holdingPerson|first).id ?? null == p.id and x.id != h.id)|sort((x, y) => x.termStartEdtf <=> y.termStartEdtf) %}
+      {% set espans = [] %}
+      {% for x in earlier %}
+        {% set sy = x.termStartEdtf|slice(0, 4) %}{% set ey = x.termEndEdtf ? x.termEndEdtf|slice(0, 4) : '?' %}
+        {% if espans|length and (espans|last)[1] != '?' and sy <= (espans|last)[1] %}{% set espans = espans|slice(0, espans|length - 1)|merge([[(espans|last)[0], ey]]) %}{% else %}{% set espans = espans|merge([[sy, ey]]) %}{% endif %}
+      {% endfor %}
+      <div class="hub-card" data-seat="{{ seatOf['h' ~ h.id] }}">
+        <a class="hub-ph" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if img %}{{ portrait.img(img, 0.8, p.title, true) }}{% else %}<span>{{ p.title|split(' ')|map(w => w|slice(0,1))|join('')|slice(0,2) }}</span>{% endif %}</a>
+        <div class="hub-tx">
+          <a class="hub-n" href="{{ p.url }}">{{ p.title }}</a>
+          <div class="hub-m">{{ seatOf['h' ~ h.id] ? short[seatOf['h' ~ h.id]] ~ ' · ' : '' }}on the board since {{ since }}</div>
+          <div class="hub-t">{{ h.termEndEdtf ? 'Term ' ~ h.termStartEdtf|slice(0, 4) ~ ' to ' ~ h.termEndEdtf|slice(0, 4) : 'Serving from ' ~ h.termStartEdtf|slice(0, 4) }}{{ HOW[h.selectionMethod.value] is defined ? ', ' ~ HOW[h.selectionMethod.value] : '' }}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}</div>
+          {% if espans|length %}<div class="hub-t">Earlier on the board: {{ espans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}</div>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <p data-seat-empty="board">The archive does not yet hold the present term for this seat.</p>
+  {% endif %}
+  {% if openSeats|length or not sitting|length %}
+    {% set seatless = sitting|filter(h => not seatOf['h' ~ h.id])|map(h => (h.holdingPerson|first).title) %}
+    <p class="hub-gap">{% if not sitting|length %}The archive does not yet hold the present board.{% else %}{% if seatless|length %}The archive does not record which seat {{ seatless|join(', ', ' and ') }} {{ seatless|length > 1 ? 'hold' : 'holds' }}{{ openSeats|length ? ', and holds no present term for ' ~ openSeats|map(s => short[s.slug])|join(', ', ' or ') : '' }}.{% else %}The archive does not yet hold the present term for {{ openSeats|map(s => short[s.slug])|join(', ', ' or ') }}.{% endif %}{% endif %}</p>
+  {% endif %}
+
+  {#- Past members are people whose service has ended: one row each, their terms
+      read as spans. A sitting member is never here; their earlier terms are on
+      their card (Nathan, 4 October 2026: until then this listed every term not
+      current, so Jensen, Moore and Messina appeared in both places). -#}
+  {% set sittingPids = sitting|map(h => (h.holdingPerson|first).id) %}
+  {% set byP = {} %}
+  {% for h in holdings|sort((a, b) => a.termStartEdtf <=> b.termStartEdtf) %}
+    {% set p = h.holdingPerson|first %}
+    {% if p and p.id not in sittingPids %}
+      {% set k = 'p' ~ p.id %}
+      {% set byP = byP|merge({ (k): { person: p, terms: (byP[k].terms ?? [])|merge([h]) } }) %}
+    {% endif %}
+  {% endfor %}
+  {% set pastPeople = byP|sort((a, b) => ((b.terms|last).termEndEdtf ?: (b.terms|last).termStartEdtf) <=> ((a.terms|last).termEndEdtf ?: (a.terms|last).termStartEdtf)) %}
+  {% if pastPeople|length %}
+  <h2 class="rec-h2" id="past-members">Past members</h2>
+  <p class="hub-lede">{{ pastPeople|length }} {{ pastPeople|length == 1 ? 'person' : 'people' }} who have left the board, or whose last term has no end recorded, most recent first.{% if seats|length > 1 %} A term with no seat was served before the board was elected by {{ noun|trim('s', 'right') }}, or its seat is not recorded; it is listed under All.{% endif %}</p>
+  <div class="hub-table-wrap">
+  <table class="hub-table">
+    <thead><tr><th>SERVED</th><th>MEMBER</th>{% if seats|length > 1 %}<th>SEAT</th>{% endif %}<th>HOW</th></tr></thead>
+    <tbody data-seat-list="past">
+    {% for r in pastPeople %}
+      {% set spans = [] %}
+      {% for x in r.terms %}
+        {% set sy = x.termStartEdtf|slice(0, 4) %}{% set ey = x.termEndEdtf ? x.termEndEdtf|slice(0, 4) : '?' %}
+        {% if spans|length and (spans|last)[1] != '?' and sy <= (spans|last)[1] %}{% set spans = spans|slice(0, spans|length - 1)|merge([[(spans|last)[0], ey]]) %}{% else %}{% set spans = spans|merge([[sy, ey]]) %}{% endif %}
+      {% endfor %}
+      {% set pseats = [] %}{% for x in r.terms %}{% if seatOf['h' ~ x.id] and seatOf['h' ~ x.id] not in pseats %}{% set pseats = pseats|merge([seatOf['h' ~ x.id]]) %}{% endif %}{% endfor %}
+      {% set f = r.terms|first %}{% set l = r.terms|last %}
+      <tr data-seat="{{ pseats|join(' ') }}">
+        <td class="yr">{{ spans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}</td>
+        <td><a href="{{ r.person.url }}">{{ r.person.title }}</a>{% if r.terms|length > 1 %} <span class="st">({{ r.terms|length }} terms)</span>{% endif %}</td>
+        {% if seats|length > 1 %}<td class="st">{{ pseats|map(x => short[x])|join(', ') }}</td>{% endif %}
+        <td class="how">{{ HOW[f.selectionMethod.value] is defined ? HOW[f.selectionMethod.value] ~ ' ' ~ f.termStartEdtf|slice(0, 4) : 'from ' ~ f.termStartEdtf|slice(0, 4) }}{{ ENDED[l.howEnded.value] is defined ? '; ' ~ ENDED[l.howEnded.value] : '' }}{% include "_partials/record/evidence" with { ev: l.endEvidence.value ? l.endEvidence : l.startEvidence } only %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p data-seat-empty="past">No past member is recorded for this seat.</p>
+  </div>
+  {% endif %}
+{% endif %}
+
+{% if elections|length %}
+  <h2 class="rec-h2" id="elections">Elections</h2>
+  <ul class="hub-elections" data-seat-list="elections">
+    {% for e in elections %}
+      {% set d = e.electionDistrict|first %}
+      <li data-seat="{{ d ? d.slug : '' }}"><span class="yr">{{ e.electionDateEdtf|slice(0, 4) }}</span><a href="{{ e.url }}">{{ e.electionDate ?: e.electionDateEdtf }}{{ d ? ', ' ~ (short[d.slug] ?? d.title|split(', ')|last) : '' }}</a></li>
+    {% endfor %}
+  </ul>
+  <p data-seat-empty="elections">No election is recorded for this seat.</p>
+{% endif %}
+</div>
+
+{#- Further down: the other people the archive ties to the body, who held no
+    seat on it, each with what the connection is (Nathan, 4 October 2026: "Every
+    entry in that section should say what the connection is, or it reads as a
+    mystery"). The connection comes from an affiliation record. A person linked
+    only by the older fields (founder, associated, the person's organizations),
+    which say nothing about why, is listed with that said, until the link is
+    re-read into an affiliation (the relationship model, step 2). -#}
+{% set holderIds = holdings|map(h => (h.holdingPerson|first).id ?? 0) %}
+{% set KIND = { employed: 'Employed', member: 'Member', founder: 'Founder', owner: 'Owner', 'nonprofit-board': 'Board member', volunteer: 'Volunteer' } %}
+{% set rows = [] %}{% set seenIds = [] %}
+{% for a in craft.entries().section('affiliations').relatedTo({ targetElement: body, field: 'affiliationBody' }).with(['affiliationPerson']).all() %}
+  {% set p = a.affiliationPerson|first %}
+  {% if p and p.id not in exclude and p.id not in holderIds %}
+    {% set yrs = a.termStart or a.termEnd ? (a.termStart ?: '?') ~ ' to ' ~ (a.termEnd ?: (a.affiliationEnded.value == 'serving' ? 'now' : '?')) : '' %}
+    {% set rows = rows|merge([{ p: p, why: (a.affiliationTitle ?: KIND[a.affiliationKind.value] ?? 'Connected') ~ (yrs ? ', ' ~ yrs : ''), ev: a.startEvidence }]) %}
+    {% set seenIds = seenIds|merge([p.id]) %}
+  {% endif %}
+{% endfor %}
+{% set legacy = body.orgFoundedBy.all()|merge(body.orgAssociatedPersons.all())|merge(craft.entries().section('persons').relatedTo({ targetElement: body, field: 'personOrganizations' }).orderBy('title asc').all()) %}
+{% for p in legacy %}{% if p.id not in holderIds and p.id not in exclude and p.id not in seenIds %}{% set rows = rows|merge([{ p: p, why: 'Linked to this record; the connection is not yet recorded', ev: null }]) %}{% set seenIds = seenIds|merge([p.id]) %}{% endif %}{% endfor %}
+{% if rows|length %}
+  <h2 class="rec-h2" id="people">Other people connected with it</h2>
+  <div class="hub-people">
+    {% import "_partials/record/portrait" as portrait2 %}
+    {% for r in rows %}
+      {% set p = r.p %}
+      {% set pimg = 'featuredImage' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) ? p.featuredImage.one() ?? null : null %}
+      {% set pp = p.title|split(' ')|filter(x => x|trim) %}
+      <div class="rec-person">
+        <a class="th" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait2.img(pimg, 1, '', true) }}{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : p.title|slice(0,1))|upper }}{% endif %}</a>
+        <div style="min-width:0"><a class="n" href="{{ p.url }}" style="text-decoration:none">{{ p.title }}</a><div class="r">{{ r.why }}{% if r.ev %}{% include "_partials/record/evidence" with { ev: r.ev } only %}{% endif %}</div></div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% css %}
+.hub-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;margin:0 0 14px}
+.hub-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E2E4E8;text-decoration:none;color:#17254C}
+.hub-ph{text-decoration:none;aspect-ratio:4/5;background:#FDF7EA;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hub-ph img{width:100%;height:100%;object-fit:cover;object-position:top}
+.hub-ph span{font-family:'Playfair Display',serif;font-size:40px;color:#C4A031}
+.hub-tx{padding:12px 14px 14px}
+.hub-n{display:block;text-decoration:none;color:#17254C;font-family:'Playfair Display',serif;font-size:18px;line-height:1.2}
+.hub-m{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.1em;color:#7A5C1B;margin-top:6px;text-transform:uppercase}
+.hub-t{font-size:13px;color:#5B6472;margin-top:6px;line-height:1.45}
+.hub-gap,.hub-lede{font-size:15px;line-height:1.6;color:#4A5260;margin:0 0 20px;max-width:720px}
+.hub-table-wrap{overflow-x:auto}
+.hub-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;font-size:15px;margin-bottom:14px}
+.hub-table th{text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0}
+.hub-table td{padding:9px 14px;border-top:1px solid #F0F1F4;vertical-align:top}
+.hub-table td a{color:#17254C;font-weight:500}
+.hub-table .yr{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hub-table .st,.hub-table .how{color:#4A5260;font-size:14px}
+.hub-elections{list-style:none;padding:0;margin:0 0 14px;columns:2 300px;column-gap:28px}
+.hub-elections li{break-inside:avoid;padding:6px 0;border-bottom:1px solid #EFE6D0;font-size:15px}
+.hub-elections .yr{display:inline-block;width:46px;color:#7A5C1B;font-variant-numeric:tabular-nums}
+.hub-elections a{color:#17254C}
+.hub-people{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0 24px;margin-bottom:20px}
+{% endcss %}

@@ -1,0 +1,77 @@
+columnSuffix: null
+handle: affiliationKind
+instructions: null
+name: Kind
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Employed by'
+        -
+          - value
+          - employed
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Member of'
+        -
+          - value
+          - member
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Founder
+        -
+          - value
+          - founder
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Owner
+        -
+          - value
+          - owner
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Board member of a nonprofit'
+        -
+          - value
+          - nonprofit-board
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Volunteer
+        -
+          - value
+          - volunteer
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

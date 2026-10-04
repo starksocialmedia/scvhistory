@@ -268,3 +268,7 @@
 2026-10-04 00:15:00 PDT	fix_live_errors_consolidated.php	scvhistory-web	19 rows	verified	the consolidated live errors in Craft: 19 correction notes, 2 photoSourceCode fixes; text not rewritten
 2026-10-04 00:15:13 PDT	apply_cancelled_2013_2016.php	scvhistory-web	19 rows	verified	the County's cancelled-election lists of 2013, 2015 and 2016 on the school board holdings
 2026-10-04 00:17:18 PDT	fix_own_text_figures_2026_10_04.php	scvhistory-web	37 rows	verified	del Valle acreage and Beale's $5,000 attributed to Reynolds, the acreage sum noted; the Camulos note reworded as one account
+2026-10-04 01:06:49 PDT	add_affiliations.php	scvhistory-web	7 rows	verified: section, type, 16 fields, URLs off	affiliations as records: kind, title, years, how it ended, evidence per date
+2026-10-04 01:07:03 PDT	record_hart_superintendents_and_board_2026_10_04.php	scvhistory-web	7 rows	verified	Hart superintendents as affiliations (Vierra serving, Smyth to 1992); board checked against the district: Ahuja end, Messina Area 5, Moore from 2017
+2026-10-04 01:22:09 PDT	record_trunkey_measure_v_2026_10_04.php	scvhistory-web	1 rows	verified	Trunkey: member of the Hart district's Measure V oversight committee, as an affiliation
+2026-10-04 02:05:54 PDT	clear_memorial_non_portraits_2026_10_04.php	scvhistory-web	18 rows	verified	18 memorial records whose featured image was a wall name, a grave, a letter or a clipping: cleared, kept in their images

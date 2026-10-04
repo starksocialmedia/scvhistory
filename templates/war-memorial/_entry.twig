@@ -3,6 +3,8 @@
   {% include "_partials/record/css" %}
   {% include "_partials/record/print" %}
   {% css %}
+  .wm-nophoto{aspect-ratio:4/5;background:#fff;border:1px solid #E2E4E8;display:flex;align-items:center;justify-content:center;padding:28px;text-align:center}
+  .wm-nophoto p{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.4;color:#5B6472;margin:0}
   .wm-unit{background:#17254C;border-top:3px solid #C4A031;padding:26px 22px;text-align:center;color:#fff}
   .wm-unit .seal{width:84px;height:84px;border-radius:50%;margin:0 auto;border:2px solid #C4A031;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .wm-unit .seal img{width:72px;height:72px;object-fit:contain}
@@ -51,7 +53,9 @@
    field reads as defined on an element whose type does not have it. #}
 {% set bandImg = present['bandImage'] is defined and entry.bandImage ? entry.bandImage.one() ?? null : null %}
 {% set img = bandImg ?? ('featuredImage' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.featuredImage.one() ?? null : null) %}
-{% set img = img ?? (recImages|length ? recImages|first : null) %}
+{#- No fallback to the record's other images: they are photographs of his name on a memorial wall, his grave, a
+    letter, which the body shows with their captions, never a stand-in portrait (Nathan, 4 October 2026, on Michael
+    Fay's record). With no likeness, the slot says so. -#}
 {% set awards = F.wmAwards ? F.wmAwards|replace({',': ';'})|split(';')|map(a => a|trim)|filter(a => a) : [] %}
 {% set era = 'historicalEra' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.historicalEra.one() ?? null : null %}
 {% set related = 'wmRelatedPerson' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.wmRelatedPerson.one() ?? null : null %}
@@ -121,7 +125,8 @@
           </div>
           {% endif %}
         </div>
-        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
+        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>
+        {% else %}<div class="rec-portrait wm-nophoto"><p>No photograph of him is known to the archive.</p></div>{% endif %}
       </div>
     </div>
   </section>

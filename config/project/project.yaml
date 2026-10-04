@@ -1,4 +1,4 @@
-dateModified: 1791042982
+dateModified: 1791101209
 email:
   fromEmail: nathan@starksocial.com
   fromName: 'SCV History'
@@ -15,6 +15,7 @@ meta:
   __names__:
     0a10d99a-34c7-474c-a2ef-adb9a3141640: Photograph # Photograph
     0a435923-bb41-4cc3-8f64-48ada83aef28: 'Obit Group' # Obit Group
+    0b4315ef-5e2b-46e5-86ac-f0e8bdc60e99: Person # Person
     0cde1937-2ac4-47df-afc3-af331dfa4127: 'Photo Date Edtf' # Photo Date Edtf
     0e428760-475d-483d-97b2-d1444c7630f4: 'Photo Date' # Photo Date
     1aa05281-0c0f-4598-abfb-6d16744b7ba1: 'Boundaries in force to' # Boundaries in force to
@@ -246,6 +247,7 @@ meta:
     20447bfc-d0a4-48c3-b83f-6b5cd23a096b: 'Evidence for the death' # Evidence for the death
     34961b27-c7cc-4084-bbdf-a64ced7814c6: 'On what basis' # On what basis
     49092f2b-66bc-499b-95cd-d01ceb9d6fe1: Obituaries # Obituaries
+    49455df4-6231-4757-b391-1c7205bfd2d6: 'How it ended' # How it ended
     64271c25-81d0-4aff-bba1-bf6896aa3db6: Place # Place
     65551adf-1fcd-4c63-bc62-823f2fb5cdc8: 'Casualty Type' # Casualty Type
     65766de2-684f-443c-ae20-38ffe4c6c377: 'Org Associated Persons' # Org Associated Persons
@@ -275,6 +277,7 @@ meta:
     21812942-f358-488f-ac6f-fdc1700661db: 'Source Fault' # Source Fault
     27773065-2a16-4ea5-b962-192d6495e76a: Person # Person
     40145306-cc8b-4a0c-ad21-946ee0da19cf: 'Kind of election' # Kind of election
+    55631285-6210-4b74-958f-cc70eb7c2069: 'Title, as printed' # Title, as printed
     63028120-1877-42f9-bd4a-02e19aa083f0: 'Obit Related Persons' # Obit Related Persons
     68602574-7525-4259-95bf-d8b04f848b01: 'Photo Places' # Photo Places
     71712435-b6d1-4157-93d5-5a09243930c1: 'WM Branch' # WM Branch
@@ -305,6 +308,7 @@ meta:
     b6f60f2c-09bb-43e2-ab37-f36f1544c1d4: 'Photo Source Code' # Photo Source Code
     b6ff062a-24fa-45e0-910c-a8197e59eb77: 'Photo Articles' # Photo Articles
     b7cd4f62-4e1b-404b-abbb-be7461ca3ecd: Birthplace # Birthplace
+    b7fce090-bcab-4d6e-a84f-0e565a96639e: Affiliations # Affiliations
     b8c3d45b-5cc2-4abf-9fe6-268b52ef38f3: 'Office Holding' # Office Holding
     b9d1def6-30f2-4133-8bb0-2b222faad34e: 'Burial Place' # Burial Place
     b18bbdc9-af0b-4d1a-8590-f4b9242682f6: Person # Person
@@ -330,6 +334,7 @@ meta:
     c9bbf159-b011-4ee0-945e-235e9cdfa0db: 'Term end, as printed' # Term end, as printed
     c9f14589-3079-448d-aff3-d2473f6d0171: 'Facts and their sources' # Facts and their sources
     c464ffde-1351-4dd5-812b-5a8efa5da0c5: 'Fix Status' # Fix Status
+    c577b7db-cbfc-4c68-98ae-d382e11342b7: Affiliation # Affiliation
     c863b608-9f47-45c9-8606-39a27567d86d: 'Dates in this record' # Dates in this record
     c18449fd-0a37-4fcb-ae08-91891244374e: 'School Level' # School Level
     c941538f-c133-4227-a8e9-43590d255db7: 'Wikidata ID' # Wikidata ID
@@ -410,11 +415,13 @@ meta:
     fa81d32a-753b-4d7a-b1fc-628cc6c78536: 'Legacy Source Path' # Legacy Source Path
     fb2c5789-1453-4ead-bdcb-edc81ac95334: 'Obit Webmaster Note Top' # Obit Webmaster Note Top
     fb70fa3e-f56d-4f60-b6f0-2898eff83945: 'Source checksum' # Source checksum
+    fcd726c3-c8f7-4bef-9dc0-acd0bcffda4b: Kind # Kind
     fdb7f91f-2ca8-4df3-b40b-ed08f4227c9f: 'Spouse Of' # Spouse Of
     fe7f97dd-7d4c-4a34-aba6-88be3274095c: 'Obit Related Military' # Obit Related Military
     fe92ac21-e789-4858-8229-ef9b241d0ce1: 'MP Home of Record' # MP Home of Record
     fefda696-1d19-4719-a755-88d6c46b068f: Documents # Documents
     ffc2509e-669d-4339-b7de-588fb55223c0: Images # Images
+    ffd40798-cf03-4a0f-bc5c-1015be8c87c9: Body # Body
 plugins:
   retour:
     edition: standard

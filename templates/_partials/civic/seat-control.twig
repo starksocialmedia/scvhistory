@@ -1,0 +1,55 @@
+{#
+  The seat control (body-hub proposal, approved 3 October 2026): a row of buttons,
+  one per seat, that filters every list of the body's page to one seat. Built once
+  for every body with seats: the school districts' trustee areas, the City's
+  council districts, SCV Water's divisions.
+
+  Any element inside `scope` that carries data-seat="slug slug" is shown only when
+  the chosen seat is among its slugs; an element with data-seat="" (no seat
+  recorded, or elected at large) is hidden while a seat is chosen. A list marked
+  data-seat-list="k" shows the scope's data-seat-empty="k" line when nothing in it is left.
+
+  Seat boundaries are not held (decision 1 of the proposal), so the control filters
+  the lists and the map stays as it is; the line under the buttons says so.
+
+    seats   the seat place records, in order
+    scope   the id of the element whose lists are filtered
+    noun    what a seat is called, plural ("trustee areas")
+#}
+{% if seats|length > 1 %}
+<div class="seat-pick" role="group" aria-label="Show one {{ noun|trim('s', 'right') }}" data-seat-scope="{{ scope }}">
+  <button type="button" data-seat-btn="" aria-pressed="true">All</button>
+  {% for s in seats %}
+    <button type="button" data-seat-btn="{{ s.slug }}" aria-pressed="false">{{ s.title|split(', ')|last|replace({ 'Trustee Area': 'Area', 'Council District': 'District' }) }}</button>
+  {% endfor %}
+</div>
+<p class="seat-note">The boundaries of the {{ noun }} are not drawn: the archive does not yet hold them. Choosing one filters the lists on this page to that seat.</p>
+{% css %}
+.seat-pick{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
+.seat-pick button{border:1px solid rgba(23,37,76,.25);background:#fff;color:#17254C;padding:6px 13px;border-radius:14px;font-size:13.5px;cursor:pointer;font-family:'Public Sans',system-ui,sans-serif}
+.seat-pick button[aria-pressed="true"]{background:#17254C;color:#fff;border-color:#17254C}
+.seat-note{font-size:13.5px;color:#5B6472;line-height:1.55;margin:0 0 26px;max-width:720px}
+[data-seat-empty]{display:none;font-size:14px;color:#5B6472;margin:0 0 20px}
+{% endcss %}
+{% js %}
+(function(){
+  document.querySelectorAll('[data-seat-scope]').forEach(function(pick){
+    var scope = document.getElementById(pick.getAttribute('data-seat-scope'));
+    if (!scope) { return; }
+    function show(seat){
+      pick.querySelectorAll('[data-seat-btn]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-seat-btn') === seat ? 'true' : 'false'); });
+      scope.querySelectorAll('[data-seat]').forEach(function(el){
+        var on = !seat || (' ' + el.getAttribute('data-seat') + ' ').indexOf(' ' + seat + ' ') > -1;
+        el.style.display = on ? '' : 'none';
+      });
+      scope.querySelectorAll('[data-seat-list]').forEach(function(list){
+        var left = Array.prototype.filter.call(list.querySelectorAll('[data-seat]'), function(el){ return el.style.display !== 'none'; }).length;
+        var empty = scope.querySelector('[data-seat-empty="' + list.getAttribute('data-seat-list') + '"]');
+        if (empty) { empty.style.display = left ? 'none' : 'block'; }
+      });
+    }
+    pick.querySelectorAll('[data-seat-btn]').forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-seat-btn')); }); });
+  });
+})();
+{% endjs %}
+{% endif %}

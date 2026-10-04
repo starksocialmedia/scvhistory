@@ -1,0 +1,919 @@
+{
+  "date": "2026-10-04",
+  "rule": "sitting = officeHoldings on the holdingBody where (howEnded == 'serving' or (no termEndEdtf and howEnded empty)) and (no termEndEdtf or termEndEdtf >= 2026-10)",
+  "bodies": [
+    {
+      "body": "Newhall School District",
+      "id": 21590,
+      "sources": [
+        {
+          "file": "inventory/news/district-boards-2026-10-04/newhall-board.html",
+          "text": "inventory/news/district-boards-2026-10-04/newhall-board.txt",
+          "url": "https://www.newhallschooldistrict.com/governing-board-members",
+          "sha256": "c7b199ff56fb9611a3236d858dcf9afb0df6a9c735671317d88bcdfc750b6df4"
+        },
+        {
+          "file": "inventory/news/district-boards-2026-10-04/newhall-superintendent.html",
+          "text": "inventory/news/district-boards-2026-10-04/newhall-superintendent.txt",
+          "url": "https://www.newhallschooldistrict.com/office-of-the-superintendent",
+          "sha256": "3bdb95aca7384b35da313b065b9f32fe70e757716bd267ba3565a13621a8ec3e"
+        }
+      ],
+      "fetchNote": "newhallschools.org did not resolve and newhallsd.com is a parked domain; the district site is newhallschooldistrict.com.",
+      "members": [
+        {
+          "name": "Mrs. Rachelle Haddoak",
+          "seat": "Trustee Area 2",
+          "office": "Governing Board President",
+          "term": "2022 - 2026",
+          "class": "agrees",
+          "archive": {
+            "person": "Rachelle Haddoak",
+            "personId": 28368,
+            "seat": "Trustee Area 2",
+            "termStartEdtf": "2022-12",
+            "termEndEdtf": "2026-12",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Mrs. Suzan T. Solomon",
+          "seat": "Trustee Area 5",
+          "office": "Governing Board Clerk",
+          "term": "2024 - 2028",
+          "class": "seat or term differs",
+          "archive": {
+            "person": "Suzan Solomon",
+            "personId": 25385,
+            "seat": "",
+            "termStartEdtf": "1999-12",
+            "termEndEdtf": "",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": "Archive has one open holding from 1999-12 with no seat; the page prints Trustee Area 5, current term 2024 - 2028."
+        },
+        {
+          "name": "Mr. Isaiah Talley",
+          "seat": "Trustee Area 4",
+          "office": "Governing Board Clerk Pro Tem",
+          "term": "2024 - 2028",
+          "class": "archive missing the member",
+          "archive": null,
+          "note": "No person record. Page: appointed 6 September 2016, re-elected 3 November 2020."
+        },
+        {
+          "name": "Ms. Donna Robert",
+          "seat": "Trustee Area 1",
+          "office": "Governing Board Member",
+          "term": "2022 - 2026",
+          "class": "agrees",
+          "archive": {
+            "person": "Donna Robert",
+            "personId": 25395,
+            "seat": "Trustee Area 1",
+            "termStartEdtf": "2022-12",
+            "termEndEdtf": "2026-12",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Mr. Ernesto Smith",
+          "seat": "Trustee Area 3",
+          "office": "Governing Board Member",
+          "term": "2022 - 2026",
+          "class": "archive missing the member",
+          "archive": null,
+          "note": "No person record."
+        }
+      ],
+      "archiveExtra": [],
+      "unknownOpen": [
+        {
+          "person": "Michael Shapiro",
+          "personId": 25387,
+          "seat": "",
+          "termStartEdtf": "2003-12",
+          "termEndEdtf": "",
+          "howEnded": "unknown",
+          "portrait": null
+        },
+        {
+          "person": "Christy Smith",
+          "personId": 25389,
+          "seat": "",
+          "termStartEdtf": "2009",
+          "termEndEdtf": "",
+          "howEnded": "unknown",
+          "portrait": "christy-smith-assembly-portrait-2018.jpg"
+        }
+      ],
+      "exec": {
+        "title": "Superintendent",
+        "name": "Leticia Hernandez, Ed.D",
+        "personRecord": null,
+        "affiliation": null
+      }
+    },
+    {
+      "body": "Saugus Union School District",
+      "id": 21592,
+      "sources": [
+        {
+          "file": "inventory/news/district-boards-2026-10-04/saugus-board.html",
+          "text": "inventory/news/district-boards-2026-10-04/saugus-board.txt",
+          "url": "https://www.saugususd.org/governing-board",
+          "sha256": "0cf3990b977da7acfcf8b30b92dcf043edff39072edaffe1a0d5ced37c4ea9b9"
+        },
+        {
+          "file": "inventory/news/district-boards-2026-10-04/saugus-superintendent.html",
+          "text": "inventory/news/district-boards-2026-10-04/saugus-superintendent.txt",
+          "url": "https://www.saugususd.org/our-administration",
+          "sha256": "5ba2a714b782981f006d9107dbfa80a7981f80ca073eb0ac12dfad2d663c4378"
+        }
+      ],
+      "fetchNote": "The page prints no term years.",
+      "members": [
+        {
+          "name": "Matthew Watson",
+          "seat": "Trustee Area 4",
+          "office": "President",
+          "term": "not printed",
+          "class": "agrees",
+          "archive": {
+            "person": "Matthew Watson",
+            "personId": 28358,
+            "seat": "Trustee Area 4",
+            "termStartEdtf": "2024-12",
+            "termEndEdtf": "2028-12",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Katherine Cooper",
+          "seat": "Trustee Area 3",
+          "office": "Clerk",
+          "term": "not printed",
+          "class": "agrees",
+          "archive": {
+            "person": "Katherine Cooper",
+            "personId": 25419,
+            "seat": "Trustee Area 3",
+            "termStartEdtf": "2024-12",
+            "termEndEdtf": "2028-12",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Patti Garibay",
+          "seat": "Trustee Area 1",
+          "office": "Member",
+          "term": "not printed",
+          "class": "archive missing the member",
+          "archive": null,
+          "note": "No person record. Page: appointed to the board in 2023. The archive still has Cassandra Nicole Love open on Trustee Area 1 (see below)."
+        },
+        {
+          "name": "Anna Griese",
+          "seat": "Trustee Area 2",
+          "office": "Member",
+          "term": "not printed",
+          "class": "agrees",
+          "archive": {
+            "person": "Anna Griese",
+            "personId": 28314,
+            "seat": "Trustee Area 2",
+            "termStartEdtf": "2022-12",
+            "termEndEdtf": "2026-12",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Christopher Trunkey",
+          "seat": "Trustee Area 5",
+          "office": "Member",
+          "term": "not printed",
+          "class": "seat or term differs",
+          "archive": {
+            "person": "Christopher Trunkey",
+            "personId": 25409,
+            "seat": "",
+            "termStartEdtf": "2014-11-18",
+            "termEndEdtf": "",
+            "howEnded": "serving",
+            "portrait": "chris-trunkey-campaign-image.jpg"
+          },
+          "note": "Archive has one open holding from 2014-11-18 with no seat; the page prints Trustee Area 5 and says appointed November 2014, re-elected 2016, 2018 and 2022."
+        }
+      ],
+      "archiveExtra": [],
+      "unknownOpen": [
+        {
+          "person": "Cassandra Nicole Love",
+          "personId": 28324,
+          "seat": "Trustee Area 1",
+          "termStartEdtf": "2022-12",
+          "termEndEdtf": "",
+          "howEnded": "unknown",
+          "portrait": null
+        }
+      ],
+      "exec": {
+        "title": "Superintendent",
+        "name": "Robert Hernandez, Ed.D",
+        "personRecord": null,
+        "affiliation": null
+      }
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "id": 21594,
+      "sources": [
+        {
+          "file": "inventory/news/district-boards-2026-10-04/sulphur-springs-board.html",
+          "text": "inventory/news/district-boards-2026-10-04/sulphur-springs-board.txt",
+          "url": "https://www.sssd.k12.ca.us/governing-board (redirects to /members)",
+          "sha256": "4fd0f2cbd5ce044a9c86c0930c87b273f2e25979254b0806eaad2e6991ef0a03"
+        },
+        {
+          "file": "inventory/news/district-boards-2026-10-04/sulphur-springs-superintendent.html",
+          "text": "inventory/news/district-boards-2026-10-04/sulphur-springs-superintendent.txt",
+          "url": "https://www.sssd.k12.ca.us/office-of-the-superintendent (redirects to /superintendent-message)",
+          "sha256": "4f1755b85b45b4c3e0fc16d15e4b3d3e142a520db3fa7f031287e81a2c245c75"
+        }
+      ],
+      "fetchNote": "The page prints no term years. It lists the officers elected at the December 18 organizational meeting for 2025-2026.",
+      "members": [
+        {
+          "name": "Shelley Weinstein",
+          "seat": "Trustee Area No. 1",
+          "office": "Board President",
+          "term": "not printed (on the board since 2003)",
+          "class": "name spelled differently",
+          "archive": {
+            "person": "Rochelle Weinstein",
+            "personId": 25433,
+            "seat": "",
+            "termStartEdtf": "2003-12",
+            "termEndEdtf": "",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": "Archive record is Rochelle Weinstein; the page prints Shelley. Same start (2003). Archive holding also has no seat and one open term since 2003-12."
+        },
+        {
+          "name": "Ken Chase",
+          "seat": "Trustee Area No. 4",
+          "office": "Clerk",
+          "term": "not printed",
+          "class": "archive missing the member",
+          "archive": {
+            "person": "Ken Chase",
+            "personId": 28348,
+            "seat": "",
+            "termStartEdtf": "2013-12",
+            "termEndEdtf": "2018-12",
+            "howEnded": "unknown",
+            "portrait": null
+          },
+          "note": "Person record exists; his only holding ends 2018-12 (howEnded unknown), so he is not sitting."
+        },
+        {
+          "name": "Denis DeFigueiredo",
+          "seat": "Trustee Area No. 2",
+          "office": "Board Member",
+          "term": "not printed",
+          "class": "archive missing the member",
+          "archive": {
+            "person": "Denis DeFigueiredo",
+            "personId": 28330,
+            "seat": "Trustee Area 2",
+            "termStartEdtf": "2015-12",
+            "termEndEdtf": "2020-12",
+            "howEnded": "unknown",
+            "portrait": null
+          },
+          "note": "Person record exists; the latest holding ends 2020-12 (howEnded unknown)."
+        },
+        {
+          "name": "Lori MacDonald",
+          "seat": "Trustee Area No. 5",
+          "office": "Board Member",
+          "term": "not printed (on the board since 2012)",
+          "class": "archive missing the member",
+          "archive": {
+            "person": "Lori Macdonald",
+            "personId": 28356,
+            "seat": "",
+            "termStartEdtf": "2013-12",
+            "termEndEdtf": "2018-12",
+            "howEnded": "unknown",
+            "portrait": null
+          },
+          "note": "Person record exists as \"Lori Macdonald\" (lower-case d); only holding ends 2018-12. Page says she has served since 2012; archive starts 2013-12."
+        },
+        {
+          "name": "Paola Jellings",
+          "seat": "Trustee Area No. 3",
+          "office": "Board Member",
+          "term": "not printed (on the board since June 2020)",
+          "class": "archive missing the member",
+          "archive": null,
+          "note": "No person record."
+        }
+      ],
+      "archiveExtra": [],
+      "unknownOpen": [
+        {
+          "person": "Paul Strickland",
+          "personId": 25425,
+          "seat": "",
+          "termStartEdtf": "1995-12",
+          "termEndEdtf": "",
+          "howEnded": "unknown",
+          "portrait": null
+        }
+      ],
+      "exec": {
+        "title": "Superintendent",
+        "name": "Dr. Catherine Kawaguchi",
+        "personRecord": null,
+        "affiliation": null
+      }
+    },
+    {
+      "body": "Castaic Union School District",
+      "id": 21596,
+      "sources": [
+        {
+          "file": "inventory/news/district-boards-2026-10-04/castaic-board.html",
+          "text": "inventory/news/district-boards-2026-10-04/castaic-board.txt",
+          "url": "https://www.castaicusd.com/apps/pages/index.jsp?uREC_ID=799367&type=d&pREC_ID=1188877",
+          "sha256": "87552e53739ef23b744b4d96b91e24292fd49724e13b4b0e336dbed426ce2d00"
+        },
+        {
+          "file": "inventory/news/district-boards-2026-10-04/castaic-superintendent.html",
+          "text": "inventory/news/district-boards-2026-10-04/castaic-superintendent.txt",
+          "url": "https://www.castaicusd.com/apps/pages/index.jsp?uREC_ID=799493&type=d",
+          "sha256": "022ab62db455415e55d39b5afd1fe921fa19fc1619c473f7d85e5ee057699260"
+        }
+      ],
+      "fetchNote": "",
+      "members": [
+        {
+          "name": "Mayreen Burk",
+          "seat": "Trustee Area E",
+          "office": "Trustee",
+          "term": "November 2022 to December 2026",
+          "class": "agrees",
+          "archive": {
+            "person": "Mayreen Burk",
+            "personId": 28360,
+            "seat": "Trustee Area E",
+            "termStartEdtf": "2022-12",
+            "termEndEdtf": "2026-12",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Fred Malcomb",
+          "seat": "Trustee Area C",
+          "office": "Trustee",
+          "term": "November 2024 to December 2028",
+          "class": "archive missing the member",
+          "archive": null,
+          "note": "No person record."
+        },
+        {
+          "name": "Erik Richardson",
+          "seat": "Trustee Area A",
+          "office": "Clerk",
+          "term": "November 2024 to December 2028",
+          "class": "agrees",
+          "archive": {
+            "person": "Erik Richardson",
+            "personId": 28338,
+            "seat": "Trustee Area A",
+            "termStartEdtf": "2024-12",
+            "termEndEdtf": "2028-12",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Laura Pearson",
+          "seat": "Trustee Area B",
+          "office": "President",
+          "term": "November 2022 to December 2026",
+          "class": "seat or term differs",
+          "archive": {
+            "person": "Laura Pearson",
+            "personId": 25379,
+            "seat": "",
+            "termStartEdtf": "2005-12",
+            "termEndEdtf": "",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": "Archive has one open holding from 2005-12 with no seat; the page prints Trustee Area B, term November 2022 to December 2026."
+        },
+        {
+          "name": "Vincent Titiriga",
+          "seat": "Trustee Area D",
+          "office": "Trustee",
+          "term": "November 2024 to December 2026",
+          "class": "archive missing the member",
+          "archive": null,
+          "note": "No person record. A two-year term as printed."
+        }
+      ],
+      "archiveExtra": [],
+      "unknownOpen": [],
+      "exec": {
+        "title": "Superintendent",
+        "name": "Bob Brauneisen",
+        "personRecord": null,
+        "affiliation": null
+      }
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "id": 402,
+      "sources": [
+        {
+          "file": "inventory/news/district-boards-2026-10-04/scv-water-board.html",
+          "text": "inventory/news/district-boards-2026-10-04/scv-water-board.txt",
+          "url": "https://yourscvwater.com/governance/board-directors",
+          "sha256": "364a7d6c4298bdc903db4c275b0ac757f33e963e46a582a797e302ee8909f43e"
+        },
+        {
+          "file": "inventory/news/district-boards-2026-10-04/scv-water-general-manager.html",
+          "text": "inventory/news/district-boards-2026-10-04/scv-water-general-manager.txt",
+          "url": "https://yourscvwater.com/who-we-are/executive-management",
+          "sha256": "5b50bec0fddf2ee595cf3d2f5242c939b2852eaf9cd45f0e64e338cce794d54f"
+        }
+      ],
+      "fetchNote": "The page prints the date each director was first elected or appointed and when the present term expires.",
+      "members": [
+        {
+          "name": "Kathye Armitage",
+          "seat": "Division 3",
+          "office": "Director",
+          "term": "Elected January 2025; Term Expires January 2029",
+          "class": "agrees",
+          "archive": {
+            "person": "Kathye Armitage",
+            "personId": 26593,
+            "seat": "Division 3",
+            "termStartEdtf": "2025-01",
+            "termEndEdtf": "2029-01",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Ken Cooper",
+          "seat": "Division 2",
+          "office": "Director",
+          "term": "Elected January 2025; Term Expires January 2029",
+          "class": "agrees",
+          "archive": {
+            "person": "Ken Cooper",
+            "personId": 28350,
+            "seat": "Division 2",
+            "termStartEdtf": "2025-01",
+            "termEndEdtf": "2029-01",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "William Cooper",
+          "seat": "Division 1",
+          "office": "Vice President",
+          "term": "Elected January 2018; Term Expires January 2027",
+          "class": "name spelled differently",
+          "archive": {
+            "person": "Bill Cooper",
+            "personId": 26946,
+            "seat": "Division 1",
+            "termStartEdtf": "2023-01",
+            "termEndEdtf": "2027-01",
+            "howEnded": "serving",
+            "portrait": "bill-cooper-edited.jpg"
+          },
+          "note": "Archive record is Bill Cooper; the page prints William. Seat and term end agree."
+        },
+        {
+          "name": "Maria Gutzeit",
+          "seat": "Division 3",
+          "office": "President",
+          "term": "Elected January 2023; Term Expires January 2027",
+          "class": "agrees",
+          "archive": {
+            "person": "Maria Gutzeit",
+            "personId": 21582,
+            "seat": "Division 3",
+            "termStartEdtf": "2023-01",
+            "termEndEdtf": "2027-01",
+            "howEnded": "serving",
+            "portrait": "maria-gutzeit-campaign-avatar.png"
+          },
+          "note": ""
+        },
+        {
+          "name": "Dirk S. Marks",
+          "seat": "Division 2",
+          "office": "Director",
+          "term": "Elected January 2023; Term Expires January 2027",
+          "class": "agrees",
+          "archive": {
+            "person": "Dirk Marks",
+            "personId": 28332,
+            "seat": "Division 2",
+            "termStartEdtf": "2023-01",
+            "termEndEdtf": "2027-01",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": "Page adds the middle initial S."
+        },
+        {
+          "name": "Gary R. Martin",
+          "seat": "Division 1",
+          "office": "Vice President",
+          "term": "Elected January 2025; Term Expires January 2029",
+          "class": "seat or term differs",
+          "archive": {
+            "person": "Gary Martin",
+            "personId": 26587,
+            "seat": "",
+            "termStartEdtf": "2018-01-01",
+            "termEndEdtf": "",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": "Archive has one open holding from 2018-01-01 with no division and no end; the page prints Division 1, term expiring January 2029."
+        },
+        {
+          "name": "Dan Masnada",
+          "seat": "Division 1",
+          "office": "Director",
+          "term": "Elected January 2025; Term Expires January 2029",
+          "class": "agrees",
+          "archive": {
+            "person": "Dan Masnada",
+            "personId": 28326,
+            "seat": "Division 1",
+            "termStartEdtf": "2025-01",
+            "termEndEdtf": "2029-01",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Piotr Orzechowski",
+          "seat": "Division 2",
+          "office": "Director",
+          "term": "Elected January 2025; Term Expires January 2029",
+          "class": "agrees",
+          "archive": {
+            "person": "Piotr Orzechowski",
+            "personId": 26591,
+            "seat": "Division 2",
+            "termStartEdtf": "2025-01",
+            "termEndEdtf": "2029-01",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": ""
+        },
+        {
+          "name": "Kenneth J. Petersen, P.E.",
+          "seat": "Division 3",
+          "office": "Director",
+          "term": "Appointed September 2022; Term Expires January 2027",
+          "class": "agrees",
+          "archive": {
+            "person": "Kenneth Petersen",
+            "personId": 28352,
+            "seat": "Division 3",
+            "termStartEdtf": "2025-01",
+            "termEndEdtf": "2027-01",
+            "howEnded": "serving",
+            "portrait": null
+          },
+          "note": "Archive also holds 2022-09 to 2025-01 (re-elected). Term end agrees. The page prints no 2024 election, so the 2025-01 start rests on the archive alone."
+        }
+      ],
+      "archiveExtra": [],
+      "unknownOpen": [
+        {
+          "person": "BJ Atkins",
+          "personId": 28316,
+          "seat": "Division 3",
+          "termStartEdtf": "2021-01",
+          "termEndEdtf": "",
+          "howEnded": "unknown",
+          "portrait": null
+        }
+      ],
+      "exec": {
+        "title": "General Manager",
+        "name": "Stephen Cole",
+        "personRecord": null,
+        "affiliation": null
+      }
+    }
+  ],
+  "portraitList": [
+    {
+      "body": "Newhall School District",
+      "name": "Mrs. Rachelle Haddoak",
+      "role": "Governing Board President",
+      "personId": 28368,
+      "archiveName": "Rachelle Haddoak",
+      "portrait": null
+    },
+    {
+      "body": "Newhall School District",
+      "name": "Mrs. Suzan T. Solomon",
+      "role": "Governing Board Clerk",
+      "personId": 25385,
+      "archiveName": "Suzan Solomon",
+      "portrait": null
+    },
+    {
+      "body": "Newhall School District",
+      "name": "Mr. Isaiah Talley",
+      "role": "Governing Board Clerk Pro Tem",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Newhall School District",
+      "name": "Ms. Donna Robert",
+      "role": "Governing Board Member",
+      "personId": 25395,
+      "archiveName": "Donna Robert",
+      "portrait": null
+    },
+    {
+      "body": "Newhall School District",
+      "name": "Mr. Ernesto Smith",
+      "role": "Governing Board Member",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Newhall School District",
+      "name": "Leticia Hernandez, Ed.D",
+      "role": "Superintendent",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Saugus Union School District",
+      "name": "Matthew Watson",
+      "role": "President",
+      "personId": 28358,
+      "archiveName": "Matthew Watson",
+      "portrait": null
+    },
+    {
+      "body": "Saugus Union School District",
+      "name": "Katherine Cooper",
+      "role": "Clerk",
+      "personId": 25419,
+      "archiveName": "Katherine Cooper",
+      "portrait": null
+    },
+    {
+      "body": "Saugus Union School District",
+      "name": "Patti Garibay",
+      "role": "Member",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Saugus Union School District",
+      "name": "Anna Griese",
+      "role": "Member",
+      "personId": 28314,
+      "archiveName": "Anna Griese",
+      "portrait": null
+    },
+    {
+      "body": "Saugus Union School District",
+      "name": "Christopher Trunkey",
+      "role": "Member",
+      "personId": 25409,
+      "archiveName": "Christopher Trunkey",
+      "portrait": "chris-trunkey-campaign-image.jpg"
+    },
+    {
+      "body": "Saugus Union School District",
+      "name": "Robert Hernandez, Ed.D",
+      "role": "Superintendent",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "name": "Shelley Weinstein",
+      "role": "Board President",
+      "personId": 25433,
+      "archiveName": "Rochelle Weinstein",
+      "portrait": null
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "name": "Ken Chase",
+      "role": "Clerk",
+      "personId": 28348,
+      "archiveName": "Ken Chase",
+      "portrait": null
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "name": "Denis DeFigueiredo",
+      "role": "Board Member",
+      "personId": 28330,
+      "archiveName": "Denis DeFigueiredo",
+      "portrait": null
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "name": "Lori MacDonald",
+      "role": "Board Member",
+      "personId": 28356,
+      "archiveName": "Lori Macdonald",
+      "portrait": null
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "name": "Paola Jellings",
+      "role": "Board Member",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Sulphur Springs Union School District",
+      "name": "Dr. Catherine Kawaguchi",
+      "role": "Superintendent",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Castaic Union School District",
+      "name": "Mayreen Burk",
+      "role": "Trustee",
+      "personId": 28360,
+      "archiveName": "Mayreen Burk",
+      "portrait": null
+    },
+    {
+      "body": "Castaic Union School District",
+      "name": "Fred Malcomb",
+      "role": "Trustee",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Castaic Union School District",
+      "name": "Erik Richardson",
+      "role": "Clerk",
+      "personId": 28338,
+      "archiveName": "Erik Richardson",
+      "portrait": null
+    },
+    {
+      "body": "Castaic Union School District",
+      "name": "Laura Pearson",
+      "role": "President",
+      "personId": 25379,
+      "archiveName": "Laura Pearson",
+      "portrait": null
+    },
+    {
+      "body": "Castaic Union School District",
+      "name": "Vincent Titiriga",
+      "role": "Trustee",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Castaic Union School District",
+      "name": "Bob Brauneisen",
+      "role": "Superintendent",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Kathye Armitage",
+      "role": "Director",
+      "personId": 26593,
+      "archiveName": "Kathye Armitage",
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Ken Cooper",
+      "role": "Director",
+      "personId": 28350,
+      "archiveName": "Ken Cooper",
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "William Cooper",
+      "role": "Vice President",
+      "personId": 26946,
+      "archiveName": "Bill Cooper",
+      "portrait": "bill-cooper-edited.jpg"
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Maria Gutzeit",
+      "role": "President",
+      "personId": 21582,
+      "archiveName": "Maria Gutzeit",
+      "portrait": "maria-gutzeit-campaign-avatar.png"
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Dirk S. Marks",
+      "role": "Director",
+      "personId": 28332,
+      "archiveName": "Dirk Marks",
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Gary R. Martin",
+      "role": "Vice President",
+      "personId": 26587,
+      "archiveName": "Gary Martin",
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Dan Masnada",
+      "role": "Director",
+      "personId": 28326,
+      "archiveName": "Dan Masnada",
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Piotr Orzechowski",
+      "role": "Director",
+      "personId": 26591,
+      "archiveName": "Piotr Orzechowski",
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Kenneth J. Petersen, P.E.",
+      "role": "Director",
+      "personId": 28352,
+      "archiveName": "Kenneth Petersen",
+      "portrait": null
+    },
+    {
+      "body": "Santa Clarita Valley Water",
+      "name": "Stephen Cole",
+      "role": "General Manager",
+      "personId": null,
+      "archiveName": null,
+      "portrait": null
+    }
+  ]
+}
