@@ -280,3 +280,5 @@
 2026-10-04 07:33:12 PDT	record_city_commissions_2026_10_04.php	scvhistory-web	22 rows	verified	Parks and Arts commissions created; rosters of three commissions dated; Rasmussen, Shapiro, Burkhart, Eichman, Seratti profiles and seats
 2026-10-04 07:35:03 PDT	import_portraits_2026_10_04b.php	scvhistory-web	4 rows	verified	Walters (missed on 3 October), Griese, Rasmussen, George Runner: portraits, licence unknown
 2026-10-04 07:35:28 PDT	import_commission_portraits_2026_10_04.php	scvhistory-web	2 rows	verified	Shapiro and Seratti: the City's Arts Commission portraits, licence unknown
+2026-10-04 08:02:07 PDT	fix_date_field_prose_2026_10_04.php	scvhistory-web	30 rows	verified	date fields holding prose: article datelines set, caption fragments cleared, mastheads to the source line or bottom note, #28307 publish date cleared
+2026-10-04 08:05:40 PDT	fix_winkler_removal_2026_10_04.php	scvhistory-web	1 rows	verified	Stephen Winkler removed from office (residency), board vote 2013, quo warranto granted June 2014; howEnded option "removed"

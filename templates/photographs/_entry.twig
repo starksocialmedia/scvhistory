@@ -55,6 +55,10 @@
              'legacyKey','legacyUrl','sourcePath','culturalSensitivityNote'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
+{#- A date field shows only a date (Nathan, 4 October 2026: "The template should show nothing rather than show prose under a
+    date label"). The import put lede paragraphs and caption fragments in date fields; a value longer than a date runs, or with
+    no year in it, is not shown anywhere a date is expected. -#}
+{% if F.photoDate and (F.photoDate|length > 60 or not (F.photoDate matches '/(1[5-9][0-9]{2}|20[0-9]{2})/')) %}{% set F = F|merge({ photoDate: '' }) %}{% endif %}
 
 {% set recImages = entry.recordImages is defined and entry.recordImages ? entry.recordImages.all() : [] %}
 {% set recDocs = entry.recordDocuments is defined and entry.recordDocuments ? entry.recordDocuments.all() : [] %}

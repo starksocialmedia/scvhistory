@@ -31,7 +31,7 @@
 {% set elections = craft.entries().section('elections').relatedTo({ targetElement: body, field: 'electionBody' })
     .with(['electionDistrict']).orderBy('electionDateEdtf desc').all() %}
 {% set HOW = { appointed: 'appointed', elected: 'elected', succeeded: 'succeeded' } %}
-{% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', left: 'left office', unknown: 'end not recorded' } %}
+{% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', removed: 'removed from office', died: 'died in office', left: 'left office', unknown: 'end not recorded' } %}
 {% set scope = 'hub' ~ body.id %}
 
 <div id="{{ scope }}">
