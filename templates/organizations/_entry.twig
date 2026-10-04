@@ -293,7 +293,9 @@
         {% if mark %}
           {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
           <div class="rec-box rec-mark"><div class="rec-lab">{{ isDistrict ? 'THE DISTRICT\'S LOGO' : 'LOGO' }}</div>
-            <img src="{{ mark.url }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.width }}" height="{{ mark.height }}">
+            {#- The asset keeps the file as handed over; the page shows a copy no larger than 600 pixels (Nathan, 4 October 2026: "Keep the full-size file as the archive copy and serve a resized one"). An SVG is served as is. -#}
+            {% set mt = mark.extension|lower == 'svg' ? null : { width: 600, height: 600, mode: 'fit', upscale: false } %}
+            <img src="{{ mark.getUrl(mt) }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.getWidth(mt) }}" height="{{ mark.getHeight(mt) }}">
             {#- One line (Nathan, 4 October 2026): the rights reasoning stays in the asset's rightsNote, for a researcher, not on the page. -#}
             <p>{{ isDistrict ? 'The district\'s' : 'Its' }} logo, from {% if mark.sourceUrl %}<a href="{{ mark.sourceUrl }}" rel="noopener">{{ markHost }}</a>{% else %}its website{% endif %}{% if mark.acquiredDate %}, retrieved {{ mark.acquiredDate|date('j F Y') }}{% endif %}.</p>
           </div>

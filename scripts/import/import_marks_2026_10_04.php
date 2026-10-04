@@ -1,5 +1,5 @@
 /**
- * Five marks handed over on 4 October 2026 and left unimported until now (Nathan: "The Hart High and
+ * Six marks handed over on 4 October 2026 and left unimported until now (lasd.png added on Nathan's word that the copy in incoming is the Sheriff's star) (Nathan: "The Hart High and
  * Canyon High logos are not showing on the site"; earlier the same day: the Hart High, City, LA County and
  * LASD marks on their records, City seal #41 kept as superseded; canyon-high-logo.png "from the school's
  * site, retrieved 4 October 2026"; CSUN_Seal.png "for the CSUN record").
@@ -19,12 +19,13 @@ $MARKS = [
     ['hart-high.svg', 'hart-high-school-logo.svg', 16052, 'Hart High School', 'Logo of Hart High School', "Hart High School's logo, $from"],
     ['canyon-high-logo.png', 'canyon-high-school-logo.png', 21779, 'Canyon High School', 'Logo of Canyon High School', "Canyon High School's logo, $from"],
     ['CSUN_Seal.png', 'csun-seal.png', 16347, 'California State University, Northridge', 'Seal of California State University, Northridge', 'The seal of California State University, Northridge, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.'],
+    ['lasd.png', 'lasd-star.png', 29282, 'Los Angeles County Sheriff\'s Department', 'Star of the Los Angeles County Sheriff\'s Department', "The Sheriff's Department's star, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file."],
     ['la-county-seal.svg', 'los-angeles-county-seal.svg', 29279, 'County of Los Angeles', 'Seal of the County of Los Angeles', 'The seal of the County of Los Angeles, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.'],
     ['city-of-santa-clarita.svg', 'city-of-santa-clarita-seal.svg', 394, 'City of Santa Clarita', 'Seal of the City of Santa Clarita', 'The seal of the City of Santa Clarita, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file. It replaces the earlier PNG (asset #41) as the City\'s mark.'],
 ];
 $volume = Craft::$app->getVolumes()->getVolumeByHandle('archiveMedia'); $folder = Craft::$app->getAssets()->findFolder(['volumeId' => $volume->id, 'path' => 'marks/']);
 foreach ($MARKS as [$in, $fn, $id, $holder, $title, $src]) {
-    $file = "$root/inventory/incoming/$in"; $rec = Entry::find()->id($id)->status(null)->one(); $has = Asset::find()->filename($fn)->one();
+    $file = is_file("$root/inventory/incoming/$in") ? "$root/inventory/incoming/$in" : "$root/inventory/incoming/done/$in"; $rec = Entry::find()->id($id)->status(null)->one(); $has = Asset::find()->filename($fn)->one();
     if (!is_file($file)) { $bad[] = "$in missing"; }
     if (!$rec || !$rec->getFieldLayout()->getFieldByHandle('currentMark')) { $bad[] = "#$id has no currentMark slot"; }
     echo "$in -> $fn on #$id " . ($rec?->title ?? '?') . ': ' . ($has ? "asset #{$has->id} exists" : 'import') . '; record mark now: ' . ($rec?->currentMark->one()?->filename ?? 'none') . PHP_EOL;
@@ -33,7 +34,7 @@ echo 'REFUSED: ' . ($bad ? implode(' | ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY || $bad) { return; }
 $n = 0; $done = [];
 foreach ($MARKS as [$in, $fn, $id, $holder, $title, $src]) {
-    $file = "$root/inventory/incoming/$in"; $rec = Entry::find()->id($id)->status(null)->one(); $has = Asset::find()->filename($fn)->one();
+    $file = is_file("$root/inventory/incoming/$in") ? "$root/inventory/incoming/$in" : "$root/inventory/incoming/done/$in"; $rec = Entry::find()->id($id)->status(null)->one(); $has = Asset::find()->filename($fn)->one();
     if (!$has) {
         $tmp = sys_get_temp_dir() . "/$fn"; copy($file, $tmp);
         $has = new Asset(); $has->tempFilePath = $tmp; $has->setFilename($fn); $has->newFolderId = $folder->id; $has->setVolumeId($volume->id); $has->setScenario(Asset::SCENARIO_CREATE); $has->avoidFilenameConflicts = false;
@@ -47,5 +48,5 @@ foreach ($MARKS as [$in, $fn, $id, $holder, $title, $src]) {
     if ($rec->currentMark->one()?->id !== $has->id) { $rec->setFieldValue('currentMark', [$has->id]); if (!$el->saveElement($rec)) { throw new \RuntimeException("#$id currentMark"); } $n++; }
     $done[] = "$in -> #{$has->id} on #$id";
 }
-$applyLog = require "$root/scripts/import/_apply_log.php"; $applyLog('import_marks_2026_10_04.php', $n, 'verified', 'Five marks: Hart High, Canyon High, CSUN, County of Los Angeles, City of Santa Clarita');
+$applyLog = require "$root/scripts/import/_apply_log.php"; $applyLog('import_marks_2026_10_04.php', $n, 'verified', 'Marks: Hart High, Canyon High, CSUN, LASD, County of Los Angeles, City of Santa Clarita');
 echo implode(PHP_EOL, $done) . PHP_EOL . "done: $n writes" . PHP_EOL;

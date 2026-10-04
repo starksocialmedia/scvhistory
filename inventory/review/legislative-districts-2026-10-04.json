@@ -1,0 +1,1294 @@
+{
+ "title": "Santa Clarita Valley seats in the Assembly, State Senate and U.S. House, by redistricting plan",
+ "date": "2026-10-04",
+ "agent": "Claude (research subagent)",
+ "status": "research only; nothing written to the database",
+ "valley_definition": {
+  "used": "The Census Bureau county subdivision Newhall CCD (census tracts 9200 to 9203: the City of Santa Clarita, Castaic, Stevenson Ranch, Val Verde, Hasley Canyon, Green Valley and the unincorporated land around them) plus the Agua Dulce CDP. For the 1991 plan, measured on 2000 blocks, the City of Santa Clarita as it stood in 2000 is added, because about 10,200 city residents then sat in tract 9108 outside the Newhall CCD; the rest of tract 9108 (Agua Dulce area, not yet a CDP in 2000) is counted with the valley.",
+  "acton": "Acton is reported separately and not used to decide main or partial. It sits in the South Antelope Valley CCD, across the Sierra Pelona divide. It never changes the answer: in every plan it falls in a district already listed, except the 2001 plan where part of Acton was in AD 36 (Acton only, no valley population).",
+  "green_valley": "Green Valley CDP (about 1,000 people) is inside the Newhall CCD but sits at the head of Bouquet and San Francisquito canyons; districts that hold only Green Valley are marked fringe.",
+  "method": "Every census block in the valley was assigned to its district from official block equivalency files (Statewide Database for 1991, 2001 and 2011 plans) or by point-in-polygon against Census TIGERweb district boundaries (2021 plan and the 2025 congressional map, and as a cross-check for 2001 and 2011, which matched exactly). Population weights: 2000 Census for the 1991 plan, 2010 Census for 2001 and 2011, 2020 Census for 2021 and 2025.",
+  "sources": [
+   "inventory/sources/legislative-districts-2026-10-04/swdb/block00_district_txt.zip",
+   "inventory/sources/legislative-districts-2026-10-04/swdb/districts2001_2010blocks_equivalency.zip",
+   "inventory/sources/legislative-districts-2026-10-04/swdb/2011_assembly_state_equiv.dbf",
+   "inventory/sources/legislative-districts-2026-10-04/census2000/cageo.upl.zip",
+   "inventory/sources/legislative-districts-2026-10-04/census2000/ca00001.upl.zip",
+   "inventory/sources/legislative-districts-2026-10-04/tigerweb/ccd_newhall_current.json",
+   "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json",
+   "inventory/sources/legislative-districts-2026-10-04/analysis/tally_comm.json"
+  ]
+ },
+ "term_rule": "Term dates: state legislative terms begin the first Monday in December after the election (Cal. Const. art. IV sec. 2(a)(3)); U.S. House terms begin January 3.",
+ "term_rule_source": "inventory/sources/legislative-districts-2026-10-04/legislature/ca-constitution-art-iv-sec-2.html",
+ "chambers": {
+  "assembly": {
+   "main_seat_numbers": [
+    {
+     "district": 36,
+     "took_effect": "1992 election (members seated December 1992)",
+     "last": "December 2002"
+    },
+    {
+     "district": 38,
+     "took_effect": "2002 election (seated 2 December 2002)",
+     "last": "5 December 2022",
+     "note": "38 carried over from the 2001 plan into the 2011 plan, so 2012 changed the lines but not the number"
+    },
+    {
+     "district": 40,
+     "took_effect": "2022 election (seated 5 December 2022)",
+     "last": "current"
+    }
+   ],
+   "count_of_numbers_since_1992": 3,
+   "split_now": "Yes, lightly. AD 40 holds 98 percent of the valley (the whole City, Castaic, Stevenson Ranch, Val Verde, Hasley Canyon). AD 34 holds Agua Dulce and about 1,700 people in unincorporated land north of the City (upper Bouquet Canyon and Green Valley area, and the hills north of Castaic), plus Acton.",
+   "cycles": [
+    {
+     "plan": "1991 (court-appointed Special Masters; elections 1992 to 2000)",
+     "population_basis": "2000 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/block00_district_txt.zip",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 36,
+       "role": "main",
+       "valley_population": 177771,
+       "share": "84%",
+       "covers": "The whole City of Santa Clarita (2000 limits), Canyon Country and Saugus unincorporated areas, Agua Dulce, Acton",
+       "members": [
+        {
+         "member": "William J. \"Pete\" Knight",
+         "party": "R",
+         "start": "7 December 1992",
+         "end": "2 December 1996",
+         "elections_won": [
+          1992,
+          1994
+         ],
+         "how_left": "Elected to the State Senate, 17th District, in 1996",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1992/assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-1994/assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-1996/state-senator.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "George Runner",
+         "party": "R",
+         "start": "2 December 1996",
+         "end": "2 December 2002",
+         "elections_won": [
+          1996,
+          1998,
+          2000
+         ],
+         "how_left": "Left in 2002 after six years; not on the 2002 ballot (reason, presumably the Proposition 140 term limit, NEEDS_VERIFICATION)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-1996/assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1998/sov1998-general.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/assemb.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed",
+         "notes": "1996 page is a scan; read by OCR and checked against the Record of Members (1997-2002)."
+        }
+       ]
+      },
+      {
+       "district": 38,
+       "role": "partial",
+       "valley_population": 33449,
+       "share": "16%",
+       "covers": "Unincorporated west side: Castaic, Val Verde, Stevenson Ranch and the land toward the county line (2000 tracts 9201.03 to 9201.06, 9203.03, 9203.26, 9203.27)",
+       "members": [
+        {
+         "member": "Paula Boland",
+         "party": "R",
+         "start": "first seated December 1990 under the 1981 plan; in the 1991-plan district from 7 December 1992",
+         "end": "2 December 1996",
+         "elections_won": [
+          1992,
+          1994
+         ],
+         "how_left": "Not on the 1996 ballot; Record of Members shows service ending 1996",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1992/assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-1994/assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Tom McClintock",
+         "party": "R",
+         "start": "2 December 1996",
+         "end": "4 December 2000",
+         "elections_won": [
+          1996,
+          1998
+         ],
+         "how_left": "Elected to the State Senate, 19th District, in 2000",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-1996/assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1998/sov1998-general.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/sen.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Keith Richman",
+         "party": "R",
+         "start": "4 December 2000",
+         "end": "(continued into the 2001-plan 38th, below)",
+         "elections_won": [
+          2000
+         ],
+         "how_left": "see 2001 plan",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/assemb.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2001 (drawn by the Legislature; elections 2002 to 2010)",
+     "population_basis": "2010 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/districts2001_2010blocks_equivalency.zip",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldl2010.json",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 38,
+       "role": "main",
+       "valley_population": 222641,
+       "share": "86%",
+       "covers": "The City of Santa Clarita and Stevenson Ranch, west into Ventura County (Simi Valley area) and the northern San Fernando Valley",
+       "members": [
+        {
+         "member": "Keith Richman",
+         "party": "R",
+         "start": "4 December 2000 (main valley seat from 2 December 2002)",
+         "end": "4 December 2006",
+         "elections_won": [
+          2000,
+          2002,
+          2004
+         ],
+         "how_left": "Left in 2006 after six years; not on the 2006 ballot",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/assemb.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-2002/state-assemb.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-2-2004/formatted_st_AD_all.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Cameron Smyth",
+         "party": "R",
+         "start": "4 December 2006",
+         "end": "3 December 2012",
+         "elections_won": [
+          2006,
+          2008,
+          2010
+         ],
+         "how_left": "Left in 2012 after six years; not on the 2012 ballot",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2006/assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-4-2008/40_56_state_assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-2-2010/73-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      },
+      {
+       "district": 37,
+       "role": "partial",
+       "valley_population": 35031,
+       "share": "14%",
+       "covers": "Castaic, Val Verde, Hasley Canyon, Agua Dulce, Green Valley and nearby unincorporated land; the district was mostly Ventura County",
+       "members": [
+        {
+         "member": "Tony Strickland",
+         "party": "R",
+         "start": "first seated December 1998 under the 1991 plan; in the 2001-plan district from 2 December 2002",
+         "end": "6 December 2004",
+         "elections_won": [
+          2002
+         ],
+         "how_left": "Left in 2004 after six years; not on the 2004 ballot",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-2002/state-assemb.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Audra Strickland",
+         "party": "R",
+         "start": "6 December 2004",
+         "end": "6 December 2010",
+         "elections_won": [
+          2004,
+          2006,
+          2008
+         ],
+         "how_left": "Left in 2010 after six years; not on the 2010 ballot",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-2-2004/formatted_st_AD_all.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2006/assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-4-2008/40_56_state_assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Jeff Gorell",
+         "party": "R",
+         "start": "6 December 2010",
+         "end": "3 December 2012 (for this district)",
+         "elections_won": [
+          2010
+         ],
+         "how_left": "District renumbered/redrawn in 2012; he was then elected in the 2011-plan 44th (outside the valley)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-2-2010/73-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed for 2010 to 2012; later district NEEDS_VERIFICATION"
+        }
+       ]
+      },
+      {
+       "district": 36,
+       "role": "Acton only (no valley population)",
+       "valley_population": 0,
+       "covers": "Part of Acton (4,384 people in 2010)",
+       "members": [
+        {
+         "member": "Sharon Runner",
+         "party": "R",
+         "start": "2 December 2002",
+         "end": "1 December 2008",
+         "elections_won": [
+          2002,
+          2004,
+          2006
+         ],
+         "how_left": "Left in 2008",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-2002/state-assemb.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-2-2004/formatted_st_AD_all.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2006/assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Steve Knight",
+         "party": "R",
+         "start": "1 December 2008",
+         "end": "3 December 2012",
+         "elections_won": [
+          2008,
+          2010
+         ],
+         "how_left": "Elected to the State Senate, 21st District, in 2012",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-4-2008/40_56_state_assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-2-2010/73-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2011 (Citizens Redistricting Commission; elections 2012 to 2020)",
+     "population_basis": "2010 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/2011_assembly_state_equiv.dbf",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldl2012.json",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldl2018.json",
+      "inventory/sources/legislative-districts-2026-10-04/crc/crc_20110815_2final_report.pdf",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 38,
+       "role": "main",
+       "valley_population": 238891,
+       "share": "93% (2010 Census); 92% on 2020 blocks after annexations",
+       "covers": "The City (all but the northeastern edge), Castaic, Stevenson Ranch, Val Verde, Agua Dulce; Simi Valley and Porter Ranch. CRC 2011 report: \"extends from the Simi Valley at the west to Castaic Lake and Agua Dulce to the north.\"",
+       "members": [
+        {
+         "member": "Scott Wilk",
+         "party": "R",
+         "start": "3 December 2012",
+         "end": "5 December 2016",
+         "elections_won": [
+          2012,
+          2014
+         ],
+         "how_left": "Elected to the State Senate, 21st District, in 2016",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2012/14-state-assembly-1-80.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-4-2014/64-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-2016/40-state-senators-formatted.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Dante Acosta",
+         "party": "R",
+         "start": "5 December 2016",
+         "end": "3 December 2018",
+         "elections_won": [
+          2016
+         ],
+         "how_left": "Defeated for re-election by Christy Smith, 2018",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-2016/45-state-assembly-formatted.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2018/68-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Christy Smith",
+         "party": "D",
+         "start": "3 December 2018",
+         "end": "7 December 2020",
+         "elections_won": [
+          2018
+         ],
+         "how_left": "Ran for Congress (CD 25) in 2020 and lost; did not seek re-election to the Assembly",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2018/68-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-2020/24-us-reps.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/2019-cd25/official-results-general.html",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Suzette Martinez Valladares",
+         "party": "R",
+         "start": "7 December 2020",
+         "end": "5 December 2022",
+         "elections_won": [
+          2020
+         ],
+         "how_left": "District renumbered in 2022; she ran in the new 40th and lost to Pilar Schiavo by 522 votes",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-2020/41-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-8-2022/65-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      },
+      {
+       "district": 36,
+       "role": "partial",
+       "valley_population": 18781,
+       "share": "7% (2010); 22,682 people, 8%, on 2020 blocks, including about 18,900 City residents in later-annexed areas",
+       "covers": "Northeastern edge: unincorporated Canyon Country and Saugus land (Plum, Bouquet, Sand and Mint canyon areas) and Green Valley, plus Acton. The CRC report says the City was split \"to achieve population equality.\"",
+       "members": [
+        {
+         "member": "Steve Fox",
+         "party": "D",
+         "start": "3 December 2012",
+         "end": "1 December 2014",
+         "elections_won": [
+          2012
+         ],
+         "how_left": "Defeated for re-election by Tom Lackey, 2014",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2012/14-state-assembly-1-80.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-4-2014/64-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Tom Lackey",
+         "party": "R",
+         "start": "1 December 2014",
+         "end": "5 December 2022 (for this district)",
+         "elections_won": [
+          2014,
+          2016,
+          2018,
+          2020
+         ],
+         "how_left": "District renumbered in 2022; re-elected in the new 34th",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-4-2014/64-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-2016/45-state-assembly-formatted.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2018/68-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-2020/41-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2021 (Citizens Redistricting Commission; elections 2022 on)",
+     "population_basis": "2020 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldl2024.json",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldl2026.json",
+      "inventory/sources/legislative-districts-2026-10-04/crc/Final-Maps-Report-with-Appendices-12.26.21-230-PM-1.pdf",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 40,
+       "role": "main",
+       "valley_population": 271719,
+       "share": "98%",
+       "covers": "\"The whole City of Santa Clarita and portions of the City of Los Angeles\" (CRC 2021), plus Castaic, Stevenson Ranch, Val Verde, Hasley Canyon",
+       "members": [
+        {
+         "member": "Pilar Schiavo",
+         "party": "D",
+         "start": "5 December 2022",
+         "end": "current (term to 7 December 2026)",
+         "elections_won": [
+          2022,
+          2024
+         ],
+         "how_left": "Serving. June 2026 primary: first (55.6%), advancing with a Republican surnamed Hayes II (22.3%) to 3 November 2026",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-8-2022/65-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/42-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/primary-election-june-2-2026/95-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      },
+      {
+       "district": 34,
+       "role": "partial",
+       "valley_population": 5198,
+       "share": "2%",
+       "covers": "Agua Dulce and about 1,700 people in unincorporated land north of the City (upper Bouquet Canyon / Green Valley area and north of Castaic), plus Acton; the rest is the Antelope and Victor valleys",
+       "members": [
+        {
+         "member": "Tom Lackey",
+         "party": "R",
+         "start": "5 December 2022",
+         "end": "term ends 7 December 2026",
+         "elections_won": [
+          2022,
+          2024
+         ],
+         "how_left": "Not on the 2026 ballot (12-year limit reached: Assembly 2015-2026)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-8-2022/65-state-assemblymember.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/42-state-assembly.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/ca-constitution-art-iv-sec-2.html"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "(open seat, 2026)",
+         "party": "",
+         "start": "",
+         "end": "",
+         "elections_won": "",
+         "how_left": "June 2026 primary top two: Randall Putz (D) 39.2% and Charles Frederick Hughes (R) 36.7%",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/primary-election-june-2-2026/95-state-assembly.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "senate": {
+   "main_seat_numbers": [
+    {
+     "district": 17,
+     "took_effect": "1992 election (1991 plan; seated 7 December 1992). Kept the number 17 in the 2001 plan (first 2001-plan election 2004)",
+     "last": "3 December 2012"
+    },
+    {
+     "district": 21,
+     "took_effect": "2012 election (seated 3 December 2012)",
+     "last": "2 December 2024"
+    },
+    {
+     "district": 23,
+     "took_effect": "2024 election (seated 2 December 2024)",
+     "last": "current"
+    }
+   ],
+   "count_of_numbers_since_1992": 3,
+   "stagger_note": "Senate terms are four years and staggered (odd-numbered districts elected in presidential years). A new plan reaches odd-numbered districts only at the next presidential-year election, so the 2011 plan reached the valley in 2012 and the 2021 plan only in 2024. From December 2022 to December 2024 the valley was still represented by Scott Wilk (21st) and Henry Stern (27th), elected in 2020 on the 2011 lines.",
+   "split_now": "No. Since 2 December 2024 the whole valley (and Acton) is in SD 23.",
+   "cycles": [
+    {
+     "plan": "1991",
+     "population_basis": "2000 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/block00_district_txt.zip",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 17,
+       "role": "main",
+       "valley_population": 177771,
+       "share": "84%",
+       "covers": "Same area as the 1991-plan AD 36 (the City, eastern unincorporated, Agua Dulce, Acton), with the Antelope Valley, Inyo and parts of Kern and San Bernardino",
+       "members": [
+        {
+         "member": "Don Rogers",
+         "party": "R",
+         "start": "in the Senate from 1987 (Record of Senators) under the 1981 plan; 1991-plan district from 7 December 1992",
+         "end": "2 December 1996",
+         "elections_won": [
+          1992
+         ],
+         "how_left": "Not on the 1996 ballot; Record of Senators shows service ending 1996",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1992/state-senator.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "William J. \"Pete\" Knight",
+         "party": "R",
+         "start": "2 December 1996",
+         "end": "died in office 7 May 2004",
+         "elections_won": [
+          1996,
+          2000
+         ],
+         "how_left": "Died in office 7 May 2004; seat vacant until George Runner took office (no special election found)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-1996/state-senator.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/sen.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed",
+         "notes": "Elected 2000 on 1991 lines; served on them until his death."
+        }
+       ]
+      },
+      {
+       "district": 19,
+       "role": "partial",
+       "valley_population": 33449,
+       "share": "16%",
+       "covers": "Same west-side unincorporated area as the 1991-plan AD 38 (Castaic, Val Verde, Stevenson Ranch), with eastern Ventura County",
+       "members": [
+        {
+         "member": "Cathie Wright",
+         "party": "R",
+         "start": "7 December 1992",
+         "end": "4 December 2000",
+         "elections_won": [
+          1992,
+          1996
+         ],
+         "how_left": "Left in 2000",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1992/state-senator.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-1996/state-senator.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Tom McClintock",
+         "party": "R",
+         "start": "4 December 2000",
+         "end": "(continued in the 2001-plan 19th, below)",
+         "elections_won": [
+          2000
+         ],
+         "how_left": "see 2001 plan",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/sen.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2001 (first Senate elections on these lines: 2004)",
+     "population_basis": "2010 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/districts2001_2010blocks_equivalency.zip",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldu2010.json",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 17,
+       "role": "main",
+       "valley_population": 187591,
+       "share": "73%",
+       "covers": "The City except its western neighborhoods, Castaic, Val Verde, Hasley Canyon, Agua Dulce, Green Valley, Acton; with the Antelope Valley",
+       "members": [
+        {
+         "member": "George C. Runner",
+         "party": "R",
+         "start": "6 December 2004",
+         "end": "resigned 21 December 2010",
+         "elections_won": [
+          2004,
+          2008
+         ],
+         "how_left": "Resigned 21 December 2010 on election to the Board of Equalization, 2nd District",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-2-2004/formatted_st_sen_all_detail.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-4-2008/35_39_state_senators.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/senate-district-17/proclamation.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Sharon Runner",
+         "party": "R",
+         "start": "2011, after the special primary of 15 February 2011 (exact swearing-in date NEEDS_VERIFICATION)",
+         "end": "3 December 2012",
+         "elections_won": [
+          "special primary 15 February 2011 (won outright, 65.27% in the official canvass; the Record of Senators says 65.6%)"
+         ],
+         "how_left": "Term ended 2012 (district renumbered)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/senate-district-17/official-canvass.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      },
+      {
+       "district": 19,
+       "role": "partial",
+       "valley_population": 70081,
+       "share": "27%",
+       "covers": "Stevenson Ranch and the western neighborhoods of the City (Valencia west of the river, about 50,000 City residents)",
+       "members": [
+        {
+         "member": "Tom McClintock",
+         "party": "R",
+         "start": "4 December 2000 (2001-plan lines from 6 December 2004)",
+         "end": "1 December 2008",
+         "elections_won": [
+          2000,
+          2004
+         ],
+         "how_left": "Senate term ended 2008; Tony Strickland elected to the seat (McClintock went to the U.S. House, outside the valley: NEEDS_VERIFICATION, not in saved sources)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/sen.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-2-2004/formatted_st_sen_all_detail.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Tony Strickland",
+         "party": "R",
+         "start": "1 December 2008",
+         "end": "3 December 2012",
+         "elections_won": [
+          2008
+         ],
+         "how_left": "Term ended 2012 (district redrawn)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-4-2008/35_39_state_senators.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2011",
+     "population_basis": "2010 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/2011_senate_state_equiv.dbf",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldu2012.json",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldu2018.json",
+      "inventory/sources/legislative-districts-2026-10-04/crc/crc_20110815_2final_report.pdf",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 21,
+       "role": "main",
+       "valley_population": 202597,
+       "share": "79%",
+       "covers": "Most of the valley with the Antelope and Victor valleys. CRC 2011: \"reunites the majority of the Santa Clarita Valley with that of the Lancaster Valley and Victor Valley communities.\"",
+       "members": [
+        {
+         "member": "Steve Knight",
+         "party": "R",
+         "start": "3 December 2012",
+         "end": "resigned 5 January 2015",
+         "elections_won": [
+          2012
+         ],
+         "how_left": "Resigned 5 January 2015 on election to the U.S. House (CD 25)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2012/13-state-senators.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/2015-sd21/election-results.html"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Sharon Runner",
+         "party": "R",
+         "start": "2015, after the special primary of 17 March 2015 (exact swearing-in date NEEDS_VERIFICATION)",
+         "end": "died in office 14 July 2016",
+         "elections_won": [
+          "special primary 17 March 2015 (won outright, 94.1%)"
+         ],
+         "how_left": "Died in office 14 July 2016; seat vacant until December 2016",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/2015-sd21/election-results.html",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Scott Wilk",
+         "party": "R",
+         "start": "5 December 2016",
+         "end": "2 December 2024",
+         "elections_won": [
+          2016,
+          2020
+         ],
+         "how_left": "Left in 2024 (12-year limit: Assembly 2013-2016, Senate 2017-2024)",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-2016/40-state-senators-formatted.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-2020/36-state-senate.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      },
+      {
+       "district": 27,
+       "role": "partial",
+       "valley_population": 55075,
+       "share": "21%",
+       "covers": "Stevenson Ranch and the western and southwestern neighborhoods of the City (about 35,000 City residents in 2010), with eastern Ventura County, Calabasas and Malibu. CRC 2011: \"a portion of Santa Clarita.\"",
+       "members": [
+        {
+         "member": "Fran Pavley",
+         "party": "D",
+         "start": "3 December 2012",
+         "end": "5 December 2016",
+         "elections_won": [
+          2012
+         ],
+         "how_left": "Left in 2016",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2012/13-state-senators.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Henry Stern",
+         "party": "D",
+         "start": "5 December 2016",
+         "end": "2 December 2024 for the valley (re-elected in 2024 in a redrawn 27th that no longer includes the valley)",
+         "elections_won": [
+          2016,
+          2020
+         ],
+         "how_left": "District redrawn",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-2016/40-state-senators-formatted.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-2020/36-state-senate.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/37-state-senator.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2021 (first Senate election on these lines for the valley: 2024)",
+     "population_basis": "2020 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldu2024.json",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_sldu2026.json",
+      "inventory/sources/legislative-districts-2026-10-04/crc/Final-Maps-Report-with-Appendices-12.26.21-230-PM-1.pdf",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 23,
+       "role": "main (whole valley)",
+       "valley_population": 276917,
+       "share": "100%",
+       "covers": "CRC 2021: \"the whole Cities of Adelanto, Hesperia, Lancaster, Palmdale, Santa Clarita, and Victorville\"",
+       "members": [
+        {
+         "member": "Suzette Martinez Valladares",
+         "party": "R",
+         "start": "2 December 2024",
+         "end": "current (term to December 2028)",
+         "elections_won": [
+          2024
+         ],
+         "how_left": "Serving",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/37-state-senator.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "house": {
+   "main_seat_numbers": [
+    {
+     "district": 25,
+     "took_effect": "1992 election (seated 3 January 1993); kept the number 25 in the 2001 and 2011 plans",
+     "last": "3 January 2023"
+    },
+    {
+     "district": 27,
+     "took_effect": "2022 election (seated 3 January 2023)",
+     "last": "current; also the main seat under the 2025 map"
+    }
+   ],
+   "count_of_numbers_since_1992": 2,
+   "split_now": "Not now: the whole valley is in CD 27 (2021 plan) until 3 January 2027. From the 3 November 2026 election the 2025 map (Proposition 50, approved 4 November 2025, 64.4% yes) applies: CD 27 keeps 89% of the valley; CD 26 takes Castaic, Val Verde and Hasley Canyon; CD 30 takes Agua Dulce, Acton and the Sand Canyon area of the City (about 4,200 people).",
+   "cycles": [
+    {
+     "plan": "1991",
+     "population_basis": "2000 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/block00_district_txt.zip",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 25,
+       "role": "main (whole valley)",
+       "valley_population": 211220,
+       "share": "100%",
+       "members": [
+        {
+         "member": "Howard P. \"Buck\" McKeon",
+         "party": "R",
+         "start": "3 January 1993",
+         "end": "3 January 2015 (all three plans)",
+         "elections_won": [
+          1992,
+          1994,
+          1996,
+          1998,
+          2000,
+          2002,
+          2004,
+          2006,
+          2008,
+          2010,
+          2012
+         ],
+         "how_left": "Did not run for re-election in 2014",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1992/us-representative.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-1994/us-representative.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-1996/us-representative.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-1998/sov1998-general.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2000/us-rep.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-2002/congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-2-2004/us-reps-all-formatted.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2006/congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-4-2008/23_34_us_reps.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-2-2010/58-united-states-representative.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2012/12-us-reps.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/house/bioguide-M000508-wayback.html"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2001",
+     "population_basis": "2010 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/districts2001_2010blocks_equivalency.zip",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_cd111.json",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 25,
+       "role": "main",
+       "valley_population": 256607,
+       "share": "99.6%",
+       "members": [
+        "McKeon (above)"
+       ]
+      },
+      {
+       "district": 22,
+       "role": "fringe partial (Green Valley CDP only, about 1,065 people)",
+       "valley_population": 1065,
+       "share": "0.4%",
+       "members": [
+        {
+         "member": "Bill Thomas",
+         "party": "R",
+         "start": "3 January 2003 (for this district)",
+         "end": "3 January 2007",
+         "elections_won": [
+          2002,
+          2004
+         ],
+         "how_left": "",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-5-2002/congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-2-2004/us-reps-all-formatted.pdf"
+         ],
+         "status": "election results confirmed; service dates NEEDS_VERIFICATION",
+         "notes": "Dates from the House term rule; Bioguide not saved"
+        },
+        {
+         "member": "Kevin McCarthy",
+         "party": "R",
+         "start": "3 January 2007",
+         "end": "3 January 2013 (for this district)",
+         "elections_won": [
+          2006,
+          2008,
+          2010
+         ],
+         "how_left": "District redrawn 2012",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-7-2006/congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/presidential-general-election-november-4-2008/23_34_us_reps.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-2-2010/58-united-states-representative.pdf"
+         ],
+         "status": "election results confirmed; service dates NEEDS_VERIFICATION"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2011",
+     "population_basis": "2010 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/swdb/2011_congressional_state_equiv.dbf",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_cd113_2010svc.json",
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_cd116.json",
+      "inventory/sources/legislative-districts-2026-10-04/crc/crc_20110815_2final_report.pdf",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 25,
+       "role": "main (whole valley)",
+       "valley_population": 257672,
+       "share": "100%",
+       "covers": "CRC 2011: \"includes the Santa Clarita Valley, Palmdale, the eastern section of the city of Lancaster\"; also part of Ventura County (Simi Valley) per the vote returns",
+       "members": [
+        "McKeon to 3 January 2015 (above)",
+        {
+         "member": "Steve Knight",
+         "party": "R",
+         "start": "3 January 2015",
+         "end": "3 January 2019",
+         "elections_won": [
+          2014,
+          2016
+         ],
+         "how_left": "Defeated for re-election by Katie Hill, 2018",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-4-2014/43-congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-8-2016/26-us-reps-formatted.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2018/48-congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/house/bioguide-K000387-wayback.html"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Katie Hill",
+         "party": "D",
+         "start": "3 January 2019",
+         "end": "resigned 3 November 2019",
+         "elections_won": [
+          2018
+         ],
+         "how_left": "Resigned 3 November 2019",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-6-2018/48-congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/house/bioguide-H001087-wayback.html",
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/2019-cd25/governors-proclamation.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "Mike Garcia",
+         "party": "R",
+         "start": "special election 12 May 2020 (Bioguide dates service from 12 May 2020; swearing-in date NEEDS_VERIFICATION)",
+         "end": "3 January 2023 (for this district)",
+         "elections_won": [
+          "special general 12 May 2020 (54.86%)",
+          2020
+         ],
+         "how_left": "District renumbered 2022; elected in CD 27",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/2019-cd25/official-results-primary.html",
+          "inventory/sources/legislative-districts-2026-10-04/sos/special-elections/2019-cd25/official-results-general.html",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-november-3-2020/24-us-reps.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/house/bioguide-G000061-wayback.html"
+         ],
+         "status": "confirmed",
+         "notes": "Won the November 2020 general by 333 votes (169,638 to 169,305) over Christy Smith."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2021",
+     "population_basis": "2020 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_cd119.json",
+      "inventory/sources/legislative-districts-2026-10-04/crc/Final-Maps-Report-with-Appendices-12.26.21-230-PM-1.pdf",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 27,
+       "role": "main (whole valley)",
+       "valley_population": 276917,
+       "share": "100%",
+       "covers": "CRC 2021: \"the whole Cities of Lancaster, Palmdale, and Santa Clarita, and a portion of the City of Los Angeles\"",
+       "members": [
+        {
+         "member": "Mike Garcia",
+         "party": "R",
+         "start": "3 January 2023",
+         "end": "3 January 2025",
+         "elections_won": [
+          2022
+         ],
+         "how_left": "Defeated for re-election by George Whitesides, 2024",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-8-2022/48-congress.pdf",
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/25-us-rep-congress.pdf"
+         ],
+         "status": "confirmed"
+        },
+        {
+         "member": "George Whitesides",
+         "party": "D",
+         "start": "3 January 2025",
+         "end": "current (term to 3 January 2027)",
+         "elections_won": [
+          2024
+         ],
+         "how_left": "Serving",
+         "sources": [
+          "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/25-us-rep-congress.pdf"
+         ],
+         "status": "confirmed"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "plan": "2025 congressional map (Proposition 50; Legislature-drawn; elections from 2026)",
+     "population_basis": "2020 Census",
+     "geography_sources": [
+      "inventory/sources/legislative-districts-2026-10-04/tigerweb/poly_cd120.json",
+      "inventory/sources/legislative-districts-2026-10-04/sos/statewide-special-nov-4-2025/13-official-dec-vote-results-bm.pdf",
+      "inventory/sources/legislative-districts-2026-10-04/analysis/tally.json"
+     ],
+     "districts": [
+      {
+       "district": 27,
+       "role": "main",
+       "valley_population": 246532,
+       "share": "89%",
+       "covers": "The City except the Sand Canyon area, Stevenson Ranch",
+       "members": [
+        "June 2026 primary top two: Jason Gibbs (R) 41.0%, George Whitesides (D) 40.6%; general 3 November 2026"
+       ],
+       "sources": [
+        "inventory/sources/legislative-districts-2026-10-04/sos/primary-election-june-2-2026/76-us-rep.pdf"
+       ]
+      },
+      {
+       "district": 26,
+       "role": "partial",
+       "valley_population": 22621,
+       "share": "8%",
+       "covers": "Castaic, Val Verde, Hasley Canyon",
+       "members": [
+        "Julia Brownley (D) holds CD 26 now (2021 lines, Ventura County). June 2026 primary top two: Jacqui Irwin (D) 41.3%, Sam Gallucci (R) 20.9%"
+       ],
+       "sources": [
+        "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/25-us-rep-congress.pdf",
+        "inventory/sources/legislative-districts-2026-10-04/sos/primary-election-june-2-2026/76-us-rep.pdf"
+       ]
+      },
+      {
+       "district": 30,
+       "role": "partial",
+       "valley_population": 7764,
+       "share": "3%",
+       "covers": "Agua Dulce and the Sand Canyon area of the City (census tract 9200.43, about 4,200 City residents); also Acton",
+       "members": [
+        "Laura Friedman (D) holds CD 30 now (2021 lines). June 2026 primary top two: Laura Friedman (D) 52.7%, Alan Meyers (R) 16.6%"
+       ],
+       "sources": [
+        "inventory/sources/legislative-districts-2026-10-04/sos/general-election-nov-5-2024/25-us-rep-congress.pdf",
+        "inventory/sources/legislative-districts-2026-10-04/sos/primary-election-june-2-2026/76-us-rep.pdf"
+       ]
+      }
+     ],
+     "note": "Census TIGERweb labels this layer \"120th Congressional Districts; January 1, 2026 vintage.\" Whether any court has stayed the Proposition 50 map is NEEDS_VERIFICATION; the June 2026 primary was held on it."
+    }
+   ]
+  }
+ },
+ "people_checked": [
+  {
+   "name": "Cameron Smyth",
+   "claim": "Assembly 38th, 2006 to 2012",
+   "finding": "Confirmed. Elected 2006, 2008, 2010; served 4 Dec 2006 to 3 Dec 2012 (Record: 2007-2012). 2001-plan AD 38, the main valley seat."
+  },
+  {
+   "name": "Scott Wilk",
+   "claim": "Assembly 38th 2012 to 2016, then Senate",
+   "finding": "Confirmed. AD 38 (2011 plan) 3 Dec 2012 to 5 Dec 2016; SD 21 5 Dec 2016 to 2 Dec 2024 (elected 2016, 2020)."
+  },
+  {
+   "name": "Dante Acosta",
+   "claim": "Assembly 38th 2016 to 2018",
+   "finding": "Confirmed. Elected 2016; lost to Christy Smith 2018."
+  },
+  {
+   "name": "Christy Smith",
+   "claim": "Assembly 38th 2018 to 2020?",
+   "finding": "Confirmed: 3 Dec 2018 to 7 Dec 2020. Lost CD 25 special (12 May 2020), CD 25 general (Nov 2020, by 333 votes) and CD 27 (Nov 2022) to Mike Garcia."
+  },
+  {
+   "name": "Suzette Martinez Valladares",
+   "claim": "Assembly 38th then 40th? then Senate 23rd?",
+   "finding": "Assembly 38th, 7 Dec 2020 to 5 Dec 2022: confirmed. Assembly 40th: NOT held; she lost the first 40th-District election (Nov 2022) to Pilar Schiavo, 79,852 to 79,330. Senate 23rd from 2 Dec 2024: confirmed (won Nov 2024, 52.4%)."
+  },
+  {
+   "name": "Pilar Schiavo",
+   "claim": "(not in the list) ",
+   "finding": "Holds AD 40, the valley main seat, since 5 Dec 2022; re-elected 2024; first in June 2026 primary. Nathan's note that Valladares holds the 40th is not right."
+  },
+  {
+   "name": "Patsy Ayala",
+   "claim": "City: \"served in the California State Assembly and Senate\"",
+   "finding": "Staff, not a member. She is absent from both official Records of Members (only Ruben S. Ayala, a San Bernardino senator 1974-1998, appears). A June 2014 KHTS/SCVNews report has Assemblyman Wilk naming her field representative in his district office; her College of the Canyons bio says she worked for Senator Wilk and Assemblywoman Valladares.",
+   "sources": [
+    "inventory/sources/legislative-districts-2026-10-04/ayala/santaclarita.gov_city-council_patsy-ayala_.html",
+    "inventory/sources/legislative-districts-2026-10-04/ayala/scvnews.com_ayala-joins-wilk-staff-hough-now-district-director.html",
+    "inventory/sources/legislative-districts-2026-10-04/ayala/www.canyons.edu_community_womensconference_biopatsyayala.php.html",
+    "inventory/sources/legislative-districts-2026-10-04/legislature/assembly-record-of-members-1849-2026.pdf",
+    "inventory/sources/legislative-districts-2026-10-04/legislature/senate-record-of-senators-1849-2026.pdf"
+   ]
+  },
+  {
+   "name": "Buck McKeon",
+   "claim": "U.S. House 1993 to 2015, district 25 then 25 again?",
+   "finding": "Confirmed: 3 Jan 1993 to 3 Jan 2015, and the number was 25 under all three plans (1991, 2001, 2011). Did not run in 2014."
+  },
+  {
+   "name": "Tom Lackey",
+   "claim": "",
+   "finding": "Partial-district member only: AD 36 (2011 plan) 1 Dec 2014 to 5 Dec 2022; AD 34 (2021 plan) 5 Dec 2022 to 7 Dec 2026. Termed out 2026."
+  },
+  {
+   "name": "Steve Knight",
+   "claim": "Assembly 36th, Senate 21st, Congress 25th",
+   "finding": "All three confirmed. AD 36 2008-2012 was the 2001-plan 36th, which held only part of Acton, not the valley proper. SD 21 3 Dec 2012 to resignation 5 Jan 2015 (main seat). CD 25 3 Jan 2015 to 3 Jan 2019 (main seat); lost to Katie Hill 2018; ran again in the 2020 special primary (17.1%, third)."
+  },
+  {
+   "name": "Sharon Runner",
+   "claim": "",
+   "finding": "AD 36 2002-2008 (2001-plan 36th: Acton only). SD 17 by special primary 15 Feb 2011 to Dec 2012 (main seat). SD 21 by special primary 17 Mar 2015 to death in office 14 Jul 2016 (main seat)."
+  },
+  {
+   "name": "George Runner",
+   "claim": "",
+   "finding": "AD 36 2 Dec 1996 to 2 Dec 2002: this was the 1991-plan 36th, then the MAIN valley Assembly seat (the whole City). SD 17 6 Dec 2004 to resignation 21 Dec 2010 (main seat), to the Board of Equalization."
+  },
+  {
+   "name": "Pete Knight",
+   "claim": "",
+   "finding": "AD 36 7 Dec 1992 to 2 Dec 1996 (main seat, 1991 plan). SD 17 2 Dec 1996 to death in office 7 May 2004 (main seat)."
+  }
+ ],
+ "open_items": [
+  "Exact swearing-in dates after the 2011 and 2015 Senate specials and the 2020 House special: NEEDS_VERIFICATION (Senate Journal; House Journal / Congressional Record).",
+  "Bill Thomas and Kevin McCarthy service dates for CD 22 (fringe, Green Valley only): NEEDS_VERIFICATION from Bioguide.",
+  "Jeff Gorell later district (2012) is outside the valley: NEEDS_VERIFICATION if it matters.",
+  "Any court action on the Proposition 50 map: NEEDS_VERIFICATION.",
+  "Pre-1992 district numbers were not asked and not checked.",
+  "1996 Statement of Vote pages are scans; read by OCR and by eye.",
+  "Second-place AD 40 candidate in June 2026 is printed as \"Rickey / Tracy / Hayes II\" across two header lines; first-name order NEEDS_VERIFICATION."
+ ]
+}

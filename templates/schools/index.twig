@@ -105,7 +105,8 @@
               {% set markHost = (mark.sourceUrl ?? '')|replace({'https://': '', 'http://': '', 'www.': ''})|split('/')|first %}
               <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 6px">
                 <h3 style="margin:0"><a href="{{ d.url }}">{{ d.title }}</a></h3>
-                <img src="{{ mark.url }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.width }}" height="{{ mark.height }}" style="height:44px;width:auto;max-width:96px;object-fit:contain;flex:none" loading="lazy">
+                {% set mt = mark.extension|lower == 'svg' ? null : { width: 200, height: 200, mode: 'fit', upscale: false } %}
+                <img src="{{ mark.getUrl(mt) }}" alt="{{ mark.alt ?: mark.title }}" width="{{ mark.getWidth(mt) }}" height="{{ mark.getHeight(mt) }}" style="height:44px;width:auto;max-width:96px;object-fit:contain;flex:none" loading="lazy">
               </div>
             {% else %}
               <h3><a href="{{ d.url }}">{{ d.title }}</a></h3>

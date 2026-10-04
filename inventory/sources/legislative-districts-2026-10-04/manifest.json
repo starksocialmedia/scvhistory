@@ -1,0 +1,1231 @@
+{
+ "folder": "inventory/sources/legislative-districts-2026-10-04",
+ "agent": "Claude (research subagent)",
+ "retrieved": "2026-10-04",
+ "files": [
+  {
+   "file": "analysis/block_comm.json",
+   "sha256": "70fcdb5f85f0f4f8c1bae3412f2c514a52a2d9db35ee23158fdf53722da52dfb",
+   "bytes": 389129,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Derived: block to community label"
+  },
+  {
+   "file": "analysis/blocks.py",
+   "sha256": "3a3706e04ddbcadc4e13463ffffd31dcc9a05b0c83bebe0ad206da9480a6d4d6",
+   "bytes": 1966,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script (Python, standard library only) used to produce the tallies; 2010 and 2020 block points and populations came from TIGERweb Census Blocks layers (tigerWMS_Census2010 layer 18, tigerWMS_Census2020 layer 10)"
+  },
+  {
+   "file": "analysis/ccd.py",
+   "sha256": "d8c8ce67a19262e077f7ef634111808e4afa6b7b6c1f061b7854d70b1ceda41c",
+   "bytes": 1002,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script (Python, standard library only) used to produce the tallies; 2010 and 2020 block points and populations came from TIGERweb Census Blocks layers (tigerWMS_Census2010 layer 18, tigerWMS_Census2020 layer 10)"
+  },
+  {
+   "file": "analysis/comm.py",
+   "sha256": "f3dc1f408fa51bb377dca97f7b9aa0f12d8e27de4a932f6d60163b8b3b10e74a",
+   "bytes": 1537,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script (Python, standard library only) used to produce the tallies; 2010 and 2020 block points and populations came from TIGERweb Census Blocks layers (tigerWMS_Census2010 layer 18, tigerWMS_Census2020 layer 10)"
+  },
+  {
+   "file": "analysis/dbf.py",
+   "sha256": "64e5cbb2dd59d9761823fd7e1d069bdcec88433167ebed7310041e6b9848c9c0",
+   "bytes": 803,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script (Python, standard library only) used to produce the tallies; 2010 and 2020 block points and populations came from TIGERweb Census Blocks layers (tigerWMS_Census2010 layer 18, tigerWMS_Census2020 layer 10)"
+  },
+  {
+   "file": "analysis/dist.py",
+   "sha256": "063fa48486e52375810a2ffea4c7cf49e4ad5096fc73d4a7abfb7aa84b7cd43a",
+   "bytes": 1255,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script (Python, standard library only) used to produce the tallies; 2010 and 2020 block points and populations came from TIGERweb Census Blocks layers (tigerWMS_Census2010 layer 18, tigerWMS_Census2020 layer 10)"
+  },
+  {
+   "file": "analysis/scv_blocks.json",
+   "sha256": "a0278c8213070810a89edc1500a978ef84f695a538b9488f353f63d7471257dc",
+   "bytes": 881892,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Derived: valley census blocks (2000, 2010, 2020) with population and region"
+  },
+  {
+   "file": "analysis/tally.json",
+   "sha256": "421458f351dff43bb8bf202142377c834b8eec63b4e2aa1120a3eb16390bdf30",
+   "bytes": 3715,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Derived: valley population by district, by plan and region"
+  },
+  {
+   "file": "analysis/tally.py",
+   "sha256": "62801bde66bac98bd181c933544bbb69660fdd8ea7fd9537f907b536ec1da2d0",
+   "bytes": 2690,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script (Python, standard library only) used to produce the tallies; 2010 and 2020 block points and populations came from TIGERweb Census Blocks layers (tigerWMS_Census2010 layer 18, tigerWMS_Census2020 layer 10)"
+  },
+  {
+   "file": "analysis/tally_comm.json",
+   "sha256": "d36227f5f3dc5c5bb0d59c53c3b7379280f26b741bef911be6d2460db613d39f",
+   "bytes": 8145,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Derived: valley population by district and community"
+  },
+  {
+   "file": "analysis/tw.py",
+   "sha256": "89dedb45e5774f79b60ceabf5a0d0bc29199fa3edc85fce25b426f0bfb302620",
+   "bytes": 1171,
+   "read": "2026-10-04",
+   "url": null,
+   "what": "Analysis script (Python, standard library only) used to produce the tallies; 2010 and 2020 block points and populations came from TIGERweb Census Blocks layers (tigerWMS_Census2010 layer 18, tigerWMS_Census2020 layer 10)"
+  },
+  {
+   "file": "ayala/santaclarita.gov_city-council_patsy-ayala_.html",
+   "sha256": "bee62894e182354522f4c85290488e1bf0ac0e8ad772946ce33a941d1a9afafe",
+   "bytes": 125308,
+   "read": "2026-10-04",
+   "url": "https://santaclarita.gov/city-council/patsy-ayala/",
+   "what": "City of Santa Clarita council bio of Patsy Ayala (\"served in the California State Assembly and Senate\")"
+  },
+  {
+   "file": "ayala/scvnews.com_ayala-joins-wilk-staff-hough-now-district-director.html",
+   "sha256": "f0466c3530876810d46398897101cf63be9feb9330d349061b9997e6a2e80c9e",
+   "bytes": 171809,
+   "read": "2026-10-04",
+   "url": "https://scvnews.com/ayala-joins-wilk-staff-hough-now-district-director",
+   "what": "SCVNews/KHTS, 2 June 2014: Assemblyman Scott Wilk names Patsy Ayala field representative in his district office"
+  },
+  {
+   "file": "ayala/www.canyons.edu_community_womensconference_biopatsyayala.php.html",
+   "sha256": "2eedd821a71fd7244c01c17b98eaf94b5919b48ddb0c7cb8ef26e91d1ca096a4",
+   "bytes": 52868,
+   "read": "2026-10-04",
+   "url": "https://www.canyons.edu/community/womensconference/biopatsyayala.php",
+   "what": "College of the Canyons women's conference bio: Ayala on Assemblywoman Valladares' staff, formerly on Senator Wilk's team and in his Assembly office"
+  },
+  {
+   "file": "census2000/ca00001.upl.zip",
+   "sha256": "c80fb1cc9b9b45b70da634240fd52461bc1de31e51db36baf731a51aa5057ac0",
+   "bytes": 12737228,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/census_2000/datasets/redistricting_file--pl_94-171/California/ca00001.upl.zip",
+   "what": "Census 2000 PL 94-171 file 1, California: block population"
+  },
+  {
+   "file": "census2000/cageo.upl.zip",
+   "sha256": "7c239f12fe2b5d9d2d2f3d266dcc8d2c219421b4c6c5e88ec84795b93aa52499",
+   "bytes": 16021227,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/census_2000/datasets/redistricting_file--pl_94-171/California/cageo.upl.zip",
+   "what": "Census 2000 PL 94-171 geographic header, California: block to county subdivision and place codes (used to find valley blocks for the 1991 plan)"
+  },
+  {
+   "file": "crc/Final-Maps-Report-with-Appendices-12.26.21-230-PM-1.pdf",
+   "sha256": "79899a17a3325f0115d76eb56c5df1e6b035c6080ee8068480f4e58324faddec",
+   "bytes": 43508068,
+   "read": "2026-10-04",
+   "url": "https://wedrawthelines.ca.gov/wp-content/uploads/sites/64/2023/01/Final-Maps-Report-with-Appendices-12.26.21-230-PM-1.pdf",
+   "what": "2021 Citizens Redistricting Commission final report with appendices (26 December 2021): AD 40, SD 23, CD 27 descriptions; city-by-district tables"
+  },
+  {
+   "file": "crc/crc_20110815_2final_report.pdf",
+   "sha256": "e23d483c515d82b2c2fba1afb47771cfa7aac60281a5e5aeeb8a6796add29642",
+   "bytes": 405927,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/crc_20110815_2final_report.pdf",
+   "what": "2011 Citizens Redistricting Commission final report (15 August 2011): district descriptions for AD 38, AD 36, SD 21, SD 27, CD 25"
+  },
+  {
+   "file": "house/bioguide-G000061-wayback.html",
+   "sha256": "7da6717c573015c61244e7659769b7ad962b7e8fa11fa1a0159ec2fe8b160ca1",
+   "bytes": 7611,
+   "read": "2026-10-04",
+   "url": "https://web.archive.org/web/20201124080951id_/https://bioguideretro.congress.gov/Home/MemberDetails?memIndex=G000061",
+   "what": "Biographical Directory (Wayback capture 24 Nov 2020): Mike Garcia, elected by special election, service from May 12, 2020"
+  },
+  {
+   "file": "house/bioguide-H001087-wayback.html",
+   "sha256": "af679203865d59a67f71d3db907ec42702591f19934f647d88b33b8c64f51a98",
+   "bytes": 8857,
+   "read": "2026-10-04",
+   "url": "https://web.archive.org/web/20201125000215id_/https://bioguideretro.congress.gov/Home/MemberDetails?memIndex=H001087",
+   "what": "Biographical Directory (Wayback capture 25 Nov 2020): Katie Hill, January 3, 2019 to resignation November 3, 2019"
+  },
+  {
+   "file": "house/bioguide-K000387-wayback.html",
+   "sha256": "dd96f18ebd06bb54dd708ea4df897ea7c2738ef515f6592c788e3a7e1969ca5c",
+   "bytes": 7802,
+   "read": "2026-10-04",
+   "url": "https://web.archive.org/web/20201124000853id_/https://bioguideretro.congress.gov/Home/MemberDetails?memIndex=K000387",
+   "what": "Biographical Directory (Wayback capture 24 Nov 2020): Steve Knight, January 3, 2015 to January 3, 2019"
+  },
+  {
+   "file": "house/bioguide-M000508-wayback.html",
+   "sha256": "a6e5c5d8a237f5743d78991ba9e0fd9548159a1d180658a8c17b2b4ba9e05603",
+   "bytes": 10094,
+   "read": "2026-10-04",
+   "url": "https://web.archive.org/web/20201125001154id_/https://bioguideretro.congress.gov/Home/MemberDetails?memIndex=M000508",
+   "what": "Biographical Directory of the U.S. Congress (Wayback capture 25 Nov 2020): Howard P. (Buck) McKeon, January 3, 1993 to January 3, 2015"
+  },
+  {
+   "file": "legislature/assembly-record-of-members-1849-2026.pdf",
+   "sha256": "6727659965fc40bc24b08353605d3b67276dc8d45fbbbe0a1752b2ded8816fb6",
+   "bytes": 2964367,
+   "read": "2026-10-04",
+   "url": "https://secretary.senate.ca.gov/media/79",
+   "what": "Secretary of the Senate, Record of Members of the Assembly 1849-2026: party, counties, sessions served, footnotes"
+  },
+  {
+   "file": "legislature/ca-constitution-art-iv-sec-2.html",
+   "sha256": "872962e2cd280ab5f2fe931f9e4b11c9b6fd8d499e5be84d5bc309ab0632e552",
+   "bytes": 163891,
+   "read": "2026-10-04",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CONS&sectionNum=SEC.%202.&article=IV",
+   "what": "California Constitution art. IV sec. 2: terms begin the first Monday in December after election; Senate 4-year staggered terms; 12-year limit"
+  },
+  {
+   "file": "legislature/senate-record-of-senators-1849-2026.pdf",
+   "sha256": "4639d8a472cc5d8daa4a059848b1fe8b2b28373970741f89c362628d2fc40b34",
+   "bytes": 1147560,
+   "read": "2026-10-04",
+   "url": "https://secretary.senate.ca.gov/media/88",
+   "what": "Secretary of the Senate, Record of State Senators 1849-2026: sessions served; footnotes on deaths, resignations, special elections"
+  },
+  {
+   "file": "sos/general-election-nov-5-2024/25-us-rep-congress.pdf",
+   "sha256": "5e6e849f74c913ad31dd9e9768d31983acb18dcdb113d806dde460bf6d80313c",
+   "bytes": 520489,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2024-general/sov/25-us-rep-congress.pdf",
+   "what": "SOS Statement of Vote, general-election-nov-5-2024: 25-us-rep-congress.pdf"
+  },
+  {
+   "file": "sos/general-election-nov-5-2024/37-state-senator.pdf",
+   "sha256": "44bd70cc9502159604564ce4bbb534523ef6ea85b8675fe5fe3584b50004f70d",
+   "bytes": 211811,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2024-general/sov/37-state-senator.pdf",
+   "what": "SOS Statement of Vote, general-election-nov-5-2024: 37-state-senator.pdf"
+  },
+  {
+   "file": "sos/general-election-nov-5-2024/42-state-assembly.pdf",
+   "sha256": "b587f969e030e6c41524c72709f344282d89df0e573381c503a390ebb9d35b90",
+   "bytes": 425776,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2024-general/sov/42-state-assembly.pdf",
+   "what": "SOS Statement of Vote, general-election-nov-5-2024: 42-state-assembly.pdf"
+  },
+  {
+   "file": "sos/general-election-nov-5-2024/statement-vote-page.html",
+   "sha256": "b9dbaa34a2cfa293b9251a7070af5525f46f916beb4e10a660af6c6ef7c750ec",
+   "bytes": 77524,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-nov-5-2024/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-nov-5-2024"
+  },
+  {
+   "file": "sos/general-election-nov-8-2022/48-congress.pdf",
+   "sha256": "e0375f356d737e951ec5eff6567a1dbaae5cf7eebc0b05cee84511302e8468b3",
+   "bytes": 146251,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2022-general/sov/48-congress.pdf",
+   "what": "SOS Statement of Vote, general-election-nov-8-2022: 48-congress.pdf"
+  },
+  {
+   "file": "sos/general-election-nov-8-2022/60-state-senator.pdf",
+   "sha256": "b7a4f087ca285c80ba2a2b17395db39f8e9e66db4987675db554594791bd5fb2",
+   "bytes": 96566,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2022-general/sov/60-state-senator.pdf",
+   "what": "SOS Statement of Vote, general-election-nov-8-2022: 60-state-senator.pdf"
+  },
+  {
+   "file": "sos/general-election-nov-8-2022/65-state-assemblymember.pdf",
+   "sha256": "99cb3983cdfeaa8ae5802beb77286a9db1e04960185b9b311ed5b9d21382fa60",
+   "bytes": 160825,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2022-general/sov/65-state-assemblymember.pdf",
+   "what": "SOS Statement of Vote, general-election-nov-8-2022: 65-state-assemblymember.pdf"
+  },
+  {
+   "file": "sos/general-election-nov-8-2022/statement-vote-page.html",
+   "sha256": "308c5dc482fe6a1f7fc8a714843ff12201e1a4870a798e3f9e118cacb9c93e20",
+   "bytes": 79224,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-nov-8-2022/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-nov-8-2022"
+  },
+  {
+   "file": "sos/general-election-november-2-2010/58-united-states-representative.pdf",
+   "sha256": "65b5cf3a77ca000a4abf7a86338161fd9f2397472b860938ee743db7fe9089a2",
+   "bytes": 24089,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2010-general/58-united-states-representative.pdf",
+   "what": "SOS Statement of Vote, general-election-november-2-2010: 58-united-states-representative.pdf"
+  },
+  {
+   "file": "sos/general-election-november-2-2010/69-state-senate.pdf",
+   "sha256": "ed356c10267900350df82df9c4d7165cab3f16d3c18a25e50754c91b0270e6f2",
+   "bytes": 12012,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2010-general/69-state-senate.pdf",
+   "what": "SOS Statement of Vote, general-election-november-2-2010: 69-state-senate.pdf"
+  },
+  {
+   "file": "sos/general-election-november-2-2010/73-state-assembly.pdf",
+   "sha256": "6dbdcfe2b264e22edf328b5a692d8885599d4de12f45801db28e306c3138aafb",
+   "bytes": 26438,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2010-general/73-state-assembly.pdf",
+   "what": "SOS Statement of Vote, general-election-november-2-2010: 73-state-assembly.pdf"
+  },
+  {
+   "file": "sos/general-election-november-2-2010/statement-vote-page.html",
+   "sha256": "0a8fb006c5c401ebb7d0f648f26c3147381bcfa24e7f182192754583c4903b7a",
+   "bytes": 76174,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-2-2010/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-2-2010"
+  },
+  {
+   "file": "sos/general-election-november-3-1992/assemblymember.pdf",
+   "sha256": "8cf9a0981fd3f1354a8ff19ad061bde67cb64c021009b2494c07dcf2c1080b1b",
+   "bytes": 413196,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1992-general/assemblymember.pdf",
+   "what": "SOS Statement of Vote, general-election-november-3-1992: assemblymember.pdf"
+  },
+  {
+   "file": "sos/general-election-november-3-1992/state-senator.pdf",
+   "sha256": "25dcb867089621f765a954d72f7cde627f1bee7a5a5d93c883b2164b5a97a7a4",
+   "bytes": 131754,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1992-general/state-senator.pdf",
+   "what": "SOS Statement of Vote, general-election-november-3-1992: state-senator.pdf"
+  },
+  {
+   "file": "sos/general-election-november-3-1992/statement-vote-page.html",
+   "sha256": "4805834c1ca41930ec764f93647d8cd6af017e0eb25e4f9b3687fc252b5c9660",
+   "bytes": 67121,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-3-1992/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-3-1992"
+  },
+  {
+   "file": "sos/general-election-november-3-1992/us-representative.pdf",
+   "sha256": "f71a69e0e08aba00384ba0265843faac5f3bf29873dae0d4c4224d47ac41a37e",
+   "bytes": 341335,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1992-general/us-representative.pdf",
+   "what": "SOS Statement of Vote, general-election-november-3-1992: us-representative.pdf"
+  },
+  {
+   "file": "sos/general-election-november-3-1998/sov1998-general.pdf",
+   "sha256": "f231907b4bfa562596718cdd3f8da8e81b317c4b0fd57571f08cb8c8dee14667",
+   "bytes": 577292,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1998-general/sov1998-general.pdf",
+   "what": "SOS Statement of Vote, general-election-november-3-1998: sov1998-general.pdf"
+  },
+  {
+   "file": "sos/general-election-november-3-1998/statement-vote-page.html",
+   "sha256": "cc0ad1b8a570db8082813b96353905da73562a458471a2bdf46d59f5d52dc892",
+   "bytes": 72002,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-3-1998/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-3-1998"
+  },
+  {
+   "file": "sos/general-election-november-3-2020/24-us-reps.pdf",
+   "sha256": "c82666d4738210ee2236a498fbae512fffb0e38b59cf1d9bf21af5587c746e6e",
+   "bytes": 452928,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2020-general/sov/24-us-reps.pdf",
+   "what": "SOS Statement of Vote, general-election-november-3-2020: 24-us-reps.pdf"
+  },
+  {
+   "file": "sos/general-election-november-3-2020/36-state-senate.pdf",
+   "sha256": "5a6070789dd303785aea3d6f6687776ab44c8ed2f6571309d43da9325f3e816f",
+   "bytes": 219893,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2020-general/sov/36-state-senate.pdf",
+   "what": "SOS Statement of Vote, general-election-november-3-2020: 36-state-senate.pdf"
+  },
+  {
+   "file": "sos/general-election-november-3-2020/41-state-assembly.pdf",
+   "sha256": "29ee5e90a081cdf132365c74b35ba63c45c25d391f988eb8812d9b9906f1d8ed",
+   "bytes": 240098,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2020-general/sov/41-state-assembly.pdf",
+   "what": "SOS Statement of Vote, general-election-november-3-2020: 41-state-assembly.pdf"
+  },
+  {
+   "file": "sos/general-election-november-3-2020/statement-vote-page.html",
+   "sha256": "258e70d504c562edcfe1922bd2bf1ded6fb85667434225a0b33aaee843315f5e",
+   "bytes": 72282,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-3-2020/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-3-2020"
+  },
+  {
+   "file": "sos/general-election-november-4-2014/43-congress.pdf",
+   "sha256": "2944db0e0653d4d81cfa7d1c1f57850340a6e4f85a5147ce03bf8902a177f8a0",
+   "bytes": 62487,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2014-general/pdf/43-congress.pdf",
+   "what": "SOS Statement of Vote, general-election-november-4-2014: 43-congress.pdf"
+  },
+  {
+   "file": "sos/general-election-november-4-2014/58-state-senator.pdf",
+   "sha256": "0ae747f2f1f6dc115b443d5eb59bcbd9d6aa9b095e54e25b54e8a2722d7a3977",
+   "bytes": 28992,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2014-general/pdf/58-state-senator.pdf",
+   "what": "SOS Statement of Vote, general-election-november-4-2014: 58-state-senator.pdf"
+  },
+  {
+   "file": "sos/general-election-november-4-2014/64-state-assemblymember.pdf",
+   "sha256": "d367cd5d4d56c98f69115651aea4ba2d038c74ff46c74c9a27be5d4734885f2a",
+   "bytes": 85977,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2014-general/pdf/64-state-assemblymember.pdf",
+   "what": "SOS Statement of Vote, general-election-november-4-2014: 64-state-assemblymember.pdf"
+  },
+  {
+   "file": "sos/general-election-november-4-2014/statement-vote-page.html",
+   "sha256": "078dbb9047e3d46ac5a0d9b34badfda7da2e57142bdca399c74f07324f48a043",
+   "bytes": 78596,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-4-2014/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-4-2014"
+  },
+  {
+   "file": "sos/general-election-november-5-1996/assemblymember.pdf",
+   "sha256": "d1ee0f1eb9c755038a021d6dd1d5c0a64fa1ad9a16cd89abd949ed0af4fbf993",
+   "bytes": 145588,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1996-general/assemblymember.pdf",
+   "what": "SOS Statement of Vote, general-election-november-5-1996: assemblymember.pdf (scanned; read by OCR and by eye)"
+  },
+  {
+   "file": "sos/general-election-november-5-1996/state-senator.pdf",
+   "sha256": "927b9451080d35b00a194da7cbdb10795a524dea9505dc7afa881921bf1a52cd",
+   "bytes": 47235,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1996-general/state-senator.pdf",
+   "what": "SOS Statement of Vote, general-election-november-5-1996: state-senator.pdf (scanned; read by OCR and by eye)"
+  },
+  {
+   "file": "sos/general-election-november-5-1996/statement-vote-page.html",
+   "sha256": "1129478007645349d7903acabc15c191bff2eeb9219141dcafe70306b5d86b3d",
+   "bytes": 68472,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-5-1996/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-5-1996"
+  },
+  {
+   "file": "sos/general-election-november-5-1996/us-representative.pdf",
+   "sha256": "fb2d35e5644c568502f5cb5c9165075ed6fd12a1811ac78edf80b0aaf3938d98",
+   "bytes": 128771,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1996-general/us-representative.pdf",
+   "what": "SOS Statement of Vote, general-election-november-5-1996: us-representative.pdf (scanned; read by OCR and by eye)"
+  },
+  {
+   "file": "sos/general-election-november-5-2002/congress.pdf",
+   "sha256": "4fa6b2785b27d5e59a05b107bcd844d805831fcecfae772dd749451655b1c184",
+   "bytes": 26677,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2002-general/congress.pdf",
+   "what": "SOS Statement of Vote, general-election-november-5-2002: congress.pdf"
+  },
+  {
+   "file": "sos/general-election-november-5-2002/state-assemb.pdf",
+   "sha256": "db2a5c6efa58dd6f0fda09998169eb2d5efe00980f7934a89eafee0253ad4e5f",
+   "bytes": 33651,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2002-general/state-assemb.pdf",
+   "what": "SOS Statement of Vote, general-election-november-5-2002: state-assemb.pdf"
+  },
+  {
+   "file": "sos/general-election-november-5-2002/state-senate.pdf",
+   "sha256": "8ba5ed3d2e094aa82c8747e65a164e178c8762add63968591979f41bf99e1e9e",
+   "bytes": 11538,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2002-general/state-senate.pdf",
+   "what": "SOS Statement of Vote, general-election-november-5-2002: state-senate.pdf"
+  },
+  {
+   "file": "sos/general-election-november-5-2002/statement-vote-page.html",
+   "sha256": "81968f710cb968cb321c3433e60001fb25c3eeb34764f59c4ef3a1351f18cc3f",
+   "bytes": 73028,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-5-2002/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-5-2002"
+  },
+  {
+   "file": "sos/general-election-november-6-2012/12-us-reps.pdf",
+   "sha256": "cf0978b6a5ed0fee8c2e0178e4751d7372ccd33e100ec451cfd554a4105be093",
+   "bytes": 81251,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2012-general/12-us-reps.pdf",
+   "what": "SOS Statement of Vote, general-election-november-6-2012: 12-us-reps.pdf"
+  },
+  {
+   "file": "sos/general-election-november-6-2012/13-state-senators.pdf",
+   "sha256": "5fbe880d7811c90d8dec7e5e22f8aefe945370bf281a890688167b74e1b97d4b",
+   "bytes": 43906,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2012-general/13-state-senators.pdf",
+   "what": "SOS Statement of Vote, general-election-november-6-2012: 13-state-senators.pdf"
+  },
+  {
+   "file": "sos/general-election-november-6-2012/14-state-assembly-1-80.pdf",
+   "sha256": "2013589d767d6d9c7fcb0d9cb839118b363229812e6cf90fd6de64af233cd1fa",
+   "bytes": 103634,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2012-general/14-state-assembly-1-80.pdf",
+   "what": "SOS Statement of Vote, general-election-november-6-2012: 14-state-assembly-1-80.pdf"
+  },
+  {
+   "file": "sos/general-election-november-6-2012/statement-vote-page.html",
+   "sha256": "ee97f6e799ecbba6cf05b629341f0b8776fbc9a465cf01c4b738f25b3fd80094",
+   "bytes": 73285,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-6-2012/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-6-2012"
+  },
+  {
+   "file": "sos/general-election-november-6-2018/48-congress.pdf",
+   "sha256": "7d8fc8ab6c61fb7f324bcdb65798df1d84ea35f406abbda9efa8813c5f0ad13f",
+   "bytes": 120595,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2018-general/sov/48-congress.pdf",
+   "what": "SOS Statement of Vote, general-election-november-6-2018: 48-congress.pdf"
+  },
+  {
+   "file": "sos/general-election-november-6-2018/62-state-senator.pdf",
+   "sha256": "f24101abeea88d002c1417212558589fab783900ed700df239a2e18fa69fb249",
+   "bytes": 86607,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2018-general/sov/62-state-senator.pdf",
+   "what": "SOS Statement of Vote, general-election-november-6-2018: 62-state-senator.pdf"
+  },
+  {
+   "file": "sos/general-election-november-6-2018/68-state-assemblymember.pdf",
+   "sha256": "599f19420a798e8bf141cb8f45f5de54b1dcd1c17311a16cc3836394716f0066",
+   "bytes": 145021,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2018-general/sov/68-state-assemblymember.pdf",
+   "what": "SOS Statement of Vote, general-election-november-6-2018: 68-state-assemblymember.pdf"
+  },
+  {
+   "file": "sos/general-election-november-6-2018/statement-vote-page.html",
+   "sha256": "79375fbbf6be40fbd3b031e7a6fdaad5ebfe95eccf4df9f17fbd057bf75ca8a7",
+   "bytes": 76400,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-6-2018/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-6-2018"
+  },
+  {
+   "file": "sos/general-election-november-7-2000/assemb.pdf",
+   "sha256": "accf064ddac7c09f7ae37ed10f0bac61015ccc2c17f9721316b4dfd9d73ec099",
+   "bytes": 40282,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2000-general/assemb.pdf",
+   "what": "SOS Statement of Vote, general-election-november-7-2000: assemb.pdf"
+  },
+  {
+   "file": "sos/general-election-november-7-2000/sen.pdf",
+   "sha256": "7ef3ea1f231502589d7656f513b769be88a102e0eec1cf5b6f8e185dc9102d62",
+   "bytes": 16179,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2000-general/sen.pdf",
+   "what": "SOS Statement of Vote, general-election-november-7-2000: sen.pdf"
+  },
+  {
+   "file": "sos/general-election-november-7-2000/statement-vote-page.html",
+   "sha256": "3038b9bac95ea76d1da0aa0a47cb1285eb585c29437b288f3cadb485400ce1c5",
+   "bytes": 69272,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-7-2000/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-7-2000"
+  },
+  {
+   "file": "sos/general-election-november-7-2000/us-rep.pdf",
+   "sha256": "da4579048bff55ec96c184a73979d06904b6798fed079bbf5186c78c5ed119da",
+   "bytes": 37246,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2000-general/us-rep.pdf",
+   "what": "SOS Statement of Vote, general-election-november-7-2000: us-rep.pdf"
+  },
+  {
+   "file": "sos/general-election-november-7-2006/assembly.pdf",
+   "sha256": "0cddcb67d976baf89c2a85c5023b4ceb32f99514a5e900f809f5793d616fba03",
+   "bytes": 146170,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2006-general/assembly.pdf",
+   "what": "SOS Statement of Vote, general-election-november-7-2006: assembly.pdf"
+  },
+  {
+   "file": "sos/general-election-november-7-2006/congress.pdf",
+   "sha256": "7fcf44d878ef0b932d7d3b1c848cc7978ca95bc674d4b3284b3e83824121c300",
+   "bytes": 114104,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2006-general/congress.pdf",
+   "what": "SOS Statement of Vote, general-election-november-7-2006: congress.pdf"
+  },
+  {
+   "file": "sos/general-election-november-7-2006/senate_amended.pdf",
+   "sha256": "ce0ee48a688e40464ef519af545121eab7c5f7675448648d5474ed0924f3ddcb",
+   "bytes": 48703,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2006-general/senate_amended.pdf",
+   "what": "SOS Statement of Vote, general-election-november-7-2006: senate_amended.pdf"
+  },
+  {
+   "file": "sos/general-election-november-7-2006/statement-vote-page.html",
+   "sha256": "2d04e1c10549560a792ff6a9d393924145cab81273b5be6ef2f0ac22bb76de84",
+   "bytes": 74406,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-7-2006/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-7-2006"
+  },
+  {
+   "file": "sos/general-election-november-8-1994/assemblymember.pdf",
+   "sha256": "32f9e0aa741b985235b665923b86ec0fa8323237f39a0f4a69ec2632d66978b7",
+   "bytes": 370078,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1994-general/assemblymember.pdf",
+   "what": "SOS Statement of Vote, general-election-november-8-1994: assemblymember.pdf"
+  },
+  {
+   "file": "sos/general-election-november-8-1994/state-senator.pdf",
+   "sha256": "4f4501429f74cab1c99c5f438ef397fc035588dd02f662d5fe3fa97bacb5822a",
+   "bytes": 177988,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1994-general/state-senator.pdf",
+   "what": "SOS Statement of Vote, general-election-november-8-1994: state-senator.pdf"
+  },
+  {
+   "file": "sos/general-election-november-8-1994/statement-vote-page.html",
+   "sha256": "e339fccec6116a5f19ff9b0a1fab6abcf8d32affc686998d319dd4cddb083c49",
+   "bytes": 71473,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-8-1994/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-8-1994"
+  },
+  {
+   "file": "sos/general-election-november-8-1994/us-representative.pdf",
+   "sha256": "bac41f0c07d7f77d1466c4a480926089a35391479aa5bbe996e82c4b8b9fa344",
+   "bytes": 267015,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/1994-general/us-representative.pdf",
+   "what": "SOS Statement of Vote, general-election-november-8-1994: us-representative.pdf"
+  },
+  {
+   "file": "sos/general-election-november-8-2016/26-us-reps-formatted.pdf",
+   "sha256": "3ff78ff800478dc06dc50cb88262e48985fb97505076646612c0fd930672094b",
+   "bytes": 28083,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2016-general/sov/26-us-reps-formatted.pdf",
+   "what": "SOS Statement of Vote, general-election-november-8-2016: 26-us-reps-formatted.pdf"
+  },
+  {
+   "file": "sos/general-election-november-8-2016/40-state-senators-formatted.pdf",
+   "sha256": "ac1f1614b8e593ea5eca7db26a00784f964ff3de648e306a887d3133c9b93551",
+   "bytes": 16865,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2016-general/sov/40-state-senators-formatted.pdf",
+   "what": "SOS Statement of Vote, general-election-november-8-2016: 40-state-senators-formatted.pdf"
+  },
+  {
+   "file": "sos/general-election-november-8-2016/45-state-assembly-formatted.pdf",
+   "sha256": "d5c6308d97b7a6ce67b19d0c7286d9d221b451142ef44f54ce18e599ddca7576",
+   "bytes": 36255,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2016-general/sov/45-state-assembly-formatted.pdf",
+   "what": "SOS Statement of Vote, general-election-november-8-2016: 45-state-assembly-formatted.pdf"
+  },
+  {
+   "file": "sos/general-election-november-8-2016/statement-vote-page.html",
+   "sha256": "ecd5107cd0ebf903fc4a94bf8c7ee19370ae926c83898fe5dfc747d667a2c884",
+   "bytes": 73546,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-8-2016/statement-vote",
+   "what": "SOS Statement of Vote index page, general-election-november-8-2016"
+  },
+  {
+   "file": "sos/presidential-general-election-november-2-2004/formatted_st_AD_all.pdf",
+   "sha256": "3411fa9620566d3c8d4a3abc8cc9acbb43223d5ded093d97b853eb35c5db0148",
+   "bytes": 232681,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2004-general/formatted_st_AD_all.pdf",
+   "what": "SOS Statement of Vote, presidential-general-election-november-2-2004: formatted_st_AD_all.pdf"
+  },
+  {
+   "file": "sos/presidential-general-election-november-2-2004/formatted_st_sen_all_detail.pdf",
+   "sha256": "6093d86e34ce08c8aa69c7a17d0e26c98022392fe19a4b2ee1579c80392c0289",
+   "bytes": 86388,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2004-general/formatted_st_sen_all_detail.pdf",
+   "what": "SOS Statement of Vote, presidential-general-election-november-2-2004: formatted_st_sen_all_detail.pdf"
+  },
+  {
+   "file": "sos/presidential-general-election-november-2-2004/statement-vote-page.html",
+   "sha256": "157d8a4b3bde7e175bfab6821c04a12f01911ace5a9a7229adc5090010331555",
+   "bytes": 74902,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/presidential-general-election-november-2-2004/statement-vote",
+   "what": "SOS Statement of Vote index page, presidential-general-election-november-2-2004"
+  },
+  {
+   "file": "sos/presidential-general-election-november-2-2004/us-reps-all-formatted.pdf",
+   "sha256": "c5dcc1a99673e2f66da562946b66ddb58e3a1f7a08ce535ba6284322f5e0f10e",
+   "bytes": 196139,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2004-general/us-reps-all-formatted.pdf",
+   "what": "SOS Statement of Vote, presidential-general-election-november-2-2004: us-reps-all-formatted.pdf"
+  },
+  {
+   "file": "sos/presidential-general-election-november-4-2008/23_34_us_reps.pdf",
+   "sha256": "754add8ca50a841d8cacac614263fb810a792a790e904785dec85122f1c611d7",
+   "bytes": 25359,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2008-general/23_34_us_reps.pdf",
+   "what": "SOS Statement of Vote, presidential-general-election-november-4-2008: 23_34_us_reps.pdf"
+  },
+  {
+   "file": "sos/presidential-general-election-november-4-2008/35_39_state_senators.pdf",
+   "sha256": "8268ea5ca4371286e4fd8e6552bc9d1e393202eb7c1d0928dfa26bbcf57384ac",
+   "bytes": 13574,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2008-general/35_39_state_senators.pdf",
+   "what": "SOS Statement of Vote, presidential-general-election-november-4-2008: 35_39_state_senators.pdf"
+  },
+  {
+   "file": "sos/presidential-general-election-november-4-2008/40_56_state_assembly.pdf",
+   "sha256": "a263c2ab7218cb700f0499fc00cbd73e479fe94442c5b3bc65d5f3ac411ba393",
+   "bytes": 31559,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2008-general/40_56_state_assembly.pdf",
+   "what": "SOS Statement of Vote, presidential-general-election-november-4-2008: 40_56_state_assembly.pdf"
+  },
+  {
+   "file": "sos/presidential-general-election-november-4-2008/statement-vote-page.html",
+   "sha256": "c62fe53705651ec3edcb9a4c61ee7c67503433a0056c6c7dab803967193c7d43",
+   "bytes": 71356,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/presidential-general-election-november-4-2008/statement-vote",
+   "what": "SOS Statement of Vote index page, presidential-general-election-november-4-2008"
+  },
+  {
+   "file": "sos/primary-election-june-2-2026/76-us-rep.pdf",
+   "sha256": "4dca429c463c2cf32dc37342f8f5f3e87429cd1345109f208e0c437e7be7f4d5",
+   "bytes": 223964,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2026-primary/sov/76-us-rep.pdf",
+   "what": "SOS Statement of Vote, primary-election-june-2-2026: 76-us-rep.pdf"
+  },
+  {
+   "file": "sos/primary-election-june-2-2026/90-state-senator.pdf",
+   "sha256": "d5502b6c65bce0d181d301b988702d956648f26fad1a670335fa538dba6d0514",
+   "bytes": 162426,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2026-primary/sov/90-state-senator.pdf",
+   "what": "SOS Statement of Vote, primary-election-june-2-2026: 90-state-senator.pdf"
+  },
+  {
+   "file": "sos/primary-election-june-2-2026/95-state-assembly.pdf",
+   "sha256": "f2160ce9f71dec79712ce35536e5fad062ecdae64e5520b64083e553b9ce679f",
+   "bytes": 412771,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2026-primary/sov/95-state-assembly.pdf",
+   "what": "SOS Statement of Vote, primary-election-june-2-2026: 95-state-assembly.pdf"
+  },
+  {
+   "file": "sos/primary-election-june-2-2026/statement-vote-page.html",
+   "sha256": "afd3e35b55ecbeeff761f6b4aa4f10fcd97fbae1dd8463a9f061cc5956fcecf5",
+   "bytes": 68269,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-june-2-2026/statement-vote",
+   "what": "SOS Statement of Vote index page, primary-election-june-2-2026"
+  },
+  {
+   "file": "sos/special-elections/2015-sd21/certified-list.pdf",
+   "sha256": "295ecf7606852b055a463e59a8954f120b2a88b0f96a1040afe6ec65e9d13e23",
+   "bytes": 822379,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/special-elections/2015-sd21/certified-list.pdf",
+   "what": "Certified list of candidates, SD 21 special primary 2015"
+  },
+  {
+   "file": "sos/special-elections/2015-sd21/election-results.html",
+   "sha256": "2ec7dd4dba0e3dc54f0a628ab1adffcb416967c5ea2186c464cc4714eb2412a0",
+   "bytes": 64762,
+   "read": "2026-10-04",
+   "url": "http://www.sos.ca.gov/elections/prior-elections/special-elections/2015-sd21/election-results",
+   "what": "SD 21 special primary results 17 March 2015: Sharon Runner 94.1%; vacancy from resignation of Steve Knight"
+  },
+  {
+   "file": "sos/special-elections/2015-sd21/page.html",
+   "sha256": "cf26e42987502eff4df46dca11555219786fbca002c5019b4fd3bc88dfdd7c74",
+   "bytes": 63341,
+   "read": "2026-10-04",
+   "url": "http://www.sos.ca.gov/elections/prior-elections/special-elections/2015-sd21/",
+   "what": "SOS page, SD 21 special primary 17 March 2015"
+  },
+  {
+   "file": "sos/special-elections/2015-sd21/proclamation.pdf",
+   "sha256": "165d8479301388a4b9419c362f94c8f3d899b5fe48a39d05cc93d7138ffb511c",
+   "bytes": 599349,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/special-elections/2015-sd21/proclamation.pdf",
+   "what": "Governor's proclamation, Jan 2015, SD 21 vacancy from resignation of Steve Knight (scanned)"
+  },
+  {
+   "file": "sos/special-elections/2019-cd25/governors-proclamation.pdf",
+   "sha256": "9f161619885a5b5395ae9fbf786eb47cfcbe27292635b9bd96a64c2c0f6bb552",
+   "bytes": 380121,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/special-elections/2020-cd25/governors-proclamation.pdf",
+   "what": "Governor's proclamation, 15 Nov 2019, CD 25 vacancy from resignation of Katie Hill (scanned)"
+  },
+  {
+   "file": "sos/special-elections/2019-cd25/official-results-general.html",
+   "sha256": "f91545f472d5d5a88aa635771f10b7336fa183d7fb0dba05f18b45521e47a84e",
+   "bytes": 61493,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/special-elections/2019-cd25/official-results-general",
+   "what": "CD 25 special general 12 May 2020: Mike Garcia 54.86%, Christy Smith 45.14%; vacancy from resignation of Katie Hill"
+  },
+  {
+   "file": "sos/special-elections/2019-cd25/official-results-primary.html",
+   "sha256": "d0a3036d0f5b8c101a3f5b1c1449f4dd7b235364e3fd36badb811a7be8bc32ac",
+   "bytes": 63059,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/special-elections/2019-cd25/official-results-primary",
+   "what": "CD 25 special primary 3 March 2020 results"
+  },
+  {
+   "file": "sos/special-elections/2019-cd25/page.html",
+   "sha256": "93cd27f112ac48f7157643f3cadacc9b81036140821ad508c061e427729b0072",
+   "bytes": 64558,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/special-elections/2019-cd25",
+   "what": "SOS page, CD 25 special election 2020"
+  },
+  {
+   "file": "sos/special-elections/senate-district-17/official-canvass.pdf",
+   "sha256": "1d1c6208ba4eda84498f931d3aed4d9f99932523dee01afc2011b1d23d7f7295",
+   "bytes": 7508,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/special-elections/2011-sd17/official-canvass.pdf",
+   "what": "Official canvass SD 17 special primary 15 Feb 2011: Sharon Runner 65.27%, vacancy from resignation of George Runner"
+  },
+  {
+   "file": "sos/special-elections/senate-district-17/page.html",
+   "sha256": "f47b250485c139c7f3e38857e7a88588323e27964baf1134e8a8549b8ba5c8fe",
+   "bytes": 63083,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/special-elections/senate-district-17",
+   "what": "SOS page, SD 17 special primary 15 February 2011"
+  },
+  {
+   "file": "sos/special-elections/senate-district-17/proclamation.pdf",
+   "sha256": "27d7837cb14c30bd4258f9ea50fab5efeb3129529d92fc8b92f559cba2994406",
+   "bytes": 406939,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/special-elections/2011-sd17/proclamation.pdf",
+   "what": "Governor's proclamation, 21 Dec 2010, SD 17 vacancy from resignation of George C. Runner, Jr. (scanned)"
+  },
+  {
+   "file": "sos/statewide-special-nov-4-2025/13-official-dec-vote-results-bm.pdf",
+   "sha256": "98139712dc33efb3c5c86c66fe5b5f8db31f83110ef8c1035c5154a57970c68b",
+   "bytes": 72044,
+   "read": "2026-10-04",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2025-special/sov/13-official-dec-vote-results-bm.pdf",
+   "what": "SOS Statement of Vote, statewide-special-nov-4-2025: 13-official-dec-vote-results-bm.pdf"
+  },
+  {
+   "file": "sos/statewide-special-nov-4-2025/statement-vote-page.html",
+   "sha256": "809bd9c109c625256765e79a3bb2be1d248b54ac68d1bcfad5f8f0b80b3a3fd8",
+   "bytes": 67818,
+   "read": "2026-10-04",
+   "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/statewide-special-nov-4-2025/statement-vote",
+   "what": "SOS Statement of Vote index page, statewide-special-nov-4-2025"
+  },
+  {
+   "file": "swdb/2011_assembly_state_equiv.dbf",
+   "sha256": "74cffc1405c002a4b4de8082642a2cfd0974aac503936b6371f27d6584e3879b",
+   "bytes": 19884130,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/GEOGRAPHY/DECENNIAL2010/2011_assembly_state_equiv.dbf",
+   "what": "2011 plan (Citizens Redistricting Commission): 2010 block to Assembly district"
+  },
+  {
+   "file": "swdb/2011_congressional_state_equiv.dbf",
+   "sha256": "d02d756f4db3d71e613e76cefdf184d3ab8f429bed4f3d4c166a82823d817bc7",
+   "bytes": 19884130,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/GEOGRAPHY/DECENNIAL2010/2011_congressional_state_equiv.dbf",
+   "what": "2011 plan: 2010 block to Congressional district"
+  },
+  {
+   "file": "swdb/2011_senate_state_equiv.dbf",
+   "sha256": "7912f83fd074035d4af9dd7d19d9a1a14901ff6e9283e17501900aa7fe539df2",
+   "bytes": 19884130,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/GEOGRAPHY/DECENNIAL2010/2011_senate_state_equiv.dbf",
+   "what": "2011 plan: 2010 block to Senate district"
+  },
+  {
+   "file": "swdb/CENSUSPLACE_AD_CD_SD.DBF",
+   "sha256": "6b4eb2edf5f09dfad31cef9d885d11d27c331ffe0d5897a28849921ea5486a25",
+   "bytes": 427733,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/data/Assignment_Files/CENSUSPLACE_AD_CD_SD.DBF",
+   "what": "2000 Census places with the districts they fall in (cross-check only)"
+  },
+  {
+   "file": "swdb/blk2000_dist91.txt",
+   "sha256": "60456b7f0434feae96e2d0bcbe81bde2229353d2c4c215815ffa164cb897917e",
+   "bytes": 312,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/SPECIAL/blk2000_dist91.txt",
+   "what": "Readme: 1991 plan district assignments for 2000 Census blocks (fields CD91, AD91, SD91)"
+  },
+  {
+   "file": "swdb/block00_district_txt.zip",
+   "sha256": "6ab38f827f0e4655873f3d58ff46f0e0234cf190f3143349aed3dee9ade82dcf",
+   "bytes": 1518856,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/SPECIAL/block00_district_txt.zip",
+   "what": "1991 plan (Special Masters, used 1992 to 2000 elections): every 2000 Census block with its Assembly, Senate and Congressional district"
+  },
+  {
+   "file": "swdb/district_con_ass.html",
+   "sha256": "cb78489d34fec55a3076b374981882855c9a0af3b2caaebf2a50d0d50f280912",
+   "bytes": 28130,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/district_con_ass.html",
+   "what": "Statewide Database (UC Berkeley) page listing the district assignment files for the 1991, 2001 and 2011 plans"
+  },
+  {
+   "file": "swdb/districts2001_2010blocks_equivalency.zip",
+   "sha256": "7c87e3eba3e7768e663db5491c7785b903c38cb94c9fc3f2ec15c4c354486800",
+   "bytes": 2187916,
+   "read": "2026-10-04",
+   "url": "https://statewidedatabase.org/pub/data/SPECIAL/districts/districts2001_2010blocks_equivalency.zip",
+   "what": "2001 plan (Legislature, used 2002 to 2010 elections): every 2010 Census block with its CD2001, AD2001, SD2001"
+  },
+  {
+   "file": "tigerweb/acton_2010.json",
+   "sha256": "ee1b61df24c1dff9c5cde722f5d6bf24f54daffb98a24b6eaa155604f85cc4fe",
+   "bytes": 10524,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: acton_2010"
+  },
+  {
+   "file": "tigerweb/acton_2020.json",
+   "sha256": "f1de2923fe59048bbcf67b3b7658307983d11280c4fbb3bfcbcb3b1c98db4b55",
+   "bytes": 11324,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: acton_2020"
+  },
+  {
+   "file": "tigerweb/aguadulce_2010.json",
+   "sha256": "0188a1a56d90e9097a769a534a39d46967a3b91267dc2e5442e57d76008d2a8e",
+   "bytes": 30974,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: aguadulce_2010"
+  },
+  {
+   "file": "tigerweb/aguadulce_2020.json",
+   "sha256": "f7de4f9a516f4952762ed03354bce633229638e1e14c9cae1f2cf858e0ee3a31",
+   "bytes": 31818,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: aguadulce_2020"
+  },
+  {
+   "file": "tigerweb/ccd_newhall_2010.json",
+   "sha256": "a56e109479fb808a2bbc0871218e811e41b3408993727f44fa2bcf363158634c",
+   "bytes": 286537,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/28/query",
+   "what": "Census county subdivision polygon: Newhall CCD (GEOID 0603792110), census tracts 9200 to 9203, used as the definition of the valley"
+  },
+  {
+   "file": "tigerweb/ccd_newhall_current.json",
+   "sha256": "bee5ae9baf7001ea7d86cdb4d7b37df02687da76ef5cc2f041d678bff4caaade",
+   "bytes": 286410,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer/22/query",
+   "what": "Census county subdivision polygon: Newhall CCD (GEOID 0603792110), census tracts 9200 to 9203, used as the definition of the valley"
+  },
+  {
+   "file": "tigerweb/pl_2010_Acton-CDP.json",
+   "sha256": "c12af095039451d5aa51e7becab6bd2715901e3efe003e8cb0c0b8b6665e8fd2",
+   "bytes": 10405,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Acton-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2010_Agua-Dulce-CDP.json",
+   "sha256": "13566febbb5531a6cae9ece481f77e38853648dc6af5944cc8cb153fedb0c96e",
+   "bytes": 30855,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Agua-Dulce-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2010_Castaic-CDP.json",
+   "sha256": "7a237858a06858e626d88c2fa21656c3ce99606f46063fda813661da481dc497",
+   "bytes": 28602,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Castaic-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2010_Green-Valley-CDP.json",
+   "sha256": "7aab286cf9b8dd679e38068da402bf24646cb4b8a817482abeb14074091c7f57",
+   "bytes": 86905,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Green-Valley-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2010_Hasley-Canyon-CDP.json",
+   "sha256": "04cd36fad2a3f8a5d6c5f0763e85b2c421ea6e41f49e776ff08cd60432dba9fe",
+   "bytes": 27797,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Hasley-Canyon-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2010_Santa-Clarita-city.json",
+   "sha256": "658e5441a863e191d45af7237a88b974c971afcc7d60648074b933ff7c8a4b8a",
+   "bytes": 108984,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Santa-Clarita-city"
+  },
+  {
+   "file": "tigerweb/pl_2010_Stevenson-Ranch-CDP.json",
+   "sha256": "de0a2f42947c67d222d289e7417bc9ffc99755c948c3aebed25db3564ded97d1",
+   "bytes": 24765,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Stevenson-Ranch-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2010_Val-Verde-CDP.json",
+   "sha256": "65607c958d7552492e39c36e7c3e8b5d6a2c2a8791f48bb18cbff4f98efc99ec",
+   "bytes": 25299,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2010_Val-Verde-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2020_Acton-CDP.json",
+   "sha256": "03244ab60a8a63fabfb0be0c9b8dad47fd51999af4ddd2ee04f7e15145f27866",
+   "bytes": 11205,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Acton-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2020_Agua-Dulce-CDP.json",
+   "sha256": "2162314a3bb8819c0816f28f56b95a268c9c0d7e2e828e99eaa1add8d4b4730d",
+   "bytes": 31699,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Agua-Dulce-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2020_Castaic-CDP.json",
+   "sha256": "16f805340f7e0abded27bfdcbe4c84fb575ef31fb40c2b5939bfdeddb288c5c9",
+   "bytes": 28645,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Castaic-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2020_Green-Valley-CDP.json",
+   "sha256": "a98639c70fd92fd5f430203bc0ea3e041ca533a7a9640508d45de90df5903e23",
+   "bytes": 92792,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Green-Valley-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2020_Hasley-Canyon-CDP.json",
+   "sha256": "04cd36fad2a3f8a5d6c5f0763e85b2c421ea6e41f49e776ff08cd60432dba9fe",
+   "bytes": 27797,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Hasley-Canyon-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2020_Santa-Clarita-city.json",
+   "sha256": "e1e58e008736c9704b923d3f9185a3d28c2debc81d5b403302e061fb4015d7a7",
+   "bytes": 84221,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Santa-Clarita-city"
+  },
+  {
+   "file": "tigerweb/pl_2020_Stevenson-Ranch-CDP.json",
+   "sha256": "64fa72e4b618823de5bb1bf965c89756dfec977cf80dc0444af353ce5af84edf",
+   "bytes": 24846,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Stevenson-Ranch-CDP"
+  },
+  {
+   "file": "tigerweb/pl_2020_Val-Verde-CDP.json",
+   "sha256": "65607c958d7552492e39c36e7c3e8b5d6a2c2a8791f48bb18cbff4f98efc99ec",
+   "bytes": 25299,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/ (Census Designated Places / Incorporated Places layers, 2010 and 2020 vintages)/query",
+   "what": "Census place polygon used to label blocks by community: pl_2020_Val-Verde-CDP"
+  },
+  {
+   "file": "tigerweb/poly_cd111.json",
+   "sha256": "4304b9056be9d06197e1a26f2b6f4811915097a6b447b5ddc217a7ed1602ec0c",
+   "bytes": 2341974,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/62/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 111th Congress districts (2001 plan)"
+  },
+  {
+   "file": "tigerweb/poly_cd113_2010svc.json",
+   "sha256": "e82c412f42e18d0a4123fb54925c869335931cacd1763d20ec59459ae3aedb00",
+   "bytes": 1622537,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/60/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 113th Congress districts (2011 plan)"
+  },
+  {
+   "file": "tigerweb/poly_cd116.json",
+   "sha256": "a8a130dc852fa70a2888e65ff8e6a73599ad4ee321c8275880e75c1e4abfb952",
+   "bytes": 1625045,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/12/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 116th Congress districts (2011 plan)"
+  },
+  {
+   "file": "tigerweb/poly_cd119.json",
+   "sha256": "2fa06c639ec3dfa697f41f110ff8493735eef7597ee77568d80a7903561273d2",
+   "bytes": 1199882,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/4/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 119th Congress districts (2021 plan)"
+  },
+  {
+   "file": "tigerweb/poly_cd120.json",
+   "sha256": "1113ce69710ee61cb08d82d4fe123df2a4e5525f1bfd23476f954b724e89b45a",
+   "bytes": 1581269,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/0/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 120th Congress districts, January 1, 2026 vintage (the 2025 Proposition 50 map, used from the 2026 elections)"
+  },
+  {
+   "file": "tigerweb/poly_sldl2010.json",
+   "sha256": "755440b4e8b330c6398eb0eac3211c34a6121d755f45746ebf3dd320c2e948e6",
+   "bytes": 1354278,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/70/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2010 Assembly districts (2001 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldl2012.json",
+   "sha256": "3c3c22de644c6642d53c98c91fa5653ca447fb3974cea9cf6028092cf8b503c2",
+   "bytes": 1310101,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/66/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2012 Assembly districts (2011 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldl2018.json",
+   "sha256": "105d057367aa05ed1f0fe6060dfb5313c38dd0273a7db9db6b2d05b5cca40717",
+   "bytes": 1310881,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/14/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2018 Assembly districts (2011 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldl2024.json",
+   "sha256": "545926f21b65c7db6050ca8f71d7d0d6c68fd778d4a8827ef5f5ed0477c8ba0f",
+   "bytes": 1851568,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/6/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2024 Assembly districts (2021 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldl2026.json",
+   "sha256": "1d2c75d2ab6eaab0de080e1b74c62e2f65103a928a4cc375650efbc1b8dd5294",
+   "bytes": 1851569,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/2/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2026 Assembly districts (2021 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldu2010.json",
+   "sha256": "8b3dc43af350d7121b7d2c2eb94ddcf80bcacb5143458935610572ec8578e2fe",
+   "bytes": 1803339,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/68/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2010 Senate districts (2001 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldu2012.json",
+   "sha256": "3737829b1262753f85f8b3caf6c0d2f5ced2f27878807fda9fdc50913083e362",
+   "bytes": 1205116,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/64/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2012 Senate districts (2011 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldu2018.json",
+   "sha256": "1efa9e4006bc1bc8035d9eacb3a4a7eb32ebf28cc3c9e7e1920f94fa55047284",
+   "bytes": 1210170,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/13/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2018 Senate districts (2011 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldu2024.json",
+   "sha256": "cb96a3168edb70ff18531825958eb5ea553faac606209685ea3b639b704dbd2d",
+   "bytes": 1399854,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/5/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2024 Senate districts (2021 plan)"
+  },
+  {
+   "file": "tigerweb/poly_sldu2026.json",
+   "sha256": "f3e5e5382dd55e2e5ceecdee4e5f0b1a78044fa832e37e29f6dff39ded5e8a2d",
+   "bytes": 1399855,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/1/query (where STATE=06, envelope of the valley, outSR 4326, all fields, geometry)",
+   "what": "Census TIGERweb district polygons: 2026 Senate districts (2021 plan)"
+  }
+ ]
+}

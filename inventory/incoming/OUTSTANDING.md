@@ -4,6 +4,10 @@
 `done/MANIFEST.json` records what it became. A file counts as imported when its exact bytes match an
 asset's `sourceChecksum` or a file under `web/uploads` or `web/banners`. 50 files moved on 4 October.
 
+**Checked from 4 October 2026:** `scripts/import/check_incoming.php`, run by check_render, fails on any file
+here that is neither in `done/MANIFEST.json` nor named below with its reason. A new file is imported when it
+arrives, on its own, or listed here with why it waits.
+
 The 51 files left here fall into three groups.
 
 ## 1. The record already has an image from another file
