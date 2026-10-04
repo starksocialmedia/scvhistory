@@ -1,0 +1,17 @@
+{#
+  A body's mark as an image, never larger than `cap` pixels on its longer side, whatever the format (Nathan,
+  4 October 2026: "Cap marks by display size, not by file type. Same maximum for every format: 600 on the
+  record, 400 on /organizations, 200 on /schools"). An SVG has no size of its own and grows to fill its box,
+  so it gets width and height scaled to the cap and a CSS max-width; a raster file is served as a copy no
+  larger than the cap (the file as handed over stays the archive copy) and capped the same way.
+
+    mark   the asset
+    cap    the longest side, in pixels
+    style  optional extra CSS
+    lazy   optional, load lazily
+#}
+{%- set w = mark.width ?: cap -%}{%- set h = mark.height ?: cap -%}
+{%- set k = min(1, cap / max(w, h)) -%}
+{%- set dw = (w * k)|round -%}{%- set dh = (h * k)|round -%}
+{%- set tr = mark.extension|lower == 'svg' ? null : { width: cap, height: cap, mode: 'fit', upscale: false } -%}
+<img src="{{ mark.getUrl(tr) }}" alt="{{ mark.alt ?: mark.title }}" width="{{ dw }}" height="{{ dh }}" style="max-width:min(100%, {{ dw }}px);max-height:{{ dh }}px;height:auto;{{ style ?? '' }}"{% if lazy ?? false %} loading="lazy"{% endif %}>

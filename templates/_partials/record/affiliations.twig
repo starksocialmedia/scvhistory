@@ -1,0 +1,40 @@
+{#
+  A person's affiliations: the posts held with a body that are not seats on it, such as staff, superintendents,
+  general managers, founders and commission members (Nathan, 4 October 2026: "Affiliations on person pages:
+  build the box. Ayala's staff roles are the case that needs it, and the superintendents and executives will
+  too"). Read from the affiliations section, grouped by body in the order first held, the way the Public life
+  box groups offices. Each line gives the post, its years as recorded, and how it is known; the sources are on
+  the affiliation's own record.
+
+    entry   the person
+#}
+{%- set affs = craft.app.entries.getSectionByHandle('affiliations') ? craft.entries().section('affiliations').relatedTo({ targetElement: entry, field: 'affiliationPerson' }).with(['affiliationBody']).all() : [] -%}
+{% if affs|length %}
+  {%- set affs = affs|sort((a, b) => (a.termStartEdtf ?: '9999') <=> (b.termStartEdtf ?: '9999')) -%}
+  {%- set groups = {} -%}
+  {%- for a in affs -%}
+    {%- set b = a.affiliationBody|first -%}
+    {%- set k = 'b' ~ (b.id ?? 0) -%}
+    {%- set groups = groups|merge({ (k): { body: b, rows: ((groups[k] ?? { rows: [] }).rows)|merge([a]) } }) -%}
+  {%- endfor -%}
+  {%- set KIND = { employed: 'Employed', member: 'Member', founder: 'Founder', owner: 'Owner', 'nonprofit-board': 'Board member', volunteer: 'Volunteer' } -%}
+  {%- set ENDED = { retired: 'retired', resigned: 'resigned', left: 'left', died: 'died in the post', dismissed: 'dismissed' } -%}
+  <div class="rec-box"><div class="rec-lab">POSTS AND CONNECTIONS</div>
+    {% for g in groups %}
+      {% set bimg = g.body and 'featuredImage' in (g.body.fieldLayout ? g.body.fieldLayout.customFields|map(f => f.handle) : []) ? g.body.featuredImage.one() ?? null : null %}
+      {% if g.body %}
+        <a class="rec-person" href="{{ g.body.url }}" style="margin:{{ loop.first ? '0' : '16px' }} 0 4px">
+          <div class="th">{% if bimg %}<img src="{{ bimg.url }}" alt="">{% else %}{{ g.body.title|slice(0,1)|upper }}{% endif %}</div>
+          <div style="min-width:0"><div class="n">{{ g.body.title }}</div></div>
+        </a>
+      {% endif %}
+      <div class="rec-rows">
+        {% for a in g.rows %}
+          {% set yrs = a.termStart or a.termEnd ? (a.termStart ?: 'a start not recorded') ~ ' to ' ~ (a.termEnd ?: (a.affiliationEnded.value == 'serving' ? 'now' : 'an end not recorded')) : (a.affiliationEnded.value == 'serving' ? 'now' : 'years not recorded') %}
+          <div class="k">{{ (KIND[a.affiliationKind.value] ?? 'Connected')|upper }}</div>
+          <div class="v">{{ a.affiliationTitle ?: KIND[a.affiliationKind.value] ?? 'Connected' }}<div style="font-size:13.5px;line-height:1.45;margin-top:2px;color:#5B6472">{{ yrs }}{% include "_partials/record/evidence" with { ev: a.startEvidence } only %}{% if ENDED[a.affiliationEnded.value] is defined and a.termEnd %} ({{ ENDED[a.affiliationEnded.value] }}){% endif %}</div></div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

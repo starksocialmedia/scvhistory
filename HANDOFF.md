@@ -29,12 +29,11 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. Gibbs's District 3 term: elected or appointed in lieu of election (CHANGELOG, 4 October night).
-2. Affiliations on person pages (they show on body pages only).
-3. The City Hall photograph, when Nathan sends it.
-4. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
+1. The City Hall photograph, when Nathan sends it.
+2. Affiliations exist for few people yet; the older person-organization links are still to be read into them.
+3. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
    district-boards-check-2026-10-04.md); the 17 unsourced term endings (term-endings-2026-10-04.md).
-5. TODO.md, "Waiting on Nathan", for what waits on him.
+4. TODO.md, "Waiting on Nathan", for what waits on him.
 
 ## Where the rules live
 

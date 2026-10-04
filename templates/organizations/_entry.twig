@@ -175,7 +175,8 @@
   <section class="rec-band{{ img ? '' : ' rec-band--fit' }}">
     <div class="rec-wrap">
       <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('organizations') }}">Organizations</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
-      <div class="rec-head{{ img ? '' : ' rec-head--noart' }}">
+      {#- A mark is the header's picture too: without it here the header fell to its one-column layout and the mark spread across the page (4 October 2026). -#}
+      <div class="rec-head{{ img or headMark ? '' : ' rec-head--noart' }}">
         <div>
           <div class="rec-kick"><span class="a">ORGANIZATIONS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
@@ -208,9 +209,10 @@
           {% endif %}
         </div>
         {% if headMark %}
-          {#- The file as handed over is the archive copy; the header shows a copy no larger than 600 pixels. An SVG is served as is. -#}
-          {% set hmt = headMark.extension|lower == 'svg' ? null : { width: 600, height: 600, mode: 'fit', upscale: false } %}
-          <div class="rec-portrait rec-portrait-mark"><img src="{{ headMark.getUrl(hmt) }}" alt="{{ headMark.alt ?: headMark.title }}" width="{{ headMark.getWidth(hmt) }}" height="{{ headMark.getHeight(hmt) }}"></div>
+          {#- Capped by display size, whatever the format (Nathan, 4 October 2026: "Cap marks by display size, not by file type"):
+              never wider or taller than 600 pixels. A raster file is also served as a copy of that size; the file as handed over
+              stays the archive copy. -#}
+          <div class="rec-portrait rec-portrait-mark">{% include "_partials/record/mark-img" with { mark: headMark, cap: 600 } only %}</div>
         {% elseif img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>{% endif %}
       </div>
     </div>
