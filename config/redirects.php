@@ -26,6 +26,7 @@ $moved = [
     'organizations/porta-bella'                   => 'places/porta-bella',
     'organizations/valencia-marketplace'          => 'places/valencia-marketplace',
     'organizations/santa-clarita-water-division'  => 'organizations/castaic-lake-water-agency',
+    'bodies'                                      => 'civic',
     'organizations/felton-school'                 => 'places/felton-school',
     'organizations/rancho-san-francisco'          => 'places/rancho-san-francisco',
     'organizations/rancho-el-tejon'               => 'places/rancho-el-tejon',

@@ -261,7 +261,7 @@
 {% set colsCivic = not cElections ? [] : [
   { label: 'THE CITY', items: [{ t: 'The City Council', n: cityRec ? 1 : 0, u: cityRec ? cityRec.url ~ '#council' : '' }] },
   { label: 'ELECTIONS', items: [{ t: 'Elections', n: cElections, u: url('elections') }, { t: 'Districts', n: cDistricts, u: url('districts') }] },
-  { label: 'BODIES', items: [{ t: 'Public bodies', n: cGov, u: url('bodies') }, { t: 'Schools', n: cGov ? 1 : 0, u: url('schools') }] }
+  { label: 'BODIES', items: [{ t: 'Civic: the public bodies', n: cGov, u: url('civic') }, { t: 'Schools', n: cGov ? 1 : 0, u: url('schools') }] }
 ] %}
 {% set featCivic = cElections ? {
   kicker: 'THE COUNCIL, 1987 TO NOW',

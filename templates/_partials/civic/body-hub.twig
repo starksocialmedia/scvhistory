@@ -19,7 +19,7 @@
 {% set noun = seats|length ? (NOUNS[(seats|first).districtKind.value ?? ''] ?? 'seats') : 'seats' %}
 {% set short = {} %}
 {% for s in seats %}{% set short = short|merge({ (s.slug): s.title|split(', ')|last }) %}{% endfor %}
-{% set HOW = { appointed: 'appointed', elected: 'elected', succeeded: 'succeeded' } %}
+{% set HOW = { appointed: 'appointed', elected: 'elected', succeeded: 'succeeded', 'sole-candidate': 'appointed as the sole candidate; no election held' } %}
 {% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', removed: 'removed from office', died: 'died in office', left: 'left office', unknown: 'end not recorded' } %}
 {% import "_partials/record/portrait" as portrait %}
 {#- How the page speaks of the body's members (Nathan, 4 October 2026: "The board now" is wrong for a body that is not a

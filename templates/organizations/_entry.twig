@@ -121,7 +121,7 @@
 {% set seatIds = seats|map(s => s.id) %}
 {#- The chief executive shows in the sidebar (_partials/civic/body-executive), so the hub's lower list of people leaves them out. -#}
 {#- The executive's title, by kind of body: a district's superintendent; SCV Water's general manager. A body not listed has no executive box yet. -#}
-{% set EXEC = isDistrict ? { title: 'Superintendent', label: 'SUPERINTENDENT' } : ({ 'santa-clarita-valley-water': { title: 'General Manager', label: 'GENERAL MANAGER' } }[entry.slug] ?? null) %}
+{% set EXEC = isDistrict ? { title: 'Superintendent', label: 'SUPERINTENDENT' } : ({ 'santa-clarita-valley-water': { title: 'General Manager', label: 'GENERAL MANAGER' }, 'city-of-santa-clarita': { title: 'City Manager', label: 'CITY MANAGER' } }[entry.slug] ?? null) %}
 {% set execIds = EXEC ? craft.entries().section('affiliations').relatedTo({ targetElement: entry, field: 'affiliationBody' }).affiliationTitle(EXEC.title).all()|map(a => a.affiliationPerson.one().id ?? 0) : [] %}
 {% set hasHub = seats|length or craft.entries().section('officeHoldings').relatedTo({ targetElement: entry, field: 'holdingBody' }).exists() %}
 {#- The council's roster partial draws the City's board and its history; the

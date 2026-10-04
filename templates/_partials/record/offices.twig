@@ -72,14 +72,14 @@
         {% for h in g.terms %}
           {% set d = h.startEvidence.value == 'derived' %}
           {% if d %}{% set derivedAny = true %}{% endif %}
-          <div class="k">{{ h.selectionMethod.value == 'appointed' ? 'APPOINTED' : (h.selectionMethod.value == 'rotated' ? 'ROTATION' : 'TERM') }}</div>
+          <div class="k">{{ h.selectionMethod.value in ['appointed', 'sole-candidate'] ? 'APPOINTED' : (h.selectionMethod.value == 'rotated' ? 'ROTATION' : 'TERM') }}</div>
           {#- How each end of the term is known; once after the range when both ends are known the same way. -#}
           {% set sameEv = not h.termEnd or (h.startEvidence.value ?? '') == (h.endEvidence.value ?? '') %}
           {#- The election that won this term: same body, won, within eight months before the term began, not used already. -#}
           {% set hb = h.holdingBody.one() %}
           {% set ts = h.termStartEdtf|default('')|slice(0, 10) %}
           {% set win = null %}
-          {% if h.selectionMethod.value not in ['appointed', 'rotated'] and ts %}
+          {% if h.selectionMethod.value not in ['appointed', 'rotated', 'sole-candidate'] and ts %}
             {#- Months, since terms are often recorded to the month ("1998-04"): the election falls 0 to 8 months before the term's start month. -#}
             {#- A term known only to the year ("2000") matches an election that year or the year before. -#}
             {% set yearOnly = ts|length == 4 %}
@@ -94,7 +94,7 @@
             {% set startY = ts|slice(0, 4) %}{% set endY = te ? te|slice(0, 4) : '9999' %}
             {% for r in races %}{% if r.won and r.c.id not in usedRaces and (hb ? r.bodyId == hb.id or (r.bodyId == 0 and hb.slug == 'city-of-santa-clarita') : true) and (r.date|slice(0, 4)) > startY and (r.date|slice(0, 4)) < endY %}{% set again = again|merge([r]) %}{% set usedRaces = usedRaces|merge([r.c.id]) %}{% endif %}{% endfor %}
           {% endif %}
-          <div class="v">{{ h.termStart }}{% if not sameEv %}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}{% endif %} to {{ h.termEnd ?: (h.howEnded.value == 'serving' ? 'now' : 'an end not yet recorded') }}{% include "_partials/record/evidence" with { ev: sameEv ? h.startEvidence : h.endEvidence } only %}{% if h.howEnded.value in ['left', 'removed', 'resigned', 'recalled', 'died'] %} <span style="color:#5B6472;font-size:13.5px">({{ { left: 'left office', removed: 'removed from office', resigned: 'resigned', recalled: 'recalled', died: 'died in office' }[h.howEnded.value] }})</span>{% endif %}{% if mixedSeats %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px;color:#5B6472">{{ h.seatLabel|trim ?: 'At large' }}</div>{% endif %}{% if byPlan and h.districtPlan.value %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px;color:#5B6472">{{ h.seatLabel }}, under the {{ h.districtPlan.label }}</div>{% endif %}{% if win %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(win) }}</div>{% endif %}{% for r in again %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(r) }}</div>{% endfor %}</div>
+          <div class="v">{{ h.termStart }}{% if not sameEv %}{% include "_partials/record/evidence" with { ev: h.startEvidence } only %}{% endif %} to {{ h.termEnd ?: (h.howEnded.value == 'serving' ? 'now' : 'an end not yet recorded') }}{% include "_partials/record/evidence" with { ev: sameEv ? h.startEvidence : h.endEvidence } only %}{% if h.howEnded.value in ['left', 'removed', 'resigned', 'recalled', 'died'] %} <span style="color:#5B6472;font-size:13.5px">({{ { left: 'left office', removed: 'removed from office', resigned: 'resigned', recalled: 'recalled', died: 'died in office' }[h.howEnded.value] }})</span>{% endif %}{% if h.selectionMethod.value == 'sole-candidate' %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px;color:#5B6472">As the sole candidate; no election held</div>{% endif %}{% if mixedSeats %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px;color:#5B6472">{{ h.seatLabel|trim ?: 'At large' }}</div>{% endif %}{% if byPlan and h.districtPlan.value %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px;color:#5B6472">{{ h.seatLabel }}, under the {{ h.districtPlan.label }}</div>{% endif %}{% if win %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(win) }}</div>{% endif %}{% for r in again %}<div style="font-size:13.5px;line-height:1.45;margin-top:2px">{{ PL.raceLine(r) }}</div>{% endfor %}</div>
         {% endfor %}
         {% endif %}
       </div>

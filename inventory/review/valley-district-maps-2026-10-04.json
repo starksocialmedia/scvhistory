@@ -1,46 +1,49 @@
 {
  "blocks": {
   "2000": {
-   "count": 2302,
+   "count": 2383,
    "byRegion": {
     "newhall_ccd": 189172,
     "city_outside_ccd": 10239,
-    "agua_dulce": 3012
+    "agua_dulce": 3012,
+    "between": 3128
    },
-   "total": 202423,
-   "outlineKm2": 1381.145,
-   "sumOfBlocksKm2": 1381.145
+   "total": 205551,
+   "outlineKm2": 1433.389,
+   "sumOfBlocksKm2": 1433.389
   },
   "2010": {
-   "count": 3722,
+   "count": 3845,
    "byRegion": {
     "newhall_ccd": 254330,
     "agua_dulce": 3342,
-    "city_outside_ccd": 12778
+    "city_outside_ccd": 12778,
+    "between": 1169
    },
-   "total": 270450,
-   "outlineKm2": 1334.794,
-   "sumOfBlocksKm2": 1334.794
+   "total": 271619,
+   "outlineKm2": 1383.499,
+   "sumOfBlocksKm2": 1383.499
   },
   "2020": {
-   "count": 2615,
+   "count": 2693,
    "byRegion": {
     "newhall_ccd": 273466,
     "city_outside_ccd": 13364,
-    "agua_dulce": 3451
+    "agua_dulce": 3451,
+    "between": 1186
    },
-   "total": 290281,
-   "outlineKm2": 1342.457,
-   "sumOfBlocksKm2": 1342.457
+   "total": 291467,
+   "outlineKm2": 1390.532,
+   "sumOfBlocksKm2": 1390.532
   }
  },
  "plans": {
   "assembly-1991": {
-   "bytes": 46627,
-   "valleyPop": 202423,
+   "bytes": 41433,
+   "valleyPop": 205551,
    "oldValleyPop": 211220,
    "new": {
-    "36": 168974,
+    "36": 172102,
     "38": 33449,
     "44": 0
    },
@@ -51,6 +54,9 @@
    "byRegion": {
     "agua_dulce": {
      "36": 3012
+    },
+    "between": {
+     "36": 3128
     },
     "city_outside_ccd": {
      "36": 10239,
@@ -75,26 +81,26 @@
     },
     "other (unincorporated, no CDP)": {
      "38": 31977,
-     "36": 14874
+     "36": 18002
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1381.1447,
-    "rawDistrictsKm2": 1381.1447,
+    "rawOutlineKm2": 1433.3886,
+    "rawDistrictsKm2": 1433.3886,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1381.1495,
-    "finalDistrictsKm2": 1381.1495,
+    "finalOutlineKm2": 1433.4683,
+    "finalDistrictsKm2": 1433.4683,
     "districtKm2": {
-     "36": 741.43,
+     "36": 793.748,
      "38": 638.693,
      "44": 1.027
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 42994,
+     "insideOutline": 44612,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -102,12 +108,12 @@
    }
   },
   "assembly-2001": {
-   "bytes": 41805,
-   "valleyPop": 270450,
+   "bytes": 36852,
+   "valleyPop": 271619,
    "oldValleyPop": 257672,
    "new": {
-    "38": 235419,
-    "37": 35031,
+    "38": 236355,
+    "37": 35264,
     "36": 0
    },
    "old": {
@@ -119,6 +125,10 @@
      "36": 0,
      "38": 291,
      "37": 3051
+    },
+    "between": {
+     "38": 936,
+     "37": 233
     },
     "city_outside_ccd": {
      "38": 12778
@@ -154,8 +164,8 @@
      "37": 2468
     },
     "other (unincorporated, no CDP)": {
-     "37": 8333,
-     "38": 41251,
+     "37": 8566,
+     "38": 42187,
      "36": 0
     }
    },
@@ -163,19 +173,19 @@
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1334.7943,
-    "rawDistrictsKm2": 1334.7943,
+    "rawOutlineKm2": 1383.4988,
+    "rawDistrictsKm2": 1383.4988,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1334.8174,
-    "finalDistrictsKm2": 1334.8174,
+    "finalOutlineKm2": 1383.5162,
+    "finalDistrictsKm2": 1383.5162,
     "districtKm2": {
-     "38": 323.553,
-     "37": 1011.258,
+     "38": 349.104,
+     "37": 1034.406,
      "36": 0.006
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47670,
+     "insideOutline": 49368,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -183,12 +193,12 @@
    }
   },
   "assembly-2011": {
-   "bytes": 45244,
-   "valleyPop": 270450,
+   "bytes": 44440,
+   "valleyPop": 271619,
    "oldValleyPop": 257672,
    "new": {
-    "38": 251669,
-    "36": 18781
+    "38": 252560,
+    "36": 19059
    },
    "old": {
     "38": 238891,
@@ -197,6 +207,10 @@
    "byRegion": {
     "agua_dulce": {
      "38": 3342
+    },
+    "between": {
+     "36": 278,
+     "38": 891
     },
     "city_outside_ccd": {
      "38": 12778
@@ -229,26 +243,26 @@
      "38": 2468
     },
     "other (unincorporated, no CDP)": {
-     "38": 31830,
-     "36": 17754
+     "38": 32721,
+     "36": 18032
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1334.7943,
-    "rawDistrictsKm2": 1334.7943,
+    "rawOutlineKm2": 1383.4988,
+    "rawDistrictsKm2": 1383.4988,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1334.9993,
-    "finalDistrictsKm2": 1334.9993,
+    "finalOutlineKm2": 1383.649,
+    "finalDistrictsKm2": 1383.649,
     "districtKm2": {
-     "38": 717.668,
-     "36": 617.331
+     "38": 749.949,
+     "36": 633.7
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47676,
+     "insideOutline": 49365,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -256,12 +270,12 @@
    }
   },
   "assembly-2021": {
-   "bytes": 46988,
-   "valleyPop": 290281,
+   "bytes": 42480,
+   "valleyPop": 291467,
    "oldValleyPop": 276917,
    "new": {
-    "40": 285083,
-    "34": 5198
+    "40": 286046,
+    "34": 5421
    },
    "old": {
     "40": 271719,
@@ -270,6 +284,10 @@
    "byRegion": {
     "agua_dulce": {
      "34": 3451
+    },
+    "between": {
+     "34": 223,
+     "40": 963
     },
     "city_outside_ccd": {
      "40": 13364
@@ -302,26 +320,26 @@
      "40": 2399
     },
     "other (unincorporated, no CDP)": {
-     "40": 13701,
-     "34": 711
+     "40": 14664,
+     "34": 934
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1342.4572,
-    "rawDistrictsKm2": 1342.4572,
+    "rawOutlineKm2": 1390.5318,
+    "rawDistrictsKm2": 1390.5318,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1342.4292,
-    "finalDistrictsKm2": 1342.4292,
+    "finalOutlineKm2": 1390.4712,
+    "finalDistrictsKm2": 1390.4712,
     "districtKm2": {
-     "40": 513.689,
-     "34": 828.74
+     "40": 538.636,
+     "34": 851.835
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47938,
+     "insideOutline": 49610,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -329,11 +347,11 @@
    }
   },
   "senate-1991": {
-   "bytes": 46617,
-   "valleyPop": 202423,
+   "bytes": 41423,
+   "valleyPop": 205551,
    "oldValleyPop": 211220,
    "new": {
-    "17": 168974,
+    "17": 172102,
     "19": 33449,
     "21": 0
    },
@@ -344,6 +362,9 @@
    "byRegion": {
     "agua_dulce": {
      "17": 3012
+    },
+    "between": {
+     "17": 3128
     },
     "city_outside_ccd": {
      "17": 10239,
@@ -368,26 +389,26 @@
     },
     "other (unincorporated, no CDP)": {
      "19": 31977,
-     "17": 14874
+     "17": 18002
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1381.1447,
-    "rawDistrictsKm2": 1381.1447,
+    "rawOutlineKm2": 1433.3886,
+    "rawDistrictsKm2": 1433.3886,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1381.1495,
-    "finalDistrictsKm2": 1381.1495,
+    "finalOutlineKm2": 1433.4683,
+    "finalDistrictsKm2": 1433.4683,
     "districtKm2": {
-     "17": 741.43,
+     "17": 793.748,
      "19": 638.693,
      "21": 1.027
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 42994,
+     "insideOutline": 44612,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -395,11 +416,11 @@
    }
   },
   "senate-2001": {
-   "bytes": 42381,
-   "valleyPop": 270450,
+   "bytes": 37042,
+   "valleyPop": 271619,
    "oldValleyPop": 257672,
    "new": {
-    "17": 200369,
+    "17": 201538,
     "19": 70081
    },
    "old": {
@@ -409,6 +430,9 @@
    "byRegion": {
     "agua_dulce": {
      "17": 3342
+    },
+    "between": {
+     "17": 1169
     },
     "city_outside_ccd": {
      "17": 12778
@@ -442,7 +466,7 @@
      "17": 2468
     },
     "other (unincorporated, no CDP)": {
-     "17": 47213,
+     "17": 48382,
      "19": 2371
     }
    },
@@ -450,18 +474,18 @@
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1334.7943,
-    "rawDistrictsKm2": 1334.7943,
+    "rawOutlineKm2": 1383.4988,
+    "rawDistrictsKm2": 1383.4988,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1334.8429,
-    "finalDistrictsKm2": 1334.8429,
+    "finalOutlineKm2": 1383.4913,
+    "finalDistrictsKm2": 1383.4913,
     "districtKm2": {
-     "17": 1197.812,
+     "17": 1246.46,
      "19": 137.031
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47671,
+     "insideOutline": 49367,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -469,11 +493,11 @@
    }
   },
   "senate-2011": {
-   "bytes": 38157,
-   "valleyPop": 270450,
+   "bytes": 32936,
+   "valleyPop": 271619,
    "oldValleyPop": 257672,
    "new": {
-    "21": 215375,
+    "21": 216544,
     "27": 55075
    },
    "old": {
@@ -483,6 +507,9 @@
    "byRegion": {
     "agua_dulce": {
      "21": 3342
+    },
+    "between": {
+     "21": 1169
     },
     "city_outside_ccd": {
      "21": 12778
@@ -517,25 +544,25 @@
     },
     "other (unincorporated, no CDP)": {
      "27": 2588,
-     "21": 46996
+     "21": 48165
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1334.7943,
-    "rawDistrictsKm2": 1334.7943,
+    "rawOutlineKm2": 1383.4988,
+    "rawDistrictsKm2": 1383.4988,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1334.859,
-    "finalDistrictsKm2": 1334.859,
+    "finalOutlineKm2": 1383.5164,
+    "finalDistrictsKm2": 1383.5164,
     "districtKm2": {
-     "21": 1202.71,
+     "21": 1251.368,
      "27": 132.149
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47672,
+     "insideOutline": 49368,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -543,11 +570,11 @@
    }
   },
   "senate-2021": {
-   "bytes": 35756,
-   "valleyPop": 290281,
+   "bytes": 30774,
+   "valleyPop": 291467,
    "oldValleyPop": 276917,
    "new": {
-    "23": 290281
+    "23": 291467
    },
    "old": {
     "23": 276917
@@ -555,6 +582,9 @@
    "byRegion": {
     "agua_dulce": {
      "23": 3451
+    },
+    "between": {
+     "23": 1186
     },
     "city_outside_ccd": {
      "23": 13364
@@ -586,24 +616,24 @@
      "23": 2399
     },
     "other (unincorporated, no CDP)": {
-     "23": 14412
+     "23": 15598
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1342.4572,
-    "rawDistrictsKm2": 1342.4572,
+    "rawOutlineKm2": 1390.5318,
+    "rawDistrictsKm2": 1390.5318,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1342.5676,
-    "finalDistrictsKm2": 1342.5676,
+    "finalOutlineKm2": 1390.6058,
+    "finalDistrictsKm2": 1390.6058,
     "districtKm2": {
-     "23": 1342.568
+     "23": 1390.606
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47944,
+     "insideOutline": 49616,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -611,11 +641,11 @@
    }
   },
   "house-1991": {
-   "bytes": 37581,
-   "valleyPop": 202423,
+   "bytes": 32254,
+   "valleyPop": 205551,
    "oldValleyPop": 211220,
    "new": {
-    "25": 202423,
+    "25": 205551,
     "27": 0
    },
    "old": {
@@ -624,6 +654,9 @@
    "byRegion": {
     "agua_dulce": {
      "25": 3012
+    },
+    "between": {
+     "25": 3128
     },
     "city_outside_ccd": {
      "25": 10239,
@@ -645,25 +678,25 @@
      "25": 1472
     },
     "other (unincorporated, no CDP)": {
-     "25": 46851
+     "25": 49979
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1381.1447,
-    "rawDistrictsKm2": 1381.1447,
+    "rawOutlineKm2": 1433.3886,
+    "rawDistrictsKm2": 1433.3886,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1381.2042,
-    "finalDistrictsKm2": 1381.2042,
+    "finalOutlineKm2": 1433.5178,
+    "finalDistrictsKm2": 1433.5178,
     "districtKm2": {
-     "25": 1380.178,
+     "25": 1432.491,
      "27": 1.027
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 42992,
+     "insideOutline": 44612,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -671,11 +704,11 @@
    }
   },
   "house-2001": {
-   "bytes": 37198,
-   "valleyPop": 270450,
+   "bytes": 31850,
+   "valleyPop": 271619,
    "oldValleyPop": 257672,
    "new": {
-    "25": 269385,
+    "25": 270554,
     "22": 1065,
     "27": 0
    },
@@ -686,6 +719,9 @@
    "byRegion": {
     "agua_dulce": {
      "25": 3342
+    },
+    "between": {
+     "25": 1169
     },
     "city_outside_ccd": {
      "25": 12778
@@ -720,7 +756,7 @@
      "25": 2468
     },
     "other (unincorporated, no CDP)": {
-     "25": 49542,
+     "25": 50711,
      "22": 42,
      "27": 0
     }
@@ -729,19 +765,19 @@
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1334.7943,
-    "rawDistrictsKm2": 1334.7943,
+    "rawOutlineKm2": 1383.4988,
+    "rawDistrictsKm2": 1383.4988,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1334.9907,
-    "finalDistrictsKm2": 1334.9907,
+    "finalOutlineKm2": 1383.6391,
+    "finalDistrictsKm2": 1383.6391,
     "districtKm2": {
-     "25": 991.346,
+     "25": 1039.994,
      "22": 343.082,
      "27": 0.563
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47674,
+     "insideOutline": 49373,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -749,11 +785,11 @@
    }
   },
   "house-2011": {
-   "bytes": 35918,
-   "valleyPop": 270450,
+   "bytes": 30620,
+   "valleyPop": 271619,
    "oldValleyPop": 257672,
    "new": {
-    "25": 270450
+    "25": 271619
    },
    "old": {
     "25": 257672
@@ -761,6 +797,9 @@
    "byRegion": {
     "agua_dulce": {
      "25": 3342
+    },
+    "between": {
+     "25": 1169
     },
     "city_outside_ccd": {
      "25": 12778
@@ -792,24 +831,24 @@
      "25": 2468
     },
     "other (unincorporated, no CDP)": {
-     "25": 49584
+     "25": 50753
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1334.7943,
-    "rawDistrictsKm2": 1334.7943,
+    "rawOutlineKm2": 1383.4988,
+    "rawDistrictsKm2": 1383.4988,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1334.91,
-    "finalDistrictsKm2": 1334.91,
+    "finalOutlineKm2": 1383.563,
+    "finalDistrictsKm2": 1383.563,
     "districtKm2": {
-     "25": 1334.91
+     "25": 1383.563
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47672,
+     "insideOutline": 49372,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -817,11 +856,11 @@
    }
   },
   "house-2021": {
-   "bytes": 35761,
-   "valleyPop": 290281,
+   "bytes": 30779,
+   "valleyPop": 291467,
    "oldValleyPop": 276917,
    "new": {
-    "27": 290281
+    "27": 291467
    },
    "old": {
     "27": 276917
@@ -829,6 +868,9 @@
    "byRegion": {
     "agua_dulce": {
      "27": 3451
+    },
+    "between": {
+     "27": 1186
     },
     "city_outside_ccd": {
      "27": 13364
@@ -860,24 +902,24 @@
      "27": 2399
     },
     "other (unincorporated, no CDP)": {
-     "27": 14412
+     "27": 15598
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1342.4572,
-    "rawDistrictsKm2": 1342.4572,
+    "rawOutlineKm2": 1390.5318,
+    "rawDistrictsKm2": 1390.5318,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1342.5676,
-    "finalDistrictsKm2": 1342.5676,
+    "finalOutlineKm2": 1390.6058,
+    "finalDistrictsKm2": 1390.6058,
     "districtKm2": {
-     "27": 1342.568
+     "27": 1390.606
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47944,
+     "insideOutline": 49616,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -885,13 +927,13 @@
    }
   },
   "house-2025": {
-   "bytes": 46806,
-   "valleyPop": 290281,
+   "bytes": 45021,
+   "valleyPop": 291467,
    "oldValleyPop": 276917,
    "new": {
-    "27": 255552,
+    "27": 256376,
     "26": 22621,
-    "30": 12108
+    "30": 12470
    },
    "old": {
     "27": 246532,
@@ -901,6 +943,10 @@
    "byRegion": {
     "agua_dulce": {
      "30": 3451
+    },
+    "between": {
+     "27": 824,
+     "30": 362
     },
     "city_outside_ccd": {
      "27": 9020,
@@ -936,28 +982,28 @@
      "26": 2399
     },
     "other (unincorporated, no CDP)": {
-     "27": 14219,
+     "27": 15043,
      "26": 90,
-     "30": 103
+     "30": 465
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1342.4572,
-    "rawDistrictsKm2": 1342.4572,
+    "rawOutlineKm2": 1390.5318,
+    "rawDistrictsKm2": 1390.5318,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1342.4846,
-    "finalDistrictsKm2": 1342.4846,
+    "finalOutlineKm2": 1390.4944,
+    "finalDistrictsKm2": 1390.4944,
     "districtKm2": {
-     "27": 779.371,
+     "27": 807.641,
      "26": 468.812,
-     "30": 94.302
+     "30": 114.042
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 47941,
+     "insideOutline": 49611,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0

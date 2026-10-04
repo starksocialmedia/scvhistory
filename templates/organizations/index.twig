@@ -9,7 +9,7 @@
     /bodies lists the public bodies: the valley's own government, the school districts, and the county, state and federal
     bodies. /organizations lists the rest: businesses, nonprofits, missions and churches, ranchos, newspapers, clubs. Schools
     have their own page. A body's place comes from its data (orgType, orgLevel, schoolLevel), not from this template. -#}
-{% set bodiesMode = (craft.app.request.segments|first) == 'bodies' %}
+{% set bodiesMode = (craft.app.request.segments|first) in ['civic', 'bodies'] %}
 {% set comSlug = craft.app.request.getParam('community') %}
 {% set kind = craft.app.request.getParam('kind') %}
 {% set level = craft.app.request.getParam('level') %}
@@ -114,17 +114,17 @@
 <div class="pl">
   <section class="pl-hero">
     <div class="pl-wrap">
-      <div class="pl-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>{{ bodiesMode ? 'Public bodies' : 'Organizations' }}</span></div>
+      <div class="pl-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>{{ bodiesMode ? 'Civic' : 'Organizations' }}</span></div>
       <div class="pl-grid">
         <div>
           {% if bodiesMode %}
-          <div class="pl-kicker">CIVIC</div>
-          <h1>Public bodies</h1>
-          <p>The bodies that govern the valley or represent it: its own city and water agency, the school districts, and the county, state and federal bodies seated elsewhere. Schools are on their own page.</p>
+          <div class="pl-kicker">THE PUBLIC RECORD</div>
+          <h1>Civic</h1>
+          <p>The bodies that govern the valley or represent it: the county, state and federal bodies seated elsewhere, the valley's own city and water agency, and its school districts. Then the <a href="{{ url('elections') }}" style="color:#7A5C1B">elections</a> that fill them, the <a href="{{ url('districts') }}" style="color:#7A5C1B">districts</a> they are elected from, and the <a href="{{ url('schools') }}" style="color:#7A5C1B">schools</a>.</p>
           {% else %}
           <div class="pl-kicker">INSTITUTIONS &amp; ENTERPRISES</div>
           <h1>Organizations</h1>
-          <p>Companies, nonprofits, missions and churches, ranchos, newspapers and clubs in the valley's history. The bodies that govern the valley are on <a href="{{ url('bodies') }}" style="color:#7A5C1B">Public bodies</a>, and its schools on <a href="{{ url('schools') }}" style="color:#7A5C1B">Schools</a>.</p>
+          <p>Companies, nonprofits, missions and churches, ranchos, newspapers and clubs in the valley's history. The bodies that govern the valley are on <a href="{{ url('civic') }}" style="color:#7A5C1B">Civic</a>, and its schools on <a href="{{ url('schools') }}" style="color:#7A5C1B">Schools</a>.</p>
           {% endif %}
         </div>
         <div class="pl-stat">
@@ -179,7 +179,7 @@
           Department, the House under Congress) is listed inside that card. -#}
       {% set ALLGROUPS = [
         { key: 'government', label: 'Valley government', note: 'School districts are governing bodies too; they are listed under School districts.' },
-        { key: 'beyond',     label: 'County, state and federal', note: 'Bodies seated elsewhere that govern the valley or represent it.' },
+        { key: 'beyond',     label: 'County, state and federal', note: 'The larger jurisdictions came first and still contain the rest. The County governed this valley for more than a century before the City existed, and it still governs most of the valley by area: everything outside the City.' },
         { key: 'districts',  label: 'School districts' },
         { key: 'schools',    label: 'Schools and colleges' },
         { key: 'business',   label: 'Businesses' },
@@ -191,7 +191,9 @@
         { key: 'other',      label: 'Other' }
       ] %}
       {% set CIVIC = ['government', 'beyond', 'districts'] %}
-      {% set GROUPS = bodiesMode ? ALLGROUPS|filter(g => g.key in CIVIC) : ALLGROUPS|filter(g => g.key not in CIVIC and g.key != 'schools') %}
+      {#- On /civic the larger jurisdictions come first (Nathan, 4 October 2026): they came first and still contain the rest. -#}
+      {% set CIVIC_ORDER = { beyond: 1, government: 2, districts: 3 } %}
+      {% set GROUPS = bodiesMode ? ALLGROUPS|filter(g => g.key in CIVIC)|sort((a, b) => CIVIC_ORDER[a.key] <=> CIVIC_ORDER[b.key]) : ALLGROUPS|filter(g => g.key not in CIVIC and g.key != 'schools') %}
       {#- Order within the public bodies (Nathan, 4 October 2026): the City first as the valley's own government; Hart first of the
           districts because it covers all the others; Congress, Senate, Assembly, then the County. Anything not named follows by title. -#}
       {% set ORDER = ['city-of-santa-clarita', 'santa-clarita-valley-water', 'william-s-hart-union-high-school-district', 'newhall-school-district', 'saugus-union-school-district', 'sulphur-springs-union-school-district', 'castaic-union-school-district', 'united-states-congress', 'california-state-senate', 'california-state-assembly', 'county-of-los-angeles'] %}

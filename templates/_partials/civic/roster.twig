@@ -108,7 +108,7 @@
       <a href="{{ r.person.url }}"><text x="{{ L - 10 }}" y="{{ y + 17 }}" font-size="13" fill="#17254C" text-anchor="end" font-family="Public Sans, system-ui, sans-serif">{{ r.person.title }}</text></a>
       {% for b in r.bars %}
         {% set x1 = L + (b.s - Y0) / span * (W - L - R) %}{% set x2 = L + (b.e - Y0) / span * (W - L - R) %}
-        {% set fill = b.h.selectionMethod.value == 'appointed' ? '#C4A031' : (b.h.startEvidence.value == 'derived' ? '#9AA6C4' : '#17254C') %}
+        {% set fill = b.h.selectionMethod.value == 'appointed' ? '#C4A031' : (b.h.selectionMethod.value == 'sole-candidate' ? '#E3CF8F' : (b.h.startEvidence.value == 'derived' ? '#9AA6C4' : '#17254C')) %}
         <rect x="{{ x1 }}" y="{{ y + 7 }}" width="{{ max(x2 - x1 - 1.5, 3) }}" height="13" fill="{{ fill }}"><title>{{ r.person.title }}: {{ b.h.termStart }} to {{ b.h.termEnd ?: 'now' }}, {{ b.h.selectionMethod.value }}{{ b.h.startEvidence.value == 'derived' ? ', read from the count' : '' }}</title></rect>
       {% endfor %}
     {% endfor %}
@@ -118,6 +118,7 @@
   <span><i style="display:inline-block;width:12px;height:12px;background:#17254C;vertical-align:-1px;margin-right:6px"></i>Elected: declared, or the count confirmed by the council roster</span>
   <span><i style="display:inline-block;width:12px;height:12px;background:#9AA6C4;vertical-align:-1px;margin-right:6px"></i>Elected on the count alone, not yet confirmed</span>
   <span><i style="display:inline-block;width:12px;height:12px;background:#C4A031;vertical-align:-1px;margin-right:6px"></i>Appointed</span>
+  <span><i style="display:inline-block;width:12px;height:12px;background:#E3CF8F;vertical-align:-1px;margin-right:6px"></i>Appointed as the sole candidate; no election held</span>
 </div>
 
 <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #E2E4E8;font-size:15px">

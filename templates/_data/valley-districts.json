@@ -1,6 +1,6 @@
 {
  "_about": "The districts that held any part of the Santa Clarita Valley in each redistricting plan, with each one's share of the valley's people, for _partials/civic/valley-districts.twig and the body hub on the Assembly, State Senate and House pages (Nathan, 4 October 2026: \"every district that held part of the valley, with its share and members, and 'main' as a label rather than a spine\"; \"Yes, slivers count. The rule is any part of the valley, with the share shown\"). Members are read from the office holdings, each term carrying its district number (seatLabel) and plan (districtPlan). From inventory/review/legislative-districts-2026-10-04.md. Acton, outside the valley as counted here, is left out: the 2001-plan 36th Assembly District held Acton and no part of the valley.",
- "method": "Shares are of the valley's people: the Census Bureau's Newhall division, Agua Dulce and the whole City of Santa Clarita as each census drew it (Acton is left out), counted by the archive from census blocks assigned to districts in the official block files of the Statewide Database and the Census Bureau, on the census nearest each plan: 2000 for the 1991 lines, 2010 for the 2001 and 2011 lines, 2020 for the 2021 lines and the 2025 congressional lines. The map draws each district's part of the valley from the same blocks.",
+ "method": "Shares are of the valley's people. The valley, as counted here, is the Census Bureau's Newhall census county division, the whole City of Santa Clarita as each census drew it, Agua Dulce, and the unincorporated land between the City and Agua Dulce, fixed on the 2020 census map and used for every census; Acton is not included. The people are counted by the archive from census blocks assigned to districts in the official block files of the Statewide Database and the Census Bureau, on the census nearest each plan: 2000 for the 1991 lines, 2010 for the 2001 and 2011 lines, 2020 for the 2021 lines and the 2025 congressional lines. The map draws each district's part of the valley from the same blocks.",
  "sources": [
   "California Secretary of State, Statements of Vote, general elections 1992 to 2024, the special election of 4 November 2025 and the primary election of 2 June 2026, https://www.sos.ca.gov/elections/prior-elections.",
   "Citizens Redistricting Commission, Final Report on 2011 Redistricting, 15 August 2011, https://statewidedatabase.org/crc_20110815_2final_report.pdf; and Final Maps Report, 26 December 2021, https://wedrawthelines.ca.gov/wp-content/uploads/sites/64/2023/01/Final-Maps-Report-with-Appendices-12.26.21-230-PM-1.pdf.",
@@ -17,14 +17,14 @@
      "districts": [
       {
        "n": 36,
-       "share": "83.5%",
-       "covers": "The City of Santa Clarita as it then stood, and Agua Dulce",
+       "share": "83.7%",
+       "covers": "The City of Santa Clarita as it then stood, Agua Dulce and the unincorporated land between them",
        "main": true,
-       "pop": 168974
+       "pop": 172102
       },
       {
        "n": 38,
-       "share": "16.5%",
+       "share": "16.3%",
        "covers": "The unincorporated west side: Castaic, Val Verde and Stevenson Ranch",
        "main": false,
        "pop": 33449
@@ -42,14 +42,14 @@
        "share": "87.0%",
        "covers": "The City of Santa Clarita and Stevenson Ranch, with the Simi Valley area and the northern San Fernando Valley",
        "main": true,
-       "pop": 235419
+       "pop": 236355
       },
       {
        "n": 37,
        "share": "13.0%",
        "covers": "Castaic, Val Verde, Hasley Canyon, Agua Dulce and Green Valley, in a district that was mostly Ventura County",
        "main": false,
-       "pop": 35031
+       "pop": 35264
       }
      ],
      "populationBasis": "2010 Census"
@@ -61,17 +61,17 @@
      "districts": [
       {
        "n": 38,
-       "share": "93.1%",
+       "share": "93.0%",
        "covers": "The whole City of Santa Clarita as it stood in 2010, Castaic, Stevenson Ranch, Val Verde and Agua Dulce, with Simi Valley and Porter Ranch",
        "main": true,
-       "pop": 251669
+       "pop": 252560
       },
       {
        "n": 36,
-       "share": "6.9%",
+       "share": "7.0%",
        "covers": "The unincorporated land beyond the City's northeastern edge, in the Plum, Bouquet, Sand and Mint canyon areas, and Green Valley",
        "main": false,
-       "pop": 18781
+       "pop": 19059
       }
      ],
      "together": "Two members at once: from December 2014 to December 2016 the valley was represented in the Assembly by Scott Wilk for the 38th, holding 93 per cent of its people, and Tom Lackey for the 36th, holding the northeastern 7 per cent. Lackey went on sharing the valley with each member for the 38th, and since 2022 with Pilar Schiavo for the 40th.",
@@ -84,17 +84,17 @@
      "districts": [
       {
        "n": 40,
-       "share": "98.2%",
+       "share": "98.1%",
        "covers": "The whole City of Santa Clarita, Castaic, Stevenson Ranch, Val Verde and Hasley Canyon, with part of the City of Los Angeles",
        "main": true,
-       "pop": 285083
+       "pop": 286046
       },
       {
        "n": 34,
-       "share": "1.8%",
-       "covers": "Agua Dulce and about 1,700 people in the unincorporated land north of the City, with the Antelope and Victor valleys",
+       "share": "1.9%",
+       "covers": "Agua Dulce and about 2,000 people in the unincorporated land around it and north of the City, with the Antelope and Victor valleys",
        "main": false,
-       "pop": 5198
+       "pop": 5421
       }
      ],
      "populationBasis": "2020 Census"
@@ -112,14 +112,14 @@
      "districts": [
       {
        "n": 17,
-       "share": "83.5%",
-       "covers": "The City of Santa Clarita as it then stood, and Agua Dulce, joined to the Antelope Valley, Inyo County and parts of Kern and San Bernardino counties",
+       "share": "83.7%",
+       "covers": "The City of Santa Clarita as it then stood, Agua Dulce and the unincorporated land between them, joined to the Antelope Valley, Inyo County and parts of Kern and San Bernardino counties",
        "main": true,
-       "pop": 168974
+       "pop": 172102
       },
       {
        "n": 19,
-       "share": "16.5%",
+       "share": "16.3%",
        "covers": "Castaic, Val Verde and Stevenson Ranch, with eastern Ventura County",
        "main": false,
        "pop": 33449
@@ -134,14 +134,14 @@
      "districts": [
       {
        "n": 17,
-       "share": "74.1%",
+       "share": "74.2%",
        "covers": "The City except its western neighborhoods, Castaic, Val Verde, Hasley Canyon, Agua Dulce and Green Valley, with the Antelope Valley",
        "main": true,
-       "pop": 200369
+       "pop": 201538
       },
       {
        "n": 19,
-       "share": "25.9%",
+       "share": "25.8%",
        "covers": "Stevenson Ranch and the City's western neighborhoods, Valencia west of the river",
        "main": false,
        "pop": 70081
@@ -156,14 +156,14 @@
      "districts": [
       {
        "n": 21,
-       "share": "79.6%",
+       "share": "79.7%",
        "covers": "Most of the valley, with the Antelope and Victor valleys",
        "main": true,
-       "pop": 215375
+       "pop": 216544
       },
       {
        "n": 27,
-       "share": "20.4%",
+       "share": "20.3%",
        "covers": "Stevenson Ranch and the City's western and southwestern neighborhoods, with eastern Ventura County, Calabasas and Malibu",
        "main": false,
        "pop": 55075
@@ -182,7 +182,7 @@
        "covers": "The whole valley, with Lancaster, Palmdale and the Victor Valley",
        "main": true,
        "continues": "The old 21st under a new number: 92 per cent of the 23rd's people in 2020 had lived in the 21st, and 93 per cent of the 21st's people went into the 23rd. The number 21 passed to an unrelated district around Santa Barbara County. Valladares succeeded Wilk in the same territory.",
-       "pop": 290281
+       "pop": 291467
       }
      ],
      "populationBasis": "2020 Census"
@@ -204,7 +204,7 @@
        "share": "the whole valley",
        "covers": "The whole valley",
        "main": true,
-       "pop": 202423
+       "pop": 205551
       }
      ],
      "populationBasis": "2000 Census"
@@ -219,7 +219,7 @@
        "share": "99.6%",
        "covers": "All the valley but Green Valley",
        "main": true,
-       "pop": 269385
+       "pop": 270554
       },
       {
        "n": 22,
@@ -241,7 +241,7 @@
        "share": "the whole valley",
        "covers": "The whole valley, with Palmdale, eastern Lancaster and part of Simi Valley",
        "main": true,
-       "pop": 270450
+       "pop": 271619
       }
      ],
      "populationBasis": "2010 Census"
@@ -256,7 +256,7 @@
        "share": "the whole valley",
        "covers": "The whole valley, with Lancaster, Palmdale and part of the City of Los Angeles",
        "main": true,
-       "pop": 290281
+       "pop": 291467
       }
      ],
      "populationBasis": "2020 Census"
@@ -271,7 +271,7 @@
        "share": "88.0%",
        "covers": "The City of Santa Clarita except its eastern and southeastern edge, Stevenson Ranch and Green Valley",
        "main": true,
-       "pop": 255552
+       "pop": 256376
       },
       {
        "n": 26,
@@ -283,11 +283,11 @@
       },
       {
        "n": 30,
-       "share": "4.2%",
+       "share": "4.3%",
        "covers": "Agua Dulce and the City's eastern and southeastern edge, about 8,600 City residents",
        "main": false,
        "pending": "To be elected on 3 November 2026; the June primary's top two were Laura Friedman and Alan Meyers",
-       "pop": 12108
+       "pop": 12470
       }
      ],
      "populationBasis": "2020 Census"

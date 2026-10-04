@@ -61,6 +61,17 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Appointed as the sole candidate; no election held'
+        -
+          - value
+          - sole-candidate
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

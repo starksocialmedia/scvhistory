@@ -5,12 +5,18 @@ Senate and U.S. House district, for every plan since 1991, with geometry for map
 
 Claude (research subagent), 4 October 2026. Pure Python 3 standard library.
 
-VALLEY DEFINITION (corrected 4 October 2026)
+VALLEY DEFINITION (corrected 4 October 2026; widened the same day, Nathan's decision)
   Census Newhall CCD (county subdivision 92110)
   + Agua Dulce CDP (place 00450)
-  + every block inside the City of Santa Clarita (place 69088) as that census drew it.
+  + every block inside the City of Santa Clarita (place 69088) as that census drew it
+  + the unincorporated ground between the City and Agua Dulce: on 2020 blocks, the
+    blocks of tracts 9108.07, 9108.08, 9108.09, 9108.10 and 9108.14 outside Acton CDP.
   Acton (place 00212, in the South Antelope Valley CCD) stays out.
-  The earlier pass used Newhall CCD + Agua Dulce CDP only, which left out about
+  So that every census covers the same ground, a 2000 or 2010 block not already in
+  is added when its interior point lies inside the 2020 footprint of those five
+  tracts outside Acton (and it is not in Acton; for 2000 blocks, not inside the
+  2010 Acton CDP either). See inventory/review/valley-definition-2026-10-04.md.
+  The first pass used Newhall CCD + Agua Dulce CDP only, which left out about
   13,000 City residents in eastern Canyon Country (tracts 9108.07 to 9108.10).
 
   2000 blocks: Newhall CCD and City from the 2000 PL 94-171 geographic header.
@@ -74,6 +80,9 @@ TOL = 0.0003
 NDIGITS = 5
 
 CITY, AGUA_DULCE, ACTON, NEWHALL_CCD = '69088', '00450', '00212', '92110'
+# 2020 tracts holding the City's eastern edge and Agua Dulce; their unincorporated
+# land outside Acton is the ground between the City and Agua Dulce (4 October 2026)
+BETWEEN_TRACTS_2020 = ('910807', '910808', '910809', '910810', '910814')
 
 DOWNLOADS = {
     'tiger/tl_2010_06037_tabblock00.zip': 'https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2000/tl_2010_06037_tabblock00.zip',
@@ -219,7 +228,7 @@ def read_shapes(zpath, idfield, wanted):
 # ---------------------------------------------------------------- valley blocks
 
 def valley_blocks():
-    """{vintage: {geoid: {'pop', 'reg', 'place'}}}; reg in newhall_ccd, agua_dulce, city_outside_ccd."""
+    """{vintage: {geoid: {'pop', 'reg', 'place'}}}; reg in newhall_ccd, agua_dulce, city_outside_ccd, between."""
     V = {}
     # 2000
     ad = json.load(open(src('tigerweb/aguadulce_2010.json')))['features'][0]['geometry']['rings']
@@ -280,7 +289,77 @@ def valley_blocks():
         mism = sum(1 for g, a in old[v].items() if a['reg'] != 'acton' and g in V[v] and (a['pop'] or 0) != V[v][g]['pop'])
         if mism:
             p(f'warning: {mism} {v} blocks differ in population from scv_blocks.json')
+        if v == '2020':
+            place20 = place
+    add_between(V, place20)
     return V
+
+
+def interior_points(zpath, suffix, idfield):
+    """{geoid: (lon, lat)} for every block of the county shapefile."""
+    with zipfile.ZipFile(zpath) as z:
+        dbf = z.read([n for n in z.namelist() if n.endswith('.dbf')][0])
+    return {d[idfield]: (float(d['INTPTLON' + suffix]), float(d['INTPTLAT' + suffix])) for d in dbf_rows(dbf)}
+
+
+def add_between(V, place20):
+    """The unincorporated ground between the City and Agua Dulce, the same ground for every census.
+
+    Footprint F, drawn on 2020 blocks: every 2020 block of tracts 9108.07, 9108.08,
+    9108.09, 9108.10 and 9108.14 outside Acton CDP (City and Agua Dulce blocks of
+    those tracts included). A 2000 or 2010 block not already in the valley is added when its
+    interior point lies inside F and it is not in Acton (Acton CDP of that census;
+    for 2000 blocks also the 2010 Acton CDP boundary). Incorporated places other
+    than the City are never added.
+    """
+    fblocks = {g for g, pl in place20.items() if g[5:11] in BETWEEN_TRACTS_2020 and pl != ACTON}
+    pops20 = json.load(open(src(POP_FILES['2020'][0])))
+    for g in fblocks:
+        pl = place20.get(g, '')
+        if g in V['2020']:
+            continue
+        if pl not in ('', AGUA_DULCE, CITY):
+            raise SystemExit(f'2020 block {g} in place {pl} inside the between-ground footprint')
+        V['2020'][g] = {'pop': pops20.get(g, 0) or 0, 'reg': 'between', 'place': pl}
+    fshapes = read_shapes(src('tiger/tl_2020_06037_tabblock20.zip'), 'GEOID20', fblocks)
+    e, _ = boundary(fblocks, fshapes)
+    frings, _ = chain(e)
+    xs = [q[0] for r in frings for q in r]
+    ys = [q[1] for r in frings for q in r]
+    fbb = (min(xs), min(ys), max(xs), max(ys))
+    acton10 = json.load(open(src('tigerweb/acton_2010.json')))['features'][0]['geometry']['rings']
+
+    def in_f(pt):
+        return fbb[0] <= pt[0] <= fbb[2] and fbb[1] <= pt[1] <= fbb[3] and pip(pt[0], pt[1], frings)
+    # 2010
+    pops10 = json.load(open(src(POP_FILES['2010'][0])))
+    with zipfile.ZipFile(src('census-baf2010/BlockAssign_ST06_CA.zip')) as z:
+        place10 = dict(ln.split(',') for ln in io.TextIOWrapper(z.open('BlockAssign_ST06_CA_INCPLACE_CDP.txt'), encoding='latin-1').read().splitlines()[1:]
+                       if ln.startswith('06037'))
+    for g, pt in interior_points(src('tiger/tl_2010_06037_tabblock10.zip'), '10', 'GEOID10').items():
+        if g in V['2010'] or not in_f(pt):
+            continue
+        pl = place10.get(g, '')
+        if pl == ACTON:
+            continue
+        if pl:
+            raise SystemExit(f'2010 block {g} in place {pl} inside the between-ground footprint')
+        V['2010'][g] = {'pop': pops10.get(g, 0) or 0, 'reg': 'between', 'place': pl}
+    # 2000 (place and population from the PL header, interior point from TIGER)
+    pts00 = interior_points(src('tiger/tl_2010_06037_tabblock00.zip'), '00', 'BLKIDFP00')
+    with zipfile.ZipFile(src('census2000/cageo.upl.zip')) as z:
+        for line in io.TextIOWrapper(z.open('cageo.upl'), encoding='latin-1'):
+            if line[8:11] != '750' or line[29:34] != '06037':
+                continue
+            g = line[29:34] + line[55:61] + line[62:66]
+            if g in V['2000'] or g not in pts00 or not in_f(pts00[g]):
+                continue
+            pl = line[45:50]
+            if pl == ACTON or pip(pts00[g][0], pts00[g][1], acton10):
+                continue
+            if pl != '99999':
+                raise SystemExit(f'2000 block {g} in place {pl} inside the between-ground footprint')
+            V['2000'][g] = {'pop': int(line[292:301]), 'reg': 'between', 'place': ''}
 
 
 # ---------------------------------------------------------------- assignments
@@ -666,11 +745,15 @@ def main():
         '_about': ('The Santa Clarita Valley\'s share of each Assembly, State Senate and U.S. House district, '
                    'by plan, with one GeoJSON per chamber and plan for maps. Built by '
                    'scripts/import/build_valley_district_maps.py on 4 October 2026 (Claude, research subagent). '
-                   'Report: inventory/review/valley-district-maps-2026-10-04.md.'),
+                   'Reports: inventory/review/valley-district-maps-2026-10-04.md and '
+                   'inventory/review/valley-definition-2026-10-04.md.'),
         'valleyDefinition': ('Census Newhall CCD (county subdivision 92110) plus Agua Dulce CDP plus every census block '
-                             'inside the City of Santa Clarita as the census of that year drew it. Acton is excluded. '
-                             'Agua Dulce was not a CDP in 2000; on 2000 blocks it is the blocks whose interior point lies '
-                             'inside the 2010 Agua Dulce CDP.'),
+                             'inside the City of Santa Clarita as the census of that year drew it, plus the unincorporated land '
+                             'between the City and Agua Dulce (on 2020 blocks: tracts 9108.07, 9108.08, 9108.09, 9108.10 and '
+                             '9108.14 outside Acton CDP). Acton is excluded. So that every census covers the same ground, a 2000 '
+                             'or 2010 block is also counted when its interior point lies inside the 2020 footprint of those five '
+                             'tracts outside Acton. Agua Dulce was not a CDP in 2000; on 2000 blocks it is the blocks whose '
+                             'interior point lies inside the 2010 Agua Dulce CDP.'),
         'method': ('Each census block in the valley assigned to its district by the official block equivalency file '
                    'for the plan (1991 plan on 2000 blocks, Statewide Database; 2001 and 2011 plans on 2010 blocks, '
                    'Statewide Database; 2021 plan on 2020 blocks, Census Bureau 2022 SLD and CD118 equivalency files; '

@@ -70,7 +70,10 @@
   </div>
 {% endif %}
 {% if undated|length %}<p class="hub-lede">Also held, with no years recorded: {{ undated|map(a => (a.affiliationPerson|first).title)|join(', ') }}.</p>{% endif %}
-<p class="hub-lede">The archive holds {{ past|length == 1 ? 'one past ' ~ label|lower : past|length ~ ' past ' ~ plural }} so far; the others are not yet recorded.</p>
+{#- Said only where the record has a gap: the earliest holder starts more than a year after the body was founded. -#}
+{% set firstY = (past|map(a => a.termStartEdtf|slice(0, 4))|filter(y => y)|sort|first) ?: null %}
+{% set foundY = (body.dateFoundedEdtf ?? '')|slice(0, 4) %}
+{% if not foundY or not firstY or firstY - foundY > 1 %}<p class="hub-lede">The archive holds {{ past|length == 1 ? 'one past ' ~ label|lower : past|length ~ ' past ' ~ plural }} so far; the others are not yet recorded.</p>{% endif %}
 {% css %}
 .ex-chart{background:#fff;border:1px solid #E2E4E8;padding:14px 16px 10px;margin:0 0 12px}
 .ex-row{display:grid;grid-template-columns:170px minmax(0,1fr) 190px;gap:12px;align-items:center;padding:6px 0}

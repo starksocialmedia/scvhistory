@@ -1,6 +1,6 @@
 {
- "_about": "The Santa Clarita Valley's share of each Assembly, State Senate and U.S. House district, by plan, with one GeoJSON per chamber and plan for maps. Built by scripts/import/build_valley_district_maps.py on 4 October 2026 (Claude, research subagent). Report: inventory/review/valley-district-maps-2026-10-04.md.",
- "valleyDefinition": "Census Newhall CCD (county subdivision 92110) plus Agua Dulce CDP plus every census block inside the City of Santa Clarita as the census of that year drew it. Acton is excluded. Agua Dulce was not a CDP in 2000; on 2000 blocks it is the blocks whose interior point lies inside the 2010 Agua Dulce CDP.",
+ "_about": "The Santa Clarita Valley's share of each Assembly, State Senate and U.S. House district, by plan, with one GeoJSON per chamber and plan for maps. Built by scripts/import/build_valley_district_maps.py on 4 October 2026 (Claude, research subagent). Reports: inventory/review/valley-district-maps-2026-10-04.md and inventory/review/valley-definition-2026-10-04.md.",
+ "valleyDefinition": "Census Newhall CCD (county subdivision 92110) plus Agua Dulce CDP plus every census block inside the City of Santa Clarita as the census of that year drew it, plus the unincorporated land between the City and Agua Dulce (on 2020 blocks: tracts 9108.07, 9108.08, 9108.09, 9108.10 and 9108.14 outside Acton CDP). Acton is excluded. So that every census covers the same ground, a 2000 or 2010 block is also counted when its interior point lies inside the 2020 footprint of those five tracts outside Acton. Agua Dulce was not a CDP in 2000; on 2000 blocks it is the blocks whose interior point lies inside the 2010 Agua Dulce CDP.",
  "method": "Each census block in the valley assigned to its district by the official block equivalency file for the plan (1991 plan on 2000 blocks, Statewide Database; 2001 and 2011 plans on 2010 blocks, Statewide Database; 2021 plan on 2020 blocks, Census Bureau 2022 SLD and CD118 equivalency files; 2025 congressional map on 2020 blocks, AB 604 equivalency file). Population is the block POP100 of that census. Geometry: TIGER/Line block polygons dissolved by district, simplified with Douglas-Peucker at 0.0003 degrees along shared borders, coordinates rounded to 5 decimals (WGS84 / NAD83 longitude, latitude). share is percent of the valley population, one decimal; main marks the largest share.",
  "files": {
   "assembly-1991": {
@@ -9,16 +9,16 @@
    "plan": "1991",
    "planNote": "1991 plan (Special Masters; elections 1992 to 2000)",
    "populationBasis": "2000 Census",
-   "valleyPop": 202423,
+   "valleyPop": 205551,
    "districts": {
     "36": {
-     "pop": 168974,
-     "share": 83.5,
+     "pop": 172102,
+     "share": 83.7,
      "main": true
     },
     "38": {
      "pop": 33449,
-     "share": 16.5,
+     "share": 16.3,
      "main": false
     },
     "44": {
@@ -34,15 +34,15 @@
    "plan": "2001",
    "planNote": "2001 plan (Legislature; elections 2002 to 2010)",
    "populationBasis": "2010 Census",
-   "valleyPop": 270450,
+   "valleyPop": 271619,
    "districts": {
     "38": {
-     "pop": 235419,
+     "pop": 236355,
      "share": 87.0,
      "main": true
     },
     "37": {
-     "pop": 35031,
+     "pop": 35264,
      "share": 13.0,
      "main": false
     },
@@ -59,16 +59,16 @@
    "plan": "2011",
    "planNote": "2011 plan (Citizens Redistricting Commission; elections 2012 to 2020)",
    "populationBasis": "2010 Census",
-   "valleyPop": 270450,
+   "valleyPop": 271619,
    "districts": {
     "38": {
-     "pop": 251669,
-     "share": 93.1,
+     "pop": 252560,
+     "share": 93.0,
      "main": true
     },
     "36": {
-     "pop": 18781,
-     "share": 6.9,
+     "pop": 19059,
+     "share": 7.0,
      "main": false
     }
    }
@@ -79,16 +79,16 @@
    "plan": "2021",
    "planNote": "2021 plan (Citizens Redistricting Commission; elections 2022 on)",
    "populationBasis": "2020 Census",
-   "valleyPop": 290281,
+   "valleyPop": 291467,
    "districts": {
     "40": {
-     "pop": 285083,
-     "share": 98.2,
+     "pop": 286046,
+     "share": 98.1,
      "main": true
     },
     "34": {
-     "pop": 5198,
-     "share": 1.8,
+     "pop": 5421,
+     "share": 1.9,
      "main": false
     }
    }
@@ -99,16 +99,16 @@
    "plan": "1991",
    "planNote": "1991 plan (Special Masters; elections 1992 to 2000)",
    "populationBasis": "2000 Census",
-   "valleyPop": 202423,
+   "valleyPop": 205551,
    "districts": {
     "17": {
-     "pop": 168974,
-     "share": 83.5,
+     "pop": 172102,
+     "share": 83.7,
      "main": true
     },
     "19": {
      "pop": 33449,
-     "share": 16.5,
+     "share": 16.3,
      "main": false
     },
     "21": {
@@ -124,16 +124,16 @@
    "plan": "2001",
    "planNote": "2001 plan (Legislature; elections 2002 to 2010)",
    "populationBasis": "2010 Census",
-   "valleyPop": 270450,
+   "valleyPop": 271619,
    "districts": {
     "17": {
-     "pop": 200369,
-     "share": 74.1,
+     "pop": 201538,
+     "share": 74.2,
      "main": true
     },
     "19": {
      "pop": 70081,
-     "share": 25.9,
+     "share": 25.8,
      "main": false
     }
    }
@@ -144,16 +144,16 @@
    "plan": "2011",
    "planNote": "2011 plan (Citizens Redistricting Commission; elections 2012 to 2020)",
    "populationBasis": "2010 Census",
-   "valleyPop": 270450,
+   "valleyPop": 271619,
    "districts": {
     "21": {
-     "pop": 215375,
-     "share": 79.6,
+     "pop": 216544,
+     "share": 79.7,
      "main": true
     },
     "27": {
      "pop": 55075,
-     "share": 20.4,
+     "share": 20.3,
      "main": false
     }
    }
@@ -164,10 +164,10 @@
    "plan": "2021",
    "planNote": "2021 plan (Citizens Redistricting Commission; elections 2022 on)",
    "populationBasis": "2020 Census",
-   "valleyPop": 290281,
+   "valleyPop": 291467,
    "districts": {
     "23": {
-     "pop": 290281,
+     "pop": 291467,
      "share": 100.0,
      "main": true
     }
@@ -179,10 +179,10 @@
    "plan": "1991",
    "planNote": "1991 plan (Special Masters; elections 1992 to 2000)",
    "populationBasis": "2000 Census",
-   "valleyPop": 202423,
+   "valleyPop": 205551,
    "districts": {
     "25": {
-     "pop": 202423,
+     "pop": 205551,
      "share": 100.0,
      "main": true
     },
@@ -199,10 +199,10 @@
    "plan": "2001",
    "planNote": "2001 plan (Legislature; elections 2002 to 2010)",
    "populationBasis": "2010 Census",
-   "valleyPop": 270450,
+   "valleyPop": 271619,
    "districts": {
     "25": {
-     "pop": 269385,
+     "pop": 270554,
      "share": 99.6,
      "main": true
     },
@@ -224,10 +224,10 @@
    "plan": "2011",
    "planNote": "2011 plan (Citizens Redistricting Commission; elections 2012 to 2020)",
    "populationBasis": "2010 Census",
-   "valleyPop": 270450,
+   "valleyPop": 271619,
    "districts": {
     "25": {
-     "pop": 270450,
+     "pop": 271619,
      "share": 100.0,
      "main": true
     }
@@ -239,10 +239,10 @@
    "plan": "2021",
    "planNote": "2021 plan (Citizens Redistricting Commission; elections 2022 on)",
    "populationBasis": "2020 Census",
-   "valleyPop": 290281,
+   "valleyPop": 291467,
    "districts": {
     "27": {
-     "pop": 290281,
+     "pop": 291467,
      "share": 100.0,
      "main": true
     }
@@ -254,10 +254,10 @@
    "plan": "2025",
    "planNote": "2025 congressional map (AB 604, enacted by Proposition 50; elections from 2026)",
    "populationBasis": "2020 Census",
-   "valleyPop": 290281,
+   "valleyPop": 291467,
    "districts": {
     "27": {
-     "pop": 255552,
+     "pop": 256376,
      "share": 88.0,
      "main": true
     },
@@ -267,8 +267,8 @@
      "main": false
     },
     "30": {
-     "pop": 12108,
-     "share": 4.2,
+     "pop": 12470,
+     "share": 4.3,
      "main": false
     }
    }
