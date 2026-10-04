@@ -1442,6 +1442,54 @@
    "read": "2026-10-04",
    "url": null,
    "what": "Derived: valley (excluding Acton) and City land area (square metres, 2020 block AREALAND from TIGERweb) by AB 604 district"
+  },
+  {
+   "file": "tiger/tl_2010_06037_tabblock00.zip",
+   "sha256": "59532e98710d8a75be7cb945db7e5e534bf47e5172c7bac07356edb8a203cb23",
+   "bytes": 24960912,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2000/tl_2010_06037_tabblock00.zip",
+   "what": "TIGER/Line 2010 edition, Census 2000 tabulation blocks, Los Angeles County (block polygons for the 1991-plan map)"
+  },
+  {
+   "file": "tiger/tl_2010_06037_tabblock10.zip",
+   "sha256": "fd91512160a8203d9db599cf2474b7a12ae888e1862e812d1f06c0a8eb12cd1c",
+   "bytes": 29867926,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_06037_tabblock10.zip",
+   "what": "TIGER/Line 2010 tabulation blocks, Los Angeles County (block polygons for the 2001 and 2011 plan maps)"
+  },
+  {
+   "file": "tiger/tl_2020_06037_tabblock20.zip",
+   "sha256": "b55bb67078e80576296248753719bddcc229e7f8b54a7245186304d350aa0acb",
+   "bytes": 27807897,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/geo/tiger/TIGER2020PL/LAYER/TABBLOCK/2020/tl_2020_06037_tabblock20.zip",
+   "what": "TIGER/Line 2020 PL tabulation blocks, Los Angeles County (block polygons for the 2021 plan and 2025 congressional maps)"
+  },
+  {
+   "file": "census-baf2010/BlockAssign_ST06_CA.zip",
+   "sha256": "d80fb70905dfffd9c7ea8a0b64a2f516070d35774ef78be4cc3f5e50bdf4cece",
+   "bytes": 15660806,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/baf/BlockAssign_ST06_CA.zip",
+   "what": "Census Bureau 2010 Census Block Assignment Files for California; INCPLACE_CDP used for City of Santa Clarita (69088) and Agua Dulce CDP (00450) 2010 blocks"
+  },
+  {
+   "file": "census-baf2010/tigerweb_2010_block_pop100_06037.json",
+   "sha256": "78d017c8c8a6a081a61e2d4972a86480a328e3383c2dafb1ab12c5f247bb9baa",
+   "bytes": 2512651,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2010/MapServer/18/query (where STATE=06 AND COUNTY=037; outFields GEOID,POP100; paged 5000)",
+   "what": "2010 Census block population (POP100) for Los Angeles County; 109,582 blocks, total 9,818,605 (matches the 2010 count)"
+  },
+  {
+   "file": "census-baf/sldl_2022.zip",
+   "sha256": "531f7843f9d34d744f989ead86d7589f96ea8fa672f416a895f5a7283f5de36f",
+   "bytes": 25547749,
+   "read": "2026-10-04",
+   "url": "https://www2.census.gov/programs-surveys/decennial/rdo/mapping-files/2023/2022-state-legislative-bef/sldl_2022.zip",
+   "what": "Census Bureau 2022 State Legislative District Block Equivalency Files, lower chamber, all states; 06_CA_SLDL22.txt gives 2020 block to 2021-plan Assembly district"
   }
  ]
 }

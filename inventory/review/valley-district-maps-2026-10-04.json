@@ -1,0 +1,968 @@
+{
+ "blocks": {
+  "2000": {
+   "count": 2302,
+   "byRegion": {
+    "newhall_ccd": 189172,
+    "city_outside_ccd": 10239,
+    "agua_dulce": 3012
+   },
+   "total": 202423,
+   "outlineKm2": 1381.145,
+   "sumOfBlocksKm2": 1381.145
+  },
+  "2010": {
+   "count": 3722,
+   "byRegion": {
+    "newhall_ccd": 254330,
+    "agua_dulce": 3342,
+    "city_outside_ccd": 12778
+   },
+   "total": 270450,
+   "outlineKm2": 1334.794,
+   "sumOfBlocksKm2": 1334.794
+  },
+  "2020": {
+   "count": 2615,
+   "byRegion": {
+    "newhall_ccd": 273466,
+    "city_outside_ccd": 13364,
+    "agua_dulce": 3451
+   },
+   "total": 290281,
+   "outlineKm2": 1342.457,
+   "sumOfBlocksKm2": 1342.457
+  }
+ },
+ "plans": {
+  "assembly-1991": {
+   "bytes": 46627,
+   "valleyPop": 202423,
+   "oldValleyPop": 211220,
+   "new": {
+    "36": 168974,
+    "38": 33449,
+    "44": 0
+   },
+   "old": {
+    "36": 177771,
+    "38": 33449
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "36": 3012
+    },
+    "city_outside_ccd": {
+     "36": 10239,
+     "44": 0
+    },
+    "newhall_ccd": {
+     "38": 33449,
+     "36": 155723
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "36": 3012
+    },
+    "Santa Clarita city": {
+     "36": 151088,
+     "38": 0,
+     "44": 0
+    },
+    "Val Verde CDP": {
+     "38": 1472
+    },
+    "other (unincorporated, no CDP)": {
+     "38": 31977,
+     "36": 14874
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1381.1447,
+    "rawDistrictsKm2": 1381.1447,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1381.1495,
+    "finalDistrictsKm2": 1381.1495,
+    "districtKm2": {
+     "36": 741.43,
+     "38": 638.693,
+     "44": 1.027
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 42994,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "assembly-2001": {
+   "bytes": 41805,
+   "valleyPop": 270450,
+   "oldValleyPop": 257672,
+   "new": {
+    "38": 235419,
+    "37": 35031,
+    "36": 0
+   },
+   "old": {
+    "38": 222641,
+    "37": 35031
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "36": 0,
+     "38": 291,
+     "37": 3051
+    },
+    "city_outside_ccd": {
+     "38": 12778
+    },
+    "newhall_ccd": {
+     "37": 31980,
+     "38": 222350,
+     "36": 0
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "36": 0,
+     "38": 291,
+     "37": 3051
+    },
+    "Castaic CDP": {
+     "37": 19015
+    },
+    "Green Valley CDP": {
+     "37": 1027
+    },
+    "Hasley Canyon CDP": {
+     "37": 1137
+    },
+    "Santa Clarita city": {
+     "38": 176320
+    },
+    "Stevenson Ranch CDP": {
+     "38": 17557
+    },
+    "Val Verde CDP": {
+     "37": 2468
+    },
+    "other (unincorporated, no CDP)": {
+     "37": 8333,
+     "38": 41251,
+     "36": 0
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1334.7943,
+    "rawDistrictsKm2": 1334.7943,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1334.8174,
+    "finalDistrictsKm2": 1334.8174,
+    "districtKm2": {
+     "38": 323.553,
+     "37": 1011.258,
+     "36": 0.006
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47670,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "assembly-2011": {
+   "bytes": 45244,
+   "valleyPop": 270450,
+   "oldValleyPop": 257672,
+   "new": {
+    "38": 251669,
+    "36": 18781
+   },
+   "old": {
+    "38": 238891,
+    "36": 18781
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "38": 3342
+    },
+    "city_outside_ccd": {
+     "38": 12778
+    },
+    "newhall_ccd": {
+     "38": 235549,
+     "36": 18781
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "38": 3342
+    },
+    "Castaic CDP": {
+     "38": 19015
+    },
+    "Green Valley CDP": {
+     "36": 1027
+    },
+    "Hasley Canyon CDP": {
+     "38": 1137
+    },
+    "Santa Clarita city": {
+     "38": 176320
+    },
+    "Stevenson Ranch CDP": {
+     "38": 17557
+    },
+    "Val Verde CDP": {
+     "38": 2468
+    },
+    "other (unincorporated, no CDP)": {
+     "38": 31830,
+     "36": 17754
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1334.7943,
+    "rawDistrictsKm2": 1334.7943,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1334.9993,
+    "finalDistrictsKm2": 1334.9993,
+    "districtKm2": {
+     "38": 717.668,
+     "36": 617.331
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47676,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "assembly-2021": {
+   "bytes": 46988,
+   "valleyPop": 290281,
+   "oldValleyPop": 276917,
+   "new": {
+    "40": 285083,
+    "34": 5198
+   },
+   "old": {
+    "40": 271719,
+    "34": 5198
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "34": 3451
+    },
+    "city_outside_ccd": {
+     "40": 13364
+    },
+    "newhall_ccd": {
+     "40": 271719,
+     "34": 1747
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "34": 3451
+    },
+    "Castaic CDP": {
+     "40": 18937
+    },
+    "Green Valley CDP": {
+     "34": 1036
+    },
+    "Hasley Canyon CDP": {
+     "40": 1195
+    },
+    "Santa Clarita city": {
+     "40": 228673
+    },
+    "Stevenson Ranch CDP": {
+     "40": 20178
+    },
+    "Val Verde CDP": {
+     "40": 2399
+    },
+    "other (unincorporated, no CDP)": {
+     "40": 13701,
+     "34": 711
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1342.4572,
+    "rawDistrictsKm2": 1342.4572,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1342.4292,
+    "finalDistrictsKm2": 1342.4292,
+    "districtKm2": {
+     "40": 513.689,
+     "34": 828.74
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47938,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "senate-1991": {
+   "bytes": 46617,
+   "valleyPop": 202423,
+   "oldValleyPop": 211220,
+   "new": {
+    "17": 168974,
+    "19": 33449,
+    "21": 0
+   },
+   "old": {
+    "17": 177771,
+    "19": 33449
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "17": 3012
+    },
+    "city_outside_ccd": {
+     "17": 10239,
+     "21": 0
+    },
+    "newhall_ccd": {
+     "19": 33449,
+     "17": 155723
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "17": 3012
+    },
+    "Santa Clarita city": {
+     "17": 151088,
+     "19": 0,
+     "21": 0
+    },
+    "Val Verde CDP": {
+     "19": 1472
+    },
+    "other (unincorporated, no CDP)": {
+     "19": 31977,
+     "17": 14874
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1381.1447,
+    "rawDistrictsKm2": 1381.1447,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1381.1495,
+    "finalDistrictsKm2": 1381.1495,
+    "districtKm2": {
+     "17": 741.43,
+     "19": 638.693,
+     "21": 1.027
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 42994,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "senate-2001": {
+   "bytes": 42381,
+   "valleyPop": 270450,
+   "oldValleyPop": 257672,
+   "new": {
+    "17": 200369,
+    "19": 70081
+   },
+   "old": {
+    "17": 187591,
+    "19": 70081
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "17": 3342
+    },
+    "city_outside_ccd": {
+     "17": 12778
+    },
+    "newhall_ccd": {
+     "17": 184249,
+     "19": 70081
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "17": 3342
+    },
+    "Castaic CDP": {
+     "17": 19015
+    },
+    "Green Valley CDP": {
+     "17": 1027
+    },
+    "Hasley Canyon CDP": {
+     "17": 1137
+    },
+    "Santa Clarita city": {
+     "19": 50153,
+     "17": 126167
+    },
+    "Stevenson Ranch CDP": {
+     "19": 17557
+    },
+    "Val Verde CDP": {
+     "17": 2468
+    },
+    "other (unincorporated, no CDP)": {
+     "17": 47213,
+     "19": 2371
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1334.7943,
+    "rawDistrictsKm2": 1334.7943,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1334.8429,
+    "finalDistrictsKm2": 1334.8429,
+    "districtKm2": {
+     "17": 1197.812,
+     "19": 137.031
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47671,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "senate-2011": {
+   "bytes": 38157,
+   "valleyPop": 270450,
+   "oldValleyPop": 257672,
+   "new": {
+    "21": 215375,
+    "27": 55075
+   },
+   "old": {
+    "21": 202597,
+    "27": 55075
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "21": 3342
+    },
+    "city_outside_ccd": {
+     "21": 12778
+    },
+    "newhall_ccd": {
+     "27": 55075,
+     "21": 199255
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "21": 3342
+    },
+    "Castaic CDP": {
+     "21": 19015
+    },
+    "Green Valley CDP": {
+     "21": 1027
+    },
+    "Hasley Canyon CDP": {
+     "21": 1137
+    },
+    "Santa Clarita city": {
+     "21": 141390,
+     "27": 34930
+    },
+    "Stevenson Ranch CDP": {
+     "27": 17557
+    },
+    "Val Verde CDP": {
+     "21": 2468
+    },
+    "other (unincorporated, no CDP)": {
+     "27": 2588,
+     "21": 46996
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1334.7943,
+    "rawDistrictsKm2": 1334.7943,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1334.859,
+    "finalDistrictsKm2": 1334.859,
+    "districtKm2": {
+     "21": 1202.71,
+     "27": 132.149
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47672,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "senate-2021": {
+   "bytes": 35756,
+   "valleyPop": 290281,
+   "oldValleyPop": 276917,
+   "new": {
+    "23": 290281
+   },
+   "old": {
+    "23": 276917
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "23": 3451
+    },
+    "city_outside_ccd": {
+     "23": 13364
+    },
+    "newhall_ccd": {
+     "23": 273466
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "23": 3451
+    },
+    "Castaic CDP": {
+     "23": 18937
+    },
+    "Green Valley CDP": {
+     "23": 1036
+    },
+    "Hasley Canyon CDP": {
+     "23": 1195
+    },
+    "Santa Clarita city": {
+     "23": 228673
+    },
+    "Stevenson Ranch CDP": {
+     "23": 20178
+    },
+    "Val Verde CDP": {
+     "23": 2399
+    },
+    "other (unincorporated, no CDP)": {
+     "23": 14412
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1342.4572,
+    "rawDistrictsKm2": 1342.4572,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1342.5676,
+    "finalDistrictsKm2": 1342.5676,
+    "districtKm2": {
+     "23": 1342.568
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47944,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "house-1991": {
+   "bytes": 37581,
+   "valleyPop": 202423,
+   "oldValleyPop": 211220,
+   "new": {
+    "25": 202423,
+    "27": 0
+   },
+   "old": {
+    "25": 211220
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "25": 3012
+    },
+    "city_outside_ccd": {
+     "25": 10239,
+     "27": 0
+    },
+    "newhall_ccd": {
+     "25": 189172
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "25": 3012
+    },
+    "Santa Clarita city": {
+     "25": 151088,
+     "27": 0
+    },
+    "Val Verde CDP": {
+     "25": 1472
+    },
+    "other (unincorporated, no CDP)": {
+     "25": 46851
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1381.1447,
+    "rawDistrictsKm2": 1381.1447,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1381.2042,
+    "finalDistrictsKm2": 1381.2042,
+    "districtKm2": {
+     "25": 1380.178,
+     "27": 1.027
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 42992,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "house-2001": {
+   "bytes": 37198,
+   "valleyPop": 270450,
+   "oldValleyPop": 257672,
+   "new": {
+    "25": 269385,
+    "22": 1065,
+    "27": 0
+   },
+   "old": {
+    "25": 256607,
+    "22": 1065
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "25": 3342
+    },
+    "city_outside_ccd": {
+     "25": 12778
+    },
+    "newhall_ccd": {
+     "25": 253265,
+     "22": 1065,
+     "27": 0
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "25": 3342
+    },
+    "Castaic CDP": {
+     "25": 19015
+    },
+    "Green Valley CDP": {
+     "22": 1023,
+     "25": 4
+    },
+    "Hasley Canyon CDP": {
+     "25": 1137
+    },
+    "Santa Clarita city": {
+     "25": 176320
+    },
+    "Stevenson Ranch CDP": {
+     "25": 17557
+    },
+    "Val Verde CDP": {
+     "25": 2468
+    },
+    "other (unincorporated, no CDP)": {
+     "25": 49542,
+     "22": 42,
+     "27": 0
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1334.7943,
+    "rawDistrictsKm2": 1334.7943,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1334.9907,
+    "finalDistrictsKm2": 1334.9907,
+    "districtKm2": {
+     "25": 991.346,
+     "22": 343.082,
+     "27": 0.563
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47674,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "house-2011": {
+   "bytes": 35918,
+   "valleyPop": 270450,
+   "oldValleyPop": 257672,
+   "new": {
+    "25": 270450
+   },
+   "old": {
+    "25": 257672
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "25": 3342
+    },
+    "city_outside_ccd": {
+     "25": 12778
+    },
+    "newhall_ccd": {
+     "25": 254330
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "25": 3342
+    },
+    "Castaic CDP": {
+     "25": 19015
+    },
+    "Green Valley CDP": {
+     "25": 1027
+    },
+    "Hasley Canyon CDP": {
+     "25": 1137
+    },
+    "Santa Clarita city": {
+     "25": 176320
+    },
+    "Stevenson Ranch CDP": {
+     "25": 17557
+    },
+    "Val Verde CDP": {
+     "25": 2468
+    },
+    "other (unincorporated, no CDP)": {
+     "25": 49584
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1334.7943,
+    "rawDistrictsKm2": 1334.7943,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1334.91,
+    "finalDistrictsKm2": 1334.91,
+    "districtKm2": {
+     "25": 1334.91
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47672,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "house-2021": {
+   "bytes": 35761,
+   "valleyPop": 290281,
+   "oldValleyPop": 276917,
+   "new": {
+    "27": 290281
+   },
+   "old": {
+    "27": 276917
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "27": 3451
+    },
+    "city_outside_ccd": {
+     "27": 13364
+    },
+    "newhall_ccd": {
+     "27": 273466
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "27": 3451
+    },
+    "Castaic CDP": {
+     "27": 18937
+    },
+    "Green Valley CDP": {
+     "27": 1036
+    },
+    "Hasley Canyon CDP": {
+     "27": 1195
+    },
+    "Santa Clarita city": {
+     "27": 228673
+    },
+    "Stevenson Ranch CDP": {
+     "27": 20178
+    },
+    "Val Verde CDP": {
+     "27": 2399
+    },
+    "other (unincorporated, no CDP)": {
+     "27": 14412
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1342.4572,
+    "rawDistrictsKm2": 1342.4572,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1342.5676,
+    "finalDistrictsKm2": 1342.5676,
+    "districtKm2": {
+     "27": 1342.568
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47944,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  },
+  "house-2025": {
+   "bytes": 46806,
+   "valleyPop": 290281,
+   "oldValleyPop": 276917,
+   "new": {
+    "27": 255552,
+    "26": 22621,
+    "30": 12108
+   },
+   "old": {
+    "27": 246532,
+    "26": 22621,
+    "30": 7764
+   },
+   "byRegion": {
+    "agua_dulce": {
+     "30": 3451
+    },
+    "city_outside_ccd": {
+     "27": 9020,
+     "30": 4344
+    },
+    "newhall_ccd": {
+     "27": 246532,
+     "26": 22621,
+     "30": 4313
+    }
+   },
+   "byPlace": {
+    "Agua Dulce CDP": {
+     "30": 3451
+    },
+    "Castaic CDP": {
+     "26": 18937
+    },
+    "Green Valley CDP": {
+     "27": 1036
+    },
+    "Hasley Canyon CDP": {
+     "26": 1195
+    },
+    "Santa Clarita city": {
+     "27": 220119,
+     "30": 8554
+    },
+    "Stevenson Ranch CDP": {
+     "27": 20178
+    },
+    "Val Verde CDP": {
+     "26": 2399
+    },
+    "other (unincorporated, no CDP)": {
+     "27": 14219,
+     "26": 90,
+     "30": 103
+    }
+   },
+   "checks": {
+    "unassignedBlocks": 0,
+    "unassignedPop": 0,
+    "filledForGeometry": 0,
+    "rawOutlineKm2": 1342.4572,
+    "rawDistrictsKm2": 1342.4572,
+    "droppedDegenerateRings": 0,
+    "finalOutlineKm2": 1342.4846,
+    "finalDistrictsKm2": 1342.4846,
+    "districtKm2": {
+     "27": 779.371,
+     "26": 468.812,
+     "30": 94.302
+    },
+    "grid": {
+     "gridPoints": 90000,
+     "insideOutline": 47941,
+     "gaps": 0,
+     "overlaps": 0,
+     "coveredOutsideOutline": 0
+    }
+   }
+  }
+ }
+}

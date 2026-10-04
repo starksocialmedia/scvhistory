@@ -39,6 +39,8 @@
 {% set W = voice ? voice : { now: 'The board now', past: 'Past members', left: 'who have left the board, or whose last term has no end recorded', gap: 'The archive does not yet hold the present board.', since: 'on the board since', earlier: 'Earlier on the board' } %}
 {#- The seat as each term names it: a legislature's number in force, otherwise the seat record's short name. -#}
 {% macro seatName(h, short, seatOf, voice) %}{{ voice and h.seatLabel ? h.seatLabel : (seatOf['h' ~ h.id] ? short[seatOf['h' ~ h.id]] : '') }}{% endmacro %}
+{#- A term's plan and district as one key ("2011-38"), which the district map's control filters on (_partials/civic/valley-districts). -#}
+{% macro vdKey(h) %}{{ (h.districtPlan.value ?? false) ? h.districtPlan.value ~ '-' ~ ((h.seatLabel|split(' ')|first)|replace({ 'th': '', 'st': '', 'nd': '', 'rd': '' })) : '' }}{% endmacro %}
 {% import _self as HB %}
 
 {% if part == 'control' %}
@@ -87,7 +89,8 @@
           {% if espans|length and (espans|last)[1] != '?' and sy <= (espans|last)[1] %}{% set espans = espans|slice(0, espans|length - 1)|merge([[(espans|last)[0], ey]]) %}{% else %}{% set espans = espans|merge([[sy, ey]]) %}{% endif %}
         {% endfor %}
         {% set office = offs ? (offs.officers[p.id ~ ''] ?? null) : null %}
-        <div class="hub-card" data-seat="{{ seatOf['h' ~ h.id] }}">
+        {% set vks = [] %}{% for x in holdings|filter(x => (x.holdingPerson|first).id ?? null == p.id) %}{% set k = HB.vdKey(x)|trim %}{% if k %}{% set vks = vks|merge([k]) %}{% endif %}{% endfor %}
+        <div class="hub-card" data-seat="{{ seatOf['h' ~ h.id] }}"{% if vks|length %} data-vd="{{ vks|join(' ') }}"{% endif %}>
           <a class="hub-ph" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if img %}{{ portrait.img(img, 0.8, p.title, true, 480) }}{% else %}<span>{{ p.title|split(' ')|map(w => w|slice(0,1))|join('')|slice(0,2) }}</span>{% endif %}</a>
           <div class="hub-tx">
             <a class="hub-n" href="{{ p.url }}">{{ p.title }}</a>
@@ -137,7 +140,8 @@
         {% set l = r.terms|last %}
         {% set pimg = 'featuredImage' in r.person.fieldLayout.customFields|map(f => f.handle) ? r.person.featuredImage.one() : null %}
         {% set pp = r.person.title|split(' ')|filter(x => x|trim) %}
-        <div class="rec-person hub-pp" data-seat="{{ pseats|join(' ') }}">
+        {% set vks = [] %}{% for x in r.terms %}{% set k = HB.vdKey(x)|trim %}{% if k %}{% set vks = vks|merge([k]) %}{% endif %}{% endfor %}
+        <div class="rec-person hub-pp" data-seat="{{ pseats|join(' ') }}"{% if vks|length %} data-vd="{{ vks|join(' ') }}"{% endif %}>
           <a class="th" href="{{ r.person.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait.img(pimg, 1, '', true, 120) }}{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : r.person.title|slice(0,1))|upper }}{% endif %}</a>
           <div style="min-width:0"><a class="n" href="{{ r.person.url }}">{{ r.person.title }}</a>
             <div class="r">{{ spans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}{{ pnames|length ? ' · ' ~ pnames|join(', ') : '' }}{{ ENDED[l.howEnded.value] is defined and l.howEnded.value not in ['expired', 'unknown', 'reelected'] ? ' · ' ~ ENDED[l.howEnded.value] : '' }}</div>

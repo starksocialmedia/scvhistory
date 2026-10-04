@@ -7,6 +7,13 @@
   not in the data file shows nothing.
 
     body   the organization
+
+  The map (Nathan, 4 October 2026: "the map should draw the valley with each district's share of it, coloured by
+  district, for whichever plan the reader is looking at"; "Same seat control as elsewhere: picking a district filters
+  the members and terms below"). Each plan's districts, cut to the valley from census blocks, are in
+  web/data/valley-districts/<chamber>-<plan>.geojson (scripts/import/build_valley_district_maps.py). Choosing a plan
+  redraws the map and narrows the members and the plan rows to that plan; choosing a district narrows them to it.
+  Every element carrying data-vd ("2011-38 2021-34") is filtered, on any tab.
 #}
 {% set VD = source('_data/valley-districts.json', ignore_missing = true)|json_decode %}
 {% set B = VD.bodies[body.slug] ?? null %}
@@ -17,17 +24,35 @@
     {%- set k = h.districtPlan.value ~ '-' ~ ((h.seatLabel|split(' ')|first)|replace({ 'th': '', 'st': '', 'nd': '', 'rd': '' })) -%}
     {%- set byKey = byKey|merge({ (k): (byKey[k] ?? [])|merge([h]) }) -%}
   {%- endfor -%}
+  {%- set CHAMBER = { 'california-state-assembly': 'assembly', 'california-state-senate': 'senate', 'united-states-house-of-representatives': 'house' }[body.slug] ?? null -%}
+  {%- set cur = B.current ?? (B.plans|last).plan -%}
+  {%- set PAL = ['#17254C', '#C4A031', '#4F7F6A', '#A0522D', '#8A93A3'] -%}
+  {%- set mapPlans = {} -%}
+  {#- Keys are 'p1991' and so on: Twig renumbers numeric keys when merging. -#}
+  {%- for P in B.plans -%}{%- set mapPlans = mapPlans|merge({ ('p' ~ P.plan): { years: P.years, districts: P.districts|map((X, i) => { n: X.n, share: X.share, colour: PAL[i] ?? '#8A93A3' }) } }) -%}{%- endfor -%}
   <h2 class="rec-h2 hub-h" id="districts">Districts covering the valley</h2>
+  {% if CHAMBER %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <div class="vdm" id="vdm{{ body.id }}" data-chamber="{{ CHAMBER }}" data-current="{{ cur }}">
+    <div class="vdm-plans" role="group" aria-label="Choose a set of district lines">
+      <button type="button" data-vd-all aria-pressed="true">Every plan</button>
+      {% for P in B.plans %}<button type="button" data-vd-plan-btn="{{ P.plan }}" aria-pressed="false">{{ P.years|replace({ 'December ': '', 'January ': '' }) }}</button>{% endfor %}
+    </div>
+    <div class="vdm-dists" role="group" aria-label="Choose a district"></div>
+    <div class="vdm-map" role="img" aria-label="Map of the districts covering the Santa Clarita Valley"></div>
+    <p class="vdm-cap"></p>
+  </div>
+  {% endif %}
   <p class="hub-lede">Every district that has held any part of the valley, under each set of lines since 1992, with the share of the valley's people it held and the members who sat for it while it did. The district holding the largest share is marked; the others held the rest of the valley at the same time, so in those years the valley had more than one member in this chamber.</p>
   <div class="vd">
     {% for P in B.plans|reverse %}
-      <div class="vd-row">
+      <div class="vd-row" data-vd-plan="{{ P.plan }}">
         <div class="vd-k">{{ P.years }}<span>{{ P.label }}</span></div>
         <div class="vd-v">
           {% for X in P.districts %}
             {% set sfx = X.n % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][X.n % 10] ?? 'th') %}
             {% set ms = byKey[P.plan ~ '-' ~ X.n] ?? [] %}
-            <div class="{{ X.main ? 'vd-main' : 'vd-part' }}">
+            <div class="{{ X.main ? 'vd-main' : 'vd-part' }}" data-vd-d="{{ P.plan ~ '-' ~ X.n }}">
               <b>{{ X.n ~ sfx }} {{ B.noun }}</b> <span class="vd-sh">{{ X.share == 'the whole valley' ? 'the whole valley' : X.share ~ ' of the valley' }}{{ X.main and P.districts|length > 1 ? ', the largest share' : '' }}</span>
               <div>{{ X.covers }}.</div>
               {% if X.continues ?? null %}<div class="vd-c">{{ X.continues }}</div>{% endif %}
@@ -45,8 +70,83 @@
   </div>
   {% if B.note ?? null %}<p class="hub-lede">{{ B.note }}</p>{% endif %}
   <p class="vd-src">{{ VD.method }} Sources: {{ VD.sources|join(' ') }}</p>
+{% if CHAMBER %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var box = document.getElementById({{ ('vdm' ~ body.id)|json_encode|raw }});
+  if (!box || typeof L === 'undefined') { return; }
+  var PLANS = {{ mapPlans|json_encode|raw }}, CH = box.getAttribute('data-chamber'), NOUN = {{ B.noun|json_encode|raw }};
+  var BASE = {{ (siteUrl ~ 'data/valley-districts/')|json_encode|raw }};
+  var el = box.querySelector('.vdm-map'), cap = box.querySelector('.vdm-cap'), dists = box.querySelector('.vdm-dists');
+  var map = L.map(el, { scrollWheelZoom: false, zoomSnap: 0.25 });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+  map.setView([34.42, -118.52], 10.5);
+  var layer = null, layers = {}, plan = null, dist = '';
+  function ord(n){ var s = ['th','st','nd','rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+  function colourOf(p, n){ var c = '#8A93A3'; (PLANS['p' + p].districts || []).forEach(function(d){ if (d.n == n) { c = d.colour; } }); return c; }
+  /* A district holding valley land but none of its people (a few slivers in 1991 and 2001) is not drawn or offered. */
+  function style(f){ var n = f.properties.district, on = !dist || (dist == n && (!plan || plan === shown));
+    if (f.properties.role !== 'outline' && !f.properties.pop) { return { stroke: false, fillOpacity: 0 }; }
+    return f.properties.role === 'outline' ? { color: '#17254C', weight: 2.5, dashArray: '6 5', fill: false } :
+      { color: '#fff', weight: 1.2, fillColor: colourOf(shown, n), fillOpacity: on ? .62 : .12 }; }
+  /* The members and plan rows below, on any tab: a card is shown when one of its terms (data-vd) is in the plan, or is the district. */
+  function filter(){
+    document.querySelectorAll('[data-vd]').forEach(function(c){ var ks = ' ' + c.getAttribute('data-vd') + ' ';
+      var on = !plan ? true : (dist ? ks.indexOf(' ' + plan + '-' + dist + ' ') > -1 : ks.indexOf(' ' + plan + '-') > -1); c.style.display = on ? '' : 'none'; });
+    document.querySelectorAll('[data-vd-plan]').forEach(function(r){ r.style.display = !plan || r.getAttribute('data-vd-plan') === plan ? '' : 'none'; });
+    document.querySelectorAll('[data-vd-d]').forEach(function(d){ d.classList.toggle('vd-on', !!(plan && dist && d.getAttribute('data-vd-d') === plan + '-' + dist)); });
+    box.querySelectorAll('[data-vd-plan-btn]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-vd-plan-btn') === plan ? 'true' : 'false'); });
+    box.querySelector('[data-vd-all]').setAttribute('aria-pressed', plan ? 'false' : 'true');
+    dists.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', (b.getAttribute('data-d') || '') === dist ? 'true' : 'false'); });
+    try { var u = new URL(location.href); plan ? u.searchParams.set('plan', plan) : u.searchParams.delete('plan'); dist ? u.searchParams.set('district', dist) : u.searchParams.delete('district'); history.replaceState(null, '', u); } catch (e) {}
+    if (layer) { layer.setStyle(style); }
+  }
+  function draw(p){
+    var P = PLANS['p' + p];
+    dists.innerHTML = '<button type="button" data-d="" aria-pressed="true">All districts</button>' + P.districts.map(function(d){
+      return '<button type="button" data-d="' + d.n + '" aria-pressed="false"><i style="background:' + d.colour + '"></i>' + ord(d.n) + ' &middot; ' + d.share + '</button>'; }).join('');
+    dists.querySelectorAll('button').forEach(function(b){ b.addEventListener('click', function(){ dist = b.getAttribute('data-d') || ''; if (!plan) { plan = p; } filter(); }); });
+    cap.textContent = P.years + '. ' + P.districts.length + (P.districts.length === 1 ? ' district' : ' districts') + ' held part of the valley.';
+    if (layers[p] === undefined) {
+      layers[p] = null;
+      fetch(BASE + CH + '-' + p + '.geojson').then(function(r){ if (!r.ok) { throw new Error(r.status); } return r.json(); }).then(function(g){
+        layers[p] = g; if (p === shown) { put(g); }
+      }).catch(function(){ if (p === shown) { if (layer) { map.removeLayer(layer); layer = null; } cap.textContent += ' The map of these lines is not drawn yet.'; } });
+    } else if (layers[p]) { put(layers[p]); }
+  }
+  var shown = null;
+  function put(g){
+    if (layer) { map.removeLayer(layer); }
+    layer = L.geoJSON(g, { style: style, onEachFeature: function(f, l){
+      if (f.properties.role === 'outline' || !f.properties.pop) { return; }
+      l.bindTooltip(ord(f.properties.district) + ' ' + NOUN + ', ' + f.properties.share + ' per cent of the valley', { sticky: true });
+      l.on('click', function(){ dist = String(f.properties.district); if (!plan) { plan = shown; } filter(); });
+    } }).addTo(map);
+    var o = (g.features || []).filter(function(f){ return f.properties.role === 'outline'; });
+    map.fitBounds(o.length ? L.geoJSON(o).getBounds() : layer.getBounds(), { padding: [10, 10] });
+  }
+  function choose(p){ shown = p; draw(p); }
+  box.querySelectorAll('[data-vd-plan-btn]').forEach(function(b){ b.addEventListener('click', function(){ plan = b.getAttribute('data-vd-plan-btn'); dist = ''; choose(plan); filter(); }); });
+  box.querySelector('[data-vd-all]').addEventListener('click', function(){ plan = null; dist = ''; choose(box.getAttribute('data-current')); filter(); });
+  var q = new URLSearchParams(location.search), qp = q.get('plan');
+  if (qp && PLANS['p' + qp]) { plan = qp; dist = q.get('district') || ''; choose(qp); } else { choose(box.getAttribute('data-current')); }
+  /* The past members are further down the page, in the History pane: filter once they are parsed. */
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', filter); } else { filter(); }
+  document.addEventListener('scv:tab', function(){ setTimeout(function(){ map.invalidateSize(); if (layer) { var o = (layers[shown] && layers[shown].features || []).filter(function(f){ return f.properties.role === 'outline'; }); if (o.length) { map.fitBounds(L.geoJSON(o).getBounds(), { padding: [10, 10] }); } } }, 30); });
+})();
+</script>
+{% endif %}
 {% endif %}
 {% css %}
+.vdm{background:#fff;border:1px solid #E2E4E8;padding:10px;margin:0 0 18px}
+.vdm-plans,.vdm-dists{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
+.vdm-plans button,.vdm-dists button{border:1px solid rgba(23,37,76,.25);background:#fff;color:#17254C;padding:6px 12px;border-radius:14px;font-size:13px;cursor:pointer;font-family:'Public Sans',system-ui,sans-serif}
+.vdm-plans button[aria-pressed="true"],.vdm-dists button[aria-pressed="true"]{background:#17254C;color:#fff;border-color:#17254C}
+.vdm-dists i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.vdm-map{height:440px;background:#EEF0F4}
+.vdm-cap{font-size:12.5px;color:#5B6472;margin:6px 0 0;line-height:1.5}
+.vd-on{background:#FDF7EA;outline:2px solid #C4A031;outline-offset:4px}
 .vd{border-top:1px solid #E2E4E8;margin:0 0 18px}
 .vd-row{display:grid;grid-template-columns:220px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid #E2E4E8}
 @media(max-width:640px){.vd-row{grid-template-columns:1fr;gap:6px}}

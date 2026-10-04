@@ -1,3 +1,5 @@
+> **Superseded figures (4 October 2026, later).** The shares below used the Census Bureau's Newhall division plus Agua Dulce, which left out City of Santa Clarita residents in eastern Canyon Country (12,778 in 2010, 13,364 in 2020). The corrected figures, with the whole City counted, are in inventory/review/valley-district-maps-2026-10-04.md and web/data/valley-districts/index.json, and are what the pages show. Three descriptions also changed: under the 2011 lines the 38th held the whole City and the 36th only unincorporated land; under the 1991 lines the 36th and 17th were the City and Agua Dulce; under the 2025 lines the 30th takes the City's eastern and southeastern edge, about 8,600 City residents, not 4,200.
+
 # The valley's seats in the Assembly, State Senate and U.S. House, 1992 to 2026
 
 Prepared 4 October 2026 by Claude (research subagent) for Nathan. Research only: nothing was written to the database or templates.

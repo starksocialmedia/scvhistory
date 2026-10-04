@@ -1,0 +1,277 @@
+{
+ "_about": "The Santa Clarita Valley's share of each Assembly, State Senate and U.S. House district, by plan, with one GeoJSON per chamber and plan for maps. Built by scripts/import/build_valley_district_maps.py on 4 October 2026 (Claude, research subagent). Report: inventory/review/valley-district-maps-2026-10-04.md.",
+ "valleyDefinition": "Census Newhall CCD (county subdivision 92110) plus Agua Dulce CDP plus every census block inside the City of Santa Clarita as the census of that year drew it. Acton is excluded. Agua Dulce was not a CDP in 2000; on 2000 blocks it is the blocks whose interior point lies inside the 2010 Agua Dulce CDP.",
+ "method": "Each census block in the valley assigned to its district by the official block equivalency file for the plan (1991 plan on 2000 blocks, Statewide Database; 2001 and 2011 plans on 2010 blocks, Statewide Database; 2021 plan on 2020 blocks, Census Bureau 2022 SLD and CD118 equivalency files; 2025 congressional map on 2020 blocks, AB 604 equivalency file). Population is the block POP100 of that census. Geometry: TIGER/Line block polygons dissolved by district, simplified with Douglas-Peucker at 0.0003 degrees along shared borders, coordinates rounded to 5 decimals (WGS84 / NAD83 longitude, latitude). share is percent of the valley population, one decimal; main marks the largest share.",
+ "files": {
+  "assembly-1991": {
+   "file": "assembly-1991.geojson",
+   "chamber": "assembly",
+   "plan": "1991",
+   "planNote": "1991 plan (Special Masters; elections 1992 to 2000)",
+   "populationBasis": "2000 Census",
+   "valleyPop": 202423,
+   "districts": {
+    "36": {
+     "pop": 168974,
+     "share": 83.5,
+     "main": true
+    },
+    "38": {
+     "pop": 33449,
+     "share": 16.5,
+     "main": false
+    },
+    "44": {
+     "pop": 0,
+     "share": 0.0,
+     "main": false
+    }
+   }
+  },
+  "assembly-2001": {
+   "file": "assembly-2001.geojson",
+   "chamber": "assembly",
+   "plan": "2001",
+   "planNote": "2001 plan (Legislature; elections 2002 to 2010)",
+   "populationBasis": "2010 Census",
+   "valleyPop": 270450,
+   "districts": {
+    "38": {
+     "pop": 235419,
+     "share": 87.0,
+     "main": true
+    },
+    "37": {
+     "pop": 35031,
+     "share": 13.0,
+     "main": false
+    },
+    "36": {
+     "pop": 0,
+     "share": 0.0,
+     "main": false
+    }
+   }
+  },
+  "assembly-2011": {
+   "file": "assembly-2011.geojson",
+   "chamber": "assembly",
+   "plan": "2011",
+   "planNote": "2011 plan (Citizens Redistricting Commission; elections 2012 to 2020)",
+   "populationBasis": "2010 Census",
+   "valleyPop": 270450,
+   "districts": {
+    "38": {
+     "pop": 251669,
+     "share": 93.1,
+     "main": true
+    },
+    "36": {
+     "pop": 18781,
+     "share": 6.9,
+     "main": false
+    }
+   }
+  },
+  "assembly-2021": {
+   "file": "assembly-2021.geojson",
+   "chamber": "assembly",
+   "plan": "2021",
+   "planNote": "2021 plan (Citizens Redistricting Commission; elections 2022 on)",
+   "populationBasis": "2020 Census",
+   "valleyPop": 290281,
+   "districts": {
+    "40": {
+     "pop": 285083,
+     "share": 98.2,
+     "main": true
+    },
+    "34": {
+     "pop": 5198,
+     "share": 1.8,
+     "main": false
+    }
+   }
+  },
+  "senate-1991": {
+   "file": "senate-1991.geojson",
+   "chamber": "senate",
+   "plan": "1991",
+   "planNote": "1991 plan (Special Masters; elections 1992 to 2000)",
+   "populationBasis": "2000 Census",
+   "valleyPop": 202423,
+   "districts": {
+    "17": {
+     "pop": 168974,
+     "share": 83.5,
+     "main": true
+    },
+    "19": {
+     "pop": 33449,
+     "share": 16.5,
+     "main": false
+    },
+    "21": {
+     "pop": 0,
+     "share": 0.0,
+     "main": false
+    }
+   }
+  },
+  "senate-2001": {
+   "file": "senate-2001.geojson",
+   "chamber": "senate",
+   "plan": "2001",
+   "planNote": "2001 plan (Legislature; elections 2002 to 2010)",
+   "populationBasis": "2010 Census",
+   "valleyPop": 270450,
+   "districts": {
+    "17": {
+     "pop": 200369,
+     "share": 74.1,
+     "main": true
+    },
+    "19": {
+     "pop": 70081,
+     "share": 25.9,
+     "main": false
+    }
+   }
+  },
+  "senate-2011": {
+   "file": "senate-2011.geojson",
+   "chamber": "senate",
+   "plan": "2011",
+   "planNote": "2011 plan (Citizens Redistricting Commission; elections 2012 to 2020)",
+   "populationBasis": "2010 Census",
+   "valleyPop": 270450,
+   "districts": {
+    "21": {
+     "pop": 215375,
+     "share": 79.6,
+     "main": true
+    },
+    "27": {
+     "pop": 55075,
+     "share": 20.4,
+     "main": false
+    }
+   }
+  },
+  "senate-2021": {
+   "file": "senate-2021.geojson",
+   "chamber": "senate",
+   "plan": "2021",
+   "planNote": "2021 plan (Citizens Redistricting Commission; elections 2022 on)",
+   "populationBasis": "2020 Census",
+   "valleyPop": 290281,
+   "districts": {
+    "23": {
+     "pop": 290281,
+     "share": 100.0,
+     "main": true
+    }
+   }
+  },
+  "house-1991": {
+   "file": "house-1991.geojson",
+   "chamber": "house",
+   "plan": "1991",
+   "planNote": "1991 plan (Special Masters; elections 1992 to 2000)",
+   "populationBasis": "2000 Census",
+   "valleyPop": 202423,
+   "districts": {
+    "25": {
+     "pop": 202423,
+     "share": 100.0,
+     "main": true
+    },
+    "27": {
+     "pop": 0,
+     "share": 0.0,
+     "main": false
+    }
+   }
+  },
+  "house-2001": {
+   "file": "house-2001.geojson",
+   "chamber": "house",
+   "plan": "2001",
+   "planNote": "2001 plan (Legislature; elections 2002 to 2010)",
+   "populationBasis": "2010 Census",
+   "valleyPop": 270450,
+   "districts": {
+    "25": {
+     "pop": 269385,
+     "share": 99.6,
+     "main": true
+    },
+    "22": {
+     "pop": 1065,
+     "share": 0.4,
+     "main": false
+    },
+    "27": {
+     "pop": 0,
+     "share": 0.0,
+     "main": false
+    }
+   }
+  },
+  "house-2011": {
+   "file": "house-2011.geojson",
+   "chamber": "house",
+   "plan": "2011",
+   "planNote": "2011 plan (Citizens Redistricting Commission; elections 2012 to 2020)",
+   "populationBasis": "2010 Census",
+   "valleyPop": 270450,
+   "districts": {
+    "25": {
+     "pop": 270450,
+     "share": 100.0,
+     "main": true
+    }
+   }
+  },
+  "house-2021": {
+   "file": "house-2021.geojson",
+   "chamber": "house",
+   "plan": "2021",
+   "planNote": "2021 plan (Citizens Redistricting Commission; elections 2022 on)",
+   "populationBasis": "2020 Census",
+   "valleyPop": 290281,
+   "districts": {
+    "27": {
+     "pop": 290281,
+     "share": 100.0,
+     "main": true
+    }
+   }
+  },
+  "house-2025": {
+   "file": "house-2025.geojson",
+   "chamber": "house",
+   "plan": "2025",
+   "planNote": "2025 congressional map (AB 604, enacted by Proposition 50; elections from 2026)",
+   "populationBasis": "2020 Census",
+   "valleyPop": 290281,
+   "districts": {
+    "27": {
+     "pop": 255552,
+     "share": 88.0,
+     "main": true
+    },
+    "26": {
+     "pop": 22621,
+     "share": 7.8,
+     "main": false
+    },
+    "30": {
+     "pop": 12108,
+     "share": 4.2,
+     "main": false
+    }
+   }
+  }
+ }
+}

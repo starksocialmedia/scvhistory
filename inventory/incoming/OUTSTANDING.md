@@ -42,6 +42,12 @@ imported after editing, or an alternative. Keep it or drop it; nothing waits on 
 | BOM-pg14-shutterstock-185944559.jpg | A Shutterstock image. Its licence would need to be in hand before use. |
 | Firefly.jpg, Firefly (1).jpg, Firefly (2).jpg, grok-image-fb994b75-1760-4be5-a4da-3623d2bc4605.jpg | Generated images. Under the banner rule they are decoration only, in web/banners and never assets. None matches a banner file now. |
 
+## Arrived 4 October, in hand
+
+| File | Why |
+|---|---|
+| NCWD.png, CLWD.png | Historical marks of Newhall County Water District and Castaic Lake Water Agency; the model for a dissolved body's mark is being settled first. |
+
 ## 3. Not identified
 
 The file name does not say what these are for. Nathan to say, or move them to `done/` if they are
