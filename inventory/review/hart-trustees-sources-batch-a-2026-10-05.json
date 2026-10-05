@@ -1,0 +1,2103 @@
+{
+ "made": "2026-10-05",
+ "by": "Claude Code research agent (batch A), read only: nothing written to the database, no git",
+ "body": "William S. Hart Union High School District #21588",
+ "saved_pages": "inventory/news/hart-trustees-2026-10-05/batch-a/ (manifest.json)",
+ "method": {
+  "archive": "ddev craft exec, read only: each person entry's serialized fields, office holdings related to it, entries related to it, and a Craft search of entries, assets and categories for each surname.",
+  "mirror": "Python over every .htm, .html, .txt, .shtml, .asp, .php file and every flipbook search/bookText.xml under /Volumes/Reggie/SCVHistory/scvhistory.com (84,019 files), bytes decoded utf-8 or cp1252, case-insensitive regex per person (patterns in search_terms). Hits read in context; yearbook and program board pages read for every Hart yearbook 1949 to 1971 on the mirror, with page images read where the OCR was doubtful (1952 program p. 2, 1955 yearbook p. 10, 1950 yearbook p. 77).",
+  "la_times": "latimes.com site search, oldest first, up to 5 result pages per query, each archive (la-xpm) story fetched and its articleBody searched for the name with a local place word. The online archive begins in 1985, so it covers only later lives and deaths.",
+  "not_used": "Wikipedia (not used). newspapers.com, ProQuest, the Signal for 1945 to 1970 (not online), Hart board minutes (not available)."
+ },
+ "search_terms": {
+  "bonelli": "bonelli",
+  "brown": "(charles|chas.|c.) (m.)? brown",
+  "donaldson": "donaldson",
+  "frew": "\\bfrew\\b",
+  "gilmour": "gilmour|mildred gilmore|mrs. gilmore",
+  "dillenbeck": "dillenb[ae]ck|dillenbach",
+  "cook": "(walter|walt|w.) (r.)? cook",
+  "allen": "chester (a.)? allen|c. a. allen|chet allen",
+  "blackwell": "blackwell",
+  "hadley": "hadley|charleton",
+  "lombardi": "lombardi",
+  "gulley": "gulley|howard gull",
+  "malam": "\\bmalam\\b",
+  "adams": "adrian (x.)? adams|a. adams",
+  "palmer": "edith (x.)? palmer|mrs. (x)? palmer",
+  "ross": "w. d. ross|dr. (x.)* ross|(william|wm.|walter|wallace|warren) (d.)? ross",
+  "huntsinger": "huntsinger",
+  "schmidt": "earl (x.)? schmidt|e. schmidt"
+ },
+ "persons": [
+  {
+   "id": 28641,
+   "record_title": "Mary Bonelli",
+   "holding": 28725,
+   "names": [
+    "Mary P. Bonelli",
+    "Mrs. Mary P. Bonelli",
+    "Mary Bonelli"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found in any source.",
+   "in_valley": [
+    "Saugus School District trustee when the high school district formed (roster note, 1945).",
+    "\"Gracious lady of the Bonelli Ranch\" (1955 yearbook caption). No source states her relation to William G. Bonelli (1895-1970) or his son; the archive holds no such link.",
+    "Contributor to the Newhall-Saugus Republican Women's Club cookbook, 1964 (name only).",
+    "Listed as a donor to the Saugus Station move fund in a clipping kept in the SCV Historical Society minutes book for the 1980s (name only, undated in the OCR)."
+   ],
+   "archive_now": "Person #28641: fullName, alias \"Mary P. Bonelli\", role, era, provenance only; no body. Holding #28725: 1945-03-09 to 1957, elected, howEnded unknown, roster footnotes. No other record relates to her. 14 photograph records name Bonelli Stadium or Ranch; none names her.",
+   "board_service": {
+    "as_held": "1945-03-09 to 1957 (roster: first board to the 1956 board)",
+    "sources_agree": "The 1949 to 1955 yearbooks and the 1952 program list her on every board, consistent with the roster.",
+    "disagreement": null
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Mary P. Bonelli, Saugus School District ... All five of the new trustees were current trustees in their respective elementary districts except for Frew"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "*Mrs. Mary P. Bonelli"
+    },
+    {
+     "citation": "Tomahawk 1949, Wm. S. Hart Union High School yearbook, flipbook page 17 (printed p. 13), SCVHistory.com, /scvhistory/sh4901.htm",
+     "path": "/scvhistory/files/sh4901/files/search/bookText.xml (Index 17)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sh4901-booktext-index17.txt",
+     "kind": "lifetime (1949)",
+     "key": "sh4901",
+     "quote": "Seated: Mrs. Mildred 0. Gilmour; Mrs. Mary P. Bonelli."
+    },
+    {
+     "citation": "Tomahawk 1950, Wm. S. Hart Union High School yearbook, flipbook page 5, SCVHistory.com, /scvhistory/files/hart1950yearbook/",
+     "path": "/scvhistory/files/hart1950yearbook/files/basic-html/page5.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1950yearbook-files-basic-html-page5.html",
+     "kind": "lifetime (1950)",
+     "key": "yb1950",
+     "quote": "Mrs. Mary P. Bonelli"
+    },
+    {
+     "citation": "Tomahawk 1951, Wm. S. Hart Union High School yearbook, flipbook page 6, SCVHistory.com, /scvhistory/files/hart1951yearbook/",
+     "path": "/scvhistory/files/hart1951yearbook/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1951yearbook-files-basic-html-page6.html",
+     "kind": "lifetime (1951)",
+     "key": "yb1951",
+     "quote": "MRS. MARY P. [rest of name lost in OCR]"
+    },
+    {
+     "citation": "Tomahawk 1952, Wm. S. Hart Union High School yearbook, flipbook page 8 (printed p. 4), SCVHistory.com, /scvhistory/files/hart1952yearbook/",
+     "path": "/scvhistory/files/hart1952yearbook/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1952yearbook-files-basic-html-page8.html",
+     "kind": "lifetime (1952)",
+     "key": "yb1952",
+     "quote": "Bonelli Mary P · Member"
+    },
+    {
+     "citation": "Tomahawk 1953, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1953yearbook/",
+     "path": "/scvhistory/files/hart1953yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1953yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1953)",
+     "key": "yb1953",
+     "quote": "and Mary Bonelli, member."
+    },
+    {
+     "citation": "Tomahawk 1954, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1954yearbook/",
+     "path": "/scvhistory/files/hart1954yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1954yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1954)",
+     "key": "yb1954",
+     "quote": "Mrs. Mary P. Bonelli"
+    },
+    {
+     "citation": "Tomahawk 1955, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1955yearbook/",
+     "path": "/scvhistory/files/hart1955yearbook/files/mobile/10.jpg (image; OCR basic-html/page10.html scrambles the columns)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1955yearbook-files-mobile-10.jpg",
+     "kind": "lifetime (1955)",
+     "key": "yb1955",
+     "quote": "Gracious lady of the Bonelli Ranch is an active Board Member, Mrs. Mary P. Bonelli, who was away and could not be photographed casually."
+    },
+    {
+     "citation": "Mm-mm, Is That Good! Newhall-Saugus Republican Women's Club cookbook, 1964, contributors list, SCVHistory.com, /scvhistory/rwf1964cookbook.htm",
+     "path": "/scvhistory/rwf1964cookbook.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-rwf1964cookbook.htm",
+     "kind": "lifetime (1964)",
+     "quote": "Joyce Bonelli Mary Bonelli Mary A. Booth",
+     "note": "Identity by name only."
+    },
+    {
+     "citation": "Saugus Station move fund donor list (newspaper clipping), in Santa Clarita Valley Historical Society minutes, 1980-1989, flipbook page Index 109, SCVHistory.com, /scvhistory/scvhs19801989minutes.htm",
+     "path": "/scvhistory/files/scvhs19801989minutes/files/search/bookText.xml (Index 109)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-scvhs19801989minutes-booktext-index109.txt",
+     "kind": "lifetime if she was living; date of the clipping not legible in the OCR",
+     "quote": "*Mary P. Bonelli",
+     "note": "Identity by name only."
+    },
+    {
+     "citation": "Leon Worden, caption, \"A.B. Perkins Addresses 1949 Graduates,\" SCVHistory.com, /scvhistory/ap0815.htm",
+     "path": "/scvhistory/ap0815.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ap0815.htm",
+     "kind": "retrospective",
+     "quote": "Mary Bonelli, representing Saugus",
+     "note": "Restates the roster; not independent."
+    }
+   ],
+   "lifetime_count": 8,
+   "lifetime_count_note": "Eight lifetime documents name her as a trustee (1949 to 1955 yearbooks, 1952 program); two more name a Mary Bonelli without the office.",
+   "recommendation": "Full profile, short: board service 1945 to 1956 and the Saugus district seat. Do not state a relation to William G. Bonelli; it is a lead only.",
+   "not_found": "Birth, death, maiden name, spouse; her Saugus School District service dates; why she left in 1956 or 1957. Searched: mirror for bonelli, \"mary p\", \"mrs. (william|wm|w. g.) bonelli\", \"bonelli, mary\", \"wife/mother/widow\" near Bonelli; LA Times archive \"Bonelli\" (oldest first, 5 pages, 50 archive stories, none naming her)."
+  },
+  {
+   "id": 28643,
+   "record_title": "Charles Brown",
+   "holding": 28727,
+   "names": [
+    "Charles Brown",
+    "Charles M. Brown",
+    "C.M. Brown"
+   ],
+   "life_dates": "Died before September 12, 1952 (1952 program marks him \"**Deceased\").",
+   "life_dates_note": "Birth not found.",
+   "in_valley": [
+    "Mint Canyon and Sulphur Springs school district trustee in 1945 (roster note).",
+    "\"Prominent resident of the canyon\" (Mint Canyon) and first president of the Mint Canyon Lions Club, organized January 9, 1948 (Signal, January 15, 1948)."
+   ],
+   "archive_now": "Person #28643: title only, no alias, no body. Holding #28727: 1945-03-09 to 1948, elected, howEnded unknown.",
+   "board_service": {
+    "as_held": "1945-03-09 to 1948",
+    "sources_agree": "The Signal of January 15, 1948 calls him \"a trustee of the William S. Hart High School District\"; the 1949 yearbook board (1948-49) does not include him. Consistent with the roster.",
+    "disagreement": "Not a disagreement, but the end is unexplained: he may have left by death or at an election. Deceased by September 1952."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Charles Brown, Mint Canyon and Sulphur Springs School Districts"
+    },
+    {
+     "citation": "\"C.M. Brown Heads Mint Lions Club,\" The Newhall Signal, January 15, 1948, transcribed on \"Brass Bell, Mounted, Canyon Country Lions Club,\" SCVHistory.com, /scvhistory/hb1905.htm",
+     "path": "/scvhistory/hb1905.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb1905.htm",
+     "kind": "lifetime (1948)",
+     "key": "hb1905",
+     "quote": "Charles M. Brown, prominent resident of the canyon, and a trustee of the William S. Hart High School District, was selected as the club's first president."
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime of the board; posthumous for him (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "**Mr. Charles Brown"
+    }
+   ],
+   "lifetime_count": 1,
+   "lifetime_count_note": "One source from his lifetime (Signal, January 1948). The 1952 program records his death.",
+   "recommendation": "Retrospective profile, said so: two lines (Mint Canyon seat on the first board; first Mint Canyon Lions president; died by 1952). Middle initial M rests on the 1948 Signal alone.",
+   "not_found": "Dates of birth and death, occupation. Searched: mirror for \"charles (m.) brown\", \"c. m. brown\", \"chas. brown\" (hits are other men: Signal founder Charles Brown d. 1923, students); LA Times not applicable (no online archive before 1985)."
+  },
+  {
+   "id": 28645,
+   "record_title": "S. S. Donaldson",
+   "holding": 28729,
+   "names": [
+    "S.S. Donaldson",
+    "Mr. S. S. Donaldson"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Newhall School District trustee in 1945 (roster note; Worden 1997).",
+    "Gave the address of welcome at the American Legion gold star citation program, Newhall, May 1946 (Signal, May 16, 1946).",
+    "Listed with the Southern California Gas Co. in the 1958 telephone directory."
+   ],
+   "archive_now": "Person #28645: alias \"S.S. Donaldson\"; no body. Holding #28729: 1945-03-09 to 1953, elected, howEnded unknown.",
+   "board_service": {
+    "as_held": "1945-03-09 to 1953 (roster: last on the 1952 board)",
+    "sources_agree": "Secretary in the 1951 yearbook; \"President of the Board\" in the 1952 yearbook.",
+    "disagreement": "The 1952 dedication program (September 12, 1952) lists him without the asterisk for \"Members Present\", while Cook, Bonelli, Allen, Gilmour and Hadley are starred. Hadley is starred although the roster seats him only in 1953. This may mean Donaldson had left and Hadley had joined by September 1952, or only that Donaldson was absent that night. Footnote both; state neither."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "S.S. Donaldson, Newhall School District"
+    },
+    {
+     "citation": "Tomahawk 1949, Wm. S. Hart Union High School yearbook, flipbook page 17 (printed p. 13), SCVHistory.com, /scvhistory/sh4901.htm",
+     "path": "/scvhistory/files/sh4901/files/search/bookText.xml (Index 17)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sh4901-booktext-index17.txt",
+     "kind": "lifetime (1949)",
+     "key": "sh4901",
+     "quote": "Mr. S. S. Donaldson"
+    },
+    {
+     "citation": "Tomahawk 1950, Wm. S. Hart Union High School yearbook, flipbook page 5, SCVHistory.com, /scvhistory/files/hart1950yearbook/",
+     "path": "/scvhistory/files/hart1950yearbook/files/basic-html/page5.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1950yearbook-files-basic-html-page5.html",
+     "kind": "lifetime (1950)",
+     "key": "yb1950",
+     "quote": "Mr. S. S. Donaldson"
+    },
+    {
+     "citation": "Tomahawk 1951, Wm. S. Hart Union High School yearbook, flipbook page 6, SCVHistory.com, /scvhistory/files/hart1951yearbook/",
+     "path": "/scvhistory/files/hart1951yearbook/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1951yearbook-files-basic-html-page6.html",
+     "kind": "lifetime (1951)",
+     "key": "yb1951",
+     "quote": "MR. S. S. DONALDSON ... Secretary"
+    },
+    {
+     "citation": "Tomahawk 1952, Wm. S. Hart Union High School yearbook, flipbook page 8 (printed p. 4), SCVHistory.com, /scvhistory/files/hart1952yearbook/",
+     "path": "/scvhistory/files/hart1952yearbook/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1952yearbook-files-basic-html-page8.html",
+     "kind": "lifetime (1952)",
+     "key": "yb1952",
+     "quote": "S. S. Donaldson ... President of the Board"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "Mr. S. S. Donaldson [no asterisk]"
+    },
+    {
+     "citation": "\"Legion Gives Gold Star Citations,\" The Newhall Signal and Saugus Enterprise, May 16, 1946, transcribed on \"PFC Joseph B. Balsz,\" SCVHistory.com, /scvhistory/ww2_josephbbalsz.htm",
+     "path": "/scvhistory/ww2_josephbbalsz.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ww2_josephbbalsz.htm",
+     "kind": "lifetime (1946)",
+     "quote": "Among those presented to the audience were S.S. Donaldson, who made the address of welcome"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "Directory OCR; the address beside it belongs to the neighbouring column.",
+     "key": "dir1958",
+     "quote": "Donaldson S S So Calif Gas Co"
+    },
+    {
+     "citation": "Leon Worden, \"History of Newhall School,\" Old Town Newhall Gazette, September 1997 (last rev. 2020), SCVHistory.com, /scvhistory/newhallschool.htm",
+     "path": "/scvhistory/newhallschool.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-newhallschool.htm",
+     "kind": "retrospective",
+     "quote": "Donaldson was a sitting Newhall school board member"
+    },
+    {
+     "citation": "Bill Rice, \"Growing Up in Newhall in the 1950s,\" SCVHistory.com, /scvhistory/billrice1950s.htm",
+     "path": "/scvhistory/billrice1950s.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-billrice1950s.htm",
+     "kind": "retrospective (memoir)",
+     "quote": "There used to be two houses there, both owned by the Gas Co. ... Our next-door neighbors were the Donaldson family, Stu and Mary. Their four kids all graduated from Hart",
+     "note": "LEAD ONLY: the Gas Co. link fits the 1958 directory, but no source joins \"Stu\" to S.S. Do not expand the initials on this."
+    }
+   ],
+   "lifetime_count": 6,
+   "recommendation": "Full profile, short: Newhall seat on the first board, secretary 1950-51, president 1951-52; Legion address 1946; Gas Co. Keep the given names as initials.",
+   "not_found": "Given names, dates. Searched: mirror for donaldson with initials and given-name variants (stu, stuart, sam, samuel, stanley, sidney); LA Times \"Donaldson Newhall\" (see search log)."
+  },
+  {
+   "id": 28647,
+   "record_title": "Thomas Frew Jr.",
+   "holding": 28731,
+   "names": [
+    "Thomas M. Frew Jr.",
+    "T.M. Frew Jr.",
+    "Tom Frew Jr.",
+    "Thomas M. Frew III (aka Thomas Frew Jr.)",
+    "Tom Frew III",
+    "Thos M Frew Jr",
+    "Thomas McNaughton Frew (father, II)"
+   ],
+   "life_dates": "January 31, 1895 to August 17, 1963 (Leon Worden, AP0724). Ruth Newhall (1996) gives birth year 1896.",
+   "life_dates_note": "Disagreement on the birth year: footnote both. Neither cites a document.",
+   "in_valley": [
+    "Came to Newhall as a child in 1900 with his father, blacksmith Thomas McNaughton Frew II; served in World War I shoeing artillery horses; ran T.M. Frew & Son on Spruce Street (San Fernando Road), Newhall, after his father (Ruth Newhall 1996; Worden).",
+    "Converted the shop to a welding and machine shop, 1924 (City of Santa Clarita staff report, 2011).",
+    "Member, Newhall Chamber of Commerce from its founding, February 1923; Juvenile Welfare committee (Chamber minutes 1923).",
+    "A trustee of the American Legion theater corporation, 1940 (Bill Crowl, retrospective).",
+    "Newhall School District trustee for many years, several as president, retired by 1945 (roster note; Worden 1997, retrospective).",
+    "Among the sellers of the 23.86-acre Frew property added to William S. Hart Park, 1958 (County document)."
+   ],
+   "archive_now": "Person #28647: aliases \"Thomas M. Frew Jr.\", \"Thomas M. Frew\", \"T.M. Frew Jr.\"; no body. Holding #28731: 1945-03-09 to 1951, elected, resigned. Separate person #18783 \"Tom Frew\" (Tom Frew IV) carries an editorNote keeping the two apart. No record yet for Thomas M. Frew II.",
+   "board_service": {
+    "as_held": "1945-03-09 to 1951, resigned",
+    "sources_agree": "First president of the board, elected at the first meeting, March 28, 1945 (1952 program, quoting the minutes). The 1951 yearbook prints \"MR. T. M . FREW (resigned)\".",
+    "disagreement": "Worden's AP1535 caption says \"Tom Frew II was on the Newhall School Board\" in 1936, but his own AP0724 dates Tom II's death to August 11, 1928. The 1936 Newhall trustee was probably Tom III (Jr.); this is a second-hand error to note, not to repeat."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Thomas M. Frew Jr., Newhall School District ... except for Frew, who had retired from the Newhall board. ... Thomas M. Frew (resigned)"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "T. M. Frew, Jr., was elected president and Mildred M. Gilmour as secretary ... Mr. T. M. Frew, Jr."
+    },
+    {
+     "citation": "Tomahawk 1949, Wm. S. Hart Union High School yearbook, flipbook page 17 (printed p. 13), SCVHistory.com, /scvhistory/sh4901.htm",
+     "path": "/scvhistory/files/sh4901/files/search/bookText.xml (Index 17)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sh4901-booktext-index17.txt",
+     "kind": "lifetime (1949)",
+     "key": "sh4901",
+     "quote": "Mr. T. M. Frew"
+    },
+    {
+     "citation": "Tomahawk 1950, Wm. S. Hart Union High School yearbook, flipbook page 5, SCVHistory.com, /scvhistory/files/hart1950yearbook/",
+     "path": "/scvhistory/files/hart1950yearbook/files/basic-html/page5.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1950yearbook-files-basic-html-page5.html",
+     "kind": "lifetime (1950)",
+     "key": "yb1950",
+     "quote": "Mr. T. M. Frew"
+    },
+    {
+     "citation": "Tomahawk 1950, Wm. S. Hart Union High School yearbook, flipbook page 80 (printed p. 77, advertisements), SCVHistory.com, /scvhistory/files/hart1950yearbook/",
+     "path": "/scvhistory/files/hart1950yearbook/files/mobile/80.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1950yearbook-files-mobile-80.jpg",
+     "kind": "lifetime (1950)",
+     "key": "yb1950ad",
+     "quote": "T. M. FREW [advertisement: Congratulations on your fine annual]"
+    },
+    {
+     "citation": "Tomahawk 1951, Wm. S. Hart Union High School yearbook, flipbook page 6, SCVHistory.com, /scvhistory/files/hart1951yearbook/",
+     "path": "/scvhistory/files/hart1951yearbook/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1951yearbook-files-basic-html-page6.html",
+     "kind": "lifetime (1951)",
+     "key": "yb1951",
+     "quote": "MR. T. M . FREW (resigned)"
+    },
+    {
+     "citation": "Newhall Chamber of Commerce, minutes, February 21, 1923, SCVHistory.com, /scvhistory/chamber1923-022123.htm",
+     "path": "/scvhistory/chamber1923-022123.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-chamber1923-022123.htm",
+     "kind": "lifetime (1923)",
+     "quote": "Nominations for Secretary-Treasurer ... T.M. Frew Jr. (withdrew)"
+    },
+    {
+     "citation": "Newhall Chamber of Commerce, minutes, March 30, 1923, SCVHistory.com, /scvhistory/chamber1923-033023.htm",
+     "path": "/scvhistory/chamber1923-033023.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-chamber1923-033023.htm",
+     "kind": "lifetime (1923)",
+     "quote": "Juvenile Welfare — Mrs. A.G. Thibaudeau, Chairman; Mrs. Pearle B. Russell, Mrs. Evangeline Frew, W.J. Purrucker and T.M. Frew Jr."
+    },
+    {
+     "citation": "Newhall Chamber of Commerce, by-laws and member list, 1923, SCVHistory.com, /scvhistory/chamber1923-bylaws.htm",
+     "path": "/scvhistory/chamber1923-bylaws.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-chamber1923-bylaws.htm",
+     "kind": "lifetime (1923)",
+     "quote": "33 — T.M. Frew Sr. 34 — T.M. Frew Jr."
+    },
+    {
+     "citation": "Mary F. Brunner, comp., History of Newhall School (Newhall History Project, L.A. County Public Library, 1940), SCVHistory.com, /scvhistory/brunner1940newhallschool.htm",
+     "path": "/scvhistory/brunner1940newhallschool.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-brunner1940newhallschool.htm",
+     "kind": "lifetime (1940)",
+     "quote": "Sources of information (June 6, 1940): Mr. L.C. Dalbey, Princ., Mr. Thomas Frew, ...",
+     "note": "Tom II died 1928, so this Thomas Frew is Tom III (Jr.) or another family member; an inference."
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Frew Thos M Jr 24321 N Walnt ... Newhall 35-R"
+    },
+    {
+     "citation": "L.A. County, Notice of Intention to Purchase, proposed addition to William S. Hart Park, 1958, on \"Frew Property Purchase,\" SCVHistory.com, /scvhistory/hs5802.htm",
+     "path": "/scvhistory/files/hs5802/files/basic-html/index.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hs5802-files-basic-html-index.html",
+     "kind": "lifetime (1958)",
+     "quote": "for the sum of $82,500.00 from Thomas M, Frew, Jr,, et al"
+    },
+    {
+     "citation": "Ruth Newhall, \"The Accidental Blacksmiths Of Old Newhall,\" Old Town Newhall Gazette, December 1996, SCVHistory.com, /scvhistory/frew1296.htm",
+     "path": "/scvhistory/frew1296.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-frew1296.htm",
+     "kind": "retrospective (family account via Tom Frew IV)",
+     "quote": "Thomas III was born in 1896, so he was about four years old when they came to Newhall. ... only he became the blacksmith, and he hated it."
+    },
+    {
+     "citation": "Leon Worden, caption, \"Tom Frew's Blacksmith Shop,\" SCVHistory.com, /scvhistory/ap0724.htm",
+     "path": "/scvhistory/ap0724.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ap0724.htm",
+     "kind": "retrospective",
+     "quote": "One was Tom III, aka Thomas Frew Jr. (Jan. 31, 1895 - Aug. 17, 1963), took over the family business upon his father's death"
+    },
+    {
+     "citation": "City of Santa Clarita, Staff Report: Structures Under Consideration for Preservation (not adopted), August 2011, SCVHistory.com, /scvhistory/newhall-historic-structures.htm",
+     "path": "/scvhistory/newhall-historic-structures.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-newhall-historic-structures.htm",
+     "kind": "retrospective",
+     "quote": "In 1924 it was expanded when son Thomas Frew Jr. converted it to a welding and machine shop.",
+     "note": "The same report says Frew came in 1891, against 1900 in Newhall and Worden; the report is weak on dates."
+    },
+    {
+     "citation": "Bill Crowl, history of the American Theater, on \"American Theater,\" SCVHistory.com, /scvhistory/ap1516.htm",
+     "path": "/scvhistory/ap1516.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ap1516.htm",
+     "kind": "retrospective",
+     "quote": "This Board was comprised of Commander C.V. Clark, Jr., Vice-Commander (and Signal newspaper editor) Fred Trueblood, Tom Frew Jr., ..."
+    },
+    {
+     "citation": "Leon Worden, \"History of Newhall School,\" Old Town Newhall Gazette, September 1997, SCVHistory.com, /scvhistory/newhallschool.htm",
+     "path": "/scvhistory/newhallschool.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-newhallschool.htm",
+     "kind": "retrospective",
+     "quote": "Frew had already retired from a lengthy tenure on the Newhall board which included several years as president."
+    }
+   ],
+   "lifetime_count": 10,
+   "recommendation": "Full profile. Lead with the blacksmith and welding shop and Newhall civic life; the Hart presidency 1945 is the board fact. Footnote both birth years. Keep the Jr./III naming explained once.",
+   "not_found": "Newhall School District board dates; date of resignation from Hart in 1951; an obituary of 1963. Searched: mirror for frew with Jr., III, T.M., Thomas M., Tom; LA Times not applicable for 1963."
+  },
+  {
+   "id": 28649,
+   "record_title": "Mildred Gilmour",
+   "holding": 28733,
+   "names": [
+    "Mildred M. Gilmour",
+    "Mrs. Mildred Gilmour",
+    "Mildred Gilmore (1953 yearbook)",
+    "Mrs. Mildred 0. Gilmour (1949 OCR)"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Castaic School District trustee in 1945 (roster note).",
+    "A grandmother by 1955 (yearbook).",
+    "The Gilmour family of Hasley Canyon, Castaic (1958 directory) is a lead; no source names her in it."
+   ],
+   "archive_now": "Person #28649: no alias; no body. Holding #28733: 1945-03-09 to 1956, elected, howEnded unknown.",
+   "board_service": {
+    "as_held": "1945-03-09 to 1956",
+    "sources_agree": "First secretary of the board, March 28, 1945 (1952 program, minutes). President in the 1950 yearbook. On every yearbook board 1949 to 1955.",
+    "disagreement": null
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Mildred Gilmour, Castaic School District"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "Mildred M. Gilmour as secretary ... *Mrs. Mildred M. Gilmour"
+    },
+    {
+     "citation": "Tomahawk 1949, Wm. S. Hart Union High School yearbook, flipbook page 17 (printed p. 13), SCVHistory.com, /scvhistory/sh4901.htm",
+     "path": "/scvhistory/files/sh4901/files/search/bookText.xml (Index 17)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sh4901-booktext-index17.txt",
+     "kind": "lifetime (1949)",
+     "key": "sh4901",
+     "quote": "Seated: Mrs. Mildred 0. Gilmour"
+    },
+    {
+     "citation": "Tomahawk 1950, Wm. S. Hart Union High School yearbook, flipbook page 5, SCVHistory.com, /scvhistory/files/hart1950yearbook/",
+     "path": "/scvhistory/files/hart1950yearbook/files/basic-html/page5.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1950yearbook-files-basic-html-page5.html",
+     "kind": "lifetime (1950)",
+     "key": "yb1950",
+     "quote": "Mrs. Mildred Gilmour, President"
+    },
+    {
+     "citation": "Tomahawk 1951, Wm. S. Hart Union High School yearbook, flipbook page 6, SCVHistory.com, /scvhistory/files/hart1951yearbook/",
+     "path": "/scvhistory/files/hart1951yearbook/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1951yearbook-files-basic-html-page6.html",
+     "kind": "lifetime (1951)",
+     "key": "yb1951",
+     "quote": "MRS. MILDRED GILMOUR"
+    },
+    {
+     "citation": "Tomahawk 1952, Wm. S. Hart Union High School yearbook, flipbook page 8 (printed p. 4), SCVHistory.com, /scvhistory/files/hart1952yearbook/",
+     "path": "/scvhistory/files/hart1952yearbook/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1952yearbook-files-basic-html-page8.html",
+     "kind": "lifetime (1952)",
+     "key": "yb1952",
+     "quote": "Mildred G[ilmour], Member"
+    },
+    {
+     "citation": "Tomahawk 1953, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1953yearbook/",
+     "path": "/scvhistory/files/hart1953yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1953yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1953)",
+     "key": "yb1953",
+     "quote": "Mildred Gilmore, member"
+    },
+    {
+     "citation": "Tomahawk 1954, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1954yearbook/",
+     "path": "/scvhistory/files/hart1954yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1954yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1954)",
+     "key": "yb1954",
+     "quote": "Mrs. Mildred M. Gil- mour"
+    },
+    {
+     "citation": "Tomahawk 1955, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1955yearbook/",
+     "path": "/scvhistory/files/hart1955yearbook/files/mobile/10.jpg (image; OCR basic-html/page10.html scrambles the columns)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1955yearbook-files-mobile-10.jpg",
+     "kind": "lifetime (1955)",
+     "key": "yb1955",
+     "quote": "Children play an important role in the life of Board Member, Mrs. Mildred M. Gilmour, who after determining policies for school children is shown enjoying the demands of her grandson."
+    },
+    {
+     "citation": "Saugus Station move fund donor list, SCV Historical Society minutes 1980-1989, Index 109, SCVHistory.com, /scvhistory/scvhs19801989minutes.htm",
+     "path": "/scvhistory/files/scvhs19801989minutes/files/search/bookText.xml (Index 109)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-scvhs19801989minutes-booktext-index109.txt",
+     "kind": "retrospective",
+     "quote": "*Gloria Allen, in memory of Mr. and Mrs. LeRoy Gilmour ... Merle Gilmour",
+     "note": "LEAD ONLY. Gloria Allen and Merle Gilmour are siblings (obituary of Merle LeRoy Gilmour, 2014, /scvhistory/obituary_merleleroygilmour.htm). No source says Mildred was Mrs. LeRoy Gilmour."
+    }
+   ],
+   "lifetime_count": 8,
+   "recommendation": "Full profile, short: Castaic seat, first secretary, president about 1949-50, eleven years on the board.",
+   "not_found": "Dates, husband, family. Searched: mirror for gilmour, \"mildred gilmore\", \"mrs. gilmore\", \"(le)roy gilmour\", \"mrs. gilmour\"; LA Times \"Gilmour Castaic\"."
+  },
+  {
+   "id": 28651,
+   "record_title": "C. L. Dillenbeck",
+   "holding": 28735,
+   "names": [
+    "C.L. Dillenbeck",
+    "Charles L. Dillenbeck",
+    "Mr. Charles Dillenbeck",
+    "Charlie Dillenbeck Sr. (identification by Worden's link)",
+    "Dillenback (Kapp, sic)"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Charter member and \"Lion Tamer\" of the Mint Canyon Lions Club, January 1948 (Signal).",
+    "If he is Charlie Dillenbeck Sr., as Worden's roster link says: custodian at Hart High (inscriptions on DB4801, DB4802); a Charles Dillenbeck is on the Hart maintenance staff in the 1953 and 1955 yearbooks, and Joe Kapp remembers \"Charlie Dillenback\" running buildings and grounds; father of the Charlie Dillenbeck who owned Dillenbeck Market in Canyon Country."
+   ],
+   "archive_now": "Person #28651: alias \"C.L. Dillenbeck\"; no body. Holding #28735: 1948 to 1952, selection and end unknown. Photographs #2865, #2867 (Dillenbeck Canyon Market) and #4423 (J. Dillenbeck, 1957-58) exist but concern the family, not him.",
+   "board_service": {
+    "as_held": "1948 to 1952 (roster 1948-1950 and 1951 boards)",
+    "sources_agree": "On the 1949 yearbook board (1948-49), so he was seated by 1948-49. President in the 1951 yearbook.",
+    "disagreement": "Identity, not term: two Charles Dillenbecks are in the 1958 directory (\"Dillenbeck CL 23041 W 16th\" and \"Dillenbeck Charlie\" at Oak Spring Canyon, the market family's address). Worden's roster links C.L. to DB4801 (Charlie Sr., the custodian). That a sitting or recent trustee became the district's custodian is unusual but not impossible; it rests on Worden's link and the name. Nathan to decide whether to state it."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "C.L. Dillenbeck [linked to db4801.htm]"
+    },
+    {
+     "citation": "\"C.M. Brown Heads Mint Lions Club,\" The Newhall Signal, January 15, 1948, transcribed on \"Brass Bell, Mounted, Canyon Country Lions Club,\" SCVHistory.com, /scvhistory/hb1905.htm",
+     "path": "/scvhistory/hb1905.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb1905.htm",
+     "kind": "lifetime (1948)",
+     "key": "hb1905",
+     "quote": "Charles L. Dillenbeck, Lion Tamer ... charter members ... Charles L. Dillenbeck"
+    },
+    {
+     "citation": "Tomahawk 1949, Wm. S. Hart Union High School yearbook, flipbook page 17 (printed p. 13), SCVHistory.com, /scvhistory/sh4901.htm",
+     "path": "/scvhistory/files/sh4901/files/search/bookText.xml (Index 17)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sh4901-booktext-index17.txt",
+     "kind": "lifetime (1949)",
+     "key": "sh4901",
+     "quote": "Mr. C. l. Dillenbeck"
+    },
+    {
+     "citation": "Tomahawk 1950, Wm. S. Hart Union High School yearbook, flipbook page 5, SCVHistory.com, /scvhistory/files/hart1950yearbook/",
+     "path": "/scvhistory/files/hart1950yearbook/files/basic-html/page5.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1950yearbook-files-basic-html-page5.html",
+     "kind": "lifetime (1950)",
+     "key": "yb1950",
+     "quote": "Mr. C. L. Dillenbeck"
+    },
+    {
+     "citation": "Tomahawk 1951, Wm. S. Hart Union High School yearbook, flipbook page 6, SCVHistory.com, /scvhistory/files/hart1951yearbook/",
+     "path": "/scvhistory/files/hart1951yearbook/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1951yearbook-files-basic-html-page6.html",
+     "kind": "lifetime (1951)",
+     "key": "yb1951",
+     "quote": "MR. C. L. DILLENBECK President"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "Mr. Charles Dillenbeck"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Dillenbeck CL 23041 W 16th ... Newhall 1479"
+    },
+    {
+     "citation": "Tomahawk 1953, Wm. S. Hart Union High School yearbook, flipbook page 15 (staff), SCVHistory.com, /scvhistory/files/hart1953yearbook/",
+     "path": "/scvhistory/files/hart1953yearbook/files/basic-html/page15.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1953yearbook-files-basic-html-page15.html",
+     "kind": "lifetime (1953)",
+     "key": "yb1953s",
+     "quote": "Charles Dillenbeck, Maintenance",
+     "note": "Staff, not board; identity with the trustee is the inference above."
+    },
+    {
+     "citation": "Tomahawk 1955, Wm. S. Hart Union High School yearbook, flipbook page 15 (maintenance personnel), SCVHistory.com, /scvhistory/files/hart1955yearbook/",
+     "path": "/scvhistory/files/hart1955yearbook/files/basic-html/page15.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1955yearbook-files-basic-html-page15.html",
+     "kind": "lifetime (1955)",
+     "key": "yb1955s",
+     "quote": "MAINTENANCE PERSONNEL Left to right: ... Charles Dillenbeck ..."
+    },
+    {
+     "citation": "Leon Worden, caption, \"Charlie Dillenbeck Sr. at Crocker Ranch,\" SCVHistory.com, /scvhistory/db4801.htm",
+     "path": "/scvhistory/db4801.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-db4801.htm",
+     "kind": "retrospective (caption) reporting a contemporary inscription",
+     "quote": "According to the inscription on the back of the photograph, Dillenbeck was the custodian at Hart High School. He's the father of the Charlie Dillenbeck who owned the later Dillenbeck Market in Canyon Country."
+    },
+    {
+     "citation": "Joe Kapp, memoir excerpt (2020), SCVHistory.com, /scvhistory/kappbook2020.htm",
+     "path": "/scvhistory/kappbook2020.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-kappbook2020.htm",
+     "kind": "retrospective",
+     "quote": "He assigned me to work with Charlie Dillenback [sic: Dillenbeck], who ran the Buildings and Grounds Department for the High School."
+    },
+    {
+     "citation": "\"Leona Cox Turns Dirt For School,\" The Newhall Signal, August 8, 1963, transcribed, SCVHistory.com, /scvhistory/cc6302.htm",
+     "path": "/scvhistory/cc6302.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-cc6302.htm",
+     "kind": "lifetime (1963)",
+     "quote": "board members Donald Brunton, Charlie Dillenbeck , Frank Nobile, and Cliffie Stone",
+     "note": "Sulphur Springs School District board, 1963. Which Charlie is not stated; probably the market owner (son). Do not attach to C.L. without more."
+    }
+   ],
+   "lifetime_count": 6,
+   "recommendation": "Full profile, short, on the board and the Lions only, once Nathan decides the identity. If the Sr./custodian identification is accepted, say it rests on Worden's link and the photograph inscription.",
+   "not_found": "Given middle name, dates, whether elected or appointed in 1948. Searched: mirror for dillenbeck, dillenback, dillenbach with C.L., Charles, Charley, Charlie, Chas.; LA Times \"Dillenbeck\"."
+  },
+  {
+   "id": 28653,
+   "record_title": "Walter Cook",
+   "holding": 28737,
+   "names": [
+    "Walter R. Cook",
+    "Walter Russell Cook",
+    "Walt Cook"
+   ],
+   "life_dates": "November 26, 1896, Riverside, to May 9, 1954, Newhall (Worden, LW3799, citing The Newhall Signal, May 13, 1954).",
+   "life_dates_note": "Retrospective account citing a contemporary obituary not itself on the mirror.",
+   "in_valley": [
+    "Came to Newhall January 1920; married schoolteacher Mattie Pearl Walk, Newhall Pass, June 20, 1920.",
+    "Ran the Ridge View (Ridgeview) Dairy with Pearl, 1920s to 1940s, at Highway 6 (Sierra Highway) and San Fernando Road (Newhall Avenue), the \"Cook corner\".",
+    "President of the Newhall-Saugus Kiwanis Club 1928 to 1935; Scoutmaster, Troop 2; World War I veteran, American Legion Post 507; Mason.",
+    "President of the Hart board when the Henry Mayo Newhall Auditorium was dedicated, September 12, 1952; gave the welcome and accepted the auditorium.",
+    "Died of a stroke at First Presbyterian Church, Newhall, May 9, 1954, while still a trustee. His widow Pearl later married fellow trustee Carleton Hadley (December 11, 1968)."
+   ],
+   "archive_now": "Person #28653: alias \"Walter R. Cook\"; no body. Holding #28737: 1951 to 1955, howEnded unknown.",
+   "board_service": {
+    "as_held": "1951 to 1955 (roster; howEnded unknown)",
+    "sources_agree": "Clerk in the 1952 yearbook; president in the 1953 yearbook and the 1952 program.",
+    "disagreement": "The holding should end 1954-05-09, died in office (Worden, citing the Signal of May 13 and 27, 1954). The roster cannot show this: it lists him on the 1954 board and not the 1955 one."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Walter R. Cook"
+    },
+    {
+     "citation": "Tomahawk 1951, Wm. S. Hart Union High School yearbook, flipbook page 6, SCVHistory.com, /scvhistory/files/hart1951yearbook/",
+     "path": "/scvhistory/files/hart1951yearbook/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1951yearbook-files-basic-html-page6.html",
+     "kind": "lifetime (1951)",
+     "key": "yb1951",
+     "quote": "MR. WALTER RUSSELL COOK"
+    },
+    {
+     "citation": "Tomahawk 1952, Wm. S. Hart Union High School yearbook, flipbook page 8 (printed p. 4), SCVHistory.com, /scvhistory/files/hart1952yearbook/",
+     "path": "/scvhistory/files/hart1952yearbook/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1952yearbook-files-basic-html-page8.html",
+     "kind": "lifetime (1952)",
+     "key": "yb1952",
+     "quote": "Walter R. Cook ... C[l]erk"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "*Mr. Walter R. Cook"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, September 12, 1952, p. 3, SCVHistory.com, /scvhistory/hg5201.htm",
+     "path": "/scvhistory/files/hg5201/files/basic-html/page3.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-files-basic-html-page3.html",
+     "kind": "lifetime (1952)",
+     "key": "hg5201p3",
+     "quote": "A Welcome to All . Walter R. Cook, President ... Acceptance of Auditorium Walter R. Cook, President"
+    },
+    {
+     "citation": "Tomahawk 1953, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1953yearbook/",
+     "path": "/scvhistory/files/hart1953yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1953yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1953)",
+     "key": "yb1953",
+     "quote": "Walter Cook, president of board"
+    },
+    {
+     "citation": "Tomahawk 1954, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1954yearbook/",
+     "path": "/scvhistory/files/hart1954yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1954yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1954)",
+     "key": "yb1954",
+     "quote": "Mr. Walter Russell Cook"
+    },
+    {
+     "citation": "Wedding of Walter R. Cook and Pearl Walk, Newhall Pass, June 20, 1920 (photographs), SCVHistory.com, /scvhistory/nw2001.htm",
+     "path": "/scvhistory/nw2001.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-nw2001.htm",
+     "kind": "lifetime (1920 photographs; captions later)",
+     "quote": "Wedding of Walter R. Cook and Pearl Walk Newhall Pass, June 20, 1920"
+    },
+    {
+     "citation": "Leon Worden, \"Ridge View Dairy 1qt Milk Bottle,\" SCVHistory.com, 2023, /scvhistory/lw3799.htm",
+     "path": "/scvhistory/lw3799.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-lw3799.htm",
+     "kind": "retrospective, citing The Newhall Signal 1920 to 1954",
+     "quote": "Walter Cook was just 57 when he suffered a fatal stroke in a Sunday school room at Newhall's First Presbyterian Church on May 9, 1954. [12] He was still serving on the Wm. S. Hart High School Board ... [14] The Newhall Signal, May 27, 1954.",
+     "note": "The Signal issues cited (May 13, 1954; May 27, 1954; July 2, 1920; etc.) are not on the mirror; obtaining them would add lifetime sources."
+    }
+   ],
+   "lifetime_count": 7,
+   "recommendation": "Full profile. Lead with the dairy, Kiwanis and Scouts; board president 1952-53; died in office 1954. Correct the holding end (proposed below).",
+   "not_found": "The Signal obituary text itself (May 13, 1954) is cited by Worden but not on the mirror. Searched: mirror for \"walter (r.) cook\", \"walt cook\", \"w. r. cook\", \"walter russell cook\"."
+  },
+  {
+   "id": 28655,
+   "record_title": "Chester Allen",
+   "holding": 28739,
+   "names": [
+    "Chester A. Allen",
+    "C. A. Allen",
+    "Mr. C. A. Allen"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Proprietor of the Mint Canyon Gem Shop, 17145 Sierra Highway, two miles north of the Solemint Store (1950 yearbook advertisement, read from the page image). The 1955 yearbook shows him at lapidary work.",
+    "Listed at 17211 Sierra Highway, Saugus, in the 1958 directory (address read as printed beside the name; OCR)."
+   ],
+   "archive_now": "Person #28655: alias \"Chester A. Allen\"; no body. Holding #28739: 1952 to 1956, howEnded unknown.",
+   "board_service": {
+    "as_held": "1952 to 1956",
+    "sources_agree": "Member 1952 yearbook; clerk 1953 yearbook; on the 1954 and 1955 boards; starred in the September 1952 program.",
+    "disagreement": null
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Chester A. Allen"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "*Mr. C. A. Allen"
+    },
+    {
+     "citation": "Tomahawk 1952, Wm. S. Hart Union High School yearbook, flipbook page 8 (printed p. 4), SCVHistory.com, /scvhistory/files/hart1952yearbook/",
+     "path": "/scvhistory/files/hart1952yearbook/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1952yearbook-files-basic-html-page8.html",
+     "kind": "lifetime (1952)",
+     "key": "yb1952",
+     "quote": "C. A. Allen Member"
+    },
+    {
+     "citation": "Tomahawk 1953, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1953yearbook/",
+     "path": "/scvhistory/files/hart1953yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1953yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1953)",
+     "key": "yb1953",
+     "quote": "Chester Allen, clerk"
+    },
+    {
+     "citation": "Tomahawk 1954, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1954yearbook/",
+     "path": "/scvhistory/files/hart1954yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1954yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1954)",
+     "key": "yb1954",
+     "quote": "Mr. C. A. Allen"
+    },
+    {
+     "citation": "Tomahawk 1955, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1955yearbook/",
+     "path": "/scvhistory/files/hart1955yearbook/files/mobile/10.jpg (image; OCR basic-html/page10.html scrambles the columns)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1955yearbook-files-mobile-10.jpg",
+     "kind": "lifetime (1955)",
+     "key": "yb1955",
+     "quote": "Spending his leisure time after making decisions at a Board Meeting, Member C. A. Allen is shown engaged in lapidary art."
+    },
+    {
+     "citation": "Tomahawk 1950, Wm. S. Hart Union High School yearbook, flipbook page 80 (printed p. 77, advertisements), SCVHistory.com, /scvhistory/files/hart1950yearbook/",
+     "path": "/scvhistory/files/hart1950yearbook/files/mobile/80.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1950yearbook-files-mobile-80.jpg",
+     "kind": "lifetime (1950)",
+     "key": "yb1950ad",
+     "quote": "MINT CANYON GEM SHOP C. A. ALLEN Store: 17145 Sierra Highway Two miles north of Solemint Store on Hiway 6 Mailing Address: Rt. 1, Box 65-E, Saugus, Calif.",
+     "note": "The OCR text runs Tom Cox's tire advertisement into this one; the image shows them separate. Identity of the advertiser with the trustee is by name and the lapidary photo: medium."
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Allen Chester A 17211 SierraHwySaugus"
+    }
+   ],
+   "lifetime_count": 7,
+   "recommendation": "Full profile, short: Mint Canyon gem shop and lapidary; trustee 1952 to 1955 or 1956, clerk 1952-53.",
+   "not_found": "Dates; whether Chester A. Allen is related to Gloria Allen (Gilmour). Searched: mirror for \"chester (a.) allen\", \"c. a. allen\", \"chet allen\", \"mint canyon gem\"; LA Times \"Chester Allen\"."
+  },
+  {
+   "id": 28657,
+   "record_title": "Howard Blackwell",
+   "holding": 28741,
+   "names": [
+    "Howard Blackwell",
+    "Howard A. Blackwell",
+    "Howard Alvin Blackwell",
+    "Howard Black- well (1953 OCR)"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Charter member of the Mint Canyon Lions Club and a short-term director, January 1948 (Signal)."
+   ],
+   "archive_now": "Person #28657: no alias; no body. Holding #28741: 1953 to 1954, howEnded unknown.",
+   "board_service": {
+    "as_held": "1953 to 1954 (roster 1953 board only)",
+    "sources_agree": "The 1953 yearbook photograph of the board includes \"Howard Blackwell\" (no office given).",
+    "disagreement": "He is not in the September 1952 program list of those who \"have served and are serving\", so he joined after September 1952. Consistent with the roster."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Howard Blackwell"
+    },
+    {
+     "citation": "Tomahawk 1953, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1953yearbook/",
+     "path": "/scvhistory/files/hart1953yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1953yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1953)",
+     "key": "yb1953",
+     "quote": "Howard Black- well"
+    },
+    {
+     "citation": "\"C.M. Brown Heads Mint Lions Club,\" The Newhall Signal, January 15, 1948, transcribed on \"Brass Bell, Mounted, Canyon Country Lions Club,\" SCVHistory.com, /scvhistory/hb1905.htm",
+     "path": "/scvhistory/hb1905.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb1905.htm",
+     "kind": "lifetime (1948)",
+     "key": "hb1905",
+     "quote": "Howard A. Blackwell and Cliff Kaufman, directors for short term. ... Howard Alvin Blackwell"
+    }
+   ],
+   "lifetime_count": 2,
+   "recommendation": "Retrospective profile, said so, one or two lines: one year on the board (1953), Mint Canyon Lions charter director 1948. The roster and one yearbook are the only sources for the board service.",
+   "not_found": "Dates, occupation, why he served only one year. Searched: mirror for \"howard (a.) blackwell\", \"h. a. blackwell\", \"black- well\", \"blackwell\" (other hits are unrelated people); LA Times \"Blackwell Newhall\"."
+  },
+  {
+   "id": 28659,
+   "record_title": "Charleton Hadley",
+   "holding": 28743,
+   "names": [
+    "Charleton E. Hadley (roster)",
+    "Carleton E. Hadley",
+    "Carleton Hadley",
+    "Carlton E. Hadley",
+    "C. E. Hadley",
+    "Carelton Hadley (1958 OCR)"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found. Alive January 1969.",
+   "in_valley": [
+    "Partner with R.W. Hogan of H&H Auto Parts, the Firestone store on Spruce Street (San Fernando Road), Newhall, bought 1947 (Worden, citing the Signal of April 24, 1947); \"his Firestone store\" (1955 yearbook).",
+    "President of the Newhall-Saugus Chamber of Commerce, 1952 (chamber list).",
+    "Bands and Music chairman of the 1948 Fourth of July celebration; a church music director in the same program.",
+    "Married Mrs. Pearl Cook, widow of trustee Walter Cook, December 11, 1968, Las Vegas; the couple planned to move to San Luis Obispo (Record-Press, January 8, 1969)."
+   ],
+   "archive_now": "Person #28659: alias \"Charleton E. Hadley\"; no body. Holding #28743: 1953 to 1959, howEnded unknown.",
+   "board_service": {
+    "as_held": "1953 to 1959",
+    "sources_agree": "President in the 1955 yearbook; on the 1953, 1954, 1958 yearbook and 1958 commencement boards.",
+    "disagreement": "The September 12, 1952 program stars \"*Mr. C. E. Hadley\" among members present in a list of those who \"have served and are serving\", which puts him on the board by September 1952; the roster first lists him in 1953. Footnote both. Spelling: the roster's \"Charleton\" appears nowhere else; every other source has Carleton, Carlton or C. E. The record title may need Nathan's decision."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Charleton E. Hadley"
+    },
+    {
+     "citation": "Program book, Dedication of Henry Mayo Newhall Auditorium, Wm. S. Hart Union High School District, September 12, 1952, p. 2, SCVHistory.com, /scvhistory/hg5201.htm (Harold G. Deines collection)",
+     "path": "/scvhistory/files/hg5201/page002.jpg",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hg5201-page002.jpg",
+     "kind": "lifetime (1952)",
+     "note": "Read from the page image. Key printed on the page: \"**Deceased *Members Present\". The list is headed \"Those who have served and are serving as boards of trustees\".",
+     "key": "hg5201",
+     "quote": "*Mr. C. E. Hadley"
+    },
+    {
+     "citation": "Tomahawk 1953, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1953yearbook/",
+     "path": "/scvhistory/files/hart1953yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1953yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1953)",
+     "key": "yb1953",
+     "quote": "Carle- ton Hadley, member"
+    },
+    {
+     "citation": "Tomahawk 1954, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1954yearbook/",
+     "path": "/scvhistory/files/hart1954yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1954yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1954)",
+     "key": "yb1954",
+     "quote": "Mr. C. E. Hadley"
+    },
+    {
+     "citation": "Tomahawk 1955, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1955yearbook/",
+     "path": "/scvhistory/files/hart1955yearbook/files/mobile/10.jpg (image; OCR basic-html/page10.html scrambles the columns)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1955yearbook-files-mobile-10.jpg",
+     "kind": "lifetime (1955)",
+     "key": "yb1955",
+     "quote": "After putting in a hard day's work in his Firestone store, Mr. Carleton E. Hadley, President, still finds the time to be active on the Board."
+    },
+    {
+     "citation": "Wm. S. Hart High School Commencement Program, 1958, flipbook page 8, SCVHistory.com, /scvhistory/files/hart1958graduation/",
+     "path": "/scvhistory/files/hart1958graduation/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958graduation-files-basic-html-page8.html",
+     "kind": "lifetime (June 1958)",
+     "key": "grad1958",
+     "quote": "Mr. C. E. Hadley"
+    },
+    {
+     "citation": "Tomahawk 1958, Wm. S. Hart Union High School yearbook, flipbook page 19, SCVHistory.com, /scvhistory/files/hart1958yearbook/",
+     "path": "/scvhistory/files/hart1958yearbook/files/search/bookText.xml (Index 19)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958yearbook-booktext-index19.txt",
+     "kind": "lifetime (1958)",
+     "key": "yb1958",
+     "quote": "CAREL TON HADLEY"
+    },
+    {
+     "citation": "Program, Annual Old West Celebration, Newhall, July 5, 1948, pp. 3 and 8, SCVHistory.com, /scvhistory/jd4801.htm (Jo Anne Darcy collection)",
+     "path": "/scvhistory/files/jd4801/files/basic-html/page3.html; page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-jd4801-files-basic-html-page3.html; mirror-jd4801-files-basic-html-page8.html",
+     "kind": "lifetime (1948)",
+     "quote": "BANDS AND MUSIC Carleton Hadley ... Music Director: Carlton E. Hadley"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Hadley CE 24642 N Walnt ... Newhall 328-J"
+    },
+    {
+     "citation": "\"Open House Honors Hadleys,\" Record-Press (Newhall), January 8, 1969, SCVHistory.com, /scvhistory/recordpress19690108.htm",
+     "path": "/scvhistory/files/recordpress19690108/recordpress19690108_ocr.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-recordpress19690108-recordpress19690108_ocr.htm",
+     "kind": "lifetime (1969)",
+     "quote": "honoring the marriage of her father Mr. Carleton Hadley and Mrs. Pearl Cook. Mr. and Mrs. Hadley were united in marriage on December 11, in Las Vegas, Nevada. ... Both Mr. and Mrs. Hadley have been residents of Newhall for many years",
+     "note": "OCR reads \"•fiadley\"; daughter Mrs. Shirley King hosted."
+    },
+    {
+     "citation": "Leon Worden, photo page, Spruce Street business blocks, SCVHistory.com, /scvhistory/lw3748.htm",
+     "path": "/scvhistory/lw3748.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-lw3748.htm",
+     "kind": "retrospective, citing The Signal, April 24, 1947",
+     "quote": "\"H&H\" were C.E. Hadley and R.W. Hogan of Burbank. They bought the business in 1947 from Putnam and Worthey, Inc. (The Signal, April 24, 1947)."
+    },
+    {
+     "citation": "Santa Clarita Valley Chamber of Commerce Presidents, SCVHistory.com, /scvhistory/scvchamber-presidents.htm",
+     "path": "/scvhistory/scvchamber-presidents.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-scvchamber-presidents.htm",
+     "kind": "retrospective (compiled list)",
+     "quote": "1952 Carleton Hadley Newhall Firestone Store",
+     "note": "The page notes a listing that reverses Hadley's and Overton's years."
+    }
+   ],
+   "lifetime_count": 9,
+   "recommendation": "Full profile: Firestone dealer, Chamber president 1952, board 1952 or 1953 to 1958, president 1954-55. Settle the name spelling first.",
+   "not_found": "Dates of birth and death. Searched: mirror for charleton, carleton, carlton, \"c. e. hadley\", \"mr./mrs. hadley\", \"hadley's firestone\"; LA Times \"Hadley\" with name variants."
+  },
+  {
+   "id": 28661,
+   "record_title": "Julio Lombardi",
+   "holding": 28745,
+   "names": [
+    "Julio Lombardi",
+    "Julio J. Lombardi",
+    "Mr. Julio J. Lombardi"
+   ],
+   "life_dates": "Died December 21, 1986 (obituary of his widow Ida C. Lombardi, 2014).",
+   "life_dates_note": "Birth not found. Married Ida Orsi November 26, 1938.",
+   "in_valley": [
+    "Saugus rancher (Worden, citing the Signal of May 27, 1954); the family lived at Castaic Junction and Saugus, then Newhall from 1951 (Ida Lombardi obituary).",
+    "With Gene Doty, started the Our Lady of Perpetual Help parish barbecue; at the pit for the 25th barbecue, 1969 (Doty obituary; OLPH history 1994).",
+    "Father of five (1955 yearbook)."
+   ],
+   "archive_now": "Person #28661: no alias; no body. Holding #28745: 1955 to 1962, howEnded unknown. Photograph #2771 (Lombardi Ranch fruit label) concerns the Bouquet Canyon ranch, not shown to be his.",
+   "board_service": {
+    "as_held": "1955 to 1962",
+    "sources_agree": "On the 1955, 1958, 1960 and 1961 boards; seconded the lease motion of August 4, 1960; signed the 1960 lease.",
+    "disagreement": "Start: Worden (LW3799, citing the Signal of May 27, 1954) says Lombardi was the only name on the ballot in the regular election two weeks after Cook's death and won 302 to 224 over write-in votes for Pearl Cook. That is May 1954, not 1955. The roster first lists him on the 1955 board. Propose termStartEdtf 1954-05 with both footnoted."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Julio Lombardi"
+    },
+    {
+     "citation": "Leon Worden, \"Ridge View Dairy 1qt Milk Bottle,\" SCVHistory.com, 2023, /scvhistory/lw3799.htm",
+     "path": "/scvhistory/lw3799.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-lw3799.htm",
+     "kind": "retrospective, citing The Newhall Signal, May 27, 1954",
+     "quote": "There was one name on the ballot to succeed Cook in the regularly scheduled election two weeks after his death: that of Saugus rancher Julio Lombardi. ... Lombardi carried the day by a vote of 302-224."
+    },
+    {
+     "citation": "Tomahawk 1955, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1955yearbook/",
+     "path": "/scvhistory/files/hart1955yearbook/files/mobile/10.jpg (image; OCR basic-html/page10.html scrambles the columns)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1955yearbook-files-mobile-10.jpg",
+     "kind": "lifetime (1955)",
+     "key": "yb1955",
+     "quote": "Taking time out from his duties, Member, Mr. Julio J. Lombardi, relaxes through music with two of his five lovely children."
+    },
+    {
+     "citation": "Wm. S. Hart High School Commencement Program, 1958, flipbook page 8, SCVHistory.com, /scvhistory/files/hart1958graduation/",
+     "path": "/scvhistory/files/hart1958graduation/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958graduation-files-basic-html-page8.html",
+     "kind": "lifetime (June 1958)",
+     "key": "grad1958",
+     "quote": "Mr. Julio J. Lombardi"
+    },
+    {
+     "citation": "Tomahawk 1958, Wm. S. Hart Union High School yearbook, flipbook page 19, SCVHistory.com, /scvhistory/files/hart1958yearbook/",
+     "path": "/scvhistory/files/hart1958yearbook/files/search/bookText.xml (Index 19)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958yearbook-booktext-index19.txt",
+     "kind": "lifetime (1958)",
+     "key": "yb1958",
+     "quote": "JULIO LOMBARDI"
+    },
+    {
+     "citation": "Wm. S. Hart High School 1960 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/gf6001.htm (Sherie Lynn Caldwell Gustafson collection)",
+     "path": "/scvhistory/files/gf6001/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-gf6001-files-basic-html-page8.html",
+     "kind": "lifetime (1960)",
+     "key": "gf6001",
+     "quote": "Mr. Julio J. Lombardi"
+    },
+    {
+     "citation": "Classroom Rental and Lease Agreement Between Newhall School District (Lessor) and Hart District (Lessee), September 1, 1960, SCVHistory.com, /scvhistory/ns6001.htm (pdf courtesy of Newhall School District)",
+     "path": "/scvhistory/ns6001.htm; minutes excerpt /scvhistory/files/ns6001/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001.htm; inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001-files-basic-html-page6.html",
+     "kind": "lifetime (1960)",
+     "key": "ns6001",
+     "quote": "It was moved by Mr. Gulley seconded by Mr. Lombardi, and unanimously carried ... Signing for the Hart District are board members Adrian Adams , Edith Palmer, Howard Gulley, William D. Ross and Julio Lombardi."
+    },
+    {
+     "citation": "Wm. S. Hart High School 1961 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/tr6101.htm (Doris Trester Patrick collection)",
+     "path": "/scvhistory/files/tr6101/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-tr6101-files-basic-html-page8.html",
+     "kind": "lifetime (1961)",
+     "key": "tr6101",
+     "quote": "Mr. Julio J. Lombardi"
+    },
+    {
+     "citation": "Tomahawk 1961, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1961yearbook/",
+     "path": "/scvhistory/files/hart1961yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1961yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1961)",
+     "key": "yb1961",
+     "quote": "MR. JULIO LOMBARDI Member"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Lombardi Julio 24508 N Arcadia ... Newhall 527-J"
+    },
+    {
+     "citation": "Obituary of Ida C. Lombardi, Eternal Valley Memorial Park & Mortuary, December 2014, SCVHistory.com, /scvhistory/obituary_idaclairelombardi.htm",
+     "path": "/scvhistory/obituary_idaclairelombardi.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-obituary_idaclairelombardi.htm",
+     "kind": "retrospective",
+     "quote": "she married Julio Lombardi on November 26, 1938. Together they began raising their family in Castaic Junction and Saugus, California, until moving to Newhall, California, in 1951, where she lived her remaining years following Julio's death on Dec. 21, 1986."
+    },
+    {
+     "citation": "Obituary of Eugene Mackey Doty (2014), SCVHistory.com, /scvhistory/obituary_eugenemackeydoty.htm",
+     "path": "/scvhistory/obituary_eugenemackeydoty.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-obituary_eugenemackeydoty.htm",
+     "kind": "retrospective",
+     "quote": "Many decades ago, he and Julio Lombardi initiated the first OLPH BBQ."
+    },
+    {
+     "citation": "Our Lady of Perpetual Help, 50th anniversary history, 1944-1994, pp. 18-19, SCVHistory.com, /scvhistory/files/olph19441994/",
+     "path": "/scvhistory/files/olph19441994/files/basic-html/page18.html; page19.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-olph19441994-files-basic-html-page18.html; mirror-olph19441994-files-basic-html-page19.html",
+     "kind": "retrospective (1994)",
+     "quote": "Frank and Julio Lombardi, long-time names in the history of OLPH ... Chefs make preparations for the 25th (1969) annual barbecue. (left to right) Gene Doty, Darrel Koback, and Julio Lombardi"
+    }
+   ],
+   "lifetime_count": 8,
+   "recommendation": "Full profile: Saugus rancher, OLPH barbecue founder, elected May 1954 to succeed Cook, served to 1961 or 1962. Do not tie him to Lombardi Ranch in Bouquet Canyon without a source.",
+   "not_found": "Birth date and place; the 1986 obituary; his relation to Frank, Bob and Robert Lombardi and to Lombardi Ranch. Searched: mirror for \"julio (j.) lombardi\", \"j. lombardi\", \"mr./mrs. lombardi\", \"lombardi ranch/family\"; LA Times \"Julio Lombardi\" (oldest first, 5 pages, 47 archive stories, none on him; the December 1986 death notice was not found)."
+  },
+  {
+   "id": 28663,
+   "record_title": "Howard Gulley",
+   "holding": 28747,
+   "names": [
+    "Howard Gulley",
+    "H. H. Gulley",
+    "Mr. H. H. Gulley",
+    "Howard Gully (1958, 1959 yearbooks)"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Presented his daughter Martha with her diploma at the 1958 Hart commencement (1959 yearbook).",
+    "LEAD ONLY: the Gulley family of Hasley Canyon, Castaic: William E. Gulley's obituary (Signal, August 24, 1961) says he homesteaded there in 1930 \"with brothers Cy and Howard\". The same obituary lists surviving brothers Cy and Charles, not Howard, though trustee Howard Gulley was serving in 1960 and 1961. No source joins the trustee to this family."
+   ],
+   "archive_now": "Person #28663: no alias; no body. Holding #28747: 1956 to 1962, howEnded unknown.",
+   "board_service": {
+    "as_held": "1956 to 1962",
+    "sources_agree": "On the 1958, 1960 and 1961 boards; clerk in the 1961 yearbook; moved the lease resolution of August 4, 1960.",
+    "disagreement": null
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Howard Gulley"
+    },
+    {
+     "citation": "Wm. S. Hart High School Commencement Program, 1958, flipbook page 8, SCVHistory.com, /scvhistory/files/hart1958graduation/",
+     "path": "/scvhistory/files/hart1958graduation/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958graduation-files-basic-html-page8.html",
+     "kind": "lifetime (June 1958)",
+     "key": "grad1958",
+     "quote": "Mr. H. H. Gulley"
+    },
+    {
+     "citation": "Tomahawk 1958, Wm. S. Hart Union High School yearbook, flipbook page 19, SCVHistory.com, /scvhistory/files/hart1958yearbook/",
+     "path": "/scvhistory/files/hart1958yearbook/files/search/bookText.xml (Index 19)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958yearbook-booktext-index19.txt",
+     "kind": "lifetime (1958)",
+     "key": "yb1958",
+     "quote": "HOWARD GULLY"
+    },
+    {
+     "citation": "Tomahawk 1959, Wm. S. Hart Union High School yearbook, flipbook page 15, SCVHistory.com, /scvhistory/files/hart1959yearbook/",
+     "path": "/scvhistory/files/hart1959yearbook/files/basic-html/page15.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1959yearbook-files-basic-html-page15.html",
+     "kind": "lifetime (1959)",
+     "key": "yb1959",
+     "quote": "Board Member Howard Gully presents his daughter, Martha, with her diploma, assisted by Principal George Harris."
+    },
+    {
+     "citation": "Wm. S. Hart High School 1960 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/gf6001.htm (Sherie Lynn Caldwell Gustafson collection)",
+     "path": "/scvhistory/files/gf6001/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-gf6001-files-basic-html-page8.html",
+     "kind": "lifetime (1960)",
+     "key": "gf6001",
+     "quote": "Mr. H. H. Gulley"
+    },
+    {
+     "citation": "Classroom Rental and Lease Agreement Between Newhall School District (Lessor) and Hart District (Lessee), September 1, 1960, SCVHistory.com, /scvhistory/ns6001.htm (pdf courtesy of Newhall School District)",
+     "path": "/scvhistory/ns6001.htm; minutes excerpt /scvhistory/files/ns6001/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001.htm; inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001-files-basic-html-page6.html",
+     "kind": "lifetime (1960)",
+     "key": "ns6001",
+     "quote": "It was moved by Mr. Gulley seconded by Mr. Lombardi"
+    },
+    {
+     "citation": "Wm. S. Hart High School 1961 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/tr6101.htm (Doris Trester Patrick collection)",
+     "path": "/scvhistory/files/tr6101/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-tr6101-files-basic-html-page8.html",
+     "kind": "lifetime (1961)",
+     "key": "tr6101",
+     "quote": "Mr. H. H. Gulley"
+    },
+    {
+     "citation": "Tomahawk 1961, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1961yearbook/",
+     "path": "/scvhistory/files/hart1961yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1961yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1961)",
+     "key": "yb1961",
+     "quote": "MR. HOWARD GULLEY Clerk of the Board"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "Address not readable as one unit in the OCR.",
+     "key": "dir1958",
+     "quote": "Gulley Howard"
+    },
+    {
+     "citation": "\"Mourn Passing of William Gulley,\" The Newhall Signal, August 24, 1961, SCVHistory.com, /scvhistory/obituary_williamegulley.htm",
+     "path": "/scvhistory/obituary_williamegulley.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-obituary_williamegulley.htm",
+     "kind": "lifetime (1961)",
+     "quote": "It was in 1930 that Mr. and Mrs. Gulley with brothers Cy and Howard and sister Effie homesteaded a plot in Hasley Canyon. ... Surviving are his wife Leora of Castaic; brothers Cy of La Crescenta and Charles of Newhall",
+     "note": "LEAD ONLY; see in_valley."
+    }
+   ],
+   "lifetime_count": 8,
+   "recommendation": "Full profile, short: board 1956 to 1961 or 1962, clerk 1960-61. Leave the Hasley Canyon family out until a source joins them.",
+   "not_found": "Middle name (H. H.), dates, occupation. Searched: mirror for \"howard (h.) gull(e)y\", \"h. h. gulley\", \"mr./mrs. gulley\", \"gulley insurance/family\"; LA Times \"Gulley\" (5 pages, 50 archive stories, none on him)."
+  },
+  {
+   "id": 28665,
+   "record_title": "Ernest Malam",
+   "holding": 28749,
+   "names": [
+    "Ernest Malam"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Owned Malam's Market in Forrest Park, Mint Canyon; father of Joyce Malam (Butch Watkins memoir, retrospective). Joyce Eileen Malam graduated from Hart in 1958 (commencement program)."
+   ],
+   "archive_now": "Person #28665: no alias; no body. Holding #28749: 1956 to 1957, howEnded unknown.",
+   "board_service": {
+    "as_held": "1956 to 1957 (roster 1956 board only)",
+    "sources_agree": "Watkins says Joyce Malam's father \"was on the William S. Hart Union High School Board\" (no years).",
+    "disagreement": "No yearbook or program names him as a trustee: he is not on the 1955 yearbook board and the 1956 and 1957 yearbooks print no board page. The roster is the only source for his term. Roster-only row."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Ernest Malam"
+    },
+    {
+     "citation": "Henry E. (Butch) Watkins, \"Mint Canyon From 1947 to 1993 as I Recall It,\" SCVHistory.com, /scvhistory/watkins-butch.htm",
+     "path": "/scvhistory/watkins-butch.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-watkins-butch.htm",
+     "kind": "retrospective (memoir)",
+     "quote": "their son married Joyce Malam, whose father was on the William S. Hart Union High School Board and who also owned Malam's Market in Forrest Park.",
+     "note": "Does not give the father's first name; the join to Ernest rests on the surname."
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "Address not readable as one unit.",
+     "key": "dir1958",
+     "quote": "Malam Ernest"
+    },
+    {
+     "citation": "Telephone Directory: Newhall (SCV), Lake Hughes, Palmdale, Lancaster, 1957, SCVHistory.com, /scvhistory/hb5701.htm",
+     "path": "/scvhistory/files/hb5701/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5701-booktext-index1.txt (title page only; listings quoted here from the OCR)",
+     "kind": "lifetime (1957)",
+     "key": "dir1957",
+     "quote": "Malam Ernest"
+    },
+    {
+     "citation": "Wm. S. Hart High School Commencement Program, 1958, flipbook page 7, SCVHistory.com, /scvhistory/files/hart1958graduation/",
+     "path": "/scvhistory/files/hart1958graduation/files/basic-html/page7.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958graduation-files-basic-html-page7.html",
+     "kind": "lifetime (June 1958)",
+     "key": "grad1958p7",
+     "quote": "Joyce Eileen Malam"
+    }
+   ],
+   "lifetime_count": 0,
+   "lifetime_count_note": "No lifetime source names him as a trustee. The 1957 and 1958 directories list an Ernest Malam (name only).",
+   "recommendation": "One-line profile, retrospective, said so: on the board in 1956 by Worden's roster alone; Malam's Market, Forrest Park, by one memoir. Flag the roster as the only source for the term.",
+   "not_found": "Dates, the market's years, any Signal item. Searched: mirror for \\bmalam\\b (all hits read: students, directories, memoir); LA Times \"Malam\" (5 pages, 50 archive stories, none local to him)."
+  },
+  {
+   "id": 28667,
+   "record_title": "Adrian Adams",
+   "holding": 28751,
+   "names": [
+    "Adrian Adams",
+    "Adrian W. Adams",
+    "Judge Adrian Adams",
+    "Judge Adrian W. Adams"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found on the mirror or in the LA Times search. Whether he is living is not established: treat as living, public life only.",
+   "in_valley": [
+    "Opened a law practice in Newhall May 1, 1953, later with James Lowder (Signal 2003 editor's note; Worden).",
+    "President of the Newhall-Saugus Chamber of Commerce, 1956 (chamber list).",
+    "Former FBI agent; member of the Newhall Elementary school board when appointed judge (Signal, January 28, 1970).",
+    "Judge of the Newhall Municipal Court, appointed by Gov. Ronald Reagan January 27, 1970, the court's second seat; retired 1991.",
+    "Founding chairman of the board that built Henry Mayo Newhall Memorial Hospital (1970s).",
+    "SCV Man of the Year, 1980.",
+    "Wrote \"Tales of the Newhall Court\" (The Signal, April 12, 2003); lent documents from his collection (AA series)."
+   ],
+   "archive_now": "Person #28667: no alias; no body. Holding #28751: 1957 to 1963, howEnded unknown. No other person record for him; the AA-prefixed photographs on the mirror (AA5001 to AA7402) are not yet related to the record (none found by search in the archive).",
+   "board_service": {
+    "as_held": "1957 to 1963",
+    "sources_agree": "On the 1958, 1960, 1961 and 1962 boards; president in the 1962 yearbook (1961-62); signed the 1960 lease.",
+    "disagreement": null
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Adrian Adams [linked to aa5001.htm]"
+    },
+    {
+     "citation": "Wm. S. Hart High School Commencement Program, 1958, flipbook page 8, SCVHistory.com, /scvhistory/files/hart1958graduation/",
+     "path": "/scvhistory/files/hart1958graduation/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958graduation-files-basic-html-page8.html",
+     "kind": "lifetime (June 1958)",
+     "key": "grad1958",
+     "quote": "Mr. Adrian W. Adams"
+    },
+    {
+     "citation": "Tomahawk 1958, Wm. S. Hart Union High School yearbook, flipbook page 19, SCVHistory.com, /scvhistory/files/hart1958yearbook/",
+     "path": "/scvhistory/files/hart1958yearbook/files/search/bookText.xml (Index 19)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958yearbook-booktext-index19.txt",
+     "kind": "lifetime (1958)",
+     "key": "yb1958",
+     "quote": "ADRIAN ADAMS"
+    },
+    {
+     "citation": "Wm. S. Hart High School 1960 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/gf6001.htm (Sherie Lynn Caldwell Gustafson collection)",
+     "path": "/scvhistory/files/gf6001/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-gf6001-files-basic-html-page8.html",
+     "kind": "lifetime (1960)",
+     "key": "gf6001",
+     "quote": "Mr. Adrian W. Adams"
+    },
+    {
+     "citation": "Classroom Rental and Lease Agreement Between Newhall School District (Lessor) and Hart District (Lessee), September 1, 1960, SCVHistory.com, /scvhistory/ns6001.htm (pdf courtesy of Newhall School District)",
+     "path": "/scvhistory/ns6001.htm; minutes excerpt /scvhistory/files/ns6001/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001.htm; inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001-files-basic-html-page6.html",
+     "kind": "lifetime (1960)",
+     "key": "ns6001",
+     "quote": "Signing for the Hart District are board members Adrian Adams , Edith Palmer, Howard Gulley, William D. Ross and Julio Lombardi."
+    },
+    {
+     "citation": "Wm. S. Hart High School 1961 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/tr6101.htm (Doris Trester Patrick collection)",
+     "path": "/scvhistory/files/tr6101/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-tr6101-files-basic-html-page8.html",
+     "kind": "lifetime (1961)",
+     "key": "tr6101",
+     "quote": "Mr. Adrian W. Adams"
+    },
+    {
+     "citation": "Tomahawk 1962, Wm. S. Hart Union High School yearbook, flipbook page 9, SCVHistory.com, /scvhistory/files/hart1962yearbook/",
+     "path": "/scvhistory/files/hart1962yearbook/files/basic-html/page9.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1962yearbook-files-basic-html-page9.html",
+     "kind": "lifetime (1962)",
+     "key": "yb1962",
+     "quote": "Mr. Adrian W. Adams, President"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Adams Adrian W atty 22508 W Markt ... Newhall 361"
+    },
+    {
+     "citation": "\"Adrian Adams Is Appointed Judge,\" The Signal, January 28, 1970, transcribed on \"Judge Adrian W. Adams,\" SCVHistory.com, /scvhistory/aa7001.htm",
+     "path": "/scvhistory/aa7001.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-aa7001.htm",
+     "kind": "lifetime (1970)",
+     "quote": "Newhall became a two-judge town yesterday with the appointment of Adrian Adams to the Newhall Municipal Court bench. ... The former FBI agent and current Newhall Elementary district board of education member said he was pleased."
+    },
+    {
+     "citation": "Judge Adrian Adams, \"Tales of the Newhall Court,\" The Signal, April 12, 2003, SCVHistory.com, /scvhistory/sg041203.htm",
+     "path": "/scvhistory/sg041203.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sg041203.htm",
+     "kind": "lifetime (2003; his own article with editor's note)",
+     "quote": "Editor's note: May 1 is the 50th anniversary of the day former Municipal Court Judge Adrian Adams opened his attorney practice in Newhall. His appointment to the bench by Gov. Ronald Reagan in 1970 marked the first time the Santa Clarita Valley had two judges. By the time he retired in 1991 a third seat had been added."
+    },
+    {
+     "citation": "\"Henry Mayo Hospital Board Thanks Ex-Newhall Land President Tom Lowe,\" 1974, SCVHistory.com, /scvhistory/aa7402.htm",
+     "path": "/scvhistory/aa7402.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-aa7402.htm",
+     "kind": "lifetime photograph (1974); caption later",
+     "quote": "Judge Adrian Adams (left), president of the nonprofit board that built Henry Mayo Newhall Memorial Hospital"
+    },
+    {
+     "citation": "SCV Man & Woman of the Year, list, SCVHistory.com, /scvhistory/mwoty.htm",
+     "path": "/scvhistory/mwoty.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-mwoty.htm",
+     "kind": "retrospective (compiled list)",
+     "quote": "1980 Judge Adrian Adams Betty Pember"
+    },
+    {
+     "citation": "Santa Clarita Valley Chamber of Commerce Presidents, SCVHistory.com, /scvhistory/scvchamber-presidents.htm",
+     "path": "/scvhistory/scvchamber-presidents.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-scvchamber-presidents.htm",
+     "kind": "retrospective (compiled list)",
+     "quote": "1956 Adrian Adams Attorney at Law"
+    },
+    {
+     "citation": "Leon Worden, \"Judge Adrian W. Adams,\" SCVHistory.com, /scvhistory/aa5001.htm",
+     "path": "/scvhistory/aa5001.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-aa5001.htm",
+     "kind": "retrospective",
+     "quote": "Adams opened a law practice on San Fernando Road in Newhall on May 1, 1953, and partnered with attorney James Lowder."
+    }
+   ],
+   "lifetime_count": 11,
+   "recommendation": "Full profile, public life only (living status unknown). Lead with the law practice, the Municipal Court and the hospital; Hart trustee 1957 to 1962, president 1961-62; later Newhall Elementary board. A hub exists: aa5001.htm and its sidebar (about ten pages) should be imported as sources.",
+   "not_found": "Birth date, death (if any), FBI years, Newhall Elementary board dates. Searched: mirror for \"adrian (w.) adams\", \"a. adams\"; LA Times \"Adrian Adams\" (oldest first, 5 pages, 43 archive stories, none matching with a local word). An SCVTV video \"Legacy\" (2004, scvtv.com/?p=6045) is linked from aa5001 and was not viewed."
+  },
+  {
+   "id": 28669,
+   "record_title": "Edith Palmer",
+   "holding": 28753,
+   "names": [
+    "Edith Palmer",
+    "Edith S. Palmer",
+    "Mrs. Edith S. Palmer",
+    "Mrs. Paul Palmer"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Wife of Paul Palmer (\"Mrs. Paul Palmer\" in the 1965 and 1966 yearbooks beside the board). A Paul Palmer, attorney, is in the 1957 and 1958 directories, and a Paul Palmer introduced the speaker at the 1952 auditorium dedication; that this is her husband is an inference from the name.",
+    "Contributor to the 1964 Republican Women's Club cookbook (name only)."
+   ],
+   "archive_now": "Person #28669: no alias; no body. Holding #28753: 1957 to 1968, howEnded unknown.",
+   "board_service": {
+    "as_held": "1957 to 1968",
+    "sources_agree": "On every board page 1958 to 1967: president in the 1960 yearbook (1959-60); signed the 1960 lease.",
+    "disagreement": null
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Edith Palmer"
+    },
+    {
+     "citation": "Wm. S. Hart High School Commencement Program, 1958, flipbook page 8, SCVHistory.com, /scvhistory/files/hart1958graduation/",
+     "path": "/scvhistory/files/hart1958graduation/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958graduation-files-basic-html-page8.html",
+     "kind": "lifetime (June 1958)",
+     "key": "grad1958",
+     "quote": "Mrs. Edith S. Palmer"
+    },
+    {
+     "citation": "Tomahawk 1958, Wm. S. Hart Union High School yearbook, flipbook page 19, SCVHistory.com, /scvhistory/files/hart1958yearbook/",
+     "path": "/scvhistory/files/hart1958yearbook/files/search/bookText.xml (Index 19)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958yearbook-booktext-index19.txt",
+     "kind": "lifetime (1958)",
+     "key": "yb1958",
+     "quote": "EDITH PALMER"
+    },
+    {
+     "citation": "Tomahawk 1960, Wm. S. Hart Union High School yearbook, flipbook page 16, SCVHistory.com, /scvhistory/files/hart1960tomahawk/",
+     "path": "/scvhistory/files/hart1960tomahawk/files/search/bookText.xml (Index 16)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1960tomahawk-booktext-index16.txt",
+     "kind": "lifetime (1960)",
+     "key": "yb1960",
+     "quote": "MRS. EDITH PALMER: President"
+    },
+    {
+     "citation": "Wm. S. Hart High School 1960 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/gf6001.htm (Sherie Lynn Caldwell Gustafson collection)",
+     "path": "/scvhistory/files/gf6001/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-gf6001-files-basic-html-page8.html",
+     "kind": "lifetime (1960)",
+     "key": "gf6001",
+     "quote": "Mrs. Edith S. Palmer"
+    },
+    {
+     "citation": "Classroom Rental and Lease Agreement Between Newhall School District (Lessor) and Hart District (Lessee), September 1, 1960, SCVHistory.com, /scvhistory/ns6001.htm (pdf courtesy of Newhall School District)",
+     "path": "/scvhistory/ns6001.htm; minutes excerpt /scvhistory/files/ns6001/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001.htm; inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001-files-basic-html-page6.html",
+     "kind": "lifetime (1960)",
+     "key": "ns6001",
+     "quote": "Signing for the Hart District are board members Adrian Adams , Edith Palmer, ..."
+    },
+    {
+     "citation": "Wm. S. Hart High School 1961 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/tr6101.htm (Doris Trester Patrick collection)",
+     "path": "/scvhistory/files/tr6101/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-tr6101-files-basic-html-page8.html",
+     "kind": "lifetime (1961)",
+     "key": "tr6101",
+     "quote": "Mrs. Edith S. Palmer"
+    },
+    {
+     "citation": "Tomahawk 1962, Wm. S. Hart Union High School yearbook, flipbook page 9, SCVHistory.com, /scvhistory/files/hart1962yearbook/",
+     "path": "/scvhistory/files/hart1962yearbook/files/basic-html/page9.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1962yearbook-files-basic-html-page9.html",
+     "kind": "lifetime (1962)",
+     "key": "yb1962",
+     "quote": "Mrs. Edith Palmer, Member"
+    },
+    {
+     "citation": "Tomahawk 1964, Wm. S. Hart Union High School yearbook, flipbook page 32 (printed p. 28), SCVHistory.com, /scvhistory/files/hart1964yearbook/",
+     "path": "/scvhistory/files/hart1964yearbook/files/search/bookText.xml (Index 32)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1964yearbook-booktext-index32.txt",
+     "kind": "lifetime (1964)",
+     "key": "yb1964",
+     "quote": "Mrs. Edith S. Palmer, member"
+    },
+    {
+     "citation": "Tomahawk 1965, Wm. S. Hart Union High School yearbook, flipbook page 110 (printed p. 106), SCVHistory.com, /scvhistory/files/hart1965yearbook/",
+     "path": "/scvhistory/files/hart1965yearbook/files/search/bookText.xml (Index 110)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1965yearbook-booktext-index110.txt",
+     "kind": "lifetime (1965)",
+     "key": "yb1965",
+     "quote": "members Mrs. Paul Palmer, Mrs. Leland Bowman, Mr. Earl Schmidt, Dr. William Ross"
+    },
+    {
+     "citation": "Sierra Vista Junior High School 1965 yearbook, flipbook page 4, SCVHistory.com, /scvhistory/files/sierravista1965yearbook/",
+     "path": "/scvhistory/files/sierravista1965yearbook/files/basic-html/page4.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sierravista1965yearbook-files-basic-html-page4.html",
+     "kind": "lifetime (1965)",
+     "key": "sv1965",
+     "quote": "Mrs. Paul Palmer Board Member"
+    },
+    {
+     "citation": "Tomahawk 1966, Wm. S. Hart Union High School yearbook, flipbook page 15, SCVHistory.com, /scvhistory/files/hart1966yearbook/",
+     "path": "/scvhistory/files/hart1966yearbook/files/basic-html/page15.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1966yearbook-files-basic-html-page15.html",
+     "kind": "lifetime (1966)",
+     "key": "yb1966",
+     "quote": "Mrs. Paul Palmer"
+    },
+    {
+     "citation": "Tomahawk 1967, Wm. S. Hart Union High School yearbook, flipbook page 146 (printed p. 138), SCVHistory.com, /scvhistory/files/hart1967yearbook/",
+     "path": "/scvhistory/files/hart1967yearbook/files/search/bookText.xml (Index 146)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1967yearbook-booktext-index146.txt",
+     "kind": "lifetime (1967)",
+     "key": "yb1967",
+     "quote": "Edith S. Palmer"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "Husband identification is an inference.",
+     "key": "dir1958",
+     "quote": "Palmer Paul atty 24369 N Sn Frndo Rd ... Newhall 375"
+    }
+   ],
+   "lifetime_count": 12,
+   "recommendation": "Full profile, short: eleven years on the board (1957 to 1967), president 1959-60. The only lifetime facts are board facts; say that her husband was Paul Palmer, and do not call him the attorney without a source.",
+   "not_found": "Dates, maiden name, other civic work. Searched: mirror for \"edith (s.) palmer\", \"mrs. paul palmer\", \"paul (and edith) palmer\", \"palmer, edith\"; LA Times \"Edith Palmer\"."
+  },
+  {
+   "id": 28671,
+   "record_title": "W. D. Ross",
+   "holding": 28755,
+   "names": [
+    "Dr. W.D. Ross",
+    "Dr. William D. Ross",
+    "William D. Ross, DDS",
+    "Dr. Wm. D. Ross, D.D.S., B.S.",
+    "Dr. William Ross"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found.",
+   "in_valley": [
+    "Newhall's dentist from September 1, 1933, first in the Newhall Community Hospital building; gave dental-health talks in the schools (Brunner 1940, information from Ross himself).",
+    "Practised from 1941 in the brick office at the southwest corner of Sixth and Spruce (24229 San Fernando Road), shared with Judge Arthur C. Miller; lived at 22906 Eighth Street (Worden; 1958 directory).",
+    "Pallbearer for Signal publisher Fred W. Trueblood Sr., 1960."
+   ],
+   "archive_now": "Person #28671: alias \"Dr. W.D. Ross\"; no body. Holding #28755: 1959 to 1969, howEnded unknown.",
+   "board_service": {
+    "as_held": "1959 to 1969",
+    "sources_agree": "President in the 1961 yearbook (1960-61); clerk in the 1962 and 1964 yearbooks; on the boards through 1968.",
+    "disagreement": "Start: the June 1958 commencement program lists \"*Dr. William D. Ross\" with \"*Member Elect\", so he was elected by June 1958; the roster first lists him on the 1959-1961 board. Propose 1958 (elected), with both footnoted."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Dr. W.D. Ross"
+    },
+    {
+     "citation": "Wm. S. Hart High School Commencement Program, 1958, flipbook page 8, SCVHistory.com, /scvhistory/files/hart1958graduation/",
+     "path": "/scvhistory/files/hart1958graduation/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1958graduation-files-basic-html-page8.html",
+     "kind": "lifetime (June 1958)",
+     "key": "grad1958",
+     "quote": "*Dr. William D. Ross ... *Member Elect"
+    },
+    {
+     "citation": "Wm. S. Hart High School 1960 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/gf6001.htm (Sherie Lynn Caldwell Gustafson collection)",
+     "path": "/scvhistory/files/gf6001/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-gf6001-files-basic-html-page8.html",
+     "kind": "lifetime (1960)",
+     "key": "gf6001",
+     "quote": "Dr. William D. Ross"
+    },
+    {
+     "citation": "Classroom Rental and Lease Agreement Between Newhall School District (Lessor) and Hart District (Lessee), September 1, 1960, SCVHistory.com, /scvhistory/ns6001.htm (pdf courtesy of Newhall School District)",
+     "path": "/scvhistory/ns6001.htm; minutes excerpt /scvhistory/files/ns6001/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001.htm; inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ns6001-files-basic-html-page6.html",
+     "kind": "lifetime (1960)",
+     "key": "ns6001",
+     "quote": "... William D. Ross and Julio Lombardi."
+    },
+    {
+     "citation": "Wm. S. Hart High School 1961 Commencement Program, flipbook page 8, SCVHistory.com, /scvhistory/tr6101.htm (Doris Trester Patrick collection)",
+     "path": "/scvhistory/files/tr6101/files/basic-html/page8.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-tr6101-files-basic-html-page8.html",
+     "kind": "lifetime (1961)",
+     "key": "tr6101",
+     "quote": "Dr. William D. Ross"
+    },
+    {
+     "citation": "Tomahawk 1961, Wm. S. Hart Union High School yearbook, flipbook page 13, SCVHistory.com, /scvhistory/files/hart1961yearbook/",
+     "path": "/scvhistory/files/hart1961yearbook/files/basic-html/page13.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1961yearbook-files-basic-html-page13.html",
+     "kind": "lifetime (1961)",
+     "key": "yb1961",
+     "quote": "DR. WILLIAM ROSS President"
+    },
+    {
+     "citation": "Tomahawk 1962, Wm. S. Hart Union High School yearbook, flipbook page 9, SCVHistory.com, /scvhistory/files/hart1962yearbook/",
+     "path": "/scvhistory/files/hart1962yearbook/files/basic-html/page9.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1962yearbook-files-basic-html-page9.html",
+     "kind": "lifetime (1962)",
+     "key": "yb1962",
+     "quote": "Dr. William D. Ross, Clerk"
+    },
+    {
+     "citation": "Tomahawk 1964, Wm. S. Hart Union High School yearbook, flipbook page 32 (printed p. 28), SCVHistory.com, /scvhistory/files/hart1964yearbook/",
+     "path": "/scvhistory/files/hart1964yearbook/files/search/bookText.xml (Index 32)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1964yearbook-booktext-index32.txt",
+     "kind": "lifetime (1964)",
+     "key": "yb1964",
+     "quote": "Dr. William D. Ross, clerk"
+    },
+    {
+     "citation": "Tomahawk 1966, Wm. S. Hart Union High School yearbook, flipbook page 15, SCVHistory.com, /scvhistory/files/hart1966yearbook/",
+     "path": "/scvhistory/files/hart1966yearbook/files/basic-html/page15.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1966yearbook-files-basic-html-page15.html",
+     "kind": "lifetime (1966)",
+     "key": "yb1966",
+     "quote": "Dr. William Ross"
+    },
+    {
+     "citation": "Tomahawk 1968, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1968yearbook/",
+     "path": "/scvhistory/files/hart1968yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1968yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1968)",
+     "key": "yb1968",
+     "quote": "Dr. William D . Ross"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Ross Wm D dntst 24229 N Sn Frndo Rd ... Newhall 130 ... Ross Wm D Dr 22906 W 8th ... Newhall 626"
+    },
+    {
+     "citation": "Mary F. Brunner, comp., \"Office of Dentistry,\" Newhall History Project, L.A. County Public Library, March 1940, SCVHistory.com, /scvhistory/brunner1940dentistry.htm",
+     "path": "/scvhistory/brunner1940dentistry.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-brunner1940dentistry.htm",
+     "kind": "lifetime (1940)",
+     "quote": "Present office location In Newhall Community Hospital building Established September 1, 1933 By Dr. Wm. D. Ross, D.D.S., B.S. ... Source of information: Dr. Wm. D. Ross, D.D.S. March 1940."
+    },
+    {
+     "citation": "\"William D. Ross, DDS,\" photograph, 1961, SCVHistory.com, /scvhistory/hs6110.htm",
+     "path": "/scvhistory/hs6110.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hs6110.htm",
+     "kind": "lifetime photograph (1961)",
+     "quote": "Office of William D. Ross, DDS, at 24229 N. San Fernando Road, Newhall, 1961."
+    },
+    {
+     "citation": "\"Fred W. Trueblood Sr., Publisher and Respected Valley Citizen, Laid to Rest With Episcopal Rites,\" The Newhall Signal, May 1960, SCVHistory.com, /scvhistory/sg050560trueblood.htm",
+     "path": "/scvhistory/sg050560trueblood.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sg050560trueblood.htm",
+     "kind": "lifetime (1960)",
+     "quote": "The pallbearers were Judge C.M. MacDougall, Ralph B. Williams, Dr William D. Ross, John B. Hungerford, Rev. Dave Raster and A.B. Perkins."
+    }
+   ],
+   "lifetime_count": 13,
+   "recommendation": "Full profile: Newhall dentist from 1933, Hart trustee 1958 to 1968, president 1960-61. A short hub exists (brunner1940dentistry.htm).",
+   "not_found": "Dates of birth and death, education. Searched: mirror for \"w. d. ross\", \"dr. ross\", \"(william|wm.) (d.) ross\", \"dr. (william|bill) ross\"; LA Times \"Ross dentist Newhall\"."
+  },
+  {
+   "id": 28673,
+   "record_title": "C. R. Huntsinger",
+   "holding": 28757,
+   "names": [
+    "C.R. Huntsinger",
+    "Curtis R. Huntsinger",
+    "Curt Huntsinger",
+    "D.R. Huntsinger (roster 1968, typo)",
+    "Curtis R. Hunsinger (1962 OCR)",
+    "Kurt Huntzinger (1966 OCR)"
+   ],
+   "life_dates": null,
+   "life_dates_note": "Not found. Treat as possibly living: public life only.",
+   "in_valley": [
+    "Turkey rancher: the family's Huntsinger Turkey Ranches, Bouquet Canyon then Acton (1958 directory; Signal 1970 \"an Acton turkey rancher by profession\").",
+    "Served earlier on the Saugus (elementary) School District board (Signal, September 16, 1970).",
+    "Hart board president in the mid-1960s; homecoming grand marshal 1964 (1965 yearbook).",
+    "Led the board's reversal of Superintendent C.T. Haan over an anti-war petition at Canyon High (October 1969) and was recalled with Edward Duarte on September 15, 1970, by 2,450 to 2,323 (Signal).",
+    "Brother of Peter F. Huntsinger, founding College of the Canyons trustee (Worden, retrospective; the LA Times obituary of Peter, 1996, says only \"three brothers\")."
+   ],
+   "archive_now": "Person #28673: aliases \"C.R. Huntsinger\", \"D.R. Huntsinger\"; no body. Holding #28757: 1962 to 1970, howEnded recalled (year only).",
+   "board_service": {
+    "as_held": "1962 to 1970, recalled",
+    "sources_agree": "Recalled September 15, 1970 (Signal, September 16, 1970). President in the 1964, 1965, 1968 yearbooks; clerk in the 1967 yearbook.",
+    "disagreement": "Start: the Signal of September 16, 1970 says he \"was in the midst of his tenth year in office\", which points to 1961, and the 1962 yearbook (1961-62 school year) already lists him as assistant clerk. The roster first lists him on the 1962 board. Propose 1961 with both footnoted. End: propose termEndEdtf 1970-09-15."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "C.R. Huntsinger ... D.R. Huntsinger ... C.R. Huntsinger (recalled 1970)"
+    },
+    {
+     "citation": "Tomahawk 1962, Wm. S. Hart Union High School yearbook, flipbook page 9, SCVHistory.com, /scvhistory/files/hart1962yearbook/",
+     "path": "/scvhistory/files/hart1962yearbook/files/basic-html/page9.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1962yearbook-files-basic-html-page9.html",
+     "kind": "lifetime (1962)",
+     "key": "yb1962",
+     "quote": "Mr. Curtis R. Hunsinger, Assistant Clerk"
+    },
+    {
+     "citation": "Tomahawk 1964, Wm. S. Hart Union High School yearbook, flipbook page 32 (printed p. 28), SCVHistory.com, /scvhistory/files/hart1964yearbook/",
+     "path": "/scvhistory/files/hart1964yearbook/files/search/bookText.xml (Index 32)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1964yearbook-booktext-index32.txt",
+     "kind": "lifetime (1964)",
+     "key": "yb1964",
+     "quote": "Mr. Curtis R. Huntsinger, board president"
+    },
+    {
+     "citation": "Tomahawk 1965, Wm. S. Hart Union High School yearbook, flipbook page 110 (printed p. 106), SCVHistory.com, /scvhistory/files/hart1965yearbook/",
+     "path": "/scvhistory/files/hart1965yearbook/files/search/bookText.xml (Index 110)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1965yearbook-booktext-index110.txt",
+     "kind": "lifetime (1965)",
+     "key": "yb1965",
+     "quote": "President Mr. Curt Huntsinger is at the blackboard."
+    },
+    {
+     "citation": "Tomahawk 1965, Wm. S. Hart Union High School yearbook, flipbook page 68 (homecoming), SCVHistory.com, /scvhistory/files/hart1965yearbook/",
+     "path": "/scvhistory/files/hart1965yearbook/files/search/bookText.xml (Index 68)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1965yearbook-booktext-index68.txt",
+     "kind": "lifetime (1965)",
+     "key": "yb1965h",
+     "quote": "Parade Grand Marshal was Curt Huntsinger Board of Trustee President."
+    },
+    {
+     "citation": "Sierra Vista Junior High School 1965 yearbook, flipbook page 4, SCVHistory.com, /scvhistory/files/sierravista1965yearbook/",
+     "path": "/scvhistory/files/sierravista1965yearbook/files/basic-html/page4.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sierravista1965yearbook-files-basic-html-page4.html",
+     "kind": "lifetime (1965)",
+     "key": "sv1965",
+     "quote": "Mr. Curtis Huntsinger ... Board President"
+    },
+    {
+     "citation": "Tomahawk 1967, Wm. S. Hart Union High School yearbook, flipbook page 146 (printed p. 138), SCVHistory.com, /scvhistory/files/hart1967yearbook/",
+     "path": "/scvhistory/files/hart1967yearbook/files/search/bookText.xml (Index 146)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1967yearbook-booktext-index146.txt",
+     "kind": "lifetime (1967)",
+     "key": "yb1967",
+     "quote": "Curtis R. Huntsinger Clerk"
+    },
+    {
+     "citation": "Tomahawk 1968, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1968yearbook/",
+     "path": "/scvhistory/files/hart1968yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1968yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1968)",
+     "key": "yb1968",
+     "quote": "Mr. Curtis Huntsinger - President"
+    },
+    {
+     "citation": "Sierra Vista Junior High School 1968 yearbook, flipbook page 6, SCVHistory.com, /scvhistory/files/sierravista1968yearbook/",
+     "path": "/scvhistory/files/sierravista1968yearbook/files/basic-html/page6.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sierravista1968yearbook-files-basic-html-page6.html",
+     "kind": "lifetime (1968)",
+     "key": "sv1968",
+     "quote": "Curtis R. Huntsinger, President"
+    },
+    {
+     "citation": "Tomahawk 1969, Wm. S. Hart Union High School yearbook, flipbook page 140 (printed p. 136), SCVHistory.com, /scvhistory/files/hart1969yearbook/",
+     "path": "/scvhistory/files/hart1969yearbook/files/search/bookText.xml (Index 140)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1969yearbook-booktext-index140.txt",
+     "kind": "lifetime (1969)",
+     "key": "yb1969",
+     "quote": "Mr. Curtis R. Huntsinger"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "Address column interleaved; the ranch address is the company's.",
+     "key": "dir1958",
+     "quote": "Huntsinger Curtis R ... Huntsinger Turkey Ranches Inc 29164 N Bouquet Cnyn Rd Saugus"
+    },
+    {
+     "citation": "\"Huntsinger, Duarte Lose Close Recall Election,\" The Signal, September 16, 1970, with Leon Worden's caption, SCVHistory.com, /scvhistory/sg091570.htm",
+     "path": "/scvhistory/sg091570.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sg091570.htm",
+     "kind": "lifetime (1970) plus retrospective caption",
+     "quote": "Huntsinger was defeated by a 2,450 to 2,323 margin. ... When Huntsinger, an Acton turkey rancher by profession, reran for office in the spring of 1969, he garnered the largest vote total of any school candidate in local election history. Huntsinger was in the midst of his tenth year in office when he was recalled"
+    },
+    {
+     "citation": "\"Huntsinger Turkey Ranch, early 1960s,\" SCVHistory.com, /scvhistory/ox6101.htm",
+     "path": "/scvhistory/ox6101.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-ox6101.htm",
+     "kind": "retrospective (cites Valley Times 1958, Signal 1965-1996)",
+     "quote": "Curtis Huntsinger served on the Saugus Elementary and William S. Hart High school boards, while Peter Huntsinger was a founding member of the Santa Clarita Community College District board."
+    }
+   ],
+   "lifetime_count": 11,
+   "recommendation": "Full profile, public life only: turkey rancher, Saugus elementary then Hart trustee about 1961 to 1970, board president, recalled September 15, 1970. Present the recall evenly with the vote.",
+   "not_found": "Dates, Saugus board years, the 1969 vote total. Searched: mirror for curtis, curt, c.r., d.r., kurt + hun(t)s(z)inger, \"recall\"; LA Times \"Curtis Huntsinger\" (47 archive stories, none on him) and \"Huntsinger\" (92; only Peter F. Huntsinger's obituary of December 4, 1996, which does not name his brothers)."
+  },
+  {
+   "id": 28675,
+   "record_title": "Earl Schmidt",
+   "holding": 28759,
+   "names": [
+    "Earl Schmidt",
+    "Earle Schmidt",
+    "Earl Smidt (1964 OCR)"
+   ],
+   "life_dates": "January 29, 1906, Los Angeles, to 1979 (killed by a falling tree at Donner Lake) (Cassandra Skaggs, his granddaughter, 2017).",
+   "life_dates_note": "Retrospective family account; no death date to the day.",
+   "in_valley": [
+    "Grew up from 1918 on his parents' 6-S Ranch, north of Soledad Canyon Road (today's North Oaks, Canyon Country).",
+    "With his brother Helm Jr. opened the 6-S Ranch Airpark in 1946 (Shell Progress, May 1947).",
+    "Drove a tanker truck for the Newhall oil refinery; after the ranch sold (1956) moved to Castaic and managed the hog farm at Wayside Honor Rancho (Skaggs).",
+    "Founding director of the Castaic Lake Water Agency, 1962 until his death in 1979; the agency's Earl Schmidt Filtration Plant on Lake Hughes Road is named for him.",
+    "Los Angeles County Sheriff's Auxiliary Force (Skaggs)."
+   ],
+   "archive_now": "Person #28675: no alias; no body. Holding #28759: 1962 to 1969, resigned (year only). No CLWA holding found for him in this pass (not searched for).",
+   "board_service": {
+    "as_held": "1962 to 1969, resigned",
+    "sources_agree": "On every yearbook board 1962 to 1969 (member; clerk in the 1965 Sierra Vista yearbook). Skaggs: \"He served on the William S. Hart High School Board from 1962-1969\".",
+    "disagreement": "Skaggs may draw on the roster; she is not shown to be independent. The resignation date is not found."
+   },
+   "sources": [
+    {
+     "citation": "Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm",
+     "path": "/scvhistory/hartschoolboardmembers.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hartschoolboardmembers.htm",
+     "kind": "retrospective (compiled list; primary for terms, has erred three times)",
+     "key": "roster",
+     "quote": "Earl Schmidt ... Earl Schmidt (resigned)"
+    },
+    {
+     "citation": "Tomahawk 1962, Wm. S. Hart Union High School yearbook, flipbook page 9, SCVHistory.com, /scvhistory/files/hart1962yearbook/",
+     "path": "/scvhistory/files/hart1962yearbook/files/basic-html/page9.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1962yearbook-files-basic-html-page9.html",
+     "kind": "lifetime (1962)",
+     "key": "yb1962",
+     "quote": "Mr. Earl Schmidt, Member"
+    },
+    {
+     "citation": "Tomahawk 1964, Wm. S. Hart Union High School yearbook, flipbook page 32 (printed p. 28), SCVHistory.com, /scvhistory/files/hart1964yearbook/",
+     "path": "/scvhistory/files/hart1964yearbook/files/search/bookText.xml (Index 32)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1964yearbook-booktext-index32.txt",
+     "kind": "lifetime (1964)",
+     "key": "yb1964",
+     "quote": "Mr. Earl Smidt, member"
+    },
+    {
+     "citation": "Tomahawk 1965, Wm. S. Hart Union High School yearbook, flipbook page 110 (printed p. 106), SCVHistory.com, /scvhistory/files/hart1965yearbook/",
+     "path": "/scvhistory/files/hart1965yearbook/files/search/bookText.xml (Index 110)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1965yearbook-booktext-index110.txt",
+     "kind": "lifetime (1965)",
+     "key": "yb1965",
+     "quote": "Mr. Earl Schmidt"
+    },
+    {
+     "citation": "Sierra Vista Junior High School 1965 yearbook, flipbook page 4, SCVHistory.com, /scvhistory/files/sierravista1965yearbook/",
+     "path": "/scvhistory/files/sierravista1965yearbook/files/basic-html/page4.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sierravista1965yearbook-files-basic-html-page4.html",
+     "kind": "lifetime (1965)",
+     "key": "sv1965",
+     "quote": "Mr. Earl Schmidt Board Clerk"
+    },
+    {
+     "citation": "Tomahawk 1966, Wm. S. Hart Union High School yearbook, flipbook page 15, SCVHistory.com, /scvhistory/files/hart1966yearbook/",
+     "path": "/scvhistory/files/hart1966yearbook/files/basic-html/page15.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1966yearbook-files-basic-html-page15.html",
+     "kind": "lifetime (1966)",
+     "key": "yb1966",
+     "quote": "Mr. Earl Schmidt"
+    },
+    {
+     "citation": "Tomahawk 1967, Wm. S. Hart Union High School yearbook, flipbook page 146 (printed p. 138), SCVHistory.com, /scvhistory/files/hart1967yearbook/",
+     "path": "/scvhistory/files/hart1967yearbook/files/search/bookText.xml (Index 146)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1967yearbook-booktext-index146.txt",
+     "kind": "lifetime (1967)",
+     "key": "yb1967",
+     "quote": "Earl Schmidt"
+    },
+    {
+     "citation": "Tomahawk 1968, Wm. S. Hart Union High School yearbook, flipbook page 10, SCVHistory.com, /scvhistory/files/hart1968yearbook/",
+     "path": "/scvhistory/files/hart1968yearbook/files/basic-html/page10.html",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1968yearbook-files-basic-html-page10.html",
+     "kind": "lifetime (1968)",
+     "key": "yb1968",
+     "quote": "Mr. Earl Schmidt"
+    },
+    {
+     "citation": "Tomahawk 1969, Wm. S. Hart Union High School yearbook, flipbook page 140 (printed p. 136), SCVHistory.com, /scvhistory/files/hart1969yearbook/",
+     "path": "/scvhistory/files/hart1969yearbook/files/search/bookText.xml (Index 140)",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hart1969yearbook-booktext-index140.txt",
+     "kind": "lifetime (1969)",
+     "key": "yb1969",
+     "quote": "Mr. Earl Schmidt"
+    },
+    {
+     "citation": "Newhall (Santa Clarita Valley) Telephone Directory, Pacific Telephone, January 1958, SCVHistory.com, /scvhistory/hb5801.htm",
+     "path": "/scvhistory/files/hb5801/files/search/bookText.xml",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-hb5801-booktext-index*.txt",
+     "kind": "lifetime (1958)",
+     "note": "OCR of a two-column directory interleaves neighbouring entries; only name, trade and address read as one unit are used.",
+     "key": "dir1958",
+     "quote": "Schmidt Earl 32042 N Castaic Rd Castaic"
+    },
+    {
+     "citation": "\"Schmidt Brothers' 6-S Ranch Airpark,\" Shell Progress (San Francisco), May 1947, SCVHistory.com, /scvhistory/sk4701.htm",
+     "path": "/scvhistory/sk4701.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-sk4701.htm",
+     "kind": "lifetime (1947)",
+     "quote": "Shell Oil Customers: Schmidt Brothers' 6-S Ranch Airpark, May 1947.",
+     "note": "Quote is the page title; the magazine pages are a pdf not read in full in this pass."
+    },
+    {
+     "citation": "Cassandra Skaggs, \"All About Earl Schmidt: Rancher, Airport Owner, Civic Leader,\" SCVHistory.com, May 4, 2017, /scvhistory/earlschmidt_cassandraskaggs.htm",
+     "path": "/scvhistory/earlschmidt_cassandraskaggs.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-earlschmidt_cassandraskaggs.htm",
+     "kind": "retrospective (family)",
+     "quote": "Earl Schmidt was born Jan. 29, 1906, in Los Angeles ... He served on the William S. Hart High School Board from 1962-1969, the Los Angeles County Sheriff's Auxiliary Force, and the Castaic Lake Water Agency Board from 1962 until his untimely death in 1979"
+    },
+    {
+     "citation": "Castaic Lake Water Agency directors, list, SCVHistory.com, /scvhistory/clwadirectors.htm",
+     "path": "/scvhistory/clwadirectors.htm",
+     "saved": "inventory/news/hart-trustees-2026-10-05/batch-a/mirror-clwadirectors.htm",
+     "kind": "retrospective (compiled list)",
+     "quote": "EARL SCHMIDT 1962-1979"
+    }
+   ],
+   "lifetime_count": 11,
+   "recommendation": "Full profile: lead with the 6-S Ranch Airpark and the Castaic Lake Water Agency (filtration plant named for him); Hart trustee 1962 to 1969, resigned. A hub exists (earlschmidt_cassandraskaggs.htm and the 6-S sidebar). Consider a CLWA holding.",
+   "not_found": "Exact death date; date and reason of the Hart resignation. Searched: mirror for \"earl(e) schmidt\", \"e. schmidt\", \"smidt\"; LA Times \"Earl Schmidt\"."
+  }
+ ],
+ "proposed_changes_not_made": [
+  "Holding #28737 Walter Cook: termEndEdtf 1954-05-09, howEnded died in office (Worden LW3799 citing Signal May 13, 1954); footnote the roster as well.",
+  "Holding #28745 Julio Lombardi: termStartEdtf 1954-05, elected at the regular election two weeks after Cook's death (Worden citing Signal May 27, 1954); footnote the roster's 1955.",
+  "Holding #28757 C. R. Huntsinger: termEndEdtf 1970-09-15 (recall election; Signal September 16, 1970). Start: footnote 1961 (Signal \"tenth year\"; 1962 yearbook) beside the roster's 1962.",
+  "Holding #28755 W. D. Ross: start 1958 (member elect in the June 1958 commencement program) beside the roster's 1959.",
+  "Holding #28743 Hadley: footnote the September 1952 program (on the board by then) beside the roster's 1953. Person #28659: decide the name spelling (Charleton on the roster only; Carleton elsewhere).",
+  "Holding #28729 Donaldson: footnote the September 1952 program (not starred).",
+  "Person #28643 Charles Brown: alias \"Charles M. Brown\"; deathDateEdtf \"../1952-09-12\" (died before) from the 1952 program.",
+  "Person #28647 Frew: birth 1895-01-31 (Worden) and 1896 (Ruth Newhall), death 1963-08-17 (Worden), both retrospective.",
+  "Person #28651 Dillenbeck: Nathan to decide whether C.L. is Charlie Dillenbeck Sr., custodian (Worden's link).",
+  "Holding #28749 Malam: mark roster-only."
+ ]
+}

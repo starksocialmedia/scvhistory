@@ -1,0 +1,429 @@
+# Hart trustees, batch B: draft profiles
+
+5 October 2026. Drafts for Nathan to read before anything is applied; nothing is written to the database. Brief: hart-trustees-profile-brief-2026-10-05.md. Sources: hart-trustees-sources-batch-b-2026-10-05.md. Data: hart-trustees-profiles-draft-batch-b-2026-10-05.json. Every quotation in a note was checked against the saved copy of its page.
+
+| # | Person | Form | Words | Notes |
+|---|---|---|---|---|
+| 28677 | Jereann Bowman | full | 334 | 13 |
+| 28679 | Elisha Agajanian | full | 296 | 15 |
+| 28681 | Edward Duarte | short | 187 | 6 |
+| 28683 | Emmett Carraher | one-line | 22 | 1 |
+| 28685 | David Holden | one-line | 24 | 1 |
+| 28687 | Thomas Hanson | retrospective | 165 | 3 |
+| 28689 | Carroll Word | retrospective | 152 | 3 |
+| 28691 | S. A. Wright | one-line | 24 | 1 |
+| 28693 | Ruth Kelley | one-line | 30 | 1 |
+| 28695 | Robert Crozier | one-line | 35 | 1 |
+| 28697 | Kenneth Wullschleger | retrospective | 105 | 2 |
+| 28699 | Patrick Shaughnessy | one-line | 43 | 1 |
+| 28701 | Sheldon Allen | one-line | 39 | 1 |
+| 28703 | Louis Brathwaite | full | 586 | 13 |
+| 28705 | Jim Shuman | one-line | 41 | 1 |
+| 28707 | James Putjenter | one-line | 39 | 1 |
+| 28709 | Gerald Heidt | full | 216 | 9 |
+| 28711 | Robert Keysor | one-line | 37 | 1 |
+| 28713 | Clara Stroup | full | 308 | 10 |
+| 28715 | Sandra Loberg | full | 204 | 11 |
+
+## Jereann Bowman #28677 (full)
+
+Jereann Bowman pressed for a continuation high school in the William S. Hart Union High School District, and when it opened, on September 29, 1969, next to Canyon High School, the district's board named it for her: Jereann Bowman High School.[1][2] A profile in The Signal in 1976, as her obituary quotes it, said she had "a place in her heart for the non-conforming and felt there should be a school where youngsters could have more freedom" than in traditional schools.[1]
+
+Her obituary gives her years on the Hart board as 1963 to 1969, and so does the Bowman High School yearbook of 1996.[1][3] Leon Worden's roster of the board lists her on the boards of 1964 to 1967 and of 1969, when it marks her resigned, and not on those of 1963 or 1968; the Hart High and Sierra Vista yearbooks of 1968 also leave her off the board.[4][5][6] Yearbooks of 1965 and 1966 list her, as Mrs. Leland Bowman, with the board, and the dedication program of Canyon High School, on October 15, 1969, lists her among the trustees.[7][8][9]
+
+She was secretary-manager of the Newhall-Saugus-Valencia Chamber of Commerce, which named her its Woman of the Year for 1973.[1][10][11] In November 1962, by Leon Worden's history of the hospital auxiliary, she, Martha Barton and Gwen Gillespie drafted the bylaws of the Santa Clarita Valley Women's Auxiliary, the volunteers organized after a Greyhound bus crash near Castaic that October.[12] During the Second World War, her obituary says, she conducted medical research for the Army, and she later held several county jobs.[1]
+
+She was born on March 13, 1921, the daughter of Judge C.M. MacDougall, whom her obituary calls a pioneer of Newhall and Saugus.[1][13] Her obituary says she came to Saugus in 1927, and the 1996 yearbook that she came to Newhall that year; the 1981 yearbook's dedication says she moved to Newhall in 1920.[1][3][2] After she retired she moved to Murphys, in Northern California, where she died on March 22, 1995, at 74.[1]
+
+**Notes**
+
+1. Jill Dolan, "Bowman, Force Behind Continuation School, Dies," The Newhall Signal and Saugus Enterprise, March 24, 1995, as carried on SCVHistory.com, /scvhistory/obituary_jereannbowman.htm: "the driving force behind the continuation school that bears her name, died Wednesday, March 22, 1995, at the age of 74"; "the daughter of Judge C.M. MacDougall"; "a pioneer of Newhall and Saugus"; "born March 13, 1921, and came to Saugus in 1927"; "Following retirement, Bowman left the Santa Clarita Valley to the Northern California town of Murphys"; "conducted medical research for the Army during World War II and held several county jobs"; "She served on the Hart board of trustees from 1963 to 1969 and was active in pushing for the establishment of a continuation school"; "a place in her heart for the non-conforming and felt there should be a school where youngsters could have more freedom"; "Bowman High School opened Sept. 29, 1969, next to Canyon High School"; "In 1973, Bowman was named Woman of the Year by the Newhall-Saugus-Valencia Chamber of Commerce. She held the position of secretary-manager of the chamber."
+2. Teresa Kennedy, dedication, Jereann Bowman High School yearbook, 1981, p. 7, as carried on SCVHistory.com, /scvhistory/bowman1981yearbook.htm: "Jereanne Bowman High School was founded in September 1969 by a very special woman"; "moving to Newhall in 1920"; "Because of her long and hard work, the Wm. S. Hart District School Board named the school after her".
+3. Jereann Bowman High School yearbook, 1996, p. 6, as carried on SCVHistory.com, /scvhistory/bowman1996yearbook.htm, written after her death: "Jereann Bowman came to Newhall in 1927"; "served on the Hart Board of Trustees from 1963 to 1969".
+4. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: the board of 1963 is "Edith Palmer Earl Schmidt Dr. W.D. Ross C.R. Huntsinger"; of 1964-1967, "C.R. Huntsinger Dr. W.D. Ross Edith Palmer Earl Schmidt Jereann Bowman"; of 1968, "D.R. Huntsinger Elisha J. Agajanian Dr. W.D. Ross Earl Schmidt Edward Duarte"; of 1969, with "Jereann Bowman (resigned)". The roster does not date the resignation.
+5. William S. Hart High School, 1968 Tomahawk yearbook, p. 10, as carried on SCVHistory.com, /scvhistory/hart1968yearbook.htm: "Board members are, from left to right: Mr. James R. H offner, Mr. Curtis R. Huntsinger, Mr. E. J. Agajanian, Dr. William D . Ross, Mr. Earl Schmidt, and Mr. Edward Duarte." (Mr. Hoffner was the superintendent.)
+6. Sierra Vista Junior High School, 1968 yearbook, p. 6, as carried on SCVHistory.com, /scvhistory/sierravista1968yearbook.htm: "District Board of Trustees Left to right: James R. Hoffner, Clerk, Curtis R. Huntsinger, President, E. J. Agajanian, Board Member, William Ross, Board Member, Earl Schmidt, Board Member, Edward Duarte, Board Member."
+7. Sierra Vista Junior High School, 1965 Plainsmen yearbook, p. 4, as carried on SCVHistory.com, /scvhistory/sierravista1965yearbook.htm, listing the district's administration and board with "Mrs. Leland Bowman". Her husband was Leland Bowman, by her obituary: "She was preceded in death by her husband, Leland."
+8. William S. Hart High School, 1966 Tomahawk yearbook, p. 15, as carried on SCVHistory.com, /scvhistory/hart1966yearbook.htm: "Board members, I to r, Mr. Kurt Huntzinger, Mrs. Leland Bowman, Mr. Earl Schmidt, Mrs. Paul Palmer and Dr. William Ross".
+9. Canyon High School Dedication Program, October 15, 1969, as reprinted in the Canyon High School 50th anniversary program of 2018, p. 7, as carried on SCVHistory.com, /scvhistory/chs50.htm: "Dedication Program Wednesday, October 15, 1969"; under "Board of Trustees", "Mrs. Jerrean Bowman".
+10. SG7301, Samuel Dixon and Jereann Bowman, 1973 Man & Woman of the Year, photograph with Leon Worden's caption, SCVHistory.com, /scvhistory/sg7301.htm: "Rev. Samuel Dixon and Jereann Bowman are named SCV Man and Woman of the Year for 1973."
+11. SCV Man & Woman of the Year, list, SCVHistory.com, /scvhistory/mwoty.htm: "1973 Rev. Samuel Dixon Jereann Bowman".
+12. Leon Worden, "Volunteers Pave the Way to Henry Mayo Hospital," 2012, SCVHistory.com, /scvhistory/hmnmhprehistory.htm: the crash was "in the wee, dark hours of Oct. 12, 1962"; "The following month, on Nov. 27, three women ... Martha Barton, Jereann Bowman and Gwen Gillespie ... drafted a set of bylaws for the new organization, which would be called the Santa Clarita Valley Women's Auxiliary."
+13. "Last Rites Planned for Jurist C.M. MacDougall," Valley News (Van Nuys), August 27, 1976, as carried on SCVHistory.com, /scvhistory/jb_VNvalleynews082776.htm: "one daughter, Jereann Bowman, of Saugus".
+
+**For Nathan**
+
+- Board years: the obituary and the 1996 yearbook say 1963 to 1969; the roster lists her 1964-1967 and 1969 (resigned), and both 1968 yearbooks leave her off. Footnoted both ways, neither stated. The roster's 1963 board has four members, which would fit an appointment that year; the date of the resignation is not found. Holdings #28761 and #28763 stay as they are unless you decide otherwise.
+- Not used: the Sierra Vista 1965 yearbook (p. 4) as evidence that she was board clerk. Its scanned text runs captions in columns ("Mr. Earl Schmidt Board Clerk Mrs. Leland Bowman Mrs. Paul Palmer Board Member Board Member"), and by the order of name and title elsewhere on the page the clerk is more likely Earl Schmidt. The page image would settle it.
+- Not used, OCR too garbled to quote: the Record-Press of January 8, 1969, p. 3 (president of the Soledad Township Coordinating Council: the words "president Jeriann" and "Bowman will preside" are separated by another column's text), and The Signal of October 8, 1980, p. 2 (hb1906_docs page 16, her name in a list of Achievement Center directors run together with other columns). Either could go in after a reading of the page image.
+- Not used: Patricia Westcott Kelly's recollection of "MacDougall's Café, driven by Jeriann MacDougall (Bowman)": one recollection, no second source.
+- The 1996 yearbook is posthumous and repeats the obituary; it is cited only beside it. Arrival year (Saugus 1927, Newhall 1927, Newhall 1920) is footnoted three ways, not resolved.
+- No record exists for Jereann Bowman High School (organization or place); the profile names it in prose only. Worth a record if you want one.
+
+## Elisha Agajanian #28679 (full)
+
+Elisha J. Agajanian, known as Aggie, founded Santa Clarita National Bank, which opened in the mid-1960s, and he was its chairman until he retired in 1975.[1][2][3] In 1953 a Champion Spark Plug advertisement pictured him as the manager of the Agajanian hog ranch near Saugus, a 170-acre farm in Haskell Canyon.[4] Leon Worden, on the word of Nazareth Chobanian and Michael Trueblood, writes that he founded Blue Barrel Disposal Co. to haul food waste to the farm and sold it in the 1960s.[4]
+
+He was a director of the Upper Santa Clara Valley Water Agency, renamed the Castaic Lake Water Agency in 1970, from 1967 to 1974, by the list of the agency's directors on SCVHistory.com, and Worden writes that he sat on that board and the Hart board at the same time.[5][4] Leon Worden's roster of the William S. Hart Union High School District board lists him on its boards of 1968 through 1971, and the Hart High and Sierra Vista yearbooks of 1968 and the dedication program of Canyon High School, on October 15, 1969, list him among the trustees.[6][7][8][9]
+
+In 1970 he was among the members of the committee that reorganized as the board of Henry Mayo Newhall Memorial Hospital, by Worden's history of the hospital, and in 1985 the hospital honored him among its founders.[10][11] For College of the Canyons' bond election of February 6, 1973, he and Blake V. Blakey headed the Citizens' Committee to Complete College of the Canyons, a group of 40 community leaders.[12] The College of the Canyons Foundation gave him its Silver Spur award in 1990.[13][4]
+
+In November 1993, at the Newhall County Water District's first election in a decade, he kept his seat on its board, third of six candidates for three seats, with 1,592 votes.[14][15]
+
+**Notes**
+
+1. Alan Goldstein, "One of the Best Performers in California: Santa Clarita Bank Has No Frills, Few Ills," Los Angeles Times, March 31, 1987, https://www.latimes.com/archives/la-xpm-1987-03-31-fi-1466-story.html: "was named bank chairman in 1975, when founder Elisha J. Agajanian retired."
+2. Daniel Hon, "Don G., Aggie, and Newhall Hardware," Old Town Newhall Gazette, November-December 1995, as carried on SCVHistory.com, /scvhistory/hon1195.htm, of Don Guglielmino: "He helped finance the Santa Clarita National Bank that opened in the mid-1960s. He and Elisha "Aggie" Agajanian ran that bank for years."
+3. College of the Canyons, 1973 "Image" yearbook, as carried on SCVHistory.com, /scvhistory/coc1973yearbook.htm: "Elisha Agajanian, Santa Clarita National Bank board chairman".
+4. LW2866, "Early Waste Disposal: Agajanian's Hog Farm, 1953.", in this archive (photograph #4609), as carried on SCVHistory.com, /scvhistory/lw2866.htm. The advertisement of 1953: "Eli, manager of the hog ranch near Saugus, California"; "Only a 20-acre section of the 170-acre farm is used to pen some 4,000 head of hogs." Leon Worden's text of 2017: "The Agajanian family's Saugus ranch was located in Haskell Canyon"; "Elisha Agajanian, known as "Aggie,""; "Blue Barrel Disposal Co., which he founded"; "to haul food waste to the family hog farm"; "Aggie Agajanian sold Blue Barrel in the 1960s"; "He served on the Hart High School Board and Castaic Lake Water Agency Board simultaneously in the 1960s and '70s"; "In 1990 he received the Silver Spur award for community service from the College of the Canyons Foundation." Worden gives the founding and the sale to Nazareth Chobanian, personal communication, January 18, 2017, and the purpose to Michael Trueblood, personal communication, the same day.
+5. Castaic Lake Water Agency Directors, 1962 to Date, SCVHistory.com, /scvhistory/clwadirectors.htm: "In 1970, the name of the Upper Santa Clara Valley Water Agency was changed to the Castaic Lake Water Agency"; "ELISHA AGAJANIAN 1967-1974". The list does not give its source.
+6. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Elisha J. Agajanian" on the boards of 1968, 1969, 1970 and 1971; the board of 1972 is "C.E. Word R.E. Kelley S.A. Wright T.F. Hanson David Holden".
+7. William S. Hart High School, 1968 Tomahawk yearbook, p. 10, as carried on SCVHistory.com, /scvhistory/hart1968yearbook.htm: "Mr. E. J. Agajanian".
+8. Sierra Vista Junior High School, 1968 yearbook, p. 6, as carried on SCVHistory.com, /scvhistory/sierravista1968yearbook.htm: "E. J. Agajanian, Board Member".
+9. Canyon High School Dedication Program, October 15, 1969, as reprinted in the Canyon High School 50th anniversary program of 2018, p. 7, as carried on SCVHistory.com, /scvhistory/chs50.htm: "Dedication Program Wednesday, October 15, 1969"; under "Board of Trustees", "Mr. Elisha J. Agajanian".
+10. Leon Worden, "Volunteers Pave the Way to Henry Mayo Hospital," 2012, SCVHistory.com, /scvhistory/hmnmhprehistory.htm: "In 1970 the committee reorganized as the Henry Mayo Newhall Memorial Hospital board"; members included "SCV Bank founder Elisha Agajanian".
+11. Mary Lou Loper, "A 'National Treasure' Is on Tap," Los Angeles Times, September 15, 1985, https://www.latimes.com/archives/la-xpm-1985-09-15-vw-22865-story.html: "Hospital founders to be honored include Judge Adrian W. Adams, Elisha Agajanian".
+12. College of the Canyons, 1973 "Image" yearbook, as carried on SCVHistory.com, /scvhistory/coc1973yearbook.htm: "The bond election, which required a formidable two-thirds majority, was set for Feb. 6, 1973. Elisha Agajanian, Santa Clarita National Bank board chairman, and Blake V. Blakey, Newhall manager of the Anawalt Lumber & Materials Co., headed a group of 40 community leaders who organized a Citizens' Committee to Complete College of the Canyons."
+13. Silver Spur Award Recipients, 1989 to Date, College of the Canyons Foundation, SCVHistory.com, /scvhistory/silverspur-list.htm: "1990 Elisha "Aggie" Agajanian".
+14. "Final Election Returns," Los Angeles Times, November 4, 1993, https://www.latimes.com/archives/la-xpm-1993-11-04-me-53120-story.html: "Newhall County Water District 3 Elected 100% Precincts Reporting: votes (%) E. A. Ed Dunn: 1,690 (18%) Lynne Plambeck: 1,608 (18%) Elisha J. Agajanian*: 1,592 (17%) William T. Hicks: 1,558 (17%) Joe R. Whiteside*: 1,386 (15%) M. June Herrington*: 1,352 (15%)" (an asterisk marks an incumbent).
+15. Sharon Moeser, "Election Wrapup: Election Brings New Faces to Water District Boards," Los Angeles Times, November 4, 1993, https://www.latimes.com/archives/la-xpm-1993-11-04-me-53132-story.html: "The district had its first election in a decade. Incumbent Elisha Agajanian will retain his seat".
+
+**For Nathan**
+
+- Proposed holdings the archive does not have: Upper Santa Clara Valley Water Agency / Castaic Lake Water Agency director, 1967-1974 (the SCVHistory.com list, no stated source, and Worden 2017 "in the 1960s and '70s"); Newhall County Water District director, incumbent by 1993 and re-elected November 2, 1993 (start date not found).
+- Hart service: the roster lists him on the 1968-1971 boards and not on 1972; holding #28765 ends 1972 (the next board's start). How it ended is not found. The profile gives the roster's boards only.
+- Dates of life not found (no obituary on the site or in the LA Times archive); written as public life only. The Hon column's Army anecdote and his brother J.C. Agajanian are left out.
+- Not quoted: The Canyon Call of October 31, 1972, p. 9, reports his naming as general co-chairman, but its scanned text is broken by hyphens and stray marks ("na- med ge.neral co-chairmen of the Citizens• Committee"); the 1973 yearbook, which says the same in clean text, is cited instead.
+- Blue Barrel rests on Worden's two personal communications of 2017 (retrospective): attributed in the text.
+
+## Edward Duarte #28681 (short)
+
+Edward Duarte served on the Newhall elementary school board before he joined the William S. Hart Union High School District board, and in 1970 he was one of two Hart trustees removed by the district's voters in a recall.[1] Leon Worden, introducing The Signal's account of the recall, says Duarte owned a small independent grocery on Soledad Canyon Road in Canyon Country.[2]
+
+Worden's roster of the board lists him on the boards of 1968, 1969 and 1970, and marks him recalled in 1970; the Hart High and Sierra Vista yearbooks of 1968 and the dedication program of Canyon High School, on October 15, 1969, list him among the trustees.[3][4][5][6] At the recall election of September 15, 1970, in the third year of his first four-year term, 2,472 voters favored recalling him and 2,320 keeping him, 51.5 percent to 48.5, in a count The Signal called unofficial until the county's canvass.[1] Worden connects the recall to the board's reversal, led by Curtis Huntsinger, of Superintendent C.T. Haan's decision to let Canyon High School students circulate petitions against the war in Vietnam, and to the board's firing of Haan.[2]
+
+**Notes**
+
+1. "Huntsinger, Duarte Lose Close Recall Election," The Signal, September 16, 1970, as carried on SCVHistory.com, /scvhistory/sg091570.htm: "Curtis Huntsinger and Edward Duarte were recalled from the William S. Hart Board of Trustees in a very dramatic and very close election yesterday"; "The final vote with all 15 precincts reporting was 2,472 in favor of recalling Duarte and 2,320 asking that he be retained"; "The returns, however, are not official and will not be accepted as final until the registrar of voters office in Los Angeles holds an official canvass in about 10 days"; "Duarte was serving in the third year of his first four-year term. Both men had served previously on elementary school boards, Huntsinger on the Saugus Board and Duarte on the Newhall Board"; "the vote on Duarte at 51.5 percent favoring recall and 48.5 percent in favor of retaining him".
+2. Leon Worden, introduction to "Huntsinger, Duarte Lose Close Recall Election" (The Signal, September 16, 1970), SCVHistory.com, /scvhistory/sg091570.htm: "Duarte owned Thrify Shopper [sic], a small, independent grocery on Soledad Canyon Road in the middle of Canyon Country's main business corridor"; "One element sparking the recall movement was the school board's reversal, led by Huntsinger, of Superintendent C.T. Haan's decision to let a group of Canyon High School students stage a demonstration and circulate petitions in opposition to the war in Vietnam the previous October. By election day, the conservative board had fired its more liberal superintendent." Worden gives no source for the grocery.
+3. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Edward Duarte" on the boards of 1968 and 1969, and on the board of 1970 as "Edward Duarte (recalled 1970)".
+4. William S. Hart High School, 1968 Tomahawk yearbook, p. 10, as carried on SCVHistory.com, /scvhistory/hart1968yearbook.htm: "Mr. Earl Schmidt, and Mr. Edward Duarte."
+5. Sierra Vista Junior High School, 1968 yearbook, p. 6, as carried on SCVHistory.com, /scvhistory/sierravista1968yearbook.htm: "Edward Duarte, Board Member."
+6. Canyon High School Dedication Program, October 15, 1969, as reprinted in the Canyon High School 50th anniversary program of 2018, p. 7, as carried on SCVHistory.com, /scvhistory/chs50.htm: "Dedication Program Wednesday, October 15, 1969"; under "Board of Trustees", "Mr. Edward Duarte".
+
+**For Nathan**
+
+- Holding #28767: the end could carry the date, recalled at the election of September 15, 1970 (unofficial until the County canvass, about ten days later, by The Signal).
+- The grocery rests on Worden's uncited introduction (retrospective) and is attributed. Its name is printed "Thrify Shopper"; the profile leaves the name out of the text and gives it in the note with [sic], since "Thrifty" is a guess.
+- Dates of life not found; public life only.
+- The 1970 recall has no event or election record. If one is made, Duarte, Huntsinger, Hanson and Word all point at it.
+
+## Emmett Carraher #28683 (one-line)
+
+Emmett Carraher sat on the William S. Hart Union High School District board in 1969, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: the board of 1969 is "C.R. Huntsinger Elisha J. Agajanian Earl Schmidt (resigned) Edward Duarte Jereann Bowman (resigned) Emmett Carraher David Holden". He is not on the board of 1970. The roster does not say how he came to the board or how he left it.
+
+**For Nathan**
+
+- Holding #28769 reads 1969 to 1970; the roster lists him on the 1969 board only (1970 is the next board's start). The text says 1969.
+- Listed after two resignations (Schmidt, Bowman), so probably appointed to one of their seats; the roster does not say so, and the text does not.
+- Lead only: the 1969 valley directory (LW6902, p. 18) lists a "Carraher Emmett P" in Saugus; a residence listing, not used.
+
+## David Holden #28685 (one-line)
+
+David Holden sat on the William S. Hart Union High School District board from 1969 to 1972, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "David Holden" on the boards of 1969, 1970, 1971 and 1972; the board of 1973 is "C.E. Word R.E. Kelley T.F. Hanson Kenneth C. Wullschleger R. Crozier". The roster does not say how his service began or ended.
+
+**For Nathan**
+
+- Nothing found about him beyond the roster; the name is common (a Hart student of 1979 and unrelated David Holdens in the LA Times are not him).
+- Holding #28771 ends 1973 (the next board's start); the text gives the roster's boards, 1969 to 1972.
+
+## Thomas Hanson #28687 (retrospective)
+
+Thomas Hanson, described by The Signal as a Newhall engineer, was elected to the William S. Hart Union High School District board on September 15, 1970, on the recall ballot that removed Curtis Huntsinger and Edward Duarte; he and Carroll Word had run with the endorsement of the School Rescue Committee, the citizens' group that led the recall.[1] The Signal reported that both would take office once the county's canvass was complete, and before the board's meeting of September 21.[1]
+
+Leon Worden, introducing that account, notes that Huntsinger had criticized Hanson for saying students should be able to protest however and whenever they wanted, a charge Hanson denied, and cites The Signal of October 20, 1969.[2] Worden's roster of the board lists him as T.F. Hanson from 1970, as the board's president in 1973-74, and as re-elected in March 1977 and resigned on May 25, 1977.[3] Apart from The Signal's report of 1970, what is known of him comes from these later accounts by Worden.[1][2][3]
+
+**Notes**
+
+1. "Huntsinger, Duarte Lose Close Recall Election," The Signal, September 16, 1970, as carried on SCVHistory.com, /scvhistory/sg091570.htm: "voters selected Thomas Hanson, a Newhall engineer, and Dr. Carroll Word, a Methodist minister from Saugus, to replace them on the Board"; "Both Hanson and Word had run as candidates with the powerful endorsement of the School Rescue Committee"; "the serious recall challenge led by a group of citizens calling themselves the School Rescue Committee"; "Hanson and Word will both take office within days after the official canvass is complete, and certainly before the next Hart Board meeting scheduled for September 21."
+2. Leon Worden, introduction to "Huntsinger, Duarte Lose Close Recall Election" (The Signal, September 16, 1970), SCVHistory.com, /scvhistory/sg091570.htm: "Hanson had been criticized by Huntsinger for saying students should be able to protest however and whenever they want, a charge Hanson denied (The Signal, 10/20/1969)."
+3. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "T.F. Hanson" on the boards of 1970 to 1973; "Thomas Hanson, President" on the board of 7-1-1973 to 6-30-1974; "Thomas Hanson (reelected 3-1977, resigned 5-25-1977)" on the board of 4-1-1977 to 3-31-1978.
+
+**For Nathan**
+
+- One lifetime source (The Signal 1970), so retrospective, and the text says so.
+- Holding #28773: the start could be refined to 1970-09 (after the canvass, before September 21, 1970, by The Signal).
+- Lead, not used: a Thomas Hanson of Newhall, retired after a 40-year career in engineering, designing air-powered cars (Lee Dye, LA Times, February 8, 1999), and a former Lockheed engineer of that name (LA Times, September 17, 1999). Same name, town and profession; nothing ties him to the board. An obituary would settle it.
+- The Signal of October 20, 1969, which Worden cites, is not on the site; his account of it is attributed to him.
+- Reason for the 1977 resignation not found.
+
+## Carroll Word #28689 (retrospective)
+
+Carroll Word was pastor of the Santa Clarita Methodist church on Bouquet Canyon Road from 1968 to 1974, by the Santa Clarita Valley Citizen's notice of his death.[1] The Signal called him "a Methodist minister from Saugus" when the voters of the William S. Hart Union High School District elected him to its board on September 15, 1970, on the recall ballot that removed Curtis Huntsinger and Edward Duarte; he had run with the endorsement of the School Rescue Committee, which led the recall.[2]
+
+Leon Worden's roster of the board lists him as C.E. Word from 1970, and as Carroll E. Word, resigned on June 30, 1974.[3] He was pastor of the First United Methodist Church of Indio when he died, at 62, as the Citizen reported on September 18, 1988.[1] Beyond The Signal's report of his election, what is known of him comes from that notice and from Worden's later roster.[1][2][3]
+
+**Notes**
+
+1. Unsigned column item, The Santa Clarita Valley Citizen, September 18, 1988, as carried on SCVHistory.com, /scvhistory/citizen19880918.htm: "Dr. Carroll Word, formerly of the SCV, has died of cancer at 62. At the time of his death he was pastor of the First United Methodist church of Indio. He was pastor at the Santa Clarita Methodist church on Bouquet Canyon Road during that church's early growing years"; "from '68 to '74"; "he was elected to the Hart high school district board of trustees during the district's most trying times in recent memory".
+2. "Huntsinger, Duarte Lose Close Recall Election," The Signal, September 16, 1970, as carried on SCVHistory.com, /scvhistory/sg091570.htm: "voters selected Thomas Hanson, a Newhall engineer, and Dr. Carroll Word, a Methodist minister from Saugus, to replace them on the Board"; "Both Hanson and Word had run as candidates with the powerful endorsement of the School Rescue Committee"; "the serious recall challenge led by a group of citizens calling themselves the School Rescue Committee".
+3. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "C.E. Word" on the boards of 1970 to 1973; "Carroll E. Word (resigned 6-30-1974)" on the board of 7-1-1973 to 6-30-1974.
+
+**For Nathan**
+
+- Two lifetime sources (The Signal 1970; the Citizen 1988), so retrospective, and the text says so.
+- Exact date and place of death not found; the Citizen of September 18, 1988 is the only report. Birth year (about 1926) is arithmetic only and is not stated.
+- Holding #28775: the start could be refined to 1970-09 (as for Hanson).
+- His 1974 resignation coincides with the end of his pastorate ("'68 to '74"); no source connects them, so the text does not.
+- The Citizen's OCR is clean for the passages quoted; the column's account of the recall ("The board fired the superintendent by a 3-2 vote") is not used.
+- The church is the "Santa Clarita Methodist Church" of Worden's hospital-auxiliary history: a link if an organization or place record exists.
+
+## S. A. Wright #28691 (one-line)
+
+S.A. Wright sat on the William S. Hart Union High School District board from 1970 to 1972, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "S.A. Wright" on the boards of 1970, 1971 and 1972; not on the board of 1973. The roster gives initials only, and does not say how the service began or ended.
+
+**For Nathan**
+
+- Given name unknown; keep the title "S. A. Wright" until one is sourced. Lead only: "STANLEY WRIGHT - Metal and Wood Shop", a Hart teacher in the 1950 yearbook; not tied.
+- Whether elected in spring 1970 or appointed is not known.
+
+## Ruth Kelley #28693 (one-line)
+
+Ruth Kelley sat on the William S. Hart Union High School District board from 1971 to 1975, and was its president in 1974-75, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "R.E. Kelley" on the boards of 1971 to 1973; "Ruth Kelley" on the board of 7-1-1973 to 6-30-1974; "Ruth Kelley, President" on the board of 7-1-1974 to 6-30-1975. She is not on the board of 4-1-1975.
+
+**For Nathan**
+
+- Leads, not tied: a Ruth Kelley of Oak Spring Canyon spoke against the Gillibrand titanium mine (The Signal, 1991, on gt8703); a Ruth Kelley of Canyon Country wrote to the LA Times (1989, 1992); a Ruth Kelley wrote "Jake's Journal" (LA Times, 1994). One source tying any of them to the trustee would allow more.
+
+## Robert Crozier #28695 (one-line)
+
+Robert Crozier sat on the William S. Hart Union High School District board from 1973 to 1977, and was its clerk in 1973-74 and its president in 1976-77, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "R. Crozier" on the board of 1973; "Robert Crozier, Clerk" on the board of 7-1-1973 to 6-30-1974; "Robert Crozier, President" on the board of 4-1-1976 to 4-3-1977. He is not on the board of 4-1-1977.
+
+**For Nathan**
+
+- Nothing found about him beyond the roster (a Jeff Crozier in the COC band, 1974, is not tied).
+
+## Kenneth Wullschleger #28697 (retrospective)
+
+Kenneth Wullschleger was president of the William S. Hart Union High School District board when Saugus High School opened in September 1975; a photograph from the school's first yearbook, of 1976, shows him with "the administration and school board that opened Saugus High School," as Leon Worden's caption describes it.[1] Worden's roster of the board lists him from 1973, as clerk in 1974-75 and president in 1975-76, and as resigned effective January 23, 1979, when Howard P. "Buck" McKeon was elected on March 6, 1979, to complete his term.[2] Beyond the photograph, what is known of his service comes from Worden's later roster and caption.[1][2]
+
+**Notes**
+
+1. HD7601, School Board & Administration (Partial), 1976, photograph from the 1976 Saugus High School Sword & Shield yearbook, with Leon Worden's caption, SCVHistory.com, /scvhistory/hd7601.htm: "The administration and school board that opened Saugus High School (partial). First day of class was Sept. 6, 1975. From left: Dr. H. Clyde Smyth, acting superintendent; Kenneth Wullschleger, school board president".
+2. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Kenneth C. Wullschleger" on the board of 1973; "Kenneth C. Wullschleger, Clerk" on the board of 7-1-1974 to 6-30-1975; "Kenneth C. Wullschleger, President" on the board of 4-1-1975 to 3-31-1976; "Kenneth C. Wullschleger (resigned eff. 1-23-1979)" and "Howard P. "Buck" McKeon (elected 3-6-1979 to complete Wullschleger's unexpired term)" on the board of 7-19-1978 to 11-1979.
+
+**For Nathan**
+
+- One lifetime source tied (the 1975-76 photograph), so retrospective, and the text says so.
+- Probable, not stated: "Ken Wullschleger" on the Citizens' Committee to Complete College of the Canyons (The Canyon Call, October 31, 1972, read in the issue's full OCR; on the page-9 text the columns are interleaved) and on the 1977 Boys Club auction committee (TN7701, "Bidboard Closing Ken Wullschleger"). Same rare name; neither says he is the trustee.
+- Lead, not tied: a Deputy District Attorney Kenneth Wullschleger, Los Angeles County, in LA Times stories of 1985-1987.
+- Reason for the 1979 resignation not found.
+
+## Patrick Shaughnessy #28699 (one-line)
+
+Dr. Patrick Shaughnessy sat on the William S. Hart Union High School District board from April 1975, was its clerk in 1976-77, and resigned before January 1978, when Jim Shuman was appointed to complete his term, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Dr. Patrick Shaughnessy" on the board of 4-1-1975 to 3-31-1976; "Dr. Patrick Shaughnessy, Clerk" on the board of 4-1-1976 to 4-3-1977; "Patrick Shaughnessy" on the board of 4-1-1977 to 3-31-1978; on the board of 1-10-1978 to 3-31-1979, "Jim Shuman (appointed to complete the unexpired term of Shaughnessy, who resigned)". The roster does not date the resignation.
+
+**For Nathan**
+
+- Probable, not stated: a valley dentist, "Dr. Patrick Shaughnessy, D.D.S.", donated to the Newhall-Saugus Boys Club auctions of 1972, 1975 and 1979 (TN7202, TN7503, TN7902). The roster's "Dr." fits; no source says the dentist is the trustee. If you accept the identity, a second sentence can give the profession. The 1972 and 1979 catalog texts are OCR-garbled ("D-. Patrick Shaughnessy", "Patrick /l//. Shaughnessy D.D.S.") and would be quoted only from the 1975 catalog.
+- "Resigned before January 1978" is read from the board of 1-10-1978 listing Shuman as his appointed successor; the roster gives no date. Holding #28785 ends 1978-01.
+
+## Sheldon Allen #28701 (one-line)
+
+Sheldon Allen was appointed to the William S. Hart Union High School District board in 1977 to complete Thomas Hanson's term, and was the board's clerk from July 1978 to November 1979, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: on the board of 4-1-1977 to 3-31-1978, "Sheldon Allen (appointed to complete Hanson's unexpired term, until 3-1979)", with "Thomas Hanson (reelected 3-1977, resigned 5-25-1977)"; "Sheldon Allen, Clerk" on the board of 7-19-1978 to 11-1979. He is not on the board of 12-4-1979. The appointment note gives the term as running "until 3-1979"; the board on which he is listed as clerk runs to November 1979.
+
+**For Nathan**
+
+- The roster disagrees with itself on his end: the appointment note says "until 3-1979", but he is listed as clerk on the board running to 11-1979 (the district moved its elections to November in 1979). Footnoted both; the text gives no end date. Holding #28787 ends 1979-12. Whether he stood in 1979 is not known.
+- Probable, not stated: the valley's Sheldon Allen of the Boys & Girls Club (vice president 1993, TN9301; auction chair 1992, bgclub40; live-auction chair 1985-1990, catalogs), SCV Man of the Year 1995 (mwoty), and "a semiretired Canyon Country lawyer" (Darrell Satzman, LA Times, November 1, 1996). No source names him as the former trustee. If you accept the identity, those make a fuller public-life profile; he was probably living into the 2000s, so public life only.
+
+## Louis Brathwaite #28703 (full)
+
+Louis E. Brathwaite was a member of the City Formation Committee in the drive that made Santa Clarita a city in 1987, and from 1988 he sat on the city's first Planning Commission.[1][2][3] In January 1987, as a former Hart School District board member and the owner of a computer furniture firm, he told The Signal, "I feel that the area is growing, and that growth should continue," and that the people affected by it "should have more of a direct say about it."[4] His obituary, quoting Carl Boyer, one of the committee's two chairs, credits him with persuading Supervisor Kenneth Hahn to support the city's application and to attend a decisive meeting, and with securing $3 million from the county for the new city.[1]
+
+By September 1987 the Los Angeles Times called him a former member of the formation committee, and he stood for the first City Council on November 3, 1987, coming eighth of 26 candidates for five seats, with 3,408 votes.[5][6] His candidate statement gave his occupation as federal property administrator and his qualifications as "an elected school board member, a director of the Boys and Girls clubs and Cityhood Formation Committee officer."[7] In January 1988 Councilman Carl Boyer appointed him to the new Planning Commission.[3][1] The list of commissioners on SCVHistory.com places him on the commission from 1988 to 1996; his obituary says he remained on it until he retired in 1998, and that no one else had served as long, and Boyer's history of the city says he served longer than any other commissioner.[8][1][9] In April 1996 he stood for the council again and came sixth of thirteen candidates for two seats.[6][10]
+
+Before the city, he served on the William S. Hart Union High School District board. By Boyer's account in the obituary, he was on the parent advisory committee of Saugus High School when he was asked to run, and he won.[1] Leon Worden's roster of the board lists him from April 1977, as clerk from April 12, 1977, as president from July 1978 to November 1979, and as a member until November 1981.[11] The college newspaper, The Canyon Call, names him clerk of the board when he was master of ceremonies of College of the Canyons' Black History program in the 1977-78 school year.[12] Clyde Smyth, then the district's superintendent, recalled that "He was on the board when we went through some very hard times financially."[1]
+
+He sat on the board of the Boys and Girls Clubs of the Santa Clarita Valley, where, by Smyth's account, he chaired the committee that oversaw the club's facilities, and on the board of the SCV Committee on Aging, whose executive director credited him with the idea of the Bouquet Canyon Seniors housing.[13][1] Boyer recalled that he had been president of the Monteverde Homeowners Association, and that when he first ran for office Ruth Newhall, then editor of The Signal, proposed to present him as the first black candidate for political office in the Santa Clarita Valley, and he asked not to be described that way.[1]
+
+He was born in New York City on April 25, 1933, and moved to the Santa Clarita Valley in 1969; he held management posts with the U.S. Air Force for 38 years, retiring in 1990, and the Los Angeles Times described him in 1987 and 1988 as a federal property administrator.[1][5][3] A week before his death he completed an autobiography, "Black Man's Job, White Man's World."[1] He died in Santa Clarita on November 13, 2001, at 68.[1]
+
+**Notes**
+
+1. Diana Sevanian and Marci Wormser, "Louis Brathwaite, City & Civic Leader," The Signal, November 15, 2001, as carried on SCVHistory.com, /scvhistory/sg111501.htm: "died Tuesday in Santa Clarita" (the paper of Thursday, November 15, 2001); "Brathwaite, 68, was involved with the 1987 drive to create the city of Santa Clarita and went on to become a planning commissioner"; "Born April 25, 1933, in New York City, Brathwaite served in management positions with the U.S. Air Force, retiring in 1990 after 38 years of service"; "Brathwaite moved to the Santa Clarita Valley in 1969"; "He was on the board when we went through some very hard times financially" (Clyde Smyth); "the board of the SCV Boys and Girls Club, where Brathwaite chaired the committee that oversaw club facilities"; "As a board member for the Committee on Aging, Brathwaite helped acquire land from The Newhall Land and Farming Co. for the Bouquet Canyon Seniors housing complex"; "Louis was the single brain child of the Bouquet Canyon Senior housing" (Brad Berens, executive director of the SCV Committee on Aging); "Boyer recalled when Brathwaite was a member of the parent advisory committee for Saugus High School and was asked to run for school board"; "Ruth thought it was interesting and said he would be represented as the first black candidate for political office in the Santa Clarita Valley"; "but Louis said he would rather not (be characterized that way)"; "Brathwaite went on to win the election"; "he successfully lobbied the late supervisor Kenneth Hahn to support the city's application, and convinced Hahn to attend a decisive meeting"; Boyer: "Louis was responsible for getting him there," said Boyer, one of two city formation committee chairs"; "Brathwaite was also instrumental in securing $3 million from the county for the new city, he said"; "Boyer appointed his friend to the planning commission when it was created in 1988"; "as (president of the Monteverde Homeowners Association)"; "Brathwaite remained on the planning commission until health concerns prompted him to retire in 1998. No one else has served as long."; "A week before his death Brathwaite completed his autobiography, "Black Man's Job, White Man's World,"".
+2. Lynn O'Shaughnessy, "Supervisors OK Santa Clarita Pay-Back Plan," Los Angeles Times, June 10, 1987, https://www.latimes.com/archives/la-xpm-1987-06-10-me-3434-story.html: "Louis E. Brathwaite, a member of the Santa Clarita City Formation Committee."
+3. Stephanie Chavez, "Santa Clarita Picks Planning Board, Assigns Projects," Los Angeles Times, January 30, 1988, https://www.latimes.com/archives/la-xpm-1988-01-30-me-9967-story.html: "Louis E. Brathwaite, a federal property administrator, was appointed by Councilman Carl Boyer. Brathwaite has been a board member of the William S. Hart Union High School District and was active in the cityhood formation committee. He also ran unsuccessfully for City Council in November."
+4. Laurel Suomisto, "Cityhood Backers: Who Are They?," The Signal, January 4, 1987, in this archive as "Cityhood Backers: Who Are They? (Laurel Suomisto, The Signal, January 4, 1987)" (document #28310): "Louis Brathwaite, 53, a Valencia resident and former Hart School District board member, said his principal reason for supporting cityhood is the desire for local control. "I feel that the area is growing, and that growth should continue," Brathwaite, the owner of a computer furniture firm, said. "However, the people who are affected by that growth should have more of a direct say about it.""
+5. Mayerene Barker, "Growth Before Birth: Would-Be Council Members of a Yet-to-Be City Already Looking for New Worlds to Conquer," Los Angeles Times, September 7, 1987, https://www.latimes.com/archives/la-xpm-1987-09-07-me-4032-story.html: "said Louis Brathwaite, another former member of the formation committee"; "Brathwaite, 54, a federal government property administrator from Valencia".
+6. Archive records: the City Council elections of November 3, 1987 and April 9, 1996, with their returns: November 3, 1987, 3,408 votes, eighth of 26 candidates for five seats; April 9, 1996, 1,011 votes, sixth of 13 candidates for two seats.
+7. "The Candidates," Los Angeles Times, October 19, 1987, https://www.latimes.com/archives/la-xpm-1987-10-19-me-10430-story.html, his candidate statement: "LOUIS E. BRATHWAITE. FEDERAL PROPERTY ADMINISTRATOR"; "Qualifications: I have worked for this community as an elected school board member, a director of the Boys and Girls clubs and Cityhood Formation Committee officer."
+8. City of Santa Clarita Commissioners, 1988-Present, SCVHistory.com, /scvhistory/citycommissioners.htm, whose first part is in this archive as "City of Santa Clarita Planning Commission, 1988-1990 (excerpt)" (document #28303): "Planning Commission 1988 Louis Brathwaite"; "1994-1996 Louis Brathwaite Darla Hoback Ralph Killmeyer Jerry Cherrington Michael D. Berger 1996-1998 Dennis Ostrom Darla Hoback Ralph Killmeyer Robert Kellar Pat Modugno".
+9. Carl Boyer, Santa Clarita: The Formation and Organization of the Largest Newly Incorporated City in the History of Humankind, 2d ed., 2015, chapter 14, p. 204, as carried on SCVHistory.com, /scvhistory/boyer2015ch14.htm: "Louis never did recover completely from the illnesses that struck him a week after his retirement from Federal service, but he served longer than any other commissioner."
+10. "Final Election Returns," Los Angeles Times, April 11, 1996, https://www.latimes.com/archives/la-xpm-1996-04-11-me-59342-story.html: "SANTA CLARITA City Council 2 Elected 100% Precincts Reporting: votes (%) Jill Klajic: 3,508 (17%) Jan Heidt*: 3,356 (17%) Frank Ferry: 3,143 (16%) Laurene Weste: 3,041 (15%) Gary Johnson: 2,993 (15%) Louis Brathwaite: 986 (5%)". The newspaper's count, 986, differs from the archive's, 1,011.
+11. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Louis Brathwaite , Clerk (4-12-1977)" on the board of 4-1-1977 to 3-31-1978; "Louis Brathwaite, Clerk" on the board of 1-10-1978 to 3-31-1979; "Louis Brathwaite, President" on the board of 7-19-1978 to 11-1979; "Louis E. Brathwaite" on the board of 12-4-1979 to 11-30-1981. He is not on the board of 12-8-1981.
+12. The Canyon Call (College of the Canyons), vol. VIII, 1977-78, as carried on SCVHistory.com, /scvhistory/coccanyoncall_fy19771978.htm: "Louis E. Brathwaite, clerk of the Board of Trustees of the William S. Hart School District, was master of ceremonies."
+13. Boys and Girls Clubs of the Santa Clarita Valley, Tribute Dinner program, November 13, 1993, p. 2, TN9301, as carried on SCVHistory.com, /scvhistory/tn9301.htm: "Board of Directors Officers Dr. Clyde Smyth, President"; "Members Louis Brathwaite".
+
+**For Nathan**
+
+- Proposed holding the archive does not have: Santa Clarita Planning Commissioner, from his appointment in January 1988 (LA Times, January 30, 1988). The end disagrees: the SCVHistory.com commissioners list has him through 1994-1996 and not on 1996-1998 (Kellar is), while the obituary says he stayed until he retired in 1998. Footnoted both; the text states neither. The 1995 LA Times still calls him "Planning Commissioner".
+- His two City Council candidacies in the archive (#21996, November 3, 1987; #22092, April 9, 1996) are not linked to this record (candidacyPerson is empty). Worth linking.
+- 1996 votes disagree: the archive's candidacy #22092 has 1,011; the LA Times "Final Election Returns" of April 11, 1996 has 986. Both are in the notes; the text gives only his place (sixth of thirteen), on which they agree.
+- The "first black candidate" passage is Boyer's recollection at second hand, given as his; the text makes no "first" claim of its own. Drop it if you prefer.
+- Health (the obituary's and Boyer's) is left out of the text except as the reason given for the 1998 retirement in the note. His widow is left out.
+- The Canyon Call issue date is not printed near the item (it follows vol. VIII no. 9, early 1978 by its Black History Month context); the note gives the volume only.
+- Whether he stood in 1981 is not known (LA Times online begins 1985). Holding #28789 howEnded stays unknown.
+- The date of death is read from "died Tuesday" in the paper of Thursday, November 15, 2001, which agrees with the SCVHistory.com timeline (November 13); the timeline page is not cited.
+
+## Jim Shuman #28705 (one-line)
+
+Jim Shuman was appointed to the William S. Hart Union High School District board in 1978 to complete Patrick Shaughnessy's term, and resigned the same year, when James Putjenter was appointed to complete his, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: on the board of 1-10-1978 to 3-31-1979, "Jim Shuman (appointed to complete the unexpired term of Shaughnessy, who resigned)"; on the board of 7-19-1978 to 11-1979, "James Putjenter (appointed to complete unexpired term of Shuman, who resigned)". The roster does not date the appointment or the resignation.
+
+**For Nathan**
+
+- Nothing tied beyond the roster. He is not among Mike Shuman's sons (Signal obituary, August 15, 2000), so no family tie is assumed; a Jim (James) Shuman at College of the Canyons in 1974-77 is not tied.
+- "1978" for both the appointment and the resignation is read from the boards of 1-10-1978 and 7-19-1978; the roster gives no dates.
+
+## James Putjenter #28707 (one-line)
+
+James Putjenter was appointed to the William S. Hart Union High School District board in 1978 to complete Jim Shuman's term, and sat on the board of July 1978 to November 1979, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: on the board of 7-19-1978 to 11-1979, "James Putjenter (appointed to complete unexpired term of Shuman, who resigned)". He is not on the board of 12-4-1979.
+
+**For Nathan**
+
+- Probable, not stated (rare surname): president of the Newhall-Saugus Athletic Club (SCVAA Warriors) in 1973, by the Warriors 1973 yearbook p. 4 (OCR of a two-column officer list: "VI CE PRES I DENT President Jim Putjenter", readable but not clean); "Jim & Ginny Putjenter, Tiny's Submarine Sandwiches", auction donors in 1986 (TN8601). If you accept the identity, the club presidency could be a second sentence.
+- Whether he stood in November 1979 is not known.
+
+## Gerald Heidt #28709 (full)
+
+Gerald H. Heidt sat on the William S. Hart Union High School District board from his election in 1979 until he lost a bid for a fourth term in November 1991.[1][2][3] By Leon Worden's roster he was re-elected in 1983 and 1987, was the board's clerk in 1982, 1985-86 and 1990-91 and its assistant clerk in 1989-90, and was its president in 1983 and in 1986-87.[1] A photograph of the board in 1987 names him as its president.[4]
+
+In the election of November 1987 he came first of four candidates for two seats, with 11,491 votes, 41.6 percent.[5] That August, when two developers' groups were challenging in court the school taxes on new homes that the valley's voters had approved in June, he said of the tax, "This was something we felt we had to do because the state didn't have the funds."[6] In April 1989, when a builder sought to keep the right to challenge those taxes in court while paying them, he said, "The total amount should be paid as agreed."[7]
+
+In 1991 he and Clara Jean Stroup, the other incumbent, each stood for a fourth term against three challengers, and he came fourth of five candidates for two seats, with 2,991 votes, 17.7 percent.[8][2][3][9] Worden's roster does not say how his service ended.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Gerald H. Heidt (elected 1979)" on the board of 12-4-1979 to 11-30-1981; "Gerald H. Heidt, Clerk 1982, President 1983" on the board of 12-8-1981 to 11-30-1983; "Gerald H. Heidt (reelected 1983)"; "Gerald H. Heidt, Clerk" on the board of 12-3-1985 to 11-30-1986; "Gerald H. Heidt, President" on the board of 12-2-1986 to 11-30-1987; "Gerald H. Heidt (reelected 1987)"; "Gerald H. Heidt, Asst. Clerk" on the board of 12-5-1989 to 11-30-1990; "Gerald H. Heidt, Clerk" on the board of 12-30-1990 to 11-30-1991. He is not on the board of 12-9-1991, and the roster gives no reason.
+2. Tracey Kaplan, "Elections / Santa Clarita Valley Schools: Boards, Bond Issue Focus on Growth, Funding," Los Angeles Times, November 3, 1991, https://www.latimes.com/archives/la-xpm-1991-11-03-me-1714-story.html: "five candidates, including two incumbents, are running for two seats. Incumbents Gerald Heidt and Clara Jean Stroup are each running for a fourth term."
+3. Tracey Kaplan, "Most Santa Clarita School Board Incumbents Ousted," Los Angeles Times, November 7, 1991, https://www.latimes.com/archives/la-xpm-1991-11-07-me-1600-story.html: "Two Hart incumbents--Gerald Heidt and Clara Jean Stroup--failed to win fourth terms."
+4. HD8701, William S. Hart Union High School District Governing Board, 1986-87, photograph (1987) with Leon Worden's caption, SCVHistory.com, /scvhistory/hd8701.htm: "Gerald H. Heidt, president."
+5. "Los Angeles County Election Results: School Boards," Los Angeles Times, November 4, 1987, https://www.latimes.com/archives/la-xpm-1987-11-04-me-12507-story.html: "Wm. S. Hart Union 2 vacancies 46 of 46 precincts Vote % Gerald H. Heidt (Inc.) 11,491 41.6 Clara Jean Stroup (Inc.) 8,364 30.3 Ronnie Silver 6,255 22.6 John Charles Simas 1,524 5.5".
+6. Mayerene Barker, "Builders Seemingly Steer Clear of Santa Clarita School Races," Los Angeles Times, August 13, 1987, https://www.latimes.com/archives/la-xpm-1987-08-13-me-1105-story.html: "In June, voters in the Hart, Castaic, Newhall, Saugus and Sulphur Springs school districts approved taxes on developers averaging $6,000 per new home to pay for schools. The election is being challenged in court as illegal by two developers' groups. "This was something we felt we had to do because the state didn't have the funds," Heidt said of the school tax."
+7. Steve Padilla, "School Districts, Builder Clash Over Taxes Intended for Schools," Los Angeles Times, April 12, 1989, https://www.latimes.com/archives/la-xpm-1989-04-12-me-1646-story.html: "Brock was willing to pay the taxes but wants to reserve the right to challenge them in court later"; ""The total amount should be paid as agreed," Trustee Gerald Heidt said."
+8. Greg Braxton, "Elections: Crowded School Board Contests, Bond Issue Top November Races," Los Angeles Times, August 11, 1991, https://www.latimes.com/archives/la-xpm-1991-08-11-me-1034-story.html: "In the William S. Hart Union High School District, incumbents Gerald (Jerry) Heidt and Clara Stroup will face off against Francis J. (Frank) Turner, a police officer, John Hassel and Paula Olivares."
+9. "Election Results," Los Angeles Times, November 7, 1991, https://www.latimes.com/archives/la-xpm-1991-11-07-me-1603-story.html: "William S. Hart Union High School District 2 Elected 100% Precincts Reporting: Votes (%) Paula Olivares: 4,235 (25.1%) John R. Hassel: 3,695 (21.9%) Francis J. Turner: 3,145 (18.6%) Gerald Heidt *: 2,991 (17.7%) Clara Jean Stroup *: 2,827 (16.7%)" (an asterisk marks an incumbent).
+
+**For Nathan**
+
+- Correction proposed: holding #28795 howEnded unknown should read defeated, November 5, 1991 (LA Times, November 7, 1991, notes 3 and 9). The roster is silent on the end, not wrong; with Stroup, and Loberg and King in 1993, that is four defeats the holdings do not record.
+- Left out as family: the LA Times of October 19, 1987 names Jan Heidt's husband Gerald as the Hart incumbent running for re-election. That would support a spouse relation to Jan Heidt #15737, if you want one; it is not a fact about his public life, so the text omits it.
+- Probable, not stated: president of the Santa Clarita Valley Historical Society in January 1983 ("Jerry Heidt, president of the SCV Historical Society", CN8201 caption; The Signal article on the same page), and on its depot site committee (minutes, 1980s, "Jerry Heidt"). The tie to the trustee runs through his wife (Worden 2003: "Former Mayor Jan Heidt's husband was a Historical Society president"; LA Times 1987: her husband Gerald is the trustee). If you accept that chain, the presidency can be a sentence.
+- Possibly living; no dates of life or occupation found. Public life only. Residence (Newhall, in the 1987 candidate list) left out.
+
+## Robert Keysor #28711 (one-line)
+
+Dr. Robert E. Keysor was elected to the William S. Hart Union High School District board in 1979 and re-elected in 1981, and was its clerk in 1980 and 1985, by Leon Worden's roster of the board.[1]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Dr. Robert E. Keysor, Clerk 1980 (elected 1979, 2-year term)" on the board of 12-4-1979 to 11-30-1981; "Dr. Robert E. Keysor (reelected 1981)" on the board of 12-8-1981 to 11-30-1983; "Dr. Robert E. Keysor, Clerk 1985" on the board of 12-6-1983 to 11-30-1985. He is not on the board of 12-3-1985.
+
+**For Nathan**
+
+- How his service ended: the LA Times of August 15, 1985 names McKeon and Loberg as the only incumbents filing for the three Hart seats, so he probably did not file in 1985 (an inference, medium; already reported by the hart-pre1995 pass). Not stated; holding #28797 howEnded could read did not run (1985) if you accept it.
+- Lead, not tied: Bud Keysor's obituary (The Signal, May 28, 2000) names a son Robert Keysor; nothing says he is "Dr. Robert E. Keysor". Richard (Dick) Keysor, a Sulphur Springs trustee, is a different man. What his doctorate was is not found.
+- Elected 1979 to a two-year term and re-elected 1981 to a four-year one is how the roster reads; the text does not spell out term lengths.
+
+## Clara Stroup #28713 (full)
+
+Clara Jean Stroup was executive director of the Association to Aid Victims of Domestic Violence, which the Los Angeles Times described in 1993 as the only agency of its kind in the Santa Clarita Valley; she was then its only paid full-time employee.[1] She had been a member of the association's board of directors in 1990, and was still its executive director in 1994.[2][3] Her family's statement, printed with her obituary, credits her with securing a safe house for the people the association served.[4]
+
+She sat on the William S. Hart Union High School District board from 1979 to 1991.[5][4] Leon Worden's roster records her election in 1979 and her re-election in 1983 and 1987; she was the board's clerk in 1981 and 1988-89, its assistant clerk in 1987-88, and its president in 1982, 1985-86 and 1989-90.[5] As president in April 1986, when the board took up a year-round school calendar, she said, "We really have an obligation to the people in the community to look at this carefully."[6] In November 1987 she was re-elected, second of four candidates for two seats, with 8,364 votes, 30.3 percent.[7] In 1991 she stood for a fourth term and came fifth of five candidates for two seats, with 2,827 votes, 16.7 percent.[8][9][10]
+
+Her family's statement says she "worked hard to unify the Santa Clarita Valley Schools districts," and lists her as a co-founder of the Hart High School Activity Scholarship Fund, president and treasurer of the Hart High School Band Boosters, a member of the Hart High School Parent Advisory Council and of the SCV Community Advisory Committee for Special Education, and the recipient of a letter of commendation from Mayor Sam Yorty for work on school earthquake safety.[4] She was born in South Bend, Indiana, on October 21, 1940, and died in Santa Clarita on January 30, 2004, at 63.[4]
+
+**Notes**
+
+1. Jonathan Gaw, "Santa Clarita / Antelope Valley: Domestic Violence Center to Mark Decade of Service," Los Angeles Times, October 22, 1993, https://www.latimes.com/archives/la-xpm-1993-10-22-me-48628-story.html: "The only agency of its kind in the Santa Clarita Valley"; "said Executive Director Clara Stroup"; "with Stroup being the only paid, full-time employee".
+2. Steve Padilla, "Sanctuary for Women Needs 'a Good Fairy'," Los Angeles Times, March 26, 1990, https://www.latimes.com/archives/la-xpm-1990-03-26-me-24-story.html: "said Clara Stroup, a member of the association's board of directors."
+3. Ed Bond, "A Close-Up Look A People Who Matter: Agency Helps Women Find Safety, Strength," Los Angeles Times, June 30, 1994, https://www.latimes.com/archives/la-xpm-1994-06-30-me-10114-story.html: "said Stroup, the the agency's executive director and only full-time employee" [sic].
+4. Anne Marie Mills, "Clara Jean Stroup, Hart School Board Member (Ret.)," The Signal, February 8, 2004, as carried on SCVHistory.com, /scvhistory/sg020804b.htm: "died on Jan. 30 in Santa Clarita after a long illness. She was born on Oct. 21, 1940, in South Bend, Ind."; the article gives her age as 63; her family's statement: "As the Executive Director of the Association to Aid Victims of Domestic Violence, she was instrumental in securing a safe house to be used by abuse victims and their families. From 1979 to 1991, Clara was a member and a Chairman of the William S. Hart High School District Board of Trustees and worked hard to unify the Santa Clarita Valley Schools districts."; "Clara was also co-founder of the Hart High School Activity Scholarship Fund, President and Treasurer of the Hart High School Band Boosters, recipient of a letter of Commendation from Mayor Sam Yorty for work on School Earthquake Safety, a member of the Hart High School Parent Advisory Council, and member of the SCV Community Advisory Committee for Special Education."
+5. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Clara J. Stroup, Clerk 1981 (elected 1979)" on the board of 12-4-1979 to 11-30-1981; "Clara J. Stroup, President 1982" on the board of 12-8-1981 to 11-30-1983; "Clara J. Stroup (reelected 1983)"; "Clara J. Stroup, President" on the board of 12-3-1985 to 11-30-1986; "Clara J. Stroup, Asst. Clerk (reelected 1987)" on the board of 12-7-1987 to 11-30-1988; "Clara J. Stroup, Clerk" on the board of 12-12-1988 to 11-30-1989; "Clara J. Stroup, President" on the board of 12-5-1989 to 11-30-1990; "Clara J. Stroup" on the board of 12-30-1990 to 11-30-1991. She is not on the board of 12-9-1991, and the roster gives no reason.
+6. Mayerene Barker, "Growing Enrollment: Year-Round Class Schedule Mulled for Hart District," Los Angeles Times, April 3, 1986, https://www.latimes.com/archives/la-xpm-1986-04-03-me-2755-story.html: ""We really have an obligation to the people in the community to look at this carefully," board President Clara Stroup said."
+7. "Los Angeles County Election Results: School Boards," Los Angeles Times, November 4, 1987, https://www.latimes.com/archives/la-xpm-1987-11-04-me-12507-story.html: "Wm. S. Hart Union 2 vacancies 46 of 46 precincts Vote % Gerald H. Heidt (Inc.) 11,491 41.6 Clara Jean Stroup (Inc.) 8,364 30.3 Ronnie Silver 6,255 22.6 John Charles Simas 1,524 5.5".
+8. Tracey Kaplan, "Elections / Santa Clarita Valley Schools: Boards, Bond Issue Focus on Growth, Funding," Los Angeles Times, November 3, 1991, https://www.latimes.com/archives/la-xpm-1991-11-03-me-1714-story.html: "Incumbents Gerald Heidt and Clara Jean Stroup are each running for a fourth term."
+9. Tracey Kaplan, "Most Santa Clarita School Board Incumbents Ousted," Los Angeles Times, November 7, 1991, https://www.latimes.com/archives/la-xpm-1991-11-07-me-1600-story.html: "Two Hart incumbents--Gerald Heidt and Clara Jean Stroup--failed to win fourth terms."
+10. "Election Results," Los Angeles Times, November 7, 1991, https://www.latimes.com/archives/la-xpm-1991-11-07-me-1603-story.html: "William S. Hart Union High School District 2 Elected 100% Precincts Reporting: Votes (%) Paula Olivares: 4,235 (25.1%) John R. Hassel: 3,695 (21.9%) Francis J. Turner: 3,145 (18.6%) Gerald Heidt *: 2,991 (17.7%) Clara Jean Stroup *: 2,827 (16.7%)" (an asterisk marks an incumbent).
+
+**For Nathan**
+
+- Correction proposed: holding #28799 howEnded unknown should read defeated, November 5, 1991 (LA Times, November 7, 1991, notes 9 and 10). Same case as Heidt.
+- The obituary's list of school activities is the family's statement and is attributed in the text; none of it has a second source. The family's "a Chairman" of the board is matched by the roster's presidencies; the text gives the roster's.
+- The obituary's survivors and service details are left out. The page sets the first letter as a drop capital ("C lara Jean Stroup"), so the age is quoted from the article in the note's words rather than verbatim.
+- The association's founding date and the start of her directorship are not found (the 1993 article marks the agency's "decade of service").
+
+## Sandra Loberg #28715 (full)
+
+Sandra L. Loberg, known as Sandie, sat on the William S. Hart Union High School District board from 1981 to 1993, and was its president three times.[1] By Leon Worden's roster she was elected in 1981 and re-elected in 1985 and 1989; she was the board's clerk in 1983, 1987-88 and 1991-92, its assistant clerk in 1986-87, and its president in 1983-85, 1988-89 and 1992-93.[1] A photograph of the board in 1987 names her assistant clerk, and the Hart High School commencement program of 1988 names her clerk.[2][3]
+
+In 1985 she filed as an incumbent and was re-elected second of seven candidates for three seats, with 1,598 votes, 18.7 percent.[4][5] As board president in February 1989, when the state Supreme Court refused to hear the valley's school districts' appeal over the school tax on new homes, she said, "I think the voters made a statement in this community."[6] No one filed against her or the other two incumbents in 1989.[7][8]
+
+Worden's roster says she did not seek re-election in 1993.[1] The Los Angeles Times reported that August that she had filed, and its returns place her fourth of five candidates for three seats, with 8,506 votes, as does the archive's record of that election.[9][10][11]
+
+**Notes**
+
+1. Leon Worden, William S. Hart Union High School District Governing Board Members, 1945 to Date, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm: "Sandra "Sandie" Loberg, Clerk 1983 (elected 1981)" on the board of 12-8-1981 to 11-30-1983; "Sandra "Sandie" Loberg, President" on the board of 12-6-1983 to 11-30-1985; "Sandra L. Loberg (reelected 1985)"; "Sandra L. Loberg, Asst. Clerk" on the board of 12-2-1986 to 11-30-1987; "Sandra L. Loberg, Clerk" on the board of 12-7-1987 to 11-30-1988; "Sandra L. Loberg, President" on the board of 12-12-1988 to 11-30-1989; "Sandra L. Loberg (reelected 1989)"; "Sandra L. Loberg, Clerk" on the board of 12-9-1991 to 11-30-1992; "Sandra L. Loberg, President (did not seek reelection in 1993)" on the board of 12-9-1992 to 11-30-1993.
+2. HD8701, William S. Hart Union High School District Governing Board, 1986-87, photograph (1987) with Leon Worden's caption, SCVHistory.com, /scvhistory/hd8701.htm: "Sandra L. Loberg, assistant clerk".
+3. William S. Hart High School, Class of 1988 commencement program, p. 4, as carried on SCVHistory.com, /scvhistory/hart1988commencement.htm: "Mrs. Sandra L. Loberg, Clerk".
+4. Herbert A. Sample, "Ventura, L.A. County Races Shaping Up as Filings Close," Los Angeles Times, August 15, 1985, https://www.latimes.com/archives/la-xpm-1985-08-15-me-1781-story.html: "incumbents Howard (Buck) McKeon and Saundra L. Loberg will be opposed by William Dinsenbacher".
+5. "Complete Returns From Valley Area: School Boards," Los Angeles Times, November 7, 1985, https://www.latimes.com/archives/la-xpm-1985-11-07-me-3514-story.html: "Wm. S. Hart High Three vacancies 35 of 35 precincts Vote % Howard P. McKeon (Inc.) 1,947 22.8 Sandra L. Loberg (Inc.) 1,598 18.7 Dennis V. King 1,395 16.3 Frances D. Thompson 1,311 15.3 William Dinsenbacher 1,056 12.3 Dennis Wire 858 10.0 Cameron Grade 387 4.5".
+6. Steve Padilla, "Santa Clarita School Tax Dead: State High Court Refuses to Hear Districts' Appeal," Los Angeles Times, February 17, 1989, https://www.latimes.com/archives/la-xpm-1989-02-17-me-2862-story.html: "Sandie Loberg, president of the Hart board of trustees, said the Supreme Court failed to respect the voters' wishes. "I think the voters made a statement in this community," she said."
+7. Stephanie Chavez and Leslie Berger, "Host of Candidates File for Election: Growth Key Issue as Deadline in November Races Passes," Los Angeles Times, August 12, 1989, https://www.latimes.com/archives/la-xpm-1989-08-12-me-57-story.html: "No candidates emerged to challenge incumbents William S. Disenbacher, Sandra L. Loberg and Dennis V. King for their seats in the William S. Hart Union High School District".
+8. Steve Padilla, "Santa Clarita Valley School Races Are Low-Key," Los Angeles Times, October 21, 1989, https://www.latimes.com/archives/la-xpm-1989-10-21-me-232-story.html: "There is no contest this year in the district, where incumbents William S. Dinsenbacher, Sandra L. Loberg and Dennis V. King are running unopposed."
+9. Jack Cheevers and John Chandler, "Deadlines Extended for Council, Board Races," Los Angeles Times, August 7, 1993, https://www.latimes.com/archives/la-xpm-1993-08-07-me-21422-story.html: "All three trustees for the William S. Hart Union High School District have filed: William Dinsenbacher, Dennis King and Sandra Loberg."
+10. "Final Election Returns," Los Angeles Times, November 4, 1993, https://www.latimes.com/archives/la-xpm-1993-11-04-me-53120-story.html: "Patricia Hanrion: 9,794 (22%) Peter C. Warren: 9,126 (21%) W. Dinsenbacher*: 8,943 (20%) Sandra L. Loberg*: 8,506 (19%) Dennis V. King*: 7,934 (18%)" (an asterisk marks an incumbent).
+11. Archive record: the William S. Hart Union High School District board election of November 2, 1993, with its returns: Sandra L. Loberg, 8,506 votes, not elected, fourth of five candidates for three seats.
+
+**For Nathan**
+
+- Correction proposed (already reported by the hart-pre1995 pass): holding #28801 howEnded expired should read defeated, November 2, 1993. The text gives the roster's "did not seek reelection" and the Times's filing and returns side by side, each attributed, and states neither.
+- The 1989 election: whether the County held a vote or seated the unopposed incumbents is not shown; the text says only that no one filed against them.
+- Nothing found about her beyond the board (occupation, other offices); possibly living, public life only. Her 1981 election is before the LA Times online archive.
+- The LA Times of 1985 prints her as "Saundra L. Loberg" at filing and "Sandra L. Loberg" in the returns; the text does not repeat the variant. Could go into personAliases.
