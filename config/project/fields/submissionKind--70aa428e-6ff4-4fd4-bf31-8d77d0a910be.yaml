@@ -17,6 +17,17 @@ settings:
         -
           - default
           - true
+    -
+      __assoc__:
+        -
+          - label
+          - Correction
+        -
+          - value
+          - correction
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

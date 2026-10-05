@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-05 (afternoon)
+
+- Agent: Claude Code
+- Date: 2026-10-05
+- Done: The nav as Nathan settled it: five top-level items; the War Memorial first under PEOPLE (with Fallen officers and Obituaries); CIVIC with Public bodies first, the City, Schools and districts, Elections, Election districts; How we know in ARCHIVE. /civic titled Public bodies; a public body's breadcrumb and title say Public bodies, a school's Schools. One route in: /send takes corrections as well as photographs (a correction from any record's tools row, or about any page), the queue marks a correction done; /submit redirects there; the footer reads "Send a photograph or correction". /military-profiles retired with its section. Fallen officers: the section, its index and record pages, and the fourteen records saved disabled for Nathan to read (ten in the main group, four listed separately with their reason). Marks: the Hart terms-of-use line removed; mark terms stay in the asset's data. The district key on the House. Hart: Aliano appointed May 1994, Warren resigned March 1994 (the roster's dates footnoted), the 1993 election with Loberg and King not elected; PROFILES: the roster's two errors about who stood. The Hart trustees: dossiers and drafts for 55; the dry run for Nathan. The seat control: checked in the browser on Hart, the City and SCV Water; it was showing on the City's Communities tab (any map counted as the seat map), fixed.
+- Decisions: Fallen officers load disabled until Nathan has read them. check_render samples enabled entries only.
+- Errors: a Python edit wrote a block between every character of organizations/_entry.twig; restored from git before any commit (ERRORLOG).
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-05
 
 - Agent: Claude Code

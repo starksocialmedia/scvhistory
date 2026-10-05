@@ -67,17 +67,19 @@ class SendController extends Controller
         $id = (int)$req->getBodyParam('for');
         /* Built only when returned: redirect() sets the shared response to a 302, which would turn a refused post's
            error page into a redirect to the thank-you page. */
-        $done = fn() => $this->redirect('/send?sent=1' . ($id ? '&for=' . $id : ''));
+        $kind = $req->getBodyParam('kind') === 'correction' ? 'correction' : 'photograph';
+        $done = fn() => $this->redirect('/send?sent=1&kind=' . $kind . ($id ? '&for=' . $id : ''));
 
         if (trim((string)$req->getBodyParam('website')) !== '') {
             return $done();
         }
         $v = [];
-        foreach (['for', 'who', 'when', 'takenBy', 'holder', 'name', 'credit', 'email'] as $k) {
+        foreach (['for', 'who', 'when', 'takenBy', 'holder', 'name', 'credit', 'email', 'correction', 'page'] as $k) {
             $v[$k] = trim((string)$req->getBodyParam($k));
         }
         $v['holds'] = (bool)$req->getBodyParam('holds');
         $v['publish'] = (bool)$req->getBodyParam('publish');
+        $v['kind'] = $kind;
         $errors = [];
 
         $t = Craft::$app->getSecurity()->validateData((string)$req->getBodyParam('t'));
@@ -92,25 +94,29 @@ class SendController extends Controller
         if ($count >= self::RATE) {
             $errors[] = 'This address has sent ' . self::RATE . ' submissions today, the most the form takes in a day. Please try again tomorrow.';
         }
-        $rec = $id ? Entry::find()->id($id)->section(self::SECTIONS)->one() : null;
-        if (!$rec) {
+        /* A photograph is for a person or memorial record; a correction may be about any record with a page, or about a page
+           named in the form. */
+        $rec = $id ? ($kind === 'photograph' ? Entry::find()->id($id)->section(self::SECTIONS)->one() : Entry::find()->id($id)->uri(':notempty:')->one()) : null;
+        if ($kind === 'photograph' && !$rec) {
             $errors[] = 'The record this picture is for could not be found. Please use the link on the record page.';
         }
-        if ($v['who'] === '') { $errors[] = 'Please say who is in the picture.'; }
+        if ($kind === 'photograph' && $v['who'] === '') { $errors[] = 'Please say who is in the picture.'; }
+        if ($kind === 'correction' && $v['correction'] === '') { $errors[] = 'Please say what is wrong, and how you know.'; }
+        if ($kind === 'correction' && !$rec && $v['page'] === '') { $errors[] = 'Please say which page the correction is about.'; }
         if ($v['name'] === '') { $errors[] = 'Please give your name.'; }
         if (!filter_var($v['email'], FILTER_VALIDATE_EMAIL)) { $errors[] = 'Please give an email address the archivist can reply to.'; }
-        if (!$v['holds'] || !$v['publish']) { $errors[] = 'Both permission boxes need to be ticked before the archive can take the picture.'; }
-        foreach (['who' => 2000, 'when' => 200, 'takenBy' => 200, 'holder' => 200, 'name' => 200, 'credit' => 200, 'email' => 254] as $k => $max) {
+        $files = UploadedFile::getInstancesByName('photos');
+        if (($kind === 'photograph' || $files) && (!$v['holds'] || !$v['publish'])) { $errors[] = 'Both permission boxes need to be ticked before the archive can take a picture.'; }
+        foreach (['who' => 2000, 'when' => 200, 'takenBy' => 200, 'holder' => 200, 'name' => 200, 'credit' => 200, 'email' => 254, 'correction' => 5000, 'page' => 500] as $k => $max) {
             if (mb_strlen($v[$k]) > $max) { $errors[] = 'One of the answers is longer than the form takes.'; break; }
         }
 
-        $files = UploadedFile::getInstancesByName('photos');
         $read = [];
-        if (!$files) {
+        if (!$files && $kind === 'photograph') {
             $errors[] = 'Please choose at least one picture.';
         } elseif (count($files) > self::MAX_FILES) {
             $errors[] = 'Please send at most ' . self::MAX_FILES . ' pictures at a time.';
-        } else {
+        } elseif ($files) {
             foreach ($files as $i => $f) {
                 $label = 'The picture "' . $f->name . '"';
                 if ($f->hasError || !is_uploaded_file($f->tempName)) { $errors[] = "$label did not arrive. It may be larger than the server takes."; continue; }
@@ -145,13 +151,14 @@ class SendController extends Controller
         $e->sectionId = $section->id;
         $e->typeId = $section->getEntryTypes()[0]->id;
         $e->enabled = false;
-        $e->title = 'Photograph for ' . $rec->title . ', from ' . $v['name'];
+        $e->title = ($kind === 'correction' ? 'Correction for ' : 'Photograph for ') . ($rec ? $rec->title : ($v['page'] ?: 'a page')) . ', from ' . $v['name'];
         $e->setFieldValues([
-            'submissionStatus' => 'new', 'submissionKind' => 'photograph', 'submissionRecord' => [$rec->id],
+            'submissionStatus' => 'new', 'submissionKind' => $kind, 'submissionRecord' => $rec ? [$rec->id] : [],
+            'submissionCorrection' => $v['correction'], 'submissionPage' => $v['page'],
             'submissionWho' => $v['who'], 'submissionWhen' => $v['when'], 'submissionTakenBy' => $v['takenBy'],
             'submissionHolder' => $v['holder'], 'submissionSenderName' => $v['name'], 'submissionCredit' => $v['credit'],
             'submissionEmail' => $v['email'],
-            'submissionPermission' => 'Ticked on ' . date('Y-m-d H:i T') . ": \"I hold this photograph, or the person who does has agreed to my sending it\" and \"The archive may publish it with the credit I have given.\"",
+            'submissionPermission' => (!$v['holds'] && !$v['publish']) ? '' : 'Ticked on ' . date('Y-m-d H:i T') . ": \"I hold this photograph, or the person who does has agreed to my sending it\" and \"The archive may publish it with the credit I have given.\"",
         ]);
         if (!Craft::$app->getElements()->saveElement($e)) {
             Craft::error('Submission not saved: ' . json_encode($e->getErrors()), __METHOD__);
@@ -280,6 +287,14 @@ class SendController extends Controller
             $e->setFieldValue('submissionDecision', trim($note . "\n$stamp: file " . ($n + 1) . ' accepted as ' . ($do === 'portrait' ? 'the portrait' : 'a related image') . " (asset #{$a->id})."));
             $el->saveElement($e);
             $session->setNotice('Accepted: asset #' . $a->id . ' on ' . $rec->title . '.');
+            return $back;
+        }
+        if ($do === 'done') {
+            $what = trim((string)$req->getBodyParam('reason'));
+            $e->setFieldValue('submissionStatus', 'accepted');
+            $e->setFieldValue('submissionDecision', trim($note . "\n$stamp: correction dealt with." . ($what !== '' ? " $what" : '')));
+            $el->saveElement($e);
+            $session->setNotice('Marked done.');
             return $back;
         }
         if ($do === 'decline') {

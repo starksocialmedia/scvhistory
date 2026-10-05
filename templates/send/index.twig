@@ -1,16 +1,18 @@
 {% extends "_layouts/base" %}
-{#- Send a photograph to the archive (modules/submissions; inventory/review/photo-submission-proposal-2026-10-04.md).
-    Reached from a record with no likeness, as /send?for=<record id>. The form posts here; a refused post renders
-    this page again with `errors` and the answers in `values`, and a sent one comes back with ?sent=1. The hidden
-    "website" field is for bots, which fill in every field; `t` is the signed load time the controller checks. -#}
+{#- Send the archive a photograph or a correction (modules/submissions; Nathan, 5 October 2026: "One route in, not two").
+    A photograph is for a war memorial or person record with no likeness (/send?for=<id>); a correction is about any record
+    (/send?for=<id>&kind=correction, from the record's tools row) or about a page the sender names (/send?kind=correction).
+    The form posts here; a refused post renders this page again with `errors` and the answers in `values`, and a sent one
+    comes back with ?sent=1. The hidden "website" field is for bots; `t` is the signed load time the controller checks. -#}
 {% set req = craft.app.request %}
+{% set kind = (values.kind ?? req.getQueryParam('kind')) == 'correction' ? 'correction' : 'photograph' %}
 {% set forId = (values.for ?? req.getQueryParam('for'))|default('')|trim %}
-{% set rec = forId matches '/^\\d+$/' ? craft.entries().section(['warMemorials', 'persons']).id(forId).one() : null %}
+{% set rec = forId matches '/^\\d+$/' ? (kind == 'photograph' ? craft.entries().section(['warMemorials', 'persons']).id(forId).one() : craft.entries().id(forId).uri(':notempty:').one()) : null %}
 {% set sent = req.getQueryParam('sent') == '1' %}
 {% set errors = errors ?? [] %}
 {% set values = values ?? {} %}
-{% set metaTitle = rec ? 'Send a photograph of ' ~ rec.title : 'Send a photograph to the archive' %}
-{% set metaDescription = 'Send the SCVHistory archive a photograph for one of its records. Nothing is published until the archivist has reviewed it.' %}
+{% set metaTitle = kind == 'correction' ? 'Send a correction' ~ (rec ? ' to ' ~ rec.title : '') : (rec ? 'Send a photograph of ' ~ rec.title : 'Send a photograph to the archive') %}
+{% set metaDescription = 'Send the SCVHistory archive a photograph or a correction. Nothing is published until the archivist has reviewed it.' %}
 {% block head %}
   <meta name="robots" content="noindex,nofollow">
   {% css %}
@@ -38,21 +40,29 @@
 {% endblock %}
 {% block content %}
 <div class="snd">
-  <p class="kick">Send a photograph to the archive</p>
+  <p class="kick">{{ kind == 'correction' ? 'Send a correction' : 'Send a photograph to the archive' }}</p>
   {% if sent %}
     <h1>Thank you</h1>
     <p class="done">The archivist will look at what you sent and write to you. Nothing is published until then.
       {% if rec %}<a href="{{ rec.url }}">Back to {{ rec.title }}</a>.{% endif %}</p>
-  {% elseif not rec %}
-    <h1>Which record is it for?</h1>
-    <p class="lead">Pictures are sent from the record they belong to. On a war memorial or person record with no
+  {% elseif kind == 'photograph' and not rec %}
+    <h1>Send a photograph or a correction</h1>
+    <p class="lead">A photograph is sent from the record it belongs to: on a war memorial or person record with no
       photograph, follow the link under the empty portrait. <a href="{{ url('war-memorial') }}">The war memorial</a> is a good place to start.</p>
+    <p class="lead">To correct something on the site, use "Send a correction" on the record itself, or
+      <a href="{{ url('send', { kind: 'correction' }) }}">send a correction about any page</a>.</p>
   {% else %}
-    <h1>Do you have a photograph of {{ rec.title }}?</h1>
-    <p class="lead">The archive has no picture of {{ rec.title }}. If you have one, or a photograph of a print, you can send it here.
-      <a href="{{ rec.url }}">Back to the record</a>.</p>
+    {% if kind == 'correction' %}
+      <h1>{{ rec ? 'Send a correction to ' ~ rec.title : 'Send a correction' }}</h1>
+      <p class="lead">If something here is wrong or missing, tell the archivist what it is and how you know: a document,
+        a newspaper, a family record, your own memory of it. {% if rec %}<a href="{{ rec.url }}">Back to the record</a>.{% endif %}</p>
+    {% else %}
+      <h1>Do you have a photograph of {{ rec.title }}?</h1>
+      <p class="lead">The archive has no picture of {{ rec.title }}. If you have one, or a photograph of a print, you can send it here.
+        <a href="{{ rec.url }}">Back to the record</a>.</p>
+    {% endif %}
     <p class="promise">Nothing you send is published until the archivist has reviewed it. If it is used, the record will
-      say who sent it and who holds the original, as you have told us.</p>
+      say who sent it{{ kind == 'photograph' ? ' and who holds the original' : '' }}, as you have told us.</p>
     {% if errors|length %}
       <div class="err" role="alert">Please look at {{ errors|length == 1 ? 'this' : 'these' }} before sending again:
         <ul>{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
@@ -60,10 +70,24 @@
     <form method="post" action="{{ url('send') }}" enctype="multipart/form-data" accept-charset="UTF-8">
       {{ csrfInput() }}
       {{ actionInput('submissions/send/submit') }}
-      {{ hiddenInput('for', rec.id) }}
+      {{ hiddenInput('kind', kind) }}
+      {% if rec %}{{ hiddenInput('for', rec.id) }}{% endif %}
       {{ hiddenInput('t', craft.app.security.hashData(now|date('U'))) }}
       <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
 
+      {% if kind == 'correction' %}
+      <fieldset><legend>The correction</legend>
+        {% if not rec %}
+        <label for="page">Which page it is about <span class="hint">Its address, or its title.</span></label>
+        <input type="text" id="page" name="page" required value="{{ values.page ?? '' }}">
+        {% endif %}
+        <label for="correction">What is wrong or missing, and how you know</label>
+        <textarea id="correction" name="correction" required style="min-height:160px">{{ values.correction ?? '' }}</textarea>
+        <label for="photos">A picture of your source, if you have one <span class="hint">Optional. A document, a clipping, a
+          grave marker. JPEG, PNG, TIFF or HEIC, at least 1,200 pixels on the longer side, up to 25 MB each.</span></label>
+        <input type="file" id="photos" name="photos[]" multiple accept="image/jpeg,image/png,image/tiff,image/heic,image/heif,.heic,.heif">
+      </fieldset>
+      {% else %}
       <fieldset><legend>The picture</legend>
         <label for="photos">Choose up to five files
           <span class="hint">At least 1,200 pixels on the longer side. A phone photograph of an original print is fine:
@@ -81,6 +105,7 @@
         <label for="holder">Who holds the original print or file now</label>
         <input type="text" id="holder" name="holder" value="{{ values.holder ?? '' }}">
       </fieldset>
+      {% endif %}
 
       <fieldset><legend>About you</legend>
         <label for="name">Your name</label>
@@ -92,9 +117,10 @@
       </fieldset>
 
       <fieldset><legend>Permission</legend>
-        <label class="check"><input type="checkbox" name="holds" value="1" required{{ (values.holds ?? false) ? ' checked' }}>
-          <span>I hold this photograph, or the person who does has agreed to my sending it.</span></label>
-        <label class="check"><input type="checkbox" name="publish" value="1" required{{ (values.publish ?? false) ? ' checked' }}>
+        {% if kind == 'correction' %}<p class="hint" style="margin:6px 0 0">Needed only if you send a picture.</p>{% endif %}
+        <label class="check"><input type="checkbox" name="holds" value="1"{{ kind == 'photograph' ? ' required' }}{{ (values.holds ?? false) ? ' checked' }}>
+          <span>I hold this {{ kind == 'photograph' ? 'photograph' : 'picture' }}, or the person who does has agreed to my sending it.</span></label>
+        <label class="check"><input type="checkbox" name="publish" value="1"{{ kind == 'photograph' ? ' required' }}{{ (values.publish ?? false) ? ' checked' }}>
           <span>The archive may publish it with the credit I have given.</span></label>
       </fieldset>
 

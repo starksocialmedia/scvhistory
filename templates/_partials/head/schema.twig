@@ -85,7 +85,7 @@
 
 {#- Section to Schema.org type for a linked node. -#}
 {% set NODE_TYPE = {
-  'persons': 'Person', 'warMemorials': 'Person', 'militaryProfiles': 'Person',
+  'persons': 'Person', 'warMemorials': 'Person',
   'places': 'Place', 'organizations': 'Organization', 'groups': 'Organization',
   'events': 'Event', 'articles': 'Article', 'collections': 'CreativeWorkSeries',
   'obituaries': 'Article', 'photographs': 'Photograph', 'documents': 'CreativeWork',
@@ -516,19 +516,6 @@
     'children': (FAM.children ?? []),
     'sibling': (FAM.siblings ?? []),
     'subjectOf': [{ '@id': canonical ~ '#loss' }]|merge((N.wmRelatedPerson ?? []))
-  } %}
-
-{% elseif sec == 'militaryProfiles' %}
-  {% set main = {
-    '@type': 'Person',
-    'name': el.title,
-    'birthDate': dt.iso(V.mpDateOfBirth ?? '')|trim,
-    'deathDate': dt.iso(V.mpDateOfDeath ?? '')|trim,
-    'jobTitle': V.mpRank ?? '',
-    'affiliation': (V.mpUnit ?? '') ? { '@type': 'Organization', 'name': V.mpUnit } : null,
-    'sameAs': sameAs,
-    'homeLocation': communityNode,
-    'subjectOf': (N.mpEvents ?? [])
   } %}
 
 {% elseif sec == 'obituaries' %}

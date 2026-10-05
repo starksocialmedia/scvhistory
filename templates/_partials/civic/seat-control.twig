@@ -17,7 +17,11 @@
     noun    what a seat is called, plural ("trustee areas")
 #}
 {% if seats|length > 1 %}
-<div class="seat-ctl" data-seat-ctl="{{ scope }}">
+{#- What a pick leaves out (Nathan, 5 October 2026: "when a seat is picked, show what the filter excluded rather than leaving a
+    gap"): each list says how many of its items carry a seat at all and that the rest were at large, before the body's first
+    election by seat. -#}
+{% set firstBySeat = craft.entries().section('elections').relatedTo({ targetElement: seats, field: 'electionDistrict' }).orderBy('electionDateEdtf asc').one() %}
+<div class="seat-ctl" data-seat-ctl="{{ scope }}" data-seat-noun="{{ noun|trim('s', 'right') }}" data-seat-since="{{ firstBySeat ? firstBySeat.electionDateEdtf|slice(0, 4) : '' }}">
 <div class="seat-pick" role="group" aria-label="Show one {{ noun|trim('s', 'right') }}" data-seat-scope="{{ scope }}">
   <button type="button" data-seat-btn="" aria-pressed="true">All</button>
   {% for s in seats %}
@@ -33,6 +37,7 @@
 .seat-pick{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
 .seat-pick button{border:1px solid rgba(23,37,76,.25);background:#fff;color:#17254C;padding:6px 13px;border-radius:14px;font-size:13.5px;cursor:pointer;font-family:'Public Sans',system-ui,sans-serif}
 .seat-pick button[aria-pressed="true"]{background:#17254C;color:#fff;border-color:#17254C}
+.seat-left{font-size:14px;color:#5B6472;line-height:1.55;margin:0 0 16px;padding:8px 12px;background:#FDF7EA;border-left:3px solid #C4A031;max-width:720px}
 .seat-note{font-size:13.5px;color:#5B6472;line-height:1.55;margin:0 0 26px;max-width:720px}
 [data-seat-empty]{display:none;font-size:14px;color:#5B6472;margin:0 0 20px}
 {% endcss %}
@@ -50,10 +55,21 @@
         var on = !seat || (' ' + el.getAttribute('data-seat') + ' ').indexOf(' ' + seat + ' ') > -1;
         el.style.display = on ? '' : 'none';
       });
+      var ctlEl = pick.closest('.seat-ctl'), sn = ctlEl ? ctlEl.getAttribute('data-seat-noun') : 'seat', since = ctlEl ? ctlEl.getAttribute('data-seat-since') : '';
       scope.querySelectorAll('[data-seat-list]').forEach(function(list){
-        var left = Array.prototype.filter.call(list.querySelectorAll('[data-seat]'), function(el){ return el.style.display !== 'none'; }).length;
-        var empty = scope.querySelector('[data-seat-empty="' + list.getAttribute('data-seat-list') + '"]');
-        if (empty) { empty.style.display = left ? 'none' : 'block'; }
+        var k = list.getAttribute('data-seat-list'), items = list.querySelectorAll('[data-seat]');
+        var left = Array.prototype.filter.call(items, function(el){ return el.style.display !== 'none'; }).length;
+        var withSeat = Array.prototype.filter.call(items, function(el){ return el.getAttribute('data-seat').trim() !== ''; }).length;
+        var empty = scope.querySelector('[data-seat-empty="' + k + '"]');
+        /* Where some of the list was at large, say so rather than leave a gap: the shortfall is a fact about how the body changed. */
+        var note = list.previousElementSibling && list.previousElementSibling.classList.contains('seat-left') ? list.previousElementSibling : null;
+        if (!note) { note = document.createElement('p'); note.className = 'seat-left'; list.parentNode.insertBefore(note, list); }
+        var t = items.length, rest = t - withSeat, b = since ? ' before ' + since : '';
+        var text = !seat || !rest ? '' : (k === 'elections' ? withSeat + ' of ' + t + ' elections ' + (withSeat === 1 ? 'was' : 'were') + ' by ' + sn + '; the rest were at large' + b + '.'
+          : k === 'past' ? withSeat + ' of ' + t + ' past members served by ' + sn + '; the rest served at large' + b + '.'
+          : withSeat + ' of ' + t + ' sitting members ' + (withSeat === 1 ? 'holds a ' + sn + ' seat' : 'hold ' + sn + ' seats') + '; the rest sit at large.');
+        note.textContent = text; note.style.display = text ? '' : 'none';
+        if (empty) { empty.style.display = left || text ? 'none' : 'block'; }
       });
     }
     pick.querySelectorAll('[data-seat-btn]').forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-seat-btn')); }); });
@@ -63,7 +79,9 @@
     var ctl = pick.closest('.seat-ctl');
     function sync(){
       var pane = scope.querySelector('.hub-pane.on') || (document.documentElement.classList.contains('js-tabs') ? null : scope);
-      var acts = !pane || !!(pane.querySelector('[data-seat-list]') || pane.querySelector('.bm-map'));
+      /* The seat map is the body's own map (id bodyMap<id>), not any map: the City's Communities tab holds the communities map,
+         which the seats do not filter, and matching every .bm-map showed the control there (5 October 2026). */
+      var acts = !pane || !!(pane.querySelector('[data-seat-list]') || pane.querySelector('[id^="bodyMap"]'));
       if (ctl) { ctl.style.display = acts ? '' : 'none'; }
     }
     document.addEventListener('scv:tab', function(){ setTimeout(sync, 0); });

@@ -47,7 +47,8 @@ if (is_dir($compiled)) {
 $urls = [];
 foreach (Craft::$app->getEntries()->getAllSections() as $s) {
     foreach ($s->getEntryTypes() as $t) {
-        $e = \craft\elements\Entry::find()->section($s->handle)->type($t->handle)->status(null)->one();
+        /* Enabled entries only: a disabled entry has no public page (the fallen officers, saved disabled for Nathan to read, 404ed here on 5 October 2026). */
+        $e = \craft\elements\Entry::find()->section($s->handle)->type($t->handle)->one();
         if ($e && $e->url) { $urls[$e->url] = $s->handle . '/' . $t->handle; }
     }
 }
@@ -224,8 +225,8 @@ foreach (glob(\Craft::getAlias('@templates') . '/*/index.twig') as $f) {
         'schools' => \craft\elements\Entry::find()->section('organizations')->orgType('school')->count(),
         'on-this-day' => \craft\elements\Entry::find()->section(['articles', 'events'])->count(),
         'tags' => \craft\elements\Category::find()->group('tag')->count(),
-        'military-profiles' => \craft\elements\Entry::find()->section('militaryProfiles')->count(),
         'elections' => Craft::$app->getEntries()->getSectionByHandle('elections') ? \craft\elements\Entry::find()->section('elections')->count() : 0,
+        'fallen-officers' => Craft::$app->getEntries()->getSectionByHandle('fallenOfficers') ? \craft\elements\Entry::find()->section('fallenOfficers')->count() : 0,
         default => null,
     };
     if ($n === 0) { continue; }

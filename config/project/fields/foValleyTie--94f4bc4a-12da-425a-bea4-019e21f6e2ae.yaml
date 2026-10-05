@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: foValleyTie
+instructions: null
+name: 'Officer: tie to the valley'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Killed in the valley'
+        -
+          - value
+          - killed-here
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - 'Served the valley'
+        -
+          - value
+          - served-here
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Of the valley, killed elsewhere'
+        -
+          - value
+          - resident-elsewhere
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Of the valley, off duty'
+        -
+          - value
+          - off-duty
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Killed in the valley on the way to work'
+        -
+          - value
+          - en-route
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

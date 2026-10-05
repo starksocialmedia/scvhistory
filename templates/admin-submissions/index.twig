@@ -38,7 +38,7 @@
 {% endblock %}
 {% block content %}
 <div class="sq">
-  <h1>Photographs sent to the archive</h1>
+  <h1>Photographs and corrections sent to the archive</h1>
   <p class="sub">From the form on /send. A picture becomes archive media, with the sender's details as its provenance,
     only when you accept it here: as the record's portrait (a portrait it replaces moves to the record's images) or as
     one of its images. Decline asks for a one-line reason. Spam deletes the files and clears the address.</p>
@@ -51,10 +51,12 @@
     {% set rec = e.submissionRecord.status(null).one() %}
     {% set files = (e.submissionFiles ?: '[]')|json_decode %}
     <div class="card">
-      <h3>{{ rec ? rec.title : 'A record no longer found' }}</h3>
+      <h3>{{ e.submissionKind.value == 'correction' ? 'Correction: ' : '' }}{{ rec ? rec.title : (e.submissionPage ?: 'A record no longer found') }}</h3>
       <p class="meta">Sent {{ e.dateCreated|date('j F Y, H:i') }} by {{ e.submissionSenderName }}, {{ e.submissionEmail }}{% if rec %} · <a href="{{ rec.url }}">the record</a> · #{{ rec.id }}{% endif %}</p>
       <dl>
-        <dt>Who is in it</dt><dd>{{ e.submissionWho }}</dd>
+        {% if e.submissionCorrection %}<dt>The correction</dt><dd>{{ e.submissionCorrection }}</dd>{% endif %}
+        {% if e.submissionPage %}<dt>Page</dt><dd>{{ e.submissionPage }}</dd>{% endif %}
+        {% if e.submissionWho %}<dt>Who is in it</dt><dd>{{ e.submissionWho }}</dd>{% endif %}
         {% if e.submissionWhen %}<dt>When</dt><dd>{{ e.submissionWhen }}</dd>{% endif %}
         {% if e.submissionTakenBy %}<dt>Taken by</dt><dd>{{ e.submissionTakenBy }}</dd>{% endif %}
         {% if e.submissionHolder %}<dt>Original held by</dt><dd>{{ e.submissionHolder }}</dd>{% endif %}
@@ -66,13 +68,14 @@
           <div class="file">
             <a href="{{ actionUrl('submissions/send/file', { id: e.id, n: loop.index0 }) }}" target="_blank" rel="noopener"><img src="{{ actionUrl('submissions/send/file', { id: e.id, n: loop.index0 }) }}" alt="File {{ loop.index }}"></a>
             {{ f.sent }}: {{ f.width }} by {{ f.height }}, {{ (f.bytes / 1048576)|number_format(1) }} MB, {{ f.format }}
-            {% if f.asset ?? false %}<br>In the archive as asset #{{ f.asset }}.{% elseif rec %}<br>
+            {% if f.asset ?? false %}<br>In the archive as asset #{{ f.asset }}.{% elseif rec and e.submissionKind.value == 'photograph' %}<br>
               <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('n', loop.index0) }}{{ hiddenInput('do', 'portrait') }}<button class="go">Portrait</button></form>
               <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('n', loop.index0) }}{{ hiddenInput('do', 'image') }}<button>Related image</button></form>
             {% endif %}
           </div>
         {% endfor %}
       </div>
+      {% if e.submissionKind.value == 'correction' %}<form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('do', 'done') }}<input type="text" name="reason" placeholder="What was changed (optional)"> <button class="go">Done</button></form>{% endif %}
       <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('do', 'decline') }}<input type="text" name="reason" placeholder="Why, in one line" required> <button>Decline</button></form>
       <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('do', 'spam') }}<button>Spam</button></form>
     </div>

@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 4 October 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 5 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -431,6 +431,43 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
 | `withheldBody` | PlainText | **local** | no external equivalent |
 
+### Fallen officers — `fallenOfficers/fallenOfficer`
+
+30 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `featuredImage` | Assets | schema.org `image` |  |
+| `foAgency` | Entries | **local** | no external equivalent |
+| `foRank` | PlainText | **local** | no external equivalent |
+| `foAssignment` | PlainText | **local** | no external equivalent |
+| `foBadge` | PlainText | **local** | no external equivalent |
+| `deathDate` | PlainText | schema.org `deathDate` | printed form |
+| `deathDateEdtf` | PlainText | **local** | no external equivalent |
+| `foIncidentLocation` | PlainText | **local** | no external equivalent |
+| `foCircumstances` | PlainText | **local** | no external equivalent |
+| `foValleyTie` | Dropdown | **local** | no external equivalent |
+| `birthDate` | PlainText | schema.org `birthDate` | printed form |
+| `birthDateEdtf` | PlainText | **local** | no external equivalent |
+| `burialPlace` | PlainText | schema.org `deathPlace` | burial rather than death, so the mapping is approximate |
+| `foMemorials` | PlainText | **local** | no external equivalent |
+| `body` | PlainText | schema.org `text` | also dcterms:description |
+| `withheldBody` | PlainText | **local** | no external equivalent |
+| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
+| `footnotesOn` | Entries | schema.org `citation` |  |
+| `factSources` | Table | **local** | no external equivalent |
+| `editorNotes` | Table | **local** | no external equivalent |
+| `webmasterNoteTop` | PlainText | **local** | no external equivalent |
+| `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
+| `recordImages` | Assets | schema.org `image` |  |
+| `recordDocuments` | Assets | schema.org `associatedMedia` |  |
+| `neighborhood` | Categories | Dublin Core `spatial` | local vocabulary of valley communities |
+| `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
+| `legacyKey` | PlainText | **local** | no external equivalent |
+| `legacyUrl` | PlainText | Dublin Core `source` | where it stood on the legacy site |
+| `sourcePath` | PlainText | Dublin Core `source` |  |
+| `legacyHtml` | PlainText | **local** | no external equivalent |
+
 ### Fixes — `fixes/fix`
 
 5 fields.
@@ -480,60 +517,6 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `bandImage` | Assets | schema.org `image` | presentation only |
 | `derivedImageLinks` | Entries | **local** | no external equivalent |
 | `withheldBody` | PlainText | **local** | no external equivalent |
-
-### Military Profiles — `militaryProfiles/militaryProfile`
-
-47 fields.
-
-| Field | Kind | Maps to | Note |
-| --- | --- | --- | --- |
-| `featuredImage` | Assets | schema.org `image` |  |
-| `body` | PlainText | schema.org `text` | also dcterms:description |
-| `mpRank` | PlainText | **local** | no external equivalent |
-| `mpSpecialty` | PlainText | **local** | no external equivalent |
-| `mpUnit` | PlainText | **local** | no external equivalent |
-| `mpBase` | PlainText | **local** | no external equivalent |
-| `mpServiceStart` | PlainText | **local** | no external equivalent |
-| `mpServiceEnd` | PlainText | **local** | no external equivalent |
-| `mpCombatOperations` | PlainText | **local** | no external equivalent |
-| `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
-| `mpDateOfBirth` | PlainText | **local** | no external equivalent |
-| `mpDateOfDeath` | PlainText | **local** | no external equivalent |
-| `mpAgeAtLoss` | Number | **local** | no external equivalent |
-| `mpHomeOfRecord` | PlainText | **local** | no external equivalent |
-| `mpHighSchool` | PlainText | **local** | no external equivalent |
-| `mpBurialPlace` | PlainText | **local** | no external equivalent |
-| `mpAwards` | PlainText | **local** | no external equivalent |
-| `mpNarrative` | PlainText | **local** | no external equivalent |
-| `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
-| `footnotesOn` | Entries | schema.org `citation` |  |
-| `mpHasSpouse` | Lightswitch | **local** | no external equivalent |
-| `mpHasChildren` | Lightswitch | **local** | no external equivalent |
-| `mpHasParents` | Lightswitch | **local** | no external equivalent |
-| `mpHasSiblings` | Lightswitch | **local** | no external equivalent |
-| `mpRelatedPersons` | Entries | **local** | no external equivalent |
-| `childOf` | Entries | schema.org `parent` | inverse of schema.org children |
-| `siblingOf` | Entries | schema.org `sibling` |  |
-| `spouseOf` | Entries | schema.org `spouse` |  |
-| `mpSubject` | Entries | **local** | no external equivalent |
-| `mpPlaces` | Entries | **local** | no external equivalent |
-| `mpEvents` | Entries | **local** | no external equivalent |
-| `mpOrganizations` | Entries | **local** | no external equivalent |
-| `mpGroups` | Entries | **local** | no external equivalent |
-| `mpRelatedObituaries` | Entries | **local** | no external equivalent |
-| `mpWikipediaUrl` | Link | **local** | no external equivalent |
-| `mpFindAGraveUrl` | Link | **local** | no external equivalent |
-| `mpLegacyUrl` | PlainText | **local** | no external equivalent |
-| `mpWebmasterNoteTop` | PlainText | **local** | no external equivalent |
-| `mpWebmasterNoteBottom` | PlainText | **local** | no external equivalent |
-| `mpFinePrint` | PlainText | **local** | no external equivalent |
-| `historicalEra` | Categories | Dublin Core `temporal` | local vocabulary, no external period thesaurus |
-| `historicalPeriod` | Categories | Dublin Core `temporal` | local vocabulary |
-| `neighborhood` | Categories | Dublin Core `spatial` | local vocabulary of valley communities |
-| `recordImages` | Assets | schema.org `image` |  |
-| `recordDocuments` | Assets | schema.org `associatedMedia` |  |
-| `recordDates` | Table | **local** | no external equivalent |
-| `derivedImageLinks` | Entries | **local** | no external equivalent |
 
 ### Obituaries — `obituaries/obituary`
 
@@ -956,7 +939,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Submissions — `submissions/submission`
 
-13 fields.
+15 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -964,6 +947,8 @@ a skip means the queue has not been settled, and an external means it has.
 | `submissionRecord` | Entries | **local** | no external equivalent |
 | `submissionKind` | Dropdown | **local** | no external equivalent |
 | `submissionWho` | PlainText | **local** | no external equivalent |
+| `submissionCorrection` | PlainText | **local** | no external equivalent |
+| `submissionPage` | PlainText | **local** | no external equivalent |
 | `submissionWhen` | PlainText | **local** | no external equivalent |
 | `submissionTakenBy` | PlainText | **local** | no external equivalent |
 | `submissionHolder` | PlainText | **local** | no external equivalent |
@@ -1056,6 +1041,7 @@ local unless the note says otherwise.
 - **`electionKind`** — `general`, `special`, `recall`, `runoff`.
 - **`endEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`fixStatus`** — `open`, `done`, `wontfix`.
+- **`foValleyTie`** — `killed-here`, `served-here`, `resident-elsewhere`, `off-duty`, `en-route`.
 - **`foundedEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
 - **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `serving`, `unknown`, `removed`.
@@ -1068,7 +1054,7 @@ local unless the note says otherwise.
 - **`seatsUpEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`selectionMethod`** — `elected`, `appointed`, `rotated`, `exofficio`, `succeeded`, `sole-candidate`.
 - **`startEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
-- **`submissionKind`** — `photograph`.
+- **`submissionKind`** — `photograph`, `correction`.
 - **`submissionStatus`** — `new`, `accepted`, `declined`, `spam`.
 
 ## Category groups

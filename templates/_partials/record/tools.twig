@@ -44,6 +44,8 @@
   </div>
   <div style="display: flex; gap: 8px; flex: none">
     <button type="button" class="rec-tools-btn" onclick="window.print()" style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer">Print</button>
+    {#- One route in for photographs and corrections (Nathan, 5 October 2026): every record can be corrected from here. -#}
+    {% if entry.id ?? null %}<a class="rec-tools-btn" href="{{ url('send', { for: entry.id, kind: 'correction' }) }}" style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer; text-decoration: none">Send a correction</a>{% endif %}
     <button type="button" class="rec-tools-btn" id="recShare" style="background: #fff; border: 1px solid #E2E4E8; font-family: 'Jost', sans-serif; font-size: 13.5px; letter-spacing: .04em; color: #2C2C2C; padding: 8px 14px; cursor: pointer">Share</button>
   </div>
 </div>

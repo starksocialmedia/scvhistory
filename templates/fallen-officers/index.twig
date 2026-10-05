@@ -1,0 +1,65 @@
+{% extends "_layouts/base" %}
+{#- Fallen officers (Nathan, 5 October 2026: "anyone killed on duty serving this valley, whatever their agency"; "Include all
+    fourteen, in two groups ... Show the distinction rather than making it a reason to leave someone out"). Officers killed on
+    duty serving the valley, in order of the end of watch; then those of the valley killed elsewhere or off duty, or killed here
+    on the way to work, each with the line that says why (foValleyTie). -#}
+{% set metaDescription = 'Officers killed on duty serving the Santa Clarita Valley, from 1897, and those of the valley killed elsewhere.' %}
+{% block head %}{% include "_partials/scv-extra-css" %}
+  {% css %}
+  .fo-why{font-size:13px;line-height:1.45;color:#8A5A12;margin-top:6px}
+  .fo-h2{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;color:#17254C;margin:34px 0 6px}
+  .fo-h2 + p{color:#5B6472;font-size:15px;line-height:1.6;margin:0 0 16px;max-width:760px}
+  {% endcss %}
+{% endblock %}
+{% block content %}
+{% set all = craft.entries().section('fallenOfficers').orderBy('deathDateEdtf asc, title asc').all() %}
+{% set main = all|filter(o => (o.foValleyTie.value ?? '') in ['killed-here', 'served-here', '']) %}
+{% set apart = all|filter(o => (o.foValleyTie.value ?? '') not in ['killed-here', 'served-here', '']) %}
+{% set WHY = { 'off-duty': 'Killed off duty, outside the valley; he served at Pitchess, in Castaic.', 'resident-elsewhere': 'Of the valley; killed on duty elsewhere.', 'en-route': 'Killed in the valley on his way to work, in the 1994 earthquake.' } %}
+{% macro tile(o, why) %}
+  {% set img = o.featuredImage.one() ?? null %}
+  {% set agency = o.foAgency.one() ?? null %}
+  {% set parts = o.title|split(' ')|filter(w => w|trim) %}
+  {% set initials = parts|length > 1 ? (parts|first|slice(0,1) ~ parts|last|slice(0,1)) : o.title|slice(0,1) %}
+  <a class="scv-tile" href="{{ o.url }}">
+    <div class="scv-ph">{% if img %}<img src="{{ img.url }}" alt="">{% else %}<span>{{ initials|upper }}</span>{% endif %}</div>
+    <div class="scv-tilebody">
+      <h3>{{ o.title }}</h3>
+      {% if o.deathDate %}<div class="scv-tilemeta">{{ o.deathDate }}{{ o.foIncidentLocation ? ', ' ~ o.foIncidentLocation : '' }}</div>{% endif %}
+      {% if why %}<div class="fo-why">{{ why }}</div>{% endif %}
+      <div class="scv-tilefoot">{{ agency ? agency.title : 'Fallen officer' }}</div>
+    </div>
+  </a>
+{% endmacro %}
+<div class="scv-page">
+  <section class="scv-hero">
+    <div class="scv-wrap">
+      <div class="scv-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>Fallen officers</span></div>
+      <div class="scv-herogrid">
+        <div>
+          <div class="scv-kicker">Killed on duty</div>
+          <h1>Fallen officers</h1>
+          <p class="scv-lede">Officers killed on duty serving the Santa Clarita Valley, whatever their agency, from a constable at Castaic Junction in 1897 to the Sheriff's deputy for whom Deputy Jake Way is named. Then those of the valley who were killed elsewhere or off duty, or killed here on their way to work.</p>
+        </div>
+        <div class="scv-stat">
+          <div><b>{{ all|length }}</b><span>{{ all|length == 1 ? 'Officer' : 'Officers' }}</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <main class="scv-main">
+    <div class="scv-wrap">
+      {% if main|length %}
+        <h2 class="fo-h2">Killed on duty serving the valley</h2>
+        <div class="scv-cards">{% for o in main %}{{ _self.tile(o, '') }}{% endfor %}</div>
+      {% endif %}
+      {% if apart|length %}
+        <h2 class="fo-h2">Of the valley</h2>
+        <p>Listed separately, each for the reason given: they lived here or served here, and were killed elsewhere, off duty, or on the way to work.</p>
+        <div class="scv-cards">{% for o in apart %}{{ _self.tile(o, WHY[o.foValleyTie.value] ?? '') }}{% endfor %}</div>
+      {% endif %}
+      {% if not all|length %}<div class="scv-empty">No records yet.</div>{% endif %}
+    </div>
+  </main>
+</div>
+{% endblock %}

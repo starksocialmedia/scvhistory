@@ -1,5 +1,6 @@
 {
   "_about": "Top-level paths that check_render's navigation coverage does not require the header menu or the footer to link, each with the reason. Anything else with records that neither links fails the check. Admin pages and /graph are guarded and never checked. Add a path here only with a reason a reader would accept.",
   "search": "reached by the search box in the header on every page",
-  "send": "reached from the record it is for: the link under an empty portrait on a war memorial or person record (/send?for=<id>)"
+  "send": "reached from the record it is for: the link under an empty portrait on a war memorial or person record (/send?for=<id>)",
+  "submit": "the old Submit a Photo or Article page: it redirects to /send, the one form for photographs and corrections (Nathan, 5 October 2026)"
 }

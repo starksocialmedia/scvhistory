@@ -15,15 +15,16 @@
     PLACES, what is located; TIME. CIVIC is the fifth, and waits for elections. -#}
 {% set activeMap = {
   'collections': 'archive', 'photographs': 'archive', 'articles': 'archive', 'documents': 'archive',
-  'persons': 'people', 'organizations': 'people', 'schools': 'people', 'groups': 'people',
-  'obituaries': 'people', 'war-memorial': 'people', 'military-profiles': 'people',
+  'evidence': 'archive',
+  'persons': 'people', 'organizations': 'people', 'groups': 'people',
+  'obituaries': 'people', 'war-memorial': 'people', 'fallen-officers': 'people',
   'places': 'places', 'communities': 'places',
   'events': 'time', 'on-this-day': 'time',
-  'elections': 'civic'
+  'elections': 'civic', 'civic': 'civic', 'schools': 'civic', 'districts': 'civic'
 } %}
 {% set activeMenu = activeMap[seg1] ?? '' %}
 
-{% cache globally using key "scv-header-v14-" ~ (activeMenu ?: "none") %}
+{% cache globally using key "scv-header-v15-" ~ (activeMenu ?: "none") %}
 {#
   Menu data for the header mega menu.
 
@@ -57,27 +58,27 @@
 {% set cElections = craft.app.entries.getSectionByHandle('elections') ? craft.entries().section('elections').count() : 0 %}
 {% set cDistricts = craft.app.fields.getFieldByHandle('districtKind') ? craft.entries().section('places').districtKind(':notempty:').count() : 0 %}
 {% set cityRec = craft.entries().section('organizations').slug('city-of-santa-clarita').one() %}
+{% set cFallen = craft.app.entries.getSectionByHandle('fallenOfficers') ? craft.entries().section('fallenOfficers').count() : 0 %}
 
 {# PEOPLE #}
 {#- Organizations are here, not under PLACES (STRUCTURE.md, 28 September 2026):
     an organization acts, like a person; a place is located. The government
     bodies are a view of the same index, not a second home. (Comments go
     outside array and hash literals: inside one, Twig fails to parse.) -#}
+{#- The nav as Nathan settled it (5 October 2026; inventory/review/nav-proposal-2026-10-05.md): five top-level items; the War
+    Memorial under PEOPLE, listed first; the public bodies and the schools under CIVIC only. -#}
 {% set colsPeople = [
+  { label: 'MEMORIAL', items: [
+    { t: 'War Memorial',    n: cWar,    u: url('war-memorial') },
+    { t: 'Fallen officers', n: cFallen, u: url('fallen-officers') },
+    { t: 'Obituaries',      n: cObits,  u: url('obituaries') }
+  ] },
   { label: 'PEOPLE', items: [
-    { t: 'People',   n: cPersons, u: url('persons') },
+    { t: 'People', n: cPersons, u: url('persons') },
     { t: 'Groups', n: cGroups,  u: url('groups') }
   ] },
   { label: 'ORGANIZATIONS', items: [
-    { t: 'Organizations',     n: cOrgs, u: url('organizations') },
-    { t: 'Government bodies', n: cGov,  u: url('organizations') ~ '#government' }
-  ] },
-  { label: 'SCHOOLS', items: [
-    { t: 'Schools and districts', n: cSchools, u: url('schools') }
-  ] },
-  { label: 'MEMORIAL', items: [
-    { t: 'Obituaries',   n: cObits, u: url('obituaries') },
-    { t: 'War Memorial', n: cWar,   u: url('war-memorial') }
+    { t: 'Organizations', n: cOrgs, u: url('organizations') }
   ] }
 ] %}
 
@@ -172,7 +173,8 @@
   { label: 'COLLECTIONS', items: [{ t: 'Collections', n: cColls, u: url('collections') }]|merge(majorRows|slice(0, 4)) },
   { label: 'PHOTOGRAPHS', items: [{ t: 'Photographs', n: cPhotos, u: url('photographs') }] },
   { label: 'ARTICLES',    items: [{ t: 'Articles',    n: cArticles, u: url('articles') }] },
-  { label: 'DOCUMENTS',   items: [{ t: 'Documents',   n: cDocs, u: url('documents') }] }
+  { label: 'DOCUMENTS',   items: [{ t: 'Documents',   n: cDocs, u: url('documents') }] },
+  { label: 'HOW WE KNOW', items: [{ t: 'How we know', n: 1, u: url('evidence') }] }
 ] %}
 
 {% set featColls = null %}
@@ -259,9 +261,15 @@
 {#- CIVIC: the public record. It appears when the elections have records, by the
     nav-link rule, with no one having to remember (STRUCTURE.md). -#}
 {% set colsCivic = not cElections ? [] : [
-  { label: 'THE CITY', items: [{ t: 'The City Council', n: cityRec ? 1 : 0, u: cityRec ? cityRec.url ~ '#council' : '' }] },
-  { label: 'ELECTIONS', items: [{ t: 'Elections', n: cElections, u: url('elections') }, { t: 'Districts', n: cDistricts, u: url('districts') }] },
-  { label: 'BODIES', items: [{ t: 'Civic: the public bodies', n: cGov, u: url('civic') }, { t: 'Schools', n: cGov ? 1 : 0, u: url('schools') }] }
+  { label: 'PUBLIC BODIES', items: [
+    { t: 'Public bodies',             n: cGov,              u: url('civic') },
+    { t: 'The City of Santa Clarita', n: cityRec ? 1 : 0,   u: cityRec ? cityRec.url : '' },
+    { t: 'Schools and districts',     n: cSchools,          u: url('schools') }
+  ] },
+  { label: 'ELECTIONS', items: [
+    { t: 'Elections',          n: cElections, u: url('elections') },
+    { t: 'Election districts', n: cDistricts, u: url('districts') }
+  ] }
 ] %}
 {% set featCivic = cElections ? {
   kicker: 'THE COUNCIL, 1987 TO NOW',

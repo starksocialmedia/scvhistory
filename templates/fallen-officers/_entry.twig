@@ -1,0 +1,121 @@
+{% extends "_layouts/base" %}
+{#- A fallen officer's record, on the war memorial's pattern (inventory/review/officers-memorial-plan-2026-10-05.md, approved by
+    Nathan 5 October 2026). One facts box in the order of a life, from the record's factSources where it has them, each value with
+    its notes and, where sources differ, what each says; fields the rows do not cover follow, unmarked. A record listed in the
+    second group says why, in the header, from foValleyTie. -#}
+{% block head %}
+  {% include "_partials/record/css" %}
+  {% include "_partials/record/print" %}
+  {% css %}
+  .fo-nophoto{aspect-ratio:4/5;background:#fff;border:1px solid #E2E4E8;display:flex;align-items:center;justify-content:center;padding:28px;text-align:center}
+  .fo-nophoto p{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.4;color:#5B6472;margin:0}
+  .fo-nophoto .send-photo{font-family:'Public Sans',sans-serif;font-style:normal;font-size:13.5px;line-height:1.55;margin:16px 0 0}
+  .fo-nophoto .send-photo a{color:#7A5C1B}
+  .fo-why{font-size:15px;line-height:1.6;color:#2A3140;background:#fff;border-left:3px solid #C4A031;padding:8px 12px;margin:14px 0 0;max-width:640px}
+  .fo-nr{font-size:10.5px;vertical-align:super;color:#7A5C1B;text-decoration:none;margin-left:2px}
+  .fo-nr::before{content:'['}.fo-nr::after{content:']'}
+  .fo-diff{display:block;font-size:12.6px;line-height:1.45;color:#8A5A12;margin-top:3px;padding-left:9px;border-left:2px solid #E2C27A}
+  .fo-facts-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+  .fo-pill{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.08em;border:1px solid #C9A659;color:#7A5C1B;background:#fff;padding:2px 8px;border-radius:10px;white-space:nowrap}
+  .rec-cta{background:#17254C;color:#fff;border-top:3px solid #C4A031}
+  .rec-cta .rec-wrap{padding:44px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .rec-cta .k{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;color:#C4A031}
+  .rec-cta .t{font-family:'Playfair Display',serif;font-size:26px;margin-top:8px;line-height:1.25}
+  .rec-cta a{font-family:'Jost',sans-serif;font-weight:500;font-size:15px;color:#17254C;background:#C4A031;padding:14px 24px;flex:none;text-decoration:none}
+  {% endcss %}
+{% endblock %}
+{% block content %}
+{% set present = {} %}
+{% for f in entry.fieldLayout.customFields %}{% set present = present|merge({ (f.handle): true }) %}{% endfor %}
+{% set F = {} %}
+{% for h in ['body', 'burialPlace', 'deathDate', 'birthDate', 'foRank', 'foAssignment', 'foBadge', 'foIncidentLocation', 'foCircumstances', 'foMemorials'] %}
+  {% set v = present[h] is defined ? attribute(entry, h) : null %}
+  {% set F = F|merge({ (h): v is not empty ? v|trim : '' }) %}
+{% endfor %}
+{% set agency = present['foAgency'] is defined ? entry.foAgency.one() : null %}
+{% set tie = present['foValleyTie'] is defined ? (entry.foValleyTie.value ?? '') : '' %}
+{% set WHY = {
+  'off-duty': 'Listed separately: he was killed off duty, outside the valley. He served at Pitchess, in Castaic, and the valley commemorates him.',
+  'resident-elsewhere': 'Listed separately: he lived in the valley and was killed on duty elsewhere, serving another community.',
+  'en-route': 'Listed separately: he was killed in the valley on his way to work, in the earthquake of January 17, 1994.'
+} %}
+{% set img = present['featuredImage'] is defined ? entry.featuredImage.one() : null %}
+{% set recImages = present['recordImages'] is defined ? entry.recordImages.all() : [] %}
+{% set recDocs = present['recordDocuments'] is defined ? entry.recordDocuments.all() : [] %}
+{% set sub = [F.foRank, agency ? agency.title : '']|filter(x => x)|join(', ') %}
+{% set total = craft.entries().section('fallenOfficers').count() %}
+{% set edRows = present['editorNotes'] is defined ? entry.editorNotes : [] %}
+
+<div class="rec">
+  <section class="rec-band">
+    <div class="rec-wrap">
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('fallen-officers') }}">Fallen officers</a> &rsaquo; <span>{{ entry.title }}</span></div>
+      <div class="rec-head">
+        <div>
+          <div class="rec-kick"><span class="a">FALLEN OFFICERS</span>{% if agency %}<span class="sep"></span><span class="b">{{ agency.title|upper }}</span>{% endif %}</div>
+          <h1>{{ entry.title }}</h1>
+          {% if sub %}<div class="rec-sub">{{ sub }}</div>{% endif %}
+          {% if F.deathDate or F.foIncidentLocation %}
+          <div class="rec-facts">
+            {% if F.deathDate %}<div><div class="l">END OF WATCH</div><div class="v">{{ F.deathDate }}</div></div>{% endif %}
+            {% if F.foIncidentLocation %}<div><div class="l">WHERE</div><div class="v">{{ F.foIncidentLocation }}</div></div>{% endif %}
+          </div>
+          {% endif %}
+          {% if WHY[tie] is defined %}<p class="fo-why">{{ WHY[tie] }}</p>{% endif %}
+        </div>
+        {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>
+        {% else %}<div class="rec-portrait fo-nophoto"><div><p>No photograph of him is known to the archive.</p></div></div>{% endif %}
+      </div>
+    </div>
+  </section>
+
+  <div class="rec-wrap">
+    <main class="rec-main">
+      <article style="min-width:0">
+        {% include "_partials/record/tools" with { entry: entry, text: F.body, textId: 'recText' } only %}
+        {% include "_partials/record/editor-notes" with { rows: edRows, position: 'top' } only %}
+        {% if F.body %}
+          <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages, footnotesFor: entry } %}</div>
+          {% include "_partials/record/footnotes" with { entry: entry } only %}
+          {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
+        {% endif %}
+        {% include "_partials/record/editor-notes" with { rows: edRows, position: 'inline' } only %}
+        {% include "_partials/record/editor-notes" with { rows: edRows, position: 'bottom' } only %}
+      </article>
+
+      <aside class="rec-side">
+        {% set fieldRows = [['BORN', F.birthDate], ['AGENCY', agency ? agency.title : ''], ['RANK', F.foRank], ['ASSIGNMENT', F.foAssignment], ['BADGE', F.foBadge], ['END OF WATCH', F.deathDate], ['WHERE', F.foIncidentLocation], ['CIRCUMSTANCES', F.foCircumstances], ['BURIAL', F.burialPlace], ['NAMED FOR HIM', F.foMemorials]]|filter(r => r[1]) %}
+        {% set facts = present['factSources'] is defined ? (entry.factSources ?? [])|filter(r => (r.fact ?? '')|trim) : [] %}
+        {% set factLabels = facts|map(r => (r.fact ?? '')|lower|trim) %}
+        {% set COVERS = { 'BORN': ['born'], 'AGENCY': ['agency'], 'RANK': ['rank'], 'ASSIGNMENT': ['assignment', 'station'], 'BADGE': ['badge'], 'END OF WATCH': ['end of watch', 'date of death', 'died'], 'WHERE': ['where', 'place'], 'CIRCUMSTANCES': ['circumstances', 'cause'], 'BURIAL': ['burial'], 'NAMED FOR HIM': ['memorials', 'named for him'] } %}
+        {% set extra = fieldRows|filter(r => not (COVERS[r[0]] ?? [])|filter(l => l in factLabels)|length) %}
+        {% set noteCount = present['footnotes'] is defined ? (entry.footnotes ?? [])|filter(n => (n.note ?? '')|trim)|length : 0 %}
+        {% set differ = facts|filter(r => (r.agreement ?? '')|trim)|length %}
+        {% if facts|length or extra|length %}
+        <div class="rec-box"><div class="fo-facts-h"><span class="rec-lab" style="margin:0">SERVICE AND LIFE</span>{% if facts|length %}<span class="fo-pill">{{ noteCount }} SOURCE{{ noteCount == 1 ? '' : 'S' }}{% if differ %} · {{ differ }} DIFFER{% endif %}</span>{% endif %}</div>
+          <div class="rec-rows">
+            {% for r in facts %}
+              <div class="k">{{ r.fact|upper }}</div>
+              <div class="v">{{ r.value }}{% for n in (r.notes ?? '')|split(',')|map(x => x|trim)|filter(x => x) %}<a class="fo-nr" href="#fn-{{ n }}">{{ n }}</a>{% endfor %}{% if (r.agreement ?? '')|trim %}<span class="fo-diff">{{ r.agreement }}</span>{% endif %}</div>
+            {% endfor %}
+            {% for r in extra %}<div class="k">{{ r[0] }}</div><div class="v">{{ r[1] }}</div>{% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        {% if agency %}<div class="rec-box"><div class="rec-lab">AGENCY</div><div class="rec-links"><a href="{{ agency.url }}">{{ agency.title }} <span>→</span></a></div></div>{% endif %}
+        {% include "_partials/record/documents" with { docs: recDocs } only %}
+        {% include "_partials/record/tags" with { el: entry } only %}
+        {% include "_partials/record/cite" with { entry: entry, label: 'Fallen officers', sidebar: true } only %}
+        {% include "_partials/record/source-link" with { el: entry } only %}
+      </aside>
+    </main>
+  </div>
+
+  <section class="rec-cta">
+    <div class="rec-wrap">
+      <div><div class="k">FALLEN OFFICERS</div><div class="t">{{ total }} officers killed on duty serving the Santa Clarita Valley, or of the valley and killed elsewhere.</div></div>
+      <a href="{{ url('fallen-officers') }}">See them all →</a>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,4 +1,6 @@
 {% extends "_layouts/base" %}
+{#- The old submit page sends readers to the one form, which takes photographs and corrections (Nathan, 5 October 2026: "One route in, not two"). -#}
+{% if entry.slug == 'submit' %}{% redirect url('send') 301 %}{% endif %}
 {% block head %}
   {% include "_partials/record/css" %}
   {% include "_partials/record/print" %}

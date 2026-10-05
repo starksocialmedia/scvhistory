@@ -126,7 +126,7 @@ $build = function (string $how, string $value) use ($legacyAbs): string {
 /* ---------------------------------------------------------------- collect */
 
 $SECTIONS = ['articles','persons','places','organizations','groups','events','collections',
-             'warMemorials','militaryProfiles','obituaries','photographs','documents','pages'];
+             'warMemorials','obituaries','photographs','documents','pages'];
 
 $links = [];
 foreach ($SECTIONS as $sec) {

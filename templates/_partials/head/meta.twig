@@ -19,12 +19,19 @@
   'persons': 'People', 'places': 'Places', 'communities': 'Communities',
   'organizations': 'Organizations', 'groups': 'Groups', 'events': 'Events',
   'articles': 'Articles', 'collections': 'Collections',
-  'war-memorial': 'War Memorial', 'military-profiles': 'Military Profiles',
-  'obituaries': 'Obituaries', 'search': 'Search'
+  'war-memorial': 'War Memorial', 'fallen-officers': 'Fallen officers',
+  'obituaries': 'Obituaries', 'search': 'Search',
+  'civic': 'Public bodies', 'schools': 'Schools and districts', 'districts': 'Election districts',
+  'elections': 'Elections', 'evidence': 'How we know'
 } %}
 
 {% set el = entry is defined ? entry : (category is defined ? category : null) %}
 {% set sectionLabel = LABELS[SEG] ?? null %}
+{#- A public body's title names Public bodies, a school's Schools, as their breadcrumbs do (Nathan, 5 October 2026). -#}
+{% if el and SEG == 'organizations' and (el.section.handle ?? '') == 'organizations' %}
+  {% set ot = el.orgType.value ?? '' %}
+  {% set sectionLabel = ot == 'government' or (ot == 'school' and (el.schoolLevel.value ?? '') == 'district') ? 'Public bodies' : (ot == 'school' ? 'Schools' : sectionLabel) %}
+{% endif %}
 
 {# ── Title ─────────────────────────────────────────────────────── #}
 {% set recTitle = metaTitle is defined and metaTitle ? metaTitle : (el ? (el.title ?: el.slug) : null) %}
@@ -96,7 +103,7 @@
    website. #}
 {% set OG_TYPE = {
   'articles': 'article', 'obituaries': 'article',
-  'persons': 'profile', 'militaryProfiles': 'profile', 'warMemorials': 'profile'
+  'persons': 'profile', 'warMemorials': 'profile'
 } %}
 {% set ogType = (entry is defined and entry) ? (OG_TYPE[entry.section.handle] ?? 'website') : 'website' %}
 

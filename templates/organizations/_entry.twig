@@ -183,7 +183,10 @@
 <div class="rec">
   <section class="rec-band{{ img ? '' : ' rec-band--fit' }}">
     <div class="rec-wrap">
-      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url('organizations') }}">Organizations</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
+      {#- The crumb follows the menu (Nathan, 5 October 2026): a public body sits under Public bodies (/civic), as the index sorts it; a
+          school under Schools; everything else under Organizations. -#}
+      {% set crumbKind = (entry.orgType.value ?? '') == 'government' or ((entry.orgType.value ?? '') == 'school' and (entry.schoolLevel.value ?? '') == 'district') ? 'civic' : ((entry.orgType.value ?? '') == 'school' ? 'schools' : 'organizations') %}
+      <div class="rec-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <a href="{{ url(crumbKind) }}">{{ { civic: 'Public bodies', schools: 'Schools', organizations: 'Organizations' }[crumbKind] }}</a> &rsaquo; <span>{{ entry.title ?: entry.slug }}</span></div>
       {#- A mark is the header's picture too: without it here the header fell to its one-column layout and the mark spread across the page (4 October 2026). -#}
       <div class="rec-head{{ img or headMark ? '' : ' rec-head--noart' }}">
         <div>
@@ -339,17 +342,15 @@
 
       <aside class="rec-side">
         {#- A mark shows in the header with no label and no caption (Nathan, 4 October 2026: "A city's seal beside its name needs no
-            explanation. The caption is archive bookkeeping"). Its source and date stay in the asset's data, on its media page. Two
-            things still say something here: a condition of use the body itself states (Hart's site restricts its logos), and, for a
-            dissolved body, that the mark is the one it used, so it is not taken for a current one. -#}
+            explanation. The caption is archive bookkeeping"; 5 October 2026, ending the one exception, Hart's terms of use: "A reader
+            does not need to be told the terms another body puts on its own mark ... There is no exception"). A mark's source, rights
+            and any terms its owner states stay in the asset's data (rightsNote), on its media page. What is left here is the one line a
+            dissolved body's mark carries, that it is the mark the body used, so it is not taken for a current one. -#}
         {% if mark %}
           {% set isFormer = formerMark and mark.id == formerMark.id %}
-          {% set rn = (mark.rightsNote ?? '')|trim %}
-          {% set condition = rn matches '/may be used only|may not be used|must not be used|prohibit|restrict/i' ? (rn|split('. ')|first|trim('.') ~ '.') : '' %}
-          {% if condition or isFormer %}
+          {% if isFormer %}
             <div class="rec-box rec-mark">
-              {% if isFormer %}<p style="margin-top:0">The mark it used{{ entry.dateDissolvedEdtf|trim ? ' until ' ~ (entry.dateDissolvedEdtf|slice(0, 4)) : '' }}.</p>{% endif %}
-              {% if condition %}<p style="margin-top:{{ isFormer ? '6px' : '0' }}">{{ condition }}</p>{% endif %}
+              <p style="margin-top:0">The mark it used{{ entry.dateDissolvedEdtf|trim ? ' until ' ~ (entry.dateDissolvedEdtf|slice(0, 4)) : '' }}.</p>
             </div>
           {% endif %}
         {% endif %}

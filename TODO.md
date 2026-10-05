@@ -3,6 +3,10 @@
 ## Waiting on Nathan
 
 ### Current (4 October 2026, overnight)
+- **Fallen officers:** read the fourteen (disabled; in the control panel, or enable to view), then enable. Records for the CHP, LAPD, Burbank Police and the township constables (named as text until then). Pyle's death: the first reports against the conviction of Edward McCamish (an editor's note gives both).
+- **The Hart trustees dry run** (inventory/review/hart-trustees-profiles-dry-run-2026-10-05.md): read the 55 and the "For Nathan" items under each; then apply.
+- **The seat control:** whether a tab qualifies only when most of its list carries a seat (Hart History 3 of 55, City Elections 1 of 19, SCV Water History 2 of 7).
+- **The former-mark line** ("The mark it used until 2018") on a dissolved body: keep, or drop with the other mark captions.
 - **The nav** (inventory/review/nav-proposal-2026-10-05.md): six decisions; then the build, and the body pages' breadcrumb with it.
 - **The district map key** on the Senate and Assembly: look, then the House.
 - **The Sheriff** (inventory/review/lasd-contract-office-memorial-2026-10-05.md): whether to build an officers' memorial section (a schema plan first) and who counts; whether any sheriff gets a person record; the first contract's date needs the City Clerk's or the Board of Supervisors' records of December 1987 to 1988.

@@ -49,7 +49,6 @@
   { handle: 'photographs',      label: 'Photographs' },
   { handle: 'documents',        label: 'Documents' },
   { handle: 'warMemorials',     label: 'War Memorial' },
-  { handle: 'militaryProfiles', label: 'Military Profiles' },
   { handle: 'obituaries',       label: 'Obituaries' }
 ] %}
 {% set LABEL = {} %}
@@ -269,7 +268,7 @@
         <div class="scv-chips">
           {% for s in SECTIONS %}
             {% set n = craft.entries().section(s.handle).count() %}
-            {% if n %}<a class="scv-chip" href="{{ url(s.handle == 'warMemorials' ? 'war-memorial' : (s.handle == 'militaryProfiles' ? 'military-profiles' : s.handle)) }}">{{ s.label }} ({{ n }})</a>{% endif %}
+            {% if n %}<a class="scv-chip" href="{{ url(s.handle == 'warMemorials' ? 'war-memorial' : s.handle) }}">{{ s.label }} ({{ n }})</a>{% endif %}
           {% endfor %}
         </div>
       {% else %}

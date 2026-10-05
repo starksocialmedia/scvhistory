@@ -116,17 +116,17 @@
 <div class="pl">
   <section class="pl-hero">
     <div class="pl-wrap">
-      <div class="pl-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>{{ bodiesMode ? 'Civic' : 'Organizations' }}</span></div>
+      <div class="pl-crumbs"><a href="{{ siteUrl }}">Home</a> &rsaquo; <span>{{ bodiesMode ? 'Public bodies' : 'Organizations' }}</span></div>
       <div class="pl-grid">
         <div>
           {% if bodiesMode %}
           <div class="pl-kicker">THE PUBLIC RECORD</div>
-          <h1>Civic</h1>
+          <h1>Public bodies</h1>
           <p>The bodies that govern the valley or represent it: the county, state and federal bodies seated elsewhere, the valley's own city and water agency, and its school districts. Then the <a href="{{ url('elections') }}" style="color:#7A5C1B">elections</a> that fill them, the <a href="{{ url('districts') }}" style="color:#7A5C1B">districts</a> they are elected from, and the <a href="{{ url('schools') }}" style="color:#7A5C1B">schools</a>.</p>
           {% else %}
           <div class="pl-kicker">INSTITUTIONS &amp; ENTERPRISES</div>
           <h1>Organizations</h1>
-          <p>Companies, nonprofits, missions and churches, ranchos, newspapers and clubs in the valley's history. The bodies that govern the valley are on <a href="{{ url('civic') }}" style="color:#7A5C1B">Civic</a>, and its schools on <a href="{{ url('schools') }}" style="color:#7A5C1B">Schools</a>.</p>
+          <p>Companies, nonprofits, missions and churches, ranchos, newspapers and clubs in the valley's history. The bodies that govern the valley are on <a href="{{ url('civic') }}" style="color:#7A5C1B">Public bodies</a>, and its schools on <a href="{{ url('schools') }}" style="color:#7A5C1B">Schools</a>.</p>
           {% endif %}
         </div>
         <div class="pl-stat">
