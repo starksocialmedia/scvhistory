@@ -74,7 +74,9 @@
   {% set succ = 'succeededBy' in (p.fieldLayout ? p.fieldLayout.customFields|map(f => f.handle) : []) and p.dateDissolvedEdtf|default('') ? p.succeededBy.one() : null %}
   {% if succ and succ.id in onPage %}
     {% set formedOf = formedOf|merge({ ('o' ~ succ.id): (formedOf['o' ~ succ.id] ?? [])|merge([p]) }) %}
-  {% elseif par and par.id in onPage and p.orgType.value != 'school' %}
+  {#- A body is folded into its parent's card only at the parent's level: the SCV Sheriff's Station (the valley's) stands in Valley
+      government though it belongs to the County's Sheriff's Department (Nathan, 4 October 2026). -#}
+  {% elseif par and par.id in onPage and p.orgType.value != 'school' and ((p.orgLevel.value ?? '') == '' or (p.orgLevel.value ?? '') == (par.orgLevel.value ?? '')) %}
     {% set childrenOf = childrenOf|merge({ ('o' ~ par.id): (childrenOf['o' ~ par.id] ?? [])|merge([p]) }) %}
   {% else %}
     {% set tops = tops|merge([p]) %}
@@ -209,6 +211,7 @@
       {% endfor %}
       {% if places|length %}
       {% for grp in GROUPS %}{% if groupOf[grp.key] is defined %}
+      {% if bodiesMode and loop.first %}{% include "_partials/civic/governance-table" %}{% endif %}
       <h2 class="pl-group" id="{{ grp.key }}">{{ grp.label }} <span>{{ groupOf[grp.key]|length }}</span></h2>
       {% if grp.note is defined %}<p class="pl-groupnote">{{ grp.note }}</p>{% endif %}
       <div class="pl-cards">

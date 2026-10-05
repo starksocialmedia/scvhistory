@@ -17,6 +17,7 @@
     noun    what a seat is called, plural ("trustee areas")
 #}
 {% if seats|length > 1 %}
+<div class="seat-ctl" data-seat-ctl="{{ scope }}">
 <div class="seat-pick" role="group" aria-label="Show one {{ noun|trim('s', 'right') }}" data-seat-scope="{{ scope }}">
   <button type="button" data-seat-btn="" aria-pressed="true">All</button>
   {% for s in seats %}
@@ -27,6 +28,7 @@
     until then (Ordinance 23-4; Nathan, 4 October 2026: "show what is actually there"). Each seat's record says why. -#}
 {% set unheld = seats|filter(s => not craft.entries().section('officeHoldings').relatedTo({ targetElement: s, field: 'holdingDistrict' }).exists()) %}
 <p class="seat-note">Choosing one shows it on the map and filters the board, past members and elections to that seat. Boundaries from the Los Angeles County Registrar-Recorder, for election purposes, not legal boundaries.{% if unheld|length %} No member has yet been elected from {% for s in unheld %}<a href="{{ s.url }}">{{ s.title|split(', ')|last }}</a>{{ loop.revindex == 2 ? ' or ' : (not loop.last ? ', ' : '') }}{% endfor %}; {{ unheld|length == 1 ? 'its record says' : 'each one\'s record says' }} when its first election is.{% endif %}</p>
+</div>
 {% css %}
 .seat-pick{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
 .seat-pick button{border:1px solid rgba(23,37,76,.25);background:#fff;color:#17254C;padding:6px 13px;border-radius:14px;font-size:13.5px;cursor:pointer;font-family:'Public Sans',system-ui,sans-serif}
@@ -55,6 +57,17 @@
       });
     }
     pick.querySelectorAll('[data-seat-btn]').forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-seat-btn')); }); });
+    /* The control shows only on a tab whose content responds to it (Nathan, 4 October 2026: "the seat control renders only where
+       the tab's content responds to it, on every body"): a pane holding a list built to be filtered by seat (data-seat-list:
+       the board, past members, elections) or the seat map. A stray row that happens to carry a seat is not enough. */
+    var ctl = pick.closest('.seat-ctl');
+    function sync(){
+      var pane = scope.querySelector('.hub-pane.on') || (document.documentElement.classList.contains('js-tabs') ? null : scope);
+      var acts = !pane || !!(pane.querySelector('[data-seat-list]') || pane.querySelector('.bm-map'));
+      if (ctl) { ctl.style.display = acts ? '' : 'none'; }
+    }
+    document.addEventListener('scv:tab', function(){ setTimeout(sync, 0); });
+    sync();
     var start = new URLSearchParams(location.search).get('seat');
     if (start && pick.querySelector('[data-seat-btn="' + start + '"]')) { show(start); }
   });

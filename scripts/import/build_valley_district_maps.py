@@ -10,11 +10,15 @@ VALLEY DEFINITION (corrected 4 October 2026; widened the same day, Nathan's deci
   + Agua Dulce CDP (place 00450)
   + every block inside the City of Santa Clarita (place 69088) as that census drew it
   + the unincorporated ground between the City and Agua Dulce: on 2020 blocks, the
-    blocks of tracts 9108.07, 9108.08, 9108.09, 9108.10 and 9108.14 outside Acton CDP.
+    blocks of tracts 9108.07, 9108.08, 9108.09 and 9108.10 outside Acton CDP, and
+    the Agua Dulce CDP blocks of tract 9108.14. The rest of 9108.14 (the fringe
+    around Agua Dulce, 223 people in 2020) was dropped on Nathan's decision of
+    4 October 2026: only its western part lies between, and it does not separate
+    cleanly from the northern and southeastern fringe.
   Acton (place 00212, in the South Antelope Valley CCD) stays out.
   So that every census covers the same ground, a 2000 or 2010 block not already in
-  is added when its interior point lies inside the 2020 footprint of those five
-  tracts outside Acton (and it is not in Acton; for 2000 blocks, not inside the
+  is added when its interior point lies inside the 2020 footprint of that ground
+  (and it is not in Acton; for 2000 blocks, not inside the
   2010 Acton CDP either). See inventory/review/valley-definition-2026-10-04.md.
   The first pass used Newhall CCD + Agua Dulce CDP only, which left out about
   13,000 City residents in eastern Canyon Country (tracts 9108.07 to 9108.10).
@@ -83,6 +87,8 @@ CITY, AGUA_DULCE, ACTON, NEWHALL_CCD = '69088', '00450', '00212', '92110'
 # 2020 tracts holding the City's eastern edge and Agua Dulce; their unincorporated
 # land outside Acton is the ground between the City and Agua Dulce (4 October 2026)
 BETWEEN_TRACTS_2020 = ('910807', '910808', '910809', '910810', '910814')
+# of tract 9108.14 only its Agua Dulce CDP blocks count (the fringe dropped, Nathan, 4 October 2026)
+AD_ONLY_TRACTS_2020 = ('910814',)
 
 DOWNLOADS = {
     'tiger/tl_2010_06037_tabblock00.zip': 'https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2000/tl_2010_06037_tabblock00.zip',
@@ -228,7 +234,7 @@ def read_shapes(zpath, idfield, wanted):
 # ---------------------------------------------------------------- valley blocks
 
 def valley_blocks():
-    """{vintage: {geoid: {'pop', 'reg', 'place'}}}; reg in newhall_ccd, agua_dulce, city_outside_ccd, between."""
+    """{vintage: {geoid: {'pop', 'reg', 'place'}}}; reg in newhall_ccd, agua_dulce, city_outside_ccd, between, enclave."""
     V = {}
     # 2000
     ad = json.load(open(src('tigerweb/aguadulce_2010.json')))['features'][0]['geometry']['rings']
@@ -292,7 +298,54 @@ def valley_blocks():
         if v == '2020':
             place20 = place
     add_between(V, place20)
+    fill_enclaves(V)
     return V
+
+
+def fill_enclaves(V):
+    """Count any unincorporated block the valley wholly encloses (a hole in the outline).
+
+    Added 4 October 2026 with the 9108.14 fringe dropped: on 2000 blocks the Agua
+    Dulce of that census (the 2010 CDP) and the Newhall CCD close around six blocks
+    (11 people) of the dropped western fringe. A valley with an enclave in it is not
+    the valley; such blocks count. No 2010 or 2020 block is enclosed.
+    """
+    files = {'2000': ('tiger/tl_2010_06037_tabblock00.zip', 'BLKIDFP00', '00'),
+             '2010': ('tiger/tl_2010_06037_tabblock10.zip', 'GEOID10', '10'),
+             '2020': ('tiger/tl_2020_06037_tabblock20.zip', 'GEOID20', '20')}
+    for v, (zp, fld, suf) in files.items():
+        shapes = read_shapes(src(zp), fld, set(V[v]))
+        e, _ = boundary(V[v], shapes)
+        rings, _ = chain(e)
+        if len(rings) < 2:
+            continue
+        rings.sort(key=lambda r: -abs(sarea(r)))
+        holes = [r for r in rings[1:] if any(pip(r[0][0], r[0][1], [o]) for o in rings if o is not r and abs(sarea(o)) > abs(sarea(r)))]
+        if not holes:
+            continue
+        cand = {g: pt for g, pt in interior_points(src(zp), suf, fld).items()
+                if g not in V[v] and any(pip(pt[0], pt[1], [h]) for h in holes)}
+        if v == '2000':
+            info = {}
+            with zipfile.ZipFile(src('census2000/cageo.upl.zip')) as z:
+                for line in io.TextIOWrapper(z.open('cageo.upl'), encoding='latin-1'):
+                    if line[8:11] == '750' and line[29:34] == '06037':
+                        g = line[29:34] + line[55:61] + line[62:66]
+                        if g in cand:
+                            info[g] = (int(line[292:301]), '' if line[45:50] == '99999' else line[45:50])
+        else:
+            pops = json.load(open(src(POP_FILES[v][0])))
+            if v == '2010':
+                with zipfile.ZipFile(src('census-baf2010/BlockAssign_ST06_CA.zip')) as z:
+                    pl = dict(ln.split(',') for ln in io.TextIOWrapper(z.open('BlockAssign_ST06_CA_INCPLACE_CDP.txt'), encoding='latin-1').read().splitlines()[1:] if ln.startswith('06037'))
+            else:
+                pl = dict(ln.split('|') for ln in open(src('census-baf/BlockAssign_ST06_CA_INCPLACE_CDP.txt'), encoding='latin-1').read().splitlines()[1:] if ln.startswith('06037'))
+            info = {g: (pops.get(g, 0) or 0, pl.get(g, '')) for g in cand}
+        for g, (pop, plc) in info.items():
+            if plc:
+                raise SystemExit(f'{v} block {g} in place {plc} is enclosed by the valley')
+            V[v][g] = {'pop': pop, 'reg': 'enclave', 'place': ''}
+        p(f'{v}: filled {len(info)} enclosed blocks, {sum(x[0] for x in info.values())} people')
 
 
 def interior_points(zpath, suffix, idfield):
@@ -306,13 +359,15 @@ def add_between(V, place20):
     """The unincorporated ground between the City and Agua Dulce, the same ground for every census.
 
     Footprint F, drawn on 2020 blocks: every 2020 block of tracts 9108.07, 9108.08,
-    9108.09, 9108.10 and 9108.14 outside Acton CDP (City and Agua Dulce blocks of
+    9108.09 and 9108.10 outside Acton CDP, and the Agua Dulce blocks of 9108.14
+    (the rest of 9108.14 dropped, Nathan, 4 October 2026) (City and Agua Dulce blocks of
     those tracts included). A 2000 or 2010 block not already in the valley is added when its
     interior point lies inside F and it is not in Acton (Acton CDP of that census;
     for 2000 blocks also the 2010 Acton CDP boundary). Incorporated places other
     than the City are never added.
     """
-    fblocks = {g for g, pl in place20.items() if g[5:11] in BETWEEN_TRACTS_2020 and pl != ACTON}
+    fblocks = {g for g, pl in place20.items() if g[5:11] in BETWEEN_TRACTS_2020 and pl != ACTON
+               and (g[5:11] not in AD_ONLY_TRACTS_2020 or pl == AGUA_DULCE)}
     pops20 = json.load(open(src(POP_FILES['2020'][0])))
     for g in fblocks:
         pl = place20.get(g, '')
@@ -749,10 +804,10 @@ def main():
                    'inventory/review/valley-definition-2026-10-04.md.'),
         'valleyDefinition': ('Census Newhall CCD (county subdivision 92110) plus Agua Dulce CDP plus every census block '
                              'inside the City of Santa Clarita as the census of that year drew it, plus the unincorporated land '
-                             'between the City and Agua Dulce (on 2020 blocks: tracts 9108.07, 9108.08, 9108.09, 9108.10 and '
-                             '9108.14 outside Acton CDP). Acton is excluded. So that every census covers the same ground, a 2000 '
-                             'or 2010 block is also counted when its interior point lies inside the 2020 footprint of those five '
-                             'tracts outside Acton. Agua Dulce was not a CDP in 2000; on 2000 blocks it is the blocks whose '
+                             'between the City and Agua Dulce (on 2020 blocks: tracts 9108.07, 9108.08, 9108.09 and 9108.10 '
+                             'outside Acton CDP; of tract 9108.14 only Agua Dulce itself). Acton is excluded. So that every census '
+                             'covers the same ground, a 2000 or 2010 block is also counted when its interior point lies inside that '
+                             '2020 footprint. Agua Dulce was not a CDP in 2000; on 2000 blocks it is the blocks whose '
                              'interior point lies inside the 2010 Agua Dulce CDP.'),
         'method': ('Each census block in the valley assigned to its district by the official block equivalency file '
                    'for the plan (1991 plan on 2000 blocks, Statewide Database; 2001 and 2011 plans on 2010 blocks, '

@@ -1490,6 +1490,46 @@
    "read": "2026-10-04",
    "url": "https://www2.census.gov/programs-surveys/decennial/rdo/mapping-files/2023/2022-state-legislative-bef/sldl_2022.zip",
    "what": "Census Bureau 2022 State Legislative District Block Equivalency Files, lower chamber, all states; 06_CA_SLDL22.txt gives 2020 block to 2021-plan Assembly district"
+  },
+  {
+   "file": "lacounty/supervisorial-districts-2021.json",
+   "sha256": "6e67d3b483c27acef9c0d04c7870b91c351eff22faeca238d40534a3d57fc2c9",
+   "bytes": 6043622,
+   "read": "2026-10-04",
+   "url": "https://public.gis.lacounty.gov/public/rest/services/LACounty_Dynamic/Political_Boundaries/MapServer/26/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json",
+   "what": "County of Los Angeles, Supervisorial District (2021): the official supervisorial boundary adopted 15 December 2021 by the County Citizens Redistricting Commission (Resolution 2021-04), maintained by the Registrar-Recorder/County Clerk; 5 features, Esri JSON, WGS84. Layer 27 \"Supervisorial District (Current)\" carries the same five areas. Used for the governance table."
+  },
+  {
+   "file": "lacounty/supervisorial-districts-2021-layer.json",
+   "sha256": "7795dc93ba79c3d2eda9f6f94c89fd2fdb592c3cc83d0d356b7c4404971adddc",
+   "bytes": 6201,
+   "read": "2026-10-04",
+   "url": "https://public.gis.lacounty.gov/public/rest/services/LACounty_Dynamic/Political_Boundaries/MapServer/26?f=json",
+   "what": "Layer metadata for Supervisorial District (2021), with its description and adoption note"
+  },
+  {
+   "file": "lacounty/rrcc-division-boundaries-acton-agua-dulce-usd.geojson",
+   "sha256": "8cd5548356333c915e0967db6d3a65bc072853cb8c9918a8344f0b3a4f7beb32",
+   "bytes": 172862,
+   "read": "2026-10-04",
+   "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0/query?where=District+LIKE+%27ACTON-AGUA%25%27&outFields=*&outSR=4326&f=geojson",
+   "what": "LA County Registrar-Recorder/County Clerk Division_Boundaries: Acton-Agua Dulce Unified School District trustee areas 1 to 5. LA County GIS Terms of Use; for election purposes, not legal boundaries."
+  },
+  {
+   "file": "gnis/DomesticNames_CA_Text.zip",
+   "sha256": "e55aa2583cf6c20d53aefe99a2017674a7b2b21a889cd3f273b39d5eadfd3586",
+   "bytes": 2701021,
+   "read": "2026-10-04",
+   "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/GeographicNames/DomesticNames/DomesticNames_CA_Text.zip",
+   "what": "USGS Geographic Names Information System, DomesticNames for California (public domain). Representative points for the governance table: Newhall 272642, Canyon Country 1946238, Sand Canyon (Valley) 273524, Stevenson Ranch (Census) 2583151, Castaic 270335, Val Verde 1661607, Agua Dulce 1660235; Valencia 1661608 not used (outside the City)."
+  },
+  {
+   "file": "tigerweb/zcta_2020_internal_points_scv.json",
+   "sha256": "ee98b90f3ad616eb583a619223465a74a052c8a258f40acae49238026928ad33",
+   "bytes": 1418,
+   "read": "2026-10-04",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/PUMA_TAD_TAZ_UGA_ZCTA/MapServer/7/query?where=ZCTA5 IN (91355,91354,91321,91351,91387)&outFields=ZCTA5,NAME,INTPTLAT,INTPTLON,CENTLAT,CENTLON&returnGeometry=false&f=json",
+   "what": "Census Bureau 2020 ZCTA internal points for the valley ZIP areas; ZCTA 91355 gives the Valencia point of the governance table"
   }
  ]
 }

@@ -117,3 +117,95 @@ No district entered or left any plan, and no main seat changed.
 - Every file: the districts tile the outline (raw and final areas equal; 300 by 300 test grid with no gaps, no overlaps, nothing covered outside the outline), no unassigned blocks, no chain anomalies, no orphan holes, no dropped rings.
 - Largest file 45 KB; index.json 7,296 bytes. All far under 400 KB.
 - Every outline is now a single Polygon with no holes.
+
+## Change, 4 October 2026: the 9108.14 fringe dropped
+
+Nathan's decision: drop the fringe of tract 9108.14 around Agua Dulce (only its western part lies between the City and Agua Dulce; if it cannot be separated cleanly, drop all of 9108.14 outside Agua Dulce).
+
+**It does not separate cleanly, so all of 9108.14 outside Agua Dulce is dropped.** The fringe is 39 blocks (223 people in 2020). The blocks west of Agua Dulce that touch the Newhall CCD or tract 9108.08 hold 30 people, but they run without a break into the blocks north of Agua Dulce (134 people), which touch tract 9200.50 in the Antelope Valley rather than the valley. No line through them follows a census, tract or place boundary.
+
+- Builder: `BETWEEN_TRACTS_2020` keeps its five tracts, and the new constant `AD_ONLY_TRACTS_2020 = ('910814',)` keeps only the Agua Dulce CDP blocks of 9108.14 in the footprint. The 2000 and 2010 blocks are again counted when their interior point lies in that footprint.
+- **One enclave filled (new function `fill_enclaves`).** With the fringe out, the 2000 outline had a hole: six 2000 blocks (11 people, tract 9108.03) west of Agua Dulce, wholly enclosed by the 2000 Agua Dulce (drawn from the 2010 CDP) and the Newhall CCD. On 2020 blocks this is the western fringe (blocks 9108.14 2071 and 2072). The builder now counts any unincorporated block the valley wholly encloses, and stops if one is in an incorporated place. Only these six blocks qualify; no 2010 or 2020 block is enclosed. I recommend keeping this rule: without it the 1991 maps show a hole near Agua Dulce. Remove `fill_enclaves(V)` from `valley_blocks()` to undo it (the 1991 valley would then be 205,243).
+- Regenerated: `web/data/valley-districts/*.geojson` (13 files), `index.json` (7,294 bytes), and the tallies in `inventory/review/valley-district-maps-2026-10-04.json` (new region `enclave`).
+
+### The definition in plain words, as it now stands
+
+> The Santa Clarita Valley, as counted here, is the Census Bureau's Newhall census county division, the whole City of Santa Clarita, Agua Dulce, and the unincorporated land between the City and Agua Dulce. Acton is not included. The City is counted as each census drew it. The land between the City and Agua Dulce is fixed once, on the 2020 census map, and the same ground is used for the 2000 and 2010 censuses: an earlier census block is counted when its centre lies inside it. Unincorporated land the valley wholly surrounds is counted.
+
+Technical: on 2020 blocks, the between ground is tracts 9108.07, 9108.08, 9108.09 and 9108.10 outside Acton CDP, plus the Agua Dulce CDP blocks of 9108.14.
+
+### The added ground, now
+
+| Census | Between ground before | Between ground now | By tract now (people) | Valley before | Valley now | Change |
+|---|---|---|---|---|---|---|
+| 2000 (1991 plan) | 3,128 | **2,820 + 11 enclave** | 9108.10: 1,572; 9108.07: 530; 9108.08: 433; 9108.09: 248; 9108.03: 37 (+11 enclave) | 205,551 | **205,254** | -297 |
+| 2010 (2001 and 2011 plans) | 1,169 | **936** | 9108.07: 458; 9108.09: 303; 9108.08: 110; 9108.10: 65 | 271,619 | **271,386** | -233 |
+| 2020 (2021 plan, 2025 map) | 1,186 | **963** | 9108.07: 513; 9108.09: 322; 9108.08: 88; 9108.10: 40 | 291,467 | **291,244** | -223 |
+
+The outline is one polygon with no holes on 2000, 2010 and 2020 blocks. Outline areas: 1,420 km² (2000 blocks; was 1,433), 1,360 km² (2010; was 1,383), 1,367 km² (2020; was 1,391).
+
+### Every share that moves (one decimal)
+
+Before = the table above ("Old and new shares", New columns). Every other district keeps its share at one decimal.
+
+| Chamber, plan | District | Pop before | Share before | Pop now | Share now | Whole percent |
+|---|---|---|---|---|---|---|
+| Assembly 2001 | **38** | 236,355 | 87.0% | 236,355 | **87.1%** | holds (87%) |
+| | 37 | 35,264 | 13.0% | 35,031 | **12.9%** | holds (13%) |
+| Assembly 2011 | **38** | 252,560 | 93.0% | 252,557 | **93.1%** | holds (93%) |
+| | 36 | 19,059 | 7.0% | 18,829 | **6.9%** | holds (7%) |
+| Assembly 2021 | **40** | 286,046 | 98.1% | 286,046 | **98.2%** | holds (98%) |
+| | 34 | 5,421 | 1.9% | 5,198 | **1.8%** | holds (2%) |
+
+So the Assembly 2011 and 2021 shares return to what they were before the between ground was added (as of commit c1cb794). Assembly 2001 does not: it is now 87.1% and 12.9%, where it was 87.0% and 13.0% both before and after the between ground, because the 38th keeps the strip east of the City while the 37th loses the fringe. No whole-percent figure moves, no district enters or leaves a plan, and no main seat changes.
+
+Populations that move with no share change:
+
+| Chamber, plan | District | Pop before | Pop now |
+|---|---|---|---|
+| Assembly 1991 | 36 | 172,102 | 171,805 (83.7% holds) |
+| Senate 1991 | 17 | 172,102 | 171,805 (83.7% holds) |
+| Senate 2001 | 17 | 201,538 | 201,305 (74.2% holds) |
+| Senate 2011 | 21 | 216,544 | 216,311 (79.7% holds) |
+| Senate 2021 | 23 | 291,467 | 291,244 (100%) |
+| House 1991 | 25 | 205,551 | 205,254 (100%) |
+| House 2001 | 25 | 270,554 | 270,321 (99.6% holds) |
+| House 2011 | 25 | 271,619 | 271,386 (100%) |
+| House 2021 | 27 | 291,467 | 291,244 (100%) |
+| House 2025 | 27 | 256,376 | 256,153 (88.0% holds) |
+
+Correction to the note above: the 223 fringe people of 2020 were in **CD 27** on the 2025 map, not CD 30. CD 30 keeps 12,470 (4.3%); the 27th loses them.
+
+### Descriptions that change (templates/_data/valley-districts.json, not edited)
+
+Against the list "Descriptions that change" above:
+
+1. **method**: add "unincorporated land the valley surrounds is counted" if the enclave rule stays; the rest of the wording holds ("the unincorporated land between the City and Agua Dulce, fixed on the 2020 census").
+2. **Assembly 1991 36th** and **Senate 1991 17th**: pop **171,805** (83.7% holds). **38th / 19th** unchanged.
+3. **Assembly 2001**: 38th **87.1%** (pop 236,355), 37th **12.9%** (pop **35,031**). The 37th's covers no longer includes a fringe around Agua Dulce.
+4. **Assembly 2011**: 38th **93.1%** (pop **252,557**), 36th **6.9%** (pop **18,829**).
+5. **Assembly 2021**: 40th **98.2%** (pop 286,046), 34th **1.8%** (pop **5,198**); covers back to "Agua Dulce and about 1,700 people in the unincorporated land north of the City" (1,747).
+6. **Senate 2001** 17th pop **201,305**; **Senate 2011** 21st pop **216,311**; shares hold.
+7. **House 2001** 25th pop **270,321**; **House 2025** 27th pop **256,153** (88.0% holds), 30th unchanged (12,470, 4.3%; its covers holds).
+8. **Whole-valley pops**: Senate 2021 23rd and House 2021 27th **291,244**; House 1991 25th **205,254**; House 2011 25th **271,386**.
+
+### Geometry check, after the change
+
+| File | Bytes | Outline km² (raw) | Districts km² (raw) | Outline km² (final) | Districts km² (final) | Grid points inside | Gaps | Overlaps |
+|---|---|---|---|---|---|---|---|---|
+| assembly-1991 | 43,181 | 1420.179 | 1420.179 | 1420.239 | 1420.239 | 44,209 | 0 | 0 |
+| assembly-2001 | 39,071 | 1360.374 | 1360.374 | 1360.382 | 1360.382 | 48,589 | 0 | 0 |
+| assembly-2011 | 43,861 | 1360.374 | 1360.374 | 1360.543 | 1360.543 | 48,593 | 0 | 0 |
+| assembly-2021 | 44,771 | 1367.413 | 1367.413 | 1367.353 | 1367.353 | 48,828 | 0 | 0 |
+| senate-1991 | 43,171 | 1420.179 | 1420.179 | 1420.239 | 1420.239 | 44,209 | 0 | 0 |
+| senate-2001 | 39,430 | 1360.374 | 1360.374 | 1360.397 | 1360.397 | 48,588 | 0 | 0 |
+| senate-2011 | 35,243 | 1360.374 | 1360.374 | 1360.419 | 1360.419 | 48,589 | 0 | 0 |
+| senate-2021 | 33,113 | 1367.413 | 1367.413 | 1367.505 | 1367.505 | 48,832 | 0 | 0 |
+| house-1991 | 34,005 | 1420.179 | 1420.179 | 1420.287 | 1420.287 | 44,207 | 0 | 0 |
+| house-2001 | 34,284 | 1360.374 | 1360.374 | 1360.555 | 1360.555 | 48,592 | 0 | 0 |
+| house-2011 | 33,008 | 1360.374 | 1360.374 | 1360.469 | 1360.469 | 48,589 | 0 | 0 |
+| house-2021 | 33,118 | 1367.413 | 1367.413 | 1367.505 | 1367.505 | 48,832 | 0 | 0 |
+| house-2025 | 44,862 | 1367.413 | 1367.413 | 1367.409 | 1367.409 | 48,831 | 0 | 0 |
+
+- Every file: the districts tile the outline (raw and final areas equal; 300 by 300 test grid with no gaps, no overlaps, nothing covered outside the outline), no unassigned blocks, no chain anomalies, no orphan holes, no dropped rings.
+- Every outline is a single Polygon with no holes. Largest file 45 KB.

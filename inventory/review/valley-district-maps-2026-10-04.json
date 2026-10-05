@@ -1,49 +1,50 @@
 {
  "blocks": {
   "2000": {
-   "count": 2383,
+   "count": 2357,
    "byRegion": {
     "newhall_ccd": 189172,
     "city_outside_ccd": 10239,
     "agua_dulce": 3012,
-    "between": 3128
+    "between": 2820,
+    "enclave": 11
    },
-   "total": 205551,
-   "outlineKm2": 1433.389,
-   "sumOfBlocksKm2": 1433.389
+   "total": 205254,
+   "outlineKm2": 1420.179,
+   "sumOfBlocksKm2": 1420.179
   },
   "2010": {
-   "count": 3845,
+   "count": 3798,
    "byRegion": {
     "newhall_ccd": 254330,
     "agua_dulce": 3342,
     "city_outside_ccd": 12778,
-    "between": 1169
+    "between": 936
    },
-   "total": 271619,
-   "outlineKm2": 1383.499,
-   "sumOfBlocksKm2": 1383.499
+   "total": 271386,
+   "outlineKm2": 1360.374,
+   "sumOfBlocksKm2": 1360.374
   },
   "2020": {
-   "count": 2693,
+   "count": 2654,
    "byRegion": {
     "newhall_ccd": 273466,
     "city_outside_ccd": 13364,
     "agua_dulce": 3451,
-    "between": 1186
+    "between": 963
    },
-   "total": 291467,
-   "outlineKm2": 1390.532,
-   "sumOfBlocksKm2": 1390.532
+   "total": 291244,
+   "outlineKm2": 1367.413,
+   "sumOfBlocksKm2": 1367.413
   }
  },
  "plans": {
   "assembly-1991": {
-   "bytes": 41433,
-   "valleyPop": 205551,
+   "bytes": 43181,
+   "valleyPop": 205254,
    "oldValleyPop": 211220,
    "new": {
-    "36": 172102,
+    "36": 171805,
     "38": 33449,
     "44": 0
    },
@@ -56,11 +57,14 @@
      "36": 3012
     },
     "between": {
-     "36": 3128
+     "36": 2820
     },
     "city_outside_ccd": {
      "36": 10239,
      "44": 0
+    },
+    "enclave": {
+     "36": 11
     },
     "newhall_ccd": {
      "38": 33449,
@@ -81,26 +85,26 @@
     },
     "other (unincorporated, no CDP)": {
      "38": 31977,
-     "36": 18002
+     "36": 17705
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1433.3886,
-    "rawDistrictsKm2": 1433.3886,
+    "rawOutlineKm2": 1420.179,
+    "rawDistrictsKm2": 1420.179,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1433.4683,
-    "finalDistrictsKm2": 1433.4683,
+    "finalOutlineKm2": 1420.2393,
+    "finalDistrictsKm2": 1420.2393,
     "districtKm2": {
-     "36": 793.748,
+     "36": 780.519,
      "38": 638.693,
      "44": 1.027
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 44612,
+     "insideOutline": 44209,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -108,12 +112,12 @@
    }
   },
   "assembly-2001": {
-   "bytes": 36852,
-   "valleyPop": 271619,
+   "bytes": 39071,
+   "valleyPop": 271386,
    "oldValleyPop": 257672,
    "new": {
     "38": 236355,
-    "37": 35264,
+    "37": 35031,
     "36": 0
    },
    "old": {
@@ -128,7 +132,7 @@
     },
     "between": {
      "38": 936,
-     "37": 233
+     "37": 0
     },
     "city_outside_ccd": {
      "38": 12778
@@ -164,7 +168,7 @@
      "37": 2468
     },
     "other (unincorporated, no CDP)": {
-     "37": 8566,
+     "37": 8333,
      "38": 42187,
      "36": 0
     }
@@ -173,19 +177,19 @@
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1383.4988,
-    "rawDistrictsKm2": 1383.4988,
+    "rawOutlineKm2": 1360.374,
+    "rawDistrictsKm2": 1360.374,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1383.5162,
-    "finalDistrictsKm2": 1383.5162,
+    "finalOutlineKm2": 1360.3819,
+    "finalDistrictsKm2": 1360.3819,
     "districtKm2": {
-     "38": 349.104,
-     "37": 1034.406,
+     "38": 349.094,
+     "37": 1011.283,
      "36": 0.006
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49368,
+     "insideOutline": 48589,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -193,12 +197,12 @@
    }
   },
   "assembly-2011": {
-   "bytes": 44440,
-   "valleyPop": 271619,
+   "bytes": 43861,
+   "valleyPop": 271386,
    "oldValleyPop": 257672,
    "new": {
-    "38": 252560,
-    "36": 19059
+    "38": 252557,
+    "36": 18829
    },
    "old": {
     "38": 238891,
@@ -209,8 +213,8 @@
      "38": 3342
     },
     "between": {
-     "36": 278,
-     "38": 891
+     "36": 48,
+     "38": 888
     },
     "city_outside_ccd": {
      "38": 12778
@@ -243,26 +247,26 @@
      "38": 2468
     },
     "other (unincorporated, no CDP)": {
-     "38": 32721,
-     "36": 18032
+     "38": 32718,
+     "36": 17802
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1383.4988,
-    "rawDistrictsKm2": 1383.4988,
+    "rawOutlineKm2": 1360.374,
+    "rawDistrictsKm2": 1360.374,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1383.649,
-    "finalDistrictsKm2": 1383.649,
+    "finalOutlineKm2": 1360.5431,
+    "finalDistrictsKm2": 1360.5431,
     "districtKm2": {
-     "38": 749.949,
-     "36": 633.7
+     "38": 743.021,
+     "36": 617.522
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49365,
+     "insideOutline": 48593,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -270,12 +274,12 @@
    }
   },
   "assembly-2021": {
-   "bytes": 42480,
-   "valleyPop": 291467,
+   "bytes": 44771,
+   "valleyPop": 291244,
    "oldValleyPop": 276917,
    "new": {
     "40": 286046,
-    "34": 5421
+    "34": 5198
    },
    "old": {
     "40": 271719,
@@ -286,7 +290,6 @@
      "34": 3451
     },
     "between": {
-     "34": 223,
      "40": 963
     },
     "city_outside_ccd": {
@@ -321,25 +324,25 @@
     },
     "other (unincorporated, no CDP)": {
      "40": 14664,
-     "34": 934
+     "34": 711
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1390.5318,
-    "rawDistrictsKm2": 1390.5318,
+    "rawOutlineKm2": 1367.4126,
+    "rawDistrictsKm2": 1367.4126,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1390.4712,
-    "finalDistrictsKm2": 1390.4712,
+    "finalOutlineKm2": 1367.3534,
+    "finalDistrictsKm2": 1367.3534,
     "districtKm2": {
-     "40": 538.636,
-     "34": 851.835
+     "40": 538.632,
+     "34": 828.721
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49610,
+     "insideOutline": 48828,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -347,11 +350,11 @@
    }
   },
   "senate-1991": {
-   "bytes": 41423,
-   "valleyPop": 205551,
+   "bytes": 43171,
+   "valleyPop": 205254,
    "oldValleyPop": 211220,
    "new": {
-    "17": 172102,
+    "17": 171805,
     "19": 33449,
     "21": 0
    },
@@ -364,11 +367,14 @@
      "17": 3012
     },
     "between": {
-     "17": 3128
+     "17": 2820
     },
     "city_outside_ccd": {
      "17": 10239,
      "21": 0
+    },
+    "enclave": {
+     "17": 11
     },
     "newhall_ccd": {
      "19": 33449,
@@ -389,26 +395,26 @@
     },
     "other (unincorporated, no CDP)": {
      "19": 31977,
-     "17": 18002
+     "17": 17705
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1433.3886,
-    "rawDistrictsKm2": 1433.3886,
+    "rawOutlineKm2": 1420.179,
+    "rawDistrictsKm2": 1420.179,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1433.4683,
-    "finalDistrictsKm2": 1433.4683,
+    "finalOutlineKm2": 1420.2393,
+    "finalDistrictsKm2": 1420.2393,
     "districtKm2": {
-     "17": 793.748,
+     "17": 780.519,
      "19": 638.693,
      "21": 1.027
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 44612,
+     "insideOutline": 44209,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -416,11 +422,11 @@
    }
   },
   "senate-2001": {
-   "bytes": 37042,
-   "valleyPop": 271619,
+   "bytes": 39430,
+   "valleyPop": 271386,
    "oldValleyPop": 257672,
    "new": {
-    "17": 201538,
+    "17": 201305,
     "19": 70081
    },
    "old": {
@@ -432,7 +438,7 @@
      "17": 3342
     },
     "between": {
-     "17": 1169
+     "17": 936
     },
     "city_outside_ccd": {
      "17": 12778
@@ -466,7 +472,7 @@
      "17": 2468
     },
     "other (unincorporated, no CDP)": {
-     "17": 48382,
+     "17": 48149,
      "19": 2371
     }
    },
@@ -474,18 +480,18 @@
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1383.4988,
-    "rawDistrictsKm2": 1383.4988,
+    "rawOutlineKm2": 1360.374,
+    "rawDistrictsKm2": 1360.374,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1383.4913,
-    "finalDistrictsKm2": 1383.4913,
+    "finalOutlineKm2": 1360.3974,
+    "finalDistrictsKm2": 1360.3974,
     "districtKm2": {
-     "17": 1246.46,
+     "17": 1223.366,
      "19": 137.031
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49367,
+     "insideOutline": 48588,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -493,11 +499,11 @@
    }
   },
   "senate-2011": {
-   "bytes": 32936,
-   "valleyPop": 271619,
+   "bytes": 35243,
+   "valleyPop": 271386,
    "oldValleyPop": 257672,
    "new": {
-    "21": 216544,
+    "21": 216311,
     "27": 55075
    },
    "old": {
@@ -509,7 +515,7 @@
      "21": 3342
     },
     "between": {
-     "21": 1169
+     "21": 936
     },
     "city_outside_ccd": {
      "21": 12778
@@ -544,25 +550,25 @@
     },
     "other (unincorporated, no CDP)": {
      "27": 2588,
-     "21": 48165
+     "21": 47932
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1383.4988,
-    "rawDistrictsKm2": 1383.4988,
+    "rawOutlineKm2": 1360.374,
+    "rawDistrictsKm2": 1360.374,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1383.5164,
-    "finalDistrictsKm2": 1383.5164,
+    "finalOutlineKm2": 1360.4186,
+    "finalDistrictsKm2": 1360.4186,
     "districtKm2": {
-     "21": 1251.368,
+     "21": 1228.27,
      "27": 132.149
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49368,
+     "insideOutline": 48589,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -570,11 +576,11 @@
    }
   },
   "senate-2021": {
-   "bytes": 30774,
-   "valleyPop": 291467,
+   "bytes": 33113,
+   "valleyPop": 291244,
    "oldValleyPop": 276917,
    "new": {
-    "23": 291467
+    "23": 291244
    },
    "old": {
     "23": 276917
@@ -584,7 +590,7 @@
      "23": 3451
     },
     "between": {
-     "23": 1186
+     "23": 963
     },
     "city_outside_ccd": {
      "23": 13364
@@ -616,24 +622,24 @@
      "23": 2399
     },
     "other (unincorporated, no CDP)": {
-     "23": 15598
+     "23": 15375
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1390.5318,
-    "rawDistrictsKm2": 1390.5318,
+    "rawOutlineKm2": 1367.4126,
+    "rawDistrictsKm2": 1367.4126,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1390.6058,
-    "finalDistrictsKm2": 1390.6058,
+    "finalOutlineKm2": 1367.5047,
+    "finalDistrictsKm2": 1367.5047,
     "districtKm2": {
-     "23": 1390.606
+     "23": 1367.505
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49616,
+     "insideOutline": 48832,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -641,11 +647,11 @@
    }
   },
   "house-1991": {
-   "bytes": 32254,
-   "valleyPop": 205551,
+   "bytes": 34005,
+   "valleyPop": 205254,
    "oldValleyPop": 211220,
    "new": {
-    "25": 205551,
+    "25": 205254,
     "27": 0
    },
    "old": {
@@ -656,11 +662,14 @@
      "25": 3012
     },
     "between": {
-     "25": 3128
+     "25": 2820
     },
     "city_outside_ccd": {
      "25": 10239,
      "27": 0
+    },
+    "enclave": {
+     "25": 11
     },
     "newhall_ccd": {
      "25": 189172
@@ -678,25 +687,25 @@
      "25": 1472
     },
     "other (unincorporated, no CDP)": {
-     "25": 49979
+     "25": 49682
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1433.3886,
-    "rawDistrictsKm2": 1433.3886,
+    "rawOutlineKm2": 1420.179,
+    "rawDistrictsKm2": 1420.179,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1433.5178,
-    "finalDistrictsKm2": 1433.5178,
+    "finalOutlineKm2": 1420.2868,
+    "finalDistrictsKm2": 1420.2868,
     "districtKm2": {
-     "25": 1432.491,
+     "25": 1419.26,
      "27": 1.027
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 44612,
+     "insideOutline": 44207,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -704,11 +713,11 @@
    }
   },
   "house-2001": {
-   "bytes": 31850,
-   "valleyPop": 271619,
+   "bytes": 34284,
+   "valleyPop": 271386,
    "oldValleyPop": 257672,
    "new": {
-    "25": 270554,
+    "25": 270321,
     "22": 1065,
     "27": 0
    },
@@ -721,7 +730,7 @@
      "25": 3342
     },
     "between": {
-     "25": 1169
+     "25": 936
     },
     "city_outside_ccd": {
      "25": 12778
@@ -756,7 +765,7 @@
      "25": 2468
     },
     "other (unincorporated, no CDP)": {
-     "25": 50711,
+     "25": 50478,
      "22": 42,
      "27": 0
     }
@@ -765,19 +774,19 @@
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1383.4988,
-    "rawDistrictsKm2": 1383.4988,
+    "rawOutlineKm2": 1360.374,
+    "rawDistrictsKm2": 1360.374,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1383.6391,
-    "finalDistrictsKm2": 1383.6391,
+    "finalOutlineKm2": 1360.5547,
+    "finalDistrictsKm2": 1360.5547,
     "districtKm2": {
-     "25": 1039.994,
+     "25": 1016.91,
      "22": 343.082,
      "27": 0.563
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49373,
+     "insideOutline": 48592,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -785,11 +794,11 @@
    }
   },
   "house-2011": {
-   "bytes": 30620,
-   "valleyPop": 271619,
+   "bytes": 33008,
+   "valleyPop": 271386,
    "oldValleyPop": 257672,
    "new": {
-    "25": 271619
+    "25": 271386
    },
    "old": {
     "25": 257672
@@ -799,7 +808,7 @@
      "25": 3342
     },
     "between": {
-     "25": 1169
+     "25": 936
     },
     "city_outside_ccd": {
      "25": 12778
@@ -831,24 +840,24 @@
      "25": 2468
     },
     "other (unincorporated, no CDP)": {
-     "25": 50753
+     "25": 50520
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1383.4988,
-    "rawDistrictsKm2": 1383.4988,
+    "rawOutlineKm2": 1360.374,
+    "rawDistrictsKm2": 1360.374,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1383.563,
-    "finalDistrictsKm2": 1383.563,
+    "finalOutlineKm2": 1360.469,
+    "finalDistrictsKm2": 1360.469,
     "districtKm2": {
-     "25": 1383.563
+     "25": 1360.469
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49372,
+     "insideOutline": 48589,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -856,11 +865,11 @@
    }
   },
   "house-2021": {
-   "bytes": 30779,
-   "valleyPop": 291467,
+   "bytes": 33118,
+   "valleyPop": 291244,
    "oldValleyPop": 276917,
    "new": {
-    "27": 291467
+    "27": 291244
    },
    "old": {
     "27": 276917
@@ -870,7 +879,7 @@
      "27": 3451
     },
     "between": {
-     "27": 1186
+     "27": 963
     },
     "city_outside_ccd": {
      "27": 13364
@@ -902,24 +911,24 @@
      "27": 2399
     },
     "other (unincorporated, no CDP)": {
-     "27": 15598
+     "27": 15375
     }
    },
    "checks": {
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1390.5318,
-    "rawDistrictsKm2": 1390.5318,
+    "rawOutlineKm2": 1367.4126,
+    "rawDistrictsKm2": 1367.4126,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1390.6058,
-    "finalDistrictsKm2": 1390.6058,
+    "finalOutlineKm2": 1367.5047,
+    "finalDistrictsKm2": 1367.5047,
     "districtKm2": {
-     "27": 1390.606
+     "27": 1367.505
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49616,
+     "insideOutline": 48832,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0
@@ -927,11 +936,11 @@
    }
   },
   "house-2025": {
-   "bytes": 45021,
-   "valleyPop": 291467,
+   "bytes": 44862,
+   "valleyPop": 291244,
    "oldValleyPop": 276917,
    "new": {
-    "27": 256376,
+    "27": 256153,
     "26": 22621,
     "30": 12470
    },
@@ -945,8 +954,8 @@
      "30": 3451
     },
     "between": {
-     "27": 824,
-     "30": 362
+     "30": 362,
+     "27": 601
     },
     "city_outside_ccd": {
      "27": 9020,
@@ -982,7 +991,7 @@
      "26": 2399
     },
     "other (unincorporated, no CDP)": {
-     "27": 15043,
+     "27": 14820,
      "26": 90,
      "30": 465
     }
@@ -991,19 +1000,19 @@
     "unassignedBlocks": 0,
     "unassignedPop": 0,
     "filledForGeometry": 0,
-    "rawOutlineKm2": 1390.5318,
-    "rawDistrictsKm2": 1390.5318,
+    "rawOutlineKm2": 1367.4126,
+    "rawDistrictsKm2": 1367.4126,
     "droppedDegenerateRings": 0,
-    "finalOutlineKm2": 1390.4944,
-    "finalDistrictsKm2": 1390.4944,
+    "finalOutlineKm2": 1367.4094,
+    "finalDistrictsKm2": 1367.4094,
     "districtKm2": {
-     "27": 807.641,
+     "27": 788.55,
      "26": 468.812,
-     "30": 114.042
+     "30": 110.048
     },
     "grid": {
      "gridPoints": 90000,
-     "insideOutline": 49611,
+     "insideOutline": 48831,
      "gaps": 0,
      "overlaps": 0,
      "coveredOutsideOutline": 0

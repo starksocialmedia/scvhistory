@@ -1,0 +1,45 @@
+{#
+  Who governs where you stand (Nathan, 4 October 2026: "Rows as places, columns as the bodies governing that spot, each marked
+  elected or appointed"; "in this valley you are governed by five or six bodies at once, and which ones depends on where you
+  stand"). Read from templates/_data/governance-table.json (scripts/import/build_governance_table.py: one sourced point per place,
+  tested against the saved district layers). Overlapping jurisdictions, not a hierarchy, so a table rather than a tree.
+#}
+{% set G = source('_data/governance-table.json', ignore_missing = true)|json_decode %}
+{% if G and G.rows|length %}
+  {% set link = {} %}
+  {% for e in craft.entries().section(['organizations', 'places']).slug(G.rows|map(r => r.cells|map(c => [c.bodySlug ?? '', c.seatSlug ?? ''])|reduce((a, x) => a|merge(x), []))|reduce((a, x) => a|merge(x), [])|filter(s => s)|merge(G.columns|map(c => c.bodySlug ?? '')|filter(s => s))).all() %}{% set link = link|merge({ (e.slug): e.url }) %}{% endfor %}
+  <h2 class="pl-group" id="where-you-stand">Who governs where you stand</h2>
+  <p class="pl-groupnote">In this valley you are governed by several bodies at once, and which ones depends on where you stand: inside the City or outside it, and in which school district, water division and legislative districts. Each row is one point in a community; the line beneath each cell says how the seat is filled.</p>
+  <div class="gt-wrap"><table class="gt">
+    <thead><tr><th scope="col">Where</th>{% for c in G.columns %}<th scope="col">{% if c.bodySlug and link[c.bodySlug] is defined %}<a href="{{ link[c.bodySlug] }}">{{ c.label }}</a>{% else %}{{ c.label }}{% endif %}</th>{% endfor %}</tr></thead>
+    <tbody>
+      {% for r in G.rows %}
+        <tr>
+          <th scope="row">{{ r.place }}<span>{{ r.inCity ? 'in the City' : 'unincorporated' }}</span></th>
+          {% for c in G.columns %}{% set x = r.cells[c.key] ?? null %}
+            <td class="{{ x and x.filled ? '' : 'gt-none' }}">
+              {% if x %}
+                {% if x.body ?? null %}{% if x.bodySlug and link[x.bodySlug] is defined %}<a href="{{ link[x.bodySlug] }}">{{ x.body }}</a>{% else %}{{ x.body }}{% endif %}<br>{% endif %}
+                {% if (x.seatSlug ?? null) and link[x.seatSlug] is defined %}<a href="{{ link[x.seatSlug] }}">{{ x.label }}</a>{% else %}{{ x.label }}{% endif %}
+                {% if x.filled %}<span>{{ x.filled }}</span>{% endif %}
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table></div>
+  <p class="gt-src">{{ G.method }}{% if G.asOf ?? null %} As of {{ G.asOf }}.{% endif %}</p>
+{% endif %}
+{% css %}
+.gt-wrap{overflow-x:auto;background:#fff;border:1px solid #E2E4E8;margin:12px 0 8px}
+.gt{border-collapse:collapse;min-width:1100px;width:100%;font-size:13.5px;line-height:1.4}
+.gt th,.gt td{padding:9px 10px;border-bottom:1px solid #EFF0F3;text-align:left;vertical-align:top}
+.gt thead th{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.06em;color:#7A5C1B;text-transform:uppercase;font-weight:500;background:#FDF7EA}
+.gt thead th a{color:#7A5C1B}
+.gt tbody th{font-family:'Playfair Display',serif;font-weight:400;font-size:16px;color:#17254C;white-space:nowrap}
+.gt tbody th span,.gt td span{display:block;font-family:'Public Sans',system-ui,sans-serif;font-size:12px;color:#5B6472;margin-top:2px;white-space:normal}
+.gt td a{color:#17254C}
+.gt td.gt-none{color:#8A93A3}
+.gt-src{font-size:12.5px;line-height:1.55;color:#5B6472;max-width:900px;margin:0 0 24px}
+{% endcss %}

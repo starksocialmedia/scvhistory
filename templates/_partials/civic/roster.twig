@@ -127,7 +127,8 @@
     <th style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0">SERVED</th>
     <th style="text-align:left;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;font-weight:500;padding:11px 14px;border-bottom:1px solid #EFE6D0">ELECTIONS</th>
   </tr></thead>
-  <tbody data-seat-list="past">
+  {#- Not a seat list: the council was elected at large until 2024, so nearly every row has no district to filter by (Nathan, 4 October 2026). -#}
+  <tbody>
   {% for r in rows %}
     {#- Contiguous terms read as one span of service. -#}
     {% set spans = [] %}

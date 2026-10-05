@@ -1,0 +1,935 @@
+= null
+
+Output:
+{
+    "id": 15958,
+    "section": "organizations",
+    "title": "Newhall Elementary School",
+    "status": "live",
+    "footnotes": [
+        {
+            "col1": "1",
+            "col2": "National Center for Education Statistics, Common Core of Data, school directory 2022-23, NCES school ID 062718004095, https://nces.ed.gov/ccd/schoolsearch/school_detail.asp?ID=062718004095, read through https://educationdata.urban.org/api/v1/schools/ccd/directory/2022/?ncessch=062718004095, on 29 September 2026: grades kindergarten -6, district NCES 0627180.",
+            "col3": "editorial-2026",
+            "number": "1",
+            "note": "National Center for Education Statistics, Common Core of Data, school directory 2022-23, NCES school ID 062718004095, https://nces.ed.gov/ccd/schoolsearch/school_detail.asp?ID=062718004095, read through https://educationdata.urban.org/api/v1/schools/ccd/directory/2022/?ncessch=062718004095, on 29 September 2026: grades kindergarten -6, district NCES 0627180.",
+            "source": "editorial-2026"
+        }
+    ],
+    "editorNotes": [
+        {
+            "col1": "Correction: NCES identifier",
+            "col2": "Until 29 September 2026 this record carried NCES ID 062718009956, which matches no school in the NCES Common Core of Data directory for 2015 or 2022-23. The directory's Newhall Elementary, in the Newhall School District, grades K-6, is 062718004095 (https://nces.ed.gov/ccd/schoolsearch/school_detail.asp?ID=062718004095), and the record now carries that.",
+            "col3": "bottom",
+            "heading": "Correction: NCES identifier",
+            "note": "Until 29 September 2026 this record carried NCES ID 062718009956, which matches no school in the NCES Common Core of Data directory for 2015 or 2022-23. The directory's Newhall Elementary, in the Newhall School District, grades K-6, is 062718004095 (https://nces.ed.gov/ccd/schoolsearch/school_detail.asp?ID=062718004095), and the record now carries that.",
+            "position": "bottom"
+        }
+    ],
+    "cdsCode": "19648326020796",
+    "ncesId": "062718004095",
+    "enrolment": [
+        {
+            "col1": "1986-87",
+            "col2": 1986,
+            "col3": 761,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1986-87",
+            "fallYear": 1986,
+            "count": 761,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1987-88",
+            "col2": 1987,
+            "col3": 904,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1987-88",
+            "fallYear": 1987,
+            "count": 904,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1988-89",
+            "col2": 1988,
+            "col3": 676,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1988-89",
+            "fallYear": 1988,
+            "count": 676,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1989-90",
+            "col2": 1989,
+            "col3": 738,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1989-90",
+            "fallYear": 1989,
+            "count": 738,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1990-91",
+            "col2": 1990,
+            "col3": 828,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1990-91",
+            "fallYear": 1990,
+            "count": 828,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1991-92",
+            "col2": 1991,
+            "col3": 712,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1991-92",
+            "fallYear": 1991,
+            "count": 712,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1992-93",
+            "col2": 1992,
+            "col3": 743,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1992-93",
+            "fallYear": 1992,
+            "count": 743,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1993-94",
+            "col2": 1993,
+            "col3": 777,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1993-94",
+            "fallYear": 1993,
+            "count": 777,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1994-95",
+            "col2": 1994,
+            "col3": 798,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1994-95",
+            "fallYear": 1994,
+            "count": 798,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1995-96",
+            "col2": 1995,
+            "col3": 831,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1995-96",
+            "fallYear": 1995,
+            "count": 831,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1996-97",
+            "col2": 1996,
+            "col3": 891,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1996-97",
+            "fallYear": 1996,
+            "count": 891,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1997-98",
+            "col2": 1997,
+            "col3": 970,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1997-98",
+            "fallYear": 1997,
+            "count": 970,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1998-99",
+            "col2": 1998,
+            "col3": 1011,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1998-99",
+            "fallYear": 1998,
+            "count": 1011,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1999-00",
+            "col2": 1999,
+            "col3": 1008,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1999-00",
+            "fallYear": 1999,
+            "count": 1008,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2000-01",
+            "col2": 2000,
+            "col3": 1025,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2000-01",
+            "fallYear": 2000,
+            "count": 1025,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2001-02",
+            "col2": 2001,
+            "col3": 1044,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2001-02",
+            "fallYear": 2001,
+            "count": 1044,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2002-03",
+            "col2": 2002,
+            "col3": 1043,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2002-03",
+            "fallYear": 2002,
+            "count": 1043,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2003-04",
+            "col2": 2003,
+            "col3": 723,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2003-04",
+            "fallYear": 2003,
+            "count": 723,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2004-05",
+            "col2": 2004,
+            "col3": 707,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2004-05",
+            "fallYear": 2004,
+            "count": 707,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2005-06",
+            "col2": 2005,
+            "col3": 667,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2005-06",
+            "fallYear": 2005,
+            "count": 667,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2006-07",
+            "col2": 2006,
+            "col3": 669,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2006-07",
+            "fallYear": 2006,
+            "count": 669,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2007-08",
+            "col2": 2007,
+            "col3": 634,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2007-08",
+            "fallYear": 2007,
+            "count": 634,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2008-09",
+            "col2": 2008,
+            "col3": 657,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2008-09",
+            "fallYear": 2008,
+            "count": 657,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2009-10",
+            "col2": 2009,
+            "col3": 669,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2009-10",
+            "fallYear": 2009,
+            "count": 669,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2010-11",
+            "col2": 2010,
+            "col3": 667,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2010-11",
+            "fallYear": 2010,
+            "count": 667,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2011-12",
+            "col2": 2011,
+            "col3": 660,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2011-12",
+            "fallYear": 2011,
+            "count": 660,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2012-13",
+            "col2": 2012,
+            "col3": 687,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2012-13",
+            "fallYear": 2012,
+            "count": 687,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2013-14",
+            "col2": 2013,
+            "col3": 677,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2013-14",
+            "fallYear": 2013,
+            "count": 677,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2014-15",
+            "col2": 2014,
+            "col3": 627,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2014-15",
+            "fallYear": 2014,
+            "count": 627,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2015-16",
+            "col2": 2015,
+            "col3": 664,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2015-16",
+            "fallYear": 2015,
+            "count": 664,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2016-17",
+            "col2": 2016,
+            "col3": 630,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2016-17",
+            "fallYear": 2016,
+            "count": 630,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2017-18",
+            "col2": 2017,
+            "col3": 632,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2017-18",
+            "fallYear": 2017,
+            "count": 632,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2018-19",
+            "col2": 2018,
+            "col3": 643,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2018-19",
+            "fallYear": 2018,
+            "count": 643,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2019-20",
+            "col2": 2019,
+            "col3": 622,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2019-20",
+            "fallYear": 2019,
+            "count": 622,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2020-21",
+            "col2": 2020,
+            "col3": 921,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2020-21",
+            "fallYear": 2020,
+            "count": 921,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2021-22",
+            "col2": 2021,
+            "col3": 567,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2021-22",
+            "fallYear": 2021,
+            "count": 567,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2022-23",
+            "col2": 2022,
+            "col3": 536,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2022-23",
+            "fallYear": 2022,
+            "count": 536,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2023-24",
+            "col2": 2023,
+            "col3": 512,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2023-24",
+            "fallYear": 2023,
+            "count": 512,
+            "source": "NCES Common Core of Data"
+        }
+    ],
+    "hasParentOrg": true,
+    "parentOrganization": [
+        "#21590 Newhall School District"
+    ],
+    "orgType": "school",
+    "schoolLevel": "elementary",
+    "gradeSpan": "K-6",
+    "recordProvenance": "created from review, 2026-09-21",
+    "recordDates": [
+        {
+            "col1": null,
+            "col2": null,
+            "col3": null,
+            "col4": null,
+            "col5": null,
+            "printed": null,
+            "iso": null,
+            "granularity": null,
+            "label": null,
+            "confirmed": null,
+            "col6": null,
+            "rejected": null
+        }
+    ]
+}
+{
+    "id": 21590,
+    "section": "organizations",
+    "title": "Newhall School District",
+    "status": "live",
+    "currentMark": [
+        "#29439 Logo of the Newhall School District"
+    ],
+    "footnotes": [
+        {
+            "col1": "1",
+            "col2": "Grades: National Center for Education Statistics, Common Core of Data, district directory 2022-23, NCES district ID 0627180, https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=0627180, read through the Urban Institute Education Data API, https://educationdata.urban.org/api/v1/school-districts/ccd/directory/2022/?leaid=0627180, on 29 September 2026: lowest grade kindergarten, highest 6; ten schools.",
+            "col3": "editorial-2026",
+            "number": "1",
+            "note": "Grades: National Center for Education Statistics, Common Core of Data, district directory 2022-23, NCES district ID 0627180, https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=0627180, read through the Urban Institute Education Data API, https://educationdata.urban.org/api/v1/school-districts/ccd/directory/2022/?leaid=0627180, on 29 September 2026: lowest grade kindergarten, highest 6; ten schools.",
+            "source": "editorial-2026"
+        },
+        {
+            "col1": "2",
+            "col2": "Feeds the Hart district: William S. Hart Union High School District, Attendance Boundaries, https://www.hartdistrict.org/apps/pages/attendance-boundaries, read 29 September 2026: pupils of the K-6 schools of the Newhall, Saugus Union and Sulphur Springs Union districts \"will automatically rollover to the junior high listed\"; for Castaic residents, \"your child will attend Castaic High School after the completion of 8th grade.\" Newhall School District, About Us, https://www.newhallschooldistrict.com/about-us: grades UPK-6, working with the Hart district on the move to grade 7. The Hart district states its own span on https://www.hartdistrict.org/apps/pages/about-the-district: \"grades 7-12.\"",
+            "col3": "editorial-2026",
+            "number": "2",
+            "note": "Feeds the Hart district: William S. Hart Union High School District, Attendance Boundaries, https://www.hartdistrict.org/apps/pages/attendance-boundaries, read 29 September 2026: pupils of the K-6 schools of the Newhall, Saugus Union and Sulphur Springs Union districts \"will automatically rollover to the junior high listed\"; for Castaic residents, \"your child will attend Castaic High School after the completion of 8th grade.\" Newhall School District, About Us, https://www.newhallschooldistrict.com/about-us: grades UPK-6, working with the Hart district on the move to grade 7. The Hart district states its own span on https://www.hartdistrict.org/apps/pages/about-the-district: \"grades 7-12.\"",
+            "source": "editorial-2026"
+        }
+    ],
+    "editorNotes": [
+        {
+            "col1": null,
+            "col2": null,
+            "col3": null,
+            "heading": null,
+            "note": null,
+            "position": null
+        }
+    ],
+    "orgAliases": "Newhall Elementary School District",
+    "cdsCode": "19648320000000",
+    "ncesId": "0627180",
+    "enrolment": [
+        {
+            "col1": "1986-87",
+            "col2": 1986,
+            "col3": 3334,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1986-87",
+            "fallYear": 1986,
+            "count": 3334,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1987-88",
+            "col2": 1987,
+            "col3": 3679,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1987-88",
+            "fallYear": 1987,
+            "count": 3679,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1988-89",
+            "col2": 1988,
+            "col3": 4128,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1988-89",
+            "fallYear": 1988,
+            "count": 4128,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1989-90",
+            "col2": 1989,
+            "col3": 4298,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1989-90",
+            "fallYear": 1989,
+            "count": 4298,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1990-91",
+            "col2": 1990,
+            "col3": 4584,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1990-91",
+            "fallYear": 1990,
+            "count": 4584,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1991-92",
+            "col2": 1991,
+            "col3": 4819,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1991-92",
+            "fallYear": 1991,
+            "count": 4819,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1992-93",
+            "col2": 1992,
+            "col3": 5017,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1992-93",
+            "fallYear": 1992,
+            "count": 5017,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1993-94",
+            "col2": 1993,
+            "col3": 5120,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1993-94",
+            "fallYear": 1993,
+            "count": 5120,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1994-95",
+            "col2": 1994,
+            "col3": 4958,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1994-95",
+            "fallYear": 1994,
+            "count": 4958,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1995-96",
+            "col2": 1995,
+            "col3": 5267,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1995-96",
+            "fallYear": 1995,
+            "count": 5267,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1996-97",
+            "col2": 1996,
+            "col3": 5634,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1996-97",
+            "fallYear": 1996,
+            "count": 5634,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1997-98",
+            "col2": 1997,
+            "col3": 5889,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1997-98",
+            "fallYear": 1997,
+            "count": 5889,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1998-99",
+            "col2": 1998,
+            "col3": 6055,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1998-99",
+            "fallYear": 1998,
+            "count": 6055,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "1999-00",
+            "col2": 1999,
+            "col3": 6119,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "1999-00",
+            "fallYear": 1999,
+            "count": 6119,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2000-01",
+            "col2": 2000,
+            "col3": 6296,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2000-01",
+            "fallYear": 2000,
+            "count": 6296,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2001-02",
+            "col2": 2001,
+            "col3": 6578,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2001-02",
+            "fallYear": 2001,
+            "count": 6578,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2002-03",
+            "col2": 2002,
+            "col3": 6555,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2002-03",
+            "fallYear": 2002,
+            "count": 6555,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2003-04",
+            "col2": 2003,
+            "col3": 6672,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2003-04",
+            "fallYear": 2003,
+            "count": 6672,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2004-05",
+            "col2": 2004,
+            "col3": 6849,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2004-05",
+            "fallYear": 2004,
+            "count": 6849,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2005-06",
+            "col2": 2005,
+            "col3": 6946,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2005-06",
+            "fallYear": 2005,
+            "count": 6946,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2006-07",
+            "col2": 2006,
+            "col3": 6990,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2006-07",
+            "fallYear": 2006,
+            "count": 6990,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2007-08",
+            "col2": 2007,
+            "col3": 7008,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2007-08",
+            "fallYear": 2007,
+            "count": 7008,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2008-09",
+            "col2": 2008,
+            "col3": 7035,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2008-09",
+            "fallYear": 2008,
+            "count": 7035,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2009-10",
+            "col2": 2009,
+            "col3": 7055,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2009-10",
+            "fallYear": 2009,
+            "count": 7055,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2010-11",
+            "col2": 2010,
+            "col3": 6961,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2010-11",
+            "fallYear": 2010,
+            "count": 6961,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2011-12",
+            "col2": 2011,
+            "col3": 6941,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2011-12",
+            "fallYear": 2011,
+            "count": 6941,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2012-13",
+            "col2": 2012,
+            "col3": 6947,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2012-13",
+            "fallYear": 2012,
+            "count": 6947,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2013-14",
+            "col2": 2013,
+            "col3": 6831,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2013-14",
+            "fallYear": 2013,
+            "count": 6831,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2014-15",
+            "col2": 2014,
+            "col3": 6739,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2014-15",
+            "fallYear": 2014,
+            "count": 6739,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2015-16",
+            "col2": 2015,
+            "col3": 6650,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2015-16",
+            "fallYear": 2015,
+            "count": 6650,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2016-17",
+            "col2": 2016,
+            "col3": 6706,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2016-17",
+            "fallYear": 2016,
+            "count": 6706,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2017-18",
+            "col2": 2017,
+            "col3": 6537,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2017-18",
+            "fallYear": 2017,
+            "count": 6537,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2018-19",
+            "col2": 2018,
+            "col3": 6539,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2018-19",
+            "fallYear": 2018,
+            "count": 6539,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2019-20",
+            "col2": 2019,
+            "col3": 6267,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2019-20",
+            "fallYear": 2019,
+            "count": 6267,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2020-21",
+            "col2": 2020,
+            "col3": 5920,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2020-21",
+            "fallYear": 2020,
+            "count": 5920,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2021-22",
+            "col2": 2021,
+            "col3": 5834,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2021-22",
+            "fallYear": 2021,
+            "count": 5834,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2022-23",
+            "col2": 2022,
+            "col3": 5927,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2022-23",
+            "fallYear": 2022,
+            "count": 5927,
+            "source": "NCES Common Core of Data"
+        },
+        {
+            "col1": "2023-24",
+            "col2": 2023,
+            "col3": 5928,
+            "col4": "NCES Common Core of Data",
+            "schoolYear": "2023-24",
+            "fallYear": 2023,
+            "count": 5928,
+            "source": "NCES Common Core of Data"
+        }
+    ],
+    "hasParentOrg": false,
+    "orgType": "school",
+    "schoolLevel": "district",
+    "gradeSpan": "K-6",
+    "feedsInto": [
+        "#21588 William S. Hart Union High School District"
+    ],
+    "recordProvenance": "editorial-2026, add_school_structure.php, 29 September 2026, from the NCES Common Core of Data",
+    "recordDates": [
+        {
+            "col1": null,
+            "col2": null,
+            "col3": null,
+            "col4": null,
+            "col5": null,
+            "printed": null,
+            "iso": null,
+            "granularity": null,
+            "label": null,
+            "confirmed": null,
+            "col6": null,
+            "rejected": null
+        }
+    ]
+}
+{
+    "id": 21783,
+    "section": "organizations",
+    "title": "Santa Clarita Christian School",
+    "status": "live",
+    "footnotes": [
+        {
+            "col1": null,
+            "col2": null,
+            "col3": null,
+            "number": null,
+            "note": null,
+            "source": null
+        }
+    ],
+    "editorNotes": [
+        {
+            "col1": null,
+            "col2": null,
+            "col3": null,
+            "heading": null,
+            "note": null,
+            "position": null
+        }
+    ],
+    "hasParentOrg": false,
+    "orgType": "school",
+    "recordProvenance": "import_wm_high_schools.php, 29 September 2026: named by a war memorial record",
+    "recordDates": [
+        {
+            "col1": null,
+            "col2": null,
+            "col3": null,
+            "col4": null,
+            "col5": null,
+            "printed": null,
+            "iso": null,
+            "granularity": null,
+            "label": null,
+            "confirmed": null,
+            "col6": null,
+            "rejected": null
+        }
+    ]
+}
+== organizations matching sheriff/LASD/station/baptist/church titles
+  #29282 Los Angeles County Sheriff's Department [government] live
+  #21783 Santa Clarita Christian School [school] live
+== organizations of orgType school (all)
+  #15958 Newhall Elementary School [school] live
+
+

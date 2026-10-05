@@ -1,0 +1,655 @@
+{
+ "_about": "Who governs each spot in the valley: for eight places, the body, the district or area, and how the seat is filled. Built by scripts/import/build_governance_table.py on 4 October 2026 (Claude, research subagent) for Nathan. Report: inventory/review/governance-table-2026-10-04.md.",
+ "method": "One representative point per place (USGS Geographic Names Information System; for Valencia the Census Bureau 2020 internal point of ZCTA 91355, because the GNIS point lies outside the City). Each cell is a point-in-polygon test of that point against the saved layers: LA County Registrar-Recorder/County Clerk City council districts, school trustee areas and SCV Water divisions (web/data/seats), the Registrar's Acton-Agua Dulce Unified trustee areas, LA County Supervisorial District (2021) from the County's Political_Boundaries map service, and the valley district maps for the 2021 Assembly, Senate and House plans and the 2025 congressional map (web/data/valley-districts). A point is one spot: a community that straddles a line has neighbours in another district. inCity comes from the council-district layer and agrees with the Census 2020 place polygon for every row.",
+ "asOf": "2026-10-04",
+ "sources": [
+  {
+   "what": "USGS GNIS DomesticNames, California",
+   "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/GeographicNames/DomesticNames/DomesticNames_CA_Text.zip",
+   "saved": "inventory/sources/legislative-districts-2026-10-04/gnis/DomesticNames_CA_Text.zip"
+  },
+  {
+   "what": "Census Bureau TIGERweb, 2020 ZCTA internal points",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/PUMA_TAD_TAZ_UGA_ZCTA/MapServer/7",
+   "saved": "inventory/sources/legislative-districts-2026-10-04/tigerweb/zcta_2020_internal_points_scv.json"
+  },
+  {
+   "what": "LA County, Supervisorial District (2021), adopted 15 December 2021",
+   "url": "https://public.gis.lacounty.gov/public/rest/services/LACounty_Dynamic/Political_Boundaries/MapServer/26",
+   "saved": "inventory/sources/legislative-districts-2026-10-04/lacounty/supervisorial-districts-2021.json"
+  },
+  {
+   "what": "LA County Registrar-Recorder/County Clerk, Division_Boundaries (Acton-Agua Dulce Unified trustee areas)",
+   "url": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Division_Boundaries/FeatureServer/0",
+   "saved": "inventory/sources/legislative-districts-2026-10-04/lacounty/rrcc-division-boundaries-acton-agua-dulce-usd.geojson"
+  },
+  {
+   "what": "City council districts, school trustee areas, SCV Water divisions (RR/CC)",
+   "saved": "web/data/seats/*.geojson"
+  },
+  {
+   "what": "Valley district maps (2021 plans, 2025 congressional map)",
+   "saved": "web/data/valley-districts/*.geojson"
+  },
+  {
+   "what": "SCV Water service area",
+   "saved": "inventory/sources/trustee-areas-2026-10-04/santa-clarita-valley-water/scvwa-service-boundary.geojson"
+  },
+  {
+   "what": "City Council: Ordinance 23-4 and the 2024 transition",
+   "saved": "inventory/review/council-transition-2026-10-04.md"
+  }
+ ],
+ "columns": [
+  {
+   "key": "supervisor",
+   "label": "County Board of Supervisors",
+   "bodySlug": "los-angeles-county-board-of-supervisors",
+   "filled": "elected by district (five supervisorial districts)"
+  },
+  {
+   "key": "cityCouncil",
+   "label": "City Council",
+   "bodySlug": "city-of-santa-clarita",
+   "filled": "elected by district (five districts, Ordinance 23-4); Districts 1 and 3 since December 2024; the three members elected at large in 2022 serve until December 2026, when Districts 2, 4 and 5 are first filled"
+  },
+  {
+   "key": "elementary",
+   "label": "Elementary school district",
+   "bodySlug": null,
+   "filled": "elected by trustee area (the body varies by row; see each cell's bodySlug)"
+  },
+  {
+   "key": "hart",
+   "label": "Hart Union High School District",
+   "bodySlug": "william-s-hart-union-high-school-district",
+   "filled": "elected by trustee area"
+  },
+  {
+   "key": "water",
+   "label": "SCV Water",
+   "bodySlug": "santa-clarita-valley-water",
+   "filled": "elected by division (three divisions, three directors each)"
+  },
+  {
+   "key": "assembly",
+   "label": "State Assembly",
+   "bodySlug": "california-state-assembly",
+   "filled": "elected by district"
+  },
+  {
+   "key": "senate",
+   "label": "State Senate",
+   "bodySlug": "california-state-senate",
+   "filled": "elected by district"
+  },
+  {
+   "key": "houseNow",
+   "label": "U.S. House, now (2021 map)",
+   "bodySlug": "united-states-house-of-representatives",
+   "filled": "elected by district"
+  },
+  {
+   "key": "house2027",
+   "label": "U.S. House, from 3 January 2027 (Proposition 50 map)",
+   "bodySlug": "united-states-house-of-representatives",
+   "filled": "elected by district (2025 map, AB 604, enacted by Proposition 50; first elected November 2026)"
+  }
+ ],
+ "rows": [
+  {
+   "place": "Valencia",
+   "inCity": true,
+   "point": {
+    "lat": 34.4018497,
+    "lng": -118.5700136,
+    "source": "Census Bureau, 2020 ZIP Code Tabulation Area 91355 internal point (TIGERweb). The GNIS \"Valencia\" populated-place point (feature 1661608, 34.4436063, -118.6095321) lies outside the City, west of Interstate 5, so it is not used."
+   },
+   "checks": {
+    "inCensus2020City": true,
+    "census2020Cdp": null
+   },
+   "note": "The ZCTA 91355 internal point falls in southern Valencia, in the Newhall School District. Much of Valencia is in the Saugus Union School District instead (the internal point of ZCTA 91354, northern Valencia, tests in Saugus Union Trustee Area 2); the point stands for one spot only.",
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "District 2",
+     "filled": "elected at large until December 2026, then by district",
+     "seatSlug": "santa-clarita-city-council-district-2",
+     "bodySlug": "city-of-santa-clarita",
+     "note": "No member for this district until December 2026: Ordinance 23-4 first elects Districts 2, 4 and 5 in November 2026. Until then the three members elected at large in 2022 (Laurene Weste, Marsha McLean, Bill Miranda) sit for the whole City."
+    },
+    "elementary": {
+     "label": "Trustee Area 2",
+     "filled": "elected by trustee area",
+     "seatSlug": "newhall-school-district-trustee-area-2",
+     "bodySlug": "newhall-school-district",
+     "body": "Newhall School District"
+    },
+    "hart": {
+     "label": "Trustee Area 1",
+     "filled": "elected by trustee area",
+     "seatSlug": "william-s-hart-union-high-school-district-trustee-area-1",
+     "bodySlug": "william-s-hart-union-high-school-district"
+    },
+    "water": {
+     "label": "Division 1",
+     "filled": "elected by division",
+     "seatSlug": "santa-clarita-valley-water-division-1",
+     "bodySlug": "santa-clarita-valley-water"
+    },
+    "assembly": {
+     "label": "40th Assembly District",
+     "district": 40,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  },
+  {
+   "place": "Newhall",
+   "inCity": true,
+   "point": {
+    "lat": 34.3847198,
+    "lng": -118.530919,
+    "source": "USGS GNIS feature 272642, \"Newhall\" (Populated Place), primary point"
+   },
+   "checks": {
+    "inCensus2020City": true,
+    "census2020Cdp": null
+   },
+   "note": null,
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "District 1",
+     "filled": "elected by district",
+     "seatSlug": "santa-clarita-city-council-district-1",
+     "bodySlug": "city-of-santa-clarita",
+     "note": "Elected by district in November 2024; the three members elected at large in 2022 also sit for the whole City until December 2026."
+    },
+    "elementary": {
+     "label": "Trustee Area 3",
+     "filled": "elected by trustee area",
+     "seatSlug": "newhall-school-district-trustee-area-3",
+     "bodySlug": "newhall-school-district",
+     "body": "Newhall School District"
+    },
+    "hart": {
+     "label": "Trustee Area 3",
+     "filled": "elected by trustee area",
+     "seatSlug": "william-s-hart-union-high-school-district-trustee-area-3",
+     "bodySlug": "william-s-hart-union-high-school-district"
+    },
+    "water": {
+     "label": "Division 1",
+     "filled": "elected by division",
+     "seatSlug": "santa-clarita-valley-water-division-1",
+     "bodySlug": "santa-clarita-valley-water"
+    },
+    "assembly": {
+     "label": "40th Assembly District",
+     "district": 40,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  },
+  {
+   "place": "Canyon Country",
+   "inCity": true,
+   "point": {
+    "lat": 34.4233293,
+    "lng": -118.4720281,
+    "source": "USGS GNIS feature 1946238, \"Canyon Country\" (Populated Place), primary point"
+   },
+   "checks": {
+    "inCensus2020City": true,
+    "census2020Cdp": null
+   },
+   "note": null,
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "District 1",
+     "filled": "elected by district",
+     "seatSlug": "santa-clarita-city-council-district-1",
+     "bodySlug": "city-of-santa-clarita",
+     "note": "Elected by district in November 2024; the three members elected at large in 2022 also sit for the whole City until December 2026."
+    },
+    "elementary": {
+     "label": "Trustee Area 2",
+     "filled": "elected by trustee area",
+     "seatSlug": "sulphur-springs-union-school-district-trustee-area-2",
+     "bodySlug": "sulphur-springs-union-school-district",
+     "body": "Sulphur Springs Union School District"
+    },
+    "hart": {
+     "label": "Trustee Area 3",
+     "filled": "elected by trustee area",
+     "seatSlug": "william-s-hart-union-high-school-district-trustee-area-3",
+     "bodySlug": "william-s-hart-union-high-school-district"
+    },
+    "water": {
+     "label": "Division 1",
+     "filled": "elected by division",
+     "seatSlug": "santa-clarita-valley-water-division-1",
+     "bodySlug": "santa-clarita-valley-water"
+    },
+    "assembly": {
+     "label": "40th Assembly District",
+     "district": 40,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  },
+  {
+   "place": "Sand Canyon",
+   "inCity": true,
+   "point": {
+    "lat": 34.4213125,
+    "lng": -118.4253812,
+    "source": "USGS GNIS feature 273524, \"Sand Canyon\" (Valley), primary point"
+   },
+   "checks": {
+    "inCensus2020City": true,
+    "census2020Cdp": null
+   },
+   "note": "GNIS records Sand Canyon as a valley, not a populated place. Its point lies inside the City (Council District 5). Much of the Sand Canyon community is unincorporated: the County's \"Sand Canyon\" statistical area is the unincorporated part, and this point is not in it.",
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "District 5",
+     "filled": "elected at large until December 2026, then by district",
+     "seatSlug": "santa-clarita-city-council-district-5",
+     "bodySlug": "city-of-santa-clarita",
+     "note": "No member for this district until December 2026: Ordinance 23-4 first elects Districts 2, 4 and 5 in November 2026. Until then the three members elected at large in 2022 (Laurene Weste, Marsha McLean, Bill Miranda) sit for the whole City."
+    },
+    "elementary": {
+     "label": "Trustee Area 5",
+     "filled": "elected by trustee area",
+     "seatSlug": "sulphur-springs-union-school-district-trustee-area-5",
+     "bodySlug": "sulphur-springs-union-school-district",
+     "body": "Sulphur Springs Union School District"
+    },
+    "hart": {
+     "label": "Trustee Area 4",
+     "filled": "elected by trustee area",
+     "seatSlug": "william-s-hart-union-high-school-district-trustee-area-4",
+     "bodySlug": "william-s-hart-union-high-school-district"
+    },
+    "water": {
+     "label": "Division 1",
+     "filled": "elected by division",
+     "seatSlug": "santa-clarita-valley-water-division-1",
+     "bodySlug": "santa-clarita-valley-water"
+    },
+    "assembly": {
+     "label": "40th Assembly District",
+     "district": 40,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  },
+  {
+   "place": "Stevenson Ranch",
+   "inCity": false,
+   "point": {
+    "lat": 34.3893864,
+    "lng": -118.5883407,
+    "source": "USGS GNIS feature 2583151, \"Stevenson Ranch Census Designated Place\" (Census), primary point"
+   },
+   "checks": {
+    "inCensus2020City": false,
+    "census2020Cdp": "Stevenson Ranch CDP"
+   },
+   "note": null,
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "not in the City",
+     "filled": null
+    },
+    "elementary": {
+     "label": "Trustee Area 1",
+     "filled": "elected by trustee area",
+     "seatSlug": "newhall-school-district-trustee-area-1",
+     "bodySlug": "newhall-school-district",
+     "body": "Newhall School District"
+    },
+    "hart": {
+     "label": "Trustee Area 2",
+     "filled": "elected by trustee area",
+     "seatSlug": "william-s-hart-union-high-school-district-trustee-area-2",
+     "bodySlug": "william-s-hart-union-high-school-district"
+    },
+    "water": {
+     "label": "Division 3",
+     "filled": "elected by division",
+     "seatSlug": "santa-clarita-valley-water-division-3",
+     "bodySlug": "santa-clarita-valley-water"
+    },
+    "assembly": {
+     "label": "40th Assembly District",
+     "district": 40,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  },
+  {
+   "place": "Castaic",
+   "inCity": false,
+   "point": {
+    "lat": 34.4888822,
+    "lng": -118.6228656,
+    "source": "USGS GNIS feature 270335, \"Castaic\" (Populated Place), primary point"
+   },
+   "checks": {
+    "inCensus2020City": false,
+    "census2020Cdp": "Castaic CDP"
+   },
+   "note": null,
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "not in the City",
+     "filled": null
+    },
+    "elementary": {
+     "label": "Trustee Area C",
+     "filled": "elected by trustee area",
+     "seatSlug": "castaic-union-school-district-trustee-area-c",
+     "bodySlug": "castaic-union-school-district",
+     "body": "Castaic Union School District"
+    },
+    "hart": {
+     "label": "Trustee Area 1",
+     "filled": "elected by trustee area",
+     "seatSlug": "william-s-hart-union-high-school-district-trustee-area-1",
+     "bodySlug": "william-s-hart-union-high-school-district"
+    },
+    "water": {
+     "label": "Division 3",
+     "filled": "elected by division",
+     "seatSlug": "santa-clarita-valley-water-division-3",
+     "bodySlug": "santa-clarita-valley-water"
+    },
+    "assembly": {
+     "label": "40th Assembly District",
+     "district": 40,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "26th Congressional District",
+     "district": 26,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  },
+  {
+   "place": "Val Verde",
+   "inCity": false,
+   "point": {
+    "lat": 34.4449952,
+    "lng": -118.657589,
+    "source": "USGS GNIS feature 1661607, \"Val Verde\" (Populated Place), primary point"
+   },
+   "checks": {
+    "inCensus2020City": false,
+    "census2020Cdp": "Val Verde CDP"
+   },
+   "note": null,
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "not in the City",
+     "filled": null
+    },
+    "elementary": {
+     "label": "Trustee Area E",
+     "filled": "elected by trustee area",
+     "seatSlug": "castaic-union-school-district-trustee-area-e",
+     "bodySlug": "castaic-union-school-district",
+     "body": "Castaic Union School District"
+    },
+    "hart": {
+     "label": "Trustee Area 1",
+     "filled": "elected by trustee area",
+     "seatSlug": "william-s-hart-union-high-school-district-trustee-area-1",
+     "bodySlug": "william-s-hart-union-high-school-district"
+    },
+    "water": {
+     "label": "Division 3",
+     "filled": "elected by division",
+     "seatSlug": "santa-clarita-valley-water-division-3",
+     "bodySlug": "santa-clarita-valley-water"
+    },
+    "assembly": {
+     "label": "40th Assembly District",
+     "district": 40,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "26th Congressional District",
+     "district": 26,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  },
+  {
+   "place": "Agua Dulce",
+   "inCity": false,
+   "point": {
+    "lat": 34.4963817,
+    "lng": -118.3256348,
+    "source": "USGS GNIS feature 1660235, \"Agua Dulce\" (Populated Place), primary point"
+   },
+   "checks": {
+    "inCensus2020City": false,
+    "census2020Cdp": "Agua Dulce CDP"
+   },
+   "note": "Outside SCV Water: neither in its divisions nor in its service area. Its kindergarten to grade 12 schools are the Acton-Agua Dulce Unified School District, which takes the place of both school columns.",
+   "cells": {
+    "supervisor": {
+     "label": "District 5",
+     "filled": "elected by district",
+     "bodySlug": "los-angeles-county-board-of-supervisors"
+    },
+    "cityCouncil": {
+     "label": "not in the City",
+     "filled": null
+    },
+    "elementary": {
+     "label": "Trustee Area 2",
+     "filled": "elected by trustee area",
+     "bodySlug": null,
+     "body": "Acton-Agua Dulce Unified School District",
+     "note": "A unified district (kindergarten to grade 12), so it also takes the place of the Hart district here. No record in the archive. Trustee area from the County Registrar-Recorder's Division_Boundaries layer; NEEDS_VERIFICATION that every seat is now elected by trustee area."
+    },
+    "hart": {
+     "label": "not in the district",
+     "filled": null,
+     "note": "High school is in the Acton-Agua Dulce Unified School District."
+    },
+    "water": {
+     "label": "not in the agency",
+     "filled": null,
+     "note": "Outside all three SCV Water divisions and outside the agency's own service-area polygon."
+    },
+    "assembly": {
+     "label": "34th Assembly District",
+     "district": 34,
+     "filled": "elected by district",
+     "bodySlug": "california-state-assembly"
+    },
+    "senate": {
+     "label": "23rd Senate District",
+     "district": 23,
+     "filled": "elected by district",
+     "bodySlug": "california-state-senate"
+    },
+    "houseNow": {
+     "label": "27th Congressional District",
+     "district": 27,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    },
+    "house2027": {
+     "label": "30th Congressional District",
+     "district": 30,
+     "filled": "elected by district",
+     "bodySlug": "united-states-house-of-representatives"
+    }
+   }
+  }
+ ]
+}
