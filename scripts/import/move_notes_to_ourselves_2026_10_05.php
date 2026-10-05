@@ -2,7 +2,7 @@
  * Notes to ourselves off the page (Nathan, 5 October 2026: "Check whether anything already in editor notes across the whole
  * archive belongs there, not only the hedged ones: anything that is a note to ourselves rather than to a reader"). All 274
  * distinct editor's-note texts were read (inventory/review/editor-notes-ourselves-2026-10-05.md): 260 are for a reader; these
- * are the rest. A work item, a record's reason for being made, an edit history or a held-back fact moves to researchLeads,
+ * are the rest, but Mentry's, which became the work it described (source_fault_mentry_birth_2026_10_05.php). A work item, a record's reason for being made, an edit history or a held-back fact moves to researchLeads,
  * with the heading it was under; the reader keeps what tells them something. Two headings that named the archive's work are
  * renamed, and one citation whose URL was cut to "https" is restored from the script that wrote it
  * (record_district_boards_2026_10_04.php). Exact text, once, or refused. Idempotent. Dry run by default. Set $APPLY = true.
@@ -22,8 +22,6 @@ $M = [
     "The first draft said the board-to-council ladder was never climbed; when Buck McKeon's Hart board years were added to his record on 1 October 2026, the figure check caught it and the article was rewritten around him.", null],
   [21582, 'Held for the elections work', 'One source each, held back: final president of the Newhall County Water District and SCV Water vice president from January 2018 (SCV Water press release, 17 January 2018); lost the Division 3 seat in 2020 (preliminary news figures only). ', '',
     'One source each, held back from the profile: final president of the Newhall County Water District and SCV Water vice president from January 2018 (SCV Water press release, 17 January 2018); lost the Division 3 seat in 2020 (preliminary news figures only). Settled by a second source for the presidency and the certified 2020 canvass, entered with her office holdings.', 'Year of birth'],
-  [18648, 'Source fault: the birth year', ' Held as 1847?-03-27, uncertain in the year alone, until the sourceFault type exists to carry it.', '',
-    'The birth is held as 1847?-03-27, uncertain in the year alone. The SourceFault type now exists (five records): this disagreement inside the death certificate can move onto one.', null],
   [946, 'Restored, 3 October 2026', "This record was briefly merged into John C. Frémont's on 3 October 2026, on the mistaken view that no source names a California Battalion. Three sources in the archive name it, and two place it in this valley, so it has its own record again.", '',
     "Merged into John C. Frémont's record on 3 October 2026 on the mistaken view that no source names a California Battalion, and restored the same day: three sources in the archive name it, and two place it in this valley.", null],
   [16380, 'Held for a second source, and for the elections work', '', '', '', 'His mayoral years and year of birth'],

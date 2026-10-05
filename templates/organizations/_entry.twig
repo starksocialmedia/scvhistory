@@ -165,6 +165,11 @@
         ]|filter(b => b.rows|length) %}
         {% for b in boxes %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>
+            {#- A body's header shows only its own mark; one with none shows its parent's here, small, beside the parent's name (Nathan,
+                5 October 2026: "One rule for the station, the commissions and the schools"). Never in the header: Saugus High has a
+                mark of its own the archive does not hold, and the district's in its header would misidentify it. -#}
+            {% set pMark = b.key == 'PARENT' and not headMark and 'currentMark' in (parent.fieldLayout ? parent.fieldLayout.customFields|map(f => f.handle) : []) ? parent.currentMark.one() : null %}
+            {% if pMark %}<a href="{{ parent.url }}" class="rec-parent-mark" style="display:block;width:72px;height:72px;margin:4px 0 10px">{% include "_partials/record/mark-img" with { mark: pMark, cap: 200, lazy: true } only %}</a>{% endif %}
             <div class="rec-rows">{% for r in b.rows %}<div class="k">{{ b.key }}</div><div class="v"><a href="{{ r.url }}">{{ r.title ?: r.slug }}</a></div>{% endfor %}</div>
           </div>
         {% endfor %}

@@ -4,9 +4,9 @@
 
 ### Current (4 October 2026, overnight)
 - **The college district trustees' profiles** (inventory/review/coc-trustees-profiles-dry-run-2026-10-05.md, 33): read, then apply with build_coc_trustee_profiles_2026_10_05.php. Tichenor's closing paragraph and Johnson's Saugus runs are in the drafts; the Hoskinson and Lynch leads go to researchLeads, not the page.
-- **Notes to ourselves** (move_notes_to_ourselves_2026_10_05.php, $APPLY = true): seven notes; the dry run prints each as it would read. Then "the legacy page" in 22 memorial notes, to "the original page on SCVHistory.com" if you agree.
-- **Sub-body marks:** whether a station, commission or school with no mark of its own shows its parent's, and where.
-- **The Darren Harris interview:** the recording and any notes, when you have them to hand.
+- Notes to ourselves, the legacy-page wording, Mentry's source fault: applied 5 October.
+- Sub-body marks: built 5 October (the parent's mark in the Parent organization box).
+- **The Darren Harris interview:** the recording, its date, who asked, and his title then. It becomes a document record with a verbatim transcript, and Harris a person record with the Public Information Officer role (#30506).
 - Johnson is Duzick: applied 5 October.
 - Leads off the page, the sweep: applied 5 October.
 - **Send the note to the college district** about Don Allen (inventory/review/coc-don-allen-note-2026-10-05.md).

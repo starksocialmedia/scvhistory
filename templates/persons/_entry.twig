@@ -138,7 +138,9 @@
             <div class="rec-facts">
               {#- Each date with how it is known (_partials/record/evidence.twig, 2 October 2026). -#}
               {% set evH = entry.fieldLayout.customFields|map(f => f.handle) %}
-              {% if born %}<div><div class="l">BORN</div><div class="v">{{ F.birthDate }}{% if 'birthEvidence' in evH and F.birthDate %}{% include "_partials/record/evidence" with { ev: entry.birthEvidence } only %}{% endif %}{{ F.birthDate and F.birthplace ? ' · ' : '' }}{{ F.birthplace }}</div></div>{% endif %}
+              {#- A source that disagrees with itself on a date (a SourceFault on this record and field) is said under the date, as an election says a misprinted count. -#}
+              {% set bFault = craft.entries().section('sourceFaults').relatedTo({ targetElement: entry, field: 'faultRecord' }).all()|filter(f => f.faultField == 'birthDate')|first %}
+              {% if born %}<div><div class="l">BORN</div><div class="v">{{ F.birthDate }}{% if 'birthEvidence' in evH and F.birthDate %}{% include "_partials/record/evidence" with { ev: entry.birthEvidence } only %}{% endif %}{{ F.birthDate and F.birthplace ? ' · ' : '' }}{{ F.birthplace }}{% if bFault %}<div style="font-size:13px;color:#5B6472;margin-top:4px">{{ bFault.basis }}</div>{% endif %}</div></div>{% endif %}
               {% if died %}<div><div class="l">DIED</div><div class="v">{{ F.deathDate }}{% if 'deathEvidence' in evH and F.deathDate %}{% include "_partials/record/evidence" with { ev: entry.deathEvidence } only %}{% endif %}{{ F.deathDate and F.burialPlace ? ' · ' : '' }}{{ F.burialPlace }}{% if 'burialEvidence' in evH and F.burialPlace %}{% include "_partials/record/evidence" with { ev: entry.burialEvidence } only %}{% endif %}</div></div>{% endif %}
               {% if residence %}<div><div class="l">RESIDENCE</div><div class="v">{{ residence }}</div></div>{% endif %}
             </div>
