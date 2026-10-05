@@ -149,7 +149,7 @@
         {% if n %}<a class="pl-chip {{ comSlug == c.slug ? 'on' : '' }}" href="{{ url('organizations', keep|merge({community: c.slug})) }}">{{ c.title }} ({{ n }})</a>{% endif %}
       {% endfor %}
 
-      <div class="pl-count">{{ comSlug or kind or level ? places|length ~ ' of ' ~ all|length : all|length }} organizations</div>
+      <div class="pl-count">{{ bodiesMode ? places|length ~ ' public bodies' : (comSlug or kind or level ? places|length ~ ' of ' ~ all|length : all|length) ~ ' organizations' }}</div>
     </div>
   </section>
 

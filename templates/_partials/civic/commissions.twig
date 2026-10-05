@@ -1,0 +1,45 @@
+{#
+  A body's commissions and committees: the bodies nested under it (parentOrganization) that it appoints, each with what it is
+  and who has sat on it (Nathan, 4 October 2026: "They meet publicly, they are appointed by the council, and they come up in the
+  valley's arguments"). Members come from affiliations with the commission: present members first, then past, each with the
+  post and years as recorded. A body with no nested public bodies shows nothing.
+
+    body   the organization
+#}
+{% set subs = craft.entries().section('organizations').relatedTo({ targetElement: body, field: 'parentOrganization' }).orgType('government').orderBy('title asc').all() %}
+{% if subs|length %}
+  <p class="hub-lede">Appointed by the City Council and meeting in public, these advise the council and decide what it delegates to them. Each lists the members the archive holds.</p>
+  {% for c in subs %}
+    {% set lead = (c.body ?? '')|trim ? (c.body|striptags|split("\n\n")|first) : '' %}
+    {% set affs = craft.entries().section('affiliations').relatedTo({ targetElement: c, field: 'affiliationBody' }).with(['affiliationPerson']).all() %}
+    {% set now_ = affs|filter(a => (a.affiliationEnded.value ?? '') == 'serving' or (not a.termEndEdtf and (a.affiliationEnded.value ?? '') in ['', 'serving']) or (a.termEndEdtf and a.termEndEdtf|slice(0, 7) >= now|date('Y-m'))) %}
+    {% set nowIds = now_|map(a => a.id) %}
+    {% set past = affs|filter(a => a.id not in nowIds) %}
+    <section class="cm">
+      <h3 class="cm-h"><a href="{{ c.url }}">{{ c.title }}</a>{% if c.dateFounded %} <span>established {{ c.dateFounded }}</span>{% endif %}</h3>
+      {% if lead %}<p class="cm-lead">{{ lead|replace({ '[1]': '', '[2]': '', '[3]': '' }) }}</p>{% endif %}
+      {% for grp in [{ label: 'Members', rows: now_ }, { label: 'Past members', rows: past }] %}{% if grp.rows|length %}
+        <div class="cm-lab">{{ grp.label|upper }}</div>
+        <ul class="cm-list">
+          {% for a in grp.rows|sort((x, y) => (y.termStartEdtf ?: '0') <=> (x.termStartEdtf ?: '0')) %}{% set p = a.affiliationPerson|first %}{% if p %}
+            <li><a href="{{ p.url }}">{{ p.title }}</a> <span>{{ a.affiliationTitle ?: 'Member' }}{{ a.termStart ? ', ' ~ a.termStart ~ (a.termEnd ? ' to ' ~ a.termEnd : '') : (a.termEnd ? ', term to ' ~ a.termEnd : '') }}</span></li>
+          {% endif %}{% endfor %}
+        </ul>
+      {% endif %}{% endfor %}
+      {% if not affs|length %}<p class="cm-none">The archive does not yet hold its members.</p>{% endif %}
+    </section>
+  {% endfor %}
+{% endif %}
+{% css %}
+.cm{border-top:1px solid #E2E4E8;padding:16px 0 6px}
+.cm-h{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin:0 0 6px}
+.cm-h a{color:#17254C;text-decoration:none}
+.cm-h span{font-family:'Public Sans',system-ui,sans-serif;font-size:13px;color:#5B6472}
+.cm-lead{font-size:15px;line-height:1.6;color:#2A3140;margin:0 0 10px;max-width:760px}
+.cm-lab{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#7A5C1B;margin:8px 0 4px}
+.cm-list{list-style:none;padding:0;margin:0 0 8px;columns:2 300px;column-gap:28px}
+.cm-list li{break-inside:avoid;padding:4px 0;font-size:14.5px}
+.cm-list a{color:#17254C}
+.cm-list span{color:#5B6472;font-size:13.5px}
+.cm-none{font-size:14px;color:#5B6472}
+{% endcss %}
