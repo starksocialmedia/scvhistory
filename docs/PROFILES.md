@@ -162,8 +162,11 @@ record of the Hart board from 1945, and it is treated as primary: it beat CEDA
 and the archive's own inference for Hart's holdings, and it corrected McKeon's
 Hart tenure (resigned 7 December 1987, not expired). But it contradicts itself
 at least once: Hanrion "did not seek reelection" on one board and was
-"reelected 1997" on the next. **If the roster contradicts itself once it may do
-so elsewhere.** So, as with Reynolds: where it is the only source for a row and
+"reelected 1997" on the next. And it is wrong twice about who stood, both found
+by going outside it (5 October 2026): it says Sandra Loberg and Dennis King "did
+not seek reelection in 1993", where the Los Angeles Times reports that both filed,
+stood and lost (fourth and fifth of five; inventory/review/hart-pre1995-terms-2026-10-05.md).
+**If the roster contradicts itself once it may do so elsewhere.** So, as with Reynolds: where it is the only source for a row and
 the row is unclear or disagrees with a neighbouring row, the holding footnotes
 both and states neither; where it disagrees with CEDA or the County's returns,
 both are shown (Jensen and Solomon marked incumbents in 2009 by CEDA, absent
