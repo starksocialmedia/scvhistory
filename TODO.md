@@ -3,7 +3,8 @@
 ## Waiting on Nathan
 
 ### Current (4 October 2026, overnight)
-- **Measure U and the council elections' sources** (fix_council_election_sources_2026_10_05.php): the dry run is ready; apply when read.
+- Measure U and the fourteen council elections: applied 5 October. **The five County-sourced elections, 2016 to 2024** (the same script, extended): dry run ready.
+- **The silent-faults audit** (inventory/review/silent-faults-audit-2026-10-05.md): 29 findings; the empty-note template fault is fixed; the other visible ones wait on Nathan.
 - **The Saugus High source records** (inventory/review/saugus-high-2019-sources-dry-run-2026-10-05.md): read, then apply create_saugus_2019_sources_2026_10_05.php. The 74 City vigil photographs wait for Nathan's look.
 - **The St. Francis Dam** (inventory/review/st-francis-dam-dry-run-2026-10-05.md): read the record; the decisions at its foot (a dam place record first, Mulholland's 431, the Ruiz count, the Newhall Land report as a document).
 - **Northridge:** rebuild plan in the report of 5 October; Stearns's mint date, a disagreement between his letter and the voucher, waits for the Reggie drive.

@@ -82,7 +82,10 @@ foreach ($manifest['documents'] as $m) {
     echo '   ' . ($e ? '#' . $e->id . ' exists: ' : 'create ') . $meta['title'] . PHP_EOL;
     if (!$e) { $docPlan[$file] = [$m, $meta, $path]; }
 }
-$docByKey = fn($key) => $docs[$data['documents'][$key]] ?? null;
+/* Fails loudly (5 October 2026): a key that finds no document stopped nothing and printed itself as the citation on
+   nineteen elections ("summary.", "sov2016:"); fix_council_election_sources_2026_10_05.php repaired them. Read $docs by
+   reference: the closure was made before the documents existed and saw an empty copy. */
+$docByKey = function ($key) use (&$docs, $data) { $d = $docs[$data['documents'][$key] ?? ''] ?? null; if (!$d) { throw new \RuntimeException("document key $key has no document record"); } return $d; };
 
 /* ------------------------------------------------ people: matching and creating */
 $norm = fn($s) => strtolower(trim(preg_replace('~[^A-Za-z -]~', '', \craft\helpers\StringHelper::toAscii($s))));
@@ -196,7 +199,7 @@ foreach ($planE as [$e, $cands, $el]) {
     $el->setFieldValues(['electionDate' => $e['printed'], 'electionDateEdtf' => $e['date'], 'electionKind' => 'general', 'consolidatedWith' => $e['consolidatedWith'] . ($e['district'] ?? '' ? ($e['consolidatedWith'] ? '; ' : '') . 'Council ' . $e['district'] . ' only' : ''),
         'registeredVoters' => $e['registeredValue'] ?? null, 'ballotsCast' => $e['ballotsValue'] ?? null, 'votesByMail' => $e['absenteeValue'] ?? null, 'votesAtPrecinct' => $e['precinctValue'] ?? null,
         'seatsUp' => $e['seats'], 'seatsUpEvidence' => $e['seatsEvidence'], 'sourceDocuments' => $srcDocs,
-        'ballotMeasures' => array_map(fn($m) => ['letter' => $m['letter'], 'subject' => $m['subject'], 'yes' => $m['yesValue'], 'no' => $m['noValue'], 'carried' => false], $e['measures']),
+        'ballotMeasures' => array_map(fn($m) => ['letter' => $m['letter'], 'subject' => $m['subject'], 'yes' => $m['yesValue'], 'no' => $m['noValue'], 'carried' => null], $e['measures']), /* left empty: the extract does not say whether a measure carried; a constant false made Measure U, the City's incorporation, read as failed (5 October 2026) */
         'footnotes' => $fn($notes), 'recordProvenance' => 'import_elections.php, 29 September 2026']);
     if (!$elements->saveElement($el)) { throw new \RuntimeException('election ' . $e['date'] . ': ' . json_encode($el->getFirstErrors())); }
     $faultTargets['election:' . $e['date']] = $el;

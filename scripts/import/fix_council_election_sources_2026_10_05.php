@@ -10,6 +10,8 @@
  *    footnote becomes the document's title and archive number, keeping the reading the extract records, and the document is
  *    added to its sources: #21939 "General Municipal Elections: Historical Election Results, 1987 to 2012" (City of Santa
  *    Clarita), #21933 "2014 Election Results by Precinct".
+ * Extended the same day (silent-faults audit): the five elections of 2016 to 2024 cite "sov2016:" to "sov2024:", the same
+ * fault, which the first version's two-key match missed; every key in the extract is now resolved through its file.
  * Idempotent. Dry run by default. Set $APPLY = true.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/fix_council_election_sources_2026_10_05.php'))"
  */
@@ -18,20 +20,29 @@ $APPLY = false;
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . PHP_EOL;
 $root = \Craft::getAlias('@root'); $el = Craft::$app->getElements(); $n = 0;
 $J = json_decode(file_get_contents("$root/inventory/elections/elections.json"), true);
-$DOC = ['summary' => Entry::find()->id(21939)->status(null)->one(), 'r2014' => Entry::find()->id(21933)->status(null)->one()];
-if ($DOC['summary']?->title !== 'General Municipal Elections: Historical Election Results, 1987 to 2012' || $DOC['r2014']?->title !== '2014 Election Results by Precinct') { throw new \RuntimeException('documents not as expected'); }
-$byDate = []; foreach ($J['elections'] as $x) { if (in_array($x['doc'] ?? '', ['summary', 'r2014'], true)) { $byDate[$x['date']] = $x; } }
+/* Every document key the extract names, resolved through its file to its document record; a key that resolves to nothing
+   stops the script (the importer's fault was to print the key instead). */
+$DOC = [];
+foreach ($J['documents'] as $key => $file) {
+  $a = \craft\elements\Asset::find()->filename($file)->one();
+  $d = $a ? Entry::find()->section('documents')->status(null)->relatedTo(['targetElement' => $a, 'field' => 'documentFiles'])->one() : null;
+  if (!$d) { throw new \RuntimeException("document key $key ($file): no document record"); }
+  $DOC[$key] = $d;
+}
+$KEYS = implode('|', array_map(fn($k) => preg_quote($k, '~'), array_keys($DOC)));
+$byDate = []; foreach ($J['elections'] as $x) { if (isset($DOC[$x['doc'] ?? ''])) { $byDate[$x['date']] = $x; } }
 foreach (Entry::find()->section('elections')->status(null)->all() as $e) {
   $rows = array_map(fn($r) => ['number' => (string)$r['number'], 'note' => (string)$r['note'], 'source' => (string)$r['source']], iterator_to_array($e->footnotes ?? []));
-  $i = array_search(true, array_map(fn($r) => in_array(trim($r['note']), ['summary.', 'r2014.'], true) || preg_match('~^(summary|r2014): ~', trim($r['note'])), $rows), true);
+  $i = array_search(true, array_map(fn($r) => (bool)preg_match('~^(' . $KEYS . ')(\.|: )~', trim($r['note'])), $rows), true);
   $mUpd = false; $ms = [];
   if ($e->id === 21948) { foreach ($e->ballotMeasures ?? [] as $m) { $m = ['letter' => $m['letter'], 'subject' => $m['subject'], 'yes' => $m['yes'], 'no' => $m['no'], 'carried' => (bool)$m['carried']]; if ($m['letter'] === 'U' && !$m['carried']) { $m['carried'] = true; $mUpd = true; } $ms[] = $m; } }
   if ($i === false && !$mUpd) { continue; }
-  $date = (string)$e->electionDateEdtf; $x = $byDate[$date] ?? null; $key = $x['doc'] ?? (str_starts_with(trim($rows[$i]['note'] ?? ''), 'r2014') ? 'r2014' : 'summary'); $d = $DOC[$key];
+  $date = (string)$e->electionDateEdtf; $x = $byDate[$date] ?? null; $key = $i !== false ? preg_replace('~^(' . $KEYS . ').*$~s', '$1', trim($rows[$i]['note'])) : ($x['doc'] ?? 'summary'); $d = $DOC[$key];
   echo "#{$e->id} {$e->title}\n";
   if ($mUpd) { echo "  Measure U: carried\n"; }
   if ($i !== false) {
-    $new = 'City of Santa Clarita, "' . $d->title . '" (archive document #' . $d->id . ')' . (($x['reading'] ?? '') !== '' ? ': ' . $x['reading'] : '') . '.';
+    $pub = $d->publishedBy->status(null)->one()?->title; $rest = trim((string)preg_replace('~^(' . $KEYS . ')(\.|: )~', '', trim($rows[$i]['note'])));
+    $new = ($pub ? "$pub, " : '') . '"' . $d->title . '" (archive document #' . $d->id . ')' . ($rest !== '' ? ': ' . rtrim($rest, '.') : (($x['reading'] ?? '') !== '' ? ': ' . $x['reading'] : '')) . '.';
     echo "  footnote {$rows[$i]['number']}: " . json_encode($rows[$i]['note']) . " -> $new\n"; $rows[$i]['note'] = $new; }
   $src = $e->sourceDocuments->status(null)->ids(); $addSrc = !in_array($d->id, $src, true); if ($addSrc && $i !== false) { echo "  source document: add #{$d->id}\n"; }
   if (!$APPLY) { continue; }

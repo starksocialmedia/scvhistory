@@ -33,6 +33,9 @@
 {%- for f in entry.fieldLayout.customFields -%}{%- set handles = handles|merge([f.handle]) -%}{%- endfor -%}
 
 {%- set rows = 'footnotes' in handles ? (entry.footnotes ?? []) : [] -%}
+{#- A row with no note is not a note: Craft stores a blank default row when a record is saved without the field set, and it
+    rendered as note "1." under Leon Worden's name on 757 pages (silent-faults audit, 5 October 2026). -#}
+{%- set rows = rows|filter(r => (r.note ?? '')|trim) -%}
 {%- set notesOn = 'footnotesOn' in handles ? (entry.footnotesOn.one() ?? null) : null -%}
 
 {#- The prose, for both the shortcode notes and the orphan test. Every PlainText
