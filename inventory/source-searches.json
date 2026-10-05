@@ -288,6 +288,17 @@
     "result": "SURVIVES",
     "found": "0 hits for Guissona.",
     "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "Neither is in the sources cited here, and the year of his death is given differently elsewhere.",
+    "field": "editorNotes, 'His birth and death'",
+    "searched": "Fages with 1734, 1794, 1796, born, died, death",
+    "where": "The two sources the record cites: Jerry Reynolds, chapter 9 (#837), and Leon Worden's landmark page LW2504 (#3929), as held in the archive.",
+    "how": "Read in full from the archive's records.",
+    "when": "2026-10-04",
+    "result": "SURVIVES",
+    "found": "Reynolds gives his age in 1769 ('in his early thirties') and no death year; LW2504 gives neither. The double-counting audit of 4 October notes standard references give 1794 (not verified).",
+    "by": "Claude Code, apply_double_counting_audit_2026_10_04.php"
    }
   ],
   "persons:291": [
@@ -840,6 +851,17 @@
     "result": "OUTSIDE",
     "found": "The claim is about an outside register the mirror does not hold; the mirror cannot confirm or refute it. Mirror pages naming him: memorial pages and the errata index only.",
     "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "(unchanged 'Not yet sourced' note)",
+    "field": "editorNotes",
+    "searched": "ABMC q=Kenaston: 0 results, 4 October 2026.; Navy State Summary for California (NAID 305189): not in it (2 October reading; it excludes deaths in the United States and suicides by its own notice).; Web search 4 October 2026: 'Kenaston Marine corporal Guadalcanal Newhall 1945 suicide': nothing.; Mirror, 4 October 2026, 'kenaston': only the memorial pages and their navigation.",
+    "where": "As listed in 'searched'; pages read are saved in inventory/news/war-memorial-2026-10-04/ with manifest.json.",
+    "how": "Web reads and the VA Nationwide Gravesite Locator (approved for Wilson, Todd, Conant and Colley); the mirror by Python over raw bytes.",
+    "when": "2026-10-04",
+    "result": "SURVIVES",
+    "found": "Not met. No approved source was found. He died at home, outside a war zone, so he is outside the Navy State Summary (which excludes deaths in the United States and suicides) and ABMC.",
+    "by": "Claude Code subagent, inventory/review/war-memorial-sourcing-2026-10-04.md"
    }
   ],
   "warMemorials:520": [
@@ -879,6 +901,17 @@
     "result": "SURVIVES",
     "found": "No Dean Todd outside the memorial pages.",
     "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   },
+   {
+    "note": "No federal record of his death is in the archive.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "VA Gravesite Locator (approved), 4 October 2026: lastName Todd + firstName Dean (exact): one result, Dean G. Todd, LtCol USAF, died 2016, not him. Todd + first begins D + death 2004: 7, none. Todd + birth 1982: 1, Todd + birth 1983: 1, neither him. lastName begins Eckard + death 2004: 6, none. 'Todd-Eckard' and 'Todd Eckard' + 2004: none. Saved.; DoD releases: none issued for a non-theater death (as the record's note says).; The Signal article of September 2, 2004 cited by Stars and Stripes: not found on the web or in the Wayback index for the-signal.com or signalscv.com (CDX domain filter on 'todd' not run; 'gelig', 'suter', 'sellen', 'acosta', 'colley', 'conant' filters on the-signal.com returned nothing).",
+    "where": "As listed in 'searched'; pages read are saved in inventory/news/war-memorial-2026-10-04/ with manifest.json.",
+    "how": "Web reads and the VA Nationwide Gravesite Locator (approved for Wilson, Todd, Conant and Colley); the mirror by Python over raw bytes.",
+    "when": "2026-10-04",
+    "result": "SURVIVES",
+    "found": "Half, and the home note must change. One newspaper (Stars and Stripes, note 1) records his death in service and gives his hometown as Canyon Country and his school as Canyon High: this overturns the 'Home, 2026' note ('No connection to the Santa Clarita Valley has been found'). No federal record found (no DoD release for a death outside a theater of war; not in the VA locator).",
+    "by": "Claude Code subagent, inventory/review/war-memorial-sourcing-2026-10-04.md"
    }
   ],
   "warMemorials:546": [
@@ -1035,6 +1068,58 @@
     "result": "OUTSIDE",
     "found": "The claim is about an outside register the mirror does not hold; the mirror cannot confirm or refute it. Mirror pages naming him: memorial pages and the errata index only.",
     "by": "Claude Code, for inventory/review/no-source-notes-2026-10-03.md"
+   }
+  ],
+  "organizations:16290": [
+   {
+    "note": "No record of the City's own action dissolving it is in the archive.",
+    "field": "footnotes 2",
+    "searched": "Newhall Redevelopment Committee; redevelopment committee with dissolv*, disband*, sunset, 2012",
+    "where": "The archive's copies of the City's redevelopment agenda reports of 23 August 2011, 24 January, 28 February and 24 April 2012 and the 2014-15 Housing Successor report (inventory/news/aadusd-redevelopment-2026-10-04/); the legacy pages saved with them (timeline.htm, the Gazette and Signal pages); the City's Granicus agenda archive, which refused automated reads.",
+    "how": "pdftotext and Python over the saved files, case-insensitive; the Granicus archive by HTTP request.",
+    "when": "2026-10-04",
+    "result": "SURVIVES",
+    "found": "Only the SCVHistory chronology dates the end: 1 March 2012.",
+    "by": "Claude Code, for inventory/review/aadusd-redevelopment-2026-10-04.md"
+   }
+  ],
+  "warMemorials:534": [
+   {
+    "note": "The Department of Veterans Affairs' gravesite locator, which covers that cemetery, lists no John Conant who died in 2008; no federal record or newspaper account of his death is in the archive.",
+    "field": "factSources 'Burial'; editorNotes 'Sources, 2026'",
+    "searched": "VA Gravesite Locator (approved), 4 October 2026: Conant + John (exact) + death 2008: no results. Conant + death 2008: 6 results (Chester C., Don Ayers, Eugene Wesley, Norwood Lee, Pearl G., Roger W.), none him. Conant + John: 18 results, page 1 read, none died 2008. Conant + birth 1971: no results. Saved.; Web, 4 October 2026: 'John Michael Conant 1971 2008 obituary'; 'John Conant sergeant medic 4th Infantry Division Colorado Springs died April 2008 Saugus': nothing but the legacy page.; Mirror, 'conant': no page about him other than the memorial pages.",
+    "where": "As listed in 'searched'; pages read are saved in inventory/news/war-memorial-2026-10-04/ with manifest.json.",
+    "how": "Web reads and the VA Nationwide Gravesite Locator (approved for Wilson, Todd, Conant and Colley); the mirror by Python over raw bytes.",
+    "when": "2026-10-04",
+    "result": "SURVIVES",
+    "found": "Not met. The archive's own grave marker photograph confirms rank and dates (note 1). No federal record or newspaper was found, and the VA locator does not list him, which puts the record's 'Punchbowl' burial in doubt.",
+    "by": "Claude Code subagent, inventory/review/war-memorial-sourcing-2026-10-04.md"
+   }
+  ],
+  "warMemorials:524": [
+   {
+    "note": "His tie to the valley rests on the legacy page.",
+    "field": "editorNotes 'Sources, 2026'",
+    "searched": "Valley tie (Valencia, Valencia High 2003): not found in a source read. Web, 4 October 2026: 'Stephen Colley Valencia soldier Fort Hood 2007'; signalscv.com Colley Valencia High suicide Iraq; Wayback CDX domain filter 'colley' on the-signal.com: nothing (on signalscv.com the query timed out).; Whether the Ed Colley in this archive (person 26589, water board) is his father: the NPR father is 'Ed Colley', but no source read links that Ed Colley to Santa Clarita. Not proposed.",
+    "where": "As listed in 'searched'; pages read are saved in inventory/news/war-memorial-2026-10-04/ with manifest.json.",
+    "how": "Web reads and the VA Nationwide Gravesite Locator (approved for Wilson, Todd, Conant and Colley); the mirror by Python over raw bytes.",
+    "when": "2026-10-04",
+    "result": "SURVIVES",
+    "found": "Half. Federal: the VA's burial record (note 1) confirms his service, dates and grave, and its war period is Iraq; it does not say he died in service, and no source read ties him to the valley (Valencia rests on the legacy page). NPR (note 2) confirms the death at Fort Hood's unit after Iraq.",
+    "by": "Claude Code subagent, inventory/review/war-memorial-sourcing-2026-10-04.md"
+   }
+  ],
+  "warMemorials:528": [
+   {
+    "note": "(unchanged 'Not yet sourced' note)",
+    "field": "editorNotes",
+    "searched": "VA Gravesite Locator (approved), 4 October 2026: Wilson + Robert + Michael + death 2002: none. Wilson + Robert + Michael: 4 results (born 1934, 1949, 1950, 1950), none him. Wilson + first begins R + born 1983: 3 (Raymond Keith Jr., Robert Alan b. 04/24/1983 d. 2013, Roger T.), none him. Wilson + first begins R + died August 2002: 11, no Robert Michael. Saved.; Web, 4 October 2026: 'Robert Michael Wilson' / 'Robert M. Wilson' 82nd Airborne private killed car accident North Carolina August 2002; Fort Bragg paratrooper killed crash August 2002 Wilson 19 Santa Clarita: nothing but the legacy page.; Mirror: no page about him other than the memorial pages.",
+    "where": "As listed in 'searched'; pages read are saved in inventory/news/war-memorial-2026-10-04/ with manifest.json.",
+    "how": "Web reads and the VA Nationwide Gravesite Locator (approved for Wilson, Todd, Conant and Colley); the mirror by Python over raw bytes.",
+    "when": "2026-10-04",
+    "result": "SURVIVES",
+    "found": "Not met. Nothing found.",
+    "by": "Claude Code subagent, inventory/review/war-memorial-sourcing-2026-10-04.md"
    }
   ]
  }

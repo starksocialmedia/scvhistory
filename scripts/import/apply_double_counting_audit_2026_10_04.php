@@ -55,7 +55,7 @@ $N = [
 // [finding, record, heading, note] appended to editorNotes
 $E = [
  [7, 327, 'Indian affairs', 'This record formerly called him superintendent of Indian affairs for California and Nevada, as the Air Force biography (note 1) does. His appointment of 1853 was for California; Nevada was not a separate jurisdiction until 1861.'],
- [10, 287, 'His birth and death', 'This record formerly gave his birth as about 1734 and his death as 1796. Neither is in the source cited here, and the year of his death is given differently elsewhere; no source held in the archive has been found for either (searched 4 October 2026: the chapters of Jerry Reynolds\'s history and Leon Worden\'s landmark page cited here).'],
+ [10, 287, 'His birth and death', 'This record formerly gave his birth as about 1734 and his death as 1796. Neither is in the sources cited here, and the year of his death is given differently elsewhere.'],
 ];
 $OCC = [17, 20226, 'California Ranger; undersheriff; rancher', "California Ranger; rancher; undersheriff, by Jerry Reynolds's account"];
 $EDS = [16, 376, 'The Signal was founded on February 7, 1919, as The Newhall Signal, not in 2019 as this record gave it (note 1).', "The Signal was founded as The Newhall Signal in 1919, on February 7 by Jerry Reynolds's date, not in 2019 as this record gave it (note 1)."];
