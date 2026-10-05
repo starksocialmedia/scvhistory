@@ -1,0 +1,703 @@
+
+<script LANGUAGE="JavaScript">
+<!-- hide from old browsers
+function JumpToURL2()
+{
+	//var form = document.frmDepts;
+	var url = '';
+	
+	switch( url )
+	{
+		case 'ad':
+	window.location  = '/depts/administration/default.asp';
+	break;
+case 'bu':
+	window.location  = '/depts/building/default.asp';
+	break;
+case 'ca':
+	window.location  = '/depts/city_attorney/default.asp';
+	break;
+case 'cc':
+	window.location  = '/depts/city_clerk/default.asp';
+	break;
+case 'cm':
+	window.location  = '/depts/city_manager/default.asp';
+	break;
+case 'cd':
+	window.location  = '/depts/community_development/default.asp';
+	break;
+case 'ed':
+	window.location  = '/depts/economic_development/default.asp';
+	break;
+case 'fr':
+	window.location  = '/depts/fire/default.asp';
+	break;
+case 'fi':
+	window.location  = '/depts/finance/default.asp';
+	break;
+case 'hr':
+	window.location  = '/depts/hr/default.asp';
+	break;
+case 'it':
+	window.location  = '/depts/it/default.asp';
+	break;
+case 'my':
+	window.location  = '/depts/mayor_n_city_council/default.asp';
+	break;
+case 'pl':
+	window.location  = '/depts/planning_department/default.asp';
+	break;
+case 'pd':
+	window.location  = '/depts/police/default.asp';
+	break;
+case 'pw':
+	window.location  = '/depts/public_works/default.asp';
+	break;
+
+		default:
+			window.location  = '/default.asp';
+			break;
+	}
+}
+//-->
+</script>
+<script language="JavaScript"> var javascript_version = 1.0;</script>
+<script language="JavaScript1.1">  javascript_version = 1.1;</script>
+<script language="JavaScript">
+<!--
+
+var newwin;
+var civicawin;
+civicawin = null;
+
+function launchwin(winurl,winname,winfeatures)
+{
+	newwin = window.open(winurl,winname,winfeatures);
+	if (!newwin.opener)
+	{
+		newwin.opener = self
+	}
+
+	if(javascript_version > 1.0)
+	{
+ 		setTimeout('newwin.focus();',250);
+	}
+}
+
+function civicapopupwin(winurl,winname,winfeatures)
+{
+	civicawin = window.open(winurl,winname,winfeatures);
+	if (!civicawin.opener)
+	{
+		civicawin.opener = self
+	}
+
+	if(javascript_version > 1.0)
+	{
+ 		setTimeout('civicawin.focus();',250);
+	}
+}
+
+//-->
+</script>
+
+<html>
+<head>
+<title>LACSD Website - Fact Sheet</title>
+
+</head>
+<body bgcolor="#96b8d6" text="#000000" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+<SCRIPT LANGUAGE="JavaScript1.2" SRC="/navdata/1.js" TYPE='text/javascript'></SCRIPT>
+
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+
+var bOverButton = false;
+var bOverMenu = false;
+var otimerid = 0;
+
+var bWFOverButton = false;
+var bWFOverMenu = false;
+var oWFtimerid = 0;
+
+
+function civicapostwindow(sPath)
+{
+	document.wfpost.action=sPath;
+	document.wfpost.submit();
+}
+
+function clkEditButton(obj)
+{
+	bOverButton = true;
+	
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid=0;
+	
+	
+	divEditMenu.style.visibility = 'visible';
+	var y = obj.offsetTop + 25; //- ((divEditMenu.scrollHeight-obj.scrollHeight)/2);
+	if ( y < 0 )
+		y=0;
+	
+	divEditMenu.style.top = y;
+
+//	if( divEditMenu.style.top < 0 )
+//		divEditMenu.style.top =0;
+
+	divEditMenu.style.left = obj.offsetLeft;
+	
+}
+
+function clkWorkFlowButton(obj)
+{
+	bWFOverButton = true;
+	
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid=0;
+	
+	
+	divWorkFlowMenu.style.visibility = 'visible';
+	var y = obj.offsetTop + 25; //- ((divEditMenu.scrollHeight-obj.scrollHeight)/2);
+	if ( y < 0 )
+		y=0;
+	
+	divWorkFlowMenu.style.top = y;
+
+//	if( divEditMenu.style.top < 0 )
+//		divEditMenu.style.top =0;
+
+	divWorkFlowMenu.style.left = obj.offsetLeft;
+	
+}
+
+
+function exitButton(obj)
+{
+	if( bOverButton && !bOverMenu )
+	{
+		//divEditMenu.style.visibility = 'hidden';
+		otimerid = setTimeout("CloseMenu()",500);
+	}
+}
+
+function exitWorkFlowButton(obj)
+{
+	if( bWFOverButton && !bWFOverMenu )
+	{
+		//divEditMenu.style.visibility = 'hidden';
+		oWFtimerid = setTimeout("CloseWorkFlowMenu()",500);
+	}
+}
+
+function CloseMenu()
+{
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid=0;
+	bOverMenu = false;
+	bOverButton = false;
+	divEditMenu.style.visibility = 'hidden';
+}
+
+function CloseWorkFlowMenu()
+{
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid=0;
+	bWFOverMenu = false;
+	bWFOverButton = false;
+	divWorkFlowMenu.style.visibility = 'hidden';
+}
+
+function EnterMenu()
+{
+	bOverMenu=true;
+	bOverButton=false;
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid=0;
+}
+
+function EnterWorkFlowMenu()
+{
+	bOverWFMenu=true;
+	bOverWFButton=false;
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid=0;
+}
+
+function ExitMenu()
+{
+	bOverMenu=false;
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid = setTimeout("CloseMenu()",500);
+}
+function ExitWorkFlowMenu()
+{
+	bWFOverMenu=false;
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid = setTimeout("CloseWorkFlowMenu()",500);
+}
+
+
+//-->
+</script>
+
+
+<style type="text/css">
+a:link, a:visited, 
+a:active			{ text-decoration: underline; color: rgb(0,0,128) }
+a:hover				{ text-decoration: underline; color: red }
+
+a.mnav:link, a.mnav:visited,
+a.mnav:active     { text-decoration: none; font-size: 10px; color: white }
+a.mnav:hover      { text-decoration: none; font-size: 10px; color: yellow }
+
+a.l2:link, a.l2:visited,
+a.l2:active			{ text-decoration: underline; font-size: 13px; color: red }
+a.l2:hover      { text-decoration: underline; font-size: 13px; color: rgb(200,0,0) }
+a.yah:link, a.yah:visited, 
+a.yah:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #000000 }
+a.yah:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: red }
+font.yah		{ font-family: Tahoma, sans-serif; font-size: 11px; color: #FFFFFF }
+font.wee		{ font-family: Tahoma, sans-serif; font-size: 11px  }
+font.wee2		{ font-family: Tahoma, sans-serif; font-size: 11px; color: rgb(51,51,51) }
+.f1			{ font-family: Tahoma, sans-serif; font-size: 11px }
+.f2			{ font-family: Tahoma, sans-serif; font-size: 13px }
+.f3			{ font-family: Tahoma, sans-serif; font-size: 15px }
+.f4			{ font-family: Tahoma, sans-serif; font-size: 17px }
+a.wee:link, a.wee:visited,
+a.wee:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: rgb(0,0,128) }
+a.wee:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: red }
+a.nav:link, a.nav:visited, 
+a.nav:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: rgb(0,0,128) }
+a.nav:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: red }
+font.topdate		{ font-family: Tahoma, sans-serif; font-size: 11px; color: #004572;font-weight: normal}
+body.default  {font-family: Tahoma, Arial, sans-serif; font-size: 13px; color: black}
+.searchresulturl { font-family: Tahoma, sans-serif; font-size: 11px; color: rgb(64,64,192)}
+SELECT.seldept { PADDING-LEFT: 4px; FONT-SIZE: 11px; FONT-FAMILY: Tahoma, sans-serif}
+
+font.crum					{ font-family: Tahoma, sans-serif; font-size: 11px; color: #000000  }
+a.crum:link, a.crum:visited, 
+a.crum:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #000000 }
+a.crum:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #FFBA00 }
+
+font.copy					{ font-family: Tahoma, sans-serif; font-size: 11px; color: #73735B  }
+span.copy					{ font-family: Tahoma, sans-serif; font-size: 11px; color: #73735B  }
+span.scopy				{ font-family: Tahoma, sans-serif; font-size: 11px; color: #73735B  }
+a.copy:link, a.copy:visited, 
+a.copy:active     { font-family: Tahoma, sans-serif; font-size: 11px; font-weight: bold; text-decoration: underline; color: rgb(0,0,128) }
+a.copy:hover      { font-family: Tahoma, sans-serif; font-size: 11px; font-weight: bold; text-decoration: underline; color: rgb(192,0,0) }
+font.lohi					{ font-family: Tahoma, sans-serif; font-size: 11px  }
+a.lohi:link, a.lohi:visited, a.lohi:active     
+									{ font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: #C9DDEA }
+a.lohi:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #FFFFFF }
+
+a.hilo:link, a.hilo:visited, a.hilo:active     
+									{ font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: #004572 }
+a.hilo:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #ffffff }
+
+td.footercopy
+{
+	background-image: url(/img/layout/footerl.gif);
+	font-family: Tahoma, sans-serif; 
+	font-size: 11px; 
+	color: #004572;
+	text-align: left;
+	vertical-align: middle;
+	padding: 10px;
+}
+td.footercivica
+{
+	background-image: url(/img/layout/footerr.gif);
+	background-repeat: repeat-x; 
+	background-position: top left;
+	font-family: Tahoma, sans-serif; 
+	font-size: 11px; 
+	color: #ffffff;
+	text-align: right;
+	vertical-align: middle;
+	padding: 10px;
+}
+
+a.footercivica:link, a.footercivica:visited, a.footercivica:active     
+{
+	font-size: 11px; 
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a.footercivica:hover
+{
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+
+body
+{ background-color: #96b8d6;
+	background-image: url();
+}
+
+#divEditMenu
+{   BORDER: #959595 1px solid;
+    PADDING: 2px;
+    FONT-FAMILY: Tahoma;
+    BACKGROUND-COLOR: #ffffff;
+    TEXT-DECORATION: none;
+    position:absolute;
+		visibility:hidden;
+		top:-1000px;
+		left: -1000px;
+}
+
+#divWorkFlowMenu
+{   BORDER: #959595 1px solid;
+    PADDING: 2px;
+    FONT-FAMILY: Tahoma;
+    BACKGROUND-COLOR: #ffffff;
+    TEXT-DECORATION: none;
+    position:absolute;
+		visibility:hidden;
+		top:-1000px;
+		left: -1000px;
+}
+
+.floatimgleft {	float:left; margin-top:10px; margin-right:10px; margin-bottom:10px; } 
+.floatimgright { float:right; margin-top:10px; margin-left:10px; margin-bottom:10px; } 
+
+#hpbutton
+{
+	width: 770px;
+	padding: 0;
+	border: 0px solid #000;
+}
+
+#hpbutton ul
+{
+	list-style: none;
+	display: inline;
+}
+		
+#hpbutton li
+{
+	display: inline;
+	float: left;
+}
+
+#hpbutton li a 
+{
+	display: block;
+	background-color: #ffffff;
+	width: 154px;
+}
+
+#hpbutton li a:hover 
+{
+	/*background-color: Transparent;*/
+	background-color: #e2faf0;
+}
+
+font.contactHead
+{ 
+	font-family: Tahoma, sans-serif; 
+	font-size: 13px;
+	color: #ffffff;
+	
+}
+font.contactBody
+{
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+}
+
+
+</style>
+
+
+<SCRIPT LANGUAGE="JavaScript1.2" SRC="/civica/js/FormVal.js"></SCRIPT>
+
+
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+function HM_f_MenuTop()
+{
+	return 0;
+}
+
+function subGrphVer( grphver )
+{
+	document.frmGrpxVer.grpxver.value = grphver;
+	document.frmGrpxVer.submit();
+}
+
+function frmSearchSubmit()
+{
+
+  if (document.frmSearch.searchquery.value=='')
+  {
+    alert('Please Enter a value to search');
+    document.frmSearch.searchquery.focus();
+    return;
+  }
+  with(document.frmSearch)
+  {
+    action = '/search/default.asp';
+    submit();
+  }
+
+}
+
+var cvPageID = 11;
+
+function DrawRollOvers()
+{
+
+
+}
+
+function CV_jumpMenu(selObj,restore)
+{
+	var url = selObj.options[selObj.selectedIndex].value;
+	if (url) window.open(url);
+	if (restore) selObj.selectedIndex=0;
+}
+
+//-->
+</script>
+
+<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width=* height="50%" align="right" style="background-color:#c3dbee; background-image: url(/img/layout/bgslice_01.gif); background-repeat: repeat-x; background-position: bottom;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" height="*" style="background-image: url(/img/layout/mlfade.gif); background-repeat: repeat-y; background-position: right;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr><tr><td width="1" valign="bottom" height="180" style="background-image: url(/img/layout/blfade_01.gif); background-repeat: no-repeat; background-position: right bottom;"><img src="/img/blank.gif" width=1 height=180 border=0></td></tr></table></td><td width="840" valign="top" bgcolor="#FFFFFF"><div id="oAllScreen" name="oAllScreen" style="display:block; position:relative; top: 0px; left: 0px; height: 100% "><table border="0" width="100%" cellspacing="0" cellpadding="0"><tr><td width="840" valign="top" >
+<script LANGUAGE="JavaScript"> var javascript_version = 1.0;</script>
+<script LANGUAGE="JavaScript1.1">  javascript_version = 1.1;</script>
+
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+
+
+
+if(window.event + "" == "undefined") event = null;
+function HM_f_PopUp(){return false};
+function HM_f_PopDown(){return false};
+popUp = HM_f_PopUp;
+popDown = HM_f_PopDown;
+
+
+if (document.images) {
+	but1_off = new Image; but1_off.src = "/img/navbuts/but1_off.gif";
+	but1_on = new Image;  but1_on.src =  "/img/navbuts/but1_on.gif";
+
+	but2_off = new Image; but2_off.src = "/img/navbuts/but2_off.gif";
+	but2_on = new Image;  but2_on.src =  "/img/navbuts/but2_on.gif";
+
+	but3_off = new Image; but3_off.src = "/img/navbuts/but3_off.gif";
+	but3_on = new Image;  but3_on.src =  "/img/navbuts/but3_on.gif";
+
+	but4_off = new Image; but4_off.src = "/img/navbuts/but4_off.gif";
+	but4_on = new Image;  but4_on.src =  "/img/navbuts/but4_on.gif";
+
+	but5_off = new Image; but5_off.src = "/img/navbuts/but5_off.gif";
+	but5_on = new Image;  but5_on.src =  "/img/navbuts/but5_on.gif";
+
+	but6_off = new Image; but6_off.src = "/img/navbuts/but6_off.gif";
+	but6_on = new Image;  but6_on.src =  "/img/navbuts/but6_on.gif";
+
+	but7_off = new Image; but7_off.src = "/img/navbuts/but7_off.gif";
+	but7_on = new Image;  but7_on.src =  "/img/navbuts/but7_on.gif";
+
+	but8_off = new Image; //but8_off.src = "/img/navbuts/but8_off.gif";
+	but8_on = new Image;  //but8_on.src =  "/img/navbuts/but8_on.gif";
+
+	search_off = new Image; search_off.src = "/img/navbuts/search_off.gif";
+	search_on = new Image; search_on.src = "/img/navbuts/search_on.gif";
+
+	go_off = new Image; go_off.src = "/img/navbuts/go_off.gif";
+	go_on = new Image; go_on.src = "/img/navbuts/go_on.gif";
+
+	lbut1_off = new Image; //lbut1_off.src = "/img/buts/lbut1_off.gif";
+	lbut1_on = new Image;  //lbut1_on.src =  "/img/buts/lbut1_on.gif";
+
+	lbut2_off = new Image; //lbut2_off.src = "/img/buts/lbut2_off.gif";
+	lbut2_on = new Image;  //lbut2_on.src =  "/img/buts/lbut2_on.gif";
+
+	lbut3_off = new Image; //lbut3_off.src = "/img/buts/lbut3_off.gif";
+	lbut3_on = new Image;  //lbut3_on.src =  "/img/buts/lbut3_on.gif";
+
+	lbut4_off = new Image; //lbut4_off.src = "/img/buts/lbut4_off.gif";
+	lbut4_on = new Image;  //lbut4_on.src =  "/img/buts/lbut4_on.gif";
+
+	lbut5_off = new Image; //lbut5_off.src = "/img/buts/lbut5_off.gif";
+	lbut5_on = new Image;  //lbut5_on.src =  "/img/buts/lbut5_on.gif";
+
+	lbut6_off = new Image; //lbut6_off.src = "/img/buts/lbut6_off.gif";
+	lbut6_on = new Image;  //lbut6_on.src =  "/img/buts/lbut6_on.gif";
+
+	bbut1_off = new Image; //bbut1_off.src = "/img/hp/bbut1_off.gif";
+	bbut1_on = new Image;  //bbut1_on.src =  "/img/hp/bbut1_on.gif";
+
+	bbut2_off = new Image; //bbut2_off.src = "/img/hp/bbut2_off.gif";
+	bbut2_on = new Image;  //bbut2_on.src =  "/img/hp/bbut2_on.gif";
+
+	bbut3_off = new Image; //bbut3_off.src = "/img/hp/bbut3_off.gif";
+	bbut3_on = new Image;  //bbut3_on.src =  "/img/hp/bbut3_on.gif";
+
+	bbut4_off = new Image; //bbut4_off.src = "/img/hp/bbut4_off.gif";
+	bbut4_on = new Image;  //bbut4_on.src =  "/img/hp/bbut4_on.gif";
+
+	bbut5_off = new Image; //bbut5_off.src = "/img/hp/bbut5_off.gif";
+	bbut5_on = new Image;  //bbut5_on.src =  "/img/hp/bbut5_on.gif";
+
+	bbut6_off = new Image; //bbut6_off.src = "/img/hp/bbut6_off.gif";
+	bbut6_on = new Image;  //bbut6_on.src =  "/img/hp/bbut6_on.gif";
+
+}
+
+var nav_b = new Array ("b1","b2","b3","b4","b5","b6","b7","b8","sh","go","l1","l2","l3","l4","l5","l6","bb1","bb2","bb3","bb4","bb5","bb6");
+var obj_boff = new Array (but1_off,but2_off,but3_off,but4_off,but5_off,but6_off,but7_off,but8_off,search_off,go_off,
+													lbut1_off,lbut2_off,lbut3_off,lbut4_off,lbut5_off,lbut6_off,
+													bbut1_off,bbut2_off,bbut3_off,bbut4_off,bbut5_off,bbut6_off);
+var obj_bon = new Array  (but1_on, but2_on, but3_on, but4_on, but5_on, but6_on, but7_on, but8_on, search_on, go_on,
+													lbut1_on, lbut2_on, lbut3_on, lbut4_on, lbut5_on, lbut6_on,
+													bbut1_on, bbut2_on, bbut3_on, bbut4_on, bbut5_on, bbut6_on);
+
+
+function on( num )
+{
+	//alert(num);
+	
+	if( document.images )
+	{
+		document.images[nav_b[num-1]].src = obj_bon[num-1].src;
+		if( (num > 0) && (num < 8) && (document.images) )
+		{
+			//alert(num);
+			popUp('HM_Menu'+(num+1));
+		}
+	}
+}
+
+function off( num )
+{
+	//alert(num)
+	
+	if( num >= 8  )
+		if( document.images )
+			document.images[nav_b[num-1]].src = obj_boff[num-1].src;
+
+	if( num < 8 )
+	{
+		popDown('HM_Menu'+(num+1));
+	}
+}
+
+
+
+function buttonoff( num )
+{
+	//alert(num);
+	if( num < 8  )
+		if( document.images[nav_b[num-1]] )
+			document.images[nav_b[num-1]].src = obj_boff[num-1].src;
+}
+
+function buttonon( num )
+{
+	if( num < 8  )
+		if( document.images[nav_b[num-1]] )
+			document.images[nav_b[num-1]].src = obj_bon[num-1].src;
+}
+
+
+
+var newwin;
+
+function launchwin(winurl,winname,winfeatures)
+{
+	newwin = window.open(winurl,winname,winfeatures);
+	if(javascript_version > 1.0)
+	{
+ 		setTimeout('newwin.focus();',250);
+	}
+}
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+function newwindow(theURL) {
+  window.open(theURL,'','');
+}
+
+
+
+function SubmitSearch()
+{ document.frmSearch.submit(); }
+
+HM_PG_MenuWidth = 190;
+HM_PG_FontFamily = "tahoma, sans-serif";
+HM_PG_FontSize = 8;
+HM_PG_FontBold = 0;
+HM_PG_FontItalic = 0;
+HM_PG_FontColor = "blue";
+HM_PG_FontColorOver = "white";
+HM_PG_BGColor = "#DDDDDD";
+HM_PG_BGColorOver = "#FFCCCC";
+HM_PG_ItemPadding = 3;
+
+HM_PG_BorderWidth = 0;
+HM_PG_BorderColor = "black";
+HM_PG_BorderStyle = "solid";
+HM_PG_SeparatorSize = 1;
+HM_PG_SeparatorColor = "#d0ff00";
+HM_PG_ImageSrc = "/img/tri.gif";
+HM_PG_ImageSrcLeft = "/img/triL.gif";
+
+HM_PG_ImageSize = 5;
+HM_PG_ImageHorizSpace = 0;
+HM_PG_ImageVertSpace = 0;
+
+HM_PG_KeepHilite = true;
+HM_PG_ClickStart = 0;
+HM_PG_ClickKill = false;
+HM_PG_ChildOverlap = 30;
+HM_PG_ChildOffset = 5;
+HM_PG_ChildPerCentOver = null;
+HM_PG_TopSecondsVisible = .2;
+HM_PG_ChildSecondsVisible = .2;
+
+HM_PG_StatusDisplayBuild =0;
+HM_PG_StatusDisplayLink = 0;
+HM_PG_UponDisplay = null;
+HM_PG_UponHide = null;
+HM_PG_RightToLeft = false;
+
+HM_PG_CreateTopOnly = 1;
+HM_PG_ShowLinkCursor = 1;
+HM_PG_NSFontOver = true;
+
+//HM_a_TreesToBuild = [2];
+
+//-->
+</script>
+
+
+<script LANGUAGE="JavaScript1.2" SRC="/HM_StuLoader.js" TYPE="text/javascript"></script>
+
+
+<!-- Top Navigation Table -->
+<script language="javascript" src="/mainEnlargeImage.js"></script>
+<script language="javascript" src="/mainPopupDiv.js"></script>
+
+<a name="top"></a><table border="0" cellpadding="0" cellspacing="0" width="840"><form name="frmSearch" id="frmSearch" action="/search/default.asp" method="post" target="_self"><tr><td width="590" height="87" valign="top" background="/img/layout/header.gif"><div style="width:440px; height:87px; float:left;"><a href="/default.asp" alt="Click here to go to the Home page"><img border="0" src="/img/blank.gif" width="440" height="87"></a></div><div style="width:150px; height:28px; float:left; vertical-align: middle; text-align: right;"><a class="hilo" href="javascript:subGrphVer('lo');">Low Graphics Version</a></div></td><td width="250" height="87" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="250"><tr><td colspan="3" valign="middle" background="/img/layout/dates.gif"><div style="width:250px; height:28px; vertical-align: middle; text-align: center;"><font class="topdate">Thursday,&nbsp;May&nbsp;17,&nbsp;2012</font></div></td></tr><tr><td colspan="3" width="250" height="20" valign="top"><img border="0" src="/img/layout/searcht.gif" width="250" height="20"></td></tr><tr><td width="180" height="25" valign="top" align="right" background="/img/layout/searchs.gif"><input type="text" name="searchquery" size="22" maxlength="50"></td><td width="10" height="25" valign="top" background="/img/layout/searchs.gif"></td><td width="60" height="25" valign="top" background="/img/layout/searchs.gif"><a href='javascript:frmSearchSubmit();' target=_self onmouseover='on(9);' onmouseout='off(9);'><img name='sh' src='/img/navbuts/search_off.gif' width=35 height=23 border=0 ></a></td></tr><tr><td colspan="3" width="250" height="14" valign="top" background="/img/layout/searchb.gif"></td></tr></table></td></tr></form></table><table width="840" height="30" border="0" cellpadding="0" cellspacing="0"></tr><td width ="840" height="21" bgcolor="#00a1dc"><img border="0" src="/img/blank.gif" width="4" height="21"><a href="/about/default.asp" target="_self" onmouseout="off(1);" onmouseover="on(1);"><img border="0" src="/img/navbuts/but1_off.gif" width="119"	height="21" name="b1" alt="About Us" ></a><a href="/info/default.asp" target="_self" onmouseout="off(2);" onmouseover="on(2);"><img border="0" src="/img/navbuts/but2_off.gif" width="119"	height="21" name="b2" alt="Information Center" ></a><a href="/education/default.asp" target="_self" onmouseout="off(3);" onmouseover="on(3);"><img border="0" src="/img/navbuts/but3_off.gif" width="119"	height="21" name="b3" alt="Education" ></a><a href="/cals/default.asp" target="_self" onmouseout="off(4);" onmouseover="on(4);"><img border="0" src="/img/navbuts/but4_off.gif" width="119"	height="21" name="b4" alt="Calendar" ></a><a href="/faqs/default.asp" target="_self" onmouseout="off(5);" onmouseover="on(5);"><img border="0" src="/img/navbuts/but5_off.gif" width="119"	height="21" name="b5" alt="FAQ" ></a><a href="/contact/default.asp" target="_self" onmouseout="off(6);" onmouseover="on(6);"><img border="0" src="/img/navbuts/but6_off.gif" width="119"	height="21" name="b6" alt="Contact Us" ></a><a href="/sitemap/default.asp" target="_self" onmouseout="off(7);" onmouseover="on(7);"><img border="0" src="/img/navbuts/but7_off.gif" width="119"	height="21" name="b7" alt="Site Map" ></a><img border="0" src="/img/blank.gif" width="3" height="21"></td></tr></tr><td width ="840" height="9" background="/img/layout/bnav.gif"><img border="0" src="/img/blank.gif" width="1" height="9"></td></tr></table><table width="840" border="0" cellpadding="0" cellspacing="0"><tr valign="top"><td height="26" valign="top" width="708" background="/img/layout/crumbs.gif"><a class="crum" href='/default.asp' target='_self'><img align="absmiddle" src="/img/icons/home_icon.gif" width="27" height="26" border="0">Homepage</a>&nbsp;<font class="crum">></font>&nbsp;<a class="crum" href='/about/default.asp' target='_self'>About Us</a>&nbsp;<font class="crum" color="#000000">>&nbsp;Fact Sheet</font></td><td width="132" valign="top" align="right"  background="/img/layout/crumbs.gif"><a href="mailto:?subject=I found this link&amp;body=http://www.lacsd.org/about/factsheet.asp"><img border="0" width="65" height="26" alt="E-mail story" src="/img/icons/email.gif"></a><a href="javascript:document.frmPrintable.submit();"><img border="0" width="65" height="26" alt="Print friendly format" src="/img/icons/printable.gif"></a></td></tr></table>
+</div>
+<table border="0" width="840" cellspacing="0" cellpadding="0"><tr><td width="1" height="100%" style="background-image: url(/img/layout/vertdiv.gif); background-repeat: no-repeat; background-position: top;"><img src="/img/blank.gif" width=1 height=180 border=0></td><td width="189" valign="top" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="189" valign="top" height="50" >
+<table border="0" width="189" cellspacing="0" cellpadding="0"><tr><td colspan="3" valign="top"><img border="0" src="/img/navmenu/navmenu.gif" width="189" ></td></tr></table>
+
+	<div id="navbg" style="position:relative; height:0px; background-Image:url(/img/navmenu/navslice.gif);"></div>
+	<div id="navcolumn" style="position:relative;" ><img border="0" src="/img/navmenu/navbott.gif" width="189" height="27"></div>
+<table border="0" width="189" cellspacing="0" cellpadding="0"><tr><td colspan=3><img src="/img/layout/contact/hdrcontact.gif" width="189" border="0"></td></tr><tr><td width="22" background="/img/layout/contact/lscontact.gif" ><img src="/img/blank.gif" width="22" height="1" border="0"></td><td align="left" width="145" bgcolor="#93a7c6" ><font class="contactHead"><div align="Center" style="padding: 0px 0px 5px 0px;">Sanitation Districts<br> of Los Angeles County<br>Public Information</div></font><font class="contactBody">1955 Workman Mill Road<br>Whittier, CA 90601<br>Phone: (562) 908-4288, <br>ext. 2301<br>Fax: (562) 695-6139<br><br></font></td><td width="22" background="/img/layout/contact/rscontact.gif" ><img src="/img/blank.gif" width="22" height="1" border="0"></td></tr><tr><td colspan=3><img src="/img/layout/contact/ftrcontact.gif" width="189" border="0"></td></tr></table></td></tr><tr><td width="189" valign="top" height="*" style="background-image: url(/img/layout/lcols.gif); background-repeat: repeat-x; background-position: top;"></td></tr></table></td><td width="1" height="100%" style="background-image: url(/img/layout/vertdiv.gif); background-repeat: no-repeat; background-position: top;"><img src="/img/blank.gif" width=1 height=180 border=0></td><td width="15" valign="top"><img src="/img/blank.gif" width=15 height=1 border=0></td><td width="620" valign="top"><div style="width:620px; height:inherit; overflow:hidden; padding-bottom:5px;">
+<table border="0" width="100%" height="224" cellspacing="0" cellpadding="0"  bgcolor="#ffffff">
+<tr>
+	<td width="100%" valign="top"><div style="width:100%; height:63px; padding: 15px 10px; background-image: url(/img/layout/titlebg.gif);background-repeat: no-repeat; background-position: top left;"><font size=4 face="arial, Sans-Serif" color="#1f82c4">Fact Sheet</font></div><p><P align=justify><FONT face=Tahoma size=2>The Sanitation Districts protect public health and the environment through innovative and cost-effective wastewater and solid waste management, and in doing so convert waste into resources such as recycled water, energy, and recycled materials</FONT>.</P><UL><LI><FONT face=Tahoma size=2><B>Sanitation Districts Fact Sheet</B></FONT> <FONT face=Tahoma size=2>[<STRONG><A href="/civica/filebank/blobdload.asp?BlobID=2542" target=_blank>English</A></STRONG>]</FONT> <P></P></LI></UL></p></td>
+</tr>
+</table>
+
+<script LANGUAGE="JavaScript1.2" SRC="/inc/NavMenu.js" TYPE="text/javascript"></script>
+</div><td width="14" valign="top"><img src="/img/blank.gif" width=14 height=1 border=0></td></tr></table></td></tr><tr><td width="100%" valign="top"><table border="0" width="840" height="56" cellspacing="0" cellpadding="0"><tr><td width="360" class="footercopy">Sanitation Districts of Los Angeles County</td><td width="120" valign="top" background="/img/layout/footerm.gif"></td><td width="360" id="footercivica" class="footercivica"></td></tr></table></td></tr></table></div></td><td width=* height="50%" align="right" style="background-color:#c3dbee; background-image: url(/img/layout/bgslice_01.gif); background-repeat: repeat-x; background-position: bottom;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" height="*" style="background-image: url(/img/layout/mrfade.gif); background-repeat: repeat-y; background-position: left;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr><tr><td width="1" valign="bottom" height="180" style="background-image: url(/img/layout/brfade_01.gif); background-repeat: no-repeat; background-position: left bottom;"><img src="/img/blank.gif" width=1 height=180 border=0></td></tr></table></td></tr><tr><td width="*" height="50%" align="right" style="background-image: url(/img/layout/bgslice_02.gif); background-repeat: repeat-x; background-position: top;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" valign="bottom" height="1" style="background-image: url(/img/layout/blfade_02.gif); background-repeat: no-repeat; background-position: right top;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr></table></td><td height="100%" width="840" valign="top" style="background-image: url(/img/layout/bslice.gif); background-repeat: repeat-x; background-position: top;"><img src="/img/blank.gif" width=840 height=1 border=0></td><td width="*" height="50%" align="right" style="background-image: url(/img/layout/bgslice_02.gif); background-repeat: repeat-x; background-position: top;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" valign="bottom" height="1" style="background-image: url(/img/layout/brfade_02.gif); background-repeat: no-repeat; background-position: left top;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr></table></td></tr><form name="frmPrintable" id="frmPrintable" action="/about/factsheet.asp" method="post" target="_blank"><input type="hidden" name="prnt" value="y"></form><form name="frmGrpxVer" id="frmGrpxVer" action="/about/factsheet.asp" method="post" ><input type="hidden" name="grpxver" value="lo"></form><form name="wfpost" method=post target="_new"></form></table></body></html>

@@ -1,0 +1,806 @@
+
+<script LANGUAGE="JavaScript">
+<!-- hide from old browsers
+function JumpToURL2()
+{
+	//var form = document.frmDepts;
+	var url = '';
+	
+	switch( url )
+	{
+		case 'ad':
+	window.location  = '/depts/administration/default.asp';
+	break;
+case 'bu':
+	window.location  = '/depts/building/default.asp';
+	break;
+case 'ca':
+	window.location  = '/depts/city_attorney/default.asp';
+	break;
+case 'cc':
+	window.location  = '/depts/city_clerk/default.asp';
+	break;
+case 'cm':
+	window.location  = '/depts/city_manager/default.asp';
+	break;
+case 'cd':
+	window.location  = '/depts/community_development/default.asp';
+	break;
+case 'ed':
+	window.location  = '/depts/economic_development/default.asp';
+	break;
+case 'fr':
+	window.location  = '/depts/fire/default.asp';
+	break;
+case 'fi':
+	window.location  = '/depts/finance/default.asp';
+	break;
+case 'hr':
+	window.location  = '/depts/hr/default.asp';
+	break;
+case 'it':
+	window.location  = '/depts/it/default.asp';
+	break;
+case 'my':
+	window.location  = '/depts/mayor_n_city_council/default.asp';
+	break;
+case 'pl':
+	window.location  = '/depts/planning_department/default.asp';
+	break;
+case 'pd':
+	window.location  = '/depts/police/default.asp';
+	break;
+case 'pw':
+	window.location  = '/depts/public_works/default.asp';
+	break;
+
+		default:
+			window.location  = '/default.asp';
+			break;
+	}
+}
+//-->
+</script>
+<script language="JavaScript"> var javascript_version = 1.0;</script>
+<script language="JavaScript1.1">  javascript_version = 1.1;</script>
+<script language="JavaScript">
+<!--
+
+var newwin;
+var civicawin;
+civicawin = null;
+
+function launchwin(winurl,winname,winfeatures)
+{
+	newwin = window.open(winurl,winname,winfeatures);
+	if (!newwin.opener)
+	{
+		newwin.opener = self
+	}
+
+	if(javascript_version > 1.0)
+	{
+ 		setTimeout('newwin.focus();',250);
+	}
+}
+
+function civicapopupwin(winurl,winname,winfeatures)
+{
+	civicawin = window.open(winurl,winname,winfeatures);
+	if (!civicawin.opener)
+	{
+		civicawin.opener = self
+	}
+
+	if(javascript_version > 1.0)
+	{
+ 		setTimeout('civicawin.focus();',250);
+	}
+}
+
+//-->
+</script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide from old browsers
+
+function faqvalidate(pForm )
+{
+	var msg = "";
+	var errors = false;
+	
+	// check UserName
+	if ((pForm.searchstr.value == null) || (pForm.searchstr.value == "") )
+	{
+		errors = true;
+	}	
+	
+	// trim the value if it becomes empty then it's an error
+	if( pForm.searchstr.value.replace(/^\s*(.*\S|.*)\s*$/, '$1') == "" )
+	{
+		pForm.searchstr.value = '';
+		errors = true;
+	}	
+		
+	if( errors == false)
+	{
+		pForm.submit();
+		return;
+	}
+	
+	msg =  "________________________________________________\n\n";
+	msg += "The Form was not submited because the \n";
+	msg += "Search String was empty.\n\n";
+	msg += "Please enter a Search String and resubmit.\n";
+	msg += "________________________________________________\n\n";
+	
+	alert(msg);
+	
+	pForm.searchstr.focus();
+	
+}
+
+// done hiding from old browsers -->
+</SCRIPT>
+
+<html>
+<head>
+<title>LACSD Website - Frequently Asked Questions</title>
+
+</head>
+<body bgcolor="#96b8d6" text="#000000" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+<SCRIPT LANGUAGE="JavaScript1.2" SRC="/navdata/890.js" TYPE='text/javascript'></SCRIPT>
+
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+
+var bOverButton = false;
+var bOverMenu = false;
+var otimerid = 0;
+
+var bWFOverButton = false;
+var bWFOverMenu = false;
+var oWFtimerid = 0;
+
+
+function civicapostwindow(sPath)
+{
+	document.wfpost.action=sPath;
+	document.wfpost.submit();
+}
+
+function clkEditButton(obj)
+{
+	bOverButton = true;
+	
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid=0;
+	
+	
+	divEditMenu.style.visibility = 'visible';
+	var y = obj.offsetTop + 25; //- ((divEditMenu.scrollHeight-obj.scrollHeight)/2);
+	if ( y < 0 )
+		y=0;
+	
+	divEditMenu.style.top = y;
+
+//	if( divEditMenu.style.top < 0 )
+//		divEditMenu.style.top =0;
+
+	divEditMenu.style.left = obj.offsetLeft;
+	
+}
+
+function clkWorkFlowButton(obj)
+{
+	bWFOverButton = true;
+	
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid=0;
+	
+	
+	divWorkFlowMenu.style.visibility = 'visible';
+	var y = obj.offsetTop + 25; //- ((divEditMenu.scrollHeight-obj.scrollHeight)/2);
+	if ( y < 0 )
+		y=0;
+	
+	divWorkFlowMenu.style.top = y;
+
+//	if( divEditMenu.style.top < 0 )
+//		divEditMenu.style.top =0;
+
+	divWorkFlowMenu.style.left = obj.offsetLeft;
+	
+}
+
+
+function exitButton(obj)
+{
+	if( bOverButton && !bOverMenu )
+	{
+		//divEditMenu.style.visibility = 'hidden';
+		otimerid = setTimeout("CloseMenu()",500);
+	}
+}
+
+function exitWorkFlowButton(obj)
+{
+	if( bWFOverButton && !bWFOverMenu )
+	{
+		//divEditMenu.style.visibility = 'hidden';
+		oWFtimerid = setTimeout("CloseWorkFlowMenu()",500);
+	}
+}
+
+function CloseMenu()
+{
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid=0;
+	bOverMenu = false;
+	bOverButton = false;
+	divEditMenu.style.visibility = 'hidden';
+}
+
+function CloseWorkFlowMenu()
+{
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid=0;
+	bWFOverMenu = false;
+	bWFOverButton = false;
+	divWorkFlowMenu.style.visibility = 'hidden';
+}
+
+function EnterMenu()
+{
+	bOverMenu=true;
+	bOverButton=false;
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid=0;
+}
+
+function EnterWorkFlowMenu()
+{
+	bOverWFMenu=true;
+	bOverWFButton=false;
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid=0;
+}
+
+function ExitMenu()
+{
+	bOverMenu=false;
+	if(otimerid > 0) clearTimeout(otimerid);
+	otimerid = setTimeout("CloseMenu()",500);
+}
+function ExitWorkFlowMenu()
+{
+	bWFOverMenu=false;
+	if(oWFtimerid > 0) clearTimeout(oWFtimerid);
+	oWFtimerid = setTimeout("CloseWorkFlowMenu()",500);
+}
+
+
+//-->
+</script>
+
+
+<style type="text/css">
+a:link, a:visited, 
+a:active			{ text-decoration: underline; color: rgb(0,0,128) }
+a:hover				{ text-decoration: underline; color: red }
+
+a.mnav:link, a.mnav:visited,
+a.mnav:active     { text-decoration: none; font-size: 10px; color: white }
+a.mnav:hover      { text-decoration: none; font-size: 10px; color: yellow }
+
+a.l2:link, a.l2:visited,
+a.l2:active			{ text-decoration: underline; font-size: 13px; color: red }
+a.l2:hover      { text-decoration: underline; font-size: 13px; color: rgb(200,0,0) }
+a.yah:link, a.yah:visited, 
+a.yah:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #000000 }
+a.yah:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: red }
+font.yah		{ font-family: Tahoma, sans-serif; font-size: 11px; color: #FFFFFF }
+font.wee		{ font-family: Tahoma, sans-serif; font-size: 11px  }
+font.wee2		{ font-family: Tahoma, sans-serif; font-size: 11px; color: rgb(51,51,51) }
+.f1			{ font-family: Tahoma, sans-serif; font-size: 11px }
+.f2			{ font-family: Tahoma, sans-serif; font-size: 13px }
+.f3			{ font-family: Tahoma, sans-serif; font-size: 15px }
+.f4			{ font-family: Tahoma, sans-serif; font-size: 17px }
+a.wee:link, a.wee:visited,
+a.wee:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: rgb(0,0,128) }
+a.wee:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: red }
+a.nav:link, a.nav:visited, 
+a.nav:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: rgb(0,0,128) }
+a.nav:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: red }
+font.topdate		{ font-family: Tahoma, sans-serif; font-size: 11px; color: #004572;font-weight: normal}
+body.default  {font-family: Tahoma, Arial, sans-serif; font-size: 13px; color: black}
+.searchresulturl { font-family: Tahoma, sans-serif; font-size: 11px; color: rgb(64,64,192)}
+SELECT.seldept { PADDING-LEFT: 4px; FONT-SIZE: 11px; FONT-FAMILY: Tahoma, sans-serif}
+
+font.crum					{ font-family: Tahoma, sans-serif; font-size: 11px; color: #000000  }
+a.crum:link, a.crum:visited, 
+a.crum:active     { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #000000 }
+a.crum:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #FFBA00 }
+
+font.copy					{ font-family: Tahoma, sans-serif; font-size: 11px; color: #73735B  }
+span.copy					{ font-family: Tahoma, sans-serif; font-size: 11px; color: #73735B  }
+span.scopy				{ font-family: Tahoma, sans-serif; font-size: 11px; color: #73735B  }
+a.copy:link, a.copy:visited, 
+a.copy:active     { font-family: Tahoma, sans-serif; font-size: 11px; font-weight: bold; text-decoration: underline; color: rgb(0,0,128) }
+a.copy:hover      { font-family: Tahoma, sans-serif; font-size: 11px; font-weight: bold; text-decoration: underline; color: rgb(192,0,0) }
+font.lohi					{ font-family: Tahoma, sans-serif; font-size: 11px  }
+a.lohi:link, a.lohi:visited, a.lohi:active     
+									{ font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: #C9DDEA }
+a.lohi:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #FFFFFF }
+
+a.hilo:link, a.hilo:visited, a.hilo:active     
+									{ font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: none; color: #004572 }
+a.hilo:hover      { font-family: Tahoma, sans-serif; font-size: 11px; text-decoration: underline; color: #ffffff }
+
+td.footercopy
+{
+	background-image: url(/img/layout/footerl.gif);
+	font-family: Tahoma, sans-serif; 
+	font-size: 11px; 
+	color: #004572;
+	text-align: left;
+	vertical-align: middle;
+	padding: 10px;
+}
+td.footercivica
+{
+	background-image: url(/img/layout/footerr.gif);
+	background-repeat: repeat-x; 
+	background-position: top left;
+	font-family: Tahoma, sans-serif; 
+	font-size: 11px; 
+	color: #ffffff;
+	text-align: right;
+	vertical-align: middle;
+	padding: 10px;
+}
+
+a.footercivica:link, a.footercivica:visited, a.footercivica:active     
+{
+	font-size: 11px; 
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a.footercivica:hover
+{
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+
+body
+{ background-color: #96b8d6;
+	background-image: url();
+}
+
+#divEditMenu
+{   BORDER: #959595 1px solid;
+    PADDING: 2px;
+    FONT-FAMILY: Tahoma;
+    BACKGROUND-COLOR: #ffffff;
+    TEXT-DECORATION: none;
+    position:absolute;
+		visibility:hidden;
+		top:-1000px;
+		left: -1000px;
+}
+
+#divWorkFlowMenu
+{   BORDER: #959595 1px solid;
+    PADDING: 2px;
+    FONT-FAMILY: Tahoma;
+    BACKGROUND-COLOR: #ffffff;
+    TEXT-DECORATION: none;
+    position:absolute;
+		visibility:hidden;
+		top:-1000px;
+		left: -1000px;
+}
+
+.floatimgleft {	float:left; margin-top:10px; margin-right:10px; margin-bottom:10px; } 
+.floatimgright { float:right; margin-top:10px; margin-left:10px; margin-bottom:10px; } 
+
+#hpbutton
+{
+	width: 770px;
+	padding: 0;
+	border: 0px solid #000;
+}
+
+#hpbutton ul
+{
+	list-style: none;
+	display: inline;
+}
+		
+#hpbutton li
+{
+	display: inline;
+	float: left;
+}
+
+#hpbutton li a 
+{
+	display: block;
+	background-color: #ffffff;
+	width: 154px;
+}
+
+#hpbutton li a:hover 
+{
+	/*background-color: Transparent;*/
+	background-color: #e2faf0;
+}
+
+font.contactHead
+{ 
+	font-family: Tahoma, sans-serif; 
+	font-size: 13px;
+	color: #ffffff;
+	
+}
+font.contactBody
+{
+	font-family: Tahoma, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+}
+
+
+</style>
+
+
+<SCRIPT LANGUAGE="JavaScript1.2" SRC="/civica/js/FormVal.js"></SCRIPT>
+
+
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+function HM_f_MenuTop()
+{
+	return 0;
+}
+
+function subGrphVer( grphver )
+{
+	document.frmGrpxVer.grpxver.value = grphver;
+	document.frmGrpxVer.submit();
+}
+
+function frmSearchSubmit()
+{
+
+  if (document.frmSearch.searchquery.value=='')
+  {
+    alert('Please Enter a value to search');
+    document.frmSearch.searchquery.focus();
+    return;
+  }
+  with(document.frmSearch)
+  {
+    action = '/search/default.asp';
+    submit();
+  }
+
+}
+
+var cvPageID = 893;
+
+function DrawRollOvers()
+{
+
+
+}
+
+function CV_jumpMenu(selObj,restore)
+{
+	var url = selObj.options[selObj.selectedIndex].value;
+	if (url) window.open(url);
+	if (restore) selObj.selectedIndex=0;
+}
+
+//-->
+</script>
+
+<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width=* height="50%" align="right" style="background-color:#c3dbee; background-image: url(/img/layout/bgslice_01.gif); background-repeat: repeat-x; background-position: bottom;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" height="*" style="background-image: url(/img/layout/mlfade.gif); background-repeat: repeat-y; background-position: right;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr><tr><td width="1" valign="bottom" height="180" style="background-image: url(/img/layout/blfade_01.gif); background-repeat: no-repeat; background-position: right bottom;"><img src="/img/blank.gif" width=1 height=180 border=0></td></tr></table></td><td width="840" valign="top" bgcolor="#FFFFFF"><div id="oAllScreen" name="oAllScreen" style="display:block; position:relative; top: 0px; left: 0px; height: 100% "><table border="0" width="100%" cellspacing="0" cellpadding="0"><tr><td width="840" valign="top" >
+<script LANGUAGE="JavaScript"> var javascript_version = 1.0;</script>
+<script LANGUAGE="JavaScript1.1">  javascript_version = 1.1;</script>
+
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+
+
+
+if(window.event + "" == "undefined") event = null;
+function HM_f_PopUp(){return false};
+function HM_f_PopDown(){return false};
+popUp = HM_f_PopUp;
+popDown = HM_f_PopDown;
+
+
+if (document.images) {
+	but1_off = new Image; but1_off.src = "/img/navbuts/but1_off.gif";
+	but1_on = new Image;  but1_on.src =  "/img/navbuts/but1_on.gif";
+
+	but2_off = new Image; but2_off.src = "/img/navbuts/but2_off.gif";
+	but2_on = new Image;  but2_on.src =  "/img/navbuts/but2_on.gif";
+
+	but3_off = new Image; but3_off.src = "/img/navbuts/but3_off.gif";
+	but3_on = new Image;  but3_on.src =  "/img/navbuts/but3_on.gif";
+
+	but4_off = new Image; but4_off.src = "/img/navbuts/but4_off.gif";
+	but4_on = new Image;  but4_on.src =  "/img/navbuts/but4_on.gif";
+
+	but5_off = new Image; but5_off.src = "/img/navbuts/but5_off.gif";
+	but5_on = new Image;  but5_on.src =  "/img/navbuts/but5_on.gif";
+
+	but6_off = new Image; but6_off.src = "/img/navbuts/but6_off.gif";
+	but6_on = new Image;  but6_on.src =  "/img/navbuts/but6_on.gif";
+
+	but7_off = new Image; but7_off.src = "/img/navbuts/but7_off.gif";
+	but7_on = new Image;  but7_on.src =  "/img/navbuts/but7_on.gif";
+
+	but8_off = new Image; //but8_off.src = "/img/navbuts/but8_off.gif";
+	but8_on = new Image;  //but8_on.src =  "/img/navbuts/but8_on.gif";
+
+	search_off = new Image; search_off.src = "/img/navbuts/search_off.gif";
+	search_on = new Image; search_on.src = "/img/navbuts/search_on.gif";
+
+	go_off = new Image; go_off.src = "/img/navbuts/go_off.gif";
+	go_on = new Image; go_on.src = "/img/navbuts/go_on.gif";
+
+	lbut1_off = new Image; //lbut1_off.src = "/img/buts/lbut1_off.gif";
+	lbut1_on = new Image;  //lbut1_on.src =  "/img/buts/lbut1_on.gif";
+
+	lbut2_off = new Image; //lbut2_off.src = "/img/buts/lbut2_off.gif";
+	lbut2_on = new Image;  //lbut2_on.src =  "/img/buts/lbut2_on.gif";
+
+	lbut3_off = new Image; //lbut3_off.src = "/img/buts/lbut3_off.gif";
+	lbut3_on = new Image;  //lbut3_on.src =  "/img/buts/lbut3_on.gif";
+
+	lbut4_off = new Image; //lbut4_off.src = "/img/buts/lbut4_off.gif";
+	lbut4_on = new Image;  //lbut4_on.src =  "/img/buts/lbut4_on.gif";
+
+	lbut5_off = new Image; //lbut5_off.src = "/img/buts/lbut5_off.gif";
+	lbut5_on = new Image;  //lbut5_on.src =  "/img/buts/lbut5_on.gif";
+
+	lbut6_off = new Image; //lbut6_off.src = "/img/buts/lbut6_off.gif";
+	lbut6_on = new Image;  //lbut6_on.src =  "/img/buts/lbut6_on.gif";
+
+	bbut1_off = new Image; //bbut1_off.src = "/img/hp/bbut1_off.gif";
+	bbut1_on = new Image;  //bbut1_on.src =  "/img/hp/bbut1_on.gif";
+
+	bbut2_off = new Image; //bbut2_off.src = "/img/hp/bbut2_off.gif";
+	bbut2_on = new Image;  //bbut2_on.src =  "/img/hp/bbut2_on.gif";
+
+	bbut3_off = new Image; //bbut3_off.src = "/img/hp/bbut3_off.gif";
+	bbut3_on = new Image;  //bbut3_on.src =  "/img/hp/bbut3_on.gif";
+
+	bbut4_off = new Image; //bbut4_off.src = "/img/hp/bbut4_off.gif";
+	bbut4_on = new Image;  //bbut4_on.src =  "/img/hp/bbut4_on.gif";
+
+	bbut5_off = new Image; //bbut5_off.src = "/img/hp/bbut5_off.gif";
+	bbut5_on = new Image;  //bbut5_on.src =  "/img/hp/bbut5_on.gif";
+
+	bbut6_off = new Image; //bbut6_off.src = "/img/hp/bbut6_off.gif";
+	bbut6_on = new Image;  //bbut6_on.src =  "/img/hp/bbut6_on.gif";
+
+}
+
+var nav_b = new Array ("b1","b2","b3","b4","b5","b6","b7","b8","sh","go","l1","l2","l3","l4","l5","l6","bb1","bb2","bb3","bb4","bb5","bb6");
+var obj_boff = new Array (but1_off,but2_off,but3_off,but4_off,but5_off,but6_off,but7_off,but8_off,search_off,go_off,
+													lbut1_off,lbut2_off,lbut3_off,lbut4_off,lbut5_off,lbut6_off,
+													bbut1_off,bbut2_off,bbut3_off,bbut4_off,bbut5_off,bbut6_off);
+var obj_bon = new Array  (but1_on, but2_on, but3_on, but4_on, but5_on, but6_on, but7_on, but8_on, search_on, go_on,
+													lbut1_on, lbut2_on, lbut3_on, lbut4_on, lbut5_on, lbut6_on,
+													bbut1_on, bbut2_on, bbut3_on, bbut4_on, bbut5_on, bbut6_on);
+
+
+function on( num )
+{
+	//alert(num);
+	
+	if( document.images )
+	{
+		document.images[nav_b[num-1]].src = obj_bon[num-1].src;
+		if( (num > 0) && (num < 8) && (document.images) )
+		{
+			//alert(num);
+			popUp('HM_Menu'+(num+1));
+		}
+	}
+}
+
+function off( num )
+{
+	//alert(num)
+	
+	if( num >= 8  )
+		if( document.images )
+			document.images[nav_b[num-1]].src = obj_boff[num-1].src;
+
+	if( num < 8 )
+	{
+		popDown('HM_Menu'+(num+1));
+	}
+}
+
+
+
+function buttonoff( num )
+{
+	//alert(num);
+	if( num < 8  )
+		if( document.images[nav_b[num-1]] )
+			document.images[nav_b[num-1]].src = obj_boff[num-1].src;
+}
+
+function buttonon( num )
+{
+	if( num < 8  )
+		if( document.images[nav_b[num-1]] )
+			document.images[nav_b[num-1]].src = obj_bon[num-1].src;
+}
+
+
+
+var newwin;
+
+function launchwin(winurl,winname,winfeatures)
+{
+	newwin = window.open(winurl,winname,winfeatures);
+	if(javascript_version > 1.0)
+	{
+ 		setTimeout('newwin.focus();',250);
+	}
+}
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+function newwindow(theURL) {
+  window.open(theURL,'','');
+}
+
+
+
+function SubmitSearch()
+{ document.frmSearch.submit(); }
+
+HM_PG_MenuWidth = 190;
+HM_PG_FontFamily = "tahoma, sans-serif";
+HM_PG_FontSize = 8;
+HM_PG_FontBold = 0;
+HM_PG_FontItalic = 0;
+HM_PG_FontColor = "blue";
+HM_PG_FontColorOver = "white";
+HM_PG_BGColor = "#DDDDDD";
+HM_PG_BGColorOver = "#FFCCCC";
+HM_PG_ItemPadding = 3;
+
+HM_PG_BorderWidth = 0;
+HM_PG_BorderColor = "black";
+HM_PG_BorderStyle = "solid";
+HM_PG_SeparatorSize = 1;
+HM_PG_SeparatorColor = "#d0ff00";
+HM_PG_ImageSrc = "/img/tri.gif";
+HM_PG_ImageSrcLeft = "/img/triL.gif";
+
+HM_PG_ImageSize = 5;
+HM_PG_ImageHorizSpace = 0;
+HM_PG_ImageVertSpace = 0;
+
+HM_PG_KeepHilite = true;
+HM_PG_ClickStart = 0;
+HM_PG_ClickKill = false;
+HM_PG_ChildOverlap = 30;
+HM_PG_ChildOffset = 5;
+HM_PG_ChildPerCentOver = null;
+HM_PG_TopSecondsVisible = .2;
+HM_PG_ChildSecondsVisible = .2;
+
+HM_PG_StatusDisplayBuild =0;
+HM_PG_StatusDisplayLink = 0;
+HM_PG_UponDisplay = null;
+HM_PG_UponHide = null;
+HM_PG_RightToLeft = false;
+
+HM_PG_CreateTopOnly = 1;
+HM_PG_ShowLinkCursor = 1;
+HM_PG_NSFontOver = true;
+
+//HM_a_TreesToBuild = [2];
+
+//-->
+</script>
+
+
+<script LANGUAGE="JavaScript1.2" SRC="/HM_StuLoader.js" TYPE="text/javascript"></script>
+
+
+<!-- Top Navigation Table -->
+<script language="javascript" src="/mainEnlargeImage.js"></script>
+<script language="javascript" src="/mainPopupDiv.js"></script>
+
+<a name="top"></a><table border="0" cellpadding="0" cellspacing="0" width="840"><form name="frmSearch" id="frmSearch" action="/search/default.asp" method="post" target="_self"><tr><td width="590" height="87" valign="top" background="/img/layout/header.gif"><div style="width:440px; height:87px; float:left;"><a href="/default.asp" alt="Click here to go to the Home page"><img border="0" src="/img/blank.gif" width="440" height="87"></a></div><div style="width:150px; height:28px; float:left; vertical-align: middle; text-align: right;"><a class="hilo" href="javascript:subGrphVer('lo');">Low Graphics Version</a></div></td><td width="250" height="87" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="250"><tr><td colspan="3" valign="middle" background="/img/layout/dates.gif"><div style="width:250px; height:28px; vertical-align: middle; text-align: center;"><font class="topdate">Monday,&nbsp;March&nbsp;12,&nbsp;2012</font></div></td></tr><tr><td colspan="3" width="250" height="20" valign="top"><img border="0" src="/img/layout/searcht.gif" width="250" height="20"></td></tr><tr><td width="180" height="25" valign="top" align="right" background="/img/layout/searchs.gif"><input type="text" name="searchquery" size="22" maxlength="50"></td><td width="10" height="25" valign="top" background="/img/layout/searchs.gif"></td><td width="60" height="25" valign="top" background="/img/layout/searchs.gif"><a href='javascript:frmSearchSubmit();' target=_self onmouseover='on(9);' onmouseout='off(9);'><img name='sh' src='/img/navbuts/search_off.gif' width=35 height=23 border=0 ></a></td></tr><tr><td colspan="3" width="250" height="14" valign="top" background="/img/layout/searchb.gif"></td></tr></table></td></tr></form></table><table width="840" height="30" border="0" cellpadding="0" cellspacing="0"></tr><td width ="840" height="21" bgcolor="#00a1dc"><img border="0" src="/img/blank.gif" width="4" height="21"><a href="/about/default.asp" target="_self" onmouseout="off(1);" onmouseover="on(1);"><img border="0" src="/img/navbuts/but1_off.gif" width="119"	height="21" name="b1" alt="About Us" ></a><a href="/info/default.asp" target="_self" onmouseout="off(2);" onmouseover="on(2);"><img border="0" src="/img/navbuts/but2_off.gif" width="119"	height="21" name="b2" alt="Information Center" ></a><a href="/education/default.asp" target="_self" onmouseout="off(3);" onmouseover="on(3);"><img border="0" src="/img/navbuts/but3_off.gif" width="119"	height="21" name="b3" alt="Education" ></a><a href="/cals/default.asp" target="_self" onmouseout="off(4);" onmouseover="on(4);"><img border="0" src="/img/navbuts/but4_off.gif" width="119"	height="21" name="b4" alt="Calendar" ></a><a href="/faqs/default.asp" target="_self" onmouseout="off(5);" onmouseover="on(5);"><img border="0" src="/img/navbuts/but5_off.gif" width="119"	height="21" name="b5" alt="FAQ" ></a><a href="/contact/default.asp" target="_self" onmouseout="off(6);" onmouseover="on(6);"><img border="0" src="/img/navbuts/but6_off.gif" width="119"	height="21" name="b6" alt="Contact Us" ></a><a href="/sitemap/default.asp" target="_self" onmouseout="off(7);" onmouseover="on(7);"><img border="0" src="/img/navbuts/but7_off.gif" width="119"	height="21" name="b7" alt="Site Map" ></a><img border="0" src="/img/blank.gif" width="3" height="21"></td></tr></tr><td width ="840" height="9" background="/img/layout/bnav.gif"><img border="0" src="/img/blank.gif" width="1" height="9"></td></tr></table><table width="840" border="0" cellpadding="0" cellspacing="0"><tr valign="top"><td height="26" valign="top" width="708" background="/img/layout/crumbs.gif"><a class="crum" href='/default.asp' target='_self'><img align="absmiddle" src="/img/icons/home_icon.gif" width="27" height="26" border="0">Homepage</a>&nbsp;<font class="crum">>&nbsp;<a class="crum" href='/info/default.asp' target='_self'>...</font></a>&nbsp;<font class="crum">></font>&nbsp;<a class="crum" href='/info/industrial_waste/default.asp' target='_self'>Industrial Waste</a>&nbsp;<font class="crum">></font>&nbsp;<a class="crum" href='/info/industrial_waste/chloride_in_santa_clarita/default.asp' target='_self'>Chloride in Santa Clarita</a>&nbsp;<font class="crum" color="#000000">>&nbsp;Frequently Asked Questions</font></td><td width="132" valign="top" align="right"  background="/img/layout/crumbs.gif"><a href="mailto:?subject=I found this link&amp;body=http://www.lacsd.org/info/industrial_waste/chloride_in_santa_clarita/frequently_asked_questions.asp"><img border="0" width="65" height="26" alt="E-mail story" src="/img/icons/email.gif"></a><a href="javascript:document.frmPrintable.submit();"><img border="0" width="65" height="26" alt="Print friendly format" src="/img/icons/printable.gif"></a></td></tr></table>
+</div>
+<table border="0" width="840" cellspacing="0" cellpadding="0"><tr><td width="1" height="100%" style="background-image: url(/img/layout/vertdiv.gif); background-repeat: no-repeat; background-position: top;"><img src="/img/blank.gif" width=1 height=180 border=0></td><td width="189" valign="top" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="189" valign="top" height="50" >
+<table border="0" width="189" cellspacing="0" cellpadding="0"><tr><td colspan="3" valign="top"><img border="0" src="/img/navmenu/navmenu.gif" width="189" ></td></tr></table>
+
+	<div id="navbg" style="position:relative; height:0px; background-Image:url(/img/navmenu/navslice.gif);"></div>
+	<div id="navcolumn" style="position:relative;" ><img border="0" src="/img/navmenu/navbott.gif" width="189" height="27"></div>
+<table border="0" width="189" cellspacing="0" cellpadding="0"><tr><td colspan=3><img src="/img/layout/contact/hdrcontact.gif" width="189" border="0"></td></tr><tr><td width="22" background="/img/layout/contact/lscontact.gif" ><img src="/img/blank.gif" width="22" height="1" border="0"></td><td align="left" width="145" bgcolor="#93a7c6" ><font class="contactHead"><div align="Center" style="padding: 0px 0px 5px 0px;">Sanitation Districts<br> of Los Angeles County<br>Industrial Waste Section</div></font><font class="contactBody">1955 Workman Mill Road<br>Whittier, CA 90601<br>Phone: (562) 908-4288, <br>ext. 2900<br><br></font></td><td width="22" background="/img/layout/contact/rscontact.gif" ><img src="/img/blank.gif" width="22" height="1" border="0"></td></tr><tr><td colspan=3><img src="/img/layout/contact/ftrcontact.gif" width="189" border="0"></td></tr></table></td></tr><tr><td width="189" valign="top" height="*" style="background-image: url(/img/layout/lcols.gif); background-repeat: repeat-x; background-position: top;"></td></tr></table></td><td width="1" height="100%" style="background-image: url(/img/layout/vertdiv.gif); background-repeat: no-repeat; background-position: top;"><img src="/img/blank.gif" width=1 height=180 border=0></td><td width="15" valign="top"><img src="/img/blank.gif" width=15 height=1 border=0></td><td width="620" valign="top"><div style="width:620px; height:inherit; overflow:hidden; padding-bottom:5px;">
+<table border="0" width="100%" height="224" cellspacing="0" cellpadding="0"  bgcolor="#ffffff">
+<tr>
+	<td width="100%" valign="top">
+		<table border="0" width="100%" cellspacing="0" cellpadding="0" align="left">
+		<tr><td><font size=4 face="arial, Sans-Serif" color="#1f82c4">Chloride Frequently Asked Questions</font></td></tr>
+		<tr><form name="frmFaqSearch" action="faqresult.asp" method="post"><td valign=middle width=100% height=36 colspan="2"><table border=0 width=100% cellspacing=0 cellpadding=0><tr><td><tr><td width=20><input type=text name=searchstr size=40></td><td width=100%><a href="javascript:faqvalidate(document.frmFaqSearch);"><img src='/custom/0000/img/search.gif' BORDER=0 WIDTH=60 HEIGHT=25 ></a></td></tr></table></td></form></tr><tr><td height=5></td></tr>
+<tr><td height=2 bgcolor=#c0c0c0></td></tr>
+<tr><td height=5></td></tr>
+  	<tr><td valign=top  width=100%><table border=0 width=100% cellspacing=0 cellpadding=0 ><tr><td width=100%><ul><li><a class="f2" href="#465">But I like my automatic water softener. Can I continue to use it?</a></li><li><a class="f2" href="#467">Can I divert the brine waste from the sewer system by installing a drain line into my yard, or into a dry well?</a></li><li><a class="f2" href="#463">How can I help reduce the amount of chloride going to the Santa Clara River?</a></li><li><a class="f2" href="#464">How do I know if I have an automatic water softener?</a></li><li><a class="f2" href="#461">How does chloride end up in the Santa Clara River?</a></li><li><a class="f2" href="#462">I always thought most of the chloride in the Santa Clara River comes from industrial, rather than residential, use. Isn't that true?</a></li><li><a class="f2" href="#468">I don't like the quality of the water coming into my home. How can I treat it without using an automatic water softener?</a></li><li><a class="f2" href="#472">I still have questions. Who can I talk to for more information?</a></li><li><a class="f2" href="#466">If I use potassium chloride in my water softener instead of sodium chloride, will that help eliminate the problem?</a></li><li><a class="f2" href="#458">What is chloride?</a></li><li><a class="f2" href="#469">Why can't the Sanitation District treat our tap water to make it softer and eliminate the need for water softener systems?</a></li><li><a class="f2" href="#459">Why is chloride bad for water?</a></li><li><a class="f2" href="#460">Why is it necessary to reduce chloride levels in the Santa Clara River?</a></li><li><a class="f2" href="#575">With the removal of the automatic water softeners why hasn't the problem been solved?&nbsp; Why do we still have to pay for costly treatment plant upgrades?</a></li></ul></td></tr><tr><td height=15></td></tr>
+<tr><td height=2 bgcolor=#c0c0c0></td></tr>
+<tr><td height=15></td></tr>
+  	<tr><td width=100%><a name="465"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>But I like my automatic water softener. Can I continue to use it?</b></br><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Tahoma; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Tahoma; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Measure S approved by voters on November 4, 2008, enacted the Santa Clara River Chloride Reduction Ordinance of 2008.&nbsp; The ordinance required the removal of <U><STRONG>all</STRONG></U> residential automatic water softeners by June 30, 2009.&nbsp; Residents that still have automatic water softeners should visit the Automatic Water Softener Rebate Program webpage for information on how to remove their units.</SPAN></SPAN><br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="467"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>Can I divert the brine waste from the sewer system by installing a drain line into my yard, or into a dry well?</b></br><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Tahoma; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA; mso-bidi-font-size: 12.0pt">No, the disposal of brine from an automatic water softener, even if you use potassium chloride, on to land or into a dry well is illegal.&nbsp; The Los Angeles Regional Water Quality Control&nbsp;Board (Regional Board)&nbsp;will not issue permits for landscape&nbsp;irrigation with brine and disposal brine into a dry well.&nbsp; Violators may be subject to penalties.</SPAN><br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="463"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>How can I help reduce the amount of chloride going to the Santa Clara River?</b></br><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Tahoma; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA; mso-bidi-font-size: 12.0pt">If you have an automatic water softener, also known as a self-regenerating water softener or rock salt softener, the most important thing, as required by the Santa Clara River Chloride Reduction Ordinance of 2008, is to remove the unit.&nbsp; Other steps you can take are to use non-chlorine bleach or hydrogen peroxide instead of chlorine bleach and to minimize the amount of laundry detergents and fabric softeners that you use, since many of these products contain chloride.&nbsp; You can find environmentally sound detergents and cleaners at most grocery stores.</SPAN><br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="464"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>How do I know if I have an automatic water softener?</b></br>If you add salt or potassium chloride to your water softener or have a water conditioning service do so, then you have an automatic water softener. If you have a water conditioning service change out the tank on your water softener on a regular basis, then you have a portable exchange tank system.<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="461"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>How does chloride end up in the Santa Clara River?</b></br>After water is used for washing dishes, showering, laundering, flushing toilets, and other uses in the Santa Clarita area, the wastewater goes to the sewer. From there it flows to either the Saugus or Valencia Water Reclamation Plant for treatment. These treatment plants are owned and operated by the Santa Clarita Valley Sanitation District (Sanitation District), and they discharge wastewater into the Santa Clara River after it has been treated. While the treatment plants remove many impurities and pollutants from wastewater, they are not designed to remove chloride. The chloride in wastewater goes through the treatment plants and is discharged to the Santa Clara River.&nbsp;<FONT face=Verdana>&nbsp;</FONT><BR>
+<P></P>
+<CENTER>
+<P align=center><IMG alt="" src="http://www.lacsd.org/images/Departments/Industrialwaste/flow.gif" border=0></P><BR></CENTER><br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="462"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>I always thought most of the chloride in the Santa Clara River comes from industrial, rather than residential, use. Isn't that true?</b></br>No. Most of the chloride in the Santa Clara River comes from residences,&nbsp;including the chloride that already exists in the drinking water from your tap.&nbsp; Chloride also comes from soaps, detergents and other cleaning products, particularly laundry products. The discharge of chloride from industrial and commercial businesses is regulated by the Sanitation District, and Santa Clarita businesses have been prevented from using automatic water softeners since 1961.<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="468"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>I don't like the quality of the water coming into my home. How can I treat it without using an automatic water softener?</b></br>A number of different treatment systems are available for the water you use in your home. <A href="/info/industrial_waste/chloride_in_santa_clarita/alternatives.asp">Click here for a partial list of water conditioning systems acceptable for use in the Santa Clarita Valley</A>. The Sanitation District does not endorse any particular water treatment unit, nor&nbsp;does the Sanitation&nbsp;District&nbsp;provide any assurances regarding the effectiveness of any unit. If you need soft water, you can switch to an alternative means of softening your water, such as a portable exchange&nbsp;tank water softening system. Some vendors offer non-salt treatment units for conditioning water. Depending on your needs, you may also consider filtration, activated carbon, or reverse osmosis treatment units. <BR><BR>Filtration simply stated, removes suspended matter from water by mechanical "screening." Basic filters usually are porous beds of insoluble material. Other examples include cast forms, plates of sheet material, synthetic membranes, finely perforated plastic, or specially sized beds of inert particles. The filtration process removes suspended silt, clay, colloids, and some microorganisms. Simple cartridge filters may be effective for low levels of turbidity. <BR><BR>Activated carbon filtration systems involve the adhesion of one material on the surface of a second solid substance based on opposing electrical charges of each material. These systems are widely used to eliminate certain hazardous compounds related to industrial wastes, chemicals, and pesticides. This treatment method can also remove unpleasant tastes and odors caused by decaying organic matter, dissolved gases, and residual chlorine. <BR><BR>Reverse osmosis methods employ a unit divided into two chambers by a semi-permeable membrane. One of the chambers contains "raw" water with undesirable constituent(s) (e.g., salt). Reverse osmosis involves the application of pressure to the side of the chamber containing the raw water. This forces the water to leave the contaminated chamber and flow through the treatment membrane into the "treated" water chamber, leaving the unwanted minerals behind, which are then rinsed to the drain. The membrane filters the water on a molecular scale. Reverse osmosis provides partially demineralized water. <BR><BR>The American Ground Water Trust, state health departments, water well construction agencies, local health officials, or ground water industry professionals are sources for assistance and/or referral to qualified water testing services. It is important to have an independent water analysis. Look for a professional who understands your water chemistry, explains your treatment options and who pays attention to the details specific to your home and water supply. Before purchasing major&nbsp;water&nbsp;conditioning equipment, obtain information and bids from more than one&nbsp;company. You may want to check on the reputation of the company by contacting your local Better Business Bureau. <BR><BR>(Descriptions and suggestions above provided by the American Ground Water Trust. For more information, see their website&nbsp;at <A href="http://www.agwt.org">http://www.agwt.org</A>)<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="472"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>I still have questions. Who can I talk to for more information?</b></br>If you have any further questions&nbsp;or want more information about your choices, you may call the Sanitation District toll-free at 1-877-CUT-SALT or email us at <A href="mailto:cutsalt@lacsd.org">cutsalt@lacsd.org</A>.<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="466"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>If I use potassium chloride in my water softener instead of sodium chloride, will that help eliminate the problem?</b></br>No. Although potassium chloride does not contain sodium, it still contains chloride.<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="458"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>What is chloride?</b></br>Chloride is one of the two components of sodium chloride, also known as table salt or rock salt. It is also one of the two components of potassium chloride, also known as potassium tablets or potassium crystals.<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="469"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>Why can't the Sanitation District treat our tap water to make it softer and eliminate the need for water softener systems?</b></br><P class=MsoNormal style="MARGIN: 0in 0in 0pt; TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Tahoma; mso-bidi-font-size: 12.0pt">It is not within the Sanitation District's scope to treat and serve drinking water. Any decision to further treat tap water must be made by the local water agencies in the Santa Clarita Valley.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>It may be very costly and difficult to treat all of the tap water in the Santa Clarita area, since half of the potable (drinkable) water in the area comes from groundwater wells, and it is the water from the groundwater wells that is hard. Water treatment equipment would have to be installed and maintained at numerous wellhead locations that are scattered around the Santa Clarita Valley or combined to develop a centralized treatment facility and new distribution system.</SPAN></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt; TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Tahoma; mso-bidi-font-size: 12.0pt"></SPAN>&nbsp;</P>
+<P class=MsoNormal style="MARGIN: 0in 0in 0pt; TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Tahoma; mso-bidi-font-size: 12.0pt">One&nbsp;local purveyor, Valencia Water Company, is currently conducting a&nbsp; pellet softening demonstration project in the&nbsp;Copperhill community.&nbsp; More information can be obtained by calling them at (661) 294-0828.</SPAN><br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="459"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>Why is chloride bad for water?</b></br>Too much chloride in water can damage agricultural crops by causing leaf burn or drying of leaf tissue. It also can harm aquatic life if present&nbsp;at levels of 230 milligrams per liter (parts per million)&nbsp;for sustained periods.<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="460"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>Why is it necessary to reduce chloride levels in the Santa Clara River?</b></br>The Los Angeles Regional Water Quality Control Board (Regional Board) has set a water quality objective of 100 milligrams per liter for the Santa Clara River. Regional Board officials believe that this objective is necessary to protect salt sensitive agricultural crops, such as avocados and strawberries. Currently the concentration of chloride being discharged to the river is&nbsp;consistently above&nbsp;the acceptable level established by the Regional Board.<br></font></p></td></tr><tr><td height=6></td></tr>
+<tr><td height=1 bgcolor=#e0e0e0></td></tr>
+<tr><td height=12></td></tr>
+  	<tr><td width=100%><a name="575"></a><p><font class="f2" color="#000000" face="Tahoma,Arial,Sans-Serif" size=2><b>With the removal of the automatic water softeners why hasn't the problem been solved?&nbsp; Why do we still have to pay for costly treatment plant upgrades?</b></br><SPAN style="FONT-SIZE: 11pt; mso-bidi-font-size: 12.0pt"><FONT face="Times New Roman"><SPAN style="FONT-FAMILY: 'Times New Roman'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"><SPAN style="FONT-FAMILY: Tahoma; FONT-SIZE: 10pt; mso-bidi-font-size: 12.0pt">
+<P style="MARGIN: 0in 0in 0pt; mso-layout-grid-align: none" class=MsoNormal><SPAN style="FONT-FAMILY: Tahoma; FONT-SIZE: 10pt; mso-bidi-font-size: 12.0pt">The impact of automatic water softeners was evaluated and it was determined that approximately one third of the overall chloride loading in the treated wastewater could be eliminated through the removal of these units, reducing rate increases tied to wastewater treatment. Residents who have removed their automatic water softeners and passed Measure S must be commended for their role in keeping the rate as low as possible, saving over $70 million in project facility costs. Although the Santa Clara River Chloride Reduction Ordinance of 2008 (provided for by Measure S) made major strides in lowering chloride levels in the treatment plant discharge, it was not sufficient to bring the plants into full compliance.&nbsp; Full compliance, without the need for advanced treatment, would have required significantly higher chloride limits during drought conditions, which the Sanitation District fought so hard to get, but that the Regional Board was not willing to grant.<?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></SPAN></P>
+<P style="MARGIN: 0in 0in 0pt; mso-layout-grid-align: none" class=MsoNormal><SPAN style="FONT-FAMILY: Tahoma; FONT-SIZE: 10pt; mso-bidi-font-size: 12.0pt">&nbsp;<o:p></o:p></SPAN></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoBodyText2>Because users in the Santa Clarita Valley still contribute a significant amount of chloride to the treated wastewater effluent, through everyday activities such as doing dishes, washing clothes and taking showers, in order to comply with the standard, the community must reduce a portion of the chloride in the treated wastewater.</SPAN></SPAN></FONT></SPAN><br></font></p></td></tr></table></td>
+		</tr>
+
+		</table>
+	</td>
+</tr>
+</table>
+
+<script LANGUAGE="JavaScript1.2" SRC="/inc/NavMenu.js" TYPE="text/javascript"></script>
+</div><td width="14" valign="top"><img src="/img/blank.gif" width=14 height=1 border=0></td></tr></table></td></tr><tr><td width="100%" valign="top"><table border="0" width="840" height="56" cellspacing="0" cellpadding="0"><tr><td width="360" class="footercopy">Sanitation Districts of Los Angeles County</td><td width="120" valign="top" background="/img/layout/footerm.gif"></td><td width="360" id="footercivica" class="footercivica"></td></tr></table></td></tr></table></div></td><td width=* height="50%" align="right" style="background-color:#c3dbee; background-image: url(/img/layout/bgslice_01.gif); background-repeat: repeat-x; background-position: bottom;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" height="*" style="background-image: url(/img/layout/mrfade.gif); background-repeat: repeat-y; background-position: left;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr><tr><td width="1" valign="bottom" height="180" style="background-image: url(/img/layout/brfade_01.gif); background-repeat: no-repeat; background-position: left bottom;"><img src="/img/blank.gif" width=1 height=180 border=0></td></tr></table></td></tr><tr><td width="*" height="50%" align="right" style="background-image: url(/img/layout/bgslice_02.gif); background-repeat: repeat-x; background-position: top;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" valign="bottom" height="1" style="background-image: url(/img/layout/blfade_02.gif); background-repeat: no-repeat; background-position: right top;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr></table></td><td height="100%" width="840" valign="top" style="background-image: url(/img/layout/bslice.gif); background-repeat: repeat-x; background-position: top;"><img src="/img/blank.gif" width=840 height=1 border=0></td><td width="*" height="50%" align="right" style="background-image: url(/img/layout/bgslice_02.gif); background-repeat: repeat-x; background-position: top;" ><table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0"><tr><td width="1" valign="bottom" height="1" style="background-image: url(/img/layout/brfade_02.gif); background-repeat: no-repeat; background-position: left top;"><img src="/img/blank.gif" width=1 height=1 border=0></td></tr></table></td></tr><form name="frmPrintable" id="frmPrintable" action="/info/industrial_waste/chloride_in_santa_clarita/frequently_asked_questions.asp" method="post" target="_blank"><input type="hidden" name="id" value="16"><input type="hidden" name="prnt" value="y"></form><form name="frmGrpxVer" id="frmGrpxVer" action="/info/industrial_waste/chloride_in_santa_clarita/frequently_asked_questions.asp" method="post" ><input type="hidden" name="id" value="16"><input type="hidden" name="grpxver" value="lo"></form><form name="wfpost" method=post target="_new"></form></table></body></html>
