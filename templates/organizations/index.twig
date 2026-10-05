@@ -211,7 +211,6 @@
       {% endfor %}
       {% if places|length %}
       {% for grp in GROUPS %}{% if groupOf[grp.key] is defined %}
-      {% if bodiesMode and loop.first %}{% include "_partials/civic/governance-table" %}{% endif %}
       <h2 class="pl-group" id="{{ grp.key }}">{{ grp.label }} <span>{{ groupOf[grp.key]|length }}</span></h2>
       {% if grp.note is defined %}<p class="pl-groupnote">{{ grp.note }}</p>{% endif %}
       <div class="pl-cards">

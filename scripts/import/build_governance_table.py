@@ -25,7 +25,8 @@ LAYERS (point in polygon, even-odd over every ring)
   tigerweb/pl_2020_*.json                      Census 2020 place polygons (check only)
 
 OUTPUT
-  templates/_data/governance-table.json
+  inventory/review/governance-table-2026-10-04.json (research only: the table was taken off /civic on
+  5 October 2026 at Nathan's word, "a half-working table is worse than none"; kept to come back to)
 
 Run on the host:
     python3 scripts/import/build_governance_table.py
@@ -40,7 +41,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 LD = os.path.join(ROOT, 'inventory', 'sources', 'legislative-districts-2026-10-04')
 SEATS = os.path.join(ROOT, 'web', 'data', 'seats')
 VD = os.path.join(ROOT, 'web', 'data', 'valley-districts')
-OUT = os.path.join(ROOT, 'templates', '_data', 'governance-table.json')
+OUT = os.path.join(ROOT, 'inventory', 'review', 'governance-table-2026-10-04.json')
 
 GNIS_ZIP = os.path.join(LD, 'gnis', 'DomesticNames_CA_Text.zip')
 ZCTA = os.path.join(LD, 'tigerweb', 'zcta_2020_internal_points_scv.json')
