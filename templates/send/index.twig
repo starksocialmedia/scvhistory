@@ -1,0 +1,105 @@
+{% extends "_layouts/base" %}
+{#- Send a photograph to the archive (modules/submissions; inventory/review/photo-submission-proposal-2026-10-04.md).
+    Reached from a record with no likeness, as /send?for=<record id>. The form posts here; a refused post renders
+    this page again with `errors` and the answers in `values`, and a sent one comes back with ?sent=1. The hidden
+    "website" field is for bots, which fill in every field; `t` is the signed load time the controller checks. -#}
+{% set req = craft.app.request %}
+{% set forId = (values.for ?? req.getQueryParam('for'))|default('')|trim %}
+{% set rec = forId matches '/^\\d+$/' ? craft.entries().section(['warMemorials', 'persons']).id(forId).one() : null %}
+{% set sent = req.getQueryParam('sent') == '1' %}
+{% set errors = errors ?? [] %}
+{% set values = values ?? {} %}
+{% set metaTitle = rec ? 'Send a photograph of ' ~ rec.title : 'Send a photograph to the archive' %}
+{% set metaDescription = 'Send the SCVHistory archive a photograph for one of its records. Nothing is published until the archivist has reviewed it.' %}
+{% block head %}
+  <meta name="robots" content="noindex,nofollow">
+  {% css %}
+  .snd{max-width:760px;margin:0 auto;padding:40px 24px 110px}
+  .snd .kick{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#7A5C1B;margin:0 0 10px}
+  .snd h1{font-family:'Playfair Display',serif;font-weight:500;font-size:34px;line-height:1.2;color:#17254C;margin:0 0 12px}
+  .snd .lead{color:#5B6472;font-size:16px;line-height:1.65;margin:0 0 26px}
+  .snd .promise{background:#FDF7EA;border:1px solid #EFE6D0;border-left:3px solid #C4A031;padding:14px 18px;font-size:15px;line-height:1.6;color:#17254C;margin:0 0 30px}
+  .snd fieldset{border:0;border-top:1px solid #EFE6D0;margin:0 0 8px;padding:20px 0 6px}
+  .snd legend{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;padding:0 10px 0 0}
+  .snd label{display:block;font-weight:600;font-size:14.5px;color:#17254C;margin:14px 0 5px}
+  .snd .hint{display:block;font-weight:400;color:#5B6472;font-size:13.5px;line-height:1.55;margin-top:2px}
+  .snd input[type=text],.snd input[type=email],.snd textarea{width:100%;box-sizing:border-box;font:inherit;font-size:15px;padding:9px 11px;border:1px solid #E2E4E8;background:#fff;color:#17254C}
+  .snd textarea{min-height:96px}
+  .snd input[type=file]{font:inherit;font-size:14.5px;margin-top:4px}
+  .snd .check{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:12px 0}
+  .snd .check input{margin-top:4px}
+  .snd .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+  .snd .err{background:#fff;border:1px solid #E2E4E8;border-left:3px solid #A9842B;padding:12px 18px;margin:0 0 24px;color:#17254C;font-size:15px;line-height:1.6}
+  .snd .err ul{margin:6px 0 0;padding-left:18px}
+  .snd button{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:#17254C;color:#fff;border:0;padding:13px 26px;margin-top:22px;cursor:pointer}
+  .snd .done{font-size:16.5px;line-height:1.7;color:#17254C}
+  .snd a{color:#7A5C1B}
+  {% endcss %}
+{% endblock %}
+{% block content %}
+<div class="snd">
+  <p class="kick">Send a photograph to the archive</p>
+  {% if sent %}
+    <h1>Thank you</h1>
+    <p class="done">The archivist will look at what you sent and write to you. Nothing is published until then.
+      {% if rec %}<a href="{{ rec.url }}">Back to {{ rec.title }}</a>.{% endif %}</p>
+  {% elseif not rec %}
+    <h1>Which record is it for?</h1>
+    <p class="lead">Pictures are sent from the record they belong to. On a war memorial or person record with no
+      photograph, follow the link under the empty portrait. <a href="{{ url('war-memorial') }}">The war memorial</a> is a good place to start.</p>
+  {% else %}
+    <h1>Do you have a photograph of {{ rec.title }}?</h1>
+    <p class="lead">The archive has no picture of {{ rec.title }}. If you have one, or a photograph of a print, you can send it here.
+      <a href="{{ rec.url }}">Back to the record</a>.</p>
+    <p class="promise">Nothing you send is published until the archivist has reviewed it. If it is used, the record will
+      say who sent it and who holds the original, as you have told us.</p>
+    {% if errors|length %}
+      <div class="err" role="alert">Please look at {{ errors|length == 1 ? 'this' : 'these' }} before sending again:
+        <ul>{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+    {% endif %}
+    <form method="post" action="{{ url('send') }}" enctype="multipart/form-data" accept-charset="UTF-8">
+      {{ csrfInput() }}
+      {{ actionInput('submissions/send/submit') }}
+      {{ hiddenInput('for', rec.id) }}
+      {{ hiddenInput('t', craft.app.security.hashData(now|date('U'))) }}
+      <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
+      <fieldset><legend>The picture</legend>
+        <label for="photos">Choose up to five files
+          <span class="hint">At least 1,200 pixels on the longer side. A phone photograph of an original print is fine:
+            lay the print flat in daylight and take it without flash. JPEG, PNG, TIFF or HEIC, up to 25 MB each.</span></label>
+        <input type="file" id="photos" name="photos[]" multiple required accept="image/jpeg,image/png,image/tiff,image/heic,image/heif,.heic,.heif">
+      </fieldset>
+
+      <fieldset><legend>About it</legend>
+        <label for="who">Who is in it, and which is {{ rec.title }} if there are several</label>
+        <textarea id="who" name="who" required>{{ values.who ?? '' }}</textarea>
+        <label for="when">When it was taken <span class="hint">Even roughly: "about 1943", "before he shipped out".</span></label>
+        <input type="text" id="when" name="when" value="{{ values.when ?? '' }}">
+        <label for="takenBy">Who took it, if you know</label>
+        <input type="text" id="takenBy" name="takenBy" value="{{ values.takenBy ?? '' }}">
+        <label for="holder">Who holds the original print or file now</label>
+        <input type="text" id="holder" name="holder" value="{{ values.holder ?? '' }}">
+      </fieldset>
+
+      <fieldset><legend>About you</legend>
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required value="{{ values.name ?? '' }}" autocomplete="name">
+        <label for="credit">How you would like to be credited <span class="hint">For example "Courtesy of the Smith family". Leave it empty for no credit.</span></label>
+        <input type="text" id="credit" name="credit" value="{{ values.credit ?? '' }}">
+        <label for="email">Your email address <span class="hint">So the archivist can reply. It is never published or shown on the site.</span></label>
+        <input type="email" id="email" name="email" required value="{{ values.email ?? '' }}" autocomplete="email">
+      </fieldset>
+
+      <fieldset><legend>Permission</legend>
+        <label class="check"><input type="checkbox" name="holds" value="1" required{{ (values.holds ?? false) ? ' checked' }}>
+          <span>I hold this photograph, or the person who does has agreed to my sending it.</span></label>
+        <label class="check"><input type="checkbox" name="publish" value="1" required{{ (values.publish ?? false) ? ' checked' }}>
+          <span>The archive may publish it with the credit I have given.</span></label>
+      </fieldset>
+
+      <button type="submit">Send to the archive</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: submissionKind
+instructions: null
+name: 'Submission: kind'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Photograph
+        -
+          - value
+          - photograph
+        -
+          - default
+          - true
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

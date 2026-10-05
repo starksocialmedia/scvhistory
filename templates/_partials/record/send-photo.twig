@@ -1,0 +1,3 @@
+{#- The invitation under an empty portrait slot: a link to /send for this record (modules/submissions). Shown only
+    where the record has no likeness; the caller decides that and passes the record as `rec`. -#}
+<p class="send-photo">Do you have a photograph of {{ rec.title }}? <a href="{{ url('send', { for: rec.id }) }}">Send it to the archive</a></p>

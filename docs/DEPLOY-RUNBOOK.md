@@ -697,3 +697,24 @@ be today's date (the 3 September bug of 1 October was a cached page).
 - Delete the dump from `private_html` once the site is checked; keep the
   `before-import` backup for a week.
 - Record the refresh in CHANGELOG.md with the commit it carried.
+
+## 11. The send-a-photograph form on the server (October 2026)
+
+Built on 4 October 2026 (modules/submissions; /send, /admin-submissions; the proposal Nathan approved is
+inventory/review/photo-submission-proposal-2026-10-04.md). It works on DDEV as it stands. On staging or
+production it needs four things, all Nathan's to do on Cloudways:
+
+- **The upload limit.** PHP's `upload_max_filesize` at 25M and `post_max_size` at 130M (five files of
+  25 MB and the form). Cloudways sets both under Application Settings. Below that, a large picture
+  arrives as "did not arrive", which the form says.
+- **The private folder.** `storage/submissions/` under the application, outside `public_html`, writable
+  by PHP. Craft makes it on the first submission if `storage/` is writable. It is gitignored and is
+  never deployed or pulled: it holds readers' files and is backed up with the server, not the repo.
+- **HEIC.** The form takes HEIC (iPhone) pictures only if the server's ImageMagick reads them. Check
+  with `php -r 'print_r(Imagick::queryFormats("HEI*"));'`. If the list is empty, the form still works
+  and tells a HEIC sender to send a JPEG.
+- **Addresses.** `scripts/import/clear_submission_emails.php` clears a sender's address a year after
+  the decision. Run it every few months.
+
+The queue is at /admin-submissions (admins only). Nothing a reader sends is public until it is
+accepted there. No mail is sent: the queue page is the notice, as approved.

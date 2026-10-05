@@ -954,6 +954,26 @@ a skip means the queue has not been settled, and an external means it has.
 | `editorNotes` | Table | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 
+### Submissions — `submissions/submission`
+
+13 fields.
+
+| Field | Kind | Maps to | Note |
+| --- | --- | --- | --- |
+| `submissionStatus` | Dropdown | **local** | no external equivalent |
+| `submissionRecord` | Entries | **local** | no external equivalent |
+| `submissionKind` | Dropdown | **local** | no external equivalent |
+| `submissionWho` | PlainText | **local** | no external equivalent |
+| `submissionWhen` | PlainText | **local** | no external equivalent |
+| `submissionTakenBy` | PlainText | **local** | no external equivalent |
+| `submissionHolder` | PlainText | **local** | no external equivalent |
+| `submissionSenderName` | PlainText | **local** | no external equivalent |
+| `submissionCredit` | PlainText | **local** | no external equivalent |
+| `submissionEmail` | PlainText | **local** | no external equivalent |
+| `submissionPermission` | PlainText | **local** | no external equivalent |
+| `submissionFiles` | PlainText | **local** | no external equivalent |
+| `submissionDecision` | PlainText | **local** | no external equivalent |
+
 ### War Memorials — `warMemorials/warMemorial`
 
 56 fields.
@@ -1048,6 +1068,8 @@ local unless the note says otherwise.
 - **`seatsUpEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`selectionMethod`** — `elected`, `appointed`, `rotated`, `exofficio`, `succeeded`, `sole-candidate`.
 - **`startEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
+- **`submissionKind`** — `photograph`.
+- **`submissionStatus`** — `new`, `accepted`, `declined`, `spam`.
 
 ## Category groups
 

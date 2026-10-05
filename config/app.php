@@ -38,6 +38,8 @@ return [
         'collectionfreeze' => \modules\collectionfreeze\CollectionFreeze::class,
         /* craft.quality, for /admin-quality. */
         'quality' => \modules\quality\Quality::class,
+        /* /send: a reader sends a photograph; /admin-submissions: the queue. */
+        'submissions' => \modules\submissions\Submissions::class,
     ],
-    'bootstrap' => ['reviewstore', 'collectionfreeze', 'quality'],
+    'bootstrap' => ['reviewstore', 'collectionfreeze', 'quality', 'submissions'],
 ];

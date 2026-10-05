@@ -1,0 +1,55 @@
+columnSuffix: null
+handle: submissionStatus
+instructions: null
+name: 'Submission: status'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - New
+        -
+          - value
+          - new
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - Accepted
+        -
+          - value
+          - accepted
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Declined
+        -
+          - value
+          - declined
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Spam
+        -
+          - value
+          - spam
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

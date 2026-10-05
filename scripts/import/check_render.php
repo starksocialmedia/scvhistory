@@ -68,7 +68,9 @@ foreach ([
        So they are checked for the redirect, which proves the guard is there. */
     'admin-overview' => 'guarded', 'graph' => 'guarded', 'graph/data' => 'guarded',
     'admin-ledger' => 'guarded', 'admin-ledger/data' => 'guarded',
-    'admin-fixes' => 'guarded', 'admin-quality' => 'guarded',
+    'admin-fixes' => 'guarded', 'admin-quality' => 'guarded', 'admin-submissions' => 'guarded',
+    /* The send-a-photograph form (modules/submissions): public, with and without a record. */
+    'send' => 'index', 'send?for=580' => 'index',
 ] as $path => $what) {
     $urls[$base . '/' . $path] = $what;
 }

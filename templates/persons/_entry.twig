@@ -127,6 +127,7 @@
                 data-caption="{{ img.photoCaptionExt|default('')|trim ?: entry.title }}"
                 data-credit="{{ img.photoCredit|default('')|trim }}"
                 aria-label="Open the full picture">{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}</button>{% else %}{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}{% endif %}{% else %}<div class="ph">{{ initials|upper }}</div>{% endif %}
+        {% if not img %}{% include "_partials/record/send-photo" with { rec: entry } only %}{% endif %}
         </div>
         {% endif %}
         <div>

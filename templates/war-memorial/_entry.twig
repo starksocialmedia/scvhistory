@@ -5,6 +5,8 @@
   {% css %}
   .wm-nophoto{aspect-ratio:4/5;background:#fff;border:1px solid #E2E4E8;display:flex;align-items:center;justify-content:center;padding:28px;text-align:center}
   .wm-nophoto p{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.4;color:#5B6472;margin:0}
+  .wm-nophoto .send-photo{font-family:'Public Sans',sans-serif;font-style:normal;font-size:13.5px;line-height:1.55;margin:16px 0 0}
+  .wm-nophoto .send-photo a{color:#7A5C1B}
   .wm-unit{background:#17254C;border-top:3px solid #C4A031;padding:26px 22px;text-align:center;color:#fff}
   .wm-unit .seal{width:84px;height:84px;border-radius:50%;margin:0 auto;border:2px solid #C4A031;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .wm-unit .seal img{width:72px;height:72px;object-fit:contain}
@@ -126,7 +128,7 @@
           {% endif %}
         </div>
         {% if img %}<div class="rec-portrait"><img src="{{ img.url }}" alt="{{ img.alt ?: entry.title }}"></div>
-        {% else %}<div class="rec-portrait wm-nophoto"><p>No photograph of him is known to the archive.</p></div>{% endif %}
+        {% else %}<div class="rec-portrait wm-nophoto"><div><p>No photograph of him is known to the archive.</p>{% include "_partials/record/send-photo" with { rec: entry } only %}</div></div>{% endif %}
       </div>
     </div>
   </section>

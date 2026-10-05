@@ -1,0 +1,93 @@
+{% extends "_layouts/base" %}
+{#- Admin only, guarded in the template like /admin-fixes: an anonymous request is sent to the login screen, a
+    signed-in user who is not an admin gets 404. The queue of photographs readers have sent (modules/submissions):
+    new ones first with their pictures, which are served by an admin-only action and have no public address, and
+    the decided ones below. Nothing is attached to a record until a button here is pressed. -#}
+{% requireLogin %}
+{% if not currentUser.admin %}{% exit 404 %}{% endif %}
+{% set metaTitle = 'Photographs sent to the archive' %}
+{% set metaDescription = 'The submissions queue. Unlisted.' %}
+{% set all = craft.entries().section('submissions').status(null).orderBy('dateCreated desc').limit(300).all() %}
+{% set fresh = all|filter(e => e.submissionStatus.value == 'new') %}
+{% set decided = all|filter(e => e.submissionStatus.value != 'new') %}
+{% block head %}
+  <meta name="robots" content="noindex,nofollow">
+  {% css %}
+  .sq{max-width:1120px;margin:0 auto;padding:36px 34px 120px}
+  .sq h1{font-family:'Playfair Display',serif;font-weight:500;font-size:34px;color:#17254C;margin:0 0 6px}
+  .sq .sub{color:#5B6472;font-size:14.5px;line-height:1.65;margin:0 0 24px;max-width:72ch}
+  .sq h2{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A5C1B;margin:34px 0 12px;padding-bottom:7px;border-bottom:1px solid #EFE6D0}
+  .sq .card{background:#fff;border:1px solid #E2E4E8;border-top:2px solid #C4A031;padding:18px 20px;margin:0 0 18px}
+  .sq .card h3{font-family:'Playfair Display',serif;font-weight:500;font-size:20px;color:#17254C;margin:0 0 4px}
+  .sq .meta{color:#5B6472;font-size:13.5px;margin:0 0 12px}
+  .sq dl{display:grid;grid-template-columns:170px 1fr;gap:5px 14px;font-size:14px;margin:0 0 14px}
+  .sq dt{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#8A919E;padding-top:3px}
+  .sq dd{margin:0;color:#17254C;white-space:pre-line}
+  .sq .files{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 14px}
+  .sq .file{width:230px;font-size:12.5px;color:#5B6472}
+  .sq .file img{width:230px;height:230px;object-fit:contain;background:#F6F7F9;border:1px solid #E2E4E8;display:block;margin-bottom:6px}
+  .sq form{display:inline-block;margin:4px 6px 0 0}
+  .sq button{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid #17254C;background:#fff;color:#17254C;padding:6px 10px;cursor:pointer}
+  .sq button.go{background:#17254C;color:#fff}
+  .sq input[type=text]{font:inherit;font-size:13.5px;padding:5px 8px;border:1px solid #E2E4E8;width:280px}
+  .sq .flash{background:#FDF7EA;border:1px solid #EFE6D0;padding:10px 14px;margin:0 0 18px;color:#17254C}
+  .sq table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .sq th{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#8A919E;text-align:left;padding:8px 10px;border-bottom:1px solid #E2E4E8;font-weight:500}
+  .sq td{padding:8px 10px;border-bottom:1px solid #EFE6D0;vertical-align:top;color:#17254C;white-space:pre-line}
+  {% endcss %}
+{% endblock %}
+{% block content %}
+<div class="sq">
+  <h1>Photographs sent to the archive</h1>
+  <p class="sub">From the form on /send. A picture becomes archive media, with the sender's details as its provenance,
+    only when you accept it here: as the record's portrait (a portrait it replaces moves to the record's images) or as
+    one of its images. Decline asks for a one-line reason. Spam deletes the files and clears the address.</p>
+  {% set notice = craft.app.session.getFlash('notice') %}{% set error = craft.app.session.getFlash('error') %}
+  {% if notice %}<div class="flash">{{ notice }}</div>{% endif %}
+  {% if error %}<div class="flash">{{ error }}</div>{% endif %}
+
+  <h2>New ({{ fresh|length }})</h2>
+  {% for e in fresh %}
+    {% set rec = e.submissionRecord.status(null).one() %}
+    {% set files = (e.submissionFiles ?: '[]')|json_decode %}
+    <div class="card">
+      <h3>{{ rec ? rec.title : 'A record no longer found' }}</h3>
+      <p class="meta">Sent {{ e.dateCreated|date('j F Y, H:i') }} by {{ e.submissionSenderName }}, {{ e.submissionEmail }}{% if rec %} · <a href="{{ rec.url }}">the record</a> · #{{ rec.id }}{% endif %}</p>
+      <dl>
+        <dt>Who is in it</dt><dd>{{ e.submissionWho }}</dd>
+        {% if e.submissionWhen %}<dt>When</dt><dd>{{ e.submissionWhen }}</dd>{% endif %}
+        {% if e.submissionTakenBy %}<dt>Taken by</dt><dd>{{ e.submissionTakenBy }}</dd>{% endif %}
+        {% if e.submissionHolder %}<dt>Original held by</dt><dd>{{ e.submissionHolder }}</dd>{% endif %}
+        <dt>Credit asked for</dt><dd>{{ e.submissionCredit ?: 'none' }}</dd>
+        <dt>Permission</dt><dd>{{ e.submissionPermission }}</dd>
+      </dl>
+      <div class="files">
+        {% for f in files %}
+          <div class="file">
+            <a href="{{ actionUrl('submissions/send/file', { id: e.id, n: loop.index0 }) }}" target="_blank" rel="noopener"><img src="{{ actionUrl('submissions/send/file', { id: e.id, n: loop.index0 }) }}" alt="File {{ loop.index }}"></a>
+            {{ f.sent }}: {{ f.width }} by {{ f.height }}, {{ (f.bytes / 1048576)|number_format(1) }} MB, {{ f.format }}
+            {% if f.asset ?? false %}<br>In the archive as asset #{{ f.asset }}.{% elseif rec %}<br>
+              <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('n', loop.index0) }}{{ hiddenInput('do', 'portrait') }}<button class="go">Portrait</button></form>
+              <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('n', loop.index0) }}{{ hiddenInput('do', 'image') }}<button>Related image</button></form>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('do', 'decline') }}<input type="text" name="reason" placeholder="Why, in one line" required> <button>Decline</button></form>
+      <form method="post">{{ csrfInput() }}{{ actionInput('submissions/send/decide') }}{{ hiddenInput('id', e.id) }}{{ hiddenInput('do', 'spam') }}<button>Spam</button></form>
+    </div>
+  {% else %}
+    <p class="sub">Nothing waiting.</p>
+  {% endfor %}
+
+  {% if decided|length %}
+  <h2>Decided ({{ decided|length }})</h2>
+  <table>
+    <tr><th>Sent</th><th>Record</th><th>From</th><th>Status</th><th>Decision</th></tr>
+    {% for e in decided %}{% set rec = e.submissionRecord.status(null).one() %}
+    <tr><td>{{ e.dateCreated|date('Y-m-d') }}</td><td>{% if rec %}<a href="{{ rec.url }}">{{ rec.title }}</a>{% endif %}</td><td>{{ e.submissionSenderName }}</td><td>{{ e.submissionStatus.label }}</td><td>{{ e.submissionDecision }}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</div>
+{% endblock %}
