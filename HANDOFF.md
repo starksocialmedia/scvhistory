@@ -1,4 +1,4 @@
-# Handoff, 2026-10-05 (afternoon)
+# Handoff, 2026-10-05 (late)
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -29,7 +29,7 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. TODO.md, "Waiting on Nathan", first: two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
+1. TODO.md, "Waiting on Nathan", first: the Duzick links and the leads sweep (both dry runs), the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
 2. The send-a-photograph form is built and tested on DDEV (/send, /admin-submissions); it reaches staging with the next refresh, after docs/DEPLOY-RUNBOOK.md section 11.
 3. The place record Porta Bella (#20152), live and empty: whether to build it. The congressional split recheck.
 4. The City Hall photograph, when Nathan sends it.

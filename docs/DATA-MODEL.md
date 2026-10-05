@@ -170,7 +170,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Affiliations — `affiliations/affiliation`
 
-16 fields.
+17 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -188,12 +188,13 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 | `recordDates` | Table | **local** | no external equivalent |
 
 ### Articles — `articles/article`
 
-45 fields.
+46 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -212,6 +213,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `webmasterNoteTop` | PlainText | **local** | no external equivalent |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `photoSources` | PlainText | **local** | no external equivalent |
 | `finePrint` | PlainText | **local** | no external equivalent |
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
@@ -245,7 +247,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Candidacies — `candidacies/Candidacy`
 
-13 fields.
+14 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -260,12 +262,13 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 | `candidateKey` | PlainText | **local** | no external equivalent |
 
 ### Collections — `collections/collection`
 
-33 fields.
+34 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -276,6 +279,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `legacyUrl` | PlainText | Dublin Core `source` | where it stood on the legacy site |
 | `archiveUrl` | PlainText | Dublin Core `source` | Internet Archive capture |
 | `culturalSensitivityNote` | PlainText | Dublin Core `rights` | approximate; it is a note, not a licence |
@@ -305,7 +309,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Documents — `documents/document`
 
-29 fields.
+30 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -322,6 +326,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `documentFiles` | Assets | **local** | no external equivalent |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
 | `partOfCollection` | Entries | schema.org `isPartOf` | also dcterms:isPartOf |
@@ -341,7 +346,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Education — `educations/education`
 
-11 fields.
+12 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -355,11 +360,12 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 
 ### Elections — `elections/Election`
 
-18 fields.
+19 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -378,13 +384,14 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 | `electionBody` | Entries | **local** | no external equivalent |
 | `electionDistrict` | Entries | **local** | no external equivalent |
 
 ### Events — `events/event`
 
-42 fields.
+43 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -395,6 +402,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `eventDate` | PlainText | **local** | no external equivalent |
 | `eventDateEdtf` | PlainText | **local** | no external equivalent |
 | `startEvidence` | Dropdown | **local** | no external equivalent |
@@ -433,7 +441,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Fallen officers — `fallenOfficers/fallenOfficer`
 
-30 fields.
+31 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -457,6 +465,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `factSources` | Table | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `webmasterNoteTop` | PlainText | **local** | no external equivalent |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `recordImages` | Assets | schema.org `image` |  |
@@ -482,7 +491,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Groups — `groups/group`
 
-31 fields.
+32 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -493,6 +502,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `groupAliases` | PlainText | **local** | no external equivalent |
 | `groupDateStart` | PlainText | **local** | no external equivalent |
 | `groupDateEnd` | PlainText | **local** | no external equivalent |
@@ -520,7 +530,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Obituaries — `obituaries/obituary`
 
-31 fields.
+32 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -529,6 +539,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `publicationDetails` | PlainText | **local** | no external equivalent |
 | `obitDateOfDeath` | PlainText | **local** | no external equivalent |
 | `obitDatePublished` | PlainText | **local** | no external equivalent |
@@ -558,7 +569,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Office Holdings — `officeHoldings/officeHolding`
 
-19 fields.
+20 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -579,12 +590,13 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 | `recordDates` | Table | **local** | no external equivalent |
 
 ### Organizations — `organizations/organization`
 
-63 fields.
+64 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -596,6 +608,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `dateFounded` | PlainText | schema.org `foundingDate` | printed form |
 | `dateFoundedEdtf` | PlainText | **local** | no external equivalent |
 | `orgAliases` | PlainText | SKOS `altLabel` | schema.org alternateName |
@@ -672,7 +685,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Persons — `persons/person`
 
-56 fields.
+57 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -681,6 +694,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `fullName` | PlainText | **local** | no external equivalent |
 | `birthDate` | PlainText | schema.org `birthDate` | printed form |
 | `birthplace` | PlainText | schema.org `birthPlace` |  |
@@ -791,7 +805,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Photographs — `photographs/photograph`
 
-42 fields.
+43 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -802,6 +816,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `photoDate` | PlainText | **local** | no external equivalent |
 | `photoDateEdtf` | PlainText | **local** | no external equivalent |
 | `photoCredit` | PlainText | **local** | no external equivalent |
@@ -840,7 +855,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Places — `places/place`
 
-59 fields.
+60 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -851,6 +866,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `placeAddress` | PlainText | schema.org `address` |  |
 | `placeLat` | Number | WGS84 `lat` | schema.org latitude |
 | `placeLng` | Number | WGS84 `long` | schema.org longitude |
@@ -923,7 +939,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Source Faults — `sourceFaults/SourceFault`
 
-10 fields.
+11 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -936,6 +952,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 
 ### Submissions — `submissions/submission`
@@ -962,7 +979,7 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### War Memorials — `warMemorials/warMemorial`
 
-56 fields.
+57 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -971,6 +988,7 @@ a skip means the queue has not been settled, and an external means it has.
 | `body` | PlainText | schema.org `text` | also dcterms:description |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |
 | `editorNotes` | Table | **local** | no external equivalent |
+| `researchLeads` | PlainText | **local** | no external equivalent |
 | `deathDate` | PlainText | schema.org `deathDate` | printed form |
 | `deathDateEdtf` | PlainText | **local** | no external equivalent |
 | `burialPlace` | PlainText | schema.org `deathPlace` | burial rather than death, so the mapping is approximate |

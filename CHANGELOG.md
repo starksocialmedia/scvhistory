@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-05 (late)
+
+- Agent: Claude Code
+- Date: 2026-10-05
+- Done: researchLeads, an internal field on every entry type with editor's notes (add_research_leads_2026_10_05.php; classified internal in field-display.json; DATA-MODEL regenerated). Couts's Wikipedia lead moved there from his public note, and Tichenor's "Ernest L. Tichenor Jr." added as an alias, one source using it (move_leads_off_notes_2026_10_05.php, approved part applied). The Hoskinson and Lynch leads moved from editor's notes to researchLeads in the college trustee drafts; the profile loader writes them. A sweep of all 421 public editor's notes with text for leads and working hypotheses: six records state one (Gillis, Fortine, Montenegro, Harland, Smyth, Regional Planning), held as a dry run. The Johnson and Duzick identity settled by search (the DRE license record; The Signal, August 5, 2022), sources saved in inventory/news/johnson-duzick-2026-10-05/; settle_duzick_johnson_2026_10_05.php drafted, dry run; Johnson's profile draft gives her Saugus runs.
+- Decisions: a lead is an identity, fact or source suspected and not established; a note saying what is not known, or how a record's dates were reached, stays public.
+- Errors: the "probably" notes on #25725 and #25755 said she was a trustee from 2022; her term began December 2024 (ERRORLOG). Fixed by the settle script when applied.
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-05 (afternoon)
 
 - Agent: Claude Code
