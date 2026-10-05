@@ -56,7 +56,9 @@
 {#- Each page holds its own kinds: /bodies the government bodies and the school districts; /organizations everything but those and the schools. -#}
 {#- A dissolved body goes where its successor is, to be shown in the successor's card (the Valencia Water Company, a business, sits under SCV Water). -#}
 {% set civicIds = [] %}
-{% for o in places %}{% if (o.orgType.value ?? '') == 'government' or ((o.orgType.value ?? '') == 'school' and (o.schoolLevel.value ?? '') == 'district') %}{% set civicIds = civicIds|merge([o.id]) %}{% endif %}{% endfor %}
+{#- A record's type says what it is; whether it is on Public bodies is its civicRole (Nathan, 5 October 2026): a government or a
+    school district shows unless its role toward the valley is "none", does not serve this valley. -#}
+{% for o in places %}{% if ((o.orgType.value ?? '') == 'government' or ((o.orgType.value ?? '') == 'school' and (o.schoolLevel.value ?? '') == 'district')) and (('civicRole' in (o.fieldLayout ? o.fieldLayout.customFields|map(f => f.handle) : [])) ? (o.civicRole.value ?? '') : '') != 'none' %}{% set civicIds = civicIds|merge([o.id]) %}{% endif %}{% endfor %}
 {% set succOf = {} %}
 {% for o in places %}{% set sc = 'succeededBy' in (o.fieldLayout ? o.fieldLayout.customFields|map(f => f.handle) : []) and o.dateDissolvedEdtf|default('') ? o.succeededBy.one() : null %}{% if sc %}{% set succOf = succOf|merge({ ('o' ~ o.id): sc.id }) %}{% endif %}{% endfor %}
 {% set places = places|filter(o => bodiesMode == (o.id in civicIds or (succOf['o' ~ o.id] ?? 0) in civicIds))|filter(o => bodiesMode or (o.orgType.value ?? '') != 'school') %}

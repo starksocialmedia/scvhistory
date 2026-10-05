@@ -584,7 +584,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 
 ### Organizations — `organizations/organization`
 
-62 fields.
+63 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -623,6 +623,7 @@ structure. The test is `publicKin` in the same file. **It takes effect only when
 | `foundedEvidence` | Dropdown | **local** | no external equivalent |
 | `namedFor` | Entries | **local** | no external equivalent |
 | `namingNote` | PlainText | **local** | no external equivalent |
+| `civicRole` | Dropdown | **local** | no external equivalent |
 | `hasParentOrg` | Lightswitch | **local** | no external equivalent |
 | `parentOrganization` | Entries | schema.org `parentOrganization` | inverse emitted as subOrganization |
 | `orgFoundedBy` | Entries | **local** | no external equivalent |
@@ -1032,6 +1033,7 @@ local unless the note says otherwise.
 - **`birthEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`bodyAuthorship`** — `legacy-leon`, `wordpress-import-unsourced`, `editorial-2026`, `mixed`.
 - **`burialEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
+- **`civicRole`** — `governs`, `represents`, `polices`, `advises`, `administers`, `none`.
 - **`collectionKind`** — `series`, `book`, `column`, `catalogue`, `topic`. How a collection is read, not what it is about. `series` is a run meant to be read in order, which is what both of the archive's long newspaper serials are; `book` is reserved for an actual published volume and is not yet used by any record.
 - **`deathEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`districtKind`** — `assembly`, `senate`, `congressional`, `supervisorial`, `trustee-area`, `other`, `council-district`, `water-division`.

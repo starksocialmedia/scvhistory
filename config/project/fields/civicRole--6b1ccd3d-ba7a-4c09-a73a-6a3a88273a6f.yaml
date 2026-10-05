@@ -1,0 +1,88 @@
+columnSuffix: null
+handle: civicRole
+instructions: 'How the body stands to the Santa Clarita Valley. Public bodies (/civic) shows a government or school district unless this is "Does not serve this valley". It does not say what the body is; Organization type does.'
+name: 'Role toward this valley'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Not assessed'
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - Governs
+        -
+          - value
+          - governs
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Represents
+        -
+          - value
+          - represents
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Polices
+        -
+          - value
+          - polices
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Advises
+        -
+          - value
+          - advises
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Administers
+        -
+          - value
+          - administers
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Does not serve this valley'
+        -
+          - value
+          - none
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

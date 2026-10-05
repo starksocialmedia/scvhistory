@@ -27,8 +27,9 @@ foreach ($A as [$t, $lvl, $body, $notes]) {
   if (!$APPLY || $e) { continue; }
   $e = new Entry(); $e->sectionId = $os->id; $e->setTypeId($os->getEntryTypes()[0]->id); $e->title = $t;
   $h = array_map(fn($f) => $f->handle, $e->getFieldLayout()->getCustomFields());
-  /* LAPD and Burbank Police do not govern or serve the valley, so they are not public bodies on /civic: kind "other". */
-  $v = ['orgType' => in_array($t, ['Los Angeles Police Department', 'Burbank Police Department'], true) ? 'other' : 'government', 'orgLevel' => $lvl, 'body' => $body,
+  /* Each is a government. Whether it is on Public bodies is civicRole (add_civic_role_2026_10_05.php): LAPD, Burbank Police and
+     Ventura County's constables do not serve this valley. */
+  $v = ['orgType' => 'government', 'civicRole' => in_array($t, ['Los Angeles Police Department', 'Burbank Police Department', 'Ventura County Township Constables'], true) ? 'none' : 'polices', 'orgLevel' => $lvl, 'body' => $body,
     'footnotes' => array_map(fn($i, $x) => ['number' => (string)($i + 1), 'note' => $x, 'source' => 'editorial-2026'], array_keys($notes), $notes),
     'recordProvenance' => 'create_officer_agencies_2026_10_05.php, 5 October 2026: the agency a fallen officer served'];
   $e->setFieldValues(array_intersect_key($v, array_flip($h)));
