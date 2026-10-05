@@ -2,10 +2,14 @@
 
 ## Waiting on Nathan
 
-### Current (4 October 2026, night)
-- The Redevelopment Agency of the City of Santa Clarita: whether to create its record (founded 1989, dissolved 1 February 2012, parent the City). Recommended yes; findings and the four open points in inventory/review/aadusd-redevelopment-2026-10-04.md, sections 2 and "Open questions".
-- The Newhall Redevelopment Committee (#16290): its end (1 March 2012, from the old chronology only) and how its terms read ("without term limits", 2002, or four-year terms, 2005). Same document.
-- Acton-Agua Dulce Unified (#29691, created 4 October): which high school district Acton and Agua Dulce left in 1993, and the County Committee's 2025 trustee-area resolution. Same document.
+### Current (4 October 2026, overnight)
+- **Two portraits may be generated, not edited:** Patti Rasmussen (#29122) and Brian Walters (#29118). Their files' content credentials record Firefly text_to_image steps. Keep them as edited photographs (with the edit recorded), or take them down. Nothing was changed.
+- **Seven portraits with a Firefly edit now recorded** (Knight, Sharon Runner, George Runner, Messina, Jensen, Moore, Erin Wilson): who made the edit (enhancedBy is empty), and whether the unedited originals exist, to be held beside them under the new keep-both rule.
+- **War memorial differences, shown on the records and not changed** (inventory/review/war-memorial-sourcing-2026-10-04.md): Cone is U.S. Navy, Seaman Second Class, missing August 10, 1943 by ABMC and the Navy's 1946 list (the record says Army, March 13, 1945; middle name Russel in both); ranks at death per the Defense Department (Sellen, Gelig, Acosta: Specialist or Private First Class against Sergeant or SP4); Acosta was 19, not 20; Suter's release gives Los Angeles; Todd appears as Spc. Dean Todd-Eckard of Canyon Country; Ross's ABMC date is September 30, 1944; Rubel reenlisted November 1942, a driver; Ball's draft registration was 1942, and his January 15, 1946 date has no source; Conant is not in the VA locator, so "Punchbowl" is unsupported. Kenaston: may the VA locator be used for him (a lead puts him at Los Angeles National Cemetery)?
+- **The 490 date decisions:** review/dates.html, in Nathan's browser; no confirmed.json has been exported.
+- **The photo form on the server:** the four Cloudways steps in docs/DEPLOY-RUNBOOK.md section 11, before it goes to staging.
+- The Newhall Redevelopment Committee (#16290): how its terms read ("without term limits", 2002, or four-year terms, 2005). Its end is now March 1, 2012, from the chronology.
+- Acton-Agua Dulce Unified (#29691): which high school district Acton and Agua Dulce left in 1993, and the County Committee's 2025 trustee-area resolution (inventory/review/aadusd-redevelopment-2026-10-04.md).
 
 ### Current (3 October 2026, evening)
 - Seat boundary files (trustee areas, council districts, SCV Water divisions): Nathan is asking the Hart district and the City. Nothing is drawn until they are in hand.

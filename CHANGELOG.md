@@ -1,5 +1,16 @@
 SCVHistory.com — Changelog
 
+2026-10-04 (overnight, Nathan's queue)
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: Newhall Elementary's unedited original held (#29698), the edited mark pointing at it with enhancedFrom; DATA-MODEL's new rule: when an edited image is imported and its original exists, keep both and record which is which. The Redevelopment Agency of the City of Santa Clarita (#29699): formed 1989 (the City's 2012 booklet), dissolved as of February 1, 2012 under AB X1 26 (the City's report of January 24, 2012), the City its Successor Agency and Housing Successor; the Newhall Redevelopment Committee (#16290) dissolved March 1, 2012, from the old chronology, the only dated source. The double-counting audit worked on 17 records (findings 3, 4 and 5, 7 to 10, 13, Heidt's 15, 16 to 24, 26, 27; the rest were already done), within Nathan's rulings of 3 and 4 October. The content-credentials scan re-run on all 4,417 assets: the origins export (stale since 28 September) now finds handed-over originals by checksum, and an embedded C2PA manifest exiftool does not report now counts as a finding; seven portraits' Firefly edits recorded. War memorial: 11 of 13 records sourced (Ball, Ross, Cone, Rubel, Todd, Sellen, Gelig, Suter, Conant, Acosta, Colley), each difference shown in the fact rows and nothing changed; Kenaston and Wilson not found; the pages saved in inventory/news/war-memorial-2026-10-04/. The send-a-photograph form, as approved: /send, the submissions section, /admin-submissions, the invitation under every empty portrait, runbook section 11; tested end to end on DDEV with a throwaway record, since deleted.
+- Already done before this session, checked: the Acton-Agua Dulce Unified record (#29691); the 23 term endings (applied 4 October); the multi-era pass (apply_multi_eras.php, applied 1 October, 44 people).
+- Decisions: memorial differences are shown, not changed (the house pattern). The submissions' files are kept as plain files in storage/submissions/, not a second Craft volume; an accepted one becomes archive media. Elderberry Canyon left out of CSUN's body and note while the Tataviam material is held.
+- Errors: see ERRORLOG (the form's early redirect; the stale origins export; storage/submissions not gitignored).
+- Blockers: the 490 date decisions wait on Nathan's review screen (no confirmed.json exists).
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-04 (late night, after a restart)
 
 - Agent: Claude Code
