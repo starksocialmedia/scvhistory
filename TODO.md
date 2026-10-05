@@ -4,8 +4,11 @@
 
 ### Current (4 October 2026, overnight)
 - **The college district trustees' profiles** (inventory/review/coc-trustees-profiles-dry-run-2026-10-05.md, 33): read, then apply with build_coc_trustee_profiles_2026_10_05.php. Tichenor's closing paragraph and Johnson's Saugus runs are in the drafts; the Hoskinson and Lynch leads go to researchLeads, not the page.
-- **Johnson is Duzick, settled** (inventory/review/johnson-duzick-2026-10-05.md: the State's license record gives Duzick as her former name; The Signal announced the 2022 Duzick candidacy as Johnson's). Apply settle_duzick_johnson_2026_10_05.php ($APPLY = true): links both Saugus candidacies, replaces the "probably" notes (which misdate her trusteeship to 2022; it began December 2024), drops the "(?)" aliases.
-- **Leads off the page, the sweep** (move_leads_off_notes_2026_10_05.php, $APPLY_SWEEP = true): six records whose public notes state a suspected fact (Gillis, Fortine, Montenegro, Harland, Smyth, Regional Planning's Stevenson Ranch council). The dry run prints each note as it would read.
+- **Notes to ourselves** (move_notes_to_ourselves_2026_10_05.php, $APPLY = true): seven notes; the dry run prints each as it would read. Then "the legacy page" in 22 memorial notes, to "the original page on SCVHistory.com" if you agree.
+- **Sub-body marks:** whether a station, commission or school with no mark of its own shows its parent's, and where.
+- **The Darren Harris interview:** the recording and any notes, when you have them to hand.
+- Johnson is Duzick: applied 5 October.
+- Leads off the page, the sweep: applied 5 October.
 - **Send the note to the college district** about Don Allen (inventory/review/coc-don-allen-note-2026-10-05.md).
 - **Fallen officers:** read the fourteen (disabled; inventory/review/fallen-officers-draft-2026-10-05.md, or in the control panel), then enable them (re-run create_fallen_officers_2026_10_05.php with $ENABLE = true).
 - **The Hart trustees dry run** (inventory/review/hart-trustees-profiles-dry-run-2026-10-05.md): read the 55 and the "For Nathan" items under each; then apply.
