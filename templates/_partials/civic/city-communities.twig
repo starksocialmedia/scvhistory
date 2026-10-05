@@ -1,0 +1,54 @@
+{#
+  Which communities make up the City, and which do not (Nathan, 4 October 2026: "a Communities tab with a map showing which
+  communities make up the City would be worth having, because not all of them do, and that confusion is constant"; "No shapes for
+  communities inside the City, muted points outside, and the City outline corrected to include the 2022 Tesoro annexation").
+  The outline is the City's council districts (web/data/seats/city-of-santa-clarita.geojson); the communities and their sourced
+  points are in templates/_data/city-communities.json. In or out comes from the City record's own list.
+
+    body   the City
+#}
+{% set D = source('_data/city-communities.json', ignore_missing = true)|json_decode %}
+{% if D %}
+  {% set rec = {} %}{% for c in craft.categories().group('neighborhood').slug(D.communities|map(c => c.slug)).all() %}{% set rec = rec|merge({ (c.slug): c.url ?? url('communities/' ~ c.slug) }) %}{% endfor %}
+  <p class="hub-lede">The City of Santa Clarita is made of Newhall, Saugus, Valencia, Canyon Country and the land around them. Castaic, Val Verde, Stevenson Ranch, Hasley Canyon and Agua Dulce are not in the City: they are unincorporated, governed by the County.</p>
+  <div class="bm"><div id="ccMap" class="bm-map" role="img" aria-label="Map of the City of Santa Clarita and the valley's communities" style="height:460px"></div>
+    <div class="bm-key"><span><i class="ln"></i>The City</span><span><i class="dot"></i>In the City</span><span><i class="dot o"></i>Not in the City</span></div>
+    <p class="bm-src">{{ D.note }}</p></div>
+  <div class="cc-cols">
+    {% for grp in [{ label: 'In the City', rows: D.communities|filter(c => c.inCity) }, { label: 'Not in the City', rows: D.communities|filter(c => not c.inCity) }] %}
+      <div><div class="cm-lab">{{ grp.label|upper }}</div><ul class="cc-list">
+        {% for c in grp.rows %}<li>{% if rec[c.slug] is defined %}<a href="{{ rec[c.slug] }}">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% if not c.lat %} <span>(no official point)</span>{% endif %}</li>{% endfor %}
+      </ul></div>
+    {% endfor %}
+  </div>
+  {#- Leaflet is loaded once per page (two copies freeze it): the City's main tab already loads it; it is loaded here only if absent. -#}
+  <script>
+  (function(){
+    function need(cb){ if (typeof L !== 'undefined') { cb(); return; }
+      var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'; document.head.appendChild(l);
+      var s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js'; s.onload = cb; document.head.appendChild(s); }
+    need(function(){
+    var el = document.getElementById('ccMap'); if (!el || typeof L === 'undefined') { return; }
+    var map = L.map(el, { scrollWheelZoom: false, zoomSnap: 0.25 }); map.setView([34.42, -118.52], 10.5);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+    var C = {{ D.communities|filter(c => c.lat)|json_encode|raw }};
+    fetch({{ (siteUrl ~ 'data/seats/city-of-santa-clarita.geojson')|json_encode|raw }}).then(function(r){ return r.json(); }).then(function(g){
+      var city = L.geoJSON(g, { interactive: false, style: { color: '#C4A031', weight: 0.6, fillColor: '#C4A031', fillOpacity: .22 } }).addTo(map);
+      var pts = C.map(function(c){ var m = L.circleMarker([c.lat, c.lng], { radius: c.inCity ? 6 : 5, color: c.inCity ? '#17254C' : '#8A93A3', weight: 2, fillColor: c.inCity ? '#17254C' : '#fff', fillOpacity: 1 }).addTo(map);
+        m.bindTooltip(c.name, { permanent: true, direction: 'right', className: 'bm-lbl' + (c.inCity ? '' : ' cc-out') }); return m; });
+      map.fitBounds(L.featureGroup([city].concat(pts)).getBounds(), { padding: [16, 16] });
+    });
+    document.addEventListener('scv:tab', function(){ setTimeout(function(){ map.invalidateSize(); }, 30); });
+    });
+  })();
+  </script>
+{% endif %}
+{% css %}
+.cc-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:8px 0 24px}
+@media(max-width:600px){.cc-cols{grid-template-columns:1fr}}
+.cc-list{list-style:none;padding:0;margin:0}
+.cc-list li{padding:5px 0;border-bottom:1px solid #EFE6D0;font-size:15px}
+.cc-list a{color:#17254C}
+.cc-list span{font-size:13px;color:#5B6472}
+.cc-out{color:#5B6472!important}
+{% endcss %}

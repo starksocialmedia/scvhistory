@@ -246,7 +246,7 @@
           {% set firstLabel = isDistrict ? 'The district' : (isCity ? 'The city' : 'The body') %}
           {#- Commissions and committees the body appoints get their own tab (Nathan, 4 October 2026), not a line in "In the archive". -#}
           {% set hasCommissions = craft.entries().section('organizations').relatedTo({ targetElement: entry, field: 'parentOrganization' }).orgType('government').exists() %}
-          {% set TABS = [{ id: 'main', label: firstLabel }, { id: 'history', label: 'History' }]|merge(districtMap ? [{ id: 'schools', label: 'Schools' }] : [])|merge(hasCommissions ? [{ id: 'commissions', label: 'Commissions' }] : [])|merge([{ id: 'elections', label: 'Elections' }, { id: 'archive', label: 'In the archive' }]) %}
+          {% set TABS = [{ id: 'main', label: firstLabel }, { id: 'history', label: 'History' }]|merge(districtMap ? [{ id: 'schools', label: 'Schools' }] : [])|merge(hasCommissions ? [{ id: 'commissions', label: 'Commissions' }] : [])|merge(isCity ? [{ id: 'communities', label: 'Communities' }] : [])|merge([{ id: 'elections', label: 'Elections' }, { id: 'archive', label: 'In the archive' }]) %}
           <nav class="hub-tabs" aria-label="Sections of this page"><div class="hub-tabs-in" role="tablist">{% for t in TABS %}<a role="tab" href="#t-{{ t.id }}" data-tab="{{ t.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">{{ t.label }}</a>{% endfor %}</div></nav>
           {#- The seat control filters every pane (scope), whichever tab is open; it sits under the tab bar (Nathan, 4 October 2026:
               "The district buttons go under the tab bar, where they work, not above it"). -#}
@@ -289,6 +289,12 @@
             <section class="hub-pane" id="t-schools" data-pane="schools">
               <h2 class="hub-pane-h">Schools</h2>
               {% include "_partials/district-schools" with { leaid: entry.ncesId|trim } only %}
+            </section>
+            {% endif %}
+            {% if isCity %}
+            <section class="hub-pane" id="t-communities" data-pane="communities">
+              <h2 class="hub-pane-h">Communities</h2>
+              {% include "_partials/civic/city-communities" with { body: entry } only %}
             </section>
             {% endif %}
             {% if hasCommissions %}

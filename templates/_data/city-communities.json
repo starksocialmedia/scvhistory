@@ -1,0 +1,105 @@
+{
+ "_about": "The communities of the valley, in the City of Santa Clarita or not, for the City's Communities tab (_partials/civic/city-communities.twig; Nathan, 4 October 2026: 'No shapes for communities inside the City, muted points outside'). In or out comes from the City record's own list of its communities, not from where a point falls. Points are public: USGS Geographic Names Information System, or the Census Bureau where GNIS has none in the City.",
+ "note": "The City publishes no boundaries for the communities inside it, and parts of several of them (Newhall, Saugus, Canyon Country, Sand Canyon) also lie in unincorporated territory outside the City. Each point marks one spot in a community, not its extent. The outline is the City's five council districts, from the County Registrar-Recorder's layer, which includes the Tesoro del Valle annexation of 2022.",
+ "communities": [
+  {
+   "name": "Newhall",
+   "slug": "newhall",
+   "inCity": true,
+   "lat": 34.3847198,
+   "lng": -118.530919,
+   "pointSource": "USGS GNIS feature 272642, \"Newhall\" (Populated Place)",
+   "pointDistrict": "District 1"
+  },
+  {
+   "name": "Saugus",
+   "slug": "saugus",
+   "inCity": true,
+   "lat": 34.4113854,
+   "lng": -118.5400858,
+   "pointSource": "USGS GNIS feature 1661408, \"Saugus\" (Populated Place)",
+   "pointDistrict": "District 2"
+  },
+  {
+   "name": "Valencia",
+   "slug": "valencia",
+   "inCity": true,
+   "lat": 34.4018497,
+   "lng": -118.5700136,
+   "pointSource": "Census Bureau 2020 ZCTA 91355 internal point (the GNIS Valencia point lies outside the City)",
+   "pointDistrict": "District 2"
+  },
+  {
+   "name": "Canyon Country",
+   "slug": "canyon-country",
+   "inCity": true,
+   "lat": 34.4233293,
+   "lng": -118.4720281,
+   "pointSource": "USGS GNIS feature 1946238, \"Canyon Country\" (Populated Place)",
+   "pointDistrict": "District 1"
+  },
+  {
+   "name": "Sand Canyon",
+   "slug": "sand-canyon",
+   "inCity": true,
+   "lat": 34.4213125,
+   "lng": -118.4253812,
+   "pointSource": "USGS GNIS feature 273524, \"Sand Canyon\" (Valley)",
+   "pointDistrict": "District 5"
+  },
+  {
+   "name": "Fair Oaks Ranch",
+   "slug": "fair-oaks-ranch",
+   "inCity": true,
+   "lat": null,
+   "lng": null,
+   "pointSource": "No official point",
+   "pointDistrict": null
+  },
+  {
+   "name": "Stevenson Ranch",
+   "slug": "stevenson-ranch",
+   "inCity": false,
+   "lat": 34.3893864,
+   "lng": -118.5883407,
+   "pointSource": "USGS GNIS feature 2583151, Stevenson Ranch Census Designated Place",
+   "pointDistrict": null
+  },
+  {
+   "name": "Castaic",
+   "slug": "castaic",
+   "inCity": false,
+   "lat": 34.4888822,
+   "lng": -118.6228656,
+   "pointSource": "USGS GNIS feature 270335, \"Castaic\" (Populated Place)",
+   "pointDistrict": null
+  },
+  {
+   "name": "Val Verde",
+   "slug": "val-verde",
+   "inCity": false,
+   "lat": 34.4449952,
+   "lng": -118.657589,
+   "pointSource": "USGS GNIS feature 1661607, \"Val Verde\" (Populated Place)",
+   "pointDistrict": null
+  },
+  {
+   "name": "Hasley Canyon",
+   "slug": "hasley-canyon",
+   "inCity": false,
+   "lat": 34.4373304,
+   "lng": -118.6195885,
+   "pointSource": "USGS GNIS feature 271510, \"Hasley Canyon\" (Valley)",
+   "pointDistrict": null
+  },
+  {
+   "name": "Agua Dulce",
+   "slug": "agua-dulce",
+   "inCity": false,
+   "lat": 34.4963817,
+   "lng": -118.3256348,
+   "pointSource": "USGS GNIS feature 1660235, \"Agua Dulce\" (Populated Place)",
+   "pointDistrict": null
+  }
+ ]
+}
