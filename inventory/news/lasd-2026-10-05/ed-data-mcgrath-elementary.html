@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdData - School Profile - Dr. J. Michael McGrath Elementary</title>
+
+    <!--Styles-->
+    
+ 
+    <link rel="stylesheet" href="/lib/jquery-ui/themes/base/all.css?v=SvCDfK5rfdNXVyDNAsvR3anf8B4Bi5e_mDwWmfcEw8s" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css?v=WXhYjlKH6XSfghCwWybHstUHBc_H56awfW3B1fpSqQw" />
+    <link rel="stylesheet" href="/lib/bootstrap-icons/font/bootstrap-icons.css?v=4RctOgogjPAdwGbwq-rxfwAmSpZhWaafcZR9btzUk18" />
+    <link rel="stylesheet" href="/lib/chosen-jquery/lib/chosen.css?v=ALIHg0IpcQBTEqCG2MEL2gL-ttDN62JEqXDhbqvJ6gU" />
+   
+    <link rel="stylesheet" href="/lib/select2/select2.min.css?v=Oe__l_Dd1VWfAU7DLTX-iOwTOU1gzhNXC4_UK51V0e8" />
+    <link rel="stylesheet" href="/theme/eddata/sass/site.css?v=Ps9nj1x0FHG5kYHLsRq0zgzuirqij-mi5ev3OZZ34l0" />
+    <link rel="stylesheet" href="/Theme/EdData/CSS/profile.css?v=8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U" />
+    <link rel="stylesheet" href="/Theme/EdData/CSS/glossary.css?v=8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U" />
+    <link rel="stylesheet" href="/Theme/EdData/CSS/responsive.css?v=8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U" />
+    <link href="/lib/driver.js/driver.min.css?v=hNJvqLDexcnWzJX5OzHW0soHkuPqdS5GP_Gpn-VQxB8" rel="stylesheet" />
+    <link rel="stylesheet" href="/Theme/EdData/CSS/_style.css?v=8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U" />
+    <!-- Render Sections -->
+    
+    <link rel="stylesheet" href="/lib/jquery-ui/dist/themes/base/jquery-ui.css?v=yMIVeRjJ_tC7ncxWyWtS3Hr3CwXKAijkZ-r5F3d1Gtc" />
+        <link href="/lib/jquery-ui-multiselect-widget/css/jquery.multiselect.css?v=eFfvMGid0hpJn3wSjBQTAEu98sYm7ID9dmcG6-yr7nk" rel="stylesheet" />
+    <link href="/lib/jquery-ui-multiselect-widget/css/jquery.multiselect.filter.css?v=cktSjtFRkaezXUTCbmJqFTfsiNbnSwva1LRC10gRBis" rel="stylesheet" />
+  
+    
+
+
+    
+
+    <script src="/lib/modernizrjs/modernizr.js?v=ffw-9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8" async> </script>
+
+    <!-- Microsoft Clarity Tracking Code -->
+   <script type='text/javascript'>
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', 'ix5lak2ivz');
+    </script> 
+
+</head>
+<body>
+    <!-- Back to top button -->
+    <div class="back-to-top-progress" title="Back to Top">
+        <span class="back-to-top-progress-value"></span><!-- U#x1F815; == &#129045; == 🠕 :: <i class="bi bi-chevron-up"></i> -->
+    </div>
+
+    <section id="topborder" class="toparea">
+        <div class="row">
+            <div class="col-6" id="tagline">
+                <p class="mission">Fiscal, Demographic, and Performance Data on California’s K-12 Schools</p>
+            </div>
+            <div class="col-6 search-column" id="searchtool">
+                <ul id="SearchAllEdData" class="search-box" title="Search all of Ed-Data">
+                    <li class="" id="search-box">
+                        <input type="text" data-type="search" name="query" id="search" class="searchfield" 
+                                   placeholder="Search State, County, District, School" tabindex="1">
+                        <span id="searchclear" class="hidden" title="Clear search field">X</span>
+                        <input type="submit" id="searchbtn" value="" title="Search">
+                        <input type="text" id="tempSearch" value="" style="display:none" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- /end: top area -->
+    <!-- NAV: NAVIGATION START -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navBar"
+                aria-controls="navBar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="" title="Ed-Data Home">
+            <a id="eddatalogo" class="navbar-brand" href="/" arial-label="Click here to return to Ed-Data Home" alt="Ed-Data Home"></a>
+            <a class="print" href="/"><img src="/Theme/EdData/Images/eddata_sm.png" alt="" height="59" width="384"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navBar">
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">
+                        <i class="bi bi-house-door-fill"></i>Home
+                    </a>
+                </li>
+                <!-- State Dropdown Menu-->
+                <li class="nav-item dropdown state-dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" aria-expanded="false" data-profile-tab="0" href="/State">
+                        State
+                        <b class="icon-angle-down" title="Sub-menu"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="0" href="/State">Student</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="0" href="/State">Demographics</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="1" href="/State">Performance</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="2" href="/State">College and Career Readiness</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="3" href="/State">Suspensions and Expulsions</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="4" href="/State">Chronic Absenteeism</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="3" href="/State">Staff</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="11" href="/State">Demographics</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="12" href="/State">Teacher Salary</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="1" href="/State">Local Revenue Elections</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="2" href="/State">Finance</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="7" href="/State">General Fund: Revenues</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="8" href="/State">General Fund: Expenditures</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- County Dropdown Menu-->
+                <li class="nav-item dropdown county-dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-profile-tab="0" aria-expanded="false" href="/County">
+                        County
+                        <b class="icon-angle-down" title="Sub-menu"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="0" href="/County">Student</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="0" href="/County">Demographics</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="1" href="/County">Performance</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="2" href="/County">College and Career Readiness</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="3" href="/County">Suspensions and Expulsions</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="4" href="/County">Chronic Absenteeism</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="3" href="/County">Staff</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="11" href="/County">Demographics</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="1" href="/County">Local Revenue Elections</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- District Dropdown Menu-->
+                <li class="nav-item dropdown district-dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-profile-tab="0" aria-expanded="false" href="/District/Index">
+                        District
+                        <b class="icon-angle-down" title="Sub-menu"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="0" href="/District/Index">Student</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="0" href="/District/Index">Demographics</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="1" href="/District/Index">Performance</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="2" href="/District/Index">College and Career Readiness</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="3" href="/District/Index">Suspensions and Expulsions</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="4" href="/District/Index">Chronic Absenteeism</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="3" href="/District/Index">Staff</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="11" href="/District/Index">Demographics</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="12" href="/District/Index">Teacher Salary</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="1" href="/District/Index">Local Revenue Elections</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="5" href="/District/Index">Summary</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="6" href="/District/Index">Detail</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="2" href="/District/Index">Finance</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="9" href="/District/Index">Revenues & Expenditures / Fund Balances</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="7" href="/District/Index">General Fund: Revenues</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="8" href="/District/Index">General Fund: Expenditures</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="10" href="/District/Index">Other Financing Sources / Uses and Contributions</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" href="/Comparisons?compType=districts">Comparisons</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- School Dropdown Menu-->
+                <li class="nav-item dropdown school-dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-profile-tab="0" aria-expanded="false" href="/School/Index">
+                        School
+                        <b class="icon-angle-down" title="Sub-menu"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="0" href="/School/Index"> Student</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="0" href="/School/Index">Demographics</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="1" href="/School/Index">Performance</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="2" href="/School/Index">College and Career Readiness</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="3" href="/School/Index">Suspensions and Expulsions</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="4" href="/School/Index">Chronic Absenteeism</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" data-profile-tab="3" href="/School/Index"> Staff </a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                                <li>
+                                    <a class="dropdown-item profile-pref-link" data-profile-section="11" href="/School/Index">Demographics</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item profile-pref-link" href="/Comparisons?compType=schools">Comparisons</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Comparisons Dropdown Menu-->
+                <li class="nav-item dropdown comparisons-dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       role="button"
+                       href="/Comparisons?compType=districts"
+                       aria-expanded="false">
+                        Comparisons
+                        <b class="icon-angle-down" title="Sub-menu"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item profile-pref-link" href="/Comparisons?compType=districts">Districts</a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item profile-pref-link" href="/Comparisons?compType=schools">Schools</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Help Dropdown Menu-->
+                <li class="nav-item dropdown help-dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Help
+                        <b class="icon-angle-down" title="Sub-menu"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item profile-pref-link" href="/article/Articles-and-Explanations">Articles and Explanations</a>
+                        </li>
+                        <li class="tour-btn">
+                            <a href="#" class="dropdown-item profile-pref-link" data-tour-type="Home">Homepage Tour</a>
+                        </li>
+                        <li class="tour-btn">
+                            <a href="#" class="dropdown-item profile-pref-link" data-tour-type="Profile">Profile Page Tour</a>
+                        </li>
+                        <li class="tour-btn">
+                            <a href="#" class="dropdown-item profile-pref-link" data-tour-type="Search">Search Results Tour</a>
+                        </li>
+                        <li class="tour-btn">
+                            <a href="#" class="dropdown-item profile-pref-link" data-tour-type="Glossary">Glossary Tour</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</nav>
+
+<div hidden data-nbr-columns-in-comparison-ui="5"></div>
+
+
+    <!-- TODO: Add to EdDataConfig? -->
+    <div hidden data-nbr-columns-in-comparison-ui="5"></div>
+    <div hidden data-nbr-columns-in-comparison-ui="-1"></div>
+
+    <a class='btn-hidden' data-bs-toggle="offcanvas" href="#entity-list-slideout" role="button" aria-controls="EntityListoffCavanse" id="entity-list-slideout-link"></a>
+<div id="entity-list-slideout" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true"
+     aria-labelledby="offcanvasScrollingLabel" tabindex="-1">
+    <div class="offcanvas-header">
+        <div class="row">
+            
+            <div class="col-md-9">
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="col-12">
+                <div class="list-share">
+                    
+
+
+<div class="share-class" data-share-description-image=")"
+     data-share-description="">
+
+    <ul id="list-ent-list-0" class="list">
+            <li class="sharing-item icon-excel-share excel-action" data-toggle="tooltip" title="Excel Download"  data-placement=left>
+                <a href="javascript:void(0);"><i class="icon-excel-share"></i></a>
+            </li>
+    </ul>
+
+    <div class="modal fade in share-modal" style="overflow: visible">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-bs-toggle="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <hr class="separator" />
+                    <p></p>
+
+                    <pre><code>
+                                    </code></pre>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-toggle="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="dialog-message"></div>
+</div>
+                    <select class="hidden" multiple="multiple"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas-body">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Zip Code</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<section class="wrapsemibox">
+    <div class="pageheader-default cds-dropdowns">
+
+
+<div class="container" id="redcdssearchbar">
+    <div class="row" id="countydistrictschoolsearch" data-districtlistaction="/CDS/districts"  data-schoollistaction="/CDS/schools">
+        <div class="col-md-3" id="cdscounty">
+            <ul id="cdsCountySearchTitle" class="searchTitle">
+                <li id="cdsCountySearchTitleLast" class="searchTitleLast">County</li>
+            </ul>
+            <select class="chosen-select-deselect" id="countyddl" name="Counties" title="Select a County"><option value="0">Select a County</option>
+<option value="1">Alameda</option>
+<option value="2">Alpine</option>
+<option value="3">Amador</option>
+<option value="4">Butte</option>
+<option value="5">Calaveras</option>
+<option value="6">Colusa</option>
+<option value="7">Contra Costa</option>
+<option value="8">Del Norte</option>
+<option value="9">El Dorado</option>
+<option value="10">Fresno</option>
+<option value="11">Glenn</option>
+<option value="12">Humboldt</option>
+<option value="13">Imperial</option>
+<option value="14">Inyo</option>
+<option value="15">Kern</option>
+<option value="16">Kings</option>
+<option value="17">Lake</option>
+<option value="18">Lassen</option>
+<option value="19">Los Angeles</option>
+<option value="20">Madera</option>
+<option value="21">Marin</option>
+<option value="22">Mariposa</option>
+<option value="23">Mendocino</option>
+<option value="24">Merced</option>
+<option value="25">Modoc</option>
+<option value="26">Mono</option>
+<option value="27">Monterey</option>
+<option value="28">Napa</option>
+<option value="29">Nevada</option>
+<option value="30">Orange</option>
+<option value="31">Placer</option>
+<option value="32">Plumas</option>
+<option value="33">Riverside</option>
+<option value="34">Sacramento</option>
+<option value="35">San Benito</option>
+<option value="36">San Bernardino</option>
+<option value="37">San Diego</option>
+<option value="38">San Francisco</option>
+<option value="39">San Joaquin</option>
+<option value="40">San Luis Obispo</option>
+<option value="41">San Mateo</option>
+<option value="42">Santa Barbara</option>
+<option value="43">Santa Clara</option>
+<option value="44">Santa Cruz</option>
+<option value="45">Shasta</option>
+<option value="46">Sierra</option>
+<option value="47">Siskiyou</option>
+<option value="48">Solano</option>
+<option value="49">Sonoma</option>
+<option value="50">Stanislaus</option>
+<option value="51">Sutter</option>
+<option value="52">Tehama</option>
+<option value="53">Trinity</option>
+<option value="54">Tulare</option>
+<option value="55">Tuolumne</option>
+<option value="56">Ventura</option>
+<option value="57">Yolo</option>
+<option value="58">Yuba</option>
+</select>
+        </div>
+        <div class="col-md-4" id="cdsdistrict">
+            <div class="loader cds-spinner">
+                <i></i><i></i>
+            </div>
+            <ul id="cdsDistrictSearchTitle" class="searchTitle">
+                <li id="cdsDistrictSearchTitleLast" class="searchTitleLast">District</li>
+                <li id="cdsDistrictSearchTitleInput" class="searchTitleInput">
+                    <input type="checkbox" id="include-closed-districts-schools" name="Checkbox" title="Checkbox" />
+                    <label for="include-closed-districts-schools" title="Checkbox"><span></span>Include merged/closed schools & districts</label>
+                </li>
+            </ul>
+            <select class="chosen-select-deselect cds" id="districtddl" name="Districts" title="Select a District"></select>
+        </div>
+        <div class="col-md-4" id="cdsschool">
+            <div class="loader cds-spinner">
+                <i></i><i></i>
+            </div>
+            <ul id="cdsSchoolSearchTitle" class="searchTitle">
+                <li id="cdsSchoolSearchTitleLast" class="searchTitleLast">School</li>
+            </ul>
+            <select class="chosen-select-deselect cds" id="schoolddl" name="Schools" title="Select a School"></select>
+        </div>
+        <div class="col-md-1" id="cdsgosearch">
+            <div class="gosearch">
+                
+                <input value="Go" type="submit" id="cds-go-btn" class="btn btn-default btn-md btn-go" alt="Display entity now" disabled />
+               
+            </div>
+        </div>
+    </div>
+</div>    </div>
+    <div class="row entity-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul id="pageTitle">
+                        <li>School</li>
+                        <li id="pageTitleLast">Summary</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul id="breadcrumbs" class="breadcrumb"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container entity-section">
+    <div class="row">
+        <div class="entity-wrapper">
+            <p class="entity-name h1">
+                <span>Dr. J. Michael McGrath Elementary</span>
+            </p>
+            <!-- added 101415 -->
+                <div class="compare-entities">
+                    <a class="compare-this compare-add" data-compare-entity-name="Dr. J. Michael McGrath Elementary (Newhall)" data-bind="applyTooltip: {}" data-entity-type="School" data-toggle="tooltip" data-placement="top" aria-label="Add this school to comparisons now and compare later. Up to 4 schools may be added." data-bs-original-title="Add this school to comparisons now and compare later. Up to 4 schools may be added." title="Add this school to comparisons now and compare later. Up to 4 schools may be added."></a>
+                    <a class="compare-now" href="/Comparisons/School/19/64832/100644" data-bind="applyTooltip: {}" data-toggle="tooltip" data-placement="top" aria-label="Compare this school now" data-bs-original-title="Compare this school now" title="Compare this school now"></a>
+                </div>
+        </div>
+    </div>
+    <div class="profile-head">
+        <div class="row">
+            <div class="col-md-7 entity-wrapper">
+                <!-- added 101415 -->
+                <div class="row">
+                    <div class="col-md-6" id="inforelated">
+                        <div class="profiledata-container">
+                            <div class="profiledata">
+                                <h5>Information</h5>
+                                <div itemscope itemtype="http://schema.org/ContactPoint">
+                                    <ul class="profiledata">
+                                        <li class="user">Administrator</li>
+                                        <li><span>Traci Curtis</span></li>
+                                    </ul>
+                                    <meta itemprop="contactType" content="Administrator" />
+                                    <meta itemprop="name" content="Traci Curtis" />
+                                </div>
+                                <ul class="profiledata">
+                                    <li class="map-marker">Address</li>
+                                    <li class="ml-4"><span id="address" itemprop="address">21501 Deputy Jake Way, Newhall CA 91321-4687</span></li>
+                                </ul>
+                                <ul class="profiledata">
+                                    <li class="phone">Phone </li>
+                                    <li><span itemprop="telephone">(661) 291-4090</span></li>
+                                </ul>
+
+                                <ul class="profiledata">
+                                    <li class="status">Status </li>
+                                    <li><span>OPEN</span></li>
+                                </ul>
+                                <ul class="profiledata">
+                                    <li class="calendar">Date Opened</li>
+                                    <li><span itemprop="foundingDate">09/16/2003</span></li>
+                                </ul>
+
+
+                                    <h5 class="mt-3">Related Websites</h5>
+                                        <ul class="profiledata">
+                                            <li>
+                                                <a href="http://mg.newhallschooldistrict.com" itemprop="url" target="_blank"> School Website </a>
+
+                                                <i class="icon-external-link" title="External Website"></i>
+                                            </li>
+                                        </ul>
+                                        <ul class="profiledata">
+                                            <li>
+                                                <a href="http://www.newhallschooldistrict.com" target="_blank">Newhall Website</a>
+
+                                                <i class="icon-external-link" title="External Website"></i>
+                                            </li>
+                                        </ul>
+                                        <ul class="profiledata">
+                                            <li>
+                                                <a href="http://www.lacoe.edu" target="_blank">Los Angeles County Website</a>
+
+                                                <i class="icon-external-link" title="External Website"></i>
+                                            </li>
+                                        </ul>
+                                        <ul class="profiledata">
+                                            <li>
+                                                <a href="https://sarconline.org/public/summary/19648320100644/2025-2026" target="_blank">School Accountability Report Card</a>
+                                                <i class="icon-external-link textred" title="External Website"></i>
+
+
+                                            </li>
+                                        </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" id="keyatt">
+                        <div class="profiledata-container">
+                            <div class="profiledata">
+                                <h5>Key Attributes</h5>
+                                <ul class="profiledata">
+                                    <li class="bullet">CDS</li>
+                                    <li> <span>19-64832-0100644</span></li>
+                                </ul>
+                                <ul class="profiledata">
+                                    <li class="bullet">School Type</li>
+                                    <li> <span>Elementary</span></li>
+                                </ul>
+                                <ul class="profiledata">
+                                    <li class="bullet">Grade Span</li>
+                                    <li> <span>K-6</span></li>
+                                </ul>
+                                <ul class="profiledata">
+                                    <li class="bullet"><span>2025-26</span> Enrollment</li>
+                                    <li><span>410</span></li>
+                                </ul>
+
+                                <ul class="profiledata">
+                                    <li class="bullet">Charter School </li>
+                                    <li><span>N</span></li>
+                                </ul>
+                                <ul class="profiledata">
+                                    <li class="bullet">Title 1 </li>
+                                    <li><span>Yes - Schoolwide</span></li>
+                                </ul>
+                                <ul class="profiledata">
+                                    <li class="bullet">Year-Round Calendar </li>
+                                    <li><span>Yes</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-5" id="googlemap">
+                <iframe id="map" class="entity-image"></iframe>
+                <a id="microdata-map-link" class="hidden" itemprop="location"></a>
+            </div>
+        </div>
+    </div>
+    
+
+
+<div id="comparisons-modal" class="modal fade in" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Maximum number of comparable <span class="comp-entity-type"></span>s reached</h4>
+            </div>
+            <div class="modal-body font150">
+                You cannot compare more than 4 <span class="comp-entity-type"></span>s at the same time. 
+                To add this <span class="comp-entity-type"></span> to the comparison, the oldest pinned <span class="comp-entity-type"></span> would have to be removed first.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-cancel-btn" data-dismiss="modal">Do not pin this <span class="comp-entity-type"></span></button>
+                <button type="button" class="btn btn-primary" id="modal-ok-btn" data-dismiss="modal">Unpin oldest and pin this <span class="comp-entity-type"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="wrapsemibox">
+
+        <!-- slide ================================================== -->
+        <!--Begin Tabs 1-->
+        <section class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="horizontalTab">
+                        <ul class="resp-tabs-list hor_1">
+                            <li class="do-not-include-in-tab">
+                                <!-- Year Range Selector -->
+                                <div id="year-selector-container" class="do-not-include-in-tab">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="year-title">
+                                                <h2>
+                                                    Years Displayed
+                                                </h2>
+                                                <div class="year-selector profile hidden">
+    <div class="icon-chevron-left year-arrow aleft" title="Go Back to the Previous Year within a 5 Year Range"></div>
+    <div class="years" title="Displaying a 5 Year Range">
+    </div>
+    <div class="icon-chevron-right year-arrow aright" title="Go to the Next Year within a 5 Year Range"></div>
+</div>
+<div class="year-selector finance hidden">
+    <div class="icon-chevron-left year-arrow aleft" title="Go Back to the Previous Year within a 5 Year Range"></div>
+    <div class="years" title="Displaying a 5 Year Range with 1 Year Selected">
+    </div>
+    <div class="icon-chevron-right year-arrow aright" title="Go to the Next Year within a 5 Year Range"></div>
+</div>
+<div class="year-selector finance-chart hidden">
+</div>
+<div class="year-selector comparisons hidden">
+    <div class="icon-chevron-left year-arrow aleft" title="Go Back to the Previous Year within a 5 Year Range"></div>
+    <div class="years" title="Displaying a 5 Year Range with 1 Year Selected">
+    </div>
+    <div class="icon-chevron-right year-arrow aright" title="Go to the Next Year within a 5 Year Range"></div>
+</div>
+<div class="year-selector staff hidden">
+    <div class="icon-chevron-left year-arrow aleft" title="Go Back to the Previous Year within a 5 Year Range"></div>
+    <div class="years" title="Displaying a 5 Year Range">
+    </div>
+    <div class="icon-chevron-right year-arrow aright" title="Go to the Next Year within a 5 Year Range"></div>
+</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="tab-label" data-tab-nbr="0">Student</li>
+                            <li class="tab-label" data-tab-nbr="3">Staff</li>
+                        </ul>
+                        <div class="resp-tabs-container hor_1">
+                            <div id="profile-data-tab" data-current-year="2026" data-fyrs-range="2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026">
+
+
+                                    <h2 class="accordion-header" data-section-nbr="0"><i class="icon-plusminus" title="Click to open or close the content section"> </i> <i class="icon-barchart"> </i> Demographics</h2>
+                                    <div class="accordion-content">
+                                        <section>
+                                            <div id="packeryContainer-0" class="packeryContainer"
+                                                 data-chart-types="[1,12,24,25,26,29,30,31,32,33,34,37]">
+                                            </div>
+                                        </section>
+
+                                    </div>
+                                    <h2 class="accordion-header" data-section-nbr="1"><i class="icon-plusminus" title="Click to open or close the content section"> </i> <i class="icon-barchart"> </i> Performance</h2>
+                                    <div class="accordion-content">
+                                        <section>
+                                            <div id="packeryContainer-1" class="packeryContainer"
+                                                 data-chart-types="[46,57,68,70,72,74,76,78,122,125,128,131,134,137,140,146,154,158,162]">
+                                            </div>
+                                        </section>
+
+                                    </div>
+                                    <h2 class="accordion-header" data-section-nbr="2"><i class="icon-plusminus" title="Click to open or close the content section"> </i> <i class="icon-barchart"> </i> College and Career Readiness</h2>
+                                    <div class="accordion-content">
+                                        <section>
+                                            <div id="packeryContainer-2" class="packeryContainer"
+                                                 data-chart-types="[80,89,98,107,116,117,118,119,120,121]">
+                                            </div>
+                                        </section>
+
+                                    </div>
+                                    <h2 class="accordion-header" data-section-nbr="3"><i class="icon-plusminus" title="Click to open or close the content section"> </i> <i class="icon-barchart"> </i> Suspensions and Expulsions</h2>
+                                    <div class="accordion-content">
+                                        <section>
+                                            <div id="packeryContainer-3" class="packeryContainer"
+                                                 data-chart-types="[210,219,220,229,238,239]">
+                                            </div>
+                                        </section>
+
+                                    </div>
+                                    <h2 class="accordion-header" data-section-nbr="4"><i class="icon-plusminus" title="Click to open or close the content section"> </i> <i class="icon-barchart"> </i> Chronic Absenteeism</h2>
+                                    <div class="accordion-content">
+                                        <section>
+                                            <div id="packeryContainer-4" class="packeryContainer"
+                                                 data-chart-types="[248,258]">
+                                            </div>
+                                        </section>
+
+                                    </div>
+                            </div>
+                            <div id="staff-data-tab" data-current-year="2026" data-fyrs-range="2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026">
+
+                                    <h2 class="accordion-header" data-section-nbr="11"><i class="icon-plusminus" title="Click to open or close the content section"> </i> <i class="icon-barchart"> </i> Demographics</h2>
+                                    <div class="accordion-content">
+                                        <section>
+                                            <div id="packeryContainer-11" class="packeryContainer"
+                                                 data-chart-types="[179,187,192,194,204,205]">
+                                            </div>
+
+                                        </section>
+
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="temp-canvas-holding" style="visibility:hidden;"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--End Tabs 1-->
+    <div id="temp-sharing-holding-chart" class="info-box shadow-large temp-sharing">
+    <div class="info-box-inner">
+        <div class="data-content">
+            <img src="/Theme/EdData/Images/eddata.png" />
+            <canvas class="chart-canvas2"></canvas>
+        </div>
+        <div>
+            <div class="info-content">
+                <h4 class="chart-name eddatared"></h4>
+                <h5 class="entity-name"><span></span><br />{ CDS = 19-64832-0100644 }</h5>
+                <div class="chart-legend row"></div>
+                <p class="chart-share-image-text"></p>
+            </div>
+        </div>
+        <img class="cc-license-icon" src="/Theme/EdData/Images/cc_80x15.png" />
+    </div>
+</div>
+
+<div id="temp-sharing-holding-card" class="info-box shadow-large temp-sharing">
+    <div class="info-box-inner">
+        <div class="row">
+            <div class="col-md-7">
+                <img src="/Theme/EdData/Images/eddata.png" />
+                <div class="chart-legend"></div>
+            </div>
+            <div class="col-md-5">
+                <div class="info-content">
+                    <h5 class="date"></h5>
+                    <div class="bptmain">
+                        <h1 class="chart-name"></h1>
+                    </div>
+                    <h5 class="entity-name"><span></span><br />{ CDS = 19-64832-0100644 }</h5>
+
+                    <p class="chart-share-image-text"></p>
+                </div>
+            </div>
+            <img class="cc-license-icon" src="/Theme/EdData/Images/cc_80x15.png" />
+        </div>
+    </div>
+</div>
+
+<div id="temp-sharing-holding-table" class="info-box shadow-large temp-sharing">
+    <div class="info-box-inner">
+
+        <img src="/Theme/EdData/Images/eddata.png" />
+        <div class="table-name"></div>
+
+        <div class="share-table">
+        </div>
+        <div class="info-content">
+            <p class="chart-share-image-text"></p>
+        </div>
+    </div>
+    <img class="cc-license-icon" src="/Theme/EdData/Images/cc_80x15.png" />
+</div>
+
+</section>
+<script type="text/javascript">
+    // To be picked up by profile.ts
+    var eddata_entityName = "Dr. J. Michael McGrath Elementary"
+    var eddata_entityShortName = "Dr. J. Michael McGrath Elementary"
+    var eddata_entityCds = "19-64832-0100644"
+    var eddata_entityType = "School"
+</script>
+
+
+
+<script type="text/javascript">
+    var eddata_tourType = "Profile"
+</script>
+
+    
+
+<section class="footer">
+
+                    <!-- DIV: ABOUT ED-DATA - (4) -->
+                    
+                    <div id="abouteddata">                     
+
+                        <h1 class="title"> About  <span class="thin"> Ed-Data</span></h1>
+                        <p>
+                            <p>Ed-Data is a partnership of the California Department of Education, EdSource, and the Fiscal Crisis and Management Assistance Team/California School Information Services (FCMAT/CSIS) designed to offer educators, policy makers, the legislature, parents, and the public quick access to timely and comprehensive data about K-12 education in California.</p>
+                        </p>
+                        <p class="tos">
+                            <a href="/Article/Terms-Of-Service"> View the Ed-Data Terms of Service</a><br />
+                            <a href="/Article/The-Ed-Data-Partnership">About Ed-Data</a>
+                        </p>
+                        <p class="tos">
+
+                        </p>
+
+                    </div>
+
+                    <!-- DIV: TAGS - (4) -->
+
+                    <div id="recentlyviewed">
+                        <h1 class="title">Recently <span class="thin">Viewed</span></h1>
+                        <div class="footermap"></div>
+                    </div>
+                    <!-- SUBSCRIBE+CONTACT -->
+
+                    <div id="subcontact">
+
+                        <!--Begin Tabs-->                       
+
+                        <ul id="Subscribe" class="nav nav-tabs" role="tablist">
+                            <li class="nav-item" title="Email subscription"><a href="#home" class="nav-link active" role="tab">Subscribe</a></li>
+                            <li class="nav-item" id="ContactTab" title="Contact Ed-Data"><a href="#profile" class="nav-link" role="tab">Contact</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane active" role="tabpanel">
+                                <article id="newsletter_contact_form">
+                                    <!-- Begin Constant Contact Inline Form Code -->
+                                    <div class="ctct-inline-form" data-form-id="3aa8865d-a217-46a5-b1ac-10e55a764ec7"></div>
+                                    <!-- End Constant Contact Inline Form Code -->
+                                </article>
+                            </div>
+                            <div id="profile" class="tab-pane" role="tabpanel">
+
+                         
+                            </div>
+                        </div>
+                        <!--End Tabs-->
+                    </div>
+              
+         
+     
+
+        <!-- pop-up back-to-top -->
+
+        <p id="back-top" title="Back to top">
+            <a href="#top"><span></span></a>
+        </p>
+
+        <!-- copyright - black bottom background -->
+
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+
+                    Copyright &copy; 2026, Education Data Partnership. All rights reserved.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+   
+</section>
+    <div class="offcanvas offcanvas-end glossary-panel"
+     data-bs-scroll="true" 
+     data-bs-backdrop="true"
+     tabindex="-1"
+     id="word-glossary">
+    <div class="offcanvas-header ">
+        <div class="col ">
+            <div class="row">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button" class="btn-letter">A</button>
+                    <button type="button" class="btn-letter">B</button>
+                    <button type="button" class="btn-letter">C</button>
+                    <button type="button" class="btn-letter">D</button>
+                    <button type="button" class="btn-letter">E</button>
+                    <button type="button" class="btn-letter">F</button>
+                    <button type="button" class="btn-letter">G</button>
+                    <button type="button" class="btn-letter">H</button>
+                    <button type="button" class="btn-letter">I</button>
+                    <button type="button" class="btn-letter">J</button>
+                    <button type="button" class="btn-letter">K</button>
+                    <button type="button" class="btn-letter">L</button>
+                    <button type="button" class="btn-letter">M</button>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button" class="btn-letter">N</button>
+                    <button type="button" class="btn-letter">O</button>
+                    <button type="button" class="btn-letter">P</button>
+                    <button type="button" class="btn-letter">Q</button>
+                    <button type="button" class="btn-letter">R</button>
+                    <button type="button" class="btn-letter">S</button>
+                    <button type="button" class="btn-letter">T</button>
+                    <button type="button" class="btn-letter">U</button>
+                    <button type="button" class="btn-letter">V</button>
+                    <button type="button" class="btn-letter">W</button>
+                    <button type="button" class="btn-letter">X</button>
+                    <button type="button" class="btn-letter">Y</button>
+                    <button type="button" class="btn-letter">Z</button>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="offcanvas-body" id="word-glossary-body">
+    </div>
+    <footer class="footer text-center">
+        <hr />
+        <button type="button"
+                class="btn-glossaryClose"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close">
+            <i class="bi bi-x-circle-fill"></i> Close Panel
+            </button>
+    </footer>
+</div>
+
+    <button class="btn-glossary-Word" id="btn-glossary-word" type="button" data-bs-toggle="offcanvas" data-bs-target="#word-glossary" aria-controls="word-glossary">
+    </button>
+    <button class="btn-glossary-fin" id="btn-glossary-fin" type="button" data-bs-toggle="offcanvas" data-bs-target="#fin-glossary" aria-controls="word-glossary">
+    </button>
+    <!-- Scripts -->
+    <script src="/lib/jquery/dist/jquery.js?v=eKhayi8LEQwp4NKxN-CfCh-3qOVUtJn3QNZ0TciWLP4"></script>
+    
+    <script src="/lib/jquery-ui/dist/jquery-ui.js?v=xLD7nhI62fcsEZK2_v8LsBcb4lG7dgULkuXoXB_j91c"></script>
+    <script src="/lib/jquery-cookie/jquery.cookie.min.js?v=1A78rJEdiWTzco6qdn3igTBv9VupN3Q1ozZNTR4WE_Y"></script>
+    <script src="/Scripts/plugins.js?v=eIy-kFNXsoIaa2GeYHbduiGSWQPhPTQCXluZfir5Y5I"></script>
+    <script src="/lib/jquery-easing/dist/jquery.easing.1.3.umd.js?v=kYZcc-CYP733A2EnGgaL8dA-bxVW5yPLwgq6MTSYX1s"></script>
+    <script src="/lib/jquery/plugins/jquery-appear/jquery.appear.js?v=RvsiNbz4QIapuTmuUJ7KzAG7McaLqU5kc-Mdit6-w-s"></script>
+    <script src="/lib/jquery-placeholder/jquery.placeholder.js?v=U82TERDQcwp9xGjhujiVk6xPwLGbP-93r9f26BT2ohw"></script>
+    <script src="/lib/tinynav/dist/tinynav.js?v=29trm_9YKARZpAcDiSD6AVGJcstpAJv5pauxB-Lb3LI"></script>
+    <script src="/lib/responsive-tabs/js/jquery.responsiveTabs.js?v=PSclEafGhxUXT82EvZj6A2OPfvvOGeKFufVzp2WiuI8"></script>
+    <script src="/lib/chosen-jquery/lib/chosen.jquery.js?v=pxYwZtg8Ko2JVJDpQSVYzxvah6KSbZCFM_ZLlNTyk7A"></script>
+    <script src="/lib/jquery/plugins/jquery-tokeninput/jquery.tokeninput.js?v=wws14L5y0lntf3fQD5MMMO_UaweMaiHgo65w_-vbavU"></script>
+    <script src="/lib/popperjs/dist/umd/popper.js?v=3EtofURt6vxp4BObAwbd6JJ2rXRu2Vy7J87lxC20bE0"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.js?v=okw1f_1mAb_xbuRvVW3Tw38yhkVAjpOSZ5ZdBEwYKMo"></script>
+    <script src="/lib/respondjs/respond.js?v=ghmTf7XUDqNyD7VnAcX1W0YqD3exkHQZCy0VJCxcrq8"></script>
+    <script src="/lib/jquery.nicescroll/jquery.nicescroll.js?v=UjUSf_gXPyX4yP_tCreLSe8ikoedbx8WUSmMtLGBAXo"></script>
+    <script src="/lib/jquery-scrollbuttons/dist/jquery.scrollbuttons.js?v=Sdj4yICD9AbFd9FKMkajZHRa_m_jvVjcb1Rn8nKlawY"></script>
+    <script src="/lib/wavesjs/dist/waves.js?v=url3poCURiZVGTrzeiMW9a-F-BrRBu6zrrIWLX1k9_Y"></script>
+    <script src="/lib/select2/select2.js?v=B9W5ISeu4U77jLDNxPLvZh16YmjtfzLVe4cb5Z9IUHI"></script>
+    <script src="/lib/owlcarousel2/owl.carousel.min.js?v=pTxD-DSzIwmwhOqTFN-DB-nHjO4iAsbgfyFq5K5bcE0"></script>
+    <script src="/lib/chartjs/dist/chart.js?v=OtJalIqkbNqfzhs9j53-lSD_iazR2WN1sQL5iaJIjw0"></script><!--version 3.9.1-->
+    <script src="/lib/driver.js/driver.min.js.iife.js?v=Wmmc1O5nYsiTc3Go35MfWQZ8NoONnYThXbcsqpMiVu0"></script>
+   
+    <script src="/Scripts/eddata/common.js?v=6CO1sK1m4k-1OsDEW-kGIWEONr8JU564W7GZ9-TVZio"></script>
+    <script src="/Scripts/eddata/utilities/userhistory.js?v=W5Jk2foEZjo4-1OtGGGK3_4LnGT6sC0d_Hg3A4Mps4w"></script>
+    <script src="/Scripts/eddata/glossary/glossary-factory.js?v=J4PQmuILSYVSXyK1wiAaKKAnUDxFULsmB6njIwwwDyk"></script>
+
+    <script src="/Scripts/eddata/glossary/WordGlossary.js?v=-0Cjb6QV-vGu6L3Q3S00NgowuGKlDmGMYhFfh7CExfw"></script>
+
+    <script src="/scripts/eddata/carousel.js?v=-tO8bXImdEhD9lBo41yjc8tu9nAssGP3uZWRJfjwk-0"></script>
+    <script src="/Scripts/eddata/glossary/finance-glossary.js?v=gF3nKA3MqNb8vU_0-4xbUScGnD6Mh0yXIYdejfytToY"></script>
+    <script src="/Scripts/eddata/utilities/error.js?v=8F7Lmcr3jpSRtg8vlputArxb5AJ5KtqjgezhOyFbyFM"></script>
+    <script src="/Scripts/eddata/utilities/tour.js?v=HacCleMu73ZeoXTId1bHVNouF5AeoLOI6wv-Tx_rVUw"></script>
+    <script src="/Scripts/eddata/utilities/error.js?v=8F7Lmcr3jpSRtg8vlputArxb5AJ5KtqjgezhOyFbyFM"></script>
+    <script src="/Scripts/eddata/edDataResponsiveTabs.js?v=PF_lHGl3Xm89-_i3BKqsYFu0NlgOgTAZ4eueshK99wU"></script>
+    <script src="/Scripts/eddata/CDSsearchBar.js?v=Lodhff9NaU77p1U1KXX2Rpe8bboVdBDDvbPM7vN89fU"></script>
+    <script src="/Scripts/eddata/year-selector.js?v=7PksLbGgK2a7jPveP-N7mdHijk0bNS1Qfbt2wx7MRGQ"></script>
+    <script src="/scripts/eddata/utilities/clarityevents.js?v=9_9KBYghBHzzbxNFWeOcKHpL_BOWx0p3F3h-gfmp7cE"></script>
+  
+    
+    <script src="/scripts/eddata/utilities/captcha.js?v=BLpBl8eFWkW4ecfaL__J9MB9FrFcnpXDVnvfKG3tLf0"></script>
+    <script src="/scripts/eddata/utilities/share.js?v=SLaCETwkbH7mX1R8R8cZ7A1I5pqGICnVUuA-PNW90M4"></script>
+    <!-- Begin Constant Contact Active Forms -->
+    <script>var _ctct_m = "284993b2b041da8c2fe5268d3814682e";</script>
+    <script id="signupScript" src="//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js" async defer></script>
+    <!-- End Constant Contact Active Forms -->
+    
+    <!-- Render Sections -->
+    
+
+    
+
+
+
+    <script src="/lib/jquery.scrollto/jquery.scrollTo.js?v=dLiOPHRZfCVjkP8M8Zt7ycVCfKKwZRlZwWSyklOWWHE"></script>
+   
+    
+    <script src="/lib/jquery.matchHeight/jquery.matchHeight.js?v=arRUsB21UtqDosI3oA5sDe3UYqSGk6Jtg1S04NlIfuQ"></script>
+    <script src="/lib/readmore-js/readmore.js?v=OWNxJp0QL7ivMjO69lB-2dars_gNbwNbeQJghaBjeJI"></script>
+    <script src="/lib/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js?v=0bzLkP5vw63jtWfc6S9vZA4qnjpLlCqZQRZsjQaceFU"></script>
+    <script src="/lib/chartjs/dist/chart.js?v=OtJalIqkbNqfzhs9j53-lSD_iazR2WN1sQL5iaJIjw0"></script>
+    <script src="/lib/packery/dist/packery.pkgd.js?v=62nn_5By0QIIvNFYlVHeF1CqfrMWTVzYp4MwoMFQRaQ"></script>
+    <script src="/lib/draggabilly/dist/draggabilly.pkgd.js?v=tQtz_ImJAdy7nLOYjqBzyszn4hLDHVrO8TEH_FFEjZw"></script>
+    <script src="/lib/filesaverjs/FileSaver.js?v=YGDBOYCK1omubwVepl646qkDFPzO2nKvcno2mn5p8mM"></script>
+    <script src="/lib/wheel-menu/dist/js/jquery.wheelmenu.js?v=tAQsNonubIc7sKAQoxkIgxWhXqvlR32dBMzl3vnonRI"></script>
+    <script src="/lib/notifyjs/notify.js?v=7NgI_5l45Md7VEbs4MGG4HsRoHu-lXKQ_vUK1LvXDps"></script>
+    <script src="/lib/footable/dist/footable.js?v=LLP3CkbfPf7_MD49Isp1YgKCRenTEBlC-Rpsn1v9fkY"></script>
+    <script src="/lib/footable/dist/footable.sort.js?v=9fYyoUciakYzgkuHT0qIxF1go5mLlEQ6-mCARMecT4Q"></script>
+    <script src="/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.filter.js?v=EdNEH-eCLCUaQ08mZjEjVNDyiFu91-hQxlCIIdMtR_I"></script>
+    <script src="/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.js?v=tES1RCB37OaFI-PPi79iTAR8g_O3qjOaJiGWH8uLAcg"></script>
+    
+    <script src="/lib/datatables.net/jquery.datatables.min.js?v=b5XHYP8IySf_OC9crtuCJJ286ePvXMLSMLGoYmiTE3E"></script>
+   
+    <script src="/lib/datatables-plugins/api/processing().min.js?v=19QOrlS9bY9YABSwZCqLP7u3NFAUZrKJ2_WVF-KOLfo"></script>
+    
+    
+    
+    <script src="/Scripts/eddata/edDataResponsiveTabs.js?v=PF_lHGl3Xm89-_i3BKqsYFu0NlgOgTAZ4eueshK99wU"></script>
+    <script src="/Scripts/eddata/year-selector.js?v=7PksLbGgK2a7jPveP-N7mdHijk0bNS1Qfbt2wx7MRGQ"></script>
+    <script src="/Scripts/eddata/utilities/share.js?v=SLaCETwkbH7mX1R8R8cZ7A1I5pqGICnVUuA-PNW90M4"></script>
+    <script src="/Scripts/eddata/GoogleMap.js?v=vONuyayhMBQES0A1ru0_kcwgJ0sR6FdQmR_7sM-2RyQ"></script>
+    <script src="/Scripts/eddata/profile/packery-factory.js?v=jMPMlgpr72TEu4OxcEavBn0PomikpAHvZPrniTAkYS4"></script>
+    <script src="/Scripts/eddata/profile/profile.js?v=ngmHW4V6KCWL8ZmZOsoq1gLbKuDs5OdoS7wJBVLtMq8"></script>
+    <script src="/Scripts/eddata/profile/chart.js?v=yi6mgkpOB9Rp2Jil4wAkbr5so2Rr82n2wMo4XCCagso"></script>
+    <script src="/Scripts/eddata/profile/profile-data.js?v=isCG0sZZ3-RED7ZQT8q9sZIUoFgp5wcWC_oWLVgr10s"></script>
+    <script src="/Scripts/eddata/profile/staff-data.js?v=Pf85YZ0xoKlpUGObrEIPrCO_5az2TbR9D-StPmpWqpg"></script>
+    <script src="/Scripts/eddata/profile/profile-list.js?v=odHJhc5kue9-Y8zeG7xsc90gb520WwYXX2Y2Hb-Umeo"></script>
+    <script src="/Scripts/eddata/profile/election-data.js?v=XhdGnqtMGJqKmqjg4EGCApqYA2zjs_W_bdklxqZ2WcA"></script>
+    <script src="/Scripts/eddata/profile/finance-data.js?v=WcQA9oRB8jYmEE_ZSn6GqW4iA_4UwcdWl8kXCYDlK9E"></script>
+    <script src="/Scripts/eddata/profile/finance-table.js?v=bVO3bxvphxscq-giZ2EYQbCFnoDS8eRHMkCLJvq7tJI"></script>
+    <script src="/Scripts/eddata/profile/finance-chart-data.js?v=GmhD3idyI5cnHDD-JLBl7K99sVm7dOSdbh_YmfMm9rs"></script>
+    <script src="/Scripts/eddata/comparisons/comparisons-utilities.js?v=cxRdiZ_Tj1A2JtuxPPcfML1jRGpR4ZT1N47-qJ2MNcI"></script>
+
+
+    
+    
+    <script>//these are not the script you are looking for</script>
+
+
+
+</body>
+</html>
