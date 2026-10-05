@@ -302,3 +302,15 @@ decision.
 9. **Later, separately:** the videos and transcripts (D11); the research brief (D14).
 
 One writer to the database at a time; each step is its own script under `scripts/import/`.
+
+---
+
+## Rulings, 5 October 2026 (Nathan)
+
+- **D2, the shooter:** as recommended. The sources keep his name as printed; the archive's own words, titles and structured data never use it; no record, no portrait. The reasoning goes on the event record, so it reads as a decision rather than an omission: it is the settled convention in reporting on these events and what a thoughtful editor would do; the sources are kept as published because altering them would falsify the record, and the archive does not amplify beyond that.
+- **D3:** Gracie Muehlberger and Dominic Blackwell are named in the event's text; no person records. "A record of this event that does not name them would be a strange silence."
+- **D4:** the wounded are named only where the sources name them; no records; the Koegle family's request honoured.
+- **D6:** the six are never imported ("should not be in this archive at all"); the sixteen are held for rights.
+- **D8:** the contact details are replaced with "[contact details withheld]" and the change is recorded on the record.
+- **Added:** Gracie Muehlberger's age (16 in the first report; she was 15) is a correction on the record. The Muehlberger family's letter is the most important document in the set: the family's own words, and the only piece that is not journalism.
+- **Waiting:** D1, D5, D7, D9 to D14, sent to Nathan together.
