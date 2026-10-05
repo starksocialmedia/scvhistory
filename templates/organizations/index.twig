@@ -56,12 +56,16 @@
 {#- Each page holds its own kinds: /bodies the government bodies and the school districts; /organizations everything but those and the schools. -#}
 {#- A dissolved body goes where its successor is, to be shown in the successor's card (the Valencia Water Company, a business, sits under SCV Water). -#}
 {% set civicIds = [] %}
-{#- A record's type says what it is; whether it is on Public bodies is its civicRole (Nathan, 5 October 2026): a government or a
-    school district shows unless its role toward the valley is "none", does not serve this valley. -#}
-{% for o in places %}{% if ((o.orgType.value ?? '') == 'government' or ((o.orgType.value ?? '') == 'school' and (o.schoolLevel.value ?? '') == 'district')) and (('civicRole' in (o.fieldLayout ? o.fieldLayout.customFields|map(f => f.handle) : [])) ? (o.civicRole.value ?? '') : '') != 'none' %}{% set civicIds = civicIds|merge([o.id]) %}{% endif %}{% endfor %}
+{#- A record's type says what it is; whether it is on Public bodies is its civicRole, its role toward this valley (Nathan,
+    5 October 2026: "let the role field decide"). Any role but "none" puts it here, a town council (a nonprofit that advises
+    the County) as much as a government; a body with no role (the historical Newhall Municipal Court) is not here. A body
+    with role "none" is never here, even folded under a successor (the Valencia Water Company, a private company). -#}
+{% set roleOf = {} %}
+{% for o in places %}{% set roleOf = roleOf|merge({ ('o' ~ o.id): ('civicRole' in (o.fieldLayout ? o.fieldLayout.customFields|map(f => f.handle) : [])) ? (o.civicRole.value ?? '') : '' }) %}{% endfor %}
+{% for o in places %}{% if roleOf['o' ~ o.id] in ['governs', 'represents', 'polices', 'advises', 'administers'] %}{% set civicIds = civicIds|merge([o.id]) %}{% endif %}{% endfor %}
 {% set succOf = {} %}
 {% for o in places %}{% set sc = 'succeededBy' in (o.fieldLayout ? o.fieldLayout.customFields|map(f => f.handle) : []) and o.dateDissolvedEdtf|default('') ? o.succeededBy.one() : null %}{% if sc %}{% set succOf = succOf|merge({ ('o' ~ o.id): sc.id }) %}{% endif %}{% endfor %}
-{% set places = places|filter(o => bodiesMode == (o.id in civicIds or (succOf['o' ~ o.id] ?? 0) in civicIds))|filter(o => bodiesMode or (o.orgType.value ?? '') != 'school') %}
+{% set places = places|filter(o => bodiesMode == (o.id in civicIds or ((succOf['o' ~ o.id] ?? 0) in civicIds and roleOf['o' ~ o.id] != 'none')))|filter(o => bodiesMode or (o.orgType.value ?? '') != 'school') %}
 {#- A body of another body (the Planning Commission of the City) is not its peer (Nathan, 1 October 2026): it is folded into its
     parent's card when the parent is on the page, and listed at the top level only when it is not. -#}
 {% set onPage = places|map(p => p.id) %}
@@ -187,6 +191,7 @@
         { key: 'government', label: 'Valley government', note: 'School districts are governing bodies too; they are listed under School districts.' },
         { key: 'beyond',     label: 'County, state and federal', note: 'The larger jurisdictions came first and still contain the rest. The County governed this valley for more than a century before the City existed, and it still governs most of the valley by area: everything outside the City.' },
         { key: 'districts',  label: 'School districts' },
+        { key: 'councils',   label: 'Community councils', note: 'Elected by the residents of unincorporated communities to advise the County on what happens there. They are not governments: each is a nonprofit, as its record says. In 2005 the Superior Court held that the Agua Dulce Town Council is bound by the state\'s open-meetings law because it advises the County.' },
         { key: 'schools',    label: 'Schools and colleges' },
         { key: 'business',   label: 'Businesses' },
         { key: 'nonprofit',  label: 'Nonprofits' },
@@ -196,9 +201,9 @@
         { key: 'club',       label: 'Clubs and associations' },
         { key: 'other',      label: 'Other' }
       ] %}
-      {% set CIVIC = ['government', 'beyond', 'districts'] %}
+      {% set CIVIC = ['government', 'beyond', 'districts', 'councils'] %}
       {#- On /civic the larger jurisdictions come first (Nathan, 4 October 2026): they came first and still contain the rest. -#}
-      {% set CIVIC_ORDER = { beyond: 1, government: 2, districts: 3 } %}
+      {% set CIVIC_ORDER = { beyond: 1, government: 2, districts: 3, councils: 4 } %}
       {% set GROUPS = bodiesMode ? ALLGROUPS|filter(g => g.key in CIVIC)|sort((a, b) => CIVIC_ORDER[a.key] <=> CIVIC_ORDER[b.key]) : ALLGROUPS|filter(g => g.key not in CIVIC and g.key != 'schools') %}
       {#- Order within the public bodies (Nathan, 4 October 2026): the City first as the valley's own government; Hart first of the
           districts because it covers all the others; Congress, Senate, Assembly, then the County. Anything not named follows by title. -#}
@@ -208,7 +213,7 @@
       {% for p in places %}
         {% set t = hasKinds ? (p.orgType.value ?: 'other') : 'other' %}
         {% set lvl = 'orgLevel' in handles ? (p.orgLevel.value ?? '') : '' %}
-        {% set g = t == 'school' ? (hasLevels and p.schoolLevel.value == 'district' ? 'districts' : 'schools') : (t == 'government' and lvl in ['county', 'state', 'federal'] ? 'beyond' : (t in ['government', 'business', 'nonprofit', 'church', 'rancho', 'media', 'club'] ? t : 'other')) %}
+        {% set g = (roleOf['o' ~ p.id] ?? '') == 'advises' and t not in ['government', 'school'] ? 'councils' : t == 'school' ? (hasLevels and p.schoolLevel.value == 'district' ? 'districts' : 'schools') : (t == 'government' and lvl in ['county', 'state', 'federal'] ? 'beyond' : (t in ['government', 'business', 'nonprofit', 'church', 'rancho', 'media', 'club'] ? t : 'other')) %}
         {% set groupOf = groupOf|merge({ (g): (groupOf[g] ?? [])|merge([p]) }) %}
       {% endfor %}
       {% if places|length %}
