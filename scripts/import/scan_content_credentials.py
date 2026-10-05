@@ -100,6 +100,14 @@ def scan(path):
         found.append('manifest says: ' + read_manifest(url))
     with open(path, 'rb') as fh:
         raw = fh.read()
+    # A C2PA manifest embedded where exiftool does not look (a PNG chunk, 4 October 2026: Newhall Elementary's mark) is
+    # still a manifest: its claim and URN are in the bytes. That is a finding, not a stray byte hit.
+    if not found and (b'c2pa.claim' in raw or b'urn:c2pa:' in raw):
+        urn = re.search(rb'urn:c2pa:[0-9a-f-]{36}(?::[a-z]+)?', raw)
+        kinds = sorted({m.group(0).decode() for m in re.finditer(rb'(?:compositeWith)?[tT]rainedAlgorithmicMedia|digitalsourcetype/[a-zA-Z]+', raw)})
+        tools = sorted({m.group(1).decode('latin-1') for m in re.finditer(rb'softwareAgent.{0,2}(Adobe [A-Za-z]+)', raw)})
+        found.append('embedded C2PA manifest (bytes; exiftool did not report it): ' + (urn.group(0).decode() if urn else 'no URN')
+                     + '; source types ' + (', '.join(kinds) or 'none') + '; tools ' + (', '.join(tools) or 'none named'))
     hits = sorted({m.group(0).decode('latin-1').lower() for m in BYTES.finditer(raw)})
     return found, ([] if found else hits)
 
@@ -139,6 +147,12 @@ def main():
                 record('assets', key, p, 'mirror original')
             else:
                 report['notScanned'].append({'key': key, 'why': 'not on the mirror at ' + a['original']})
+        elif a['origin'] == 'incoming':
+            p = os.path.join(ROOT, a['original'])
+            if os.path.isfile(p):
+                record('assets', key, p, 'handed-over original')
+            else:
+                report['notScanned'].append({'key': key, 'why': 'handed-over original gone from ' + a['original']})
         elif a['origin'] == 'wordpress' and fetch_wp:
             with tempfile.NamedTemporaryFile(suffix=os.path.splitext(a['original'])[1]) as t:
                 try:

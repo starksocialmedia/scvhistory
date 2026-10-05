@@ -8,6 +8,7 @@
  * content credential in the file that arrived is gone from the file stored.
  *
  *   mirror     legacySourcePath, relative to the mirror's scvhistory.com
+ *   incoming   the handed-over file in inventory/incoming or its done/, by sourceChecksum
  *   wordpress  the upload URL in the WordPress export, when the filename is one
  *   none       nothing known: the volume copy is all there is
  *
@@ -24,13 +25,16 @@ foreach (['inventory/wp_media_order.json', 'inventory/wp_content.json'] as $p) {
 $vol = Craft::$app->getVolumes()->getVolumeByHandle('archiveMedia');
 $fsPath = rtrim(\Craft::getAlias($vol->getFs()->path ?? '@webroot/uploads/archive-media'), '/');
 $rel = ltrim(str_replace($root, '', $fsPath), '/');
-$out = []; $n = ['mirror' => 0, 'wordpress' => 0, 'none' => 0];
+// A file handed over through inventory/incoming keeps its original there or in done/; matched by the sourceChecksum recorded on import.
+$inc = []; foreach (array_merge(glob("$root/inventory/incoming/*") ?: [], glob("$root/inventory/incoming/done/*") ?: []) as $f) { if (is_file($f)) { $inc['sha256:' . hash_file('sha256', $f)] = substr($f, strlen($root) + 1); } }
+$out = []; $n = ['mirror' => 0, 'incoming' => 0, 'wordpress' => 0, 'none' => 0];
 foreach (Asset::find()->volumeId($vol->id)->all() as $a) {
     $has = [];
     foreach ($a->getFieldLayout()->getCustomFields() as $f) { $has[$f->handle] = true; }
     $path = isset($has['legacySourcePath']) ? trim((string)$a->getFieldValue('legacySourcePath')) : '';
     $kind = isset($has['provenanceKind']) ? (string)($a->getFieldValue('provenanceKind')->value ?? '') : '';
-    $o = $path !== '' ? ['mirror', $path] : (isset($wp[strtolower($a->filename)]) ? ['wordpress', $wp[strtolower($a->filename)]] : ['none', '']);
+    $sum = isset($has['sourceChecksum']) ? trim((string)$a->getFieldValue('sourceChecksum')) : '';
+    $o = $path !== '' ? ['mirror', $path] : (isset($inc[$sum]) ? ['incoming', $inc[$sum]] : (isset($wp[strtolower($a->filename)]) ? ['wordpress', $wp[strtolower($a->filename)]] : ['none', '']));
     $n[$o[0]]++;
     $out[] = ['id' => $a->id, 'volumeFile' => $rel . '/' . ($a->getFolder()->path ?? '') . $a->filename, 'kind' => $kind, 'origin' => $o[0], 'original' => $o[1]];
 }
