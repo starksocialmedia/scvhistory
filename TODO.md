@@ -6,7 +6,6 @@
 - The Redevelopment Agency of the City of Santa Clarita: whether to create its record (founded 1989, dissolved 1 February 2012, parent the City). Recommended yes; findings and the four open points in inventory/review/aadusd-redevelopment-2026-10-04.md, sections 2 and "Open questions".
 - The Newhall Redevelopment Committee (#16290): its end (1 March 2012, from the old chronology only) and how its terms read ("without term limits", 2002, or four-year terms, 2005). Same document.
 - Acton-Agua Dulce Unified (#29691, created 4 October): which high school district Acton and Agua Dulce left in 1993, and the County Committee's 2025 trustee-area resolution. Same document.
-- newhall-elementary.jpeg: probably the unedited original of the Newhall Elementary mark, whose imported PNG carries a Firefly edit. Hold it as the original, or drop it.
 
 ### Current (3 October 2026, evening)
 - Seat boundary files (trustee areas, council districts, SCV Water divisions): Nathan is asking the Hart district and the City. Nothing is drawn until they are in hand.
