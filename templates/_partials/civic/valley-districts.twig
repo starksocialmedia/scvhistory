@@ -29,8 +29,8 @@
   {%- set PAL = ['#17254C', '#C4A031', '#4F7F6A', '#A0522D', '#8A93A3'] -%}
   {#- The key under the map: every district of the plan shown, side by side, with its share and members (Nathan,
       5 October 2026: "show every district converging on the valley at once"; "beneath it the members of each, with the
-      share"). The Senate first, then the Assembly (Nathan, 5 October 2026); the House after Nathan has seen them. -#}
-  {%- set KEYED = CHAMBER in ['senate', 'assembly'] -%}
+      share"). The Senate first, then the Assembly and the House (Nathan, 5 October 2026). -#}
+  {%- set KEYED = CHAMBER is not null -%}
   {%- set mapPlans = {} -%}
   {#- Keys are 'p1991' and so on: Twig renumbers numeric keys when merging. -#}
   {%- for P in B.plans -%}{%- set mapPlans = mapPlans|merge({ ('p' ~ P.plan): { years: P.years, districts: P.districts|map((X, i) => { n: X.n, share: X.share, colour: PAL[i] ?? '#8A93A3' }) } }) -%}{%- endfor -%}
