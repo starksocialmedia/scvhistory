@@ -1,4 +1,4 @@
-# Handoff, 2026-10-04 (night)
+# Handoff, 2026-10-04 (late night)
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -21,19 +21,20 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
   State Senate and House show every district that held part of the valley under each plan, with its
   share and members (inventory/review/legislative-districts-2026-10-04.md; templates/_data/valley-districts.json). The City has its five council districts. The other districts and SCV
   Water are behind their own pages (inventory/review/district-boards-check-2026-10-04.md).
-- **Marks.** Every body with a mark shows it in the header; nine imported on 4 October. Building
+- **Marks.** Every body with a mark shows it in the header; eleven imported on 4 October, the last two Santa Clarita Christian School's and Newhall Elementary's. Building
   photographs are related images.
 - **inventory/incoming** is checked by check_render (check_incoming.php); OUTSTANDING.md gives a
   reason for every file still there.
 
 ## In progress or next
 
-1. The place record Porta Bella (#20152), live and empty: whether to build it (CHANGELOG, 4 October). The congressional split recheck (inventory/review/scv-congressional-split-2026-10-04.md when it lands).
-2. The City Hall photograph, when Nathan sends it.
-3. Affiliations exist for few people yet; the older person-organization links are still to be read into them.
-4. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
+1. The Redevelopment Agency of the City of Santa Clarita: its record waits on Nathan's word (inventory/review/aadusd-redevelopment-2026-10-04.md, which also holds the Acton-Agua Dulce Unified open points; the district's record, #29691, exists).
+2. The place record Porta Bella (#20152), live and empty: whether to build it (CHANGELOG, 4 October). The congressional split recheck (inventory/review/scv-congressional-split-2026-10-04.md when it lands).
+3. The City Hall photograph, when Nathan sends it.
+4. Affiliations exist for few people yet; the older person-organization links are still to be read into them.
+5. The Worden duplicate pairs and the remaining board corrections (inventory/review/duplicate-slugs-2026-10-04.md,
    district-boards-check-2026-10-04.md); the 17 unsourced term endings (term-endings-2026-10-04.md).
-5. TODO.md, "Waiting on Nathan", for what waits on him.
+6. TODO.md, "Waiting on Nathan", for what waits on him.
 
 ## Where the rules live
 

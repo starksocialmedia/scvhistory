@@ -125,7 +125,7 @@ def main():
 
     inc = os.path.join(ROOT, 'inventory/incoming')
     for fn in sorted(os.listdir(inc)) if os.path.isdir(inc) else []:
-        if not fn.startswith('.'):
+        if not fn.startswith('.') and os.path.isfile(os.path.join(inc, fn)):
             record('incoming', 'incoming/' + fn, os.path.join(inc, fn), 'incoming original')
 
     for a in origins:

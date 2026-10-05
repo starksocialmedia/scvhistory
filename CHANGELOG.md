@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-04 (late night, after a restart)
+
+- Agent: Claude Code
+- Date: 2026-10-04
+- Done: The Santa Clarita Christian School and Newhall Elementary School marks, held up by a Terminal permission problem, imported as currentMark (scripts/import/import_school_marks_2026_10_04.php; assets #29694 and #29696 on #21783 and #15958); both PNGs transparent, neither with content credentials; the files moved to inventory/incoming/done with MANIFEST entries. newhall-elementary.jpeg is not a photograph: it is the same N and "Eagles" art at 407 by 491 on white, and is listed in OUTSTANDING.md. Recorded here, missed by the session before the restart: Acton-Agua Dulce Unified School District created at 19:17 (#29691, scripts/import/create_aadusd_2026_10_04.php), from inventory/review/aadusd-redevelopment-2026-10-04.md; the governance table row now points at it.
+- Decisions: the Newhall Elementary PNG is the mark, as Nathan named it; the JPEG waits on him. The Redevelopment Agency record waits on Nathan (the review document recommends creating it under the City; no Successor Agency or Oversight Board record).
+- Errors: scan_content_credentials.py crashed on the incoming/done folder; it now skips folders (ERRORLOG).
+- Blockers: none.
+- Next: Nathan's word on the Redevelopment Agency record and the open points in the review document (TODO.md); then the HANDOFF list.
+
 2026-10-04 (night)
 
 - Agent: Claude Code

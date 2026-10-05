@@ -180,12 +180,14 @@ def main():
         for f in aad:
             if in_geojson(f['geometry'], x, y):
                 ta = f['properties']['DivisionName'].rsplit('TA', 1)[1]
-                el.append({'label': f'Trustee Area {ta}', 'filled': 'elected by trustee area', 'bodySlug': None,
+                # Elected at large through 2024; by trustee area from 2026 (Areas 1, 2 and 4) and 2028 (Areas 3 and 5): the district's
+                # presentation to the County Committee, June 30, 2025 (archive record acton-agua-dulce-unified-school-district).
+                first = '2026' if ta in ('1', '2', '4') else '2028'
+                el.append({'label': f'Trustee Area {ta}', 'filled': f'elected at large until {first}, then by trustee area',
+                           'bodySlug': 'acton-agua-dulce-unified-school-district',
                            'body': 'Acton-Agua Dulce Unified School District',
                            'note': ('A unified district (kindergarten to grade 12), so it also takes the place of the '
-                                    'Hart district here. No record in the archive. Trustee area from the County '
-                                    'Registrar-Recorder\'s Division_Boundaries layer; NEEDS_VERIFICATION that every '
-                                    'seat is now elected by trustee area.')})
+                                    'Hart district here. Trustee area from the County Registrar-Recorder\'s Division_Boundaries layer.')})
         assert len(el) == 1, (place, el)
         cells['elementary'] = el[0]
 
