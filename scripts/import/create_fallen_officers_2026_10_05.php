@@ -37,7 +37,12 @@ foreach ($D['records'] as $r) {
      since these records are saved disabled for Nathan to read. */
   for ($i = 1; $i <= count($notes); $i++) { if (!in_array($i, $used, true)) { echo "WARNING $t: note $i is not cited\n"; } }
   $agencyText = (string)($r['foAgency'] ?? '');
-  $agencyId = preg_match('~#29282\b~', $agencyText) ? 29282 : null;
+  /* The agency's record: the Sheriff's Department by number; the others by the records create_officer_agencies_2026_10_05.php made. */
+  $AG = ['California Highway Patrol' => 'California Highway Patrol', 'Los Angeles Police Department' => 'Los Angeles Police Department', 'Burbank Police Department' => 'Burbank Police Department',
+    'Los Angeles County township constable' => 'Los Angeles County Township Constables', 'Constable of Fillmore' => 'Ventura County Township Constables'];
+  $agencyId = null;
+  foreach ($AG as $k => $orgTitle) { if (!$agencyId && str_starts_with($agencyText, $k)) { $agencyId = Entry::find()->section('organizations')->title($orgTitle)->status(null)->one()?->id; } }
+  if (!$agencyId && preg_match('~#29282\b~', $agencyText)) { $agencyId = 29282; }
   $assign = trim((string)($r['foAssignment'] ?? ''));
   if (!$agencyId) { $name = trim(preg_split('~[;(]~', $agencyText)[0]); $assign = $assign !== '' && stripos($assign, $name) === false ? "$name; $assign" : ($assign ?: $name); }
   if ($why) { $bad[] = "$t: " . implode(', ', $why); continue; }

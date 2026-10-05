@@ -344,16 +344,9 @@
         {#- A mark shows in the header with no label and no caption (Nathan, 4 October 2026: "A city's seal beside its name needs no
             explanation. The caption is archive bookkeeping"; 5 October 2026, ending the one exception, Hart's terms of use: "A reader
             does not need to be told the terms another body puts on its own mark ... There is no exception"). A mark's source, rights
-            and any terms its owner states stay in the asset's data (rightsNote), on its media page. What is left here is the one line a
-            dissolved body's mark carries, that it is the mark the body used, so it is not taken for a current one. -#}
-        {% if mark %}
-          {% set isFormer = formerMark and mark.id == formerMark.id %}
-          {% if isFormer %}
-            <div class="rec-box rec-mark">
-              <p style="margin-top:0">The mark it used{{ entry.dateDissolvedEdtf|trim ? ' until ' ~ (entry.dateDissolvedEdtf|slice(0, 4)) : '' }}.</p>
-            </div>
-          {% endif %}
-        {% endif %}
+            and any terms its owner states stay in the asset's data (rightsNote), on its media page. A dissolved body's former mark
+            carries no line either (Nathan, 5 October 2026: "the same kind of caption as the others, and the dates are on the body's
+            record anyway"). -#}
         {% if EXEC %}{% include "_partials/civic/body-executive" with { body: entry, title: EXEC.title, label: EXEC.label, as: 'box' } only %}{% endif %}
         {% if districtMap and not mapInBody and not hasHub %}
           <div class="rec-box"><div class="rec-lab">THE DISTRICT</div>
