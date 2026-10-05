@@ -3,7 +3,8 @@
 ## Waiting on Nathan
 
 ### Current (4 October 2026, overnight)
-- **The college district trustees' profiles** (inventory/review/coc-trustees-profiles-dry-run-2026-10-05.md, 33): read, then apply with build_coc_trustee_profiles_2026_10_05.php. Tichenor's arrest, plea and death (left out; wording drafted); Sharlene Rose Johnson and Sharlene Duzick; Don Allen missing from the district's own list.
+- **The college district trustees' profiles** (inventory/review/coc-trustees-profiles-dry-run-2026-10-05.md, 33): read, then apply with build_coc_trustee_profiles_2026_10_05.php. Tichenor's closing paragraph, Johnson's probable identity and the Hoskinson and Lynch leads are in the drafts.
+- **Send the note to the college district** about Don Allen (inventory/review/coc-don-allen-note-2026-10-05.md).
 - **Fallen officers:** read the fourteen (disabled; inventory/review/fallen-officers-draft-2026-10-05.md, or in the control panel), then enable them (re-run create_fallen_officers_2026_10_05.php with $ENABLE = true).
 - **The Hart trustees dry run** (inventory/review/hart-trustees-profiles-dry-run-2026-10-05.md): read the 55 and the "For Nathan" items under each; then apply.
 - **The nav** (inventory/review/nav-proposal-2026-10-05.md): six decisions; then the build, and the body pages' breadcrumb with it.

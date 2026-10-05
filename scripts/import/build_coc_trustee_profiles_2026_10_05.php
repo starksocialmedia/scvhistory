@@ -30,8 +30,10 @@ foreach ($P as $p) {
   foreach ($used as $u) { if ($u < 1 || $u > count($notes)) { $why[] = "marker [$u] has no note"; } }
   for ($i = 1; $i <= count($notes); $i++) { if (!in_array($i, $used, true)) { $why[] = "note $i is never cited"; } }
   if ($why) { $bad[] = "#$id {$p['name']}: " . implode(', ', $why); continue; }
-  $plan[$id] = [$e, $body, $notes];
+  $plan[$id] = [$e, $body, $notes, array_map(fn($x) => ['heading' => (string)($x['heading'] ?? ''), 'note' => (string)$x['note'], 'position' => 'bottom'], $p['editorNotes'] ?? [])];
+  if (preg_match('~[\x{2013}\x{2014}]~u', json_encode($p['editorNotes'] ?? [], JSON_UNESCAPED_UNICODE))) { $bad[] = "#$id {$p['name']}: em dash in an editor note"; unset($plan[$id]); continue; }
   $out[] = "## {$e->title} (#$id), {$p['form']}\n\n" . $body . "\n\n" . implode("\n", array_map(fn($i, $n) => '[' . ($i + 1) . "] $n", array_keys($notes), $notes))
+    . (($p['editorNotes'] ?? []) ? "\n\nEditor's notes (shown on the page):\n- " . implode("\n- ", array_map(fn($x) => $x['heading'] . ': ' . $x['note'], $p['editorNotes'])) : '')
     . (($p['notesForNathan'] ?? []) ? "\n\nFor Nathan:\n- " . implode("\n- ", $p['notesForNathan']) : '') . "\n";
 }
 file_put_contents("$root/inventory/review/coc-trustees-profiles-dry-run-2026-10-05.md", "# College district trustee profiles: the dry run\n\n" . count($plan) . " profiles ready, " . count($bad) . " refused. Nothing is written until Nathan has read these.\n\n" . ($bad ? "Refused:\n- " . implode("\n- ", $bad) . "\n\n" : '') . implode("\n", $out));
@@ -39,10 +41,11 @@ echo ($APPLY ? 'APPLYING' : 'DRY RUN') . ': ' . count($plan) . ' ready, ' . coun
 foreach ($bad as $b) { echo "REFUSED $b" . PHP_EOL; }
 if (!$APPLY) { return; }
 $n = 0;
-foreach ($plan as $id => [$e, $body, $notes]) {
+foreach ($plan as $id => [$e, $body, $notes, $ed]) {
   $e->setFieldValues(['body' => $body, 'bodyAuthorship' => 'editorial-2026',
     'footnotes' => array_map(fn($i, $t) => ['number' => (string)($i + 1), 'note' => $t, 'source' => 'editorial-2026'], array_keys($notes), $notes),
     'recordProvenance' => 'build_coc_trustee_profiles_2026_10_05.php, 5 October 2026: profile from the college district trustee drafts']);
+  if ($ed) { $rows = array_values(array_filter(array_map(fn($r) => ['heading' => (string)$r['heading'], 'note' => (string)$r['note'], 'position' => (string)$r['position'] ?: 'bottom'], iterator_to_array($e->editorNotes ?? [])), fn($r) => $r['note'] !== '')); foreach ($ed as $x) { if (!in_array($x['note'], array_column($rows, 'note'), true)) { $rows[] = $x; } } $e->setFieldValue('editorNotes', $rows); }
   if (!$el->saveElement($e)) { throw new \RuntimeException("#$id " . json_encode($e->getFirstErrors())); } $n++;
 }
 $applyLog = require "$root/scripts/import/_apply_log.php"; $applyLog('build_coc_trustee_profiles_2026_10_05.php', $n, 'verified', "college district trustee profiles: $n");
