@@ -166,6 +166,18 @@ never spouses. A father and son on the same council are public record, not priva
 structure. The test is `publicKin` in the same file. **It takes effect only when
 `officeHoldings` has records; until then it passes nobody.**
 
+### No connection the sources do not make
+
+The archive does not create a connection its sources do not make (Nathan, 5 October 2026).
+A relation, a link, a shared tag or a sentence that puts two records side by side asserts that
+they belong together, and a search engine reads it that way. Where no source joins them, the
+archive does not either, however obvious the connection seems to whoever holds both. The
+shooter's father's 2017 obituary, which does not mention the Saugus High School shooting, is
+held with the obituaries in their own course and never related to the event. This is the
+stronger form of the double-counting rule (docs/PROFILES.md: one account repeated is one
+source): that rule stops the archive counting a connection twice; this one stops it making one
+at all.
+
 ## Entry types
 
 ### Affiliations — `affiliations/affiliation`
@@ -1202,6 +1214,18 @@ an import: whether an image enters is the archivist's decision.
 `acquiredDate` is the calendar date in the site's timezone, America/Los_Angeles, the one
 Craft records `dateCreated` in. A file received in the evening in California is already
 dated the next day on a machine set to European time; the archive date is the California one.
+
+## Content advisories
+
+A record about killing, violent injury or a suicide carries a one-line advisory as an editor's
+note in the **top** position, above the text, on the event and on every source record about it
+(Nathan, 5 October 2026: "a warning that appears after the reader has read the thing is not a
+warning"). Not `culturalSensitivityNote`, which renders after the body and is kept for the
+cultural and Tataviam notes it was made for. The wording names what the record concerns and
+what it describes, and nothing more: "This record concerns a school shooting in which
+students were killed, and describes injuries and a suicide." First used on the Saugus High
+School shooting of 2019; the St. Francis Dam failure, the Newhall Incident and the Kuredjian
+standoff need it too.
 
 ## Dates
 

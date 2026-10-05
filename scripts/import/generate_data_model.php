@@ -320,6 +320,18 @@ $lines[] = 'never spouses. A father and son on the same council are public recor
 $lines[] = 'structure. The test is `publicKin` in the same file. **It takes effect only when';
 $lines[] = '`officeHoldings` has records; until then it passes nobody.**';
 $lines[] = '';
+$lines[] = '### No connection the sources do not make';
+$lines[] = '';
+$lines[] = 'The archive does not create a connection its sources do not make (Nathan, 5 October 2026).';
+$lines[] = 'A relation, a link, a shared tag or a sentence that puts two records side by side asserts that';
+$lines[] = 'they belong together, and a search engine reads it that way. Where no source joins them, the';
+$lines[] = 'archive does not either, however obvious the connection seems to whoever holds both. The';
+$lines[] = 'shooter\'s father\'s 2017 obituary, which does not mention the Saugus High School shooting, is';
+$lines[] = 'held with the obituaries in their own course and never related to the event. This is the';
+$lines[] = 'stronger form of the double-counting rule (docs/PROFILES.md: one account repeated is one';
+$lines[] = 'source): that rule stops the archive counting a connection twice; this one stops it making one';
+$lines[] = 'at all.';
+$lines[] = '';
 
 /* ------------------------------------------------------------ the types */
 
@@ -576,6 +588,18 @@ $lines[] = '';
 $lines[] = '`acquiredDate` is the calendar date in the site\'s timezone, America/Los_Angeles, the one';
 $lines[] = 'Craft records `dateCreated` in. A file received in the evening in California is already';
 $lines[] = 'dated the next day on a machine set to European time; the archive date is the California one.';
+$lines[] = '';
+$lines[] = '## Content advisories';
+$lines[] = '';
+$lines[] = 'A record about killing, violent injury or a suicide carries a one-line advisory as an editor\'s';
+$lines[] = 'note in the **top** position, above the text, on the event and on every source record about it';
+$lines[] = '(Nathan, 5 October 2026: "a warning that appears after the reader has read the thing is not a';
+$lines[] = 'warning"). Not `culturalSensitivityNote`, which renders after the body and is kept for the';
+$lines[] = 'cultural and Tataviam notes it was made for. The wording names what the record concerns and';
+$lines[] = 'what it describes, and nothing more: "This record concerns a school shooting in which';
+$lines[] = 'students were killed, and describes injuries and a suicide." First used on the Saugus High';
+$lines[] = 'School shooting of 2019; the St. Francis Dam failure, the Newhall Incident and the Kuredjian';
+$lines[] = 'standoff need it too.';
 $lines[] = '';
 $lines[] = '## Dates';
 $lines[] = '';
