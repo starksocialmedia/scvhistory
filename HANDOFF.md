@@ -1,4 +1,4 @@
-# Handoff, 2026-10-04 (overnight)
+# Handoff, 2026-10-05
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session

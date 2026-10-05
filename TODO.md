@@ -3,6 +3,11 @@
 ## Waiting on Nathan
 
 ### Current (4 October 2026, overnight)
+- **The nav** (inventory/review/nav-proposal-2026-10-05.md): six decisions; then the build, and the body pages' breadcrumb with it.
+- **The district map key** on the Senate and Assembly: look, then the House.
+- **The Sheriff** (inventory/review/lasd-contract-office-memorial-2026-10-05.md): whether to build an officers' memorial section (a schema plan first) and who counts; whether any sheriff gets a person record; the first contract's date needs the City Clerk's or the Board of Supervisors' records of December 1987 to 1988.
+- **Hart before 1995** (inventory/review/hart-pre1995-terms-2026-10-05.md): Aliano's appointment as May 1994; Loberg and King ran and lost in 1993 (a "defeated" ending needs a new option); Warren's resignation, March or 6 April 1994.
+- **The 51 people:** which 51 (inventory/review/people-without-profile-2026-10-05.md lists 167).
 - **Two portraits may be generated, not edited:** Patti Rasmussen (#29122) and Brian Walters (#29118). Their files' content credentials record Firefly text_to_image steps. Keep them as edited photographs (with the edit recorded), or take them down. Nothing was changed.
 - **Seven portraits with a Firefly edit now recorded** (Knight, Sharon Runner, George Runner, Messina, Jensen, Moore, Erin Wilson): who made the edit (enhancedBy is empty), and whether the unedited originals exist, to be held beside them under the new keep-both rule.
 - **War memorial differences, shown on the records and not changed** (inventory/review/war-memorial-sourcing-2026-10-04.md): Cone is U.S. Navy, Seaman Second Class, missing August 10, 1943 by ABMC and the Navy's 1946 list (the record says Army, March 13, 1945; middle name Russel in both); ranks at death per the Defense Department (Sellen, Gelig, Acosta: Specialist or Private First Class against Sergeant or SP4); Acosta was 19, not 20; Suter's release gives Los Angeles; Todd appears as Spc. Dean Todd-Eckard of Canyon Country; Ross's ABMC date is September 30, 1944; Rubel reenlisted November 1942, a driver; Ball's draft registration was 1942, and his January 15, 1946 date has no source; Conant is not in the VA locator, so "Punchbowl" is unsupported. Kenaston: may the VA locator be used for him (a lead puts him at Los Angeles National Cemetery)?

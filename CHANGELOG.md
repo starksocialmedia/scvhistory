@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-05
+
+- Agent: Claude Code
+- Date: 2026-10-05
+- Done: "Who governs where you stand" taken off /civic; its data, partial and build script kept in inventory/review. The district map on the Senate and Assembly pages now has a key: every district of the chosen plan, coloured, with its share and members side by side (the Senate's 2011 plan shows the 21st and the 27th, Wilk and Stern; the Assembly's the 38th and the 36th, Wilk and Lackey); picking one highlights it and leaves the others in view. The House waits on Nathan's look. The nav proposal (inventory/review/nav-proposal-2026-10-05.md), not built. Research for Nathan: the Sheriff's contract, office and officers killed on duty (inventory/review/lasd-contract-office-memorial-2026-10-05.md); Hart trustees before 1995 (inventory/review/hart-pre1995-terms-2026-10-05.md); the 167 people with no legacy page and no profile (inventory/review/people-without-profile-2026-10-05.md). The CHANGELOG now names the previous session's Acton-Agua Dulce record and Redevelopment research as theirs; APPLIED.log checked, nothing else unlogged.
+- Decisions: the breadcrumb on body pages waits on the nav decision (Nathan). The Hart corrections are proposals, not applied: "defeated" is not a howEnded option.
+- Blockers: none.
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-04 (overnight, Nathan's queue)
 
 - Agent: Claude Code
