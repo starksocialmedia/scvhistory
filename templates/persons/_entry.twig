@@ -169,6 +169,10 @@
           <div class="rec-body" id="recText">
             {% include "_partials/prose" with { text: prose, images: recImages , footnotesFor: entry } %}
           </div>
+          {#- Where the sources disagree on something the text says (a SourceFault on this record, any field but the birth date, which is said under BORN), the disagreement is said after the text, not resolved (Nathan, 5 October 2026: Stearns's mint deposit). -#}
+          {% for f in craft.entries().section('sourceFaults').relatedTo({ targetElement: entry, field: 'faultRecord' }).all()|filter(f => f.faultField != 'birthDate') %}
+            <p class="rec-note">{{ f.basis }}</p>
+          {% endfor %}
 {% include "_partials/record/footnotes" with { entry: entry } only %}
           {% include "_partials/record/images" with { images: recImages, body: prose, entry: entry } only %}
         {% endif %}
