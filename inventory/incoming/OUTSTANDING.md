@@ -27,7 +27,7 @@ imported after editing, or an alternative. Keep it or drop it; nothing waits on 
 | rodolfo-acost.jpg | Rodolfo Acosta | rodolfo_acosta_in_one-eyed_jacks.jpg |
 | bob-keller.jpg | Bob Kellar | sc1310.jpg |
 | Cameron-Smyth.jpg | Cameron Smyth | cameron-smyth-2017.jpg |
-| newhall-elementary.jpeg | Newhall Elementary School | newhall-elementary-school-logo.png (the same mark, larger; this is a 407 by 491 copy on white, not a photograph) |
+| newhall-elementary.jpeg | Newhall Elementary School | newhall-elementary-school-logo.png (the same mark, larger and edited with Adobe Firefly; this 407 by 491 copy on white has no content credential and is probably the unedited original. Not a photograph) |
 | CSUN.jpg, csun-central-campus-commons.jpg | California State University, Northridge | csun-oviatt-library-commons.jpg |
 | city-hall.jpg, santa-clarita-city-hall-flickr-2600036728.jpg | The City of Santa Clarita | santa-clarita-city-hall-2008-flickr.jpg |
 | beales-cut-sta.jpg | Beale's Cut | the 1923 Tom Mix photograph |
