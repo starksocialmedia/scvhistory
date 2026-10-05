@@ -403,7 +403,7 @@ at all.
 
 ### Events — `events/event`
 
-43 fields.
+44 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -432,6 +432,7 @@ at all.
 | `culturalSensitivityNote` | PlainText | Dublin Core `rights` | approximate; it is a note, not a licence |
 | `eventPlaces` | Entries | **local** | no external equivalent |
 | `eventPersons` | Entries | **local** | no external equivalent |
+| `eventFallenOfficers` | Entries | **local** | no external equivalent |
 | `eventOrganizations` | Entries | **local** | no external equivalent |
 | `eventArticles` | Entries | **local** | no external equivalent |
 | `eventGroups` | Entries | **local** | no external equivalent |

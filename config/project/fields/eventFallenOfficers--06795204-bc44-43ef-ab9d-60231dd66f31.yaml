@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: eventFallenOfficers
+instructions: 'Officers killed in this event, from the Fallen officers section. Only where a source ties the officer to the event.'
+name: 'Fallen officers'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:f1b5e8c2-028a-41c7-be7d-951feaf6e932' # Fallen officers
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

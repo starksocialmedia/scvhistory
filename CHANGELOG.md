@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-05 (evening, events)
+
+- Agent: Claude Code
+- Date: 2026-10-05
+- Done: Two DATA-MODEL rules on Nathan's word: content advisories above the text; no connection the sources do not make. The Saugus High 2019 rulings recorded; the verbatim extract (19 pieces, seven contact details withheld); the entities applied (Santa Clarita Central Park #30515, the Los Angeles Times #30518, SCVTV #30520, Saugus High School's community); the 16 source records drafted (create_saugus_2019_sources_2026_10_05.php, dry run). eventFallenOfficers on the event type, with a FALLEN OFFICERS box. The events inventory and the missed-events sweep (inventory/review/events-inventory-, events-missed-2026-10-05.md). The St. Francis Dam record drafted (st-francis-dam-dry-run-2026-10-05.md). fix_council_election_sources_2026_10_05.php drafted: Measure U carried, and the fourteen council elections' source footnotes.
+- Decisions: one dam record for the failure and the flood; 411 as Leon Worden's 2018 revision of Stansell's 431, shown; events that ran for years: the Range War one record, Canyon County, Elsmere and Cemex on their organization or place records; the 74 City vigil photographs not imported until Nathan has looked; the aqueduct quote left out.
+- Errors: import_elections.php wrote carried = false for every measure and, its document lookup failing, footnotes reading "summary." on fourteen elections with no source linked (ERRORLOG).
+- Blockers: the Reggie drive dismounted during the dam work; the Stearns comparison and the dam's quotation check wait for it.
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-05 (late)
 
 - Agent: Claude Code

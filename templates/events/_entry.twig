@@ -83,6 +83,14 @@
           </div>
         {% endif %}
 
+        {#- Officers killed in the event, from their own section (Nathan, 5 October 2026); read through the layout, never "is defined". -#}
+        {% set officers = 'eventFallenOfficers' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.eventFallenOfficers.all() : [] %}
+        {% if officers|length %}
+          <div class="rec-box"><div class="rec-lab">FALLEN OFFICERS</div>
+            <div class="rec-rows">{% for o in officers %}<div class="k">OFFICER</div><div class="v"><a href="{{ o.url }}">{{ o.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
         {% set people = entry.eventPersons.all() %}
         {% if people|length %}
           <div class="rec-box"><div class="rec-lab">PEOPLE</div>
