@@ -710,6 +710,10 @@
    "show": "internal",
    "why": "sets the body's group on /organizations (Valley government, or County, state and federal); not printed on the record"
   },
+  "civicRole": {
+   "show": "internal",
+   "why": "decides whether a government or school district is on Public bodies (/civic): shown unless its role toward the valley is \"none\"; not printed on the record"
+  },
   "orgWebsite": {
    "show": "page",
    "mode": "href"

@@ -13,7 +13,7 @@ $APPLY = false; $ENABLE = false; $ONLY = [];
 $root = \Craft::getAlias('@root'); $el = Craft::$app->getElements(); $fs = Craft::$app->getFields();
 $BAD = '~\b(WordPress|the import|on import|imported from|migrated|migration|legacy mirror|in the mirror|inventory/|SHA-?(1|256)|checksums?|manifest|dry run|the script|scripts? (that|which)|next to try|to try next|with Nathan|Nathan\'s|Claude|image tag|commented out|read so far|search summary|page was blocked|ha(s|ve) not been (read|checked)|could not be read|[Ss]earched \d|sources searched|lists searched|release search)\b~i';
 $opts = fn($h) => array_column($fs->getFieldByHandle($h)->options, 'value');
-$TYPES = $opts('orgType'); $ROLES = $opts('civicRole'); $LEVELS = $opts('orgLevel'); $SCH = $opts('schoolLevel');
+$TYPES = $opts('orgType'); $ROLES = $opts('civicRole'); $LEVELS = array_merge([''], $opts('orgLevel')); $SCH = array_merge([''], $opts('schoolLevel'));
 $P = [];
 foreach (glob("$root/inventory/review/public-bodies-*-2026-10-05.json") as $f) { foreach (json_decode(file_get_contents($f), true) ?: [] as $r) { if (isset($r['title'])) { $P[] = $r + ['_file' => basename($f)]; } } }
 $os = Craft::$app->getEntries()->getSectionByHandle('organizations'); $plan = []; $bad = []; $out = [];
