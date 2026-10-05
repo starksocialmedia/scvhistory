@@ -30,7 +30,7 @@
 {%- endfor -%}
 {%- set races = races|sort((a, b) => a.date <=> b.date) -%}
 {%- set usedRaces = [] -%}
-{% macro raceLine(r) %}{% set sfx = r.place % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][r.place % 10] ?? 'th') %}<a href="{{ r.el.url }}">{{ r.won ? 'Elected' : (r.c.outcome.value == 'not-elected' ? 'Not elected' : 'Stood') }}</a>{% if r.won and r.c.outcomeEvidence.value == 'derived' %}{% include "_partials/record/evidence" with { ev: r.c.outcomeEvidence } only %}{% endif %} {{ r.el.electionDate ?: r.date|slice(0, 4) }}<span style="color:#5B6472">, {{ r.place ~ sfx }} of {{ r.n }}, {{ r.c.votes|number_format }} votes</span>{% endmacro %}
+{% macro raceLine(r) %}{% set sfx = r.place % 100 in [11, 12, 13] ? 'th' : (['th', 'st', 'nd', 'rd'][r.place % 10] ?? 'th') %}<a href="{{ r.el.url }}">{{ r.won ? 'Elected' : (r.c.outcome.value == 'not-elected' ? 'Not elected' : 'Stood') }}</a>{% if r.won and r.c.outcomeEvidence.value == 'derived' %}{% include "_partials/record/evidence" with { ev: r.c.outcomeEvidence } only %}{% endif %} {{ r.el.electionDate ?: r.date|slice(0, 4) }}{#- A race with no count held (the college district's 1967 election) has no place: the place is read from the votes. -#}<span style="color:#5B6472">{% if r.c.votes is null or r.c.votes == '' %}, one of {{ r.n }} candidates; no count is held{% else %}, {{ r.place ~ sfx }} of {{ r.n }}, {{ r.c.votes|number_format }} votes{% endif %}</span>{% endmacro %}
 {% import _self as PL %}
 {% if holdings|length %}
   {#- Grouped by office and body, in the order first held. -#}

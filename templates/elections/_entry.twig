@@ -52,6 +52,10 @@
 {% set distLabel = dist ? ({'trustee-area': 'Trustee Area', 'council-district': 'District', 'water-division': 'Division'}[dist.districtKind.value] ?? 'District') ~ ' ' ~ dist.districtNumber : '' %}
 {% set fnText = (e.footnotes ?? [])|map(r => r.note ?? '')|join(' ') %}
 {% set cands = craft.entries().section('candidacies').relatedTo({ targetElement: e, field: 'candidacyElection' }).all()|sort((a, b) => (b.votes ?? 0) <=> (a.votes ?? 0)) %}
+{#- An election with no count held (the college district's 1967 to 1972 elections): no order of the vote, no shares; the
+    elected first, then the rest, as the accounts name them (5 October 2026). -#}
+{% set noCount = cands|length and not (cands|filter(c => c.votes is not null and c.votes != '')|length) %}
+{% if noCount %}{% set cands = cands|sort((a, b) => ((b.outcome.value == 'elected') <=> (a.outcome.value == 'elected')) ?: (a.nameAsPrinted <=> b.nameAsPrinted)) %}{% endif %}
 {% set total = cands|reduce((s, c) => s + (c.votes ?? 0), 0) %}
 {% set top = (cands|first).votes ?? 0 %}
 {% set wonEv = (cands|filter(c => c.outcome.value == 'elected')|first).outcomeEvidence.value ?? 'uncited' %}
@@ -78,6 +82,9 @@
   </section>
 
   <main class="scv-band-in el-main">
+    {#- Editor's notes, as on every record page (the college district's elections carry the contest and a missing count, 5 October 2026). -#}
+    {% set edRows = 'editorNotes' in e.fieldLayout.customFields|map(f => f.handle) ? e.editorNotes : [] %}
+    {% include "_partials/record/editor-notes" with { rows: edRows, position: 'top' } only %}
     <h2 class="el-h2" style="margin-top:0">THE CANDIDATES</h2>
     <table class="el-table">
       <thead><tr><th>#</th><th>CANDIDATE, AS PRINTED</th><th style="text-align:right">VOTES</th><th style="width:28%">SHARE</th></tr></thead>
@@ -86,14 +93,15 @@
         {% set p = c.candidacyPerson.one() %}
         {% set f = faultOf['r' ~ c.id ~ 'votesAsPrinted'] ?? null %}
         <tr>
-          <td class="el-dim">{{ loop.index }}</td>
+          <td class="el-dim">{{ noCount ? '' : loop.index }}</td>
           <td>{% if p %}<a href="{{ p.url }}">{{ c.nameAsPrinted }}</a>{% else %}{{ c.nameAsPrinted }}{% endif %}{% if c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited' %}<span class="el-badge{{ c.outcomeEvidence.value == 'derived' ? ' el-badge--count' : '' }}">{{ c.outcomeEvidence.value == 'derived' ? 'ELECTED, BY THE COUNT' : 'ELECTED' }}</span>{% endif %}</td>
-          <td class="num">{{ c.votes|number_format }}{% if f %}<div class="el-dim">printed "{{ f.asPrinted }}"</div>{% endif %}</td>
-          <td><div class="el-bar" style="width:{{ top ? (c.votes / top * 100)|round(1) : 0 }}%"></div><span class="el-dim">{{ total ? (c.votes / total * 100)|number_format(1) : '' }}%</span></td>
+          <td class="num">{{ noCount ? 'not held' : c.votes|number_format }}{% if f %}<div class="el-dim">printed "{{ f.asPrinted }}"</div>{% endif %}</td>
+          <td>{% if not noCount %}<div class="el-bar" style="width:{{ top ? (c.votes / top * 100)|round(1) : 0 }}%"></div><span class="el-dim">{{ total ? (c.votes / total * 100)|number_format(1) : '' }}%</span>{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
+    {% if noCount %}<p class="el-callout">No count is held for this election. Those marked elected are named by the accounts in the notes; the others are listed by name.</p>{% endif %}
     {% set nS = e.seatsUp %}{% set sS = nS == 1 ? '' : 's' %}
     {% if wonEv == 'roster' %}
       {#- Which compilation: Worden's council ledger, CEDA, or both. -#}
@@ -134,6 +142,8 @@
       {% for d in e.sourceDocuments.all() %}<li><a href="{{ d.url }}" style="color:#7A5C1B">{{ d.title }}</a>{% set fl = d.documentFiles.one() %}{% if fl %} &middot; <a href="{{ fl.url }}" style="color:#7A5C1B">PDF</a>{% endif %}</li>{% endfor %}
     </ul>
     {% include "_partials/record/footnotes" with { entry: e } only %}
+    {% include "_partials/record/editor-notes" with { rows: edRows, position: 'inline' } only %}
+    {% include "_partials/record/editor-notes" with { rows: edRows, position: 'bottom' } only %}
   </main>
 </div>
 {% endblock %}

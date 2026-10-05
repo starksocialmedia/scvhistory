@@ -3,7 +3,7 @@
 ## Waiting on Nathan
 
 ### Current (4 October 2026, overnight)
-- **The new public bodies** (inventory/review/public-bodies-dry-run-2026-10-05.md; the court's record is in the database, disabled): read, then publish with enable_public_bodies_2026_10_05.php ($ONLY for some). The college district's trustees: which get person records; the four cancelled contests become appointed terms once the trustees are recorded.
+- **The college district trustees' profiles** (inventory/review/coc-trustees-profiles-dry-run-2026-10-05.md, 33): read, then apply with build_coc_trustee_profiles_2026_10_05.php. Tichenor's arrest, plea and death (left out; wording drafted); Sharlene Rose Johnson and Sharlene Duzick; Don Allen missing from the district's own list.
 - **Fallen officers:** read the fourteen (disabled; inventory/review/fallen-officers-draft-2026-10-05.md, or in the control panel), then enable them (re-run create_fallen_officers_2026_10_05.php with $ENABLE = true).
 - **The Hart trustees dry run** (inventory/review/hart-trustees-profiles-dry-run-2026-10-05.md): read the 55 and the "For Nathan" items under each; then apply.
 - **The nav** (inventory/review/nav-proposal-2026-10-05.md): six decisions; then the build, and the body pages' breadcrumb with it.

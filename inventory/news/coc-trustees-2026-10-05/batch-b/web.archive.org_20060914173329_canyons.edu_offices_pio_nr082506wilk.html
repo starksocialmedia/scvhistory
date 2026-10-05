@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>nr082506wilk</TITLE><META NAME="GENERATOR" CONTENT="Freeway Pro 3.5.15"><STYLE TYPE="text/css">
+<!--
+p { margin-top:0px }
+.style761 { font-family: Arial,Helvetica,sans-serif; color: #c00; font-size: 10px; }
+.style24 { font-family: Arial,Helvetica,sans-serif; font-weight: bold; font-size: 11px; }
+.style915 { font-family: Arial,Helvetica,sans-serif; color: #666; font-size: 11px; }
+.style943 { font-family: Arial,Helvetica,sans-serif; font-weight: bold; color: #c00; font-size: 14px; }
+.style11 { font-family: Arial,Helvetica,sans-serif; font-size: 11px; }
+.style18 { text-align: center; }
+.style2 { font-family: Arial,Helvetica,sans-serif; font-weight: bold; font-size: 10px; }
+.style6 { font-family: Arial,Helvetica,sans-serif; font-size: 10px; }
+.style48 { text-align: center; }
+.style193 { line-height: 2px; text-align: center; }
+.style7 { font-family: Arial,Helvetica,sans-serif; text-decoration: underline; color: #00f; font-size: 10px; }
+.style726 { font-family: Arial,Helvetica,sans-serif; font-size: 9px; }
+.style23 { text-align: right; }
+.style731 { font-family: Verdana; font-weight: bold; font-size: 10px; }
+.style721 { font-family: Verdana; font-size: 10px; }
+-->
+</STYLE>
+<SCRIPT LANGUAGE="javascript" TYPE="text/javascript"><!--
+
+var fwIsNetscape = navigator.appName == 'Netscape';
+
+fwLoad = new Object;
+function FWLoad(image)
+{
+	if (!document.images)
+		return null;
+	if (!fwLoad[image])
+	{
+		fwLoad[image]=new Image;
+		fwLoad[image].src=image;
+	}
+	return fwLoad[image].src;
+}
+
+fwRestore = new Object;
+function FWRestore(msg,chain) 
+{
+	if (document.images) 
+		for (var i in fwRestore)
+		{
+			var r = fwRestore[i];
+			if (r && (!chain || r.chain==chain) && r.msg==msg)
+			{
+				r.src = FWLoad(r.old);
+				fwRestore[i]=null;
+			}
+		}
+}
+
+function FWLSwap(name,msg,newImg,layer,chain,trigger) 
+{
+	var r = fwRestore[name];
+	if (document.images && (!r || r.msg < msg)) 
+	{
+		var uselayers = fwIsNetscape && document.layers && layer != '';
+		var hld = (uselayers) ? document.layers[layer].document : document;
+		var im = hld[name];
+		if (!im.old) im.old = im.src;
+		im.msg = msg;
+		im.chain = chain;
+		im.trigger = trigger;
+		if (newImg) im.src = FWLoad(newImg);
+		fwRestore[name] = im;
+	}
+}
+
+function FWCallHit(func,targNum,msg)
+{
+	if(func)
+		for (var i in func)
+			func[i](targNum,msg);
+}
+function FW_Hit(frameset,chain,targNum,msg)
+{
+	if (frameset && frameset.length)
+		for (var i=0 ; i <frameset.length ; i++)
+		{
+			FW_Hit(frameset[i].frames,chain,targNum,msg);
+			FWCallHit(top["FT_"+chain],targNum,msg);
+			FWCallHit(frameset[i].window["FT_"+chain],targNum,msg);
+		}
+	else
+		FWCallHit(window["FT_"+chain],targNum,msg);
+}
+
+fwHit = new Object;
+function FWSlave(frameset,chain,targNum,msg)
+{
+	if (msg==1) fwHit[chain]=targNum;
+	FW_Hit(frameset,chain,targNum,1);
+}
+
+function FWSRestore(frameset,chain)
+{
+	var hit=fwHit[chain];
+	if (hit)
+		FW_Hit(frameset,chain,hit,0);
+	fwHit[chain]=null;
+}
+function FWPreload(){FWLoad("Resources/item2a1a2.gif");FWLoad("");FWLoad("Resources/item2a1d.gif");FWLoad("Resources/item2a1b3.gif");FWLoad("Resources/item2a1b1c.gif");FWLoad("Resources/item2a1b1a3.gif");FWLoad("Resources/item2a1b1a1b.gif");}
+//-->
+</SCRIPT></HEAD><BODY TOPMARGIN=0 LEFTMARGIN=0 MARGINHEIGHT=0 MARGINWIDTH=0 BGCOLOR="#ffffff" onload="FWPreload()"><DIV ID="LayoutTable" ALIGN=CENTER><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=617><TR VALIGN=TOP><TD><TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0><TR><TD HEIGHT=14 WIDTH=47 VALIGN=TOP><P><A HREF="http://www.canyons.edu" onMouseOver="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')" onMouseOut="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')"><IMG SRC="Resources/item2a1a2.gif" BORDER=0 WIDTH=47 HEIGHT=14 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></A></P></TD><TD WIDTH=152 VALIGN=TOP><P><A HREF="http://www.canyons.edu/offices/Admissions/L2_application_for_admission.asp" onMouseOver="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')" onMouseOut="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')"><IMG SRC="Resources/item2a1d.gif" BORDER=0 WIDTH=152 HEIGHT=14 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></A></P></TD><TD WIDTH=150 VALIGN=TOP><P><A HREF="http://www.canyons.edu/offices/Admissions/L2_Registration.asp" onMouseOver="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')" onMouseOut="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')"><IMG SRC="Resources/item2a1b3.gif" BORDER=0 WIDTH=150 HEIGHT=14 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></A></P></TD><TD WIDTH=129 VALIGN=TOP><P><A HREF="http://www.canyons.edu/L2_communityResources.asp" onMouseOver="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')" onMouseOut="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')"><IMG SRC="Resources/item2a1b1c.gif" BORDER=0 WIDTH=129 HEIGHT=14 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></A></P></TD><TD WIDTH=73 VALIGN=TOP><P><A HREF="http://www.canyons.edu/offices/Foundation/Default.asp" onMouseOver="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')" onMouseOut="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')"><IMG SRC="Resources/item2a1b1a3.gif" BORDER=0 WIDTH=73 HEIGHT=14 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></A></P></TD><TD WIDTH=64 VALIGN=TOP><P><A HREF="http://www.canyons.edu/L2_TextOnly.asp" onMouseOver="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')" onMouseOut="FWRestore(1,'Indigo');FWSRestore(top.frames,'Indigo')"><IMG SRC="Resources/item2a1b1a1b.gif" BORDER=0 WIDTH=64 HEIGHT=14 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></A></P></TD></TR><TR><TD HEIGHT=55 WIDTH=615 COLSPAN=6 VALIGN=TOP><P><IMG SRC="Resources/topbanner1.jpeg" BORDER=0 WIDTH=615 HEIGHT=55 ALIGN=MIDDLE HSPACE=0 VSPACE=0 ALT="College of the Canyons page header"></P></TD></TR></TABLE></TD><TD HEIGHT=69></TD></TR><TR VALIGN=TOP><TD><TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0><TR><TD WIDTH=290 VALIGN=TOP><P><IMG SRC="Resources/item3a1a.gif" BORDER=0 WIDTH=288 HEIGHT=40 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></P></TD><TD WIDTH=325 VALIGN=TOP><P CLASS="style23"><SPAN CLASS="style731"><br>Contact us:</SPAN><SPAN CLASS="style721"> [phone redacted] or </SPAN><A HREF="mailto:[email redacted]"><SPAN CLASS="style721">e-mail<br></SPAN></A><A HREF="http://www.canyons.edu/info/news/"><SPAN CLASS="style721">Return to PIO Home Page</SPAN></A></P></TD></TR><TR><TD WIDTH=290 VALIGN=TOP><IMG SRC="Resources/_clear.gif" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></TD><TD WIDTH=325 VALIGN=TOP><IMG SRC="Resources/_clear.gif" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></TD></TR><TR><TD WIDTH=615 COLSPAN=2 VALIGN=TOP><BLOCKQUOTE><P><SPAN CLASS="style761"><br></SPAN><SPAN CLASS="style24">FOR IMMEDIATE RELEASE<br></SPAN><SPAN CLASS="style915">No. COC-07-019<br>August 25, 2006</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style943">Board of Trustees Appoints Scott Wilk to Vacant Seat</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style11">The Santa Clarita Community College District Board of Trustees selected Scott Wilk, local spokesman and district director for U.S. Rep. Howard P. &quot;Buck&quot; McKeon, to fill the board's vacant seat.</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style11">Wilk was one of 20 community candidates interviewed by the board during open session on Aug. 23. After the interviews, the four sitting members of the board cast four rounds of votes through which the 47-year-old Wilk emerged as the selectee.</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style11">&quot;Scott brings experience,&quot; said board president Bruce Fortine. &quot;He is bright, dedicated, an advocate for higher education and an outstanding human being.&quot;</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style11">Wilk attended his first board meeting on Sept. 13 and will serve in his position until the seat, vacated by Ron Gillis in July, comes up for re-election in November 2007.</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style11">&quot;Scott Wilk brings a keen understanding of the political processes at work in Sacramento and Washington,&quot; said Dr. Dianne G. Van Hook, superintendent-president of College of the Canyons, &quot;and possesses an in-depth knowledge of local, as well as national, education issues. His passion for education and workforce training issues will prove invaluable in his service as a member of the Board of Trustees team.&quot;</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style11">Wilk has said he was &quot;humbled&quot; by his appointment and that he will definitely run for the position in 2007.</SPAN></P></BLOCKQUOTE><BLOCKQUOTE><P><SPAN CLASS="style11">&nbsp;</SPAN></P></BLOCKQUOTE></TD></TR><TR><TD WIDTH=615 COLSPAN=2 VALIGN=TOP><P><IMG SRC="Resources/addressbar1a1a.gif" BORDER=0 WIDTH=615 HEIGHT=13 ALIGN=ABSBOTTOM HSPACE=0 VSPACE=0 ALT=""></P></TD></TR><TR><TD WIDTH=615 COLSPAN=2 VALIGN=TOP BGCOLOR="#ffcc00"><P CLASS="style18"><A HREF="http://www.coc.cc.ca.us/"><SPAN CLASS="style2"><br></SPAN></A><A HREF="http://www.canyons.edu"><SPAN CLASS="style2">Home</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/offices/Admissions/L2_application_for_admission.asp"><SPAN CLASS="style2">Application for Admission</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/offices/Admissions/L2_Registration.asp"><SPAN CLASS="style2">Registration Info</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/L2_communityResources.asp"><SPAN CLASS="style2">Community Resources</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/L2_TextOnly.asp"><SPAN CLASS="style2">Text Only</SPAN></A><SPAN CLASS="style2"> <br></SPAN><A HREF="http://www.canyons.edu/offices/Foundation/"><SPAN CLASS="style2">Foundation</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/L2_Students.asp"><SPAN CLASS="style2">Students</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/L2_Classes.asp"><SPAN CLASS="style2">Classes</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/L2_DepartmentsDirectories.asp"><SPAN CLASS="style2">Directories</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/info/news/"><SPAN CLASS="style2">News</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/info/news/keyinfo/"><SPAN CLASS="style2">About COC</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/offices/HumanResources/"><SPAN CLASS="style2">Human Resources</SPAN></A><SPAN CLASS="style2"> | </SPAN><A HREF="http://www.canyons.edu/info/contact/"><SPAN CLASS="style2">Contact Us</SPAN></A><SPAN CLASS="style2"> </SPAN></P><P CLASS="style18"><SPAN CLASS="style6">Can't find it? Try the </SPAN><A HREF="http://www.canyons.edu/index/queryhit.asp"><SPAN CLASS="style6">Cougar Search Engine</SPAN></A><SPAN CLASS="style6">.</SPAN></P><BLOCKQUOTE><BLOCKQUOTE><BLOCKQUOTE><BLOCKQUOTE><P CLASS="style48"><SPAN CLASS="style6">&copy; 2001-2006 College of the Canyons. All Rights Reserved.<br></SPAN><A HREF="http://www.canyons.edu/terms.asp"><SPAN CLASS="style7" STYLE="color:inherit">Terms</SPAN></A><SPAN CLASS="style6"> under which this service is provided to you. <br></SPAN><SPAN CLASS="style726">&nbsp;</SPAN></P></BLOCKQUOTE></BLOCKQUOTE></BLOCKQUOTE></BLOCKQUOTE></TD></TR></TABLE></TD></TR><TR><TD WIDTH=615><IMG SRC="Resources/_clear.gif" BORDER=0 WIDTH=615 HEIGHT=1 ALT=""></TD><TD WIDTH=2 HEIGHT=1><IMG SRC="Resources/_clear.gif" BORDER=0 WIDTH=2 HEIGHT=1 ALT=""></TD></TR></TABLE></DIV></BODY></HTML>
