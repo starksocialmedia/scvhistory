@@ -1,0 +1,1223 @@
+
+
+
+
+
+
+
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="National Cemetery Administration">
+    <meta name="dcterms.subject" content="National Cemetery Administration Press Room">
+    <meta name="keywords" content="cemetery, cemeteries, cemetary, burial, benefits, headstone, marker, veterans, military, national cemetery, national cemeteries, military records, medals, honor guard, grave, gravesite, memorial day, veteran gravesite locator, search veteran gravesite">
+    <meta name="dcterms.created" content="20080303">
+    <meta name="dcterms.dateAccepted" content="20160804">
+    <meta name="dcterms.type" content="National Cemetery Administration">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+    <link href="/ngl/va_files/2012/bootstrap-5.2.2-dist/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css">     
+    
+	<link href="/ngl/va_files/2012/styles/template_styles.css" media="all" rel="stylesheet" type="text/css">
+ 	<script src="/ngl/va_files/2012/scripts/jquery-1-10-1-min.js" type="text/javascript"></script>
+ 	<script src="/ngl/va_files/2012/scripts/jquery-tools-min.js" type="text/javascript"></script>
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script id="_fed_an_ua_tag" language="javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?ver=true&amp;agency=VA&amp;pua=ua-46839167-1"></script>
+
+
+    <meta name="description" content="Search for burial locations of veterans and their family members. The VA National Cemetery Administration honors the military service of our Nation's veterans.  We provide a dignified burial and lasting memorial for veterans and their eligible family members and we maintain our veterans' cemeteries as national shrines.">		
+	<title>Grave Locator and Urn or Plaque - Search</title>
+		
+</head>
+
+<body>
+	<div class="container-fluid" role="main">
+	<div class="row">
+		<div class="col-sm-12">
+			<form id="myForm" action="result" method="post" onsubmit="return submitForm()">
+				
+				<div  class="card-header">
+					<div class="col-sm-8" aria-live="assertive">
+						<h2 id="plaqUrn" class="page-title ps-3 pt-2 pb-2" style="display: none;">Urn/Plaque Benefits</h2>
+						<h2 id="ngloc" class="page-title ps-3 pt-2 pb-2" style="display: block;">Nationwide Gravesite Locator</h2>
+					</div>
+				</div>
+
+				<div class="row search-type">
+					<div class="col-lg-2 col-sm-5">
+						<select id="nglOrUrn" name="nglUP" aria-live="polite" class="form-select form-select-sm ps-3 button-enabler" aria-label="Burial Locations or Urn or Plaque search options" onchange="showSelected()">
+							<option value="1" selected="selected">Burial Locations</option>
+							<option value="2">Urn/Plaque Benefits </option>
+						</select>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="row  ms-1 me-1">
+						<div class="col-sm-12">
+							
+								<div>
+									<p class="va-large gen-error" tabindex="0" id="err-msg">
+										<b>No Results were found for your search.</b> Try refining your
+										search
+									</p>
+								</div>
+							
+						</div>
+						
+					</div>
+					<div id = 'cemeteryListRow' class="row ms-1 me-1">
+						<div class="col-lg-2 col-sm-3 mt-2">
+							<label class="col-form-label" for="cemno">Cemetery:</label>
+						</div>
+						
+						<div class="col-lg-7 col-sm-9 mt-2">
+							<select id="cemno" name="cemetery" aria-live="assertive" class="form-select button-enabler" aria-label="Cemetery">
+								<option value="" selected="selected">Search All Cemeteries</option>
+								
+								
+									<optgroup label="MICHIGAN">
+										
+											<option class="cem-all-options" value="N082">FORT MACKINAC POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N909">FT. CUSTER NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N923">GREAT LAKES NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N062">LAKESIDE CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="PUERTO RICO">
+										
+											<option class="cem-all-options" value="S406">ATLANTIC GARDEN VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N971">MOROVIS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N871">PUERTO RICO NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="WASHINGTON">
+										
+											<option class="cem-all-options" value="N958">FORT WORDEN POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N951">FT. LAWTON POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N919">TAHOMA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N954">VANCOUVER BARRACKS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S028">WASHINGTON SOLDIERS HOME and COLONY</option>
+										
+											<option class="cem-all-options" value="S390">WASHINGTON STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S014">WASHINGTON VETERANS HOME</option>
+										
+									</optgroup>
+								
+									<optgroup label="ALASKA">
+										
+											<option class="cem-all-options" value="N910">FT. RICHARDSON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S137">METLAKATLA VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N905">SITKA NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="RHODE ISLAND">
+										
+											<option class="cem-all-options" value="S013">RHODE ISLAND VETERAN MEMORIAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="WEST VIRGINIA">
+										
+											<option class="cem-all-options" value="S398">DONEL KINNARD MEMORIAL STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N812">GRAFTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N912">WEST VIRGINIA NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NEVADA">
+										
+											<option class="cem-all-options" value="S039">CONAWAY MEMORIAL VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S046">NORTHERN NEVADA VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S045">SOUTHERN NEVADA VETERANS MEMORIAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NORTH CAROLINA">
+										
+											<option class="cem-all-options" value="S052">COASTAL CAROLINA STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S416">EASTERN CAROLINA STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N868">NEW BERN NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N873">RALEIGH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N876">SALISBURY NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S085">SANDHILLS STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S051">WESTERN CAROLINA STATE VETERAN CEMETERY</option>
+										
+											<option class="cem-all-options" value="N881">WILMINGTON NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="PENNSYLVANIA">
+										
+											<option class="cem-all-options" value="N120">ALLEGHENY CEMETERY</option>
+										
+											<option class="cem-all-options" value="N121">ASHLAND CEMETERY</option>
+										
+											<option class="cem-all-options" value="N813">INDIANTOWN GAP NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N065">MT MORIAH SOLDIERS LOT</option>
+										
+											<option class="cem-all-options" value="N066">MT. MORIAH NAVAL PLOT</option>
+										
+											<option class="cem-all-options" value="N925">NATIONAL CEMETERY OF THE ALLEGHENIES</option>
+										
+											<option class="cem-all-options" value="S148">PENNSYLVANIA SOLDIERS AND SAILORS HOME CEMETERY</option>
+										
+											<option class="cem-all-options" value="N819">PHILADELPHIA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N069">PROSPECT HILL CEMETERY, PA</option>
+										
+											<option class="cem-all-options" value="N926">WASHINGTON CROSSING NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="OREGON">
+										
+											<option class="cem-all-options" value="N906">EAGLE POINT NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N959">FORT STEVENS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N902">ROSEBURG NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N907">WILLAMETTE NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NORTHERN MARIANA ISLANDS">
+										
+											<option class="cem-all-options" value="S132">SAIPAN VETERANS CEMETERY - CNMI</option>
+										
+									</optgroup>
+								
+									<optgroup label="WYOMING">
+										
+											<option class="cem-all-options" value="N945">CHEYENNE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S016">OREGON TRAIL STATE VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="FLORIDA">
+										
+											<option class="cem-all-options" value="N828">BARRANCAS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N830">BAY PINES NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N934">CAPE CANAVERAL NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N911">FLORIDA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N928">JACKSONVILLE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N875">SAINT AUGUSTINE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N931">SARASOTA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N924">SOUTH FLORIDA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N937">TALLAHASSEE NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="OHIO">
+										
+											<option class="cem-all-options" value="N075">CAMP CHASE CONFEDERATE CEMETERY</option>
+										
+											<option class="cem-all-options" value="N076">CONFEDERATE STOCKADE CEMETERY</option>
+										
+											<option class="cem-all-options" value="N810">DAYTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S092">OHIO VETERANS HOME CEMETERY</option>
+										
+											<option class="cem-all-options" value="N918">OHIO WESTERN RESERVE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N071">WOODLAND CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="CONNECTICUT">
+										
+											<option class="cem-all-options" value="S010">COLONEL RAYMOND F. GATES CEMETERY</option>
+										
+											<option class="cem-all-options" value="S030">CONNECTICUT STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S017">MIDDLETOWN VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S009">SPRING GROVE VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="DISTRICT OF COLUMBIA">
+										
+											<option class="cem-all-options" value="N054">CONGRESSIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="A170">US SOLDIERS' & AIRMEN'S HOME NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="UTAH">
+										
+											<option class="cem-all-options" value="N957">FORT DOUGLAS POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N942">SOUTHERN UTAH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S038">UTAH STATE VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="LOUISIANA">
+										
+											<option class="cem-all-options" value="N825">ALEXANDRIA NATIONAL CEMETERY, LA</option>
+										
+											<option class="cem-all-options" value="N829">BATON ROUGE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S397">CENTRAL LOUISIANA VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N970">LOUISIANA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S392">NORTHEAST LOUISIANA VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S131">NORTHWEST LOUISIANA VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N870">PORT HUDSON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S404">SOUTHEAST LOUISIANA VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S126">SOUTHWEST LOUISIANA VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="MISSOURI">
+										
+											<option class="cem-all-options" value="S391">FT LEONARD WOOD STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N852">JEFFERSON BARRACKS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N853">JEFFERSON CITY NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S104">MISSOURI STATE VETERANS CEMETERY/JACKSONVILLE</option>
+										
+											<option class="cem-all-options" value="S056">MISSOURI VETERANS CEMETERY / SPRINGFIELD</option>
+										
+											<option class="cem-all-options" value="S103">MISSOURI VETERANS CEMETERY AT BLOOMFIELD</option>
+										
+											<option class="cem-all-options" value="S057">MISSOURI VETERANS CEMETERY/HIGGINSVILLE</option>
+										
+											<option class="cem-all-options" value="S022">MISSOURI VETERANS HOME AND CEMETERY</option>
+										
+											<option class="cem-all-options" value="N879">SPRINGFIELD NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N080">UNION CONFEDERATE MONUMENT SITE</option>
+										
+									</optgroup>
+								
+									<optgroup label="MISSISSIPPI">
+										
+											<option class="cem-all-options" value="N832">BILOXI NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N838">CORINTH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S278">MISSISSIPPI STATE VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N866">NATCHEZ NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S035">NORTH MISSISSIPPI VETERANS MEMORIAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NEBRASKA">
+										
+											<option class="cem-all-options" value="N058">FOREST LAWN CEMETERY</option>
+										
+											<option class="cem-all-options" value="N890">FT. MCPHERSON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S156">NEBRASKA VETERAN CEMETERY AT GRAND ISLAND</option>
+										
+											<option class="cem-all-options" value="S267">NEBRASKA VETERANS CEMETERY AT ALLIANCE</option>
+										
+											<option class="cem-all-options" value="S024">NEBRASKA VETERANS HOME and CEMETERY</option>
+										
+											<option class="cem-all-options" value="N935">OMAHA NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="GEORGIA">
+										
+											<option class="cem-all-options" value="I409">ANDERSONVILLE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="M142">FORT GORDON GERMAN AND ITALIAN POW CEMETERY</option>
+										
+											<option class="cem-all-options" value="N922">GEORGIA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S096">GEORGIA VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S303">GEORGIA VETERANS MEMORIAL CEMETERY - GLENNVILLE</option>
+										
+											<option class="cem-all-options" value="N859">MARIETTA NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="IDAHO">
+										
+											<option class="cem-all-options" value="S107">IDAHO STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S139">IDAHO STATE VETERANS CEMETERY AT BLACKFOOT</option>
+										
+											<option class="cem-all-options" value="N941">SNAKE RIVER CANYON NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="INDIANA">
+										
+											<option class="cem-all-options" value="N074">CROWN HILL CONFEDERATE PLOT</option>
+										
+											<option class="cem-all-options" value="N807">CROWN HILL NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S055">INDIANA VETERANS HOME and CEMETERY</option>
+										
+											<option class="cem-all-options" value="S006">INDIANA VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N948">INDIANAPOLIS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N817">MARION NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N867">NEW ALBANY NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N081">WOODLAWN MONUMENT SITE</option>
+										
+									</optgroup>
+								
+									<optgroup label="TENNESSEE">
+										
+											<option class="cem-all-options" value="I410">ANDREW JOHNSON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N835">CHATTANOOGA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S394">EAST TENNESSEE STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N855">KNOXVILLE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N860">MEMPHIS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S050">MIDDLE TENNESSEE STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N864">MOUNTAIN HOME NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N865">NASHVILLE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S044">TENNESSEE STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S115">TN STATE VETERANS CEMETERY AT PARKERS CROSSROADS</option>
+										
+											<option class="cem-all-options" value="S048">WEST TENNESSEE VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NEW MEXICO">
+										
+											<option class="cem-all-options" value="N973">ALBUQUERQUE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S136">ANGEL FIRE NM STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S113">FORT STANTON STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N885">FT. BAYARD NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S118">GALLUP STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N904">SANTA FE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S157">TAOS STATE VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="CALIFORNIA">
+										
+											<option class="cem-all-options" value="N929">BAKERSFIELD NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N961">BENICIA ARSENAL POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="S117">BIG SANDY RANCHERIA VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S414">CALIFORNIA CENTRAL COAST VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N943">ELKO NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N892">FT. ROSECRANS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N895">GOLDEN GATE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N898">LOS ANGELES NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N962">MARE ISLAND NAVAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N992">MIRAMAR NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S130">NORTHERN CALIFORNIA VETERANS CEMETERY AT REDDING</option>
+										
+											<option class="cem-all-options" value="N901">RIVERSIDE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N921">SACRAMENTO VALLEY NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N903">SAN FRANCISCO NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N913">SAN JOAQUIN VALLEY NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S007">YOUNTVILLE VETERANS HOME CEMETERY</option>
+										
+											<option class="cem-all-options" value="S405">YUROK VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="KANSAS">
+										
+											<option class="cem-all-options" value="N042">BAXTER SPRINGS</option>
+										
+											<option class="cem-all-options" value="M143">FORT LEAVENWORTH POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N887">FT. LEAVENWORTH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="M407">FT. RILEY POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N893">FT. SCOTT NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S033">KANSAS SOLDIERS HOME and CEMETERY</option>
+										
+											<option class="cem-all-options" value="S094">KANSAS VETERANS CEMETERY AT FORT DODGE</option>
+										
+											<option class="cem-all-options" value="S277">KANSAS VETERANS CEMETERY AT FORT RILEY</option>
+										
+											<option class="cem-all-options" value="S110">KANSAS VETERANS CEMETERY AT WAKEENEY</option>
+										
+											<option class="cem-all-options" value="S128">KANSAS VETERANS CEMETERY AT WINFIELD</option>
+										
+											<option class="cem-all-options" value="N897">LEAVENWORTH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N064">MOUND CITY</option>
+										
+									</optgroup>
+								
+									<optgroup label="MASSACHUSETTS">
+										
+											<option class="cem-all-options" value="N960">FORT DEVENS POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N818">MASSACHUSETTS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S108">MASSACHUSETTS VETERAN MEMORIAL CEMETERY/WINCHENDON</option>
+										
+											<option class="cem-all-options" value="S034">MASSACHUSETTS VETERANS' MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N072">WOODLAWN CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="TEXAS">
+										
+											<option class="cem-all-options" value="S127">CENTRAL TEXAS STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S395">COASTAL BEND VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N916">DALLAS - FT. WORTH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N886">FT. BLISS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N846">FT. SAM HOUSTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N851">HOUSTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N854">KERRVILLE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S133">RIO GRANDE VALLEY STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N877">SAN ANTONIO NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S273">TEXAS STATE VETERANS CEMETERY AT ABILENE</option>
+										
+											<option class="cem-all-options" value="S171">WEST TEXAS STATE VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="GUAM">
+										
+											<option class="cem-all-options" value="S151">GUAM VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="COLORADO">
+										
+											<option class="cem-all-options" value="S008">COLORADO STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N888">FT. LOGAN NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N889">FT. LYON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N933">PIKES PEAK NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S097">VETERANS MEMORIAL CEMETERY OF WESTERN COLORADO</option>
+										
+									</optgroup>
+								
+									<optgroup label="NEW JERSEY">
+										
+											<option class="cem-all-options" value="S106">ARLINGTON CEMETERY-STATE VETERANS SECTION</option>
+										
+											<option class="cem-all-options" value="N804">BEVERLY NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S025">BG WILLIAM C DOYLE VET'S MEM CEM</option>
+										
+											<option class="cem-all-options" value="N811">FINN'S POINT NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S037">NEW JERSEY MEMORIAL HOME CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="MINNESOTA">
+										
+											<option class="cem-all-options" value="N894">FT. SNELLING NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S418">LEECH LAKE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S116">MINNESOTA STATE VETERANS CEMETERY - DULUTH</option>
+										
+											<option class="cem-all-options" value="S053">MINNESOTA STATE VETERANS CEMETERY - LITTLE FALLS</option>
+										
+											<option class="cem-all-options" value="S415">MINNESOTA STATE VETERANS CEMETERY - PRESTON</option>
+										
+											<option class="cem-all-options" value="S154">MINNESOTA STATE VETERANS CEMETERY - REDWOOD FALLS</option>
+										
+									</optgroup>
+								
+									<optgroup label="MONTANA">
+										
+											<option class="cem-all-options" value="S152">APSAALOOKE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S090">EASTERN MONTANA STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N952">FORT MISSOULA POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="S040">MONTANA STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S023">MONTANA VETERANS HOME AND CEMETERY</option>
+										
+											<option class="cem-all-options" value="S388">WESTERN MONTANA STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N938">YELLOWSTONE NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="ALABAMA">
+										
+											<option class="cem-all-options" value="N927">ALABAMA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S400">ALABAMA STATE VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N089">FORT MCCLELLAN EPW CEMETERY</option>
+										
+											<option class="cem-all-options" value="N955">FORT MCCLELLAN POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N908">FT. MITCHELL NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N862">MOBILE NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="IOWA">
+										
+											<option class="cem-all-options" value="S301">IOWA VETERANS CEMETERY AT VAN METER</option>
+										
+											<option class="cem-all-options" value="S032">IOWA VETERANS HOME and CEMETERY</option>
+										
+											<option class="cem-all-options" value="N814">KEOKUK NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N068">OAKDALE CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="VERMONT">
+										
+											<option class="cem-all-options" value="N061">GREEN MOUNT CEMETERY</option>
+										
+											<option class="cem-all-options" value="N070">PROSPECT HILL CEMETERY, VT</option>
+										
+											<option class="cem-all-options" value="S399">VERMONT VETERANS MEMORIAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NEW HAMPSHIRE">
+										
+											<option class="cem-all-options" value="S087">NEW HAMPSHIRE STATE CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="MARYLAND">
+										
+											<option class="cem-all-options" value="N801">ANNAPOLIS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N802">BALTIMORE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S001">CHELTENHAM VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S002">CROWNSVILLE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S004">EASTERN SHORE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="M144">FORT MEADE POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="S003">GARRISON FOREST VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N816">LOUDON PARK NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N078">POINT LOOKOUT CONFEDERATE CEMETERY</option>
+										
+											<option class="cem-all-options" value="S005">ROCKY GAP VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="ARKANSAS">
+										
+											<option class="cem-all-options" value="S091">ARKANSAS STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S396">ARKANSAS STATE VETERANS CEMETERY-BIRDEYE</option>
+										
+											<option class="cem-all-options" value="N842">FAYETTEVILLE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N847">FT. SMITH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N858">LITTLE ROCK NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="VIRGINIA">
+										
+											<option class="cem-all-options" value="S109">ALBERT G. HORTON, JR. MEMORIAL VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N826">ALEXANDRIA NATIONAL CEMETERY, VA</option>
+										
+											<option class="cem-all-options" value="N827">BALLS BLUFF NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N836">CITY POINT NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N837">COLD HARBOR NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N839">CULPEPER NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N841">DANVILLE NATIONAL CEMETERY, VA</option>
+										
+											<option class="cem-all-options" value="N845">FT. HARRISON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N848">GLENDALE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N849">HAMPTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N850">HAMPTON VA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N872">NATIONAL MEMORIAL CEMETERY AT QUANTICO</option>
+										
+											<option class="cem-all-options" value="N874">RICHMOND NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N878">SEVEN PINES NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S186">SOUTHWEST VIRGINIA VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N880">STAUNTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S084">VIRGINIA VETERANS CEMETERY AT AMELIA</option>
+										
+											<option class="cem-all-options" value="N882">WINCHESTER NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="ILLINOIS">
+										
+											<option class="cem-all-options" value="N915">ABRAHAM LINCOLN NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N800">ALTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N806">CAMP BUTLER NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N950">CHICAGO NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N073">CONFEDERATE MOUND</option>
+										
+											<option class="cem-all-options" value="N809">DANVILLE NATIONAL CEMETERY, IL</option>
+										
+											<option class="cem-all-options" value="N953">FORT SHERIDAN NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N863">MOUND CITY NATIONAL CEMETERY - IL</option>
+										
+											<option class="cem-all-options" value="N077">NORTH ALTON CONFEDERATE CEMETERY</option>
+										
+											<option class="cem-all-options" value="N820">QUINCY NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N079">ROCK ISLAND CONFEDERATE CEMETERY</option>
+										
+											<option class="cem-all-options" value="N821">ROCK ISLAND NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S150">SUNSET ILLINOIS VETERAN HOME CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NORTH DAKOTA">
+										
+											<option class="cem-all-options" value="S417">ALL NATIONS VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N940">FARGO NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S049">NORTH DAKOTA VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="NEW YORK">
+										
+											<option class="cem-all-options" value="N088">ALBANY RURAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N803">BATH NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N805">CALVERTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N808">CYPRESS HILLS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="M141">FORT DRUM POW POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N917">GERALD B.H. SOLOMON SARATOGA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N815">LONG ISLAND NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S155">NEW YORK STATE VETERANS CEMETERY - FINGER LAKES</option>
+										
+											<option class="cem-all-options" value="N947">ST. ALBANS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="M408">US MILITARY ACADEMY CEMETERY</option>
+										
+											<option class="cem-all-options" value="M145">WATERVLIET ARSENAL POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="N936">WESTERN NEW YORK NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N824">WOODLAWN NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="ARIZONA">
+										
+											<option class="cem-all-options" value="S412">ARIZONA VETERANS MEMORIAL CEMETERY AT CAMP NAVAJO</option>
+										
+											<option class="cem-all-options" value="S413">ARIZONA VETERANS MEMORIAL CEMETERY AT MARANA</option>
+										
+											<option class="cem-all-options" value="S147">MONTE CALVARIO CEMETERY</option>
+										
+											<option class="cem-all-options" value="N914">NATIONAL MEMORIAL CEMETERY OF ARIZONA</option>
+										
+											<option class="cem-all-options" value="N900">PRESCOTT NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S119">SAN CARLOS APACHE TRIBE</option>
+										
+											<option class="cem-all-options" value="S098">SOUTHERN ARIZONA VETERANS MEMORIAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="MAINE">
+										
+											<option class="cem-all-options" value="N944">ACADIA NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S124">HOULTON BAND OF MALISEET INDIANS VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S012">MAINE VETERANS' MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S095">MAINE VETERANS' MEMORIAL CEMETERY - MT VERNON RD</option>
+										
+											<option class="cem-all-options" value="N067">MT. PLEASANT CEMETERY</option>
+										
+											<option class="cem-all-options" value="S099">NORTHERN MAINE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S389">SOUTHERN MAINE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N822">TOGUS NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="WISCONSIN">
+										
+											<option class="cem-all-options" value="S015">CENTRAL WISCONSIN VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N123">FOREST HILL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N122">FOREST HOME CEMETERY</option>
+										
+											<option class="cem-all-options" value="N059">FT. CRAWFORD CEMETERY</option>
+										
+											<option class="cem-all-options" value="N083">FT. WINNEBAGO CEMETERY</option>
+										
+											<option class="cem-all-options" value="N063">MOUND CEMETERY</option>
+										
+											<option class="cem-all-options" value="S102">NORTHERN WISCONSIN VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N939">NORTHWOODS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S060">SOUTHERN WISCONSIN VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N823">WOOD NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="DELAWARE">
+										
+											<option class="cem-all-options" value="S036">DELAWARE VETERANS MEMORIAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S093">DELAWARE VETERANS MEMORIAL CEMETERY-SUSSEX CO.</option>
+										
+									</optgroup>
+								
+									<optgroup label="HAWAII">
+										
+											<option class="cem-all-options" value="S043">HAWAII STATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S018">HAWAII VETERANS CEMETERY - AREA I</option>
+										
+											<option class="cem-all-options" value="S019">HAWAII VETERANS CEMETERY - AREA II</option>
+										
+											<option class="cem-all-options" value="S031">KAUAI VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S089">LANAI VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S020">MAUI VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S021">MOLOKAI VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="N899">NATIONAL MEMORIAL CEMETERY OF THE PACIFIC</option>
+										
+											<option class="cem-all-options" value="S086">WEST HAWAII VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="OKLAHOMA">
+										
+											<option class="cem-all-options" value="N844">FT. GIBSON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N920">FT. SILL NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S149">NATIONAL CEMETERY OF THE SEMINOLE NATION</option>
+										
+											<option class="cem-all-options" value="S029">OKLAHOMA VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S153">SEAMAN FIRST CLASS BILLY TURNER VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S146">WHITE EAGLE CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="KENTUCKY">
+										
+											<option class="cem-all-options" value="N833">CAMP NELSON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N834">CAVE HILL NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N840">DANVILLE NATIONAL CEMETERY, KY</option>
+										
+											<option class="cem-all-options" value="N055">EVERGREEN CEMETERY</option>
+										
+											<option class="cem-all-options" value="M140">FORT CAMPBELL POW POST CEMETERY</option>
+										
+											<option class="cem-all-options" value="S112">KENTUCKY VETERAN CEMETERY SOUTHEAST</option>
+										
+											<option class="cem-all-options" value="S114">KENTUCKY VETERANS CEMETERY - NORTHEAST</option>
+										
+											<option class="cem-all-options" value="S134">KENTUCKY VETERANS CEMETERY CENTRAL</option>
+										
+											<option class="cem-all-options" value="S135">KENTUCKY VETERANS CEMETERY NORTH</option>
+										
+											<option class="cem-all-options" value="S105">KENTUCKY VETERANS CEMETERY-WEST</option>
+										
+											<option class="cem-all-options" value="N856">LEBANON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N857">LEXINGTON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N861">MILL SPRINGS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N883">ZACHARY TAYLOR NATIONAL CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="SOUTH DAKOTA">
+										
+											<option class="cem-all-options" value="N884">BLACK HILLS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N891">FT. MEADE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N896">HOT SPRINGS NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S403">LAKOTA FREEDOM VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S401">SICANGU AKICITA OWICAHE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S125">SISSETON WAHPETON OYATE VETERANS CEMETERY</option>
+										
+											<option class="cem-all-options" value="S138">SOUTH DAKOTA VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+									<optgroup label="SOUTH CAROLINA">
+										
+											<option class="cem-all-options" value="N831">BEAUFORT NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N843">FLORENCE NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="N930">FT. JACKSON NATIONAL CEMETERY</option>
+										
+											<option class="cem-all-options" value="S302">M.J. DOLLY COOPER VETERANS CEMETERY</option>
+										
+									</optgroup>
+								
+							</select>
+						</div>
+					</div> 
+	
+					<div class="row ms-1 me-1">	
+						<div class="col-lg-2 col-sm-3 mt-2">
+							<label class="col-form-label" for="lname" style="color: #990033; white-space: nowrap;" id="last_name_label">
+								Last Name:<br /><span class="text-nowrap" style="font-size: .9em; color: #990033"> * (Required)</span>
+							</label>						
+						</div>
+
+	
+						<div class="col-lg-2 col-sm-4 mt-2">
+							<select id="lnameopt" name="lastNameOpt" aria-live="assertive" class="form-select button-enabler" aria-label="last name search options">
+								<option value="1">search options</option>
+								<option value="1">exact match</option>
+								<option value="2" selected="selected">begins with</option>
+							</select>
+						</div>
+	
+						<div class="col-lg-4 col-sm-5 mt-2">
+							<input id="lname" name="lastName" aria-required="true" aria-invalid="false" placeholder="Enter last name" type="text" class="form-control button-enabler" aria-label="Last Name" value="Eckard" size="30"/>
+						    <div role="alert" class="invalid-feedback alert-color">
+     								Please enter a last name
+   							</div>
+						</div>
+					</div>
+	
+						<div class="row ms-1 me-1">
+							<div class="col-lg-2 col-sm-3 mt-2">
+								<label for="fname"  class="text-nowrap col-form-label">First Name: </label>
+							</div>
+							<div class="col-lg-2 col-sm-4 mt-2">
+								<select id="fnameopt" name="firstNameOpt" aria-live="assertive" class="form-select button-enabler" aria-label="first name search options">
+									<option value="1" selected="selected">search options</option>
+									<option value="1" selected="selected">exact match</option>
+									<option value="2">begins with</option>
+									<option value="3">contains</option>
+								</select>
+							</div>
+							<div class="col-lg-4 col-sm-5 mt-2">
+								<input id="fname" name="firstName" placeholder="Enter first name" type="text" class="form-control button-enabler" aria-label="first name" value="" size="30"/>
+							</div>
+						</div>
+	
+	
+						<div class="row ms-1 me-1">
+							<div class="col-lg-2 col-sm-3 mt-2">
+								<label class="text-nowrap" for="mname">Middle Name: </label>
+							</div>
+							
+							<div class="col-lg-2 col-sm-4 mt-2">
+								<select id="mnameopt" name="middleNameOpt" aria-live="assertive" class="form-select button-enabler" aria-label="middle name search options">
+									<option value="1" selected="selected">search options</option>
+									<option value="1" selected="selected">exact match</option>
+									<option value="2">begins with</option>
+								</select>
+							</div>
+							<div class="col-lg-4 col-sm-5 mt-2">
+								<input id="mname" name="middleName" placeholder="Enter middle name" type="text" class="form-control button-enabler" aria-label="middle name" value="" size="30"/>
+							</div>
+						</div>
+	
+						<div class="row ms-1 me-1">
+							<div class="col-lg-2 col-sm-3 mt-2">
+								<label for="birth_yy" class="text-nowrap">Date of Birth: </label>
+							</div>
+							
+							<div class="col-lg-2 col-sm-4 mt-2">
+								<select id="dbirth" name="p_birthMM" aria-live="assertive" class="form-select button-enabler" aria-label="Date of Birth Month">
+									<option value="" selected="selected">select month</option>
+									
+										<option value="January">
+											January
+										</option>
+									
+										<option value="February">
+											February
+										</option>
+									
+										<option value="March">
+											March
+										</option>
+									
+										<option value="April">
+											April
+										</option>
+									
+										<option value="May">
+											May
+										</option>
+									
+										<option value="June">
+											June
+										</option>
+									
+										<option value="July">
+											July
+										</option>
+									
+										<option value="August">
+											August
+										</option>
+									
+										<option value="September">
+											September
+										</option>
+									
+										<option value="October">
+											October
+										</option>
+									
+										<option value="November">
+											November
+										</option>
+									
+										<option value="December">
+											December
+										</option>
+									
+								</select>
+							</div>
+							<div class="col-lg-2 col-sm-4 mt-2">
+								<input id="birth_yy" name="p_birthYY" aria-invalid="false" placeholder="Enter 4 digit year" type="text" class="form-control button-enabler" aria-label="Date of Birth Year" value="" size="4" maxlength="4"/>
+								 <div role="alert" class="invalid-feedback alert-color">
+      								Please enter a valid year
+    							</div>
+							</div>
+						</div>
+	
+						<div class="row ms-1 me-1">
+							<div class="col-lg-2 col-sm-3 mt-2">
+								<label for="death_yy" class="text-nowrap">Date of Death: </label>
+							</div>
+							
+							<div class="col-lg-2 col-sm-4 mt-2">
+								<select id="ddeath" name="p_deathMM" aria-live="assertive" class="form-select button-enabler" aria-label="Date of Death Month">
+									<option value="">select month</option>
+									
+										<option value="January">
+											January
+										</option>
+									
+										<option value="February">
+											February
+										</option>
+									
+										<option value="March">
+											March
+										</option>
+									
+										<option value="April">
+											April
+										</option>
+									
+										<option value="May">
+											May
+										</option>
+									
+										<option value="June">
+											June
+										</option>
+									
+										<option value="July">
+											July
+										</option>
+									
+										<option value="August" selected="selected">
+											August
+										</option>
+									
+										<option value="September">
+											September
+										</option>
+									
+										<option value="October">
+											October
+										</option>
+									
+										<option value="November">
+											November
+										</option>
+									
+										<option value="December">
+											December
+										</option>
+									
+								</select>
+							</div>
+							<div class="col-lg-2 col-sm-4 mt-2">
+								<input id="death_yy" name="p_deathYY" aria-invalid="false" placeholder="Enter 4 digit year" type="text" class="form-control button-enabler" aria-label="Date of Death Year" value="2004" size="4" maxlength="4"/>
+								<div role="alert" class="invalid-feedback alert-color">
+      								Please enter a valid year
+    							</div>
+
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-lg-2 col-sm-4"></div>
+							<div class="col-lg-2 col-sm-3 mt-3"  align="center">
+								<button type="button" class="bttn bttn-primary" id="searchb" aria-label="search"
+									onclick="this.form.submit();" style="cursor: pointer;" disabled>Search</button>
+							</div>
+							<div class="col-lg-2 col-sm-3 mt-3"  align="center">		
+								
+								
+	
+										<button onclick="window.location.href='/ngl/search'" type="button" class="bttn bttn-primary text-nowrap" id="clearAll"
+											aria-label="form reset"
+											style="cursor: pointer;">Clear All</button>
+		
+								
+							</div>
+							
+						</div>
+					</div>		
+				</form>
+			</div>
+		</div>
+
+	</div>
+	
+	<script src='/ngl/js/nglmain.js' type='text/javascript'></script>
+	<script src='/ngl/js/ngl_search_page.js' type='text/javascript'></script>
+	<script src='/ngl/js/validation.js' type='text/javascript'></script>
+	<script src="/ngl/va_files/2012/bootstrap-5.2.2-dist/js/bootstrap.min.js" ></script>
+</body>
