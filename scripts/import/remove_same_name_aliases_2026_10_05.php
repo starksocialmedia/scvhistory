@@ -6,7 +6,11 @@
  * own, longer or shorter (a middle name or initial added or dropped, an initial for a name, a standard short form, an honorific
  * or office prefixed, a suffix, a repeat of the title). Kept although the test matched them: a different given name in a
  * legal name ("Howard P. 'Buck' McKeon", "William J. 'Pete' Knight", "Rochelle 'Shelley' Weinstein"), and Tichenor's "Jr.",
- * added today on Nathan's word. $ONLY limits the run to listed records (Messina first). Idempotent. Dry run by default.
+ * added today on Nathan's word.
+ * Taken off the list before the run (Nathan: "Check whether the same-name alias removal list closes or opens any other trap"):
+ * Rémi Nadeau's "Remi Nadeau" (#339), which is his grandson's title (#18869): without it an unaccented search finds only the
+ * grandson; and Bonelli's (#30199), held until his portrait question is settled. "Francisco Lopez" on Chico López stays on the
+ * list: it is the gold discoverer's name (#18834), so removing it closes a trap. $ONLY limits the run to listed records (Messina first). Idempotent. Dry run by default.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/remove_same_name_aliases_2026_10_05.php'))"
  */
 use craft\elements\Entry;
