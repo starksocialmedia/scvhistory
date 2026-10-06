@@ -4,7 +4,7 @@ The letter first, in full; the others verbatim, shown by their opening. Nothing 
 
 ## A Personal Letter from the Parents of Gracie Muehlberger (the Muehlberger family, November 17, 2019)
 
-create, published
+exists #31306, published
 
 published by: none (the family); source line: #SaugusStrong Vigil | Sunday, November 17, 2019.; old address: /scvhistory/bryanmuehlberger20191117.htm
 
@@ -88,13 +88,13 @@ https://www.gofundme.com/gracie-anne-muehlberger
 
 ## 2 Students Killed, 4 Wounded in Saugus High School Shooting (Jim Holt, The Signal, November 14, 2019)
 
-create, published
+exists #31308, published
 
 published by: The Santa Clarita Valley Signal; source line: By Jim Holt. The Signal | Thursday, November 14, 2019.; old address: /scvhistory/sg20191114shs.htm
 
 > Editor's note, top: This record concerns a school shooting in which students were killed, and describes injuries and a suicide.
 
-> Editor's note, bottom, "Correction, 2026": Gracie Muehlberger was 15, not 16. She was born on October 10, 2004, as her parents' letter says (archive document #(the letter)), and the Los Angeles Times gave her age as 15 when the authorities identified her on November 15, 2019 ("Shooting Victims Identified").
+> Editor's note, bottom, "Correction, 2026": Gracie Muehlberger was 15, not 16. She was born on October 10, 2004, as her parents' letter says (archive document #31306), and the Los Angeles Times gave her age as 15 when the authorities identified her on November 15, 2019 ("Shooting Victims Identified").
 
 Body: 1094 words, verbatim, opening: "Two people were killed and four others, all students, were wounded when they were shot at Saugus High School Thursday morning.
 
@@ -102,19 +102,19 @@ Law enforcement officials confir..."
 
 ## Campus Shooting Kills Two (Marisa Gerber and others, Los Angeles Times, November 15, 2019)
 
-create, saved disabled (D5)
+exists #31310, saved disabled (D5)
 
 published by: Los Angeles Times; source line: By Marisa Gerber, James Queally, Hannah Fry and Sarah Parvini Los Angeles Times | Friday, November 15, 2019; old address: /scvhistory/lat20191115shs.htm
 
 > Editor's note, top: This record concerns a school shooting in which students were killed, and describes injuries and a suicide.
 
-> Editor's note, bottom, "Correction, 2026": Gracie Muehlberger was 15, not 16. She was born on October 10, 2004, as her parents' letter says (archive document #(the letter)), and the Los Angeles Times gave her age as 15 when the authorities identified her on November 15, 2019 ("Shooting Victims Identified").
+> Editor's note, bottom, "Correction, 2026": Gracie Muehlberger was 15, not 16. She was born on October 10, 2004, as her parents' letter says (archive document #31306), and the Los Angeles Times gave her age as 15 when the authorities identified her on November 15, 2019 ("Shooting Victims Identified").
 
 Body: 1363 words, verbatim, opening: "On a clear autumn day, students at Saugus High School looked forward to the holidays, to Friday night's "Cheer-a-thon" for campus spirit squads and to Saturday'..."
 
 ## Press Conference at SCV Sheriff Station (SCVTV, November 15, 2019)
 
-create, published
+exists #31312, published
 
 published by: SCVTV; source line: SCVTV | Friday, November 15, 2019.; old address: /scvhistory/scvtv20191115shs.htm
 
@@ -130,7 +130,7 @@ Shooter remains in critical co..."
 
 ## Saugus Grads Set Up Fund to Aid Recovery, Healing (Stephen K. Peeples, SCVNews.com, November 15, 2019)
 
-create, published
+exists #31314, published
 
 published by: SCVTV; source line: By Stephen K. Peeples. SCVTV/SCVNews.com | Friday, November 15, 2019.; old address: /scvhistory/scvtv20191115shs.htm
 
@@ -144,7 +144,7 @@ Body: 640 words, verbatim, opening: "Two Saugus High School graduates set up a G
 
 ## "This world lost a shining light" (Colleen Shalby and others, Los Angeles Times, November 16, 2019)
 
-create, saved disabled (D5)
+exists #31316, saved disabled (D5)
 
 published by: Los Angeles Times; source line: By Colleen Shalby, Alejandra Reyes-Velarde, Leila Miller and Soumya Karlamangla Los Angeles Times | Saturday, November 16, 2019; old address: /scvhistory/lat20191116shs.htm
 
@@ -158,7 +158,7 @@ She was a cheerleader who loved fashio..."
 
 ## Shooting Victims Identified (Alejandra Reyes-Velarde and Colleen Shalby, Los Angeles Times, November 15, 2019)
 
-create, saved disabled (D5)
+exists #31318, saved disabled (D5)
 
 published by: Los Angeles Times; source line: By Alejandra Reyes-Velarde and Colleen Shalby Los Angeles Times | Friday, November 15, 2019; old address: /scvhistory/lat20191116shs.htm
 
@@ -170,7 +170,7 @@ Body: 805 words, verbatim, opening: "Los Angeles County coroner's officials have
 
 ## Unregistered firearms seized from teenage shooter's home (Hannah Fry and others, Los Angeles Times, November 16, 2019)
 
-create, saved disabled (D5)
+exists #31320, saved disabled (D5)
 
 published by: Los Angeles Times; source line: By Hannah Fry, Leila Miller, Richard Winton and Brittny Mejia Los Angeles Times | Saturday, November 16, 2019; old address: /scvhistory/lat20191116shs.htm
 
@@ -182,7 +182,7 @@ Body: 1338 words, verbatim, opening: "The teenage shooter who opened fire at Sau
 
 ## School shooting stirs a search for answers (Brittny Mejia and others, Los Angeles Times, November 16, 2019)
 
-create, saved disabled (D5)
+exists #31322, saved disabled (D5)
 
 published by: Los Angeles Times; source line: By Brittny Mejia, Ruben Vives, Richard Winton and Alejandra Reyes-Velarde Los Angeles Times | Saturday, November 16, 2019; old address: /scvhistory/lat20191116shs.htm
 
@@ -194,7 +194,7 @@ Body: 688 words, verbatim, opening: "Investigators are still trying to determine
 
 ## Peace of mind on list of casualties at school (Sandy Banks, Los Angeles Times, November 16, 2019)
 
-create, saved disabled (D5)
+exists #31324, saved disabled (D5)
 
 published by: Los Angeles Times; source line: Commentary by Sandy Banks. Los Angeles Times | Saturday, November 16, 2019; old address: /scvhistory/lat20191116shs.htm
 
@@ -206,7 +206,7 @@ Body: 1057 words, verbatim, opening: "The crisis was over, the danger had passed
 
 ## Community Comes Together for Vigil (Emily Alvarenga, The Signal, November 17, 2019)
 
-create, published
+exists #31326, published
 
 published by: The Santa Clarita Valley Signal; source line: By Emily Alvarenga. The Signal | Sunday Evening, November 17, 2019.; old address: /scvhistory/sg20191117shs.htm
 
@@ -218,7 +218,7 @@ Body: 1035 words, verbatim, opening: "Thousands gathered in Central Park Sunday 
 
 ## Thousands Mourn Pair of Victims (Sandy Banks and Laura Newberry, Los Angeles Times, November 18, 2019)
 
-create, saved disabled (D5)
+exists #31328, saved disabled (D5)
 
 published by: Los Angeles Times; source line: By Sandy Banks and Laura Newberry Los Angeles Times | Monday, November 18, 2019; old address: /scvhistory/lat20191118shs.htm
 
@@ -230,7 +230,7 @@ Body: 392 words, verbatim, opening: "Thousands of Santa Clarita residents gather
 
 ## Facing a New Wave of Grief (Marisa Gerber, Los Angeles Times, November 18, 2019)
 
-create, saved disabled (D5)
+exists #31330, saved disabled (D5)
 
 published by: Los Angeles Times; source line: By Marisa Gerber Los Angeles Times | Monday, November 18, 2019; old address: /scvhistory/lat20191118shs.htm
 
@@ -242,7 +242,7 @@ Body: 1179 words, verbatim, opening: "Here in Santa Clarita, in this park that i
 
 ## Last Shooting Victim Home from Hospital (Tammy Murga, The Signal, November 19, 2019)
 
-create, published
+exists #31332, published
 
 published by: The Santa Clarita Valley Signal; source line: By Tammy Murga. The Signal | Tuesday, November 19, 2019.; old address: /scvhistory/sg20191119shs.htm
 
@@ -252,7 +252,7 @@ Body: 380 words, verbatim, opening: "The last victim who had been recovering at 
 
 ## Hart District Actions in Light of Saugus High School Shooting (Mike Kuhlman, William S. Hart Union High School District, January 12, 2020)
 
-create, published
+exists #31334, published
 
 published by: William S. Hart Union High School District; source line: From Mike Kuhlman, Deputy Superintendent, William S. Hart Union High School District. Distributed by email to Hart District families, January 12, 2020.; old address: /scvhistory/hd20200112.htm
 
@@ -266,7 +266,7 @@ It has been nearly tw..."
 
 ## Principal Vince Ferry, Saugus High, Honored by Council on School Culture (William S. Hart Union High School District, April 6, 2020)
 
-create, published
+exists #31336, published
 
 published by: William S. Hart Union High School District; source line: William S. Hart Union High School District. April 6, 2020.; old address: /scvhistory/hd20200406.htm
 
