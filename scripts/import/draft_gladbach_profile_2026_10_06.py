@@ -1,0 +1,321 @@
+#!/usr/bin/env python3
+"""Jerry Gladbach #28336: the profile draft (Nathan, 6 October 2026). Claude Code.
+
+Nathan: "Jerry Gladbach's biography from his campaign site, which I wrote for him. Treat it as campaign material:
+attribute rather than state, and cut the promotional language entirely ... Lead with the valley ... leave the wife,
+children and grandchildren out ... Note on the record that the biography is campaign material and that I wrote it."
+
+Writes inventory/review/jerry-gladbach-profile-draft-2026-10-06.json (read by
+scripts/import/build_gladbach_profile_2026_10_06.php) and the .md beside it for reading.
+The body carries {KEY} markers, numbered here by first appearance, one [n] per note.
+
+Every quotation is checked here, by machine, against the source it is attributed to: the copies saved in
+inventory/sources/jerry-gladbach-2026-10-06/ (manifest.json there), the SCV Water copies in
+inventory/news/term-endings-2026-10-04/, and the Reggie mirror (host-only; latin-1 pages, utf-8 flipbooks).
+The script refuses to write if a checked quotation is not found, if a quotation is not in its note, or if our
+own text has an em dash. No quotation joins two clauses with an ellipsis; none has one.
+Run on the host: python3 scripts/import/draft_gladbach_profile_2026_10_06.py
+"""
+import html, json, os, re
+
+ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+S = os.path.join(ROOT, 'inventory', 'sources', 'jerry-gladbach-2026-10-06')
+N = os.path.join(ROOT, 'inventory', 'news', 'term-endings-2026-10-04')
+M = '/Volumes/Reggie/SCVHistory/scvhistory.com/scvhistory'
+OUT = os.path.join(ROOT, 'inventory', 'review', 'jerry-gladbach-profile-draft-2026-10-06')
+
+REL_URL = 'https://www.YourSCVWater.com/sites/default/files/SCVWA/newscenter/Press%20Release/2022/Press-Release_-Jerry-Gladbach_announcement.pdf'
+RES_URL = 'https://www.YourSCVWater.com/sites/default/files/SCVWA/approved-resolutions/scv/SCV-Water-Approved-Resolution-011723-Resolution-SCV-329.pdf'
+MIN_URL = 'https://www.YourSCVWater.com/sites/default/files/SCVWA/board-meetings/2022/SCV-Water-Board-Approved-Meeting-Minutes-July-19-2022.pdf'
+CAMP_URL = 'https://web.archive.org/web/20180816143854/https://jerrygladbach.com/'
+
+# key: (note text, [(source file, exact quotation), ...])
+NOTES = {
+ 'RES': ('Santa Clarita Valley Water Agency Board of Directors, Resolution No. SCV-329, "Honoring and Commending E.G. "Jerry" Gladbach for His Service and Dedication," adopted January 17, 2023, ' + RES_URL + ': "E.G. "Jerry" Gladbach previously served on the Castaic Lake Water Agency Board of Directors from January 1985 through December 2017"; "Mr. Gladbach had served as Board President for the Castaic Lake Water Agency from January 1987 to December of 1990"; "Mr. Gladbach served on the Santa Clarita Valley Water Agency (Agency) Board of Directors from January 2018 through July 2022 serving as Board Vice President from February 2020 to July 2022"; "serving as Chair of the Agency\'s Public Outreach and Legislation Committee"; "his 37 ½ years of service"; on ACWA, "sitting on the Board from 1998 to July 2022 and serving as both ACWA\'s Vice President from 2002 through 2003 and Board President from 2004 through 2005"; on the ACWA/JPIA, "serving on the Board from 2002 to July 2022 and as its Board President from 2010 to July 2022"; "receiving CALAFCO\'s Outstanding Commissioner Award in 2013 and CALAFCO\'s Lifetime Achievement Award in 2021."',
+   [('N:scvwater-resolution-scv-329-gladbach.txt', 'E.G. "Jerry" Gladbach previously served on the Castaic Lake Water Agency Board of Directors from January 1985 through December 2017'),
+    ('N:scvwater-resolution-scv-329-gladbach.txt', 'Mr. Gladbach had served as Board President for the Castaic Lake Water Agency from January 1987 to December of 1990'),
+    ('N:scvwater-resolution-scv-329-gladbach.txt', 'Mr. Gladbach served on the Santa Clarita Valley Water Agency (Agency) Board of Directors from January 2018 through July 2022 serving as Board Vice President from February 2020 to July 2022'),
+    ('N:scvwater-resolution-scv-329-gladbach.txt', "serving as Chair of the Agency's Public Outreach and Legislation Committee"),
+    ('N:scvwater-resolution-scv-329-gladbach.txt', 'his 37 ½ years of service'),
+    ('N:scvwater-resolution-scv-329-gladbach.txt', "sitting on the Board from 1998 to July 2022 and serving as both ACWA's Vice President from 2002 through 2003 and Board President from 2004 through 2005"),
+    ('N:scvwater-resolution-scv-329-gladbach.txt', 'serving on the Board from 2002 to July 2022 and as its Board President from 2010 to July 2022'),
+    ('N:scvwater-resolution-scv-329-gladbach.txt', "receiving CALAFCO's Outstanding Commissioner Award in 2013 and CALAFCO's Lifetime Achievement Award in 2021")]),
+ 'REL': ('SCV Water, news release, "SCV Water announces passing of Jerry Gladbach," July 18, 2022, ' + REL_URL + ': "SCV Water is sad to report the passing of Board Vice President Jerry Gladbach on Wednesday"; "Jerry was first elected to the Castaic Lake Water Agency Board in 1985 and has served continuously ever since, including when CLWA merged with other local water entities to become SCV Water in January 2018"; "He was the current vice president and served as president from 1987-1991"; "One of the many projects he championed was the construction of the Rio Vista Water Treatment Plant, which broke ground in 1991"; "He also played a key role in increasing imported water supply by 13% through the acquisition of the Devil\'s Den Water District in Kern County in 1991"; "serving as president from 2002 – 2004"; "the ACWA Joint Powers Insurance Authority which provides liability, property, workers\' compensation and health insurance to members of ACWA"; "current Chair of the Local Agency Formation Commission for Los Angeles County, serving on the commission since 2001"; "As a member of the Board of Directors of the National Water Resources Association"; "Jerry lived in the Santa Clarita Valley since 1968"; "He received his Master of Science and Bachelor of Science degrees from the University of Missouri – Columbia"; "He is a registered professional engineer in California"; "He retired as Manager of Marketing and Special Projects from the Los Angeles Department of Water and Power after 35 years." The release was dated Monday, July 18, 2022; the Wednesday before was July 13.',
+   [('N:scvwater-press-release-gladbach-death.txt', q) for q in [
+    'SCV Water is sad to report the passing of Board Vice President Jerry Gladbach on Wednesday',
+    'Jerry was first elected to the Castaic Lake Water Agency Board in 1985 and has served continuously ever since, including when CLWA merged with other local water entities to become SCV Water in January 2018',
+    'He was the current vice president and served as president from 1987-1991',
+    'One of the many projects he championed was the construction of the Rio Vista Water Treatment Plant, which broke ground in 1991',
+    "He also played a key role in increasing imported water supply by 13% through the acquisition of the Devil's Den Water District in Kern County in 1991",
+    'serving as president from 2002 – 2004',
+    "the ACWA Joint Powers Insurance Authority which provides liability, property, workers' compensation and health insurance to members of ACWA",
+    'current Chair of the Local Agency Formation Commission for Los Angeles County, serving on the commission since 2001',
+    'As a member of the Board of Directors of the National Water Resources Association',
+    'Jerry lived in the Santa Clarita Valley since 1968',
+    'He received his Master of Science and Bachelor of Science degrees from the University of Missouri – Columbia',
+    'He is a registered professional engineer in California',
+    'He retired as Manager of Marketing and Special Projects from the Los Angeles Department of Water and Power after 35 years']]),
+ 'MIN': ('Santa Clarita Valley Water Agency, minutes of the regular board meeting of July 19, 2022, ' + MIN_URL + ': "President Martin announced the passing of SCV Water Board Vice President Jerry Gladbach"; "flowers were placed at his seat in his honor"; "The meeting was adjourned in memory of E.G. "Jerry" Gladbach."',
+   [('N:scvwater-minutes-2022-07-19.txt', 'President Martin announced the passing of SCV Water Board Vice President Jerry Gladbach'),
+    ('N:scvwater-minutes-2022-07-19.txt', 'flowers were placed at his seat in his honor'),
+    ('N:scvwater-minutes-2022-07-19.txt', 'The meeting was adjourned in memory of E.G. "Jerry" Gladbach')]),
+ 'DEATH': ('His death: ACWA, "ACWA Past President Jerry Gladbach Passes Away," by ACWA Staff, July 18, 2022, https://www.acwa.com/news/acwa-past-president-jerry-gladbach-passes-away/ (read in the Wayback Machine\'s capture of that day, https://web.archive.org/web/20220718225114/https://www.acwa.com/news/acwa-past-president-jerry-gladbach-passes-away/): "E.G. "Jerry" Gladbach passed away July 13. He was 82." Caleb Lunetta, "SCV Water board honors former colleague," The Signal, July 20, 2022 (Wayback capture, https://web.archive.org/web/20220721072310/https://signalscv.com/2022/07/scv-water-board-honors-former-colleague/): "Gladbach, who died on July 13 at the age of 82." Two sources give the next day: the CALAFCO newsletter of August 2022 ("lost long-time commissioner, Jerry Gladbach, on July 14th"; see its note), and the timeline on SCVHistory.com, /scvhistory/timeline.htm: "July 14: Longtime SCV Water Agency board member Edward G. "Jerry" Gladbach dies while still in office." The Signal reported on the evening of July 14 that officials had "confirmed Thursday night the death" (see its note), so July 14 is the day the death was announced.',
+   [('S:acwa-2022-07-18-wb.txt', 'E.G. "Jerry" Gladbach passed away July 13. He was 82.'),
+    ('S:signal-2022-07-20-wb.txt', 'Gladbach, who died on July 13 at the age of 82'),
+    ('S:calafco-newsletter-2022-08.txt', 'lost long-time commissioner, Jerry Gladbach, on July 14th'),
+    ('R:inventory/legacy/fetched/timeline.txt', 'July 14: Longtime SCV Water Agency board member Edward G. "Jerry" Gladbach dies while still in office.')]),
+ 'ROSTER': ('"Castaic Lake Water Agency Directors, 1962 to Date," SCVHistory.com, /scvhistory/clwadirectors.htm (the Reggie mirror; not yet a record in the archive): "E.G. "JERRY" GLADBACH 1985", with no end year, as for the directors still serving when the list was last revised.',
+   [('M:clwadirectors.htm', 'E.G. "JERRY" GLADBACH 1985')]),
+ 'WW03': ('Association of California Water Agencies, "ACWA elects Gladbach, Fiorini as top officers," WaterWorld, December 5, 2003, https://www.waterworld.com/drinking-water-treatment/infrastructure-funding/article/16206818/acwa-elects-gladbach-fiorini-as-top-officers: "Members of the statewide Association of California Water Agencies (ACWA) today elected Castaic Lake Water Agency Director E. G. "Jerry" Gladbach to a two-year term as president"; "Gladbach, who has served as ACWA\'s vice president since January 2002"; "He was first elected to the Castaic Lake Water Agency Board of Directors in 1985 and was board president from 1987 to 1991."',
+   [('S:waterworld-2003-12-05.txt', 'Members of the statewide Association of California Water Agencies (ACWA) today elected Castaic Lake Water Agency Director E. G. "Jerry" Gladbach to a two-year term as president'),
+    ('S:waterworld-2003-12-05.txt', "Gladbach, who has served as ACWA's vice president since January 2002"),
+    ('S:waterworld-2003-12-05.txt', 'He was first elected to the Castaic Lake Water Agency Board of Directors in 1985 and was board president from 1987 to 1991')]),
+ 'CREC': ('Hon. Howard P. "Buck" McKeon, "Tribute to E.G. "Jerry" Gladbach," Congressional Record, Extensions of Remarks, November 17, 2005, E2388, https://www.govinfo.gov/content/pkg/CREC-2005-11-17/pdf/CREC-2005-11-17-pt1-PgE2388.pdf: "the end of 2005 will mark the conclusion of E.G. "Jerry" Gladbach\'s term as President of the Association of California Water Agencies (ACWA)"; "has served as president of ACWA since January of 2004, after having served as ACWA Vice-President since January of 2002"; "has served as President of Castaic Lake\'s Board of Directors and is currently the Chair of the Water Resources Committee of that Agency"; "He appointed the task force that created No Time to Waste: A Blueprint for California Water"; "Mr. Gladbach served as a manager with the Los Angeles Department of Water and Power and retired after 35 years of service"; "Jerry is first vice-chair of the Los Angeles Local Agency Formation Commission (LAFCO) and is on the Executive Board of the California Association of LAFCOs"; "He earned an undergraduate degree from the University of Missouri at Colombia in 1961, and returned in 1963, earning his Master\'s degree at the same institution in 1964." A congressman\'s tribute to a constituent, read into the Record.',
+   [('S:crec-2005-11-17-E2388.txt', q) for q in [
+    'the end of 2005 will mark the conclusion of E.G. "Jerry" Gladbach\'s term as President of the Association of California Water Agencies (ACWA)',
+    'has served as president of ACWA since January of 2004, after having served as ACWA Vice-President since January of 2002',
+    "has served as President of Castaic Lake's Board of Directors and is currently the Chair of the Water Resources Committee of that Agency",
+    'He appointed the task force that created No Time to Waste: A Blueprint for California Water',
+    'Mr. Gladbach served as a manager with the Los Angeles Department of Water and Power and retired after 35 years of service',
+    'Jerry is first vice-chair of the Los Angeles Local Agency Formation Commission (LAFCO) and is on the Executive Board of the California Association of LAFCOs',
+    "He earned an undergraduate degree from the University of Missouri at Colombia in 1961, and returned in 1963, earning his Master's degree at the same institution in 1964"]]),
+ 'LW96': ('Leon Worden, "A politician by any other name...," The Signal, Wednesday, October 23, 1996, /scvhistory/signal/worden/old/lw102396.htm (the Reggie mirror; not yet a record in the archive), before the election of November 5, 1996: "In Newhall and Valencia, the water board candidate is Jerry Gladbach"; "His water opponent is named Lynne." The column names her no further, and the County\'s return for that election is not held.',
+   [('M:signal/worden/old/lw102396.htm', 'In Newhall and Valencia, the water board candidate is Jerry Gladbach'),
+    ('M:signal/worden/old/lw102396.htm', 'His water opponent is named Lynne.')]),
+ 'CLWA12': ('Castaic Lake Water Agency, "History & Overview of Santa Clarita Water Co./Division," August 2012, page 6, on SCVHistory.com, /scvhistory/clwa_scwd_2012.htm (the Reggie mirror, flipbook page /scvhistory/files/clwa_scwd_2012/files/basic-html/page6.html): "The Board of Directors is comprised of two Directors from each division, two Directors at large and one Director appointed by three of the retail water purveyors"; the table of directors, under "Director Division Term Expires", has "E.G. "Jerry" Gladbach 2 January 2013".',
+   [('F:files/clwa_scwd_2012/files/basic-html/page6.html', 'The Board of Directors is comprised of two Directors from each division, two Directors at large and one Director appointed by three of the retail water purveyors'),
+    ('F:files/clwa_scwd_2012/files/basic-html/page6.html', 'Director Division Term Expires'),
+    ('F:files/clwa_scwd_2012/files/basic-html/page6.html', 'E.G. "Jerry" Gladbach 2 January 2013')]),
+ 'LAV12': ('County of Los Angeles, Registrar-Recorder/County Clerk, "FINAL LIST OF QUALIFIED CANDIDATES WHOSE NAME WILL NOT APPEAR ON THE BALLOT," General Election to be held on November 06, 2012, dated 10/15/2012, https://lavote.gov/documents/final-list-of-qualified-candidates-whose-names-will-not-appear-on-the-ballot.pdf: under "CASTAIC LAKE WATER AGENCY", "Member, Board of Directors, Division 2", one candidate, marked as the incumbent, "E.G. "JERRY" GLADBACH", "Water Board Director": "Total Candidates for Contest: 1". The list also gives candidates\' addresses and telephone numbers, which are not repeated here.',
+   [('S:lavote-final-list-not-on-ballot.txt', 'FINAL LIST OF QUALIFIED CANDIDATES WHOSE NAME WILL NOT APPEAR ON THE BALLOT'),
+    ('S:lavote-final-list-not-on-ballot.txt', 'Member, Board of Directors, Division 2'),
+    ('S:lavote-final-list-not-on-ballot.txt', 'E.G. "JERRY" GLADBACH'),
+    ('S:lavote-final-list-not-on-ballot.txt', 'Total Candidates for Contest: 1')]),
+ 'SOV16': ('His term from the 2016 election is the archive\'s office holding #28553: elected on November 8, 2016 for Division 2 with 13,651 votes, first of two candidates (County of Los Angeles, Registrar-Recorder/County Clerk, Statement of Votes Cast and Official Election Returns, General Election, November 8, 2016). The other candidate, from the results page on SCVHistory.com, /scvhistory/citycouncilresults2016.htm: "Stacy L. Fortner 47.26 12,233". Jim Holt, "Election Preview: Castaic Lake Water Agency," The Signal, October 6, 2016 (Wayback capture, https://web.archive.org/web/20200930090154/https://signalscv.com/2016/10/election-preview-castaic-lake-water-agency/): "E. G. "Jerry" Gladbach, also a veteran CLWA board member, representing Division 2 is being challenged by Stacy L. Fortner."',
+   [('M:citycouncilresults2016.htm', 'Stacy L. Fortner 47.26 12,233'),
+    ('S:signal-2016-10-06-wb.txt', 'E. G. "Jerry" Gladbach, also a veteran CLWA board member, representing Division 2 is being challenged by Stacy L. Fortner')]),
+ 'SB634': ('His term on the Santa Clarita Valley Water Agency is the archive\'s office holding #28427, whose notes give the statute: SB 634 (2017) seated the sitting elected directors of the Castaic Lake Water Agency and the Newhall County Water District as the agency\'s first board on January 1, 2018, and extended by two years the terms due to end in 2018 and 2020, his among them.', []),
+ 'NM05': ('Leon Worden, "SCV Newsmaker of the Week: Jerry Gladbach," The Signal, Sunday, May 1, 2005, "(Television interview conducted April 6, 2005)," /scvhistory/signal/newsmaker/sg050105.htm, read in the Wayback Machine\'s capture of October 30, 2005 (https://web.archive.org/web/20051030082612/http://www.scvhistory.com:80/scvhistory/signal/newsmaker/sg050105.htm); the page is not in the Reggie mirror and not yet a record in the archive. The introduction: "This week\'s newsmaker is E.G. "Jerry" Gladbach, a member of the Castaic Lake Water Agency board, the L.A. County Local Agency Formation Commission board and the state LAFCO board, and president of the Association of California Water Agencies." Gladbach: "And that\'s one reason I got on both boards, is to influence what happens on a state level to benefit the Santa Clarita Valley"; "we\'ve purchased 41,000 (acre)-feet (of water) from Wheeler Ridge a few years ago"; "It\'s probably less than maybe 5 percent of the aquifer (that) is contaminated"; "What my expectation is, is that all four of them will remain"; "one thing I did shortly after I became president was name a task force of 35 people from around the entire state of California to put together what we call the Water Blueprint."',
+   [('S:wb-20051030082612-sg050105.htm', 'This week\'s newsmaker is E.G. "Jerry" Gladbach, a member of the Castaic Lake Water Agency board, the L.A. County Local Agency Formation Commission board and the state LAFCO board, and president of the Association of California Water Agencies'),
+    ('S:wb-20051030082612-sg050105.htm', "And that's one reason I got on both boards, is to influence what happens on a state level to benefit the Santa Clarita Valley"),
+    ('S:wb-20051030082612-sg050105.htm', "we've purchased 41,000 (acre)-feet (of water) from Wheeler Ridge a few years ago"),
+    ('S:wb-20051030082612-sg050105.htm', "It's probably less than maybe 5 percent of the aquifer (that) is contaminated"),
+    ('S:wb-20051030082612-sg050105.htm', 'What my expectation is, is that all four of them will remain'),
+    ('S:wb-20051030082612-sg050105.htm', 'one thing I did shortly after I became president was name a task force of 35 people from around the entire state of California to put together what we call the Water Blueprint')]),
+ 'PLANT': ('SCV Water, press release, "SCV Water Dedicates Water Treatment Plant After Jerry Gladbach," SCVNews.com, June 27, 2024 (Wayback capture, https://web.archive.org/web/20240627225315/https://scvnews.com/scv-water-dedicates-water-treatment-plant-after-jerry-gladbach/): "SCV Water recently held a dedication ceremony to rename its Rio Vista Water Treatment as the E. G. "Jerry" Gladbach Water Treatment Plant in honor of the late SCV Water Board Vice President Jerry Gladbach."',
+   [('S:scvnews-2024-06-27-wb.txt', 'SCV Water recently held a dedication ceremony to rename its Rio Vista Water Treatment as the E. G. "Jerry" Gladbach Water Treatment Plant in honor of the late SCV Water Board Vice President Jerry Gladbach')]),
+ 'WWD01': ('Association of California Water Agencies, "Water Agencies Elect Boatmun, Gladbach as Top Officers," Water & Wastes Digest, November 29, 2001, https://www.wwdmag.com/home/news/10905810/water-agencies-elect-boatmun-gladbach-as-top-officers: "E. G. "Jerry" Gladbach, director of Castaic Lake Water Agency, was elected vice president during the association\'s annual fall conference"; "Gladbach is a civil engineer with a long record of experience in water and power issues"; "currently is chair of the association\'s Region 8, which includes Los Angeles and Ventura counties"; "A former engineer and manager with the Los Angeles Department of Water and Power, Gladbach has been a director of Castaic Lake Water Agency in Santa Clarita since 1985."',
+   [('S:wwd-2001-11-29.txt', 'E. G. "Jerry" Gladbach, director of Castaic Lake Water Agency, was elected vice president during the association\'s annual fall conference'),
+    ('S:wwd-2001-11-29.txt', 'Gladbach is a civil engineer with a long record of experience in water and power issues'),
+    ('S:wwd-2001-11-29.txt', "currently is chair of the association's Region 8, which includes Los Angeles and Ventura counties"),
+    ('S:wwd-2001-11-29.txt', 'A former engineer and manager with the Los Angeles Department of Water and Power, Gladbach has been a director of Castaic Lake Water Agency in Santa Clarita since 1985')]),
+ 'CAMP': ('Jerry Gladbach\'s campaign biography, the "About" section of his campaign site, "Jerry Gladbach | For Castaic Lake Water Agency," jerrygladbach.com, for the election of November 8, 2016 ("Paid for by Gladbach for Water Board 2016"), written by Nathan Imhoff, now the archive\'s editor; read in the Wayback Machine\'s only capture of the page, August 16, 2018, ' + CAMP_URL + '. Campaign material: what rests on it alone is attributed in the text. It says: "Originally from Missouri where he earned a Master\'s degree in Civil Engineering, Jerry came to California on an internship and was later hired permanently and began a career spanning 35 years at the Los Angeles Department of Water and Power"; "As a registered Engineer and manager"; "including the U.S. Environmental Protection Agency\'s Groundwater Task Force"; "As a local leader, he was the Chairman of Region 8 serving Los Angeles and Ventura Counties"; "where he formerly served as the President of the Board of Directors for four years"; "At the same time, he continued to move up the ranks at the statewide association, ACWA and became their Vice President and President in 2002-2006"; "He continued after that to work actively as Chairman of its Energy Committee, and a member of its groundwater and federal affairs committees"; "he has served as the Chairman of the Water Resources Committee for the CLWA"; "His experience also includes Alternate, Commissioner, and Chairman of the Los Angles County LAFCO; he also has served as the President of the Association of California LAFCO\'s" ("Angles" so printed); "In 2010 he was elected as the President of the ACWA/JPIA which is the Joint Powers Insurance Authority that represents nearly 400 Public Water agencies in California"; "Currently, Jerry is also one of three members appointed by ACWA to serve on the Board of Directors of the National Water Resources Association." Its list of qualifications: "us environmental protection agency groundwater task force, past member"; "master of science, civil engineering / water resources /University of Missouri".',
+   [('S:campaign-jerrygladbach-com-wb20180816143854.txt', q) for q in [
+    'Jerry Gladbach | For Castaic Lake Water Agency', 'Paid for by Gladbach for Water Board 2016',
+    "Originally from Missouri where he earned a Master's degree in Civil Engineering, Jerry came to California on an internship and was later hired permanently and began a career spanning 35 years at the Los Angeles Department of Water and Power",
+    'As a registered Engineer and manager', "including the U.S. Environmental Protection Agency's Groundwater Task Force",
+    'As a local leader, he was the Chairman of Region 8 serving Los Angeles and Ventura Counties',
+    'where he formerly served as the President of the Board of Directors for four years',
+    'At the same time, he continued to move up the ranks at the statewide association, ACWA and became their Vice President and President in 2002-2006',
+    'He continued after that to work actively as Chairman of its Energy Committee, and a member of its groundwater and federal affairs committees',
+    'he has served as the Chairman of the Water Resources Committee for the CLWA',
+    "His experience also includes Alternate, Commissioner, and Chairman of the Los Angles County LAFCO; he also has served as the President of the Association of California LAFCO's",
+    'In 2010 he was elected as the President of the ACWA/JPIA which is the Joint Powers Insurance Authority that represents nearly 400 Public Water agencies in California',
+    'Currently, Jerry is also one of three members appointed by ACWA to serve on the Board of Directors of the National Water Resources Association',
+    'us environmental protection agency groundwater task force, past member',
+    'master of science, civil engineering / water resources /University of Missouri']]),
+ 'DIR69': ('Newhall-Saugus-Valencia-Canyon Country Local City Directory, 1969, B&G Publications, on SCVHistory.com, /scvhistory/lw6902.htm (the Reggie mirror; the flipbook\'s text, /scvhistory/files/lw6902/files/search/search29.xml): "Gladbach E G", with a street address in the valley and a telephone number, not repeated here.',
+   [('X:files/lw6902/files/search/search29.xml', 'Gladbach E G')]),
+ 'ACWA22': ('ACWA, "ACWA Past President Jerry Gladbach Passes Away," July 18, 2022 (Wayback capture, https://web.archive.org/web/20220718225114/https://www.acwa.com/news/acwa-past-president-jerry-gladbach-passes-away/): "Gladbach served as ACWA President during 2004 and 2005"; "leading ACWA JPIA as its Board President"; "His extensive contributions to ACWA included chairing the Region 8 Board and work on association committees, including the Energy and Business Development committees."',
+   [('S:acwa-2022-07-18-wb.txt', 'Gladbach served as ACWA President during 2004 and 2005'),
+    ('S:acwa-2022-07-18-wb.txt', 'leading ACWA JPIA as its Board President'),
+    ('S:acwa-2022-07-18-wb.txt', 'His extensive contributions to ACWA included chairing the Region 8 Board and work on association committees, including the Energy and Business Development committees')]),
+ 'SIG22': ('Caleb Lunetta, "SCV Water announces death of board member," The Signal, July 14, 2022 (Wayback capture, https://web.archive.org/web/20220718015757/https://signalscv.com/2022/07/scv-water-announces-death-of-board-member/): "Santa Clarita Valley Water Agency officials confirmed Thursday night the death of the board\'s vice president, Jerry Gladbach"; "represented Division 2"; "he was also the ACWA vice president, chaired its Region 8 board, the Energy Committee, and was a member of its Business Development Corporation."',
+   [('S:signal-2022-07-14-wb.txt', "Santa Clarita Valley Water Agency officials confirmed Thursday night the death of the board's vice president, Jerry Gladbach"),
+    ('S:signal-2022-07-14-wb.txt', 'represented Division 2'),
+    ('S:signal-2022-07-14-wb.txt', 'he was also the ACWA vice president, chaired its Region 8 board, the Energy Committee, and was a member of its Business Development Corporation')]),
+ 'AB1234': ('His own report to the SCV Water board, "DIRECTOR AB1234 REPORT," in the handout for the meeting of June 7, 2022, item 12.2, https://www.yourscvwater.com/sites/default/files/SCVWA/board-meetings/SCV-Water-Handout-060722-Item-12..2-AB-1234-Reports.pdf: "Director Name: Jerry Gladbach Meeting Attended: ACWA\'s Federal Affairs Committee Date of Meeting: May 3, 2022"; the committee\'s chair, he wrote, had asked the members of the NWRA board to meet before the committee: "He wanted to know if we were interested in being reappointed by ACWA to NWRA\'s Board." His own account, not a second source.',
+   [('S:scvwater-2022-06-07-ab1234.txt', "Director Name: Jerry Gladbach Meeting Attended: ACWA's Federal Affairs Committee Date of Meeting: May 3, 2022"),
+    ('S:scvwater-2022-06-07-ab1234.txt', "He wanted to know if we were interested in being reappointed by ACWA to NWRA's Board")]),
+ 'LAFCO20': ('Local Agency Formation Commission for the County of Los Angeles, "Commissioners," https://lalafco.org/en/commissioners/, read in the Wayback Machine\'s capture of September 23, 2020 (https://web.archive.org/web/20200923051128/https://lalafco.org/en/commissioners/): "EDWARD G. GLADBACH"; "He was appointed to LAFCO by the Independent Special District Selection Committee in 2001"; "Mr. Gladbach currently serves as Chair of LAFCO, a position which he was originally elected by his colleagues in 2006"; "Formerly Director Gladbach served on the board of the Castaic Lake Water Agency for 32 years."',
+   [('S:lalafco-commissioners-wb20200923051128.txt', 'EDWARD G. GLADBACH'),
+    ('S:lalafco-commissioners-wb20200923051128.txt', 'He was appointed to LAFCO by the Independent Special District Selection Committee in 2001'),
+    ('S:lalafco-commissioners-wb20200923051128.txt', 'Mr. Gladbach currently serves as Chair of LAFCO, a position which he was originally elected by his colleagues in 2006'),
+    ('S:lalafco-commissioners-wb20200923051128.txt', 'Formerly Director Gladbach served on the board of the Castaic Lake Water Agency for 32 years')]),
+ 'LAFCO02': ('The commission\'s home page, http://lalafco.org/, in the Wayback Machine\'s captures of April 8, 2002 (https://web.archive.org/web/20020408070048/http://lalafco.org:80/), under "ALTERNATE COMMISSIONERS:", "Jerry Gladbach Independent Special District Selection Committee"; and of May 25, 2002 (https://web.archive.org/web/20020525161205/http://lalafco.org:80/), among the commissioners, "Jerry Gladbach Independent Special District Selection Committee".',
+   [('S:lalafco-home-wb20020408070048.txt', 'ALTERNATE COMMISSIONERS:'),
+    ('S:lalafco-home-wb20020408070048.txt', 'Jerry Gladbach Independent Special District Selection Committee'),
+    ('S:lalafco-home-wb20020525161205.txt', 'Jerry Gladbach Independent Special District Selection Committee')]),
+ 'CALAFCO22': ('CALAFCO, Quarterly Newsletter, "A Message from the Executive Director," August 2022, "IN MEMORIUM JERRY GLADBACH, Los Angeles LAFCo Commissioner," as attached to Napa LAFCo\'s agenda of October 3, 2022, item 5e, https://napalafco.specialdistrict.org/files/af10b61d1/10-3-22_5e_CALAFCO-QuarterlyNewsletter.pdf: "had held a seat on the L.A. LAFCo where he had served as its Chair for 16 years"; "Commissioner Gladbach also served as a CALAFCO Director from 2005 to 2013, held the position of CALAFCO Board Chair in 2012, received the Most Outstanding Commissioner Award in 2013." CALAFCO, The Sphere, October 2024, page 5, https://calafco.org/images/downloads/The_Sphere/the_sphere__oct_2024___web_version.pdf: "Jerry had been a commissioner on the Los Angeles LAFCO for twenty-one years, a CALAFCO Director from 2005 to 2013, and the 2012 CALAFCO Board Chair."',
+   [('S:calafco-newsletter-2022-08.txt', 'had held a seat on the L.A. LAFCo where he had served as its Chair for 16 years'),
+    ('S:calafco-newsletter-2022-08.txt', 'Commissioner Gladbach also served as a CALAFCO Director from 2005 to 2013, held the position of CALAFCO Board Chair in 2012, received the Most Outstanding Commissioner Award in 2013'),
+    ('S:calafco-sphere-2024-10.txt', 'Jerry had been a commissioner on the Los Angeles LAFCO for twenty-one years, a CALAFCO Director from 2005 to 2013, and the 2012 CALAFCO Board Chair')]),
+ 'LAFCO13': ('Los Angeles County LAFCO, release carried as "Gladbach, of Valencia, Named Outstanding LAFCO Rep," SCVNews.com, October 8, 2013 (Wayback capture, https://web.archive.org/web/20131010081946/http://scvnews.com:80/2013/10/08/gladbach-of-valencia-named-outstanding-lafco-rep/): "CALAFCO presented Gladbach with the Outstanding Commissioner award at its annual conference on September 26, 2013"; "He is also the former President of the Board of Directors of CALAFCO."',
+   [('S:scvnews-2013-10-08-wb.txt', 'CALAFCO presented Gladbach with the Outstanding Commissioner award at its annual conference on September 26, 2013'),
+    ('S:scvnews-2013-10-08-wb.txt', 'He is also the former President of the Board of Directors of CALAFCO')]),
+}
+
+BODY = [
+ 'Jerry Gladbach sat on the board of the Castaic Lake Water Agency from January 1985 until the agency merged into the Santa Clarita Valley Water Agency on 1 January 2018, and on the new agency\'s board from then until he died, in office, on 13 July 2022, as its vice president: thirty-seven and a half years, by the agency\'s count.{RES}{REL}{ROSTER}{MIN}{DEATH} He was president of the Castaic Lake board for four years, from January 1987 to December 1990 by the agency\'s resolution in his honour, and 1987 to 1991 by its release at his death and by ACWA\'s announcement of 2003.{RES}{REL}{WW03} In 2005 he chaired its Water Resources Committee.{CREC} How he first took the seat is not settled: the release says he was first elected in 1985, the resolution that he served from January 1985, and no return or appointment for the seat in 1984 or 1985 is held.{REL}{RES}',
+ 'In November 1996 he stood for the board for Newhall and Valencia, against an opponent, by Leon Worden\'s account at the time.{LW96} By 2012 his seat was Division 2, one of two seats for the division: that year he was its only qualified candidate, so his name did not appear on the ballot, and in 2016 he held it against Stacy L. Fortner, 13,651 votes to 12,233.{CLWA12}{LAV12}{SOV16} Under SB 634 he and the other sitting directors became the first board of SCV Water, his term extended to 2022.{SB634} He was its vice president from February 2020 and chaired its Public Outreach and Legislation Committee.{RES}',
+ 'Interviewed by Leon Worden for the Signal\'s "Newsmaker of the Week" in April 2005, he spoke for the agency on the 41,000 acre-feet of water it had bought from Wheeler Ridge, then held up in court, on the treatment of the perchlorate in part of the Saugus aquifer, and on the County LAFCO\'s review of the valley\'s four water retailers, which he expected all to remain. Asked about his seats on local and state bodies, he said that was "one reason I got on both boards, is to influence what happens on a state level to benefit the Santa Clarita Valley."{NM05} The agency\'s release at his death credits him with championing the Rio Vista Water Treatment Plant, whose construction began in 1991, and with a part in buying the Devil\'s Den Water District in Kern County the same year.{REL} In 2024 SCV Water renamed the plant the E. G. "Jerry" Gladbach Water Treatment Plant.{PLANT}',
+ 'He was an engineer and manager with the Los Angeles Department of Water and Power for thirty-five years, retiring as its Manager of Marketing and Special Projects, and a registered professional engineer.{REL}{CREC}{WWD01} He took a bachelor\'s degree at the University of Missouri at Columbia in 1961 and a master\'s there in 1964.{CREC}{REL} His campaign biography gives the master\'s as civil engineering, and says that he came to California on an internship and was then hired by the Department.{CAMP} SCV Water dated his life in the valley from 1968; the valley\'s directory of 1969 lists him.{REL}{DIR69}',
+ 'In the Association of California Water Agencies he chaired Region 8, Los Angeles and Ventura counties, and was its vice president from January 2002 and its president for 2004 and 2005.{WWD01}{WW03}{CREC}{RES}{ACWA22} SCV Water\'s release gives his presidency as 2002 to 2004, and his campaign biography gives "Vice President and President in 2002-2006"; the reports of 2001, 2003 and 2005 give the vice presidency from 2002 and the presidency for 2004 and 2005.{REL}{CAMP} As president he named the task force that wrote No Time to Waste: A Blueprint for California Water.{CREC}{NM05} He sat on ACWA\'s board from 1998 until his death, by SCV Water\'s resolution.{RES} ACWA and the Signal name the Energy Committee among his later work, the Signal as its chair; his campaign biography says he chaired it after his presidency and sat on the association\'s groundwater and federal affairs committees, and his own report to the SCV Water board has him at its Federal Affairs Committee in May 2022.{ACWA22}{SIG22}{CAMP}{AB1234} He sat on the board of the ACWA Joint Powers Insurance Authority, which insures the association\'s members, from 2002, and was its president from 2010 until his death; his campaign biography put its membership at nearly 400 public water agencies.{RES}{REL}{ACWA22}{CAMP}',
+ 'The Independent Special District Selection Committee appointed him to the Local Agency Formation Commission for the County of Los Angeles in 2001. The commission listed him as an alternate in April 2002 and as a commissioner by May 2002; he was its first vice-chair in 2005, was elected its chair in 2006, and was chair at his death.{LAFCO20}{LAFCO02}{CREC}{REL}{CALAFCO22} In the California Association of Local Agency Formation Commissions he was a director from 2005 to 2013 and its Board Chair in 2012, which his campaign biography and the County commission\'s release of 2013 call its presidency; it named him its Outstanding Commissioner in 2013 and gave him its Lifetime Achievement Award in 2021.{CALAFCO22}{CAMP}{LAFCO13}{RES}',
+ 'He was a director of the National Water Resources Association, a seat ACWA filled: in May 2022 he reported that its directors from ACWA had been asked whether they wished to be reappointed.{REL}{RES}{AB1234} His campaign biography says he was one of three members ACWA appointed, and that he served on the U.S. Environmental Protection Agency\'s Groundwater Task Force; no other source found names him on that task force.{CAMP}',
+]
+
+EDITOR_NOTES = [
+ {'heading': 'About the sources', 'position': 'bottom',
+  'note': 'His campaign biography, on his campaign site for the 2016 election, was written for him by Nathan Imhoff, now the editor of this archive. It is campaign material: what rests on it alone is attributed in the text, its promotional language is left out, and so is his family.'},
+ {'heading': 'His name in the sources', 'position': 'bottom',
+  'note': 'Edward Gerald Gladbach, called Jerry (Leon Worden, The Signal, October 23, 1996: "Gerald, his middle name"; "Jerry\'s first name, Edward"). The 1969 directory lists "Gladbach E G"; the County\'s list of 2012 prints E.G. "JERRY" GLADBACH, and its return of 2016 E G GLADBACH; the water agencies, ACWA and the Congressional Record write E.G. "Jerry" Gladbach; the County LAFCO, Edward G. Gladbach; the Signal, SCV Water\'s releases and CALAFCO, Jerry Gladbach.'},
+]
+EN_CHECKS = [('M:signal/worden/old/lw102396.htm', 'Gerald, his middle name'), ('M:signal/worden/old/lw102396.htm', "Jerry's first name, Edward")]
+
+# Two office holdings the archive lacks: 1985 to 2012 and the unopposed term of 2013 to 2016.
+HOLDINGS = [
+ {'key': 'CLWA-1985', 'termStart': 'January 1985', 'termStartEdtf': '1985-01', 'termEnd': 'December 2012', 'termEndEdtf': '2012-12',
+  'selectionMethod': 'elected', 'howEnded': 'reelected', 'startEvidence': 'retrospective', 'endEvidence': 'roster', 'district': None, 'seatLabel': '',
+  'notes': [
+   'Santa Clarita Valley Water Agency, Resolution No. SCV-329, January 17, 2023, ' + RES_URL + ': "E.G. "Jerry" Gladbach previously served on the Castaic Lake Water Agency Board of Directors from January 1985 through December 2017." SCV Water, news release, July 18, 2022, ' + REL_URL + ': "Jerry was first elected to the Castaic Lake Water Agency Board in 1985 and has served continuously ever since." The resolution gives the month and the release the method; no County return or appointment for the seat in 1984 or 1985 is held, so how he first took it is not confirmed.',
+   'Association of California Water Agencies, Water & Wastes Digest, November 29, 2001, https://www.wwdmag.com/home/news/10905810/water-agencies-elect-boatmun-gladbach-as-top-officers: "Gladbach has been a director of Castaic Lake Water Agency in Santa Clarita since 1985." "Castaic Lake Water Agency Directors, 1962 to Date," SCVHistory.com, /scvhistory/clwadirectors.htm: "E.G. "JERRY" GLADBACH 1985", with no end year.',
+   'He stood in November 1996 for the board for Newhall and Valencia, against an opponent (Leon Worden, "A politician by any other name...," The Signal, October 23, 1996, /scvhistory/signal/worden/old/lw102396.htm: "In Newhall and Valencia, the water board candidate is Jerry Gladbach"; "His water opponent is named Lynne."), and served on, so he is read as having won; the County\'s return is not held.',
+   'These years are one record: the County\'s returns for the agency\'s elections before 2016 are not held, so the terms within them are not split. In August 2012 his seat was Division 2 and his term was to expire in January 2013 (Castaic Lake Water Agency, "History & Overview of Santa Clarita Water Co./Division," August 2012, page 6, /scvhistory/clwa_scwd_2012.htm: "E.G. "Jerry" Gladbach 2 January 2013"). He was president of the board from January 1987 to December 1990 (the resolution: "from January 1987 to December of 1990"; the release: "1987-1991").',
+  ],
+  'checks': [('N:scvwater-press-release-gladbach-death.txt', 'Jerry was first elected to the Castaic Lake Water Agency Board in 1985 and has served continuously ever since'),
+             ('S:wwd-2001-11-29.txt', 'Gladbach has been a director of Castaic Lake Water Agency in Santa Clarita since 1985'),
+             ('N:scvwater-resolution-scv-329-gladbach.txt', 'from January 1987 to December of 1990')]},
+ {'key': 'CLWA-2013', 'termStart': 'January 2013', 'termStartEdtf': '2013-01', 'termEnd': 'December 2016', 'termEndEdtf': '2016-12',
+  'selectionMethod': 'unopposed', 'howEnded': 'reelected', 'startEvidence': 'derived', 'endEvidence': 'derived', 'district': 26568, 'seatLabel': 'Division 2',
+  'notes': [
+   'Elected unopposed; no election was held. The County\'s "FINAL LIST OF QUALIFIED CANDIDATES WHOSE NAME WILL NOT APPEAR ON THE BALLOT" for the general election of November 6, 2012, dated 10/15/2012, lists him, marked as the incumbent, as the only candidate for Castaic Lake Water Agency, "Member, Board of Directors, Division 2": "Total Candidates for Contest: 1" (County of Los Angeles, Registrar-Recorder/County Clerk, https://lavote.gov/documents/final-list-of-qualified-candidates-whose-names-will-not-appear-on-the-ballot.pdf). Under Elections Code section 10515 such a candidate is appointed in lieu of an election by the supervising authority (as on holding #29659, Lynne Plambeck, 2011); the Board of Supervisors\' act for this seat is not held.',
+   'The term began in January 2013, when the one before it expired (Castaic Lake Water Agency, "History & Overview of Santa Clarita Water Co./Division," August 2012, page 6: "E.G. "Jerry" Gladbach 2 January 2013"), and ran to the term he won at the election of November 8, 2016 (holding #28553), which began in January 2017.',
+  ],
+  'checks': [('S:lavote-final-list-not-on-ballot.txt', 'Total Candidates for Contest: 1')]},
+]
+
+# The search behind "no other source found names him on that task force", for inventory/source-searches.json.
+SEARCH = {
+ 'note': 'no other source found names him on that task force.',
+ 'field': 'body, last paragraph',
+ 'searched': 'Gladbach with EPA, "Groundwater Task Force", "Ground Water Rule", "federal advisory committee", "ground water disinfection"; Gladbach alone',
+ 'where': 'The web (search engine, standard mode), epa.gov and archive.epa.gov (the December 1997 Ground Water Rule stakeholder meeting record; the SBAR panel report on the Ground Water Rule), and the sources gathered for this profile (inventory/sources/jerry-gladbach-2026-10-06/); the Reggie mirror of SCVHistory.com, all 84,849 .htm, .html, .xml and .txt files, for "gladbach" (27 files, none naming the EPA); the archive\'s records (Craft search, read-only).',
+ 'how': 'Mirror: Python, each file read as bytes, case-insensitive regex on b"gladbach", every hit read. Web: WebSearch and WebFetch by a research subagent, every hit read. Never the agent shell\'s grep.',
+ 'when': '2026-10-06',
+ 'result': 'SURVIVES',
+ 'found': 'Only his own campaign site (biography and qualifications list: "us environmental protection agency groundwater task force, past member") and his own campaign letter on EPA rulemaking. Water & Wastes Digest, 2001, names the Groundwater Resources Association, which is not the EPA.',
+ 'by': 'Claude Code, for inventory/review/jerry-gladbach-profile-draft-2026-10-06.md',
+}
+
+
+def norm(s):
+    s = s.replace('‘‘', '"').replace('’’', '"')
+    s = s.replace('“', '"').replace('”', '"').replace('‘', "'").replace('’', "'").replace(' ', ' ')
+    s = re.sub(r'\s+', ' ', s)
+    s = re.sub(r'-\s+(\d)', r'-\1', s)
+    return s.strip()
+
+
+_cache = {}
+def source_text(ref):
+    if ref in _cache:
+        return _cache[ref]
+    kind, path = ref.split(':', 1)
+    if kind == 'S':
+        raw = open(os.path.join(S, re.sub(r'\.(html?|pdf)$', '', path) + '.txt') if not path.endswith('.txt') else os.path.join(S, path), 'rb').read().decode('utf-8', 'replace')
+    elif kind == 'N':
+        raw = open(os.path.join(N, path), 'rb').read().decode('utf-8', 'replace')
+    elif kind == 'R':
+        raw = open(os.path.join(ROOT, path), 'rb').read().decode('utf-8', 'replace')
+    else:
+        b = open(os.path.join(M, path), 'rb').read()
+        raw = b.decode('latin-1') if kind == 'M' else b.decode('utf-8', 'replace')
+        raw = re.sub(r'<script.*?</script>|<style.*?</style>', '', raw, flags=re.S | re.I)
+        if kind == 'X':
+            raw = re.sub(r':@[0-9.:\-]+', ' ', raw)
+        raw = html.unescape(re.sub(r'<[^>]+>', ' ', raw))
+    _cache[ref] = norm(raw)
+    return _cache[ref]
+
+
+bad = []
+def check(ref, q, where):
+    if norm(q) not in source_text(ref):
+        bad.append(f'{where}: not in {ref}: {q[:90]}')
+    if norm(q) not in norm(where_text[where]):
+        bad.append(f'{where}: quotation not in the note itself: {q[:90]}')
+
+
+where_text = {}
+for k, (text, checks) in NOTES.items():
+    where_text[k] = text
+    for ref, q in checks:
+        check(ref, q, k)
+where_text['EN'] = ' '.join(n['note'] for n in EDITOR_NOTES)
+for ref, q in EN_CHECKS:
+    check(ref, q, 'EN')
+for h in HOLDINGS:
+    where_text[h['key']] = ' '.join(h['notes'])
+    for ref, q in h['checks']:
+        check(ref, q, h['key'])
+
+order = []
+for p in BODY:
+    for k in re.findall(r'\{([A-Z0-9]+)\}', p):
+        if k not in order:
+            order.append(k)
+missing = [k for k in order if k not in NOTES]
+unused = sorted(set(NOTES) - set(order))
+if missing:
+    bad.append('cited but not written: ' + ', '.join(missing))
+if unused:
+    bad.append('notes never cited: ' + ', '.join(unused))
+for p in BODY:
+    cited = re.findall(r'\{([A-Z0-9]+)\}', p)
+    for q in re.findall(r'"([^"]{12,})"', p):
+        if not any(norm(q.rstrip('.')) in norm(NOTES[k][0]) for k in cited if k in NOTES):
+            bad.append('a body quotation not in a note cited in its paragraph: ' + q[:80])
+num = {k: i + 1 for i, k in enumerate(order)}
+body = '\n\n'.join(re.sub(r'\{([A-Z0-9]+)\}', lambda m: f'[{num[m.group(1)]}]', p) for p in BODY)
+footnotes = [{'number': str(num[k]), 'key': k, 'note': NOTES[k][0]} for k in order]
+
+ours = [body] + [f['note'] for f in footnotes] + [n['note'] for n in EDITOR_NOTES] + [x for h in HOLDINGS for x in h['notes']]
+if any('—' in t for t in ours):
+    bad.append('an em dash in our own text')
+if any(re.search(r'\.\.\.|…', re.sub(r'any other name\.\.\.', '', t)) for t in ours):
+    bad.append('an ellipsis in our own text or a quotation')
+for w in ['Donna', 'grandchildren', 'his wife', 'clear choice', 'pillar', 'lovely']:
+    if re.search(w, body, re.I):
+        bad.append(f'the body says "{w}"')
+
+if bad:
+    raise SystemExit('REFUSED:\n  ' + '\n  '.join(bad))
+
+D = {
+ 'drafted': '2026-10-06', 'draftedBy': 'scripts/import/draft_gladbach_profile_2026_10_06.py, Claude Code',
+ 'person': {'id': 28336, 'titleNow': 'Jerry Gladbach (retitled by another step; not touched here)'},
+ 'body': body, 'footnotes': footnotes, 'editorNotes': EDITOR_NOTES,
+ 'fields': {'bodyAuthorship': 'editorial-2026', 'occupation': 'Water board director; engineer, Los Angeles Department of Water and Power'},
+ 'replacesBody': '<p>He died in office on 13 July 2022, the vice president of the Santa Clarita Valley Water board.[1]</p>',
+ 'holdings': [{k: v for k, v in h.items() if k != 'checks'} for h in HOLDINGS],
+ 'sourceSearch': {'persons:28336': SEARCH},
+ 'quotationsChecked': sum(len(c) for _, c in NOTES.values()) + len(EN_CHECKS) + sum(len(h['checks']) for h in HOLDINGS),
+}
+json.dump(D, open(OUT + '.json', 'w'), indent=1, ensure_ascii=False)
+
+md = ['# Jerry Gladbach #28336: the profile, draft (6 October 2026)', '',
+      'Drafted by Claude Code for Nathan. Nothing is written to the database by this draft; the loader is scripts/import/build_gladbach_profile_2026_10_06.php (dry run).',
+      f'Every quotation below was checked by machine against its saved source: {D["quotationsChecked"]} checks, none failed.', '',
+      '## Body', '', body, '', '## Notes', '']
+md += [f'{f["number"]}. {f["note"]}' for f in footnotes]
+md += ['', '## Editor\'s notes (bottom of the page)', '']
+md += [f'- **{n["heading"]}.** {n["note"]}' for n in EDITOR_NOTES]
+md += ['', '## Two new office holdings (Castaic Lake Water Agency, Water Board Director)', '']
+for h in HOLDINGS:
+    md += [f'### {h["termStart"]} to {h["termEnd"]} ({h["termStartEdtf"]}/{h["termEndEdtf"]})', '',
+           f'selectionMethod {h["selectionMethod"]}; howEnded {h["howEnded"]}; startEvidence {h["startEvidence"]}; endEvidence {h["endEvidence"]}; district {("#" + str(h["district"]) + " " + h["seatLabel"]) if h["district"] else "none set"}', '']
+    md += [f'{i + 1}. {n}' for i, n in enumerate(h['notes'])] + ['']
+md += ['## The search behind "no other source found" (for inventory/source-searches.json, written only on apply)', '', '```json', json.dumps(SEARCH, indent=1, ensure_ascii=False), '```', '']
+open(OUT + '.md', 'w').write('\n'.join(md))
+print(f'{len(footnotes)} notes, {D["quotationsChecked"]} quotations checked, 2 holdings; wrote {OUT}.json and .md')

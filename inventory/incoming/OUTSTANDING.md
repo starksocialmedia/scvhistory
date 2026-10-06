@@ -70,3 +70,17 @@ no longer wanted:
 ## 4. Portrait batch of 5 October 2026
 
 Applied on 6 October 2026; its files, Chico López's US8502 and Tom Frew II's TF1000 are in done/ with MANIFEST.json.
+
+## 5. Enhanced copies of 6 October 2026, waiting on Nathan's word
+
+Nathan's own enhancements (Adobe Firefly, 6 October), saved under the original's file name, of portraits already in the archive.
+Each would become the portrait with the original kept and linked, once he confirms (enhanced_portrait_pairs_2026_10_06.php pattern).
+
+| File | Record | Original in the archive |
+|---|---|---|
+| danhon.jpg | Dan Hon #18616 | #14933 danhon.jpg (200 by 231) |
+| darrylmanzer2020.jpg | Darryl Manzer #2579 | #31254 darrylmanzer2020.jpg |
+| sg19720614claffey01_zoom.jpg | Francis T. Claffey #30211 | #31236 sg19720614claffey01_large.jpg |
+| sg19720614claffey01_large.jpg | Francis T. Claffey #30211 | no credential: a copy of the original, #31236 |
+| sk5003_large.jpg | Earl Schmidt #28675 | #31255 sk5003_large.jpg |
+| stroup_clara.jpg | Clara Stroup #28713 | #31243 stroup_clara.jpg (150 by 200) |

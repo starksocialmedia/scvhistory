@@ -1165,6 +1165,18 @@ local unless the note says otherwise.
 - **On the page.** The banner is the band's background, not the portrait: the person's photograph, where there is one, moves to the sidebar as PORTRAIT with its own credit. The banner carries its credit on the image itself, "AI-generated illustration. Not a photograph.", which opens to what is recorded about how it was made. It is never in the page's JSON-LD and has an empty alternative text.
 - **Enforced.** `check_render.php` fails if a banner file is missing or changed, if an asset carries its file name, if its page lacks the credit, or if its page's JSON-LD mentions it. Missing provenance is reported, not failed.
 
+### Enhanced portraits: the standing pattern
+
+Nathan, 6 October 2026: "the enhanced image becomes the portrait, the original stays on the record
+as a related image, and the two are linked so a reader seeing the enhanced one can reach the
+original." So: the enhanced asset is `featuredImage`, the original is in `recordImages`, and
+`enhancedFrom` on the enhanced asset points at the original. The enhanced asset records who
+enhanced it (`enhancedBy`), when (`enhancedDate`), and how, in plain words read from its own content
+credential (`enhancementMethod`; the manifest and its steps in `contentCredentials`). Its caption says
+it is an enhanced version, and the person page says so under the portrait with a link to the
+original. The credential scanner reports what a file carries; it does not block an import. Where the
+original is not held, `enhancedFrom` stays empty and the caption says so.
+
 ## Images as objects
 
 Every image a page shows is emitted as a schema.org `ImageObject` in the page graph,

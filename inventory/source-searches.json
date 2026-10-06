@@ -1121,6 +1121,19 @@
     "found": "Not met. Nothing found.",
     "by": "Claude Code subagent, inventory/review/war-memorial-sourcing-2026-10-04.md"
    }
+  ],
+  "persons:28336": [
+   {
+    "note": "no other source found names him on that task force.",
+    "field": "body, last paragraph",
+    "searched": "Gladbach with EPA, \"Groundwater Task Force\", \"Ground Water Rule\", \"federal advisory committee\", \"ground water disinfection\"; Gladbach alone",
+    "where": "The web (search engine, standard mode), epa.gov and archive.epa.gov (the December 1997 Ground Water Rule stakeholder meeting record; the SBAR panel report on the Ground Water Rule), and the sources gathered for this profile (inventory/sources/jerry-gladbach-2026-10-06/); the Reggie mirror of SCVHistory.com, all 84,849 .htm, .html, .xml and .txt files, for \"gladbach\" (27 files, none naming the EPA); the archive's records (Craft search, read-only).",
+    "how": "Mirror: Python, each file read as bytes, case-insensitive regex on b\"gladbach\", every hit read. Web: WebSearch and WebFetch by a research subagent, every hit read. Never the agent shell's grep.",
+    "when": "2026-10-06",
+    "result": "SURVIVES",
+    "found": "Only his own campaign site (biography and qualifications list: \"us environmental protection agency groundwater task force, past member\") and his own campaign letter on EPA rulemaking. Water & Wastes Digest, 2001, names the Groundwater Resources Association, which is not the EPA.",
+    "by": "Claude Code, for inventory/review/jerry-gladbach-profile-draft-2026-10-06.md"
+   }
   ]
  }
 }

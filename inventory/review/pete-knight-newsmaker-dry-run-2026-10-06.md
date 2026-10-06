@@ -1,0 +1,217 @@
+# Pete Knight's final interview: the document record, dry run
+
+create, published
+
+- title: Newsmaker of the Week: State Sen. William J. "Pete" Knight (Leon Worden, The Signal, April 25, 2004)
+- published by: The Santa Clarita Valley Signal #376; SCVTV #30520
+- written by: Leon Worden #279; about: Pete Knight #29314; collection: Newsmaker of the Week #671
+- source line: Interview by Leon Worden, Signal City Editor. Sunday, April 25, 2004. (Television interview conducted April 1, 2004). ©2004 SCVTV.
+- date: Sunday, April 25, 2004 (2004-04-25); taped April 1, 2004
+- old address: /scvhistory/signal/newsmaker/sg042504.htm; page sha256 966f49c04569f70da6287875d603810b177ac899082a71dfe3b8c42d6d593338 (manifest match)
+- body: 100 paragraphs, 4343 words (76 interview, 7 military background, 15 official biography)
+
+Top note, verbatim: Editor's Note: This was Pete Knight's final television interview. On April 7, 2004, he was diagnosed with acute myelogenous leukemia. He died May 7, 2004.
+
+Bottom note: Beside the interview the page printed two boxed texts, "Knight's Military Background" and "Official Biography"; they follow the interview here under their printed headings. The page does not say who wrote them. The page also carried two photographs, captioned "Pete Knight on April 1, 2004" and "Pete Knight, 1965"; they are not part of this record. It linked the broadcast on SCVTV at http://www.scvtv.com/html/sg042504-nm.html.
+
+## The body, in full, as it will read
+
+"Newsmaker of the Week" is presented by the SCV Press Club and Comcast, and hosted by Signal City Editor Leon Worden. The half-hour program premieres every Wednesday at 9:30 p.m. on SCVTV Channel 20, repeating Sundays at 8:30 a.m.
+
+This week's newsmaker is state Sen. William J. "Pete" Knight, R-Palmdale. Knight, who authored Proposition 22 in 2000, defining marriage in California as the union of one man and one woman, has represented most of the Santa Clarita Valley in the Legislature since 1992. He will be "termed out" of the Senate at the end of the year.
+
+The following interview was conducted April 1, shortly before Knight took a medical leave of absence from the Senate. Questions are paraphrased and answers may be abbreviated for length.
+
+Signal: After a notable military career, your service as mayor of Palmdale, four years in the state Assembly and eight years in the Senate, how does it make you feel to think that most Californians will remember you for your opposition to gay marriage?
+
+Knight: You know, I look at it a little bit differently — not so much as opposition to gay marriage as the fact that, I don't want to change the definition of marriage.
+
+People talk about homosexual marriage and (say), "you're bigoted," "you're homophobic," "you're discriminating," "equal protection," all of those things. Well, the idea of changing the definition of marriage is kind of foreign to me.
+
+That's what it's all about, is changing the definition of marriage. When you do that, then you open it up to a number of other possibilities. Polygamy, for one. What's to stop the people who want to practice polygamy from going into the courts and saying, "discrimination," "equal protection," "we want to have the same kind of rights that you have afforded to homosexuals," and "we want to marry"?
+
+Signal: Do you see other types of marriage being a logical extension of sanctioning marriage between two people of the same sex?
+
+Knight: I don't understand how you could stop it, when you have now changed the definition of marriage and you have ... defined marriage as loving committed relationships. And you can have all kinds of loving, committed relationships.
+
+You know, they talk about equal rights, but there is no right to marriage. Marriage is defined. Marriage is a natural evolution of man and woman. Man and woman together make a marriage. That's no discrimination. You can marry whoever you want. You know, they're establishing these things as justification for their position, and nobody stops to think, well, wait a minute. That's not justification. Then they go back and they say, marriage has changed over the years continuously. We changed it when we allowed blacks to marry whites. Well, that wasn't a marriage issue. That was a racial issue. There was no contended description of marriage being anything other than between a man and a woman. It was a racial issue.
+
+Signal: Advocates of same-sex marriage often equate their fight to civil rights causes of the past. Do you have a problem with that?
+
+Knight: Sure I do. It is not a civil right. It is not a civil rights issue. They're establishing a new civil right. There is no civil right that says that you should be allowed to marry a man and a man. There is no civil right that says that is being denied. So they're establishing these justifications based on their own definitions of civil rights and equal protection and bigotry and all of that.
+
+Signal: Last year, former Gov. Gray Davis signed legislation expanding domestic partner benefits in California. Where do you stand on expanding benefits, apart from the marriage issue?
+
+Knight: I think that there is probably some area that we should be able to compromise in. The bill that you're talking about, I think, is AB 205, which was a (Jackie) Goldberg bill, and it in essence established same-sex marriage within the state of California because it gave all the rights and privileges and responsibilities of married couples to domestic partners. It used the word "spouse" instead of marriage. It's nothing more than marriage by another name. That's not legal, and that's in opposition to Proposition 22.
+
+But as far as domestic partners are concerned, I think I can accept, and I would be willing to support, domestic partners with limited rights, limited state's rights.
+
+For example, I certainly would think that they should have the ability to designate whoever they want to come in and visit with them in a hospital. Those kinds of things are kind of basic, and they don't even need to register as domestic partners to have that happen. There are legal documents, there are legal means, by which they can accomplish that.
+
+They can have a will and leave whatever they have to whomever they want. As a matter of fact, we have to have a will. It's beneficial and recommended that everybody have a will. So that's not something that's being denied them. They can have those kinds of things.
+
+Signal: Whom does it hurt if two men or two women want to go off and get married?
+
+Knight: It doesn't hurt anybody. It doesn't hurt anybody and it doesn't affect my marriage, your marriage, anybody else's marriage, directly. It's the institution of marriage that is being deliberately trashed, one way or the other. And you've changed the definition of marriage, now you're affecting the institution of marriage, and it is no longer that institution by which society builds on. It is no longer a bedrock of society. It is no longer the basic building block of society that holds society together. It's the civility requirements of society.
+
+Signal: You've been dealing with this issue at least since 1996. Now there is an organized effort across the country to bring the issue to the forefront. Do you sense any inevitability that the government, state or federal, will sanction same-sex marriage?
+
+Knight: Certainly. It will come to a head one of these days. How it does, is up to the people.
+
+I think that as a result of what's happening, and in particular what's happened within the last month or so with San Francisco and all of the other added gay marriages around the country, we're beginning to see that the states are going to establish their own particular form of marriage, homosexual marriage, etc. You're going to have a patchwork around the country. And certainly the (federal) government has not accepted homosexual marriage, and they do not provide benefits from a federal standpoint to homosexual marriage.
+
+That patchwork around the country is going to get us all in trouble. I think, sooner or later, the government is going to have to step in and say, now wait a minute. You can't have a marriage here and not be accepted here. We had a patchwork one time with slavery, and we had to correct it.
+
+I think it will have to be corrected by going to the people. (It) is a significant change in public policy when you change the definition of marriage. With that kind of a change in public policy, I think you have to go back to the people and ask the people, what do they want to do? Do they want to change the definition of marriage or not? I think the only way you can do that is to go through the (U.S.) Constitution, have a constitutional amendment and get it as close to the people — now, recognizing that not all legislatures around the country represent the people — but that's as close as we can get. When I say that, I think of California and the fact that Proposition 22 was passed by 59 percent in Los Angeles County. That's pretty good. But the representatives from L.A. and Los Angeles County would not support denying same-sex marriage.
+
+Signal: Let's go back to the genesis of Proposition 22. You were elected to the Assembly in 1992 and reelected in 1994. In 1996 you ran against former Assemblyman Phil Wyman for Senate. In this conservative Senate district, the real battle is for the Republican primary, so you and Mr. Wyman were trying to "out-conservative" each other. You were carrying a bill in the Assembly to allow people to register to carry concealed weapons —
+
+Knight: That's still a good bill. It didn't go anywhere, but it's still a good bill.
+
+Signal: Around this time, someone on your Assembly staff learned that the Hawaiian Supreme Court was about to allow same-sex marriage. How did the idea develop to try to bar California from honoring same-sex marriages from other states?
+
+Knight: That's true, my staffer found out what was happening in Hawaii and of course made us all aware of it. We decided — we didn't think homosexual marriage was the thing to do. So we put forth legislation to deny recognition of same-sex or homosexual marriage in the state of California.
+
+For two years in a row I put forth legislation, and for two years it didn't go anywhere. Well, I take that back. The second year it did go someplace. I got it into the Senate floor, and I got a vote on the Senate floor, and it was a tie vote, 20-20. The way you break a tie in the Senate is to have the president of the Senate come in and break the tie. And who was the president of the Senate, but Lt. Gov. Gray Davis. He came in and voted against it.
+
+So after all of that effort for a couple of years, I decided that I'll never get anything through this Legislature, so I'll take it to the people and see what they say. We started the initiative and we were able to get the signatures and get it on the ballot, and it did pass by 61.4 percent (statewide).
+
+Signal: Was the initial legislation a campaign tactic to defeat Mr. Wyman?
+
+Knight: No. It was never a campaign issue. It was never done as a campaign issue, and it was never done to beat Phil Wyman. Phil Wyman beats himself. It was an issue that I felt was significant enough that the people of California ought to decide what they wanted to do. And so we did continue on with it.
+
+Signal: That same year, in 1996, President Clinton signed the Defense of Marriage Act into law. What did that allow states to do?
+
+Knight: What that said was that the federal government would not recognize homosexual marriage. But each state would be allowed to do whatever they wanted to. They would be able to establish their own laws and their own requirements for homosexual marriage.
+
+So that's where it has ended up, and that's why we have the problem that we have right now — each state is going in their own direction. Massachusetts, for example. And it's interesting in Massachusetts: The court in Massachusetts declared that you will support homosexual marriage, over the efforts by the legislature to do something differently, and in the meantime there was a poll taken that 66 percent of the people in Massachusetts don't want homosexual marriage. But you see, when you get it into the courts and the courts rule, it doesn't always come out the way the people want it to.
+
+Signal: You're still involved in the marriage issue. What is the purpose of your nonprofit organization?
+
+Knight: Once we passed Proposition 22, we decided that we couldn't just drop it and allow things to go on their merry way. So we established the Prop. 22 Legal Defense and Education Fund, a nonprofit corporation, if you will. We have a board of directors, and that organization has the capability to sue. We have sued the state once, the Board of Equalization — I guess the state twice, maybe three times — but we're continually suing.
+
+For example, Gov. Davis said that he was just going to establish a task force to determine what civil unions would do in the state of California, how it would shape up and what should be done. As he said that, and as the months went on, I didn't hear anything, so I asked the governor, I said, "I want to see the makeup of that task force and what you're doing and what direction you're going and what results you've got so far." And he says, "I can't give you that," and he wouldn't give it to me. The Freedom of Information Act, he denied that. So we sued him. He didn't want to say, for one thing, that he hadn't established a task force, because that's what he did to placate the homosexual community; and he didn't want to tell me that he had, and then have to be deemed a liar. So in the end, he finally said, "We haven't got a task force and there isn't anything." So that's one of the things that we have done, and as a matter of fact we were awarded attorneys' fees for that one.
+
+We sued the Board of Equalization because they decided, or at least somebody on the Board of Equalization decided, that they would provide head-of-household benefits, that is, allow a homosexual couple to file as a head of household for tax purposes. Well, you can't do that, because that's just not legal. So we sued and we won that.
+
+We're suing (the state) now (on) AB 205, the Goldberg bill — that's marriage under another name, the "spouses." That's in process.
+
+Signal: Didn't you say there were portions of it you could accept?
+
+Knight: Not that bill. No, no. There is an AB 25 and 26 that established domestic partners, and then established some additional rights. We didn't sue on that. But when you went to full-blown marriage, we said, no, we can't stand that.
+
+So where we are now, the attorney general has sued San Francisco, cease and desist, and we have singed on as intervenors in that suit. San Francisco has sued the state now, and they have intervenors with their suit, and we have intervened with the attorney general. And so it's interesting that (Attorney General) Bill Lockyer and I now are on the same side, (considering) he was the president pro-tem of the Senate when we worked the issue.
+
+Signal: Politics makes strange bedfellows —
+
+Knight: That's a poor joke. But the (California) Supreme Court now is going to rule —
+
+Signal: In may or June —
+
+Knight: Yeah. The ruling that they're going to come out with is whether (San Francisco Mayor Gavin) Newsom had the authority to do what he did (authorize the issuance of marriage licenses to same-sex couples). There will be no determination, no ruling on whether same-sex marriage is constitutional or not in the state of California. That'll come later.
+
+Signal: Let's change subjects. You're being termed out of the Senate after two 4-year terms. You won't be going backward and running for Assembly as some former Senators have done, will you?
+
+Knight: No. If you look at the Assembly and what they've been doing in the past year or so, I don't want to go back there. I think (Assemblywoman) Sharon Runner (R-Lancaster) is doing an outstanding job, and she'll be reelected, and she'll be there for her six years. And (former Assemblyman) George Runner is going to be elected to the 17th Senate District in my stead, and I think he'll do a good job there. I don't think there is anyplace for me to go back into the Assembly or the Senate — well, (I) can't go to the Senate because of term limits.
+
+Signal: If it weren't for term limits, would you run again?
+
+Knight: I'd run again, yeah. And I had told George (Runner) a long time ago that if anything changed as far as term limits are concerned, "The deal's off, George."
+
+Signal: What is your take on term limits? Do you support them at all?
+
+Knight: Term limits are all right, but unfortunately, when they established term limits, they made the terms too short. The turmoil in the Assembly, for example, is just horrendous.
+
+Signal: You were in the Assembly when Willie Brown, D-San Francisco, was speaker. How have term limits changed things? What's better, what's worse?
+
+Knight: Well, I guess the "better" is that Willie Brown is not there anymore. But the "worse" is that the turnover is too much. The turmoil that that causes in the Assembly is just horrendous.
+
+For example, you get a new speaker every one or two years. We just got a new speaker. And what that says is that you now get new chairmen of committees, you get new makeup of committees, you get new appointments — the speaker has some 400 appointments available, and he just reorganized the committees. What happened last time when we changed the speaker, we had members coming in and their first day in the Assembly, they were assigned as chairmen of significant committees such as Safety Committee, Judicial Committee, Education Committee, and that's fine — they can run the meetings — but they don't have any idea of the background in that arena, in that area, such as education, what's gone on in the past, what bills are meaningful, which ones are not, who is to be trusted, who isn't. They have no idea. They have no corporate memory of what's gone on, and they won't ever get it because they won't be there that long.
+
+Signal: You serve on a fairly powerful committee in the Senate, the Rules Committee. You have some influence over what happens to a bill. You can bottle things up if you want to —
+
+Knight: That's true. We have some influence. That's a good way to put it. It's a 3-2 (Democratic majority) on the Rules Committee, as you might expect.
+
+Signal: A couple of years ago, you bottled up a bill sponsored by the Castaic Lake Water Agency. What's your problem with CLWA?
+
+Knight: Oh, gee whiz. I don't even want to talk about Castaic Lake Water (Agency). As a matter of fact, it's interesting, the lobbyist, Bob Walters — he ran for Sacramento County Supervisor, and he was just elected to a supervisor position there. I used to cringe every time he'd show up at the office. That just — water agencies and water bills and — boy.
+
+Signal: You hold the record as the fastest man in the world. What's your military background, and what was the record you set?
+
+Knight: I was a test pilot at Edwards (Air Force Base) for a good many years and flew a lot of airplanes. (I) ended up flying the X-15, which was a rocket-powered airplane, a research airplane. There (were) only three of them built. One of my projects on the X-15 was expanding the envelope out to mach 8, for the primary purpose of developing a little scramjet engine that we would carry on the bottom of the airplane — similar to what just happened.
+
+In that process of building up to mach 8, I set a record every time I flew that airplane. The first one was (mach) 6.3, and then 6.7, and 4,520 mph. At that time they canceled the scramjet program, and therefore there was no reason to go faster, so we canceled the X-15 program.
+
+Signal: What year was that?
+
+Knight: 1967. That's 35 years ago. You know, it's unconscionable that a record stands for that long. it gives you an idea of how much (research and development) that we are not doing anymore.
+
+Signal: If you look in the Guinness Book of World Records, you'll still find your name next to that record today.
+
+Knight: If you look in the new Guinness Book, my picture's in there.
+
+Signal: They're testing X planes again now —
+
+Knight: Yeah, and everybody says, well, somebody just broke your record. And I said, you mean that X-43 that just went mach 7? That's fine, but that's a model, and it's only 12 feet long and it's unmanned, and it was launched off a rocket off of a B-52. And the rocket took it out, I think, to mach 3 or thereabouts, and then it went on on its own, and when it burned out, (it) plunged into the sea.
+
+Signal: It was unmanned?
+
+Knight: Oh yeah. You can't get much of a man in a 12-foot model. But I would have tried.
+
+Signal: Do you expect your record to be broken anytime soon?
+
+Knight: Well, not with that program, but — in fact they did go faster, but no, I don't think so, for a period of time. I'm talking about a manned airplane flying level within the atmosphere.
+
+Signal: What will you do now that you'll be out of the Senate?
+
+Knight: (My wife) Gail (Knight) won't let me sit around the house, that's for sure, so I'm going to have to do something. But I've got six months to figure that out, and I'll let you know when I come up with something. Maybe somebody will offer me a job, I don't know.
+
+See this interview in its entirety today at 8:30 a.m., and watch for another "Newsmaker of the Week" on Wednesday at 9:30 p.m. on SCVTV Channel 20, available to Comcast and Time Warner Cable subscribers throughout the Santa Clarita Valley.
+
+KNIGHT'S MILITARY BACKGROUND
+
+Knight retired from the United States Air Force after 32 years of service during which he earned the rank of Colonel. His last assignment was as the Vice-Commander of the Air Force Flight Test Center, Air Force Systems Command, Edwards Air Force Base, California. As the Vice-Commander, Knight shared managerial responsibility for the Center's mission activities including: research, developmental flight test and evaluation of manned and unmanned aerospace vehicles, aircraft systems, crew escape systems, and deceleration devices.
+
+Before coming to Edwards, Colonel Knight was Director of the Fighter Attack System Program Office (SPO), Aeronautical Systems Division, Wright-Patterson Air Force Base, Ohio. He managed ten different weapons systems including the International Fighter (F-5E) and the F-4 aircraft.
+
+In 1988, Colonel Knight was enshrined in the National Aviation Hall of Fame in Dayton, Ohio. He was one of the first five men recognized by the City of Lancaster's Walk of Honor in 1990. In 1998, he was inducted into the International Space Hall of Fame in Alamogordo, New Mexico.
+
+Colonel Knight served as the President of the Society of Experimental Test Pilots (SETP) in 1982. He now chairs the Society's scholarship foundation, is a Fellow of the SETP and an Associate Fellow of the American Institute of Aeronautics and Astronautics.
+
+During his tenure in the U.S. Air Force, he flew and tested more than 100 types of fighter, trainer, bomber and transport aircraft. To date he has more than 7,000 flying hours including 5,000 in jet aircraft. Colonel Knight's combat service includes 253 missions in the F-100 aircraft over Vietnam. He was awarded the Distinguished Flying Cross and the Legion of Merit, both with two Oak Leaf Clusters, and the Air Medal with 10 Oak Leaf Clusters.
+
+Colonel Knight flew the X-15 rocket research aircraft to 4,520 MPH (mach 6.7), establishing the still unbroken world speed record in a fixed wing aircraft. He earned astronaut wings for another X-15 flight to 280,000 feet in altitude. In 1968, President Johnson awarded him the Harmon International Aviators Trophy for his record speed flight. The accompanying citation recognized Colonel Knight for obtaining information directly applicable to the future of hypersonic transport aircraft. During the same year, he received the Octave Chanute Award given by the American Institute of Aeronautics and Astronautics for "notable contributions made by a pilot to the aeronautical sciences." Colonel Knight was made a member of the Air Force Systems Command Primus Club in 1968 for the X-15 flight test of a coating designed to prevent air friction heat from damaging the surface or structure of the rocket plane.
+
+In 1954, as a Second Lieutenant, Knight won the Allison Jet Trophy Race at the National Air Show in Dayton Ohio. He graduated from the Experimental Test Pilot School in 1958 and the Aerospace Research Pilot School at Edwards AFB in 1964.
+
+OFFICIAL BIOGRAPHY
+
+Wm. J. "Pete" Knight was elected to the California State Senate in 1996. He previously served four years in the State Assembly and eight years on the Palmdale City Council as both Councilman and the city's first popularly elected Mayor. Currently, Senator Knight is the Vice-Chair of the Veterans Affairs Committee and serves on the Senate Rules, Education, and Revenue & Taxation Committees. He also chairs the Space Flight Industries Subcommittee of the Senate Defense Conversion, Retention and Space Flight Industries Select Committee.
+
+Senator Knight is recognized for his "open door" policy. He makes every effort to meet with anyone who wants to speak with him. He reads every constituent's letter and returns every phone call.
+
+A strong conservative, Senator Knight is known for his pro-family, pro-job creation and anti-tax voting record. His legislative priorities include reducing the size and cost of government and improving our education system through higher standards, more parental involvement and increased local control. He has also introduced legislation to reduce government regulations, spur economic growth, and protect Second Amendment and private property rights.
+
+Knight was born in Noblesville, Indiana on November 18, 1929. He attended Butler and Purdue Universities and entered the Aviation Cadet Program in 1952. He graduated from the Experimental Test Pilot School in 1958 and the Aerospace Research Pilot School in 1964.
+
+Knight has chaired the Air Force Flight Test Historical Foundation, served as vice president of the fighter enhancement program for Eidetics International, and is past president and a fellow of the Society of Experimental Test Pilots. Pete has 3 sons and 4 stepchildren. Pete and his wife Gail live in Palmdale and together they share 15 grandchildren.
+
+On the 15th of November 2002, ground was broken on a new high school in the Antelope Valley Union High School District named for Wm. J. "Pete" Knight. When completed, the Pete Knight High School will have the capacity for 3,300 students.
+
+Senator Knight has received many awards and honors, including:
+
+100% Pro-Taxpayer Voting Record — California Taxpayers Association
+
+100% Pro-Jobs Voting Record — California Chamber of Commerce
+
+Taxfighter Award — National Tax Limitation Committee
+
+Distinguished Citizenship Award — Palmdale Elks Lodge #2027
+
+Lifetime Achievement Award — Palmdale Education Foundation
+
+Legislative Achievement Award — Law Enforcement Alliance of America
+
+Defender of Freedom Award — National Rifle Association
+
+Recognition of Outstanding Contribution — California Pilots Association

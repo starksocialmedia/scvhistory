@@ -1,0 +1,152 @@
+#!/usr/bin/env python3
+"""Keith Richman #29316: the profile draft (Nathan, 6 October 2026: "Keith Richman: build his profile ... Find the
+primary sources"). Claude Code, research subagent.
+
+Writes inventory/review/keith-richman-profile-draft-2026-10-06.json (read by
+scripts/import/build_richman_profile_2026_10_06.php) and the .md beside it for reading.
+The body carries {KEY} markers; they are numbered here by first appearance, one [n] per
+note, so a note cited twice keeps its number.
+
+Every quotation below was read in the source named, on 6 October 2026: the mirror pages from
+the Reggie mirror (latin-1; the City's 2007 book also from its page scans, read by eye), the two
+Newsmaker interviews of 2004 and 2005 (not in the mirror) from the Wayback Machine's captures of
+scvhistory.com, the outside sources from the copies saved in inventory/sources/keith-richman-2026-10-06/
+(manifest.json there), the Statements of Vote of 2000 to 2006 and the Record of Members from
+inventory/sources/legislative-districts-2026-10-04/, the district figures from
+templates/_data/valley-districts.json. The check at the foot of this file confirms each quotation
+against the saved copy where one is saved. No quotation joins two clauses with an ellipsis, and none
+quotes a passage that holds an em dash.
+Run on the host: python3 scripts/import/draft_richman_profile_2026_10_06.py
+"""
+import html, json, os, re
+
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+OUT = os.path.join(ROOT, 'inventory', 'review', 'keith-richman-profile-draft-2026-10-06')
+SRC = os.path.join(ROOT, 'inventory', 'sources', 'keith-richman-2026-10-06')
+MIRROR = '/Volumes/Reggie/SCVHistory/scvhistory.com'
+
+NOTES = {
+    'LEGIS': 'His two terms are the archive\'s office holdings #29497 (Assembly, 38th District, 4 December 2000 to 2 December 2002, under the 1991 lines) and #29342 (Assembly, 38th District, 2 December 2002 to 4 December 2006, under the 2001 lines). California Secretary of State, Statements of Vote, 38th Assembly District: 7 November 2000, "Keith Stuart Richman" 74,581 votes, 51.0%, to Jon M. Lauritzen 64,732, https://elections.cdn.sos.ca.gov/sov/2000-general/assemb.pdf; 5 November 2002, "Keith Stuart Richman*" 64,757 votes, 60.9%, to Paula L. Calderon 37,626, https://elections.cdn.sos.ca.gov/sov/2002-general/state-assemb.pdf; 2 November 2004, "Keith Stuart Richman*" 106,834 votes, 61.2%, to Brian Joseph Davis 67,747, https://elections.cdn.sos.ca.gov/sov/2004-general/formatted_st_AD_all.pdf. Secretary of the Senate, Record of Members of the Assembly, 1849 to 2026, https://secretary.senate.ca.gov/media/79: "Richman, Keith", R, "Los Angeles, Ventura", regular sessions 2001 to 2006.',
+    'DIST': 'The archive\'s count of the valley\'s people by district, templates/_data/valley-districts.json, State Assembly. Under the "1991 lines, drawn by the court\'s Special Masters", the 38th held "16.3%" of the valley, 33,449 people at the 2000 Census: "The unincorporated west side: Castaic, Val Verde and Stevenson Ranch". Under the "2001 lines, drawn by the Legislature", in force "December 2002 to December 2012", the 38th held "87.1%", 236,355 people at the 2010 Census: "The City of Santa Clarita and Stevenson Ranch, with the Simi Valley area and the northern San Fernando Valley"; the rest, "12.9%", was in the 37th: "Castaic, Val Verde, Hasley Canyon, Agua Dulce and Green Valley, in a district that was mostly Ventura County". The shares are counted from census blocks assigned to districts in the Statewide Database\'s block files. An earlier pass (inventory/review/legislative-districts-2026-10-04.md) gave the 2001 lines\' 38th 86 per cent, and that file marks its figures as superseded.',
+    'NM04': 'Leon Worden, "Newsmaker of the Week: Assemblyman Keith S. Richman, Republican Incumbent, 38th District," The Signal, legacy page /scvhistory/signal/newsmaker/sg101704.htm (not in the mirror and not yet a record in the archive; read in the Wayback Machine\'s capture of 29 October 2004). The page is dated "Sunday, October 3, 2004" and says "(Television interview conducted September 30, 2004)" and "The interview was conducted Tuesday"; its address and its place in the series (Episode 54, between the episodes of 10 and 24 October 2004) put its printing on 17 October 2004. The introduction: "This week\'s newsmaker is Dr. Keith Richman, the Republican incumbent seeking reelection to the 38th Assembly District." Asked, "Is the Santa Clarita Valley the biggest single area today?", Richman: "It is the biggest single component"; "The 38th Assembly District covers parts of north Los Angeles County and also eastern Ventura County"; "when I went to the Legislature in the year 2000 I resigned my position as chairman of the board"; "I keep my medical license active and get my continued medical education, but I\'m doing my public service, really, full-time"; "And when I\'m termed out from the state Assembly, I\'m going to be running for state treasurer." The Signal: "Henry Mayo Newhall Memorial Hospital was going through some financially rocky times a couple of years ago; weren\'t you involved in helping it get back on its feet?" Richman: "I was involved and tried to help the hospital. I\'m glad that the hospital is now out of Chapter 11 bankruptcy". The Signal, on "the perchlorate contamination stemming from the Whittaker-Bermite site": "when things were going slowly, you spoke to the agency chief to prod things along." Richman: "I\'ve had recent meetings with DTSC and also with Whittaker, and I think that things are right on schedule." Richman: "You know that last year I was the author of Proposition 53, which would have dedicated more money to infrastructure investment"; "It was our bipartisan group that proposed, in fact, what ultimately became Proposition 57 and 58 (March 2004), so we\'ve made a real difference in that issue."',
+    'NM05': 'Leon Worden, "Newsmaker of the Week: Assemblyman Keith Richman," The Signal, Sunday, November 6, 2005, "(Television interview conducted October 17, 2005)," legacy page /scvhistory/signal/newsmaker/sg110605-nm.htm (not in the mirror and not yet a record in the archive; read in the Wayback Machine\'s capture of 26 March 2006). The introduction: "This week\'s newsmaker is Assemblyman Keith Richman, R-Granada Hills, who represents most of the Santa Clarita Valley." The Signal: "How is your campaign for state treasurer going?" Richman: "The campaign is going great"; "I don\'t have tenure in the Legislature; in fact, after six years I\'m thrown out"; "played a large part in Propositions 57 and 58 (economic recovery bonds and spending)"; "Proposition 77 for independent redistricting"; on Proposition 76, "particularly important for areas like Santa Clarita", and "it closes the loophole on the transportation accounts, so that that money that\'s in the transportation accounts can\'t be stolen any more and put into the general fund."',
+    'CITY': 'Gail Ortiz and Diana Sevanian, editors, City of Santa Clarita 1987-2007: Celebrating 20 Years of Success (City of Santa Clarita/Pioneer Publications, 2007), on the archive page /scvhistory/sc19872007.htm (the book is not yet a record in the archive); read in the page scans. Page 33 (scan 038): "In 2006, the City was named as a New Enterprise Zone"; "The Santa Clarita enterprise zone encompasses 98 percent of all of the commercial, business and industrial zoned land within the City."; "The City credits the support of Senator George Runner, Assemblyman Keith Richman and Governor Arnold Schwarzenegger for their help in meeting this recognition." Page 79 (scan 085), caption: "At the groundbreaking of the Cross Valley Connector, Golden Valley Road segment are, (from left) Patty Kelly, Larry Rasmussen, Rick Winsman, Millie Jones, Jo Anne Darcy, Dr. Keith Richman, Frank Ferry, Laurene Weste, Bob Kellar, Cameron Smyth and Phil Ellis." Scan 044, caption: "April, 2005: City officials, along with community leaders and children, celebrate the grand opening of the Aquatics Center at the Santa Clarita Activities Center"; among them "Fred Trueblood, field representative for then-Assemblyman Keith Richman".',
+    'PARADE': 'The Signal, photographs by Reneh Agha, Will Davison, Eddie Sadiwa and Leon Worden, "2005 SCV Fourth of July Parade," dated July 4, 2005, "Santa Clarita Valley Fourth of July Parade in downtown Newhall," archive pages /scvhistory/sg20050704parade.htm and /scvhistory/files/sg20050704parade02/sg20050704parade02.htm (not yet records in the archive), captions to images dscn4953 and dscn4989: "Rabbi Mark Blazer, Assemblyman Keith Richman"; "Assemblyman Keith Richman".',
+    'KHTS': 'KHTS AM-1220, August 3, 2010, obituary on the archive page /scvhistory/obituary_keithrichman.htm, "Dr. Keith Richman, Former State Assemblyman, 1953-2010" (the page is not yet a record; its photograph is his portrait, asset #31239). The page gives his dates as "November 21, 1953" and "July 30, 2010". "Former Assemblyman and longtime healthcare advocate Keith Richman died Friday night at UCLA Medical Center with his wife, Suzan and family at his side, after an extended battle with brain cancer."; "Richman, 56, served the Santa Clarita, San Fernando and Simi Valleys in the California Assembly from 2000 to 2006."; "Born November 21, 1953, in Syracuse, N.Y., Richman followed in his father\'s footsteps in medicine."; "earning his Medical Doctor and Master in Public Health degrees at UCLA"; "sponsoring the first annual Sacramento tour with KHTS to bring community leaders together with decision-makers in the state capitol to exchange ideas"; "The effort after Richman left office, carried on by his successor, Cameron Smyth."; "We are so proud to have known and worked with Dr. Keith Richman on so many issues impacting Santa Clarita and our state." (Mayor Laurene Weste); "He returned to UCLA as a Distinguished Fellow in the School of Public Affairs and established the California Foundation for Fiscal Responsibility to address the issue of escalating public employee retiree costs."',
+    'DN': 'Kevin Modesti, "Former Assemblyman Keith Richman dies," Daily News (Los Angeles), July 31, 2010, https://www.dailynews.com/2010/07/31/former-assemblyman-keith-richman-dies/ (read in the Wayback Machine\'s capture of 31 October 2020): "Richman died Friday night at Ronald Reagan UCLA Medical Center. He was 56."; "Colleagues remembered the longtime Northridge resident\'s political courage"; "Richman, a physician who followed his father Monroe Richman into medicine, had a practice in Sun Valley and founded Glendale-based Lakeside Community HealthCare, Inc."; "won election to the Assembly in 2000 from the 38th District, representing parts of the north San Fernando Valley, Simi Valley and Santa Clarita"; "Named the Legislature\'s Rookie of the Year by the California Journal, he served in Sacramento until 2006 before being forced out of office by term limits. He campaigned for state treasurer that year but lost in the primary."; "Although he was credited with key roles in workers\' compensation reform, planning to deal with state budget deficits and promoting infrastructure investment, he left office expressing frustration about rising partisanship."; "He handily defeated nine other candidates to serve as mayor of the San Fernando Valley if the area\'s bid to become a separate city had gone through in the same November 2002 election."; "Richman\'s victory became moot."; "In 2002, Richman won the vote for Valley mayor on the same day he won re-election to his Assembly seat."; "One of the first leaders to advocate state pension reform, Richman pursued his passion for controlling government spending by founding the California Foundation for Fiscal Responsibility after he left office."; "a graduate of Birmingham High School in Van Nuys, was an All-Conference pitcher at UC Davis before earning medical and master in public health degrees at UCLA."',
+    'LAT': 'Rich Connell and Keith Thursby, "Keith Richman dies at 56; three-term California assemblyman," Los Angeles Times, August 1, 2010 (read in the Wayback Machine\'s capture of 12 August 2010 of the Times\'s printable page): "Richman died of brain cancer Friday at Ronald Reagan UCLA Medical Center, said his brother Craig."; "representing the 38th District, which includes the Santa Clarita Valley, Simi Valley and northeast San Fernando Valley"; "He could serve only six years because of term limits."; "Richman tried unsuccessfully to qualify a pension reform initiative for the state ballot."; "Richman was a founder and board member of the California Foundation for Fiscal Responsibility, which in recent years worked to highlight public pension costs"; "Keith Stuart Richman was born Nov. 21, 1953, in Syracuse, N.Y., but his family moved to the San Fernando Valley when he was a toddler."; "Before getting into politics, Richman was chairman of the board of Lakeside Community Healthcare Inc., a Glendale-based medical group he founded."; "Richman was the top vote-getter in the contest, but the secession drive failed when other parts of the city rejected the split."',
+    'PROP53': 'Legislative Analyst\'s Office, "Proposition 53: California Twenty-First Century Infrastructure Investment Fund," August 11, 2003, https://lao.ca.gov/ballot/2003/53_10_2003.htm: "Resolution Chapter 185, Statutes of 2002 (ACA 11, Richman)"; "This measure would increase the amount of General Fund revenue committed to pay-as-you-go capital outlay projects for both state and local governments."; "Caps annual General Fund transfers to the Infrastructure Fund at 3 percent of General Fund revenues." California Secretary of State, Statement of Vote, Statewide Special Election, October 7, 2003, State Ballot Measures, https://elections.cdn.sos.ca.gov/sov/2003-special/measures.pdf: Proposition No. 53, "Infrastructure: Finance," State Totals, For 3,020,577 (36.2%), Against 5,318,065 (63.8%).',
+    'TREAS': 'California Secretary of State, Statement of Vote, Primary Election, June 6, 2006, Treasurer, "Amended 08/07/06," https://elections.cdn.sos.ca.gov/sov/2006-primary/sov_detail_primary_treas.pdf: Republican, State Totals, Claude Parrish 912,818 (56.3%), "Keith S. Richman" 709,734 (43.7%).',
+    'SMYTH': 'Cameron Smyth\'s office holding #29344 (Assembly, 38th District, 4 December 2006 to 3 December 2012). California Secretary of State, Statement of Vote, General Election, November 7, 2006, 38th Assembly District, https://elections.cdn.sos.ca.gov/sov/2006-general/assembly.pdf: Cameron Smyth 70,193 votes, 56.6%; Keith Richman was not on the ballot.',
+}
+
+BODY = [
+    'Keith Richman was the Santa Clarita Valley\'s member of the State Assembly from December 2002 to December 2006, for the 38th District.{LEGIS} He had first won the 38th in November 2000, when, under the 1991 district lines, it held only the valley\'s unincorporated west side, Castaic, Val Verde and Stevenson Ranch: 16.3 per cent of the valley\'s people by the archive\'s count from the 2000 census. The lines drawn in 2001, first used in the election of 2002, gave the district the City of Santa Clarita and Stevenson Ranch, joined to the Simi Valley area and the northern San Fernando Valley: 87.1 per cent of the valley by the archive\'s count from the 2010 census.{DIST} He was re-elected in 2002 and 2004.{LEGIS} Asked by the Signal in 2004 whether the Santa Clarita Valley was now the biggest part of his district, he said, "It is the biggest single component."{NM04} He lived in the San Fernando Valley, at Northridge by the Daily News\'s account and Granada Hills by the Signal\'s.{DN}{NM05}',
+    'In the 2004 interview he said he had been "involved and tried to help" Henry Mayo Newhall Memorial Hospital through the money troubles that ended with the hospital out of Chapter 11 bankruptcy, and that he had met the state Department of Toxic Substances Control and Whittaker over the cleanup of perchlorate from the Whittaker-Bermite site, which he called "right on schedule."{NM04} The City of Santa Clarita credited him, with State Senator George Runner and Governor Arnold Schwarzenegger, for its designation in 2006 as a state Enterprise Zone, which took in 98 per cent of the City\'s commercial, business and industrial land. The City\'s book of its first twenty years also shows him at the groundbreaking of the Golden Valley Road segment of the Cross Valley Connector, and his field representative, Fred Trueblood, at the opening of the Aquatics Center at the Santa Clarita Activities Center in April 2005.{CITY} The Signal photographed him at the valley\'s Fourth of July parade in Newhall in 2005.{PARADE} With the radio station KHTS he sponsored the first annual tour of Sacramento for the valley\'s community leaders, an effort his successor, Cameron Smyth, carried on; at his death Mayor Laurene Weste spoke of working with him "on so many issues impacting Santa Clarita and our state."{KHTS}',
+    'In Sacramento he was known for working with Democrats on the state\'s budget deficits, workers\' compensation and public works, and the California Journal named him the Legislature\'s Rookie of the Year.{DN} He wrote Proposition 53, a constitutional amendment to commit a growing share of the state\'s general fund, up to 3 per cent, to public works paid for as they were built; the voters rejected it on 7 October 2003, by 63.8 per cent to 36.2.{PROP53}{NM04} By his own account his bipartisan group proposed what became Propositions 57 and 58, the economic recovery bonds and spending limit of March 2004.{NM04}{NM05} In 2005 he campaigned for Proposition 77, to take the drawing of district lines from the Legislature, and for Proposition 76, which he called "particularly important for areas like Santa Clarita" because it would keep transportation money from being moved into the general fund.{NM05} He was one of the first legislators to press for reform of public employee pensions.{DN}{LAT}',
+    'A physician, Richman was born in Syracuse, New York, on 21 November 1953, and grew up in the San Fernando Valley.{LAT}{KHTS} He went to Birmingham High School in Van Nuys, pitched for UC Davis, and took his medical degree and a master\'s in public health at UCLA.{DN}{LAT}{KHTS} Following his father, Monroe Richman, into medicine, he practised in Sun Valley, and he founded and chaired Lakeside Community Healthcare, a medical group based in Glendale; he gave up the chairmanship when he went to Sacramento in 2000.{DN}{LAT}{NM04}',
+    'Term limits allowed him six years in the Assembly.{LAT}{NM05} In 2004 he said he would run for state treasurer when they ran out, and in the Republican primary of 6 June 2006 he lost to Claude Parrish, 912,818 votes to 709,734.{NM04}{TREAS} Cameron Smyth succeeded him in the 38th District that December.{SMYTH} In November 2002, on the day he was re-elected to the Assembly, he had also won the vote for mayor of the city the San Fernando Valley would have become had its secession from Los Angeles succeeded; secession failed in the citywide vote, and the office never existed.{DN}{LAT} After leaving office he was a Distinguished Fellow at UCLA\'s School of Public Affairs and a founder of the California Foundation for Fiscal Responsibility, which worked on the cost of public employee pensions.{KHTS}{DN}{LAT} He died of brain cancer at Ronald Reagan UCLA Medical Center on 30 July 2010, aged 56.{KHTS}{DN}{LAT}',
+]
+
+order = []
+for p in BODY:
+    for k in re.findall(r'\{([A-Z0-9]+)\}', p):
+        if k not in order:
+            order.append(k)
+unused = set(NOTES) - set(order)
+if unused:
+    raise SystemExit('notes never cited: ' + ', '.join(sorted(unused)))
+num = {k: i + 1 for i, k in enumerate(order)}
+body = '\n\n'.join(re.sub(r'\{([A-Z0-9]+)\}', lambda m: f'[{num[m.group(1)]}]', p) for p in BODY)
+footnotes = [{'number': str(num[k]), 'key': k, 'note': NOTES[k]} for k in order]
+for t in [body] + [f['note'] for f in footnotes]:
+    if '—' in t:
+        raise SystemExit('an em dash in our own text: ' + t[:80])
+    if re.search(r'\.\.\.|…', t):
+        raise SystemExit('an ellipsis in our own text or a quotation: ' + t[:80])
+
+
+def plain(path, enc='utf-8'):
+    t = open(path, encoding=enc, errors='replace').read()
+    t = re.sub(r'(?is)<(script|style).*?</\1>', ' ', t)
+    t = html.unescape(re.sub(r'<[^>]+>', ' ', t))
+    t = t.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"').replace('\u0092', "'")
+    return re.sub(r'\s+', ' ', t)
+
+
+# Check each quotation against the saved copy of its source (the Statements of Vote, the district
+# file and the City book's scans are checked by figure and by eye, and are listed in the .md).
+CHECK = {
+    'NM04': plain(os.path.join(SRC, 'wayback-sg101704-20041029102704.html'), 'latin-1'),
+    'NM05': plain(os.path.join(SRC, 'wayback-sg110605-nm-20060326231012.html'), 'latin-1'),
+    'DN': plain(os.path.join(SRC, 'wayback-dailynews-2010-07-31-modesti-20201031083045.html')),
+    'LAT': plain(os.path.join(SRC, 'wayback-latimes-2010-08-01-connell-thursby-20100812122328.html'), 'latin-1'),
+    'PROP53': plain(os.path.join(SRC, 'lao-prop53-2003.html'), 'cp1252'),
+}
+kp = os.path.join(MIRROR, 'scvhistory', 'obituary_keithrichman.htm')
+if os.path.exists(kp):
+    CHECK['KHTS'] = plain(kp, 'cp1252')
+pp = os.path.join(MIRROR, 'scvhistory', 'files', 'sg20050704parade02', 'sg20050704parade02.htm')
+if os.path.exists(pp):
+    CHECK['PARADE'] = open(pp, encoding='latin-1').read() + plain(os.path.join(MIRROR, 'scvhistory', 'sg20050704parade.htm'), 'latin-1')
+missing = []
+for k, text in CHECK.items():
+    for q in re.findall(r'"([^"]{12,})"', NOTES[k]):
+        q2 = re.sub(r'\s+', ' ', q.replace('\\"', '"'))
+        if q2 in ('Newsmaker of the Week: Assemblyman Keith S. Richman, Republican Incumbent, 38th District,', 'Newsmaker of the Week: Assemblyman Keith Richman,', 'Former Assemblyman Keith Richman dies,', 'Keith Richman dies at 56; three-term California assemblyman,', 'Proposition 53: California Twenty-First Century Infrastructure Investment Fund,', 'Dr. Keith Richman, Former State Assemblyman, 1953-2010', 'Infrastructure: Finance,'):
+            continue
+        if q2.rstrip('.,') not in text:
+            missing.append(f'{k}: {q2[:90]}')
+for p in BODY:
+    for q in re.findall(r'"([^"]{8,})"', p):
+        if not any(q.rstrip('.') in NOTES[k] for k in NOTES):
+            missing.append(f'body quotation not in any note: {q}')
+if missing:
+    raise SystemExit('quotations not found in their sources:\n' + '\n'.join(missing))
+
+draft = {
+    'drafted': '2026-10-06', 'draftedBy': 'scripts/import/draft_richman_profile_2026_10_06.py, Claude Code',
+    'person': {'id': 29316, 'title': 'Keith Richman'},
+    'body': body, 'footnotes': footnotes,
+    'fields': {
+        'bodyAuthorship': 'editorial-2026',
+        'birthDate': 'November 21, 1953', 'birthDateEdtf': '1953-11-21', 'birthEvidence': 'retrospective', 'birthplace': 'Syracuse, New York',
+        'deathDate': 'July 30, 2010', 'deathDateEdtf': '2010-07-30', 'deathEvidence': 'contemporary',
+        'occupation': 'Physician; state assemblyman',
+        'wikidataId': 'Q6384943', 'personWikipediaUrl': 'https://en.wikipedia.org/wiki/Keith_Richman',
+        'aliasesAdd': ['Keith Stuart Richman', 'Keith S. Richman', 'Dr. Keith Richman'],
+        'rolesAdd': [],
+        'relatedPersonsAdd': [16380],
+    },
+    'holdingNotes': {
+        '29342': 'Succeeded in the 38th District by Cameron Smyth, elected on 7 November 2006 with 70,193 votes, 56.6% (Secretary of State, Statement of Vote, 7 November 2006, State Assembly, https://elections.cdn.sos.ca.gov/sov/2006-general/assembly.pdf; office holding #29344). Richman could not stand again: Los Angeles Times, August 1, 2010, "He could serve only six years because of term limits."',
+    },
+}
+json.dump(draft, open(OUT + '.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+
+md = ['# Keith Richman #29316: the profile draft, 6 October 2026', '',
+      'For Nathan to read before the loader is applied. Body first, then the notes as they will be numbered. Nothing here is written to Craft; the loader (scripts/import/build_richman_profile_2026_10_06.php) reads the .json beside this file.', '',
+      '## Body', '', body, '', '## Notes', '']
+md += [f"{f['number']}. {f['note']}" for f in footnotes]
+md += ['', '## Other fields', '']
+md += [f'- {k}: {v}' for k, v in draft['fields'].items()]
+md += ['', 'Living or dead: dead. He died on 30 July 2010: the KHTS obituary on the archive page /scvhistory/obituary_keithrichman.htm (the page his portrait, asset #31239, was taken from on 5 October 2026) gives "July 30, 2010" and "died Friday night"; the Daily News of 31 July 2010 and the Los Angeles Times of 1 August 2010 both say he died on the Friday, which was 30 July 2010. deathEvidence is contemporary (three accounts printed within four days); birthEvidence is retrospective (the obituaries, not a certificate). Wikidata Q6384943 gives the same two dates, and its English Wikipedia sitelink is Keith_Richman.', '',
+       '## Note added to an office holding', '']
+md += [f'- #{k}: {v}' for k, v in draft['holdingNotes'].items()]
+md += ['', '## What rests on Wikipedia or JoinCalifornia alone (not in the body)', '',
+       '- Wikipedia: graduated from Birmingham High School "in 1971"; Master of Public Health and M.D. from UCLA "In 1978"; California\'s "Radical Centrist of the Year Award" in January 2005; his father "practiced internal medicine in Sun Valley" with him; "He also chaired the Valley Community Clinic Board" (the KHTS obituary also says "Chairman and Board Member, Valley Community Clinic"); term in office ending "November 30, 2006" (the archive\'s holding ends on 4 December 2006, the first Monday in December, when the new Assembly met).',
+       '- JoinCalifornia (candidate 6099): "1994-1995: Served on Congressman McKeon\'s Health Care Task Force" (a possible valley link, through Buck McKeon; the KHTS obituary says only that he testified before Congress in 1994 and 1995 and served on "the Speaker\'s Group of the U.S. Congress on Medicare Reform in 1995"); "2007-2009: President of the California Foundation for Fiscal Responsibility" (the Daily News makes Marcia Fritz its president in 2010 and him a board member); spouses "Deborah, Suzan Main-Richman (married 2009)".',
+       '- Both: "elected Mayor of the City of San Fernando Valley in 2002" and the Treasurer result (56% to 44%). The body takes both from the Daily News, the Los Angeles Times and the Statement of Vote instead.', '',
+       '## What the mirror holds on him', '',
+       'Searched 6 October 2026 with Python reading every .htm, .html, .txt, .xml and .js file in /Volumes/Reggie/SCVHistory/scvhistory.com as latin-1 (146,750 files), for "Richman" in any case (35 files), and the text index storage/runtime/pc/index.jsonl (5 pages). Hits for other Richmans are not him: Harry Richman (lw2314), M.H. Richman of the Sunshine Boys (lw3362, lw3363), Charles Richman (La Reina 1929 flipbook), A.D. Richman (Northlake appeal 2018), Roger Richman (Saugus Speedway scrapbook), Irving Berdine Richman (Historical Society library holdings), Shelby Erichman (Valencia High 2008 yearbook).', '',
+       '| Page | What it holds | In Craft |', '|---|---|---|',
+       '| /scvhistory/obituary_keithrichman.htm | KHTS AM-1220 obituary, 3 August 2010; images gif/obituary_keithrichman.jpg and gif/obituary_keithrichman02.jpg | the lead image is his portrait, asset #31239; the page is not a record |',
+       '| /obits.htm | index entry: "Dr. Keith Richman, Former State Assemblyman, 1953-2010", "KHTS AM-1220, d. 7-30-2010" | index page |',
+       '| /scvhistory/sc19872007.htm and /scvhistory/files/sc19872007/ | City of Santa Clarita 1987-2007 (2007): the Enterprise Zone credit (page 33), the Golden Valley Road groundbreaking caption (page 79), the Aquatics Center opening of April 2005 and the Activities Center opening of April 2002, each with "Fred Trueblood, field representative for then-Assemblyman Keith Richman" (scan 044) | not held (one asset, #14912, is its thumbnail) |',
+       '| /scvhistory/sg20050704parade.htm and /scvhistory/files/sg20050704parade02/ | The Signal\'s gallery of the 2005 Fourth of July parade in Newhall: "Rabbi Mark Blazer, Assemblyman Keith Richman", "Assemblyman Keith Richman" | not held |',
+       '| /scvhistory/signal/newsmaker/index.htm | Newsmaker of the Week episodes 5 ("Assemblyman Keith Richman", sg100503.htm), 54 ("Assemblyman Keith S. Richman, Republican Incumbent", sg101704.htm) and 110 ("Assemblyman Keith Richman", sg110605-nm.htm) | index page |',
+       '',
+       'The three Newsmaker pages are not in the mirror. Episodes 54 (2004) and 110 (2005) were read in the Wayback Machine\'s captures (saved in inventory/sources/keith-richman-2026-10-06/, with their photographs gif/sg101704.jpg and gif/sg110605-nm.jpg named but not saved). Episode 5 (sg100503.htm, October 2003) has no Wayback capture (CDX query for scvhistory.com/scvhistory/signal/newsmaker/sg100503.htm, 6 October 2026, returned nothing); the live page was not crawled.', '',
+       'His legislation: the Legislature\'s author indexes (leginfo.ca.gov, index_assembly_bill_author_topic, 2001-02, 2003-04, 2005-06, read 6 October 2026) list about 120 bills and resolutions by him. None names the valley in its topic. Three might touch it and were not read, because leginfo\'s bill pages refused automated reading on 6 October: AB 1482 (2001, "Regional solid waste agencies"), AB 1483 (2001, "California Threatened Water Supply Act of 2001") and AB 2306 (2004, "Local agency formation"). The body uses only what he and the City said of his work for the valley.', '']
+open(OUT + '.md', 'w', encoding='utf-8').write('\n'.join(md) + '\n')
+print(f'{len(body.split())} words, {len(footnotes)} notes; quotations checked against {len(CHECK)} saved sources; written {os.path.relpath(OUT)}.json and .md')

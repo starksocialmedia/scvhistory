@@ -127,6 +127,10 @@
                 data-caption="{{ img.photoCaptionExt|default('')|trim ?: entry.title }}"
                 data-credit="{{ img.photoCredit|default('')|trim }}"
                 aria-label="Open the full picture">{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}</button>{% else %}{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}{% endif %}{% else %}<div class="ph">{{ initials|upper }}</div>{% endif %}
+        {#- An enhanced portrait says so under the picture, with the original a click away (Nathan, 6 October 2026: "a reader should
+            be able to tell at a glance which image they are looking at"). -#}
+        {% set portraitOriginal = img and 'enhancedFrom' in img.fieldLayout.customFields|map(f => f.handle) ? img.enhancedFrom.one() : null %}
+        {% if portraitOriginal %}<div style="font-size:12px;line-height:1.4;color:#5B6472;margin-top:6px">Enhanced from the original. <a href="{{ url('media/' ~ portraitOriginal.id) }}" style="color:#7A5C1B">See the original</a></div>{% endif %}
         {% if not img %}{% include "_partials/record/send-photo" with { rec: entry } only %}{% endif %}
         </div>
         {% endif %}
