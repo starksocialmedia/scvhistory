@@ -83,6 +83,14 @@
           </div>
         {% endif %}
 
+        {#- What the event rests on: the source records, listed (Nathan, 6 October 2026: "a reader should see what an event rests on"). -#}
+        {% set evSources = 'sourceDocuments' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.sourceDocuments.all() : [] %}
+        {% if evSources|length %}
+          <div class="rec-box"><div class="rec-lab">SOURCES</div>
+            <div class="rec-rows">{% for d in evSources %}<div class="k">SOURCE</div><div class="v"><a href="{{ d.url }}">{{ d.title }}</a></div>{% endfor %}</div>
+          </div>
+        {% endif %}
+
         {#- Officers killed in the event, from their own section (Nathan, 5 October 2026); read through the layout, never "is defined". -#}
         {% set officers = 'eventFallenOfficers' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.eventFallenOfficers.all() : [] %}
         {% if officers|length %}

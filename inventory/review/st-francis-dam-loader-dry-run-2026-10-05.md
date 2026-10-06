@@ -178,7 +178,7 @@ Written by `scripts/import/create_st_francis_dam_2026_10_05.php` in a dry run. N
 
 ## (a) Place: St. Francis Dam
 
-- **Status:** would be created
+- **Status:** exists as #31340
 - **placeType:** site
 - **placeChlNumber:** 919
 - **dateEstablished:** May 1926
@@ -262,7 +262,7 @@ The disaster has its own literature: Charles F. Outland's Man-Made Disaster: The
 
 ### Relations
 
-- **eventPlaces:** (new) St. Francis Dam, the dam itself (part a)
+- **eventPlaces:** #31340 St. Francis Dam, the dam itself (part a)
 - **eventPersons:** #16432 William Mulholland (notes 2; built the dam as the City's chief engineer)
 - **eventPersons:** #16356 William S. Hart (notes 12, 14, 18; his letter on the Newhall morgue; his ranch home a relief center; set the Newhall Cowboys' marker at the Ruiz Cemetery)
 - **eventPersons:** #15919 Harry Carey (notes 7; his ranch and trading post destroyed)

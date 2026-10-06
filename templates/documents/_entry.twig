@@ -71,6 +71,9 @@
           {#- Not the headline: the masthead below prints that, where the printed
               item had it. Repeating it here would say it three times with the
               record title. -#}
+          {#- Who wrote it, linked, where the record names a person (Nathan, 6 October 2026: "add writtenBy to documents"). -#}
+          {% set docAuthors = 'writtenBy' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.writtenBy.all() : [] %}
+          {% if docAuthors|length %}<div class="rec-sub">by {% for w in docAuthors %}{% if not loop.first %}, {% endif %}<a href="{{ w.url }}">{{ w.title }}</a>{% endfor %}</div>{% endif %}
           {% if publishers|length %}<div class="rec-sub">{{ publishers|map(p => p.title)|join(', ') }}</div>{% endif %}
           {% set facts = [
             { l: 'PUBLISHED', v: F.originalPublishDate },

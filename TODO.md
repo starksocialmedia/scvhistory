@@ -2,8 +2,15 @@
 
 ## Waiting on Nathan
 
+### Current (6 October 2026)
+- **Push** templates-batch-9 (the agent's push was refused by the permission check): MacBook, `git push origin templates-batch-9` after predeploy passes.
+- **Duplicate article pairs** (Leon Worden's Signal columns): #12206/#12200, #12204/#12188, #12280/#12258 are word-for-word the same, one copy from /signal/worden/old/; #12152 (869 words) and #12208 (761) are two versions of the Piru column. Which to keep.
+- **Letters as documents with a writer:** John Lang's (#28057), Abel Stearns's (#26983): does a letter's writer count as its author.
+- **The redirect map at cutover:** sg20191114shs.htm to the Saugus High event (D12), the video pages (D11), chp-newhall-incident.htm to the Newhall Incident.
+- **The 356 bylines:** 320 linked on 5 October, 5 documents on 6 October; what remains is names with no record (25), a pen name, and the held cases.
+
 ### Current (5 October 2026, late night)
-- **Search names** (scripts/import/search_names_2026_10_05.php, dry run): the alias removal cut "A.B. Perkins", "Bill Hart", "Joseph Messina" and others out of search; a hidden search field puts 177 back and 4 maiden names return as shown aliases.
+- Search names: applied 6 October. Was: the alias removal cut "A.B. Perkins", "Bill Hart", "Joseph Messina" and others out of search; a hidden search field puts 177 back and 4 maiden names return as shown aliases.
 - **Portrait batch** (inventory/review/portrait-batch-dry-run-2026-10-05.md): read before apply. Chico López has a likeness (US8502), so his "no likeness" note is held: import it instead?
 - **Events, dry runs to read:** the Saugus High sources then event (the event needs the sources applied first; whether events get a sourceDocuments field); the St. Francis Dam loader (its decision list); Cityhood, Placerita, the golden spike, the Newhall Incident (naming the gunmen once, as the sources do).
 - **War memorial sources** (inventory/review/war-memorial-unsourced-dry-run-2026-10-05.md): Kenaston via the VA locator (approve its use for him), Colley via the 2003 yearbook; Wilson, Todd, Conant, Ross searched and still short.

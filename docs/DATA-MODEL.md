@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 5 October 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 6 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -26,6 +26,21 @@ Three rules, applied by the review screen and the name canon.
 
    **Mrs, Miss, Ms and Sister are never stripped.** "Mrs. George LeBrun" is a
    woman named by her husband, and folding her into his record erases her.
+
+### Aliases serve two purposes
+
+A name kept for a person does two jobs: it is shown, so a reader knows the other names someone
+went by, and it is searched, so a reader who knows only that name finds them. A removal must
+consider both (Nathan, 6 October 2026). On 5 October same-name forms (a full middle name, an
+initial, a short form) came out of `personAliases` so the header shows only names that differ
+from the title, and the site search then found nobody for "A.B. Perkins", "Bill Hart" or
+"Joseph Messina". So:
+
+- `personAliases`, shown as "Also known as": a different name a reader would know them by, a
+  maiden or married name, a stage or pen name, a name a source prints that differs from the title.
+- `personSearchNames`, searched, not shown: forms of their own name the title does not carry.
+- A form that is another person's name in the archive goes in neither, or the search lands on the
+  wrong man ("Francisco Lopez" is the gold discoverer, not Chico López).
 
 ## Transcription and interpretation
 
@@ -321,7 +336,7 @@ at all.
 
 ### Documents — `documents/document`
 
-30 fields.
+31 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -333,6 +348,7 @@ at all.
 | `originalPublishDateEdtf` | PlainText | **local** | no external equivalent |
 | `sourceLine` | PlainText | **local** | no external equivalent |
 | `publishedBy` | Entries | schema.org `publisher` |  |
+| `writtenBy` | Entries | schema.org `author` | also dcterms:creator |
 | `subjectPerson` | Entries | schema.org `about` | dcterms:subject |
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
@@ -403,7 +419,7 @@ at all.
 
 ### Events — `events/event`
 
-44 fields.
+45 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -435,6 +451,7 @@ at all.
 | `eventFallenOfficers` | Entries | **local** | no external equivalent |
 | `eventOrganizations` | Entries | **local** | no external equivalent |
 | `eventArticles` | Entries | **local** | no external equivalent |
+| `sourceDocuments` | Entries | **local** | no external equivalent |
 | `eventGroups` | Entries | **local** | no external equivalent |
 | `relatedEvents` | Entries | **local** | no external equivalent |
 | `historicalEra` | Categories | Dublin Core `temporal` | local vocabulary, no external period thesaurus |
@@ -700,7 +717,7 @@ at all.
 
 ### Persons — `persons/person`
 
-57 fields.
+58 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -722,6 +739,7 @@ at all.
 | `authorBio` | PlainText | **local** | no external equivalent |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
 | `personAliases` | PlainText | SKOS `altLabel` | schema.org alternateName |
+| `personSearchNames` | PlainText | **local** | no external equivalent |
 | `wikidataId` | PlainText | Wikidata `QID` | emitted as schema.org sameAs |
 | `viafId` | PlainText | VIAF `cluster ID` | Wikidata P214 |
 | `birthEvidence` | Dropdown | **local** | no external equivalent |

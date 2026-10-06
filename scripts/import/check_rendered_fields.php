@@ -51,7 +51,9 @@ $probe = function (string $s) use ($norm): string {
 $needles = function ($f, $v) use ($probe, $skipTypes): array {
     $t = (new \ReflectionClass($f))->getShortName();
     if (in_array($t, $skipTypes, true) || $v === null) { return []; }
-    if ($v instanceof \craft\elements\db\ElementQuery) { $el = $v->status(null)->one(); return $el && trim((string)$el->title) !== '' ? [$probe((string)$el->title)] : []; }
+    /* A page shows a relation's published targets only, so the probe is the first live one (6 October 2026: the Newhall Incident's
+       fallen officers are unpublished, waiting on Nathan's read, and were reported missing from its page). */
+    if ($v instanceof \craft\elements\db\ElementQuery) { $el = $v->one(); return $el && trim((string)$el->title) !== '' ? [$probe((string)$el->title)] : []; }
     if ($v instanceof \craft\fields\data\SingleOptionFieldData) { return (string)$v->value === '' ? [] : [$probe((string)($v->label ?: $v->value))]; }
     if (is_array($v)) {
         $out = [];

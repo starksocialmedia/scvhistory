@@ -758,6 +758,10 @@
   "partOfCollection": {
    "show": "page"
   },
+  "personSearchNames": {
+   "show": "internal",
+   "why": "forms of the person's own name the title does not carry, for the site search; not shown, so the header is not cluttered with the same name"
+  },
   "personAliases": {
    "show": "page",
    "mode": "aliases"

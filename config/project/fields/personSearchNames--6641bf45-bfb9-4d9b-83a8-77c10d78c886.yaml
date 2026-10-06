@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: personSearchNames
+instructions: "Not shown on the page. Forms of the person's own name that the title does not carry (a full middle name, initials, a short form, a byline) so the site search finds them. A different name a reader would know them by (a maiden or married name, a stage name) is an alias, shown, not a search name."
+name: 'Search names'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 3
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

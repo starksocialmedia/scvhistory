@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-06
+
+- Agent: Claude Code
+- Date: 2026-10-06
+- Done, on Nathan's seven answers: search names (personSearchNames, 177 forms; 4 maiden names back as aliases; DATA-MODEL: aliases serve display and findability). The portrait batch (34 imports, Ward and Bowman cropped with their originals, 6 links, Pavelka's caption a source fault); Chico López's portrait US8502 (#31220) with both López notes saying whose portrait it is; Tom Frew II (#31354) with his portrait TF1000. sourceDocuments on events and writtenBy on documents, both shown on the page. Six events: the Saugus High School shooting (its 16 sources first; #31338), the St. Francis Dam Disaster with a St. Francis Dam place (#31342), Santa Clarita Cityhood (#31359), the Placerita Gold Discovery (#31370), the Golden Spike at Lang Station (#31374), the Newhall Incident (#31376); every quotation rechecked against its page, every joining ellipsis removed. Six war memorial records sourced or with their searches recorded. Five documents' authors; the Ellis bylines cited (SCVNews.com, March 1, 2012).
+- Found: the second SCVNews piece on Ellis (February 5, 2016) could not be found. The golden spike loader's read-back counted Craft's blank default dated row; the event was right and its photographs linked on a rerun. No redirect mechanism exists in Craft yet: the old addresses D11 and D12 name go into the redirect map at cutover.
+- Blocked: the push to templates-batch-9 was refused by the permission check; Nathan pushes.
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-05 (late night, Nathan's queue)
 
 - Agent: Claude Code

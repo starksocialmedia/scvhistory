@@ -100,8 +100,9 @@ $LIST = 'The sixteen texts the old site published on the shooting are each a rec
   . '. The William S. Hart Union High School District: documents ' . implode(', ', array_map($num, ['hd20200112-district-kuhlman', 'hd20200406-district-ferry'])) . '. The eight Los Angeles Times pieces are held until their rights are settled.';
 $NOTESED = [['heading' => '', 'note' => $ADVISORY, 'position' => 'top'],
   ['heading' => 'Why this record does not name the shooter', 'note' => $D2, 'position' => 'bottom'],
-  ['heading' => 'The count of the wounded', 'note' => $COUNT, 'position' => 'bottom'],
-  ['heading' => 'The sources', 'note' => $LIST, 'position' => 'bottom']];
+  ['heading' => 'The count of the wounded', 'note' => $COUNT, 'position' => 'bottom']
+];
+/* The sixteen are related through sourceDocuments and listed as SOURCES on the page (Nathan, 6 October 2026: "a reader should see what an event rests on"), so no note lists them. */
 
 /* Relations: each joined by a source (DATA-MODEL, No connection the sources do not make). */
 $PLACES = [30515 => 'Santa Clarita Central Park'];
@@ -127,7 +128,8 @@ $TITLE = 'Saugus High School Shooting'; $KEY = 'saugus-high-school-shooting-2019
 $v = ['body' => $BODY, 'footnotes' => array_map(fn($i, $t) => ['number' => (string)($i + 1), 'note' => $t, 'source' => 'editorial-2026'], array_keys($NOTES), $NOTES),
   'editorNotes' => $NOTESED, 'eventDate' => 'November 14, 2019', 'eventDateEdtf' => '2019-11-14', 'startEvidence' => 'contemporary', 'eventRecurring' => false,
   'eventSignificance' => $SIG, 'eventPlaces' => array_keys($PLACES), 'eventOrganizations' => array_keys($ORGS), 'eventPersons' => [], 'eventFallenOfficers' => [],
-  'historicalEra' => [$ERA], 'historicalPeriod' => [$PERIOD], 'neighborhood' => [$SAUGUS], 'legacyKey' => $KEY];
+  'historicalEra' => [$ERA], 'historicalPeriod' => [$PERIOD], 'neighborhood' => [$SAUGUS], 'legacyKey' => $KEY,
+  'sourceDocuments' => array_values(array_filter(array_merge([$DOC['bryanmuehlberger20191117-letter']['id'] ?? null], array_column(array_diff_key($DOC, ['bryanmuehlberger20191117-letter' => 1]), 'id'))))];
 $sec = Craft::$app->getEntries()->getSectionByHandle('events'); $type = $sec->getEntryTypes()[0];
 $lay = []; foreach ($type->getFieldLayout()->getCustomFields() as $f) { $lay[$f->handle] = $f; }
 foreach (array_keys($v) as $h) { if (!isset($lay[$h])) { $bad[] = "no field $h on the event layout"; } }

@@ -67,43 +67,6 @@ no longer wanted:
 - rancho.jpg
 - lw2184.jpg
 
-## 4. Portrait batch of 5 October 2026, a dry run waiting on Nathan
+## 4. Portrait batch of 5 October 2026
 
-Copied unchanged from the legacy mirror (and two crops made by the archive) for `scripts/import/import_portrait_batch_2026_10_05.php`; the data file is `inventory/review/portrait-batch-2026-10-05.json` and the dry run `inventory/review/portrait-batch-dry-run-2026-10-05.md`. Reason for each: portrait batch of 5 October 2026, a dry run waiting on Nathan.
-
-- sd2401_large.jpg
-- pilcher_jack3.jpg
-- kuredjian_jake.jpg
-- davidmarch.jpg
-- obituary_pelinoarthure.jpg
-- matthewpavelka.jpg
-- sg4701b.jpg
-- sg4701a.jpg
-- sg4701d.jpg
-- sg4701c.jpg
-- lw2428.jpg
-- donbenton.jpg
-- obituary_kevingarylynch.jpg
-- sg19720614claffey01_large.jpg
-- sc1202.jpg
-- katiehill_officialportrait2019_large.jpg
-- obituary_keithrichman.jpg
-- sg042504.jpg
-- lw3109_large.jpg
-- lw2427_large.jpg
-- stroup_clara.jpg
-- brathwaite-louis.jpg
-- gloriamercadofortine.png
-- ap2222_large.jpg
-- reminadeau-chrisman.jpg
-- hs3021.jpg
-- lw2178.jpg
-- lw2317a_large.jpg
-- rr1.jpg
-- randywicks1995_karzinphoto_large.jpg
-- rn3004.jpg
-- darrylmanzer2020.jpg
-- sk5003_large.jpg
-- sg19950324bowman_large.jpg
-- sg19950324bowman_large_crop-jereann-bowman.jpg
-- johnward_dorothyward_crop-john-ward.jpg
+Applied on 6 October 2026; its files, Chico López's US8502 and Tom Frew II's TF1000 are in done/ with MANIFEST.json.

@@ -371,3 +371,18 @@
 2026-10-05 20:48:16 PDT	tom_frew_generations_2026_10_05.php	scvhistory-web	4 rows	verified	Tom Frew IV and Thomas M. Frew Jr., father and son
 2026-10-05 20:48:51 PDT	tom_frew_generations_2026_10_05.php	scvhistory-web	2 rows	verified	Tom Frew IV and Thomas M. Frew Jr., father and son
 2026-10-05 21:32:07 PDT	link_authors_2026_10_05.php	scvhistory-web	320 rows	verified	writtenBy from printed bylines, existing persons only
+2026-10-06 05:07:05 PDT	search_names_2026_10_05.php	scvhistory-web	136 rows	verified	personSearchNames; four maiden names back as aliases
+2026-10-06 05:08:08 PDT	add_event_sources_and_document_authors_2026_10_06.php	scvhistory-web	2 rows	verified	sourceDocuments on events; writtenBy on documents
+2026-10-06 05:09:38 PDT	chico_lopez_portrait_2026_10_06.php	scvhistory-web	4 rows	verified	US8502 as Chico López's portrait; both López notes
+2026-10-06 05:10:04 PDT	import_portrait_batch_2026_10_05.php	scvhistory-web	80 rows	verified	portrait batch of 5 October 2026: legacy-mirror portraits, links, Ward and Bowman crops with originals, Pavelka source fault
+2026-10-06 05:10:52 PDT	source_wm_unsourced_2026_10_05.php	scvhistory-web	6 rows	verified	six war memorial records: Kenaston and Colley sourced; Wilson, Todd, Conant, Ross with what was searched. Logged after the run: its read-back threw on count() after the writes, so a second dry run confirmed all six (fixed)
+2026-10-06 05:11:33 PDT	create_saugus_2019_sources_2026_10_05.php	scvhistory-web	16 rows	verified	Saugus High School shooting: 16 source records, the 8 Los Angeles Times saved disabled
+2026-10-06 05:11:38 PDT	create_saugus_2019_event_2026_10_05.php	scvhistory-web	1 rows	verified	event: the Saugus High School shooting, 14 November 2019
+2026-10-06 05:12:03 PDT	create_st_francis_dam_2026_10_05.php	scvhistory-web	5 rows	verified	St. Francis Dam: place, event from v2 draft, photoEvents on the draft's photographs; Mulholland untouched
+2026-10-06 05:13:42 PDT	document_authors_and_ellis_2026_10_06.php	scvhistory-web	7 rows	verified	five documents' authors; the Ellis bylines cited
+2026-10-06 05:15:15 PDT	create_tom_frew_ii_2026_10_06.php	scvhistory-web	4 rows	verified	Tom Frew II: record, portrait TF1000, Requiem
+2026-10-06 05:22:51 PDT	create_cityhood_event_2026_10_05.php	scvhistory-web	10 rows	verified	Santa Clarita Cityhood: event from the v2 draft; photoEvents on its cited photographs; sourceDocuments set
+2026-10-06 05:22:57 PDT	create_placerita_gold_discovery_event_2026_10_05.php	scvhistory-web	3 rows	verified	The Placerita Gold Discovery: event from the v2 draft; photoEvents on its cited photographs; sourceDocuments set
+2026-10-06 05:23:07 PDT	create_newhall_incident_event_2026_10_05.php	scvhistory-web	4 rows	verified	The Newhall Incident: event from the v2 draft; photoEvents on its cited photographs; sourceDocuments set
+2026-10-06 05:23:34 PDT	create_golden_spike_event_2026_10_05.php	scvhistory-web	3 rows	verified	Golden Spike at Lang Station: event from the v2 draft; photoEvents on its cited photographs; sourceDocuments set
+2026-10-06 05:38:30 PDT	provenance_wording_2026_10_06.php	scvhistory-web	44 rows	verified	provenance and three notes in a reader's words

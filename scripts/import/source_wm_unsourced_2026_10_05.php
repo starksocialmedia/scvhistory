@@ -102,7 +102,7 @@ try {
 foreach ($plan as $id => [$r, $add, $had]) {
   $b = Entry::find()->id($id)->status(null)->one();
   $s = array_values(array_filter($b->editorNotes ?? [], fn($x) => ($x['heading'] ?? '') === $H));
-  if (count($s) !== 1 || trim((string)$s[0]['note']) !== $r['new'] || count($b->footnotes) !== $had + count($add)) { throw new \RuntimeException("#$id not read back"); }
+  if (count($s) !== 1 || trim((string)$s[0]['note']) !== $r['new'] || count(iterator_to_array($b->footnotes ?? [])) !== $had + count($add)) { throw new \RuntimeException("#$id not read back"); }
 }
 $root = \Craft::getAlias('@root');
 $applyLog = require "$root/scripts/import/_apply_log.php"; $applyLog('source_wm_unsourced_2026_10_05.php', $n, 'verified', 'war memorial: Kenaston half-sourced from the VA locator; Colley meets the rule (Valencia High 2003 yearbook); Wilson, Todd, Conant and Ross notes record what was searched');

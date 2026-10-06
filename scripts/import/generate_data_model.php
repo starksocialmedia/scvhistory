@@ -175,6 +175,21 @@ $lines[] = '';
 
 /* ------------------------------------ transcription and interpretation */
 
+$lines[] = '### Aliases serve two purposes';
+$lines[] = '';
+$lines[] = 'A name kept for a person does two jobs: it is shown, so a reader knows the other names someone';
+$lines[] = 'went by, and it is searched, so a reader who knows only that name finds them. A removal must';
+$lines[] = 'consider both (Nathan, 6 October 2026). On 5 October same-name forms (a full middle name, an';
+$lines[] = 'initial, a short form) came out of `personAliases` so the header shows only names that differ';
+$lines[] = 'from the title, and the site search then found nobody for "A.B. Perkins", "Bill Hart" or';
+$lines[] = '"Joseph Messina". So:';
+$lines[] = '';
+$lines[] = '- `personAliases`, shown as "Also known as": a different name a reader would know them by, a';
+$lines[] = '  maiden or married name, a stage or pen name, a name a source prints that differs from the title.';
+$lines[] = '- `personSearchNames`, searched, not shown: forms of their own name the title does not carry.';
+$lines[] = '- A form that is another person\'s name in the archive goes in neither, or the search lands on the';
+$lines[] = '  wrong man ("Francisco Lopez" is the gold discoverer, not Chico López).';
+$lines[] = '';
 $lines[] = '## Transcription and interpretation';
 $lines[] = '';
 $lines[] = 'A source record keeps what the source says apart from what anyone says about it.';
