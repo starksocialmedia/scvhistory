@@ -202,6 +202,17 @@ search in that file is treated as unverified and re-searched before anything
 rests on it. A removal or a cut made because "nothing was found" carries the
 same record, in removed-claims.json beside the removal.
 
+## An ellipsis never joins two provisions
+
+A quotation may drop words inside one clause with an ellipsis. It may never join two
+clauses, sentences, sections or speakers, because the joined text says something the
+source does not, and the quotation marks make it look like the source's own words. On
+5 October 2026, 27 office-holding notes quoted Education Code 5328 with "..." joining its
+clause on nominees ("shall be seated at the organizational meeting of the board") to its
+clause on appointees ("as if elected"), and the records called unopposed trustees
+appointed on the strength of it (ERRORLOG). A statute, an ordinance or a resolution is
+quoted whole, or as separate quotations, each with its section or subsection.
+
 ## The shape that worked
 
 1. **Extract** the sources verbatim from the Reggie mirror into

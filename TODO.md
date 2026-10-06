@@ -3,7 +3,7 @@
 ## Waiting on Nathan
 
 ### Current (5 October 2026, night)
-- **Appointed terms:** the wording fix is applied (27 terms now "unopposed"). Still open from the audit (inventory/review/appointed-terms-audit-2026-10-05.md): split the 4 runs that carry "appointed" over later held elections (Umeck, Walters, Dinsenbacher, Martin) and the 2 partly right (Talley 2016, Moore 2017); Messina 2022's blank method (elected); the 4 unsourced "earlier appointment" notes; whether Gibbs 2024 and Plambeck 2011 stay appointed in lieu.
+- **Appointed terms:** done 5 October (unopposed, the splits, Messina, the four notes, Gibbs and Plambeck). Still open: the 2 partly right runs (Talley 2016, Moore 2017); DeFigueiredo 2007's "no election held", which rests only on a contest missing from CEDA; the 18 RISKY quotations and the #394 attribution in inventory/review/spliced-quotations-audit-2026-10-05.md.
 - **The portrait census** is running again (5 October night); its report writes as it goes.
 - **Same-name aliases** (inventory/review/aliases-same-name-dry-run-2026-10-05.txt): 186 lines on 135 people, dry run; Messina's applied. Four kept although the test matched (McKeon's Howard, Knight's William, Weinstein's Rochelle, Tichenor's Jr.). Removing "Bill Hart" and the like also removes them from search.
 - **Authorship** (inventory/review/authorship-census-2026-10-05.md): approve writtenBy on documents and a bylineText field; then about 329 easy links; the person page to name a person's columns.
