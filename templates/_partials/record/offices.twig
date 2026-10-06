@@ -76,14 +76,14 @@
           {% set termOut %}
           {% set d = h.startEvidence.value == 'derived' %}
           {% if d %}{% set derivedAny = true %}{% endif %}
-          <div class="k">{{ h.selectionMethod.value in ['appointed', 'sole-candidate'] ? 'APPOINTED' : (h.selectionMethod.value == 'rotated' ? 'ROTATION' : 'TERM') }}</div>
+          <div class="k">{{ h.selectionMethod.value in ['appointed', 'sole-candidate'] ? 'APPOINTED' : (h.selectionMethod.value == 'unopposed' ? 'UNOPPOSED' : (h.selectionMethod.value == 'rotated' ? 'ROTATION' : 'TERM')) }}</div>
           {#- How each end of the term is known; once after the range when both ends are known the same way. -#}
           {% set sameEv = not h.termEnd or (h.startEvidence.value ?? '') == (h.endEvidence.value ?? '') %}
           {#- The election that won this term: same body, won, within eight months before the term began, not used already. -#}
           {% set hb = h.holdingBody.one() %}
           {% set ts = h.termStartEdtf|default('')|slice(0, 10) %}
           {% set win = null %}
-          {% if h.selectionMethod.value not in ['appointed', 'rotated', 'sole-candidate'] and ts %}
+          {% if h.selectionMethod.value not in ['appointed', 'rotated', 'sole-candidate', 'unopposed'] and ts %}
             {#- Months, since terms are often recorded to the month ("1998-04"): the election falls 0 to 8 months before the term's start month. -#}
             {#- A term known only to the year ("2000") matches an election that year or the year before. -#}
             {% set yearOnly = ts|length == 4 %}

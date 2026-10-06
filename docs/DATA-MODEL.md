@@ -1087,7 +1087,7 @@ local unless the note says otherwise.
 - **`placeType`** — `natural`, `road`, `ranch`, `building`, `park`, `site`, `trail`, `settlement`, `district`, `cemetery`. Mapped from the GNIS feature class where a record carries a GNIS id; see `add_place_type_field.php`.
 - **`schoolLevel`** — `elementary`, `middle`, `high`, `college`, `district`. Drives the schema.org School subtype: ElementarySchool, MiddleSchool, HighSchool, CollegeOrUniversity. A district has no schema.org subtype and stays Organization.
 - **`seatsUpEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
-- **`selectionMethod`** — `elected`, `appointed`, `rotated`, `exofficio`, `succeeded`, `sole-candidate`.
+- **`selectionMethod`** — `elected`, `appointed`, `rotated`, `exofficio`, `succeeded`, `sole-candidate`, `unopposed`.
 - **`startEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`submissionKind`** — `photograph`, `correction`.
 - **`submissionStatus`** — `new`, `accepted`, `declined`, `spam`.

@@ -72,6 +72,17 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Elected unopposed (no election held)'
+        -
+          - value
+          - unopposed
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown
