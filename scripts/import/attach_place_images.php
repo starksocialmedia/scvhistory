@@ -48,7 +48,13 @@ foreach ($picks as $slug => [$file, $caption]) {
     $asset->avoidFilenameConflicts = true;
     $asset->setScenario(\craft\elements\Asset::SCENARIO_CREATE);
     $asset->title = $caption;
-    $asset->alt = 'Public domain. Wikimedia Commons.';
+    /* 5 October 2026 (silent-faults audit, finding 5): alt text describes the
+       image; it was the licence line. The licence goes to the rights fields. */
+    $asset->alt = rtrim(preg_split('~(?<=\.)\s+~u', $caption)[0], ' .');
+    $commons = 'https://commons.wikimedia.org/wiki/File:' . rawurlencode(str_replace(' ', '_', $file));
+    $asset->setFieldValues(['license' => 'public-domain', 'provenanceKind' => 'outside', 'photoCredit' => 'Wikimedia Commons. Public domain.',
+        'sourceUrl' => ['type' => 'url', 'value' => $commons],
+        'source' => 'Wikimedia Commons, File:' . $file . '. Public domain. The stored copy was requested from Commons at 1,600 pixels wide.']);
     if (!$elements->saveElement($asset)) { echo str_pad('', 24) . 'asset failed: ' . json_encode($asset->getErrors()) . PHP_EOL; continue; }
 
     $place->setFieldValue('featuredImage', [$asset->id]);

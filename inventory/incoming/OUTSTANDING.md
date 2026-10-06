@@ -8,7 +8,16 @@ asset's `sourceChecksum` or a file under `web/uploads` or `web/banners`. 50 file
 here that is neither in `done/MANIFEST.json` nor named below with its reason. A new file is imported when it
 arrives, on its own, or listed here with why it waits.
 
-The 49 files left here fall into three groups.
+The files left here fall into four groups.
+
+## 0. Screenshots of the archive's own pages (checked 5 October 2026)
+
+Sixteen files named .jpg are PNG page captures about 3,066 pixels wide, full-page screenshots of record pages on the new
+site (Northridge Earthquake, Dante Acosta, Henry Clay Wiley, Reynolds's chapters and others). They are not photographs and
+nothing waits on them; where they are listed below under an earlier reading, this is what they are:
+beales-cut-sta.jpg, chapter-21-b.jpg, dante-acosta.jpg, getting-closer.jpg, henry-clay-w.jpg,
+history-of-the-santa-clarita-va.jpg, in-memoriam-henry-clay-wiley-182.jpg, in-memoriam.jpg, newhall-pass-i.jpg,
+northridge-ear.jpg, not-even-close.jpg, prologue-his.jpg, rancho.jpg, rodolfo-acost.jpg, rudy.jpg, the-birth-of.jpg.
 
 ## 1. The record already has an image from another file
 
@@ -38,7 +47,8 @@ imported after editing, or an alternative. Keep it or drop it; nothing waits on 
 
 | File | Why |
 |---|---|
-| Sharlene-Duzick.jpg, sharlene-headshot.jpg | Dropped: a losing candidate gets no record. |
+| lw9501_large.jpg | Copied from the mirror on 5 October 2026 for the Connie Worden-Roberts obituaries (worden_roberts_obituaries_2026_10_05.php, a dry run waiting on Nathan). |
+| Sharlene-Duzick.jpg | The Adobe Firefly upscale (creative upsampler, 4 October 2026) of sharlene-headshot.jpg, which is now Sharlene Rose Johnson's portrait (#30544, 5 October 2026: the losing-candidate decision reversed, she being a sitting college trustee). The archive uses the unedited original. |
 | BOM-pg14-shutterstock-185944559.jpg | A Shutterstock image. Its licence would need to be in hand before use. |
 | Firefly.jpg, Firefly (1).jpg, Firefly (2).jpg, grok-image-fb994b75-1760-4be5-a4da-3623d2bc4605.jpg | Generated images. Under the banner rule they are decoration only, in web/banners and never assets. None matches a banner file now. |
 

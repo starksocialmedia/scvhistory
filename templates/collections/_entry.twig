@@ -15,7 +15,9 @@
 {% import "collections/_kind" as ck %}
 {% set kind = ck.of(entry)|trim %}
 {% if kind == 'book' %}{% include "collections/_lander" %}
-{% elseif kind == 'column' %}{% include "collections/_column" %}
+{#- A column run takes the standard layout, as the Reynolds and Perkins series do (Nathan, 5 October 2026: "fourteen and they
+    should all read the same way"). collections/_column.twig, with the author's avatar in the band and its own list, is no
+    longer used; the one thing a column needs that a series does not is its order, below. -#}
 {% elseif kind == 'catalogue' %}{% include "collections/_catalogue" %}
 {% elseif kind == 'topic' %}{% include "collections/_topic" %}
 {% else %}
@@ -29,6 +31,12 @@
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
 {% set articles = entry.articlesInCollection.all() ?: craft.entries().section('articles').relatedTo({ targetElement: entry, field: 'partOfCollection' }).all() %}
+{#- A series is read in its chapters' order. A column has no chapters: its pieces are listed in the order they were
+    published, the undated after them, so the numbered list means the same thing on every collection page. -#}
+{% if kind == 'column' %}
+  {% set dated = articles|filter(a => (a.originalPublishDateEdtf ?? '')|trim)|sort((x, y) => (x.originalPublishDateEdtf|trim) <=> (y.originalPublishDateEdtf|trim)) %}
+  {% set articles = dated|merge(articles|filter(a => not (a.originalPublishDateEdtf ?? '')|trim)) %}
+{% endif %}
 {% set author = entry.writtenBy.one() ?? null %}
 {% set editor = entry.editedBy.one() ?? null %}
 {% set era = entry.historicalEra.one() ?? null %}

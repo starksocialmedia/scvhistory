@@ -2,6 +2,15 @@
 
 ## Waiting on Nathan
 
+### Current (5 October 2026, night)
+- **Appointed terms** (inventory/review/appointed-terms-audit-2026-10-05.md): read the list; nothing is fixed until Nathan has. Recommendation: a "seated without an election" option for the 26 school and college terms; split the 4 wrong runs and 2 partly right at each election; Talley 2020 the reverse.
+- **Same-name aliases** (inventory/review/aliases-same-name-dry-run-2026-10-05.txt): 186 lines on 135 people, dry run; Messina's applied. Four kept although the test matched (McKeon's Howard, Knight's William, Weinstein's Rochelle, Tichenor's Jr.). Removing "Bill Hart" and the like also removes them from search.
+- **Authorship** (inventory/review/authorship-census-2026-10-05.md): approve writtenBy on documents and a bylineText field; then about 329 easy links; the person page to name a person's columns.
+- **Silent faults, the dry runs:** war memorial narratives (8, restore_war_memorial_narratives_2026_10_05.php, with extract_war_memorial_narratives_2026_10_05.py run first on the MacBook); Hart Park captions (13), place legacy links (7), place image alt (6) (inventory/review/*-dry-run-2026-10-05.md); the Mentry credit is right and stays. Decisions in each.
+- **Connie Worden-Roberts:** restore Goldman's two dropped paragraphs (#28047)? correct #28045's publication line to the mortuary's dateline? Choppé's portrait on her person record? Perry Smith's piece (#28305) as an obituary?
+- **Collections:** the three topic pages (Newsmaker, Iraq, Mentryville) and the Gazette catalogue still take their own layouts; whether they too take the standard one.
+- **The portrait census** was stopped unfinished: rerun it (portraits on the mirror for every person, war memorial and fallen officer without one; report first, then the clear matches as a batch).
+
 ### Current (4 October 2026, overnight)
 - Measure U and the fourteen council elections: applied 5 October. **The five County-sourced elections, 2016 to 2024** (the same script, extended): dry run ready.
 - **The silent-faults audit** (inventory/review/silent-faults-audit-2026-10-05.md): 29 findings; the empty-note template fault is fixed; the other visible ones wait on Nathan.

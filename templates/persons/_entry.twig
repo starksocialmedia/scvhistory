@@ -38,7 +38,7 @@
 {% set noteTop = entry.personWebmasterNoteTop is defined ? entry.personWebmasterNoteTop : null %}
 {% set noteBottom = entry.personWebmasterNoteBottom is defined ? entry.personWebmasterNoteBottom : null %}
 {% set F = {} %}
-{% for h in ['authorBio', 'birthDate', 'birthplace', 'body', 'burialPlace', 'culturalSensitivityNote', 'deathDate', 'occupation', 'personFinePrint', 'personLegacyUrl', 'personWebmasterNoteBottom', 'personWebmasterNoteTop'] %}
+{% for h in ['authorBio', 'birthDate', 'birthplace', 'body', 'personAliases', 'burialPlace', 'culturalSensitivityNote', 'deathDate', 'occupation', 'personFinePrint', 'personLegacyUrl', 'personWebmasterNoteBottom', 'personWebmasterNoteTop'] %}
   {% set F = F|merge({ (h): (attribute(entry, h) is defined and attribute(entry, h) is not empty) ? attribute(entry, h)|trim : '' }) %}
 {% endfor %}
 {# bandImage first: artwork with no lettering, composed with its subject at the
@@ -134,6 +134,12 @@
           <div class="rec-kick"><span class="a">PEOPLE</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title }}</h1>
           {% if F.occupation %}<div class="rec-sub">{{ F.occupation }}</div>{% endif %}
+          {#- The names a reader may know this person by, as the organization page shows its body's (Nathan, 5 October 2026: "anyone
+              who knows her as Duzick finds nothing"). One per line, or several on a line split at semicolons. A line the record marks
+              as a misprint is kept for search and not shown as a name. -#}
+          {% set aliases = [] %}
+          {% for a in F.personAliases|replace({ "\r": '', ';': "\n" })|split("\n") %}{% set a = a|trim %}{% if a and a != entry.title and 'misprint' not in a|lower and a not in aliases %}{% set aliases = aliases|merge([a]) %}{% endif %}{% endfor %}
+          {% if aliases|length %}<div class="rec-sub rec-alias">Also known as {% for a in aliases %}{% if not loop.first %}<span class="sep" style="font-style:normal;color:#A9842B;margin:0 .2em"> · </span>{% endif %}<span>{{ a }}</span>{% endfor %}</div>{% endif %}
           {% if born or died or residence %}
             <div class="rec-facts">
               {#- Each date with how it is known (_partials/record/evidence.twig, 2 October 2026). -#}

@@ -1,0 +1,1800 @@
+{
+ "title": "Appointed and sole-candidate office terms: audit",
+ "date": "2026-10-05",
+ "agent": "Claude (read-only audit)",
+ "scope": "Every officeHolding whose selectionMethod is appointed or sole-candidate (51), plus other holdings whose text claims an appointment (11 judged); 30 more matched the text search only incidentally (listed, not judged).",
+ "countsForTheFiftyOne": {
+  "SEATED, NOT APPOINTED": 26,
+  "STANDS IN PART; SPAN": 2,
+  "UNSUPPORTED": 2,
+  "STANDS": 17,
+  "WRONG (span)": 4
+ },
+ "countsAllJudged": {
+  "SEATED, NOT APPOINTED": 23,
+  "NOT AN APPOINTMENT CLAIM (method blank; should be elected)": 1,
+  "NOT AN APPOINTMENT CLAIM (elected 2009 stands)": 1,
+  "WRONG (span)": 4,
+  "STANDS IN PART; SPAN": 2,
+  "REVERSE ERROR (recorded elected; no election held)": 1,
+  "SEATED, NOT APPOINTED (seat-level)": 3,
+  "UNSUPPORTED (inferred earlier appointment)": 4,
+  "UNSUPPORTED": 2,
+  "STANDS (earlier appointment)": 4,
+  "STANDS": 14,
+  "STANDS (weak)": 1,
+  "STANDS (better source available)": 2
+ },
+ "holdings": [
+  {
+   "id": 29627,
+   "person": "Joe Messina",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. Bob Jensen and Joe Messina, the incumbents, and Chris A. Fall, an appointed incumbent, were the only qualified candidates for the district's three at-large seats, so the election of 5 November 2013 was not held. The County lists the district ...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28245 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/), \"SCHOOL DISTRICTS\" list: \"William S. Hart Union High\".",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/), text lines 989-1004: \"WILLIAM S. HART UNION HIGH SCHOOL DISTRICT Vote for no more than 3 ... *CHRIS A. FALL Appointed Incumbent ... *BOB JENSEN CPA/School Boardmember ... *JOE MESSINA Incumbent ... 8/2/2013\".",
+    "CEDA 2013 (raw CEDA2013Data.xlsx, all LA County rows): no Hart contest in 2013; Messina has rows only for 2003, 2005, 2007 (lost), 2009 (elected, 7,239), 2018 (elected, 10,236), 2022 (elected, 12,552).",
+    "Perry Smith, KHTS, \"Hart District Required to Fill Vacant Seat by Appointment,\" SCVNews.com, 1 Oct 2013: \"Fall resigned one week after the county's filing deadline for candidates, but the election had already been cancelled because there were no challengers for the three incumbents.\" and \"the governing board must appoint a third member ... The appointment process is mandated by Education Code 5328.\" The appointment it describes is Fall's replacement (Robert Hall), not Messina.",
+    "Leon Worden, Hart board roster, hartschoolboardmembers.htm (legacy mirror), board of 12-11-2013 to 11-30-2014: \"Joseph V. Messina {relected/unopposed 2013)\"; board of 12-9-2009: \"Joseph V. Messina (elected 2009)\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat. For Messina: \"Seated unopposed on 11 December 2013; the County cancelled the 5 November 2013 election for the three at-large seats (Education Code 5328).\"",
+   "note": "No source shows anyone appointing Messina. The County cancelled the election, and under Education Code 5328 an unopposed nominee is seated, not appointed. The governing board appoints only when too few people are nominated, which is what it did for Fall's seat (Hall, 16 Oct 2013). Nathan is right that Messina was never appointed. He was not elected at a held election in 2013 either: no votes were cast. The footnote's \"...\" joins the clause for nominees (\"shall be seated at the organizational meeting\") to the clause for appointees (\"as if elected\"), and that misquotes the statute."
+  },
+  {
+   "id": 28936,
+   "person": "Joe Messina",
+   "body": "William S. Hart Union High School District",
+   "seat": "Trustee Area 5",
+   "term": "2022-12 to 2026-12",
+   "selectionMethod": "(empty)",
+   "howEnded": "serving",
+   "startEvidence": "certified",
+   "recordWording": "William S. Hart Union High School District, \"Governing Board Member Info,\" https://www.hartdistrict.org/apps/pages/governing-board-members, read 4 October 2026: \"Joe Messina Trustee Area No. 5 representative President\"; \"current term 2022 - 2026.\" How the term was won (an election, or appointment in lieu of one) is ...",
+   "writtenBy": [
+    "record_hart_superintendents_and_board_2026_10_04.php"
+   ],
+   "created": "2026-10-04 01:07",
+   "updated": "2026-10-04 01:07",
+   "provenance": "record_hart_superintendents_and_board_2026_10_04.php, 4 October 2026: from the Hart district's own pages",
+   "verdict": "NOT AN APPOINTMENT CLAIM (method blank; should be elected)",
+   "checked": [
+    "CEDA2022Data.xlsx row 5281: William S. Hart Union High, Trustee Area 5, 8 Nov 2022: Joe Messina 12,552 of 21,054, elected, incumbent; Hindman the other candidate.",
+    "County 2022 cancelled list (11082022_final-list-of-cancelled-elections.pdf): Hart is not on the list."
+   ],
+   "correct": "selectionMethod elected; footnote with the CEDA count (roster evidence).",
+   "note": "The record says \"How the term was won (an election, or appointment in lieu of one) is not yet held.\" It was a contested election."
+  },
+  {
+   "id": 28245,
+   "person": "Joe Messina",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "2009-12 to 2013-12",
+   "selectionMethod": "elected",
+   "howEnded": "reelected",
+   "startEvidence": "retrospective",
+   "recordWording": "The term ended in December 2013. The election of 5 November 2013 for the district's three at-large seats was not held (see the next term). Appointed without an election; the candidates did not outnumber the seats.",
+   "writtenBy": [
+    "create_office_gap_holdings.php",
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-03 11:53",
+   "updated": "2026-10-04 15:16",
+   "provenance": "create_office_gap_holdings.php, 3 October 2026; split at the in-lieu term by fix_sole_candidate_terms_2026_10_04.php, 4 October 2026",
+   "verdict": "NOT AN APPOINTMENT CLAIM (elected 2009 stands)",
+   "checked": [
+    "CEDA2009Data.xls row 1512: Hart, 3 Nov 2009, Joe Messina 7,239, elected.",
+    "Hart roster: \"Joseph V. Messina (elected 2009)\"."
+   ],
+   "correct": "Elected stands. Footnote [3] reads \"Appointed without an election\" for 2013: change it with #29627.",
+   "note": ""
+  },
+  {
+   "id": 28225,
+   "person": "Gary Martin",
+   "body": "Castaic Lake Water Agency",
+   "seat": "",
+   "term": "2013 to 2017-12-31",
+   "selectionMethod": "appointed",
+   "howEnded": "left",
+   "startEvidence": "retrospective",
+   "recordWording": "Perry Smith, Hometownstation.com, \"Kavounas Quits CLWA; Agency Taking Names to Fill Seat\", December 3, 2013, https://scvnews.com/kavounas-quits-clwa-agency-taking-names-to-fill-seat: \"The process likely will be similar to the appointment process used in selecting board member Gary Martin, who was chosen for an at-la...",
+   "writtenBy": [
+    "create_office_gap_holdings.php"
+   ],
+   "created": "2026-10-03 11:53",
+   "updated": "2026-10-03 11:53",
+   "provenance": "create_office_gap_holdings.php, 3 October 2026",
+   "verdict": "WRONG (span)",
+   "checked": [
+    "SCV Water release, 7 Feb 2019 (record fn 1): \"In 2013, he was initially selected as a member of the CLWA Board of Directors, where he filled an at-large vacancy.\"",
+    "KHTS, \"Candidates File For CLWA Governing Board Election,\" SCVNews.com, 11 Aug 2014 (record fn 4, read 5 Oct 2026): \"Fortner is expected to run against incumbents Gary Martin and Tom Campbell for a seat as a member at large\".",
+    "CEDA holds no water agency rows for LA County; the County's 2014 return for CLWA at large was not found (lavote.gov search, Signal search)."
+   ],
+   "correct": "Split: appointed 2013 to December 2014 (vacancy, stands); from December 2014 to 31 Dec 2017 a term won at the contested election of 4 Nov 2014 (selectionMethod elected; evidence derived until the County return is found).",
+   "note": "The vacancy appointment stands. The record carries it across a contested election that he evidently won, since he served on to 2017. The vote count is not held."
+  },
+  {
+   "id": 28264,
+   "person": "Brian Walters",
+   "body": "Newhall School District",
+   "seat": "",
+   "term": "2009-12 to 2018-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "retrospective",
+   "recordWording": "The Signal, Christina Cox, \"Newhall Governing Board elects new president, clerk,\" December 13, 2017, https://web.archive.org/web/20171214001212/https://signalscv.com/2017/12/newhall-governing-board-elects-new-president-clerk/: \"first appointed in December 2009\" and \"In the past he also served as the board's president.\"",
+   "writtenBy": [
+    "build_walters_profile.php",
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-03 12:10",
+   "updated": "2026-10-04 15:16",
+   "provenance": "build_walters_profile.php, 3 October 2026; split at the in-lieu term by fix_sole_candidate_terms_2026_10_04.php, 4 October 2026",
+   "verdict": "WRONG (span)",
+   "checked": [
+    "The Signal, 13 Dec 2017 (record fn 1): \"first appointed in December 2009\".",
+    "CEDA2013Data.xlsx row 1350: Newhall, 5 Nov 2013, at large: Brian Walters 1,915 of 7,576, elected, incumbent (Smith, Ellis, Bull the others).",
+    "CEDA 2011: no Newhall contest in the raw file."
+   ],
+   "correct": "Split: appointed December 2009 to December 2013 (how the 2011 election touched the seat is not known); elected 5 Nov 2013 (CEDA, roster evidence) for December 2013 to December 2018.",
+   "note": "The record's \"appointed\" covers a term he won with 1,915 votes."
+  },
+  {
+   "id": 29006,
+   "person": "Isaiah Talley",
+   "body": "Newhall School District",
+   "seat": "",
+   "term": "2016-09-06 to 2020-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Newhall School District, \"Governing Board Members,\" https://www.newhallschooldistrict.com/governing-board-members, read 4 October 2026: \"Mr. Isaiah Talley was first appointed to the Newhall School Board on September 6, 2016, and re-elected for a second term on November 3, 2020.\"",
+   "writtenBy": [
+    "record_district_boards_2026_10_04.php"
+   ],
+   "created": "2026-10-04 07:08",
+   "updated": "2026-10-04 07:08",
+   "provenance": "record_district_boards_2026_10_04.php, 4 October 2026: from the body's own website",
+   "verdict": "STANDS IN PART; SPAN",
+   "checked": [
+    "Newhall School District, \"Governing Board Members,\" read 4 Oct 2026 (record fn 1): \"Mr. Isaiah Talley was first appointed to the Newhall School Board on September 6, 2016\".",
+    "The Signal, 13 Aug 2018 (cited in #29651): \"In the Newhall School District, Brian Walters and Isaiah Talley will claim their seats in the wake of no opposition\".",
+    "County 2018 cancelled list (lavote.gov 11082018_final-list-cancelled-elections.pdf, fetched 5 Oct 2026): \"Newhall School (Trustee Areas 1, 3, and 4 [U/T ending 12/20])\". CEDA 2018 has no Talley row."
+   ],
+   "correct": "Split: appointed 6 Sep 2016 to December 2018 (vacancy, stands); December 2018 to December 2020 seated unopposed for the unexpired Trustee Area 4 term (no election held).",
+   "note": ""
+  },
+  {
+   "id": 29008,
+   "person": "Isaiah Talley",
+   "body": "Newhall School District",
+   "seat": "",
+   "term": "2020-12 to 2024-12",
+   "selectionMethod": "elected",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Newhall School District, \"Governing Board Members,\" https://www.newhallschooldistrict.com/governing-board-members, read 4 October 2026: \"Mr. Isaiah Talley was first appointed to the Newhall School Board on September 6, 2016, and re-elected for a second term on November 3, 2020.\"",
+   "writtenBy": [
+    "record_district_boards_2026_10_04.php"
+   ],
+   "created": "2026-10-04 07:08",
+   "updated": "2026-10-04 07:08",
+   "provenance": "record_district_boards_2026_10_04.php, 4 October 2026: from the body's own website",
+   "verdict": "REVERSE ERROR (recorded elected; no election held)",
+   "checked": [
+    "County 2020 cancelled list (11032020_cancelled-elections.pdf): \"Newhall Elementary (Trustee Area 4 and 5)\".",
+    "SCVNews.com, 2 Oct 2020: \"Isaiah Talley and Sue Solomon were running unopposed\".",
+    "CEDA 2020: no Newhall Trustee Area 4 row.",
+    "District page: \"re-elected for a second term on November 3, 2020\" (the district's loose usage, the same as Hart's for Moore in 2018)."
+   ],
+   "correct": "Seated unopposed, December 2020 (no election held).",
+   "note": ""
+  },
+  {
+   "id": 28229,
+   "person": "Judy Umeck",
+   "body": "Saugus Union School District",
+   "seat": "",
+   "term": "1996 to 2018-12-11",
+   "selectionMethod": "appointed",
+   "howEnded": "expired",
+   "startEvidence": "retrospective",
+   "recordWording": "Press Release (Saugus Union SD), \"Longtime SUSD Governing Board Members Bid Farewell\", December 14, 2018, https://scvnews.com/longtime-susd-governing-board-members-bid-farewell: \"Umeck, who was a member of the Saugus Board since first being appointed to fill a vacancy in 1996\"",
+   "writtenBy": [
+    "create_office_gap_holdings.php"
+   ],
+   "created": "2026-10-03 11:53",
+   "updated": "2026-10-03 11:53",
+   "provenance": "create_office_gap_holdings.php, 3 October 2026",
+   "verdict": "WRONG (span)",
+   "checked": [
+    "SUSD release, 14 Dec 2018 (record fn 1): \"first being appointed to fill a vacancy in 1996\".",
+    "CEDA1997Data.xls row 1321: Saugus, 4 Nov 1997: Judy Umeck 1,350, elected, incumbent.",
+    "CEDA2005Data.xls row 1663: 8 Nov 2005: Judy Umeck 10,561, elected, incumbent.",
+    "CEDA2013Data.xlsx row 1402: 5 Nov 2013: Judy Egan Umeck 2,944, elected, incumbent.",
+    "CEDA2018Data.xlsx row 4921: 6 Nov 2018, Trustee Area 2: Umeck 3,198, not elected."
+   ],
+   "correct": "Split: appointed 1996 to December 1997; elected 1997, 2005 and 2013 (CEDA); 2001 and 2009 not in CEDA (how those terms were filled is not known). Ended: defeated November 2018.",
+   "note": "One \"appointed\" record covers 22 years and three elections she won with votes."
+  },
+  {
+   "id": 28938,
+   "person": "Cherise Moore",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "2017 to 2022-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "She stood in 2022 as the incumbent by an earlier appointment (her 2022 term's record), and was elected that November.",
+   "writtenBy": [
+    "record_hart_superintendents_and_board_2026_10_04.php"
+   ],
+   "created": "2026-10-04 01:07",
+   "updated": "2026-10-04 01:07",
+   "provenance": "record_hart_superintendents_and_board_2026_10_04.php, 4 October 2026: from the Hart district's own pages",
+   "verdict": "STANDS IN PART; SPAN",
+   "checked": [
+    "Hart district release, \"Hart District Votes To Appoint Hall's Replacement,\" SCVNews.com, 3 Feb 2017: \"voted 3-1 to appoint a new member to fill Robert Hall's remaining two years rather than initiate a costly election ... principal residence must be in Trustee Area 3\".",
+    "Hart district page (record fn 1): \"serving ... since 2017\".",
+    "County 2018 cancelled list (lavote.gov 11082018_final-list-cancelled-elections.pdf, fetched 5 Oct 2026): \"William S. Hart Union High School (Trustee Area 3)\". CEDA 2018 has no Hart Trustee Area 3 contest.",
+    "Hart district, \"Hart District Elected Members Sworn In,\" SCVNews.com, 13 Dec 2018: \"Joe Messina (third term), Bob Jensen (third term) and Dr. Cherise Moore (first full term) took their oath\". The release calls all three \"re-elected last month\", although Moore's contest was cancelled."
+   ],
+   "correct": "Split: appointed 2017 (vacancy, stands) to December 2018; December 2018 to December 2022 seated unopposed, Trustee Area 3 (no election held). Her 2022 term is elected (CEDA row 5279, 7,355 votes).",
+   "note": ""
+  },
+  {
+   "id": 28803,
+   "person": "William Dinsenbacher",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "1987-12-07 to 1997-12",
+   "selectionMethod": "appointed",
+   "howEnded": "expired",
+   "startEvidence": "roster",
+   "recordWording": "Leon Worden's roster of the Hart board lists William Dinsenbacher on the board of 12-7-1987 to 11-30-1988 as \"William S. Dinsenbacher (appointed 12-7-1987 to complete McKeon's unexpired term)\"; on the board of 12-5-1989 to 11-30-1990 as \"William S. Dinsenbacher, Clerk ([re]elected 1989)\"; on the board of 12-8-1993 t...",
+   "writtenBy": [
+    "create_hart_early_members.php"
+   ],
+   "created": "2026-10-03 13:35",
+   "updated": "2026-10-03 13:35",
+   "provenance": "create_hart_early_members.php, 3 October 2026: a tenure from Leon Worden's Hart board roster, hartschoolboardmembers.htm",
+   "verdict": "WRONG (span)",
+   "checked": [
+    "Hart roster: \"William S. Dinsenbacher (appointed 12-7-1987 to complete McKeon's unexpired term)\"; \"William S. Dinsenbacher, Clerk ([re]elected 1989)\"; \"William S. Dinsenbacher (reelected 1993)\"; \"(defeated 1997)\".",
+    "CEDA1997Data.xls row 1388: 4 Nov 1997, Dinsenbacher 3,661, not elected."
+   ],
+   "correct": "Split: appointed 7 Dec 1987 to December 1989; elected 1989 and 1993 (roster evidence; the returns, before CEDA, are not held).",
+   "note": ""
+  },
+  {
+   "id": 29635,
+   "person": "Laura Pearson",
+   "body": "Castaic Union School District",
+   "seat": "",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. The three incumbents, Victor M. Torres, Susan M. Christopher and Laura L. Pearson, were the only qualified candidates for the district's three at-large seats, so the election of 5 November 2013 was not held. The County lists the district amon...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28241 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/): \"Castaic Union\".",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/): \"*LAURA L. PEARSON\" (line 77).",
+    "Hometown Station, 13 Dec 2013: \"who were unopposed in this year's school board elections, were also sworn in\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29637,
+   "person": "Laura Pearson",
+   "body": "Castaic Union School District",
+   "seat": "Trustee Area B",
+   "term": "2018-12 to present",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "serving",
+   "startEvidence": "derived",
+   "recordWording": "Appointed as the sole candidate; no election held. The election of 6 November 2018 for the board's seats was not held. The County lists the board among its \"Appointment in lieu of election due to insufficiency of candidates\" (County of Los Angeles, Registrar-Recorder/County Clerk, \"General Election November 6, 2018,...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28241 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED (seat-level)",
+   "checked": [
+    "County 2018 cancelled list (lavote.gov 11082018_final-list-cancelled-elections.pdf, fetched 5 Oct 2026): \"Castaic Union School (Trustee Area B, D, E, and C [U/T ending 12/20])\".",
+    "County 2022 cancelled list (11082022_final-list-of-cancelled-elections.pdf): \"Castaic Union School (Trustee Area B and D)\".",
+    "SCVNews.com, 15 Jan 2021: \"Laura Pearson, representative for Trustee Area B\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the seat, not the person. The person is matched by continued service, which is inference."
+  },
+  {
+   "id": 28887,
+   "person": "Michael Owen Lambarth",
+   "body": "Castaic Union School District",
+   "seat": "",
+   "term": "2015-12 to 2016-09-01",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "resigned",
+   "startEvidence": "certified",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. Michael Owen Lambarth and Stacy Dobbs, neither of them an incumbent, were the only qualified candidates for the district's two at-large seats, so the election of 3 November 2015 was not held. The County lists the district among its \"Appointme...",
+   "writtenBy": [
+    "apply_cancelled_2013_2016.php"
+   ],
+   "created": "2026-10-04 00:15",
+   "updated": "2026-10-04 15:16",
+   "provenance": "apply_cancelled_2013_2016.php, 3 October 2026: a seat filled by appointment in lieu of election, on the County's list of cancelled elections (decision 6)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2015 cancelled list (11032015-CancelledElections.pdf): \"Castaic Union School District\".",
+    "County 2015 not-on-ballot list (11032015_CandidatesNotOnBallot.pdf): \"MICHAEL OWEN LAMBARTH\" (line 585).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 28885,
+   "person": "Stacy Dobbs",
+   "body": "Castaic Union School District",
+   "seat": "",
+   "term": "2015-12 to 2020",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "resigned",
+   "startEvidence": "certified",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. Stacy Dobbs and Michael Owen Lambarth, neither of them an incumbent, were the only qualified candidates for the district's two at-large seats, so the election of 3 November 2015 was not held. The County lists the district among its \"Appointme...",
+   "writtenBy": [
+    "apply_cancelled_2013_2016.php"
+   ],
+   "created": "2026-10-04 00:15",
+   "updated": "2026-10-04 15:16",
+   "provenance": "apply_cancelled_2013_2016.php, 3 October 2026: a seat filled by appointment in lieu of election, on the County's list of cancelled elections (decision 6)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2015 cancelled list (11032015-CancelledElections.pdf): \"Castaic Union School District\".",
+    "County 2015 not-on-ballot list (11032015_CandidatesNotOnBallot.pdf): \"STACY DOBBS\" (line 579).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29632,
+   "person": "Susan Christopher",
+   "body": "Castaic Union School District",
+   "seat": "",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "expired",
+   "startEvidence": "certified",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. The three incumbents, Victor M. Torres, Susan M. Christopher and Laura L. Pearson, were the only qualified candidates for the district's three at-large seats, so the election of 5 November 2013 was not held. The County lists the district amon...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28247 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/): \"Castaic Union\".",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/): \"*SUSAN M. CHRISTOPHER\" (line 71).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 28881,
+   "person": "Victor Torres",
+   "body": "Castaic Union School District",
+   "seat": "",
+   "term": "2013-12 to 2017-02-17",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "resigned",
+   "startEvidence": "certified",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. The three incumbents, Victor M. Torres, Susan M. Christopher and Laura L. Pearson, were the only qualified candidates for the district's three at-large seats, so the election of 5 November 2013 was not held. The County lists the district amon...",
+   "writtenBy": [
+    "apply_cancelled_2013_2016.php"
+   ],
+   "created": "2026-10-04 00:15",
+   "updated": "2026-10-04 15:16",
+   "provenance": "apply_cancelled_2013_2016.php, 3 October 2026: a seat filled by appointment in lieu of election, on the County's list of cancelled elections (decision 6)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/): \"Castaic Union\".",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/): \"*VICTOR M. TORRES\" (line 83).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29651,
+   "person": "Brian Walters",
+   "body": "Newhall School District",
+   "seat": "Trustee Area 1",
+   "term": "2018-12 to 2022-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "expired",
+   "startEvidence": "contemporary",
+   "recordWording": "Appointed as the sole candidate; no election held. Brian Walters was the only candidate for Trustee Area 1, so the election of 6 November 2018 for the seat was not held: \"In the Newhall School District, Brian Walters and Isaiah Talley will claim their seats in the wake of no opposition\" (The Signal, \"Few challengers...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28264 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2018 cancelled list (lavote.gov 11082018_final-list-cancelled-elections.pdf, fetched 5 Oct 2026): \"Newhall School (Trustee Areas 1, 3, and 4 [U/T ending 12/20])\".",
+    "The Signal, 13 Aug 2018: \"Brian Walters and Isaiah Talley will claim their seats in the wake of no opposition\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29648,
+   "person": "Michael Shapiro",
+   "body": "Newhall School District",
+   "seat": "Trustee Area 4",
+   "term": "2015-12 to 2016-08-01",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "resigned",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. Michael R. Shapiro, the incumbent, was the only qualified candidate for Trustee Area 4, so the election of 3 November 2015 for the seat was not held. The County lists the seat among its \"Appointment in lieu of election due to insufficiency of candidates\" (County of ...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28249 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2015 cancelled list (11032015-CancelledElections.pdf): \"Newhall School District (Trustee Area # 4 and 5)\".",
+    "County 2015 not-on-ballot list (11032015_CandidatesNotOnBallot.pdf): \"*MICHAEL R. SHAPIRO\" (line 740).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29640,
+   "person": "Suzan Solomon",
+   "body": "Newhall School District",
+   "seat": "Trustee Area 5",
+   "term": "2015-12 to 2024-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. Sue Solomon, the incumbent, was the only qualified candidate for Trustee Area 5, so the election of 3 November 2015 for the seat was not held. The County lists the seat among its \"Appointment in lieu of election due to insufficiency of candidates\" (County of Los Ang...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28239 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2015 cancelled list (11032015-CancelledElections.pdf): \"Newhall School District (Trustee Area # 4 and 5)\".",
+    "County 2015 not-on-ballot list (11032015_CandidatesNotOnBallot.pdf): \"*SUE SOLOMON\" (line 763).",
+    "County 2020 cancelled list (11032020_cancelled-elections.pdf): \"Newhall Elementary (Trustee Area 4 and 5)\".",
+    "SCVNews.com, 2 Oct 2020: \"Isaiah Talley and Sue Solomon were running unopposed\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 30407,
+   "person": "Charles L. Lyon",
+   "body": "Santa Clarita Community College District",
+   "seat": "Trustee Area 1",
+   "term": "2022-12 to 2024-06-27",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "resigned",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. The County lists \"Santa Clarita Community College (Trustee Area 1 and 5)\" among its cancelled elections (County of Los Angeles, Registrar-Recorder/County Clerk, \"General Election November 8, 2022, Final List of Cancelled Elections: Appointment in Lieu of Election Du...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2022 cancelled list (11082022_final-list-of-cancelled-elections.pdf): \"Santa Clarita Community College (Trustee Area 1 and 5)\".",
+    "COC release, 22 Dec 2022: \"Chuck Lyon, who ran unopposed during the general election in November\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 30363,
+   "person": "Joan W. MacGregor",
+   "body": "Santa Clarita Community College District",
+   "seat": "Seat No. 3",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. The County lists the college district among its cancelled elections: \"Santa Clarita Community College (Seat # 1, 3 and 5 U/T ending 12/03/2015)\" (County of Los Angeles, Registrar-Recorder/County Clerk, \"Local and Municipal Consolidated Elections, November 5, 2013, F...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/): \"Santa Clarita Community College (Seat # 1, 3 and 5 U/T ending 12/03/2015)\".",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/): \"*JOAN WHALING MAC GREGOR\" (line 769).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 30367,
+   "person": "Joan W. MacGregor",
+   "body": "Santa Clarita Community College District",
+   "seat": "Trustee Area 5",
+   "term": "2022-12 to 2024-08-05",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "resigned",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. The County lists \"Santa Clarita Community College (Trustee Area 1 and 5)\" among its cancelled elections (County of Los Angeles, Registrar-Recorder/County Clerk, \"General Election November 8, 2022, Final List of Cancelled Elections: Appointment in Lieu of Election Du...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2022 cancelled list (11082022_final-list-of-cancelled-elections.pdf): as above.",
+    "COC release, 22 Dec 2022: MacGregor \"ran unopposed in November and was sworn in\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 30389,
+   "person": "Michael D. Berger",
+   "body": "Santa Clarita Community College District",
+   "seat": "Seat No. 1, later Trustee Area 1",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. The County lists the college district among its cancelled elections: \"Santa Clarita Community College (Seat # 1, 3 and 5 U/T ending 12/03/2015)\" (County of Los Angeles, Registrar-Recorder/County Clerk, \"Local and Municipal Consolidated Elections, November 5, 2013, F...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/): as above.",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/): \"*MICHAEL D. BERGER\" (line 755).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 30391,
+   "person": "Michael D. Berger",
+   "body": "Santa Clarita Community College District",
+   "seat": "Trustee Area 1",
+   "term": "2018-12 to 2022-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "expired",
+   "startEvidence": "derived",
+   "recordWording": "The County lists \"Santa Clarita Community College (Trustee Area 1)\" among its cancelled elections of November 6, 2018 (County of Los Angeles, Registrar-Recorder/County Clerk, \"General Election November 6, 2018, Final List of Cancelled Elections: Appointment in Lieu of Election Due to Insufficiency of Candidates\", ht...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "SEATED, NOT APPOINTED (seat-level)",
+   "checked": [
+    "County 2018 cancelled list (lavote.gov 11082018_final-list-cancelled-elections.pdf, fetched 5 Oct 2026): \"Santa Clarita Community College (Trustee Area 1)\".",
+    "COC history: Berger listed to 2021-2022. The record's own editor note: \"That Berger was the nominee is read from his continued service\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the seat, not the person. The person is matched by continued service, which is inference."
+  },
+  {
+   "id": 30395,
+   "person": "Steven D. Zimmer",
+   "body": "Santa Clarita Community College District",
+   "seat": "Seat No. 5 (unexpired term)",
+   "term": "2013-12 to 2016-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. The County lists the college district among its cancelled elections: \"Santa Clarita Community College (Seat # 1, 3 and 5 U/T ending 12/03/2015)\" (County of Los Angeles, Registrar-Recorder/County Clerk, \"Local and Municipal Consolidated Elections, November 5, 2013, F...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/): as above.",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/): \"*STEVEN D. ZIMMER\" (line 788), \"Appointed Board Member\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 30397,
+   "person": "Steven D. Zimmer",
+   "body": "Santa Clarita Community College District",
+   "seat": "Trustee Area 3",
+   "term": "2016-12 to 2020-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "expired",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. County of Los Angeles, Registrar-Recorder/County Clerk, \"General Election November 8, 2016, Final List of Cancelled Elections: Appointment in Lieu of Election Due to Insufficiency of Candidates\", https://www.lavote.gov/Documents/Election_Info/11082016-Cancelled-Elec...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County Nov 2016 cancelled list (11082016-Cancelled-Elections.pdf): \"Santa Clarita Community College District (Trustee Area 3)\".",
+    "County Nov 2016 not-on-ballot list (11082016-final-list-qualified-candidates...pdf): \"*STEVEN D. ZIMMER\" (line 31).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29654,
+   "person": "Christopher Trunkey",
+   "body": "Saugus Union School District",
+   "seat": "Trustee Area 5",
+   "term": "2016-12 to 2018-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. Chris Trunkey, the appointed incumbent, was the only qualified candidate for the Trustee Area 5 term ending in December 2018, so the election of 8 November 2016 for the seat was not held. The County lists the seat among its \"Appointment in lieu of election due to in...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28205 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County Nov 2016 cancelled list (11082016-Cancelled-Elections.pdf): \"Saugus Union School District (Trustee Areas 4 and 5 U/T ending 12/18)\".",
+    "County Nov 2016 not-on-ballot list (11082016-final-list-qualified-candidates...pdf): \"*CHRIS TRUNKEY\" (line 92).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 28889,
+   "person": "David Powell",
+   "body": "Saugus Union School District",
+   "seat": "Trustee Area 4",
+   "term": "2016-12 to 2020-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "expired",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. David C. Powell, the appointed incumbent, was the only qualified candidate for Trustee Area 4, so the election of 8 November 2016 for the seat was not held. The County lists the seat among its \"Appointment in lieu of election due to insufficiency of candidates\" (Cou...",
+   "writtenBy": [
+    "apply_cancelled_2013_2016.php"
+   ],
+   "created": "2026-10-04 00:15",
+   "updated": "2026-10-04 15:16",
+   "provenance": "apply_cancelled_2013_2016.php, 3 October 2026: a seat filled by appointment in lieu of election, on the County's list of cancelled elections (decision 6)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County Nov 2016 cancelled list (11082016-Cancelled-Elections.pdf): as above.",
+    "County Nov 2016 not-on-ballot list (11082016-final-list-qualified-candidates...pdf): \"*DAVID C. POWELL\" (line 76).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 28489,
+   "person": "Matthew Watson",
+   "body": "Saugus Union School District",
+   "seat": "Trustee Area 4",
+   "term": "2024-12 to 2028-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "serving",
+   "startEvidence": "derived",
+   "recordWording": "Appointed as the sole candidate; no election held. Matthew Watson, the incumbent, was the only candidate for Trustee Area 4, so the election of 5 November 2024 for the seat was not held: \"incumbents Patti Garibay and Matt Watson, the current board president, are looking to once again represent areas 1 and 4, respect...",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:59",
+   "updated": "2026-10-04 15:16",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a seat filled without a vote, inferred (decision 5)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2024 cancelled list (cancelled-elections-november-2024.pdf): \"Saugus Union School (Trustee Area 4 and 1 U/T ending 12/26)\".",
+    "The Signal, 31 Oct 2024: \"incumbents Patti Garibay and Matt Watson ... are looking to once again represent areas 1 and 4\", in \"uncontested races\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29664,
+   "person": "Patti Garibay",
+   "body": "Saugus Union School District",
+   "seat": "Trustee Area 1",
+   "term": "2024-12 to 2026-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "serving",
+   "startEvidence": "contemporary",
+   "recordWording": "Appointed as the sole candidate; no election held. Patti Garibay, the incumbent, was the only candidate for the rest of the Trustee Area 1 term, to December 2026, so the election of 5 November 2024 for it was not held: \"incumbents Patti Garibay and Matt Watson, the current board president, are looking to once again ...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #29014 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2024 cancelled list (cancelled-elections-november-2024.pdf): as above.",
+    "The Signal, 31 Oct 2024: as above.",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 28883,
+   "person": "Denis DeFigueiredo",
+   "body": "Sulphur Springs Union School District",
+   "seat": "Trustee Area 2",
+   "term": "2015-12 to 2020-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. Denis F. DeFigueiredo, the incumbent, was the only qualified candidate for Trustee Area 2, so the election of 3 November 2015 for the seat was not held. The County lists the seat among its \"Appointment in lieu of election due to insufficiency of candidates\" (County ...",
+   "writtenBy": [
+    "apply_cancelled_2013_2016.php"
+   ],
+   "created": "2026-10-04 00:15",
+   "updated": "2026-10-04 15:16",
+   "provenance": "apply_cancelled_2013_2016.php, 3 October 2026: a seat filled by appointment in lieu of election, on the County's list of cancelled elections (decision 6)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2015 cancelled list (11032015-CancelledElections.pdf): \"Sulphur Springs Union School (Trustee Area # 1 and 2)\".",
+    "County 2015 not-on-ballot list (11032015_CandidatesNotOnBallot.pdf): \"*DENIS F. DEFIGUEIREDO\" (line 836).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29024,
+   "person": "Denis DeFigueiredo",
+   "body": "Sulphur Springs Union School District",
+   "seat": "Trustee Area 2",
+   "term": "2020-12 to present",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "serving",
+   "startEvidence": "derived",
+   "recordWording": "Appointed as the sole candidate; no election held. The election of 3 November 2020 for Trustee Area 2 was not held. The County lists the seat among its \"Appointment in lieu of election due to insufficiency of candidates\" (County of Los Angeles, Registrar-Recorder/County Clerk, \"General Election November 3, 2020, Fin...",
+   "writtenBy": [
+    "record_district_boards_2026_10_04.php"
+   ],
+   "created": "2026-10-04 07:08",
+   "updated": "2026-10-04 15:16",
+   "provenance": "record_district_boards_2026_10_04.php, 4 October 2026: from the body's own website",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2020 cancelled list (11032020_cancelled-elections.pdf): \"Sulphur Springs Union Elementary (Trustee Area 1, 2, and 3 U/T ending 12/22)\".",
+    "SCVNews.com, 2 Oct 2020: \"Shelley Weinstein (Area No. 1); Denis DeFigueiredo (Area No. 2); and Paola Jellings (Area No. 3) all are expected to remain on the board\".",
+    "County 2024 cancelled list (cancelled-elections-november-2024.pdf): \"Sulphur Springs Union School (Trustee Area 1 and 2)\".",
+    "The Signal, 31 Oct 2024: \"Both seats ... are uncontested\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 29026,
+   "person": "Lori MacDonald",
+   "body": "Sulphur Springs Union School District",
+   "seat": "Trustee Area 5",
+   "term": "2018-12 to present",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "serving",
+   "startEvidence": "derived",
+   "recordWording": "Appointed as the sole candidate; no election held. Her at-large term of 2013 ran to December 2018, and the election of 6 November 2018 for the board's seats was not held. The County lists the board among its \"Appointment in lieu of election due to insufficiency of candidates\" (County of Los Angeles, Registrar-Record...",
+   "writtenBy": [
+    "record_district_boards_2026_10_04.php"
+   ],
+   "created": "2026-10-04 07:08",
+   "updated": "2026-10-04 15:16",
+   "provenance": "record_district_boards_2026_10_04.php, 4 October 2026: from the body's own website",
+   "verdict": "SEATED, NOT APPOINTED (seat-level)",
+   "checked": [
+    "County 2018 cancelled list (lavote.gov 11082018_final-list-cancelled-elections.pdf, fetched 5 Oct 2026): \"Sulphur Springs Union School (Trustee Areas 3, 4, and 5)\".",
+    "County 2022 cancelled list (11082022_final-list-of-cancelled-elections.pdf): \"Sulphur Springs School (Trustee Area 3, 4, and 5)\".",
+    "District page: \"since 2012\" (CEDA 2013 row 1417: Lori Macdonald, \"Appointed Incumbent\", elected 2013).",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the seat, not the person. The person is matched by continued service, which is inference."
+  },
+  {
+   "id": 29645,
+   "person": "Shelley Weinstein",
+   "body": "Sulphur Springs Union School District",
+   "seat": "Trustee Area 1",
+   "term": "2015-12 to present",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "serving",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. Rochelle \"Shelley\" Weinstein, the incumbent, was the only qualified candidate for Trustee Area 1, so the election of 3 November 2015 for the seat was not held. The County lists the seat among its \"Appointment in lieu of election due to insufficiency of candidates\" (...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28243 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2015 cancelled list (11032015-CancelledElections.pdf): \"Sulphur Springs Union School (Trustee Area # 1 and 2)\".",
+    "County 2015 not-on-ballot list (11032015_CandidatesNotOnBallot.pdf): \"*ROCHELLE \\\"SHELLEY\\\" WEINSTEIN\" (line 820).",
+    "County 2020 cancelled list (11032020_cancelled-elections.pdf): \"Sulphur Springs Union Elementary (Trustee Area 1, 2, and 3 U/T ending 12/22)\".",
+    "County 2024 cancelled list (cancelled-elections-november-2024.pdf): \"Sulphur Springs Union School (Trustee Area 1 and 2)\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 28580,
+   "person": "Bob Jensen",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. Bob Jensen and Joe Messina, the incumbents, and Chris A. Fall, an appointed incumbent, were the only qualified candidates for the district's three at-large seats, so the election of 5 November 2013 was not held. The County lists the district ...",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 13:20",
+   "updated": "2026-10-04 15:16",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a seat filled without a vote, inferred (decision 5)",
+   "verdict": "SEATED, NOT APPOINTED",
+   "checked": [
+    "County 2013 cancelled list (11052013_canc_elec.pdf, inventory/elections/county/): \"William S. Hart Union High\".",
+    "County 2013 not-on-ballot list (11052013_final_list_of_qualified_candidates..., inventory/elections/county/): \"*BOB JENSEN\" (line 995).",
+    "Hart roster: \"Robert N. Jensen Jr., Clerk {relected/unopposed 2013)\".",
+    "Education Code 5328 (leginfo, read 5 Oct 2026): \"If pursuant to Section 5326 a district election is not held, the qualified person or persons nominated shall be seated at the organizational meeting of the board, or if no person has been nominated or if an insufficient number is nominated, the governing board shall appoint a qualified person or persons ... and such appointee or appointees shall be seated at the organizational meeting of the board as if elected at a district election.\""
+   ],
+   "correct": "Keep that no election was held. Replace \"appointed\" in selectionMethod label and footnote: the nominee was seated without an election (Education Code 5328). Recommended value: a school-board option such as \"seated-unopposed\", labelled \"Seated without an election as the only nominee\"; evidence certified where the County names the person, derived where it names only the seat.",
+   "note": "The County names the person (or a contemporary report does): no election was held. No source shows an appointment."
+  },
+  {
+   "id": 28531,
+   "person": "Nora Emmons",
+   "body": "Castaic Union School District",
+   "seat": "",
+   "term": "1997-12 to 2001-12",
+   "selectionMethod": "elected",
+   "howEnded": "reelected",
+   "startEvidence": "roster",
+   "recordWording": "Nora Emmons stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:59",
+   "updated": "2026-10-03 12:59",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "UNSUPPORTED (inferred earlier appointment)",
+   "checked": [
+    "CEDA1997Data.xls row 1117: \"Incumbent\"; she is not in the 1995 Castaic contest; elections before 1995 are not in CEDA."
+   ],
+   "correct": "Replace \"an earlier appointment to the board\" with \"how Nora Emmons first joined the board is not known\".",
+   "note": "derive_board_holdings.php read CEDA's incumbent flag, with no earlier holding on record, as an appointment. An earlier term filled at an election missing from CEDA, or unopposed, fits as well."
+  },
+  {
+   "id": 28469,
+   "person": "Steven Tannehill",
+   "body": "Newhall School District",
+   "seat": "",
+   "term": "2005-12 to 2009-12",
+   "selectionMethod": "elected",
+   "howEnded": "expired",
+   "startEvidence": "roster",
+   "recordWording": "Steven Tannehill stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:58",
+   "updated": "2026-10-03 12:58",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "UNSUPPORTED (inferred earlier appointment)",
+   "checked": [
+    "CEDA2005Data.xls row 1620: \"School Board Trustee\", incumbent; no Newhall contest in CEDA 2001."
+   ],
+   "correct": "Replace \"an earlier appointment to the board\" with \"how Steven Tannehill first joined the board is not known\".",
+   "note": "derive_board_holdings.php read CEDA's incumbent flag, with no earlier holding on record, as an appointment. An earlier term filled at an election missing from CEDA, or unopposed, fits as well."
+  },
+  {
+   "id": 30381,
+   "person": "Scott Thomas Wilk Sr.",
+   "body": "Santa Clarita Community College District",
+   "seat": "Seat No. 5",
+   "term": "2006-08-23 to 2007-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "uncited",
+   "recordWording": "",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "UNSUPPORTED",
+   "checked": [
+    "No source held. The record's editor note: \"the date of August 23, 2006 is unsourced.\"",
+    "CEDA 2007: no Santa Clarita Community College rows (the 2007 contest is absent).",
+    "Wikipedia, \"Scott Wilk,\" read 5 Oct 2026: \"appointed to the Santa Clarita College District Board of Trustees on August 23, 2006\". This is an unsourced lead from Wikipedia, not evidence."
+   ],
+   "correct": "Keep appointed only with a primary source (COC board minutes of August 2006, or a Signal report). Until then mark it NEEDS_VERIFICATION.",
+   "note": "Leads: COC board minutes, August 2006."
+  },
+  {
+   "id": 28481,
+   "person": "Julie Olsen",
+   "body": "Saugus Union School District",
+   "seat": "Trustee Area 3",
+   "term": "2016-12 to 2020-08-16",
+   "selectionMethod": "elected",
+   "howEnded": "resigned",
+   "startEvidence": "roster",
+   "recordWording": "Julie Olsen stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:59",
+   "updated": "2026-10-04 08:29",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "UNSUPPORTED (inferred earlier appointment)",
+   "checked": [
+    "CEDA2016Data.xlsx row 3812: \"Learning Development Executive\", incumbent; no earlier Olsen row."
+   ],
+   "correct": "Replace \"an earlier appointment to the board\" with \"how Julie Olsen first joined the board is not known\".",
+   "note": "derive_board_holdings.php read CEDA's incumbent flag, with no earlier holding on record, as an appointment. An earlier term filled at an election missing from CEDA, or unopposed, fits as well."
+  },
+  {
+   "id": 28497,
+   "person": "Denis DeFigueiredo",
+   "body": "Sulphur Springs Union School District",
+   "seat": "",
+   "term": "2007-12 to 2011-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "derived",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. No contest for the seat is recorded at the election of 6 November 2007, so it is taken to have been filled without one; the County's list of the elections it cancelled that year is not held, so this rests on the missing contest alone. Under E...",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:59",
+   "updated": "2026-10-04 15:16",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a seat filled without a vote, inferred (decision 5)",
+   "verdict": "UNSUPPORTED",
+   "checked": [
+    "CEDA, raw files 2005, 2007, 2009: no Sulphur Springs contest in any of the three years (2003 and 2011 are present). The County's 2007 cancelled list is not held.",
+    "Record fn 1 itself: \"this rests on the missing contest alone.\""
+   ],
+   "correct": "selectionMethod empty (unknown), or keep the term with a NEEDS_VERIFICATION note until the County's November 2007 list or the district's minutes are found.",
+   "note": "The claim reads CEDA's lack of a record as a cancellation. CEDA lacks the district for three cycles in a row, so a gap in the file is as likely."
+  },
+  {
+   "id": 28511,
+   "person": "Sheldon Wigdor",
+   "body": "Sulphur Springs Union School District",
+   "seat": "",
+   "term": "2001-12 to 2005-12",
+   "selectionMethod": "elected",
+   "howEnded": "unknown",
+   "startEvidence": "roster",
+   "recordWording": "Sheldon Wigdor stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:59",
+   "updated": "2026-10-03 12:59",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "UNSUPPORTED (inferred earlier appointment)",
+   "checked": [
+    "CEDA2001Data.xls row 1475: \"Incumbent\"; no Sulphur Springs contest in CEDA 1997."
+   ],
+   "correct": "Replace \"an earlier appointment to the board\" with \"how Sheldon Wigdor first joined the board is not known\".",
+   "note": "derive_board_holdings.php read CEDA's incumbent flag, with no earlier holding on record, as an appointment. An earlier term filled at an election missing from CEDA, or unopposed, fits as well."
+  },
+  {
+   "id": 28529,
+   "person": "Mayreen Burk",
+   "body": "Castaic Union School District",
+   "seat": "Trustee Area E",
+   "term": "2022-12 to 2026-12",
+   "selectionMethod": "elected",
+   "howEnded": "serving",
+   "startEvidence": "roster",
+   "recordWording": "Mayreen Burk stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:59",
+   "updated": "2026-10-03 12:59",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "STANDS (earlier appointment)",
+   "checked": [
+    "SCVNews.com, 1 Mar 2017 (in #28881 fn 6): \"made a provisional appointment, appointing Mayreen Burk to fill the vacancy\"."
+   ],
+   "correct": "Cite the 2017 provisional appointment in place of \"whose date is not recorded here\".",
+   "note": ""
+  },
+  {
+   "id": 29659,
+   "person": "Lynne Plambeck",
+   "body": "Newhall County Water District",
+   "seat": "",
+   "term": "2011 to 2015",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "reelected",
+   "startEvidence": "contemporary",
+   "recordWording": "Appointed without an election; the candidates did not outnumber the seats. Lynne Plambeck and Daniel Mortensen, the incumbents, were the only candidates for the board's two seats due for election on 8 November 2011, so no election was held, and on 15 November 2011 the Los Angeles County Board of Supervisors \"certifi...",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-04 15:16",
+   "updated": "2026-10-04 15:16",
+   "provenance": "fix_sole_candidate_terms_2026_10_04.php, 4 October 2026: split from #28217 at the in-lieu term (Nathan's decision of 4 October 2026)",
+   "verdict": "STANDS",
+   "checked": [
+    "Leon Worden, SCVNews.com, 16 Nov 2011 (record fn 1): the Board of Supervisors \"certified the 'appointment in lieu of election' of Plambeck and Mortensen to another term\".",
+    "Elections Code 10515(a) (leginfo, read 5 Oct 2026): the supervising authority shall \"appoint to the office or offices the person or persons, if any, who have filed declarations of candidacy. The supervising authority shall make these appointments.\""
+   ],
+   "correct": "No change.",
+   "note": "A special district: under Elections Code 10515 the nominee really is appointed."
+  },
+  {
+   "id": 30411,
+   "person": "Carlos R. Guerrero",
+   "body": "Santa Clarita Community College District",
+   "seat": "Trustee Area 5",
+   "term": "2024-09-18 to present",
+   "selectionMethod": "appointed",
+   "howEnded": "serving",
+   "startEvidence": "contemporary",
+   "recordWording": "College of the Canyons, \"Sept. 18: COC Board to Interview, Appoint Area 5 Trustee,\" SCVNews.com, September 16, 2024, https://scvnews.com/sept-18-coc-board-to-interview-appoint-area-5-trustee/: \"The board will make a provisional appointment to the seat.\"",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "STANDS",
+   "checked": [
+    "College of the Canyons release NR-09-19-24-BOT (record fn 2): \"The Santa Clarita Community College District Board of Trustees appointed Carlos Guerrero to fill Board Seat No. 5, effective immediately, at its September 18 meeting\"."
+   ],
+   "correct": "No change.",
+   "note": "Vacancy appointment."
+  },
+  {
+   "id": 30409,
+   "person": "Jerry K. Danielsen",
+   "body": "Santa Clarita Community College District",
+   "seat": "Trustee Area 4",
+   "term": "2023-03-22 to 2024-12",
+   "selectionMethod": "appointed",
+   "howEnded": "expired",
+   "startEvidence": "contemporary",
+   "recordWording": "College of the Canyons, \"Trustees Appoint Danielsen to Board,\" news release NR-03-28-23-board, March 28, 2023, https://www.canyons.edu/administration/pio/newsroom/2023-03-28-board.php: \"The Santa Clarita Community College District Board of Trustees appointed Jerry Danielsen to fill Board Seat No. 4, effective immedi...",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "STANDS",
+   "checked": [
+    "College of the Canyons release NR-03-28-23-board (record fn 1): \"The Santa Clarita Community College District Board of Trustees appointed Jerry Danielsen to fill Board Seat No. 4, effective immediately, at its March 22 meeting.\"",
+    "CEDA2024Data.xlsx row 2162: designation \"Appointed Incumben[t]\"."
+   ],
+   "correct": "No change.",
+   "note": "Vacancy appointment."
+  },
+  {
+   "id": 30349,
+   "person": "John D. Hoskinson",
+   "body": "Santa Clarita Community College District",
+   "seat": "Seat No. 1",
+   "term": "? to 1997-12",
+   "selectionMethod": "appointed",
+   "howEnded": "expired",
+   "startEvidence": "contemporary",
+   "recordWording": "His ballot designation in 1997 was \"Appointed Incumbent\" (California Elections Data Archive (CEDA), Center for California Studies and Institute for Social Research, California State University, Sacramento, candidate file CEDA1997Data.xls, row 1411).",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "STANDS (weak)",
+   "checked": [
+    "CEDA1997Data.xls row 1411: Santa Clarita Community College, Seat 1, 4 Nov 1997: John D. Hoskinson, designation \"Appointed Incumbent\", 1,590 votes, not elected."
+   ],
+   "correct": "No change; keep the editor note that the ballot designation is the only source.",
+   "note": "The candidate's own ballot designation, accepted by the County. No date or board action."
+  },
+  {
+   "id": 30393,
+   "person": "Steven D. Zimmer",
+   "body": "Santa Clarita Community College District",
+   "seat": "Seat No. 5 (the rest of Scott Wilk's term)",
+   "term": "2013-01-14 to 2013-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "retrospective",
+   "recordWording": "Leon Worden, \"Steven D. Zimmer,\" LW2428, SCVHistory.com, /scvhistory/lw2428.htm: \"On Jan. 14, 2013, he was appointed to the Santa Clarita Community College District (COC) Board of Trustees to succeed Scott Wilk.\"",
+   "writtenBy": [
+    "create_coc_trustee_terms_2026_10_05.php"
+   ],
+   "created": "2026-10-05 11:28",
+   "updated": "2026-10-05 11:28",
+   "provenance": "create_coc_trustee_terms_2026_10_05.php, 5 October 2026",
+   "verdict": "STANDS",
+   "checked": [
+    "Leon Worden, LW2428 (record fn 1): \"On Jan. 14, 2013, he was appointed to the Santa Clarita Community College District (COC) Board of Trustees to succeed Scott Wilk\".",
+    "N13: \"*STEVEN D. ZIMMER ... Appointed Board Member\"."
+   ],
+   "correct": "No change.",
+   "note": "Vacancy appointment."
+  },
+  {
+   "id": 28435,
+   "person": "Kenneth Petersen",
+   "body": "Santa Clarita Valley Water",
+   "seat": "Division 3",
+   "term": "2022-09 to 2025-01",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "roster",
+   "recordWording": "The agency's list of directors gives Kenneth J. Petersen, Division 3, as appointed in September 2022 (Santa Clarita Valley Water Agency, \"Board of Directors\", https://www.yourscvwater.com/governance/board-directors, read 30 September 2026). Which director's seat he filled is not recorded.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:58",
+   "updated": "2026-10-03 12:58",
+   "provenance": "derive_board_holdings.php, 3 October 2026: appointment on the agency's list (decision 10)",
+   "verdict": "STANDS",
+   "checked": [
+    "SCV Water, \"Board of Directors,\" read 30 Sep 2026 (record fn 1): appointed September 2022, Division 3.",
+    "#28415 fn 4: Atkins resigned effective 20 July 2022; \"The board appointed Ken Petersen to the seat on 29 August 2022\" (that sentence carries no citation)."
+   ],
+   "correct": "No change; cite the board action of 29 Aug 2022 when found.",
+   "note": "Vacancy appointment."
+  },
+  {
+   "id": 28205,
+   "person": "Christopher Trunkey",
+   "body": "Saugus Union School District",
+   "seat": "",
+   "term": "2014-11-18 to 2016-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "contemporary",
+   "recordWording": "Saugus Union School District, \"Governing Board,\" https://www.saugususd.org/governing-board, read 3 October 2026: \"appointed to the SUSD Board of Trustees in November 2014 and reelected in 2016, 2018, and 2022.\" The district's own biography of him.",
+   "writtenBy": [
+    "build_trunkey_profile.php",
+    "fix_sole_candidate_terms_2026_10_04.php"
+   ],
+   "created": "2026-10-03 11:01",
+   "updated": "2026-10-04 15:16",
+   "provenance": "build_trunkey_profile.php, 3 October 2026; split at the in-lieu term by fix_sole_candidate_terms_2026_10_04.php, 4 October 2026",
+   "verdict": "STANDS",
+   "checked": [
+    "KHTS, 19 Nov 2014 (record fn 1): \"named Chris Trunkey as the newest member of their governing board Tuesday, filling a seat left vacant by Doug Bryce's departure\"."
+   ],
+   "correct": "No change.",
+   "note": "Vacancy appointment."
+  },
+  {
+   "id": 29014,
+   "person": "Patti Garibay",
+   "body": "Saugus Union School District",
+   "seat": "Trustee Area 1",
+   "term": "2023 to 2024-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "certified",
+   "recordWording": "Saugus Union School District, \"Governing Board,\" https://www.saugususd.org/governing-board, read 4 October 2026: \"Patti Garibay was appointed to the Saugus Union School District Board of Trustees in 2023.\"",
+   "writtenBy": [
+    "fix_sole_candidate_terms_2026_10_04.php",
+    "record_district_boards_2026_10_04.php"
+   ],
+   "created": "2026-10-04 07:08",
+   "updated": "2026-10-04 15:16",
+   "provenance": "record_district_boards_2026_10_04.php, 4 October 2026: from the body's own website; split at the in-lieu term by fix_sole_candidate_terms_2026_10_04.php, 4 October 2026",
+   "verdict": "STANDS",
+   "checked": [
+    "Saugus Union SD, \"Governing Board,\" read 4 Oct 2026 (record fn 1): \"Patti Garibay was appointed to the Saugus Union School District Board of Trustees in 2023.\""
+   ],
+   "correct": "No change.",
+   "note": "Vacancy appointment after Love resigned."
+  },
+  {
+   "id": 28509,
+   "person": "Michael Hogan",
+   "body": "Sulphur Springs Union School District",
+   "seat": "",
+   "term": "2001-12 to 2005-12",
+   "selectionMethod": "elected",
+   "howEnded": "reelected",
+   "startEvidence": "roster",
+   "recordWording": "Michael Hogan stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 12:59",
+   "updated": "2026-10-04 08:29",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "STANDS (earlier appointment)",
+   "checked": [
+    "CEDA2001Data.xls row 1473: Michael P. Hogan, designation \"Appointed Incumbent\"."
+   ],
+   "correct": "Cite the designation.",
+   "note": ""
+  },
+  {
+   "id": 23317,
+   "person": "Bill Miranda",
+   "body": "The City of Santa Clarita",
+   "seat": "",
+   "term": "2017 to 2018-12",
+   "selectionMethod": "appointed",
+   "howEnded": "expired",
+   "startEvidence": "roster",
+   "recordWording": "Appointed. The roster gives Bill Miranda \"2017—\"; he won no election before November 2018, and the vacancy is the seat Dante Acosta left in 2016 for the State Assembly. He was elected to a full term on November 6, 2018. Leon Worden, \"Santa Clarita City Council 1987—\", the council ledger on SCVHistory.com, carried on...",
+   "writtenBy": [
+    "council_winners_and_terms.php"
+   ],
+   "created": "2026-09-29 12:29",
+   "updated": "2026-09-29 12:29",
+   "provenance": "council_winners_and_terms.php, 29 September 2026",
+   "verdict": "STANDS (better source available)",
+   "checked": [
+    "CEDA2018Data.xlsx row 2110: Santa Clarita City Council, 6 Nov 2018: Bill Miranda, designation \"Appointed Councilman/Business owner\", incumbent, 18,885, elected.",
+    "Leon Worden council ledger (lw3149.htm, legacy mirror): \"Bill Miranda 2017—\"."
+   ],
+   "correct": "No change to method; add the CEDA designation, and the council's January 2017 action when found. The record now rests on inference from the ledger.",
+   "note": ""
+  },
+  {
+   "id": 27410,
+   "person": "Jason Gibbs",
+   "body": "The City of Santa Clarita",
+   "seat": "District 3",
+   "term": "2024-12 to 2028-12",
+   "selectionMethod": "sole-candidate",
+   "howEnded": "serving",
+   "startEvidence": "certified",
+   "recordWording": "Appointed as the sole candidate; no election held. Jason Gibbs was the only qualified candidate for District 3 at the close of nominations on 9 August 2024, so the election of 5 November 2024 for the seat was not held (City Clerk, City of Santa Clarita, \"Notice That There Are Not More Candidates Than Offices To Be E...",
+   "writtenBy": [
+    "fix_gibbs_current_term.php"
+   ],
+   "created": "2026-10-01 20:56",
+   "updated": "2026-10-04 15:18",
+   "provenance": "fix_gibbs_current_term.php, 2 October 2026",
+   "verdict": "STANDS",
+   "checked": [
+    "City Clerk, \"Notice That There Are Not More Candidates Than Offices To Be Elected,\" 9 Aug 2024 (record fn 2).",
+    "The Signal, \"Council names Gibbs to District 3 seat,\" Aug 2024; Elections Code 10229(a)(1): the council may \"Appoint to the office the person who has been nominated.\"",
+    "County 2024 cancelled list (cancelled-elections-november-2024.pdf): \"Santa Clarita (Council District 3)\"."
+   ],
+   "correct": "No change.",
+   "note": "A city: the council appointed him by vote."
+  },
+  {
+   "id": 23403,
+   "person": "TimBen Boydston",
+   "body": "The City of Santa Clarita",
+   "seat": "",
+   "term": "2006 to 2008-04",
+   "selectionMethod": "appointed",
+   "howEnded": "expired",
+   "startEvidence": "roster",
+   "recordWording": "Appointed. The roster gives TimBen Boydston \"2006-08, 2012-16\"; he won no election in 2006, and the only council vacancy of those years is the seat Cameron Smyth left in 2006 for the State Assembly. The seat was next filled at the election of April 8, 2008, at which he did not stand. Leon Worden, \"Santa Clarita City...",
+   "writtenBy": [
+    "council_winners_and_terms.php"
+   ],
+   "created": "2026-09-29 12:29",
+   "updated": "2026-09-29 12:29",
+   "provenance": "council_winners_and_terms.php, 29 September 2026",
+   "verdict": "STANDS (better source available)",
+   "checked": [
+    "\"Profile: Challenger Boydston Aligns with Incumbent Kellar,\" SCVNews.com, 18 Jan 2012: \"For 16 months Boydston completed the term of Cameron Smyth who left to become an Assembly Member ... Boydston had to agree not to seek the seat at the end of the term.\"",
+    "CEDA 2006 (April): Boydston not a candidate; council ledger: \"TimBen Boydston 2006-08, 2012-16\"."
+   ],
+   "correct": "No change to method; replace the inference with the 2012 SCVNews report or the council minute.",
+   "note": ""
+  },
+  {
+   "id": 28586,
+   "person": "Cherise Moore",
+   "body": "William S. Hart Union High School District",
+   "seat": "Trustee Area 3",
+   "term": "2022-12 to 2026-12",
+   "selectionMethod": "elected",
+   "howEnded": "serving",
+   "startEvidence": "roster",
+   "recordWording": "Cherise Moore stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 13:20",
+   "updated": "2026-10-03 13:20",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "STANDS (earlier appointment)",
+   "checked": [
+    "SCVNews.com, 3 Feb 2017 (Hart votes to appoint Hall's replacement); 13 Dec 2018 (\"first full term\")."
+   ],
+   "correct": "Point to #28938 and the 2018 seated term.",
+   "note": ""
+  },
+  {
+   "id": 28807,
+   "person": "Chris Fall",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "2013-06-05 to 2013-08-16",
+   "selectionMethod": "appointed",
+   "howEnded": "resigned",
+   "startEvidence": "roster",
+   "recordWording": "Leon Worden's roster of the Hart board lists Chris Fall on the board of 12-12-2012 to 11-30-2013 as \"Chris Fall (appointed 6-5-2013 to complete Strickland's unexpired term; resigned eff. 8-16-2013)\" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartscho...",
+   "writtenBy": [
+    "create_hart_early_members.php"
+   ],
+   "created": "2026-10-03 13:35",
+   "updated": "2026-10-04 00:15",
+   "provenance": "create_hart_early_members.php, 3 October 2026: a tenure from Leon Worden's Hart board roster, hartschoolboardmembers.htm",
+   "verdict": "STANDS",
+   "checked": [
+    "Hart roster: \"Chris Fall (appointed 6-5-2013 to complete Strickland's unexpired term; resigned eff. 8-16-2013)\".",
+    "KHTS, 1 Oct 2013: \"Chris Fall was appointed to the governing board in June to replace the seat vacated by Paul Strickland\"."
+   ],
+   "correct": "No change.",
+   "note": "Vacancy appointment."
+  },
+  {
+   "id": 28600,
+   "person": "Erin Wilson",
+   "body": "William S. Hart Union High School District",
+   "seat": "Trustee Area 4",
+   "term": "2024-12 to 2028-12",
+   "selectionMethod": "elected",
+   "howEnded": "serving",
+   "startEvidence": "roster",
+   "recordWording": "Erin Wilson stood as the incumbent: an earlier appointment to the board, whose date is not recorded here.",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 13:20",
+   "updated": "2026-10-03 13:20",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from the election results",
+   "verdict": "STANDS (earlier appointment)",
+   "checked": [
+    "CEDA2024Data.xlsx row 2189: designation \"Appointed Governing Board Member, William S. Hart Union High School District, Trustee Area No. 4\"."
+   ],
+   "correct": "Cite the designation.",
+   "note": ""
+  },
+  {
+   "id": 28602,
+   "person": "George Aliano",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "1994-05 to 1995-12",
+   "selectionMethod": "appointed",
+   "howEnded": "reelected",
+   "startEvidence": "contemporary",
+   "recordWording": "Leon Worden's roster of the Hart board lists George Aliano on the board of 12-8-1993 to 11-30-1994 as \"George Aliano (appointed to complete Warren's unexpired term)\" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).",
+   "writtenBy": [
+    "derive_board_holdings.php"
+   ],
+   "created": "2026-10-03 13:20",
+   "updated": "2026-10-05 06:09",
+   "provenance": "derive_board_holdings.php, 3 October 2026: a term from Leon Worden's Hart board roster, hartschoolboardmembers.htm",
+   "verdict": "STANDS",
+   "checked": [
+    "Los Angeles Times, 17 May 1994 (record fn 4): \"George Aliano was chosen from eight applicants ... to fill the ... trustee post that Peter Warren vacated\"."
+   ],
+   "correct": "No change.",
+   "note": ""
+  },
+  {
+   "id": 28793,
+   "person": "James Putjenter",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "1978 to 1979-12",
+   "selectionMethod": "appointed",
+   "howEnded": "unknown",
+   "startEvidence": "roster",
+   "recordWording": "Leon Worden's roster of the Hart board lists James Putjenter on the board of 7-19-1978 to 11-1979 as \"James Putjenter (appointed to complete unexpired term of Shuman, who resigned)\" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.htm).",
+   "writtenBy": [
+    "create_hart_early_members.php"
+   ],
+   "created": "2026-10-03 13:35",
+   "updated": "2026-10-03 13:35",
+   "provenance": "create_hart_early_members.php, 3 October 2026: a tenure from Leon Worden's Hart board roster, hartschoolboardmembers.htm",
+   "verdict": "STANDS",
+   "checked": [
+    "Leon Worden, Hart board roster (hartschoolboardmembers.htm, legacy mirror): \"James Putjenter (appointed to complete unexpired term of Shuman, who resigned)\"."
+   ],
+   "correct": "No change.",
+   "note": "Roster evidence only."
+  },
+  {
+   "id": 28791,
+   "person": "Jim Shuman",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "1978 to 1978-07",
+   "selectionMethod": "appointed",
+   "howEnded": "resigned",
+   "startEvidence": "roster",
+   "recordWording": "Leon Worden's roster of the Hart board lists Jim Shuman on the board of 1-10-1978 to 3-31-1979 as \"Jim Shuman (appointed to complete the unexpired term of Shaughnessy, who resigned)\" (Leon Worden, William S. Hart Union High School District Governing Board Members, SCVHistory.com, /scvhistory/hartschoolboardmembers.h...",
+   "writtenBy": [
+    "create_hart_early_members.php"
+   ],
+   "created": "2026-10-03 13:35",
+   "updated": "2026-10-03 13:35",
+   "provenance": "create_hart_early_members.php, 3 October 2026: a tenure from Leon Worden's Hart board roster, hartschoolboardmembers.htm",
+   "verdict": "STANDS",
+   "checked": [
+    "Leon Worden, Hart board roster (hartschoolboardmembers.htm, legacy mirror): \"Jim Shuman (appointed to complete the unexpired term of Shaughnessy, who resigned)\"."
+   ],
+   "correct": "No change.",
+   "note": "Roster evidence only."
+  },
+  {
+   "id": 28809,
+   "person": "Robert Hall",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "2013-10-16 to 2017-02-01",
+   "selectionMethod": "appointed",
+   "howEnded": "resigned",
+   "startEvidence": "roster",
+   "recordWording": "Leon Worden's roster of the Hart board lists Robert Hall on the board of 12-12-2012 to 11-30-2013 as \"Robert P. Hall (appointed 10-16-2013 to complete Fall's unexpired term)\", and on every board after it to the last it prints, 12-11-2013 to 11-30-2014 (Leon Worden, William S. Hart Union High School District Governin...",
+   "writtenBy": [
+    "create_hart_early_members.php"
+   ],
+   "created": "2026-10-03 13:35",
+   "updated": "2026-10-04 08:29",
+   "provenance": "create_hart_early_members.php, 3 October 2026: a tenure from Leon Worden's Hart board roster, hartschoolboardmembers.htm",
+   "verdict": "STANDS",
+   "checked": [
+    "Hart roster: \"Robert P. Hall (appointed 10-16-2013 to complete Fall's unexpired term)\".",
+    "KHTS, \"Hall Replaces Fall on Hart School Board,\" SCVNews.com, 16 Oct 2013: \"the Hart district's governing board voted 3-1 to select Robert Hall\".",
+    "KHTS, 1 Oct 2013: \"The appointment process is mandated by Education Code 5328 ... The code also dictates that the appointment will be for a full four-year term.\""
+   ],
+   "correct": "No change to method. Footnote: under Education Code 5328 the appointment was also to the full term from December 2013 (KHTS), not only to Fall's unexpired term as the roster has it.",
+   "note": "This is the one true Education Code 5328 appointment in the set: the governing board appointed because too few were nominated."
+  },
+  {
+   "id": 28787,
+   "person": "Sheldon Allen",
+   "body": "William S. Hart Union High School District",
+   "seat": "",
+   "term": "1977 to 1979-12",
+   "selectionMethod": "appointed",
+   "howEnded": "unknown",
+   "startEvidence": "roster",
+   "recordWording": "Leon Worden's roster of the Hart board lists Sheldon Allen on the board of 4-1-1977 to 3-31-1978 as \"Sheldon Allen (appointed to complete Hanson's unexpired term, until 3-1979)\"; and last on the board of 7-19-1978 to 11-1979 as \"Sheldon Allen, Clerk\" (Leon Worden, William S. Hart Union High School District Governing...",
+   "writtenBy": [
+    "create_hart_early_members.php"
+   ],
+   "created": "2026-10-03 13:35",
+   "updated": "2026-10-03 13:35",
+   "provenance": "create_hart_early_members.php, 3 October 2026: a tenure from Leon Worden's Hart board roster, hartschoolboardmembers.htm",
+   "verdict": "STANDS",
+   "checked": [
+    "Leon Worden, Hart board roster (hartschoolboardmembers.htm, legacy mirror): \"Sheldon Allen (appointed to complete Hanson's unexpired term, until 3-1979)\"."
+   ],
+   "correct": "No change.",
+   "note": "Roster evidence only."
+  }
+ ],
+ "notJudged": [
+  {
+   "id": 28241,
+   "person": "Laura Pearson",
+   "body": "Castaic Union School District",
+   "term": "2005-12 to 2013-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28247,
+   "person": "Susan Christopher",
+   "body": "Castaic Union School District",
+   "term": "2009-12 to 2013-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28543,
+   "person": "Victor Torres",
+   "body": "Castaic Union School District",
+   "term": "2009-12 to 2013-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28217,
+   "person": "Lynne Plambeck",
+   "body": "Newhall County Water District",
+   "term": "1999-12 to 2011",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28249,
+   "person": "Michael Shapiro",
+   "body": "Newhall School District",
+   "term": "2003-12 to 2015-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28461,
+   "person": "Philip Ellis Jr.",
+   "body": "Newhall School District",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28239,
+   "person": "Suzan Solomon",
+   "body": "Newhall School District",
+   "term": "1999-12 to 2015-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 30299,
+   "person": "Francis T. Claffey",
+   "body": "Santa Clarita Community College District",
+   "term": "1972-06 to 1975",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 30365,
+   "person": "Joan W. MacGregor",
+   "body": "Santa Clarita Community College District",
+   "term": "2018-12 to 2022-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 30297,
+   "person": "John K. Hackney",
+   "body": "Santa Clarita Community College District",
+   "term": "1968/1969 to 1973",
+   "selectionMethod": "",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 30345,
+   "person": "Michele R. Jenkins",
+   "body": "Santa Clarita Community College District",
+   "term": "2020-12 to 2023-02-06",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 30331,
+   "person": "Michele R. Jenkins",
+   "body": "Santa Clarita Community College District",
+   "term": " to 1995-12",
+   "selectionMethod": "",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 30385,
+   "person": "Scott Thomas Wilk Sr.",
+   "body": "Santa Clarita Community College District",
+   "term": "2011-12 to 2012-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28415,
+   "person": "BJ Atkins",
+   "body": "Santa Clarita Valley Water",
+   "term": "2021-01 to 2022-07-20",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28223,
+   "person": "Ed Colley",
+   "body": "Santa Clarita Valley Water",
+   "term": "2018-01-01 to 2024-08-07",
+   "selectionMethod": "succeeded",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28227,
+   "person": "Gary Martin",
+   "body": "Santa Clarita Valley Water",
+   "term": "2018-01-01 to ",
+   "selectionMethod": "succeeded",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28219,
+   "person": "Lynne Plambeck",
+   "body": "Santa Clarita Valley Water",
+   "term": "2018-01 to 2023-01",
+   "selectionMethod": "succeeded",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28473,
+   "person": "Cassandra Nicole Love",
+   "body": "Saugus Union School District",
+   "term": "2022-12 to 2023-10-02",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28237,
+   "person": "Laura Arrowsmith",
+   "body": "Saugus Union School District",
+   "term": "2018-12 to 2022-09",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28487,
+   "person": "Matthew Watson",
+   "body": "Saugus Union School District",
+   "term": "2020-12 to 2024-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28493,
+   "person": "Stephen Winkler",
+   "body": "Saugus Union School District",
+   "term": "2011-12 to 2014-06",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28499,
+   "person": "Denis DeFigueiredo",
+   "body": "Sulphur Springs Union School District",
+   "term": "2011-12 to 2015-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28501,
+   "person": "Ken Chase",
+   "body": "Sulphur Springs Union School District",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28503,
+   "person": "Lori MacDonald",
+   "body": "Sulphur Springs Union School District",
+   "term": "2013-12 to 2018-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28243,
+   "person": "Shelley Weinstein",
+   "body": "Sulphur Springs Union School District",
+   "term": "2003-12 to 2015-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 29579,
+   "person": "Cameron Smyth",
+   "body": "The City of Santa Clarita",
+   "term": "2002 to ",
+   "selectionMethod": "rotated",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 29577,
+   "person": "Frank Ferry",
+   "body": "The City of Santa Clarita",
+   "term": "2002 to ",
+   "selectionMethod": "rotated",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 23359,
+   "person": "Jason Gibbs",
+   "body": "The City of Santa Clarita",
+   "term": "2020-12 to 2024-12",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28785,
+   "person": "Patrick Shaughnessy",
+   "body": "William S. Hart Union High School District",
+   "term": "1975-04-01 to 1978-01",
+   "selectionMethod": "",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  },
+  {
+   "id": 28235,
+   "person": "Paul Strickland",
+   "body": "William S. Hart Union High School District",
+   "term": "2001-12 to 2013-05-01",
+   "selectionMethod": "elected",
+   "why": "its text mentions an appointment only to describe the next term, a board officer vote, or the SB 634 founding board"
+  }
+ ]
+}

@@ -28,6 +28,10 @@
         <div>
           <div class="rec-kick"><span class="a">OBITUARIES</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
+          {#- Who wrote it, linked, where the record names a person (Nathan, 5 October 2026: "A reader should be able to see everything a person wrote here"). -#}
+          {% set obitHandles = entry.fieldLayout.customFields|map(f => f.handle) %}
+          {% set obitAuthor = 'writtenBy' in obitHandles ? entry.writtenBy.one() : null %}
+          {% if obitAuthor %}<div class="rec-sub">by <a href="{{ obitAuthor.url }}">{{ obitAuthor.title }}</a></div>{% endif %}
           {% if F.publicationDetails %}<div class="rec-sub">{{ F.publicationDetails }}</div>{% endif %}
           {% if F.obitDateOfDeath or F.obitDatePublished %}
             <div class="rec-facts">
@@ -88,7 +92,8 @@
           { lab: 'PUBLISHED IN', key: 'SOURCE', rows: entry.obitPublishedIn.all() },
           { lab: 'GROUP', key: 'GROUP', rows: entry.obitGroup.all() },
           { lab: 'RELATED PEOPLE', key: 'PERSON', rows: entry.obitRelatedPersons.all() },
-          { lab: 'WAR MEMORIAL', key: 'RECORD', rows: entry.obitRelatedMilitary.all() }
+          { lab: 'WAR MEMORIAL', key: 'RECORD', rows: entry.obitRelatedMilitary.all() },
+          { lab: 'ALSO ON THIS DEATH', key: 'PIECE', rows: 'obitCompanions' in obitHandles ? entry.obitCompanions.all() : [] }
         ]|filter(b => b.rows|length) %}
         {% for b in boxes %}
           <div class="rec-box"><div class="rec-lab">{{ b.lab }}</div>

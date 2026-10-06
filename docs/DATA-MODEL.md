@@ -543,7 +543,7 @@ at all.
 
 ### Obituaries — `obituaries/obituary`
 
-32 fields.
+34 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -554,6 +554,8 @@ at all.
 | `editorNotes` | Table | **local** | no external equivalent |
 | `researchLeads` | PlainText | **local** | no external equivalent |
 | `publicationDetails` | PlainText | **local** | no external equivalent |
+| `writtenBy` | Entries | schema.org `author` | also dcterms:creator |
+| `obitCompanions` | Entries | **local** | no external equivalent |
 | `obitDateOfDeath` | PlainText | **local** | no external equivalent |
 | `obitDatePublished` | PlainText | **local** | no external equivalent |
 | `obitPublishedIn` | Entries | **local** | no external equivalent |

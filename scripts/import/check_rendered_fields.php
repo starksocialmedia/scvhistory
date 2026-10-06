@@ -110,6 +110,7 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
             if ($mode === 'evidence') { $W = ['certified' => "the body's own record", 'contemporary' => 'reported at the time', 'retrospective' => 'recalled later', 'roster' => 'from an undated roster', 'derived' => 'read from the count', 'uncited' => 'not yet sourced']; $ns = [isset($W[(string)($v->value ?? '')]) ? strtolower($W[(string)$v->value]) : '']; }
             /* One value per line, each shown as its own name (the organization page separates aliases, 4 October 2026): each line is looked for. */
             if ($mode === 'lines') { $ns = array_values(array_map($probe, array_filter(array_map('trim', preg_split('~\R~', (string)$v)), 'strlen'))); }
+            if ($mode === 'aliases') { $ns = [$probe(trim(preg_split('~;~', trim((string)preg_split('~\R~', trim((string)$v))[0]))[0]))]; } /* one per line, or several on a line at semicolons (5 October 2026) */
             if ($mode === 'list') { $ns = [$probe(trim(preg_split('~[;,]~', (string)$v)[0]))]; }
             /* On a sourced record (war memorials), a field's value may show in its sourced form, as the fact row that says the same thing
                ("Hart High School, class of 1967" for "Hart High School (class of 1967)"). The same test as the template: the opening words of

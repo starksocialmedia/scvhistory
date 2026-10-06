@@ -67,7 +67,21 @@ $NAV_PHRASE = '/^\s*(full\s+view|close\s?up|ultra\s+close\s?up|jumbo(\s+size)?|'
             . 'archival\s+scans?|extra\s+large|larger(\s+image)?|original(\s+image)?|'
             . 'supersize|full\s+size|hi-?res(olution)?)\s*[.:]?\s*$/iu';
 
-$clean = function (string $raw) use ($NAV_OPENER, $NAV_BRACKET, $NAV_PHRASE): string {
+/* 5 October 2026 (silent-faults audit, finding 4): a byline or credit is not a
+   caption. The crawl took "Biography by Friends of Hart Park", the subtitle of a
+   biography at the foot of 13 photograph pages, as each page's image caption,
+   and this script wrote it as caption, title and alt. A caption that is nothing
+   but a byline or credit is now rejected whole, the way a navigation-only
+   caption is; a byline inside a longer caption ("Photo by George Watson.") is
+   left alone, since it sits in real caption text. */
+$BYLINE = '/^\s*(biography|article|story|text|essay|photos?|photographs?|images?|illustrations?|map|drawing)\s+(by|courtesy\s+of|from)\b'
+        . '|^\s*(courtesy(\s+of)?|used\s+by\s+permission|all\s+rights\s+reserved|copyright|\x{00A9})\b/iu';
+
+/* The same fault on the credit side: "Hart biography (c) Friends of Hart Park"
+   credits the text, not the image. A credit naming a text is not written. */
+$TEXT_CREDIT = '/\b(biography|article|story|essay|text)\b\s*(\x{00A9}|\(c\)|copyright|by|courtesy)/iu';
+
+$clean = function (string $raw) use ($NAV_OPENER, $NAV_BRACKET, $NAV_PHRASE, &$BYLINE): string {
     $raw = html_entity_decode($raw, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     $raw = preg_replace('/\s+/u', ' ', $raw);
 
@@ -105,6 +119,8 @@ $clean = function (string $raw) use ($NAV_OPENER, $NAV_BRACKET, $NAV_PHRASE): st
     $out = trim($out, " \t\n\r\0\x0B|-–—");
     $out = preg_replace('/\s{2,}/u', ' ', $out);
     $out = rtrim($out, " :;,");
+    /* 5 October 2026: a caption that is only a byline or credit is no caption. */
+    if (preg_match($BYLINE, $out)) { return ''; }
     return trim($out);
 };
 
@@ -132,6 +148,8 @@ foreach ($files as $f) {
         if ($fn === '') { continue; }
 
         $cr = trim((string)($r['credit_raw'] ?? ''));
+        /* 5 October 2026: a credit for a text on the page is not the image's credit. */
+        if ($cr !== '' && preg_match($TEXT_CREDIT, $cr)) { $cr = ''; }
         if ($cr !== '' && !isset($creditBy[$fn])) { $creditBy[$fn] = $cr; }
 
         $raw = trim((string)($r['caption'] ?? ''));
@@ -156,6 +174,16 @@ echo 'image references: ' . $refs . PHP_EOL;
 echo 'carrying a caption: ' . $rawCaptions . PHP_EOL;
 echo 'caption was navigation only: ' . $navOnly . PHP_EOL;
 echo 'distinct files with a real caption: ' . count($byFile) . PHP_EOL;
+
+/* 5 October 2026: a caption shared by five or more files is more likely page
+   furniture (a heading, a byline) than a description of each image. Reported,
+   not rejected: gallery headings such as "AMERICAN HOTEL" are real legacy text. */
+$sharedBy = [];
+foreach ($byFile as $fn => $vs) { foreach (array_keys($vs) as $c) { $sharedBy[$c][] = $fn; } }
+$sharedBy = array_filter($sharedBy, fn($fs) => count($fs) >= 5);
+uasort($sharedBy, fn($x, $y) => count($y) <=> count($x));
+echo 'captions shared by 5 or more files (check before applying): ' . count($sharedBy) . PHP_EOL;
+foreach (array_slice($sharedBy, 0, 25, true) as $c => $fs) { echo '  ' . count($fs) . '  ' . mb_substr($c, 0, 70) . PHP_EOL; }
 echo str_repeat('=', 72) . PHP_EOL;
 
 /* ------------------------------------------------------------------ assets */

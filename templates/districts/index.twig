@@ -63,7 +63,7 @@
           <tbody>
           {% for p in byBody[k]|sort((x, y) => x.districtNumber <=> y.districtNumber) %}
             {% set ymNow = date()|date('Y-m') %}{% set holdsNow = craft.entries().section('officeHoldings').relatedTo({ targetElement: p, field: 'holdingDistrict' }).all()|filter(h => ((h.howEnded.value ?? '') == 'serving' or (not h.termEndEdtf and (h.howEnded.value ?? '') == '')) and (not h.termEndEdtf or h.termEndEdtf|slice(0, 7) >= ymNow)) %}
-            {% set els = craft.entries().section('elections').relatedTo({ targetElement: p, field: 'electionDistrict' }).orderBy('electionDateEdtf asc').all() %}
+            {% set els = craft.entries().section('elections').relatedTo({ targetElement: p, field: 'electionDistrict' }).orderBy('electionDateEdtf desc').all() %}
             <tr>
               <td><a href="{{ p.url }}">{{ KIND[p.districtKind.value] ?? 'District' }} {{ p.districtNumber }}</a></td>
               <td>{% for h in holdsNow %}{% set who = h.holdingPerson.one() %}{% if who %}<a href="{{ who.url }}">{{ who.title }}</a>{% if h.termStart %} <span class="dim">since {{ h.termStart|split(' ')|last }}</span>{% endif %}{% if not loop.last %}<br>{% endif %}{% endif %}{% else %}<span class="dim">{{ b.dateDissolved ? 'Body dissolved' : 'Not yet in the archive' }}</span>{% endfor %}</td>

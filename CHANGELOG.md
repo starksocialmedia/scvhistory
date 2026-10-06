@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-05 (night, to the stopping point)
+
+- Agent: Claude Code
+- Date: 2026-10-05
+- Done: The five County-sourced council elections' citations (applied). Stearns's mint deposit a source fault, said after the text on person pages. Silent-faults work: empty footnote rows no longer render (757 pages had shown a blank note under Leon Worden's name; live locally since 20 September and on staging since the 25 September refresh, never on scvhistory.com); media pages headed by their record; no default "The Signal" on columns; status(null) on relation rewrites in 51 scripts, with check_relation_status.php; import_elections fails loudly. Aliases shown in the person header and searchable (all five alias fields; index rebuilt); Joe Messina's two same-name aliases removed. Sharlene Rose Johnson's portrait (#30544, the unedited original; the Firefly upscale not used). Collections: a column takes the standard layout, as Reynolds and Perkins do, its pieces in date order. Elections newest first on person pages and the districts index (the rest already were). Connie Worden-Roberts: two genuine pieces; Carl Goldman's record (#30546) and authorship; writtenBy and obitCompanions on obituaries; the three pieces linked; Gary Choppé's portrait imported onto both obituaries. Incoming: sixteen files are screenshots of the site, recorded in OUTSTANDING.md.
+- Decisions (Nathan): the seven visible silent faults in his order, each a dry run; same-name aliases out everywhere; elections newest first everywhere; Messina was never appointed.
+- Found: the appointed-terms audit (inventory/review/appointed-terms-audit-2026-10-05.md): of 51 terms, 26 school and college terms were seated without an election (Education Code 5328, read on leginfo), not appointed; 4 runs carry "appointed" over later elections; 17 stand. Not fixed, on Nathan's word. The authorship census (inventory/review/authorship-census-2026-10-05.md): 419 linked, 356 bylines uncaptured, 6 with none.
+- Blockers: the portrait census was stopped at the laptop's close with nothing written; it must be rerun whole.
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-05 (evening, events)
 
 - Agent: Claude Code

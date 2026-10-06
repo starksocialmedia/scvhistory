@@ -1,0 +1,27 @@
+columnSuffix: null
+handle: obitCompanions
+instructions: 'Other obituaries, tributes and reports on the same death, only where the sources themselves join them.'
+name: 'Also on this death'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: false
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:49092f2b-66bc-499b-95cd-d01ceb9d6fe1' # Obituaries
+    - 'section:572db4f6-ae23-4f72-a5e6-8a7c9aec4e74' # Articles
+    - 'section:fefda696-1d19-4719-a755-88d6c46b068f' # Documents
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

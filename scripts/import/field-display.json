@@ -662,6 +662,9 @@
   "obitRelatedMilitary": {
    "show": "page"
   },
+  "obitCompanions": {
+   "show": "page"
+  },
   "obitRelatedPersons": {
    "show": "page"
   },
@@ -756,8 +759,8 @@
    "show": "page"
   },
   "personAliases": {
-   "show": "gap",
-   "why": "other names a person is known by; only in JSON-LD"
+   "show": "page",
+   "mode": "aliases"
   },
   "personEvents": {
    "show": "schema",

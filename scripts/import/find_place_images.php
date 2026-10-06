@@ -79,7 +79,10 @@ foreach (\craft\elements\Entry::find()->section('places')->status(null)->orderBy
     $asset->avoidFilenameConflicts = true;
     $asset->setScenario(\craft\elements\Asset::SCENARIO_CREATE);
     $asset->title = $pick['desc'] !== '' ? mb_substr($pick['desc'], 0, 200) : $place->title;
-    $asset->alt = trim(($pick['author'] !== '' ? $pick['author'] . '. ' : '') . $pick['lic'] . '. Wikimedia Commons.');
+    /* 5 October 2026 (silent-faults audit, finding 5): alt text describes the
+       image; it was the author and licence line. That line is the credit. */
+    $asset->alt = rtrim(preg_split('~(?<=\.)\s+~u', (string)$asset->title)[0], ' .');
+    $asset->setFieldValue('photoCredit', trim(($pick['author'] !== '' ? $pick['author'] . '. ' : '') . $pick['lic'] . '. Wikimedia Commons.'));
     if (!$elements->saveElement($asset)) { echo str_pad('', 36) . 'asset failed' . PHP_EOL; continue; }
 
     $place->setFieldValue('featuredImage', [$asset->id]);
