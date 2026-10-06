@@ -41,7 +41,8 @@ try {
     if (!$current) {
         $n = new Entry(); $n->sectionId = $old->sectionId; $n->setTypeId($old->typeId);
         $h = array_map(fn($f) => $f->handle, $n->getFieldLayout()->getCustomFields());
-        $vals = ['holdingPerson' => [$GIBBS], 'holdingOffice' => $old->holdingOffice->ids(), 'holdingBody' => $old->holdingBody->ids(), 'holdingDistrict' => $old->holdingDistrict->ids(),
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        $vals = ['holdingPerson' => [$GIBBS], 'holdingOffice' => $old->holdingOffice->status(null)->ids(), 'holdingBody' => $old->holdingBody->status(null)->ids(), 'holdingDistrict' => $old->holdingDistrict->status(null)->ids(),
             'termStart' => 'December 2024', 'termStartEdtf' => '2024-12', 'selectionMethod' => 'elected', 'howEnded' => 'serving', 'startEvidence' => 'uncited',
             'footnotes' => [['number' => '1', 'note' => 'Per Nathan Imhoff, 2 October 2026, who gives this term as running to 2028; the City of Santa Clarita lists Gibbs as a sitting member (https://santaclarita.gov/city-council/jason-gibbs/, read 1 October 2026). The 2024 election for his seat is not yet in the archive.', 'source' => 'editorial-2026']],
             'recordProvenance' => 'fix_gibbs_current_term.php, 2 October 2026'];

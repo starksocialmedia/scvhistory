@@ -111,6 +111,17 @@ $readCredit = function (string $raw): array {
     return $out;
 };
 
+/* The credit a page prints for its news reports, read from the extract (5 October 2026, silent-faults audit finding 8).
+   sw_petermentre prints "News reports courtesy of Stan Walker" once, as the page byline under its headline; the extract
+   files that line in the framing of the page's first item only. It was a constant here; it is now the line the page
+   prints, and an item on a page that prints none gets none. */
+$pageCredit = [];
+foreach ($src['items'] as $it) {
+    foreach ($it['framing'] ?? [] as $l) {
+        if (preg_match('~^News (reports|story) courtesy\b~', $l)) { $pageCredit[$it['page']] = $l; }
+    }
+}
+
 $plan = [];
 foreach ($src['items'] as $it) {
     $key = $it['key'];
@@ -151,7 +162,9 @@ foreach ($src['items'] as $it) {
         elseif ($l === "Webmaster's note.") { continue; }
         else { $top[] = $l; }
     }
-    if (str_starts_with($key, 'sw_') && !$bottom) { $bottom[] = 'News reports courtesy of Stan Walker'; }
+    /* Was a constant, 'News reports courtesy of Stan Walker', for every sw_ item (corrected 5 October 2026). Still only
+       the sw_ clippings: the page's 1931 item (lp_) is Lauren Parker's addition, framed as hers, and the byline is not. */
+    if (str_starts_with($key, 'sw_') && !$bottom && isset($pageCredit[$it['page']])) { $bottom[] = $pageCredit[$it['page']]; }
     if (!empty($it['scan_line'])) { $bottom[] = $it['scan_line']; }
 
     $f = array_merge([

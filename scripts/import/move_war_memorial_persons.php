@@ -59,7 +59,8 @@ foreach ($people as $person) {
     }
 
     $imageIds = [];
-    foreach ($person->featuredImage->all() as $asset) {
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    foreach ($person->featuredImage->status(null)->all() as $asset) {
         $imageIds[] = $asset->id;
     }
 

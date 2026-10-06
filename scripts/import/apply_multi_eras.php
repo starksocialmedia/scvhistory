@@ -34,7 +34,8 @@ $DECIDED = [21944, 18791, 16380, 15808, 18726, 25445, 15737, 15874, 16140, 25401
 $auto = array_map('intval', explode(',', (string)@file_get_contents(\Craft::getAlias('@root') . '/storage/runtime/auto-era-ids.txt')));
 $rows = []; $stats = ['unchanged' => 0, 'gains' => 0, 'eras added' => 0];
 foreach (Entry::find()->section('persons')->status(null)->orderBy('title')->all() as $p) {
-    $cur = $p->historicalEra->ids(); if (!$cur) { continue; }
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $cur = $p->historicalEra->status(null)->ids(); if (!$cur) { continue; }
     $group = in_array($p->id, $DECIDED, true) ? 'decided' : (in_array($p->id, $auto, true) ? 'auto' : 'earlier');
     $bY = $year($p->birthDateEdtf ?: $p->birthDate); $dY = $year($p->deathDateEdtf ?: $p->deathDate);
     $in = fn($y) => $y && (!$bY || $y >= $bY + 15) && (!$dY || $y <= $dY);

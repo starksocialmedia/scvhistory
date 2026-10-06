@@ -48,7 +48,8 @@ foreach ($P as $k => $c) {
     }
     $ids[$k] = $e->featuredImage->one()?->id ?? $e->featuredImage->ids()[0] ?? null;
 }
-$City = Entry::find()->id(394)->one(); $cur = $City->recordImages->ids(); $want = array_values(array_unique(array_merge([$ids['sc8801'], $ids['bw8702']], $cur)));
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$City = Entry::find()->id(394)->one(); $cur = $City->recordImages->status(null)->ids(); $want = array_values(array_unique(array_merge([$ids['sc8801'], $ids['bw8702']], $cur)));
 if ($cur != $want) { $City->setFieldValue('recordImages', $want); if (!$el->saveElement($City)) { throw new \RuntimeException('City'); } $n++; }
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php'; $applyLog('import_first_council_photos_2026_10_04.php', $n, 'verified', 'SC8801 and BW8702, the first council and the council-elect; SC8801 leads the City\'s images');
 echo "done: $n writes" . PHP_EOL;

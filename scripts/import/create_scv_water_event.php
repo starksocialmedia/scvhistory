@@ -63,7 +63,8 @@ $e->setFieldValues(['body' => $BODY, 'footnotes' => array_map(fn($i, $t) => ['nu
     'recordProvenance' => 'create_scv_water_event.php, 2 October 2026']);
 if (!Craft::$app->getElements()->saveElement($e)) { throw new \RuntimeException('event: ' . json_encode($e->getFirstErrors())); }
 $b = Entry::find()->id($e->id)->status(null)->one();
-$ok = trim((string)$b->body) === trim($BODY) && $b->eventDateEdtf === '2018-01-01' && count($b->eventOrganizations->ids()) === 3 && $b->historicalEra->ids() === [$ERA];
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$ok = trim((string)$b->body) === trim($BODY) && $b->eventDateEdtf === '2018-01-01' && count($b->eventOrganizations->status(null)->ids()) === 3 && $b->historicalEra->ids() === [$ERA];
 echo 'READ-BACK ' . ($ok ? 'OK: ' . $b->url : 'SHORT') . PHP_EOL;
 $applyLog = require $root . '/scripts/import/_apply_log.php';
 $applyLog('create_scv_water_event.php', 1, $ok ? 'verified' : 'SHORT', 'event: the SCV Water consolidation, 1 January 2018, the first anchor event');

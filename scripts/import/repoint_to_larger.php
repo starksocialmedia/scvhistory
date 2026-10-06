@@ -77,7 +77,8 @@ $ok = 0; $touched = 0;
 foreach ($plan as $x) {
     foreach ($x['users'] as $e) {
         $ids = [];
-        foreach ($e->recordImages->all() as $a) { $ids[] = $a->id === $x['small']->id ? $x['large']->id : $a->id; }
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        foreach ($e->recordImages->status(null)->all() as $a) { $ids[] = $a->id === $x['small']->id ? $x['large']->id : $a->id; }
         $e->setFieldValue('recordImages', $ids);
         if (\Craft::$app->elements->saveElement($e)) { $touched++; }
     }

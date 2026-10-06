@@ -327,7 +327,8 @@ if (!$coll) { echo 'cannot apply: the collection does not exist' . PHP_EOL; retu
 $section = Craft::$app->getEntries()->getSectionByHandle('articles');
 $type = Craft::$app->getEntries()->getEntryTypeByHandle('article');
 $elements = Craft::$app->getElements();
-$made = 0; $failed = []; $order = $coll->articlesInCollection->ids();
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$made = 0; $failed = []; $order = $coll->articlesInCollection->status(null)->ids();
 
 foreach ($plan as $r) {
     $e = new \craft\elements\Entry();

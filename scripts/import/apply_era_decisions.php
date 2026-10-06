@@ -28,7 +28,8 @@ foreach ([$MG, $CON, $CITY, $SILENT, $POST, $FRONT] as $c) { if (!Category::find
 foreach ($D as $id => [$name, $era]) {
     $p = Entry::find()->id($id)->status(null)->one();
     if (!$p || $p->title !== $name) { $bad[] = "#$id is not $name"; continue; }
-    $cur = $p->historicalEra->ids();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $cur = $p->historicalEra->status(null)->ids();
     echo str_pad($name, 26) . ($cur === [$era] ? 'already ' : ($cur ? 'HAS AN ERA, left: ' : '-> ')) . Category::find()->id($era)->one()?->title . PHP_EOL;
     if (!$cur) { $todo[] = [$id, $era]; }
 }

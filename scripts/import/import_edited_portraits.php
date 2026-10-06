@@ -103,7 +103,8 @@ try {
         $h = array_map(fn($f) => $f->handle, $p->getFieldLayout()->getCustomFields());
         $p->setFieldValue('featuredImage', [$a->id]);
         /* A replaced portrait that is not the edit's own original stays on the record, among its images. */
-        if ($cur && $cur->id !== $s['from'] && in_array('recordImages', $h)) { $p->setFieldValue('recordImages', array_values(array_unique(array_merge($p->recordImages->ids(), [$cur->id])))); }
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        if ($cur && $cur->id !== $s['from'] && in_array('recordImages', $h)) { $p->setFieldValue('recordImages', array_values(array_unique(array_merge($p->recordImages->status(null)->ids(), [$cur->id])))); }
         if (!$elements->saveElement($p)) { throw new \RuntimeException("#{$s['person']}: " . json_encode($p->getFirstErrors())); }
     }
     $tx->commit();

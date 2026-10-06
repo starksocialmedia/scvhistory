@@ -110,7 +110,8 @@ try {
     }
     $p = $get($ID);
     $h = array_map(fn($f) => $f->handle, $p->getFieldLayout()->getCustomFields());
-    $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'Psychiatrist; school board member', 'roles' => array_values(array_unique(array_merge($p->roles->ids(), [$role->id]))),
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'Psychiatrist; school board member', 'roles' => array_values(array_unique(array_merge($p->roles->status(null)->ids(), [$role->id]))),
         'recordProvenance' => trim((string)$p->recordProvenance . '; build_ahuja_profile.php, 1 October 2026: body, office and sources; public-life facts only')];
     $p->setFieldValues(array_intersect_key($vals, array_flip($h)));
     if (!$elements->saveElement($p)) { throw new \RuntimeException('#25449: ' . json_encode($p->getFirstErrors())); }

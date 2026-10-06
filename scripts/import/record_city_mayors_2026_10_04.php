@@ -81,7 +81,8 @@ $aSeat = $AH && $AH->holdingDistrict->one()?->id === $D1?->id;
 echo '#23401 Ayala\'s term: ' . ($aSeat ? 'seat already District 1' : 'seat District 1') . PHP_EOL;
 /* Weste and Mentryville. */
 $W = $person('Laurene Weste'); $MV = \craft\elements\Category::find()->group('neighborhood')->slug('mentryville')->one();
-$wHas = $W && $MV && in_array($MV->id, $W->neighborhood->ids());
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$wHas = $W && $MV && in_array($MV->id, $W->neighborhood->status(null)->ids());
 if (!$MV || !str_contains(strip_tags((string)$W->body), 'Mentryville')) { $bad[] = 'Mentryville or Weste\'s profile not as expected'; }
 echo 'Laurene Weste: ' . ($wHas ? 'Mentryville already' : 'community Mentryville added') . PHP_EOL;
 echo 'NOT RECORDED: the City\'s page lists 2025 among Weste\'s election years; the archive holds no City election in 2025.' . PHP_EOL;
@@ -100,7 +101,7 @@ try {
         $h->setFieldValues($v); if (!$el->saveElement($h)) { throw new \RuntimeException($x['p']->title . ': ' . json_encode($h->getFirstErrors())); } $n++;
     }
     if (!$aSeat) { $AH->setFieldValues(['holdingDistrict' => [$D1->id], 'seatLabel' => 'District 1']); if (!$el->saveElement($AH)) { throw new \RuntimeException('#23401: ' . json_encode($AH->getFirstErrors())); } $n++; }
-    if (!$wHas) { $W->setFieldValue('neighborhood', array_values(array_unique(array_merge($W->neighborhood->ids(), [$MV->id])))); if (!$el->saveElement($W)) { throw new \RuntimeException('Weste: ' . json_encode($W->getFirstErrors())); } $n++; }
+    if (!$wHas) { $W->setFieldValue('neighborhood', array_values(array_unique(array_merge($W->neighborhood->status(null)->ids(), [$MV->id])))); if (!$el->saveElement($W)) { throw new \RuntimeException('Weste: ' . json_encode($W->getFirstErrors())); } $n++; }
     $tx->commit();
 } catch (\Throwable $t) { $tx->rollBack(); echo 'ROLLED BACK, nothing was written: ' . $t->getMessage() . PHP_EOL; throw $t; }
 $mayors = Entry::find()->section('officeHoldings')->status(null)->relatedTo(['and', ['targetElement' => $MAYOR, 'field' => 'holdingOffice'], ['targetElement' => 394, 'field' => 'holdingBody']])->count();

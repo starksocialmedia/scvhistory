@@ -109,7 +109,8 @@ foreach ($pages as $p) {
     $sw = array_sum($a); $ow = array_sum($b);
     $srcTotal += $sw; $ourTotal += $ow; $lostTotal += $lost;
 
-    $cur = $e->partOfCollection->one();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $cur = $e->partOfCollection->status(null)->one();
     if ($cur && $cur->id === $coll->id)      { $state = 'already in'; $already++; }
     elseif ($cur)                            { $state = 'filed under ' . $cur->slug; $toMove++; }
     else                                     { $state = 'no collection'; $toAttach++; }
@@ -142,7 +143,7 @@ foreach ($rows as $r) {
 
 $written = 0; $failed = [];
 if ($APPLY) {
-    $order = $coll->articlesInCollection->ids();
+    $order = $coll->articlesInCollection->status(null)->ids();
     foreach ($rows as $r) {
         if ($r['state'] === 'already in') { continue; }
         $r['e']->setFieldValue('partOfCollection', [$coll->id]);

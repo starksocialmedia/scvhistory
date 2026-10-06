@@ -69,7 +69,8 @@ foreach ($S as $s) {
         if (!$el->saveElement($a)) { throw new \RuntimeException($s['as'] . ' fields: ' . json_encode($a->getFirstErrors())); }
     }
     if ($p->featuredImage->one()?->id !== $a->id) {
-        $p->setFieldValue('recordImages', array_values(array_unique(array_merge($p->recordImages->ids(), [$s['old']]))));
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        $p->setFieldValue('recordImages', array_values(array_unique(array_merge($p->recordImages->status(null)->ids(), [$s['old']]))));
         $p->setFieldValue('featuredImage', [$a->id]);
         if (!$el->saveElement($p)) { throw new \RuntimeException("#{$s['person']}: " . json_encode($p->getFirstErrors())); }
     }

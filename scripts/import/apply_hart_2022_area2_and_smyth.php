@@ -43,7 +43,8 @@ $CEDA = 'The California Elections Data Archive (CEDA) omits this contest.';
 /* 1. Smyth. */
 $sm = $get(16380); $old = Asset::find()->id(21579)->one();
 if (!$sm || $sm->title !== 'Cameron Smyth' || !$old || $sm->featuredImage->one()?->filename !== 'cameron-smyth-2017.jpg') { $bad[] = 'Smyth\'s record or portraits are not as expected'; }
-$smDone = $sm && in_array(21579, $sm->recordImages->ids());
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$smDone = $sm && in_array(21579, $sm->recordImages->status(null)->ids());
 echo 'Cameron Smyth: #21579 ' . ($smDone ? 'already in his images' : '-> his record\'s images (the portrait stays cameron-smyth-2017.jpg)') . PHP_EOL;
 
 /* 2. Jensen's holding. */
@@ -66,7 +67,7 @@ if ($bad) { echo 'REFUSING' . PHP_EOL; return; }
 
 $tx = Craft::$app->getDb()->beginTransaction();
 try {
-    if (!$smDone) { $sm->setFieldValue('recordImages', array_values(array_unique(array_merge($sm->recordImages->ids(), [21579])))); if (!$el->saveElement($sm)) { throw new \RuntimeException('Smyth: ' . json_encode($sm->getFirstErrors())); } }
+    if (!$smDone) { $sm->setFieldValue('recordImages', array_values(array_unique(array_merge($sm->recordImages->status(null)->ids(), [21579])))); if (!$el->saveElement($sm)) { throw new \RuntimeException('Smyth: ' . json_encode($sm->getFirstErrors())); } }
     if (!$hDone) { $rows[0]['note'] = $NEW1; $h->setFieldValues(['footnotes' => $rows, 'startEvidence' => 'certified']); if (!$el->saveElement($h)) { throw new \RuntimeException('#28584: ' . json_encode($h->getFirstErrors())); } }
     if (!$elec) {
         $es = $svc->getSectionByHandle('elections'); $elec = new Entry(); $elec->sectionId = $es->id; $elec->setTypeId($es->getEntryTypes()[0]->id);

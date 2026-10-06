@@ -107,7 +107,8 @@ try {
     $old = $s->featuredImage->one();
     if (!$old || $old->id !== $have->id) {
         $vals['featuredImage'] = [$have->id];
-        if ($old && in_array('recordImages', $h)) { $vals['recordImages'] = array_values(array_unique(array_merge($s->recordImages->ids(), [$old->id]))); }
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        if ($old && in_array('recordImages', $h)) { $vals['recordImages'] = array_values(array_unique(array_merge($s->recordImages->status(null)->ids(), [$old->id]))); }
     }
     if (!$isNew) {
         $vals += ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'birthDate' => '1962', 'birthDateEdtf' => '1962', 'birthplace' => '', 'birthEvidence' => 'uncited',

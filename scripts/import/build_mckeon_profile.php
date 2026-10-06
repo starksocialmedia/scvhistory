@@ -116,7 +116,8 @@ try {
     $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'personAliases' => "Howard P. McKeon\nHoward P. \"Buck\" McKeon\nHoward McKeon",
         'occupation' => 'Congressman; first mayor of Santa Clarita', 'birthDate' => '1938', 'birthDateEdtf' => '1938', 'birthEvidence' => 'certified',
         'bioguideId' => 'M000508', 'wikidataId' => 'Q461981', 'personWikipediaUrl' => 'https://en.wikipedia.org/wiki/Buck_McKeon', 'featuredImage' => [$asset->id],
-        'roles' => array_values(array_unique(array_merge($e->roles->ids(), [$CONGRESSMAN, $role->id]))),
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        'roles' => array_values(array_unique(array_merge($e->roles->status(null)->ids(), [$CONGRESSMAN, $role->id]))),
         'recordProvenance' => trim((string)$e->recordProvenance . '; build_mckeon_profile.php, 1 October 2026: profile, offices, authority IDs and portrait; public life only')];
     $e->setFieldValues(array_intersect_key($vals, array_flip($h)));
     if (!$elements->saveElement($e)) { throw new \RuntimeException('#18791: ' . json_encode($e->getFirstErrors())); }

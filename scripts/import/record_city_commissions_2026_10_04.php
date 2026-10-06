@@ -124,7 +124,8 @@ try {
         $notes = $x['id'] === 2591 ? array_merge(array_map(fn($r) => (string)$r['note'], $p->footnotes ?? []), [implode(' ', $x['cite'])]) : $x['cite'];
         $v = ['body' => $x['body'], 'footnotes' => $fn($notes), 'bodyAuthorship' => 'editorial-2026', 'occupation' => $x['occ']];
         if ($x['aliases']) { $v['personAliases'] = $x['aliases']; }
-        if ($name === 'Patti Rasmussen' || $name === 'Jeri Seratti') { $v['personEvents'] = array_values(array_unique(array_merge($p->personEvents->ids(), [875]))); }
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        if ($name === 'Patti Rasmussen' || $name === 'Jeri Seratti') { $v['personEvents'] = array_values(array_unique(array_merge($p->personEvents->status(null)->ids(), [875]))); }
         if ($x['id'] === 2591 && str_contains((string)$p->body, 'Leon Worden called her a fellow Signal columnist and the foundation')) { unset($v['body'], $v['footnotes']); }
         $p->setFieldValues($v); if (!$el->saveElement($p)) { throw new \RuntimeException("$name: " . json_encode($p->getFirstErrors())); } $n++;
         $mkA($p->id, $ORG[$x['org']]->id, 'member', $x['office'], 'serving', [$src($x['org']) . ': "' . $name . ', ' . $x['office'] . ' Term Expires: ' . $x['term'] . '."'], $x['term']);
@@ -132,7 +133,7 @@ try {
             $mkA($p->id, 376, 'employed', 'Education Reporter', 'unknown', [$x['cite'][1] . ' The page gives no years.']);
             $mkA($p->id, 15493, 'nonprofit-board', 'Board member, Educational Outreach Chair', 'unknown', [$x['cite'][3] . ' The page gives no years.']);
         }
-        if ($name === 'Tim Burkhart' && !$BC->candidacyPerson->exists()) { $BC->setFieldValue('candidacyPerson', [$p->id]); if (!$el->saveElement($BC)) { throw new \RuntimeException('candidacy: ' . json_encode($BC->getFirstErrors())); } $n++; }
+        if ($name === 'Tim Burkhart' && !$BC->candidacyPerson->status(null)->exists()) { $BC->setFieldValue('candidacyPerson', [$p->id]); if (!$el->saveElement($BC)) { throw new \RuntimeException('candidacy: ' . json_encode($BC->getFirstErrors())); } $n++; }
     }
     $tx->commit();
 } catch (\Throwable $t) { $tx->rollBack(); echo 'ROLLED BACK, nothing was written: ' . $t->getMessage() . PHP_EOL; throw $t; }

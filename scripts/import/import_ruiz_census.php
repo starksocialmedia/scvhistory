@@ -768,7 +768,8 @@ foreach ($plan as $map => $p) {
         if (!$hasField($entry, $h)) { unset($set[$h]); continue; }
         if ($p['existing']) {
             $cur = $entry->getFieldValue($h);
-            if ($cur instanceof \craft\elements\db\ElementQuery) { $cur = $cur->ids(); }
+            /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+            if ($cur instanceof \craft\elements\db\ElementQuery) { $cur = $cur->status(null)->ids(); }
             if (!(is_array($cur) ? count($cur) === 0 : trim((string)$cur) === '')) { unset($set[$h]); }
         }
     }
@@ -800,7 +801,7 @@ foreach ($SPOUSES as [$a, $b]) {
     foreach ([[$a, $b], [$b, $a]] as [$x, $y]) {
         $e = $made[$x];
         if (!$hasField($e, 'spouseOf')) { continue; }
-        $ids = $e->spouseOf->ids();
+        $ids = $e->spouseOf->status(null)->ids();
         if (in_array($made[$y]->id, $ids, true)) { continue; }
         $e->setFieldValue('spouseOf', array_merge($ids, [$made[$y]->id]));
         $elements->saveElement($e);
@@ -813,7 +814,7 @@ foreach ($CHILDREN as $child => $parents) {
     if (!isset($made[$child])) { continue; }
     $e = $made[$child];
     if (!$hasField($e, 'childOf')) { continue; }
-    $ids = $e->childOf->ids();
+    $ids = $e->childOf->status(null)->ids();
     $added = [];
     foreach ($parents as $p) {
         if (!isset($made[$p]) || in_array($made[$p]->id, $ids, true)) { continue; }

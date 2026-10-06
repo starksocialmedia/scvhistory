@@ -116,13 +116,14 @@ if ($lhPlan) {
     foreach ($photos as $pid) {
         $p = $get($pid);
         $p->setFieldValue('photoPlaces', array_values(array_diff(array_map('intval', $p->photoPlaces->status(null)->ids()), [607])));
-        $p->setFieldValue('neighborhood', array_values(array_unique(array_merge(array_map('intval', $p->neighborhood->ids()), [196]))));
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        $p->setFieldValue('neighborhood', array_values(array_unique(array_merge(array_map('intval', $p->neighborhood->status(null)->ids()), [196]))));
         if (!$elements->saveElement($p)) { $short[] = "photo #$pid"; }
     }
     foreach ($derived as $pid) { $p = $get($pid); $p->setFieldValue('derivedImageLinks', array_values(array_diff(array_map('intval', $p->derivedImageLinks->status(null)->ids()), [607]))); $elements->saveElement($p); }
     $com = Category::find()->id(196)->one();
     if ($comBodyEmpty) { $com->setFieldValue('body', (string)$get(607)->body); }
-    if ($img) { $com->setFieldValue('recordImages', array_values(array_unique(array_merge(array_map('intval', $com->recordImages->ids()), [$img->id])))); }
+    if ($img) { $com->setFieldValue('recordImages', array_values(array_unique(array_merge(array_map('intval', $com->recordImages->status(null)->ids()), [$img->id])))); }
     if (!$elements->saveElement($com)) { $short[] = 'community #196'; }
     $left = (int)(new \craft\db\Query())->from(['r' => '{{%relations}}'])->innerJoin(['el' => '{{%elements}}'], 'el.id = r.sourceId')->where(['r.targetId' => 607, 'el.revisionId' => null, 'el.draftId' => null, 'el.dateDeleted' => null])->count();
     if ($left) { $short[] = "$left relation(s) still point at #607; NOT retired"; } elseif (!$elements->deleteElement($get(607))) { $short[] = 'retire #607'; }

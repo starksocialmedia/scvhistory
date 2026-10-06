@@ -116,7 +116,8 @@ try {
     }
     if (!$me2) {
         $h = new Entry(); $h->sectionId = $os->id; $h->setTypeId($ot->id);
-        $h->setFieldValues(['holdingPerson' => [$me->holdingPerson->one()->id], 'holdingOffice' => [$RS->id], 'holdingBody' => [21588], 'holdingDistrict' => [25323], 'seatLabel' => 'Trustee Area 5',
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        $h->setFieldValues(['holdingPerson' => [$me->holdingPerson->status(null)->one()->id], 'holdingOffice' => [$RS->id], 'holdingBody' => [21588], 'holdingDistrict' => [25323], 'seatLabel' => 'Trustee Area 5',
             'termStart' => 'December 2022', 'termStartEdtf' => '2022-12', 'termEnd' => 'December 2026', 'termEndEdtf' => '2026-12', 'howEnded' => 'serving', 'startEvidence' => 'certified',
             'footnotes' => $fn(["William S. Hart Union High School District, \"Governing Board Member Info,\" $BRD_URL, read 4 October 2026: \"Joe Messina Trustee Area No. 5 representative President\"; \"current term 2022 - 2026.\" How the term was won (an election, or appointment in lieu of one) is not yet held."]),
             'recordProvenance' => $PROV]);

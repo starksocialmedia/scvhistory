@@ -371,7 +371,8 @@ foreach ($P as $id => $c) {
             foreach ($c['existing'] as $phId => [$aid, $fname]) {
                 $ph = Entry::find()->id($phId)->status(null)->one(); $vals = [];
                 if (!$ph->featuredImage->one()) { $vals['featuredImage'] = [$aid]; }
-                if (!in_array($id, $ph->photoPeople->ids(), true)) { $vals['photoPeople'] = array_merge($ph->photoPeople->ids(), [$id]); }
+                /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+                if (!in_array($id, $ph->photoPeople->status(null)->ids(), true)) { $vals['photoPeople'] = array_merge($ph->photoPeople->status(null)->ids(), [$id]); }
                 if ($vals) { $ph->setFieldValues($vals); if (!$elements->saveElement($ph)) { throw new \RuntimeException("#$phId: " . json_encode($ph->getFirstErrors())); } }
             }
             if (!empty($c['trimCaption'])) {

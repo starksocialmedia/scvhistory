@@ -37,7 +37,8 @@ foreach ($M as [$k, $oid, $fn, $title, $edtf, $holder, $old]) {
             'sourceUrl' => 'https://web.archive.org/web/20091214202408/http://www.clwa.org/', 'rightsNote' => 'A dissolved body\'s own mark, shown only to identify the body on its own record, as a reference work does; it implies no endorsement.', 'sourceChecksum' => 'sha256:' . hash_file('sha256', $path)];
         $ah = array_map(fn($f) => $f->handle, $a->getFieldLayout()->getCustomFields()); $a->setFieldValues(array_intersect_key($v, array_flip($ah)));
         if (!$el->saveElement($a)) { throw new \RuntimeException(json_encode($a->getFirstErrors())); } $n++; }
-    $o = Entry::find()->id($oid)->status(null)->one(); $ids = $o->recordImages->ids();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $o = Entry::find()->id($oid)->status(null)->one(); $ids = $o->recordImages->status(null)->ids();
     $oldA = $old ? Asset::find()->filename($old)->one() : null;
     $want = array_values(array_unique(array_merge([$a->id], array_filter($ids, fn($i) => !$oldA || $i != $oldA->id))));
     if ($ids != $want) { $o->setFieldValue('recordImages', $want); if (!$el->saveElement($o)) { throw new \RuntimeException("#$oid"); } $n++; }

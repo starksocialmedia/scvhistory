@@ -39,8 +39,9 @@ if ($keep && $dupe) {
     $moves = [];
     foreach (['neighborhood', 'placePeople', 'placeOrganizations', 'placeEvents', 'placeArticles', 'relatedPlaces'] as $h) {
         try {
-            $from = $dupe->getFieldValue($h)->ids();
-            $to = $keep->getFieldValue($h)->ids();
+            /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+            $from = $dupe->getFieldValue($h)->status(null)->ids();
+            $to = $keep->getFieldValue($h)->status(null)->ids();
         } catch (\Throwable $e) { continue; }
         $merged = array_values(array_unique(array_merge($to, $from)));
         if (count($merged) > count($to)) { $moves[$h] = $merged; }

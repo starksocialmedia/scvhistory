@@ -60,7 +60,8 @@ if (str_contains((string)$S->body, $S_OLD1)) { $notes = array_column($S->footnot
     $save($S, ['body' => $b, 'footnotes' => $fn($notes), 'orgAliases' => "SCV Water\nSanta Clarita Valley Water Agency"]); }
 if (str_contains((string)$N->body, $N_OLD)) { $notes = array_column($N->footnotes, 'note'); $notes[] = $STAT; $save($N, ['body' => str_replace($N_OLD . '[1][2]', $N_NEW . '[' . count($notes) . ']', str_replace($N_OLD, $N_NEW, (string)$N->body)), 'footnotes' => $fn($notes)]); }
 if (str_contains((string)$W->body, $W_OLDS)) { $save($W, ['body' => preg_replace('~Among his most significant legislative achievements[^\n]*~', $W_NEW, (string)$W->body, 1)]); }
-$pre = array_values(array_unique(array_merge([26563, 27534, $V->id]))); if ($S->precededBy->ids() != $pre) { $save($S, ['precededBy' => $pre]); }
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$pre = array_values(array_unique(array_merge([26563, 27534, $V->id]))); if ($S->precededBy->status(null)->ids() != $pre) { $save($S, ['precededBy' => $pre]); }
 if ($D) {
     $regFile = "$root/scripts/import/removed-claims.json"; $reg = json_decode(file_get_contents($regFile), true);
     $reg['removedRecords'][] = ['record' => $D->id, 'title' => $D->title, 'slug' => $D->slug, 'section' => 'organizations', 'why' => 'A retail division of the Castaic Lake Water Agency with no separate existence (SB 634, section 4(h)), not one of the bodies SB 634 reorganized. What it held is in the Castaic Lake Water Agency\'s record, where it now redirects.', 'removed' => '2026-10-04', 'by' => 'scripts/import/fix_sb634_two_bodies_2026_10_04.php (Nathan\'s decision)'];

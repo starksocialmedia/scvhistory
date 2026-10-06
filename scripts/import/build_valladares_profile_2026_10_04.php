@@ -48,7 +48,8 @@ $n = 0; $tx = Craft::$app->getDb()->beginTransaction();
 try {
     $h = array_map(fn($f) => $f->handle, $p->getFieldLayout()->getCustomFields());
     $p->setFieldValues(array_intersect_key(['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'State Senator',
-        'roles' => array_values(array_unique(array_merge($p->roles->ids(), [18313, 18387]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->ids(), [28271, 28273]))),
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        'roles' => array_values(array_unique(array_merge($p->roles->status(null)->ids(), [18313, 18387]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->status(null)->ids(), [28271, 28273]))),
         'editorNotes' => [['heading' => 'About the sources', 'position' => 'bottom', 'note' => 'Her biography is published by her own Senate office. What rests on it alone is attributed in the text; her family and home are left out.']],
         'recordProvenance' => 'record_valley_legislators_2026_10_04.php and build_valladares_profile_2026_10_04.php, 4 October 2026'], array_flip($h)));
     if (!$el->saveElement($p)) { throw new \RuntimeException(json_encode($p->getFirstErrors())); } $n++;

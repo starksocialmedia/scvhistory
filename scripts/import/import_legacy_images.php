@@ -707,7 +707,8 @@ foreach ($plan as $pageKey => $p) {
     usort($rows, fn($a, $b) => $a['pos'] <=> $b['pos']);
 
     $existing = [];
-    try { foreach ($entry->recordImages->all() as $a) { $existing[] = $a->id; } } catch (\Throwable $e) {}
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    try { foreach ($entry->recordImages->status(null)->all() as $a) { $existing[] = $a->id; } } catch (\Throwable $e) {}
 
     /* Assets that must not be placed inline: the band artwork and the social image. */
     $reserved = [];

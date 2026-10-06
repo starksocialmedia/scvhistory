@@ -85,10 +85,11 @@ $curNotes = array_values(array_filter($c->footnotes ?? [], fn($r) => is_array($r
 if (!$curNotes || isset($set['body'])) { if ($curNotes && !isset($set['body'])) { echo 'REFUSING the footnotes: already present' . PHP_EOL; } else { $set['footnotes'] = $FOOTNOTES; echo 'footnotes: ' . count($FOOTNOTES) . PHP_EOL; } }
 if ($c->getFieldLayout()->getFieldByHandle('recordProvenance') && trim((string)$c->recordProvenance) === '') { $set['recordProvenance'] = 'editorial-2026, build_city_of_santa_clarita.php, 29 September 2026; replaces the unsourced WordPress-import paragraph'; }
 
-$have = array_map('intval', $c->neighborhood->ids());
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$have = array_map('intval', $c->neighborhood->status(null)->ids());
 $add = [];
 foreach (['fair-oaks-ranch', 'sand-canyon'] as $slug) { $t = Category::find()->group('neighborhood')->slug($slug)->one(); if (!$t) { echo "community $slug not found" . PHP_EOL; continue; } if (!in_array($t->id, $have, true)) { $add[] = $t; } }
-if ($add) { $set['neighborhood'] = array_merge($have, array_map(fn($t) => $t->id, $add)); echo 'communities: keeps ' . implode(', ', array_map(fn($t) => $t->title, $c->neighborhood->all())) . '; adds ' . implode(', ', array_map(fn($t) => $t->title, $add)) . PHP_EOL; }
+if ($add) { $set['neighborhood'] = array_merge($have, array_map(fn($t) => $t->id, $add)); echo 'communities: keeps ' . implode(', ', array_map(fn($t) => $t->title, $c->neighborhood->status(null)->all())) . '; adds ' . implode(', ', array_map(fn($t) => $t->title, $add)) . PHP_EOL; }
 echo PHP_EOL . 'LEFT: featuredImage (waits for a real photograph); orgWebsite still reads https://www.santa-clarita.com, which the City has moved to santaclarita.gov, kept for Nathan.' . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
 if (!$set) { echo 'nothing to do; a second run is a no-op' . PHP_EOL; return; }

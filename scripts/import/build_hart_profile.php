@@ -153,7 +153,8 @@ try {
     foreach ($NAMED as $pid => $note) {
         $e = $get($pid); $h = array_map(fn($f) => $f->handle, $e->getFieldLayout()->getCustomFields());
         $vals = ['namedFor' => [$ID], 'namingNote' => $note];
-        if (in_array('placePeople', $h) && in_array($pid, [$PARK, $MANSION])) { $vals['placePeople'] = array_values(array_unique(array_merge($e->placePeople->ids(), [$ID]))); }
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        if (in_array('placePeople', $h) && in_array($pid, [$PARK, $MANSION])) { $vals['placePeople'] = array_values(array_unique(array_merge($e->placePeople->status(null)->ids(), [$ID]))); }
         $e->setFieldValues(array_intersect_key($vals, array_flip($h)));
         if (!$elements->saveElement($e)) { throw new \RuntimeException("#$pid: " . json_encode($e->getFirstErrors())); }
     }

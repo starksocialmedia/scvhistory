@@ -39,7 +39,8 @@ foreach ($corrections as $c) {
     foreach ($c['articles'] as $slug) {
         $a = \craft\elements\Entry::find()->section('articles')->slug($slug)->status(null)->one();
         if (!$a) { continue; }
-        $ids = $a->getFieldValue('subjectPerson')->ids();
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        $ids = $a->getFieldValue('subjectPerson')->status(null)->ids();
         if (!in_array($p->id, $ids, true)) { $ids[] = $p->id; $a->setFieldValue('subjectPerson', $ids); }
         $cur = trim((string)$a->getFieldValue('webmasterNoteBottom'));
         if (!str_contains($cur, 'Cephas L. Bard')) {

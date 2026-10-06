@@ -62,7 +62,12 @@
 {% set photoRecord = null %}
 {% for u in users %}{% if u.section.handle == 'photographs' and not photoRecord %}{% set photoRecord = u %}{% endif %}{% endfor %}
 
-{% set metaDescription = (caption ?: asset.title) ~ ' — an image in the SCVHistory.com archive.' %}
+{#- The page's name (Nathan, 5 October 2026: 2,979 pages were headed by a file name such as "Sc9020"). The caption; else the
+    photograph record that holds the image, whose title is its description; else the first record that uses it, said as
+    such; the file's own title only when nothing in the archive names the image. -#}
+{% set firstUser = users|first ?: null %}
+{% set heading = caption ?: (photoRecord ? photoRecord.title : (firstUser ? 'An image from ' ~ firstUser.title : asset.title)) %}
+{% set metaDescription = heading ~ ' — an image in the SCVHistory.com archive.' %}
 
 {% block head %}
 {#- The file page's own ImageObject. Without it /media/<id> emitted the generic
@@ -85,7 +90,7 @@
   '@id': siteUrl ~ 'media/' ~ asset.id,
   'contentUrl': asset.url,
   'url': siteUrl ~ 'media/' ~ asset.id,
-  'name': asset.title,
+  'name': heading,
   'caption': caption ?: null,
   'creator': creator ? { '@type': 'Person', 'name': creator } : null,
   'dateCreated': dt.published(edtf, printed)|trim ?: null,
@@ -130,9 +135,9 @@
   <div class="md-grid">
     <main style="min-width:0">
       <div class="md-kick">IMAGE</div>
-      <h1 class="md-h1">{{ caption ?: asset.title }}</h1>
+      <h1 class="md-h1">{{ heading }}</h1>
       <figure class="md-fig" style="margin:18px 0 0">
-        <img src="{{ asset.url }}" alt="{{ asset.alt ?: caption ?: asset.title }}"
+        <img src="{{ asset.url }}" alt="{{ asset.alt ?: heading }}"
              width="{{ asset.width }}" height="{{ asset.height }}">
       </figure>
       {% if caption or credit or courtesy %}

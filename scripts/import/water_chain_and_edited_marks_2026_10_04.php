@@ -73,7 +73,8 @@ foreach ($MARKS as [$file, $fn, $oid, $title, $edtf, $urn, $when, $holder]) {
             'sourceChecksum' => 'sha256:' . hash_file('sha256', $path), 'enhancementMethod' => $METHOD, 'enhancedBy' => 'Nathan Imhoff', 'enhancedDate' => '2026-10-04', 'contentCredentials' => $cc($urn, $when)];
         $ah = array_map(fn($f) => $f->handle, $a->getFieldLayout()->getCustomFields()); $a->setFieldValues(array_intersect_key($v, array_flip($ah)));
         if (!$el->saveElement($a)) { throw new \RuntimeException(json_encode($a->getFirstErrors())); } $n++; }
-    $o = Entry::find()->id($oid)->status(null)->one(); $ids = $o->recordImages->ids();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $o = Entry::find()->id($oid)->status(null)->one(); $ids = $o->recordImages->status(null)->ids();
     if (!in_array($a->id, $ids)) { $o->setFieldValue('recordImages', array_merge([$a->id], $ids)); if (!$el->saveElement($o)) { throw new \RuntimeException("#$oid"); } $n++; }
 }
 $os = $svc->getSectionByHandle('organizations'); $fnotes = fn(array $keys) => array_map(fn($i, $k) => ['number' => (string)($i + 1), 'note' => $SRC[$k], 'source' => 'editorial-2026'], array_keys($keys), $keys);
@@ -88,7 +89,7 @@ foreach ($NEW as $t => [$type, $parent, $founded, $body, $keys, $dissolved]) {
         if (!$el->saveElement($e)) { throw new \RuntimeException("$t: " . json_encode($e->getFirstErrors())); } $n++; }
     $ids[] = $e->id;
 }
-$S = Entry::find()->id(402)->one(); $want = array_values(array_unique(array_merge($S->precededBy->ids(), [26563, 27534], $ids)));
-if ($S->precededBy->ids() != $want) { $S->setFieldValue('precededBy', $want); if (!$el->saveElement($S)) { throw new \RuntimeException('SCV Water'); } $n++; }
+$S = Entry::find()->id(402)->one(); $want = array_values(array_unique(array_merge($S->precededBy->status(null)->ids(), [26563, 27534], $ids)));
+if ($S->precededBy->status(null)->ids() != $want) { $S->setFieldValue('precededBy', $want); if (!$el->saveElement($S)) { throw new \RuntimeException('SCV Water'); } $n++; }
 $applyLog = require "$root/scripts/import/_apply_log.php"; $applyLog('water_chain_and_edited_marks_2026_10_04.php', $n, 'verified', 'former-mark role; NCWD and CLWA marks with their edit recorded; the edit recorded on three marks imported earlier; Valencia Water Company and Santa Clarita Water Division; SCV Water preceded by all four');
 echo "done: $n writes" . PHP_EOL;

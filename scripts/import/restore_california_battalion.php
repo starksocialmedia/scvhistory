@@ -92,13 +92,14 @@ foreach ($NOTES as $i => $n) { echo '  [' . ($i + 1) . "] $n" . PHP_EOL; }
 $curRows = array_values(array_filter($g->editorNotes ?? [], fn($r) => is_array($r) && trim((string)($r['note'] ?? '')) !== ''));
 $addRows = array_values(array_filter($ROWS, fn($r) => !array_filter($curRows, fn($c) => ($c['note'] ?? '') === $r['note'])));
 foreach ($addRows as $r) { echo "EDITOR NOTE ADD \"{$r['heading']}\": {$r['note']}" . PHP_EOL; }
-$memOld = $g->groupPersons->ids(); $MEM = [307, 315, 313];
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$memOld = $g->groupPersons->status(null)->ids(); $MEM = [307, 315, 313];
 echo 'groupPersons OLD ' . json_encode($memOld) . ' -> NEW ' . json_encode($MEM) . ' (Pico #317 not put back)' . PHP_EOL;
 $LINK = [307 => 'personGroups', 315 => 'personGroups', 313 => 'personGroups', 857 => 'subjectGroup'];
 $linkPlan = [];
 foreach ($LINK as $sid => $h) {
     $s = $get($sid); if (!$s || !$s->getFieldLayout()->getFieldByHandle($h)) { $bad[] = "#$sid has no $h"; continue; }
-    $ids = $s->getFieldValue($h)->ids(); $has = in_array($ID, $ids, true);
+    $ids = $s->getFieldValue($h)->status(null)->ids(); $has = in_array($ID, $ids, true);
     echo "  #$sid {$s->title} $h " . json_encode($ids) . ($has ? ' holds #946' : ' -> add #946') . PHP_EOL;
     if (!$has) { $linkPlan[$sid] = [$h, array_merge($ids, [$ID])]; }
 }
@@ -136,8 +137,8 @@ try {
 if (!$redirDone) { file_put_contents($RF, str_replace($R_OLD, $R_NEW, $redir)); }
 if ($entry) { $reg['removedRecords'] = array_values(array_filter($reg['removedRecords'], fn($x) => ($x['record'] ?? 0) !== $ID)); file_put_contents($REGF, json_encode($reg, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n"); }
 $r = $get($ID);
-$ok = $r && trim((string)$r->body) === $BODY && $r->groupPersons->ids() == $MEM
-    && !array_filter(array_keys($LINK), fn($sid) => !in_array($ID, $get($sid)->getFieldValue($LINK[$sid])->ids(), true))
+$ok = $r && trim((string)$r->body) === $BODY && $r->groupPersons->status(null)->ids() == $MEM
+    && !array_filter(array_keys($LINK), fn($sid) => !in_array($ID, $get($sid)->getFieldValue($LINK[$sid])->status(null)->ids(), true))
     && !str_contains((string)file_get_contents($RF), "'groups/california-battalion'")
     && !array_filter(json_decode((string)file_get_contents($REGF), true)['removedRecords'], fn($x) => ($x['record'] ?? 0) === $ID);
 echo 'READ-BACK ' . ($ok ? 'OK: ' . $r->url : 'SHORT') . PHP_EOL;

@@ -122,7 +122,8 @@ try {
     $p = $get($ID);
     $h = array_map(fn($f) => $f->handle, $p->getFieldLayout()->getCustomFields());
     $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'School board member; State Assemblymember',
-        'roles' => array_values(array_unique(array_merge($p->roles->ids(), [$ROLE->id, $ASM->id]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->ids(), [$NSD->id]))),
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        'roles' => array_values(array_unique(array_merge($p->roles->status(null)->ids(), [$ROLE->id, $ASM->id]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->status(null)->ids(), [$NSD->id]))),
         'personWikipediaUrl' => 'https://en.wikipedia.org/wiki/Christy_Smith_(politician)',
         'recordProvenance' => trim((string)$p->recordProvenance . '; build_smith_profile.php, 3 Oct 2026: profile and office')];
     $p->setFieldValues(array_intersect_key($vals, array_flip($h)));

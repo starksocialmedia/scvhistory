@@ -51,7 +51,8 @@ foreach ($GO as $id => [$title, $sec, $why, $into]) {
     if ($e) {
         foreach (Entry::find()->relatedTo(['targetElement' => $e])->status(null)->limit(null)->all() as $s) {
             foreach ($s->getFieldLayout()->getCustomFields() as $f) {
-                if ($f instanceof \craft\fields\BaseRelationField && in_array($id, $s->getFieldValue($f->handle)->ids(), true)) { $links[] = [$s, $f->handle]; }
+                /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+                if ($f instanceof \craft\fields\BaseRelationField && in_array($id, $s->getFieldValue($f->handle)->status(null)->ids(), true)) { $links[] = [$s, $f->handle]; }
             }
         }
     }
@@ -61,18 +62,18 @@ foreach ($GO as $id => [$title, $sec, $why, $into]) {
     foreach ($links as [$s, $h]) { echo "     {$s->section->handle} #{$s->id} $h  {$s->title}" . PHP_EOL; }
 }
 $a857 = Entry::find()->id(857)->status(null)->one();
-$needFremont = !in_array(307, $a857->subjectPerson->ids(), true);
+$needFremont = !in_array(307, $a857->subjectPerson->status(null)->ids(), true);
 echo 'Reynolds ch. 18 #857: Frémont as subjectPerson ' . ($needFremont ? 'to add' : 'held') . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? PHP_EOL . '  ' . implode(PHP_EOL . '  ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
 if ($bad) { echo 'REFUSING' . PHP_EOL; return; }
 
 $short = [];
-if ($needFremont) { $a857->setFieldValue('subjectPerson', array_merge($a857->subjectPerson->ids(), [307])); if (!$els->saveElement($a857)) { $short[] = '#857'; } }
+if ($needFremont) { $a857->setFieldValue('subjectPerson', array_merge($a857->subjectPerson->status(null)->ids(), [307])); if (!$els->saveElement($a857)) { $short[] = '#857'; } }
 foreach ($plan as $id => [$e, $links, $inReg]) {
     foreach ($links as [$s, $h]) {
         $s = Entry::find()->id($s->id)->status(null)->one();
-        $s->setFieldValue($h, array_values(array_diff($s->getFieldValue($h)->ids(), [$id])));
+        $s->setFieldValue($h, array_values(array_diff($s->getFieldValue($h)->status(null)->ids(), [$id])));
         if (!$els->saveElement($s)) { $short[] = "#{$s->id} $h"; }
     }
     if (!$inReg) { [$t, $sec, $why] = $GO[$id]; $reg['removedRecords'][] = ['record' => $id, 'title' => $t, 'section' => $sec, 'why' => $why, 'removed' => '2026-10-03', 'by' => 'scripts/import/fold_and_retire_records.php']; }

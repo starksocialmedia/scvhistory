@@ -52,7 +52,8 @@ if ($p) {
     foreach (Entry::find()->relatedTo(['targetElement' => $p])->status(null)->limit(null)->all() as $e) {
         foreach ($e->getFieldLayout()->getCustomFields() as $f) {
             if (!$f instanceof \craft\fields\BaseRelationField) { continue; }
-            if (in_array($ID, $e->getFieldValue($f->handle)->ids(), true)) { $links[] = [$e, $f->handle]; }
+            /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+            if (in_array($ID, $e->getFieldValue($f->handle)->status(null)->ids(), true)) { $links[] = [$e, $f->handle]; }
         }
     }
 }
@@ -76,7 +77,7 @@ if (!$inCanon) {
 $els = Craft::$app->getElements(); $short = [];
 foreach ($links as [$e, $h]) {
     $e = Entry::find()->id($e->id)->status(null)->one();
-    $e->setFieldValue($h, array_values(array_diff($e->getFieldValue($h)->ids(), [$ID])));
+    $e->setFieldValue($h, array_values(array_diff($e->getFieldValue($h)->status(null)->ids(), [$ID])));
     if (!$els->saveElement($e)) { $short[] = "#{$e->id} " . json_encode($e->getFirstErrors()); }
 }
 if ($p && !$short) { if (!$els->deleteElement($p)) { $short[] = "delete #$ID"; } }

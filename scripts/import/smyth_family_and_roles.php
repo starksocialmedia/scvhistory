@@ -82,7 +82,8 @@ if (!$clyde || !$cam) { echo 'one of the records is missing' . PHP_EOL; return; 
 
 /* ------------------------------------------------------------ the family */
 
-$held = array_map(fn($e) => $e->id, $cam->childOf->all());
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$held = array_map(fn($e) => $e->id, $cam->childOf->status(null)->all());
 $relationOk = in_array($clyde->id, $held, true);
 echo 'FAMILY' . PHP_EOL;
 printf("   %-30s %s\n", 'Cameron childOf Clyde',
@@ -134,7 +135,7 @@ foreach ([$CLYDE => $clyde, $CAMERON => $cam] as $id => $e) {
         $r = $vocab[mb_strtolower($t)] ?? null;
         if ($r) { $want[] = $r; } else { $missing[] = $t; }
     }
-    $has = array_map(fn($x) => $x->id, $e->roles->all());
+    $has = array_map(fn($x) => $x->id, $e->roles->status(null)->all());
     /* Union, never replace: a role set already on a record was put there by
        somebody and this brief is not a reason to drop it. */
     $ids = array_values(array_unique(array_merge($has, array_map(fn($r) => $r->id, $want))));

@@ -48,7 +48,8 @@ if (!$fairDone && ($K?->title !== 'Santa Clarita Valley Country Fair' || $L?->ti
 echo 'Country Fair: ' . ($fairDone ? 'done' : 'keep #12702 (legacy fields to fair.htm, fair1197.htm kept as its alias), delete #12704 (soft), redirect, registry') . PHP_EOL;
 $OB = $get(679); $RA = $get(2591); $C15 = $get(12656);
 $obOld = 'Twenty-six pieces sit in the tree'; $raOld = 'the archive holds 24 of her pieces';
-echo 'Open Book description: ' . (str_contains((string)$OB->body, $obOld) ? '"Twenty-six" -> "Twenty-five"' : 'already') . '; Rasmussen profile: ' . (str_contains((string)$RA->body, $raOld) ? '"24" -> "25"' : 'already') . '; #12656 byline: ' . (in_array(2591, $C15->writtenBy->ids()) ? 'already' : 'Patti Rasmussen') . PHP_EOL;
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+echo 'Open Book description: ' . (str_contains((string)$OB->body, $obOld) ? '"Twenty-six" -> "Twenty-five"' : 'already') . '; Rasmussen profile: ' . (str_contains((string)$RA->body, $raOld) ? '"24" -> "25"' : 'already') . '; #12656 byline: ' . (in_array(2591, $C15->writtenBy->status(null)->ids()) ? 'already' : 'Patti Rasmussen') . PHP_EOL;
 echo 'REFUSED: ' . ($bad ? implode(' | ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY) { echo str_repeat('=', 78) . PHP_EOL . 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; return; }
 if ($bad) { echo 'REFUSING' . PHP_EOL; return; }
@@ -62,15 +63,15 @@ try {
     $cols = [];
     foreach ($out as $o) {
         $a = $get($o['id']); if (!$a) { continue; }
-        $v = ['partOfCollection' => array_values(array_diff($a->partOfCollection->ids(), [$o['col']]))];
-        if ($o['who'] && !in_array($o['who'], $a->writtenBy->ids())) { $v['writtenBy'] = array_values(array_unique(array_merge($a->writtenBy->ids(), [$o['who']]))); }
+        $v = ['partOfCollection' => array_values(array_diff($a->partOfCollection->status(null)->ids(), [$o['col']]))];
+        if ($o['who'] && !in_array($o['who'], $a->writtenBy->status(null)->ids())) { $v['writtenBy'] = array_values(array_unique(array_merge($a->writtenBy->status(null)->ids(), [$o['who']]))); }
         $a->setFieldValues($v); if (!$el->saveElement($a)) { throw new \RuntimeException("#{$o['id']}: " . json_encode($a->getFirstErrors())); } $n++;
         $cols[$o['col']][] = $o['id'];
     }
-    foreach ($cols as $cid => $ids) { $c = $get($cid); $c->setFieldValue('articlesInCollection', array_values(array_diff($c->articlesInCollection->ids(), $ids))); if (!$el->saveElement($c)) { throw new \RuntimeException("collection #$cid: " . json_encode($c->getFirstErrors())); } $n++; }
+    foreach ($cols as $cid => $ids) { $c = $get($cid); $c->setFieldValue('articlesInCollection', array_values(array_diff($c->articlesInCollection->status(null)->ids(), $ids))); if (!$el->saveElement($c)) { throw new \RuntimeException("collection #$cid: " . json_encode($c->getFirstErrors())); } $n++; }
     $OB = $get(679); if (str_contains((string)$OB->body, $obOld)) { $OB->setFieldValue('body', str_replace($obOld, 'Twenty-five pieces sit in the tree', (string)$OB->body)); if (!$el->saveElement($OB)) { throw new \RuntimeException('#679'); } $n++; }
     if (str_contains((string)$RA->body, $raOld)) { $RA->setFieldValue('body', str_replace($raOld, 'the archive holds 25 of her pieces', (string)$RA->body)); if (!$el->saveElement($RA)) { throw new \RuntimeException('#2591'); } $n++; }
-    if (!in_array(2591, $C15->writtenBy->ids())) { $C15->setFieldValue('writtenBy', array_values(array_merge($C15->writtenBy->ids(), [2591]))); if (!$el->saveElement($C15)) { throw new \RuntimeException('#12656'); } $n++; }
+    if (!in_array(2591, $C15->writtenBy->status(null)->ids())) { $C15->setFieldValue('writtenBy', array_values(array_merge($C15->writtenBy->status(null)->ids(), [2591]))); if (!$el->saveElement($C15)) { throw new \RuntimeException('#12656'); } $n++; }
     $tx->commit();
 } catch (\Throwable $t) { $tx->rollBack(); echo 'ROLLED BACK, nothing was written: ' . $t->getMessage() . PHP_EOL; throw $t; }
 /* The registry, by slug. */

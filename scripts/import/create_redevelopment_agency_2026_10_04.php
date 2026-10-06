@@ -51,7 +51,8 @@ if (!str_contains((string)$c->body, 'formally dissolved')) {
   $c->setFieldValues(['body' => rtrim((string)$c->body) . $CBODY, 'footnotes' => $fn(array_merge($old, $CNOTES)), 'dateDissolved' => 'March 1, 2012', 'dateDissolvedEdtf' => '2012-03-01']);
   if (!$el->saveElement($c)) { throw new \RuntimeException(json_encode($c->getFirstErrors())); } $n++;
 }
-$ids = $w->subjectOrganization->ids(); if (!in_array($a->id, $ids)) { $w->setFieldValue('subjectOrganization', array_merge($ids, [$a->id])); if (!$el->saveElement($w)) { throw new \RuntimeException('#12302'); } $n++; }
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$ids = $w->subjectOrganization->status(null)->ids(); if (!in_array($a->id, $ids)) { $w->setFieldValue('subjectOrganization', array_merge($ids, [$a->id])); if (!$el->saveElement($w)) { throw new \RuntimeException('#12302'); } $n++; }
 $a = Entry::find()->id($a->id)->status(null)->one(); $c = Entry::find()->id(16290)->status(null)->one();
 if ($a->dateDissolvedEdtf !== '2012-02-01' || count($a->footnotes) !== count($NOTES) || $c->dateDissolvedEdtf !== '2012-03-01' || count($c->footnotes) !== 3) { throw new \RuntimeException('not read back'); }
 $applyLog = require \Craft::getAlias('@root') . '/scripts/import/_apply_log.php'; $applyLog('create_redevelopment_agency_2026_10_04.php', $n, 'verified', 'Redevelopment Agency of the City of Santa Clarita (1989 to 1 February 2012); Newhall Redevelopment Committee dissolved 1 March 2012');

@@ -11,7 +11,8 @@ foreach ($pairs as [$child, $parent]) {
     $ok = false;
     foreach ($child->getFieldLayout()->getCustomFields() as $f) { if ($f->handle === 'childOf') { $ok = true; } }
     if (!$ok) { echo $child->title . ': no childOf field on this entry type' . PHP_EOL; continue; }
-    $ids = $child->getFieldValue('childOf')->ids();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $ids = $child->getFieldValue('childOf')->status(null)->ids();
     if (in_array($parent->id, $ids, true)) { echo $child->title . ': already child of ' . $parent->title . PHP_EOL; continue; }
     echo $child->title . ' childOf ' . $parent->title . PHP_EOL;
     if (!$APPLY) { continue; }

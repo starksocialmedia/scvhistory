@@ -91,14 +91,42 @@ foreach ($entries as $e) {
         }
     }
 
-    if (!isset($row['parsed']['narrative'])) {
-        if (preg_match('/Narrative:\s*(.+?)(?:\n\s*\n|$)/s', $text, $m)) {
-            $n = trim(preg_replace('/\s+/', ' ', $m[1]));
-            if ($n !== '') {
-                $row['parsed']['narrative'] = $n;
-                $row['missing'] = array_values(array_diff($row['missing'], ['narrative']));
-            }
+    /* Fixed 5 October 2026 (silent-faults audit, finding 3). The label loop above kept only the first text line after
+       "Narrative:", but the legacy pages wrap one HTML paragraph across many source lines, so eight narratives were cut
+       to their first line (four mid-sentence: #570, #552, #546, #516), and the fallback below never ran because the
+       label had been found. The narrative is now read from the HTML: everything after "<b>Narrative:</b>" up to the
+       first block end the legacy template prints after it, paragraphs at the page's <p> breaks, source line breaks
+       folded to one space, paragraphs joined by a blank line. A narrative that does not end in closing punctuation is
+       refused (left out of parsed, and named under 'refused') rather than written as though it were whole. The same
+       rule is in restore_war_memorial_narratives_2026_10_05.php. */
+    unset($row['parsed']['narrative']);
+    $row['missing'] = array_values(array_diff($row['missing'], ['narrative']));
+    $narr = null;
+    if (preg_match('#<b>\s*Narrative:\s*</b>#i', $html, $nm, PREG_OFFSET_CAPTURE)) {
+        $rest = substr($html, $nm[0][1] + strlen($nm[0][0]));
+        if (preg_match('#<div\s+style\s*=\s*"height:\s*20px|</div>|<hr\b|<b>\s*[A-Z][A-Za-z ]{1,30}:\s*</b>|<!--\s*XWP-END#i', $rest, $em, PREG_OFFSET_CAPTURE)) {
+            $rest = substr($rest, 0, $em[0][1]);
         }
+        $paras = [];
+        foreach (preg_split('#<p\b[^>]*>|</p>#i', $rest) as $p) {
+            $p = preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is', ' ', $p);
+            $p = html_entity_decode(preg_replace('#<[^>]+>#', ' ', $p), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $p = trim(preg_replace('/\s+/u', ' ', str_replace("\xc2\xa0", ' ', $p)));
+            if ($p !== '') { $paras[] = $p; }
+        }
+        $narr = $paras ? implode("\n\n", $paras) : null;
+    } elseif (preg_match('/Narrative:\s*(.+)$/s', $text, $m)) {
+        /* An unbolded label: read to the next "Label:" line, never just the first line. */
+        $n = preg_split('/\n\s*[A-Z][A-Za-z ]{1,30}:/', $m[1])[0];
+        $n = trim(preg_replace('/[ \t]*\n[ \t]*/', ' ', $n));
+        $narr = $n !== '' ? $n : null;
+    }
+    if ($narr === null) {
+        $row['missing'][] = 'narrative';
+    } elseif (!preg_match('/[.!?"\x{201D})]$/u', $narr)) {
+        $row['refused'][] = 'narrative does not end in closing punctuation: ...' . mb_substr($narr, -60);
+    } else {
+        $row['parsed']['narrative'] = $narr;
     }
 
     $records[] = $row;

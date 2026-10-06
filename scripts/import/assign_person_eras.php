@@ -77,7 +77,8 @@ foreach (Entry::find()->section('persons')->status(null)->orderBy('title')->all(
             $basis = "adult life $s-$t";
         }
     }
-    $cur = $p->historicalEra->ids();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $cur = $p->historicalEra->status(null)->ids();
     arsort($by); $top = array_key_first($by); $share = $by ? $by[$top] / array_sum($by) : 0;
     /* One undated-life anchor that is not an office or a race (a photograph) is not enough to place a person. */
     $auto = $top && $share >= 2 / 3 && !($anchors && count($anchors) === 1 && $official === 0);

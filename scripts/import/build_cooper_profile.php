@@ -85,7 +85,8 @@ try {
     if (!$cur) {
         $s = Entry::find()->id($ID)->status(null)->one(); $h = array_map(fn($f) => $f->handle, $s->getFieldLayout()->getCustomFields());
         $s->setFieldValues(array_intersect_key(['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'Water board director',
-            'personOrganizations' => array_values(array_unique(array_merge($s->personOrganizations->ids(), [$SCVW]))),
+            /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+            'personOrganizations' => array_values(array_unique(array_merge($s->personOrganizations->status(null)->ids(), [$SCVW]))),
             'recordProvenance' => trim((string)$s->recordProvenance . '; build_cooper_profile.php, 2 Oct 2026: public-life profile; Division 1 holding', '; ')], array_flip($h)));
         if (!$elements->saveElement($s)) { throw new \RuntimeException('#26946: ' . json_encode($s->getFirstErrors())); }
     }

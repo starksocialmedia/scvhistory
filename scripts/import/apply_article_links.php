@@ -63,7 +63,8 @@ foreach ($add as $id => $targets) {
     if (!$e) { echo '#' . $id . ' is not an article record' . PHP_EOL; continue; }
     if (!$hasField($e, 'relatedArticles')) { echo $e->title . ': no relatedArticles field' . PHP_EOL; continue; }
 
-    $current = $e->relatedArticles->ids();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $current = $e->relatedArticles->status(null)->ids();
     $new = array_values(array_diff(array_keys($targets), $current));
     if (!$new) { echo str_pad($e->title, 36) . 'already carries all of them' . PHP_EOL; continue; }
 

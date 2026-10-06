@@ -134,7 +134,8 @@ try {
     $p = $get($ID);
     $h = array_map(fn($f) => $f->handle, $p->getFieldLayout()->getCustomFields());
     $vals = ['body' => $BODY, 'footnotes' => $fn($NOTES), 'bodyAuthorship' => 'editorial-2026', 'occupation' => 'Film finance executive; school board member', 'fullName' => 'Christopher Trunkey', 'personAliases' => 'Christopher Trunkey',
-        'roles' => array_values(array_unique(array_merge($p->roles->ids(), [$ROLE->id]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->ids(), [$SUSD->id, $HART->id]))),
+        /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+        'roles' => array_values(array_unique(array_merge($p->roles->status(null)->ids(), [$ROLE->id]))), 'personOrganizations' => array_values(array_unique(array_merge($p->personOrganizations->status(null)->ids(), [$SUSD->id, $HART->id]))),
         'recordProvenance' => trim((string)$p->recordProvenance . '; build_trunkey_profile.php, 3 Oct 2026: profile, office, 2022 candidacy, Hart')];
     $p->setFieldValues(array_intersect_key($vals, array_flip($h)));
     if (!$elements->saveElement($p)) { throw new \RuntimeException('#25409: ' . json_encode($p->getFirstErrors())); }

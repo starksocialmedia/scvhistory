@@ -10,8 +10,9 @@ $dropBody = (string)$drop->getFieldValue('body');
 $keepBody = (string)$keep->getFieldValue('body');
 if (strlen($dropBody) > strlen($keepBody)) { $moves['body'] = $dropBody; }
 
-$img = $drop->getFieldValue('featuredImage')->ids();
-if (count($img) && !$keep->getFieldValue('featuredImage')->count()) { $moves['featuredImage'] = $img; }
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+$img = $drop->getFieldValue('featuredImage')->status(null)->ids();
+if (count($img) && !$keep->getFieldValue('featuredImage')->status(null)->count()) { $moves['featuredImage'] = $img; }
 
 $rank = (string)$drop->getFieldValue('wmRank');
 if (str_contains($rank, 'SP4')) { $moves['wmRank'] = $rank; }

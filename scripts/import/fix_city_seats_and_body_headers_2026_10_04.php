@@ -38,7 +38,8 @@ foreach ([2, 4, 5] as $d) {
     if (!$el->saveElement($p)) { throw new \RuntimeException("$t: " . json_encode($p->getFirstErrors())); } $n++;
 }
 foreach ($MOVE as $o => $a) {
-    $e = Entry::find()->id($o)->status(null)->one(); $ids = $e->recordImages->ids();
+    /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+    $e = Entry::find()->id($o)->status(null)->one(); $ids = $e->recordImages->status(null)->ids();
     $e->setFieldValues(['recordImages' => in_array($a, $ids) ? $ids : array_merge([$a], $ids), 'featuredImage' => []]);
     if (!$el->saveElement($e)) { throw new \RuntimeException("#$o: " . json_encode($e->getFirstErrors())); } $n++;
 }

@@ -22,7 +22,8 @@ $bad = [];
 if (!$e || $e->slug !== 'in-memoriam-henry-clay-wiley-1829-1898') { $bad[] = '#888 is not the Wiley obituary'; }
 foreach ($NAMES as $id => $fn) { if (Asset::find()->id($id)->one()?->filename !== $fn) { $bad[] = "asset #$id is not $fn"; } }
 $vals = [];
-foreach ($WANT as $h => $ids) { $have = $e->getFieldValue($h)->ids(); $add = array_diff($ids, $have); if ($add) { $vals[$h] = array_values(array_merge($have, $add)); echo "   $h + " . implode(', ', array_map(fn($i) => "#$i {$NAMES[$i]}", $add)) . PHP_EOL; } }
+/* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+foreach ($WANT as $h => $ids) { $have = $e->getFieldValue($h)->status(null)->ids(); $add = array_diff($ids, $have); if ($add) { $vals[$h] = array_values(array_merge($have, $add)); echo "   $h + " . implode(', ', array_map(fn($i) => "#$i {$NAMES[$i]}", $add)) . PHP_EOL; } }
 echo ($vals ? '' : 'nothing to do' . PHP_EOL) . 'REFUSED: ' . ($bad ? implode(' | ', $bad) : 'none') . PHP_EOL;
 if (!$APPLY || !$vals) { if (!$APPLY) { echo 'nothing was written. Set $APPLY = true to apply.' . PHP_EOL; } return; }
 if ($bad) { echo 'REFUSING' . PHP_EOL; return; }

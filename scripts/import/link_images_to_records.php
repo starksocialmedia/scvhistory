@@ -203,7 +203,8 @@ if ($APPLY) {
         if (!$e) { continue; }
         $touched = false;
         foreach ($byField as $field => $ids) {
-            $current = $e->getFieldValue($field)->ids();
+            /* status(null): keep unpublished targets when rewriting a relation (silent-faults audit, 5 October 2026). */
+            $current = $e->getFieldValue($field)->status(null)->ids();
             $merged = array_values(array_unique(array_merge($current, array_keys($ids))));
             if (count($merged) === count($current)) { continue; }
             $e->setFieldValue($field, $merged);
