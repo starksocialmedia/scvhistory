@@ -2,6 +2,14 @@
 
 ## Waiting on Nathan
 
+### Current (5 October 2026, late night)
+- **Search names** (scripts/import/search_names_2026_10_05.php, dry run): the alias removal cut "A.B. Perkins", "Bill Hart", "Joseph Messina" and others out of search; a hidden search field puts 177 back and 4 maiden names return as shown aliases.
+- **Portrait batch** (inventory/review/portrait-batch-dry-run-2026-10-05.md): read before apply. Chico López has a likeness (US8502), so his "no likeness" note is held: import it instead?
+- **Events, dry runs to read:** the Saugus High sources then event (the event needs the sources applied first; whether events get a sourceDocuments field); the St. Francis Dam loader (its decision list); Cityhood, Placerita, the golden spike, the Newhall Incident (naming the gunmen once, as the sources do).
+- **War memorial sources** (inventory/review/war-memorial-unsourced-dry-run-2026-10-05.md): Kenaston via the VA locator (approve its use for him), Colley via the 2003 yearbook; Wilson, Todd, Conant, Ross searched and still short.
+- **Authors:** documents need a writtenBy field (11 waiting); the Ellis Gazette bylines linked on two SCVNews pieces; the four duplicate article pairs; #2173 and #12852 held.
+- **Tom Frew II:** a record of his own?
+
 ### Current (5 October 2026, night)
 - **Appointed terms:** done 5 October (unopposed, the splits, Messina, the four notes, Gibbs and Plambeck). Still open: the 2 partly right runs (Talley 2016, Moore 2017); DeFigueiredo 2007's "no election held", which rests only on a contest missing from CEDA; the 18 RISKY quotations and the #394 attribution in inventory/review/spliced-quotations-audit-2026-10-05.md.
 - **The portrait census** is running again (5 October night); its report writes as it goes.

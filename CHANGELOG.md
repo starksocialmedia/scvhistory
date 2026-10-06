@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-05 (late night, Nathan's queue)
+
+- Agent: Claude Code
+- Date: 2026-10-05
+- Done: Tom Frew IV (#18783) and Thomas M. Frew Jr. (#28647), father and son: names (through fullName), notes that say how they differ, "Requiem" unlinked from Tom IV, LW2043 linked; review/records-decided.json follows. DeFigueiredo 2007 not known; the Measure V quotation in two parts; #394 cited to Ordinance 23-4; the CDNC quotations noted. Same-name aliases removed (181 lines, 133 records), Nadeau and Bonelli held. 320 articles linked to their authors (link_authors_2026_10_05.php; Sol Taylor 219, Reynolds 52, Worden 32).
+- Dry runs for Nathan: the portrait batch (34 imports, 2 crops, 6 links, Pavelka's source fault); search names (177 forms back in search, 4 maiden names back as aliases); the Saugus High event; the St. Francis Dam loader (147 quotations rechecked, 10 corrected); Cityhood, Placerita, the golden spike and the Newhall Incident drafts; six war memorial records (Kenaston and Colley gain sources).
+- Found: the alias removal left "A.B. Perkins", "Bill Hart", "Joseph Messina" and others unfindable in search; Chico López has a likeness (US8502, the California Historical Society portrait) the census missed; the March 9 date of the gold discovery is in Lopez's 1842 petition, not a 1930 tradition; Tom Frew's records were never one man.
+- Errors: renaming Tom Frew tripped the removed-claims check (a stale decision); fixed.
+- Next: TODO.md, "Waiting on Nathan".
+
 2026-10-05 (night, to the stopping point)
 
 - Agent: Claude Code
