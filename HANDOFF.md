@@ -17,7 +17,7 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 - **Staging** was refreshed by Nathan on 3 October. Everything applied since is local only until
   the next refresh.
 - **War memorial.** 52 of 54 records sourced; Kenaston and Wilson not found (4 October).
-- **People.** About 225 records; ten members for the valley's legislative seats added on 4 October.
+- **People.** 210 person records after the person-record rule of 6 October (CHANGELOG): 85 thin office-only records became rows, their terms kept and named by holderName, Edwin and Almer Newhall added. 44 of the 85 had drafted profiles and may come back (TODO).
 - **The civic layer.** Office holdings on every body with holdings, in tabbed pages. The Assembly,
   State Senate and House show every district that held part of the valley under each plan, with its
   share and members (inventory/review/legislative-districts-2026-10-04.md; templates/_data/valley-districts.json). The City has its five council districts. The other districts and SCV
@@ -29,7 +29,7 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. TODO.md, "Waiting on Nathan", 6 October first (the push, the duplicate pairs, the redirect map), then 5 October: the appointed-terms audit (not to be fixed before Nathan reads it), the same-name aliases, authorship, the silent-faults dry runs, and the portrait census to rerun whole (stopped unfinished at the laptop's close). Then: Measure U, the Saugus High source records and the St. Francis Dam (all dry runs), the events queue after them (inventory/review/events-inventory-2026-10-05.md), the Harris interview when it arrives, the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
+1. TODO.md, "Waiting on Nathan", 6 October evening first (the 44 trustees, Scott Newhall's lead, the five events), then 6 October (the push, the duplicate pairs, the redirect map), then 5 October: the appointed-terms audit (not to be fixed before Nathan reads it), the same-name aliases, authorship, the silent-faults dry runs, and the portrait census to rerun whole (stopped unfinished at the laptop's close). Then: Measure U, the Saugus High source records and the St. Francis Dam (all dry runs), the events queue after them (inventory/review/events-inventory-2026-10-05.md), the Harris interview when it arrives, the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
 2. The send-a-photograph form is built and tested on DDEV (/send, /admin-submissions); it reaches staging with the next refresh, after docs/DEPLOY-RUNBOOK.md section 11.
 3. The place record Porta Bella (#20152), live and empty: whether to build it. The congressional split recheck.
 4. The City Hall photograph, when Nathan sends it.

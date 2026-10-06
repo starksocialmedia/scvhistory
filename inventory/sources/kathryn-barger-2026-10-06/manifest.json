@@ -1,0 +1,117 @@
+{
+ "about": "Sources read for the Kathryn Barger profile, 6 October 2026 (Claude Code, research subagent). The Statements of Votes Cast are the Los Angeles County Registrar-Recorder/County Clerk's final official statements; the .txt beside each PDF is pdftotext -layout output, made on the host, for the quotation check. The press releases are her office's own (kathrynbarger.lacounty.gov, read through its WordPress API, which returns the same text as the pages). The Wikipedia raw text is kept as the finding aid only.",
+ "files": [
+  {
+   "file": "barger-get-to-know-fifth-district.html",
+   "url": "https://kathrynbarger.lacounty.gov/get-to-know-fifth-district/",
+   "read": "2026-10-06",
+   "sha256": "48aae0b31eb37d2d6ffac307ccf9d4450ea1f915383907b573722dd5dbf12799",
+   "bytes": 233411
+  },
+  {
+   "file": "barger-meet-kathryn.html",
+   "url": "https://kathrynbarger.lacounty.gov/meet-kathryn/",
+   "read": "2026-10-06",
+   "sha256": "33edc839ba5dbca6afdf8a07279e0bef7caabe9eba5e2f5c156e0dedc216b80a",
+   "bytes": 216128
+  },
+  {
+   "file": "barger-pr-county-certifies-environmental-impact-reports-for-landmark-village-and-mission-village.json",
+   "url": "https://kathrynbarger.lacounty.gov/county-certifies-environmental-impact-reports-for-landmark-village-and-mission-village/",
+   "read": "2026-10-06",
+   "sha256": "1849e5b32df97d9488f1d936a7db5c10223c713e80699165c8507a170811ff5c",
+   "bytes": 1991
+  },
+  {
+   "file": "barger-pr-l-a-county-addresses-chiquita-canyon-landfill-closure-planning-for-impact-and-protection.json",
+   "url": "https://kathrynbarger.lacounty.gov/l-a-county-addresses-chiquita-canyon-landfill-closure-planning-for-impact-and-protection/",
+   "read": "2026-10-06",
+   "sha256": "8f69f65cb51741e34258f32ec521bfb9002d47714fbdc69479ab79e6b6a45eeb",
+   "bytes": 3464
+  },
+  {
+   "file": "barger-pr-l-a-county-invests-250m-to-improve-old-road-in-santa-clarita-region.json",
+   "url": "https://kathrynbarger.lacounty.gov/l-a-county-invests-250m-to-improve-old-road-in-santa-clarita-region/",
+   "read": "2026-10-06",
+   "sha256": "db8afa01a358672f75469ada1cf5cadee7f15074545fc3fefc0fb1dbe351940f",
+   "bytes": 3186
+  },
+  {
+   "file": "barger-pr-l-a-county-supervisors-green-light-transfer-of-historic-william-s-hart-park-and-museum-to-city-of-santa-clarita.json",
+   "url": "https://kathrynbarger.lacounty.gov/l-a-county-supervisors-green-light-transfer-of-historic-william-s-hart-park-and-museum-to-city-of-santa-clarita/",
+   "read": "2026-10-06",
+   "sha256": "aa2250573a9a9c9f087601d04dc01e43be613e6243d0eadfe87a13ff9c84b656",
+   "bytes": 4714
+  },
+  {
+   "file": "barger-pr-summary-of-community-protections-and-benefits-in-the-c-u-p-for-chiquita-canyon-landfill.json",
+   "url": "https://kathrynbarger.lacounty.gov/summary-of-community-protections-and-benefits-in-the-c-u-p-for-chiquita-canyon-landfill/",
+   "read": "2026-10-06",
+   "sha256": "c4c92dba4831ffb5d14740c06613fbfdcda876cf53eeff43bb8ab9c96ed0143b",
+   "bytes": 18450
+  },
+  {
+   "file": "lavote-3496-2016-11-08-svc-bydistrict.pdf",
+   "url": "https://www.lavote.gov/documents/SVC/3496_SVC_bydistrict.pdf",
+   "read": "2026-10-06",
+   "sha256": "17099822102bb403010a8f75e6906b9b8ffb7a7c605c12d15f5fd97bdc0b3cbd",
+   "bytes": 2785070
+  },
+  {
+   "file": "lavote-3496-2016-11-08-svc-bydistrict.txt",
+   "url": "derived: pdftotext -layout of the PDF beside it",
+   "read": "2026-10-06",
+   "sha256": "38b80cf38a187b78e5c0023c24e734cc7b253f2a3913bfdebbe0487d02607de9",
+   "bytes": 2814222
+  },
+  {
+   "file": "lavote-4085-2020-03-03-svc-district.pdf",
+   "url": "https://www.lavote.gov/docs/rrcc/svc/4085_SVC_District_Final.pdf",
+   "read": "2026-10-06",
+   "sha256": "521515c503c25b2370e9dc09f0b7808265af8715839e65ff4b8f6a724724e251",
+   "bytes": 5450151
+  },
+  {
+   "file": "lavote-4085-2020-03-03-svc-district.txt",
+   "url": "derived: pdftotext -layout of the PDF beside it",
+   "read": "2026-10-06",
+   "sha256": "17236b9454f0f51f227d32dd6e05f5aedc26a3ecfc63ed675e4ee623001b8928",
+   "bytes": 6338660
+  },
+  {
+   "file": "lavote-4316-2024-03-05-svc-districts.pdf",
+   "url": "https://content.lavote.gov/docs/rrcc/svc/4316_final_svc_districts.pdf",
+   "read": "2026-10-06",
+   "sha256": "fcbd0dfdda7aa48e83f5789d40a2d95843af60952818047d0fb84bb7b752ab22",
+   "bytes": 12101497
+  },
+  {
+   "file": "lavote-4316-2024-03-05-svc-districts.txt",
+   "url": "derived: pdftotext -layout of the PDF beside it",
+   "read": "2026-10-06",
+   "sha256": "b0bcf1474dad9f0e11a426f90f797a05f2b85276d5a9f28ac354f50af62e2a1e",
+   "bytes": 3235267
+  },
+  {
+   "file": "lavote-980-2016-06-07-svc-district.pdf",
+   "url": "https://www.lavote.gov/documents/SVC/980_SVCDistrict.pdf",
+   "read": "2026-10-06",
+   "sha256": "4a0835c245d9510db9d62bcc3a0d9ac90b318d7b4829becb7aff2115daae77a1",
+   "bytes": 2543874
+  },
+  {
+   "file": "lavote-980-2016-06-07-svc-district.txt",
+   "url": "derived: pdftotext -layout of the PDF beside it",
+   "read": "2026-10-06",
+   "sha256": "0c093d8625776f878ef56c8ebcf3e2663d11e5eec10d6585fbf5100b7d7b51a4",
+   "bytes": 3584187
+  },
+  {
+   "file": "wikipedia-kathryn-barger-raw.txt",
+   "url": "https://en.wikipedia.org/w/index.php?title=Kathryn_Barger&action=raw",
+   "read": "2026-10-06",
+   "sha256": "c6e52a12f6dc472c857b833b7a31baad2926dfe71223330b328d8dc6d6693cc9",
+   "bytes": 17910
+  }
+ ]
+}

@@ -1,0 +1,3088 @@
+{
+ "meta": {
+  "date": "2026-10-06",
+  "preparedBy": "Claude, for Nathan",
+  "scope": "persons section, any status, featuredImage empty",
+  "counts": {
+   "personRecords": 208,
+   "noFeaturedImage": 99
+  },
+  "method": [
+   "Craft read only: every persons entry (status any) with no featuredImage; fields read through the field layout.",
+   "Mirror: /Volumes/Reggie/SCVHistory/scvhistory.com, read only. 23,736 .htm/.html pages indexed (flipbook basic-html page scans excluded): title, page text, every <img> with alt text and the text before and after it.",
+   "Names: title, fullName, personAliases, personSearchNames; first name with nickname/formal swaps (Bill/William, Tom/Thomas, Ken/Kenneth and so on); optional middle name, initial or quoted nickname between first and last; Jr./Sr./II-IV and Dr./Rev. stripped.",
+   "Searches per record: images whose alt text, caption after, or text just before names the person; photo pages (SCVHistory.com XX0000 titles and galleries) whose caption names the person anywhere, including long \"from left\" lists; images whose alt text carries the surname; image file names (577,071 image files on the drive) holding first+last; legacy pages with the name in the title.",
+   "Each candidate checked for the file on the drive (sips for dimensions) and for a Craft asset of the same file name (and _large twin) with its relations. Identifications that depended on the picture were viewed."
+  ],
+  "categories": {
+   "PORTRAIT high": "a likeness of this person alone (or plainly the subject), captioned or named, file on the drive",
+   "PORTRAIT medium": "a likeness identified by file name or inference only",
+   "PERSON IN PHOTO high": "a captioned photograph that identifies the person by position; a crop candidate",
+   "NAMED PORTRAIT, FILE NOT ON DRIVE": "a page shows a portrait named for the person, but the image file was never captured",
+   "PERSON IN PHOTO only": "group photograph naming the person, carried over from the census",
+   "WEAK": "background only, ambiguous, a title graphic, or a different person",
+   "none found": "nothing usable; namesake traps noted"
+  }
+ },
+ "records": [
+  {
+   "id": 31431,
+   "title": "Scott Newhall",
+   "status": "live",
+   "fullName": "Scott Newhall",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PORTRAIT high",
+   "newSinceCensus": true,
+   "census20261005": "not in census (record made 6 October)",
+   "pagesNamingPerson": 194,
+   "pagesWithNameInTitle": [
+    "scvhistory/al2069.htm",
+    "scvhistory/califbusiness1989july.htm",
+    "scvhistory/gt8201.htm",
+    "scvhistory/hs9030.htm",
+    "scvhistory/lw2255.htm",
+    "scvhistory/lw2422.htm",
+    "scvhistory/lw2424.htm",
+    "scvhistory/lw2424b.htm",
+    "scvhistory/lw3081.htm",
+    "scvhistory/lw2964.htm"
+   ],
+   "namePatterns": [
+    "\\bScott(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Newhall\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/tn1968.htm",
+     "image": "gif/tn1968.jpg",
+     "onDrive": true,
+     "dims": "800 x 980",
+     "caption": "Scott Newhall in his office at the San Francisco Chronicle, 1968.",
+     "kind": "PORTRAIT",
+     "confidence": "high",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Viewed: one man, waist up, smiling, arms folded on a desk. Credit as printed: \"TN1968: 9600 dpi jpeg from original photograph | Online image only\". Best single likeness found.",
+     "largerFile": "gif/tn1968_large.jpg",
+     "largerDims": "1600 x 1990"
+    },
+    {
+     "page": "scvhistory/lw2255.htm",
+     "image": "gif/lw2255.jpg",
+     "onDrive": true,
+     "dims": "800 x 593",
+     "caption": "August 27, 1971: UPI Telephoto of Scott Newhall, candidate for mayor of San Francisco.",
+     "kind": "PORTRAIT",
+     "confidence": "high",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Viewed: one man, chest up, in front of the sailing ship C.A. Thayer. Credit: \"LW2255: 9600 dpi jpeg from UPI Telephoto print, purchased by Leon Worden and donated to SCVHS.\"",
+     "largerFile": "gif/lw2255_large.jpg",
+     "largerDims": "1600 x 1421"
+    },
+    {
+     "page": "scvhistory/al2069.htm",
+     "image": "gif/al2069.jpg",
+     "onDrive": true,
+     "dims": "800 x 572",
+     "caption": "Scott Newhall in Newcastle Upon Tyne England, AP Wirephoto, September 15, 1969.",
+     "kind": "PORTRAIT",
+     "confidence": "high",
+     "othersInFrame": "a distant workman on the tug",
+     "inCraft": "no",
+     "note": "Viewed: wire print with its cutline printed across the top; he is at right before the Eppleton Hall. Credit: \"AL2069: ... Collection of Alan Pollack\".",
+     "largerFile": "gif/al2069_large.jpg",
+     "largerDims": "1600 x 1145"
+    },
+    {
+     "page": "scvhistory/rn1100.htm",
+     "image": "gif/rn1100.jpg",
+     "onDrive": true,
+     "dims": "600 x 482",
+     "caption": "Scott Newhall hammers one out at The Signal, probably early 1980s.",
+     "kind": "PORTRAIT",
+     "confidence": "high",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Viewed: one man at a typewriter, in profile. Small (600 px); no credit printed."
+    },
+    {
+     "page": "scvhistory/tn4401.htm",
+     "image": "gif/tn4401.jpg",
+     "onDrive": true,
+     "dims": "800 x 952",
+     "caption": "Scott Newhall and his three boys at Stinson Beach (Marin County) in 1944, from left: Skip, Tony, Jon.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "sons Skip, Tony and Jon",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/tn4401_large.jpg",
+     "largerDims": "2400 x 2856"
+    },
+    {
+     "page": "scvhistory/tn1989.htm",
+     "image": "gif/tn1989.jpg",
+     "onDrive": true,
+     "dims": "800 x 1127",
+     "caption": "Ruth and Scott Newhall at the Piru Mansion (aka Newhall Mansion) in Piru, 1989. Shown with their Great Dane, Victoria.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Ruth Newhall",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/tn1989_large.jpg",
+     "largerDims": "1600 x 2254"
+    },
+    {
+     "page": "scvhistory/rn3005.htm",
+     "image": "gif/rn3005.jpg",
+     "onDrive": true,
+     "dims": "800 x 1155",
+     "caption": "Ruth and Scott Newhall at the pasteup table in The Signal's composing room",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Ruth Newhall",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/rn3005_large.jpg",
+     "largerDims": "2400 x 3464"
+    },
+    {
+     "page": "scvhistory/gt8065.htm",
+     "image": "gif/gt8065.jpg",
+     "onDrive": true,
+     "dims": "800 x 1043",
+     "caption": "Tuesday, June 24, 1980: Los Angeles County Supervisor Baxter Ward (center) and Signal newspaper editor Scott Newhall (right) watch the 1887 Saugus Train Station move",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Baxter Ward",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/gt8065_large.jpg",
+     "largerDims": "1600 x 2009"
+    },
+    {
+     "page": "scvhistory/sg9101.htm",
+     "image": "gif/sg9101.jpg",
+     "onDrive": true,
+     "dims": "800 x 546",
+     "caption": "Oct. 12, 1991: (From left) Scott and Ruth Newhall ... honored at College of the Canyons' Silver Spur fund-raising dinner. ... their son, Skip Newhall, is presenting them",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Ruth and Skip Newhall",
+     "inCraft": "no",
+     "note": ""
+    },
+    {
+     "page": "scvhistory/hs9030.htm",
+     "image": "gif/hs9030.jpg",
+     "onDrive": true,
+     "dims": "800 x 578",
+     "caption": "A young Ruth and Scott Newhall (right) at the San Francisco Chronicle, ca. 1944.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Ruth Newhall, George Draper, George De Carvalho and others",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/hs9030_large.jpg",
+     "largerDims": "1600 x 1156"
+    },
+    {
+     "page": "scvhistory/sg19660901kkk.htm",
+     "image": "gif/sg19921027kkk.jpg",
+     "onDrive": true,
+     "dims": "800 x 1359",
+     "caption": "Top: Scott Newhall (center-left) and son Skip Newhall (center-right) exchange words with Klansmen at the rally, September 17, 1966. Bottom: Scott Newhall at left.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Skip Newhall, Klansmen",
+     "inCraft": "no",
+     "note": "A newspaper clipping (two photographs) reprinted with his obituary.",
+     "largerFile": "gif/sg19921027kkk_large.jpg",
+     "largerDims": "1600 x 2717"
+    }
+   ],
+   "note": "Not in the 5 October census (his record was made on 6 October). Already in Craft: photograph #4583 (lw2849a_large.jpg, 1936, with Ruth) names him in photoPeople. Namesake trap: rn0114 \"Walter Scott Newhall, 4, in 1912\" cannot be this man (born 1914); do not use it for him. None of the files above is a Craft asset."
+  },
+  {
+   "id": 30546,
+   "title": "Carl Goldman",
+   "status": "live",
+   "fullName": "Carl Goldman",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PORTRAIT medium",
+   "newSinceCensus": false,
+   "census20261005": "PORTRAIT medium",
+   "pagesNamingPerson": 56,
+   "pagesWithNameInTitle": [
+    "scvhistory/khts081314.htm",
+    "scvhistory/lw9450a.htm"
+   ],
+   "namePatterns": [
+    "\\bCarl(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Goldman\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/khts081314.htm",
+     "image": "gif/mugs/carlgoldman.jpg",
+     "onDrive": true,
+     "dims": "800 x 1000",
+     "caption": "(no caption; heads his KHTS editorial, August 13, 2014)",
+     "kind": "PORTRAIT",
+     "confidence": "medium",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Viewed: one man, head and shoulders, glasses, studio portrait. Identified by file name and byline position only."
+    },
+    {
+     "page": "scvhistory/lw9450a.htm",
+     "image": "gif/lw9450a.jpg",
+     "onDrive": true,
+     "dims": "800 x 1071",
+     "caption": "July 4, 1994 — Carl Goldman, grand marshal of the 1994 SCV Fourth of July Parade in downtown Newhall. With wife Jeri Seratti-Goldman and son Ryan Van Wie",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Jeri Seratti-Goldman, Ryan Van Wie",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/lw9450a_large.jpg",
+     "largerDims": "2400 x 3214"
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 18820,
+   "title": "John Lang",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PORTRAIT medium",
+   "newSinceCensus": false,
+   "census20261005": "PORTRAIT medium",
+   "pagesNamingPerson": 144,
+   "pagesWithNameInTitle": [
+    "scvhistory/hs7530.htm",
+    "scvhistory/jb_laherald051287.htm",
+    "scvhistory/lp_laherald061586.htm",
+    "scvhistory/lp_laherald101286.htm",
+    "scvhistory/lp_sfchronicle111985.htm",
+    "scvhistory/penpictures_johnlang.htm",
+    "scvhistory/tlp_laherald072875pg3.htm"
+   ],
+   "namePatterns": [
+    "\\bJohn(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Lang\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/penpictures_johnlang.htm",
+     "image": "gif/mugs/johnlang1889.jpg",
+     "onDrive": true,
+     "dims": "800 x 995",
+     "caption": "(no caption; alt text \"article\")",
+     "kind": "PORTRAIT",
+     "confidence": "medium",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Viewed: an elderly bearded man with another person's hand on his shoulder: a crop from the HS7530 family portrait. HS7530's own caption says \"we don't know who's who\"; he is the only elderly man in it, and Leon Worden filed the crop under his name."
+    },
+    {
+     "page": "scvhistory/hs7530.htm",
+     "image": "gif/hs7530.jpg",
+     "onDrive": true,
+     "dims": "800 x 590",
+     "caption": "Original portrait of John and Mary Lang and their five surviving children and future daughter-in-law, circa 1889.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "medium",
+     "othersInFrame": "Mary Lang, five children, Florence Parr",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/hs7530_large.jpg",
+     "largerDims": "2400 x 1923"
+    }
+   ],
+   "note": "Same as the census. Trap: hs7530_johnbrodericklang.jpg is his son John Broderick Lang."
+  },
+  {
+   "id": 29458,
+   "title": "Cathie Wright",
+   "status": "live",
+   "fullName": "Cathie Wright",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO high",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 9,
+   "pagesWithNameInTitle": [
+    "scvhistory/lw3499.htm"
+   ],
+   "namePatterns": [
+    "\\bCatherine(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Wright\\b",
+    "\\bCathie(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Wright\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/lw3032.htm",
+     "image": "gif/lw3032.jpg",
+     "onDrive": true,
+     "dims": "800 x 629",
+     "caption": "Seated from left: Craig Johansen(?) ... Connie Worden (later Worden-Roberts) ... Assemblywoman Cathie Wright ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Craig Johansen(?), Connie Worden, Barry Goldwater Jr., Samuel X. Garcia, Walter Smith, Ross B. Hopkins",
+     "inCraft": "yes: assets #13269 (lw3032.jpg) and #11530 (lw3032_large.jpg), related to no entry",
+     "note": "First VIA luncheon, 1981 or 1982. Viewed: she is third from left, a fair-haired woman turned toward the camera; clear enough to crop from the 2400 px file. Credit: \"LW3032: 9600 dpi jpeg from original photograph, collection of Connie Worden-Roberts.\"",
+     "largerFile": "gif/lw3032_large.jpg",
+     "largerDims": "2400 x 1888"
+    },
+    {
+     "page": "scvhistory/sc8901.htm",
+     "image": "gif/sc8901.jpg",
+     "onDrive": true,
+     "dims": "800 x 525",
+     "caption": "From left: Parks Commissioners Linda Storli and Laurene Weste in front, Jeff Wheeler and Todd Longshore in back; City Councilman Howard \"Buck\" McKeon; Mayor Jo Anne Darcy; City Councilman Dennis Koontz; State Sen. Cathie Wright; ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "medium",
+     "othersInFrame": "a dozen people",
+     "inCraft": "no",
+     "note": "December 1989. The caption calls her \"State Sen.\"; she was in the Assembly until 1992 (as lw3032 says). Do not carry the title.",
+     "largerFile": "gif/sc8901_large.jpg",
+     "largerDims": "2400 x 1568"
+    },
+    {
+     "page": "scvhistory/lw2758.htm",
+     "image": "gif/lw2758.jpg",
+     "onDrive": true,
+     "dims": "800 x 570",
+     "caption": "Partially visible at left are then-Assemblyman William J. \"Pete\" Knight and state Sen. Cathie Wright.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "low",
+     "othersInFrame": "Pete Wilson, Gayle Wilson, Buck McKeon, Pete Knight, Roy Huffington",
+     "inCraft": "no",
+     "note": "1994 rally; partially visible only.",
+     "largerFile": "gif/lw2758_large.jpg",
+     "largerDims": "1600 x 1140"
+    }
+   ],
+   "note": "NEW: the census found nothing for her. Her name sits deep in long captions, past where the census looked."
+  },
+  {
+   "id": 2576,
+   "title": "John Boston",
+   "status": "live",
+   "fullName": "John Boston",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO high",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 58,
+   "pagesWithNameInTitle": [
+    "scvhistory/sg082803.htm",
+    "scvhistory/signal/boston/jb100401b.htm",
+    "scvhistory/signal/boston/jbindex.htm",
+    "scvhistory/signal/boston/jb061800.htm",
+    "scvhistory/signal/boston/jb062500.htm",
+    "scvhistory/signal/boston/jb070200.htm",
+    "scvhistory/signal/boston/jb070900.htm"
+   ],
+   "namePatterns": [
+    "\\bJohn(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Boston\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/sg030506b-honby.htm",
+     "image": "gif/sg030506b-honby.jpg",
+     "onDrive": true,
+     "dims": "800 x 472",
+     "caption": "March 5, 2006: Thirty-eight years later, John Boston views a 1968 photo of the Honby Men's Club.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "the 1968 group photo he holds",
+     "inCraft": "no",
+     "note": "Viewed: he alone, at left, face clearly shown, holding the 1968 print. Credited as \"photo illustration by Bryan Kneiding\" (a composite). Nearest thing to a portrait on the drive."
+    },
+    {
+     "page": "scvhistory/dm6801.htm",
+     "image": "gif/dm6801.jpg",
+     "onDrive": true,
+     "dims": "800 x 545",
+     "caption": "Back row, from left: Andy Kress, Walt Cieplik (who later changed his name to John Boston), David Ray, John Calzia, Darryl Manzer, John Dunkin.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "nine other Honby Men",
+     "inCraft": "no",
+     "note": "1968, Hart High, as a teenager under his birth name; second from left in the back row (the 2006 page says \"at left\").",
+     "largerFile": "gif/dm6801_large.jpg",
+     "largerDims": "2400 x 1634"
+    },
+    {
+     "page": "scvhistory/signal/boston/jbindex.htm",
+     "image": "gif/mugs/boston_john.jpg",
+     "onDrive": false,
+     "dims": null,
+     "caption": "(alt text \"John Boston\"; heads the index of his Signal history columns)",
+     "kind": "PORTRAIT",
+     "confidence": "high",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Columnist head shot. The file is NOT on the drive (not in the manifests either); it was linked as http://www.scvhistory.com/gif/mugs/boston_john.jpg."
+    }
+   ],
+   "note": "NEW: the census found nothing for him."
+  },
+  {
+   "id": 30233,
+   "title": "Michele R. Jenkins",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "Michele Jenkins",
+    "Michele R Jenkins"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO high",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 5,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichele(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Jenkins\\b"
+   ],
+   "candidates": [
+    {
+     "page": "gif/galleries/co1501/index.html",
+     "image": "gif/galleries/co1501/images/co1501c.jpg",
+     "onDrive": true,
+     "dims": "800 x 560",
+     "caption": "CO1501c: Doreetha Daniels and COC Board President Michele Jenkins | Photo by Jesse Munoz/COC",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Doreetha Daniels",
+     "inCraft": "no",
+     "note": "Viewed: two people; she is at right in academic robes and stole. A clean crop of her half would serve as a likeness. 5 June 2015."
+    },
+    {
+     "page": "gif/galleries/co1501/index.html",
+     "image": "gif/galleries/co1501/images/co1501b.jpg",
+     "onDrive": true,
+     "dims": "800 x 518",
+     "caption": "CO1501b: From left: Doreetha Daniels, COC Board President Michele Jenkins, COC Chancellor Dianne G. Van Hook | Photo by Jesse Munoz/COC",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Doreetha Daniels, Dianne G. Van Hook",
+     "inCraft": "no",
+     "note": ""
+    },
+    {
+     "page": "scvhistory/co1310a.htm",
+     "image": "gif/co1310a.jpg",
+     "onDrive": true,
+     "dims": "800 x 550",
+     "caption": "August 19, 2013 — From left: COC Board Members Steven Zimmer and Michele Jenkins; COC Chancellor Dr. Dianne G. Van Hook; Student Trustee Ryan Joslin; COC Board Members Joan MacGregor and Bruce Fortine; ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "six others",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/co1310a_large.jpg",
+     "largerDims": "1600 x 1030"
+    }
+   ],
+   "note": "Same as the census; co1501c is the best crop."
+  },
+  {
+   "id": 18783,
+   "title": "Tom Frew IV",
+   "status": "live",
+   "fullName": "Tom Frew IV",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO high",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 65,
+   "pagesWithNameInTitle": [
+    "scvhistory/ap0724.htm",
+    "scvhistory/ap1535.htm",
+    "scvhistory/ap1603.htm",
+    "scvhistory/hs9019.htm",
+    "scvhistory/tf1000.htm",
+    "scvhistory/tf2601a.htm",
+    "scvhistory/tf2601b.htm"
+   ],
+   "namePatterns": [
+    "\\bThomas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Frew\\b",
+    "\\bTom(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Frew\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/hs9019.htm",
+     "image": "gif/hs9019.jpg",
+     "onDrive": true,
+     "dims": "800 x 452",
+     "caption": "April 8, 2003 — Former SCV Historical Society President Tom Frew (third from right) receives a key to the city ... \"our\" Tom, Tom Frew IV.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "six others (city council and Society)",
+     "inCraft": "no",
+     "note": "Viewed: third from right is an older white-haired man in glasses holding a small award (the key itself is in the hands of the man at center); croppable but small (800 px)."
+    },
+    {
+     "page": "scvhistory/lw2043.htm",
+     "image": "gif/lw2043.jpg",
+     "onDrive": true,
+     "dims": "800 x 1021",
+     "caption": "August 19, 1998 — The Saugus School bell is inspected at SCV Historical Society headquarters by (from left) City of Santa Clarita engineering technician Bonnie Joseph and SCVHS directors Pat Saletore and Tom Frew IV",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Bonnie Joseph, Pat Saletore",
+     "inCraft": "yes: asset #14233 (lw2043.jpg), related to no entry; photograph record #2743 \"Saugus (Elementary) School Bell\" already names him in photoPeople",
+     "note": ""
+    },
+    {
+     "page": "scvhistory/obituary_joannedarcy.htm",
+     "image": "gif/jad_scvhs022398a.jpg",
+     "onDrive": true,
+     "dims": "6000 x 3686",
+     "caption": "SCV Historical Society board installation with Glen Rollins, Patti Rasmussen & Tom Frew, 2-23-1998.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "medium",
+     "othersInFrame": "Jo Anne Darcy, Glen Rollins, Patti Rasmussen",
+     "inCraft": "no",
+     "note": "No positions given."
+    }
+   ],
+   "note": "The census rated hs9019 medium because which Tom Frew the record is was unsettled; the record now carries a birth date (Thanksgiving Day, 1928) and the hs9019 caption names Tom Frew IV outright. Trap: tf1000.jpg is Tom Frew II (already his portrait, asset #31356)."
+  },
+  {
+   "id": 25399,
+   "title": "Gary Murr",
+   "status": "live",
+   "fullName": "Gary Murr",
+   "aliases": [],
+   "searchNames": [
+    "Gary G. Murr"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "NAMED PORTRAIT, FILE NOT ON DRIVE",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 2,
+   "pagesWithNameInTitle": [
+    "scvhistory/sg062505.htm"
+   ],
+   "namePatterns": [
+    "\\bGary(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Murr\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/sg062505.htm",
+     "image": "gif/mugs/murr_gary.jpg",
+     "onDrive": false,
+     "dims": null,
+     "caption": "(alt text \"Gary Murr\"; heads his 2005 death notice: \"Funeral services are scheduled Monday for Saugus Union School District board President Gary Murr\")",
+     "kind": "PORTRAIT",
+     "confidence": "high",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Identity certain from alt and page; the file is NOT on the drive (linked absolute, http://www.scvhistory.com/gif/mugs/murr_gary.jpg; absent from both manifests)."
+    }
+   ],
+   "note": "NEW: the census missed the alt text. Nothing usable on the drive."
+  },
+  {
+   "id": 28364,
+   "title": "Philip Ellis Jr.",
+   "status": "live",
+   "fullName": "Philip Ellis Jr.",
+   "aliases": [],
+   "searchNames": [
+    "Philip C. Ellis, Jr.",
+    "Philip C. Ellis"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "NAMED PORTRAIT, FILE NOT ON DRIVE",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPhilip(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Ellis\\b"
+   ],
+   "candidates": [
+    {
+     "page": "oldtownnewhall/gazette/gazette1101-nrc.htm",
+     "image": "oldtownnewhall/gif/mugs/ellis_phil.jpg",
+     "onDrive": false,
+     "dims": null,
+     "caption": "(alt text \"Phil Ellis\"; byline \"By PHILIP ELLIS, Chairman, Newhall Redevelopment Committee\", Old Town Newhall Gazette, Nov.-Dec. 2005)",
+     "kind": "PORTRAIT",
+     "confidence": "medium",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "The file is NOT on the drive. Identity medium: the record is the Newhall School District board member (1995-2013 candidacies) with six bylined documents; nothing on this page says the committee chairman is the same Philip Ellis, Jr."
+    }
+   ],
+   "note": "NEW."
+  },
+  {
+   "id": 2582,
+   "title": "Sol Taylor",
+   "status": "live",
+   "fullName": "Sol Taylor",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "NAMED PORTRAIT, FILE NOT ON DRIVE",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 8,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bSol(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Taylor\\b",
+    "\\bSolomon(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Taylor\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/signal/coins/worden-coinage0606.htm",
+     "image": "gif/worden-coinage0606b.jpg",
+     "onDrive": false,
+     "dims": null,
+     "caption": "Sol Taylor. (Photo: Leon Worden)",
+     "kind": "PORTRAIT",
+     "confidence": "high",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "In Leon Worden's June 2006 coin column; the record is the coin columnist (writtenBy on 400 coin articles), the same Sol Taylor. The file is NOT on the drive."
+    }
+   ],
+   "note": "NEW. Nothing usable on the drive."
+  },
+  {
+   "id": 30205,
+   "title": "Bruce D. Fortine",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "Bruce Fortine"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 45,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bBruce(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Fortine\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/co7001.htm",
+     "image": "gif/co7001.jpg",
+     "onDrive": true,
+     "dims": "800 x 411",
+     "caption": "From left: Dr. William Bonelli Jr., Edward Muhl, Bruce Fortine, John Hackney, Peter Huntsinger.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "four other trustees",
+     "inCraft": "no",
+     "note": "Middle.",
+     "largerFile": "gif/co7001_large.jpg",
+     "largerDims": "1600 x 821"
+    },
+    {
+     "page": "scvhistory/co1310a.htm",
+     "image": "gif/co1310a.jpg",
+     "onDrive": true,
+     "dims": "800 x 550",
+     "caption": "... COC Board Members Joan MacGregor and Bruce Fortine; ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "seven people",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/co1310a_large.jpg",
+     "largerDims": "1600 x 1030"
+    },
+    {
+     "page": "scvhistory/aa7401.htm",
+     "image": "gif/aa7401.jpg",
+     "onDrive": true,
+     "dims": "800 x 559",
+     "caption": "April 22, 1974 — California Gov. Ronald Reagan greets members of the ... Board of Trustees ... Trustee Bruce Fortine ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Reagan, Boyer, Adams, Dyer, Claffey, Rheinschmidt",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/aa7401_large.jpg",
+     "largerDims": "2400 x 1677"
+    }
+   ],
+   "note": "Same as the census (aa7401 added). His Silver Spur photograph is on scvnews.com, not the drive."
+  },
+  {
+   "id": 30201,
+   "title": "Edward Muhl",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "Ed Muhl"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 17,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bEd(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Muhl\\b",
+    "\\bEdward(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Muhl\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/co7001.htm",
+     "image": "gif/co7001.jpg",
+     "onDrive": true,
+     "dims": "800 x 411",
+     "caption": "From left: Dr. William Bonelli Jr., Edward Muhl, ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "four other trustees",
+     "inCraft": "no",
+     "note": "Second from left.",
+     "largerFile": "gif/co7001_large.jpg",
+     "largerDims": "1600 x 821"
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 26587,
+   "title": "Gary Martin",
+   "status": "live",
+   "fullName": "Gary Martin",
+   "aliases": [],
+   "searchNames": [
+    "Gary R Martin"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bGary(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Martin\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/tv091613.htm",
+     "image": "gif/tv091613.jpg",
+     "onDrive": true,
+     "dims": "800 x 450",
+     "caption": "Pictured, from left: City Parks Commissioner Ruthann Levison; Mayor Bob Kellar; City Councilwoman Laurene Weste; CLWA Board Member Gary Martin; City Parks Commissioner Duane Harte.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Levison, Kellar, Weste, Harte",
+     "inCraft": "no",
+     "note": "September 16, 2013 groundbreaking; fourth from left.",
+     "largerFile": "gif/tv091613_large.jpg",
+     "largerDims": "1600 x 900"
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 30239,
+   "title": "Joan W. MacGregor",
+   "status": "live",
+   "fullName": null,
+   "aliases": [
+    "Joan Whaling Mac Gregor",
+    "Joan Mac Gregor",
+    "John Whaling MacGregor (CEDA 2009 misprint)",
+    "Joan Whaling MacGregor"
+   ],
+   "searchNames": [
+    "Joan MacGregor"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJoan(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+MacGregor\\b",
+    "\\bJoan(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Mac\\s*Gregor\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/co1310a.htm",
+     "image": "gif/co1310a.jpg",
+     "onDrive": true,
+     "dims": "800 x 550",
+     "caption": "August 19, 2013 — From left: ... COC Board Members Joan MacGregor and Bruce Fortine; ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "seven people",
+     "inCraft": "no",
+     "note": "",
+     "largerFile": "gif/co1310a_large.jpg",
+     "largerDims": "1600 x 1030"
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 30209,
+   "title": "John K. Hackney",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "John Hackney"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 16,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJohn(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hackney\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/co7001.htm",
+     "image": "gif/co7001.jpg",
+     "onDrive": true,
+     "dims": "800 x 411",
+     "caption": "From left: Dr. William Bonelli Jr., Edward Muhl, Bruce Fortine, John Hackney, Peter Huntsinger.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "four other trustees",
+     "inCraft": "no",
+     "note": "COC board 1969-1970; fourth from left.",
+     "largerFile": "gif/co7001_large.jpg",
+     "largerDims": "1600 x 821"
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 29599,
+   "title": "Ken Pulskamp",
+   "status": "live",
+   "fullName": "Ken Pulskamp",
+   "aliases": [],
+   "searchNames": [
+    "Kenneth R. Pulskamp"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 25,
+   "pagesWithNameInTitle": [
+    "scvhistory/pulskamp060412.htm"
+   ],
+   "namePatterns": [
+    "\\bKen(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Pulskamp\\b",
+    "\\bKenneth(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Pulskamp\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/obituary_georgeacaravalho.htm",
+     "image": "gif/obituary_georgeacaravalho02.jpg",
+     "onDrive": true,
+     "dims": "800 x 790",
+     "caption": "All three permanent city managers in 2016: George Caravalho (1988-2002), Ken Pulskamp (2002-2012), Ken Striplin (2012-present). Photo: Gail Morgan.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "medium",
+     "othersInFrame": "George Caravalho, Ken Striplin",
+     "inCraft": "no",
+     "note": "No positions given; Striplin is identifiable from his own portrait (sc1202), so Pulskamp can be told by elimination only."
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 28697,
+   "title": "Kenneth Wullschleger",
+   "status": "live",
+   "fullName": "Kenneth Wullschleger",
+   "aliases": [],
+   "searchNames": [
+    "Kenneth C. Wullschleger"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bKen(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Wullschleger\\b",
+    "\\bKenneth(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Wullschleger\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/hd7601.htm",
+     "image": "gif/hd7601.jpg",
+     "onDrive": true,
+     "dims": "800 x 466",
+     "caption": "From left: Dr. H. Clyde Smyth, acting superintendent; Kenneth Wullschleger, school board president; Connie Worden (later -Roberts) ...; Dr. Edgar Fickenscher (standing)",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "Smyth, Connie Worden, Fickenscher",
+     "inCraft": "no",
+     "note": "1976 yearbook photograph; second from left."
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 25157,
+   "title": "Linda Storli",
+   "status": "live",
+   "fullName": "Linda Storli",
+   "aliases": [
+    "Linda Hovis Storli"
+   ],
+   "searchNames": [
+    "Linda H. Storli"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 6,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bLinda(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Storli\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/sc8901.htm",
+     "image": "gif/sc8901.jpg",
+     "onDrive": true,
+     "dims": "800 x 525",
+     "caption": "From left: Parks Commissioners Linda Storli and Laurene Weste in front, ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "a dozen people",
+     "inCraft": "no",
+     "note": "December 1989; front left.",
+     "largerFile": "gif/sc8901_large.jpg",
+     "largerDims": "2400 x 1568"
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 30207,
+   "title": "Peter F. Huntsinger",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "Peter Huntsinger",
+    "Pete Huntsinger"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 19,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPete(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Huntsinger\\b",
+    "\\bPeter(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Huntsinger\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/co7001.htm",
+     "image": "gif/co7001.jpg",
+     "onDrive": true,
+     "dims": "800 x 411",
+     "caption": "From left: Dr. William Bonelli Jr., Edward Muhl, Bruce Fortine, John Hackney, Peter Huntsinger.",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "four other trustees",
+     "inCraft": "no",
+     "note": "Far right.",
+     "largerFile": "gif/co7001_large.jpg",
+     "largerDims": "1600 x 821"
+    }
+   ],
+   "note": "Same as the census."
+  },
+  {
+   "id": 30199,
+   "title": "William G. Bonelli Jr.",
+   "status": "live",
+   "fullName": null,
+   "aliases": [
+    "Dr. William G. Bonelli Jr.",
+    "William Bonelli",
+    "Bill Bonelli",
+    "Dr. Bill Bonelli"
+   ],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "PERSON IN PHOTO only",
+   "newSinceCensus": false,
+   "census20261005": "PERSON IN PHOTO only",
+   "pagesNamingPerson": 211,
+   "pagesWithNameInTitle": [
+    "scvhistory/bonelli19710209.htm",
+    "scvhistory/lat19391110bonelli.htm"
+   ],
+   "namePatterns": [
+    "\\bBill(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Bonelli\\b",
+    "\\bWilliam(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Bonelli\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/co7001.htm",
+     "image": "gif/co7001.jpg",
+     "onDrive": true,
+     "dims": "800 x 411",
+     "caption": "From left: Dr. William Bonelli Jr., Edward Muhl, ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "high",
+     "othersInFrame": "four other trustees",
+     "inCraft": "no",
+     "note": "Far left.",
+     "largerFile": "gif/co7001_large.jpg",
+     "largerDims": "1600 x 821"
+    }
+   ],
+   "note": "Same as the census. Trap: mugs/billbonelli.jpg (alt \"Bill Bonelli\") and the 1939 LA Times clippings are his father, William G. \"Bill\" Bonelli (b. 1895); the record's own alias \"Bill Bonelli\" lands on the wrong man. He died in February 1972, so he is not in the 1974 Reagan photograph."
+  },
+  {
+   "id": 26589,
+   "title": "Ed Colley",
+   "status": "live",
+   "fullName": "Ed Colley",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "WEAK",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [
+    "warmemorial/terror_stephencolley.htm"
+   ],
+   "namePatterns": [
+    "\\bEd(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Colley\\b",
+    "\\bEdward(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Colley\\b"
+   ],
+   "candidates": [
+    {
+     "page": "warmemorial/terror_stephencolley.htm",
+     "image": "gif/mugs/stephencolley.jpg",
+     "onDrive": true,
+     "dims": "800 x 600",
+     "caption": "(heads the memorial page of SP4 Stephen Edward Colley, d. May 16, 2007)",
+     "kind": "NOT THIS PERSON",
+     "confidence": "n/a",
+     "othersInFrame": "",
+     "inCraft": "yes: asset #1892, already the portrait of Stephen Edward Colley (#524)",
+     "note": "A namesake-by-middle-name hit; nothing on the page ties the soldier to Ed Colley the water board director."
+    }
+   ],
+   "note": "No likeness of Ed Colley."
+  },
+  {
+   "id": 2594,
+   "title": "Pauline Harte",
+   "status": "live",
+   "fullName": "Pauline Harte",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "WEAK",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 44,
+   "pagesWithNameInTitle": [
+    "oldtownnewhall/pauline/index.htm",
+    "oldtownnewhall/pauline/index.html"
+   ],
+   "namePatterns": [
+    "\\bPauline(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Harte\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/files/sg20050704parade02/sg20050704parade02.htm",
+     "image": "scvhistory/files/sg20050704parade02/data1/images/dscn4919.jpg",
+     "onDrive": true,
+     "dims": "800 x 600",
+     "caption": "(alt text) \"Pauline Harte, Rick Winsman, Duane Harte, Alan Wykoff\"",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "low",
+     "othersInFrame": "Rick Winsman, Duane Harte, Alan Wykoff, and others",
+     "inCraft": "no",
+     "note": "2005 parade gallery. Viewed: two women are in frame (one seated at left, one mostly hidden); the alt text gives no positions, so which is she cannot be said."
+    },
+    {
+     "page": "oldtownnewhall/pauline/index.htm",
+     "image": "oldtownnewhall/gif/pauline.gif",
+     "onDrive": true,
+     "dims": "325 x 242",
+     "caption": "(alt text \"Pauline Harte\")",
+     "kind": "NOT A LIKENESS",
+     "confidence": "n/a",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Viewed: the word \"Pauline\" over a heart, a column title graphic."
+    }
+   ],
+   "note": "NEW: the parade photo was not in the census; her husband's obituary photos are on scvnews.com, not the drive."
+  },
+  {
+   "id": 30203,
+   "title": "Sheila Dyer",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "WEAK",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 16,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bSheila(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Dyer\\b"
+   ],
+   "candidates": [
+    {
+     "page": "scvhistory/aa7401.htm",
+     "image": "gif/aa7401.jpg",
+     "onDrive": true,
+     "dims": "800 x 559",
+     "caption": "... Ex-Trustee Sheila Dyer (in background, COC board 1967-1969 only); ...",
+     "kind": "PERSON IN PHOTO",
+     "confidence": "low",
+     "othersInFrame": "Reagan, Boyer, Adams, Claffey, Fortine, Rheinschmidt",
+     "inCraft": "no",
+     "note": "April 22, 1974; she is in the background only.",
+     "largerFile": "gif/aa7401_large.jpg",
+     "largerDims": "2400 x 1677"
+    }
+   ],
+   "note": "NEW (the census found nothing). Trap: the \"Willis Dyer\" images on sg19850906dyer.htm (mugs/jameswillisdyer.jpg and four photos) are of James Willis Dyer, not her."
+  },
+  {
+   "id": 2588,
+   "title": "Tim Whyte",
+   "status": "live",
+   "fullName": "Tim Whyte",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "WEAK",
+   "newSinceCensus": true,
+   "census20261005": "none found",
+   "pagesNamingPerson": 81,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bTim(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Whyte\\b"
+   ],
+   "candidates": [
+    {
+     "page": "oldtownnewhall/whyte/index.html",
+     "image": "oldtownnewhall/gif/whyte.gif",
+     "onDrive": true,
+     "dims": "529 x 192",
+     "caption": "(alt text \"Black N Whyte\")",
+     "kind": "NOT A LIKENESS",
+     "confidence": "n/a",
+     "othersInFrame": "",
+     "inCraft": "no",
+     "note": "Viewed: the column title in lettering. smalltw.gif (alt \"Tim Whyte\", 100 x 16) is a name button."
+    }
+   ],
+   "note": "No likeness on the drive. Listed only so the alt-text hits are accounted for."
+  },
+  {
+   "id": 291,
+   "title": "Antonio del Valle",
+   "status": "live",
+   "fullName": "Antonio del Valle",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 180,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bAntonio(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+del\\s*Valle\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28320,
+   "title": "Bill Pecsi",
+   "status": "live",
+   "fullName": "Bill Pecsi",
+   "aliases": [],
+   "searchNames": [
+    "William Pecsi"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bBill(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Pecsi\\b",
+    "\\bWilliam(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Pecsi\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29464,
+   "title": "Bill Thomas",
+   "status": "live",
+   "fullName": "Bill Thomas",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bBill(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Thomas\\b",
+    "\\bWilliam(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Thomas\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. LW3608 is a program book he signed, not a photograph of him."
+  },
+  {
+   "id": 29002,
+   "title": "Bob Brauneisen",
+   "status": "live",
+   "fullName": "Bob Brauneisen",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bBob(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Brauneisen\\b",
+    "\\bRobert(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Brauneisen\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28673,
+   "title": "C. R. Huntsinger",
+   "status": "live",
+   "fullName": "C. R. Huntsinger",
+   "aliases": [
+    "D.R. Huntsinger"
+   ],
+   "searchNames": [
+    "C.R. Huntsinger"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "C\\.?\\s*R\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Huntsinger",
+    "C\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Huntsinger",
+    "D\\.?\\s*R\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Huntsinger"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 15967,
+   "title": "Carol Rock",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 33,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bCarol(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Rock\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. She appears as a byline and as an illustrator; the Rock obituary photographs are of relatives."
+  },
+  {
+   "id": 28689,
+   "title": "Carroll Word",
+   "status": "live",
+   "fullName": "Carroll Word",
+   "aliases": [],
+   "searchNames": [
+    "C.E. Word",
+    "Carroll E. Word"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "C\\.?\\s*E\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Word",
+    "\\bCarroll(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Word\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29000,
+   "title": "Catherine Kawaguchi",
+   "status": "live",
+   "fullName": "Catherine Kawaguchi",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bCatherine(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Kawaguchi\\b",
+    "\\bCathie(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Kawaguchi\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness on the drive. Her Newsmaker of the Week thumbnail is an scvtv.com image, not on the drive."
+  },
+  {
+   "id": 2532,
+   "title": "Cephas L. Bard",
+   "status": "live",
+   "fullName": "Cephas L. Bard",
+   "aliases": [
+    "Cephas R. Bard",
+    "Dr. Cephas R. Bard"
+   ],
+   "searchNames": [
+    "Dr. Bard"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bCephas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Bard\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 18689,
+   "title": "Charles Barber",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bCharles(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Barber\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28643,
+   "title": "Charles Brown",
+   "status": "live",
+   "fullName": "Charles Brown",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 9,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bCharles(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Brown\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28721,
+   "title": "Chris Fall",
+   "status": "live",
+   "fullName": "Chris Fall",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 5,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bChris(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Fall\\b",
+    "\\bChristopher(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Fall\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness on the drive. melladysilverspur04chrisfall.jpg (alt names him as auctioneer) is on scvnews.com, not on the drive."
+  },
+  {
+   "id": 25411,
+   "title": "David Barlavi",
+   "status": "live",
+   "fullName": "David Barlavi",
+   "aliases": [],
+   "searchNames": [
+    "David \"CD\" Barlavi"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bDavid(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Barlavi\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29208,
+   "title": "Di Thompson",
+   "status": "live",
+   "fullName": "Di Thompson",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bDi(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Thompson\\b",
+    "\\bDiane(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Thompson\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 30213,
+   "title": "Don Allen",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "Donald Allen"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 2,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bDon(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Allen\\b",
+    "\\bDonald(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Allen\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29322,
+   "title": "Don Rogers",
+   "status": "live",
+   "fullName": "Don Rogers",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bDon(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Rogers\\b",
+    "\\bDonald(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Rogers\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25403,
+   "title": "Douglas Bryce",
+   "status": "live",
+   "fullName": "Douglas Bryce",
+   "aliases": [],
+   "searchNames": [
+    "Douglas A. Bryce"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bDouglas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Bryce\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 18813,
+   "title": "Doña Jacoba",
+   "status": "live",
+   "fullName": null,
+   "aliases": [
+    "Jacoba Feliz"
+   ],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 12,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJacoba(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Feliz\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. lw2706a.jpg (alt \"Jacoba Feliz\") is a page of the 1853 livestock ledger."
+  },
+  {
+   "id": 28681,
+   "title": "Edward Duarte",
+   "status": "live",
+   "fullName": "Edward Duarte",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 2,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bEd(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Duarte\\b",
+    "\\bEdward(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Duarte\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29460,
+   "title": "Fran Pavley",
+   "status": "live",
+   "fullName": "Fran Pavley",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bFran(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Pavley\\b",
+    "\\bFrances(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Pavley\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 18834,
+   "title": "Francisco Lopez",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 151,
+   "pagesWithNameInTitle": [
+    "scvhistory/latta1976franciscolopez.htm",
+    "scvhistory/obituary_franciscolopez.htm",
+    "scvhistory/sgb03175.htm",
+    "scvhistory/sgb03346.htm",
+    "scvhistory/sgb07294.htm"
+   ],
+   "namePatterns": [
+    "\\bFrancisco(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Lopez\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. Trap: obituary_franciscolopez.htm (a Francisco Lopez who died in 1900) carries gif/us8502.jpg, which Leon Worden's US8502 page says is Chico López, \"often wrongly identified as Francisco Lopez, the gold discoverer\"; it is already Chico's portrait in Craft (asset #31220). The 1959 pageant photographs (cc5901, cc5902) show an actor playing him."
+  },
+  {
+   "id": 29336,
+   "title": "George Whitesides",
+   "status": "live",
+   "fullName": "George Whitesides",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bGeorge(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Whitesides\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29462,
+   "title": "Henry Stern",
+   "status": "live",
+   "fullName": "Henry Stern",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bHenry(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Stern\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 30217,
+   "title": "James E. Rentz",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "Jim Rentz",
+    "Rev. James Rentz",
+    "Dr. James Rentz"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJames(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Rentz\\b",
+    "\\bJim(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Rentz\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28564,
+   "title": "James Webb",
+   "status": "live",
+   "fullName": "James Webb",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJames(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Webb\\b",
+    "\\bJim(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Webb\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29452,
+   "title": "Jeff Gorell",
+   "status": "live",
+   "fullName": "Jeff Gorell",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJeff(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Gorell\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28705,
+   "title": "Jim Shuman",
+   "status": "live",
+   "fullName": "Jim Shuman",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJames(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Shuman\\b",
+    "\\bJim(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Shuman\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. The Shuman images (lw2061, sg2061, mugs/mikeshuman1973.jpg) are of Mike Shuman."
+  },
+  {
+   "id": 28342,
+   "title": "John Michael McGrath",
+   "status": "live",
+   "fullName": "John Michael McGrath",
+   "aliases": [
+    "J. Micheal McGrath"
+   ],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "J\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*McGrath",
+    "\\bJohn(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+McGrath\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28346,
+   "title": "Julie Olsen",
+   "status": "live",
+   "fullName": "Julie Olsen",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bJulie(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Olsen\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25431,
+   "title": "Kerry Clegg",
+   "status": "live",
+   "fullName": "Kerry Clegg",
+   "aliases": [],
+   "searchNames": [
+    "Kerry B. Clegg"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bKerry(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Clegg\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29466,
+   "title": "Kevin McCarthy",
+   "status": "live",
+   "fullName": "Kevin McCarthy",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bKevin(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+McCarthy\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25415,
+   "title": "Laura Arrowsmith",
+   "status": "live",
+   "fullName": "Laura Arrowsmith",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bLaura(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Arrowsmith\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28354,
+   "title": "Lester Freeman",
+   "status": "live",
+   "fullName": "Lester Freeman",
+   "aliases": [],
+   "searchNames": [
+    "Lester M. Freeman"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bLester(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Freeman\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28996,
+   "title": "Leticia Hernandez",
+   "status": "live",
+   "fullName": "Leticia Hernandez",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bLeticia(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hernandez\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29109,
+   "title": "Lisa Eichman",
+   "status": "live",
+   "fullName": "Lisa Eichman",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bLisa(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Eichman\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 15897,
+   "title": "Lynne Plambeck",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 13,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bLynne(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Plambeck\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28641,
+   "title": "Mary Bonelli",
+   "status": "live",
+   "fullName": "Mary Bonelli",
+   "aliases": [],
+   "searchNames": [
+    "Mary P. Bonelli"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 7,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMary(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Bonelli\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. mugs/billbonelli.jpg is William G. Bonelli Sr."
+  },
+  {
+   "id": 18848,
+   "title": "Michael Freedman",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 11,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichael(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Freedman\\b",
+    "\\bMike(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Freedman\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28362,
+   "title": "Michael Kennick",
+   "status": "live",
+   "fullName": "Michael Kennick",
+   "aliases": [],
+   "searchNames": [
+    "Michael P. Kennick"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichael(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Kennick\\b",
+    "\\bMike(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Kennick\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29214,
+   "title": "Michael Millar",
+   "status": "live",
+   "fullName": "Michael Millar",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichael(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Millar\\b",
+    "\\bMike(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Millar\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28866,
+   "title": "Michael Owen Lambarth",
+   "status": "live",
+   "fullName": "Michael Owen Lambarth",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichael(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Lambarth\\b",
+    "\\bMike(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Lambarth\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25387,
+   "title": "Michael Shapiro",
+   "status": "live",
+   "fullName": "Michael Shapiro",
+   "aliases": [],
+   "searchNames": [
+    "Michael  R. Shapiro",
+    "Michael R. Shapiro"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichael(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Shapiro\\b",
+    "\\bMike(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Shapiro\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 18765,
+   "title": "Michael White",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 8,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichael(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+White\\b",
+    "\\bMike(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+White\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29334,
+   "title": "Mike Garcia",
+   "status": "live",
+   "fullName": "Mike Garcia",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMichael(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Garcia\\b",
+    "\\bMike(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Garcia\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28649,
+   "title": "Mildred Gilmour",
+   "status": "live",
+   "fullName": "Mildred Gilmour",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 6,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bMildred(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Gilmour\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29203,
+   "title": "Nathan Keith",
+   "status": "live",
+   "fullName": "Nathan Keith",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bNathan(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Keith\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28699,
+   "title": "Patrick Shaughnessy",
+   "status": "live",
+   "fullName": "Patrick Shaughnessy",
+   "aliases": [],
+   "searchNames": [
+    "Dr. Patrick Shaughnessy"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPatrick(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Shaughnessy\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25407,
+   "title": "Paul Nelson De La Cerda",
+   "status": "live",
+   "fullName": "Paul Nelson De La Cerda",
+   "aliases": [],
+   "searchNames": [
+    "Paul Nelson De La Cerda"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPaul(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+De\\s*La\\s*Cerda\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25425,
+   "title": "Paul Strickland",
+   "status": "live",
+   "fullName": "Paul Strickland",
+   "aliases": [],
+   "searchNames": [
+    "Paul B. Strickland"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 4,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPaul(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Strickland\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29444,
+   "title": "Paula Boland",
+   "status": "live",
+   "fullName": "Paula Boland",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPaula(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Boland\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 26597,
+   "title": "Paula Olivares",
+   "status": "live",
+   "fullName": "Paula Olivares",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPaula(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Olivares\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28719,
+   "title": "Peter Warren",
+   "status": "live",
+   "fullName": "Peter Warren",
+   "aliases": [],
+   "searchNames": [
+    "Peter C. Warren"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPete(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Warren\\b",
+    "\\bPeter(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Warren\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 18714,
+   "title": "Phineas Banning",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "General Phineas Banning"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 84,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bPhineas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Banning\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. The only images naming him are of Eugene Daub's 2004 statue (LW052106a-c) and Ridge Route postcards whose text names him."
+  },
+  {
+   "id": 28366,
+   "title": "RJ Kelly",
+   "status": "live",
+   "fullName": "RJ Kelly",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "RJ\\s*(?:[A-Z]\\.\\s*)*Kelly"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28723,
+   "title": "Robert Hall",
+   "status": "live",
+   "fullName": "Robert Hall",
+   "aliases": [],
+   "searchNames": [
+    "Robert P. Hall"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 2,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bBob(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hall\\b",
+    "\\bRobert(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hall\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. mugs/tedhall.jpg is Fire Capt. Ted Hall."
+  },
+  {
+   "id": 28998,
+   "title": "Robert Hernandez",
+   "status": "live",
+   "fullName": "Robert Hernandez",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bBob(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hernandez\\b",
+    "\\bRobert(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hernandez\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25383,
+   "title": "Ron Winkler",
+   "status": "live",
+   "fullName": "Ron Winkler",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bRon(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Winkler\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25397,
+   "title": "Rosemarie Koscielny",
+   "status": "live",
+   "fullName": "Rosemarie Koscielny",
+   "aliases": [
+    "Rose Koscielny"
+   ],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bRose(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Koscielny\\b",
+    "\\bRosemarie(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Koscielny\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28645,
+   "title": "S. S. Donaldson",
+   "status": "live",
+   "fullName": "S. S. Donaldson",
+   "aliases": [],
+   "searchNames": [
+    "S.S. Donaldson"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 8,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "S\\.?\\s*S\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Donaldson",
+    "S\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Donaldson"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28864,
+   "title": "Stacy Dobbs",
+   "status": "live",
+   "fullName": "Stacy Dobbs",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bStacy(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Dobbs\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29004,
+   "title": "Stephen Cole",
+   "status": "live",
+   "fullName": "Stephen Cole",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 2,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bStephen(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Cole\\b",
+    "\\bSteve(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Cole\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness on the drive. His Newsmaker of the Week thumbnail (with Matt Stone) is an scvtv.com image, not on the drive."
+  },
+  {
+   "id": 28372,
+   "title": "Stephen Winkler",
+   "status": "live",
+   "fullName": "Stephen Winkler",
+   "aliases": [],
+   "searchNames": [
+    "Stephen S. Winkler"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bStephen(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Winkler\\b",
+    "\\bSteve(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Winkler\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29454,
+   "title": "Steve Fox",
+   "status": "live",
+   "fullName": "Steve Fox",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bStephen(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Fox\\b",
+    "\\bSteve(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Fox\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 25385,
+   "title": "Suzan Solomon",
+   "status": "live",
+   "fullName": "Suzan Solomon",
+   "aliases": [],
+   "searchNames": [
+    "Suzan T. Solomon",
+    "Suzan Teri Solomon"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 2,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bSuzan(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Solomon\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 16372,
+   "title": "Ted Lamkin",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [
+    "Mr. Ted Lamkin"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 32,
+   "pagesWithNameInTitle": [
+    "scvhistory/tedlamkincollection.htm"
+   ],
+   "namePatterns": [
+    "\\bTed(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Lamkin\\b",
+    "\\bTheodore(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Lamkin\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. Pages credit photographs to his collection or his camera; none shows him."
+  },
+  {
+   "id": 25427,
+   "title": "Teresa Todd",
+   "status": "live",
+   "fullName": "Teresa Todd",
+   "aliases": [],
+   "searchNames": [
+    "M. Teresa Todd"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 1,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "M\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Todd",
+    "\\bTeresa(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Todd\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28687,
+   "title": "Thomas Hanson",
+   "status": "live",
+   "fullName": "Thomas Hanson",
+   "aliases": [],
+   "searchNames": [
+    "T.F. Hanson"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 3,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "T\\.?\\s*F\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Hanson",
+    "\\bThomas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hanson\\b",
+    "\\bTom(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Hanson\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28647,
+   "title": "Thomas M. Frew Jr.",
+   "status": "live",
+   "fullName": "Thomas M. Frew Jr.",
+   "aliases": [
+    "Tom Frew III"
+   ],
+   "searchNames": [
+    "Thomas M. Frew Jr.",
+    "T.M. Frew Jr."
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 84,
+   "pagesWithNameInTitle": [
+    "scvhistory/ap0724.htm",
+    "scvhistory/ap1535.htm",
+    "scvhistory/ap1603.htm",
+    "scvhistory/hs9019.htm",
+    "scvhistory/tf1000.htm",
+    "scvhistory/tf2601a.htm",
+    "scvhistory/tf2601b.htm",
+    "scvhistory/tf5010.htm",
+    "scvhistory/tf5301.htm"
+   ],
+   "namePatterns": [
+    "T\\.?\\s*M\\.?\\s*\\s*(?:[A-Z]\\.\\s*)*Frew",
+    "\\bThomas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Frew\\b",
+    "\\bTom(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Frew\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. tf1000.jpg (alt \"Tom Frew II\") is Tom Frew II (1852-1928), a namesake (by the record's alias Tom Frew III, his father), already Tom Frew II's portrait (asset #31356). The 1945 board appears only in text (ap0815 and others)."
+  },
+  {
+   "id": 29104,
+   "title": "Tim Burkhart",
+   "status": "live",
+   "fullName": "Tim Burkhart",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 5,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bTim(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Burkhart\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 26540,
+   "title": "Tom Caesar",
+   "status": "live",
+   "fullName": "Tom Caesar",
+   "aliases": [],
+   "searchNames": [
+    "Tom L. Caesar",
+    "Thomas L. Caesar",
+    "Thomas Caesar"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bThomas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Caesar\\b",
+    "\\bTom(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Caesar\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 18774,
+   "title": "Tom Campbell",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 8,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bThomas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Campbell\\b",
+    "\\bTom(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Campbell\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 29446,
+   "title": "Tom McClintock",
+   "status": "live",
+   "fullName": "Tom McClintock",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 8,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bThomas(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+McClintock\\b",
+    "\\bTom(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+McClintock\\b"
+   ],
+   "candidates": [],
+   "note": "No likeness. He is named only in a footnote to Marlee Lauffer's Newhall Land biography (nl9903, nl9906); he is not pictured."
+  },
+  {
+   "id": 29448,
+   "title": "Tony Strickland",
+   "status": "live",
+   "fullName": "Tony Strickland",
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bAnthony(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Strickland\\b",
+    "\\bTony(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Strickland\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 18756,
+   "title": "Val Thomas",
+   "status": "live",
+   "fullName": null,
+   "aliases": [],
+   "searchNames": [],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 8,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bVal(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Thomas\\b",
+    "\\bValerie(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Thomas\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  },
+  {
+   "id": 28376,
+   "title": "Victor Torres",
+   "status": "live",
+   "fullName": "Victor Torres",
+   "aliases": [],
+   "searchNames": [
+    "Victor M. Torres"
+   ],
+   "legacyUrl": null,
+   "personLegacyUrl": null,
+   "sourcePath": null,
+   "recordImages": [],
+   "result": "none found",
+   "newSinceCensus": false,
+   "census20261005": "none found",
+   "pagesNamingPerson": 0,
+   "pagesWithNameInTitle": [],
+   "namePatterns": [
+    "\\bVictor(?:\\s+(?:[A-Z]\\.|\"[^\"]{1,15}\"|[A-Z][a-z]+))?\\s+Torres\\b"
+   ],
+   "candidates": [],
+   "note": ""
+  }
+ ]
+}

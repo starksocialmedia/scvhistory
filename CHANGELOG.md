@@ -1,5 +1,24 @@
 SCVHistory.com — Changelog
 
+2026-10-06 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-06
+- Done: Scott Newhall (fix_scott_newhall_2026_10_06.php, without the lead): the oral history UC8901 as document #31723 with its PDF; the San Francisco Chronicle (#31725, minimal); TN1968 his portrait; Edwin White Newhall (#31728) and Almer Mayo Newhall (#31730) created and the line linked to Henry Mayo Newhall; the publisher disagreement (Davis Bynum, 1963) in a note; his old-site URL, role and footnotes. The burial place is its own BURIED row on person pages and no longer goes out as deathPlace in structured data (30 records showed it). BJ Atkins's profile and five water-board terms. Ten Commons portraits and 13 profiles from the Wikipedia census (McCarthy, Thomas, Whitesides, Steve Knight, McClintock, Stern, Pavley, Cathie Wright, Gorell, Runner, Antonovich, Barger, Banning); Wikipedia-only facts left out. The portrait search rerun on the Reggie mirror (99 records without a portrait; inventory/review/portrait-search-2026-10-06.md). Five event drafts, dry runs. A restore script for the drafted trustees, dry run.
+- Decisions: BJ Atkins written (Nathan left it to Claude: fully sourced, public life only). Mike Garcia's profile held on one sentence.
+- Errors: see ERRORLOG (the email address in a User-Agent; the thin test that missed pending drafts).
+- Next: TODO.md, "Current (6 October 2026, evening)".
+
+2026-10-06 (afternoon)
+
+- Agent: Claude Code
+- Date: 2026-10-06
+- Done: Enhanced portraits as the standing pattern (DATA-MODEL): 20 enhanced portraits linked to their originals, Tom Mix's three versions; better copies replaced in place for nine; plain portraits for Pete Knight, Jerry Gladbach, BJ Atkins, Audra Strickland and Adrian W. Adams. Profiles: Pete Knight (with the 2004 Newsmaker interview as a document), Keith Richman, Jerry Gladbach (retitled; CLWA from 1985; the campaign biography attributed and its author named), Adrian W. Adams (the court, the hospital, the Newhall Incident; the Hart trustee a lead), Audra Strickland. Scott Newhall's record (great-grandson of Henry Mayo Newhall, by his own oral history). The Wikipedia census (58 of 294 people have an article). "Read from the count" explanation removed from every term (the evidence label and /evidence carry it). Asset URLs revved (?v=) so a replaced file shows at once (Dan Hon's did not). Cassandra Nicole Love (#28324) and Charles L. Lyon (#30253) removed on Nathan's word: their terms (#28473, #30407) and Love's candidacy (#25741) kept, unlinked; a new field, holderName on office holdings, carries the name when no person is linked (the term title falls back on it); the body page's past members and timeline show such a term under that name without a link. The person-record rule, applied (persons_to_rows_2026_10_06.php): 85 records became rows (141 terms named by holderName and unlinked, 93 candidacies unlinked); 208 person records remain. Before the removal the 86 were searched on the Reggie mirror for anything named for them: one found, John K. Hackney (College of the Canyons' "John K. Hackney Outstanding Musician Award", Canyon Call 1971 to 1978), kept. The body page's board cards, past members, timeline and /districts show a row under its name, unlinked. Enhanced portraits for Harry Carey (LW2178) and Chico López (US8502), originals linked; Adrian W. Adams's portrait file replaced; the orphan hm7301_large.jpg deleted. AGENTS.md: the mirror drive is now Reggie (/Volumes/Reggie/SCVHistory), formerly Jordy. Scott Newhall's record reviewed (read only); fixes proposed to Nathan.
+- Decisions (Nathan): the person-record rule. Keep a record where the person resigned, died in office or was removed; held a higher office; sat on a body's first board; has a portrait; or has something named for them. Everything else is a row with holderName. Bowman stays (Bowman High). Do not search scvhistory.com; the Reggie mirror only.
+- Held for Nathan: Katie Hill (three facts in the brief corrected by the sources), BJ Atkins's profile (the mirror report first), Angela Marler's removal (a holding and a candidacy point at her), the Newhall line records (Edwin, Almer), Tom Frew II done earlier.
+- Errors: unlinking a term's person turned its generated title into "Unknown person — ..."; fixed the same hour by holderName and the title format's fallback. Two profile loaders wrote recordProvenance over 255 characters and were refused; capped. A failed portrait save left a re-encoded hm7301_large.jpg in web/uploads/archive-media/legacy/ with no asset: an orphan file to remove.
+- Next: TODO.md.
+
 2026-10-06
 
 - Agent: Claude Code

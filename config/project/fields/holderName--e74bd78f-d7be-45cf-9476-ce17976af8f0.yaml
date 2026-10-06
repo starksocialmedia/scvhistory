@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: holderName
+instructions: "The holder's name as the sources give it, for a term whose holder has no person record. Read only when no person is linked."
+name: "Holder's name, when no person record"
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -1,0 +1,33 @@
+{
+ "about": "Outside sources read for the Bill Thomas profile, 6 October 2026 (Claude Code, research subagent). The Statements of Vote for 1992, 2002, 2004 and 2006 are already saved in inventory/sources/legislative-districts-2026-10-04/sos/. The Wikipedia wikitext and Wikidata entity are saved as finding aids, not sources.",
+ "files": [
+  {
+   "file": "house-history-T000188.html",
+   "url": "https://history.house.gov/People/Listing/T/THOMAS,-William-Marshall-(T000188)/",
+   "read": "2026-10-06",
+   "sha256": "c79b6bb4c5311af62f0fe1e1e24003b6be0eb8fbf82acb487cd55eb4d914ffef",
+   "bytes": 127871
+  },
+  {
+   "file": "wayback-bioguide-T000188-20191026111541.html",
+   "url": "http://web.archive.org/web/20191026111541/http://bioguide.congress.gov/scripts/biodisplay.pl?index=T000188",
+   "read": "2026-10-06",
+   "sha256": "03ea1742e0ca46d3d32bad77b4257b67e50e95c410ccd1e65834b8864c0f51d1",
+   "bytes": 18270
+  },
+  {
+   "file": "wikidata-Q132302.json",
+   "url": "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q132302&props=sitelinks|labels&sitefilter=enwiki&languages=en&format=json",
+   "read": "2026-10-06",
+   "sha256": "cd09dc0a553da1202d33f41b46afa139ba42c3659c39092ef9bb8d10dbde856b",
+   "bytes": 198
+  },
+  {
+   "file": "wikipedia-bill-thomas-raw.txt",
+   "url": "https://en.wikipedia.org/w/index.php?title=Bill_Thomas&action=raw",
+   "read": "2026-10-06",
+   "sha256": "d6eb05fdacaf2a4f8674ff96a016f73dae463fc88fd186dc9182d05341d9004c",
+   "bytes": 20610
+  }
+ ]
+}

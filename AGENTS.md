@@ -19,8 +19,8 @@ Nathan makes all decisions. Leon Worden has preapproved the project, so nothing 
 
 ## Roles
 
-- **Grok Build** (runs locally on Nathan's MacBook in `~/scvhistory`): content inventory, modeling, Craft schema work in DDEV, import scripts. Owns Tasks 1 through 5 in HANDOFF.md. Source content is at `/Volumes/Jordy/SCVHistory` (read-only; the drive can dismount, see HANDOFF.md).
-- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Nathan to review. Cannot access the Jordy drive or local DDEV. The legacy content lives on Jordy, not the live site: do not crawl scvhistory.com.
+- **Grok Build** (runs locally on Nathan's MacBook in `~/scvhistory`): content inventory, modeling, Craft schema work in DDEV, import scripts. Owns Tasks 1 through 5 in HANDOFF.md. Source content is at `/Volumes/Reggie/SCVHistory` (read-only; the drive can dismount, see HANDOFF.md). Reggie replaced the drive called Jordy, with the same content (Nathan, 6 October 2026): any older document or script that says Jordy means Reggie.
+- **Grok Bot** (cloud computer): research only. Taxonomy URI verification (Wikidata, AAT, LCSH), entity research, draft entity lists for Nathan to review. Cannot access the Reggie drive or local DDEV. The legacy content lives on Reggie (formerly Jordy), not the live site: do not crawl scvhistory.com.
 - **Grok chat and Claude**: review and advice. Changes come back through Nathan.
 
 ## Git rules

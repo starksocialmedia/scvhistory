@@ -66,7 +66,7 @@
             {% set els = craft.entries().section('elections').relatedTo({ targetElement: p, field: 'electionDistrict' }).orderBy('electionDateEdtf desc').all() %}
             <tr>
               <td><a href="{{ p.url }}">{{ KIND[p.districtKind.value] ?? 'District' }} {{ p.districtNumber }}</a></td>
-              <td>{% for h in holdsNow %}{% set who = h.holdingPerson.one() %}{% if who %}<a href="{{ who.url }}">{{ who.title }}</a>{% if h.termStart %} <span class="dim">since {{ h.termStart|split(' ')|last }}</span>{% endif %}{% if not loop.last %}<br>{% endif %}{% endif %}{% else %}<span class="dim">{{ b.dateDissolved ? 'Body dissolved' : 'Not yet in the archive' }}</span>{% endfor %}</td>
+              <td>{% for h in holdsNow %}{% set who = h.holdingPerson.one() %}{% if who %}<a href="{{ who.url }}">{{ who.title }}</a>{% else %}{{ h.title|split(' — ')|first }}{% endif %}{% if h.termStart %} <span class="dim">since {{ h.termStart|split(' ')|last }}</span>{% endif %}{% if not loop.last %}<br>{% endif %}{% else %}<span class="dim">{{ b.dateDissolved ? 'Body dissolved' : 'Not yet in the archive' }}</span>{% endfor %}</td>
               <td class="ds-el">{% for e in els %}<a href="{{ e.url }}">{{ e.electionDateEdtf|slice(0, 4) }}</a>{% if not loop.last %}, {% endif %}{% else %}<span class="dim">None yet</span>{% endfor %}</td>
             </tr>
           {% endfor %}

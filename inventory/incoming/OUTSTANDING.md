@@ -49,6 +49,7 @@ imported after editing, or an alternative. Keep it or drop it; nothing waits on 
 |---|---|
 | Sharlene-Duzick.jpg | The Adobe Firefly upscale (creative upsampler, 4 October 2026) of sharlene-headshot.jpg, which is now Sharlene Rose Johnson's portrait (#30544, 5 October 2026: the losing-candidate decision reversed, she being a sitting college trustee). The archive uses the unedited original. |
 | BOM-pg14-shutterstock-185944559.jpg | A Shutterstock image. Its licence would need to be in hand before use. |
+| fran-pavley-commons.jpg | Fran Pavley's Commons portrait (Edward Headington, CC BY 2.0, via Flickr). The license field has no cc-by-2.0 option; adding one is a schema change for Nathan (6 October 2026). |
 | Firefly.jpg, Firefly (1).jpg, Firefly (2).jpg, grok-image-fb994b75-1760-4be5-a4da-3623d2bc4605.jpg | Generated images. Under the banner rule they are decoration only, in web/banners and never assets. None matches a banner file now. |
 
 ## 3. Not identified
@@ -71,16 +72,14 @@ no longer wanted:
 
 Applied on 6 October 2026; its files, Chico López's US8502 and Tom Frew II's TF1000 are in done/ with MANIFEST.json.
 
-## 5. Enhanced copies of 6 October 2026, waiting on Nathan's word
+## 5. Enhanced copies and better scans of 6 October 2026
 
-Nathan's own enhancements (Adobe Firefly, 6 October), saved under the original's file name, of portraits already in the archive.
-Each would become the portrait with the original kept and linked, once he confirms (enhanced_portrait_pairs_2026_10_06.php pattern).
+Applied on 6 October 2026; the files are in done/ with MANIFEST.json.
 
-| File | Record | Original in the archive |
-|---|---|---|
-| danhon.jpg | Dan Hon #18616 | #14933 danhon.jpg (200 by 231) |
-| darrylmanzer2020.jpg | Darryl Manzer #2579 | #31254 darrylmanzer2020.jpg |
-| sg19720614claffey01_zoom.jpg | Francis T. Claffey #30211 | #31236 sg19720614claffey01_large.jpg |
-| sg19720614claffey01_large.jpg | Francis T. Claffey #30211 | no credential: a copy of the original, #31236 |
-| sk5003_large.jpg | Earl Schmidt #28675 | #31255 sk5003_large.jpg |
-| stroup_clara.jpg | Clara Stroup #28713 | #31243 stroup_clara.jpg (150 by 200) |
+## 6. Portraits set with their profiles (6 October 2026)
+
+Audra Strickland's and Judge Adrian W. Adams's: in done/ with MANIFEST.json.
+
+## 7. Commons portraits and Scott Newhall's portrait (6 October 2026)
+
+Ten Commons portraits from the Wikipedia census and TN1968 (Scott Newhall): applied; in done/ with MANIFEST.json. Fran Pavley's waits (section 2).

@@ -326,6 +326,8 @@
       }|filter(x => x is not null)]) %}
     {% endfor %}
   {% endif %}
+  {#- No deathPlace: persons hold a burial place, not a place of death, and schema.org's Person has no burial property
+      (Nathan, 6 October 2026: the burial place was asserted as the place of death). -#}
   {% set main = {
     '@type': 'Person',
     'name': V.fullName ?? '' ?: el.title,
@@ -333,7 +335,6 @@
     'birthDate': dt.published(V.birthDateEdtf ?? '', V.birthDate ?? '')|trim,
     'deathDate': dt.published(V.deathDateEdtf ?? '', V.deathDate ?? '')|trim,
     'birthPlace': (V.birthplace ?? '') ? { '@type': 'Place', 'name': V.birthplace } : null,
-    'deathPlace': (V.burialPlace ?? '') ? { '@type': 'Place', 'name': V.burialPlace } : null,
     'hasOccupation': occupations|length ? occupations : null,
     'jobTitle': (V.occupation ?? '') ? (V.occupation|split(';')|map(o => o|trim)|filter(o => o)|values) : [],
     'sameAs': sameAs,

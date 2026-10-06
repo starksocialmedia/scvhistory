@@ -1,0 +1,143 @@
+# Sylmar Earthquake (draft, 6 October 2026)
+
+Draft by Claude, 6 October 2026, read-only research for Nathan. Nothing written to Craft. Sources read from the Reggie mirror and from Craft by read-only queries (storage/runtime/ev6/sylmar-earthquake-1971/). Nothing from Wikipedia or general knowledge. Shape follows inventory/review/golden-spike-draft-v2-2026-10-05.json; footnote numbers in relations refer to this draft. Not yet approved by Nathan.
+
+## Fields
+
+- **eventDate:** February 9, 1971
+- **eventDateEdtf:** 1971-02-09
+- **eventDateStart:** (empty)
+- **eventDateEnd:** (empty)
+- **startEvidence:** contemporary
+- **eventChlNumber:** (empty)
+- **eventSignificance:** The earthquake of February 9, 1971, known as the Sylmar or San Fernando earthquake, was centered in the Iron Canyon section of Sand Canyon in the Santa Clarita Valley. It killed 65 people, most of them in the San Fernando Valley, brought down the new freeway bridges in the Newhall Pass, and heavily damaged brick buildings in downtown Newhall.
+- **historicalEra:** #167 Incorporation Struggle (1965–1986)
+- **historicalPeriod:** #180 1970-1979
+- **recordTags:** (empty)
+- **neighborhood:** #203 Sand Canyon; #199 Newhall
+- **featuredImage:** asset 11610 (lw3158_large.jpg), in archiveMedia, the UPI Telephoto of the westbound Interstate 210 overpass fallen onto Interstate 5 in the Newhall Pass on February 9, 1971 (LW3158, photograph #4973). Not attached to the photograph record.
+- **bandImage:** none proposed
+
+## Editor note (top)
+
+- **Content advisory.** This record concerns an earthquake in which 65 people died, most of them in the San Fernando Valley, and describes the damage it did.
+
+## Body
+
+Before dawn on February 9, 1971, an earthquake struck the San Fernando and Santa Clarita valleys.[1][2] It is called the Sylmar or the San Fernando earthquake, but its epicenter was in the Santa Clarita Valley, in the Iron Canyon section of Sand Canyon.[1][3][4] Leon Worden explains the name: the fault lies about five miles below the epicenter and comes to the surface at Sylmar and San Fernando, where the damage was greater, and the press took up the name Sylmar when the Olive View Medical Center collapsed.[5][6] The shaking lasted about 60 seconds. It killed 65 people, most of them in the San Fernando Valley, and caused more than half a billion dollars in damage in the two valleys.[5][7] SCVHistory.com's page for a government film of the disaster says that at least one death was confirmed in the Santa Clarita Valley.[2]
+
+In the Newhall Pass the new freeway bridges fell.[5] The westbound Interstate 210 overpass came down onto Interstate 5, and at the junction of Interstate 5 and State Route 14, connectors still under construction collapsed onto an 80-ton crane; the wire service's caption said no one was killed there.[8][9][10] In all, 67 bridges on five major freeways were damaged.[11] To the south, workers sandbagged the damaged Van Norman Reservoir in the San Fernando Valley, and tens of thousands of people living downstream were evacuated.[12][2] Repairs to the freeways at Sylmar were still under way that May.[17]
+
+In Newhall, the brick Swall Hotel building at Spruce and Market streets, by then the Newhall Pharmacy, was heavily damaged. Its front collapsed on March 13, and the building was rebuilt with a stucco front.[13] The First Presbyterian Church's two-story brick building of 1923 was severely damaged; the church found it cheaper to build again than to restore it, broke ground for a new church on March 7, 1976, and dedicated it on February 6, 1977.[14] A wire photograph of bottles strewn across a liquor store's floor was published as damage in Newhall, though a family who ran grocery stores in the valley later said another paper placed the store in Sunland.[15]
+
+College of the Canyons had no permanent buildings yet. The quake buried some 10,000 of its library's books under fallen shelves, and its building plans were strengthened: the Student Center, meant to have two stories, opened with one in February 1975.[10] Plans for Henry Mayo Newhall Memorial Hospital, nearly complete when the earthquake struck, had to be reworked to meet new seismic safety requirements.[7]
+
+The Legislature's Joint Committee on Seismic Safety formed a special subcommittee to study the earthquake. Its three members included the Santa Clarita Valley's assemblyman, Jim Keysor, elected three months before, and its 132-page report was published in July 1972.[16] The U.S. Department of Agriculture's Motion Picture Service filmed the aftermath for the federal government.[2]
+
+## Footnotes
+
+[1] Leon Worden, caption to LW7102, "2-9-1971 Earthquake," instrumental intensity map, photograph #5689 in this archive, as carried on SCVHistory.com, /scvhistory/lw7102.htm: the earthquake "of Tuesday, Feb. 9, 1971, was actually centered in Iron Canyon, in the Sand Canyon area of Canyon Country, as seen on this official instrumental intensity map." "It struck at 6:00:41 a.m. and measured 6.7 on the Richter scale (revised to 6.6)."
+
+[2] SCVHistory.com, "USDA Film: 1971 Sylmar Earthquake," the page for the film "EARTHQUAKE! Story of the Sylmar Earthquake of February 9, 1971" (so titled on the page), produced by the Motion Picture Service, U.S. Department of Agriculture, for the President's Office of Emergency Preparedness and the Defense Civil Preparedness Agency, as carried on SCVHistory.com, /scvhistory/sylmarquake1971_usda.htm (the page is unsigned): "The Sylmar-San Fernando Earthquake struck the San Fernando and Santa Clarita Valleys on February 9, 1971, when a powerful pre-dawn earthquake tore through Southern California, collapsing freeways, hospitals, and critical infrastructure across the region." The earthquake "claimed 65 lives, injured thousands, and caused widespread destruction throughout the San Fernando Valley, with additional impacts to communities to the north, including the Santa Clarita Valley." "At least one confirmed fatality occurred in the Santa Clarita Valley." The film "documents the crisis at Van Norman Dam, which prompted the evacuation of tens of thousands of residents living downstream."
+
+[3] SCVHistory.com timeline, as carried on SCVHistory.com, /scvhistory/timeline.htm, 1971: "February 9, 5:59 a.m.: 6.5 magnitude Sylmar earthquake (actually centered in Iron Canyon section of Sand Canyon)." The timeline names no source for the line.
+
+[4] Leon Worden, note to LW2316, "M=6.0+ Southern California Earthquakes, 1912-1971," photograph #3245 in this archive, as carried on SCVHistory.com, /scvhistory/lw2316.htm: "The San Fernando earthquake is commonly known as the Sylmar earthquake. Its epicenter was in the Santa Clarita Valley." "The Legislature's report gives a magnitude of 6.4, but it was subsequently assigned a magnitude of 6.6."
+
+[5] Leon Worden, note to LW2316c, "2-9-1971 Sylmar Earthquake: Main Shock (in SCV) & Aftershocks," photograph #3247 in this archive, as carried on SCVHistory.com, /scvhistory/lw2316c.htm: "Because the fault was five miles below the epicenter and it surfaces at Sylmar/San Fernando, so the damage was greater there." The media took up the name "when the Olive View Medical Center went down." The earthquake "lasted about 60 seconds, killed 65 people (primarily in the San Fernando Valley) and caused more than half a billion dollars in damage to both valleys, including the collapse of the fairly new freeway bridges in the Newhall Pass."
+
+[6] Clarence R. Allen, California Institute of Technology, in Special Subcommittee of the Joint Committee on Seismic Safety, California Legislature, The San Fernando Earthquake of February 9, 1971, and Public Policy, July 1972, pp. 4-6, as carried on SCVHistory.com, /scvhistory/lw2316c.htm: "although the fault reaches the surface near Sylmar, it lies at a depth of about 4 miles under Newhall, several miles to the north"; "the fracturing then propagated southward and upward along the fault plane until it actually broke the ground surface in Sylmar and San Fernando"; "The shaking was heavier in Sylmar than at the epicenter probably for two reasons".
+
+[7] Leon Worden, "Volunteers Pave the Way to Henry Mayo Hospital," 2012, as carried on SCVHistory.com, /scvhistory/hmnmhprehistory.htm: the earthquake "of Feb. 9, 1971, killed 65 people and caused $500 million in property damage. Most deaths and injuries occurred in the San Fernando Valley, alleviating the strain that would otherwise have befallen the local hospitals". "Plans for Henry Mayo Newhall Memorial Hospital were nearly complete when the earthquake struck; now they would have to be reworked to meet evolving seismic safety requirements." His note 7: "The epicenter was in the Iron Canyon area of Sand Canyon in the eastern Santa Clarita Valley."
+
+[8] Caption to LW3158, "Collapsed 210 Freeway Bridge in Newhall Pass, 2-9-1971," UPI Telephoto, photograph #4973 in this archive, as carried on SCVHistory.com, /scvhistory/lw3158.htm: "The westbound Interstate 210 overpass has fallen onto Interstate 5 in the Newhall Pass."
+
+[9] Caption to LW2794, "5/14 Freeway Overpass, 2-9-1971," UPI Telephoto, photograph #4493 in this archive, as carried on SCVHistory.com, /scvhistory/lw2794.htm: "Freeway overpass at the 5-14 split (Newhall Pass) as it appeared on the day of the Sylmar-San Fernando Earthquake." The original cutline: "The earthquake that hit Southern California caused part of massive elevated freeway to collapse, burying the 80-ton crane (bottom) which had been used in work on the freeway interchange, which intersects US Highway Interstate 5. Miraculously, no one was killed."
+
+[10] John Green, "Early History of College of the Canyons," College of the Canyons, as carried on SCVHistory.com, /scvhistory/aa7401.htm: "No permanent campus structures yet existed, but the architectural plans for the buildings on the drawing board were beefed up significantly to make the college's first structures among the safest in California." Al Adelini, dean of student activities: "The Student Center was supposed to be two stories, but everything changed the day of the Sylmar earthquake," The quake "was strong enough to topple the lofty Interstate 5-Highway 14 connectors that were then under construction"; at the library "librarian Jan Keller estimated that some 10,000 volumes lay buried under displaced steel shelves. It took two days to sort through the mess and re-shelve the books." "The scaled-back Student Center, now relegated to a single story in the interest of earthquake safety, opened in February of 1975."
+
+[11] Caption to LW3160, "Collapsed Freeway Bridge in Newhall Pass, 1971," a Caltech photograph published in the Houston Chronicle on February 3, 1976, photograph #4977 in this archive, as carried on SCVHistory.com, /scvhistory/lw3160.htm: "A collapsed freeway bridge in the Newhall Pass." The 1976 cutline: "In all, 67 bridges on five major freeways were damaged."
+
+[12] Caption to LW3159, "Workers Attempt to Save Van Norman Reservoir, 2-9-1971," wire photograph published in the Los Angeles Times, February 10, 1971, photograph #4975 in this archive, as carried on SCVHistory.com, /scvhistory/lw3159.htm: "A helicopter hovers while workers attempt to avert a flood as waves erode the earthen walls of LADWP's Van Norman Reservoir." The Times cutline: "Water lapped at the top of the damaged Van Norman Lakes Reservoir in the San Fernando Valley while workmen sandbagged a leaking portion in an attempt to save it."
+
+[13] SCVHistory.com timeline, /scvhistory/timeline.htm, 1971: "March 13: Brick front of Newhall Pharmacy (ex-Swall Hotel at Market & Spruce/Main), damaged in Feb. 9 quake, collapses." Jerry Reynolds, History of the Santa Clarita Valley, chapter 52, "Servicing the Traveler," article #2129 in this archive (/scvhistory/signal/reynolds/part52.html), in a parenthesis in the text: "The Swall Hotel, later known as Newhall Pharmacy, was heavily damaged in the February 9, 1971 Sylmar Earthquake. When it was rebuilt, its bricks were replaced with Spanish stucco." Pat Saletore, "The Finest Hotel South Of San Francisco," Old Town Newhall Gazette, January-February 2006, article #12623 in this archive: the Swall Hotel was rebuilt after a fire in 1916, "only to be destroyed again in the Sylmar Earthquake of February 9, 1971." Caption to LW3373, photograph #5217 in this archive (/scvhistory/lw3373.htm): "In the 1971 earthquake the original brick building was essentially destroyed."
+
+[14] Santa Clarita Valley Historical Society, "Timeline: First Presbyterian Church," 1986, HS8601, as carried on SCVHistory.com, /scvhistory/hs8601.htm, 1971: "February 9. Earthquake damages Church structure. Cheaper to build a new one than restore the old." 1976: "March 7, groundbreaking ceremonies." 1977: "February 6. Third church dedicated." Introduction to the church's 1976 cookbook, /scvhistory/firstpresbyterian1976cookbook.htm: "In 1923, the wooden chapel was moved a couple of hundred feet toward Eighth Street and transformed into a two-story brick structure that was severely damaged in the Sylmar Earthquake of Feb. 9, 1971." SCVHistory.com timeline, /scvhistory/timeline.htm, 1976: "March 7: Groundbreaking for new First Presbyterian Church in Newhall (former structure heavily damaged in 1971 earthquake)." Editor's note j to A.B. Perkins, "History of Downtown Newhall" (1958), article #1438 in this archive: "It should be noted that the church building that existed in 1958 was razed after the 1971 earthquake, and a third church building was erected on the property."
+
+[15] Caption to LW3019, "Damage in Liquor Store, 2-9-1971," Associated Press wire photograph, photograph #4809 in this archive, as carried on SCVHistory.com, /scvhistory/lw3019.htm. The published caption: "A jumble of liquor bottles littered the floor of a store in Newhall Tuesday after an earthquake jolted the southern California area." Leon Worden adds: "According to members of the Dillenbeck family (pers. comm. 2017), who ran grocery stores in Newhall and Canyon Country at the time of the quake," another paper that ran the photograph placed it at "Milan's Liquor and Deli at 8534 Foothill Blvd. in Sunland".
+
+[16] Leon Worden, note to LW2316c, /scvhistory/lw2316c.htm (the same text heads LW2316, LW3158 and the other photographs of the series): "In response, the Joint Committee established a" special subcommittee "with the goal of evaluating its effects and learning from it." "Chaired by Assemblyman James A. Hayes of Long Beach, the three-person subcommittee included Democratic Sen. Joseph M. Kennick, also of Long Beach, and the Santa Clarita Valley's Democratic Assemblyman, Jim Keysor." "Just three months earlier, Keysor, chairman of the board of Keysor-Century Records (aka Keysor-Century Corp.) in Saugus, had been elected to the Assembly for the first time." "In July 1972, the Special Subcommittee published a 132-page report".
+
+[17] Caption to LW2548a, "Freeway Damage & Repairs, I-5 & 210," May 22, 1971, photograph #4095 in this archive, as carried on SCVHistory.com, /scvhistory/lw2548a.htm: "Freeway damage and repairs in Sylmar after the earthquake of Feb. 9, 1971." The series runs to LW2548h, eight views.
+
+## Editor notes (bottom)
+
+- **The time and the magnitude.** The sources differ. The SCVHistory.com timeline gives 5:59 a.m. and magnitude 6.5. Leon Worden's captions to LW7102 and LW2316 give 6:00:41 a.m.; LW7102 gives 6.7 on the Richter scale, revised to 6.6, and LW2316 says the Legislature's report of 1972 gave 6.4 and the quake was later assigned 6.6. John Green's history of College of the Canyons gives 6.4, and a Daily News profile of 1996 (/scvhistory/ladn19960506.htm) gives 6.5. The record gives the day only and no magnitude in its text.
+- **The college library.** John Green (/scvhistory/aa7401.htm) places the fallen books in the Instructional Resource Center, "now called Bonelli Hall," but writes in the same history that no permanent campus structures yet existed in February 1971, and the page's own caption says the Instructional Resource Center "opened in early 1974." The record says only that the college's library lost its books from the shelves.
+- **The photographs.** Most of the photographs with this record were taken on the day. Two were not: LW2548a shows the freeway repairs at Sylmar on May 22, 1971, and LW3160 is a Caltech photograph published in 1976. The liquor store in LW3019 was captioned as Newhall in 1971 but may have been in Sunland (note 15).
+
+## Dated rows (recordDates)
+
+| Printed | ISO | Precision | What happened | Notes |
+| --- | --- | --- | --- | --- |
+| March 13, 1971 | 1971-03-13 | day | the brick front of the Newhall Pharmacy, the old Swall Hotel, damaged in the earthquake, collapses | 13 |
+| July 1972 | 1972-07-01 | month | the Legislature's special subcommittee publishes its report on the earthquake | 16 |
+| February 1975 | 1975-02-01 | month | College of the Canyons opens its Student Center, cut to one story for earthquake safety | 10 |
+| March 7, 1976 | 1976-03-07 | day | ground broken in Newhall for a new First Presbyterian Church, to replace the building the earthquake damaged | 14 |
+| February 6, 1977 | 1977-02-06 | day | the new First Presbyterian Church is dedicated | 14 |
+
+## Relations
+
+- **eventPlaces:** #934 Newhall Pass interchange (notes 5, 8, 9; the freeway bridges in the Newhall Pass collapsed in the earthquake)
+- **eventOrganizations:** #380 Henry Mayo Newhall Memorial Hospital (notes 7; the hospital's nearly finished plans were reworked for seismic safety after the earthquake)
+- **eventOrganizations:** #29850 Santa Clarita Community College District (notes 10; the district's College of the Canyons lost its library shelves and strengthened its building plans after the earthquake)
+- **eventArticles:** #2129 52. Servicing the Traveler (its parenthesis on the Swall Hotel (Newhall Pharmacy), cited in note 13)
+- **eventArticles:** #12623 History: The Finest Hotel South Of San Francisco. (Pat Saletore, 2006, on the Swall Hotel, cited in note 13)
+- **eventArticles:** #1438 History of Downtown Newhall (A.B. Perkins, 1958; its editor's note j on the First Presbyterian Church, cited in note 14)
+- **relatedEvents:** The Northridge Earthquake (#875), January 17, 1994: the Newhall Pass interchange record (#934) ties the two, as the two earthquakes that brought down its bridges. Not set by the loader; link by hand if wanted.
+
+## Photographs already in Craft
+
+| Record | Code | Title | Notes | Caption here | Image |
+| --- | --- | --- | --- | --- | --- |
+| #5689 | LW7102 | 2-9-1971 Earthquake | 1 | Instrumental intensity map of the earthquake of February 9, 1971, with its epicenter in Iron Canyon, Sand Canyon | asset 12980 (lw7102.jpg) exists in archiveMedia, not attached |
+| #3247 | LW2316c | 2-9-1971 Sylmar Earthquake: Main Shock (in SCV) & Aftershocks | 5, 6, 16 | Map of the main shock and aftershocks, from the Legislature's report of July 1972 | assets 13999 and 10547 exist in archiveMedia, not attached |
+| #3245 | LW2316 | M=6.0+ Southern California Earthquakes, 1912-1971 | 4 | Table and map of southern California earthquakes of magnitude 6.0 and above, 1912-1971, from the Legislature's report of July 1972 | assets 10545, 10546, 14434, 14435 exist in archiveMedia, not attached |
+| #4973 | LW3158 | Collapsed 210 Freeway Bridge in Newhall Pass, 2-9-1971. | 8 | The westbound Interstate 210 overpass fallen onto Interstate 5 in the Newhall Pass, February 9, 1971 (UPI Telephoto) | assets 13226 and 11610 (lw3158_large.jpg) exist in archiveMedia, not attached |
+| #4493 | LW2794 | 5/14 Freeway Overpass, 2-9-1971 | 9 | The fallen overpass at the Interstate 5 and State Route 14 split, Newhall Pass, February 9, 1971 (UPI Telephoto) | assets 13388 and 11140 exist in archiveMedia, not attached |
+| #4977 | LW3160 | Collapsed Freeway Bridge in Newhall Pass, 1971. | 11 | A collapsed freeway bridge in the Newhall Pass; a Caltech photograph published in 1976 | assets 13224 and 11612 exist in archiveMedia, not attached |
+| #4095 | LW2548a | Freeway Damage & Repairs, I-5 & 210 | 17 | Freeway damage and repairs at Sylmar, May 22, 1971 | assets 13579 and 10934 exist in archiveMedia, not attached |
+| #4975 | LW3159 | Workers Attempt to Save Van Norman Reservoir, 2-9-1971. | 12 | Workers sandbag the damaged Van Norman Reservoir in the San Fernando Valley, February 9, 1971 | assets 13225 and 11611 exist in archiveMedia, not attached |
+| #4809 | LW3019 | Damage in Liquor Store, 2-9-1971. | 15 | A store floor littered with bottles, February 9, 1971; captioned as Newhall, possibly Sunland (note 15) | assets 13273 and 11526 exist in archiveMedia, not attached |
+| #4089 | LW2547a | Doobie Brothers Cover Art: Collapsed 5/14 Freeway Bridges | none (held) | Album cover of 1973 photographed on the collapsed bridges; a later use of the ruins, not the event | assets 13582 and 10931 exist in archiveMedia, not attached |
+
+## The literature
+
+- Special Subcommittee of the Joint Committee on Seismic Safety, California Legislature, The San Fernando Earthquake of February 9, 1971, and Public Policy, July 1972 (132 pages). /scvhistory/lw2316c.htm and /scvhistory/lw2316.htm, excerpts of pp. 1 and 4-6 and figures 1 to 3
+- Earthquake! Story of the Sylmar Earthquake of February 9, 1971, film, Motion Picture Service, U.S. Department of Agriculture, 28 minutes. /scvhistory/sylmarquake1971_usda.htm
+- John Green, Early History of College of the Canyons. /scvhistory/aa7401.htm
+
+## Research leads
+
+- The death in the Santa Clarita Valley. The unsigned film page (/scvhistory/sylmarquake1971_usda.htm) says "At least one confirmed fatality occurred in the Santa Clarita Valley." No mirror page names the person or the place. Searched: every mirror page containing "quake" with 1971, every page dated February 9 or 10, 1971, the SCVHistory.com timeline, the Signal's 80-year timeline (/scvhistory/sg19191999.htm, which does not mention the 1971 quake) and the obituaries index (/obits.htm). Not found.
+- Other damage the mirror records, not in the body: the brick building at the Acton Hotel site on Crown Valley Road, "destroyed in the 1971 Sylmar-San Fernando earthquake when the second floor collapsed" (AP3113, /scvhistory/ap3113.htm); the Rocky Springs swimming pool in Sand Canyon (LW3753, photograph #5595); the Mint Canyon school library (/scvhistory/ladn19960506.htm); the Newhall Ranch house now at Heritage Junction, "heavily damaged during the 1971 earthquake" (HS0100 and others); the Asher house at the Triple A Ranch, Vasquez Rocks (HS2787); breakables lost at the Hart Museum (CN7103); and the Old Road, which the new Colton route relieved (LW3254). Each could become a recordDates row or a sentence once checked.
+- Olive View: the 1962 fire gallery (HB6201, /scvhistory/hb6201.htm) says the earthquake "felled the hospital's four stairwell wings and its parking structure." Olive View is in Sylmar, outside the valley; left out of the body.
+- Photographs on the mirror of the series, none of them in Craft: LW2778 (Ken Maynard on the quake, AP, March 1971). LW2548b to LW2548h are in Craft (#4097 to #4109), the rest of the May 1971 freeway series; not proposed for photoEvents, as no note names them. LW2547a (#4089), the Doobie Brothers cover of 1973, is listed and held.
+- Wikipedia was not consulted.
+
+## For Nathan
+
+1. Title. "Sylmar Earthquake," matching the existing "Northridge Earthquake" (#875). Leon's own index heading in general.htm is "1971 Sylmar Earthquake," and his photograph captions use "Sylmar-San Fernando Earthquake." The body gives both names and his explanation of why the Santa Clarita Valley epicenter carries a San Fernando Valley name. Say if you prefer "1971 Sylmar Earthquake."
+
+2. Featured image: asset 11610 (lw3158_large.jpg), the Newhall Pass collapse on the day, already in archiveMedia but not attached to photograph #4973. Say if you would rather have none.
+
+3. No theme fits: the theme vocabulary has "Northridge Earthquake" and "Fire & Flood" but no general earthquake or disaster theme. recordTags is left empty. A theme "Earthquakes" (or "Disasters") would hold both earthquakes; a vocabulary change, yours to make.
+
+4. Relations not made, for want of a record: the First Presbyterian Church of Newhall, the Swall Hotel (Newhall Pharmacy), College of the Canyons as a college (the district #29850 is used), Jim Keysor, Olive View, Van Norman Reservoir. None is created.
+
+5. The ten photographs of the quake have their image files in archiveMedia but none attached. Attaching is a separate fix.
+
+## Quotation check
+
+Checked 2026-10-06: 73 quotations, 73 PASS, 0 FAIL. Ellipses: the draft has none. Against: mirror pages on /Volumes/Reggie/SCVHistory/scvhistory.com (HTML read as latin-1; PDFs by pdftotext), and Craft for record text and titles, by read-only queries.
+

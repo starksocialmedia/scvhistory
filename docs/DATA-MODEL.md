@@ -601,11 +601,12 @@ at all.
 
 ### Office Holdings — `officeHoldings/officeHolding`
 
-20 fields.
+21 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
 | `holdingPerson` | Entries | **local** | no external equivalent |
+| `holderName` | PlainText | **local** | no external equivalent |
 | `holdingOffice` | Entries | **local** | no external equivalent |
 | `holdingBody` | Entries | **local** | no external equivalent |
 | `holdingDistrict` | Entries | **local** | no external equivalent |

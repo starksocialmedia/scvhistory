@@ -16,7 +16,7 @@
   ],
   "privacy": "public work only; family not named"
  },
- "reliability_rule": "Dates of major events: provisionally acceptable, attributed. Figures, ages, money, acreage, titles, superlatives, minor-figure identities and dramatic anecdotes: require corroboration.",
+ "reliability_rule": "accept an uncorroborated Reynolds date for a major event provisionally, attributed. Do not accept an uncorroborated figure, age, sum, acreage, rank or title, superlative, identity of a minor figure, or dramatic anecdote. Mark it NEEDS_VERIFICATION and look for Perkins, a newspaper or a deed first. When the 1998 web text and Reynolds' original differ (C5), cite the edition.",
  "counts": {
   "inventory_urls_mentioning_reynolds": 362,
   "inventory_urls_reynolds_in_title": 90,
@@ -28,20 +28,20 @@
   "front_back_matter": 9,
   "other_reynolds_writings": 7,
   "conflicts": 21,
-  "live_errors": 12,
+  "live_errors": 13,
   "archive_beats": 8,
-  "corrections": 6,
-  "ledger_items": 74,
+  "corrections": 12,
+  "ledger_items": 76,
   "ledger_by_verdict": {
-   "contradicted": 38,
+   "contradicted": 41,
    "partly": 2,
    "unresolved": 7,
    "superseded": 1,
-   "confirmed": 18,
+   "confirmed": 17,
    "conflicting": 8
   },
   "contradicted_or_partly_by_type": {
-   "date": 9,
+   "date": 12,
    "number": 11,
    "anecdote": 8,
    "quotation": 1,
@@ -52,7 +52,7 @@
    "care": 1
   },
   "confirmed_by_type": {
-   "date": 16,
+   "date": 15,
    "number": 1,
    "anecdote": 1
   }
@@ -184,8 +184,10 @@
    "basis": "Wally Smith, 'The Camulos Story' (1958)",
    "ledger": [
     "D8",
+    "D15",
     "D+1",
-    "D+2"
+    "D+2",
+    "D+6"
    ]
   },
   {
@@ -199,8 +201,7 @@
     "D9",
     "D10",
     "D11",
-    "D+5",
-    "D+6"
+    "D+5"
    ]
   },
   {
@@ -534,7 +535,9 @@
    "url": "https://scvhistory.com/scvhistory/signal/reynolds/part49.html",
    "notes": [],
    "basis": null,
-   "ledger": []
+   "ledger": [
+    "R18"
+   ]
   },
   {
    "n": 50,
@@ -1199,7 +1202,7 @@
    "dossier": "Beale",
    "page": "part28",
    "claim": "the Lincoln quip",
-   "evidence": "Uncorroborated anecdote",
+   "evidence": "Uncorroborated anecdote; the earliest book print found, Bonsal 1912 (Beale's biographer), pp. 277–278, calls it 'A witty though absolutely groundless story' (Perkins dossier P28, 2026-10-04)",
    "verdict": "unresolved",
    "type": "anecdote",
    "note": ""
@@ -1379,7 +1382,7 @@
    "dossier": "del Valle",
    "page": "part16",
    "claim": "'125 pounds' of Placerita gold",
-   "evidence": "Figures conflict across sources",
+   "evidence": "Figures conflict across sources. Supporting (2026-10-04, verdict unchanged): the earliest print of the '2,000 ounces' figure found is Daily News (Los Angeles), 9 July 1943, p. 32, https://cdnc.ucr.edu/?a=d&d=DNLA19430709.1.32&dliv=user&dliv=none&st=1 : 'By December 1843, 2000 ounces of gold had been washed from the sands of Placerita canyon.' [page image confirmed at full zoom: the user's full-zoom browser crop perkins-work/zoom/cdnc_zm3/DNLA19430709.1.32_PlaceritaGold_1.png, read at letter level by the parent agent, relayed 11:25 PT; a 1943 secondary source]. A 1943 retrospective. Earlier print found later (CDNC, user's browser search 2026-10-04 ~03:00 PT): J.M. Guinn (Secretary, Southern California Historical Society), 'The First Discovery of Gold in California', Los Angeles Herald, 1 Sep 1895, p. 2, https://cdnc.ucr.edu/?a=d&d=LAH18950901.2.39&dliv=none&st=1 , and San Francisco Call, 8 Sep 1895, p. 2, https://cdnc.ucr.edu/?a=d&d=SFC18950908.2.137&dliv=none&st=1 : \"Bancroft states that 'by December, 1843, 2000 ounces of gold (worth about $38,000) had been taken from the San Fernando mines, the greater portion of which was shipped to the United States.'\" [CDNC OCR text as transcribed in the user's browser search, 2026-10-04 ~03:00 PT; OCR errors kept] (page image of the Herald confirmed at full zoom: the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18950901.2.39_38000.png, read at letter level 2026-10-04 ~10:45 PT: the type reads '2000 ounces' and '$38,000', so the Herald OCR's '$58,000' is wrong; a tooltip covers part of the line before. The Call crop, perkins-work/zoom/cdnc_20261004/SFC18950908.2.137_Newhall.png, read at letter level, shows the same article's San Feliciano passage ('about eight miles northwest of Newhall', Francisco Lopez), not this sentence, so the Call's printing of the sentence is not confirmed (it rests only on a browser session's typed transcription: not read, under the browser-transcription rule, Nathan 11:07 PT). Whether Bancroft gives the figure is still NEEDS_VERIFICATION) So the figure was attributed to Bancroft by 1895; our earlier 'not in Bancroft's History of California' is withdrawn to NEEDS_VERIFICATION (Perkins dossier P29, K15). HathiTrust check 2026-10-04 (text-only page views; HathiTrust's in-volume search returned a Cloudflare challenge, so it was not used): not located by us in Bancroft, History of California IV (Works 21: pp. 295–299 with notes 44–47; the local-annals note pp. 630–631; Pioneer Register 'Lopez (Francisco)', p. 717), VI (Works 23: pp. 10–79; p. 36 calls the San Fernando mine 'about the only satisfactory instance on record of a knowledge of the existence of gold in Alta California prior to the discovery of Marshall', with no output figure) or California Pastoral (Works 34: ch. XIV, pp. 435–459); the user's browser searches of Works 18–24 found nothing either. The Guinn attribution stays NEEDS_VERIFICATION (not located by us; not shown to be absent from Bancroft) (Perkins dossier P29, K16). Abel Stearns (the merchant who shipped the gold) to 'Louis R. Lull, Esq., Secretary of the Society of Pioneers, San Francisco', dated 'Los Angeles, July 8th, 1867', printed in An Historical Sketch of Los Angeles County (1876), p. 20 (https://babel.hathitrust.org/cgi/pt?id=ucbk.ark:/28722/h20v8b543&seq=23): the placers were worked 'principally by Sonorenses (Sonorians), until the latter part of 1846, when most of the Sonorenses left with Captain Flores for Sonora.' and 'While worked there was some six or eight thousand dollars taken out per annum.'; his first shipment to the Philadelphia Mint, 'November 22d, 1842', was 'twenty ounces California weight (18[¾?] ounces Mint weight)' [page image confirmed at full zoom: the user's full-zoom browser crop perkins-work/zoom/hathi_zm3/HIST_23_LA_county_passages.png (seq 23), read at letter level by the parent agent (relayed 11:50 PT); the fraction after '18' is likely '¾' but not certain. Corrected 2026-10-04 (Perkins dossier K23): our earlier quote dropped the printed 'per annum', and our note's '18.34 oz' is withdrawn]. A recollection 25 years later, by the principal buyer. It gives a yearly figure while the placers were worked, not the whole output; no comparison with Guinn's '$38,000' or the 2,000 oz is drawn here (the question is left open; the earlier comparison is withdrawn: Perkins dossier K23). Whether the article was Perkins' source or drew on Perkins: NEEDS_VERIFICATION. 2,000 oz avoirdupois = 125 lb, so Reynolds probably converted the Perkins figure (Perkins dossier P29)",
    "verdict": "conflicting",
    "type": "number",
    "note": ""
@@ -1403,6 +1406,16 @@
    "verdict": "contradicted",
    "type": "date",
    "note": "new in this dossier"
+  },
+  {
+   "id": "D15",
+   "dossier": "del Valle",
+   "page": "part14",
+   "claim": "Jacoba's household in 1841 included a 'newly-born Magdalena'",
+   "evidence": "Contradicted 2026-10-04: ECPP id 976 (https://ecpp.ucr.edu/ecpp/app/user/view/records/baptismal/976?defaultTab=baptism): Santa Barbara Presidio (BP) baptism 00917, 4 Jul 1831; 'Maria Magdalena Antonia', surname '[Lopez]'; born 'el dia anterior como a las nueve de la noche' (3 Jul 1831); father 'Antonio' 'Valles', origin 'Guadalaxara, Ciudad de', 'Alferez', 'Ciudadano', 'viudo'; mother 'Maria Policarpa' 'Lopez', origin '[Santa Barbara], este Presidio'; godparents 'Lugo, Luis (Padrino)', '[Lugo], Maria Magdalena (Madrina)'; legitimacy 'n'; officiant 'Menendez, Antonio'. Found through the father; a search for Magdalena with surname Valle returned nothing. [ECPP record pages as read by the user in a browser session, 2026-10-04 ~02:55 PT; the burial and the Magdalena baptism checked by the user against screenshots; ECPP is an index/transcription, register images not seen] Magdalena was born at Santa Barbara on 3 Jul 1831, the daughter of María Policarpa López; her father was then recorded as a widower ('viudo'). So she was not born before Antonio came to California, and her mother was not Jacoba Feliz. Whether she was Ygnacio's full or half sister is not shown: Ygnacio's own mother is not in these records. NEEDS_VERIFICATION: (1) ECPP is an index/transcription, not the register image; (2) that 'Antonio Valles', alférez of Guadalajara, widower, is Antonio del Valle is an inference from origin, rank and the later family, not stated in the record.",
+   "verdict": "contradicted",
+   "type": "date",
+   "note": "new in this dossier; Perkins P31; del Valle C3; live error del Valle L18 (reprinted)"
   },
   {
    "id": "D+1",
@@ -1457,12 +1470,12 @@
   {
    "id": "D+6",
    "dossier": "del Valle",
-   "page": "part15",
+   "page": "part14",
    "claim": "Antonio died June 21, 1841",
-   "evidence": "Most sources (Perkins has June 12)",
-   "verdict": "confirmed",
+   "evidence": "Contradicted 2026-10-04: ECPP id 72898 (https://ecpp.ucr.edu/ecpp/app/user/view/records/death/72898): Mission San Fernando (SFR) burial 02257; 'Antonio' 'Valle'; Burial Date '3 Jun 1841'; Burial Place 'Yglesia'; Death Date blank; marital status 'Casado/a'; spouse 'Lopez [Feliz], Jacoba'; Sac Memo 'no recibio los demas Sacramentos [...]', Penitencia checked; officiant/recorder '[Ordaz, Blas]'. A search for Valle burials in 1841 returned only this record and SJS 06438 (Vallejo). [ECPP record pages as read by the user in a browser session, 2026-10-04 ~02:55 PT; the burial and the Magdalena baptism checked by the user against screenshots; ECPP is an index/transcription, register images not seen] Buried 3 Jun 1841 at Mission San Fernando; the record gives no death date, so he died on or before 3 June 1841. Both 'June 21, 1841' (most site pages) and 'June 12, 1841' (Perkins) are contradicted. (Perkins has June 12, also contradicted.) NEEDS_VERIFICATION: ECPP is an index/transcription, not the register image (SFR burial 02257).",
+   "verdict": "contradicted",
    "type": "date",
-   "note": ""
+   "note": "Listed as confirmed until 2026-10-04 (on the majority of site sources), and under part15; the statement is in part14. Live error: del Valle L17 (reprinted)."
   },
   {
    "id": "D+7",
@@ -1539,10 +1552,17 @@
    "dossier": "Reynolds",
    "page": "part36 (Ed. note)",
    "claim": "Soledad Judicial District formed May 8, 1875 with Powell as the first justice",
-   "evidence": "Editor: district formed Oct 15, 1873; Powell 'wasn't the first judge'",
+   "evidence": "Editor: district formed Oct 15, 1873; Powell 'wasn't the first judge'. Supporting (added 2026-10-04, verdict unchanged): Lewis Publishing Co., An Illustrated History of Los Angeles County (Chicago, 1889), John F. Powell biography, p. 606 (per its index): 'in 1875 he was elected justice of the peace of Soledad Township, and in 1877 was re-elected to the same office' (https://archive.org/details/illustratedhistoflacty00lewi). This dates Powell's election to 1875 but does not call him the first justice. Also (added 2026-10-04, verdict unchanged): Los Angeles Daily News, 12 May 1869, p. 2 (Board of Supervisors proceedings), https://cdnc.ucr.edu/?a=d&d=LADN18690512.1.2&dliv=user&dliv=none&st=1 : 'In the matter of the petition of J. B. James, et al., of Soledad Township, it was ordered that the petition be granted and that J. D. La Rue, be and the same is hereby appointed Justice of the Peace for Soledad Township, and that W. J. England be and the same is hereby appointed Constable for Soledad Township, and that the Clerk issue certificates accordingly.' [full-zoom reading: the user's full-zoom browser crop perkins-work/zoom/ce74_LADN18690512_p2_soledad_appointment.png, read at letter level 2026-10-04 ~10:00 PT; corrected 2026-10-04 from the CDNC OCR text (Perkins dossier K17, approved by Nathan). Scan text (CDNC OCR, as first transcribed in the user's browser search, 2026-10-04; CDNC is not reachable by this project's automated fetch): 'In the matter of the petition of J. B. James, et al., of Soledod Township, it was ordered that the petition be granted and that J. D. La Rue, be and the same is hereby appointed Justice of the Peace for Soledad Township, and that W. J. England be and the same is hereby Appointed Constable for Soledad Township, and that the Clerk issue certificates accordingly.']. A Soledad Township JP (La Rue, appointed on petition) preceded Powell by six years",
    "verdict": "contradicted",
    "type": "date",
-   "note": ""
+   "note": "",
+   "scan_text": [
+    {
+     "source": "Los Angeles Daily News, 12 May 1869, p. 2 (CDNC LADN18690512.1.2)",
+     "scan_text": "'In the matter of the petition of J. B. James, et al., of Soledod Township, it was ordered that the petition be granted and that J. D. La Rue, be and the same is hereby appointed Justice of the Peace for Soledad Township, and that W. J. England be and the same is hereby Appointed Constable for Soledad Township, and that the Clerk issue certificates accordingly.'",
+     "corrected": "2026-10-04 (Perkins dossier K17)"
+    }
+   ]
   },
   {
    "id": "R7",
@@ -1653,6 +1673,16 @@
    "verdict": "unresolved",
    "type": "anecdote",
    "note": ""
+  },
+  {
+   "id": "R18",
+   "dossier": "Reynolds",
+   "page": "part49",
+   "claim": "the Southern Hotel 'burned down on October 10, 1888, ten years after it was built'",
+   "evidence": "Los Angeles Herald, 24 Oct 1888, p. 2, https://cdnc.ucr.edu/?a=d&d=LAH18881024.2.20&dliv=none&st=1 : 'SOUTHERN HOTEL AT NEWHALL. San Fernando, October 23.—Fire destroyed the Southern Hotel and an adjoining livery stable at Newhall this morning.' [CDNC OCR text, user's browser search 2026-10-04 ~03:00 PT; OCR errors kept; checked against the user's screenshot of the CDNC text page (perkins-work/evidence_cdnc3_20261004/); page image confirmed at full zoom: the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18881024.2.20_Southern-Hotel-fire.png, read at letter level 2026-10-04 ~10:45 PT, which shows the whole item; 'San Fernando' is set in capitals and small capitals]; the site's own sg19470102perkins webmaster's note and lw2273 give Oct 23, 1888 (Perkins dossier P12, C12)",
+   "verdict": "contradicted",
+   "type": "date",
+   "note": "new in this dossier; live error RL13"
   },
   {
    "id": "R+1",
@@ -1798,9 +1828,16 @@
    "pages": [
     "part36 text: May 8, 1875, Powell 'the first justice'; Ed. note: district formed Oct 15, 1873; Powell probably second; his 40-year career was interrupted"
    ],
-   "outside": "not checked",
+   "outside": "Lewis Publishing Co., *An Illustrated History of Los Angeles County* (Chicago, 1889), John F. Powell biography, p. 606 (per its index): 'in 1875 he was elected justice of the peace of Soledad Township, and in 1877 was re-elected to the same office' (https://archive.org/details/illustratedhistoflacty00lewi); does not say he was the first (added 2026-10-04). LA Herald, June 8, 1876, p. 3: 'John Howe was appointed constable for Soledad township' (https://www.loc.gov/resource/sn84038806/1876-06-08/ed-1/?sp=3). Los Angeles Daily News, 12 May 1869, p. 2 (Board of Supervisors proceedings), https://cdnc.ucr.edu/?a=d&d=LADN18690512.1.2&dliv=user&dliv=none&st=1 : 'In the matter of the petition of J. B. James, et al., of Soledad Township, it was ordered that the petition be granted and that J. D. La Rue, be and the same is hereby appointed Justice of the Peace for Soledad Township, and that W. J. England be and the same is hereby appointed Constable for Soledad Township, and that the Clerk issue certificates accordingly.' [full-zoom reading: the user's full-zoom browser crop perkins-work/zoom/ce74_LADN18690512_p2_soledad_appointment.png, read at letter level 2026-10-04 ~10:00 PT; corrected 2026-10-04 from the CDNC OCR text (Perkins dossier K17, approved by Nathan). Scan text (CDNC OCR, as first transcribed in the user's browser search, 2026-10-04; CDNC is not reachable by this project's automated fetch): 'In the matter of the petition of J. B. James, et al., of Soledod Township, it was ordered that the petition be granted and that J. D. La Rue, be and the same is hereby appointed Justice of the Peace for Soledad Township, and that W. J. England be and the same is hereby Appointed Constable for Soledad Township, and that the Clerk issue certificates accordingly.'] (added 2026-10-04): a Soledad Township JP existed from May 1869; how this relates to the editor's Oct 15, 1873 'Soledad Judicial District' is NEEDS_VERIFICATION.",
    "favors": "Oct 15, 1873 (editor, citing 'subsequent information').",
-   "settle": "LA County Board of Supervisors minutes, 1873–75."
+   "settle": "LA County Board of Supervisors minutes, 1873–75.",
+   "scan_text": [
+    {
+     "source": "Los Angeles Daily News, 12 May 1869, p. 2 (CDNC LADN18690512.1.2)",
+     "scan_text": "'In the matter of the petition of J. B. James, et al., of Soledod Township, it was ordered that the petition be granted and that J. D. La Rue, be and the same is hereby appointed Justice of the Peace for Soledad Township, and that W. J. England be and the same is hereby Appointed Constable for Soledad Township, and that the Clerk issue certificates accordingly.'",
+     "corrected": "2026-10-04 (Perkins dossier K17)"
+    }
+   ]
   },
   {
    "id": "C12",
@@ -1968,7 +2005,7 @@
    "page": "signal/worden/lw011399.htm",
    "quote": "quotes Reynolds on Hi Jolly as dying 'Dec. 16, 1903' at 75",
    "correct": "Dec 16, 1902, aged 74 (what Reynolds actually wrote in part23)",
-   "evidence": "part23; Quartzsite plaque (lw3451) (C21)."
+   "evidence": "reynolds part23; Quartzsite plaque (lw3451) (Reynolds C21)."
   },
   {
    "id": "RL10",
@@ -1990,6 +2027,13 @@
    "quote": "'*See note below' plus a note saying 'The section at the top in italics is inaccurate', but the top section now reads $6,000 (the corrected figure)",
    "correct": "Reword the note to say the text has been corrected from Reynolds' $11,000 / Dec 17, 1925, and add the 1922 date to the text",
    "evidence": "The page itself (C7)."
+  },
+  {
+   "id": "RL13",
+   "page": "signal/reynolds/part49.html",
+   "quote": "'When the heirs of Henry Mayo Newhall visited their ranch they usually stayed at the Southern Hotel, but it burned down on October 10, 1888, ten years after it was built.'",
+   "correct": "Add an editor's note: the Southern Hotel burned on October 23, 1888 (as the site's own sg19470102perkins note and lw2273 say)",
+   "evidence": "Los Angeles Herald, 24 Oct 1888, p. 2 (CDNC, user's browser search 2026-10-04; OCR checked against a screenshot); sg19470102perkins webmaster's note; lw2273 (R18; Perkins P12, C12)"
   }
  ],
  "reprinted_live_errors": [
@@ -1997,7 +2041,45 @@
   "Hart L13: part53 Tumbleweeds misquote",
   "del Valle L1: part15 partition figures (also lw2052)",
   "del Valle L7: part29 'Reginaldo ... then a state senator'",
-  "Also still unflagged on Reynolds pages: part54 Hap-A-Lan morgue and cowboy-suit burial (H3–H4); part28 'Naval Academy' and '$5,000' (B1, B6); part25 'mayor' (D5); part26 Tejon sale before 1861 (D14)"
+  "del Valle L17: part14 'he died on June 21, 1841' (D+6)",
+  "del Valle L18: part14 'newly-born Magdalena' (D15)"
+ ],
+ "unflagged_live_errors": [
+  {
+   "id": "RX1",
+   "page": "signal/reynolds/part54.html",
+   "quote": "St. Francis Dam morgue 'inside ... Hap-A-Lan dance hall'; Hart dressed a dead boy 'in a little cowboy suit' and led a procession to the Ruiz family cemetery",
+   "correct": "Morgue was in the Masonic lodge; the boy was buried at Oakwood, Chatsworth (cowboy-suit story is legend). Add an editor's note.",
+   "evidence": "Newhall Signal 3-29-1928 and 4-5-1928 via sg051703 (Reynolds ledger H3–H4)"
+  },
+  {
+   "id": "RX2",
+   "page": "signal/reynolds/part28.html",
+   "quote": "'appointed to the U.S. Naval Academy by President Andrew Jackson'",
+   "correct": "the Naval School; the Academy opened in 1845. Add an editor's note.",
+   "evidence": "Beale dossier (Reynolds ledger B1)"
+  },
+  {
+   "id": "RX3",
+   "page": "signal/reynolds/part28.html",
+   "quote": "Beale 'got five thousand dollars to do the work'",
+   "correct": "LA Star 4-4-1863 estimated $16,000–18,000. Add an editor's note.",
+   "evidence": "LA Star 4-4-1863 as transcribed by Perkins (part04) and Ripley (Reynolds ledger B6; Perkins P51)"
+  },
+  {
+   "id": "RX4",
+   "page": "signal/reynolds/part25.html",
+   "quote": "'The mayor of the town, Don Ygnacio del Valle'",
+   "correct": "alcalde (1850), later city councilman; never mayor. Add an editor's note.",
+   "evidence": "penpictures_ydelvalle 1889; lw2052 office list; perkins-rsf-1957 (Reynolds ledger D5; del Valle L2)"
+  },
+  {
+   "id": "RX5",
+   "page": "signal/reynolds/part26.html",
+   "quote": "'He had already sold Rancho Tejon to General Beale' (set before 1861)",
+   "correct": "Beale acquired El Tejon in 1865–66. Add an editor's note.",
+   "evidence": "tejonranchtimeline; Beale dossier C8; del Valle C17 (Reynolds ledger D14)"
+  }
  ],
  "archive_beats_outside": [
   {
@@ -2061,9 +2143,15 @@
   "Beale dossier (ledger B12 in the brief's list, 'Straight Shooting as the first film at the Cut'): part59 was rewritten by Robert S. Birchard for the 1998 edition (preface), and as it stands it says Straight Shooting was Ford's 'first effort' for Universal and used Beale's Cut, not that it was the first film shot there. Withdraw it from the Reynolds error tally; treat any residual issue as the 1998 edition's.",
   "Hart dossier C (death toll): '450' is in Reynolds' own text ('at least 450 dead', part54), not only in 'the original 2003 column'. Reynolds died in 1996, so no 2003 column can be his; attribute that column to its actual author.",
   "All three dossiers dated Reynolds chapters 'web ©1998'. That is the edition date. The texts were written between 1976 and 1994 (the prologue and epilogue in 1985) and edited in 1998. Record them as later secondary accounts written 1976–94, with an unknown per-chapter date.",
-  "Del Valle dossier C2 (mother's name 'María Josepha Carillo' on lw2052): the form traces to Reynolds part13 ('married María Josepha Carillo'), which rests on Wally Smith 1958 (notes page note 5). lw2052 is derivative, not independent.",
+  "Del Valle dossier C2 (mother's name 'María Josepha Carillo' on lw2052): the form traces to Reynolds part13 ('married María Josepha Carillo'), the earliest site occurrence; part13's own source is unstated (the editor documents Wally Smith 1958 only for chs. 14–15, note 5). lw2052 and the lw2706 caption are later and likely derivative, not independent. [Wording corrected 2026-09-29.]",
   "Del Valle dossier: Reynolds' Tejon statement in part26 (sold to Beale before 1861) was not logged. Add it as a contradicted claim (D14).",
-  "Earlier references to the Signal series as 'Reynolds part NN': the site's partNN.html is chapter NN of the 1998 web book, which follows the Signal outline. It is not a numbered newspaper part, and no Signal part numbers are shown on the site."
+  "Earlier references to the Signal series as 'Reynolds part NN': the site's partNN.html is chapter NN of the 1998 web book, which follows the Signal outline. It is not a numbered newspaper part, and no Signal part numbers are shown on the site.",
+  "**(2026-10-04, from the Perkins dossier, corrections K6/K9; approved by Nathan) 'Prefer Perkins' (Section 2.1 note):** the note said 'Where Reynolds departs from Perkins on figures (D6), prefer Perkins until an original is seen.' It is narrowed to facts Perkins transcribes word for word from documents. His summaries of a statute (Statutes 1850 ch. 81 vs his '1851' road claim), a census count (1930 Census Vol. I Table 4: Soledad township 3,026 vs his 'just over 2,000') and a land-claim outcome (Hoffman 1862 App. p. 67 no. 491 vs his Carrillo grant 'nullified' in 1843) were wrong. Consequence: D6 (Bard sale, $53,320 vs $47,519.71) no longer defaults to Perkins; it stays conflicting until the 1865 deed is seen. No ledger verdict changes.",
+  "**(2026-10-04, approved by Nathan) .md/.json unification:** a full consistency scan of the .md against the .json found that the .json 'reliability_rule' was a shorter paraphrase of the Section 2.3 'Rule for CC' (it said 'require corroboration' and lacked the instruction to mark NEEDS_VERIFICATION, check Perkins, a newspaper or a deed first, and cite the edition when the 1998 web text differs from Reynolds' original). The .json now carries the .md wording. No finding changes.",
+  "**(2026-10-04, approved by Nathan) Section 6 vs the consolidated live-errors list:** (1) RL9's evidence read 'part23; Quartzsite plaque (lw3451) (C21).' and the consolidated CE64 read 'reynolds part23; Quartzsite plaque (lw3451)'; both now read 'reynolds part23; Quartzsite plaque (lw3451) (Reynolds C21).' (2) The one-line item 'Also still unflagged on Reynolds pages: part54 ...; part28 ...; part25 ...; part26 ...' is now five structured entries, RX1–RX5 (page, quote, correction, evidence), with the wording of the consolidated entries CE59, CE51, CE52, CE49 and CE50; the consolidated list now reads them from this dossier. They stay outside this dossier's live-error count (logged in earlier dossiers' ledgers).",
+  "**(2026-10-04, from the Perkins dossier, corrections K14/K15; approved by Nathan) D+6, D12 and new items:** D+6 ('Antonio died June 21, 1841') was listed as confirmed on the majority of site sources and under part15; the statement is in part14, and the mission burial record indexed by ECPP (Mission San Fernando burial 02257, 3 Jun 1841; user's browser session) shows he was buried on June 3, so it is now contradicted. D12 said the '2,000 ounces' figure 'is not in Bancroft's History of California'; J.M. Guinn quoted it from Bancroft in 1895, so that is withdrawn to NEEDS_VERIFICATION pending a full-text check. Added: D15 (part14 'newly-born Magdalena'; ECPP shows a Santa Barbara baptism in 1831), R18 (part49 Southern Hotel 'October 10, 1888'; LA Herald, 24 Oct 1888, gives Oct 23), live error RL13, and two reprinted items (del Valle L17, L18).",
+  "**(2026-10-04, from the Perkins dossier, correction K17; approved by Nathan, relayed 10:20 PT) R6 and C11, the LA Daily News of 12 May 1869:** Said: the quote was CDNC OCR text with two errors kept, 'Soledod' and 'Appointed'. Caught: the user's full-zoom browser crop (perkins-work/zoom/ce74_LADN18690512_p2_soledad_appointment.png), read at letter level in the full-zoom pass (~10:15 PT) and reported to Nathan. Now: the quote gives the print, 'Soledad' and 'appointed', with the CDNC OCR string kept beside it as scan text (and in a scan_text field in the .json); register RS-R5 now confirmed at full zoom. Verdicts unchanged.",
+  "**(2026-10-04, zm3; from the Perkins dossier, correction K23) D12, Abel Stearns' 1867 letter:** Said: the quote ended 'While worked there was some six or eight thousand dollars taken out', and the Mint weight was noted as '[OCR; 18.34 oz]'; read that way it set Stearns' figure against Guinn's '$38,000' as a whole output. Caught: the user's browser crop perkins-work/zoom/hathi_zm3/HIST_23_LA_county_passages.png, read at letter level by the parent agent (relayed 11:50 PT): the sentence ends 'taken out per annum.'; the Mint weight is '18[¾?]'. Now: D12 quotes the full sentence and the printed date 'November 22d, 1842'; the whole-output comparison and the '18.34 oz' note are withdrawn, with no new arithmetic. D12's 1943 Daily News quote is now confirmed at full zoom. Verdicts unchanged."
  ],
  "open_questions": [
   {
@@ -2086,5 +2174,381 @@
    "q": "Middle name",
    "note": "'Gordon' from one death-index aggregator only."
   }
- ]
+ ],
+ "revisions": [
+  {
+   "date": "2026-10-04",
+   "note": "Section 2.1 'prefer Perkins' narrowed to his verbatim transcriptions (Perkins dossier K6/K9); R6 and C11 given the Lewis 1889 Powell evidence, verdicts unchanged (approved by Nathan)"
+  },
+  {
+   "date": "2026-10-04",
+   "note": "R6 and C11 given the LA Daily News 12 May 1869 report of J.D. La Rue's appointment as Soledad Township JP (CDNC OCR text via the user's browser search), verdicts unchanged (approved by Nathan)"
+  },
+  {
+   "date": "2026-10-04",
+   "note": "D12 given the CDNC 1943 LA Daily News print of the 2,000-ounce figure (OCR text, page image not checked; direction of borrowing with Perkins NEEDS_VERIFICATION); verdict unchanged (approved by Nathan)"
+  },
+  {
+   "date": "2026-10-04",
+   "note": "reliability_rule in the .json replaced by the Section 2.3 'Rule for CC' wording from the .md, so the two files state the same rule (approved by Nathan)"
+  },
+  {
+   "date": "2026-10-04",
+   "note": "RL9 evidence and the 'still unflagged' item (now RX1–RX5) unified with the consolidated live-errors list (CE64; CE59, CE51, CE52, CE49, CE50); the consolidated list now reads this dossier's text (approved by Nathan)"
+  },
+  {
+   "date": "2026-10-04",
+   "note": "ECPP and CDNC results folded in from the Perkins dossier (K14/K15): D+6 moved to part14 and from confirmed to contradicted; D12's 'not in Bancroft' withdrawn to NEEDS_VERIFICATION (Guinn 1895); D15 and R18 added; live error RL13; reprinted del Valle L17, L18 (approved by Nathan)"
+  },
+  {
+   "date": "2026-10-04",
+   "note": "B15 given Bonsal 1912 ('absolutely groundless'); D12 given the Bancroft check (not located by us in History of California IV, VI or California Pastoral) and Abel Stearns' 1867 estimate; verdicts unchanged (from the Perkins dossier, K16; requested by Nathan)"
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Reading-status pass (requested by Nathan, 09:17 PT): a 'Reading status of quotes' section and a reading_status key label every quote: confirmed at full zoom, image reading only, scan text only, or exact text (born-digital), with site transcriptions of old documents named; each live error's evidence labelled as in the consolidated list. Labels only; no quote, finding or verdict changed."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Full-zoom pass (approved by Nathan 09:53 PT): LA Daily News, 12 May 1869 (R6, C11) confirmed at full zoom, in part, from the user's full-zoom browser crop (perkins-work/zoom/ce74_LADN18690512_p2_soledad_appointment.png); the quote keeps two OCR errors, 'Soledod' and 'Appointed' (print 'Soledad', 'appointed'), reported to Nathan, not changed. Definitions gained the level 'confirmed at full zoom, in part'. No finding or verdict changed."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Corrections (2026-10-04, approved by Nathan; relayed 10:20 PT): R6 and C11's quote of the LA Daily News, 12 May 1869 now gives the full-zoom reading ('Soledad', 'appointed'), with the CDNC OCR kept as scan text (RS-R5 now confirmed at full zoom). Full-zoom pass 2: Lewis 1889 (RS-R4) and the LA Herald of 8 Jun 1876 (RS-R6) confirmed at full zoom; the Lewis passage is on p. 607 (cited p. 606), reported, not changed; from the user's full-zoom CDNC crops, the 1895 Herald (RS-R1a, in part) and the 24 Oct 1888 Herald (RS-R7) confirmed. A dated entry in Corrections. No verdict changed."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "zm3 (2026-10-04): D12's Stearns quote completed ('per annum') and the whole-output comparison withdrawn (from Perkins K23; a correction entry); D12's 1943 Daily News quote confirmed at full zoom (RS-R1); RS-R2a split off; the 'not read' level added; not-read count 0."
+  }
+ ],
+ "reading_status": {
+  "added": "2026-10-04",
+  "rule": "Nathan's rule (2026-10-04, 08:50 PT; extended to all dossiers and the consolidated list at 09:17 PT): a first machine reading (OCR, or a first image reading by a browser session) is a lead, never a quotation. Quote a page image only from a reading confirmed at full zoom. Every quote now carries one of four labels; a fifth, 'confirmed at full zoom, in part', was added in the full-zoom pass (2026-10-04, approved by Nathan 09:53 PT). Nothing was promoted to 'confirmed at full zoom' unless there is a zoomed screenshot or full-resolution crop that we opened and checked at letter level. The reading-status pass only added labels; the full-zoom pass changed labels, added two [?] marks to one stored transcription (Perkins P36) and removed one obsolete bracketed doubt from the Newhall R22 transcription. No finding or verdict was changed. Browser-transcription rule (Nathan, 2026-10-04 11:07 PT; applied in zm3): a typed transcription from a browser session is not even a lead; only a crop the reviewer has read counts, and any record whose quote came from a browser transcription and not a crop gets no level above 'not read', a sixth level added for them. zm3 (2026-10-04) corrected quotes from crops in the Perkins and Newhall dossiers; the corrections are logged as K entries.",
+  "levels": [
+   {
+    "level": "confirmed at full zoom",
+    "meaning": "A page image read from a zoomed screenshot, or from a crop of a full-resolution page image (a scan PDF page or JPEG 2000 leaf rendered at its native resolution), that we opened with the Read tool and checked at letter level; the screenshot or crop is named."
+   },
+   {
+    "level": "confirmed at full zoom, in part",
+    "meaning": "A page image checked at letter level at full zoom, as above, where part of the stored quote or record is not confirmed by it (OCR errors kept in the quote, punctuation the crop cannot confirm, or words outside the confirmed fragments); the basis says which part. Added 2026-10-04 in the full-zoom pass."
+   },
+   {
+    "level": "image reading only",
+    "meaning": "A page image read in a browser or from a screenshot, but not confirmed at letter level at full zoom."
+   },
+   {
+    "level": "scan text only",
+    "meaning": "OCR or other machine text of a scanned page (CDNC, HathiTrust text-only views, archive.org full text, Assembly Clerk scans read with OCR, census PDFs, Chronicling America); the page image was not read for the quoted words."
+   },
+   {
+    "level": "not read",
+    "meaning": "A quote typed by a browser session (or relayed from one) with no crop read by the reviewer. Under Nathan's rule of 11:07 PT such a transcription is not even a lead (browser sessions invent and silently correct: an added 'San', a dropped 'of of', a tidied misprint), so the record is listed but its quote carries no weight. Added 2026-10-04 (zm3)."
+   },
+   {
+    "level": "exact text (born-digital)",
+    "meaning": "Text copied from a live scvhistory.com page or another born-digital HTML, text or database record. Exact text, not a reading of an image, so it is kept out of the three levels above. Where the page is itself a transcription of an old document, that is said, and the quote is exact for the page, not for the original print."
+   }
+  ],
+  "default": "Default: every quote in sections 1–3 and 6 taken from a live scvhistory.com page, or from another web page or catalog record (Wikipedia, Wikidata, Find a Grave, OAC, AFI, JoinCalifornia, Calisphere, city and county pages), is exact text (born-digital). The live-error quotes (section 6) were all copied from the live pages and are exact text. The exceptions, quotes taken from scans or page images, are listed in the register below.",
+  "site_transcriptions": [
+   {
+    "page": "perkins-rsf-1957",
+    "what": "Perkins, HSSC Quarterly, June 1957"
+   },
+   {
+    "page": "sg19470102perkins",
+    "what": "Newhall Signal, 2 Jan 1947"
+   },
+   {
+    "page": "signal/reynolds/",
+    "what": "Reynolds' Signal columns (1976–94) as the 1998 web book"
+   },
+   {
+    "page": "sg051703",
+    "what": "Newhall Signal items of March–April 1928"
+   },
+   {
+    "page": "tumbleweedsmonologue",
+    "what": "transcript of Hart's 1939 sound prologue (from audio, not print)"
+   },
+   {
+    "page": "penpictures",
+    "what": "Pen Pictures from the Garden of the World (1889)"
+   }
+  ],
+  "register": [
+   {
+    "id": "RS-R1",
+    "records": "D12",
+    "source": "Daily News (LA), 9 Jul 1943 (CDNC DNLA19430709.1.32)",
+    "level": "confirmed at full zoom",
+    "basis": "zm3, 2026-10-04: as del Valle RS-D4: the user's full-zoom browser crop perkins-work/zoom/cdnc_zm3/DNLA19430709.1.32_PlaceritaGold_1.png, read at letter level by the parent agent (relayed 11:25 PT) (before: scan text only)"
+   },
+   {
+    "id": "RS-R1a",
+    "records": "D12",
+    "source": "LA Herald, 1 Sep 1895; SF Call, 8 Sep 1895 (CDNC)",
+    "level": "confirmed at full zoom, in part",
+    "basis": "full-zoom pass 2, 2026-10-04: as del Valle RS-D4a: the Herald's sentence, with '2000 ounces' and '$38,000', is confirmed at letter level (the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18950901.2.39_38000.png); the Call's printing of it is not in the Call crop and rests only on a browser session's typed transcription with no crop (browser-transcription rule, Nathan 11:07 PT): not read (before: scan text only)"
+   },
+   {
+    "id": "RS-R2",
+    "records": "D12",
+    "source": "HathiTrust text-only views (Bancroft)",
+    "level": "scan text only",
+    "basis": "HathiTrust OCR text (Stearns' letter split off as RS-R2a in zm3)"
+   },
+   {
+    "id": "RS-R2a",
+    "records": "D12",
+    "source": "An Historical Sketch of Los Angeles County (1876), p. 20: Abel Stearns' letter of 8 Jul 1867 (HathiTrust seq 23)",
+    "level": "confirmed at full zoom",
+    "basis": "zm3, 2026-10-04: as Perkins RS-P7b: the user's browser crop perkins-work/zoom/hathi_zm3/HIST_23_LA_county_passages.png, read at letter level by the parent agent (relayed 11:50 PT): 'While worked there was some six or eight thousand dollars taken out per annum.' (Perkins K23) (before: scan text only)"
+   },
+   {
+    "id": "RS-R3",
+    "records": "D15, D+6",
+    "source": "ECPP records (ids 976, 72898)",
+    "level": "exact text (born-digital)",
+    "basis": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen."
+   },
+   {
+    "id": "RS-R4",
+    "records": "R6, C11",
+    "source": "Lewis, Illustrated History of Los Angeles County (1889), John F. Powell biography (archive.org)",
+    "level": "confirmed at full zoom",
+    "basis": "full-zoom pass 2, 2026-10-04: leaves 0776–0777 (JPEG 2000) cropped at native resolution and read at letter level (perkins-work/zoom2/p26_lewis1889_p606_powell_head.png, p26_lewis1889_p607_runninghead.png, p26_lewis1889_p607_powell_jp_left2.png): the quote matches the print. Difference reported, not changed: the biography begins on p. 606 (the page this dossier cites, 'per its index'), but the quoted words are printed on p. 607 (before: scan text only)"
+   },
+   {
+    "id": "RS-R5",
+    "records": "R6, C11",
+    "source": "Los Angeles Daily News, 12 May 1869 (CDNC)",
+    "level": "confirmed at full zoom",
+    "basis": "full-zoom pass 2026-10-04: the user's full-zoom browser crop perkins-work/zoom/ce74_LADN18690512_p2_soledad_appointment.png, opened and read at letter level, confirms the passage. Corrected 2026-10-04 (approved by Nathan; Corrections): the quote now gives the print's 'Soledad' and 'appointed' where the CDNC OCR read 'Soledod' and 'Appointed'; the OCR string is kept beside it as scan text (before the correction: confirmed at full zoom, in part)"
+   },
+   {
+    "id": "RS-R6",
+    "records": "C11",
+    "source": "LA Herald, 8 Jun 1876, p. 3 (Library of Congress, Chronicling America)",
+    "level": "confirmed at full zoom",
+    "basis": "full-zoom pass 2, 2026-10-04: the JPEG 2000 page image cropped at native resolution (perkins-work/zoom2/p26_laherald18760608_p3_howe_constable.png) and read at letter level: 'John Howe was appointed consta- / ble for Soledad township.' matches the quote (before: scan text only)"
+   },
+   {
+    "id": "RS-R7",
+    "records": "R18; RL13",
+    "source": "LA Herald, 24 Oct 1888, p. 2 (CDNC LAH18881024.2.20)",
+    "level": "confirmed at full zoom",
+    "basis": "full-zoom pass 2, 2026-10-04: the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18881024.2.20_Southern-Hotel-fire.png, opened and read at letter level: the whole SOUTHERN HOTEL AT NEWHALL item, dated 'SAN FERNANDO, October 23.', as quoted (before: scan text only; the earlier screenshot was of CDNC's OCR text panel)"
+   }
+  ],
+  "live_errors": [
+   {
+    "id": "RL1",
+    "ce": "CE54",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL2",
+    "ce": "CE46",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957",
+    "weak": false
+   },
+   {
+    "id": "RL3",
+    "ce": "CE47",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL4",
+    "ce": "CE48",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL5",
+    "ce": "CE55",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL6",
+    "ce": "CE56",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL7",
+    "ce": "CE61",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL8",
+    "ce": "CE62",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL9",
+    "ce": "CE64",
+    "quote_status": "exact text (born-digital)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL10",
+    "ce": "CE14",
+    "quote_status": "exact text (born-digital)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL11",
+    "ce": "CE39",
+    "quote_status": "exact text (born-digital)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL12",
+    "ce": "CE60",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RL13",
+    "ce": "CE86",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "confirmed at full zoom",
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "LA Herald, 24 Oct 1888: page image confirmed at full zoom (full-zoom pass 2, 2026-10-04; the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18881024.2.20_Southern-Hotel-fire.png: the whole item, dated 'SAN FERNANDO, October 23.'); the date is also on the site's own sg19470102perkins webmaster's note and lw2273 (exact text)",
+    "weak": false
+   },
+   {
+    "id": "RX1",
+    "ce": "CE59",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records; includes site transcriptions of old documents: sg051703",
+    "weak": false
+   },
+   {
+    "id": "RX2",
+    "ce": "CE51",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   },
+   {
+    "id": "RX3",
+    "ce": "CE52",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records; includes site transcriptions of old documents: signal/perkins/ (part04), ripley",
+    "weak": false
+   },
+   {
+    "id": "RX4",
+    "ce": "CE49",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, penpictures",
+    "weak": false
+   },
+   {
+    "id": "RX5",
+    "ce": "CE50",
+    "quote_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+    "evidence_status": [
+     "exact text (born-digital)"
+    ],
+    "evidence_note": "site pages and other born-digital records",
+    "weak": false
+   }
+  ],
+  "counts": {
+   "register": {
+    "confirmed at full zoom": 6,
+    "confirmed at full zoom, in part": 1,
+    "image reading only": 0,
+    "scan text only": 1,
+    "not read": 0,
+    "exact text (born-digital)": 1
+   },
+   "live_quotes": {
+    "exact text (born-digital)": 18
+   },
+   "live_evidence_includes": {
+    "confirmed at full zoom": 1,
+    "image reading only": 0,
+    "scan text only": 0,
+    "not read": 0,
+    "exact text (born-digital)": 18
+   },
+   "live_weak": []
+  },
+  "full_zoom_pass": "**Full-zoom pass (2026-10-04, approved by Nathan 09:53 PT):** RS-R5 (LA Daily News, 12 May 1869) is now confirmed at full zoom, in part: the passage is confirmed from the user's full-zoom browser crop, but the quote keeps two OCR errors ('Soledod', 'Appointed'; print 'Soledad', 'appointed'), reported to Nathan. No finding or verdict changed.",
+  "full_zoom_pass_2": "**Full-zoom pass 2 and corrections (2026-10-04, approved by Nathan; relayed 10:20 PT):** R6 and C11's quote of the LA Daily News, 12 May 1869 now gives the print reading ('Soledad', 'appointed'), with the CDNC OCR kept beside it as scan text, so RS-R5 is confirmed at full zoom. RS-R4 (Lewis 1889) and RS-R6 (LA Herald, 8 Jun 1876) are confirmed at full zoom from native-resolution page images; one difference is reported, not changed: the Powell passage quoted is printed on p. 607 (cited p. 606, where the biography begins). RS-R1a (LA Herald, 1 Sep 1895; '$38,000' in the type) in part and RS-R7 (LA Herald, 24 Oct 1888) in full are confirmed from the user's full-zoom browser crops. Corrections section, dated entry. No verdict changed.",
+  "zm3": "**zm3 (2026-10-04, build relayed 12:15 PT; the held verdicts of 10:59–12:46 PT and Nathan's rulings of 11:07, 11:48 and 12:41 PT):** D12's Stearns quote now ends 'taken out per annum.' (Perkins K23; a cross-dossier correction entry); the whole-output comparison is withdrawn. RS-R1 (Daily News 1943) and RS-R2a (Stearns' letter) are confirmed at full zoom. **Not read (browser-transcription rule, Nathan 11:07 PT): 0 records in this dossier.** Across the six dossiers: 10 (Perkins 4, del Valle 4, Newhall 2, Beale 0, Reynolds 0, Hart 0). Parts not read inside records that have a crop (listed, not counted): the SF Call's printing of the 1895 Bancroft sentence (RS-R1a).",
+  "not_read_count": 0
+ }
 }

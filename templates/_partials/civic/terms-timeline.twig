@@ -8,20 +8,23 @@
 
     body   the organization
 #}
-{%- set terms = craft.entries().section('officeHoldings').relatedTo({ targetElement: body, field: 'holdingBody' }).with(['holdingPerson']).all()|filter(h => h.selectionMethod.value != 'rotated' and h.termStartEdtf and (h.holdingPerson|first)) -%}
+{%- set terms = craft.entries().section('officeHoldings').relatedTo({ targetElement: body, field: 'holdingBody' }).with(['holdingPerson']).all()|filter(h => h.selectionMethod.value != 'rotated' and h.termStartEdtf) -%}
+{#- A term whose holder has no person record (removed, or never made one) keeps its row under the name its own title gives,
+    unlinked (Nathan, 6 October 2026: "keep the office record on the body's page and unlink it cleanly"). -#}
 {% if terms|length %}
 {%- set NOW = now|date('Y') + (now|date('n') - 1) / 12 -%}
 {%- set people = {} -%}
 {% for h in terms|sort((a, b) => a.termStartEdtf <=> b.termStartEdtf) %}
   {% set p = h.holdingPerson|first %}
+  {% set nm = p ? p.title : h.title|split(' — ')|first %}
   {% set sp = h.termStartEdtf|replace({'[': ''})|split('-') %}
   {% set s = sp[0]|slice(0, 4) + ((sp[1] ?? null) ? (sp[1]|slice(0, 2) - 1) / 12 : 0.5) %}
   {% if h.termEndEdtf %}{% set ep = h.termEndEdtf|split('-') %}{% set e = ep[0]|slice(0, 4) + ((ep[1] ?? null) ? (ep[1]|slice(0, 2) - 1) / 12 : 0.5) %}{% elseif h.howEnded.value == 'serving' %}{% set e = NOW %}{% else %}{% set e = s + 0.5 %}{% endif %}
-  {% set k = 'p' ~ p.id %}
-  {% set row = people[k] ?? { person: p, first: s, bars: [] } %}
+  {% set k = p ? 'p' ~ p.id : 'n' ~ nm %}
+  {% set row = people[k] ?? { person: p, name: nm, first: s, bars: [] } %}
   {% set people = people|merge({ (k): row|merge({ bars: row.bars|merge([{ h: h, s: s, e: e }]) }) }) %}
 {% endfor %}
-{%- set rows = people|sort((a, b) => a.first <=> b.first ?: a.person.title <=> b.person.title) -%}
+{%- set rows = people|sort((a, b) => a.first <=> b.first ?: a.name <=> b.name) -%}
 {%- set Y0 = ((rows|first).first / 10)|round(0, 'floor') * 10 -%}
 {%- set W = 980 -%}{%- set L = 190 -%}{%- set R = 24 -%}{%- set TOP = 30 -%}{%- set RH = 24 -%}
 {%- set H = TOP + rows|length * RH + 8 -%}
@@ -38,11 +41,12 @@
     {% endfor %}
     {% for r in rows %}
       {% set y = TOP + loop.index0 * RH %}
-      <a href="{{ r.person.url }}"><text x="{{ L - 10 }}" y="{{ y + 16 }}" font-size="12.5" fill="#17254C" text-anchor="end" font-family="Public Sans, system-ui, sans-serif">{{ r.person.title }}</text></a>
+      {% set lbl %}<text x="{{ L - 10 }}" y="{{ y + 16 }}" font-size="12.5" fill="#17254C" text-anchor="end" font-family="Public Sans, system-ui, sans-serif">{{ r.name }}</text>{% endset %}
+      {% if r.person %}<a href="{{ r.person.url }}">{{ lbl }}</a>{% else %}{{ lbl }}{% endif %}
       {% for b in r.bars %}
         {% set x1 = L + (b.s - Y0) / span * (W - L - R) %}{% set x2 = L + (b.e - Y0) / span * (W - L - R) %}
         {% set fill = b.h.selectionMethod.value in ['appointed', 'sole-candidate'] ? '#C4A031' : (b.h.selectionMethod.value == 'unopposed' ? '#E3CF8F' : (b.h.startEvidence.value == 'derived' ? '#9AA6C4' : '#17254C')) %}
-        <rect x="{{ x1 }}" y="{{ y + 6 }}" width="{{ max(x2 - x1 - 1.5, 3) }}" height="12" fill="{{ fill }}"><title>{{ r.person.title }}: {{ b.h.termStart ?: b.h.termStartEdtf }} to {{ b.h.termEnd ?: (b.h.howEnded.value == 'serving' ? 'now' : 'an end not recorded') }}</title></rect>
+        <rect x="{{ x1 }}" y="{{ y + 6 }}" width="{{ max(x2 - x1 - 1.5, 3) }}" height="12" fill="{{ fill }}"><title>{{ r.name }}: {{ b.h.termStart ?: b.h.termStartEdtf }} to {{ b.h.termEnd ?: (b.h.howEnded.value == 'serving' ? 'now' : 'an end not recorded') }}</title></rect>
       {% endfor %}
     {% endfor %}
   </svg>

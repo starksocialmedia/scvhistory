@@ -106,7 +106,8 @@
         {% endif %}
       </div>
     {% endfor %}
-    {% if derivedAny %}<p style="font-size:13px;line-height:1.5;color:#5B6472;margin:12px 0 0">A term "read from the count" was won on the vote totals, with the seats up derived from the staggered terms; no declaring document is held yet.</p>{% endif %}
+    {#- The sentence that explained "read from the count" here is gone (Nathan, 6 October 2026: "an explanation of our method, not
+        something a reader needs beside a term. The evidence label already says it"); /evidence carries it in full. -#}
   </div>
 {% endif %}
 {% set others = races|filter(r => r.c.id not in usedRaces) %}

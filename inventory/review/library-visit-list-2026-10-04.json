@@ -1,0 +1,188 @@
+{
+ "title": "Library visit list",
+ "compiled": "2026-10-04",
+ "approved": "Nathan, 2026-10-04 07:34 PT",
+ "intro": "Records that can only be settled by a visit (or by staff retrieval on request), collected from the dossiers. Read-only planning list: no visit, call, e-mail or records request has been made. Phoning ahead or filing a records request is an outside contact and needs Nathan's go-ahead first. Holdings and access terms are NEEDS_VERIFICATION unless a dossier already cites them. Every item stays open in its dossier until the record itself is seen.",
+ "ecpp_caveat": "[ECPP record pages as read by the user in a browser session, 2026-10-04 ~02:55 PT; the burial and the Magdalena baptism checked by the user against screenshots; ECPP is an index/transcription, register images not seen]",
+ "count": 10,
+ "open_count": 9,
+ "findings": [
+  "**Record gap (finding, 2026-10-04): no surviving San Francisco civil death register covers 1 May 1873 – 31 Mar 1882 (SFgenealogy listing, quoted); the April 1882+ volume is coroner cases only.** SFgenealogy's entry for the 'Record of Deaths (aka Mortuary Record of the City and County of San Francisco and Register of Deaths of the City and County of San Francisco), 1865-1904' (https://sfgenealogy.org/doku.php?id=san_francisco_county:offline (fetched 2026-10-04 10:35 PT; copy in visitlist-work/src/)) lists '08 Nov 1865 - 30 Sep 1869, Volume 1 (…) 01 Oct 1869 - 30 Apr 1873, Volume 2 (…) 01 Apr 1882 - 30 Jun 1889, Volume 3 (Coroner Cases Only) and Index' ('(…)' stands for the index and holder notes). Newhall died on 13 Mar 1882, inside the gap, so no civil death record of his death is known to survive, and the cause and age as certified cannot come from that source (C13, C1). Library visit list item V6 is removed (kept visible there). Leads: V6a, the Laurel Hill Cemetery (San Francisco) Registers, held by the Society of California Pioneers (they may also bear on the open date of his removal to Cypress Lawn, C14); V6b, original funeral records, pre-1920, at the SFPL History Center. Whether either records a cause of death is NEEDS_VERIFICATION."
+ ],
+ "items": [
+  {
+   "id": "V1",
+   "dossier": "Perkins (with del Valle)",
+   "bears_on": [
+    "Perkins P30",
+    "del Valle C4",
+    "Perkins PL24"
+   ],
+   "where": "Archdiocese of Los Angeles Archival Center, Mission Hills (originals); Huntington Library (microfilm). Copies of the San Fernando and Plaza Church registers are also at the Santa Barbara Mission Archive-Library (Perkins triage). The Archival Center admits accredited researchers; access terms NEEDS_VERIFICATION.",
+   "look_at": "Mission San Fernando burial register: burial 02257, 3 Jun 1841 (ECPP id 72898).",
+   "purpose": "Confirm the ECPP index entry against the register image: Antonio del Valle buried at Mission San Fernando on 3 June 1841 (so he died on or before that date). The register may also give a death date, which the index leaves blank.",
+   "known": "Contradicted 2026-10-04 by the mission burial record as indexed by ECPP [ECPP record pages as read by the user in a browser session, 2026-10-04 ~02:55 PT; the burial and the Magdalena baptism checked by the user against screenshots; ECPP is an index/transcription, register images not seen]: SFR burial 02257; 'Antonio' 'Valle'; Burial Date '3 Jun 1841'; Death Date blank.",
+   "set_aside": "Perkins dossier (set aside for a library visit, 2026-10-04); Perkins open-claims triage, section 4 item 5",
+   "first_step": "—"
+  },
+  {
+   "id": "V2",
+   "dossier": "Perkins (with del Valle)",
+   "bears_on": [
+    "Perkins P31",
+    "del Valle C3",
+    "Perkins PL25"
+   ],
+   "where": "As set aside in the Perkins dossier: Archdiocese of Los Angeles Archival Center (originals), Huntington Library (microfilm); also the Santa Barbara Mission Archive-Library (Perkins triage). Which of these holds the Santa Barbara Presidio register is NEEDS_VERIFICATION.",
+   "look_at": "Santa Barbara Presidio baptismal register: baptism 00917, 4 Jul 1831 (ECPP id 976).",
+   "purpose": "Confirm the ECPP index entry against the register image.",
+   "known": "Contradicted 2026-10-04 on both counts, as far as the ECPP index shows [ECPP record pages as read by the user in a browser session, 2026-10-04 ~02:55 PT; the burial and the Magdalena baptism checked by the user against screenshots; ECPP is an index/transcription, register images not seen]. What the baptism says: 'Maria Magdalena Antonia', baptized 4 Jul 1831 at the Santa Barbara Presidio, born the day before ('el dia anterior como a las nueve de la noche'); father 'Antonio' 'Valles' (recorded as a widower); mother María Policarpa López. That 'Antonio Valles' is Antonio del Valle is an inference (NEEDS_VERIFICATION). Whether she was Ygnacio's full or half sister is not shown in these records.",
+   "set_aside": "Perkins dossier (set aside for a library visit, 2026-10-04); Perkins open-claims triage, section 4 item 5",
+   "first_step": "—"
+  },
+  {
+   "id": "V3",
+   "dossier": "Perkins",
+   "bears_on": [
+    "Perkins P26",
+    "Perkins C13"
+   ],
+   "where": "LA County Board of Supervisors, Executive Office, Records Management Section (Hahn Hall of Administration). Its web page says the minute books go back to 1852, records from 1873 are digitized, and pre-1985 records are retrieved on request (213-974-1424); phone first (an outside contact: needs Nathan's go-ahead). Seaver Center (NHM) GC 1164 holds only Board book no. 1 (1852–55).",
+   "look_at": "Board minute book covering May 1869 (La Rue's appointment as JP of Soledad Township), and the entry that created Soledad Township (date unknown; search 1866–69). Minute-book volume numbers are not known (NEEDS_VERIFICATION).",
+   "purpose": "P26: confirm the appointment entry; whether La Rue was the first Soledad JP depends on whether the township's creation is minuted. Perkins C13: the start of the Soledad township justice (Board minutes 1869–75).",
+   "known": "LA Daily News, 12 May 1869 (Board proceedings, CDNC OCR via the user's browser search): La Rue appointed JP for Soledad Township on petition. No earlier Soledad JP found.",
+   "set_aside": "Perkins dossier (set aside for a library visit, 2026-10-04; C13 row); Perkins open-claims triage, section 4 'A visit would actually buy' item 1",
+   "first_step": "—"
+  },
+  {
+   "id": "V4",
+   "dossier": "Perkins",
+   "bears_on": [
+    "Perkins P34",
+    "Perkins C15"
+   ],
+   "where": "Same office as V3. Minute books before 1873 need retrieval or a visit; 1873 onward are digitized and available on request (a records request is an outside contact: needs Nathan's go-ahead).",
+   "look_at": "Board minutes and Road Minute Books, 1868–75: toll-road licences, rate orders, collector names for the San Fernando (Beale's Cut) toll road; Road Minute Books 1883–84 for the franchise's end (road records 1870–86).",
+   "purpose": "P34: when Tom Dunn took over the Robbins interest (Perkins: 1873; Ripley: by 1870). Perkins C15: toll keepers and the expiry of the franchise.",
+   "known": "CDNC (2026-10-04): no Tom Dunn item 1868–76. LA Daily Star, 4 Apr 1872 reports a dispute over the toll-road rate (applicant's name unreadable in the OCR; not guessed). If the entries name only the franchise holders, Dunn's date may stay open.",
+   "set_aside": "Perkins dossier (set aside for a library visit, 2026-10-04; C15 row); Perkins open-claims triage, P34 row and section 4 item 1",
+   "first_step": "—"
+  },
+  {
+   "id": "V5",
+   "dossier": "Henry Mayo Newhall",
+   "bears_on": [
+    "Newhall C4",
+    "Newhall C5",
+    "Newhall C15"
+   ],
+   "where": "San Francisco Public Library, San Francisco History Center. Which years it holds, and in what form, is NEEDS_VERIFICATION (check the catalog or phone first; phoning is an outside contact).",
+   "look_at": "San Francisco city directories for 1852 (Parker), 1856 (Colville), 1858–59 (Langley) and 1864–82 (Langley): the alphabetical entries for Newhall and the firm (also Gregory, Claghorn, Eldridge, Palache, Van Pelt). None of these years is in full view on HathiTrust (catalog checked 2026-10-04).",
+   "purpose": "C4: the start dates of stage 2 (Newhall, Gregory & Co., first use, attested by Aug 1854), stage 3 (Newhall, Gregory & Claghorn, in the 1854 directory, ended 1 Jan 1855) and stage 6 (Newhall, Gregory & Co. again, after Gregory rejoined between 1 Jan 1858 and 4 Jan 1860); the 1852 and 1858–59 directories are the ones that matter. The change to H. M. Newhall & Co. is settled: 4 Jan 1860 (dissolution notice, Daily Alta California, 5 Jan 1860). C5: his S.F. & S.J. Railroad office, 1864–70. C15: Newhall's Sons & Co. and H. M. Newhall & Co., 1881–82.",
+   "known": "Read 2026-10-04 on HathiTrust: Kimball 1850 ('Hall & Martin, auctioneers, Jackson'; no Newhall), LeCount & Strong 1854 ('Newhall, Gregory & Claghorn'), Langley 1860, 1861, 1862 and 1863/64 ('NEWHALL H. M. & CO.'; J. Oscar Eldridge named from 1862). Newhall dossier section 5.1, R1–R7. The firm's own notices in the Daily Alta (CDNC): 'Newhall & Hall's building' (17 Apr 1852); Newhall, Gregory & Claghorn expired 1 Jan 1855, followed by Newhall & Gregory (notice of 11 Mar 1855); Newhall, Gregory & Co. dissolved 4 Jan 1860, followed by H. M. Newhall & Co. (notice of 5 Jan 1860). Newhall dossier section 5.1, R18–R22. Also: San Joaquin Republican, 11 Aug 1854 ('recently occupied by Messrs. Newhall, Gregory & Co.'); Daily Alta, 7 Jan 1858 (Newhall & Gregory dissolved 1 Jan 1858; Newhall & Co., with E. W. Eddy, from that day). Newhall dossier section 5.1, R24–R25. The reading status of each record (confirmed at full zoom, image reading only, scan text only) is given there (Method).",
+   "set_aside": "Newhall dossier, fold-in 2 (2026-10-04); added to this list by Nathan's approval, 07:34 PT",
+   "first_step": "—"
+  },
+  {
+   "id": "V6",
+   "dossier": "Henry Mayo Newhall",
+   "bears_on": [
+    "Newhall C13",
+    "Newhall C1"
+   ],
+   "where": "San Francisco death register or coroner's register, March 1882. The Newhall dossier names the SF Public Library, San Francisco History Center; whether the 1882 registers survived the 1906 fire, and who holds them, is NEEDS_VERIFICATION.",
+   "look_at": "The entry for Henry Mayo Newhall, died Monday 13 Mar 1882 at 1299 Van Ness Avenue (a coroner's entry exists only if the coroner took the case: NEEDS_VERIFICATION).",
+   "purpose": "It may give the cause of death as certified, which no newspaper can (Nathan, 2026-10-04). That bears on C13, which stays a conflict: the papers name erysipelas (Sacramento Daily Union, San Jose Mercury-News, SF Chronicle) or blood-poisoning from the fall's injuries with his weakened system (Daily Alta), and C13 is not decided by counting them. Secondary: the age as recorded (C1, birth May 13 or May 23, 1825).",
+   "known": "Death 13 Mar 1882, about 7 a.m., at his home; funeral 15 Mar, 11 a.m., from 1299 Van Ness Avenue; buried at Laurel Hill (1882 papers on CDNC, Newhall dossier section 5.1, R9–R17).",
+   "set_aside": "Newhall dossier, fold-in 2 (2026-10-04); added to this list by Nathan's approval, 07:34 PT",
+   "first_step": "Before planning a visit, check whether the 1882 San Francisco death registers survived the 1906 fire; if they did not, this item is removed. Done 2026-10-04: no surviving register covers March 1882 (Findings); removed.",
+   "status": "removed 2026-10-04: no surviving register covers March 1882 (SFgenealogy listing, quoted)"
+  },
+  {
+   "id": "V6a",
+   "dossier": "Henry Mayo Newhall",
+   "bears_on": [
+    "Newhall C13",
+    "Newhall C1",
+    "Newhall C14"
+   ],
+   "status": "lead",
+   "where": "Society of California Pioneers (Presidio, San Francisco), which SFgenealogy lists as the holder of the 'Laurel Hill Cemetery (San Francisco) Registers'. Which years survive, and access terms, are NEEDS_VERIFICATION (phoning ahead is an outside contact: needs Nathan's go-ahead).",
+   "look_at": "The interment entry for H. M. Newhall, buried at Laurel Hill on Wednesday 15 Mar 1882 (Daily Alta, 16 Mar 1882), and any later entry for the removal of his remains.",
+   "purpose": "C13: the cause of death, if the register records one (not known: NEEDS_VERIFICATION). C1: the age as recorded, if given. C14: the Laurel Hill registers may bear on the open date of his removal to Cypress Lawn (year NEEDS_VERIFICATION; Find a Grave snippet: 'in 1940'; lw3325: removals from Laurel Hill 1939 to 1947 or 1948).",
+   "known": "Death 13 Mar 1882; funeral 15 Mar, 11 a.m., from 1299 Van Ness Avenue; buried at Laurel Hill; now at Cypress Lawn, Colma (Newhall dossier C13, C14; section 5.1, R9–R17). No civil death register survives for March 1882 (Findings).",
+   "set_aside": "Newhall dossier, record-gap finding (2026-10-04); added on Nathan's instruction (relayed 10:20 PT; C14 note 10:28 PT)",
+   "first_step": "Check the Society's catalog or finding aid for the registers' years and columns (cause of death? removals?) before planning a visit."
+  },
+  {
+   "id": "V6b",
+   "dossier": "Henry Mayo Newhall",
+   "bears_on": [
+    "Newhall C13",
+    "Newhall C1"
+   ],
+   "status": "lead",
+   "where": "San Francisco Public Library, San Francisco History Center: 'Various original Funeral Records, pre-1920' (SFgenealogy listing; firms named under it: Gantner - Felder - Kenny; Julius S. Godeau; Halsted & Company; H.F. Suhr Company; N. Gray & Company). The J.C. O'Connor registers listed beside it begin 9 Nov 1882, after his death.",
+   "look_at": "The undertaker's entry for H. M. Newhall, March 1882 (funeral 15 Mar, 11 a.m., from 1299 Van Ness Avenue).",
+   "purpose": "C13: the cause of death, if the funeral record gives one (not known: NEEDS_VERIFICATION). C1: the age as recorded, if given.",
+   "known": "Which undertaker handled the funeral is not named in the 1882 papers seen (NEEDS_VERIFICATION), and whether that firm's 1882 records are in the collection is NEEDS_VERIFICATION. No civil death register survives for March 1882 (Findings).",
+   "set_aside": "Newhall dossier, record-gap finding (2026-10-04); added on Nathan's instruction (relayed 10:20 PT)",
+   "first_step": "Find which undertaker handled the funeral, then whether that firm's 1882 records are in the collection."
+  },
+  {
+   "id": "V7",
+   "dossier": "A.B. Perkins",
+   "bears_on": [
+    "Perkins P19",
+    "Perkins PL17",
+    "consolidated CE41"
+   ],
+   "where": "A library holding the Los Angeles Herald for July 1876 on microfilm (holding library NEEDS_VERIFICATION). CDNC has neither issue (direct IDs 404; July 1876 Herald searches empty), and Chronicling America's copy of the Herald answered 404 for 18, 19 and 22 Jul 1876 (checked 2026-10-04 ~12:40 PT; it has 8 Jun 1876).",
+   "look_at": "LA Herald, 18 Jul 1876 (its report that the headings of the San Fernando tunnel met on Friday night, 14 Jul, reprinted in the Santa Barbara Weekly Press of 22 Jul) and Saturday 22 Jul 1876 (the extract from Chas. Crocker's private letter to Senator Maclay, reprinted in the Morning Press of 24 Jul).",
+   "purpose": "P19: the 14 July date rests on ONE Herald report, known only at one remove; read the Herald's own text of 18 Jul, and on 22 Jul the date of the Crocker letter (its 'Friday night last' cannot be dated without it).",
+   "known": "Santa Barbara Weekly Press, 22 Jul 1876 (headed 'Los Angeles Herald July 18.') and Morning Press, 24 Jul 1876 (quoting the Herald 'of Saturday'), both confirmed at full zoom from the user's crops (Perkins dossier P19, K20).",
+   "set_aside": "Perkins dossier P19 (zm3, 2026-10-04); added on Nathan's ruling (11:48 PT)",
+   "first_step": "Find which library holds the LA Herald for July 1876 on microfilm (holder NEEDS_VERIFICATION); phoning ahead is an outside contact and needs Nathan's go-ahead."
+  },
+  {
+   "id": "V8",
+   "dossier": "A.B. Perkins",
+   "bears_on": [
+    "Perkins P32"
+   ],
+   "where": "The Ventura Signal of 1 Aug 1874 in print or on microfilm (holding library NEEDS_VERIFICATION). On CDNC the issue (VS18740801) is behind a login, which was not tried (no sign-in, no workaround: Nathan, 11:07 and 11:48 PT).",
+   "look_at": "Ventura Signal, 1 Aug 1874 (CDNC VS18740801.2.10): the item a browser session typed as tax equalization for 'T R Bard' and 'E. del Valle'.",
+   "purpose": "P32: whether the item is tax equalization and not a sale or deed (the typed transcription is not read under the browser-transcription rule, so P32 cannot use it until the page is read).",
+   "known": "Only a browser session's typed transcription (not read). P32 stays conflicting; the deed book (LA County Recorder, 1865) or the Thomas R. Bard Papers would settle the figure.",
+   "set_aside": "Perkins dossier P32 (zm3, 2026-10-04); added under Nathan's ruling (5), 11:48 PT: what cannot be cropped goes on the visit list",
+   "first_step": "Check which library holds the Ventura Signal for 1874 (e.g. the Museum of Ventura County research library; holder NEEDS_VERIFICATION) before planning a visit."
+  }
+ ],
+ "not_on_list": [
+  "Other visit candidates in the Perkins open-claims triage (section 4) are not on this list because they were not asked for: LA County Registrar-Recorder deed books, 1865 (P32); Huntington Library, Thomas R. Bard Papers (P32) and Abel Stearns Papers (P29); Seaver Center GC 1164, Court of Sessions minutes 1850–63 (P40, low priority); SCVHS / Valencia Library Signal volumes (Perkins C4, C7).",
+  "Lower-priority lead, not a visit item: 'San Francisco Probate Index 1880-1906: A Partial Reconstruction / Kathleen C. Beals' (California Genealogical Society; SFgenealogy listing), for Henry Mayo Newhall's 1882 estate file (Newhall dossier, open question 'Where the 1882 probate file is').",
+  "Board of Supervisors records from 1873 on (P34 if the change was 1873 or later, Perkins C15, the 1920s JP term dates) can be had by a records request instead of a visit; that request is an outside contact and needs Nathan's go-ahead (none made)."
+ ],
+ "revisions": [
+  {
+   "date": "2026-10-04",
+   "note": "Created (approved by Nathan 07:34 PT): V1–V4 already pending from the Perkins dossier and triage (P30, P31 mission-register images; the Board of Supervisors minutes for P26/C13 and P34/C15); V5–V6 added from the Henry Mayo Newhall dossier (SF directories; SF death or coroner's register, March 1882). The ECPP caveat for V1–V2 is copied exactly from the Perkins dossier."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "V5 updated (approved by Nathan 08:13 PT): the change to H. M. Newhall & Co. is settled (4 Jan 1860, the firm's dissolution notice in the Daily Alta), so V5 now covers the start of Newhall, Gregory & Co. (C4), C5 and C15. V6: a first step added (check whether the 1882 San Francisco death registers survived the 1906 fire; if not, the item is removed). New 'First step' column."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "V5 updated (approved by Nathan 08:50 PT; Newhall dossier fold-in 4): V5 now asks for the start dates of stage 2 (Newhall, Gregory & Co., by Aug 1854), stage 3 (Newhall, Gregory & Claghorn) and stage 6 (Newhall, Gregory & Co. again, 1858–60) of the seven-stage firm sequence; 'Already known' adds the San Joaquin Republican of Aug 1854 and the Daily Alta notices of 7 Jan 1858. The reading status of the records V5 cites is in the Newhall dossier (Method; section 5.1)."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "V6 removed and kept visible (Nathan, relayed 10:20 PT; finding wording 10:28 PT): no surviving San Francisco civil death register covers 1 May 1873 – 31 Mar 1882 (SFgenealogy listing, quoted), and the April 1882+ volume is coroner cases only; recorded under Findings. Added as leads: V6a (Laurel Hill Cemetery registers, Society of California Pioneers; may bear on the Cypress Lawn removal date, Newhall C14) and V6b (funeral records, SFPL History Center); whether either records a cause of death is NEEDS_VERIFICATION. The San Francisco Probate Index 1880-1906 noted as a lower-priority lead. New Findings section and status labels."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "zm3: V7 added (LA Herald, 18 and 22 Jul 1876, microfilm; holder NEEDS_VERIFICATION; Perkins P19: the 14 July date rests on one Herald report at one remove; Nathan, 11:48 PT) and V8 added (Ventura Signal, 1 Aug 1874; Perkins P32; the CDNC copy is behind a login, not tried; under ruling (5), 11:48 PT, what cannot be cropped goes on the visit list)."
+  }
+ ]
+}

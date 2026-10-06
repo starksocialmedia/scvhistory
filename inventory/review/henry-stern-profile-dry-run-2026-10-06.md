@@ -1,0 +1,38 @@
+# Henry Stern #29462: the profile, dry run (6 October 2026)
+
+Nothing is written by a dry run. The prose and every note are in inventory/review/henry-stern-profile-draft-2026-10-06.md, with what rests on Wikipedia alone (left out). Living: public life only.
+
+## #29462 Henry Stern
+
+- nothing to change
+
+- fields already filled, kept: bodyAuthorship = editorial-2026; occupation = Environmental attorney; state senator; wikidataId = Q27967376
+- existing footnotes replaced: 7
+- featuredImage: not touched (has an image)
+
+## Office holdings
+
+- nothing to add
+- dates not touched
+
+## Body as it will read
+
+Henry Stern was the State Senator for the west side of the Santa Clarita Valley from December 2016 to December 2024, for the 27th District, succeeding Fran Pavley.[1][2] Under the lines drawn in 2011 by the Citizens Redistricting Commission, the 27th took in Stevenson Ranch and the western and southwestern neighborhoods of the City of Santa Clarita, with eastern Ventura County, Calabasas and Malibu: 20.3 per cent of the valley's people by the archive's count from the 2010 census.[3] The Signal described his district in 2019 as including "some western portions of the Santa Clarita Valley."[4] He won the seat in November 2016 over Steve Fazio, 218,655 votes to 172,827, and kept it in 2020 over Houman Salem, 284,797 to 188,421.[1] Under the lines drawn in 2021, the whole valley passed to the 23rd District in December 2024; Stern stayed in the Senate for a 27th District that held none of it.[3][1]
+
+College of the Canyons welcomed him to its Valencia campus, where he toured the welding, nursing and media entertainment arts departments and met students of its civic engagement program; the college reported the visit in its annual report for 2017-18.[5] When the Castaic Lake Water Agency and the Newhall County Water District set out to form a single water agency for the valley, his office was among those they briefed.[6]
+
+In Sacramento he wrote SB 225 of 2017, which had the state Department of Justice add a texting option to its model notice on human trafficking, and SB 630, signed by Governor Gavin Newsom in July 2019, which made clear that local governments may act to enforce the posting of those notices.[4] After the Woolsey fire of 2018 destroyed his home, he wrote the Wildfire Resilience through Community and Ecology Act of 2021. He chaired the Senate Natural Resources and Water Committee from 2018 to 2022, pressed for the closing of the Aliso Canyon natural gas storage field, and wrote SB 261 and coauthored SB 253, which require large companies to disclose their greenhouse gas emissions and climate risks.[7]
+
+A former educator and environmental attorney, Stern was raised in Malibu, graduated from Harvard University and took his law degree at UC Berkeley.[7] The Signal gave his home as Canoga Park in 2019.[4]
+
+## Notes as they will read
+
+1. His term for the valley is the archive's office holding #29521 (Senate, 27th District, 5 December 2016 to 2 December 2024, under the 2011 lines). California Secretary of State, Statements of Vote, 27th State Senate District: 8 November 2016, Henry Stern (DEM) 218,655 votes, 55.9%, to Steve Fazio (REP) 172,827, 44.1%, https://elections.cdn.sos.ca.gov/sov/2016-general/sov/40-state-senators-formatted.pdf; 3 November 2020, Henry Stern* (DEM) 284,797, 60.2%, to Houman Salem (REP) 188,421, 39.8%, https://elections.cdn.sos.ca.gov/sov/2020-general/sov/36-state-senate.pdf. Secretary of the Senate, Record of State Senators, 1849 to 2026, https://secretary.senate.ca.gov/media/88: "Stern, Henry I.", D, "Los Angeles, Ventura", regular sessions 2017 to 2026.
+2. Fran Pavley's office holding #29519 (Senate, 27th District, 3 December 2012 to 5 December 2016). She was not on the ballot in the 27th in November 2016 (Statement of Vote, as in the note above).
+3. The archive's count of the valley's people by district, templates/_data/valley-districts.json, State Senate. Under the "2011 lines, drawn by the Citizens Redistricting Commission", in force for the Senate from "December 2012 to December 2024", the 27th held "20.3%" of the valley, 55,075 people at the 2010 Census: "Stevenson Ranch and the City's western and southwestern neighborhoods, with eastern Ventura County, Calabasas and Malibu". The rest, 79.7%, was in the 21st. Under the "2021 lines, drawn by the Citizens Redistricting Commission", in force for the Senate from "December 2024 to now", the 23rd held "the whole valley". The shares are counted from census blocks assigned to districts in the Statewide Database's block files.
+4. Brennon Dixson, "Newsom Signs SB 630, Stern's Human Trafficking Bill," The Signal, as carried by SCVNews.com, Wednesday, July 3, 2019, https://scvnews.com/newsom-signs-sb-630-sterns-human-trafficking-bill/: "Stern, whose district includes some western portions of the Santa Clarita Valley"; "SB 630 was authored by Henry Stern, D-Canoga Park"; "Gov. Gavin Newsom signed Senate Bill 630 Wednesday"; "make it clear that current laws do not prevent a local governing body from acting to prevent slavery or human trafficking"; "he authored SB 225 in 2017, which required the California Department of Justice to revise its model human trafficking notice to include the option of texting"; "empowering local governments to enact tailored ordinances ensuring compliance with posting requirements".
+5. College of the Canyons, 2017-18 Annual Report, page 6, "Community Connections," on the archive page /scvhistory/cocannualreport2018.htm (not yet a record in the archive). The page is set in columns, which the text layer interleaves; its pieces read: "STUDENTS MEET SENATOR STERN"; "The college welcomed Sena-"; "tor Henry Stern to the Valencia campus, where he toured the"; "welding, nursing and media"; "entertainment arts depart-"; "ments, and met with Civic"; "Engagement students."
+6. Santa Clarita Valley Water Agency, "SCV Water Plan for Services," January 2018, draft as proposed to LAFCO, page 9 (flipbook page 14), legacy page /scvhistory/scvwa012918c.htm (not yet a record in the archive): "The Settlement Agreement and action to pursue a new district passed 14-1."; "Early on, NCWD and CLWA committed to a principle of meeting with anyone interested in this process and potential outcome."; "The agencies held dozens of briefings with individuals and organizations in the region, including the following"; among them "Office of Senator Henry Stern" and "Office of Senator Fran Pavley".
+7. Office of Senator Henry Stern, "Biography," https://sd27.senate.ca.gov/biography, as it stood on 6 October 2026: "First elected in November 2016"; "Most recently, Senator Stern authored SB 261 and co-authored SB 253, landmark climate laws that establish the nation's first requirements for large corporations to publicly disclose their greenhouse gas emissions, carbon embedded in supply chains, and climate risks."; "After the devastating 2018 Woolsey fire destroyed his home, Senator Stern authored the Wildfire Resilience through Community and Ecology Act (2021)."; "From 2018 to 2022, as Chair of the Senate Natural Resources & Water Committee"; "He led efforts to close down the Aliso Canyon Natural Gas Storage Facility, site of the largest recorded methane leak"; "A former educator and environmental attorney"; "received his undergraduate degree from Harvard University, and earned his law degree at UC Berkeley"; "Raised in Malibu, California".
+
+REFUSED: none

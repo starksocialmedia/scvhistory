@@ -1,0 +1,2398 @@
+{
+    "accessionBatch": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "acquiredDate": {
+        "type": "PlainText",
+        "n": 21,
+        "sections": {
+            "assets": 21
+        }
+    },
+    "wmAgeAtLoss": {
+        "type": "PlainText",
+        "n": 51,
+        "sections": {
+            "warMemorials": 51
+        }
+    },
+    "communityAliases": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "archivalFiles": {
+        "type": "Assets",
+        "n": 0,
+        "sections": []
+    },
+    "archiveUrl": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "articleEvents": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "articleLat": {
+        "type": "Number",
+        "n": 0,
+        "sections": []
+    },
+    "articleLng": {
+        "type": "Number",
+        "n": 0,
+        "sections": []
+    },
+    "articlesAbout": {
+        "type": "Entries",
+        "n": 14,
+        "sections": {
+            "persons": 14
+        }
+    },
+    "articlesInCollection": {
+        "type": "Entries",
+        "n": 9,
+        "sections": {
+            "collections": 9
+        }
+    },
+    "asPrinted": {
+        "type": "PlainText",
+        "n": 5,
+        "sections": {
+            "sourceFaults": 5
+        }
+    },
+    "schoolIdentity": {
+        "type": "Table",
+        "n": 0,
+        "sections": []
+    },
+    "authorBio": {
+        "type": "PlainText",
+        "n": 33,
+        "sections": {
+            "persons": 33
+        }
+    },
+    "wmAwards": {
+        "type": "PlainText",
+        "n": 13,
+        "sections": {
+            "warMemorials": 13
+        }
+    },
+    "ballotMeasures": {
+        "type": "Table",
+        "n": 2,
+        "sections": {
+            "elections": 2
+        }
+    },
+    "ballotsCast": {
+        "type": "Number",
+        "n": 33,
+        "sections": {
+            "elections": 33
+        }
+    },
+    "votesAtPrecinct": {
+        "type": "Number",
+        "n": 13,
+        "sections": {
+            "elections": 13
+        }
+    },
+    "votesByMail": {
+        "type": "Number",
+        "n": 13,
+        "sections": {
+            "elections": 13
+        }
+    },
+    "bandImage": {
+        "type": "Assets",
+        "n": 0,
+        "sections": []
+    },
+    "wmBase": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "warMemorials": 11
+        }
+    },
+    "batchSequence": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "bioguideId": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "persons": 1
+        }
+    },
+    "birthDate": {
+        "type": "PlainText",
+        "n": 43,
+        "sections": {
+            "persons": 43
+        }
+    },
+    "birthDateEdtf": {
+        "type": "PlainText",
+        "n": 39,
+        "sections": {
+            "persons": 39
+        }
+    },
+    "birthplace": {
+        "type": "PlainText",
+        "n": 37,
+        "sections": {
+            "persons": 37
+        }
+    },
+    "wmBirthplace": {
+        "type": "PlainText",
+        "n": 12,
+        "sections": {
+            "warMemorials": 12
+        }
+    },
+    "body": {
+        "type": "PlainText",
+        "n": 2535,
+        "sections": {
+            "events": 3,
+            "organizations": 16,
+            "photographs": 1549,
+            "documents": 18,
+            "articles": 765,
+            "persons": 50,
+            "places": 55,
+            "warMemorials": 54,
+            "groups": 9,
+            "obituaries": 1,
+            "collections": 14,
+            "cat:neighborhood": 1
+        }
+    },
+    "holdingBody": {
+        "type": "Entries",
+        "n": 54,
+        "sections": {
+            "officeHoldings": 54
+        }
+    },
+    "bodyAuthorship": {
+        "type": "Dropdown",
+        "n": 50,
+        "sections": {
+            "persons": 50
+        }
+    },
+    "effectiveFrom": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "effectiveTo": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "burialPlace": {
+        "type": "PlainText",
+        "n": 71,
+        "sections": {
+            "persons": 28,
+            "warMemorials": 43
+        }
+    },
+    "candidateKey": {
+        "type": "PlainText",
+        "n": 271,
+        "sections": {
+            "candidacies": 271
+        }
+    },
+    "wmCasualtyDetail": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "warMemorials": 11
+        }
+    },
+    "wmCasualtyReason": {
+        "type": "PlainText",
+        "n": 18,
+        "sections": {
+            "warMemorials": 18
+        }
+    },
+    "wmCasualtyType": {
+        "type": "PlainText",
+        "n": 14,
+        "sections": {
+            "warMemorials": 14
+        }
+    },
+    "cdsCode": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "organizations": 11
+        }
+    },
+    "childOf": {
+        "type": "Entries",
+        "n": 5,
+        "sections": {
+            "persons": 4,
+            "warMemorials": 1
+        }
+    },
+    "classOf": {
+        "type": "PlainText",
+        "n": 4,
+        "sections": {
+            "educations": 4
+        }
+    },
+    "collectionGroups": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "collectionKind": {
+        "type": "Dropdown",
+        "n": 14,
+        "sections": {
+            "collections": 14
+        }
+    },
+    "wmCombatOperations": {
+        "type": "PlainText",
+        "n": 9,
+        "sections": {
+            "warMemorials": 9
+        }
+    },
+    "communityLat": {
+        "type": "Number",
+        "n": 26,
+        "sections": {
+            "cat:neighborhood": 26
+        }
+    },
+    "communityLng": {
+        "type": "Number",
+        "n": 26,
+        "sections": {
+            "cat:neighborhood": 26
+        }
+    },
+    "communityType": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "consolidatedWith": {
+        "type": "PlainText",
+        "n": 20,
+        "sections": {
+            "elections": 20
+        }
+    },
+    "contentCredentials": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "assets": 11
+        }
+    },
+    "courtesyOf": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "creator": {
+        "type": "PlainText",
+        "n": 6,
+        "sections": {
+            "assets": 6
+        }
+    },
+    "creditDpi": {
+        "type": "PlainText",
+        "n": 1283,
+        "sections": {
+            "photographs": 1283
+        }
+    },
+    "creditKind": {
+        "type": "PlainText",
+        "n": 882,
+        "sections": {
+            "photographs": 882
+        }
+    },
+    "creditName": {
+        "type": "PlainText",
+        "n": 223,
+        "sections": {
+            "photographs": 223
+        }
+    },
+    "creditProcess": {
+        "type": "PlainText",
+        "n": 897,
+        "sections": {
+            "photographs": 897
+        }
+    },
+    "creditRaw": {
+        "type": "PlainText",
+        "n": 1463,
+        "sections": {
+            "photographs": 1463
+        }
+    },
+    "culturalSensitivityNote": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "dateEdtf": {
+        "type": "PlainText",
+        "n": 5,
+        "sections": {
+            "assets": 5
+        }
+    },
+    "dateAsPrinted": {
+        "type": "PlainText",
+        "n": 5,
+        "sections": {
+            "assets": 5
+        }
+    },
+    "dateEstablished": {
+        "type": "PlainText",
+        "n": 9,
+        "sections": {
+            "places": 9
+        }
+    },
+    "dateEstablishedEdtf": {
+        "type": "PlainText",
+        "n": 7,
+        "sections": {
+            "places": 7
+        }
+    },
+    "dateFounded": {
+        "type": "PlainText",
+        "n": 15,
+        "sections": {
+            "organizations": 15
+        }
+    },
+    "dateFoundedEdtf": {
+        "type": "PlainText",
+        "n": 14,
+        "sections": {
+            "organizations": 14
+        }
+    },
+    "wmDateOfBirth": {
+        "type": "PlainText",
+        "n": 42,
+        "sections": {
+            "warMemorials": 42
+        }
+    },
+    "recordDates": {
+        "type": "Table",
+        "n": 234,
+        "sections": {
+            "events": 2,
+            "persons": 37,
+            "documents": 9,
+            "photographs": 1,
+            "places": 8,
+            "articles": 102,
+            "warMemorials": 54,
+            "groups": 9,
+            "obituaries": 1,
+            "organizations": 11
+        }
+    },
+    "deathDate": {
+        "type": "PlainText",
+        "n": 87,
+        "sections": {
+            "persons": 35,
+            "warMemorials": 52
+        }
+    },
+    "deathDateEdtf": {
+        "type": "PlainText",
+        "n": 50,
+        "sections": {
+            "persons": 35,
+            "warMemorials": 15
+        }
+    },
+    "decidedBy": {
+        "type": "PlainText",
+        "n": 5,
+        "sections": {
+            "sourceFaults": 5
+        }
+    },
+    "depictsPlace": {
+        "type": "Entries",
+        "n": 238,
+        "sections": {
+            "articles": 238
+        }
+    },
+    "derivedImageLinks": {
+        "type": "Entries",
+        "n": 1415,
+        "sections": {
+            "photographs": 1379,
+            "articles": 27,
+            "places": 6,
+            "warMemorials": 2,
+            "persons": 1
+        }
+    },
+    "dateDissolved": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "organizations": 2
+        }
+    },
+    "dateDissolvedEdtf": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "organizations": 2
+        }
+    },
+    "candidacyDistrict": {
+        "type": "Entries",
+        "n": 94,
+        "sections": {
+            "candidacies": 94
+        }
+    },
+    "holdingDistrict": {
+        "type": "Entries",
+        "n": 2,
+        "sections": {
+            "officeHoldings": 2
+        }
+    },
+    "districtNumber": {
+        "type": "PlainText",
+        "n": 33,
+        "sections": {
+            "places": 33
+        }
+    },
+    "documentFiles": {
+        "type": "Assets",
+        "n": 14,
+        "sections": {
+            "documents": 14
+        }
+    },
+    "recordDocuments": {
+        "type": "Assets",
+        "n": 1,
+        "sections": {
+            "obituaries": 1
+        }
+    },
+    "editedBy": {
+        "type": "Entries",
+        "n": 15,
+        "sections": {
+            "articles": 14,
+            "collections": 1
+        }
+    },
+    "webmasterNoteBottom": {
+        "type": "PlainText",
+        "n": 72,
+        "sections": {
+            "documents": 8,
+            "photographs": 60,
+            "articles": 4
+        }
+    },
+    "webmasterNoteTop": {
+        "type": "PlainText",
+        "n": 6,
+        "sections": {
+            "documents": 6
+        }
+    },
+    "editorNotes": {
+        "type": "Table",
+        "n": 141,
+        "sections": {
+            "organizations": 2,
+            "documents": 2,
+            "articles": 10,
+            "persons": 15,
+            "photographs": 90,
+            "warMemorials": 21,
+            "places": 1
+        }
+    },
+    "ein": {
+        "type": "PlainText",
+        "n": 3,
+        "sections": {
+            "organizations": 3
+        }
+    },
+    "candidacyElection": {
+        "type": "Entries",
+        "n": 463,
+        "sections": {
+            "candidacies": 463
+        }
+    },
+    "electionDate": {
+        "type": "PlainText",
+        "n": 95,
+        "sections": {
+            "elections": 95
+        }
+    },
+    "electionDateEdtf": {
+        "type": "PlainText",
+        "n": 95,
+        "sections": {
+            "elections": 95
+        }
+    },
+    "enhancedBy": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "assets": 11
+        }
+    },
+    "enhancedDate": {
+        "type": "Date",
+        "n": 11,
+        "sections": {
+            "assets": 11
+        }
+    },
+    "enhancedFrom": {
+        "type": "Assets",
+        "n": 2,
+        "sections": {
+            "assets": 2
+        }
+    },
+    "enhancementMethod": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "assets": 11
+        }
+    },
+    "enrolment": {
+        "type": "Table",
+        "n": 11,
+        "sections": {
+            "organizations": 11
+        }
+    },
+    "eventArticles": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "eventChlNumber": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "eventDate": {
+        "type": "PlainText",
+        "n": 3,
+        "sections": {
+            "events": 3
+        }
+    },
+    "eventDateEdtf": {
+        "type": "PlainText",
+        "n": 3,
+        "sections": {
+            "events": 3
+        }
+    },
+    "eventDateEnd": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "eventDateStart": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "events": 1
+        }
+    },
+    "eventFrequency": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "eventGroups": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "eventLegacyUrl": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "eventNextOccurrence": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "eventOrganizations": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "events": 1
+        }
+    },
+    "eventPersons": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "events": 1
+        }
+    },
+    "eventPlaces": {
+        "type": "Entries",
+        "n": 2,
+        "sections": {
+            "events": 2
+        }
+    },
+    "eventRecurring": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "eventSignificance": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "events": 2
+        }
+    },
+    "eventWikipediaUrl": {
+        "type": "Link",
+        "n": 0,
+        "sections": []
+    },
+    "educationEvidence": {
+        "type": "Dropdown",
+        "n": 10,
+        "sections": {
+            "educations": 10
+        }
+    },
+    "birthEvidence": {
+        "type": "Dropdown",
+        "n": 17,
+        "sections": {
+            "persons": 17
+        }
+    },
+    "burialEvidence": {
+        "type": "Dropdown",
+        "n": 4,
+        "sections": {
+            "persons": 4
+        }
+    },
+    "deathEvidence": {
+        "type": "Dropdown",
+        "n": 12,
+        "sections": {
+            "persons": 12
+        }
+    },
+    "endEvidence": {
+        "type": "Dropdown",
+        "n": 48,
+        "sections": {
+            "officeHoldings": 48
+        }
+    },
+    "foundedEvidence": {
+        "type": "Dropdown",
+        "n": 0,
+        "sections": []
+    },
+    "outcomeEvidence": {
+        "type": "Dropdown",
+        "n": 463,
+        "sections": {
+            "candidacies": 463
+        }
+    },
+    "seatsUpEvidence": {
+        "type": "Dropdown",
+        "n": 95,
+        "sections": {
+            "elections": 95
+        }
+    },
+    "startEvidence": {
+        "type": "Dropdown",
+        "n": 56,
+        "sections": {
+            "officeHoldings": 55,
+            "events": 1
+        }
+    },
+    "photoCaptionExt": {
+        "type": "PlainText",
+        "n": 1367,
+        "sections": {
+            "assets": 1367
+        }
+    },
+    "factSources": {
+        "type": "Table",
+        "n": 5,
+        "sections": {
+            "warMemorials": 5
+        }
+    },
+    "wmFamily": {
+        "type": "PlainText",
+        "n": 4,
+        "sections": {
+            "warMemorials": 4
+        }
+    },
+    "featuredImage": {
+        "type": "Assets",
+        "n": 233,
+        "sections": {
+            "photographs": 97,
+            "persons": 46,
+            "documents": 7,
+            "places": 10,
+            "organizations": 6,
+            "warMemorials": 38,
+            "obituaries": 1,
+            "events": 1,
+            "articles": 25,
+            "collections": 2
+        }
+    },
+    "feedsInto": {
+        "type": "Entries",
+        "n": 4,
+        "sections": {
+            "organizations": 4
+        }
+    },
+    "finePrint": {
+        "type": "PlainText",
+        "n": 56,
+        "sections": {
+            "articles": 56
+        }
+    },
+    "fixLegacyUrl": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "fixes": 2
+        }
+    },
+    "fixNote": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "fixes": 2
+        }
+    },
+    "fixRecord": {
+        "type": "Entries",
+        "n": 2,
+        "sections": {
+            "fixes": 2
+        }
+    },
+    "fixSeenOn": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "fixes": 2
+        }
+    },
+    "fixStatus": {
+        "type": "Dropdown",
+        "n": 2,
+        "sections": {
+            "fixes": 2
+        }
+    },
+    "footnotes": {
+        "type": "Table",
+        "n": 440,
+        "sections": {
+            "events": 2,
+            "organizations": 16,
+            "officeHoldings": 55,
+            "articles": 7,
+            "educations": 10,
+            "persons": 25,
+            "elections": 95,
+            "candidacies": 222,
+            "places": 2,
+            "photographs": 1,
+            "warMemorials": 5
+        }
+    },
+    "collectionFrozen": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "fullName": {
+        "type": "PlainText",
+        "n": 102,
+        "sections": {
+            "persons": 102
+        }
+    },
+    "gnisId": {
+        "type": "PlainText",
+        "n": 3,
+        "sections": {
+            "places": 3
+        }
+    },
+    "wmGradeAtLoss": {
+        "type": "PlainText",
+        "n": 14,
+        "sections": {
+            "warMemorials": 14
+        }
+    },
+    "gradeSpan": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "organizations": 11
+        }
+    },
+    "graveCensus": {
+        "type": "Table",
+        "n": 0,
+        "sections": []
+    },
+    "groupAliases": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "groups": 1
+        }
+    },
+    "groupDateEnd": {
+        "type": "PlainText",
+        "n": 8,
+        "sections": {
+            "groups": 8
+        }
+    },
+    "groupDateStart": {
+        "type": "PlainText",
+        "n": 9,
+        "sections": {
+            "groups": 9
+        }
+    },
+    "groupEvents": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "groupLegacyUrl": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "groups": 2
+        }
+    },
+    "groupPersons": {
+        "type": "Entries",
+        "n": 8,
+        "sections": {
+            "groups": 8
+        }
+    },
+    "groupWebsite": {
+        "type": "Link",
+        "n": 0,
+        "sections": []
+    },
+    "hasParentOrg": {
+        "type": "Lightswitch",
+        "n": 7,
+        "sections": {
+            "organizations": 7
+        }
+    },
+    "wmHighSchool": {
+        "type": "PlainText",
+        "n": 13,
+        "sections": {
+            "warMemorials": 13
+        }
+    },
+    "historicalEra": {
+        "type": "Categories",
+        "n": 154,
+        "sections": {
+            "events": 2,
+            "persons": 104,
+            "places": 9,
+            "groups": 7,
+            "articles": 19,
+            "organizations": 13
+        }
+    },
+    "historicalPeriod": {
+        "type": "Categories",
+        "n": 91,
+        "sections": {
+            "events": 2,
+            "places": 9,
+            "groups": 9,
+            "obituaries": 1,
+            "articles": 27,
+            "organizations": 10,
+            "persons": 31,
+            "collections": 2
+        }
+    },
+    "selectionMethod": {
+        "type": "Dropdown",
+        "n": 54,
+        "sections": {
+            "officeHoldings": 54
+        }
+    },
+    "howEnded": {
+        "type": "Dropdown",
+        "n": 55,
+        "sections": {
+            "officeHoldings": 55
+        }
+    },
+    "recordImages": {
+        "type": "Assets",
+        "n": 168,
+        "sections": {
+            "articles": 67,
+            "photographs": 58,
+            "warMemorials": 38,
+            "obituaries": 1,
+            "persons": 3,
+            "cat:neighborhood": 1
+        }
+    },
+    "imdbId": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "persons": 1
+        }
+    },
+    "wmIncidentDate": {
+        "type": "PlainText",
+        "n": 42,
+        "sections": {
+            "warMemorials": 42
+        }
+    },
+    "wmIncidentLocation": {
+        "type": "PlainText",
+        "n": 50,
+        "sections": {
+            "warMemorials": 50
+        }
+    },
+    "districtKind": {
+        "type": "Dropdown",
+        "n": 33,
+        "sections": {
+            "places": 33
+        }
+    },
+    "electionKind": {
+        "type": "Dropdown",
+        "n": 95,
+        "sections": {
+            "elections": 95
+        }
+    },
+    "legacyCategory": {
+        "type": "PlainText",
+        "n": 1349,
+        "sections": {
+            "photographs": 1338,
+            "places": 11
+        }
+    },
+    "legacyHtml": {
+        "type": "PlainText",
+        "n": 54,
+        "sections": {
+            "warMemorials": 54
+        }
+    },
+    "legacyKey": {
+        "type": "PlainText",
+        "n": 2410,
+        "sections": {
+            "photographs": 1550,
+            "documents": 11,
+            "persons": 10,
+            "articles": 764,
+            "warMemorials": 54,
+            "groups": 2,
+            "places": 12,
+            "obituaries": 1,
+            "events": 1,
+            "organizations": 1,
+            "collections": 4
+        }
+    },
+    "legacySourcePath": {
+        "type": "PlainText",
+        "n": 4198,
+        "sections": {
+            "assets": 4198
+        }
+    },
+    "legacyUrl": {
+        "type": "PlainText",
+        "n": 2407,
+        "sections": {
+            "photographs": 1550,
+            "documents": 11,
+            "persons": 1,
+            "articles": 764,
+            "warMemorials": 54,
+            "places": 12,
+            "events": 1,
+            "collections": 14
+        }
+    },
+    "wmLengthOfService": {
+        "type": "PlainText",
+        "n": 23,
+        "sections": {
+            "warMemorials": 23
+        }
+    },
+    "license": {
+        "type": "Dropdown",
+        "n": 21,
+        "sections": {
+            "assets": 21
+        }
+    },
+    "collectionIsMajor": {
+        "type": "Lightswitch",
+        "n": 2,
+        "sections": {
+            "collections": 2
+        }
+    },
+    "mpAgeAtLoss": {
+        "type": "Number",
+        "n": 0,
+        "sections": []
+    },
+    "mpAwards": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpBase": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpBurialPlace": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpChildren": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpCombatOperations": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpDateOfBirth": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpDateOfDeath": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpEvents": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpFindAGraveUrl": {
+        "type": "Link",
+        "n": 0,
+        "sections": []
+    },
+    "mpFinePrint": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpGroups": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpHasChildren": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "mpHasParents": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "mpHasSiblings": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "mpHasSpouse": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "mpHighSchool": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpHomeOfRecord": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpLegacyUrl": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpNarrative": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpOrganizations": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpParents": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpPlaces": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpRank": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpRelatedObituaries": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpRelatedPersons": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpServiceEnd": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpServiceStart": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpSiblings": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpSpecialty": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpSpouse": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpSubject": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "mpUnit": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpWebmasterNoteBottom": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpWebmasterNoteTop": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "mpWikipediaUrl": {
+        "type": "Link",
+        "n": 0,
+        "sections": []
+    },
+    "nameAsPrinted": {
+        "type": "PlainText",
+        "n": 463,
+        "sections": {
+            "candidacies": 463
+        }
+    },
+    "namedFor": {
+        "type": "Entries",
+        "n": 14,
+        "sections": {
+            "organizations": 4,
+            "places": 9,
+            "cat:neighborhood": 1
+        }
+    },
+    "namingNote": {
+        "type": "PlainText",
+        "n": 14,
+        "sections": {
+            "organizations": 4,
+            "places": 9,
+            "cat:neighborhood": 1
+        }
+    },
+    "wmNarrative": {
+        "type": "PlainText",
+        "n": 35,
+        "sections": {
+            "warMemorials": 35
+        }
+    },
+    "ncesId": {
+        "type": "PlainText",
+        "n": 11,
+        "sections": {
+            "organizations": 11
+        }
+    },
+    "neighborhood": {
+        "type": "Categories",
+        "n": 918,
+        "sections": {
+            "events": 1,
+            "persons": 23,
+            "documents": 8,
+            "photographs": 700,
+            "places": 19,
+            "articles": 101,
+            "warMemorials": 51,
+            "groups": 6,
+            "obituaries": 1,
+            "organizations": 8
+        }
+    },
+    "wmNotes": {
+        "type": "PlainText",
+        "n": 9,
+        "sections": {
+            "warMemorials": 9
+        }
+    },
+    "footnotesOn": {
+        "type": "Entries",
+        "n": 5,
+        "sections": {
+            "articles": 5
+        }
+    },
+    "nrhpListedDate": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "nrhpReference": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "obitDateOfDeath": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "obituaries": 1
+        }
+    },
+    "obitDatePublished": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "obitGraveUrl": {
+        "type": "Link",
+        "n": 0,
+        "sections": []
+    },
+    "obitGroup": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "obitLegacyUrl": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "obituaries": 1
+        }
+    },
+    "obitPublishedIn": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "obitRelatedMilitary": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "obitRelatedPersons": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "obitSubject": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "obituaries": 1
+        }
+    },
+    "obitWebmasterNoteBottom": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "obituaries": 1
+        }
+    },
+    "obitWebmasterNoteTop": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "obituaries": 1
+        }
+    },
+    "occupation": {
+        "type": "PlainText",
+        "n": 55,
+        "sections": {
+            "persons": 55
+        }
+    },
+    "holdingOffice": {
+        "type": "Entries",
+        "n": 55,
+        "sections": {
+            "officeHoldings": 55
+        }
+    },
+    "basis": {
+        "type": "PlainText",
+        "n": 5,
+        "sections": {
+            "sourceFaults": 5
+        }
+    },
+    "orgAddress": {
+        "type": "PlainText",
+        "n": 6,
+        "sections": {
+            "organizations": 6
+        }
+    },
+    "orgAliases": {
+        "type": "PlainText",
+        "n": 29,
+        "sections": {
+            "organizations": 29
+        }
+    },
+    "orgAssociatedPersons": {
+        "type": "Entries",
+        "n": 10,
+        "sections": {
+            "organizations": 10
+        }
+    },
+    "orgEvents": {
+        "type": "Entries",
+        "n": 2,
+        "sections": {
+            "organizations": 2
+        }
+    },
+    "orgFinePrint": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "orgFoundedBy": {
+        "type": "Entries",
+        "n": 3,
+        "sections": {
+            "organizations": 3
+        }
+    },
+    "orgLat": {
+        "type": "Number",
+        "n": 13,
+        "sections": {
+            "organizations": 13
+        }
+    },
+    "orgLegacyUrl": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "organizations": 1
+        }
+    },
+    "orgLng": {
+        "type": "Number",
+        "n": 13,
+        "sections": {
+            "organizations": 13
+        }
+    },
+    "orgWebsite": {
+        "type": "Link",
+        "n": 8,
+        "sections": {
+            "organizations": 8
+        }
+    },
+    "orgWikipediaUrl": {
+        "type": "Link",
+        "n": 3,
+        "sections": {
+            "organizations": 3
+        }
+    },
+    "orgType": {
+        "type": "Dropdown",
+        "n": 39,
+        "sections": {
+            "organizations": 39
+        }
+    },
+    "originalPublishDate": {
+        "type": "PlainText",
+        "n": 676,
+        "sections": {
+            "documents": 25,
+            "articles": 651
+        }
+    },
+    "originalPublishDateEdtf": {
+        "type": "PlainText",
+        "n": 662,
+        "sections": {
+            "documents": 27,
+            "articles": 635
+        }
+    },
+    "originallyPublishedTitle": {
+        "type": "PlainText",
+        "n": 35,
+        "sections": {
+            "documents": 8,
+            "articles": 27
+        }
+    },
+    "personAliases": {
+        "type": "PlainText",
+        "n": 53,
+        "sections": {
+            "persons": 53
+        }
+    },
+    "wmServiceExtra": {
+        "type": "Table",
+        "n": 8,
+        "sections": {
+            "warMemorials": 8
+        }
+    },
+    "educationOutcome": {
+        "type": "Dropdown",
+        "n": 10,
+        "sections": {
+            "educations": 10
+        }
+    },
+    "outcome": {
+        "type": "Dropdown",
+        "n": 463,
+        "sections": {
+            "candidacies": 463
+        }
+    },
+    "parentOf": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "parentOrganization": {
+        "type": "Entries",
+        "n": 7,
+        "sections": {
+            "organizations": 7
+        }
+    },
+    "partOfCollection": {
+        "type": "Entries",
+        "n": 761,
+        "sections": {
+            "articles": 761
+        }
+    },
+    "collectionParts": {
+        "type": "Table",
+        "n": 1,
+        "sections": {
+            "collections": 1
+        }
+    },
+    "candidacyPerson": {
+        "type": "Entries",
+        "n": 192,
+        "sections": {
+            "candidacies": 192
+        }
+    },
+    "educationPerson": {
+        "type": "Entries",
+        "n": 10,
+        "sections": {
+            "educations": 10
+        }
+    },
+    "holdingPerson": {
+        "type": "Entries",
+        "n": 55,
+        "sections": {
+            "officeHoldings": 55
+        }
+    },
+    "personEvents": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "personGraveUrl": {
+        "type": "Link",
+        "n": 19,
+        "sections": {
+            "persons": 19
+        }
+    },
+    "personFinePrint": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "persons": 1
+        }
+    },
+    "personGroups": {
+        "type": "Entries",
+        "n": 15,
+        "sections": {
+            "persons": 15
+        }
+    },
+    "personLegacyUrl": {
+        "type": "PlainText",
+        "n": 9,
+        "sections": {
+            "persons": 9
+        }
+    },
+    "personObituaries": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "persons": 1
+        }
+    },
+    "personOrganizations": {
+        "type": "Entries",
+        "n": 11,
+        "sections": {
+            "persons": 11
+        }
+    },
+    "personWebmasterNoteBottom": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "persons": 2
+        }
+    },
+    "personWebmasterNoteTop": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "persons": 1
+        }
+    },
+    "personWikipediaUrl": {
+        "type": "Link",
+        "n": 26,
+        "sections": {
+            "persons": 26
+        }
+    },
+    "photoArticles": {
+        "type": "Entries",
+        "n": 54,
+        "sections": {
+            "photographs": 54
+        }
+    },
+    "photoCredit": {
+        "type": "PlainText",
+        "n": 164,
+        "sections": {
+            "photographs": 122,
+            "assets": 42
+        }
+    },
+    "photoDate": {
+        "type": "PlainText",
+        "n": 731,
+        "sections": {
+            "photographs": 731
+        }
+    },
+    "photoDateEdtf": {
+        "type": "PlainText",
+        "n": 270,
+        "sections": {
+            "photographs": 270
+        }
+    },
+    "photoEvents": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "photoGroups": {
+        "type": "Entries",
+        "n": 2,
+        "sections": {
+            "photographs": 2
+        }
+    },
+    "photoOrganizations": {
+        "type": "Entries",
+        "n": 53,
+        "sections": {
+            "photographs": 53
+        }
+    },
+    "photoPeople": {
+        "type": "Entries",
+        "n": 41,
+        "sections": {
+            "photographs": 41
+        }
+    },
+    "photoPlaces": {
+        "type": "Entries",
+        "n": 105,
+        "sections": {
+            "photographs": 105
+        }
+    },
+    "photoSequence": {
+        "type": "PlainText",
+        "n": 1544,
+        "sections": {
+            "photographs": 1544
+        }
+    },
+    "photoSourceCode": {
+        "type": "PlainText",
+        "n": 5742,
+        "sections": {
+            "photographs": 1546,
+            "assets": 4196
+        }
+    },
+    "photoSources": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "placeAddress": {
+        "type": "PlainText",
+        "n": 6,
+        "sections": {
+            "places": 6
+        }
+    },
+    "placeAliases": {
+        "type": "PlainText",
+        "n": 12,
+        "sections": {
+            "places": 12
+        }
+    },
+    "placeArticles": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "places": 1
+        }
+    },
+    "placeChlNumber": {
+        "type": "PlainText",
+        "n": 3,
+        "sections": {
+            "places": 3
+        }
+    },
+    "placeChlUrl": {
+        "type": "Link",
+        "n": 1,
+        "sections": {
+            "places": 1
+        }
+    },
+    "placeEvents": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "places": 1
+        }
+    },
+    "placeFeatured": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "placeLat": {
+        "type": "Number",
+        "n": 20,
+        "sections": {
+            "places": 20
+        }
+    },
+    "placeLegacyUrl": {
+        "type": "PlainText",
+        "n": 1,
+        "sections": {
+            "places": 1
+        }
+    },
+    "placeLng": {
+        "type": "Number",
+        "n": 20,
+        "sections": {
+            "places": 20
+        }
+    },
+    "placeOrganizations": {
+        "type": "Entries",
+        "n": 37,
+        "sections": {
+            "places": 37
+        }
+    },
+    "placePeople": {
+        "type": "Entries",
+        "n": 12,
+        "sections": {
+            "places": 12
+        }
+    },
+    "placeScvhlCheckbox": {
+        "type": "Lightswitch",
+        "n": 0,
+        "sections": []
+    },
+    "placeScvhlUrl": {
+        "type": "Link",
+        "n": 0,
+        "sections": []
+    },
+    "placeType": {
+        "type": "Dropdown",
+        "n": 48,
+        "sections": {
+            "places": 48
+        }
+    },
+    "placeWebsite": {
+        "type": "Link",
+        "n": 3,
+        "sections": {
+            "places": 3
+        }
+    },
+    "placeWikipediaUrl": {
+        "type": "Link",
+        "n": 6,
+        "sections": {
+            "places": 6
+        }
+    },
+    "precededBy": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "organizations": 1
+        }
+    },
+    "provenanceKind": {
+        "type": "Dropdown",
+        "n": 4329,
+        "sections": {
+            "assets": 4329
+        }
+    },
+    "publicationDetails": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "publishedBy": {
+        "type": "Entries",
+        "n": 37,
+        "sections": {
+            "articles": 28,
+            "documents": 7,
+            "collections": 2
+        }
+    },
+    "recordProvenance": {
+        "type": "PlainText",
+        "n": 825,
+        "sections": {
+            "organizations": 34,
+            "officeHoldings": 55,
+            "educations": 10,
+            "persons": 100,
+            "candidacies": 463,
+            "elections": 95,
+            "places": 68
+        }
+    },
+    "registeredVoters": {
+        "type": "Number",
+        "n": 32,
+        "sections": {
+            "elections": 32
+        }
+    },
+    "relatedArticles": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "articles": 1
+        }
+    },
+    "relatedEvents": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "relatedMilitary": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "relatedPersons": {
+        "type": "Entries",
+        "n": 3,
+        "sections": {
+            "persons": 3
+        }
+    },
+    "relatedPhotographs": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "relatedPlaces": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "places": 1
+        }
+    },
+    "hauntedStatus": {
+        "type": "Dropdown",
+        "n": 2,
+        "sections": {
+            "places": 2
+        }
+    },
+    "rightsHolder": {
+        "type": "PlainText",
+        "n": 3,
+        "sections": {
+            "assets": 3
+        }
+    },
+    "roleMatch": {
+        "type": "PlainText",
+        "n": 80,
+        "sections": {
+            "roles": 80
+        }
+    },
+    "roleWikidataId": {
+        "type": "PlainText",
+        "n": 64,
+        "sections": {
+            "roles": 64
+        }
+    },
+    "roles": {
+        "type": "Entries",
+        "n": 45,
+        "sections": {
+            "persons": 45
+        }
+    },
+    "educationSchool": {
+        "type": "Entries",
+        "n": 10,
+        "sections": {
+            "educations": 10
+        }
+    },
+    "schoolLevel": {
+        "type": "Dropdown",
+        "n": 12,
+        "sections": {
+            "organizations": 12
+        }
+    },
+    "scvhlNumber": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "seatLabel": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "officeHoldings": 2
+        }
+    },
+    "seatCount": {
+        "type": "Number",
+        "n": 0,
+        "sections": []
+    },
+    "seatsUp": {
+        "type": "Number",
+        "n": 95,
+        "sections": {
+            "elections": 95
+        }
+    },
+    "wmSelectiveServiceDate": {
+        "type": "PlainText",
+        "n": 3,
+        "sections": {
+            "warMemorials": 3
+        }
+    },
+    "wmServiceId": {
+        "type": "PlainText",
+        "n": 33,
+        "sections": {
+            "warMemorials": 33
+        }
+    },
+    "siblingOf": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "source": {
+        "type": "PlainText",
+        "n": 21,
+        "sections": {
+            "assets": 21
+        }
+    },
+    "sourceDocuments": {
+        "type": "Entries",
+        "n": 87,
+        "sections": {
+            "elections": 87
+        }
+    },
+    "sourceLine": {
+        "type": "PlainText",
+        "n": 29,
+        "sections": {
+            "documents": 27,
+            "articles": 1,
+            "collections": 1
+        }
+    },
+    "hauntedSource": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "places": 2
+        }
+    },
+    "sourcePath": {
+        "type": "PlainText",
+        "n": 2437,
+        "sections": {
+            "photographs": 1550,
+            "documents": 28,
+            "persons": 10,
+            "articles": 764,
+            "warMemorials": 54,
+            "groups": 2,
+            "places": 12,
+            "obituaries": 1,
+            "events": 1,
+            "organizations": 1,
+            "collections": 14
+        }
+    },
+    "sourceUrl": {
+        "type": "Link",
+        "n": 5,
+        "sections": {
+            "assets": 5
+        }
+    },
+    "wmSpecialty": {
+        "type": "PlainText",
+        "n": 30,
+        "sections": {
+            "warMemorials": 30
+        }
+    },
+    "spouseOf": {
+        "type": "Entries",
+        "n": 0,
+        "sections": []
+    },
+    "wmStartTour": {
+        "type": "PlainText",
+        "n": 28,
+        "sections": {
+            "warMemorials": 28
+        }
+    },
+    "subheadline": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "articles": 2
+        }
+    },
+    "subjectGroup": {
+        "type": "Entries",
+        "n": 7,
+        "sections": {
+            "articles": 7
+        }
+    },
+    "subjectOrganization": {
+        "type": "Entries",
+        "n": 198,
+        "sections": {
+            "articles": 198
+        }
+    },
+    "subjectPerson": {
+        "type": "Entries",
+        "n": 220,
+        "sections": {
+            "documents": 7,
+            "articles": 213
+        }
+    },
+    "succeededBy": {
+        "type": "Entries",
+        "n": 2,
+        "sections": {
+            "organizations": 2
+        }
+    },
+    "recordTags": {
+        "type": "Categories",
+        "n": 0,
+        "sections": []
+    },
+    "termEnd": {
+        "type": "PlainText",
+        "n": 48,
+        "sections": {
+            "officeHoldings": 48
+        }
+    },
+    "termEndEdtf": {
+        "type": "PlainText",
+        "n": 48,
+        "sections": {
+            "officeHoldings": 48
+        }
+    },
+    "termStart": {
+        "type": "PlainText",
+        "n": 55,
+        "sections": {
+            "officeHoldings": 55
+        }
+    },
+    "termStartEdtf": {
+        "type": "PlainText",
+        "n": 55,
+        "sections": {
+            "officeHoldings": 55
+        }
+    },
+    "electionBody": {
+        "type": "Entries",
+        "n": 95,
+        "sections": {
+            "elections": 95
+        }
+    },
+    "electionDistrict": {
+        "type": "Entries",
+        "n": 40,
+        "sections": {
+            "elections": 40
+        }
+    },
+    "faultField": {
+        "type": "PlainText",
+        "n": 5,
+        "sections": {
+            "sourceFaults": 5
+        }
+    },
+    "hauntedAccount": {
+        "type": "PlainText",
+        "n": 2,
+        "sections": {
+            "places": 2
+        }
+    },
+    "faultRecord": {
+        "type": "Entries",
+        "n": 5,
+        "sections": {
+            "sourceFaults": 5
+        }
+    },
+    "articleThemes": {
+        "type": "Categories",
+        "n": 0,
+        "sections": []
+    },
+    "viafId": {
+        "type": "PlainText",
+        "n": 17,
+        "sections": {
+            "persons": 17
+        }
+    },
+    "wmWallReference": {
+        "type": "PlainText",
+        "n": 16,
+        "sections": {
+            "warMemorials": 16
+        }
+    },
+    "votesAsPrinted": {
+        "type": "PlainText",
+        "n": 463,
+        "sections": {
+            "candidacies": 463
+        }
+    },
+    "votes": {
+        "type": "Number",
+        "n": 463,
+        "sections": {
+            "candidacies": 463
+        }
+    },
+    "reading": {
+        "type": "PlainText",
+        "n": 5,
+        "sections": {
+            "sourceFaults": 5
+        }
+    },
+    "wikidataId": {
+        "type": "PlainText",
+        "n": 35,
+        "sections": {
+            "persons": 25,
+            "organizations": 3,
+            "places": 7
+        }
+    },
+    "wmBranch": {
+        "type": "PlainText",
+        "n": 54,
+        "sections": {
+            "warMemorials": 54
+        }
+    },
+    "wmConflict": {
+        "type": "PlainText",
+        "n": 54,
+        "sections": {
+            "warMemorials": 54
+        }
+    },
+    "wmHomeOfRecord": {
+        "type": "PlainText",
+        "n": 50,
+        "sections": {
+            "warMemorials": 50
+        }
+    },
+    "wmRank": {
+        "type": "PlainText",
+        "n": 51,
+        "sections": {
+            "warMemorials": 51
+        }
+    },
+    "wmRelatedPerson": {
+        "type": "Entries",
+        "n": 1,
+        "sections": {
+            "warMemorials": 1
+        }
+    },
+    "wmUnit": {
+        "type": "PlainText",
+        "n": 47,
+        "sections": {
+            "warMemorials": 47
+        }
+    },
+    "writtenBy": {
+        "type": "Entries",
+        "n": 381,
+        "sections": {
+            "articles": 371,
+            "collections": 10
+        }
+    },
+    "educationYears": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    },
+    "educationYearsEdtf": {
+        "type": "PlainText",
+        "n": 0,
+        "sections": []
+    }
+}

@@ -1,0 +1,26 @@
+{
+ "about": "Outside sources read for the Phineas Banning profile, 6 October 2026 (Claude Code, research subagent). Bell's book is the Internet Archive's OCR text of the 1881 first edition (copy from the University of California libraries). The Record-Union page is the Library of Congress's OCR full text of Chronicling America page sn82014381/1885-03-10/ed-1/seq-4. The legacy pages cited (Perkins, Reynolds, Pollack, Worden, the 1976 centennial program) were read in the Reggie mirror and are not copied here. The Wikipedia raw text is kept as the finding aid only.",
+ "files": [
+  {
+   "file": "bell-1881-reminiscences-of-a-ranger-djvu.txt",
+   "url": "https://archive.org/download/reminiscencesofr00bellrich/reminiscencesofr00bellrich_djvu.txt",
+   "read": "2026-10-06",
+   "sha256": "05b7c9d9d605ee0682a222fc114ff51e456310549e7885d1c8a66f00eebeb2ee",
+   "bytes": 1024921
+  },
+  {
+   "file": "record-union-1885-03-10-p4-fulltext.json",
+   "url": "https://tile.loc.gov/text-services/word-coordinates-service?segment=/service/ndnp/curiv/batch_curiv_lytton_ver01/data/sn82014381/00175036465/1885031001/0041.xml&format=alto_xml&full_text=1",
+   "read": "2026-10-06",
+   "sha256": "150432e2ce3815c07b1dcfbfbe021dbeb6916eed925bc35679513aada84ac7f2",
+   "bytes": 70429
+  },
+  {
+   "file": "wikipedia-phineas-banning-raw.txt",
+   "url": "https://en.wikipedia.org/w/index.php?title=Phineas_Banning&action=raw",
+   "read": "2026-10-06",
+   "sha256": "2712011adfc29808160a177a6a39be0bb23f5f2889c9842f0d8a431be49e2457",
+   "bytes": 13351
+  }
+ ]
+}

@@ -30,6 +30,23 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
+            fieldUid: e74bd78f-d7be-45cf-9476-ce17976af8f0 # Holder's name, when no person record
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8c1c261f-3684-4d9f-8141-3f16ceb83bf3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
             fieldUid: 133e940d-e9e5-49da-9d0b-bcf4d6128062 # Office
             handle: null
             instructions: null
@@ -360,7 +377,7 @@ showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: "{holdingPerson.one().title ?? 'Unknown person'} — {holdingOffice.one().title ?? 'unknown office'}, {holdingBody.one().title ?? 'unknown body'}"
+titleFormat: "{holdingPerson.one().title ?? (holderName ?: 'Unknown person')} — {holdingOffice.one().title ?? 'unknown office'}, {holdingBody.one().title ?? 'unknown body'}"
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
 uiLabelFormat: '{title}'

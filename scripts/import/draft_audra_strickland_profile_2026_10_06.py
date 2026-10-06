@@ -1,0 +1,294 @@
+"""
+Audra Strickland #29450: the profile draft (Nathan, 6 October 2026: "Audra Strickland ... She held the 37th Assembly
+District from 2004 to 2010 ... She succeeded Tony Strickland in that seat and they were married, which is a public fact
+about how the seat passed and belongs in the record ... Living person: public life only").
+
+Writes inventory/review/audra-strickland-profile-draft-2026-10-06.json (read by
+scripts/import/build_audra_strickland_profile_2026_10_06.php) and the .md beside it for Nathan to read, and
+inventory/sources/audra-strickland-2026-10-06/manifest.json (each saved source with its sha256).
+
+Every quotation in the notes is checked against the saved copy of its source (inventory/sources/audra-strickland-2026-10-06/)
+or against templates/_data/valley-districts.json; the script stops if one is not found verbatim. No database access.
+Run: python3 scripts/import/draft_audra_strickland_profile_2026_10_06.py
+"""
+import hashlib
+import html
+import json
+import os
+import re
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+SRC = os.path.join(ROOT, 'inventory', 'sources', 'audra-strickland-2026-10-06')
+OUT = os.path.join(ROOT, 'inventory', 'review', 'audra-strickland-profile-draft-2026-10-06')
+
+SOV = 'https://elections.cdn.sos.ca.gov/sov/'
+RECORD_ASM = 'https://secretary.senate.ca.gov/media/79'
+RECORD_SEN = 'https://secretary.senate.ca.gov/media/88'
+FILES = {
+    'sov2004p': ('2004-primary_assembly.txt', SOV + '2004-primary/assembly.pdf'),
+    'sov2004g': ('2004-general_formatted_st_AD_all.txt', SOV + '2004-general/formatted_st_AD_all.pdf'),
+    'sov2006g': ('2006-general_assembly.txt', SOV + '2006-general/assembly.pdf'),
+    'sov2008g': ('2008-general_40_56_state_assembly.txt', SOV + '2008-general/40_56_state_assembly.pdf'),
+    'sov2008s': ('2008-general_35_39_state_senators.txt', SOV + '2008-general/35_39_state_senators.pdf'),
+    'sov2002g': ('2002-general_state-assemb.txt', SOV + '2002-general/state-assemb.pdf'),
+    'sov2010g': ('2010-general_73-state-assembly.txt', SOV + '2010-general/73-state-assembly.pdf'),
+    'rom': ('record-of-members-assembly.txt', RECORD_ASM),
+    'ros': ('record-of-senators.txt', RECORD_SEN),
+    'acorn': ('acorn-2009-11-19-belmond.html', 'https://www.toacorn.com/articles/member-of-assembly-to-seek-seat-in-ventura-county/'),
+    'vcr': ('vcreporter-2010-05-25-bien.html', 'https://www.vcreporter.com/news/meet-the-stricklands/article_a1bb1a2d-aad3-5050-9c5d-d33211a2f1dd.html'),
+    'rollcall': ('rollcall-2003-08-29-lonely-runners.html', 'https://rollcall.com/2003/08/29/lonely-runners/'),
+    'voc': ('voiceofoc-2025-03-11-biesiada.html', 'https://voiceofoc.org/2025/03/how-state-senator-tony-strickland-became-orange-countys-political-lazarus/'),
+    'jc': ('joincalifornia-6164.html', 'https://www.joincalifornia.com/candidate/6164'),
+    'wd': ('wikidata-audra.json', 'https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&titles=Audra_Strickland'),
+    'wpA': ('wikipedia-audra-strickland-raw.txt', 'https://en.wikipedia.org/w/index.php?title=Audra_Strickland&action=raw'),
+    'wpT': ('wikipedia-tony-strickland-raw.txt', 'https://en.wikipedia.org/w/index.php?title=Tony_Strickland&action=raw'),
+}
+
+
+def norm(s):
+    s = s.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"')
+    return re.sub(r'\s+', ' ', s).strip()
+
+
+def text_of(key):
+    path = os.path.join(SRC, FILES[key][0])
+    raw = open(path, encoding='utf-8', errors='replace').read()
+    if path.endswith('.html'):
+        raw = re.sub(r'(?s)<script.*?</script>|<style.*?</style>', ' ', raw)
+        raw = html.unescape(re.sub(r'<[^>]+>', ' ', raw))
+    return norm(raw)
+
+
+TEXT = {k: text_of(k) for k in FILES}
+VD = json.load(open(os.path.join(ROOT, 'templates', '_data', 'valley-districts.json')))
+VDTEXT = norm(json.dumps(VD, ensure_ascii=False))
+missing = []
+
+
+def q(key, s):
+    """Return the quotation, after checking it is in the source verbatim (whitespace and quote marks normalised)."""
+    hay = VDTEXT if key == 'vd' else TEXT[key]
+    if norm(s) not in hay:
+        missing.append((key, s))
+    return s
+
+
+def row(key, *cells):
+    """A Statement of Vote row: each cell must appear in the source's text."""
+    for c in cells:
+        q(key, c)
+
+
+# Statement of Vote figures, checked cell by cell
+row('sov2004p', '37th Assembly District', 'Jeff Gorell', 'Strickland', 'Mike Robinson', 'Eric McClendon', '16,086', '17,845', '15,262', '1,072', '32.0%', '35.6%', '30.3%', '2.1%')
+row('sov2004g', '37th Assembly District', 'Ferial Masry', 'Audra Strickland', '74,774', '100,309', '41.1%', '55.1%', '7,013', 'Adrienne M. Prince')
+row('sov2006g', '37th Assembly District', 'Strickland*', '58,305', '78,493', '42.6%', '57.4%')
+row('sov2008g', '37th Assembly District', 'Strickland*', '93,857', '102,087', '47.8%', '52.2%')
+row('sov2008s', 'Hannah-Beth', 'Jackson', 'Strickland', '207,119', '207,976', '49.8%', '50.2%')
+row('sov2002g', '37th Assembly District', 'Tony Strickland*', '43,806', '74,876', '63.1%')
+row('sov2010g', '37th Assembly District', 'Jeff', 'Gorell', '64,413', '90,649', '41.5%', '58.5%')
+row('rom', 'Strickland, Audra R Los Angeles, Ventura 2005–2010', 'Strickland, Tony R Ventura 1999–2002', 'R Los Angeles, Ventura 2003–2004')
+row('ros', 'Strickland, Tony R Los Angeles, Santa Barbara, Ventura 2009–2012')
+for k in ('sov2004p', 'sov2004g', 'sov2006g', 'sov2008g', 'sov2010g'):
+    if 'Strickland' not in TEXT[k] and k != 'sov2010g':
+        missing.append((k, 'Strickland'))
+if 'Strickland' in re.split(r'38th Assembly District', TEXT['sov2010g'].split('37th Assembly District')[1])[0]:
+    missing.append(('sov2010g', 'Audra Strickland should not be on the 2010 ballot for the 37th'))
+
+# the shares (templates/_data/valley-districts.json), read as data and quoted
+asm2001 = next(p for p in VD['bodies']['california-state-assembly']['plans'] if p['plan'] == '2001')
+d37 = next(d for d in asm2001['districts'] if d['n'] == 37)
+d38 = next(d for d in asm2001['districts'] if d['n'] == 38)
+sen2001 = next(p for p in VD['bodies']['california-state-senate']['plans'] if p['plan'] == '2001')
+s19 = next(d for d in sen2001['districts'] if d['n'] == 19)
+assert d37['share'] == '12.9%' and d37['pop'] == 35031 and d38['share'] == '87.1%', 'valley-districts.json has changed'
+assert s19['share'] == '25.8%', 'valley-districts.json has changed (Senate 19th)'
+old14 = open(os.path.join(ROOT, 'inventory', 'review', 'legislative-districts-2026-10-04.md'), encoding='utf-8').read()
+assert '| 37 | partial | 35,031 (14%) |' in old14 and 'Superseded figures' in old14, 'the superseded 14 per cent row has changed'
+
+ROM = f'Secretary of the Senate, Record of Members of the Assembly, 1849 to 2026, {RECORD_ASM} (read 6 October 2026)'
+notes = [
+    # 1
+    f'Her term is the archive\'s office holding #29501 (Assembly, 37th District, 6 December 2004 to 6 December 2010, under the 2001 lines). '
+    f'{ROM}: "{q("rom", "Strickland, Audra")}", R, "{q("rom", "Los Angeles, Ventura")}", regular sessions "2005–2010". The three elections are notes 8 to 11.',
+    # 2
+    f'The archive\'s count of the valley\'s people by district, templates/_data/valley-districts.json, State Assembly. Under the "{q("vd", asm2001["label"])}", in force "{q("vd", asm2001["years"])}", '
+    f'the 37th held "{q("vd", d37["share"])}" of the valley, 35,031 people at the "{q("vd", asm2001["populationBasis"])}": "{q("vd", d37["covers"])}". The 38th held "{q("vd", d38["share"])}": '
+    f'"{q("vd", d38["covers"])}". The shares are counted from census blocks assigned to districts in the Statewide Database\'s block files. '
+    'The 38th was held by Keith Richman (office holding #29342, to 4 December 2006) and Cameron Smyth (#29344, from 4 December 2006). '
+    'An earlier pass (inventory/review/legislative-districts-2026-10-04.md) gave the 37th "35,031 (14%)": the same people, divided by a smaller count of the valley that left out the City\'s residents in eastern Canyon Country; that file marks its shares as superseded.',
+    # 3
+    'Sylvie Belmond, "Member of Assembly to seek seat in Ventura County," The Acorn (Thousand Oaks), November 19, 2009, '
+    f'{FILES["acorn"][1]}: "{q("acorn", "Assemblymember Audra Strickland (R-Thousand Oaks) announced this week she’ll run for the post of Ventura County Treasurer-Tax Collector in 2010.")}"; '
+    f'"{q("acorn", "Strickland was first elected to the Assembly in 2004 to represent the 37th District, which covers nearly half of Ventura County, including the cities of Thousand Oaks, Moorpark, Simi Valley and Camarillo.")}"; '
+    f'"{q("acorn", "She succeeded her husband, Tony Strickland, who’s now a state senator.")}"; '
+    f'"{q("acorn", "Audra Strickland, who won reelection bids in 2006 and 2008, will be termed out of the Legislature next year.")}"; '
+    f'"{q("acorn", "Before being elected to state office, she was a political aide and a private-school teacher.")}"',
+    # 4
+    f'Tony Strickland\'s office holding #29499 (Assembly, 37th District, 2 December 2002 to 6 December 2004, under the 2001 lines; under the 1991 lines his district held no part of the valley). '
+    f'{ROM}: "{q("rom", "Strickland, Tony")}", R, "Ventura", regular sessions "1999–2002", and "Los Angeles, Ventura", "2003–2004". '
+    f'California Secretary of State, Statement of Vote, General Election, November 5, 2002, 37th Assembly District, {FILES["sov2002g"][1]}: "{q("sov2002g", "Tony Strickland*")}" 74,876 votes, 63.1%.',
+    # 5
+    '"Meet the Stricklands," VC Reporter (Ventura), May 25, 2010 (the page prints no byline; it closes with a contact address in the name of Joan Bien), '
+    f'{FILES["vcr"][1]}: "{q("vcr", "That’s when then-newcomer Tony was elected to the state Assembly representing the 37th District.")}" (of 1998); '
+    f'"{q("vcr", "When Tony termed out of office after six years, Audra stepped in and won his legislative seat in 2004.")}"; '
+    f'"{q("vcr", "after throwing her hat into the ring for two offices, secretary of state and treasurer-tax collector, she finally fixed her sights on running for county supervisor from the 2nd District")}".',
+    # 6
+    'Noah Biesiada, "How State Senator Tony Strickland Became Orange County\'s Political Lazarus," Voice of OC, March 11, 2025, '
+    f'{FILES["voc"][1]}: "{q("voc", "at which point he was termed out and was succeeded by his wife at the time, Audra Strickland.")}"; '
+    f'"{q("voc", "Audra Stickland was termed out of the assembly that same year and lost her race for Ventura County Supervisor.")}" (of 2010; the spelling "Stickland" is the article\'s).',
+    # 7
+    'Josh Kurtz, "Lonely Runners: Hoopla Drowns Out Cal. Senate Race," Roll Call, August 29, 2003, '
+    f'{FILES["rollcall"][1]}: "{q("rollcall", "What’s more, Strickland is expending political energy helping his wife, Audra Strickland, a one-time chief of staff to former California Assembly Speaker Curt Pringle (R), in a tough primary to win his Ventura County-based legislative seat in 2004.")}"',
+    # 8
+    f'California Secretary of State, Statement of Vote, Primary Election, March 2, 2004, 37th Assembly District, Republican, {FILES["sov2004p"][1]}: '
+    'Audra Strickland 17,845 votes (35.6%), Jeff Gorell 16,086 (32.0%), Mike Robinson 15,262 (30.3%), Eric McClendon 1,072 (2.1%).',
+    # 9
+    f'California Secretary of State, Statement of Vote, Presidential General Election, November 2, 2004, 37th Assembly District, {FILES["sov2004g"][1]}: '
+    '"Audra Strickland", REP, 100,309 votes (55.1%); Ferial Masry, DEM, 74,774 (41.1%); Adrienne M. Prince, GRN, 7,013 (3.8%).',
+    # 10
+    f'California Secretary of State, Statement of Vote, General Election, November 7, 2006, 37th Assembly District, {FILES["sov2006g"][1]}: '
+    '"Audra Strickland*" 78,493 votes (57.4%), Ferial Masry 58,305 (42.6%).',
+    # 11
+    f'California Secretary of State, Statement of Vote, Presidential General Election, November 4, 2008, 37th Assembly District, {FILES["sov2008g"][1]}: '
+    '"Audra Strickland*" 102,087 votes (52.2%), Ferial Masry 93,857 (47.8%).',
+    # 12
+    'Tony Strickland\'s office holding #29517 (State Senate, 19th District, 1 December 2008 to 3 December 2012, under the 2001 lines). '
+    f'California Secretary of State, Statement of Vote, November 4, 2008, 19th State Senate District, {FILES["sov2008s"][1]}: Tony Strickland 207,976 votes (50.2%), Hannah-Beth Jackson 207,119 (49.8%). '
+    f'Secretary of the Senate, Record of State Senators, 1849 to 2026, {RECORD_SEN}: "Strickland, Tony", R, "{q("ros", "Los Angeles, Santa Barbara, Ventura")}", "2009–2012". '
+    f'templates/_data/valley-districts.json, State Senate, 2001 lines: the 19th held "{q("vd", s19["share"])}" of the valley: "{q("vd", s19["covers"])}".',
+    # 13
+    f'Jeff Gorell\'s office holding #29503 (Assembly, 37th District, from 6 December 2010). California Secretary of State, Statement of Vote, General Election, November 2, 2010, 37th Assembly District, {FILES["sov2010g"][1]}: '
+    'Jeff Gorell 90,649 votes (58.5%), Ferial Masry 64,413 (41.5%); Audra Strickland was not on the ballot.',
+]
+
+body = (
+    'Audra Strickland was one of the Santa Clarita Valley\'s members of the State Assembly from December 2004 to December 2010, for the 37th District.[1] '
+    'Under the lines drawn in 2001 the 37th held Castaic, Val Verde, Hasley Canyon, Agua Dulce and Green Valley: 12.9 per cent of the valley\'s people by the archive\'s count from the 2010 census, in a district that was mostly Ventura County. '
+    'The rest of the valley was in the 38th, represented by Keith Richman and then Cameron Smyth.[2] '
+    'The Acorn of Thousand Oaks described her district in 2009 as covering "nearly half of Ventura County, including the cities of Thousand Oaks, Moorpark, Simi Valley and Camarillo."[3]'
+    '\n\n'
+    'She succeeded her husband at the time, Tony Strickland, who had held the 37th since the election of 1998 and could not stand again in 2004 because of term limits.[4][5][6] '
+    'In August 2003 Roll Call reported that he was helping "his wife, Audra Strickland, a one-time chief of staff to former California Assembly Speaker Curt Pringle (R), in a tough primary to win his Ventura County-based legislative seat in 2004."[7] '
+    'Before her election she had been, in the Acorn\'s words, "a political aide and a private-school teacher."[3] '
+    'In the Republican primary of 2 March 2004 she won with 17,845 votes, 35.6 per cent, ahead of Jeff Gorell with 16,086 and Mike Robinson with 15,262,[8] '
+    'and in November she beat the Democrat, Ferial Masry, by 100,309 votes to 74,774.[9] '
+    'She beat Masry again in 2006 and in 2008.[10][11] '
+    'Tony Strickland was elected to the State Senate in November 2008 for the 19th District, which held Stevenson Ranch and the City\'s western neighborhoods, so from December 2008 until she left the Assembly both of them represented parts of the valley.[12] '
+    'The Acorn put it in 2009: "She succeeded her husband, Tony Strickland, who\'s now a state senator."[3]'
+    '\n\n'
+    'Term limits ended her service in 2010.[3] '
+    'Jeff Gorell, whom she had beaten in the 2004 primary, won the seat that November and succeeded her.[13][8] '
+    'Before leaving office she announced a campaign for Ventura County Treasurer-Tax Collector, then ran instead for the county Board of Supervisors in its 2nd District, and lost.[3][5][6]'
+)
+
+# the body's own quotations must be in their sources too
+for key, s in [
+    ('acorn', 'nearly half of Ventura County, including the cities of Thousand Oaks, Moorpark, Simi Valley and Camarillo.'),
+    ('rollcall', 'his wife, Audra Strickland, a one-time chief of staff to former California Assembly Speaker Curt Pringle (R), in a tough primary to win his Ventura County-based legislative seat in 2004.'),
+    ('acorn', 'a political aide and a private-school teacher.'),
+    ('acorn', "She succeeded her husband, Tony Strickland, who's now a state senator."),
+    ('vcr', 'joanbien@'), ('vcr', 'Meet the Stricklands'), ('acorn', 'By Sylvie Belmond'), ('acorn', 'November 19, 2009'), ('vcr', 'May 25, 2010'),
+    ('rollcall', 'By Josh Kurtz Posted August 29, 2003'), ('voc', 'by Noah Biesiada Mar 11, 2025'),
+]:
+    q(key, s)
+
+holding_note = (
+    'Succeeded her husband at the time, Tony Strickland (office holding #29499), who could not stand again in 2004 because of term limits: '
+    '"When Tony termed out of office after six years, Audra stepped in and won his legislative seat in 2004" ("Meet the Stricklands," VC Reporter, May 25, 2010); '
+    '"She succeeded her husband, Tony Strickland, who’s now a state senator" (Sylvie Belmond, The Acorn, November 19, 2009). '
+    'Succeeded in turn by Jeff Gorell (#29503), elected on 2 November 2010 with 90,649 votes, 58.5% (Secretary of State, Statement of Vote, 2 November 2010, State Assembly, '
+    + FILES['sov2010g'][1] + '); she had been "termed out of the Legislature" (The Acorn, 2009).'
+)
+q('vcr', 'When Tony termed out of office after six years, Audra stepped in and won his legislative seat in 2004')
+q('acorn', 'termed out of the Legislature')
+
+# checks of our own text
+own = body + ''.join(notes) + holding_note
+if '\u2014' in own:
+    missing.append(('own', 'an em dash in our own text'))
+cited = sorted({int(n) for n in re.findall(r'\[(\d+)\]', body)})
+if cited != list(range(1, len(notes) + 1)):
+    missing.append(('own', f'markers {cited} do not match {len(notes)} notes'))
+first = []
+for n in re.findall(r'\[(\d+)\]', body):
+    if int(n) not in first:
+        first.append(int(n))
+if first != sorted(first):
+    missing.append(('own', f'notes are not numbered in order of first citation: {first}'))
+if missing:
+    for k, s in missing:
+        print('NOT FOUND', k, '|', s)
+    sys.exit(1)
+
+wd = json.load(open(os.path.join(SRC, FILES['wd'][0])))
+wdq, wde = next(iter(wd['entities'].items()))
+assert wde['sitelinks']['enwiki']['title'] == 'Audra Strickland'
+
+draft = {
+    'drafted': '2026-10-06',
+    'draftedBy': 'scripts/import/draft_audra_strickland_profile_2026_10_06.py, Claude Code',
+    'person': {'id': 29450, 'title': 'Audra Strickland'},
+    'living': True,
+    'body': body,
+    'footnotes': [{'number': i + 1, 'note': n} for i, n in enumerate(notes)],
+    'fields': {
+        'bodyAuthorship': 'editorial-2026',
+        'occupation': 'Political aide; state assemblymember',
+        'wikidataId': wdq,
+        'personWikipediaUrl': 'https://en.wikipedia.org/wiki/Audra_Strickland',
+        'aliasesAdd': [],
+        'rolesAdd': [],
+        'relatedPersonsAdd': [29448, 29452],
+    },
+    'holdingNotes': {'29501': holding_note},
+}
+json.dump(draft, open(OUT + '.json', 'w'), indent=1, ensure_ascii=False)
+
+# manifest of the saved sources
+man = {'about': 'Outside sources read for the Audra Strickland profile, 6 October 2026 (Claude Code, research subagent). The Secretary of State PDFs are the official Statements of Vote (.txt beside each is pdftotext -layout). The Wikipedia and JoinCalifornia copies are finding aids only.', 'files': []}
+for f in sorted(os.listdir(SRC)):
+    if f == 'manifest.json':
+        continue
+    p = os.path.join(SRC, f)
+    url = next((u for (fn, u) in FILES.values() if fn == f or fn.replace('.txt', '.pdf') == f), None)
+    man['files'].append({'file': f, 'url': url, 'read': '2026-10-06', 'sha256': hashlib.sha256(open(p, 'rb').read()).hexdigest(), 'bytes': os.path.getsize(p)})
+json.dump(man, open(os.path.join(SRC, 'manifest.json'), 'w'), indent=1)
+
+FOR_NATHAN = [
+    '## For Nathan', '',
+    '- The 14 per cent. templates/_data/valley-districts.json, the figure the pages show, gives the 2001-plan 37th "12.9%" of the valley (35,031 people at the 2010 Census), and the draft uses it. The 14 per cent is the earlier pass, inventory/review/legislative-districts-2026-10-04.md, row "| 37 | partial | 35,031 (14%) |": the same 35,031 people, divided by a count of the valley that left out the City\'s residents in eastern Canyon Country; that file is headed "Superseded figures". Note 2 says so.',
+    '- The marriage, as a public fact about how the seat passed, is stated in the text from three independent reports: Roll Call, 29 August 2003, before the primary ("helping his wife, Audra Strickland ... in a tough primary to win his Ventura County-based legislative seat"; the ellipsis here only, not in the draft, which quotes the sentence whole); The Acorn, 19 November 2009, while she held the seat ("She succeeded her husband, Tony Strickland"); and the VC Reporter, 25 May 2010. No spouseOf relation is made, and none would publish for two living people (DATA-MODEL, Kinship on the page: "never spouses"). Tony Strickland is joined by relatedPersons as her predecessor, as Cameron Smyth is to Keith Richman as successor; drop #29448 from relatedPersonsAdd if you would rather the two records were joined only through the holdings.',
+    '- The divorce: a source states it. Voice of OC, 11 March 2025 (Noah Biesiada): "His marriage to Audra ended in divorce that same year" (2015, the year he opened his consulting firm). It is ten years after the fact and secondary, but it is a news report, not Wikipedia. The draft does not state the divorce: under public life only it is private, and the text needs it only so that "her husband" is not read as present; "her husband at the time" does that, from Voice of OC\'s own words ("succeeded by his wife at the time"). Recommended: leave it out. If you want it in, it is one sentence citing note 6, and that note would add the quotation. Wikipedia (both articles) gives "1998" to "2015" for the marriage and cites Voice of OC for the divorce; JoinCalifornia says only "Tony Strickland (m. 1998)".',
+    '- After office: only her 2010 campaigns are in the body (The Acorn, the VC Reporter, Voice of OC). The County of Ventura\'s own results for the June 2010 primary could not be read: the Wayback Machine\'s capture of 12 June 2010 of recorder.countyofventura.org/Election Result_dtl.htm serves the November 2010 page instead. So the body says she lost, from Voice of OC, and gives no figures. JoinCalifornia gives "Lost; 38.5%" and Wikipedia says Linda Parks was "re-elected by a large margin"; neither is used.',
+    '- Her own work for the valley\'s part of the district: nothing found, so the body says nothing of it (see the mirror search below). The Signal\'s archive of 2004 to 2010 was not searched beyond scvnews.com, signalscv.com and hometownstation.com through a web search for "Audra Strickland Castaic" on 6 October 2026, which returned nothing about her; the session\'s web-search budget then ran out. A search of the Signal for 2004 to 2010 (Castaic, Val Verde, Agua Dulce) is the next step if you want her valley work in the text.',
+    '- Living: no birth fields set (JoinCalifornia and Wikipedia: 10 July 1974, Newport Beach). The record keeps no residence: The Acorn tags her "R-Thousand Oaks" in 2009 and the VC Reporter puts the couple\'s house in Moorpark; neither is used.',
+    '- Paul Strickland (#25425, Hart board, Assembly candidate in 2011) is not related by any source to Audra or Tony Strickland, and nothing joins them.',
+    '- Out of scope, noticed: holding #29501 ends 6 December 2010, the day Gorell\'s #29503 starts, as the archive\'s Assembly holdings use the day the new Assembly met (Richman\'s do too); Wikipedia gives her term as ending "November 30, 2010". Not checked further; the holdings were not touched.',
+    '', '## What rests on Wikipedia or JoinCalifornia alone (not in the body)', '',
+    '- Wikipedia: born "July 10, 1974" in "Newport Beach, California"; a teacher "for a year at Temple Christian School in Ventura, California" (the VC Reporter says "one year teaching history at a private Christian school"); president of the Ronald Reagan Republican Club at UC Irvine; Assembly Fellow for Bill Campbell; worked for Curt Pringle and Chuck Poochigian; the Treasurer-Tax Collector disqualification under Government Code 27000.7; the Stricklands as "the second husband and wife to serve concurrently" in the Legislature, after George and Sharon Runner (Tony Strickland\'s article, unsourced there).',
+    '- JoinCalifornia (candidate 6164): "2002-2004: Member, Ventura County Board of Education"; "2012: Delegate, Republican National Convention"; "2013-Present: Regional Vice President, Hospital Association of Southern California"; "Had a spouse who served in the legislature concurrently", citing the California Legislature Handbook 2005-06. The Board of Education and the Hospital Association are leads for a later line on public life after office, if a primary source is found.',
+    '', '## What the mirror holds on her', '',
+    'Searched 6 October 2026 with Python reading every .htm, .html, .txt, .xml and .js file in /Volumes/Reggie/SCVHistory/scvhistory.com as latin-1 (146,750 files): "Strickland" in any case (196 files), and separately "Audra" as a word, "37th Assembly", "37th District" and "Assemblywoman". No page names Audra or Tony Strickland. The Strickland hits are Paul Strickland (the Hart board roster, the City\'s commissions, SCVTV episode lists), the rodeo rider Mabel Strickland (1920s and 1930s programs and reports), Hugo Strickland and Charisse Helene Strickland (lists of names). The "Audra" hits are Audra Lee (College of the Canyons Canyon Call, 1974-75), Audra Balsz (Hart yearbooks, 1956 to 1958) and "Art & Audra" (al2087b.htm, a letter). "37th district" finds only Robert C. Cline, 1977. The text index storage/runtime/pc/index.jsonl has 14 Strickland hits, the same people. The archive\'s records hold her person record #29450 and holding #29501, made on 4 October 2026, and nothing else.',
+    '',
+]
+lines = [
+    '# Audra Strickland #29450: the profile draft, 6 October 2026', '',
+    'For Nathan to read before the loader is applied. Body first, then the notes as they will be numbered. Nothing here is written to Craft; the loader (scripts/import/build_audra_strickland_profile_2026_10_06.php) reads the .json beside this file. She is living: public life only. The sources are saved in inventory/sources/audra-strickland-2026-10-06/ with a manifest of their sha256; every quotation below was checked against those copies by scripts/import/draft_audra_strickland_profile_2026_10_06.py.', '',
+    '## Body', '', body, '',
+    '## Notes', '',
+] + [f'{i + 1}. {n}' for i, n in enumerate(notes)] + [
+    '', '## Other fields', '',
+    '- bodyAuthorship: editorial-2026',
+    '- occupation: Political aide; state assemblymember (The Acorn, 2009: "a political aide and a private-school teacher")',
+    f'- wikidataId: {wdq} (its English Wikipedia sitelink is Audra_Strickland; it gives her birth year and her spouse, neither used)',
+    '- personWikipediaUrl: https://en.wikipedia.org/wiki/Audra_Strickland (a finding aid only)',
+    '- aliasesAdd: none (every Statement of Vote prints "Audra Strickland")',
+    '- relatedPersonsAdd: #29448 Tony Strickland (her predecessor in the 37th) and #29452 Jeff Gorell (her successor). relatedPersons is not a kinship field; spouseOf is not set and the loader refuses if it is.',
+    '- Living: no birth fields set. JoinCalifornia and Wikipedia give 10 July 1974, Newport Beach; yours whether a living member\'s date goes on the record.',
+    '- featuredImage: not touched (Audra_Strickland.jpg stays in inventory/incoming).',
+    '', '## Note added to the office holding', '', f'- #29501: {holding_note}', '',
+] + FOR_NATHAN
+open(OUT + '.md', 'w', encoding='utf-8').write('\n'.join(lines))
+print('draft written:', OUT + '.json', '|', len(notes), 'notes |', len(body.split()), 'words; every quotation found')

@@ -1,0 +1,61 @@
+{
+ "about": "Outside sources read for the George Runner profile, 6 October 2026 (Claude Code, research subagent). The three Newsmaker pages are not in the Reggie mirror; they are read from the Wayback Machine's captures of scvhistory.com. The Secretary of State PDF is the official Statement of Vote; the .txt beside each PDF is pdftotext output. The Statements of Vote for the Assembly and Senate are already saved in inventory/sources/legislative-districts-2026-10-04/sos/, and the Records of Members and Senators in inventory/sources/audra-strickland-2026-10-06/.",
+ "files": [
+  {
+   "file": "wayback-sg102404-20050226033722.html",
+   "url": "http://web.archive.org/web/20050226033722/http://www.scvhistory.com:80/scvhistory/signal/newsmaker/sg102404.htm",
+   "read": "2026-10-06",
+   "sha256": "c63d7ca8d42a55a101ada8e7627cd44738b6cffbfe34931ac3b5cf53e15b6fd0",
+   "bytes": 26315
+  },
+  {
+   "file": "wayback-sg032705-20050404044952.html",
+   "url": "http://web.archive.org/web/20050404044952/http://www.scvhistory.com:80/scvhistory/signal/newsmaker/sg032705.htm",
+   "read": "2026-10-06",
+   "sha256": "6bb5b9039bd258920e284f4d04474b86f229af5a977300ab66b220c61eed2f5d",
+   "bytes": 31575
+  },
+  {
+   "file": "wayback-sg020506-nm-20060326231758.html",
+   "url": "http://web.archive.org/web/20060326231758/http://www.scvhistory.com/scvhistory/signal/newsmaker/sg020506-nm.htm",
+   "read": "2026-10-06",
+   "sha256": "1fb7d94e2837234c9a42496631492d4b4a3aa3ca3086098406b745e65af6ad2c",
+   "bytes": 29272
+  },
+  {
+   "file": "wayback-boe-members-runner-20160908213257.html",
+   "url": "http://web.archive.org/web/20160908213257/http://www.boe.ca.gov/members/runner/",
+   "read": "2026-10-06",
+   "sha256": "f974cf4eab3f4c28e64342c49e6aad3698535a56be6b051eed3af7461c1d8bb5",
+   "bytes": 21680
+  },
+  {
+   "file": "sos-sov-2006-11-07-measures.pdf",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2006-general/measures.pdf",
+   "read": "2026-10-06",
+   "sha256": "ca31842bb64bd4005b0d4b3057931265dce940c38719327c94e35dd0597fa8fe",
+   "bytes": 60524
+  },
+  {
+   "file": "sos-sov-2006-11-07-measures.txt",
+   "url": "https://elections.cdn.sos.ca.gov/sov/2006-general/measures.pdf",
+   "read": "2026-10-06",
+   "sha256": "04572f12d12ae9cc11c8a4b0be268239312f832418ae2eb07427419a676cdaaf",
+   "bytes": 54184
+  },
+  {
+   "file": "sos-vig-2006-11-07-english.pdf",
+   "url": "https://vig.cdn.sos.ca.gov/2006/general/pdf/english.pdf",
+   "read": "2026-10-06",
+   "sha256": "3b920eba65948e3c7b5bd4e4bae34fea77eee287520fc6c05657bedc26016dbe",
+   "bytes": 3776855
+  },
+  {
+   "file": "sos-vig-2006-11-07-english.txt",
+   "url": "https://vig.cdn.sos.ca.gov/2006/general/pdf/english.pdf",
+   "read": "2026-10-06",
+   "sha256": "07c939d8b256b50c08d20ef0860c520d0da73028ac6fded48f6a2ca8ab654b83",
+   "bytes": 1081465
+  }
+ ]
+}

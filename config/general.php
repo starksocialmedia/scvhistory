@@ -21,6 +21,9 @@ return GeneralConfig::create()
     ->defaultWeekStartDay(1)
     // Prevent generated URLs from including "index.php"
     ->omitScriptNameInUrls()
+    // A replaced file keeps its address, so a browser or a CDN kept showing the old picture (Dan Hon, 6 October 2026).
+    // Asset URLs carry the file's modified time, so a replacement shows at once.
+    ->revAssetUrls()
     // Preload Single entries as Twig variables
     ->preloadSingles()
     // Prevent user enumeration attacks

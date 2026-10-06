@@ -1,0 +1,49 @@
+# Mike Garcia #29334: the profile, dry run (6 October 2026)
+
+Nothing is written by a dry run. The prose and every note, with what rests on Wikipedia alone, are in inventory/review/mike-garcia-profile-draft-2026-10-06.md. Living: public life only.
+
+## #29334 Mike Garcia
+
+- body: Mike Garcia represented the whole Santa Clarita Valley in the United States House of Representatives from May 2020 to Ja... (2298 chars)
+- footnotes: 10 notes
+- bodyAuthorship: editorial-2026
+- occupation: Navy pilot; business executive; congressman
+- wikidataId: Q94236068
+- bioguideId: G000061
+- personWikipediaUrl: https://en.wikipedia.org/wiki/Mike_Garcia_(politician)
+- relatedPersons: #29332 Katie Hill, #29336 George Whitesides
+- recordProvenance: record_valley_legislators_2026_10_04.php, 4 October 2026: a member for the valley's seat; build_mike_garcia_profile_2026... (199 chars)
+
+- fields already filled, kept: none
+- existing footnotes replaced: none (the record has no notes)
+- childOf: empty, not touched
+- birth and death fields: not set (living)
+- featuredImage: not touched (empty)
+- office holdings #29380, #29382: not touched
+
+## Body as it will read
+
+Mike Garcia represented the whole Santa Clarita Valley in the United States House of Representatives from May 2020 to January 2025.[1] Until January 2023 he sat for the 25th District, which under the 2011 lines joined the valley to Palmdale, eastern Lancaster and part of Simi Valley; from then he sat for the 27th, which under the 2021 lines joined it to Lancaster, Palmdale and part of the City of Los Angeles.[2] By his official biography he moved to Saugus in 1983, at the age of seven, and he graduated from Saugus High School in 1994.[3][4] Buck McKeon, who represented the valley in Congress from 1993 to 2015, nominated him to the United States Naval Academy.[3][5] In Congress he kept a Santa Clarita Valley office on Tourney Road, and he gave Santa Clarita as his home.[3]
+
+He took a bachelor's degree at the Naval Academy and a master's at Georgetown University, both in 1998, and served in the Navy from 1999 to 2009 and in the Navy Reserve until 2012.[4] By his official biography he was one of the Navy's first F/A-18 Super Hornet pilots and flew more than 30 combat missions in Operation Iraqi Freedom, and after leaving the Navy he spent eleven years as an executive of the Raytheon Company.[3]
+
+He came to the House through the special election held after Katie Hill resigned the seat in November 2019. In the special primary of 3 March 2020 he finished second of twelve candidates, with 41,365 votes, 25.4 per cent, behind Christy Smith, a Democrat, with 58,920, and ahead of Steve Knight, the district's member from 2015 to 2019, with 27,911. On 12 May 2020 he beat Smith by 95,667 votes to 78,721, 54.86 per cent.[6] He beat her again in the general election that November, by 169,638 votes to 169,305, a margin of 333,[7] and a third time in 2022, in the new 27th District, by 104,624 to 91,892.[8] In November 2024 George Whitesides, a Democrat, defeated him, by 154,040 votes to 146,050.[9]
+
+In his last term he sat on the House Appropriations Committee, the Permanent Select Committee on Intelligence and the Committee on Science, Space, and Technology.[3] At the count of the presidential electoral votes on 6 and 7 January 2021 he voted for the objections to counting the electoral votes of Arizona and of Pennsylvania; both failed, by 121 votes to 303 and 138 to 282.[10]
+
+## Notes as they will read
+
+1. His terms are the archive's office holdings #29380 (United States House of Representatives, 25th District, 2011 lines, from 12 May 2020, the day of the special election, to 3 January 2023) and #29382 (27th District, 2021 lines, 3 January 2023 to 3 January 2025). Biographical Directory of the United States Congress, "GARCIA, Mike," as captured by the Wayback Machine on 24 November 2020, https://web.archive.org/web/20201124080951id_/https://bioguideretro.congress.gov/Home/MemberDetails?memIndex=G000061: "elected as a Republican to the One Hundred Sixteenth Congress, by special election, to fill the vacancy caused by the resignation of United States Representative Katie Hill (May 12, 2020-present)."
+2. The archive's count of the valley's people by district, templates/_data/valley-districts.json, United States House of Representatives. Under the "2011 lines, drawn by the Citizens Redistricting Commission", in force "January 2013 to January 2023", the 25th held "the whole valley": "The whole valley, with Palmdale, eastern Lancaster and part of Simi Valley". Under the "2021 lines, drawn by the Citizens Redistricting Commission", in force "January 2023 to January 2027", the 27th held "the whole valley": "The whole valley, with Lancaster, Palmdale and part of the City of Los Angeles".
+3. His official biography, "Biography | U.S. Representative Mike Garcia," https://mikegarcia.house.gov/about/ (read in the Wayback Machine's capture of 13 December 2024): "Congressman Garcia was born in Granada Hills and moved to Saugus in 1983 with his mother and stepfather at the age of seven."; "A top graduate of Saugus High School, Congressman Garcia was nominated to attend the United States Naval Academy in Annapolis by former U.S. Representative Howard" (Buck) McKeon; "His superb flying performance earned him the honor of becoming one of the first F/A-18 Super Hornet strike fighter pilots in the Navy."; "While on active duty, Congressman Garcia flew over 30 combat missions during Operation Iraqi Freedom in the skies above Baghdad, Fallujah, and Tikrit."; "He subsequently joined the Raytheon Company as an executive."; "Throughout eleven years as an executive with Raytheon"; "He lives in Santa Clarita"; "Congressman Garcia currently serves on three House committees: House Committee on Appropriations, House Permanent Select Committee on Intelligence, and House Committee on Science, Space, and Technology." The page lists a "Santa Clarita Valley" office at "27200 Tourney Rd Suite 300".
+4. Biographical Directory of the United States Congress, "GARCIA, Mike" (the capture of 24 November 2020 cited above): "graduated from Saugus High School, Santa Clarita, Calif., 1994; B.S., United States Naval Academy, Annapolis, Md., 1998; M.A., Georgetown University, Washington, DC, 1998; United States Navy, 1999-2009; United States Navy Reserve, 2009-2012; business executive; real estate developer".
+5. Buck McKeon's office holdings #26980 (25th District, 1991 lines, 3 January 1993 to 3 January 2003), #29372 (2001 lines, to 3 January 2013) and #29374 (2011 lines, to 3 January 2015), each from the Secretary of State's Statements of Vote.
+6. California Secretary of State, "Final Official Election Results - Congressional District 25," Special Primary Election, March 3, 2020, https://www.sos.ca.gov/elections/prior-elections/special-elections/2019-cd25/official-results-primary: "Christy Smith, DEM" 58,920, "36.2%"; "Mike Garcia, REP" 41,365, "25.4%"; "Steve Knight, REP" 27,911, "17.1%"; nine others. Special General Election, May 12, 2020, https://www.sos.ca.gov/elections/prior-elections/special-elections/2019-cd25/official-results-general: "Christy Smith, DEM" 78,721, "45.14%"; "Mike Garcia, REP" 95,667, "54.86%". Both pages: "Vacancy resulting from the resignation of Katie Hill." Katie Hill's office holding #29378 ends with her resignation on 3 November 2019.
+7. California Secretary of State, Statement of Vote, General Election, November 3, 2020, United States Representative, 25th Congressional District, https://elections.cdn.sos.ca.gov/sov/2020-general/sov/24-us-reps.pdf: Christy Smith (DEM) Los Angeles 138,441, Ventura 30,864, District Totals 169,305; Mike Garcia (REP) Los Angeles 133,066, Ventura 36,572, District Totals 169,638; Percent 50.0% each. The difference, 333 votes, is the archive's subtraction.
+8. California Secretary of State, Statement of Vote, General Election, November 8, 2022, United States Representative, 27th Congressional District, https://elections.cdn.sos.ca.gov/sov/2022-general/sov/48-congress.pdf: Christy Smith (DEM) 91,892, 46.8%; Mike Garcia (REP) 104,624, 53.2%.
+9. California Secretary of State, Statement of Vote, General Election, November 5, 2024, United States Representative, 27th Congressional District, https://elections.cdn.sos.ca.gov/sov/2024-general/sov/25-us-rep-congress.pdf: George Whitesides (DEM) 154,040, 51.3%; Mike Garcia* (REP, the asterisk marking the incumbent) 146,050, 48.7%. George Whitesides's office holding #29384 (27th District, from 3 January 2025).
+10. Congressional Record, House, January 6, 2021, "Counting Electoral Votes: Joint Session of the House and Senate Held Pursuant to the Provisions of Senate Concurrent Resolution 1," 167 Cong. Rec. H76 and following, https://www.govinfo.gov/content/pkg/CREC-2021-01-06/html/CREC-2021-01-06-pt1-PgH76-4.htm. The first objection: "object to the counting of the electoral votes of the State of Arizona on the ground that they were not, under all of the known circumstances, regularly given." The second, from Representative Scott Perry: "I object to the electoral votes of my beloved Commonwealth of Pennsylvania". Roll No. 10, on the Arizona objection, "yeas 121, nays 303, not voting 7"; Roll No. 11, on the Pennsylvania objection, "yeas 138, nays 282, not voting 11"; "Garcia (CA)" is among the yeas in both. Clerk of the House, roll calls 10 (6 January 2021, 11:08 PM) and 11 (7 January 2021, 3:08 AM), "On Agreeing to the Objection," "Failed," https://clerk.house.gov/evs/2021/roll010.xml and https://clerk.house.gov/evs/2021/roll011.xml: "Garcia (CA)", party "R", vote "Yea", in both.
+
+recordProvenance after: 199 of 255 characters
+
+REFUSED: none

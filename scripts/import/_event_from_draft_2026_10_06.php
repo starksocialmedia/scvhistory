@@ -266,7 +266,7 @@ return function (array $CFG, bool $APPLY): void {
     $md = [];
     $md[] = "# {$TITLE}: the loader's dry run, 6 October 2026";
     $md[] = '';
-    $md[] = "Written by `scripts/import/$SCRIPT` (with `scripts/import/_event_from_draft_2026_10_06.php`) in " . ($APPLY ? 'an apply' : 'a dry run') . '. A dry run writes nothing to Craft. The event is read from `' . $CFG['v2'] . '` (SHA-256 `' . substr($CFG['sha'], 0, 16) . '...`), the v2 draft whose quotations were rechecked on 6 October 2026. Nathan approved the draft for applying on 6 October 2026.';
+    $md[] = "Written by `scripts/import/$SCRIPT` (with `scripts/import/_event_from_draft_2026_10_06.php`) in " . ($APPLY ? 'an apply' : 'a dry run') . '. A dry run writes nothing to Craft. The event is read from `' . $CFG['v2'] . '` (SHA-256 `' . substr($CFG['sha'], 0, 16) . '...`), ' . ($CFG['provenance'] ?? 'the v2 draft whose quotations were rechecked on 6 October 2026. Nathan approved the draft for applying on 6 October 2026.');
     $md[] = '';
     $md[] = '**Refusals:** ' . ($bad ? implode('; ', $bad) : 'none') . '.';
     $md[] = '';

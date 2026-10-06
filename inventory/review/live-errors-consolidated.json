@@ -4,36 +4,131 @@
   "2026-10-03 14:01:19 PDT",
   "2026-10-03 14:02:46 PDT"
  ],
- "total": 69,
+ "total": 103,
  "status_counts": {
-  "STILL PRESENT": 66,
+  "STILL PRESENT": 100,
   "NOT PRESENT on page title": 1,
   "PARTLY FIXED": 1,
   "N/A": 1
  },
  "by_origin": {
-  "Perkins": 17,
+  "Newhall": 14,
+  "Perkins": 29,
   "Beale": 11,
   "Hart": 13,
-  "del Valle": 12,
-  "Reynolds": 16
+  "del Valle": 19,
+  "Reynolds": 17
  },
  "citing_dossier": {
-  "Perkins": 18,
-  "Beale": 14,
+  "Newhall": 14,
+  "Perkins": 30,
+  "Beale": 15,
   "Hart": 15,
-  "del Valle": 15,
-  "Reynolds": 21
+  "del Valle": 24,
+  "Reynolds": 24
  },
  "newhall_hub_live_errors": 0,
+ "revisions": [
+  {
+   "date": "2026-10-03",
+   "note": "'1962' entries (Perkins PL1, PL2, PL4) re-checked live 16:04 PT: still present on ap0828, lw2232, signal/worden/lw092596 and signal/worden/old/lw092596; source notes expanded. Perkins K1/K2 back-apply needed no change here (CE44 already attributes 'one mile' to Perkins; no '1940s series' wording). Count unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Added 4 entries from the Perkins open-claims pass (Perkins PL18–PL21: 1930 census on hs_parade19680704book; 1851/first-Legislature roads on perkins032361; Carrillo grant 'nullified' on perkins-rsf-1957 and lw2570a; Ygnacio's offices in perkins-rsf-1957 fn 66). All four live-checked 2026-10-04 00:43 PT (~1 req/sec; HTML in live-errors-work/recheck_open16/): still present. Total 69 → 73. Existing IDs CE01–CE69 unchanged; the new entries are CE70–CE73, listed under their pages."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Added 2 entries from the Perkins CDNC fold-in (Perkins PL22: perkins part05 says J.D. LaRue was 'elected' JP in May 1869; the Board of Supervisors appointed him on petition (LA Daily News, 12 May 1869, CDNC OCR text via the user's browser search). PL23: perkins part06 dates Andres Pico's oil refining to 1855; the earliest period report found is Feb 1865, low confidence because a missing record is not proof). Live-checked 2026-10-04 01:06 PT (~1 req/sec; HTML in live-errors-work/recheck_cdnc/): both still present. perkins-pico-1958 already carries '[Or maybe not — Ed.]' and is not listed; ripley14 note 3 (Pico 'had taken brea ... in 1855 ... to experiment for light and heat') is related but does not say he distilled oil, so it is not listed. Total 73 → 75; CE01–CE73 unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Rechecked 2026-10-04, 73/75 still live. All 78 cited pages re-fetched 02:22–02:24 PT (~1 req/sec; HTML and per-entry excerpts in live-errors-work/recheck_20261004/); no page's visible text had changed since the previous fetch. 72 entries still present in full; CE31 still present on film.htm (mu8491 already dated 1934); CE27 still not in the lw3486 title (title shows only '1936'); CE69 is CC migration data, not a site page. No entry fixed, changed or gone; IDs and statuses unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Unified with the dossiers (approved by Nathan): the text of every entry now comes from the dossiers' own data, so the two cannot drift. Six entries had differed; each now carries the fuller wording in both files: CE01 (source: perkins-rsf-1957 and a pointer to Perkins C7 added), CE23 (Perkins dossier source wording; quote now verbatim, see below), CE66 (correction now includes the likely confusion with 'The Pico Ghost Camp' (1962) or Lamkin's early-1960s copying of the photo collection), CE63 (fuller verbatim quote; source merged), CE64 (source cites Reynolds C21), and CE49–CE52 and CE59 (the Reynolds dossier now carries them as RX1–RX5; source-dossier column names RX1–RX5). Quotes corrected after a verbatim check against the 2026-10-04 fetches; our earlier quotes were inexact: CE18 (lw2052 reads 'a judge awarded awarded 13,599 acres to Ygnacio (the westernmost section), 21,307 acres to Jacoba and 4,684 ...'; we had dropped the doubled 'awarded' and the parenthetical and added a comma), CE11 (film.htm entry quoted in full; we had dropped the quotation marks and comma around 'Pinto Ben'), CE23 (the paraphrase '1957 manuscript' had been in quotation marks; replaced by the verbatim sentences). IDs unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "ECPP mission-register records (user's browser session) and CDNC batch 3 (user's browser search, ~03:00 PT) folded in from the dossiers (approved by Nathan): added CE76 (del Valle L14), CE77 (del Valle L19), CE78 (del Valle L13), CE79 (del Valle L15), CE80 (Perkins PL26), CE81 (Perkins PL24), CE82 (Perkins PL25), CE83 (del Valle L16), CE84 (del Valle L17; Reynolds reprinted), CE85 (del Valle L18; Reynolds reprinted), CE86 (Reynolds RL13). Their text comes from the dossier data; their probes were checked against a fresh fetch of the 527 scvhistory pages cited in the dossiers and this list, 2026-10-04 03:00–03:11 PT (live-errors-work/ecpp_20261004/fetchlog.json). CE35 (Perkins PL12) and CE41 (Perkins PL17) take the Perkins dossier's updated text (LA Herald, 24 Oct 1888; tunnel headings met 14 Jul 1876). CE01–CE75 are pinned in ce_ids_20261004.json so the new entries cannot renumber them."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "HathiTrust and statute results folded in from the Perkins dossier (K16; requested by Nathan): added CE87 (Perkins PL29; Beale C13 (conflicts)), CE88 (Perkins PL28), CE89 (Perkins PL27). Their text comes from the dossier data; their probes were checked against the 2026-10-04 03:00–03:11 PT fetch (live-errors-work/ecpp_20261004/fetchlog.json). CE44 (Perkins PL13) now cites the 1862 statute itself (two miles on each side, ch. CCLIX p. 282), confidence raised. CE76–CE86 pinned in ce_ids_20261004.json."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Henry Mayo Newhall dossier folded in (dossiers/henry-mayo-newhall-sources.md; requested by Nathan 04:03 PT): added CE90 (Newhall NL8), CE91 (Newhall NL10), CE92 (Newhall NL11), CE93 (Newhall NL1), CE94 (Newhall NL4; del Valle C9 (conflicts)), CE95 (Newhall NL7), CE96 (Newhall NL3), CE97 (Newhall NL2), CE98 (Newhall NL5; del Valle C9 (conflicts)), CE99 (Newhall NL6), CE100 (Newhall NL9). Their text comes from the dossier data; their probes were checked against the dossier's fresh fetch of 198 pages, 2026-10-04 04:06–04:15 PT, about 1 req/sec (dossiers/newhall-hmn-work/fetchlog.json). Four of them (the 'sheriff's sale' on the ranch-house captions, lwhist, sg090199a and sg111200c) are the same claim as CE15 (del Valle L6) on other pages; CE15's source now points to them (HMN dossier K5). CE87–CE89 pinned in ce_ids_20261004.json, so CE01–CE89 are unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Henry Mayo Newhall dossier fold-in 2 (San Francisco directories on HathiTrust and 1882 newspapers on CDNC; requested by Nathan 06:52 and 07:14 PT): added CE101 (Newhall NL12), CE102 (Newhall NL13), CE103 (Newhall NL14). Their text comes from the dossier data; their probes were checked against a re-fetch of 8 pages, 2026-10-04 07:20:27–07:20:34 PT, about 1 req/sec (dossiers/newhall-hmn-work/fetch2/fetchlog.json). Evidence: the 1850 (Kimball), 1854 (LeCount & Strong) and 1860–1863/64 (Langley) directories (HMN dossier section 5.1). CE90–CE100 pinned in ce_ids_20261004.json, so CE01–CE100 are unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Henry Mayo Newhall dossier fold-in 3 (Daily Alta copartnership notices, 1852–60; approved by Nathan 08:13 PT): CE101 (Newhall NL12) and CE103 (Newhall NL14) now cite the firm's own notices (H. M. Newhall & Co. from 4 Jan 1860); their correction, source and confidence come from the dossier data, their quotes are unchanged and were re-checked against the 07:20 PT re-fetch. CE102 (Newhall NL13) unchanged. No new entries; total 103; IDs unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Henry Mayo Newhall dossier fold-in 4 (full-zoom readings; approved by Nathan 08:50 PT): CE101 (Newhall NL12) and CE103 (Newhall NL14): correction, evidence and confidence updated to the seven-stage firm sequence (adding the San Joaquin Republican of 11 Aug 1854 and the Daily Alta notices of 7 Jan 1858) and to the reading status of the notices; quotes and verdicts unchanged. CE101: no notice records the buy-out of 'Hall & Martin'. CE103: al1882 is no longer said to have the order wrong (dossier K16). CE102 (Newhall NL13) unchanged. No new entries; total 103; IDs unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Reading-status pass (requested by Nathan, 09:17 PT): every entry now labels its quote (all exact text from the live page, with site transcriptions named) and the evidence for the correct value (confirmed at full zoom, image reading only, scan text only, or exact text (born-digital)); a new section lists the labels, the counts and the 7 entries whose evidence rests only on scan text or image readings (CE70, CE71, CE72, CE73, CE74, CE75, CE87). The same labels are in each dossier's new Reading status section. Labels only: no entry, correction, confidence or verdict changed."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Full-zoom pass (approved by Nathan 09:53 PT): page images read at letter level for the evidence of CE70 (1930 census), CE71 (Hoffman; Bancroft IV), CE72 (Bancroft V), CE73 (Statutes 1850), CE87 and the radius in CE44 (Statutes 1862), and, from the user's full-zoom browser crops, CE74 (LA Daily News, 12 May 1869), CE75 (Daily Alta, 21 Feb 1865) and the Daily Alta notice of 5 Jan 1860 behind CE101 and CE103 (Newhall R22). Evidence labels updated; the seven entries listed as weak in the reading-status pass (CE70, CE71, CE72, CE73, CE74, CE75, CE87) are no longer weak (weak now: 0). The source text of CE44, CE70–CE75 and CE87 and the confidence notes of CE101 and CE103 follow the dossiers (reading-status wording only). The dossiers' quotes of the 1869 and 1865 passages keep OCR errors, reported to Nathan. No entry, correction, confidence level or verdict changed; total 103; IDs unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "Full-zoom pass 2 and corrections (approved by Nathan; relayed 10:20 and 10:44 PT): CE74's evidence note follows the corrected quote in the Perkins and Reynolds dossiers ('Soledad', 'appointed'; Perkins K17); CE71's source cites Bancroft IV p. 642 n. 22 continued on p. 643, with the asterisk key on p. 643; CE35, CE80 and CE86 now have the LA Herald page of 24 Oct 1888 confirmed at full zoom (the user's full-zoom browser crop, perkins-work/zoom/cdnc_20261004/LAH18881024.2.20_Southern-Hotel-fire.png). No entry, correction, confidence level or verdict changed; total 103; IDs unchanged."
+  },
+  {
+   "date": "2026-10-04",
+   "note": "zm3 (2026-10-04; build relayed 12:15 PT; Nathan's rulings 11:07, 11:48 and 12:41 PT): CE41's evidence, the Santa Barbara Weekly Press of 22 Jul 1876, is confirmed at full zoom, and the 14 July date rests on one LA Herald report at one remove (Perkins K20); CE101's April 1852 advertisement is confirmed at full zoom ('A. H. REED', Newhall K18); CE102's Kimball 1850 entries (pp. 56 and 74, and the N section, pp. 83–84) are confirmed at full zoom, so its evidence is now confirmed at full zoom plus exact text; CE101's and CE103's directories, read from the user's HathiTrust crops, are confirmed at full zoom for LeCount 1854 p. 101 and Langley 1862 and 1863/64 and image readings only for Langley 1860 and 1861, so 'scan text only' gives way to 'image reading only' in both; CE85's ECPP 1309 and 3009 are now 'not read' (read off the record pages by a browser session, not screenshot-checked; browser-transcription rule). The reading levels gained a sixth, 'not read'. No entry, correction, confidence level or verdict changed; total 103; IDs unchanged."
+  }
+ ],
  "entries": [
+  {
+   "id": "CE90",
+   "page": "https://scvhistory.com/scvhistory/al1882.htm",
+   "also_on": [],
+   "current_text": "\"H.G. Newhall and Edward W. Newhall\"",
+   "correction": "Add [sic] or a note: there was no son Edward; the obituary means Edwin White Newhall (the third son).",
+   "source": "sfexaminer18820321hmn (will, 21 Mar 1882: 'Henry Gregory Newhall, William Mayo Newhall, Edwin White Newhall, Walter Scott Newhall and George Aimer [sic] Newhall'); lw3325 census (C15)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL8"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:06 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/al1882.htm",
+     "kind": "text",
+     "pattern": "H.G. Newhall and Edward W. Newhall",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: California Spirit of the Times, 18 Mar 1882 (obituary))",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: sfexaminer18820321hmn, lw3325",
+   "evidence_weak": false
+  },
   {
    "id": "CE01",
    "page": "https://scvhistory.com/scvhistory/ap0828.htm",
    "also_on": [],
    "current_text": "Perkins published a manuscript on the history of the Santa Clarita Valley in 1957. In 1962 he wrote a series of articles for The Signal newspaper, appropriately titled \"Story of our Valley.\"",
    "correction": "In 1957 the HSSC Quarterly published his 'Rancho San Francisco: A Study of a California Land Grant' (June 1957). 'The Story of Our Valley' ran in The Signal in 1954–55 (an earlier version ran in 1946–47).",
-   "source": "perkins intro (Apr 1954–Jan 1955); lat19770102perkins (Apr 1–Dec 30, 1954); the page's own sidebar ('Story of Our Valley 1954-55'); perkins-rsf-1957; sg19470102perkins",
+   "source": "perkins intro (Apr 1954–Jan 1955; intro says Perkins began ~1930, had his answers '20 years previously', and this 'new, revised, augmented' version runs 'down to the year 1950'); lat19770102perkins (Apr 1–Dec 30, 1954); the page's own sidebar ('Story of Our Valley 1954-55'); general.htm ('1954-55'); perkins-rsf-1957; sg19470102perkins (1946/47 version); outside: elsmerecanyon.com sources list cites Signal issues Sept 2–Oct 7, 1954 for the series and 'The Pico Ghost Camp' Jan 18 & 25, 1962 (likely source of the '1962' confusion). No 1962 run/reprint/booklet found; an unrecorded 1962 re-run is NEEDS_VERIFICATION (Newhall Signal 1962 run). See Perkins C7",
    "dossiers": [
     "Perkins"
    ],
@@ -42,7 +137,7 @@
    ],
    "confidence": "high",
    "fix": "edit site text, caption, title or link",
-   "live_status": "STILL PRESENT",
+   "live_status": "STILL PRESENT (re-checked 2026-10-03 16:04 PT)",
    "check": [
     {
      "url": "https://scvhistory.com/scvhistory/ap0828.htm",
@@ -50,7 +145,13 @@
      "pattern": "In 1962 he wrote",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, sg19470102perkins",
+   "evidence_weak": false
   },
   {
    "id": "CE02",
@@ -90,7 +191,46 @@
      "pattern": "Oustanding Citizen",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE87",
+   "page": "https://scvhistory.com/scvhistory/ap2306.htm",
+   "also_on": [],
+   "current_text": "'At the time the Beal [sic] cut was built, the county supervisors granted a toll franchise, which extended three miles each way from the cut, so no one could avoid the tolls by going around it.'",
+   "correction": "Add editor's note: the franchise was granted by the Legislature (Statutes of California 1861, ch. CCCXI; amended 1862, ch. CCLIX), with tolls fixed by the Board of Supervisors; the protected radius was two miles on each side of the road (1862, p. 282).",
+   "source": "Statutes of California 1862 (Thirteenth Session), ch. CCLIX, approved April 18, 1862, p. 282, amending §2 of the 1861 act: '...and, provided, also, that no other person or persons shall, within the period of this franchise, build any other toll road across said mountain, within two miles on each side of said road.' (Assembly Clerk scan, our tesseract OCR read 2026-10-04; obvious OCR slips such as 'provider' and 'cach' corrected; page image confirmed at full zoom 2026-10-04, perkins-work/zoom/ce87_stat1862_ch259_proviso_full.png, read at letter level: the print matches the quote), https://clerk.assembly.ca.gov/sites/clerk.assembly.ca.gov/files/archive/Statutes/1862/1862.PDF (PDF p. 329) (C14; Beale dossier C13)",
+   "dossiers": [
+    "Beale",
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL29",
+    "Beale C13 (conflicts)"
+   ],
+   "confidence": "high (statute read 2026-10-04)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:01 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/ap2306.htm",
+     "kind": "text",
+     "pattern": "three miles each way from the cut",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Newhall Signal, 24 Feb 1939)",
+   "evidence_reading_status": [
+    "confirmed at full zoom"
+   ],
+   "evidence_reading_note": "Statutes of California 1862, ch. CCLIX, p. 282: page image read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce87_stat1862_ch259_proviso_full.png)",
+   "evidence_weak": false
   },
   {
    "id": "CE03",
@@ -115,7 +255,13 @@
      "pattern": "In 1870 he bought the Decatur House",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE04",
@@ -140,7 +286,13 @@
      "pattern": "LW2159",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE05",
@@ -173,7 +325,13 @@
      "pattern": "circa 1926",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: hartmansion-const",
+   "evidence_weak": false
   },
   {
    "id": "CE06",
@@ -198,7 +356,13 @@
      "pattern": "Newly Completed Hart Mansion",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: hartmansion-const, lw2271",
+   "evidence_weak": false
   },
   {
    "id": "CE07",
@@ -223,7 +387,44 @@
      "pattern": "DO5001",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE91",
+   "page": "https://scvhistory.com/scvhistory/dispatch1501reynolds.htm",
+   "also_on": [],
+   "current_text": "\"which included 48,000 acres that would become The Newhall Land and Fanning Co.\"",
+   "correction": "Typo: 'Farming'. (The acreage is the usual round figure; see C8.)",
+   "source": "Company name as on rn1701, lw3702 and lw3713",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL10"
+   ],
+   "confidence": "high (typo)",
+   "fix": "edit (web-edition title, byline, note or typo; not the author's argument)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:06 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/dispatch1501reynolds.htm",
+     "kind": "text",
+     "pattern": "The Newhall Land and Fanning Co.",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE08",
@@ -248,7 +449,13 @@
      "pattern": "FH2101",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE09",
@@ -273,7 +480,13 @@
      "pattern": "254-acre Horseshoe Ranch",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: mu8901",
+   "evidence_weak": false
   },
   {
    "id": "CE10",
@@ -298,13 +511,19 @@
      "pattern": "Completed in 1927",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: lw2271",
+   "evidence_weak": false
   },
   {
    "id": "CE11",
    "page": "https://scvhistory.com/scvhistory/film.htm",
    "also_on": [],
-   "current_text": "\"LW2341 - ... Pinto Ben on Rudy Vallee's Radio Show, 12-13-1934\" links lw2341.htm",
+   "current_text": "\"LW2341 - William S. Hart Recites His Original Poem, 'Pinto Ben,' on Rudy Vallee's Radio Show, 12-13-1934.\" links lw2341.htm",
    "correction": "It should be LW2342 / lw2342.htm (lw2341 is the 1928 Victor record, which is also listed separately, so LW2341 appears twice).",
    "source": "Live link parse; page titles of lw2341 and lw2342 (C22).",
    "dossiers": [
@@ -323,7 +542,13 @@
      "pattern": "LW2341 - William S\\. Hart Recites His Original Poem, .Pinto Ben,. on Rudy Vallee",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE12",
@@ -356,7 +581,13 @@
      "pattern": "you would be trespassing",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE13",
@@ -381,7 +612,130 @@
      "pattern": "Ygnacio's stepfather",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: lastar18640514wolfskill, perkins-rsf-1957",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE92",
+   "page": "https://scvhistory.com/scvhistory/hmn-bio-foundation.htm",
+   "also_on": [],
+   "current_text": "\"Newhall was working as an auctioneer on the East Coast when gold was discovered in California in 1849.\"",
+   "correction": "Editor's note: gold was discovered in January 1848; and the 1882 obituary has him in the auction business in Nashville, Tennessee, until 1849 (after Philadelphia).",
+   "source": "al1882 ('From there he removed to Nashville, Tennessee, where he was engaged in the auction business until 1849'); cocsilverspur041115 (Nashville). The discovery date (James Marshall, Coloma, 24 Jan 1848) is standard; a site page stating it is NEEDS_VERIFICATION (C3)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL11"
+   ],
+   "confidence": "high on 1848; medium on 'East Coast'",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:06 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/hmn-bio-foundation.htm",
+     "kind": "text",
+     "pattern": "when gold was discovered in California in 1849",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: al1882",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE93",
+   "page": "https://scvhistory.com/scvhistory/hs2004.htm",
+   "also_on": [],
+   "current_text": "\"the town took shape in 1887, just one year prior to H.M. Newhall's death, when the Saugus Train Station was erected\"",
+   "correction": "Henry Mayo Newhall died March 13, 1882, five years before the 1887 station. Drop 'just one year prior to H.M. Newhall's death' (or, if Newhall Land's formation was meant, that was 1883).",
+   "source": "al1882 (California Spirit of the Times, 18 Mar 1882: 'died in this city on Monday last'); ap1335; lw3325 (Daily Alta, 16 Mar 1882)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL1"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:09 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/hs2004.htm",
+     "kind": "text",
+     "pattern": "just one year prior to H.M. Newhall's death",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: al1882, lw3325",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE94",
+   "page": "https://scvhistory.com/scvhistory/hs4002.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/hs4010.htm",
+    "https://scvhistory.com/scvhistory/hs5001a.htm",
+    "https://scvhistory.com/scvhistory/us31291.htm"
+   ],
+   "current_text": "\"In 1875, Henry M. Newhall bought the rancho at a sheriff's sale.\"",
+   "correction": "Not a sheriff's sale: the 1873 sheriff's deed went to Fernald & Richards, and Newhall bought from them by private deed on January 15, 1875, for $90,000 (a second sheriff's sale was called off).",
+   "source": "perkins-rsf-1957 ('deeded to Henry M. Newhall, consideration $90,000, January 15, 1875'; fn 96); robinson_storyofvalencia_1967 ('called off when a private buyer was found'); same error as CE15 (del Valle L6) (C8)",
+   "dossiers": [
+    "Newhall",
+    "del Valle"
+   ],
+   "source_items": [
+    "Newhall NL4",
+    "del Valle C9 (conflicts)"
+   ],
+   "confidence": "high (deed itself NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:15 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/hs4002.htm",
+     "kind": "text",
+     "pattern": "Newhall bought the rancho at a sheriff's sale",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/hs4010.htm",
+     "kind": "text",
+     "pattern": "Newhall bought the rancho at a sheriff's sale",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/hs5001a.htm",
+     "kind": "text",
+     "pattern": "Newhall bought the rancho at a sheriff's sale",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/us31291.htm",
+     "kind": "text",
+     "pattern": "Newhall bought the rancho at a sheriff's sale",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
   },
   {
    "id": "CE14",
@@ -406,7 +760,169 @@
      "pattern": "conculsion",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE70",
+   "page": "https://scvhistory.com/scvhistory/hs_parade19680704book.htm",
+   "also_on": [],
+   "current_text": "'The 1930 Census counted just over 2,000 folks in the whole darned Soledad Township.'",
+   "correction": "Add editor's note: the 1930 Census counted 3,026 in Soledad township (Antelope township, separate, 4,992)",
+   "source": "Fifteenth Census 1930, Population Vol. I, Table 4 (California), p. 135 (census.gov 03815512v1ch03.pdf, PDF p. 47; page image confirmed at full zoom 2026-10-04, perkins-work/zoom/ce70_p135_soledad_row.png)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL18"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (checked 2026-10-04 00:43 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/hs_parade19680704book.htm",
+     "kind": "text",
+     "pattern": "just over 2,000 folks",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: 1968 parade book)",
+   "evidence_reading_status": [
+    "confirmed at full zoom"
+   ],
+   "evidence_reading_note": "1930 census volume, pp. 134–135: native 600-dpi page images read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce70_p135_soledad_row.png, ce70_p134_antelope_row.png)",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE76",
+   "page": "https://scvhistory.com/gif/galleries/lo3401/",
+   "also_on": [],
+   "current_text": "\"Antonio del Valle died June 21, 1841.\"",
+   "correction": "Change to: 'Antonio del Valle died in 1841 and was buried at Mission San Fernando on June 3, 1841.'",
+   "source": "ECPP id 72898, Mission San Fernando burial 02257, Burial Date '3 Jun 1841' (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION) (C4; Perkins P30)",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L14"
+   ],
+   "confidence": "high (ECPP index; register image NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:00 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/gif/galleries/lo3401/",
+     "kind": "text",
+     "pattern": "Antonio del Valle died June 21, 1841",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE77",
+   "page": "https://scvhistory.com/gif/galleries/lw2706/",
+   "also_on": [],
+   "current_text": "\"Magdalena was a daughter of Antonio del Valle and Jacoba Feliz. After Antonio's death, Ygnacio bought out his half-sister Magdalena's interest.\"",
+   "correction": "Change to: 'Magdalena was a daughter of Antonio del Valle and María Policarpa López, born at Santa Barbara in 1831.' Whether she was Ygnacio's full or half sister is not shown in the records seen; drop 'half-sister' or mark it unverified.",
+   "source": "ECPP id 976, Santa Barbara Presidio baptism 00917, 4 Jul 1831: mother 'Maria Policarpa' 'Lopez', father 'Antonio' 'Valles' ('viudo') (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION; the father's identity is an inference: NEEDS_VERIFICATION) (C3; Perkins P31)",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L19"
+   ],
+   "confidence": "medium-high (NEEDS_VERIFICATION: register image; the father's identity is inferred)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:01 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/gif/galleries/lw2706/",
+     "kind": "text",
+     "pattern": "Magdalena was a daughter of Antonio del Valle and Jacoba Feliz",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE95",
+   "page": "https://scvhistory.com/oldtownnewhall/news/sg111200c.htm",
+   "also_on": [],
+   "current_text": "\"The Newhall Ranch House belonged to the Newhall family, who bought it at a sheriff's sale in 1875.\"",
+   "correction": "Editor's note: Henry Mayo Newhall bought the rancho by private deed on January 15, 1875 ($90,000).",
+   "source": "perkins-rsf-1957; robinson_storyofvalencia_1967 (C8)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL7"
+   ],
+   "confidence": "high (deed itself NEEDS_VERIFICATION)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:06 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/oldtownnewhall/news/sg111200c.htm",
+     "kind": "text",
+     "pattern": "who bought it at a sheriff's sale in 1875",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE88",
+   "page": "https://scvhistory.com/scvhistory/johnson-kashtiq.htm",
+   "also_on": [],
+   "current_text": "'Perkins, Arthur P. 1957 — Rancho San Francisco: A Study of a California Land Grant . Historical Society of Southern California Quarterly 39:99-126.'",
+   "correction": "Add [sic] or an editor's note: the author is Arthur B. (Buckingham) Perkins; year, volume and pages are right. Bibliographic line only.",
+   "source": "HSSC Quarterly contents pages, 1957 and 1958 ('By Arthur B. Perkins'; HathiTrust uc1.b3609125, uc1.b3609126) (C8)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL28"
+   ],
+   "confidence": "high (low priority)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:02 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/johnson-kashtiq.htm",
+     "kind": "text",
+     "pattern": "Perkins, Arthur P.",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "HSSC Quarterly contents pages, 1957 and 1958 (HathiTrust page-image screenshots b3acf9e1…, f1b30e69…, 4695ccf6…, read at letter level); 'Arthur B. Perkins' also on the site's perkins pages",
+   "evidence_weak": false
   },
   {
    "id": "CE15",
@@ -414,7 +930,7 @@
    "also_on": [],
    "current_text": "\"They retained the westernmost 1,350 acres, which became the separate Rancho Camulos when Henry Newhall bought the 46,460 acres that remained of the old Rancho San Francisco at a sheriff's sale in 1875\"",
    "correction": "Newhall's Jan 15, 1875 purchase ($90,000) was not a sheriff's sale. The 1873 sheriff's sale went to Fernald & Richards; a second sheriff's sale was called off when a private buyer (Newhall) was found.",
-   "source": "The site's own robinson_storyofvalencia_1967 summary; perkins-rsf-1957 ('deeded to Henry M. Newhall, consideration $90,000, January 15, 1875'). The acreage (46,460) is NEEDS_VERIFICATION.",
+   "source": "The site's own robinson_storyofvalencia_1967 summary; perkins-rsf-1957 ('deeded to Henry M. Newhall, consideration $90,000, January 15, 1875'). The acreage (46,460) is NEEDS_VERIFICATION. The same 'sheriff's sale' claim is live on hs4002, hs4010, hs5001a, us31291, lwhist, sg090199a and oldtownnewhall/news/sg111200c (Henry Mayo Newhall dossier NL4–NL7, 2026-10-04).",
    "dossiers": [
     "del Valle"
    ],
@@ -431,7 +947,13 @@
      "pattern": "sheriff'?s sale in 1875",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Los Angeles Star, 14 May 1864)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
   },
   {
    "id": "CE16",
@@ -464,7 +986,13 @@
      "pattern": "for good in 1854",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE17",
@@ -489,7 +1017,44 @@
      "pattern": "Francsico",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE96",
+   "page": "https://scvhistory.com/scvhistory/lw2050.htm",
+   "also_on": [],
+   "current_text": "\"Trouble is, as far as anyone knows, Newhall's Sons & Co. wasn't set up until 1883, a year after H.M. Newhall's death.\"",
+   "correction": "The site's own 1882 obituary dates the firm to January 1, 1881, so the billhead's 'July 18, 1881' is consistent; the caption's puzzle can be resolved.",
+   "source": "al1882: 'On the first of January, 1881, Mr. Newhall retired from the firm in favor of his sons, H.G. Newhall and Edward W. Newhall, who associated with P. Van Pelt under the firm of Newhall's Sons & Co.' (C15)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL3"
+   ],
+   "confidence": "high",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:07 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2050.htm",
+     "kind": "text",
+     "pattern": "wasn't set up until 1883, a year after H.M. Newhall's death",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: al1882",
+   "evidence_weak": false
   },
   {
    "id": "CE18",
@@ -497,7 +1062,7 @@
    "also_on": [
     "https://scvhistory.com/scvhistory/signal/reynolds/part15.html"
    ],
-   "current_text": "\"a judge awarded 13,599 acres to Ygnacio, 21,307 acres to Jacoba, and 4,684 acres to each of Jacoba's six children\"",
+   "current_text": "\"a judge awarded awarded 13,599 acres to Ygnacio (the westernmost section), 21,307 acres to Jacoba and 4,684 acres to each of Jacoba's six children\"",
    "correction": "The three figures add up to 62,010 acres, about 13,400 more than the whole rancho (48,611.88 acres patented). They cannot all be right. Add an editor's note, or replace them with the documented sequence: undivided shares 1841–1870, then the 1870 partition that gave Ygnacio Camulos (about 1,340 acres). reynolds part29 gives yet another figure, 'original grant of 16,599 acres'.",
    "source": "Arithmetic; patent acreage (Land Case 303 SD, Bancroft/Calisphere); perkins-rsf-1957 ('could not be partitioned before title confirmation'; 1870 partition, 2/21, 1,340 acres); robinson_storyofvalencia_1967 (undivided 5/11).",
    "dossiers": [
@@ -524,7 +1089,44 @@
      "pattern": "13,599",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE78",
+   "page": "https://scvhistory.com/scvhistory/lw2052.htm",
+   "also_on": [],
+   "current_text": "\"Antonio moved his new family (he remarried, to the much younger Jacoba Feliz) moved into the rancho, where he lived until his death on June 21, 1841.\"",
+   "correction": "Change the date: Antonio del Valle was buried at Mission San Fernando on June 3, 1841, so he died on or before that date, not on June 21. (The doubled 'moved' is the page's own.)",
+   "source": "ECPP id 72898, Mission San Fernando burial 02257, Burial Date '3 Jun 1841' (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION) (C4; Perkins P30)",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L13"
+   ],
+   "confidence": "high (ECPP index; register image NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:03 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2052.htm",
+     "kind": "text",
+     "pattern": "death on June 21, 1841",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
   },
   {
    "id": "CE19",
@@ -555,7 +1157,13 @@
      "pattern": "Acutally",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: penpictures, carter-ramona1902",
+   "evidence_weak": false
   },
   {
    "id": "CE20",
@@ -595,7 +1203,13 @@
      "pattern": "Legislature at statehood in 1850",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE21",
@@ -628,7 +1242,45 @@
      "pattern": "Natural History Museum|NHMLA|Los Angeles County",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE101",
+   "page": "https://scvhistory.com/scvhistory/lw2106.htm",
+   "also_on": [],
+   "current_text": "\"H.M. Newhall & Company was founded as an auction house in San Francisco in 1852, when H.M. Newhall bought out two partners who had originally hired him (Hall & Martin).\"",
+   "correction": "Editor's note on the quoted family note: the firm took the name H.M. Newhall & Co. on 4 January 1860, when Newhall bought out Henry Gregory, E. W. Eddy and Theodore Voizin of Newhall, Gregory & Co. (dissolution notice, Daily Alta California, 5 Jan 1860). Before that the firm went through six stages: Newhall & Hall (named in April 1852), Newhall, Gregory & Co. (by Aug 1854), Newhall, Gregory & Claghorn (to 1 Jan 1855), Newhall & Gregory (1 Jan 1855 to 1 Jan 1858), Newhall & Co. with E. W. Eddy (from 1 Jan 1858) and Newhall, Gregory & Co. again (to 4 Jan 1860). The business itself does go back to about 1852 ('Newhall & Hall's building', April 1852). No notice seen records him buying out 'Hall & Martin'.",
+   "source": "The firm's notices in the Daily Alta California: 5 Jan 1860, p. 3 ('will continue the business in the name of H. M. NEWHALL & CO.', dated Jan. 4th, 1860); 7 Jan 1858, p. 3 (Newhall & Gregory dissolved 1 Jan 1858; Newhall & Co., with E. W. Eddy, from that day); 11 Mar 1855, p. 4 (Newhall, Gregory & Claghorn expired 1 Jan 1855; Newhall & Gregory); 17 Apr 1852, p. 2 ('Newhall & Hall's building'); San Joaquin Republican, 11 Aug 1854, p. 3 ('recently occupied by Messrs. Newhall, Gregory & Co.') (CDNC page images; section 5.1 R18, R20, R22, R24, R25). LeCount & Strong, San Francisco City Directory 1854, p. 101 (HathiTrust uc1.31822035086826, seq 127); Langley 1860, p. 239 (hvd.hn4gyc, seq 271) (C4; section 5.1 R3, R4)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL12"
+   ],
+   "confidence": "high on the name and its 1860 date (the firm's own notices); 'founded ... in 1852' fits the business, which was Newhall & Hall by April 1852. Reading status: the 1855, 1858 and 1860 notices (the 1860 notice gives the date of the name) and the 1854 advertisement are confirmed at full zoom; the 1852 advertisement is now confirmed at full zoom too (the user's crop, 2026-10-04 ~12:15 PT)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 07:20 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2106.htm",
+     "kind": "text",
+     "pattern": "H.M. Newhall & Company was founded as an auction house in San Francisco in 1852",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "image reading only"
+   ],
+   "evidence_reading_note": "the 1855, 1858 and 1860 notices (the 5 Jan 1860 notice gives the date of the name; read at letter level in the user's full-zoom crop, Newhall evidence_zoom_20261004/70de4a0c….png, 2026-10-04), the 1854 advertisement and, since zm3 (2026-10-04), the April 1852 advertisement (the user's full-zoom crop newhall-hmn-work/evidence_zoom_zm3/DAC18520417.2.17.1_1.png: 'A. H. REED … in Newhall & Hall's building') are confirmed at full zoom; the directories, read from the user's browser crops in zm3, are confirmed at full zoom for LeCount 1854 p. 101 and Langley 1862 and 1863/64, and image readings only for Langley 1860 and 1861 p. 258 (Newhall section 5.1)",
+   "evidence_weak": false
   },
   {
    "id": "CE22",
@@ -675,15 +1327,21 @@
      "pattern": "Defiance,? (in )?Texas",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE23",
    "page": "https://scvhistory.com/scvhistory/lw2232.htm",
    "also_on": [],
-   "current_text": "<title> 'SCVHistory.com AP0828 | People | Arthur B. Perkins, Oustanding Citizen 1964.'; heading 'Oustanding Citizen 1964'; body repeats the ap0828 '1957 manuscript' / '1962' sentences",
+   "current_text": "<title> 'SCVHistory.com AP0828 | People | Arthur B. Perkins, Oustanding Citizen 1964.'; heading 'Oustanding Citizen 1964'; body repeats the ap0828 sentences 'Perkins published a manuscript on the history of the Santa Clarita Valley in 1957. In 1962 he wrote a series of articles for The Signal newspaper ...'",
    "correction": "Title 'SCVHistory.com LW2232 | ...'; 'Outstanding'; fix the two sentences as in PL1",
-   "source": "URL code; spelling; as PL1",
+   "source": "URL code; spelling; '1962' as PL1 (CE01)",
    "dossiers": [
     "Perkins"
    ],
@@ -692,7 +1350,7 @@
    ],
    "confidence": "high",
    "fix": "edit site text, caption, title or link",
-   "live_status": "STILL PRESENT",
+   "live_status": "STILL PRESENT (re-checked 2026-10-03 16:04 PT)",
    "check": [
     {
      "url": "https://scvhistory.com/scvhistory/lw2232.htm",
@@ -706,7 +1364,13 @@
      "pattern": "In 1962 he wrote",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE24",
@@ -739,7 +1403,13 @@
      "pattern": "hs9909t",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE25",
@@ -764,7 +1434,44 @@
      "pattern": "LW2311l\\b",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE79",
+   "page": "https://scvhistory.com/scvhistory/lw2526a.htm",
+   "also_on": [],
+   "current_text": "\"After Antonio's death on June 21, 1841, the property passed to his heirs\"",
+   "correction": "Change the date: Antonio del Valle was buried at Mission San Fernando on June 3, 1841, so he died on or before that date, not on June 21.",
+   "source": "ECPP id 72898, Mission San Fernando burial 02257, Burial Date '3 Jun 1841' (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION) (C4; Perkins P30)",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L15"
+   ],
+   "confidence": "high (ECPP index; register image NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:05 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2526a.htm",
+     "kind": "text",
+     "pattern": "death on June 21, 1841",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
   },
   {
    "id": "CE26",
@@ -789,7 +1496,13 @@
      "pattern": "ranch was divided among his widow",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
   },
   {
    "id": "CE27",
@@ -814,7 +1527,45 @@
      "pattern": "7-11-1936|July 11",
      "present": false
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE102",
+   "page": "https://scvhistory.com/scvhistory/lw3564.htm",
+   "also_on": [],
+   "current_text": "\"Edward A. Hall was the son of Almer Ives Hall, the man who gave Henry Mayo Newhall his first job in San Francisco in 1851 at Hall, Martin & Co., auctioneers. Almer Hall and George Martin were 20 years old in 1849\"",
+   "correction": "The 1850 San Francisco directory names Hall's partner as Henry Martin ('Martin, Henry, f[irm] Hall & Martin'), and the site's 2012 essay also calls him Henry Martin. Check the source behind 'George' before changing it (NEEDS_VERIFICATION). (The year Newhall joined, 1850 or 1851, is unsettled: C4.)",
+   "source": "Kimball, San Francisco City Directory 1850 (1890 reprint), p. 74 and p. 56 (HathiTrust njp.32101074863646, seq 80 and 62, both confirmed at full zoom: 'Martin, Henry, f Hall & Martin,Jack b M & San'; 'Hall & Martin, auctioneers, Jackson'); lw3756 and the other essay pages ('Henry Martin quit and sold his share of the business to Henry Newhall') (C4; section 5.1 R1)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL13"
+   ],
+   "confidence": "medium (one 1850 directory, whose 'Martin, Henry' (p. 74) and 'Hall & Martin' (p. 56) are now confirmed at full zoom; the site's essay agrees)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 07:20 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3564.htm",
+     "kind": "text",
+     "pattern": "Almer Hall and George Martin were 20 years old in 1849",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "Kimball's 1850 directory, confirmed at full zoom in zm3 (2026-10-04) from the user's browser crops: p. 56 ('Hall & Martin', 'Hall, Alme J.'; newhall-hmn-work/evidence_zoom_zm3/R1_62_hall_martin.png), p. 74 ('Martin, Henry, f Hall & Martin,Jack b M & San'; newhall-hmn-work/evidence_zoom_zm3/hathi2/R1_80_martin-henry.png) and the N section, pp. 83–84 (no Newhall entry); the site's own 2012 essay for the framing",
+   "evidence_weak": false
   },
   {
    "id": "CE28",
@@ -847,7 +1598,162 @@
      "pattern": "Boy and Man,.?,? 3-28-1928",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE103",
+   "page": "https://scvhistory.com/scvhistory/lw3756.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/al1873.htm",
+    "https://scvhistory.com/scvhistory/historymoment_sansome.htm",
+    "https://scvhistory.com/scvhistory/lw2050.htm",
+    "https://scvhistory.com/scvhistory/lw2106.htm",
+    "https://scvhistory.com/scvhistory/lw2131.htm",
+    "https://scvhistory.com/scvhistory/lw2182.htm"
+   ],
+   "current_text": "\"In 1852, Henry erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co., Auctioneers and Commission Merchants.\"",
+   "correction": "Not in 1852. The firm's own notices show Newhall & Hall (April 1852), Newhall, Gregory & Co. (by Aug 1854), Newhall, Gregory & Claghorn (to 1 Jan 1855), Newhall & Gregory (1 Jan 1855 to 1 Jan 1858), Newhall & Co. (from 1 Jan 1858) and Newhall, Gregory & Co. again, which was dissolved on 4 Jan 1860 when Newhall bought out his partners and continued the business 'in the name of H. M. NEWHALL & CO.' (Daily Alta California, 5 Jan 1860). Suggested: date the change to January 1860.",
+   "source": "Daily Alta California: 5 Jan 1860, p. 3 (dissolution of Newhall, Gregory & Co.; H. M. Newhall & Co. from Jan. 4th, 1860); 7 Jan 1858, p. 3 (Newhall & Gregory dissolved 1 Jan 1858; Newhall & Co., with E. W. Eddy, from that day); 11 Mar 1855, p. 4 (Newhall, Gregory & Claghorn expired 1 Jan 1855); 17 Apr 1852, p. 2 ('Newhall & Hall's building'); San Joaquin Republican, 11 Aug 1854, p. 3 ('recently occupied by Messrs. Newhall, Gregory & Co.') (CDNC page images; section 5.1 R18, R20, R22, R24, R25). LeCount & Strong 1854, p. 101 (HathiTrust uc1.31822035086826, seq 127); Langley 1860, p. 239, and 1861–1863/64 (section 5.1 R3–R7) (C4)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL14"
+   ],
+   "confidence": "high (the firm's own notices date the name to 4 Jan 1860). Reading status: the 1855 and 1858 notices, which show other names after 1852, and the 1860 notice, which gives the date of the name, are confirmed at full zoom",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 07:20 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3756.htm",
+     "kind": "text",
+     "pattern": "erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co.",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/al1873.htm",
+     "kind": "text",
+     "pattern": "erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co.",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/historymoment_sansome.htm",
+     "kind": "text",
+     "pattern": "erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co.",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2050.htm",
+     "kind": "text",
+     "pattern": "erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co.",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2106.htm",
+     "kind": "text",
+     "pattern": "erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co.",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2131.htm",
+     "kind": "text",
+     "pattern": "erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co.",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2182.htm",
+     "kind": "text",
+     "pattern": "erased \"Hall, Martin\" from his billheads and changed the name of the firm to H.M. Newhall & Co.",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "image reading only"
+   ],
+   "evidence_reading_note": "the 1855 and 1858 notices, which show other names after 1852, and the 5 Jan 1860 notice, which gives the date of the name (read at letter level in the user's full-zoom crop, Newhall evidence_zoom_20261004/70de4a0c….png, 2026-10-04), are confirmed at full zoom; the directories, read from the user's browser crops in zm3 (2026-10-04), are confirmed at full zoom for LeCount 1854 p. 101 and Langley 1862 and 1863/64, and image readings only for Langley 1860 and 1861 p. 258 (Newhall section 5.1)",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE97",
+   "page": "https://scvhistory.com/scvhistory/lw3756.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/al1873.htm",
+    "https://scvhistory.com/scvhistory/historymoment_sansome.htm",
+    "https://scvhistory.com/scvhistory/lw2050.htm",
+    "https://scvhistory.com/scvhistory/lw2106.htm",
+    "https://scvhistory.com/scvhistory/lw2131.htm",
+    "https://scvhistory.com/scvhistory/lw2182.htm"
+   ],
+   "current_text": "\"Third son Edwin and fifth son Walter, who had been trained in the business, took it over and changed the name to Newhall Sons & Co.\"",
+   "correction": "Walter Scott Newhall was the fourth son; George Almer was the fifth and youngest. Also, the firm name Newhall's Sons & Co. dates from January 1, 1881, in his lifetime (who ran it after March 1882 is NEEDS_VERIFICATION).",
+   "source": "sfexaminer18820321hmn (SF Examiner, 21 Mar 1882, the will: sons named in order, 'the youngest son, George Almer Newhall'); lw3325 census; lw3564 ('fourth son Walter Scott'); al1882 ('On the first of January, 1881, Mr. Newhall retired from the firm in favor of his sons'); the lw2050 billhead (July 18, 1881) (C15, C16)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL2"
+   ],
+   "confidence": "high on 'fifth son'; medium on the timing",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:09 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lw3756.htm",
+     "kind": "text",
+     "pattern": "Third son Edwin and fifth son Walter",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/al1873.htm",
+     "kind": "text",
+     "pattern": "Third son Edwin and fifth son Walter",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/historymoment_sansome.htm",
+     "kind": "text",
+     "pattern": "Third son Edwin and fifth son Walter",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2050.htm",
+     "kind": "text",
+     "pattern": "Third son Edwin and fifth son Walter",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2106.htm",
+     "kind": "text",
+     "pattern": "Third son Edwin and fifth son Walter",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2131.htm",
+     "kind": "text",
+     "pattern": "Third son Edwin and fifth son Walter",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2182.htm",
+     "kind": "text",
+     "pattern": "Third son Edwin and fifth son Walter",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: al1882, sfexaminer18820321hmn, lw3325",
+   "evidence_weak": false
   },
   {
    "id": "CE29",
@@ -901,7 +1807,13 @@
      "pattern": "just two families since the end of",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957",
+   "evidence_weak": false
   },
   {
    "id": "CE30",
@@ -955,7 +1867,46 @@
      "pattern": "1,500-acre Camulos",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE98",
+   "page": "https://scvhistory.com/scvhistory/lwhist.htm",
+   "also_on": [],
+   "current_text": "\"The previous year, San Francisco entrepreneur and railroad tycoon Henry Mayo Newhall purchased the old Del Valle rancho at a Sheriff's sale.\"",
+   "correction": "He bought it by private deed (January 15, 1875, $90,000) from Fernald & Richards, who had acquired it at the 1873 sheriff's sale; the del Valles had sold out in 1865.",
+   "source": "perkins-rsf-1957; robinson_storyofvalencia_1967; del Valle dossier C9 (C8)",
+   "dossiers": [
+    "Newhall",
+    "del Valle"
+   ],
+   "source_items": [
+    "Newhall NL5",
+    "del Valle C9 (conflicts)"
+   ],
+   "confidence": "high (deed itself NEEDS_VERIFICATION)",
+   "fix": "edit site text, caption, title or link",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:08 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/lwhist.htm",
+     "kind": "text",
+     "pattern": "purchased the old Del Valle rancho at a Sheriff's sale",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
   },
   {
    "id": "CE31",
@@ -988,7 +1939,45 @@
      "pattern": "Newhall Estate, 1930 or earlier",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE89",
+   "page": "https://scvhistory.com/scvhistory/mu8901.htm",
+   "also_on": [],
+   "current_text": "'Arthur B. Perkins, \"Rancho San Francisco: A Study of a California Land Grant,\" Southern California Quarterly, 39 (June 1937): 99-126.'",
+   "correction": "Add editor's note or [sic]: the article appeared in June 1957 (vol. 39, No. 2, pp. 99–126), published then as the Historical Society of Southern California Quarterly. Sitton's PDF has the same '1937', so this is the author's slip, not a transcription error.",
+   "source": "HathiTrust uc1.b3609125, HSSC Quarterly vol. XXXIX (1957), contents of No. 2, June 1957, https://babel.hathitrust.org/cgi/pt?id=uc1.b3609125&seq=123 (user's screenshot, perkins-work/evidence_hathi_20261004/; our text-only fetch 2026-10-04); Sitton's PDF (OCR 'June 19:37', hart-work/mu8901.txt; Tom Sitton, NHMLA 1989, a Hart dossier source) (C8)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL27"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:07 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/mu8901.htm",
+     "kind": "text",
+     "pattern": "39 (June 1937)",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Sitton 1989 report (the site also holds the PDF))",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "scan text only"
+   ],
+   "evidence_reading_note": "June 1957 contents page (screenshot b3acf9e1…, read at letter level); Sitton's PDF (OCR text) for what note 1 cites",
+   "evidence_weak": false
   },
   {
    "id": "CE32",
@@ -1019,7 +2008,13 @@
      "pattern": "arrived in Newhall in 1918",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE33",
@@ -1044,7 +2039,13 @@
      "pattern": "unkonwn",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE34",
@@ -1071,7 +2072,51 @@
      "pattern": "Pickford and William S\\. Hart filmed",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, Dec 1958 (Mining Camps III, a))",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE80",
+   "page": "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+   "also_on": [],
+   "current_text": "'The year of 1887 was disastrous for the little mining town. [a] In October, the Southern Hotel went up in flames. It was never rebuilt.' and Perkins' caption 'In 1887 the hotel was so badly damaged by a disastrous fire that it was never rebuilt.' (note [a] and the caption note do not address the date)",
+   "correction": "Add webmaster note: the Southern Hotel burned on October 23, 1888, as the site's own sg19470102perkins note and lw2273 say",
+   "source": "Los Angeles Herald, 24 Oct 1888, p. 2 (CDNC, user's browser search 2026-10-04; OCR checked against a screenshot); sg19470102perkins webmaster's note; lw2273 (P12; C12)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL26"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:07 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+     "kind": "text",
+     "pattern": "In October, the Southern Hotel went up in flames",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-newhall-1958.htm",
+     "kind": "text",
+     "pattern": "In 1887 the hotel was so badly damaged by a disastrous fire",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, Dec 1958 (Mining Camps III, a))",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "LA Herald, 24 Oct 1888: page image confirmed at full zoom (full-zoom pass 2, 2026-10-04; the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18881024.2.20_Southern-Hotel-fire.png: the whole item, dated 'SAN FERNANDO, October 23.'); the date is also on the site's own sg19470102perkins webmaster's note and lw2273 (exact text)",
+   "evidence_weak": false
   },
   {
    "id": "CE35",
@@ -1079,7 +2124,7 @@
    "also_on": [],
    "current_text": "'When the hotel burned in 1887, that ended that.'",
    "correction": "Add note: the Southern Hotel burned Oct 23, 1888",
-   "source": "Webmaster's note on sg19470102perkins; lw2273 ('Perkins liked 1887 and Reynolds used 1888')",
+   "source": "Los Angeles Herald, 24 Oct 1888, p. 2 (CDNC, user's browser search 2026-10-04; OCR checked against a screenshot); webmaster's note on sg19470102perkins; lw2273 ('Perkins liked 1887 and Reynolds used 1888') (P12; C12)",
    "dossiers": [
     "Perkins"
    ],
@@ -1096,7 +2141,146 @@
      "pattern": "burned in 1887",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "LA Herald, 24 Oct 1888: page image confirmed at full zoom (full-zoom pass 2, 2026-10-04; the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18881024.2.20_Southern-Hotel-fire.png: the whole item, dated 'SAN FERNANDO, October 23.'); the date is also on the site's own sg19470102perkins webmaster's note and lw2273 (exact text)",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE71",
+   "page": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+   "also_on": [
+    "https://scvhistory.com/scvhistory/lw2570a.htm"
+   ],
+   "current_text": "'In 1843, the title of Camulos was momentarily clouded by a grant to Pedro Carrillo, but examination showing the overlap on the Rancho San Francisco Grant, the Carrillo grant was nullified.'",
+   "correction": "Add editor's note (and fix the lw2570a caption's 'citing Bancroft' framing): Micheltorena granted Camulos to Pedro C. Carrillo Oct 2, 1843; Carrillo's claim was rejected by the U.S. Land Commission Nov 7, 1854, and his appeal dismissed Aug 10, 1860. Bancroft's own list (the source Perkins cites) marks the grant as rejected by the Land Commission or U.S. courts",
+   "source": "Hoffman, Reports of Land Cases (1862) I, App. p. 67, no. 491; Bancroft, Hist. Cal. IV p. 642 n. 22, continued on p. 643, with the asterisk key on p. 643 (page images confirmed at full zoom 2026-10-04: perkins-work/zoom/ce71_hoffman_app_p67_no491_left.png, ce71_bancroft4_p642_n22_camulos.png, ce71_bancroft4_p643_n22_key.png; the key is printed on p. 643)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL20"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original) ; lw2570a caption: edit",
+   "live_status": "STILL PRESENT (checked 2026-10-04 00:43 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+     "kind": "text",
+     "pattern": "the Carrillo grant was nullified",
+     "present": true
+    },
+    {
+     "url": "https://scvhistory.com/scvhistory/lw2570a.htm",
+     "kind": "text",
+     "pattern": "the Carrillo grant was nullified",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, June 1957)",
+   "evidence_reading_status": [
+    "confirmed at full zoom"
+   ],
+   "evidence_reading_note": "Hoffman 1862, App. p. 67, and Bancroft IV p. 642 n. 22, continued on p. 643, with the asterisk key on p. 643: page images read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce71_hoffman_app_p67_no491_left.png, ce71_bancroft4_p642_n22_camulos.png, ce71_bancroft4_p643_n22_key.png)",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE72",
+   "page": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+   "also_on": [],
+   "current_text": "'Was captain and chief custom house officer at San Diego until 1833. Served at Monterey until 1836.' / 'was Commandante in secularization of the missions in 1834'",
+   "correction": "Add editor's note: per Bancroft's Pioneer Register, Ygnacio was a cadet (1828) and ayudante de plaza at San Diego, alférez from 1831, attached to the Monterey company from 1832, and comisionado (not comandante) for secularizing San Gabriel 1833, Santa Cruz 1834 and San Francisco 1835. No custom-house post found (NEEDS_VERIFICATION)",
+   "source": "Bancroft, Hist. Cal. V (1886) pp. 755–56 (page image confirmed at full zoom 2026-10-04: perkins-work/zoom/ce72_bancroft5_p755_valle_left.png, ce72_bancroft5_p755_valle_right.png; the passage is on p. 755)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL21"
+   ],
+   "confidence": "medium",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (checked 2026-10-04 00:43 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+     "kind": "text",
+     "pattern": "captain and chief custom house officer at San Diego until 1833",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, June 1957)",
+   "evidence_reading_status": [
+    "confirmed at full zoom"
+   ],
+   "evidence_reading_note": "Bancroft V p. 755: page image read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce72_bancroft5_p755_valle_left.png, ce72_bancroft5_p755_valle_right.png)",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE81",
+   "page": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+   "also_on": [],
+   "current_text": "'June 12, 1841, Don Antonio del Valle died, mourned by his widow, two children from his first marriage, and four children from his second marriage.'",
+   "correction": "Add editor's note: Antonio del Valle was buried at Mission San Fernando on June 3, 1841 (ECPP, SFR burial 02257), so he died on or before June 3, 1841; neither June 12 nor the June 21 found elsewhere on the site.",
+   "source": "ECPP id 72898, SFR burial 02257, Burial Date '3 Jun 1841', spouse 'Lopez [Feliz], Jacoba' (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION) (P30; del Valle C4)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL24"
+   ],
+   "confidence": "high (index); register image NEEDS_VERIFICATION",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:07 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+     "kind": "text",
+     "pattern": "June 12, 1841, Don Antonio del Valle died",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, June 1957)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE82",
+   "page": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+   "also_on": [],
+   "current_text": "'Married, for second time, Jacopa Feliz, by whom five children. Ygnacio and sister Magdalena, by first wife before coming to Calif.'",
+   "correction": "Add editor's note: Magdalena was baptized at the Santa Barbara Presidio on July 4, 1831, born the day before, daughter of Antonio 'Valles' (recorded as a widower) and María Policarpa López (ECPP, BP baptism 00917); she was not born before he came to California. Whether she was Ygnacio's full or half sister is not shown in these records.",
+   "source": "ECPP id 976, BP baptism 00917 (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION; that 'Antonio Valles', alférez of Guadalajara, is Antonio del Valle is an inference: NEEDS_VERIFICATION) (P31; del Valle C3)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL25"
+   ],
+   "confidence": "medium-high (NEEDS_VERIFICATION: register image; father's identity inferred)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:07 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins-rsf-1957.htm",
+     "kind": "text",
+     "pattern": "by first wife before coming to Calif",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, June 1957)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
   },
   {
    "id": "CE36",
@@ -1121,7 +2305,13 @@
      "pattern": "was bured",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, June 1957)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE37",
@@ -1148,7 +2338,44 @@
      "pattern": "assemblyman in 1852 and 1856\\.(?! ?\\(Ed)",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins, HSSC Quarterly, June 1957)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE73",
+   "page": "https://scvhistory.com/scvhistory/perkins032361.htm",
+   "also_on": [],
+   "current_text": "'Back in 1851 ... the very first Legislature played it safe by legitimatizing all roads \"then in use\"'",
+   "correction": "Add editor's note: the first Legislature's 'Act concerning Roads and Highways' was passed April 11, 1850 (Statutes 1850, ch. 81); it made a road a public highway only when the county Court of Sessions declared it so",
+   "source": "Statutes of California 1850, ch. 81 §1, p. 200 (Assembly Clerk archive 1850.pdf, PDF p. 210); 1851 index: no general road act (page images confirmed at full zoom 2026-10-04: perkins-work/zoom/ce73_stat1850_ch81_s1_left.png, ce73_stat1850_ch81_s1_right.png, ce73_stat1851_index_p11_roads.png)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL19"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (checked 2026-10-04 00:43 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/perkins032361.htm",
+     "kind": "text",
+     "pattern": "very first Legislature played it safe",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins newspaper column, 1961)",
+   "evidence_reading_status": [
+    "confirmed at full zoom"
+   ],
+   "evidence_reading_note": "Statutes of California 1850, ch. 81, and the 1851 index: page images read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce73_stat1850_ch81_s1_left.png, ce73_stat1851_index_p11_roads.png; a bilevel scan with some broken letters)",
+   "evidence_weak": false
   },
   {
    "id": "CE38",
@@ -1181,7 +2408,13 @@
      "pattern": "\\(Unratified\\),? 1852",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE39",
@@ -1206,7 +2439,44 @@
      "pattern": "Narragansut|limted|plausable",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE99",
+   "page": "https://scvhistory.com/scvhistory/sg090199a.htm",
+   "also_on": [],
+   "current_text": "\"Henry Mayo Newhall purchased the bulk of the Rancho San Francisco in a sheriff's sale in 1875.\"",
+   "correction": "Editor's note: a private deed of January 15, 1875 ($90,000), from the buyers at the 1873 sheriff's sale.",
+   "source": "perkins-rsf-1957; robinson_storyofvalencia_1967 (C8)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL6"
+   ],
+   "confidence": "high (deed itself NEEDS_VERIFICATION)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:09 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/sg090199a.htm",
+     "kind": "text",
+     "pattern": "purchased the bulk of the Rancho San Francisco in a sheriff's sale in 1875",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, robinson_storyofvalencia_1967",
+   "evidence_weak": false
   },
   {
    "id": "CE40",
@@ -1231,15 +2501,52 @@
      "pattern": "Mexican-born missionary",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE83",
+   "page": "https://scvhistory.com/scvhistory/sg090199a.htm",
+   "also_on": [],
+   "current_text": "\"Following his father's death on June 21, 1841, Ygnacio came to the Santa Clarita Valley and helped maintain the Rancho San Francisco.\"",
+   "correction": "Add an editor's note: Antonio del Valle was buried at Mission San Fernando on June 3, 1841, so he died on or before that date, not on June 21.",
+   "source": "ECPP id 72898, Mission San Fernando burial 02257, Burial Date '3 Jun 1841' (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION) (C4; Perkins P30)",
+   "dossiers": [
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L16"
+   ],
+   "confidence": "high (ECPP index; register image NEEDS_VERIFICATION)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:08 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/sg090199a.htm",
+     "kind": "text",
+     "pattern": "father's death on June 21, 1841",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
   },
   {
    "id": "CE41",
    "page": "https://scvhistory.com/scvhistory/sg19470102perkins.htm",
    "also_on": [],
    "current_text": "'completion of the 6,964 ft. railroad tunnel in July 1875' (no note)",
-   "correction": "Add note: the San Fernando tunnel was finished in July 1876, just before the Sept 5, 1876 spike (exact day NEEDS_VERIFICATION)",
-   "source": "reynolds part39; Perkins' own 1954 part04 sequence",
+   "correction": "Add note: the headings of the San Fernando tunnel met on Friday night, July 14, 1876 (holing-through); the first train came through in August 1876, before the Sept 5, 1876 spike",
+   "source": "Santa Barbara Weekly Press, 22 Jul 1876, p. 2 (CDNC SBWP18760722.2.44; page image confirmed at full zoom 2026-10-04, perkins-work/zoom/cdnc_zm3/SBWP18760722_tunnel.png), reprinting the LA Herald of 18 Jul 1876: one report, at one remove; reynolds part39; Perkins' own 1954 part04 sequence; lwhist and perkins-pico-1958 note f (first train, August 1876) (P19)",
    "dossiers": [
     "Perkins"
    ],
@@ -1256,7 +2563,14 @@
      "pattern": "July 1875",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Newhall Signal, 2 Jan 1947)",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "Santa Barbara Weekly Press, 22 Jul 1876, reprinting the LA Herald of 18 Jul: page image confirmed at full zoom (zm3, 2026-10-04; the user's full-zoom browser crop perkins-work/zoom/cdnc_zm3/SBWP18760722_tunnel.png); the 14 July date rests on that one Herald report, at one remove (Perkins K20); reynolds part39 and Perkins' own 1954 part (site transcriptions)",
+   "evidence_weak": false
   },
   {
    "id": "CE42",
@@ -1287,7 +2601,13 @@
      "pattern": "transfered",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins' 'Story of Our Valley' Signal series (1954–55))",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE43",
@@ -1312,15 +2632,21 @@
      "pattern": "Smithsonlan",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins' 'Story of Our Valley' Signal series (1954–55); part01's 'Smithsonlan' may be an OCR slip in the transcription)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE44",
    "page": "https://scvhistory.com/scvhistory/signal/perkins/part04.html",
    "also_on": [],
    "current_text": "'The right of way covered one mile each side of the Pass.' / 'Superintendent of Indian Affairs in California and Nevada in 1852' / 'about '86, that the franchise expired'",
-   "correction": "Add editor's notes: two miles either side (1862 statute per Ripley); appointed Mar 3, 1853, Superintendent for California; franchise expired 1883–84. The page's ERRATA block (Ahnert 2019) covers only the Butterfield material.",
-   "source": "Beale dossier C3, C13, C14 (Ripley; appointment record)",
+   "correction": "Add editor's notes: two miles on each side (Statutes of California 1862, ch. CCLIX, p. 282); appointed Mar 3, 1853, Superintendent for California; franchise expired 1883–84. The page's ERRATA block (Ahnert 2019) covers only the Butterfield material.",
+   "source": "Statutes of California 1862 ch. CCLIX (approved April 18, 1862) p. 282: 'no other person or persons shall, within the period of this franchise, build any other toll road across said mountain, within two miles on each side of said road' (Assembly Clerk scan, our OCR, read 2026-10-04; page image confirmed at full zoom 2026-10-04, perkins-work/zoom/ce87_stat1862_ch259_proviso_full.png; C14); Beale dossier C3, C13, C14 (Ripley; appointment record)",
    "dossiers": [
     "Beale",
     "Perkins"
@@ -1329,7 +2655,7 @@
     "Perkins PL13",
     "Beale C3/C13/C14 (conflicts)"
    ],
-   "confidence": "medium-high (statute text NEEDS_VERIFICATION)",
+   "confidence": "high on the radius (statute read 2026-10-04); medium-high on the rest",
    "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
    "live_status": "STILL PRESENT",
    "check": [
@@ -1351,7 +2677,45 @@
      "pattern": "about '86",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins' 'Story of Our Valley' Signal series (1954–55))",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "the radius from the Statutes of 1862, page image read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce87_stat1862_ch259_proviso_full.png); the rest from the site's Ripley and Perkins texts and the Beale dossier",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE74",
+   "page": "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+   "also_on": [],
+   "current_text": "'In May, J.D. LaRue was elected Justice of the Peace of Soledad Township. (He must have been about the first to hold that office.)' (under 'Events of 1869')",
+   "correction": "Add editor's note: La Rue was appointed Justice of the Peace for Soledad Township by the Board of Supervisors on petition in May 1869, not elected",
+   "source": "Los Angeles Daily News, 12 May 1869, p. 2, https://cdnc.ucr.edu/?a=d&d=LADN18690512.1.2&dliv=user&dliv=none&st=1 (Board of Supervisors proceedings; CDNC OCR text via the user's browser search; page image confirmed at full zoom 2026-10-04, perkins-work/zoom/ce74_LADN18690512_p2_soledad_appointment.png)",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL22"
+   ],
+   "confidence": "high (appointed, per the period report); Board minutes not seen",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (checked 2026-10-04 01:06 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/part05.html",
+     "kind": "text",
+     "pattern": "LaRue was elected Justice of the Peace of Soledad Township",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins' 'Story of Our Valley' Signal series (1954–55))",
+   "evidence_reading_status": [
+    "confirmed at full zoom"
+   ],
+   "evidence_reading_note": "LA Daily News, 12 May 1869: the user's full-zoom browser crop read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce74_LADN18690512_p2_soledad_appointment.png); it confirms the appointment by the Board; the dossiers' quote of this passage now gives the print reading ('Soledad', 'appointed'; corrected 2026-10-04, Perkins K17, with the OCR kept beside it as scan text)",
+   "evidence_weak": false
   },
   {
    "id": "CE45",
@@ -1376,7 +2740,45 @@
      "pattern": "one of the daughters of Andres Pico",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins' 'Story of Our Valley' Signal series (1954–55))",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-pico-1958",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE75",
+   "page": "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+   "also_on": [],
+   "current_text": "'Andres Pico is credited with crudely refining our canyon seepages and using the product as an illuminant at his San Fernando Mission home in 1855.'",
+   "correction": "Add editor's note, as on perkins-pico-1958: the earliest period report of Pico distilling oil found is Feb 1865 (Daily Alta California); no 1855–64 report was found, so 1855 is unsupported (not disproven)",
+   "source": "Daily Alta California, 21 Feb 1865, p. 2 (CDNC DAC18650221.2.9; OCR text via the user's browser search; page image confirmed at full zoom 2026-10-04, perkins-work/zoom/ce75_DAC18650221_p2_pico_oil.png); the site's own '[Or maybe not — Ed.]' on perkins-pico-1958",
+   "dossiers": [
+    "Perkins"
+   ],
+   "source_items": [
+    "Perkins PL23"
+   ],
+   "confidence": "low (absence of a record is not proof)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (checked 2026-10-04 01:06 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/perkins/part06.html",
+     "kind": "text",
+     "pattern": "Andres Pico is credited with crudely refining our canyon seepages",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Perkins' 'Story of Our Valley' Signal series (1954–55))",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "scan text only"
+   ],
+   "evidence_reading_note": "Daily Alta California, 21 Feb 1865: the user's full-zoom browser crop read at letter level (full-zoom pass 2026-10-04; perkins-work/zoom/ce75_DAC18650221_p2_pico_oil.png), confirming 'Don Andres Pico' and 'Mr. Pico'; 'no 1855–64 report found' rests on CDNC OCR searches (scan text); the site's '[Or maybe not — Ed.]' only flags doubt and does not give the correct value",
+   "evidence_weak": false
   },
   {
    "id": "CE46",
@@ -1401,7 +2803,13 @@
      "pattern": "Burrows, D\\.H\\.",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957",
+   "evidence_weak": false
   },
   {
    "id": "CE47",
@@ -1426,7 +2834,13 @@
      "pattern": "Pacific Railroad Survey\\.? Washington,? DC,? 1952",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE48",
@@ -1451,7 +2865,80 @@
      "pattern": "Van Valkenberg",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE84",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part14.html",
+   "also_on": [],
+   "current_text": "\"Antonio had scarcely two years to enjoy his rancho, for he died on June 21, 1841\"",
+   "correction": "Add an editor's note: Antonio del Valle was buried at Mission San Fernando on June 3, 1841, so he died on or before that date, not on June 21.",
+   "source": "ECPP id 72898, Mission San Fernando burial 02257, Burial Date '3 Jun 1841' (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION) (C4; Perkins P30); Reynolds ledger D+6",
+   "dossiers": [
+    "Reynolds",
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L17",
+    "Reynolds reprinted"
+   ],
+   "confidence": "high (ECPP index; register image NEEDS_VERIFICATION)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:09 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part14.html",
+     "kind": "text",
+     "pattern": "he died on June 21, 1841",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The burial (72898) and the Magdalena baptism (976) were checked by the user against screenshots of the record pages.",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE85",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part14.html",
+   "also_on": [],
+   "current_text": "\"his poor little illegitimate Jose Antonio, age four; Victor Z. Ygnacio de Gracia, age one; newly-born Magdalena; and yet-unborn José Ygnacio.\"",
+   "correction": "Add an editor's note: Magdalena was not newly born in 1841 nor Jacoba Feliz's child; she was born at Santa Barbara on July 3, 1831, to María Policarpa López. In the mission registers Jacoba's children with Antonio include Ygnacio de Gracia (baptized 1838) and a son recorded as 'Vator' (1840), so 'Victor Z. Ygnacio de Gracia, age one' may merge two children (NEEDS_VERIFICATION).",
+   "source": "ECPP id 976, Santa Barbara Presidio baptism 00917, 4 Jul 1831: mother 'Maria Policarpa' 'Lopez', father 'Antonio' 'Valles' ('viudo') (user's ECPP browser session 2026-10-04, checked against a screenshot; an index, register image NEEDS_VERIFICATION; the father's identity is an inference: NEEDS_VERIFICATION) (C3; Perkins P31); ECPP 1309 (BP 01284, 1838) and 3009 (LA 01010, 1840), read off the record pages by a browser session, not screenshot-checked (not read: browser-transcription rule, Nathan 11:07 PT); Reynolds ledger D15",
+   "dossiers": [
+    "Reynolds",
+    "del Valle"
+   ],
+   "source_items": [
+    "del Valle L18",
+    "Reynolds reprinted"
+   ],
+   "confidence": "medium-high (NEEDS_VERIFICATION: register image; the father's identity is inferred)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:09 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part14.html",
+     "kind": "text",
+     "pattern": "newly-born Magdalena",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)",
+    "not read"
+   ],
+   "evidence_reading_note": "ECPP is a born-digital database index of the mission registers (a transcription); its text is exact for the index, but the register image was not seen. The Magdalena baptism (976) was checked by the user against a screenshot of the record page; ECPP 1309 and 3009 (Jacoba's children) were read off the record pages by a browser session and not screenshot-checked, so they are not read (browser-transcription rule, Nathan 11:07 PT; zm3, 2026-10-04).",
+   "evidence_weak": false
   },
   {
    "id": "CE49",
@@ -1465,7 +2952,7 @@
     "del Valle"
    ],
    "source_items": [
-    "Reynolds reprinted list",
+    "Reynolds RX4",
     "del Valle ledger D5 via Reynolds; cf. L2"
    ],
    "confidence": "high",
@@ -1478,7 +2965,13 @@
      "pattern": "The mayor of the town, Don Ygnacio",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: perkins-rsf-1957, penpictures",
+   "evidence_weak": false
   },
   {
    "id": "CE50",
@@ -1492,7 +2985,7 @@
     "del Valle"
    ],
    "source_items": [
-    "Reynolds reprinted list",
+    "Reynolds RX5",
     "del Valle C17 / ledger D14"
    ],
    "confidence": "high",
@@ -1505,7 +2998,13 @@
      "pattern": "had already sold Rancho Tejon",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE51",
@@ -1519,7 +3018,7 @@
     "Reynolds"
    ],
    "source_items": [
-    "Reynolds reprinted list",
+    "Reynolds RX2",
     "Beale ledger B1 via Reynolds"
    ],
    "confidence": "high",
@@ -1532,7 +3031,13 @@
      "pattern": "Naval Academy",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE52",
@@ -1547,7 +3052,7 @@
     "Reynolds"
    ],
    "source_items": [
-    "Reynolds reprinted list",
+    "Reynolds RX3",
     "Beale ledger B6 via Reynolds",
     "Perkins P51"
    ],
@@ -1561,7 +3066,13 @@
      "pattern": "five thousand dollars",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: signal/perkins/ (part04), ripley",
+   "evidence_weak": false
   },
   {
    "id": "CE53",
@@ -1588,7 +3099,44 @@
      "pattern": "then a state senator",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: penpictures",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE100",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part37.html",
+   "also_on": [],
+   "current_text": "\"The new owner was a fifty-year-old businessman from San Francisco named Henry Mayo Newhall.\"",
+   "correction": "Editor's note: he was 49 (born May 1825; the deed is dated January 15, 1875).",
+   "source": "The same chapter: 'Newhall was born May 13, 1825'; lw060795 ('49-year-old'); al1882 (born May 23, 1825) (C9)",
+   "dossiers": [
+    "Newhall"
+   ],
+   "source_items": [
+    "Newhall NL9"
+   ],
+   "confidence": "high (low priority)",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 04:08 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part37.html",
+     "kind": "text",
+     "pattern": "a fifty-year-old businessman from San Francisco",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: al1882",
+   "evidence_weak": false
   },
   {
    "id": "CE54",
@@ -1613,7 +3161,13 @@
      "pattern": "46: Surrey",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE55",
@@ -1638,7 +3192,13 @@
      "pattern": "met the president at Saugus",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE56",
@@ -1663,7 +3223,45 @@
      "pattern": "Joseph H\\. Tolfree",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
+  },
+  {
+   "id": "CE86",
+   "page": "https://scvhistory.com/scvhistory/signal/reynolds/part49.html",
+   "also_on": [],
+   "current_text": "'When the heirs of Henry Mayo Newhall visited their ranch they usually stayed at the Southern Hotel, but it burned down on October 10, 1888, ten years after it was built.'",
+   "correction": "Add an editor's note: the Southern Hotel burned on October 23, 1888 (as the site's own sg19470102perkins note and lw2273 say)",
+   "source": "Los Angeles Herald, 24 Oct 1888, p. 2 (CDNC, user's browser search 2026-10-04; OCR checked against a screenshot); sg19470102perkins webmaster's note; lw2273 (R18; Perkins P12, C12)",
+   "dossiers": [
+    "Reynolds"
+   ],
+   "source_items": [
+    "Reynolds RL13"
+   ],
+   "confidence": "high",
+   "fix": "editor's note or [sic] (historical/reprinted text: don't rewrite the original)",
+   "live_status": "STILL PRESENT (new 2026-10-04; fetched 03:10 PT)",
+   "check": [
+    {
+     "url": "https://scvhistory.com/scvhistory/signal/reynolds/part49.html",
+     "kind": "text",
+     "pattern": "burned down on October 10, 1888",
+     "present": true
+    }
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "confirmed at full zoom",
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "LA Herald, 24 Oct 1888: page image confirmed at full zoom (full-zoom pass 2, 2026-10-04; the user's full-zoom browser crop perkins-work/zoom/cdnc_20261004/LAH18881024.2.20_Southern-Hotel-fire.png: the whole item, dated 'SAN FERNANDO, October 23.'); the date is also on the site's own sg19470102perkins webmaster's note and lw2273 (exact text)",
+   "evidence_weak": false
   },
   {
    "id": "CE57",
@@ -1690,7 +3288,13 @@
      "pattern": "seventeen-year-old",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE58",
@@ -1717,7 +3321,13 @@
      "pattern": "yawning chasm",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: tumbleweedsmonologue",
+   "evidence_weak": false
   },
   {
    "id": "CE59",
@@ -1731,7 +3341,7 @@
     "Reynolds"
    ],
    "source_items": [
-    "Reynolds reprinted list",
+    "Reynolds RX1",
     "Hart C-ledger H3/H4 via Reynolds"
    ],
    "confidence": "high",
@@ -1750,7 +3360,13 @@
      "pattern": "cowboy suit",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records; includes site transcriptions of old documents: sg051703",
+   "evidence_weak": false
   },
   {
    "id": "CE60",
@@ -1775,7 +3391,13 @@
      "pattern": "inaccurate",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE61",
@@ -1800,7 +3422,13 @@
      "pattern": "date\\?",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE62",
@@ -1825,15 +3453,21 @@
      "pattern": "[Cc]ave",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE63",
    "page": "https://scvhistory.com/scvhistory/signal/worden/lw011399.htm",
    "also_on": [],
-   "current_text": "Page title/header: 'Henry Newhall Builds an Empire'; body byline date 'Wednesday, April 24, 2002'",
+   "current_text": "Page title/header: \"Henry Newhall Builds an Empire\"; body: \"E.F. Beale and the Beasts of Tejon By Leon Worden Wednesday, April 24, 2002\"",
    "correction": "The title should be 'E.F. Beale and the Beasts of Tejon'. The date needs checking: the filename encodes 01-13-1999, and the text says the SCVHS '1999 calendar' is 'Available now', which fits Jan 1999, not April 2002.",
-   "source": "Inventory title 'E.F. Beale and the Beasts of Tejon'; filename lw011399 and the '1999 calendar ... Available now' text fit Jan 13, 1999",
+   "source": "Fetched page text; the inventory title for this URL is 'E.F. Beale and the Beasts of Tejon'; the filename lw011399 and the page's '1999 calendar ... Available now' text fit Jan 13, 1999. The same page misquotes Reynolds as 'Dec. 16, 1903... 75-year-old' Hi Jolly; reynolds part23 reads 'December 16, 1902... seventy-four-year-old' (listed separately: Reynolds RL9, consolidated CE64).",
    "dossiers": [
     "Beale"
    ],
@@ -1856,7 +3490,13 @@
      "pattern": "April 24, 2002",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE64",
@@ -1864,7 +3504,7 @@
    "also_on": [],
    "current_text": "quotes Reynolds on Hi Jolly as dying 'Dec. 16, 1903' at 75",
    "correction": "Dec 16, 1902, aged 74 (what Reynolds actually wrote in part23)",
-   "source": "reynolds part23; Quartzsite plaque (lw3451)",
+   "source": "reynolds part23; Quartzsite plaque (lw3451) (Reynolds C21).",
    "dossiers": [
     "Beale",
     "Reynolds"
@@ -1883,7 +3523,13 @@
      "pattern": "Dec\\. 16, 1903",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE65",
@@ -1908,7 +3554,13 @@
      "pattern": "in his autobiography",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE66",
@@ -1917,8 +3569,8 @@
     "https://scvhistory.com/scvhistory/signal/worden/old/lw092596.htm"
    ],
    "current_text": "He used several in 1962 when he wrote the \"Story of Our Valley\" in successive installments in The Signal.",
-   "correction": "1954–55. This 1996 column is probably where the ap0828 '1962' came from. Add an author's/editor's note rather than changing the column text.",
-   "source": "as PL1",
+   "correction": "1954–55. This 1996 column is probably where the ap0828 '1962' came from. Add an author's/editor's note rather than changing the column text. Likely confusion with Perkins' 'The Pico Ghost Camp' (Signal, Jan 18 & 25, 1962) or with Lamkin's early-1960s copying of the photo collection (Perkins C7; lw3113: Ted Lamkin photographed the collection 'in the early 1960s', Perkins C10).",
+   "source": "as PL1 (CE01); earliest site occurrence of '1962' (Worden, Sept 25, 1996)",
    "dossiers": [
     "Perkins"
    ],
@@ -1927,7 +3579,7 @@
    ],
    "confidence": "high",
    "fix": "author's/editor's note on the column",
-   "live_status": "STILL PRESENT",
+   "live_status": "STILL PRESENT (re-checked 2026-10-03 16:04 PT)",
    "check": [
     {
      "url": "https://scvhistory.com/scvhistory/signal/worden/lw092596.htm",
@@ -1941,7 +3593,13 @@
      "pattern": "in 1962 when he wrote",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE67",
@@ -1966,7 +3624,13 @@
      "pattern": "at the age of 72",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE68",
@@ -1999,7 +3663,13 @@
      "pattern": "seventy-two years",
      "present": true
     }
-   ]
+   ],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   },
   {
    "id": "CE69",
@@ -2017,7 +3687,65 @@
    "confidence": "n/a (migration data)",
    "fix": "edit site text, caption, title or link",
    "live_status": "N/A: CC migration data, not the live site",
-   "check": []
+   "check": [],
+   "quote_reading_status": "exact text (born-digital)",
+   "evidence_reading_status": [
+    "exact text (born-digital)"
+   ],
+   "evidence_reading_note": "site pages and other born-digital records",
+   "evidence_weak": false
   }
- ]
+ ],
+ "reading_status": {
+  "added": "2026-10-04",
+  "rule": "Nathan's rule (2026-10-04, 08:50 PT; extended to all dossiers and the consolidated list at 09:17 PT): a first machine reading (OCR, or a first image reading by a browser session) is a lead, never a quotation. Quote a page image only from a reading confirmed at full zoom. Every quote now carries one of four labels; a fifth, 'confirmed at full zoom, in part', was added in the full-zoom pass (2026-10-04, approved by Nathan 09:53 PT). Nothing was promoted to 'confirmed at full zoom' unless there is a zoomed screenshot or full-resolution crop that we opened and checked at letter level. The reading-status pass only added labels; the full-zoom pass changed labels, added two [?] marks to one stored transcription (Perkins P36) and removed one obsolete bracketed doubt from the Newhall R22 transcription. No finding or verdict was changed. Browser-transcription rule (Nathan, 2026-10-04 11:07 PT; applied in zm3): a typed transcription from a browser session is not even a lead; only a crop the reviewer has read counts, and any record whose quote came from a browser transcription and not a crop gets no level above 'not read', a sixth level added for them. zm3 (2026-10-04) corrected quotes from crops in the Perkins and Newhall dossiers; the corrections are logged as K entries.",
+  "levels": [
+   {
+    "level": "confirmed at full zoom",
+    "meaning": "A page image read from a zoomed screenshot, or from a crop of a full-resolution page image (a scan PDF page or JPEG 2000 leaf rendered at its native resolution), that we opened with the Read tool and checked at letter level; the screenshot or crop is named."
+   },
+   {
+    "level": "confirmed at full zoom, in part",
+    "meaning": "A page image checked at letter level at full zoom, as above, where part of the stored quote or record is not confirmed by it (OCR errors kept in the quote, punctuation the crop cannot confirm, or words outside the confirmed fragments); the basis says which part. Added 2026-10-04 in the full-zoom pass."
+   },
+   {
+    "level": "image reading only",
+    "meaning": "A page image read in a browser or from a screenshot, but not confirmed at letter level at full zoom."
+   },
+   {
+    "level": "scan text only",
+    "meaning": "OCR or other machine text of a scanned page (CDNC, HathiTrust text-only views, archive.org full text, Assembly Clerk scans read with OCR, census PDFs, Chronicling America); the page image was not read for the quoted words."
+   },
+   {
+    "level": "not read",
+    "meaning": "A quote typed by a browser session (or relayed from one) with no crop read by the reviewer. Under Nathan's rule of 11:07 PT such a transcription is not even a lead (browser sessions invent and silently correct: an added 'San', a dropped 'of of', a tidied misprint), so the record is listed but its quote carries no weight. Added 2026-10-04 (zm3)."
+   },
+   {
+    "level": "exact text (born-digital)",
+    "meaning": "Text copied from a live scvhistory.com page or another born-digital HTML, text or database record. Exact text, not a reading of an image, so it is kept out of the three levels above. Where the page is itself a transcription of an old document, that is said, and the quote is exact for the page, not for the original print."
+   }
+  ],
+  "weak_note": "Definition (Nathan, 09:17 PT): entries whose evidence for the correct value rests only on 'scan text only' or 'image reading only'. The reading-status pass found 7 (CE70, CE71, CE72, CE73, CE74, CE75, CE87); in the full-zoom pass (2026-10-04, approved by Nathan 09:53 PT) the page images behind all seven were read at letter level, so none is weak now. Mixed entries are not counted as weak: CE101 and CE103 rest on notices confirmed at full zoom, the 4 Jan 1860 date included (only CE101's April 1852 advertisement is an image reading); CE35, CE80 and CE86 have the site's own webmaster note for Oct 23, 1888 and, since full-zoom pass 2, the LA Herald page confirmed at full zoom; CE41 and CE102 have site texts beside the scan text; CE44 and CE89 have page images confirmed at full zoom.",
+  "summary": {
+   "evidence_includes": {
+    "confirmed at full zoom": 17,
+    "image reading only": 2,
+    "scan text only": 2,
+    "not read": 1,
+    "exact text (born-digital)": 93
+   },
+   "combinations": {
+    "exact text (born-digital)": 85,
+    "confirmed at full zoom + exact text (born-digital)": 7,
+    "confirmed at full zoom": 6,
+    "confirmed at full zoom + image reading only": 2,
+    "confirmed at full zoom + scan text only": 2,
+    "exact text (born-digital) + not read": 1
+   },
+   "born_digital_only": 85,
+   "weak": [],
+   "weak_count": 0,
+   "quotes_born_digital": 103
+  }
+ }
 }

@@ -57,8 +57,11 @@
       (Nathan, 4 October 2026); it is listed under past members. The same rule as
       the council roster and /districts. -#}
   {% set ym = now|date('Y-m') %}
-  {% set sitting = holdings|filter(h => h.howEnded.value == 'serving' and (not h.termEndEdtf or h.termEndEdtf|slice(0, 7) >= ym) and (h.holdingPerson|first)) %}
-  {% set sittingPids = sitting|map(h => (h.holdingPerson|first).id) %}
+  {#- A term with no person record (a row under the person-record rule, Nathan, 6 October 2026) is a member like any other,
+      named from its own title and not linked. Such terms are matched to each other by that name. -#}
+  {% set sitting = holdings|filter(h => h.howEnded.value == 'serving' and (not h.termEndEdtf or h.termEndEdtf|slice(0, 7) >= ym)) %}
+  {% set sittingPids = sitting|map(h => (h.holdingPerson|first).id ?? 0) %}
+  {% set sittingNames = sitting|filter(h => not (h.holdingPerson|first))|map(h => h.title|split(' — ')|first) %}
 
   {% if part == 'board' %}
     {#- Ordered by office as the body gives it (Nathan, 4 October 2026: "President, Clerk, Assistant Clerk, then members"),
@@ -67,7 +70,7 @@
     {% set offs = OFFICES[body.id ~ ''] ?? null %}
     {% set RANK = { 'president': 1, 'board president': 1, 'governing board president': 1, 'vice president': 2, 'vice-president': 2, 'clerk': 3, 'governing board clerk': 3, 'assistant clerk': 4, 'governing board clerk pro tem': 4, 'clerk pro tem': 4 } %}
     {% set rankOf = {} %}
-    {% for h in sitting %}{% set o = offs ? (offs.officers[(h.holdingPerson|first).id ~ ''] ?? '') : '' %}{% set rankOf = rankOf|merge({ ('h' ~ h.id): RANK[o|lower] ?? 9 }) %}{% endfor %}
+    {% for h in sitting %}{% set o = offs ? (offs.officers[((h.holdingPerson|first).id ?? 0) ~ ''] ?? '') : '' %}{% set rankOf = rankOf|merge({ ('h' ~ h.id): RANK[o|lower] ?? 9 }) %}{% endfor %}
     {% set sitting = sitting|sort((a, b) => rankOf['h' ~ a.id] <=> rankOf['h' ~ b.id] ?: (seatOf['h' ~ a.id] ?: 'zz') <=> (seatOf['h' ~ b.id] ?: 'zz')) %}
     {#- A legislature's members in order of the share of the valley each holds, largest first. -#}
     {% if voice and shareOf|length %}{% set sitting = sitting|sort((a, b) => ((HB.shareFor(b, shareOf)|trim|replace({ 'the whole valley': '100', '% of the valley': '' })) * 1) <=> ((HB.shareFor(a, shareOf)|trim|replace({ 'the whole valley': '100', '% of the valley': '' })) * 1)) %}{% endif %}
@@ -79,21 +82,23 @@
     <div class="hub-cards" data-seat-list="board">
       {% for h in sitting %}
         {% set p = h.holdingPerson|first %}
-        {% set img = 'featuredImage' in p.fieldLayout.customFields|map(f => f.handle) ? p.featuredImage.one() : null %}
-        {% set since = holdings|filter(x => (x.holdingPerson|first).id ?? null == p.id)|map(x => x.termStartEdtf|slice(0, 4))|filter(y => y)|sort|first %}
+        {% set nm = p ? p.title : h.title|split(' — ')|first %}
+        {% set img = p and 'featuredImage' in p.fieldLayout.customFields|map(f => f.handle) ? p.featuredImage.one() : null %}
+        {% set mine = holdings|filter(x => p ? ((x.holdingPerson|first).id ?? null) == p.id : (not (x.holdingPerson|first) and x.title|split(' — ')|first == nm)) %}
+        {% set since = mine|map(x => x.termStartEdtf|slice(0, 4))|filter(y => y)|sort|first %}
         {#- A sitting member's earlier terms belong on the card, not among the people who have left (Nathan, 4 October 2026). -#}
-        {% set earlier = holdings|filter(x => (x.holdingPerson|first).id ?? null == p.id and x.id != h.id)|sort((x, y) => x.termStartEdtf <=> y.termStartEdtf) %}
+        {% set earlier = mine|filter(x => x.id != h.id)|sort((x, y) => x.termStartEdtf <=> y.termStartEdtf) %}
         {% set espans = [] %}
         {% for x in earlier %}
           {% set sy = x.termStartEdtf|slice(0, 4) %}{% set ey = x.termEndEdtf ? x.termEndEdtf|slice(0, 4) : '?' %}
           {% if espans|length and (espans|last)[1] != '?' and sy <= (espans|last)[1] %}{% set espans = espans|slice(0, espans|length - 1)|merge([[(espans|last)[0], ey]]) %}{% else %}{% set espans = espans|merge([[sy, ey]]) %}{% endif %}
         {% endfor %}
-        {% set office = offs ? (offs.officers[p.id ~ ''] ?? null) : null %}
-        {% set vks = [] %}{% for x in holdings|filter(x => (x.holdingPerson|first).id ?? null == p.id) %}{% set k = HB.vdKey(x)|trim %}{% if k %}{% set vks = vks|merge([k]) %}{% endif %}{% endfor %}
+        {% set office = offs and p ? (offs.officers[p.id ~ ''] ?? null) : null %}
+        {% set vks = [] %}{% for x in mine %}{% set k = HB.vdKey(x)|trim %}{% if k %}{% set vks = vks|merge([k]) %}{% endif %}{% endfor %}
         <div class="hub-card" data-seat="{{ seatOf['h' ~ h.id] }}"{% if vks|length %} data-vd="{{ vks|join(' ') }}"{% endif %}>
-          <a class="hub-ph" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if img %}{{ portrait.img(img, 0.8, p.title, true, 480) }}{% else %}<span>{{ p.title|split(' ')|map(w => w|slice(0,1))|join('')|slice(0,2) }}</span>{% endif %}</a>
+          {% if p %}<a class="hub-ph" href="{{ p.url }}" tabindex="-1" aria-hidden="true">{% if img %}{{ portrait.img(img, 0.8, p.title, true, 480) }}{% else %}<span>{{ nm|split(' ')|map(w => w|slice(0,1))|join('')|slice(0,2) }}</span>{% endif %}</a>{% else %}<span class="hub-ph" aria-hidden="true"><span>{{ nm|split(' ')|map(w => w|slice(0,1))|join('')|slice(0,2) }}</span></span>{% endif %}
           <div class="hub-tx">
-            <a class="hub-n" href="{{ p.url }}">{{ p.title }}</a>
+            {% if p %}<a class="hub-n" href="{{ p.url }}">{{ nm }}</a>{% else %}<span class="hub-n">{{ nm }}</span>{% endif %}
             {% set sn = HB.seatName(h, short, seatOf, voice)|trim %}
             {% set sh = HB.shareFor(h, shareOf)|trim %}
             <div class="hub-m">{{ sn ? sn ~ ' · ' : '' }}{{ since ? W.since ~ ' ' ~ since : W.since|replace({ ' since': '' }) }}</div>
@@ -109,7 +114,7 @@
     {% if seats|length > 1 %}<p data-seat-empty="board">The archive does not yet hold the present term for this seat.</p>{% endif %}
     {% endif %}
     {% if openSeats|length or not sitting|length %}
-      {% set seatless = sitting|filter(h => not seatOf['h' ~ h.id])|map(h => (h.holdingPerson|first).title) %}
+      {% set seatless = sitting|filter(h => not seatOf['h' ~ h.id])|map(h => (h.holdingPerson|first).title ?? h.title|split(' — ')|first) %}
       <p class="hub-gap">{% if not sitting|length %}{{ W.gap }}{% else %}{% if seatless|length %}The archive does not record which seat {{ seatless|join(', ', ' and ') }} {{ seatless|length > 1 ? 'hold' : 'holds' }}{{ openSeats|length ? ', and holds no present term for ' ~ openSeats|map(s => short[s.slug])|join(', ', ' or ') : '' }}.{% else %}The archive does not yet hold the present term for {{ openSeats|map(s => short[s.slug])|join(', ', ' or ') }}.{% endif %}{% endif %}</p>
     {% endif %}
 
@@ -119,9 +124,10 @@
     {% set byP = {} %}
     {% for h in holdings|sort((a, b) => a.termStartEdtf <=> b.termStartEdtf) %}
       {% set p = h.holdingPerson|first %}
-      {% if p and p.id not in sittingPids %}
-        {% set k = 'p' ~ p.id %}
-        {% set byP = byP|merge({ (k): { person: p, terms: (byP[k].terms ?? [])|merge([h]) } }) %}
+      {#- A term with no person record keeps its card under the name its own title gives, unlinked (Nathan, 6 October 2026). -#}
+      {% if p ? p.id not in sittingPids : (h.title|split(' — ')|first) not in sittingNames %}
+        {% set k = p ? 'p' ~ p.id : 'n' ~ (h.title|split(' — ')|first) %}
+        {% set byP = byP|merge({ (k): { person: p, name: p ? p.title : h.title|split(' — ')|first, terms: (byP[k].terms ?? [])|merge([h]) } }) %}
       {% endif %}
     {% endfor %}
     {% set pastPeople = byP|sort((a, b) => ((b.terms|last).termEndEdtf ?: (b.terms|last).termStartEdtf) <=> ((a.terms|last).termEndEdtf ?: (a.terms|last).termStartEdtf)) %}
@@ -138,12 +144,13 @@
         {% set pseats = [] %}{% for x in r.terms %}{% if seatOf['h' ~ x.id] and seatOf['h' ~ x.id] not in pseats %}{% set pseats = pseats|merge([seatOf['h' ~ x.id]]) %}{% endif %}{% endfor %}
         {% set pnames = [] %}{% for x in r.terms %}{% set nm = HB.seatName(x, short, seatOf, voice)|trim %}{% if nm and nm not in pnames %}{% set pnames = pnames|merge([nm]) %}{% endif %}{% endfor %}
         {% set l = r.terms|last %}
-        {% set pimg = 'featuredImage' in r.person.fieldLayout.customFields|map(f => f.handle) ? r.person.featuredImage.one() : null %}
-        {% set pp = r.person.title|split(' ')|filter(x => x|trim) %}
+        {% set pimg = r.person and 'featuredImage' in r.person.fieldLayout.customFields|map(f => f.handle) ? r.person.featuredImage.one() : null %}
+        {% set pp = r.name|split(' ')|filter(x => x|trim) %}
         {% set vks = [] %}{% for x in r.terms %}{% set k = HB.vdKey(x)|trim %}{% if k %}{% set vks = vks|merge([k]) %}{% endif %}{% endfor %}
         <div class="rec-person hub-pp" data-seat="{{ pseats|join(' ') }}"{% if vks|length %} data-vd="{{ vks|join(' ') }}"{% endif %}>
-          <a class="th" href="{{ r.person.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait.img(pimg, 1, '', true, 120) }}{% else %}{{ (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : r.person.title|slice(0,1))|upper }}{% endif %}</a>
-          <div style="min-width:0"><a class="n" href="{{ r.person.url }}">{{ r.person.title }}</a>
+          {% set ini = (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : r.name|slice(0,1))|upper %}
+          {% if r.person %}<a class="th" href="{{ r.person.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait.img(pimg, 1, '', true, 120) }}{% else %}{{ ini }}{% endif %}</a>{% else %}<span class="th" aria-hidden="true">{{ ini }}</span>{% endif %}
+          <div style="min-width:0">{% if r.person %}<a class="n" href="{{ r.person.url }}">{{ r.name }}</a>{% else %}<span class="n">{{ r.name }}</span>{% endif %}
             <div class="r">{{ spans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}{{ pnames|length ? ' · ' ~ pnames|join(', ') : '' }}{{ ENDED[l.howEnded.value] is defined and l.howEnded.value not in ['expired', 'unknown', 'reelected'] ? ' · ' ~ ENDED[l.howEnded.value] : '' }}</div>
           </div>
         </div>

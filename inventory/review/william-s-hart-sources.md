@@ -409,7 +409,7 @@ Of the 85 local, ranch and borderline pages, **71** are primary: made in Hart's 
 * Billings Gazette: billingsgazette19260627hart
 * NPS Little Bighorn LIBI_00019_00975; LIBI_00603_17730 (Walter C. Nye): np2601
 
-**Later accounts:** barnes_ito2013 (later article, 2013, updated 2019), lw2154k (photo (modern) + later caption, 3-9-2002 (photo); 1928 event), sg051703 (later article (built on Newhall Signal 3-29 & 4-5-1928), 5-17-2003), lat021503 (later article (letter to editor), 2-15-2003), ap1516 (photo + later article, n.d.; building 1940-41), reynolds part65 (book chapter, web ed. ©1998; text written 1976–94 (secondary)), reynolds part53 (book chapter, web ed. ©1998; text written 1976–94 (secondary)), mu8901 (later report (archival survey citing deeds), Feb. 1989 (secondary)), reynolds part54 (book chapter, web ed. ©1998), reynolds part62 (book chapter, web ed. ©1998), lw2950 (artifact + later text, postal cover 1980), lw2616 (artifact (invitation), 9-20-1958), mu0189 (photo, 9-20-1958), al1950 (photo (postcard), ~1950s)
+**Later accounts:** barnes_ito2013 (later article, 2013, updated 2019), lw2154k (photo (modern) + later caption, 3-9-2002 (photo); 1928 event), sg051703 (later article (built on Newhall Signal 3-29 & 4-5-1928), 5-17-2003), lat021503 (later article (letter to editor), 2-15-2003), ap1516 (photo + later article, n.d.; building 1940-41), reynolds part65 (book chapter, web ed. ©1998; text written 1976–94 (secondary)), reynolds part53 (book chapter, web ed. ©1998; text written 1976–94 (secondary)), mu8901 (later report (archival survey citing deeds), Feb. 1989 (secondary)), reynolds part54 (book chapter, web ed. ©1998; text written 1976–94), reynolds part62 (book chapter, web ed. ©1998; text written 1976–94), lw2950 (artifact + later text, postal cover 1980), lw2616 (artifact (invitation), 9-20-1958), mu0189 (photo, 9-20-1958), al1950 (photo (postcard), ~1950s)
 
 Key reliability notes:
 * **Sitton 1989 (mu8901)** is later, but it is a deed-by-deed archival survey with book and page citations. It is the best available guide to the ranch assembly; still, check it against the Recorder's books (some page numbers in the PDF text are uncertain, e.g. "12442:305?").
@@ -696,7 +696,7 @@ These are current errors on the live site (as verified 2026-09-29), not historic
 |---|---|---|---|---|
 | L1 | fh2701; NHMLA boilerplate captions (cp1702, mu9067, cp1703, lw3041, lw3169 and similar); lw2068 | say LA County Parks and NHMLA operate the park and museum; lw2068: NHMLA "operates the Hart Museum" | Since July 14, 2025, the City of Santa Clarita owns and operates Hart Park and the Hart Museum. NHM's P-75 and P-98 photo collections were transferred to the City. GC 1012 and GC 1192 are still listed at the Seaver Center. | County approval Aug 6, 2024 (Barger release); Master Agreement Feb 13, 2025; probate court acceptance (City, 5-13-2025); City ownership (City, 7-14-2025); NHM photo guide (C21). |
 | L2 | lw2298a and lat19360719hart ("HART IN RETIREMENT" sidebar) | thumbnail hs9909t.jpg "Letter: Gift of Buffalo Coat to Rudy Vallee 1936" links lw3383.htm | It should link hs9909.htm (lw3383 is the Earhart letter). | Live link parse, 2026-09-29 (C22). |
-| L3 | film.htm (Hart index) | "LW2341 - ... Pinto Ben on Rudy Vallee's Radio Show, 12-13-1934" links lw2341.htm | It should be LW2342 / lw2342.htm (lw2341 is the 1928 Victor record, which is also listed separately, so LW2341 appears twice). | Live link parse; page titles of lw2341 and lw2342 (C22). |
+| L3 | film.htm (Hart index) | "LW2341 - William S. Hart Recites His Original Poem, 'Pinto Ben,' on Rudy Vallee's Radio Show, 12-13-1934." links lw2341.htm | It should be LW2342 / lw2342.htm (lw2341 is the 1928 Victor record, which is also listed separately, so LW2341 appears twice). | Live link parse; page titles of lw2341 and lw2342 (C22). |
 | L4 | lw3629 and its film.htm entry | titled 3-28-1928 | November 3, 1928 | The page's own text and cutline: "Chicago, Nov. 3-28" (C22). |
 | L5 | fh2701 | credit line "FH2101" | FH2701 (FH2101 is a different item, a lantern slide). | Page code vs credit line (C22). |
 | L6 | mu8491 and its film.htm entry | "1930 or earlier" | About 1934–37: the page cites a Purdue print stamped 04-11-1934, and Hedda Hopper (1941) placed the photo a week before Earhart's 1937 flight. | The page's own evidence (C22). |
@@ -725,6 +725,55 @@ These are current errors on the live site (as verified 2026-09-29), not historic
 * No other finding is overturned. This retrofit uses the existing findings only (no new crawl).
 * **(2026-09-29, from the Reynolds dossier, correction 2) Death toll attribution (C11):** '450 (Reynolds; the original 2003 column)' conflated two sources. '450' is Reynolds' own figure ('at least 450 dead', part54). The 2003 column is sg051703 by Leon Worden, which also says 450 and carries a 2019 footnote giving 411. Reynolds died in 1996 and wrote no 2003 column. Fixed in place in C11.
 * **(2026-09-29, from the Reynolds dossier, correction 3) Reynolds chapter dates:** '©1998' on the signal/reynolds/partNN pages is the date of the SCVHS web edition (ed. Leon Worden). The texts were written 1976–94 (Signal series mid-1970s and mid-1980s; the 1992 book; the prologue and epilogue in 1985) and edited in 1998. Date columns now read 'web ed. ©1998; text written 1976–94'. Treat these chapters as later secondary accounts with an unknown per-chapter composition date.
+* **(2026-10-04, approved by Nathan) .md/.json unification:** a full consistency scan of the .md against the .json found one entry that said different things in the two files, left over from the 2026-09-29 Reynolds back-apply: the Date of reynolds part54 and reynolds part62 (Section 1.2c) read 'web ed. ©1998; text written 1976–94' in the .md but 'web ed. ©1998' in the .json. Both files now carry the .md wording. No finding changes.
+* **(2026-10-04, approved by Nathan) Section 6 L3 quote was inexact (also consolidated CE11):** it read "LW2341 - ... Pinto Ben on Rudy Vallee's Radio Show, 12-13-1934", which dropped the quotation marks and comma around the poem's title. film.htm (re-fetched 2026-10-04) reads: LW2341 - William S. Hart Recites His Original Poem, "Pinto Ben," on Rudy Vallee's Radio Show, 12-13-1934. L3 and CE11 now quote the full entry (the title's quotation marks shown as single quotes inside our double-quoted quote). The finding is unchanged.
+
+## Reading status of quotes (added 2026-10-04)
+
+Nathan's rule (2026-10-04, 08:50 PT; extended to all dossiers and the consolidated list at 09:17 PT): a first machine reading (OCR, or a first image reading by a browser session) is a lead, never a quotation. Quote a page image only from a reading confirmed at full zoom. Every quote now carries one of four labels; a fifth, 'confirmed at full zoom, in part', was added in the full-zoom pass (2026-10-04, approved by Nathan 09:53 PT). Nothing was promoted to 'confirmed at full zoom' unless there is a zoomed screenshot or full-resolution crop that we opened and checked at letter level. The reading-status pass only added labels; the full-zoom pass changed labels, added two [?] marks to one stored transcription (Perkins P36) and removed one obsolete bracketed doubt from the Newhall R22 transcription. No finding or verdict was changed. Browser-transcription rule (Nathan, 2026-10-04 11:07 PT; applied in zm3): a typed transcription from a browser session is not even a lead; only a crop the reviewer has read counts, and any record whose quote came from a browser transcription and not a crop gets no level above 'not read', a sixth level added for them. zm3 (2026-10-04) corrected quotes from crops in the Perkins and Newhall dossiers; the corrections are logged as K entries.
+
+| Level | Meaning |
+|---|---|
+| confirmed at full zoom | A page image read from a zoomed screenshot, or from a crop of a full-resolution page image (a scan PDF page or JPEG 2000 leaf rendered at its native resolution), that we opened with the Read tool and checked at letter level; the screenshot or crop is named. |
+| confirmed at full zoom, in part | A page image checked at letter level at full zoom, as above, where part of the stored quote or record is not confirmed by it (OCR errors kept in the quote, punctuation the crop cannot confirm, or words outside the confirmed fragments); the basis says which part. Added 2026-10-04 in the full-zoom pass. |
+| image reading only | A page image read in a browser or from a screenshot, but not confirmed at letter level at full zoom. |
+| scan text only | OCR or other machine text of a scanned page (CDNC, HathiTrust text-only views, archive.org full text, Assembly Clerk scans read with OCR, census PDFs, Chronicling America); the page image was not read for the quoted words. |
+| not read | A quote typed by a browser session (or relayed from one) with no crop read by the reviewer. Under Nathan's rule of 11:07 PT such a transcription is not even a lead (browser sessions invent and silently correct: an added 'San', a dropped 'of of', a tidied misprint), so the record is listed but its quote carries no weight. Added 2026-10-04 (zm3). |
+| exact text (born-digital) | Text copied from a live scvhistory.com page or another born-digital HTML, text or database record. Exact text, not a reading of an image, so it is kept out of the three levels above. Where the page is itself a transcription of an old document, that is said, and the quote is exact for the page, not for the original print. |
+
+Default: every quote in sections 1–3 and 6 taken from a live scvhistory.com page, or from another web page or catalog record (Wikipedia, Wikidata, Find a Grave, OAC, AFI, JoinCalifornia, Calisphere, city and county pages), is exact text (born-digital). The live-error quotes (section 6) were all copied from the live pages and are exact text. The exceptions, quotes taken from scans or page images, are listed in the register below.
+
+Site pages cited in this dossier that are themselves transcriptions of old documents (their quotes are exact for the site page, not for the original print): perkins-newhall-1958 (Perkins, HSSC Quarterly, Dec 1958 (Mining Camps III, a)); signal/reynolds/ (Reynolds' Signal columns (1976–94) as the 1998 web book); mu8901 (Sitton 1989 report (the site also holds the PDF)); hartmansion-const (Hart mansion construction letters, 1925–28); sg051703 (Newhall Signal items of March–April 1928); lw2271 (Photoplay, May 1928); tumbleweedsmonologue (transcript of Hart's 1939 sound prologue (from audio, not print)).
+
+**Outside records quoted from scans or page images, and other exceptions to the default:**
+
+| # | Where in this dossier | Source | Reading status | Basis |
+|---|---|---|---|---|
+| RS-H1 | Section 2 (key notes), C6; L8 evidence | Sitton 1989 PDF (deed-book and page numbers) | scan text only | read from the PDF's text layer (hart-work Sitton PDF text); some page numbers are uncertain, e.g. '12442:305?'. The HTML text on mu8901 is a site transcription (exact text). |
+
+Register counts: confirmed at full zoom 0; confirmed at full zoom, in part 0; image reading only 0; scan text only 1; not read 0; exact text (born-digital) 0.
+
+**zm3 (2026-10-04, build relayed 12:15 PT; the held verdicts of 10:59–12:46 PT and Nathan's rulings of 11:07, 11:48 and 12:41 PT):** The shared definitions gained a sixth level, 'not read', for quotes typed by a browser session with no crop. Nothing in this dossier changed level. **Not read (browser-transcription rule, Nathan 11:07 PT): 0 records in this dossier.** Across the six dossiers: 10 (Perkins 4, del Valle 4, Newhall 2, Beale 0, Reynolds 0, Hart 0).
+
+**Live errors (section 6):** each quote is exact text from the live page; the evidence for the correct value is labelled as in the consolidated list. 'Weak' means the evidence rests only on scan text or image readings.
+
+| # | CE | Quote | Evidence for the correct value | Basis | Weak |
+|---|---|---|---|---|---|
+| L1 | CE21 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records | no |
+| L2 | CE24 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records | no |
+| L3 | CE11 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records | no |
+| L4 | CE28 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records | no |
+| L5 | CE08 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records | no |
+| L6 | CE31 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records | no |
+| L7 | CE27 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records | no |
+| L8 | CE09 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records; includes site transcriptions of old documents: mu8901 | no |
+| L9 | CE10 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records; includes site transcriptions of old documents: lw2271 | no |
+| L10 | CE06 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records; includes site transcriptions of old documents: hartmansion-const, lw2271 | no |
+| L11 | CE05 | exact text (born-digital) | exact text (born-digital) | site pages and other born-digital records; includes site transcriptions of old documents: hartmansion-const | no |
+| L12 | CE57 | exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book) | exact text (born-digital) | site pages and other born-digital records | no |
+| L13 | CE58 | exact text (born-digital) (the page is a site transcription: Reynolds' Signal columns (1976–94) as the 1998 web book) | exact text (born-digital) | site pages and other born-digital records; includes site transcriptions of old documents: tumbleweedsmonologue | no |
+
+Live-error counts: 13 quotes, all exact text (born-digital). Evidence includes: confirmed at full zoom 0; image reading only 0; scan text only 0; not read 0; exact text (born-digital) 13. Weak: 0.
 
 ---
 Work files: /workspace/review/dossiers/hart-work/ (fetch log, cached HTML, index parse, Sitton PDF text). Privacy: jw4404 names living private individuals; they are deliberately not listed.

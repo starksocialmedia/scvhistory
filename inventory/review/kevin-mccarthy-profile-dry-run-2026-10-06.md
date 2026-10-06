@@ -1,0 +1,33 @@
+# Kevin McCarthy #29466: the profile, dry run (6 October 2026)
+
+Nothing is written by a dry run. The prose and every note are in inventory/review/kevin-mccarthy-profile-draft-2026-10-06.md. Living: public life only.
+
+## #29466 Kevin McCarthy
+
+- nothing to change
+
+- fields already filled, kept: bodyAuthorship = editorial-2026; occupation = Congressman; Speaker of the House; wikidataId = Q766866
+- existing footnotes replaced: 5
+- birth and death fields: not set (living)
+- featuredImage: not touched (has an image)
+
+## Office holdings
+
+- nothing to add
+- dates not touched
+
+## Body as it will read
+
+Kevin McCarthy was the member of Congress for a small corner of the Santa Clarita Valley from January 2007 to January 2013. Under the district lines drawn in 2001, the valley lay almost wholly in the 25th Congressional District; McCarthy's 22nd District, most of whose voters were in Kern County, took in only Green Valley, about 1,000 people and 0.4 per cent of the valley by the archive's count from the 2010 census.[1][2] He won the seat in November 2006, when Bill Thomas, who had held it under the same lines since January 2003, did not run again, and he was re-elected in 2008 and 2010.[2][3] He had worked on Thomas's staff from 1987 to 2002, and served in the State Assembly from 2002 to 2007, as its Republican minority leader from 2004 to 2006.[4]
+
+The lines drawn by the Citizens Redistricting Commission in 2011, first used in the election of 2012, put the whole valley in the 25th District, and McCarthy's district held none of it after January 2013.[1] He stayed in the House, where he was majority whip, majority leader, minority leader and, in the 118th Congress, Speaker of the House. On 3 October 2023 the House voted, 216 to 210, to declare the office of Speaker vacant, and he resigned his seat on 31 December 2023.[4][5]
+
+## Notes as they will read
+
+1. The archive's count of the valley's people by district, templates/_data/valley-districts.json, House of Representatives. Under the "2001 lines, drawn by the Legislature", in force "January 2003 to January 2013", the 25th District held "99.6%" of the valley, "All the valley but Green Valley", and the 22nd held "0.4%": "Green Valley only, about 1,000 people" (1,065 at the 2010 Census). Under the "2011 lines, drawn by the Citizens Redistricting Commission", in force "January 2013 to January 2023", the 25th held "the whole valley". The shares are counted from census blocks assigned to districts in the Statewide Database's block files.
+2. His term for the valley is the archive's office holding #29525 (House of Representatives, 22nd Congressional District, 3 January 2007 to 3 January 2013, under the 2001 lines). California Secretary of State, Statements of Vote, United States Representative, 22nd Congressional District: 7 November 2006, Kevin McCarthy 133,278 votes, 70.8%, to Sharon M. Beery 55,226, 29.2% (in the district's Los Angeles County part, 10,091 to 5,924), https://elections.cdn.sos.ca.gov/sov/2006-general/congress.pdf; 4 November 2008, unopposed, 224,549 votes (Los Angeles County part 18,836), https://elections.cdn.sos.ca.gov/sov/2008-general/23_34_us_reps.pdf; 2 November 2010, 173,490 votes, 98.8%, to John Uebersax, a write-in candidate, 2,173 (Los Angeles County part 14,953), https://elections.cdn.sos.ca.gov/sov/2010-general/58-united-states-representative.pdf. In each year most of the district's votes were cast in Kern County (94,160 of 133,278 for him in 2006). The Los Angeles County part of the district was larger than Green Valley alone; the Statements of Vote do not count Green Valley separately.
+3. Bill Thomas's office holding #29523 (22nd Congressional District, 3 January 2003 to 3 January 2007). Biographical Directory of the United States Congress, "THOMAS, William Marshall" (Wayback Machine capture of 26 October 2019, http://bioguide.congress.gov/scripts/biodisplay.pl?index=T000188): "not a candidate for reelection to the One Hundred Tenth Congress in 2006."
+4. History, Art & Archives, U.S. House of Representatives, "MCCARTHY, Kevin," https://history.house.gov/People/Listing/M/MCCARTHY,-Kevin-(M001165)/ (read 6 October 2026), the entry of the Biographical Directory of the United States Congress: "staff, United States Representative William Thomas of California, 1987-2002"; "member of the California state assembly, 2002-2007, minority leader, 2004-2006"; "elected as a Republican to the One Hundred Tenth and to the eight succeeding Congresses, and served until his resignation on December 31, 2023 (January 3, 2007-December 31, 2023)"; "majority whip (One Hundred Twelfth and One Hundred Thirteenth Congresses)"; "majority leader (One Hundred Thirteenth through One Hundred Fifteenth Congresses)"; "Speaker of the House (One Hundred Eighteenth Congress)". The older Directory page (Wayback Machine capture of 17 December 2019, http://bioguide.congress.gov/scripts/biodisplay.pl?index=M001165) gives the same staff and Assembly lines.
+5. Office of the Clerk, U.S. House of Representatives, Roll Call 519, 118th Congress, 1st Session, https://clerk.house.gov/Votes/2023519 (read 6 October 2026): "Bill Number: H. Res. 757"; "Oct 03, 2023"; "On Agreeing to the Resolution Declaring the office of Speaker of the House of Representatives to be vacant."; "yea: 216 nay: 210".
+
+REFUSED: none
