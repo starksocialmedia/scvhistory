@@ -47,7 +47,6 @@ imported after editing, or an alternative. Keep it or drop it; nothing waits on 
 
 | File | Why |
 |---|---|
-| lw9501_large.jpg | Copied from the mirror on 5 October 2026 for the Connie Worden-Roberts obituaries (worden_roberts_obituaries_2026_10_05.php, a dry run waiting on Nathan). |
 | Sharlene-Duzick.jpg | The Adobe Firefly upscale (creative upsampler, 4 October 2026) of sharlene-headshot.jpg, which is now Sharlene Rose Johnson's portrait (#30544, 5 October 2026: the losing-candidate decision reversed, she being a sitting college trustee). The archive uses the unedited original. |
 | BOM-pg14-shutterstock-185944559.jpg | A Shutterstock image. Its licence would need to be in hand before use. |
 | Firefly.jpg, Firefly (1).jpg, Firefly (2).jpg, grok-image-fb994b75-1760-4be5-a4da-3623d2bc4605.jpg | Generated images. Under the banner rule they are decoration only, in web/banners and never assets. None matches a banner file now. |
