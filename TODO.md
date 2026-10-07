@@ -4,6 +4,14 @@
 
 ### Current (6 October 2026, night)
 - War memorial records and the 490 date decisions: Nathan's.
+- **Design question, not a build: natural disasters and their consequences** (Nathan, 6 October 2026). One section, not wildfires alone: fires, floods, earthquakes and the dam, compared by deaths, acres, structures, cost (in the money of the day and today's) and displacement, and what each did to the valley. "Consequences" because some are both: the St. Francis Dam was a structural failure that caused a flood; Sylmar collapsed the Newhall Pass interchange. First job: find what can be compared at all and what each figure rests on. What the archive would need:
+  - Today the event type has no figure fields: deaths, acres, structures, cost and displacement live only in prose and notes, and they disagree (Northridge; the Dam's dead from "probably almost five hundred" to later counts; Flight 7's two and five; the 1938 flood's 113 to 115 for the region, none in the valley).
+  - A figures table on events, one row per figure per source: measure, value, unit, scope (the valley or the region; the 1938 flood's dead are regional), as of when, source, evidence. Several rows for one measure hold a disagreement instead of picking.
+  - Cost in today's money needs a stated index and base year on the page, never a silent conversion.
+  - A kind of event (fire, flood, earthquake, structural failure) and cause-and-consequence links between events (the Dam and its flood; Sylmar and the Newhall Pass), on relatedEvents or a new relation with a role.
+  - A boundary: the air crashes are disasters but not natural ones; in or out.
+  - The audit itself: every disaster event held (the Dam, the 1938 flood, Sylmar, Northridge, the Powerhouse Fire) and the A and B entries in inventory/review/events-missed-2026-10-05.md, with each figure, its source and its scope, before any field is designed.
+- **Navigation in the body copy; information that belongs in a table or list, the passenger list in particular** (Nathan, 6 October 2026). Nathan to confirm the page. Most likely Western Air Express Flight 7 (#31914, /events/western-air-express-flight-7-crash): its body walks through the dead and injured one sentence at a time (Braden, Johnson, Loomis, Spencer, Owens, Robinson) and steers the reader in its own text ("the note at the foot of this page sets the three figures side by side"; "Photographs taken that morning show them"). The other candidate is United Flight 34 (#31907), whose body names the crew in a sentence and whose nine passengers are only a number. Once confirmed: the aboard list as a table (name, role, home, fate, source), and no pointing words in the prose.
 
 ### Current (6 October 2026, evening)
 - **Stern's holding #29521** is marked reelected in 2024 though his district then held none of the valley.
