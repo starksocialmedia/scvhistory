@@ -1,6 +1,6 @@
 # United Air Lines Flight 34 Crash in Rice Canyon: the loader's dry run, 6 October 2026
 
-Written by `scripts/import/create_united_flight_34_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/united-flight-34-draft-2026-10-06.json` (SHA-256 `25af612c0c22cb27...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.
+Written by `scripts/import/create_united_flight_34_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/united-flight-34-draft-2026-10-06.json` (SHA-256 `25af612c0c22cb27...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.
 
 **Refusals:** none.
 
@@ -9,7 +9,7 @@ Written by `scripts/import/create_united_flight_34_event_2026_10_06.php` (with `
 ```
 DRY RUN create_united_flight_34_event_2026_10_06.php
 ==============================================================================
-EVENT: create "United Air Lines Flight 34 Crash in Rice Canyon": December 27, 1936 (1936-12-27), 9 notes, 4 editor notes, 315 words, 3 dated rows, 6 research leads
+EVENT: #31907 "United Air Lines Flight 34 Crash in Rice Canyon" exists, not recreated
     content advisory: yes, the first editor note, top
     historicalEra: #164 Great Depression (1929–1940)
     historicalPeriod: #176 1930-1939
@@ -22,14 +22,14 @@ EVENT: create "United Air Lines Flight 34 Crash in Rice Canyon": December 27, 19
     eventArticles: none
     articles held, no footnote names them: none
     sourceDocuments: none cited
-        the field is on the event type: set with the event
+        nothing to set
     cited records that are not documents (not in sourceDocuments): #3691 photographs "Broken Watches Fix Time of 1936 Plane Crash in Rice Canyon."; #3693 photographs "Broken Watches Fix Time of 1936 Plane Crash in Rice Canyon."; #4651 photographs "Stewardess Yvonne Trego, Plane Crash Victim, Rice Canyon 12-27-1936."; #4555 photographs "United Flight 34 (Fatal Crash 12-27-1936): Radio Operator Testifies 1-5-1937."; #4557 photographs "United Flight 34 (Fatal Crash 12-27-1936): Radio Operator Testifies 1-5-1937."
     featuredImage: asset 10737 (lw2448a_large.jpg)
-    photograph #3691 LW2448a: photoEvents append the event to [] (named in note 4)
-    photograph #3693 LW2448b: photoEvents append the event to [] (named in note 4)
-    photograph #4555 LW2826a: photoEvents append the event to [] (named in note 9)
-    photograph #4557 LW2826b: photoEvents append the event to [] (named in note 9)
-    photograph #4651 LW2897: photoEvents append the event to [] (named in note 5)
+    photograph #3691 LW2448a: photoEvents has it (named in note 4)
+    photograph #3693 LW2448b: photoEvents has it (named in note 4)
+    photograph #4555 LW2826a: photoEvents has it (named in note 9)
+    photograph #4557 LW2826b: photoEvents has it (named in note 9)
+    photograph #4651 LW2897: photoEvents has it (named in note 5)
     other records: nothing written
     REFUSED: none
 ```

@@ -10,7 +10,7 @@
 
 | Date | Context | Error | Resolution |
 |---|---|---|---|
-| 2026-10-06 | Wikipedia census profiles (helper agents) | Two helper agents sent Nathan's email address to en.wikipedia.org in the User-Agent header of a few requests. | Stopped mid-task; they switched to a generic header. Rule for any agent fetching from outside: a generic User-Agent naming the project, never a person's address. Reported to Nathan. |
+| 2026-10-06 | Wikipedia census profiles (helper agents) | Two helper agents sent Nathan's email address to en.wikipedia.org in the User-Agent header of a few requests. | Stopped mid-task; they switched to a generic header. Rule for any agent fetching from outside: a generic User-Agent naming the project, never a person's address. Reported to Nathan. The second time an address reached an outside site: five scripts still carried one in their headers (find_place_images, attach_place_images, check_external_links, import_legacy_images: the email; add_census_place_boundaries: the name); all now send 'SCVHistory.com archive build (+https://scvhistory.com)' or the like. |
 | 2026-10-06 | remove_thin_persons_2026_10_06.php | Unlinking a term's person turned its generated title into "Unknown person — ...". | holderName field added; the title format falls back on it (add_holder_name_2026_10_06.php). |
 | 2026-10-06 | persons_to_rows_2026_10_06.php | "Thin" was measured by text stored on the record, so 45 trustees with profiles drafted and awaiting Nathan's read became rows. | Restorable from the trash; restore_drafted_trustees_2026_10_06.php (dry run, 44: Lyon excluded) waits on Nathan. A thinness test must count pending drafts. |
 | 2026-04-14 | DDEV/Cloudways | `php craft eval` unknown command | Use `php craft exec` |

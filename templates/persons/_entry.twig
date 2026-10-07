@@ -58,6 +58,13 @@
 {% set banner = banner and banner.kind == 'ai-generated-illustration' and banner.record.id == entry.id ? banner : null %}
 {% set img = bandImg ?? ('featuredImage' in (entry.fieldLayout ? entry.fieldLayout.customFields|map(f => f.handle) : []) ? entry.featuredImage.one() ?? null : null) %}
 {% set img = img ?? (recImages|length ? recImages|first : null) %}
+{% set portraitOriginal = img and 'enhancedFrom' in img.fieldLayout.customFields|map(f => f.handle) ? img.enhancedFrom.one() : null %}
+{#- The line names the edit, read from the recorded method (Nathan, 6 October 2026: "An edit should say which edit it was"): a crop
+    and nothing else is "Cropped"; a crop with upscaling, fill or cleaning is "Cropped and enhanced" (Perkins's); anything else
+    "Enhanced". "Cropped edges filled" is a fill, not a crop. -#}
+{% set em = portraitOriginal ? (img.enhancementMethod ?? '') : '' %}
+{% set emCrop = em starts with 'Cropped' and not (em starts with 'Cropped edges') %}
+{% set emEnh = em matches '/[Uu]pscal|Firefly|[Ff]ill|[Cc]lean|removed|regenerat|[Ee]nlarg/' %}
 {% set era = entry.historicalEra.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set periods = entry.historicalPeriod.all() %}
@@ -129,8 +136,7 @@
                 aria-label="Open the full picture">{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}</button>{% else %}{{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}{% endif %}{% else %}<div class="ph">{{ initials|upper }}</div>{% endif %}
         {#- An enhanced portrait says so under the picture, with the original a click away (Nathan, 6 October 2026: "a reader should
             be able to tell at a glance which image they are looking at"). -#}
-        {% set portraitOriginal = img and 'enhancedFrom' in img.fieldLayout.customFields|map(f => f.handle) ? img.enhancedFrom.one() : null %}
-        {% if portraitOriginal %}<div style="font-size:12px;line-height:1.4;color:#5B6472;margin-top:6px">Enhanced from the original. <a href="{{ url('media/' ~ portraitOriginal.id) }}" style="color:#7A5C1B">See the original</a></div>{% endif %}
+        {% if portraitOriginal %}<div style="font-size:12px;line-height:1.4;color:#5B6472;margin-top:6px">{{ emCrop and emEnh ? 'Cropped and enhanced' : (emCrop ? 'Cropped' : 'Enhanced') }} from the original. <a href="{{ url('media/' ~ portraitOriginal.id) }}" style="color:#7A5C1B">See the original</a></div>{% endif %}
         {% if not img %}{% include "_partials/record/send-photo" with { rec: entry } only %}{% endif %}
         </div>
         {% endif %}
@@ -206,6 +212,7 @@
           <div class="rec-box"><div class="rec-lab">PORTRAIT</div>
             {{ portrait.img(img, 5/4, img.alt ?: entry.title, false) }}
             {% if img.photoCredit|default('')|trim %}<div style="font-size:12.5px;color:#5B6472;margin-top:8px">{{ img.photoCredit }}</div>{% endif %}
+            {% if portraitOriginal %}<div style="font-size:12px;line-height:1.4;color:#5B6472;margin-top:6px">{{ emCrop and emEnh ? 'Cropped and enhanced' : (emCrop ? 'Cropped' : 'Enhanced') }} from the original. <a href="{{ url('media/' ~ portraitOriginal.id) }}" style="color:#7A5C1B">See the original</a></div>{% endif %}
           </div>
         {% endif %}
         {#- Public service from the officeHolding and candidacy records, not the prose. -#}

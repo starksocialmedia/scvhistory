@@ -42,7 +42,7 @@ $DELAY_SECONDS      = 1;
 $HOST_DELAY = ['www.findagrave.com' => 15];
 $TIMEOUT            = 25;
 $MAX                = 0;   /* 0 for all; set a number to sample while testing */
-$UA = 'SCVHistory-LinkCheck/1.0 (+https://scvhistory.com; contact: nathan@starksocial.com)';
+$UA = 'SCVHistory-LinkCheck/1.0 (+https://scvhistory.com)';
 
 $root = \Craft::getAlias('@root');
 $out  = \Craft::getAlias('@review') . '/link-check.json';

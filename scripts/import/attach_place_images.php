@@ -22,7 +22,7 @@ $volume = Craft::$app->getVolumes()->getAllVolumes()[0] ?? null;
 if (!$volume) { echo 'ERROR: no asset volume' . PHP_EOL; return; }
 $root = Craft::$app->getAssets()->getRootFolderByVolumeId($volume->id);
 
-$ctx = stream_context_create(['http' => ['header' => "User-Agent: SCVHistory.com archive build (nathan@starksocial.com)\r\n", 'timeout' => 60]]);
+$ctx = stream_context_create(['http' => ['header' => "User-Agent: SCVHistory.com archive build (+https://scvhistory.com)\r\n", 'timeout' => 60]]);
 
 foreach ($picks as $slug => [$file, $caption]) {
     $place = \craft\elements\Entry::find()->section('places')->slug($slug)->status(null)->one();

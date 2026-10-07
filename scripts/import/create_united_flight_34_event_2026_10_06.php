@@ -27,7 +27,7 @@ $CFG = [
     'v2' => 'inventory/review/united-flight-34-draft-2026-10-06.json',
     'sha' => '25af612c0c22cb27f5888edf4b130520af2a63bad2506f81d9f0c7bd20b1a5e8',
     'out' => 'inventory/review/united-flight-34-loader-dry-run-2026-10-06.md',
-    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.',
+    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.',
     'title' => 'United Air Lines Flight 34 Crash in Rice Canyon',
     'eventDate' => 'December 27, 1936', 'eventDateEdtf' => '1936-12-27',
     'advisory' => true,

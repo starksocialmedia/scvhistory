@@ -26,7 +26,7 @@ $CFG = [
     'v2' => 'inventory/review/flood-1938-draft-2026-10-06.json',
     'sha' => 'ccb319416f54b92f5b0856dce38b3751bffb5430475a9631e4a668ff69f920e6',
     'out' => 'inventory/review/flood-1938-loader-dry-run-2026-10-06.md',
-    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.',
+    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.',
     'title' => 'Great Flood of 1938',
     'eventDate' => 'March 2, 1938', 'eventDateEdtf' => '1938-03-02',
     'advisory' => true,

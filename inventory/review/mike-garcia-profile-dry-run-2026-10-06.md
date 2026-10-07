@@ -4,21 +4,13 @@ Nothing is written by a dry run. The prose and every note, with what rests on Wi
 
 ## #29334 Mike Garcia
 
-- body: Mike Garcia represented the whole Santa Clarita Valley in the United States House of Representatives from May 2020 to Ja... (2298 chars)
-- footnotes: 10 notes
-- bodyAuthorship: editorial-2026
-- occupation: Navy pilot; business executive; congressman
-- wikidataId: Q94236068
-- bioguideId: G000061
-- personWikipediaUrl: https://en.wikipedia.org/wiki/Mike_Garcia_(politician)
-- relatedPersons: #29332 Katie Hill, #29336 George Whitesides
-- recordProvenance: record_valley_legislators_2026_10_04.php, 4 October 2026: a member for the valley's seat; build_mike_garcia_profile_2026... (199 chars)
+- nothing to change
 
-- fields already filled, kept: none
-- existing footnotes replaced: none (the record has no notes)
+- fields already filled, kept: bodyAuthorship = editorial-2026; occupation = Navy pilot; business executive; congressman; wikidataId = Q94236068; bioguideId = G000061; personWikipediaUrl = https://en.wikipedia.org/wiki/Mike_Garcia_(politician)
+- existing footnotes replaced: 10 (each carried verbatim into the new notes)
 - childOf: empty, not touched
 - birth and death fields: not set (living)
-- featuredImage: not touched (empty)
+- featuredImage: not touched (has an image)
 - office holdings #29380, #29382: not touched
 
 ## Body as it will read
@@ -44,6 +36,6 @@ In his last term he sat on the House Appropriations Committee, the Permanent Sel
 9. California Secretary of State, Statement of Vote, General Election, November 5, 2024, United States Representative, 27th Congressional District, https://elections.cdn.sos.ca.gov/sov/2024-general/sov/25-us-rep-congress.pdf: George Whitesides (DEM) 154,040, 51.3%; Mike Garcia* (REP, the asterisk marking the incumbent) 146,050, 48.7%. George Whitesides's office holding #29384 (27th District, from 3 January 2025).
 10. Congressional Record, House, January 6, 2021, "Counting Electoral Votes: Joint Session of the House and Senate Held Pursuant to the Provisions of Senate Concurrent Resolution 1," 167 Cong. Rec. H76 and following, https://www.govinfo.gov/content/pkg/CREC-2021-01-06/html/CREC-2021-01-06-pt1-PgH76-4.htm. The first objection: "object to the counting of the electoral votes of the State of Arizona on the ground that they were not, under all of the known circumstances, regularly given." The second, from Representative Scott Perry: "I object to the electoral votes of my beloved Commonwealth of Pennsylvania". Roll No. 10, on the Arizona objection, "yeas 121, nays 303, not voting 7"; Roll No. 11, on the Pennsylvania objection, "yeas 138, nays 282, not voting 11"; "Garcia (CA)" is among the yeas in both. Clerk of the House, roll calls 10 (6 January 2021, 11:08 PM) and 11 (7 January 2021, 3:08 AM), "On Agreeing to the Objection," "Failed," https://clerk.house.gov/evs/2021/roll010.xml and https://clerk.house.gov/evs/2021/roll011.xml: "Garcia (CA)", party "R", vote "Yea", in both.
 
-recordProvenance after: 199 of 255 characters
+recordProvenance after: unchanged
 
 REFUSED: none

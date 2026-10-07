@@ -2,19 +2,13 @@
 
 ## Waiting on Nathan
 
+### Current (6 October 2026, night)
+- War memorial records and the 490 date decisions: Nathan's.
+
 ### Current (6 October 2026, evening)
-- **Restore the 44 drafted trustees?** The person-record rule turned 45 trustees into rows whose profiles were drafted and waiting on your read (27 Hart, 18 College; thin only because the drafts were not applied). restore_drafted_trustees_2026_10_06.php (dry run: inventory/review/restore-drafted-trustees-dry-run-2026-10-06.txt; Lyon left out) puts them back; then the Hart and College profile dry runs apply. Surviving now without it: Hart 28 of 55, College 15 of 33.
-- **Scott Newhall's lead** (fix_scott_newhall_2026_10_06.php, $WITH_LEAD): the wording is in the dry run; it carries "he and Ruth bought it". Also: writtenBy on the oral history (empty, so it stays in his "About" list).
-- **Five event drafts:** the Powerhouse Fire, the Sylmar Earthquake (title: or Leon's "1971 Sylmar Earthquake"), the Great Flood of 1938, United Flight 34, Western Air Express Flight 7 (create_*_event_2026_10_06.php; each draft's forNathan list).
-- **Mike Garcia's profile:** keep or cut the sentence on his January 2021 votes on the electoral-vote objections (build_mike_garcia_profile_2026_10_06.php, held).
-- **Fran Pavley's portrait:** CC BY 2.0; the license field needs a cc-by-2.0 option (schema).
-- **Cephas Bard:** no valley role could be sourced; under the person rule he may be a row.
-- **Portrait search** (inventory/review/portrait-search-2026-10-06.md): crops needing your word on edited images: Cathie Wright now has a Commons portrait; John Boston (sg030506b-honby, a photo illustration), Michele Jenkins (CO1501c), Tom Frew IV (HS9019); three named portraits whose files never reached the drive (Murr, Taylor, Ellis).
-- **Katie Hill:** the three corrections to the brief (the dates; "the first Democrat"; "unlawful") are in inventory/review/katie-hill-profile-draft-2026-10-06.md; read, then apply.
 - **Stern's holding #29521** is marked reelected in 2024 though his district then held none of the valley.
 
 ### Current (6 October 2026)
-- **Push** templates-batch-9 (the agent's push was refused by the permission check): MacBook, `git push origin templates-batch-9` after predeploy passes.
 - **Duplicate article pairs** (Leon Worden's Signal columns): #12206/#12200, #12204/#12188, #12280/#12258 are word-for-word the same, one copy from /signal/worden/old/; #12152 (869 words) and #12208 (761) are two versions of the Piru column. Which to keep.
 - **Letters as documents with a writer:** John Lang's (#28057), Abel Stearns's (#26983): does a letter's writer count as its author.
 - **The redirect map at cutover:** sg20191114shs.htm to the Saugus High event (D12), the video pages (D11), chp-newhall-incident.htm to the Newhall Incident.

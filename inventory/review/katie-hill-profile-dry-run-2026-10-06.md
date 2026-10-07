@@ -4,25 +4,16 @@ Nothing is written by a dry run. The prose and every note are in inventory/revie
 
 ## #29332 Katie Hill
 
-- body: Katie Hill represented the Santa Clarita Valley in the United States House of Representatives, for the 25th District, fr... (3181 chars)
-- footnotes: 16 notes
-- bodyAuthorship: editorial-2026
-- occupation: Nonprofit executive; congresswoman
-- wikidataId: Q58416634
-- bioguideId: H001087
-- personWikipediaUrl: https://en.wikipedia.org/wiki/Katie_Hill
-- personAliases: Rep. Katie Hill
-Katherine Hill
-- recordProvenance: record_valley_legislators_2026_10_04.php, 4 October 2026: a member for the valley's seat; build_hill_profile_2026_10_06.... (182 chars)
+- nothing to change
 
-- the existing footnotes: none (one empty row)
+- the existing footnotes: 16
 - featuredImage: not touched (#31238)
 - birth fields: not touched (living)
 
 ## Office holding #29378
 
 - term: 2019-01-03 to 2019-11-03, resigned
-- add note 5: Congressional Record, House, November 5, 2019, H8727, https://www.congress.gov/116/crec/2019/11/05/CREC-2019-11-05-pt1-PgH8727.pdf: her letter to the Speaker, dated November 1, 2019, "I write to inform you that I have notified California Governor Gavin Newsom of my resignation from the U.S. House of Representatives, effective November 3, 2019." She announced on October 27, 2019 that she would resign (The Signal, October 27, 2019, /scvhistory/katiehill20191027.htm).
+- nothing to add
 
 ## Body as it will read
 

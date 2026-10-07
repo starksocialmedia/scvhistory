@@ -1,6 +1,6 @@
 # Powerhouse Fire: the loader's dry run, 6 October 2026
 
-Written by `scripts/import/create_powerhouse_fire_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/powerhouse-fire-draft-2026-10-06.json` (SHA-256 `c0f06a8c1c47869b...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.
+Written by `scripts/import/create_powerhouse_fire_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/powerhouse-fire-draft-2026-10-06.json` (SHA-256 `c0f06a8c1c47869b...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.
 
 **Refusals:** none.
 
@@ -9,7 +9,7 @@ Written by `scripts/import/create_powerhouse_fire_event_2026_10_06.php` (with `s
 ```
 DRY RUN create_powerhouse_fire_event_2026_10_06.php
 ==============================================================================
-EVENT: create "Powerhouse Fire": May 30 to June 11, 2013 (2013-05-30/2013-06-11), 14 notes, 4 editor notes, 367 words, 7 dated rows, 5 research leads
+EVENT: #31891 "Powerhouse Fire" exists, not recreated
     content advisory: yes, the first editor note, top
     historicalEra: #171 Contemporary (2010–present)
     historicalPeriod: #184 2010-2019
@@ -22,7 +22,7 @@ EVENT: create "Powerhouse Fire": May 30 to June 11, 2013 (2013-05-30/2013-06-11)
     eventArticles: none
     articles held, no footnote names them: none
     sourceDocuments: none cited
-        the field is on the event type: set with the event
+        nothing to set
     cited records that are not documents (not in sourceDocuments): none
     featuredImage: none
     other records: nothing written

@@ -43,7 +43,7 @@ foreach ($expect as $id => $t) { $E[$id] = Entry::find()->id($id)->status(null)-
 if ($E[18307]->section->handle !== 'roles') { throw new \RuntimeException('#18307 is not a role'); }
 $S = $E[31431];
 $FILES = ['pdf' => ["$root/inventory/raw/uc8901/uc8901.pdf", './scvhistory/files/uc8901/uc8901.pdf'], 'page' => ["$root/inventory/raw/uc8901/uc8901.htm", './scvhistory/uc8901.htm'],
-  'photo' => ["$root/inventory/incoming/tn1968_large.jpg", './gif/tn1968_large.jpg']];
+  'photo' => [is_file("$root/inventory/incoming/tn1968_large.jpg") ? "$root/inventory/incoming/tn1968_large.jpg" : "$root/inventory/incoming/done/tn1968_large.jpg", './gif/tn1968_large.jpg']];
 $manifest = [];
 foreach (file("$root/inventory/raw/scvhistory-manifest-2026-08-20.sha256", FILE_IGNORE_NEW_LINES) as $l) { $p = explode('  ', $l, 2); if (count($p) === 2) { $manifest[$p[1]] = $p[0]; } }
 $SHA = [];

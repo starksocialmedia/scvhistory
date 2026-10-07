@@ -1,5 +1,21 @@
 SCVHistory.com — Changelog
 
+2026-10-06 (late night)
+
+- Agent: Claude Code
+- Date: 2026-10-06
+- Done: Nathan's six answers. Katie Hill's profile applied, the court paragraph kept. Dan Masnada and Angela Marler restored from rows (restore_rows_2026_10_06.php). The edit label on a portrait now names the edit from the recorded method ("Cropped", "Cropped and enhanced", "Enhanced"), and shows on banner pages too, where the sidebar portrait carried no label: Arthur B. Perkins's portrait (cropped, a shoulder removed, upscaled) had said only "Cropped" in the band and nothing in the sidebar. The audit of 63 edited assets found no other mislabel; the old site's own *_crop files link no original and show no line. The namesake trap noted in docs/PROFILES.md.
+- Decisions: the 40 remaining rows stay rows (Nathan).
+- Next: TODO.md.
+
+2026-10-06 (night)
+
+- Agent: Claude Code
+- Date: 2026-10-06
+- Done: Nathan's ten answers. The 44 drafted trustees restored to records, their terms and candidacies relinked (restore_drafted_trustees_2026_10_06.php); the person rule corrected in docs/PROFILES.md: a person stays if sources exist to write from. Scott Newhall's lead applied. Five events applied: the Powerhouse Fire (#31891), the Sylmar Earthquake (#31893), the Great Flood of 1938 (#31904), United Flight 34 (#31907), Western Air Express Flight 7 (#31914, its note sets the three death figures side by side: the Signal's two, SCVHistory.com's heading's five, the later sources' five). Mike Garcia's profile, with the January 2021 votes. The CC BY 2.0 licence option and Fran Pavley's portrait. Cephas L. Bard removed (no valley role; #1420 unlinked, his name stays in its text). Research leads on Gary Murr, Sol Taylor and Philip Ellis Jr. for portraits the old site names but the archive does not hold. Five scripts' User-Agent headers scrubbed of Nathan's address and name.
+- Later the same night, with Reggie mounted again: the three crops applied (Michele R. Jenkins from CO1501c, Tom Frew IV from HS9019, John Boston from the 2006 photo illustration), each original imported and linked; the person page says "Cropped from the original" for a crop. The corrected rule's mirror pass over the 41 rows: the original site's files hold rosters, staff lists and index titles, nothing to write from, except Dan Masnada (CLWA director 1987 to 1993, its general manager, two Newsmaker episodes): recommended to come back, on Nathan's word.
+- Next: TODO.md, "Current (6 October 2026, night)".
+
 2026-10-06 (evening)
 
 - Agent: Claude Code

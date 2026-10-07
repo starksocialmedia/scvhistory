@@ -17,7 +17,7 @@ if (!$volume) { echo 'ERROR: no asset volume' . PHP_EOL; return; }
 $root = Craft::$app->getAssets()->getRootFolderByVolumeId($volume->id);
 
 $get = function (string $url) {
-    $ctx = stream_context_create(['http' => ['header' => "User-Agent: SCVHistory.com archive build (nathan@starksocial.com)\r\n", 'timeout' => 20]]);
+    $ctx = stream_context_create(['http' => ['header' => "User-Agent: SCVHistory.com archive build (+https://scvhistory.com)\r\n", 'timeout' => 20]]);
     $raw = @file_get_contents($url, false, $ctx);
     return $raw === false ? null : json_decode($raw, true);
 };
@@ -63,7 +63,7 @@ foreach (\craft\elements\Entry::find()->section('places')->status(null)->orderBy
 
     if (!$APPLY) { continue; }
 
-    $ctx = stream_context_create(['http' => ['header' => "User-Agent: SCVHistory.com archive build (nathan@starksocial.com)\r\n", 'timeout' => 40]]);
+    $ctx = stream_context_create(['http' => ['header' => "User-Agent: SCVHistory.com archive build (+https://scvhistory.com)\r\n", 'timeout' => 40]]);
     $bytes = @file_get_contents($pick['url'], false, $ctx);
     if ($bytes === false || strlen($bytes) < 5000) { echo str_pad('', 36) . 'download failed' . PHP_EOL; continue; }
 

@@ -25,7 +25,7 @@ $CFG = [
     'v2' => 'inventory/review/sylmar-earthquake-1971-draft-2026-10-06.json',
     'sha' => '3e201a163fd695163ab201fe91831457bac853d379439d5d756e15977a9531dd',
     'out' => 'inventory/review/sylmar-earthquake-1971-loader-dry-run-2026-10-06.md',
-    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.',
+    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.',
     'title' => 'Sylmar Earthquake',
     'eventDate' => 'February 9, 1971', 'eventDateEdtf' => '1971-02-09',
     'advisory' => true,

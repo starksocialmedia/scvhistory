@@ -1,6 +1,6 @@
 # Great Flood of 1938: the loader's dry run, 6 October 2026
 
-Written by `scripts/import/create_flood_1938_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/flood-1938-draft-2026-10-06.json` (SHA-256 `ccb319416f54b92f...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.
+Written by `scripts/import/create_flood_1938_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/flood-1938-draft-2026-10-06.json` (SHA-256 `ccb319416f54b92f...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.
 
 **Refusals:** none.
 
@@ -9,7 +9,7 @@ Written by `scripts/import/create_flood_1938_event_2026_10_06.php` (with `script
 ```
 DRY RUN create_flood_1938_event_2026_10_06.php
 ==============================================================================
-EVENT: create "Great Flood of 1938": March 2, 1938 (1938-03-02), 14 notes, 3 editor notes, 558 words, 7 dated rows, 6 research leads
+EVENT: #31904 "Great Flood of 1938" exists, not recreated
     content advisory: yes, the first editor note, top
     historicalEra: #164 Great Depression (1929–1940)
     historicalPeriod: #176 1930-1939
@@ -22,10 +22,10 @@ EVENT: create "Great Flood of 1938": March 2, 1938 (1938-03-02), 14 notes, 3 edi
     eventArticles: #1444 Tales of Lang and Soledad (note 9)
     articles held, no footnote names them: none
     sourceDocuments: none cited
-        the field is on the event type: set with the event
+        nothing to set
     cited records that are not documents (not in sourceDocuments): #1444 articles "Tales of Lang and Soledad"; #4871 photographs "Southern Pacific Locomotive Derailed, Overturned 3-25-1938."
     featuredImage: none
-    photograph #4871 LW3067: photoEvents append the event to [] (named in note 11)
+    photograph #4871 LW3067: photoEvents has it (named in note 11)
     other records: nothing written
     REFUSED: none
 ```

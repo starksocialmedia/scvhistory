@@ -30,6 +30,23 @@ career: Kit Carson's and Junípero Serra's are the examples. The connection
 has to be the person's own: a tie through a father's or husband's land or
 office is inherited (Juventino del Valle's profile is a line for that reason).
 
+**An office held alone is a row, not a record, unless one of these holds**
+(Nathan, 6 October 2026): the person resigned, died in office or was removed;
+held a higher office; sat on a body's first board; has a portrait; has something
+named for them; or **sources exist to write from**, whether or not the profile
+has been written yet. A person whose profile is drafted from real sources is not
+thin. Thinness is measured by the sources available (the archive's own records,
+the original site's files, saved sources), never by the text already on the
+record. A row is a term with `holderName` and no linked person; the body's page
+shows it by name, unlinked. A row becomes a record by creating the person and
+linking the term, which breaks no link.
+
+Counting sources means counting the right person's. The mirror pass of 6 October
+over the 41 remaining rows found a 1930s stunt man named Ken Cooper and a 2010
+yearbook student named Steven Sansone sharing names with trustees: the namesake
+trap, caught this time by a search looking for something else. A hit on a name
+is a lead until the page shows it is the same person.
+
 `scripts/import/audit_person_significance.php` reports every record against
 this bar (`inventory/review/person-significance.md`). The import scripts that
 created records on the old rule no longer do.

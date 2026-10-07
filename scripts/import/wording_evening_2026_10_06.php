@@ -28,7 +28,7 @@ foreach ([29450, 29328, 29316, 29314, 29284, 18747] as $id) {
   foreach (array_slice($ch, 0, 1) as $i) { echo '  e.g. ' . mb_substr($new[$i]['note'], max(0, mb_strpos($new[$i]['note'], 'earlier') ?: (mb_strpos($new[$i]['note'], 'original site') ?: 0) - 40), 200) . "\n"; }
   if ($APPLY && $ch) { $e->setFieldValue('footnotes', array_values(array_filter($new, fn($r) => $r['note'] !== ''))); if (!$el->saveElement($e)) { throw new \RuntimeException("#$id"); } $n++; }
 }
-foreach ([31736, 31738, 31740, 31742, 31744, 31746, 31748, 31750, 31752, 31754, 31454] as $aid) {
+foreach ([31736, 31738, 31740, 31742, 31744, 31746, 31748, 31750, 31752, 31754, 31454, 31925] as $aid) {
   $a = Asset::find()->id($aid)->one(); $vals = [];
   foreach ($a->getFieldLayout()->getCustomFields() as $f) { if (!$f instanceof \craft\fields\PlainText) continue; $v = (string)$a->getFieldValue($f->handle); $w = $fix($v); if ($w !== $v) $vals[$f->handle] = $w; }
   echo "asset #$aid {$a->filename}: " . ($vals ? implode(', ', array_keys($vals)) : 'done already') . PHP_EOL;

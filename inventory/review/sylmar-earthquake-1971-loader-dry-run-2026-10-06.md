@@ -1,6 +1,6 @@
 # Sylmar Earthquake: the loader's dry run, 6 October 2026
 
-Written by `scripts/import/create_sylmar_earthquake_1971_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/sylmar-earthquake-1971-draft-2026-10-06.json` (SHA-256 `3e201a163fd69516...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.
+Written by `scripts/import/create_sylmar_earthquake_1971_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/sylmar-earthquake-1971-draft-2026-10-06.json` (SHA-256 `3e201a163fd69516...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.
 
 **Refusals:** none.
 
@@ -9,7 +9,7 @@ Written by `scripts/import/create_sylmar_earthquake_1971_event_2026_10_06.php` (
 ```
 DRY RUN create_sylmar_earthquake_1971_event_2026_10_06.php
 ==============================================================================
-EVENT: create "Sylmar Earthquake": February 9, 1971 (1971-02-09), 17 notes, 4 editor notes, 451 words, 5 dated rows, 5 research leads
+EVENT: #31893 "Sylmar Earthquake" exists, not recreated
     content advisory: yes, the first editor note, top
     historicalEra: #167 Incorporation Struggle (1965–1986)
     historicalPeriod: #180 1970-1979
@@ -22,18 +22,18 @@ EVENT: create "Sylmar Earthquake": February 9, 1971 (1971-02-09), 17 notes, 4 ed
     eventArticles: #2129 52. Servicing the Traveler (note 13); #12623 History: The Finest Hotel South Of San Francisco. (note 13); #1438 History of Downtown Newhall (note 14)
     articles held, no footnote names them: none
     sourceDocuments: none cited
-        the field is on the event type: set with the event
+        nothing to set
     cited records that are not documents (not in sourceDocuments): #5689 photographs "2-9-1971 Earthquake"; #3245 photographs "M=6.0+ Southern California Earthquakes, 1912-1971"; #3247 photographs "2-9-1971 Sylmar Earthquake: Main Shock (in SCV) & Aftershocks"; #4973 photographs "Collapsed 210 Freeway Bridge in Newhall Pass, 2-9-1971."; #4493 photographs "5/14 Freeway Overpass, 2-9-1971"; #4977 photographs "Collapsed Freeway Bridge in Newhall Pass, 1971."; #4975 photographs "Workers Attempt to Save Van Norman Reservoir, 2-9-1971."; #2129 articles "52. Servicing the Traveler"; #12623 articles "History: The Finest Hotel South Of San Francisco."; #5217 photographs "Wall Calendar from Albert Swall's Newhall Cash Store, 1915."; #1438 articles "History of Downtown Newhall"; #4809 photographs "Damage in Liquor Store, 2-9-1971."; #4095 photographs "Freeway Damage & Repairs, I-5 & 210"
     featuredImage: asset 11610 (lw3158_large.jpg)
-    photograph #5689 LW7102: photoEvents append the event to [] (named in note 1)
-    photograph #3247 LW2316c: photoEvents append the event to [] (named in note 5, 6, 16)
-    photograph #3245 LW2316: photoEvents append the event to [] (named in note 4)
-    photograph #4973 LW3158: photoEvents append the event to [] (named in note 8)
-    photograph #4493 LW2794: photoEvents append the event to [] (named in note 9)
-    photograph #4977 LW3160: photoEvents append the event to [] (named in note 11)
-    photograph #4095 LW2548a: photoEvents append the event to [] (named in note 17)
-    photograph #4975 LW3159: photoEvents append the event to [] (named in note 12)
-    photograph #4809 LW3019: photoEvents append the event to [] (named in note 15)
+    photograph #5689 LW7102: photoEvents has it (named in note 1)
+    photograph #3247 LW2316c: photoEvents has it (named in note 5, 6, 16)
+    photograph #3245 LW2316: photoEvents has it (named in note 4)
+    photograph #4973 LW3158: photoEvents has it (named in note 8)
+    photograph #4493 LW2794: photoEvents has it (named in note 9)
+    photograph #4977 LW3160: photoEvents has it (named in note 11)
+    photograph #4095 LW2548a: photoEvents has it (named in note 17)
+    photograph #4975 LW3159: photoEvents has it (named in note 12)
+    photograph #4809 LW3019: photoEvents has it (named in note 15)
     photograph #4089 LW2547a: HELD, no footnote cites it (the draft says so)
     other records: nothing written
     REFUSED: none

@@ -49,7 +49,6 @@ imported after editing, or an alternative. Keep it or drop it; nothing waits on 
 |---|---|
 | Sharlene-Duzick.jpg | The Adobe Firefly upscale (creative upsampler, 4 October 2026) of sharlene-headshot.jpg, which is now Sharlene Rose Johnson's portrait (#30544, 5 October 2026: the losing-candidate decision reversed, she being a sitting college trustee). The archive uses the unedited original. |
 | BOM-pg14-shutterstock-185944559.jpg | A Shutterstock image. Its licence would need to be in hand before use. |
-| fran-pavley-commons.jpg | Fran Pavley's Commons portrait (Edward Headington, CC BY 2.0, via Flickr). The license field has no cc-by-2.0 option; adding one is a schema change for Nathan (6 October 2026). |
 | Firefly.jpg, Firefly (1).jpg, Firefly (2).jpg, grok-image-fb994b75-1760-4be5-a4da-3623d2bc4605.jpg | Generated images. Under the banner rule they are decoration only, in web/banners and never assets. None matches a banner file now. |
 
 ## 3. Not identified
@@ -82,4 +81,8 @@ Audra Strickland's and Judge Adrian W. Adams's: in done/ with MANIFEST.json.
 
 ## 7. Commons portraits and Scott Newhall's portrait (6 October 2026)
 
-Ten Commons portraits from the Wikipedia census and TN1968 (Scott Newhall): applied; in done/ with MANIFEST.json. Fran Pavley's waits (section 2).
+Ten Commons portraits from the Wikipedia census and TN1968 (Scott Newhall): applied; in done/ with MANIFEST.json. Fran Pavley's followed once the CC BY 2.0 licence was added.
+
+## 8. Crops of 6 October 2026
+
+Michele R. Jenkins, Tom Frew IV and John Boston: each crop with its original, applied; in done/ with MANIFEST.json.

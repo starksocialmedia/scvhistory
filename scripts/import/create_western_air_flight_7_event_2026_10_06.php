@@ -24,9 +24,9 @@ if ($APPLY) { echo 'APPLY IS ON, this will write to the database' . PHP_EOL; }
 $CFG = [
     'script' => 'create_western_air_flight_7_event_2026_10_06.php',
     'v2' => 'inventory/review/western-air-flight-7-draft-2026-10-06.json',
-    'sha' => '50c9049c0bd6310e8b2a34d189e010dbd9e570b3004bb58740df8cb08c98dc84',
+    'sha' => '0173531586e2bf3bf410ee9542c64b15a3b080f49e5cd3e1ddf2afff23235049',
     'out' => 'inventory/review/western-air-flight-7-loader-dry-run-2026-10-06.md',
-    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.',
+    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.',
     'title' => 'Western Air Express Flight 7 Crash',
     'eventDate' => 'January 12, 1937', 'eventDateEdtf' => '1937-01-12',
     'advisory' => true,

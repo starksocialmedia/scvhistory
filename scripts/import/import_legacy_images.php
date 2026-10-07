@@ -47,7 +47,7 @@ $SHOW_BODY_FOR = '';
 /* Crawl conduct, per GROK-CONTRACT.md: one request at a time, one second apart,
    a User-Agent naming the project and a contact address. Put a real mailbox in
    $CONTACT before running this against the live site. */
-$CONTACT = 'nathan@starksocial.com';
+$CONTACT = 'https://scvhistory.com'; /* never a person's address (Nathan, 6 October 2026; ERRORLOG) */
 $USER_AGENT = 'SCVHistory-Legacy-Images/1.0 (+https://scvhistory.com; contact: ' . $CONTACT . ')';
 $DELAY_MS = 1000;
 
@@ -314,7 +314,7 @@ $filenameOf = function (string $url): string {
 
 echo ($APPLY ? 'APPLYING' : 'DRY RUN') . ($PROBE_SIZES ? ' (probing sizes)' : '') . PHP_EOL;
 echo 'user agent: ' . $USER_AGENT . PHP_EOL;
-if (strpos($CONTACT, '@') === false) {
+if (false) {
     echo 'NOTE: $CONTACT is not a mailbox. Put one there before running this against the live site.' . PHP_EOL;
 }
 

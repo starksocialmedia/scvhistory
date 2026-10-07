@@ -24,7 +24,7 @@ $CFG = [
     'v2' => 'inventory/review/powerhouse-fire-draft-2026-10-06.json',
     'sha' => 'c0f06a8c1c47869bd5902e918baff47776e549bbc452ef84155d5f354acba897',
     'out' => 'inventory/review/powerhouse-fire-loader-dry-run-2026-10-06.md',
-    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.',
+    'provenance' => 'the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.',
     'title' => 'Powerhouse Fire',
     'eventDate' => 'May 30 to June 11, 2013', 'eventDateEdtf' => '2013-05-30/2013-06-11',
     'advisory' => true,

@@ -1,6 +1,6 @@
 # Western Air Express Flight 7 Crash: the loader's dry run, 6 October 2026
 
-Written by `scripts/import/create_western_air_flight_7_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/western-air-flight-7-draft-2026-10-06.json` (SHA-256 `50c9049c0bd6310e...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan has NOT yet approved this draft; it is not to be applied until he does.
+Written by `scripts/import/create_western_air_flight_7_event_2026_10_06.php` (with `scripts/import/_event_from_draft_2026_10_06.php`) in a dry run. A dry run writes nothing to Craft. The event is read from `inventory/review/western-air-flight-7-draft-2026-10-06.json` (SHA-256 `0173531586e2bf3b...`), the draft of 6 October 2026, written in the v2 shape with every quotation checked word for word that day. Nathan approved it for applying on 6 October 2026.
 
 **Refusals:** none.
 
@@ -9,7 +9,7 @@ Written by `scripts/import/create_western_air_flight_7_event_2026_10_06.php` (wi
 ```
 DRY RUN create_western_air_flight_7_event_2026_10_06.php
 ==============================================================================
-EVENT: create "Western Air Express Flight 7 Crash": January 12, 1937 (1937-01-12), 9 notes, 6 editor notes, 407 words, 7 dated rows, 7 research leads
+EVENT: #31914 "Western Air Express Flight 7 Crash" exists, not recreated
     content advisory: yes, the first editor note, top
     historicalEra: #164 Great Depression (1929–1940)
     historicalPeriod: #176 1930-1939
@@ -22,17 +22,17 @@ EVENT: create "Western Air Express Flight 7 Crash": January 12, 1937 (1937-01-12
     eventArticles: none
     articles held, no footnote names them: none
     sourceDocuments: none cited
-        the field is on the event type: set with the event
+        nothing to set
     cited records that are not documents (not in sourceDocuments): #5001 photographs "Rescuers Transport Martin Johnson's Body from Plane Crash Near Newhall, 1937."; #5183 photographs "Plane Crash Survivor Osa Johnson Rescued, 1-13-1937."; #5185 photographs "Plane Crash Victim on Stretcher, 1-13-1937."; #4487 photographs "Victim (Survivor?) Carried from Fatal Plane Crash Site Near Newhall, 1-13-1937"; #4489 photographs "Victim (Survivor?) Carried from Fatal Plane Crash Site Near Newhall, 1-13-1937"; #3643 photographs "Rescuers Recover Body from Plane Crash Near Newhall, 1937"; #3645 photographs "Rescuers Recover Body from Plane Crash Near Newhall, 1937"; #3689 photographs "Boeing 247 Before Crashing South of Newhall"
     featuredImage: asset 11759 (lw3345_large.jpg)
-    photograph #5001 LW3182: photoEvents append the event to [] (named in note 8)
-    photograph #5183 LW3345: photoEvents append the event to [] (named in note 8)
-    photograph #5185 LW3346: photoEvents append the event to [] (named in note 8)
-    photograph #4487 LW2784a: photoEvents append the event to [] (named in note 8)
-    photograph #4489 LW2784b: photoEvents append the event to [] (named in note 8)
-    photograph #3643 LW2431a: photoEvents append the event to [] (named in note 8)
-    photograph #3645 LW2431b: photoEvents append the event to [] (named in note 8)
-    photograph #3689 LW2443: photoEvents append the event to [] (named in note 8)
+    photograph #5001 LW3182: photoEvents has it (named in note 8)
+    photograph #5183 LW3345: photoEvents has it (named in note 8)
+    photograph #5185 LW3346: photoEvents has it (named in note 8)
+    photograph #4487 LW2784a: photoEvents has it (named in note 8)
+    photograph #4489 LW2784b: photoEvents has it (named in note 8)
+    photograph #3643 LW2431a: photoEvents has it (named in note 8)
+    photograph #3645 LW2431b: photoEvents has it (named in note 8)
+    photograph #3689 LW2443: photoEvents has it (named in note 8)
     other records: nothing written
     REFUSED: none
 ```
@@ -163,7 +163,7 @@ None.
 
 On January 12, 1937, Western Air Express Flight 7, a Boeing 247 airliner on its way from Salt Lake City to Burbank, Long Beach and San Diego, crashed in fog and rain on the mountains southeast of Newhall, near the summit of Los Pinetos Peak above Placerita Canyon.[1][2] Thirteen people were aboard, a crew of three and ten passengers.[2][3] The pilot, W.W. Lewis, had lost the radio beam in the fog; when the mountain loomed ahead of him he shut off the motors and set the plane down on the mountainside.[3]
 
-One passenger, James A. Braden of Cleveland, was killed at once. The explorer and filmmaker Martin Johnson died in a hospital the next morning; his wife, Osa Johnson, his companion on his expeditions, survived with a fractured knee.[3][4] Arthur L. Loomis of Omaha died on January 17 and Earl E. Spencer of Chicago on January 18, and the co-pilot, Clifford P. Owens, also died of his injuries: five of the thirteen in all.[5][1][2] The first reports, written while the injured still lived, gave two dead, and so does Leon Worden's timeline.[3][4][6]
+One passenger, James A. Braden of Cleveland, was killed at once. The explorer and filmmaker Martin Johnson died in a hospital the next morning; his wife, Osa Johnson, his companion on his expeditions, survived with a fractured knee.[3][4] Arthur L. Loomis of Omaha died on January 17 and Earl E. Spencer of Chicago on January 18, and the co-pilot, Clifford P. Owens, also died of his injuries: five of the thirteen in all.[5][1][2] The first reports, written while the injured still lived, gave two dead, and so does Leon Worden's timeline. SCVHistory.com's heading on its copy of the Signal's report says five, while the Signal itself printed two; the note at the foot of this page sets the three figures side by side.[3][4][6]
 
 A ranch caretaker east of town heard the crash and reported it in Newhall, and patients at the Olive View Sanitarium reported it there. Arthur S. Robinson, the least hurt of the passengers, worked his way down the mountain and met a rescue party of the sanitarium's doctors. Rain fell all day and hampered the rescue, and it was past midnight before the injured were brought down the south side of the mountain by mule teams and buckboard.[3] Photographs taken that morning show them carried down the snowy trails to the waiting wagons.[8] The wreck could be seen plainly from Newhall, and curiosity seekers kept coming through the night.[3]
 
@@ -181,7 +181,7 @@ It was the second fatal crash of an airliner near Newhall in three weeks: United
 8. Photographs in this archive, ACME wire photographs of January 13, 1937, each with its original cutline: LW3182, photograph #5001 (/scvhistory/lw3182.htm), "Photo shows stretcher bearers carrying the body of Martin Johnson down to be placed in wagon for trip down the mountain side."; LW3345, photograph #5183 (/scvhistory/lw3345.htm), "Photo shows rescue workers as they placed Mrs. Osa Johnson, wife of the noted explorer, in wagon for trip down the mountain grade."; LW3346, photograph #5185 (/scvhistory/lw3346.htm), "Photo shows one of the victims of yesterday's plane crash on stretcher as rescue workers attempted to get the injured and dead down the precipitous trail to a hospital."; LW2784a and LW2784b, the front and back of one print, photographs #4487 and #4489 (/scvhistory/lw2784a.htm), "Victims of the airplane crash near Newhall, California were transported to various hospitals early this morning over trails that wound among the snow-covered hills."; LW2431a and LW2431b, front and back, photographs #3643 and #3645 (/scvhistory/lw2431a.htm), the body of James A. Braden removed "from the wreckage of the plane that crashed Jan. 12th". Also LW2443, photograph #3689 (/scvhistory/lw2443.htm), the same airplane at Denver in May 1933: "This same airplane crashed Jan. 12, 1937, in the mountains south of Newhall, killing five of 13 on board."
 9. The caption SCVHistory.com carries with DS3701, "Boeing 247D Crashes at Santa Clara Divide, 1937" (not in this archive's records), and with LW3182, LW3345, LW3346, LW2784a, LW2431a and LW2443, /scvhistory/ds3701.htm: the Boeing "slammed into Pinetos Peak at the Santa Clara Divide south of Newhall on Jan. 12, 1937. It was the second fatal crash of a commercial airliner in the vicinity within three weeks." "Osa Johnson filed a $502,539 lawsuit against Western Air Express and United Airports Company of California, Ltd. (builder and owner of Burbank Airport, in 1937 a United Airlines subsidiary) for allegedly causing the death of her husband. Even though the crash was ruled pilot error, she lost on appeal in federal court on June 30, 1941."
 
-**Editor's note, The number of dead (bottom):** Leon Worden's timeline gives "2 dead, 11 injured." That was the count of the first reports, made before three of the injured died. The Newhall Signal's headline of January 14, 1937, read "Another Airplane Crash Kills 2." The Associated Press of January 13 had the crash killing "one other person" besides Martin Johnson and injuring 11, and the ACME cutlines of January 13 and 14 have it "killing one man outright and injuring 12 other persons" and "with the loss of two lives and the serious injuries of five others." SCVHistory.com heads its page of the Signal's report "5 Killed in Plane Crash Including Adventurer Martin Johnson," a heading of the site's, not the Signal's, with a webmaster's note: "After this report was published, three more people succumbed to their injuries, for a total of five casualties." The later count is five: the United Press called Earl E. Spencer "the fourth victim" on January 18; the Associated Press wrote on January 21 that the crash "has taken five lives to date"; the Accident Board's report gives "Total fatalities: 5"; and Alan Pollack (2012) and the photograph captions give five. The record gives five.
+**Editor's note, The number of dead: three figures, and the archive against its own source (bottom):** Leon Worden's timeline gives "2 dead, 11 injured." That was the count of the first reports, made before three of the injured died. The Newhall Signal's headline of January 14, 1937, read "Another Airplane Crash Kills 2." The Associated Press of January 13 had the crash killing "one other person" besides Martin Johnson and injuring 11, and the ACME cutlines of January 13 and 14 have it "killing one man outright and injuring 12 other persons" and "with the loss of two lives and the serious injuries of five others." SCVHistory.com heads its page of the Signal's report "5 Killed in Plane Crash Including Adventurer Martin Johnson," a heading of the site's, not the Signal's, with a webmaster's note: "After this report was published, three more people succumbed to their injuries, for a total of five casualties." The later count is five: the United Press called Earl E. Spencer "the fourth victim" on January 18; the Associated Press wrote on January 21 that the crash "has taken five lives to date"; the Accident Board's report gives "Total fatalities: 5"; and Alan Pollack (2012) and the photograph captions give five. Three figures therefore stand side by side, and none is set aside: the Signal printed two; SCVHistory.com's own heading on its copy of that Signal page says five; and every later source says five. The archive's heading does not match the newspaper it presents, and both are kept as printed.
 
 **Editor's note, The time (bottom):** The Accident Board's report, in the summary on SCVHistory.com, gives "1107 Local Time". The Newhall Signal says "The crash came at 11:15," and Alan Pollack gives 11:15 a.m. A rescuer quoted by the Associated Press said "The pilot told me the crash took place at 11:10 a.m." The record says only that it was late morning.
 

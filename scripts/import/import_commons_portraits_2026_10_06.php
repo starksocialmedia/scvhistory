@@ -32,7 +32,7 @@ $man = []; foreach ($MAN['files'] as $f) { $man[$f['record']] = $f; }
 $FED = 'a work of the United States government (17 U.S.C. 105)';
 $CAGOV = 'Wikimedia Commons tags it public domain as a California state work (PD-CAGov), but that tag rests on the Public Records Act, which excludes the Legislature (Government Code 7920.540(a)).';
 $NOPERM = 'Public domain is not established; no permission to publish is in hand.';
-$dl = 'Downloaded from Wikimedia Commons on October 6, 2026; the stored copy is re-encoded.';
+$dl = 'Downloaded from Wikimedia Commons on October 6, 2026.';
 
 /* record id => [name, Commons file name, creator, dateAsPrinted, dateEdtf, license, rightsNote, rightsHolder, photoCredit, caption, source] */
 $R = [

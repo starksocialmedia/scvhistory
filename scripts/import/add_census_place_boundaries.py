@@ -51,7 +51,7 @@ QUERY = {'outSR': '4326', 'maxAllowableOffset': '0.0002', 'geometryPrecision': '
 def fetch(layer, geoid):
     q = dict(QUERY, where=f"GEOID='{geoid}'", outFields='NAME,BASENAME,GEOID,LSADC,FUNCSTAT')
     url = f'{BASE}/{layer}/query?' + urllib.parse.urlencode(q)
-    req = urllib.request.Request(url, headers={'User-Agent': 'SCVHistory-Archive-Boundaries/1.0 (Claude Code, for Nathan Imhoff)'})
+    req = urllib.request.Request(url, headers={'User-Agent': 'SCVHistory-Archive-Boundaries/1.0 (+https://scvhistory.com)'})
     with urllib.request.urlopen(req, timeout=60) as r:
         g = json.load(r)
     feats = g.get('features') or []
