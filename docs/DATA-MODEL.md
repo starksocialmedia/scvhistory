@@ -1261,6 +1261,29 @@ students were killed, and describes injuries and a suicide." First used on the S
 School shooting of 2019; the St. Francis Dam failure, the Newhall Incident and the Kuredjian
 standoff need it too.
 
+## Disasters and their consequences: the figures
+
+**A disaster's toll is contested almost by definition, and an archive that picks a number is
+choosing for the reader. Every figure is held one row per figure per source** (Nathan, 6 October
+2026). Deaths, injuries, acres, structures, cost and displacement are recorded as each source
+gives them, and two sources that disagree are two rows, not a choice: the St. Francis Dam's dead
+run from "probably almost five hundred" in 1928 to the later counts; Western Air Express Flight 7's
+from the Signal's two to five.
+
+**Scope is required on every row, not an optional note.** A figure says whether it counts this
+valley, a named community, the county or the region. The 1938 flood's 113 to 115 dead are the
+region's, with none in this valley, which is exactly the kind of figure that gets quoted as if it
+were local. Cost in today's money states its index and base year on the page; it is never a
+silent conversion.
+
+**The section is not natural disasters alone.** The dam was a structural failure, the air crashes
+were accidents, the Newhall Pass collapsed in an earthquake and again in a truck fire: what they
+share is that something happened here and the valley counted the cost. A kind on each event
+carries the distinction, and cause and consequence are links between events (the dam and its
+flood; Sylmar and the Newhall Pass). Nothing is built yet: the audit of every figure the archive
+holds, what each rests on and its scope (inventory/review/disaster-figures-audit-2026-10-06.md)
+comes before any field is designed.
+
 ## Dates
 
 Dates are held as the source printed them. "about 1887", "spring of 1912" and

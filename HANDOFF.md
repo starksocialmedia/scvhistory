@@ -7,6 +7,8 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## Start here
 
+**The branch is committed and NOT pushed** (6 October 2026, the laptop closed mid-predeploy): templates-batch-9 holds local commits after 1664935 that are not on origin. Run `scripts/predeploy.sh` before pushing; nothing goes up without it.
+
 1. `git pull` on templates-batch-9, the working branch.
 2. Read the documents in AGENTS.md's order. The newest CHANGELOG.md entries say what
    the last sessions did and decided.
@@ -29,7 +31,7 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## In progress or next
 
-1. TODO.md, "Waiting on Nathan", 6 October night first, then 6 October (the push, the duplicate pairs, the redirect map), then 5 October: the appointed-terms audit (not to be fixed before Nathan reads it), the same-name aliases, authorship, the silent-faults dry runs, and the portrait census to rerun whole (stopped unfinished at the laptop's close). Then: Measure U, the Saugus High source records and the St. Francis Dam (all dry runs), the events queue after them (inventory/review/events-inventory-2026-10-05.md), the Harris interview when it arrives, the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
+1. TODO.md, "Waiting on Nathan", 6 October night first (Reggie access for the terminal; the disaster-figures audit, started and stopped with nothing written, to be rerun whole; Stern and the terms that ended when the lines moved), then 6 October (the push, the duplicate pairs, the redirect map), then 5 October: the appointed-terms audit (not to be fixed before Nathan reads it), the same-name aliases, authorship, the silent-faults dry runs, and the portrait census to rerun whole (stopped unfinished at the laptop's close). Then: Measure U, the Saugus High source records and the St. Francis Dam (all dry runs), the events queue after them (inventory/review/events-inventory-2026-10-05.md), the Harris interview when it arrives, the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
 2. The send-a-photograph form is built and tested on DDEV (/send, /admin-submissions); it reaches staging with the next refresh, after docs/DEPLOY-RUNBOOK.md section 11.
 3. The place record Porta Bella (#20152), live and empty: whether to build it. The congressional split recheck.
 4. The City Hall photograph, when Nathan sends it.

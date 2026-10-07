@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-06 (after midnight)
+
+- Agent: Claude Code
+- Date: 2026-10-06
+- Done: The people aboard as tables: Western Air Express Flight 7 (#31914, the thirteen from Ron Kraus's chart, new note 10, the pointing words out of the prose) and United Flight 34 (#31907, all twelve; the sources name the nine passengers). Disasters and their consequences: the principle in docs/DATA-MODEL.md (one row per figure per source; scope required on every row; not natural disasters alone); the audit of every figure begun before any field is designed. Stern's term: the dates were right; howEnded and the unshown term notes reported to Nathan.
+- Blockers: macOS refused this session access to the Reggie drive after it remounted ("Operation not permitted"); the Flight 34 names came from the archive's own photograph records, which repeat the page.
+- Partway: the disaster-figures audit (a read-only agent: every figure of deaths, injuries, acres, structures, cost and displacement for each disaster event held and the A and B entries of inventory/review/events-missed-2026-10-05.md, each with source, scope and date, written to inventory/review/disaster-figures-audit-2026-10-06.md and .json) was stopped at the session's close with nothing written. To be rerun whole.
+- Next: TODO.md.
+
 2026-10-06 (late night)
 
 - Agent: Claude Code
