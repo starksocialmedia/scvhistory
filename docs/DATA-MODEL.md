@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 6 October 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 7 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -419,7 +419,7 @@ at all.
 
 ### Events — `events/event`
 
-45 fields.
+46 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -441,6 +441,7 @@ at all.
 | `eventNextOccurrence` | PlainText | **local** | no external equivalent |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
 | `wikidataId` | PlainText | Wikidata `QID` | emitted as schema.org sameAs |
+| `eventConsequences` | Table | **local** | no external equivalent |
 | `eventSignificance` | PlainText | **local** | no external equivalent |
 | `eventChlNumber` | PlainText | **local** | no external equivalent |
 | `eventWikipediaUrl` | Link | **local** | no external equivalent |
@@ -1098,7 +1099,7 @@ local unless the note says otherwise.
 - **`foValleyTie`** — `killed-here`, `served-here`, `resident-elsewhere`, `off-duty`, `en-route`.
 - **`foundedEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
-- **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `serving`, `unknown`, `removed`.
+- **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `lines-moved`, `serving`, `unknown`, `removed`.
 - **`orgLevel`** — `valley`, `county`, `state`, `federal`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`, `rancho`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
 - **`outcome`** — `unknown`, `elected`, `not-elected`, `withdrew`, `disqualified`.
@@ -1282,7 +1283,17 @@ share is that something happened here and the valley counted the cost. A kind on
 carries the distinction, and cause and consequence are links between events (the dam and its
 flood; Sylmar and the Newhall Pass). Nothing is built yet: the audit of every figure the archive
 holds, what each rests on and its scope (inventory/review/disaster-figures-audit-2026-10-06.md)
-comes before any field is designed.
+comes before any field is designed. The audit is done (inventory/review/disaster-figures-audit-2026-10-07.md,
+19 events, 241 figure rows); the comparison section waits on Nathan's scope decision. No figure row is
+published without its scope.
+
+**Cause and consequence are recorded on the event, as the sources make them** (Nathan, 7 October 2026).
+`eventConsequences` is a table: what followed, in words; the record it is, when the archive holds one
+(a place, a photograph, an event); and the source that makes the link, quoted. A table and not a
+relation, because most consequences are not records: the St. Francis Dam's flood is part of its own
+record, the Greenbrier fires have none. The event page shows them under "What followed". First rows:
+the Dam to its flood; Sylmar and Northridge each to the Newhall Pass interchange; Northridge to the
+Greenbrier fires; the 1938 flood to the Saugus derailment.
 
 ## Dates
 

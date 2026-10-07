@@ -1,5 +1,14 @@
 SCVHistory.com — Changelog
 
+2026-10-07
+
+- Agent: Claude Code
+- Date: 2026-10-07
+- Done: Terms and candidacies shown and checked. howEnded "lines-moved" (McCarthy, Stern, Gorell; the other ten of the thirteen kept, each checked against its footnote). Term notes print under each term in the offices box and on a row's card on its body's page; candidacy notes and outcome ("Not elected") on election pages; the pointer to notes held on another record. One wording file, templates/_data/phrases.json, read by the templates and by check_rendered_fields.php, for how a term ended, how it was chosen, a candidacy's outcome, an education's outcome and an affiliation's kind: the page and the check cannot disagree about wording. The four real misses now show (Atkins's division and "succeeded mid-term", Colley's "attended", Stearns's "not decided"). check_rendered_fields.php reaches a record with no page through the page that shows it (terms, candidacies, affiliations, educations, source faults) and strips thousands separators before comparing; the explanations written into the registry on 7 October were removed. Source faults shown on event and photograph pages (a shared partial); three logged from the disaster audit (Panhorst's 1937 figure, the 2007 siege's, the Northridge USGS summary on 28 pages). The disaster figures audit (19 events, 241 rows). eventConsequences on events, five links the sources make, shown under "What followed". Dry runs for Nathan: sg110185 as a collection and its eight pieces; #12144 split (Patterson's commentary).
+- Findings: the byline census. 1 of 320 links came from a multi-piece page (#12144; right author, a second piece inside). 223 rest on the census's own extraction and are unverified; Archive.org holds 137 of those pages, 86 none. 58 links had no byline in the text: 50 from the Reynolds series heading, 5 from Worden bylines without "By" or a tagline, 4 from page bylines (Rioux, Perkins). #28295 was never misattributed (the census read the page's first byline).
+- Errors: the registry explanations (reverted); a quotation's dateline dash turned into a period (fixed before applying); a source-fault title over 255 characters and an idempotency test broken by a comma-reading query parameter (fixed).
+- Next: TODO.md.
+
 2026-10-06 (after midnight)
 
 - Agent: Claude Code

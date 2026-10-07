@@ -1,0 +1,45 @@
+{
+ "_about": "The words a page prints for a stored value. One file, read by the templates and by scripts/import/check_rendered_fields.php, so the page and the check cannot disagree about wording (Nathan, 7 October 2026: 'settle on one phrase'). Every value has a phrase and every phrase is printed: a blank would leave a reader unable to tell a value from a gap ('not elected' against 'not yet recorded').",
+ "howEnded": {
+  "serving": "serving",
+  "expired": "term ended",
+  "reelected": "re-elected",
+  "resigned": "resigned",
+  "died": "died in office",
+  "recalled": "recalled",
+  "termed-out": "termed out",
+  "left": "left for another office",
+  "removed": "removed from office",
+  "lines-moved": "the lines moved; the district no longer held the valley",
+  "unknown": "how it ended is not recorded"
+ },
+ "selectionMethod": {
+  "elected": "elected",
+  "appointed": "appointed",
+  "rotated": "chosen by the board in rotation",
+  "exofficio": "ex officio",
+  "succeeded": "succeeded mid-term",
+  "sole-candidate": "the sole candidate; no election held",
+  "unopposed": "elected unopposed; no election held"
+ },
+ "outcome": {
+  "elected": "elected",
+  "not-elected": "not elected",
+  "unknown": "outcome not recorded",
+  "withdrew": "withdrew",
+  "disqualified": "disqualified"
+ },
+ "educationOutcome": {
+  "attended": "attended",
+  "graduated": "graduated",
+  "unknown": "whether he or she graduated is not recorded"
+ },
+ "affiliationKind": {
+  "employed": "employed",
+  "member": "member",
+  "founder": "founder",
+  "owner": "owner",
+  "nonprofit-board": "board member",
+  "volunteer": "volunteer"
+ }
+}

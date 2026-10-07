@@ -40,21 +40,27 @@ if ((int)ini_get('memory_limit') !== -1 && (int)ini_get('memory_limit') < 2048) 
 $REG = json_decode((string)file_get_contents(\Craft::getAlias('@root') . '/scripts/import/field-display.json'), true) ?: [];
 $fieldsOf = $REG['fields'] ?? [];
 $skipTypes = ['Assets', 'Lightswitch', 'Matrix'];
-$plain = fn(string $html) => strtolower(preg_replace('~\s+~u', ' ', html_entity_decode(strip_tags(preg_replace('~<(script|style)\b.*?</\1>~is', ' ', preg_replace('~<(sup|a class="nr")[^>]*>.*?</(sup|a)>~is', ' ', $html))), ENT_QUOTES | ENT_HTML5)));
-$norm = fn(string $s) => strtolower(trim(preg_replace('~\s+~u', ' ', html_entity_decode(strip_tags(preg_replace('~\[\d+\]|\[/?lines\]~', ' ', $s)), ENT_QUOTES | ENT_HTML5))));
+$unsep = fn(string $x) => preg_replace('~(?<=\d),(?=\d{3}(?!\d))~', '', $x);
+$plain = fn(string $html) => $unsep(strtolower(preg_replace('~\s+~u', ' ', html_entity_decode(strip_tags(preg_replace('~<[^>]+>~', ' $0 ', preg_replace('~<(script|style)\b.*?</\1>~is', ' ', preg_replace('~<(sup|a class="nr")[^>]*>.*?</(sup|a)>~is', ' ', $html)))), ENT_QUOTES | ENT_HTML5))));
+$norm = fn(string $s) => $unsep(strtolower(trim(preg_replace('~\s+~u', ' ', html_entity_decode(strip_tags(preg_replace('~\[\d+\]|\[/?lines\]~', ' ', $s)), ENT_QUOTES | ENT_HTML5)))));
 $probe = function (string $s) use ($norm): string {
     $s = $norm($s);
     if (mb_strlen($s) <= 70) { return $s; }
     return preg_match('~(?:[\p{L}\p{N}\'’.,-]+ ){7}[\p{L}\p{N}\'’-]+~u', $s, $m) ? $m[0] : mb_substr($s, 0, 60);
 };
 /* What to look for, per field value; [] when there is nothing to check. */
-$needles = function ($f, $v) use ($probe, $skipTypes): array {
+$PH = json_decode((string)file_get_contents(\Craft::getAlias('@root') . '/templates/_data/phrases.json'), true) ?: [];
+$GLOBALS['__lastpart'] = array_map(fn($x) => true, array_filter($REG['fields'] ?? [], fn($x) => ($x['mode'] ?? '') === 'lastpart'));
+$needles = function ($f, $v) use ($probe, $skipTypes, $PH): array {
     $t = (new \ReflectionClass($f))->getShortName();
     if (in_array($t, $skipTypes, true) || $v === null) { return []; }
     /* A page shows a relation's published targets only, so the probe is the first live one (6 October 2026: the Newhall Incident's
        fallen officers are unpublished, waiting on Nathan's read, and were reported missing from its page). */
+    /* A relation whose page prints only the last part of its title (a district as "District 3"): mode "lastpart". */
+    if ($v instanceof \craft\elements\db\ElementQuery && ($GLOBALS['__lastpart'][$f->handle] ?? false)) { $el = $v->one(); return $el ? [$probe((string)array_slice(explode(', ', (string)$el->title), -1)[0])] : []; }
     if ($v instanceof \craft\elements\db\ElementQuery) { $el = $v->one(); return $el && trim((string)$el->title) !== '' ? [$probe((string)$el->title)] : []; }
-    if ($v instanceof \craft\fields\data\SingleOptionFieldData) { return (string)$v->value === '' ? [] : [$probe((string)($v->label ?: $v->value))]; }
+    /* A dropdown is looked for in the words the page prints for it, from the same file the templates read (7 October 2026). */
+    if ($v instanceof \craft\fields\data\SingleOptionFieldData) { if ((string)$v->value === '') { return []; } $ph = $PH[$f->handle][(string)$v->value] ?? null; return [$probe((string)($ph ?? ($v->label ?: $v->value)))]; }
     if (is_array($v)) {
         $out = [];
         foreach (array_slice(array_values(array_filter($v, 'is_array')), 0, 3) as $row) {
@@ -67,6 +73,17 @@ $needles = function ($f, $v) use ($probe, $skipTypes): array {
     return $s === '' ? [] : [$probe($s)];
 };
 $fails = []; $gaps = []; $unclassified = []; $excused = []; $pages = 0; $checks = 0;
+/* A record with no page of its own is checked on the page that shows it (Nathan, 7 October 2026: "A check that skips every record
+   without a URL cannot see terms, candidacies, or anything else that only appears inside another record's page. That is a
+   structural blind spot"). Until then every term (1,224 notes) and every candidacy was skipped. The host is the first related
+   record with a page, in this order. A field listed in "gapOn" for a section is reported as a known gap there, not failed. */
+$HOST = ['officeHoldings' => ['holdingPerson', 'holdingBody'], 'candidacies' => ['candidacyElection'], 'affiliations' => ['affiliationPerson', 'affiliationBody'],
+    'educations' => ['educationPerson'], 'sourceFaults' => ['faultRecord']];
+$hostUrl = function ($e, string $sec) use ($HOST): string {
+    if ($e->url) { return $e->url; }
+    foreach ($HOST[$sec] ?? [] as $h) { if (!$e->getFieldLayout()->getFieldByHandle($h)) { continue; } $t = $e->getFieldValue($h)->one(); if ($t && $t->url) { return $t->url; } }
+    return '';
+};
 /* Memory (4 October 2026): this walk reached 2,032 MB against a 2 GB limit as the archive grew, and check_render
    died with nothing printed. The limit is raised here, and each section's element caches are dropped before the next. */
 ini_set('memory_limit', '4096M');
@@ -75,13 +92,13 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
     /* Which records hold which page fields; then the fewest records that cover them all. */
     $holds = []; $want = [];
     foreach (Entry::find()->section($sec->handle)->each(200) as $e) {
-        if (!$e->url) { continue; }
+        if ($hostUrl($e, $sec->handle) === '') { continue; }
         foreach ($e->getFieldLayout()->getCustomFields() as $f) {
             try { $v = $e->getFieldValue($f->handle); } catch (\Throwable $t) { continue; }
             if (!$needles($f, $v)) { continue; }
             $cls = $fieldsOf[$f->handle]['show'] ?? null;
             if ($cls === null) { $unclassified[$f->handle][$sec->handle] = true; continue; }
-            if ($cls === 'gap') { $gaps[$f->handle][$sec->handle] = ($gaps[$f->handle][$sec->handle] ?? 0) + 1; continue; }
+            if ($cls === 'gap' || in_array($sec->handle, $fieldsOf[$f->handle]['gapOn'] ?? [], true)) { $gaps[$f->handle][$sec->handle] = ($gaps[$f->handle][$sec->handle] ?? 0) + 1; continue; }
             if ($cls !== 'page') { continue; }
             if (in_array($sec->handle, $fieldsOf[$f->handle]['notOn'] ?? [], true)) { continue; }
             $holds[$e->id][] = $f->handle; $want[$f->handle] = true;
@@ -95,20 +112,20 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
         $chosen[] = $best; foreach ($holds[$best] as $h) { unset($left[$h]); } unset($holds[$best]);
     }
     foreach ($chosen as $id) {
-        $e = Entry::find()->id($id)->one();
-        $ch = curl_init($e->url);
+        $e = Entry::find()->id($id)->one(); $u = $hostUrl($e, $sec->handle);
+        $ch = curl_init($u);
         curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_TIMEOUT => 40, CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0]);
         $html = (string)curl_exec($ch); $st = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE); curl_close($ch); $pages++;
         if ($st !== 200) { $fails[] = "NO PAGE  {$sec->handle} #$id {$e->title}  status $st"; continue; }
         $text = $plain($html);
         foreach ($e->getFieldLayout()->getCustomFields() as $f) {
-            if (($fieldsOf[$f->handle]['show'] ?? null) !== 'page' || in_array($sec->handle, $fieldsOf[$f->handle]['notOn'] ?? [], true)) { continue; }
+            if (($fieldsOf[$f->handle]['show'] ?? null) !== 'page' || in_array($sec->handle, $fieldsOf[$f->handle]['notOn'] ?? [], true) || in_array($sec->handle, $fieldsOf[$f->handle]['gapOn'] ?? [], true)) { continue; }
             try { $v = $e->getFieldValue($f->handle); } catch (\Throwable $t) { continue; }
             $mode = $fieldsOf[$f->handle]['mode'] ?? 'text';
             if ($mode === 'body') { continue; }
             $ns = $needles($f, $v);
             if ($mode === 'href') { $u = trim((string)$v); $path = parse_url($u, PHP_URL_PATH) ?: $u; $ns = [str_contains($html, $u) || str_contains($html, htmlspecialchars($u)) || ($path !== '/' && str_contains($html, $path)) ? '' : $u]; }
-            if ($mode === 'number' && is_numeric(trim((string)$v))) { $ns = [number_format((float)trim((string)$v))]; }
+            if ($mode === 'number' && is_numeric(trim((string)$v))) { $ns = [trim((string)$v)]; } /* the page's separators are stripped before comparing (7 October 2026) */
             if ($mode === 'evidence') { $W = ['certified' => "the body's own record", 'contemporary' => 'reported at the time', 'retrospective' => 'recalled later', 'roster' => 'from an undated roster', 'derived' => 'read from the count', 'uncited' => 'not yet sourced']; $ns = [isset($W[(string)($v->value ?? '')]) ? strtolower($W[(string)$v->value]) : '']; }
             /* One value per line, each shown as its own name (the organization page separates aliases, 4 October 2026): each line is looked for. */
             if ($mode === 'lines') { $ns = array_values(array_map($probe, array_filter(array_map('trim', preg_split('~\R~', (string)$v)), 'strlen'))); }
@@ -123,7 +140,7 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
                 $checks++;
                 if ($n === '' || str_contains($text, $n)) { continue; }
                 if ($factVals && is_scalar($v) || (is_object($v) && method_exists($v, '__toString'))) { $fv = $nz((string)$v); $hit = false; foreach ($factVals as $xv) { if ($xv !== '' && (str_contains($xv, mb_substr($fv, 0, 16)) || str_contains($fv, mb_substr($xv, 0, 16))) && str_contains($nz($text), mb_substr($xv, 0, 16))) { $hit = true; break; } } if ($hit) { continue; } }
-                $line = "{$sec->handle}.{$f->handle}  #$id {$e->title}  \"" . mb_substr($n, 0, 60) . '"';
+                $line = "{$sec->handle}.{$f->handle}  #$id {$e->title}" . ($e->url ? '' : " (on $u)") . "  \"" . mb_substr($n, 0, 60) . '"';
                 if (!empty($fieldsOf[$f->handle]['unless'])) { $excused[] = $line . '  (' . $fieldsOf[$f->handle]['unless'] . ')'; } else { $fails[] = 'MISSING  ' . $line; }
                 break;
             }

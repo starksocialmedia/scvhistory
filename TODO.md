@@ -2,8 +2,16 @@
 
 ## Waiting on Nathan
 
+### Current (7 October 2026)
+- **sg110185 dry run** (inventory/review/sg110185/sg110185-dry-run-2026-10-07.txt): a collection with Leon's title, eight documents; #28295 kept as Lutz's piece (it was never misattributed). Read, then apply.
+- **#12144 split dry run** (inventory/review/split-12144-dry-run-2026-10-07.txt): Patterson's commentary as its own article; no parent (the page is not on the mirror).
+- **The 223 unverified bylines:** Archive.org holds 137 of the pages (storage/runtime/wayback223.json lists them); a pass can test those 137 the way the mirror pages were tested. 86 have no capture and stay unverified. Nathan to say go.
+- **The 50 Reynolds links** rest on the series heading, not a byline on each piece.
+- **Disasters:** the comparison section waits on Nathan's scope decision; no figure row is published without its scope. The Saugus High shooting: in or out of the section.
+- **Northridge #875:** its 57 dead and $13 to $50 billion sit in eventSignificance and the withheld body with no footnote.
+
 ### Current (6 October 2026, night)
-- **Grant the terminal access to the Reggie drive** (MacBook: System Settings, Privacy & Security, Files and Folders, the terminal app, Removable Volumes). Since it remounted on 6 October, this session got "Operation not permitted". The disaster audit needs it.
+- (done 7 October) Grant the terminal access to the Reggie drive (MacBook: System Settings, Privacy & Security, Files and Folders, the terminal app, Removable Volumes). Since it remounted on 6 October, this session got "Operation not permitted". The disaster audit needs it.
 - **Stern and the terms that ended when the lines moved:** Nathan to say go on (1) a howEnded option "Lines moved: the district no longer held the valley", set on the twelve terms whose footnotes say so, after a check of each (5 are "reelected", 7 "expired" now); (2) printing such a term's ending note in the offices box (term footnotes show nowhere today).
 - War memorial records and the 490 date decisions: Nathan's.
 - **Design question, not a build: disasters and their consequences** (Nathan, 6 October 2026; the principle is in docs/DATA-MODEL.md: one row per figure per source, scope required on every row, not natural disasters alone, a kind field carries the distinction). The audit comes first and is NOT done: an agent started it on 6 October and was stopped at the session's close with nothing written (macOS had refused access to the Reggie drive). Rerun it whole once Removable Volumes access is granted to the terminal; its brief is in the CHANGELOG entry "after midnight", 6 October. One section, not wildfires alone: fires, floods, earthquakes and the dam, compared by deaths, acres, structures, cost (in the money of the day and today's) and displacement, and what each did to the valley. "Consequences" because some are both: the St. Francis Dam was a structural failure that caused a flood; Sylmar collapsed the Newhall Pass interchange. First job: find what can be compared at all and what each figure rests on. What the archive would need:

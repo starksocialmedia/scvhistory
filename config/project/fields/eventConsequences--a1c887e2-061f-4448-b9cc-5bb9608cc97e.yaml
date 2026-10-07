@@ -1,0 +1,54 @@
+columnSuffix: null
+handle: eventConsequences
+instructions: 'A consequence the sources tie to this event: in words, the record it is (an entry id) when the archive holds one, and the source that makes the link, quoted.'
+name: 'What followed'
+searchable: false
+settings:
+  addRowLabel: 'Add a row'
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - heading
+              - 'What followed'
+            -
+              - handle
+              - consequence
+            -
+              - type
+              - multiline
+      -
+        - col2
+        -
+          __assoc__:
+            -
+              - heading
+              - 'Record id'
+            -
+              - handle
+              - record
+            -
+              - type
+              - singleline
+      -
+        - col3
+        -
+          __assoc__:
+            -
+              - heading
+              - Source
+            -
+              - handle
+              - source
+            -
+              - type
+              - multiline
+  maxRows: null
+  minRows: null
+  staticRows: false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

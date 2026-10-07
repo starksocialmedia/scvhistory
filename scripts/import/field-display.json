@@ -245,7 +245,12 @@
    "show": "page"
   },
   "editorNotes": {
-   "show": "page"
+   "show": "page",
+   "gapOn": [
+    "affiliations",
+    "educations",
+    "sourceFaults"
+   ]
   },
   "educationEvidence": {
    "show": "page",
@@ -373,7 +378,8 @@
    "show": "page"
   },
   "faultField": {
-   "show": "page"
+   "show": "internal",
+   "why": "the handle of the field a source fault concerns; it places the note on the page, it is not printed"
   },
   "faultRecord": {
    "show": "page"
@@ -404,7 +410,12 @@
    "show": "page"
   },
   "footnotes": {
-   "show": "page"
+   "show": "page",
+   "gapOn": [
+    "affiliations",
+    "educations",
+    "sourceFaults"
+   ]
   },
   "footnotesOn": {
    "show": "page"
@@ -475,7 +486,8 @@
    "show": "page"
   },
   "holdingDistrict": {
-   "show": "page"
+   "show": "page",
+   "mode": "lastpart"
   },
   "holdingOffice": {
    "show": "page"
@@ -1066,10 +1078,12 @@
    "why": "emitted in JSON-LD; the printed or related form shows on the page"
   },
   "votes": {
-   "show": "page"
+   "show": "page",
+   "mode": "number"
   },
   "votesAsPrinted": {
-   "show": "page"
+   "show": "page",
+   "mode": "number"
   },
   "votesAtPrecinct": {
    "show": "gap",
@@ -1198,6 +1212,28 @@
    "show": "page",
    "why": "a rights sentence shown with the file, e.g. that a district restricts use of its logo and the archive shows it only to identify the district (3 October 2026)",
    "on": "media"
+  },
+  "holderName": {
+   "show": "page",
+   "why": "a term with no person record is shown by this name on its body's page"
+  },
+  "affiliationPerson": {
+   "show": "page"
+  },
+  "affiliationBody": {
+   "show": "page"
+  },
+  "affiliationKind": {
+   "show": "page"
+  },
+  "affiliationTitle": {
+   "show": "page"
+  },
+  "affiliationEnded": {
+   "show": "page"
+  },
+  "eventConsequences": {
+   "show": "page"
   }
  }
 }

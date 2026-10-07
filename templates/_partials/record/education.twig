@@ -1,3 +1,4 @@
+{%- set PH = source('_data/phrases.json')|json_decode(true) -%}
 {#
   Education, read from the educations section (add_education.php): on a school's
   page, the people in the archive who studied there; on a person's or a
@@ -23,7 +24,7 @@
   {% for r in rows %}
     {% set other = as == 'school' ? r.educationPerson.one() : r.educationSchool.one() %}
     {% if other %}
-      {% set bits = [r.classOf|trim ? 'class of ' ~ r.classOf|trim : '', r.educationOutcome.value == 'graduated' ? 'graduated' : ''] %}
+      {% set bits = [r.classOf|trim ? 'class of ' ~ r.classOf|trim : '', r.educationOutcome.value ? (PH.educationOutcome[r.educationOutcome.value] ?? r.educationOutcome.label|lower) : ''] %}
       {% set items = items|merge([{ e: other, sub: bits|filter(b => b)|join(', '), sort: (r.classOf|trim ?: '9999') ~ other.title, ev: r.educationEvidence ?? null }]) %}
     {% endif %}
   {% endfor %}

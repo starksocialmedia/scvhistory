@@ -87,6 +87,17 @@ settings:
       __assoc__:
         -
           - label
+          - 'Lines moved: the district no longer held the valley'
+        -
+          - value
+          - lines-moved
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
           - 'Still serving'
         -
           - value

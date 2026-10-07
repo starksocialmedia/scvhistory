@@ -1,0 +1,25 @@
+{#-
+  The notes of a record that has no page of its own (a term, a candidacy), printed where that record is shown: a closed list
+  under the line it belongs to (Nathan, 7 October 2026: "print term notes in the offices box and candidacy notes on election
+  pages"; until then 1,224 term notes and the notes of 298 candidacies were held and shown nowhere). Editor's notes first, then
+  the numbered notes. Closed by default, because most are citations; the text is in the page either way.
+
+    rec    the record (an office holding or a candidacy)
+    label  the summary text, "Notes on this term" by default
+-#}
+{%- set h = rec.fieldLayout ? rec.fieldLayout.customFields|map(f => f.handle) : [] -%}
+{%- set ed = 'editorNotes' in h ? (rec.editorNotes ?? [])|filter(r => (r.note ?? '')|trim) : [] -%}
+{%- set fn = 'footnotes' in h ? (rec.footnotes ?? [])|filter(r => (r.note ?? '')|trim) : [] -%}
+{%- set elsewhere = 'footnotesOn' in h ? rec.footnotesOn.one() : null -%}
+{%- if ed|length or fn|length or elsewhere -%}
+<details class="inner-notes"><summary>{{ label ?? 'Notes on this term' }} ({{ ed|length + fn|length + (elsewhere ? 1 : 0) }})</summary>
+  {% if elsewhere %}<p style="margin:6px 0 4px">Its sources are cited on: {% if elsewhere.url %}<a href="{{ elsewhere.url }}">{{ elsewhere.title }}</a>{% else %}{{ elsewhere.title }}{% endif %}</p>{% endif %}
+  {% if ed|length or fn|length %}<ol>{% for r in ed %}<li>{% if r.heading|default('')|trim %}<strong>{{ r.heading }}.</strong> {% endif %}{{ r.note }}</li>{% endfor %}{% for r in fn %}<li>{{ r.note }}</li>{% endfor %}</ol>{% endif %}
+</details>
+{%- css -%}
+.inner-notes{margin-top:4px;font-size:13px;line-height:1.5;color:#5B6472}
+.inner-notes summary{cursor:pointer;color:#7A5C1B;font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+.inner-notes ol{margin:6px 0 4px 18px;padding:0}
+.inner-notes li{margin:0 0 6px;overflow-wrap:anywhere}
+{%- endcss -%}
+{%- endif -%}

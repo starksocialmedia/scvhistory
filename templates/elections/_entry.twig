@@ -1,4 +1,5 @@
 {% extends "_layouts/base" %}
+{%- set PH = source('_data/phrases.json')|json_decode(true) -%}
 {#
   One council election: every candidate and every vote, losers first-class.
 
@@ -94,7 +95,7 @@
         {% set f = faultOf['r' ~ c.id ~ 'votesAsPrinted'] ?? null %}
         <tr>
           <td class="el-dim">{{ noCount ? '' : loop.index }}</td>
-          <td>{% if p %}<a href="{{ p.url }}">{{ c.nameAsPrinted }}</a>{% else %}{{ c.nameAsPrinted }}{% endif %}{% if c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited' %}<span class="el-badge{{ c.outcomeEvidence.value == 'derived' ? ' el-badge--count' : '' }}">{{ c.outcomeEvidence.value == 'derived' ? 'ELECTED, BY THE COUNT' : 'ELECTED' }}</span>{% endif %}</td>
+          <td>{% if p %}<a href="{{ p.url }}">{{ c.nameAsPrinted }}</a>{% else %}{{ c.nameAsPrinted }}{% endif %}{% if c.outcome.value == 'elected' and c.outcomeEvidence.value != 'uncited' %}<span class="el-badge{{ c.outcomeEvidence.value == 'derived' ? ' el-badge--count' : '' }}">{{ c.outcomeEvidence.value == 'derived' ? 'ELECTED, BY THE COUNT' : 'ELECTED' }}</span>{% endif %}{% if c.outcome.value and c.outcome.value != 'elected' %}<div class="el-dim" style="font-size:13px">{{ (PH.outcome[c.outcome.value] ?? c.outcome.label)|capitalize }}</div>{% endif %}{% include "_partials/record/inner-notes" with { rec: c, label: 'Notes on this candidacy' } only %}</td>
           <td class="num">{{ noCount ? 'not held' : c.votes|number_format }}{% if f %}<div class="el-dim">printed "{{ f.asPrinted }}"</div>{% endif %}</td>
           <td>{% if not noCount %}<div class="el-bar" style="width:{{ top ? (c.votes / top * 100)|round(1) : 0 }}%"></div><span class="el-dim">{{ total ? (c.votes / total * 100)|number_format(1) : '' }}%</span>{% endif %}</td>
         </tr>

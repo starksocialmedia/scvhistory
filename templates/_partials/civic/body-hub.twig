@@ -1,3 +1,4 @@
+{%- set PH = source('_data/phrases.json')|json_decode(true) -%}
 {#
   A body's page as the hub for its people and its seats (inventory/review/
   body-hub-proposal-2026-10-03.md, approved 3 October 2026; the tabs,
@@ -20,7 +21,7 @@
 {% set short = {} %}
 {% for s in seats %}{% set short = short|merge({ (s.slug): s.title|split(', ')|last }) %}{% endfor %}
 {% set HOW = { appointed: 'appointed', elected: 'elected', succeeded: 'succeeded', 'sole-candidate': 'appointed in lieu of an election', unopposed: 'elected unopposed; no election held' } %}
-{% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', removed: 'removed from office', died: 'died in office', left: 'left office', unknown: 'end not recorded' } %}
+{% set ENDED = { expired: 'term ended', reelected: 're-elected', resigned: 'resigned', recalled: 'recalled', removed: 'removed from office', died: 'died in office', left: 'left office', 'lines-moved': 'the lines moved', unknown: 'end not recorded' } %}
 {% import "_partials/record/portrait" as portrait %}
 {#- How the page speaks of the body's members (Nathan, 4 October 2026: "The board now" is wrong for a body that is not a
     board). A legislature's members are the valley's members: every district holding part of the valley, each term with
@@ -151,7 +152,9 @@
           {% set ini = (pp|length > 1 ? pp|first|slice(0,1) ~ pp|last|slice(0,1) : r.name|slice(0,1))|upper %}
           {% if r.person %}<a class="th" href="{{ r.person.url }}" tabindex="-1" aria-hidden="true">{% if pimg %}{{ portrait.img(pimg, 1, '', true, 120) }}{% else %}{{ ini }}{% endif %}</a>{% else %}<span class="th" aria-hidden="true">{{ ini }}</span>{% endif %}
           <div style="min-width:0">{% if r.person %}<a class="n" href="{{ r.person.url }}">{{ r.name }}</a>{% else %}<span class="n">{{ r.name }}</span>{% endif %}
-            <div class="r">{{ spans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}{{ pnames|length ? ' · ' ~ pnames|join(', ') : '' }}{{ ENDED[l.howEnded.value] is defined and l.howEnded.value not in ['expired', 'unknown', 'reelected'] ? ' · ' ~ ENDED[l.howEnded.value] : '' }}</div>
+            <div class="r">{{ spans|map(x => x[0] == x[1] ? x[0] : x[0] ~ '–' ~ x[1])|join(', ') }}{{ pnames|length ? ' · ' ~ pnames|join(', ') : '' }}{{ l.howEnded.value ? ' · ' ~ (PH.howEnded[l.howEnded.value] ?? l.howEnded.label|lower) : '' }}</div>
+            {#- A row (no person record) has no other page: each of its terms is said here in full, with its notes (7 October 2026). -#}
+            {% if not r.person %}{% for x in r.terms %}<div class="r" style="margin-top:4px">{{ (x.holdingOffice.one().title ?? '') }}, {{ x.termStart ?: x.termStartEdtf }} to {{ x.termEnd ?: (x.termEndEdtf ?: 'an end not yet recorded') }}{{ x.howEnded.value ? ' (' ~ (PH.howEnded[x.howEnded.value] ?? x.howEnded.label|lower) ~ ')' : '' }}{% include "_partials/record/inner-notes" with { rec: x } only %}</div>{% endfor %}{% endif %}
           </div>
         </div>
       {% endfor %}
@@ -182,7 +185,7 @@
       connection"). Committees and oversight seats belong here, off the landing view. The connection comes from an affiliation;
       a person linked only by the older fields is listed with that said, until the link is re-read into one. -#}
   {% set holderIds = craft.entries().section('officeHoldings').relatedTo({ targetElement: body, field: 'holdingBody' }).with(['holdingPerson']).all()|map(h => (h.holdingPerson|first).id ?? 0) %}
-  {% set KIND = { employed: 'Employed', member: 'Member', founder: 'Founder', owner: 'Owner', 'nonprofit-board': 'Board member', volunteer: 'Volunteer' } %}
+  {%- set KIND = (source('_data/phrases.json')|json_decode(true)).affiliationKind|map(v => v|capitalize) -%}
   {% set rows = [] %}{% set seenIds = [] %}
   {% for a in craft.entries().section('affiliations').relatedTo({ targetElement: body, field: 'affiliationBody' }).with(['affiliationPerson']).all() %}
     {% set p = a.affiliationPerson|first %}

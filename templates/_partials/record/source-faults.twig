@@ -1,0 +1,11 @@
+{#-
+  Where the sources disagree on something the record says, or a page carries a figure for a wider or a different event (a SourceFault
+  on this record), the disagreement is said after the text, not resolved (Nathan, 5 October 2026: Stearns's mint deposit; 7 October
+  2026: the disaster figures). A birth date's fault is said under BORN on a person page instead, so `skip` names that field.
+
+    entry  the record
+    skip   a faultField handled elsewhere (optional)
+-#}
+{%- for f in craft.entries().section('sourceFaults').relatedTo({ targetElement: entry, field: 'faultRecord' }).all()|filter(f => f.faultField != (skip ?? '')) -%}
+  <p class="rec-note">{{ f.basis }}{% if f.asPrinted|default('')|trim or f.reading|default('')|trim %}<br><span style="font-size:13.5px;color:#5B6472">{% if f.asPrinted|trim %}As printed: "{{ f.asPrinted }}".{% endif %}{% if f.reading|trim %} The archive's reading: {{ f.reading }}.{% endif %}</span>{% endif %}</p>
+{%- endfor -%}

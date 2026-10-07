@@ -17,7 +17,7 @@
     {%- set k = 'b' ~ (b.id ?? 0) -%}
     {%- set groups = groups|merge({ (k): { body: b, rows: ((groups[k] ?? { rows: [] }).rows)|merge([a]) } }) -%}
   {%- endfor -%}
-  {%- set KIND = { employed: 'Employed', member: 'Member', founder: 'Founder', owner: 'Owner', 'nonprofit-board': 'Board member', volunteer: 'Volunteer' } -%}
+  {%- set KIND = (source('_data/phrases.json')|json_decode(true)).affiliationKind|map(v => v|capitalize) -%}
   {%- set ENDED = { retired: 'retired', resigned: 'resigned', left: 'left', died: 'died in the post', dismissed: 'dismissed' } -%}
   <div class="rec-box"><div class="rec-lab">POSTS AND CONNECTIONS</div>
     {% for g in groups %}

@@ -66,6 +66,18 @@
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'top' } only %}
         {% if F.body %}<div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages , footnotesFor: entry } %}</div>
 {% include "_partials/record/footnotes" with { entry: entry } only %}{% endif %}
+        {% include "_partials/record/source-faults" with { entry: entry } only %}
+        {#- What followed: a consequence the sources tie to this event, in words, linked where the archive holds it as a record, with the
+            source that makes the link (Nathan, 7 October 2026: the Dam to its flood, Sylmar and Northridge to the interchange). -#}
+        {% set conseq = 'eventConsequences' in entry.fieldLayout.customFields|map(f => f.handle) ? (entry.eventConsequences ?? [])|filter(r => (r.consequence ?? '')|trim) : [] %}
+        {% if conseq|length %}
+          <h2 class="rec-h2" id="what-followed">What followed</h2>
+          <ul class="rec-followed" style="margin:0 0 24px 18px;padding:0">
+            {% for r in conseq %}{% set rec = (r.record ?? '')|trim ? craft.entries().id(r.record|trim).one() : null %}
+              <li style="margin:0 0 10px">{{ r.consequence }}{% if rec %} <a href="{{ rec.url }}" style="color:#7A5C1B">{{ rec.title }}</a>{% endif %}<div style="font-size:13px;line-height:1.5;color:#5B6472;margin-top:2px">{{ r.source }}</div></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
         {% include "_partials/record/images" with { images: recImages, body: F.body, entry: entry } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'inline' } only %}
         {% include "_partials/record/editor-notes" with { rows: (entry.fieldLayout and 'editorNotes' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.editorNotes : []), position: 'bottom' } only %}
