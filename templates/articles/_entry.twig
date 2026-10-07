@@ -208,6 +208,13 @@
 {% endfor %}
 
 {% set author = entry.writtenBy.one() ?? null %}
+{% set srcPath = 'sourcePath' in entry.fieldLayout.customFields|map(f => f.handle) ? (entry.sourcePath ?? '')|trim : '' %}
+{#- What the author link rests on (Nathan, 7 October 2026: "A series heading is not a byline"). "By" only for a printed
+    byline or where nothing is recorded; any other basis says "Attributed to", and the basis and its note print under the line. -#}
+{% set artHandles = entry.fieldLayout.customFields|map(f => f.handle) %}
+{% set basis = 'authorshipBasis' in artHandles ? (entry.authorshipBasis.value ?? '') : '' %}
+{% set basisNote = 'authorshipBasisNote' in artHandles ? (entry.authorshipBasisNote ?? '')|trim : '' %}
+{% set PH = source('_data/phrases.json')|json_decode(true) %}
 {% set editor = entry.editedBy.one() ?? null %}
 {% set communities = entry.neighborhood.all() %}
 {% set era = entry.historicalEra.one() ?? null %}
@@ -287,10 +294,11 @@
       {% if collection %}<div class="rec-sub"><a href="{{ collection.url }}">{{ collection.title }}</a></div>{% endif %}
       {% if author or editor or F.originalPublishDate %}
         <div class="rec-byline">
-          {%- if author %}By <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
+          {%- if author %}{{ basis in ['', 'printed-byline'] ? 'By' : 'Attributed to' }} <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
           {%- if editor %}{% if author %} &middot; {% endif %}Edited by <a href="{{ editor.url }}">{{ editor.title }}</a>{% endif -%}
           {%- if F.originalPublishDate %}{% if author or editor %} &middot; {% endif %}{{ F.originalPublishDate }}{% endif -%}
         </div>
+        {% if author and basis %}<div class="rec-basis">Authorship: {{ PH.authorshipBasis[basis] ?? basis }}.{% if basisNote %} {{ basisNote }}{% endif %}</div>{% endif %}
       {% endif %}
       {% if periods|length or communities|length %}
         <div class="rec-chips">
@@ -570,6 +578,18 @@
     {% if publishers|length %}{% set facts = facts|merge([{ k: 'PUBLISHER', v: publishers|map(o => o.title)|join('; ') }]) %}{% endif %}
     {% if F.sourceLine %}{% set facts = facts|merge([{ k: 'SOURCE', v: F.sourceLine }]) %}{% endif %}
     {% if era %}{% set facts = facts|merge([{ k: 'ERA', v: era.title }]) %}{% endif %}
+    {#- How the archive holds the piece, and, for a piece once filed as a photograph, the photograph record's details (Nathan,
+        7 October 2026: "one identity, with the scan recorded as how we hold it"; "carry every field"). Read through the layout. -#}
+    {% set AH = entry.fieldLayout.customFields|map(f => f.handle) %}
+    {% set heldAs = 'heldAs' in AH ? (entry.heldAs.label ?? '') : '' %}
+    {% if heldAs %}{% set facts = facts|merge([{ k: 'HELD AS', v: heldAs }]) %}{% endif %}
+    {#- The legacy key, where the address shown does not already carry it (a piece of a page that held several: #28295). -#}
+    {% set lkey = 'legacyKey' in AH ? (entry.legacyKey ?? '')|trim : '' %}
+    {% if lkey and lkey|lower not in (F.legacyUrl ~ ' ' ~ srcPath)|lower %}{% set facts = facts|merge([{ k: 'KEY', v: lkey }]) %}{% endif %}
+    {% for pair in [['catalogueCaption', 'CATALOGUE'], ['photoSourceCode', 'PHOTO CODE'], ['photoSequence', 'SEQUENCE'], ['photoDate', 'PHOTO DATE'], ['creditRaw', 'CREDIT'], ['creditDpi', 'RESOLUTION'], ['creditProcess', 'PROCESS'], ['creditKind', 'KIND'], ['creditName', 'HELD BY']] %}
+      {% set pv = pair[0] in AH ? (attribute(entry, pair[0]) ?? '')|trim : '' %}
+      {% if pv %}{% set facts = facts|merge([{ k: pair[1], v: pair[0] == 'creditDpi' ? pv ~ ' dpi' : pv }]) %}{% endif %}
+    {% endfor %}
     {% set facts = facts|merge([{ k: 'UPDATED', v: entry.dateUpdated|date('M j, Y') }]) %}
 
     {#- The same card as every other block in this column: cream, a gold top
@@ -588,6 +608,11 @@
         {% set legacyHref = include('_partials/legacy-url', { value: F.legacyUrl })|trim %}
         <a href="{{ legacyHref }}" target="_blank" rel="noopener" style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 0 4px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em">Read the original page <span>&nearr;</span></a>
         <div style="font-family: ui-monospace, monospace; font-size: 11px; color: #9AA1AD; word-break: break-all; padding-bottom: 8px">{{ F.legacyUrl }}</div>
+      {#- A piece from a page that held several (sg110185): the page's address is on its collection, and the piece keeps the
+          page it came from as sourcePath, which keeps its full host and so does not go through the legacy-url helper. -#}
+      {% elseif srcPath %}
+        <a href="{{ srcPath }}" target="_blank" rel="noopener" style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 0 4px; font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .04em">Read the original page <span>&nearr;</span></a>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; color: #9AA1AD; word-break: break-all; padding-bottom: 8px">{{ srcPath }}</div>
       {% endif %}
     </div>
     {% if collection %}

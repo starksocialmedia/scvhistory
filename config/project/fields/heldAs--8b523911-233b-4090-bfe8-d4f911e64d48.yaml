@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: heldAs
+instructions: 'The form this record survives in here. It is how we hold the thing, not what it is: a newspaper article held as a scanned clipping is an article, held as a clipping. Empty means not recorded.'
+name: 'Held as'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - ''
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - Clipping
+        -
+          - value
+          - clipping
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Magazine pages'
+        -
+          - value
+          - magazine-pages
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Transcription only'
+        -
+          - value
+          - transcription-only
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Web
+        -
+          - value
+          - web
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

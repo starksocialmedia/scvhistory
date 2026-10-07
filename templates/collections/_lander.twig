@@ -174,9 +174,10 @@
       <h1>{{ entry.title ?: entry.slug }}</h1>
       {% if author or editor %}
         <p class="rec-sub cl-by">
-          {%- if author %}by <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
+          {%- if author %}{% include "_partials/record/authorship-basis" with { rec: entry, part: 'word' } only %} <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}
           {%- if editor %}{% if author %} &nbsp;·&nbsp; {% endif %}edited by <a href="{{ editor.url }}">{{ editor.title }}</a>{% endif -%}
         </p>
+        {% if author %}{% include "_partials/record/authorship-basis" with { rec: entry, part: 'line' } only %}{% endif %}
       {% endif %}
 
       {#- Chips, as the article draws them: era gold-outlined, community navy.

@@ -1,0 +1,66 @@
+columnSuffix: null
+handle: authorshipBasis
+instructions: 'What the Written By link rests on. Printed byline: the piece prints the name as its author, above it. Series attribution: the series heading names the author; the piece itself carries no byline. Closing tagline: the name appears only in a line at the end. Derived: inferred from something else, said in the note. Empty means nobody has recorded it.'
+name: 'Authorship basis'
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - ''
+        -
+          - value
+          - ''
+        -
+          - default
+          - true
+    -
+      __assoc__:
+        -
+          - label
+          - 'Printed byline'
+        -
+          - value
+          - printed-byline
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Series attribution'
+        -
+          - value
+          - series-attribution
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'Closing tagline'
+        -
+          - value
+          - closing-tagline
+        -
+          - default
+          - false
+    -
+      __assoc__:
+        -
+          - label
+          - Derived
+        -
+          - value
+          - derived
+        -
+          - default
+          - false
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

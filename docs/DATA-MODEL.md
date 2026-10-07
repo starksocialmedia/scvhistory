@@ -221,7 +221,7 @@ at all.
 
 ### Articles — `articles/article`
 
-46 fields.
+60 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -232,6 +232,7 @@ at all.
 | `originalPublishDateEdtf` | PlainText | **local** | no external equivalent |
 | `subheadline` | PlainText | schema.org `alternativeHeadline` |  |
 | `sourceLine` | PlainText | **local** | no external equivalent |
+| `heldAs` | Dropdown | **local** | no external equivalent |
 | `legacyKey` | PlainText | **local** | no external equivalent |
 | `legacyUrl` | PlainText | Dublin Core `source` | where it stood on the legacy site |
 | `archiveUrl` | PlainText | Dublin Core `source` | Internet Archive capture |
@@ -248,6 +249,8 @@ at all.
 | `culturalSensitivityNote` | PlainText | Dublin Core `rights` | approximate; it is a note, not a licence |
 | `recordTags` | Categories | Dublin Core `subject` | local vocabulary |
 | `writtenBy` | Entries | schema.org `author` | also dcterms:creator |
+| `authorshipBasis` | Dropdown | **local** | no external equivalent |
+| `authorshipBasisNote` | PlainText | **local** | no external equivalent |
 | `editedBy` | Entries | schema.org `editor` |  |
 | `subjectPerson` | Entries | schema.org `about` | dcterms:subject |
 | `publishedBy` | Entries | schema.org `publisher` |  |
@@ -271,6 +274,17 @@ at all.
 | `recordDocuments` | Assets | schema.org `associatedMedia` |  |
 | `recordDates` | Table | **local** | no external equivalent |
 | `bandImage` | Assets | schema.org `image` | presentation only |
+| `catalogueCaption` | PlainText | **local** | no external equivalent |
+| `photoSourceCode` | PlainText | **local** | no external equivalent |
+| `photoSequence` | PlainText | **local** | no external equivalent |
+| `creditRaw` | PlainText | **local** | no external equivalent |
+| `creditDpi` | PlainText | **local** | no external equivalent |
+| `creditProcess` | PlainText | **local** | no external equivalent |
+| `creditKind` | PlainText | **local** | no external equivalent |
+| `creditName` | PlainText | **local** | no external equivalent |
+| `photoDate` | PlainText | **local** | no external equivalent |
+| `photoDateEdtf` | PlainText | **local** | no external equivalent |
+| `recordProvenance` | PlainText | Dublin Core `provenance` | how the record came to exist |
 
 ### Candidacies — `candidacies/Candidacy`
 
@@ -295,7 +309,7 @@ at all.
 
 ### Collections — `collections/collection`
 
-34 fields.
+36 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -314,6 +328,8 @@ at all.
 | `collectionIsMajor` | Lightswitch | **local** | no external equivalent |
 | `collectionParts` | Table | **local** | no external equivalent |
 | `writtenBy` | Entries | schema.org `author` | also dcterms:creator |
+| `authorshipBasis` | Dropdown | **local** | no external equivalent |
+| `authorshipBasisNote` | PlainText | **local** | no external equivalent |
 | `editedBy` | Entries | schema.org `editor` |  |
 | `publishedBy` | Entries | schema.org `publisher` |  |
 | `collectionKind` | Dropdown | **local** | how a collection is read, not what it is about |
@@ -336,7 +352,7 @@ at all.
 
 ### Documents — `documents/document`
 
-31 fields.
+34 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -347,8 +363,11 @@ at all.
 | `originalPublishDate` | PlainText | schema.org `datePublished` | printed form; EDTF in dateEdtf where it parses |
 | `originalPublishDateEdtf` | PlainText | **local** | no external equivalent |
 | `sourceLine` | PlainText | **local** | no external equivalent |
+| `heldAs` | Dropdown | **local** | no external equivalent |
 | `publishedBy` | Entries | schema.org `publisher` |  |
 | `writtenBy` | Entries | schema.org `author` | also dcterms:creator |
+| `authorshipBasis` | Dropdown | **local** | no external equivalent |
+| `authorshipBasisNote` | PlainText | **local** | no external equivalent |
 | `subjectPerson` | Entries | schema.org `about` | dcterms:subject |
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
@@ -561,7 +580,7 @@ at all.
 
 ### Obituaries — `obituaries/obituary`
 
-34 fields.
+36 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -573,6 +592,8 @@ at all.
 | `researchLeads` | PlainText | **local** | no external equivalent |
 | `publicationDetails` | PlainText | **local** | no external equivalent |
 | `writtenBy` | Entries | schema.org `author` | also dcterms:creator |
+| `authorshipBasis` | Dropdown | **local** | no external equivalent |
+| `authorshipBasisNote` | PlainText | **local** | no external equivalent |
 | `obitCompanions` | Entries | **local** | no external equivalent |
 | `obitDateOfDeath` | PlainText | **local** | no external equivalent |
 | `obitDatePublished` | PlainText | **local** | no external equivalent |
@@ -840,10 +861,11 @@ a skip means the queue has not been settled, and an external means it has.
 
 ### Photographs — `photographs/photograph`
 
-43 fields.
+44 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
+| `catalogueCaption` | PlainText | **local** | no external equivalent |
 | `featuredImage` | Assets | schema.org `image` |  |
 | `webmasterNoteTop` | PlainText | **local** | no external equivalent |
 | `body` | PlainText | schema.org `text` | also dcterms:description |
@@ -1083,6 +1105,7 @@ local unless the note says otherwise.
 
 - **`affiliationEnded`** — `serving`, `retired`, `resigned`, `left`, `died`, `dismissed`, `unknown`.
 - **`affiliationKind`** — `employed`, `member`, `founder`, `owner`, `nonprofit-board`, `volunteer`.
+- **`authorshipBasis`** — `printed-byline`, `series-attribution`, `closing-tagline`, `derived`.
 - **`birthEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
 - **`bodyAuthorship`** — `legacy-leon`, `wordpress-import-unsourced`, `editorial-2026`, `mixed`.
 - **`burialEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `uncited`.
@@ -1099,6 +1122,7 @@ local unless the note says otherwise.
 - **`foValleyTie`** — `killed-here`, `served-here`, `resident-elsewhere`, `off-duty`, `en-route`.
 - **`foundedEvidence`** — `certified`, `contemporary`, `retrospective`, `roster`, `derived`, `uncited`.
 - **`hauntedStatus`** — `reported`, `legend`, `disputed`.
+- **`heldAs`** — `clipping`, `magazine-pages`, `transcription-only`, `web`.
 - **`howEnded`** — `expired`, `reelected`, `resigned`, `died`, `recalled`, `termed-out`, `left`, `lines-moved`, `serving`, `unknown`, `removed`.
 - **`orgLevel`** — `valley`, `county`, `state`, `federal`.
 - **`orgType`** — `school`, `government`, `business`, `nonprofit`, `church`, `club`, `media`, `military`, `other`, `rancho`. Drives the schema.org `@type`: school to School, government to GovernmentOrganization, business to Corporation, nonprofit to NGO, church to Church, media to NewsMediaOrganization, club and military and other to Organization.
@@ -1284,8 +1308,11 @@ carries the distinction, and cause and consequence are links between events (the
 flood; Sylmar and the Newhall Pass). Nothing is built yet: the audit of every figure the archive
 holds, what each rests on and its scope (inventory/review/disaster-figures-audit-2026-10-06.md)
 comes before any field is designed. The audit is done (inventory/review/disaster-figures-audit-2026-10-07.md,
-19 events, 241 figure rows); the comparison section waits on Nathan's scope decision. No figure row is
-published without its scope.
+19 events, 241 figure rows). No figure row is published without its scope.
+
+**Natural and accidental events only; crime stays out** (Nathan, 7 October 2026). The comparison
+covers fires, floods, earthquakes, the dam and the air crashes. The Saugus High shooting is not a
+disaster figure: set in a table beside fires and floods it would make a claim no source makes.
 
 **Cause and consequence are recorded on the event, as the sources make them** (Nathan, 7 October 2026).
 `eventConsequences` is a table: what followed, in words; the record it is, when the archive holds one

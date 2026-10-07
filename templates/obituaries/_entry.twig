@@ -31,7 +31,7 @@
           {#- Who wrote it, linked, where the record names a person (Nathan, 5 October 2026: "A reader should be able to see everything a person wrote here"). -#}
           {% set obitHandles = entry.fieldLayout.customFields|map(f => f.handle) %}
           {% set obitAuthor = 'writtenBy' in obitHandles ? entry.writtenBy.one() : null %}
-          {% if obitAuthor %}<div class="rec-sub">by <a href="{{ obitAuthor.url }}">{{ obitAuthor.title }}</a></div>{% endif %}
+          {% if obitAuthor %}<div class="rec-sub">{% include "_partials/record/authorship-basis" with { rec: entry, part: 'word' } only %} <a href="{{ obitAuthor.url }}">{{ obitAuthor.title }}</a></div>{% include "_partials/record/authorship-basis" with { rec: entry, part: 'line' } only %}{% endif %}
           {% if F.publicationDetails %}<div class="rec-sub">{{ F.publicationDetails }}</div>{% endif %}
           {% if F.obitDateOfDeath or F.obitDatePublished %}
             <div class="rec-facts">

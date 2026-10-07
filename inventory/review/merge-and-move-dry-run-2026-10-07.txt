@@ -1,0 +1,20 @@
+DRY RUN
+#1434 <- #27374
+     webmasterNoteTop already in #1434's body; not repeated
+   merge #27374 into #1434: sets originallyPublishedTitle, sourceLine, subjectPerson, editorNotes
+     kept #1434's body; #27374 held: Rancho San Francisco designates the headwater of the Santa Clara River, draining the northwesterly portion of Los Angeles County. Geographically, it is a cañada
+#865 <- #3179
+   type article gains (Photograph details): catalogueCaption, photoSourceCode, photoSequence, creditRaw, creditDpi, creditProcess, creditKind, creditName
+   merge #3179 into #865: sets catalogueCaption, photoSourceCode, photoSequence, creditRaw, creditDpi, creditProcess, creditKind, creditName
+     kept #865's body; #3179 held: [lines] / Surveyor's Map Showing Lyon's Station / (Pre-) Newhall, California / [/lines] /  / [FULL VIEW] [CLOSEUP] [ULTRA CLOSEUP] /  / Los Angeles County Surve
+#2689 <- #12558
+   move #2689 photographs -> articles, carrying 13 fields
+   type article gains (Photograph details): catalogueCaption, photoDate, photoDateEdtf, photoSourceCode, photoSequence
+   type photograph gains (Photograph details): originalPublishDate, originalPublishDateEdtf, writtenBy, authorshipBasis, authorshipBasisNote, subjectPerson, depictsPlace
+   type photograph gains (Record): recordProvenance
+   merge #12558 into #2689: sets originalPublishDate, originalPublishDateEdtf, writtenBy, authorshipBasis, authorshipBasisNote, subjectPerson, depictsPlace, partOfCollection, recordProvenance
+     kept #2689's body; #12558 held: [lines] / Story of Sulphur Springs School / [/lines] /  / Editor's Note: The article below reflects "the story as we knew it" in 1997. Since that time, we have 
+     link #665 articlesInCollection -> #2689
+#28295 -> articles
+   move #28295 documents -> articles, carrying 12 fields
+nothing written

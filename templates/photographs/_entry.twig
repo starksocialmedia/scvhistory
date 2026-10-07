@@ -154,6 +154,10 @@
           <div class="rec-kick"><span class="a">PHOTOGRAPHS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
           {% if collection %}<div class="rec-sub"><a href="{{ collection.url }}" style="color:inherit">{{ collection.title }}</a></div>{% endif %}
+          {#- Leon's catalogue entry, every word (Nathan, 7 October 2026): the title is the headline the page prints, and this is how
+              he described the photograph, often the only description there is. -#}
+          {% set catEntry = 'catalogueCaption' in entry.fieldLayout.customFields|map(f => f.handle) ? (entry.catalogueCaption ?? '')|trim : '' %}
+          {% if catEntry %}<div class="rec-catalogue"><span class="l">CATALOGUE ENTRY</span> {{ catEntry }}</div>{% endif %}
           {% set facts = [
             { l: 'DATE', v: F.photoDate },
             { l: 'SOURCE', v: F.photoSourceCode },

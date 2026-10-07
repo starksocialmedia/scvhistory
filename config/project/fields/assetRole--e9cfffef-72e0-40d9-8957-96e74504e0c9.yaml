@@ -50,6 +50,17 @@ settings:
         -
           - default
           - false
+    -
+      __assoc__:
+        -
+          - label
+          - 'A copy of the record that holds it (facsimile: a scan of the page)'
+        -
+          - value
+          - facsimile
+        -
+          - default
+          - false
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

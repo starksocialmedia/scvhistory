@@ -20,6 +20,12 @@
  */
 
 $moved = [
+    /* Merged and moved, 7 October 2026 (merge_and_move_2026_10_07.php). */
+    'documents/rancho-san-francisco-a-study-of-a-california-land-grant-by-a-b-perkins-1957' => 'articles/rancho-san-francisco-a-study-of-a-california-land-grant-1957',
+    'photographs/surveyors-map-showing-lyons-station-1875' => 'articles/surveyors-map-showing-lyons-station',
+    'photographs/story-of-sulphur-springs-school' => 'articles/story-of-sulphur-springs-school-2',
+    'articles/story-of-the-sulphur-springs-school' => 'articles/story-of-sulphur-springs-school-2',
+    'documents/city-backers-join-prison-furor-karina-lutz-the-signal-november-1-1985' => 'articles/city-backers-join-prison-furor-karina-lutz-the-signal-november-1-1985',
     'organizations/acton-hotel'                   => 'places/acton-hotel',
     'organizations/southern-hotel'                => 'places/southern-hotel',
     'organizations/pioneer-oil-refinery'          => 'places/pioneer-oil-refinery',

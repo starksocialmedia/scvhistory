@@ -73,7 +73,7 @@
               record title. -#}
           {#- Who wrote it, linked, where the record names a person (Nathan, 6 October 2026: "add writtenBy to documents"). -#}
           {% set docAuthors = 'writtenBy' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.writtenBy.all() : [] %}
-          {% if docAuthors|length %}<div class="rec-sub">by {% for w in docAuthors %}{% if not loop.first %}, {% endif %}<a href="{{ w.url }}">{{ w.title }}</a>{% endfor %}</div>{% endif %}
+          {% if docAuthors|length %}<div class="rec-sub">{% include "_partials/record/authorship-basis" with { rec: entry, part: 'word' } only %} {% for w in docAuthors %}{% if not loop.first %}, {% endif %}<a href="{{ w.url }}">{{ w.title }}</a>{% endfor %}</div>{% include "_partials/record/authorship-basis" with { rec: entry, part: 'line' } only %}{% endif %}
           {% if publishers|length %}<div class="rec-sub">{{ publishers|map(p => p.title)|join(', ') }}</div>{% endif %}
           {% set facts = [
             { l: 'PUBLISHED', v: F.originalPublishDate },

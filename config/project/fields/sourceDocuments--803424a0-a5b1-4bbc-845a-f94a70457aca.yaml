@@ -1,7 +1,7 @@
 columnSuffix: null
 handle: sourceDocuments
-instructions: null
-name: 'Source documents'
+instructions: 'The records this one rests on: articles (most of the archive, including newspaper pieces held as scans) and documents.'
+name: Sources
 searchable: false
 settings:
   allowSelfRelations: false
@@ -17,6 +17,7 @@ settings:
   showUnpermittedSections: false
   sources:
     - 'section:fefda696-1d19-4719-a755-88d6c46b068f' # Documents
+    - 'section:572db4f6-ae23-4f72-a5e6-8a7c9aec4e74' # Articles
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

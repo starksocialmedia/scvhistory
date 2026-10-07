@@ -156,6 +156,23 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8b523911-233b-4090-bfe8-d4f911e64d48 # Held as
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 34d3756f-d743-4c91-b38b-adee518874f1
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: '2026-04-15T17:21:35+00:00'
             editCondition: null
             elementCondition: null
@@ -436,6 +453,40 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: 9cc6a8d2-0d92-4d1a-91b5-59ca465bcacd
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 3c6a4184-8041-4c26-8a73-78e8a0c44d16 # Authorship basis
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7c7890ad-68c9-4706-90d7-e3ce1e324523
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1fc03aff-e580-4f90-a43c-4d4926ec1b3e # Authorship basis note
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b25a4d38-d51c-4ea4-97c5-32066ebc1d14
             userCondition: null
             warning: null
             width: 100
@@ -868,6 +919,205 @@ fieldLayouts:
             width: 100
         name: Media
         uid: 4a7dc13c-5f2c-4cbd-a326-159b42228a0b
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 36608024-a825-44e2-b260-826b900cee29 # Catalogue entry
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 73a9602c-4b31-4f26-9b14-96112a299745
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b6f60f2c-09bb-43e2-ab37-f36f1544c1d4 # Photo Source Code
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 29891965-81c1-4cbe-b580-0bd7faf9af2e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a1309e9-6990-4d93-9c45-6b2a0cdd0855 # Photo Sequence
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ad0d131e-35c0-4743-8e56-f8dbf6fd19c5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1c84f22e-8bd7-4d95-9750-f1508f6d3a24 # Credit Raw
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f4bf276f-06cd-4e22-bcf9-2efe160e4f21
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4d552843-9cf4-48e1-a3da-98f6d83b1405 # Credit DPI
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 26c3ba0d-7553-48b3-b5ce-5b9ab16d5242
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2786ceab-a65b-49aa-b576-8cbeeb055d8d # Credit Process
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b4385b9d-c0ca-4fed-9c42-c5f12f135e06
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 1702e809-d8cf-49e7-bab1-02c9f2a38a21 # Credit Kind
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: dc30c4db-513d-404c-9fd5-5fc87da07ff1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 5b52d50d-72b0-4b5f-85a8-6ef3c01415be # Credit Name
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 02681619-e0ea-45cb-a278-c9a34ed7e614
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0e428760-475d-483d-97b2-d1444c7630f4 # Photo Date
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 794a4b63-9563-4e28-9672-d7e99bff4a00
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 0cde1937-2ac4-47df-afc3-af331dfa4127 # Photo Date Edtf
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6e499e67-5003-4718-9492-e27a540d5d63
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Photograph details'
+        uid: c0eb4919-258f-46fa-a373-5617bc4707a4
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 6dbb0ffe-ecb5-494d-a363-94afc2a918af # Record Provenance
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8750c09c-829d-42d3-bae1-ffa12c51de20
+            userCondition: null
+            warning: null
+            width: 100
+        name: Record
+        uid: 517c5971-0672-461f-b742-7edbd695160e
         userCondition: null
     thumbFieldKey: null
 handle: article

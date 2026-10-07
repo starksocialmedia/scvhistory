@@ -140,7 +140,7 @@
 
     <h2 class="el-h2">SOURCES</h2>
     <ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.7">
-      {% for d in e.sourceDocuments.all() %}<li><a href="{{ d.url }}" style="color:#7A5C1B">{{ d.title }}</a>{% set fl = d.documentFiles.one() %}{% if fl %} &middot; <a href="{{ fl.url }}" style="color:#7A5C1B">PDF</a>{% endif %}</li>{% endfor %}
+      {% for d in e.sourceDocuments.all() %}<li><a href="{{ d.url }}" style="color:#7A5C1B">{{ d.title }}</a>{% set fl = 'documentFiles' in d.fieldLayout.customFields|map(x => x.handle) ? d.documentFiles.one() : null %}{% if fl %} &middot; <a href="{{ fl.url }}" style="color:#7A5C1B">PDF</a>{% endif %}</li>{% endfor %}
     </ul>
     {% include "_partials/record/footnotes" with { entry: e } only %}
     {% include "_partials/record/editor-notes" with { rows: edRows, position: 'inline' } only %}

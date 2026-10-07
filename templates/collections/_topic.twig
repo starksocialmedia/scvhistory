@@ -119,6 +119,9 @@
           <div class="rec-body" id="recText">{% include "_partials/prose" with { text: F.body, images: recImages, footnotesFor: entry } %}</div>
           {% include "_partials/record/footnotes" with { entry: entry, editor: editor } only %}
         {% endif %}
+        {#- The closing credit on Leon's page (sg110185: "News reports courtesy of Tricia Lemon Putnam."). -#}
+        {% set noteBottom = 'webmasterNoteBottom' in entry.fieldLayout.customFields|map(f => f.handle) ? (entry.webmasterNoteBottom ?? '')|trim : '' %}
+        {% include "_partials/record/note" with { text: noteBottom } only %}
 
         {% if total %}
           {% for g in GROUPS %}

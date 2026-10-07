@@ -1,0 +1,13 @@
+{#- What a record's author link rests on (Nathan, 7 October 2026: "A series heading is not a byline"; "An author link that says
+    nothing about what it rests on is the thing we are fixing"). part 'word' prints the word before the name: "by" for a printed
+    byline or where nothing is recorded, "attributed to" otherwise; part 'line' prints the basis and its note. Read through the
+    field layout, never "is defined". Params: rec, part, cls (the line's class; rec-basis by default). -#}
+{%- set bh = rec.fieldLayout ? rec.fieldLayout.customFields|map(f => f.handle) : [] -%}
+{%- set bv = 'authorshipBasis' in bh ? (rec.authorshipBasis.value ?? '') : '' -%}
+{%- if part == 'word' -%}
+  {{- bv in ['', 'printed-byline'] ? 'by' : 'attributed to' -}}
+{%- elseif bv -%}
+  {%- set bn = 'authorshipBasisNote' in bh ? (rec.authorshipBasisNote ?? '')|trim : '' -%}
+  {%- set BP = (source('_data/phrases.json')|json_decode(true)).authorshipBasis -%}
+  <div class="{{ cls ?? 'rec-basis' }}">Authorship: {{ BP[bv] ?? bv }}.{% if bn %} {{ bn }}{% endif %}</div>
+{%- endif -%}

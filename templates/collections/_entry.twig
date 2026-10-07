@@ -72,7 +72,7 @@
         <div>
           <div class="rec-kick"><span class="a">COLLECTIONS</span>{% if era %}<span class="sep"></span><span class="b">{{ era.title|upper }}</span>{% endif %}</div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
-          {% if author %}<div class="rec-sub">by {{ author.title }}</div>{% endif %}
+          {% if author %}<div class="rec-sub">{% include "_partials/record/authorship-basis" with { rec: entry, part: 'word' } only %} {{ author.title }}</div>{% include "_partials/record/authorship-basis" with { rec: entry, part: 'line' } only %}{% endif %}
           <div class="rec-facts">
             <div><div class="l">ARTICLES</div><div class="v">{{ articles|length }}</div></div>
             {% if editor %}<div><div class="l">EDITED BY</div><div class="v">{{ editor.title }}</div></div>{% endif %}

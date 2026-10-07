@@ -137,7 +137,7 @@
             <span class="b">{{ pieces|length }} PIECE{{ pieces|length == 1 ? '' : 'S' }}</span>
           </div>
           <h1>{{ entry.title ?: entry.slug }}</h1>
-          {% if author %}<p class="rec-sub">by <a href="{{ author.url }}">{{ author.title }}</a></p>{% endif %}
+          {% if author %}<p class="rec-sub">{% include "_partials/record/authorship-basis" with { rec: entry, part: 'word' } only %} <a href="{{ author.url }}">{{ author.title }}</a></p>{% include "_partials/record/authorship-basis" with { rec: entry, part: 'line' } only %}{% endif %}
           {#- The publication only when the collection's own source line names it: a default of "The Signal" credited six columns, four of them the Old Town Newhall columns whose publication is unverified (Nathan, 5 October 2026). -#}
           {% if span %}<div class="cn-years">{% if F.sourceLine %}{{ F.sourceLine }} &middot; {% endif %}{{ span|raw }}</div>{% endif %}
           {% if comObj|length %}
