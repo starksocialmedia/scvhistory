@@ -292,6 +292,9 @@
       </div>
       <h1>{{ entry.title ?: entry.slug }}</h1>
       {% if collection %}<div class="rec-sub"><a href="{{ collection.url }}">{{ collection.title }}</a></div>{% endif %}
+      {#- Leon's headline, kept where the title now prints what the scan prints (Nathan, 7 October 2026). -#}
+      {% set legacyHead = 'legacyHeadline' in entry.fieldLayout.customFields|map(f => f.handle) ? (entry.legacyHeadline ?? '')|trim : '' %}
+      {% if legacyHead %}<div class="rec-catalogue"><span class="l">HEADLINE ON SCVHISTORY.COM</span> {{ legacyHead }}</div>{% endif %}
       {% if author or editor or F.originalPublishDate %}
         <div class="rec-byline">
           {%- if author %}{{ basis in ['', 'printed-byline'] ? 'By' : 'Attributed to' }} <a href="{{ author.url }}">{{ author.title }}</a>{% endif -%}

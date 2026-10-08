@@ -75,6 +75,9 @@
           {% set docAuthors = 'writtenBy' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.writtenBy.all() : [] %}
           {% if docAuthors|length %}<div class="rec-sub">{% include "_partials/record/authorship-basis" with { rec: entry, part: 'word' } only %} {% for w in docAuthors %}{% if not loop.first %}, {% endif %}<a href="{{ w.url }}">{{ w.title }}</a>{% endfor %}</div>{% include "_partials/record/authorship-basis" with { rec: entry, part: 'line' } only %}{% endif %}
           {% if publishers|length %}<div class="rec-sub">{{ publishers|map(p => p.title)|join(', ') }}</div>{% endif %}
+          {#- Leon's headline, kept where the title now prints what the scan prints (Nathan, 7 October 2026). -#}
+          {% set legacyHead = 'legacyHeadline' in entry.fieldLayout.customFields|map(f => f.handle) ? (entry.legacyHeadline ?? '')|trim : '' %}
+          {% if legacyHead %}<div class="rec-catalogue"><span class="l">HEADLINE ON SCVHISTORY.COM</span> {{ legacyHead }}</div>{% endif %}
           {% set facts = [
             { l: 'PUBLISHED', v: F.originalPublishDate },
             { l: 'SOURCE', v: F.legacyKey|upper },

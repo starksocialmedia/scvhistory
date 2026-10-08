@@ -221,7 +221,7 @@ at all.
 
 ### Articles — `articles/article`
 
-60 fields.
+61 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -233,6 +233,7 @@ at all.
 | `subheadline` | PlainText | schema.org `alternativeHeadline` |  |
 | `sourceLine` | PlainText | **local** | no external equivalent |
 | `heldAs` | Dropdown | **local** | no external equivalent |
+| `legacyHeadline` | PlainText | **local** | no external equivalent |
 | `legacyKey` | PlainText | **local** | no external equivalent |
 | `legacyUrl` | PlainText | Dublin Core `source` | where it stood on the legacy site |
 | `archiveUrl` | PlainText | Dublin Core `source` | Internet Archive capture |
@@ -352,7 +353,7 @@ at all.
 
 ### Documents — `documents/document`
 
-34 fields.
+35 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -364,6 +365,7 @@ at all.
 | `originalPublishDateEdtf` | PlainText | **local** | no external equivalent |
 | `sourceLine` | PlainText | **local** | no external equivalent |
 | `heldAs` | Dropdown | **local** | no external equivalent |
+| `legacyHeadline` | PlainText | **local** | no external equivalent |
 | `publishedBy` | Entries | schema.org `publisher` |  |
 | `writtenBy` | Entries | schema.org `author` | also dcterms:creator |
 | `authorshipBasis` | Dropdown | **local** | no external equivalent |
