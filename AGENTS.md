@@ -43,6 +43,7 @@ Nathan makes all decisions. Leon Worden has preapproved the project, so nothing 
 
 ## Working with the database and other agents
 
+- Every script in `scripts/import` made since 8 October 2026 says what it read before it prints any number, through `_reads.php` or `_reads.py`. A Craft field about a file is listed as a record, not as the file, and where the file could be read and was not, the output says so. `check_census_reads.php`, run by check_render, fails a script that does not (reads-baseline.txt lists the older scripts it leaves alone)
 - One writer to the database at a time. Readers parallelise freely
 - While another agent is running, no template edits and no branch switching, and never `git add -A`: commit only the files you changed
 - In an interactive zsh (Nathan's terminal), a `!` inside a double-quoted `ddev craft exec "..."` triggers history expansion and mangles the command. Put the PHP in a file and `eval(file_get_contents(...))` it instead. An agent's non-interactive shell is not affected, but commands written for Nathan must avoid it

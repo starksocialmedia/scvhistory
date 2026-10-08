@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-08 (continued)
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: Nathan's three answers applied (portraits_and_lopez_pattern_2026_10_08.php; snapshot before-portraits-lopez-pattern-2026-10-08). Pete Knight's 2004 interview frame (#31240) and Vasquez's photograph (#16) are their portraits. Vasquez's source now says what is known: the file came with the earlier WordPress build in March 2026, and nothing before that is recorded. Randy Wicks's and Bob Kellar's assets hold the original site's files again, with the master's checksum. Each enlargement is its own asset (#38450, #38452) linked by enhancedFrom, as López's is. The checksum check is in check_render (check_checksums.php); it fails a recorded checksum that is not its master's, and it was shown to fail on Wicks and Kellar as they stood. The reads rule is a check: _reads.php and _reads.py print what a script read before any number, and check_census_reads.php (in check_render) holds every script made from now on to it, also shown to fail. The shape of what is still unchecked (inventory/review/unchecked-claims-2026-10-08.md). Every person portrait changed on 8 October, in one list (inventory/review/portrait-changes-2026-10-08.md, read from Craft's revisions): 56 records. Angela Marler's record read for Nathan.
+- Decisions: Nathan: both portraits; Wicks and Kellar to the López pattern; the audit in check_render; the reads rule as a check.
+- Errors: Docker lost Reggie when the drive remounted; Docker Desktop restarted (ERRORLOG).
+- Blockers: none.
+- Next: TODO.md, 8 October continued.
+
 2026-10-08 (after midnight)
 
 - Agent: Claude Code

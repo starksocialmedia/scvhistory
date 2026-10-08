@@ -342,6 +342,16 @@ foreach (['/on-this-day' => '~<h1>\s*([^<]+?)\s*</h1>~', '/' => '~<h2>On this da
 }
 if ($dateBad) { $fail++; echo 'TODAY FAIL: ' . implode('; ', $dateBad) . PHP_EOL; } else { echo 'today: /on-this-day and / both show ' . $today->format('j F Y') . ' and send no-store' . PHP_EOL; }
 
+/* Recorded master checksums against the masters, not the files they sit on (8 October 2026): a checksum that is
+   not its master's fails, so the check can fail. */
+$cs = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_checksums.php'));
+if (is_array($cs) && !($cs['ok'] ?? true)) { $fail++; echo 'CHECKSUMS FAIL' . PHP_EOL; }
+
+/* Every script made since 8 October 2026 says what it read before any number, and names a Craft field about a file
+   as a record, not the file (scripts/import/_reads.php). */
+$cr = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_census_reads.php'));
+if (is_array($cr) && !($cr['ok'] ?? true)) { $fail++; echo 'CENSUS READS FAIL' . PHP_EOL; }
+
 /* The data model has to keep up with the schema. A field added without
    regenerating docs/DATA-MODEL.md fails here, because a data model that drifts
    is consulted and believed. */
