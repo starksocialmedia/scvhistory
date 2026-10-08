@@ -2,10 +2,17 @@
 
 ## Waiting on Nathan
 
+### Current (8 October 2026)
+- **Titles against the scans, batch 2 of 4** (inventory/review/titles-batch-2-2026-10-08.md): twenty, each printed headline quoted; 15 retitled, 5 kept. Three for Nathan's call: #28291, #5359, #5245. 37 left for batches 3 and 4, all ephemera.
+- **The 15 held photographs**, with the pictures (a private artifact; links in the report of 8 October): for 9 the right picture is in the record's own folder; for 6 the census's pick is right (#2939 and #2741 carry another page's code, LW2158 and LW2042).
+- **The 116 in inventory/incoming and the 37 supplied** (inventory/review/sole-copies-origins-2026-10-08.md): Nathan to check his drives, then into inventory/sole-copies. The 37 are re-saves of files in inventory/incoming/done.
+- **#26573 and the election documents** (inventory/review/document-subject-organization-2026-10-08.md): subjectOrganization on the document type, filled on 14 from the election links, shown on the page. Schema change: Nathan's word.
+- **The import's blind spot** (ERRORLOG, 8 October; storage/runtime/photo-import/folder-gap.json): 39 source PDFs, six records' slideshow pictures, and records skipped because they had one picture. A second pass, dry run first, on Nathan's word.
+
 ### Current (7 October 2026, night)
-- **Titles against the scans, batches 2 to 4** (Nathan's rule of 7 October, night): about 57 left of the 79, by hand, twenty at a time, each printed headline quoted. Batch 1 is applied (inventory/review/titles-batch-1-2026-10-07.md).
+- (batch 2 sent 8 October) **Titles against the scans, batches 2 to 4** (Nathan's rule of 7 October, night): about 57 left of the 79, by hand, twenty at a time, each printed headline quoted. Batch 1 is applied (inventory/review/titles-batch-1-2026-10-07.md).
 - **15 photographs held from the import** (inventory/review/photo-import-held-2026-10-07.md): the census's picture does not carry the record's code. To read one at a time.
-- **Files whose only copy is outside git and Reggie** (inventory/review/sole-copies-2026-10-07.md): 313 files, 429 MB. Two masters are in git (inventory/sole-copies/); the rest wait on Nathan's word on where they go (recommended: the same folder in git).
+- (8 October: all into git on Nathan's word; 152 there, 153 wait on his drive check) **Files whose only copy is outside git and Reggie** (inventory/review/sole-copies-2026-10-07.md): 313 files, 429 MB.
 - **The Leon request** (inventory/review/leon-files-request-2026-10-07.md): one list of 201 files, for Nathan to send. The 175 masters are on neither Reggie nor the Internet Archive.
 - **The 13 TIFF masters the Internet Archive holds and Reggie lacks** (inventory/review/mirror-gap-2026-10-07.json): fetching them into storage/masters is open.
 - **Staging**: the next uploads rsync replaces each magnifier master on staging with its web copy (same names), and adds the photograph import, about 1.5 GB.

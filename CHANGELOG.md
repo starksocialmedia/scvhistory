@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-08
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: 150 sole copies (134 MB) into git under inventory/sole-copies at their original paths, manifest.tsv with sha256, path and asset (Nathan: "Put all 313 in inventory/sole-copies in git"); the eight election PDFs are held twice with the same bytes, so 158 census rows make 150 files. Read-only: titles against the scans, batch 2 of 4 (inventory/review/titles-batch-2-2026-10-08.md); the origins of the 116 files in inventory/incoming and the 37 Nathan supplied (sole-copies-origins-2026-10-08.md); a picture sheet of the 15 held photographs (a private artifact); a proposal for documents that do not say whose they are (document-subject-organization-2026-10-08.md); a count of what the photograph import did not take from each record's own folder (storage/runtime/photo-import/folder_gap.py, folder-gap.json).
+- Found: the 37 "supplied by Nathan" are Craft's re-saves of files in inventory/incoming/done, not separate originals. The census missed 5 sole copies by matching on name (done/Smyth.jpg and four Firefly edits). The image census and the import read only the images a page links, not the record's own folder: for 9 of the 15 held the right picture is in the record's slideshow folder or flipbook PDF; across the import, 39 records' source PDFs were not taken, and six records (LW2214, LW2980, LW2981, LW3014, LW3664, and LW3257's folder holding LW3267's pictures) have slideshow pictures not taken. Records that already had a picture were skipped whole, so some hold one page of many (#5199, #5205) or the wrong picture (#5357).
+- Decisions: Nathan: all 313 into git; the 116 and the 37 wait on his drive check; #26573 needs a real fix, proposed.
+- Blockers: none.
+- Next: TODO.md, 8 October.
+
 2026-10-07 (night)
 
 - Agent: Claude Code

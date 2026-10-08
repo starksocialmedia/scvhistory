@@ -1,4 +1,4 @@
-# Handoff, 2026-10-07
+# Handoff, 2026-10-08
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -7,7 +7,7 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
 
 ## Start here
 
-**Push state** (7 October 2026): Nathan pushes after his own predeploy; check `git log origin/templates-batch-9..HEAD` for local commits not yet pushed.
+**Push state** (8 October 2026): Nathan pushes after his own predeploy; check `git log origin/templates-batch-9..HEAD` for local commits not yet pushed.
 
 1. `git pull` on templates-batch-9, the working branch.
 2. Read the documents in AGENTS.md's order. The newest CHANGELOG.md entries say what
@@ -26,13 +26,13 @@ than two days older than the newest CHANGELOG entry or when it states a rule.
   Water are behind their own pages (inventory/review/district-boards-check-2026-10-04.md).
 - **Marks.** Every body with a mark shows it in the header; eleven imported on 4 October, the last two Santa Clarita Christian School's and Newhall Elementary's. Building
   photographs are related images.
-- **Photographs.** Every photograph record with an image on Reggie has it in Craft (7 October, night; CHANGELOG), except 15 held for a read by hand. The web root holds web copies only; the masters are on Reggie, and storage/masters holds the files the web root used to serve.
+- **Photographs.** Every photograph record with an image on Reggie has it in Craft (7 October, night; CHANGELOG), except 15 held for a read by hand; the import did not take what sits only in a record's own folder (ERRORLOG, 8 October). The web root holds web copies only; the masters are on Reggie, and storage/masters holds the files the web root used to serve.
 - **inventory/incoming** is checked by check_render (check_incoming.php); OUTSTANDING.md gives a
   reason for every file still there.
 
 ## In progress or next
 
-1. TODO.md, "Waiting on Nathan", 7 October night first (title batches 2 to 4, twenty at a time; the 15 photographs held from the import; where the 313 sole-copy files go; the Leon request to send), then 7 October evening (the retype read, four held titles), then 6 October night (the disaster-figures audit to rerun whole; Stern and the terms that ended when the lines moved), then 6 October (the duplicate pairs, the redirect map), then 5 October: the appointed-terms audit (not to be fixed before Nathan reads it), the same-name aliases, authorship, the silent-faults dry runs, and the portrait census to rerun whole. Then: Measure U, the Saugus High source records and the St. Francis Dam (all dry runs), the events queue after them (inventory/review/events-inventory-2026-10-05.md), the Harris interview when it arrives, the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
+1. TODO.md, "Waiting on Nathan", 8 October first (titles batch 2; the 15 held photographs; the 153 sole copies he is checking; #26573 and the election documents; the import's second pass), then 7 October night (the Leon request to send; the 13 TIFF masters), then 7 October evening (the retype read, four held titles), then 6 October night (the disaster-figures audit to rerun whole; Stern and the terms that ended when the lines moved), then 6 October (the duplicate pairs, the redirect map), then 5 October: the appointed-terms audit (not to be fixed before Nathan reads it), the same-name aliases, authorship, the silent-faults dry runs, and the portrait census to rerun whole. Then: Measure U, the Saugus High source records and the St. Francis Dam (all dry runs), the events queue after them (inventory/review/events-inventory-2026-10-05.md), the Harris interview when it arrives, the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
 2. The send-a-photograph form is built and tested on DDEV (/send, /admin-submissions); it reaches staging with the next refresh, after docs/DEPLOY-RUNBOOK.md section 11.
 3. The place record Porta Bella (#20152), live and empty: whether to build it. The congressional split recheck.
 4. The City Hall photograph, when Nathan sends it.
