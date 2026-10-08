@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-08 (afternoon)
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: Nathan's rulings of 8 October applied (a writer agent, snapshot pre-rulings-2026-10-08): titles batch 2 (15 retitled; #28291 with a note on its headline, #5359 "47th Annual Benefit Auction" with the theme line in the catalogue entry, #5245 "Aggie"); #2939 and #2741 to LW2158 and LW2042; subjectOrganization on the document type, filled on the 14 election documents from their election links and shown on the page as CONCERNS and in JSON-LD; the 15 held photographs given their pictures, the 9 wrong picks from each record's own folder (67 new assets, 5 linked). Read-only: the folder census, every record's own folder on Reggie walked file by file (inventory/review/folder-census-2026-10-08.md); the folder pass planned, web copies made and dry-run (inventory/review/folder-pass-dry-run-2026-10-08.md). The four kinds Nathan called not SCV history were never in git; no Craft asset uses them, but WilliamS.jpg (Grok) is the source of web/banners/william-s-hart.jpg on #16356.
+- Found: 105 records held content in their own folder that Craft did not (1,598 items, 2,367 files counted once); after the held 15, 100. The import also skipped pages 47 to 118 of lw3743 that exist only as JPEG. 876 legacy pages with their own folder have no record at all, as known (5,606 of 5,791 pages have none).
+- Decisions: Nathan: measure before the second pass; the pattern in ERRORLOG, and any census states what it read; Subject Organization on documents; the held 15; batch 2's three calls; the four kinds out of the sole-copies question.
+- Blockers: none.
+- Next: TODO.md, 8 October afternoon.
+
 2026-10-08
 
 - Agent: Claude Code

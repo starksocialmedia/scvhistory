@@ -2,12 +2,18 @@
 
 ## Waiting on Nathan
 
+### Current (8 October 2026, afternoon)
+- **The folder pass** (inventory/review/folder-pass-dry-run-2026-10-08.md): dry run done, 91 records, 803 pictures and 56 documents to add, 759 files held with reasons (658 of them uc8901's raw page scans). Nathan's word to apply.
+- **#5245** may have its pages out of order (ERRORLOG): the original's order from the item or Leon.
+- **The Hart banner** web/banners/william-s-hart.jpg is made from WilliamS.jpg, a Grok image in inventory/incoming: Nathan's call whether that changes anything.
+- **The 14 sole copies with no other copy known** (sole-copies-origins-2026-10-08.md): Nathan checking his drives.
+
 ### Current (8 October 2026)
-- **Titles against the scans, batch 2 of 4** (inventory/review/titles-batch-2-2026-10-08.md): twenty, each printed headline quoted; 15 retitled, 5 kept. Three for Nathan's call: #28291, #5359, #5245. 37 left for batches 3 and 4, all ephemera.
-- **The 15 held photographs**, with the pictures (a private artifact; links in the report of 8 October): for 9 the right picture is in the record's own folder; for 6 the census's pick is right (#2939 and #2741 carry another page's code, LW2158 and LW2042).
+- (applied 8 October, afternoon) **Titles against the scans, batch 2 of 4** (inventory/review/titles-batch-2-2026-10-08.md): twenty, each printed headline quoted; 15 retitled, 5 kept. Three for Nathan's call: #28291, #5359, #5245. 37 left for batches 3 and 4, all ephemera.
+- (done 8 October, afternoon) **The 15 held photographs**, with the pictures (a private artifact; links in the report of 8 October): for 9 the right picture is in the record's own folder; for 6 the census's pick is right (#2939 and #2741 carry another page's code, LW2158 and LW2042).
 - **The 116 in inventory/incoming and the 37 supplied** (inventory/review/sole-copies-origins-2026-10-08.md): Nathan to check his drives, then into inventory/sole-copies. The 37 are re-saves of files in inventory/incoming/done.
-- **#26573 and the election documents** (inventory/review/document-subject-organization-2026-10-08.md): subjectOrganization on the document type, filled on 14 from the election links, shown on the page. Schema change: Nathan's word.
-- **The import's blind spot** (ERRORLOG, 8 October; storage/runtime/photo-import/folder-gap.json): 39 source PDFs, six records' slideshow pictures, and records skipped because they had one picture. A second pass, dry run first, on Nathan's word.
+- (done 8 October, afternoon) **#26573 and the election documents** (inventory/review/document-subject-organization-2026-10-08.md): subjectOrganization on the document type, filled on 14 from the election links, shown on the page. Schema change: Nathan's word.
+- (measured and dry-run 8 October, afternoon) **The import's blind spot** (ERRORLOG, 8 October; storage/runtime/photo-import/folder-gap.json): 39 source PDFs, six records' slideshow pictures, and records skipped because they had one picture. A second pass, dry run first, on Nathan's word.
 
 ### Current (7 October 2026, night)
 - (batch 2 sent 8 October) **Titles against the scans, batches 2 to 4** (Nathan's rule of 7 October, night): about 57 left of the 79, by hand, twenty at a time, each printed headline quoted. Batch 1 is applied (inventory/review/titles-batch-1-2026-10-07.md).

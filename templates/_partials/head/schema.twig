@@ -539,7 +539,7 @@
   } %}
 
 {% elseif sec == 'documents' %}
-  {% set main = { '@type': 'CreativeWork', 'name': el.title, 'contentLocation': communityNode } %}
+  {% set main = { '@type': 'CreativeWork', 'name': el.title, 'about': (N.subjectOrganization ?? []), 'contentLocation': communityNode } %}
 
 {% elseif category is defined and category %}
   {% set geo = (V.communityLat ?? '') and (V.communityLng ?? '')

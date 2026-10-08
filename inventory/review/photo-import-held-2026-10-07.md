@@ -21,3 +21,21 @@ For Nathan's read, one at a time. Nothing written to these records. The census p
 | 2703 | LW1501 | Photo Gallery: Grounds, Rose Garden, Carreta, 2015. | /scvhistory/lw1501.htm | ranchocamulosheader.jpg (site header) |
 
 Two are certainly wrong: #5347 and #2703 would have taken `ranchocamulosheader.jpg`, the site's header graphic. #4621 would have taken `separator400.png`; it was not held but given its PDF, `lw2875.pdf`, instead.
+
+## Done (8 October 2026)
+
+Nathan: "take the 9 wrong picks from each record's own folder"; the six the census had right went in as picked. All 15 have their pictures (photo_held_plan_2026_10_08.py, photo_held_copies_2026_10_08.py, import_photograph_images_held_2026_10_08.php; 67 new web-copy assets, 5 existing assets linked). Each record's pictures were checked by eye on a contact sheet before the write.
+
+| ID | Now |
+|---|---|
+| 5649 | lw3792a to j, the face pot (10 pictures) |
+| 5463 | lw3618b to o, scenes from the film (14) |
+| 5377 | the 16-page program, from the folder's TIFF pages, and lw3531.pdf under Documents |
+| 5347 | lw3505.pdf under Documents, its first page drawn as the picture |
+| 4951 | lw3135a to f, the site (6) |
+| 4893 | lw3086a to d, the program (4), and lw3086.pdf under Documents |
+| 3339 | lw2353.jpg |
+| 3321 | lw2342.jpg, Hart at the NBC microphone |
+| 2703 | lw1501a to h with eb and fb, the grounds (10) |
+| 4413, 2875, 2873, 2721 | the census's pick |
+| 2939, 2741 | the census's pick; codes corrected to LW2158 and LW2042 (photo_codes_2939_2741_2026_10_08.php) |

@@ -1,6 +1,6 @@
 # The data model
 
-Generated from the live schema by `scripts/import/generate_data_model.php` on 7 October 2026. Do not edit by hand: regenerate.
+Generated from the live schema by `scripts/import/generate_data_model.php` on 8 October 2026. Do not edit by hand: regenerate.
 
 Every entry type, every field, and the external standard each maps to. A field
 marked **local** has no external equivalent, and that is a statement rather than
@@ -353,7 +353,7 @@ at all.
 
 ### Documents — `documents/document`
 
-35 fields.
+36 fields.
 
 | Field | Kind | Maps to | Note |
 | --- | --- | --- | --- |
@@ -371,6 +371,7 @@ at all.
 | `authorshipBasis` | Dropdown | **local** | no external equivalent |
 | `authorshipBasisNote` | PlainText | **local** | no external equivalent |
 | `subjectPerson` | Entries | schema.org `about` | dcterms:subject |
+| `subjectOrganization` | Entries | schema.org `about` | dcterms:subject |
 | `footnotes` | Table | Dublin Core `bibliographicCitation` | a table, one row per note |
 | `footnotesOn` | Entries | schema.org `citation` |  |
 | `webmasterNoteBottom` | PlainText | **local** | no external equivalent |

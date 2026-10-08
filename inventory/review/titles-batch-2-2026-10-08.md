@@ -1,6 +1,8 @@
 # Titles against the scans, batch 2 of 4 (8 October 2026)
 
-For Nathan's read, one at a time. Nothing written. The rule and conventions are batch 1's (titles-batch-1-2026-10-07.md), with your batch 1 rulings applied: advertising copy is not a title (#5541); a publisher or agency name belongs in fields, not after a colon (#26573); a serial or one-word head can stand alone (#4735 "Ramona").
+**Applied 8 October 2026** (titles_batch_2_2026_10_08.php), as Nathan ruled: the 15 proposed titles, with his three calls. #28291 takes the printed head, "Peter Pitchess to Speak at Newhall CC Luncheon", with an editor's note (bottom, "About the headline") that the photograph and most of the story are about Veluzat and Worden. #5359 is titled for the event, "47th Annual Benefit Auction", and the theme line "All that Glitters is GOLD" is in its catalogue entry. #5245 is "Aggie". Its pages may be out of order: the head sits at the foot of page 2, under body text. Logged here, not reordered (Nathan: "Do not reorder them on a guess"). The five kept (#4429, #2181, #5363, #3185, #5475) are unchanged; #5475's printed copy was not added to its catalogue entry. #4909's empty catalogue entry was given its page's title tag, so Leon's headline is kept. #5199's "(Film News)" is in its catalogue entry.
+
+Originally for Nathan's read, one at a time. The rule and conventions are batch 1's (titles-batch-1-2026-10-07.md), with your batch 1 rulings applied: advertising copy is not a title (#5541); a publisher or agency name belongs in fields, not after a colon (#26573); a serial or one-word head can stand alone (#4735 "Ramona").
 
 Every printed line below was read by eye from the scan, not from the OCR. The scans are in Craft (web/uploads/archive-media/legacy), on Reggie, or in storage/runtime/titles-vs-scans/.
 

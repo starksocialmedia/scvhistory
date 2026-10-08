@@ -54,6 +54,7 @@
 {% set communities = entry.neighborhood.all() %}
 {% set subjects = entry.subjectPerson is defined and entry.subjectPerson ? entry.subjectPerson.all() : [] %}
 {% set publishers = entry.publishedBy is defined and entry.publishedBy ? entry.publishedBy.all() : [] %}
+{% set concerns = 'subjectOrganization' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.subjectOrganization.all() : [] %}
 {% set dates = entry.recordDates is defined and entry.recordDates ? entry.recordDates : [] %}
 
 {% set plate = entry.featuredImage is defined and entry.featuredImage ? entry.featuredImage.one() ?? null : null %}
@@ -75,6 +76,8 @@
           {% set docAuthors = 'writtenBy' in entry.fieldLayout.customFields|map(f => f.handle) ? entry.writtenBy.all() : [] %}
           {% if docAuthors|length %}<div class="rec-sub">{% include "_partials/record/authorship-basis" with { rec: entry, part: 'word' } only %} {% for w in docAuthors %}{% if not loop.first %}, {% endif %}<a href="{{ w.url }}">{{ w.title }}</a>{% endfor %}</div>{% include "_partials/record/authorship-basis" with { rec: entry, part: 'line' } only %}{% endif %}
           {% if publishers|length %}<div class="rec-sub">{{ publishers|map(p => p.title)|join(', ') }}</div>{% endif %}
+          {#- The body the record concerns, so the document says whose it is on its own (Nathan, 8 October 2026). -#}
+          {% if concerns|length %}<div class="rec-sub">{% for o in concerns %}{% if not loop.first %}, {% endif %}<a href="{{ o.url }}">{{ o.title }}</a>{% endfor %}</div>{% endif %}
           {#- Leon's headline, kept where the title now prints what the scan prints (Nathan, 7 October 2026). -#}
           {% set legacyHead = 'legacyHeadline' in entry.fieldLayout.customFields|map(f => f.handle) ? (entry.legacyHeadline ?? '')|trim : '' %}
           {% if legacyHead %}<div class="rec-catalogue"><span class="l">HEADLINE ON SCVHISTORY.COM</span> {{ legacyHead }}</div>{% endif %}
@@ -166,7 +169,7 @@
         {#- Publication: what the item said about itself. sourceLine is the
             credit verbatim and is the authority; the parsed fields beside it
             are the archive's reading of it. -#}
-        {% if F.originallyPublishedTitle or F.originalPublishDate or publishers|length or F.sourceLine %}
+        {% if F.originallyPublishedTitle or F.originalPublishDate or publishers|length or concerns|length or F.sourceLine %}
           <div class="rec-box">
             <div class="rec-lab">PUBLICATION</div>
             {% if F.sourceLine %}<div class="ph-credit">{{ F.sourceLine }}</div>{% endif %}
@@ -175,10 +178,11 @@
               { k: 'DATE', v: F.originalPublishDate },
               { k: 'PARSED', v: F.originalPublishDateEdtf }
             ]|filter(r => r.v) %}
-            {% if pub|length or publishers|length %}
+            {% if pub|length or publishers|length or concerns|length %}
               <div class="rec-rows" style="margin-top:12px">
                 {% for r in pub %}<div class="k">{{ r.k }}</div><div class="v">{{ r.v }}</div>{% endfor %}
                 {% for p in publishers %}<div class="k">PUBLISHER</div><div class="v"><a href="{{ p.url }}">{{ p.title }}</a></div>{% endfor %}
+                {% for o in concerns %}<div class="k">CONCERNS</div><div class="v"><a href="{{ o.url }}">{{ o.title }}</a></div>{% endfor %}
               </div>
             {% endif %}
           </div>
