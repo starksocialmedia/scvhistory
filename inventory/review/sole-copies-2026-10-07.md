@@ -1,0 +1,352 @@
+# Files whose only copy is outside git and Reggie (7 October 2026)
+
+Read-only census, Claude, for Nathan ("Any file where our sole copy is outside both git and Reggie should be on a list"). Every file under web/uploads (transform folders aside), storage/masters, storage/legacy-gif, inventory/incoming and inventory/elections was checksummed and compared with the files in git and with the Reggie manifest (inventory/raw/scvhistory-manifest-2026-08-20.sha256). Scripts and data: storage/runtime/photo-import/sole_copies.py, sole-copies.json.
+
+## Count
+
+- 6425 files are byte-identical to nothing in git or on Reggie.
+- 6044 of them are Craft's re-saves or web copies of a file Reggie holds under the same name (a name match, not a checksum: Craft re-saves every upload). Not sole copies.
+- 26 were fetched from an outside source whose URL the asset records; 2 are web copies of a master in storage/masters; 40 are web copies of a file in inventory/incoming (whose own status is below).
+- **313 files, 429 MB, have no other copy the archive knows of.** All are on this laptop only. Files uploaded before 22 September are probably also on staging (the last uploads rsync), unverified; and for a master, the next rsync replaces staging's copy with the web copy.
+
+The two masters were put in git tonight (inventory/sole-copies/): johnwoodhouseaudubon_large.jpg, and adrian-w-adams-hm7301_large.jpg, whose file in inventory/incoming is gone. Nothing else has been moved.
+
+## Masters with no other copy: 2 files, 6.5 MB
+
+- `storage/masters/archive-media/legacy/adrian-w-adams-hm7301_large.jpg` (4,419 KB).
+- `storage/masters/archive-media/legacy/johnwoodhouseaudubon_large.jpg` (2,127 KB).
+
+## Assets whose provenance names no source: 102 files, 49.3 MB
+
+- `web/uploads/archive-media/edwin-bryant.png` (2,790 KB). Asset #1671.
+- `web/uploads/archive-media/elections/10880.pdf` (18 KB). Asset #21917.
+- `web/uploads/archive-media/elections/2016StatementofVotesCast-4.pdf` (67 KB). Asset #21929.
+- `web/uploads/archive-media/elections/Final-Certficate-of-Canvas-1.pdf` (355 KB). Asset #21920.
+- `web/uploads/archive-media/elections/Final-Election-Canvass-Res-2.pdf` (1,185 KB). Asset #21923.
+- `web/uploads/archive-media/elections/LACountyFinalVoteCount-3.pdf` (85 KB). Asset #21926.
+- `web/uploads/archive-media/elections/LOCAL-APPT-LIST_-082625.pdf` (151 KB). Asset #21941.
+- `web/uploads/archive-media/elections/historical-results-7.pdf` (122 KB). Asset #21938.
+- `web/uploads/archive-media/elections/resolutionNo129-6.pdf` (985 KB). Asset #21935.
+- `web/uploads/archive-media/fort-tejon.jpg` (1,170 KB). Asset #1187.
+- `web/uploads/archive-media/general/Android-Icon.png` (15 KB). Asset #38.
+- `web/uploads/archive-media/general/Apple-icon.png` (14 KB). Asset #40.
+- `web/uploads/archive-media/general/Site-Icon.png` (47 KB). Asset #39.
+- `web/uploads/archive-media/general/cropped-Site-Icon.png` (97 KB). Asset #37.
+- `web/uploads/archive-media/general/seal_of_santa_clarita_california.png` (240 KB). Asset #41.
+- `web/uploads/archive-media/harry-carey-ranch.jpg` (366 KB). Asset #1189.
+- `web/uploads/archive-media/lake-hughes.jpg` (938 KB). Asset #1191.
+- `web/uploads/archive-media/lang.jpg` (166 KB). Asset #1193.
+- `web/uploads/archive-media/legacy/al1890t.jpg` (11 KB). Asset #2357.
+- `web/uploads/archive-media/legacy/al_laherald012503t.jpg` (10 KB). Asset #2358.
+- `web/uploads/archive-media/legacy/ap3227bt.jpg` (13 KB). Asset #2359.
+- `web/uploads/archive-media/legacy/ap3227t.jpg` (14 KB). Asset #2356.
+- `web/uploads/archive-media/legacy/chs052015t.jpg` (97 KB). Asset #1780.
+- `web/uploads/archive-media/legacy/garcesbakersfieldt.jpg` (5 KB). Asset #1779.
+- `web/uploads/archive-media/legacy/gr0301t.jpg` (8 KB). Asset #2361.
+- `web/uploads/archive-media/legacy/hb1301t.jpg` (11 KB). Asset #2363.
+- `web/uploads/archive-media/legacy/jj2003a_2026-09-18-071338_lure.jpg` (555 KB). Asset #1846.
+- `web/uploads/archive-media/legacy/juancrespi-cenotapht.jpg` (5 KB). Asset #1773.
+- `web/uploads/archive-media/legacy/lat020356cahuenga.jpg` (219 KB). Asset #1870.
+- `web/uploads/archive-media/legacy/lw2069t.jpg` (6 KB). Asset #1707.
+- `web/uploads/archive-media/legacy/lw2163t.jpg` (7 KB). Asset #1705.
+- `web/uploads/archive-media/legacy/lw2224t.jpg` (11 KB). Asset #1709.
+- `web/uploads/archive-media/legacy/lw2225t.jpg` (14 KB). Asset #1706.
+- `web/uploads/archive-media/legacy/lw2504t.jpg` (11 KB). Asset #1778.
+- `web/uploads/archive-media/legacy/lw2654dt.jpg` (8 KB). Asset #1774.
+- `web/uploads/archive-media/legacy/pedrofagest.jpg` (5 KB). Asset #1777.
+- `web/uploads/archive-media/legacy/perkins_ab_2026-09-18-071146_nitl.jpg` (7 KB). Asset #1757.
+- `web/uploads/archive-media/legacy/rosymelrose_latimest.jpg` (4 KB). Asset #2362.
+- `web/uploads/archive-media/legacy/sicilyamericancemetery1.jpg` (2,191 KB). Asset #1951.
+- `web/uploads/archive-media/legacy/sicilyamericancemetery2.jpg` (1,055 KB). Asset #1953.
+- `web/uploads/archive-media/legacy/sicilyamericancemetery3.jpg` (849 KB). Asset #1954.
+- `web/uploads/archive-media/legacy/sicilyamericancemetery4.jpg` (799 KB). Asset #1955.
+- `web/uploads/archive-media/legacy/sicilyamericancemetery5.jpg` (1,032 KB). Asset #1956.
+- `web/uploads/archive-media/legacy/sicilyamericancemeterymap.jpg` (1,537 KB). Asset #1952.
+- `web/uploads/archive-media/legacy/tlp_laherald111790t.jpg` (10 KB). Asset #2360.
+- `web/uploads/archive-media/legacy/ttl0003.jpg` (4 KB). Asset #2418.
+- `web/uploads/archive-media/outside/aakash-ahuja-campaign-image.jpg` (95 KB). Asset #27350. Campaign material, received 1 October 2026 as a file with no author, copyright or caption. The photographer, the rights holder and any permi
+- `web/uploads/archive-media/outside/maria-gutzeit-campaign-avatar.png` (277 KB). Asset #21581. Campaign material, received 28 September 2026. The photographer, the rights holder and any permission to publish are not established.
+- `web/uploads/archive-media/persons/1875-beales-cut-railroad-stagecoach-transfer-newhall-santa-clarita.jpg` (938 KB). Asset #64.
+- `web/uploads/archive-media/persons/1923-tom-mix-horse-leap-beales-cut-newhall-santa-clarita.webp` (29 KB). Asset #78.
+- `web/uploads/archive-media/persons/about-scott-wilk-california-assembly.png` (1,631 KB). Asset #20.
+- `web/uploads/archive-media/persons/andres_pico_circa_1850.jpg` (112 KB). Asset #4.
+- `web/uploads/archive-media/persons/cave-johnson-couts-portrait-us-army.jpg` (572 KB). Asset #12.
+- `web/uploads/archive-media/persons/county-road-map-lyons-station-newhall-seebold-1875-scaled.jpg` (503 KB). Asset #82.
+- `web/uploads/archive-media/persons/edward-fitzgerald-beale-portrait.jpg` (53 KB). Asset #27.
+- `web/uploads/archive-media/persons/freeway_collapse_newhall_pass_los_angeles_northridge_earthquake_david_butow_corbis_011794_public_domain.jpeg` (837 KB). Asset #61.
+- `web/uploads/archive-media/persons/gaspar-de-portola-portrait.jpg` (247 KB). Asset #30.
+- `web/uploads/archive-media/persons/gifford-john-timothy-portrait-1870s-scvhs-scaled.jpg` (790 KB). Asset #7.
+- `web/uploads/archive-media/persons/henry-mayo-hospital-scaled.jpg` (887 KB). Asset #74.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-1-jerry-reynolds.jpg` (518 KB). Asset #73.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-10-jerry-reynolds.jpg` (515 KB). Asset #52.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-11-jerry-reynolds.jpg` (517 KB). Asset #44.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-12-jerry-reynolds.jpg` (549 KB). Asset #81.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-13-jerry-reynolds.jpg` (547 KB). Asset #70.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-14-jerry-reynolds.jpg` (549 KB). Asset #48.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-15-jerry-reynolds.jpg` (552 KB). Asset #57.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-16-jerry-reynolds-1.jpg` (551 KB). Asset #55.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-17-jerry-reynolds.jpg` (550 KB). Asset #66.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-18-jerry-reynolds.jpg` (549 KB). Asset #65.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-19-jerry-reynolds.jpg` (550 KB). Asset #60.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-2-jerry-reynolds.jpg` (517 KB). Asset #63.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-20-jerry-reynolds.jpg` (552 KB). Asset #46.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-21-jerry-reynolds.jpg` (553 KB). Asset #83.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-3-jerry-reynolds.jpg` (293 KB). Asset #56.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-4-jerry-reynolds.jpg` (516 KB). Asset #51.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-5-jerry-reynolds.jpg` (514 KB). Asset #72.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-6-jerry-reynolds.jpg` (517 KB). Asset #53.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-7-jerry-reynolds.jpg` (518 KB). Asset #76.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-8-jerry-reynolds.jpg` (513 KB). Asset #45.
+- `web/uploads/archive-media/persons/history-santa-clarita-chapter-9-jerry-reynolds.jpg` (515 KB). Asset #68.
+- `web/uploads/archive-media/persons/history-santa-clarita-prologue-jerry-reynolds.jpg` (509 KB). Asset #43.
+- `web/uploads/archive-media/persons/james-w-marshall-portrait-1870s.jpg` (50 KB). Asset #2.
+- `web/uploads/archive-media/persons/john-c-fremont-portrait-california-state-library-scaled.png` (5,488 KB). Asset #10.
+- `web/uploads/archive-media/persons/jose-antonio-aguirre-portrait-san-diego-history.jpg` (24 KB). Asset #8.
+- `web/uploads/archive-media/persons/juan-bandini-portrait-c1850s.jpg` (244 KB). Asset #11.
+- `web/uploads/archive-media/persons/juan-bautista-de-anza-portrait-1774.jpg` (328 KB). Asset #19.
+- `web/uploads/archive-media/persons/juan-crespi-portrait.jpg` (89 KB). Asset #22.
+- `web/uploads/archive-media/persons/junipero_serra.jpg` (1,394 KB). Asset #18.
+- `web/uploads/archive-media/persons/kit_carson_photograph_restored.jpg` (180 KB). Asset #31.
+- `web/uploads/archive-media/persons/leon-worden-cowboy-hat.webp` (36 KB). Asset #23.
+- `web/uploads/archive-media/persons/nadeau-remi-i-portrait-citymakers-1977-p65-scaled.jpg` (1,217 KB). Asset #25.
+- `web/uploads/archive-media/persons/newhall_pass_interchange_from_bypass_2016-11-28-scaled.jpg` (530 KB). Asset #50.
+- `web/uploads/archive-media/persons/perkins-story-of-our-valley-masthead.svg` (3 KB). Asset #62.
+- `web/uploads/archive-media/persons/reynolds_collection_masthead.svg` (9 KB). Asset #49.
+- `web/uploads/archive-media/persons/rodolfo_acosta_in_one-eyed_jacks.jpg` (199 KB). Asset #17.
+- `web/uploads/archive-media/persons/thomas-o-larkin-portrait-california-state-library.jpg` (101 KB). Asset #26.
+- `web/uploads/archive-media/persons/ygnacio-del-valle-portrait-c1850s.jpg` (148 KB). Asset #9.
+- `web/uploads/archive-media/places/lyons-station-location-map-1875-1933-walker.jpg` (80 KB). Asset #33.
+- `web/uploads/archive-media/places/tejon-ranch-entrance-sign-interstate-5.jpg` (131 KB). Asset #36.
+- `web/uploads/archive-media/rancho-camulos.jpg` (502 KB). Asset #1195.
+- `web/uploads/archive-media/ridge-route.jpg` (1,245 KB). Asset #1197.
+- `web/uploads/archive-media/story-of-our-valley-collection-1200x675.png` (1,515 KB). Asset #1655.
+
+## Enhanced derivatives made for the archive: 21 files, 50.1 MB
+
+- `inventory/incoming/done/ap1334-enhanced.jpg` (3,226 KB).
+- `inventory/incoming/done/ap2222_large_enhanced.jpg` (3,157 KB).
+- `inventory/incoming/done/brathwaite-louis-enhance.png` (1,438 KB).
+- `inventory/incoming/done/lw2054-enhanced.jpg` (2,223 KB).
+- `inventory/incoming/done/lw2178-enhance.jpg` (1,814 KB).
+- `inventory/incoming/done/lw2317a_large-enhanced.jpg` (2,023 KB).
+- `inventory/incoming/done/lw2452-enhanced.jpg` (2,573 KB).
+- `inventory/incoming/done/lw2529-enhanced.jpg` (2,074 KB).
+- `inventory/incoming/done/lw9501_large_enhanced.jpg` (2,453 KB).
+- `inventory/incoming/done/obituary_keithrichman-enhanced.jpg` (2,085 KB).
+- `inventory/incoming/done/obituary_kevingarylynch-enhanced.jpg` (1,868 KB).
+- `inventory/incoming/done/reminadeau-chrisman-enhance.jpg` (2,644 KB).
+- `inventory/incoming/done/rn3002_large-enhanced.jpg` (2,490 KB).
+- `inventory/incoming/done/rn3004-enhanced.jpg` (2,007 KB).
+- `inventory/incoming/done/rr1-enhanced.jpg` (1,888 KB).
+- `inventory/incoming/done/sc9010-enhanced.jpg` (1,873 KB).
+- `inventory/incoming/done/sc9501-enhanced.jpg` (2,203 KB).
+- `inventory/incoming/done/sc9612-enhanced.jpg` (2,292 KB).
+- `inventory/incoming/done/tf1000-enhanced.jpg` (1,808 KB).
+- `inventory/incoming/done/us8502_orig-enhanced.jpg` (5,836 KB).
+- `inventory/incoming/done/william-lewis-manly-portrait-1890s-enhanced.jpg` (2,089 KB).
+
+## Generated banners: 3 files, 3.6 MB
+
+- `inventory/incoming/Firefly (1).jpg` (1,052 KB).
+- `inventory/incoming/Firefly (2).jpg` (1,947 KB).
+- `inventory/incoming/Firefly.jpg` (551 KB).
+
+## Files waiting in inventory/incoming: 116 files, 211.6 MB
+
+- `inventory/incoming/1572388199414-710-817.jpg` (220 KB).
+- `inventory/incoming/8-pioneer-oil-refinery-california-star-oil-works700x450.jpg` (79 KB).
+- `inventory/incoming/BOM-pg14-shutterstock-185944559.jpg` (73 KB).
+- `inventory/incoming/Buck_McKeon_2011.jpeg` (74 KB).
+- `inventory/incoming/CSUN.jpg` (194 KB).
+- `inventory/incoming/Cameron-Smyth.jpg` (1,135 KB).
+- `inventory/incoming/IMG_2226 2.jpg` (645 KB).
+- `inventory/incoming/IMG_4024-2048x1983.jpg` (264 KB).
+- `inventory/incoming/Sharlene-Duzick.jpg` (1,376 KB).
+- `inventory/incoming/WilliamS.jpg` (297 KB).
+- `inventory/incoming/Williamshart.jpg` (1,786 KB).
+- `inventory/incoming/beales-cut-sta.jpg` (2,653 KB).
+- `inventory/incoming/chapter-21-b.jpg` (5,818 KB).
+- `inventory/incoming/city-hall.jpg` (73 KB).
+- `inventory/incoming/dante-acosta.jpg` (2,292 KB).
+- `inventory/incoming/done/Alan-Ferdman.jpg` (168 KB).
+- `inventory/incoming/done/Audra_Strickland.jpg` (978 KB).
+- `inventory/incoming/done/BJ-Atkins.jpg` (4,365 KB).
+- `inventory/incoming/done/BillMiranda.jpg` (422 KB).
+- `inventory/incoming/done/Bob-Jenson.jpg` (1,135 KB).
+- `inventory/incoming/done/CLWD.png` (1,845 KB).
+- `inventory/incoming/done/CSUN_Seal.png` (164 KB).
+- `inventory/incoming/done/Cameron-Smyth-2017-820x1024-1.jpg` (77 KB).
+- `inventory/incoming/done/Candidate-Dr.AakashAhuja.jpg` (87 KB).
+- `inventory/incoming/done/Castaic-High.png` (991 KB).
+- `inventory/incoming/done/Cherise-Moore.jpg` (810 KB).
+- `inventory/incoming/done/Christy_Smith_CA_Assembly_official_photo.jpg` (1,376 KB).
+- `inventory/incoming/done/DemetriusGScofield.jpg` (1,000 KB).
+- `inventory/incoming/done/Erin-Wilson.jpg` (1,243 KB).
+- `inventory/incoming/done/General_Andres_Pico.jpg` (3,213 KB).
+- `inventory/incoming/done/George-Runner.jpg` (624 KB).
+- `inventory/incoming/done/JasonGibbs.jpg` (363 KB).
+- `inventory/incoming/done/Joe-Messina.jpg` (2,772 KB).
+- `inventory/incoming/done/MarshaMclean.jpg` (390 KB).
+- `inventory/incoming/done/NCWD.png` (2,018 KB).
+- `inventory/incoming/done/Newhall-School-District.png` (4,707 KB).
+- `inventory/incoming/done/PatsyAyala.jpg` (373 KB).
+- `inventory/incoming/done/Patti-Rasmussen.jpg` (1,984 KB).
+- `inventory/incoming/done/Schiavo-030-11-29-22.jpg` (4,703 KB).
+- `inventory/incoming/done/Seal_of_the_United_States_Congress.svg` (237 KB).
+- `inventory/incoming/done/Sharon-Runner.jpg` (639 KB).
+- `inventory/incoming/done/Steve-Knight.jpg` (698 KB).
+- `inventory/incoming/done/Trunkey-Chris-scaled.jpg` (527 KB).
+- `inventory/incoming/done/abel-stearns-portrait-california-state-library-1840-1860-scaled.jpg` (946 KB).
+- `inventory/incoming/done/adrian-w-adams-hm7301_large.jpg` (4,701 KB).
+- `inventory/incoming/done/anna-griese.jpg` (1,136 KB).
+- `inventory/incoming/done/ap2222_large-copy-2026-10-06.jpg` (9,754 KB).
+- `inventory/incoming/done/arthur-b-perkins-outstanding-citizen-newhall-1964-1.jpg` (1,311 KB).
+- `inventory/incoming/done/bill-cooper.jpg` (1,463 KB).
+- `inventory/incoming/done/brianwalters.png` (3,781 KB).
+- `inventory/incoming/done/california-assembly.webp` (250 KB).
+- `inventory/incoming/done/california-state-senate.png` (11,904 KB).
+- `inventory/incoming/done/canyon-high-logo.png` (6,530 KB).
+- `inventory/incoming/done/cave-johnson-couts-portrait-us-army.png` (4,563 KB).
+- `inventory/incoming/done/city-of-santa-clarita.svg` (43 KB).
+- `inventory/incoming/done/cylde smyth.jpg` (422 KB).
+- `inventory/incoming/done/darrylmanzer2020-copy-2026-10-06.jpg` (1,681 KB).
+- `inventory/incoming/done/edwin-bryant.jpg` (27 KB).
+- `inventory/incoming/done/hart-high.svg` (29 KB).
+- `inventory/incoming/done/history-santa-clarita-jerry-reynolds.jpg` (571 KB).
+- `inventory/incoming/done/history-santa-clarita-preface-jerry-reynolds.jpg` (514 KB).
+- `inventory/incoming/done/jerry-gladbach-portrait.jpg` (1,367 KB).
+- `inventory/incoming/done/john-boston-cropped-from-sg030506b-honby.jpg` (67 KB).
+- `inventory/incoming/done/john-c-fremont-portrait-california-state-library-scaled.jpg` (1,966 KB).
+- `inventory/incoming/done/johnward_dorothyward_crop-john-ward.jpg` (237 KB).
+- `inventory/incoming/done/la-county-seal.svg` (166 KB).
+- `inventory/incoming/done/lasd.png` (1,192 KB).
+- `inventory/incoming/done/leon-worden-cowboy-hat.jpg` (1,325 KB).
+- `inventory/incoming/done/lw2317a_large-copy-2026-10-06.jpg` (1,682 KB).
+- `inventory/incoming/done/lw2317a_large-writing-removed.jpg` (2,831 KB).
+- `inventory/incoming/done/lw2427_large-copy-2026-10-06.jpg` (2,241 KB).
+- `inventory/incoming/done/lw9501_large-copy-2026-10-06.jpg` (4,460 KB).
+- `inventory/incoming/done/maria-gutzeit-avatar.png` (259 KB).
+- `inventory/incoming/done/michael_vierra_2025.jpg` (181 KB).
+- `inventory/incoming/done/michele-jenkins-cropped-from-co1501c.jpg` (51 KB).
+- `inventory/incoming/done/obituary_kevingarylynch-copy-2026-10-06.jpg` (301 KB).
+- `inventory/incoming/done/pete-knight.jpg` (2,928 KB).
+- `inventory/incoming/done/randywicks1995_karzinphoto_large-copy-2026-10-06.jpg` (2,695 KB).
+- `inventory/incoming/done/reminadeau-chrisman-copy-2026-10-06.jpg` (73 KB).
+- `inventory/incoming/done/rn3004-copy-2026-10-06.jpg` (38 KB).
+- `inventory/incoming/done/rr1-copy-2026-10-06.jpg` (21 KB).
+- `inventory/incoming/done/sg19720614claffey01_large-copy-2026-10-06.jpg` (4,179 KB).
+- `inventory/incoming/done/sg19720614claffey01_zoom.jpg` (2,476 KB).
+- `inventory/incoming/done/sg19950324bowman_large_crop-jereann-bowman.jpg` (2,000 KB).
+- `inventory/incoming/done/sk5003_large-copy-2026-10-06.jpg` (3,363 KB).
+- `inventory/incoming/done/stroup_clara-copy-2026-10-06.jpg` (764 KB).
+- `inventory/incoming/done/suzette-martinez-valladares.jpg` (2,659 KB).
+- `inventory/incoming/done/tf1000-copy-2026-10-06.jpg` (131 KB).
+- `inventory/incoming/done/tiburcio-vasquez.jpg` (2,823 KB).
+- `inventory/incoming/done/tom-frew-iv-cropped-from-hs9019.jpg` (20 KB).
+- `inventory/incoming/done/tom-lackey.jpg` (349 KB).
+- `inventory/incoming/done/william-lewis-manly-portrait-1890s.jpg` (95 KB).
+- `inventory/incoming/eMU3V.jpg` (636 KB).
+- `inventory/incoming/edited-image (1).jpg` (1,042 KB).
+- `inventory/incoming/edited-image.jpg` (1,065 KB).
+- `inventory/incoming/getting-closer.jpg` (5,835 KB).
+- `inventory/incoming/grok-image-fb994b75-1760-4be5-a4da-3623d2bc4605.jpg` (1,065 KB).
+- `inventory/incoming/henry-clay-w.jpg` (2,831 KB).
+- `inventory/incoming/henry-clay-wiley-portrait.jpg` (1,132 KB).
+- `inventory/incoming/history-of-the-santa-clarita-va.jpg` (1,660 KB).
+- `inventory/incoming/in-memoriam-henry-clay-wiley-182.jpg` (3,530 KB).
+- `inventory/incoming/in-memoriam.jpg` (3,806 KB).
+- `inventory/incoming/newhall-pass-i.jpg` (4,468 KB).
+- `inventory/incoming/northridge-ear.jpg` (6,019 KB).
+- `inventory/incoming/not-even-close.jpg` (4,835 KB).
+- `inventory/incoming/prologue-his.jpg` (5,822 KB).
+- `inventory/incoming/rancho.jpg` (3,603 KB).
+- `inventory/incoming/reynolds=map-2.jpg` (405 KB).
+- `inventory/incoming/reynolds=map-3.jpg` (398 KB).
+- `inventory/incoming/reynolds=map-4.jpg` (398 KB).
+- `inventory/incoming/reynolds=map.jpg` (647 KB).
+- `inventory/incoming/rodolfo-acost.jpg` (1,314 KB).
+- `inventory/incoming/rudy.jpg` (3,826 KB).
+- `inventory/incoming/santa-clarita-city-hall-flickr-2600036728.jpg` (2,656 KB).
+- `inventory/incoming/tank-guy.jpg` (1,386 KB).
+- `inventory/incoming/the-birth-of.jpg` (5,723 KB).
+
+## Supplied by Nathan: 37 files, 73.9 MB
+
+- `web/uploads/archive-media/legacy/jereann-bowman-cropped-from-sg19950324bowman.jpg` (1,828 KB). Asset #31257. Cropped by the archive on 5 October 2026, for Nathan Imhoff, from the obituary clipping held as the original: SCVHistory.com, gif/sg19950324
+- `web/uploads/archive-media/legacy/john-amos-ward-cropped-from-johnward_dorothyward.jpg` (233 KB). Asset #31258. Cropped by the archive on 5 October 2026, for Nathan Imhoff, from the double portrait "John and Dorothy Ward" held as asset #1973: SCVHistor
+- `web/uploads/archive-media/marks/california-state-assembly-seal.webp` (248 KB). Asset #29398. The seal of the California State Assembly, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the fil
+- `web/uploads/archive-media/marks/california-state-senate-seal.png` (13,908 KB). Asset #29400. The seal of the California State Senate, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.
+- `web/uploads/archive-media/marks/canyon-high-school-logo.png` (7,303 KB). Asset #29298. Canyon High School's logo, from its website, retrieved 4 October 2026 (Nathan Imhoff); the page it was taken from is not recorded with the f
+- `web/uploads/archive-media/marks/castaic-high-school-logo.png` (1,250 KB). Asset #29294. Castaic High School's logo, from the school's website, retrieved 4 October 2026 (Nathan Imhoff); the page it was taken from is not recorded
+- `web/uploads/archive-media/marks/castaic-lake-water-agency-logo.png` (2,362 KB). Asset #29563. Logo of the Castaic Lake Water Agency, supplied by Nathan Imhoff on 4 October 2026 as the mark the body used; where it was taken from is not
+- `web/uploads/archive-media/marks/city-of-santa-clarita-seal.svg` (44 KB). Asset #29304. The seal of the City of Santa Clarita, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file. I
+- `web/uploads/archive-media/marks/csun-seal.png` (158 KB). Asset #29300. The seal of California State University, Northridge, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded wi
+- `web/uploads/archive-media/marks/hart-high-school-logo.svg` (29 KB). Asset #29296. Hart High School's logo, from its website, retrieved 4 October 2026 (Nathan Imhoff); the page it was taken from is not recorded with the fil
+- `web/uploads/archive-media/marks/lasd-star.png` (1,357 KB). Asset #29306. The Sheriff's Department's star, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.
+- `web/uploads/archive-media/marks/los-angeles-county-seal.svg` (170 KB). Asset #29302. The seal of the County of Los Angeles, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.
+- `web/uploads/archive-media/marks/newhall-county-water-district-logo.png` (2,518 KB). Asset #29561. Logo of the Newhall County Water District, supplied by Nathan Imhoff on 4 October 2026 as the mark the body used; where it was taken from is
+- `web/uploads/archive-media/marks/newhall-elementary-school-logo-original.jpg` (36 KB). Asset #29698. Newhall Elementary School's logo, the N with "Eagles", supplied by Nathan Imhoff on 4 October 2026 as the unedited original of the mark show
+- `web/uploads/archive-media/marks/newhall-elementary-school-logo.png` (3,823 KB). Asset #29696. Newhall Elementary School's logo, the N with "Eagles", supplied by Nathan Imhoff on 4 October 2026 after editing; where it was taken from is
+- `web/uploads/archive-media/marks/newhall-school-district-logo-2700.png` (5,624 KB). Asset #29439. The Newhall School District's logo, a larger version supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded wi
+- `web/uploads/archive-media/marks/santa-clarita-christian-school-logo.png` (195 KB). Asset #29694. Santa Clarita Christian School's logo, the C with the Cardinal's head, supplied by Nathan Imhoff on 4 October 2026; where it was taken from
+- `web/uploads/archive-media/marks/united-states-congress-seal.svg` (244 KB). Asset #29396. The seal of the United States Congress, supplied by Nathan Imhoff on 4 October 2026; where it was taken from is not recorded with the file.
+- `web/uploads/archive-media/outside/alan-ferdman-edited.jpg` (167 KB). Asset #27391. Supplied and edited by Nathan Imhoff; the original photograph is not recorded.
+- `web/uploads/archive-media/outside/anna-griese-schlickart-2022.jpg` (1,327 KB). Asset #29120. Supplied by Nathan Imhoff on 4 October 2026. A photograph by Lindsay Schlick of SchlickArt, taken 25 April 2022, as the file's own notice re
+- `web/uploads/archive-media/outside/arthur-b-perkins-outstanding-citizen-1964-edited.jpg` (1,309 KB). Asset #27381. Edited by Nathan Imhoff from the archive's own 1964 photograph of Perkins as Outstanding Citizen.
+- `web/uploads/archive-media/outside/audra-strickland.jpg` (976 KB). Asset #31465. Supplied by Nathan Imhoff on October 6, 2026. Where the photograph was first published is not recorded with it.
+- `web/uploads/archive-media/outside/bill-cooper-edited.jpg` (1,404 KB). Asset #27389. Edited by Nathan Imhoff from a photograph on Bill Cooper's campaign site or the SCV Water board page (campaign or agency material); which pa
+- `web/uploads/archive-media/outside/bill-miranda-edited.jpg` (424 KB). Asset #27402. The City of Santa Clarita's council portrait, upscaled by Nathan Imhoff.
+- `web/uploads/archive-media/outside/brian-walters.png` (3,739 KB). Asset #29118. Supplied by Nathan Imhoff on 3 October 2026. Where the photograph was first published is not recorded with it, and permission to republish i
+- `web/uploads/archive-media/outside/cameron-smyth-2017.jpg` (60 KB). Asset #28261. Supplied by Nathan Imhoff, a resized copy from a web page; which page, the photographer and the rights holder are not recorded.
+- `web/uploads/archive-media/outside/cameron-smyth-nathan-imhoff.jpg` (5,548 KB). Asset #21579. Photograph by Nathan Imhoff, who holds the copyright and licenses it to SCVHistory. Received from him on 28 September 2026.
+- `web/uploads/archive-media/outside/cave-johnson-couts-us-army-edited.png` (4,983 KB). Asset #27387. Edited by Nathan Imhoff from a U.S. Army portrait; where the copy came from is not recorded.
+- `web/uploads/archive-media/outside/chris-trunkey-campaign-image.jpg` (496 KB). Asset #28197. Campaign material, supplied by Nathan Imhoff: a photograph by Jennifer Emery for his campaign, July 2016, as the file's own notice records.
+- `web/uploads/archive-media/outside/jason-gibbs-edited.jpg` (365 KB). Asset #27400. The City of Santa Clarita's council portrait, upscaled by Nathan Imhoff.
+- `web/uploads/archive-media/outside/john-c-fremont-california-state-library-upscaled.jpg` (1,935 KB). Asset #28814. The California State Library's photograph of Frémont, upscaled by Nathan Imhoff.
+- `web/uploads/archive-media/outside/leon-worden-edited.jpg` (1,328 KB). Asset #27396. Supplied and edited by Nathan Imhoff; the original photograph is not recorded.
+- `web/uploads/archive-media/outside/marsha-mclean-edited.jpg` (392 KB). Asset #27398. The City of Santa Clarita's council portrait, upscaled by Nathan Imhoff.
+- `web/uploads/archive-media/outside/patsy-ayala-edited.jpg` (374 KB). Asset #27394. Supplied and upscaled by Nathan Imhoff; the original photograph is not recorded.
+- `web/uploads/archive-media/outside/pilar-schiavo.jpg` (4,651 KB). Asset #29442. Supplied by Nathan Imhoff on 4 October 2026. Where the photograph was first published is not recorded with it, and permission to republish i
+- `web/uploads/archive-media/outside/sharlene-rose-johnson.jpg` (241 KB). Asset #30544. Supplied by Nathan Imhoff on 4 October 2026, with a copy enlarged by Adobe Firefly that the archive does not use. Where the photograph was f
+- `web/uploads/archive-media/outside/tiburcio-vasquez-1874-upscaled.jpg` (2,801 KB). Asset #28816. The 1874 photograph of Vasquez, upscaled by Nathan Imhoff.
+
+## Downloaded from a website (source page named): 7 files, 6.7 MB
+
+- `web/uploads/archive-media/outside/bob-jensen-hart-district.jpg` (1,143 KB). Asset #28976. William S. Hart Union High School District, its board page, https://www.hartdistrict.org/apps/pages/governing-board-members, retrieved 4 Oct
+- `web/uploads/archive-media/outside/cherise-moore-hart-district.jpg` (818 KB). Asset #28974. William S. Hart Union High School District, its board page, https://www.hartdistrict.org/apps/pages/governing-board-members, retrieved 4 Oct
+- `web/uploads/archive-media/outside/erin-wilson-hart-district.jpg` (1,233 KB). Asset #28972. William S. Hart Union High School District, its board page, https://www.hartdistrict.org/apps/pages/governing-board-members, retrieved 4 Oct
+- `web/uploads/archive-media/outside/jeri-seratti-city-arts-commission.jpg` (513 KB). Asset #29128. City of Santa Clarita, "Arts Commission," https://santaclarita.gov/commission-information/arts-commission/, retrieved 4 October 2026. Permis
+- `web/uploads/archive-media/outside/joe-messina-hart-district.jpg` (2,703 KB). Asset #28978. William S. Hart Union High School District, its board page, https://www.hartdistrict.org/apps/pages/governing-board-members, retrieved 4 Oct
+- `web/uploads/archive-media/outside/michael-vierra-hart-district.jpg` (181 KB). Asset #28980. William S. Hart Union High School District, its superintendent's page, https://www.hartdistrict.org/apps/pages/superintendent, retrieved 4 O
+- `web/uploads/archive-media/outside/susan-shapiro-city-arts-commission.jpg` (92 KB). Asset #29126. City of Santa Clarita, "Arts Commission," https://santaclarita.gov/commission-information/arts-commission/, retrieved 4 October 2026. Permis
+
+## From Wikimedia Commons (no URL in sourceUrl): 17 files, 24.2 MB
+
+- `inventory/incoming/Buck_McKeon_2011-commons-original.jpeg` (4,418 KB).
+- `inventory/incoming/DemetriusGScofield-commons.jpg` (40 KB).
+- `inventory/incoming/csun-central-campus-commons.jpg` (1,391 KB).
+- `inventory/incoming/done/bill-thomas-commons.jpg` (459 KB).
+- `inventory/incoming/done/cathie-wright-commons.jpg` (252 KB).
+- `inventory/incoming/done/cephas-l-bard-commons.jpg` (1,113 KB).
+- `inventory/incoming/done/fran-pavley-commons.jpg` (1,894 KB).
+- `inventory/incoming/done/george-whitesides-commons.jpg` (340 KB).
+- `inventory/incoming/done/henry-stern-commons.jpg` (177 KB).
+- `inventory/incoming/done/jeff-gorell-commons.jpg` (901 KB).
+- `inventory/incoming/done/kevin-mccarthy-commons.jpg` (3,939 KB).
+- `inventory/incoming/done/mike-garcia-commons.jpg` (3,425 KB).
+- `inventory/incoming/done/phineas-banning-commons.jpg` (202 KB).
+- `inventory/incoming/done/tom-mcclintock-commons.jpg` (50 KB).
+- `web/uploads/archive-media/outside/andres-pico-commons-edited.jpg` (3,171 KB). Asset #27385. Edited by Nathan Imhoff from a photograph on Wikimedia Commons; the Commons file is not recorded.
+- `web/uploads/archive-media/outside/christy-smith-assembly-portrait-2018.jpg` (1,377 KB). Asset #28210. The California State Assembly's official portrait of 2018, from a reduced copy of the file on Wikimedia Commons ("Christy Smith CA Assembly
+- `web/uploads/archive-media/outside/demetrius-g-scofield-1911-edited.jpg` (994 KB). Asset #27383. Edited by Nathan Imhoff from the Wikimedia Commons original held on this record (File:DemetriusGScofield.jpg, published 1911). Public domain
+
+## Election PDFs (both copies on this laptop): 8 files, 3.0 MB
+
+- `inventory/elections/10880.pdf` (18 KB).
+- `inventory/elections/2016StatementofVotesCast-4.pdf` (67 KB).
+- `inventory/elections/Final-Certficate-of-Canvas-1.pdf` (355 KB).
+- `inventory/elections/Final-Election-Canvass-Res-2.pdf` (1,185 KB).
+- `inventory/elections/LACountyFinalVoteCount-3.pdf` (85 KB).
+- `inventory/elections/LOCAL-APPT-LIST_-082625.pdf` (151 KB).
+- `inventory/elections/historical-results-7.pdf` (122 KB).
+- `inventory/elections/resolutionNo129-6.pdf` (985 KB).
