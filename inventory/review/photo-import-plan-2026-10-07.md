@@ -45,3 +45,5 @@ masters belong. The magnifier then opens a web copy, as DEPLOY.md "The masters" 
 - The 8 with no image by nature (videos, essays, indexes).
 
 **Status (7 October 2026):** approved in principle by Nathan; waits on the mirror-gap count (how many of the 1,449 have an image on the Internet Archive that Reggie lacks).
+
+**Done (7 October 2026, night):** 1,416 records imported (import_photograph_images_2026_10_07.php): 1,526 new web-copy assets, 1.5 GB; 1,305 existing assets linked. The magnifier masters left the web root first (storage/masters). 15 records held for Nathan (photo-import-held-2026-10-07.md). Only #4435 came from the Internet Archive; the other four thought to need it are on Reggie (ERRORLOG).

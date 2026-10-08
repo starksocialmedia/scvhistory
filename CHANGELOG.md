@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-07 (night)
+
+- Agent: Claude Code
+- Date: 2026-10-07
+- Done: Titles: #32724 "School Chiefs"; #4607 and #4751 back to their earlier titles (title_fixes_2026_10_07.php). Batch 1 of the titles against the scans, as Nathan ruled (titles_batch_1_2026_10_07.php): 16 retitled to what the page prints, #4735 "Ramona", #5541 a description with the slide's copy in its catalogue entry, #26573 without the agency; new field legacyHeadline, "Headline on SCVHistory.com", on articles and documents, shown under the byline. The magnifier's 1,787 masters off the web root into storage/masters, 2,400-pixel web copies in their place, tall strips by pixel count (masters_off_web_root_2026_10_07.php, masters_strips_2026_10_07.php); uploads 7.6 GB to 3.5 GB before the import. The photograph import (import_photograph_images_2026_10_07.php; plan and copies photo_import_plan_2026_10_07.py, photo_import_copies_2026_10_07.py): 1,416 photograph records given their images, 1,526 new web-copy assets (1.5 GB) and 1,305 existing assets linked, each with its master's path and checksum; flipbook pages in order, PDFs with a drawn cover; #4435 from Internet Archive captures. The two masters with no other copy into git (inventory/sole-copies/). The Leon request made one list of 201 files.
+- Found: the mirror-gap count matched by exact path and called five records' files missing that Reggie holds (names ending in "?", other folders); only #4435 needed the Internet Archive. Craft re-saves every upload, so no file on the web root is a byte copy of its master. 313 files (429 MB) have no copy outside this laptop (inventory/review/sole-copies-2026-10-07.md). The census's picture for 16 records was decoration or a neighbour's: 15 held (inventory/review/photo-import-held-2026-10-07.md), #4621 given its PDF.
+- Decisions: Nathan: the title rule for printed matter; the three batch 1 calls; the field name; the import; the masters off the web root; the Audubon master backed up off the laptop; the mirror's unmeasured gap logged as a known limit. Claude: a strip more than twice as long as wide is capped by pixel count; a web copy no smaller than its source keeps the source; the Adams master into git beside the Audubon one.
+- Blockers: none. Reggie reads only from the container (/mnt/reggie); the host shell is refused by macOS.
+- Next: TODO.md, 7 October night.
+
 2026-10-07 (evening)
 
 - Agent: Claude Code

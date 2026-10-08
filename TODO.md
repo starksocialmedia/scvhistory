@@ -2,7 +2,16 @@
 
 ## Waiting on Nathan
 
+### Current (7 October 2026, night)
+- **Titles against the scans, batches 2 to 4** (Nathan's rule of 7 October, night): about 57 left of the 79, by hand, twenty at a time, each printed headline quoted. Batch 1 is applied (inventory/review/titles-batch-1-2026-10-07.md).
+- **15 photographs held from the import** (inventory/review/photo-import-held-2026-10-07.md): the census's picture does not carry the record's code. To read one at a time.
+- **Files whose only copy is outside git and Reggie** (inventory/review/sole-copies-2026-10-07.md): 313 files, 429 MB. Two masters are in git (inventory/sole-copies/); the rest wait on Nathan's word on where they go (recommended: the same folder in git).
+- **The Leon request** (inventory/review/leon-files-request-2026-10-07.md): one list of 201 files, for Nathan to send. The 175 masters are on neither Reggie nor the Internet Archive.
+- **The 13 TIFF masters the Internet Archive holds and Reggie lacks** (inventory/review/mirror-gap-2026-10-07.json): fetching them into storage/masters is open.
+- **Staging**: the next uploads rsync replaces each magnifier master on staging with its web copy (same names), and adds the photograph import, about 1.5 GB.
+
 ### Current (7 October 2026, evening)
+- (7 October, night: the title rule is set and applied in batches; the photograph import run; the Leon request made one list, for Nathan to send. The retype read below still waits.)
 - **Titles against the scans** (inventory/review/titles-vs-scans-2026-10-07.md): of 124 legible scans of printed matter that print a headline, 45 titles match it, 42 are a shortened or lengthened form, 35 are Leon's words, 2 were better before today's retitle (#4607, #4751). Newspapers and magazines 25 of 47; ephemera 20 of 77. Unchanged titles fail the same way. A rule for printed matter is Nathan's: about 79 titles to fix one by one from the scans, each printed headline quoted. #32724 (sg110185) prints "School Chiefs".
 - **The retype** waits on that rule (Nathan: "Stop before the retype").
 - **The mirror is not complete:** Reggie lacks files Leon's server served in December 2025. Ten known (inventory/review/leon-files-request-2026-10-07.md, a draft for Nathan to send); the count across the 1,449 against the Internet Archive's index is running (storage/runtime/mirror-gap/). The photograph import (inventory/review/photo-import-plan-2026-10-07.md, approved in principle; the magnifier originals leave the web root with it) waits on that count. No record is marked lost.
