@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-08 (after midnight)
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: Pico's 1850 photograph his portrait (pico_portrait_2026_10_08.php). The census of people without a portrait who hold an unedited photograph of themselves: two, Pete Knight and Tiburcio Vasquez, listed for Nathan, not set. The checksum audit across all 4,387 assets that record a master checksum (checksum_audit_2026_10_08.py; inventory/review/checksum-audit-2026-10-08.md), shown to fail on the ten swapped records as they stood. Five portraits whose files came from firefly.adobe.com with no word of it in their records taken off (pull_undisclosed_firefly_2026_10_08.php; snapshot pre-undisclosed-firefly-2026-10-08): Patti Rasmussen and Brian Walters (text_to_image), Audra Strickland, BJ Atkins and Jerry Gladbach (enlargements, no original held).
+- Found: no checksum is self-referential in the strict sense; twelve had the 6 October shape (a master named, a substituted file's hash held), of which Randy Wicks's and Bob Kellar's still stand. 102 of 255 people have a portrait; 21 lost theirs today.
+- Decisions: Nathan: Pico's portrait; list before setting the rest; the audit.
+- Blockers: none.
+- Next: TODO.md, 8 October after midnight.
+
 2026-10-08 (late)
 
 - Agent: Claude Code

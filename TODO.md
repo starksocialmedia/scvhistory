@@ -2,8 +2,13 @@
 
 ## Waiting on Nathan
 
+### Current (8 October 2026, after midnight)
+- **Two people without a portrait hold an unedited photograph of themselves as a related image**, the only two of 153: Pete Knight (#29314, sg042504.jpg, "Pete Knight on April 1, 2004", from the original site) and Tiburcio Vasquez (#285, tiburcio-vasquez.jpg, the 1874 oval portrait, from the old WordPress site, no source further recorded). Nathan's word before setting them.
+- **Randy Wicks and Bob Kellar** (ERRORLOG, open): their checksums name a master but hold the Firefly enlargement's hash. Proposed: the López pattern.
+- **The checksum audit as a standing check**: checksum_audit_2026_10_08.py into check_render, failing on "matches neither the master named nor the file". It is shown to fail; Nathan's word to add it.
+
 ### Current (8 October 2026, late)
-- **17 person records lost their portrait today** (CHANGELOG, 8 October late): a real photograph for any of them, with its source, enters under the edited-image rule as an unedited original. Pico's record already holds an unedited photograph of him (andres_pico_circa_1850.jpg) as a related image: Nathan's word whether it becomes the portrait.
+- (21 by the end of the night; Pico's set 8 October after midnight) **17 person records lost their portrait today** (CHANGELOG, 8 October late): a real photograph for any of them, with its source, enters under the edited-image rule as an unedited original. Pico's record already holds an unedited photograph of him (andres_pico_circa_1850.jpg) as a related image: Nathan's word whether it becomes the portrait.
 
 ### Current (8 October 2026, night)
 - (applied 8 October, late: 38 off, 3 enlargements stay) **41 Firefly edits held in place** (inventory/review/generated-images-2026-10-08.md, section 4, and the side-by-side sheet): Nathan to decide each. 13 with fill, removal or cleaning; 18 Firefly Image 5 edits whose credential does not say what was edited; 10 enlargements only. Sheet: https://claude.ai/artifact/G3ksC59M8TWuNhyik6mcRA.
