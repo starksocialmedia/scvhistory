@@ -4,12 +4,16 @@
 
 | Date | Context | Error | Status |
 |---|---|---|---|
+| 2026-10-07 | The Reggie mirror, every check run against it | Known limit, not measured. Every check (the mirror-gap count, the photograph image census, the titles against the scans) sees only the files the Reggie copy of each page references. Anything Leon added to the live site after the copy was made, a new page, a new image, a replaced file, is invisible to all of them. The size of that gap is unknown; nothing we have run measures it. | Open. Do not read a clean mirror check as "nothing is missing"; it means nothing the copy knows about is missing. Only a file list from Leon's server, or his word, would measure it. |
 | 2026-09-16 | local DDEV Places/Collections import | 52 entries (IDs 583-685) saved with empty titles. `import_places_and_series.php` set `Entry->title` but Place and Collection have `hasTitleField: false` and `titleFormat: null`, so Craft discarded the title. | Open. Do not import more of those types until the title field is on. Plan in TODO.md Waiting on Nathan. |
 
 ## Resolved Errors
 
 | Date | Context | Error | Resolution |
 |---|---|---|---|
+| 2026-10-07 | Mirror-gap count (Claude) | Matched files on Reggie by exact path, so it called five records' files missing that Reggie holds: wget saved `lw2875.pdf` and `lw3786_*.pdf` with a literal `?` at the end of the name, and `lw2585b.jpg`, `lw2248a.jpg` and `lw2214.jpg` (as `lw2214a.jpg`) sit in other folders. #4187 went onto the Leon list wrongly. | Rechecked every missing file by name and by checksum against the drive manifest; only #4435 (lw2724a and b) needs the Internet Archive. #4187 taken off the Leon list (201 files). The 175 masters stand: none is on Reggie under another name. |
+| 2026-10-07 | Internet Archive fetch | Two PDF captures (lw2875.pdf 2019, lw3786_centerville.pdf 2021) came back cut off at exactly 1 MB, with no end-of-file marker. | Took later, complete captures (12 pages and 1 page, both end cleanly). Check a fetched PDF for `%%EOF` and a JPEG for its end marker before using it. |
+| 2026-10-07 | masters_off_web_root_2026_10_07.php (Claude) | The 2,400-pixel long-side cap made 34 tall strips, mostly newspaper columns, unreadable (lat19320522piru_large.jpg 1600 x 7785 became 493 x 2400), and lw3030c's magnifier dropped out because its copy came out smaller than the picture it enlarges. | masters_strips_2026_10_07.php: a strip more than twice as long as wide gets the pixel count of a 2,400 by 1,800 picture (942 x 4585). Magnifier index back to 1,802. |
 | 2026-10-07 | Type census | Reported 1,392 photographs with no image in Craft; it counted field uses (featuredImage plus recordImages), not records. | Recounted by record: 1,449. |
 | 2026-10-07 | Type census | Called #1444 and #2689 the same thing held twice because they share two images; they are different pieces. | The duplicate was #2689 with #12558 (one piece, two legacy pages); merged instead. |
 | 2026-10-07 | Claude, reporting | Asked Nathan again for rulings he had already sent (titles, type, the source-fault link); his message crossed with the report. | Applied as ruled; asked nothing further. |
