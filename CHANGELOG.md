@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-08 (late)
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: Nathan's rule on the 41 Firefly edits applied (snapshot pre-firefly-rule-2026-10-08). Eight legacy portraits replaced in place on 6 October given back their own files from Reggie, checked against the drive manifest (restore_legacy_files_2026_10_08.php): Adams, Manzer, Stroup, Antonovich, Claffey, Heidt, and Earl Schmidt's and Dan Hon's, which went back on their records. 32 more off their records (pull_firefly_edits_2026_10_08.php): every fill, removal, cleaning and undescribed Image 5 edit, Frémont among them, and every edit with no original held; the unedited original made the portrait wherever the archive holds it (Scofield's and Perkins's were not on their records). López, Randy Wicks and Bob Kellar stay as plain enlargements. Calendar rebuilt; all 40 affected pages fetched, 200 and clean. A standing caution at the top of HANDOFF.
+- Found: the replaced assets also recorded the Firefly file's checksum as the master's (ERRORLOG). 106 of 255 person records have a portrait; 17 lost theirs today (Steve Knight, Sharon Runner, George Runner, Pete Knight, the four Hart board members, the four council members, Alan Ferdman, Bill Cooper, Henry Clay Wiley, Andrés Pico, Tiburcio Vasquez). Pico's record holds a different, unedited photograph (andres_pico_circa_1850.jpg) as a related image.
+- Decisions: Nathan: the rule ("the archive should not publish what it cannot check"); restore Schmidt and Hon; the caution in HANDOFF.
+- Blockers: none.
+- Next: TODO.md, 8 October late.
+
 2026-10-08 (night)
 
 - Agent: Claude Code

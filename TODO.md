@@ -2,9 +2,12 @@
 
 ## Waiting on Nathan
 
+### Current (8 October 2026, late)
+- **17 person records lost their portrait today** (CHANGELOG, 8 October late): a real photograph for any of them, with its source, enters under the edited-image rule as an unedited original. Pico's record already holds an unedited photograph of him (andres_pico_circa_1850.jpg) as a related image: Nathan's word whether it becomes the portrait.
+
 ### Current (8 October 2026, night)
-- **41 Firefly edits held in place** (inventory/review/generated-images-2026-10-08.md, section 4, and the side-by-side sheet): Nathan to decide each. 13 with fill, removal or cleaning; 18 Firefly Image 5 edits whose credential does not say what was edited; 10 enlargements only. Sheet: https://claude.ai/artifact/G3ksC59M8TWuNhyik6mcRA.
-- **The five records left with no portrait** after the pull (Pete Knight, Tiburcio Vasquez, Henry Clay Wiley, Earl Schmidt, Dan Hon): whether to restore the legacy originals of Earl Schmidt (sk5003) and Dan Hon (danhon) from Reggie into their assets; Wiley's real photograph to be found.
+- (applied 8 October, late: 38 off, 3 enlargements stay) **41 Firefly edits held in place** (inventory/review/generated-images-2026-10-08.md, section 4, and the side-by-side sheet): Nathan to decide each. 13 with fill, removal or cleaning; 18 Firefly Image 5 edits whose credential does not say what was edited; 10 enlargements only. Sheet: https://claude.ai/artifact/G3ksC59M8TWuNhyik6mcRA.
+- (Schmidt and Hon restored 8 October, late) **The five records left with no portrait** after the pull (Pete Knight, Tiburcio Vasquez, Henry Clay Wiley, Earl Schmidt, Dan Hon): whether to restore the legacy originals of Earl Schmidt (sk5003) and Dan Hon (danhon) from Reggie into their assets; Wiley's real photograph to be found.
 
 ### Current (8 October 2026, evening)
 - (pulled 8 October, night, with the text-prompt portraits) **Generated images** (inventory/review/generated-images-2026-10-08.md): Henry Clay Wiley's portrait (#1658, from Firefly, no source recorded) first; then whether the new rule reaches the 9 portraits regenerated in part from a text prompt and the 34 Firefly upscales and fills. Marks and ornament not ruled.

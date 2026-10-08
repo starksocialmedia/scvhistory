@@ -42,7 +42,11 @@ How long: from each record's revision history (when the image first appears on i
 
 Ten legacy portraits had their file replaced in place on 6 October by a file Nathan supplied, each recorded as "a better copy of the same image". Every one was downloaded from firefly.adobe.com, and every content credential (read today from Adobe's manifest server) records generative steps. Two had text_to_image steps and are off (above). The other eight stay in place for your decision, and each record now says what was done (record_replaced_firefly_edits_2026_10_08.php): Adams (Generate Fill), Darryl Manzer (Firefly Image 5 edit, Generate Fill, upsampler), Clara Stroup (Image 5 edit, Generate Fill), Jan Heidt sc9611 (Image 5 edit, Generate Fill, upsampler), Michael D. Antonovich lw2427 (Image 5 edit), Francis T. Claffey (Image 5 edit, upsampler), Randy Wicks and Bob Kellar sc1310 (upsampler only). The unedited images are on Reggie at each asset's legacySourcePath. The Adams master committed to inventory/sole-copies is this Firefly output; its README entry is corrected.
 
-## 4. Firefly edits held in place for your decision: 41
+## 4. Firefly edits: 41, ruled 8 October (late)
+
+Applied: Nathan's rule ("Any portrait where Firefly filled, removed, cleaned, or made an edit the credential does not describe comes off the record"; the 14 with no original come off too; where an unedited original exists it becomes the portrait). 38 off: six replaced-in-place files restored to the original site's (restore_legacy_files_2026_10_08.php) and 32 pulled (pull_firefly_edits_2026_10_08.php), the original made the portrait on 17 of them. Three plain enlargements stay: Chico López, Randy Wicks, Bob Kellar. 106 of 255 person records have a portrait now; 17 lost theirs today.
+
+As held before the ruling:
 
 Grouped by what the credential or the recorded method says. A side-by-side sheet of each with its original: https://claude.ai/artifact/G3ksC59M8TWuNhyik6mcRA (private). No original is held for 14: Steve Knight, Sharon Runner, George Runner, the four Hart district portraits, the four City council portraits, Alan Ferdman, Bill Cooper and Andrés Pico.
 
