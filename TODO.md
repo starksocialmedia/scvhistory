@@ -2,10 +2,18 @@
 
 ## Waiting on Nathan
 
+### Current (8 October 2026, night)
+- **41 Firefly edits held in place** (inventory/review/generated-images-2026-10-08.md, section 4, and the side-by-side sheet): Nathan to decide each. 13 with fill, removal or cleaning; 18 Firefly Image 5 edits whose credential does not say what was edited; 10 enlargements only. Sheet: https://claude.ai/artifact/G3ksC59M8TWuNhyik6mcRA.
+- **The five records left with no portrait** after the pull (Pete Knight, Tiburcio Vasquez, Henry Clay Wiley, Earl Schmidt, Dan Hon): whether to restore the legacy originals of Earl Schmidt (sk5003) and Dan Hon (danhon) from Reggie into their assets; Wiley's real photograph to be found.
+
+### Current (8 October 2026, evening)
+- (pulled 8 October, night, with the text-prompt portraits) **Generated images** (inventory/review/generated-images-2026-10-08.md): Henry Clay Wiley's portrait (#1658, from Firefly, no source recorded) first; then whether the new rule reaches the 9 portraits regenerated in part from a text prompt and the 34 Firefly upscales and fills. Marks and ornament not ruled.
+- **The 759 files the folder pass held** (inventory/review/folder-pass-dry-run-2026-10-08.md): uc8901's 658 raw page scans, the shared folders (#605, #613, gt8702, scvhs2000minutes), LW3267's pictures in LW3257's folder, thumbnails, -orig PDFs, one mp3.
+
 ### Current (8 October 2026, afternoon)
-- **The folder pass** (inventory/review/folder-pass-dry-run-2026-10-08.md): dry run done, 91 records, 803 pictures and 56 documents to add, 759 files held with reasons (658 of them uc8901's raw page scans). Nathan's word to apply.
+- (applied 8 October, evening) **The folder pass** (inventory/review/folder-pass-dry-run-2026-10-08.md): dry run done, 91 records, 803 pictures and 56 documents to add, 759 files held with reasons (658 of them uc8901's raw page scans). Nathan's word to apply.
 - **#5245** may have its pages out of order (ERRORLOG): the original's order from the item or Leon.
-- **The Hart banner** web/banners/william-s-hart.jpg is made from WilliamS.jpg, a Grok image in inventory/incoming: Nathan's call whether that changes anything.
+- (done 8 October, evening: all fifteen banners off) **The Hart banner** web/banners/william-s-hart.jpg is made from WilliamS.jpg, a Grok image in inventory/incoming: Nathan's call whether that changes anything.
 - **The 14 sole copies with no other copy known** (sole-copies-origins-2026-10-08.md): Nathan checking his drives.
 
 ### Current (8 October 2026)

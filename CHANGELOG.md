@@ -1,5 +1,25 @@
 SCVHistory.com — Changelog
 
+2026-10-08 (night)
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: Thirteen generated portraits taken off real people's records (snapshot pre-pull-generated-2026-10-08; pull_generated_portraits_2026_10_08.php): the ten text-prompt portraits, Henry Clay Wiley's Firefly portrait with no source, and Earl Schmidt's and Dan Hon's, found today as files replaced in place whose credentials record text_to_image. The unedited original became the portrait on seven; the enhancedFrom links cleared so no viewer offers the generated copy; the calendar index rebuilt. The eight other in-place replacements of 6 October corrected to say they are Firefly outputs and what was done (record_replaced_firefly_edits_2026_10_08.php). inventory/review/generated-images-2026-10-08.md rewritten: what was pulled and how long each was published, the replacements, the 41 Firefly edits held for Nathan grouped by fill, model edit and enlargement. A side-by-side sheet of the 41.
+- Found: the ten replacements of 6 October were all Firefly outputs recorded as "a better copy of the same image" (ERRORLOG). Of the thirteen Nathan named, Harry Carey, Tom Mix, Pederson, Lynch, Mulholland and Manly carry a Firefly Image 5 edit, López an enlargement only, Jensen a Firefly edit of unrecorded kind, Adams Generate Fill; Ruth Newhall's portrait an Image 5 edit and her related image text-to-image (off); Nadeau, Frew and Pete Knight text-to-image (off).
+- Decisions: Nathan: the ten off now; Wiley pulled; the upscales and fills held and listed for one-by-one decisions; the sixteen banners off.
+- Blockers: none.
+- Next: TODO.md, 8 October night.
+
+2026-10-08 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: The folder pass applied (snapshot pre-folder-pass-2026-10-08): 91 records, 859 new web-copy assets (803 pictures, 56 documents), lw3743's pages 47 to 118 among them; the census rerun finds only the 759 files held for Nathan. #5475's printed copy in its catalogue entry. Every banner taken off: 15 files on 17 pages, all Grok-generated portraits of real people (the originals' download records name grok.com); the registry keeps its rule and no entry, web/banners is empty. The rule written into docs/DATA-MODEL.md (generate_data_model.php): no generated image of a real person, place or event anywhere in the archive, decoration included. The list of generated and Firefly-edited images (inventory/review/generated-images-2026-10-08.md). The 876 pages with folders and no record sized in BUILDPLAN's yearbook section.
+- Found: Henry Clay Wiley's portrait (asset #1658) was downloaded from firefly.adobe.com and records no source; nine portraits were regenerated in part from a text prompt; 34 photographs were upscaled, filled or cleaned with Firefly under the edited-image rule. No image in the web root carries a generator's mark: Craft strips metadata on upload, so the list rests on recorded provenance and download records. A command in the container written with $(ls) expanded on the host and ran host file names as commands; none existed but ./craft, which printed its help. Nothing changed.
+- Decisions: Nathan: apply the folder pass; #5475's copy; the Hart banner off ("Replace it with a real photograph from his record, or no banner"; his only photograph is already the band's portrait, so no banner); the rule on generated images; the 876 against the yearbook phase. Claude, under that rule: the other fourteen banners off too.
+- Blockers: none.
+- Next: TODO.md, 8 October evening.
+
 2026-10-08 (afternoon)
 
 - Agent: Claude Code

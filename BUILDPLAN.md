@@ -533,6 +533,8 @@ Do not create a separate School section. Schools are Organizations with an Educa
 
 ### Yearbook Entry Type (New Section)
 
+> Sized 8 October 2026 (Claude, for Nathan: "log the number against the yearbook phase so it is sized when we get there. Not now."): 876 legacy pages on Reggie have their own folder in scvhistory/files and no Craft record; between them they link 889 folders, 119 of them named as yearbooks. Most are flipbooks (a PDF, page TIFFs and the viewer). They are part of the 5,606 of 5,791 legacy pages with no record yet. Counted by scripts/import/folder_census_links_2026_10_08.py and folder_census_2026_10_08.py (storage/runtime/photo-import/folder-census.json, "unclaimed").
+
 - [ ] Create Yearbook section in Craft
 - [ ] Fields: title, school (relation to Organization), year (number), featuredImage (cover), body (notes), archiveUrl (Archive.org full scan link), yearbookStudents (relation to Person multi), historicalEra, historicalPeriod
 - [ ] On Person template: add Yearbooks section showing every yearbook that person appears in
