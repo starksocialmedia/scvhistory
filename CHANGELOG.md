@@ -8,6 +8,7 @@ SCVHistory.com — Changelog
 - Decisions: Nathan: originals go straight back on, unedited.
 - Errors: "no original held" had been read as "no original exists" (ERRORLOG).
 - Blockers: none.
+- Also: Angela Marler (#28312) made a row on Nathan's word (marler_to_row_2026_10_08.php): her Castaic Union term named, her 2005 candidacy unlinked, the record to the trash; the 6 October restore had misread his "keep". 254 person records.
 - Next: TODO.md, 8 October continued.
 
 2026-10-08 (continued)
