@@ -1,5 +1,16 @@
 SCVHistory.com — Changelog
 
+2026-10-09 (overnight, 8 to 9 October)
+
+- Agent: Claude Code (and seven read-only subagents for the write-ups)
+- Date: 2026-10-09
+- Done: Nathan's overnight run, all fourteen items; summary in inventory/review/overnight-2026-10-08/MORNING-2026-10-09.md. The credential scan read the files themselves for 2,612 of 2,645 assets (2,508 masters on Reggie, 104 in the repo by checksum; scan_credentials_2026_10_08.py, run in the container with the Mac's exiftool). It found Bill Cooper's portrait, set on 8 October as an unedited campaign photograph, to be a generated image (OpenAI gpt-image, C2PA embedded): off his record under DATA-MODEL (cooper_generated_off_2026_10_09.php; snapshot before-cooper-generated-off-2026-10-09). The other 18 of the 19 originals read at file level: no credential in any; 8 carry camera metadata. Couts's restored enhanced portrait has text_to_image in its chain (held for Nathan). The enhanced-pair rule's date corrected to 6 October in the notes on all 17 restored assets (enhanced_pair_date_2026_10_09.php; snapshot before-enhanced-pair-date-2026-10-09). John Boston's portrait is the SCVHistory column photograph (boston_portrait_2026_10_08.php; snapshot before-boston-portrait-2026-10-08), the crop a related image, an editor's note on The Signal's two 1970s photographs; his profile drafted, not written; of four Reggie pieces two carry his byline (Haskell 2005, George Harris 2006), neither yet a record. Write-ups, nothing applied: titles batches 3 and 4, the held imports, the 759, the remaining bylines (dry run), the type audit, the 18 originals (all held), single-source claims, disputed points stated as fact, the rules in force, the fourteen-day audit, the branch to staging. Portraits: 122 of 254 people (20 enhanced pairs, 3 crops of an original, 99 with no edit recorded).
+- Decisions: Nathan: Boston's SCVHistory mug, not The Signal's; The Signal's photographs noted, not imported; the profile attributes his career story to him; the enhanced-pair date corrected on all 17.
+- Errors: a generated face put on a real person's record during the operation to take them off (Cooper); Couts sorted by a summary; the rule date from the brief in public notes; the 18 "never kept"; the run's other read-from-a-description instances (ERRORLOG, 9 October). The first scan stalled on a regular expression over a large file; rewritten as a chunked fixed-string search. Reggie dropped from the container again (Docker restarted).
+- Blockers: /media/<id> serves generated files on no record (blocks staging; a template change for Nathan).
+- Also, morning: Nathan's rule on images edited by their publisher before publication added to docs/DATA-MODEL.md through generate_data_model.php (published as published, the edit disclosed where seen; first cases Gibbs and Ayala, the City's composites). The publisher-edit census read 6,759 of 6,886 image masters: no publisher credential anywhere; 2,995 files name an editing program (2,945 of them the original site's own, Photoshop), 17 outside; composites are invisible to metadata (publisher-edits-census-2026-10-09.md).
+- Next steps: TODO, "Current (9 October 2026, morning)".
+
 2026-10-08 (evening)
 
 - Agent: Claude Code

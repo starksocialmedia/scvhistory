@@ -2,13 +2,28 @@
 
 ## Waiting on Nathan
 
+### Current (9 October 2026, morning; the overnight run, inventory/review/overnight-2026-10-08/MORNING-2026-10-09.md)
+- **Cave Johnson Couts (#323)**: his enhanced portrait's credential chain shows text_to_image, like the seven held; restored with the 17 by a sort on the record's summary (ERRORLOG). Join the seven or not.
+- **The /media/<id> exposure**: any asset has a public page, the 34 generated or Firefly files on no record among them, Cooper's now too. Proposed fix (a template change): 404 for an unused asset with a generative step, a check_render test, an rsync exclude list. Blocks staging (branch-to-staging-2026-10-08.md).
+- **The rules contradictions** (rules-in-force-2026-10-08.md): above all, write what separates Nathan's enhanced pairs from the 8 October Firefly rule; the Firefly rule is in no rule document.
+- **John Boston**: the profile draft to read (boston-profile-draft-2026-10-08.md); whether the Haskell obituary (2005, "By John Boston, Editor") and sg010906 (George Harris, 2006, his shared byline) come in as articles. Portrait done.
+- **Bill Cooper**: no portrait now (his campaign image was generated, off 9 October). His SCV Water board photograph not yet looked for.
+- **Titles batches 3 and 4** (titles-batch-3-4-2026-10-08.md): four calls (#4567, #21936, #5481, #20099 and dates in program titles); #28055's "Pen Pictures" retitle reopened; #4519 holds the wrong file.
+- **The held imports** (held-import-2026-10-08.md): the 13 held photographs need only a word to apply; two optional calls.
+- **The 759** (folder-pass-held-2026-10-08.md): gt8702, scvhs2000minutes, the mp3; and the 78 slideshow renders the pass imported.
+- **Bylines** (bylines-remaining-2026-10-08.md, dry run): the one link (#12135), census rule (b) against the recurring-role test, three 5 October errors.
+- **Type** (type-audit-2026-10-08.md), **single-source claims**, **disputed points stated as fact**, **the fourteen-day audit**: to read; nothing applied.
+- **Assets that need a note saying what the file shows**: Strickland #31465, Atkins #31443, Gladbach #31417, Rasmussen #29122, Walters #29118 (Firefly files off every record; their records do not say what the files are); Jason Gibbs #38460 and Patsy Ayala #38462 (the City's council portraits, each sitter composited onto one shared council-chamber backdrop by the City before publication: publisher-edited, published as published, the edit disclosed; docs/DATA-MODEL.md, Nathan, 9 October).
+- **Publisher-edited images** (publisher-edits-census-2026-10-09.md): does "edited by its publisher" cover Leon's own preparation (2,945 masters saved through Photoshop) or outside publishers only; then, on Nathan's word, record what each outside asset's metadata says (115), and look at the official portrait sets by eye for composites.
+- **unchecked-claims-2026-10-08.md and the checksum audit** still say 18 originals were never kept; all 18 are held (originals-18-2026-10-08.md).
+
 ### Current (8 October 2026, continued)
-- **John Boston**: his portrait (the column mug from Archive.org is the fallback, Nathan's word, unless the search finds better at a usable size; the group-photo crop stays as a related image), then the sources for his profile, reported before anything is written. His six essays are in #667 (done).
+- (portrait done 9 October; profile drafted) **John Boston**: his portrait (the column mug from Archive.org is the fallback, Nathan's word, unless the search finds better at a usable size; the group-photo crop stays as a related image), then the sources for his profile, reported before anything is written. His six essays are in #667 (done).
 - **The 99 portraits with no edit recorded** (not tonight, Nathan): "no edit recorded" is not "no edit". Verify each against its source properly rather than leaving it as an assumption.
 - (done, evening) **The 19 without a portrait**: every one had a real photograph somewhere reachable, and each is back on (portrait-changes-2026-10-08.md, last section). Two licence notes to read: Sharon Runner's Commons file (PD-CAGov now, CC BY-SA at first upload) and George Runner's (Commons tags a smaller copy PD-CAGov).
 - **The portraits that changed on 8 October**: all 56 person records in one list, with the old image, the new one or none, and the reason and rule for each (inventory/review/portrait-changes-2026-10-08.md). 19 have no portrait now. Nathan to read; nothing acted on.
 - (done, evening) **Angela Marler**: a row on Nathan's word (marler_to_row_2026_10_08.php).
-- **The 24 enhanced portraits** taken off under the 8 October Firefly rule, which overrode the 5 October enhanced-pair rule: all Nathan's own work in Firefly. 17 restored to the enhanced pair on Nathan's word (evening). The seven with text-prompt steps (Connie Worden, Klajic, Brathwaite, Nadeau, Frew II, Gelcich, Jenkins) held: Nathan is deciding whether a text-prompt step he made knowingly is acceptable in a portrait of a real person.
+- **The 24 enhanced portraits** taken off under the 8 October Firefly rule, which overrode the 6 October enhanced-pair rule (the brief said 5 October; corrected 9 October): all Nathan's own work in Firefly. 17 restored to the enhanced pair on Nathan's word (evening). The seven with text-prompt steps (Connie Worden, Klajic, Brathwaite, Nadeau, Frew II, Gelcich, Jenkins) held: Nathan is deciding whether a text-prompt step he made knowingly is acceptable in a portrait of a real person.
 - **What is still unchecked** (inventory/review/unchecked-claims-2026-10-08.md): 6,909 of 6,958 assets have a claim about their file that rests on a record. The largest classes are 4,201 web copies never compared with their masters, 2,697 with credentials never read, 2,569 with no checksum and 2,450 given to a record by name. Which to check first is Nathan's call. The cheapest is the credential scan over the 2,496 masters on Reggie.
 
 ### Done (8 October 2026, after midnight; applied later on 8 October on Nathan's word: both portraits set, Wicks and Kellar in the López pattern, the checksum audit in check_render)
