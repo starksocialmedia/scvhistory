@@ -9,6 +9,8 @@ SCVHistory.com — Changelog
 - Errors: "no original held" had been read as "no original exists" (ERRORLOG).
 - Blockers: none.
 - Also: Angela Marler (#28312) made a row on Nathan's word (marler_to_row_2026_10_08.php): her Castaic Union term named, her 2005 candidacy unlinked, the record to the trash; the 6 October restore had misread his "keep". 254 person records.
+- Also: the 17 enhanced portraits back to the enhanced pair on Nathan's word (restore_enhanced_pairs_2026_10_08.php; snapshot before-enhanced-pairs-2026-10-08): enhanced in the portrait slot, enhancedFrom to the original, the original among the related images. The seven with text-prompt steps held for Nathan. Portraits now: 123 of 254 people (20 enhanced pairs, 4 crops of an original, 99 with no edit recorded); 131 have none.
+- Also: John Boston's six essays from the original site imported as articles in his collection #667 (boston_essays_2026_10_08.php, from boston_essays_parse_2026_10_08.py; snapshot before-boston-essays-2026-10-08), #38511 to #38521, text verbatim, him linked as author on all six: printed byline on three, series attribution on the three "Laying Down the Law" parts (their copyright line, quoted as printed). The two pictures beside them that Craft holds under the same file name linked as related images (boston_essay_pictures_2026_10_08.php); seven others are not in Craft. His column mug found on Archive.org (gif/mugs/boston_john.jpg, 150 by 166, captured 2003 to 2016).
 - Next: TODO.md, 8 October continued.
 
 2026-10-08 (continued)

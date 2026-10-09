@@ -3,10 +3,12 @@
 ## Waiting on Nathan
 
 ### Current (8 October 2026, continued)
+- **John Boston**: his portrait (the column mug from Archive.org is the fallback, Nathan's word, unless the search finds better at a usable size; the group-photo crop stays as a related image), then the sources for his profile, reported before anything is written. His six essays are in #667 (done).
+- **The 99 portraits with no edit recorded** (not tonight, Nathan): "no edit recorded" is not "no edit". Verify each against its source properly rather than leaving it as an assumption.
 - (done, evening) **The 19 without a portrait**: every one had a real photograph somewhere reachable, and each is back on (portrait-changes-2026-10-08.md, last section). Two licence notes to read: Sharon Runner's Commons file (PD-CAGov now, CC BY-SA at first upload) and George Runner's (Commons tags a smaller copy PD-CAGov).
 - **The portraits that changed on 8 October**: all 56 person records in one list, with the old image, the new one or none, and the reason and rule for each (inventory/review/portrait-changes-2026-10-08.md). 19 have no portrait now. Nathan to read; nothing acted on.
 - (done, evening) **Angela Marler**: a row on Nathan's word (marler_to_row_2026_10_08.php).
-- **The 24 enhanced portraits** taken off under the 8 October Firefly rule, which overrode the 5 October enhanced-pair rule: all Nathan's own work in Firefly. Restoring them to the enhanced-pair arrangement waits on Nathan's word; seven have text-prompt steps and fall under the DATA-MODEL rule on generated images.
+- **The 24 enhanced portraits** taken off under the 8 October Firefly rule, which overrode the 5 October enhanced-pair rule: all Nathan's own work in Firefly. 17 restored to the enhanced pair on Nathan's word (evening). The seven with text-prompt steps (Connie Worden, Klajic, Brathwaite, Nadeau, Frew II, Gelcich, Jenkins) held: Nathan is deciding whether a text-prompt step he made knowingly is acceptable in a portrait of a real person.
 - **What is still unchecked** (inventory/review/unchecked-claims-2026-10-08.md): 6,909 of 6,958 assets have a claim about their file that rests on a record. The largest classes are 4,201 web copies never compared with their masters, 2,697 with credentials never read, 2,569 with no checksum and 2,450 given to a record by name. Which to check first is Nathan's call. The cheapest is the credential scan over the 2,496 masters on Reggie.
 
 ### Done (8 October 2026, after midnight; applied later on 8 October on Nathan's word: both portraits set, Wicks and Kellar in the López pattern, the checksum audit in check_render)
