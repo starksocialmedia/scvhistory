@@ -83,3 +83,31 @@ How it was read: "before" is the portrait in each record's last Craft revision b
 | Michael D. Antonovich #29284 | lw2427_large.jpg (#31242) | same asset, the original site's file | Same asset; the file swapped in on 6 Oct (a Firefly output with generative edits) replaced by the original site's own file from Reggie. Rule: Nathan, 8 Oct ("Where an unedited original exists, restore it as the portrait") |
 
 Not a person record: Bob Kellar's photograph record #27853 keeps sc1310.jpg (#27852). That asset's file went back to the original site's on 8 October; the enlargement is not on the photograph record.
+
+## Afterwards: the 19 given real photographs (8 October 2026, evening)
+
+Nathan: "We removed them because no original is held in Craft, which is not the same as no original existing anywhere. So find the originals." All 19 had one. Each was looked at beside the edit it replaced and carries no content credential. Each went on as the portrait, unedited, by originals_portraits_2026_10_08.php. The sixteen downloads are kept as downloaded in inventory/incoming/done/originals-2026-10-08/. The supplied files in inventory/incoming/done named for these people were all Firefly outputs, and the old WordPress build held none of them.
+
+| Record | Now | Where it was found | Is it the edit's own source? |
+|---|---|---|---|
+| Bill Miranda #23089 | billmiranda2017_large.jpg | Reggie, /scvhistory/sc1709.htm ("City of Santa Clarita, 2017") | Same portrait, larger than the City's WebP |
+| Marsha McLean #23085 | sc1313_large.jpg | Reggie, /scvhistory/sc1313.htm ("City of Santa Clarita 2013") | A different, earlier City portrait |
+| Henry Clay Wiley #331 | sw_hssc0402wiley_large.png | Reggie, /scvhistory/sw_hssc0402wiley.htm: the plate in the HSSC Annual, 1898 | Yes, the photograph Firefly worked from |
+| Jason Gibbs #23091 | jason-gibbs-city-2023.png | City council page, Wayback 20240917165254, the City's own PNG | Yes; the WebP was the web host's re-encode |
+| Patsy Ayala #23093 | patsy-ayala-city-2024.png | City council page, Wayback 20250331125013 (the host's recompressed copy; the City's own file is not captured) | Yes |
+| Bill Cooper #26946 | bill-cooper-campaign-2026.png | votebillcooper.com, his 2026 campaign site | Yes |
+| Alan Ferdman #25191 | alan-ferdman-khts-2020.jpg | KHTS, 2020 Man and Woman of the Year nominees | Yes, the same photograph as a JPEG; the PNG was not found |
+| Steve Knight #29328 | steve-knight-congress-2015.jpg | Wikimedia Commons, official 114th Congress portrait (public domain) | Yes |
+| George Runner #18747 | george-runner-boe-2011.jpg | Board of Equalization, Wayback 20150715213719, 2011 official portrait | No; the edit's source exists only at 277 by 346 |
+| Sharon Runner #29324 | sharon-runner-assembly-2007.jpg | Wikimedia Commons, California State Assembly, 2007 (licence tags conflict) | No; the edit's source exists only at 153 by 214 |
+| Bob Jensen #28322 | bob-jensen-hart-2016.jpg | Hart district board page, Wayback 20170528112308 | No; a larger district portrait (the source, SCVNews 2013, is 800 by 882) |
+| Joe Messina #26549 | joe-messina-hart-2016.jpg | Hart district board page, Wayback 20170528124155 | No; a larger district portrait (the source is an SCVNews mug) |
+| Cherise Moore #28558 | cherise-moore-hart.jpg | Hart district board page (same bytes as Wayback 20170528115918) | Yes |
+| Erin Wilson #28560 | erin-wilson-hart-2023.jpg | Hart district release, June 2023 | No; the source survives only as a 100 by 150 thumbnail |
+| Audra Strickland #29450 | audra-strickland-assembly.jpg | Assembly Republican Caucus, Wayback 20081026042811 (175 by 250, the size published) | No; the source was not found |
+| BJ Atkins #28316 | bj-atkins-scvnews-2012.jpg | SCVNews, 18 January 2012 | No; the source was not found |
+| Jerry Gladbach #28336 | jerry-gladbach-acwa-2022.jpg | ACWA, 18 July 2022 | No; the source, on his campaign site, was never captured |
+| Patti Rasmussen #2591 | patti-rasmussen-city.jpg | City Arts Commission page, "Patti Rasmussen, Commissioner" | Yes |
+| Brian Walters #25391 | brian-walters-scvnews-2013.jpg | SCVNews, 25 December 2013 | Yes |
+
+123 of 255 person records have a portrait now.

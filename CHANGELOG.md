@@ -1,5 +1,15 @@
 SCVHistory.com — Changelog
 
+2026-10-08 (evening)
+
+- Agent: Claude Code
+- Date: 2026-10-08
+- Done: Real photographs back on the 19 person records whose portraits came off (originals_portraits_2026_10_08.php; snapshot before-originals-portraits-2026-10-08). Three were on Reggie (Miranda, McLean, Wiley). Sixteen came from the web (the City, Hart district, Board of Equalization and Assembly pages, many through Archive.org captures; Wikimedia Commons; SCVNews; KHTS; ACWA; Cooper's campaign site), kept as downloaded in inventory/incoming/done/originals-2026-10-08/. Ten are the very photograph each edit was made from. 123 of 255 people have a portrait. The list: inventory/review/portrait-changes-2026-10-08.md, last section.
+- Decisions: Nathan: originals go straight back on, unedited.
+- Errors: "no original held" had been read as "no original exists" (ERRORLOG).
+- Blockers: none.
+- Next: TODO.md, 8 October continued.
+
 2026-10-08 (continued)
 
 - Agent: Claude Code

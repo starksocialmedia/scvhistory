@@ -3,6 +3,7 @@
 ## Waiting on Nathan
 
 ### Current (8 October 2026, continued)
+- (done, evening) **The 19 without a portrait**: every one had a real photograph somewhere reachable, and each is back on (portrait-changes-2026-10-08.md, last section). Two licence notes to read: Sharon Runner's Commons file (PD-CAGov now, CC BY-SA at first upload) and George Runner's (Commons tags a smaller copy PD-CAGov).
 - **The portraits that changed on 8 October**: all 56 person records in one list, with the old image, the new one or none, and the reason and rule for each (inventory/review/portrait-changes-2026-10-08.md). 19 have no portrait now. Nathan to read; nothing acted on.
 - **Angela Marler (#28312)**: a live record with no text and no portrait. It has one term (Castaic Union, #28515) and a 2005 candidacy (#25513). It was restored on 6 October with the quote "restore her record. I meant keep" (restore_rows_2026_10_06.php). Under the person-record rule (docs/PROFILES.md) it would be a row: none of the exceptions holds, and the mirror pass found nothing to write from. The 8 October work did not touch it. Nathan's word to take it back to a row.
 - **What is still unchecked** (inventory/review/unchecked-claims-2026-10-08.md): 6,909 of 6,958 assets have a claim about their file that rests on a record. The largest classes are 4,201 web copies never compared with their masters, 2,697 with credentials never read, 2,569 with no checksum and 2,450 given to a record by name. Which to check first is Nathan's call. The cheapest is the credential scan over the 2,496 masters on Reggie.
