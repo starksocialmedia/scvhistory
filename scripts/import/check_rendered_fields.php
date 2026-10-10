@@ -126,6 +126,10 @@ foreach (Craft::$app->getEntries()->getAllSections() as $sec) {
             $ns = $needles($f, $v);
             if ($mode === 'href') { $u = trim((string)$v); $path = parse_url($u, PHP_URL_PATH) ?: $u; $ns = [str_contains($html, $u) || str_contains($html, htmlspecialchars($u)) || ($path !== '/' && str_contains($html, $path)) ? '' : $u]; }
             if ($mode === 'number' && is_numeric(trim((string)$v))) { $ns = [trim((string)$v)]; } /* the page's separators are stripped before comparing (7 October 2026) */
+            /* An evidence note shows beside the date it grades; with that date empty (a person known only by an EDTF range, Jenkins
+               #20226) the template shows no note, and neither should the check ask for one (10 October 2026). */
+            if ($mode === 'evidence') { $cov = ['birthEvidence' => 'birthDate', 'deathEvidence' => 'deathDate', 'burialEvidence' => 'burialPlace'][$f->handle] ?? null;
+                if ($cov && $e->getFieldLayout()->getFieldByHandle($cov) && trim((string)$e->getFieldValue($cov)) === '') { continue; } }
             if ($mode === 'evidence') { $W = ['certified' => "the body's own record", 'contemporary' => 'reported at the time', 'retrospective' => 'recalled later', 'roster' => 'from an undated roster', 'derived' => 'read from the count', 'uncited' => 'not yet sourced']; $ns = [isset($W[(string)($v->value ?? '')]) ? strtolower($W[(string)$v->value]) : '']; }
             /* One value per line, each shown as its own name (the organization page separates aliases, 4 October 2026): each line is looked for. */
             if ($mode === 'lines') { $ns = array_values(array_map($probe, array_filter(array_map('trim', preg_split('~\R~', (string)$v)), 'strlen'))); }

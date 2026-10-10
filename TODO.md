@@ -2,6 +2,16 @@
 
 ## Waiting on Nathan
 
+### Current (10 October 2026, overnight; the one page is inventory/review/DECISIONS-2026-10-10.md)
+- **Every decision waiting on Nathan is on DECISIONS-2026-10-10.md**, ordered by what each unblocks, with rough times. The lists below for 9 October and earlier stay as the record; where they overlap, that page is current.
+- **The seventh instance** (Pecsi #28421) and five candidates, in ERRORLOG: not fixed. Olsen #28481, Love #28473 and Pecsi wait on Nathan's word to cite the sources that print the act (how-ended-vs-sources-2026-10-10.md).
+- **The 22 pairs, by claim** (the-22-pairs-by-claim-2026-10-10.md): a rule for each kind, and whether rr1, Nadeau and Chrisman, and Brathwaite move from tone-only to enlarged.
+- **Retype 54 to articles** in nine batches (retype-sure-55-dry-run-2026-10-10.md); the article page's lead paragraph first.
+- **The archive's false sentences** (archive-self-claims-2026-10-10.md); **#283's attribution** (person-bodies-ours-vs-leon-2026-10-10.md); **Friends of Hart Park as photoCredit** (no-metadata-images-provenance-2026-10-10.md).
+- **Bylines** drafts and the nine (byline-drafts-pollack-saletore-jacobs-2026-10-10.md, bylines-unclear-nine-2026-10-10.md); **the four differing second sources** and claim 44 (second-source-disagreements-2026-10-10.md).
+- **What no longer complies after the rule changes** (changed-48h-vs-rules-2026-10-10.md).
+- **Staging** (branch-to-staging-2026-10-10.md): the critical path.
+
 ### Current (9 October 2026, evening; Nathan's long run)
 - **The fourteen and the seven** (inventory/review/text-to-image-step-2026-10-09.md and its sheets): every chain opens an outside file; by eye some edits redrew the face. Nathan to decide pair by pair. Couts put back on his word.
 - **Titles** (inventory/review/titles-calls-2026-10-09.md): 19 of batches 3 and 4 applied; held for Nathan: #4567, #21936, #5481, #20099, the printed dates (#5377, #3191, #4943), and #4519 (wrong file). The #28055 correction proposed there.

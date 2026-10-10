@@ -1,4 +1,4 @@
-# Handoff, 2026-10-09
+# Handoff, 2026-10-10
 
 HANDOFF says where things stand and where the rules live; it states no rules of its
 own, so it has no copy to go stale. It is rewritten at the end of every session
@@ -17,7 +17,7 @@ A fourth, on 8 October, during the work to take them off: Bill Cooper's "campaig
 
 ## Start here
 
-**Push state** (9 October 2026): Nathan pushes after his own predeploy; check `git log origin/templates-batch-9..HEAD` for local commits not yet pushed.
+**Push state** (10 October 2026): Nathan pushes after his own predeploy; check `git log origin/templates-batch-9..HEAD` for local commits not yet pushed.
 
 1. `git pull` on templates-batch-9, the working branch.
 2. Read the documents in AGENTS.md's order. The newest CHANGELOG.md entries say what
@@ -29,7 +29,7 @@ A fourth, on 8 October, during the work to take them off: Bill Cooper's "campaig
 - **Staging** was refreshed by Nathan on 3 October. Everything applied since is local only until
   the next refresh.
 - **War memorial.** 52 of 54 records sourced; Kenaston and Wilson not found (4 October).
-- **People.** 254 person records (Marler a row, 8 October); portraits on 123 (20 enhanced pairs, 15 of them, Couts's among them, holding the Firefly Image 5 text_to_image step, open for Nathan pair by pair; 3 crops of an original; 100 with no edit recorded, unverified against their sources). Earlier: 255 person records after the person-record rule of 6 October (docs/PROFILES.md, CHANGELOG): 39 thin office-only records are rows, their terms kept and named by holderName; the 44 with drafted profiles came back.
+- **People.** 254 person records (Marler a row, 8 October); portraits on 123 (20 enhanced pairs, 15 of them, Couts's among them, holding the Firefly Image 5 text_to_image step, open for Nathan by kind of claim (the-22-pairs-by-claim-2026-10-10.md); 3 crops of an original; 100 with no edit recorded, unverified against their sources). Earlier: 255 person records after the person-record rule of 6 October (docs/PROFILES.md, CHANGELOG): 39 thin office-only records are rows, their terms kept and named by holderName; the 44 with drafted profiles came back.
 - **The civic layer.** Office holdings on every body with holdings, in tabbed pages. The Assembly,
   State Senate and House show every district that held part of the valley under each plan, with its
   share and members (inventory/review/legislative-districts-2026-10-04.md; templates/_data/valley-districts.json). The City has its five council districts. The other districts and SCV
@@ -37,6 +37,8 @@ A fourth, on 8 October, during the work to take them off: Bill Cooper's "campaig
 - **Marks.** Every body with a mark shows it in the header; eleven imported on 4 October, the last two Santa Clarita Christian School's and Newhall Elementary's. Building
   photographs are related images.
 - **Photographs.** Every photograph record with an image on Reggie has it in Craft (7 October, night; CHANGELOG), except 15 held for a read by hand; what each record's own folder holds is in too (the folder pass, 8 October), but 759 files held for Nathan. The web root holds web copies only; the masters are on Reggie, and storage/masters holds the files the web root used to serve.
+- **Decisions.** Every decision waiting on Nathan is on one page, inventory/review/DECISIONS-2026-10-10.md (10 October), ordered by what it unblocks.
+- **Sources.** Second sources added on 10 October for 19 claims, and Jenkins's certificate and obituary imported; the census of single-source claims counts every source a Perkins or Reynolds footnote names (single-source-count-fixed-2026-10-10.md).
 - **Credentials.** scan_credentials_2026_10_08.py reads content credentials from the files themselves (masters on Reggie, held files by checksum); last run 9 October over 2,645 assets (credential-scan-2026-10-09.md).
 - **/media.** A generated or generatively edited image on no live record answers 404 at /media/<id> and is left out of the staging rsync (config/withheld-media.json and .txt, built from the files by build_withheld_media.php; 35 on 9 October, evening).
 - **Checks.** check_render opens every asset's files for generated content (check_generated_files.php, 9 October), checks recorded checksums against the masters (check_checksums.php) and whether each new script says what it read before any number (check_census_reads.php; scripts/import/_reads.php).
@@ -45,7 +47,7 @@ A fourth, on 8 October, during the work to take them off: Bill Cooper's "campaig
 
 ## In progress or next
 
-1. TODO.md, "Waiting on Nathan", 9 October evening first (the fourteen and the seven pair by pair, inventory/review/text-to-image-step-2026-10-09.md; the title calls, titles-calls-2026-10-09.md; staging, branch-to-staging-2026-10-09.md), then 9 October afternoon, then 9 October morning (the overnight run: inventory/review/overnight-2026-10-08/MORNING-2026-10-09.md; Boston's profile), then 8 October continued (the 24 enhanced portraits; what is still unchecked), then 8 October late (the people who lost a portrait), then 8 October evening (the 759 held files), then 8 October afternoon (#5245's page order), then 8 October (the 153 sole copies he is checking), then 7 October night (the Leon request to send; the 13 TIFF masters), then 7 October evening (the retype read, four held titles), then 6 October night (the disaster-figures audit to rerun whole; Stern and the terms that ended when the lines moved), then 6 October (the duplicate pairs, the redirect map), then 5 October: the appointed-terms audit (not to be fixed before Nathan reads it), the same-name aliases, authorship, the silent-faults dry runs, and the portrait census to rerun whole. Then: Measure U, the Saugus High source records and the St. Francis Dam (all dry runs), the events queue after them (inventory/review/events-inventory-2026-10-05.md), the Harris interview when it arrives, the two trustee profile dry runs, two portraits whose credentials record text_to_image, the war memorial differences shown but not changed, the 490 date decisions, and the photo form's server steps.
+1. inventory/review/DECISIONS-2026-10-10.md, top down; then TODO.md, "Waiting on Nathan", for anything older it does not list (9 October and earlier, in the order given there). Staging: branch-to-staging-2026-10-10.md, the critical path.
 2. The send-a-photograph form is built and tested on DDEV (/send, /admin-submissions); it reaches staging with the next refresh, after docs/DEPLOY-RUNBOOK.md section 11.
 3. The place record Porta Bella (#20152), live and empty: whether to build it. The congressional split recheck.
 4. The City Hall photograph, when Nathan sends it.

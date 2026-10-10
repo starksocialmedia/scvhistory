@@ -1,5 +1,18 @@
 SCVHistory.com — Changelog
 
+2026-10-10 (overnight; Nathan's brief while he slept)
+
+- Agent: Claude Code (seven read-only subagents for the write-ups; Claude the one database writer)
+- Date: 2026-10-10
+- Done: Jenkins's death certificate and his Los Angeles Times obituary imported from Reggie (document #38566, obituary #38568, scans #38564 and #38565; jenkins_certificate_obituary_2026_10_10.php): his record no longer says the certificate is not held, footnotes 1 and 5 add both as second sources, deathEvidence certified; the birth range is not narrowed (a date decision). Second sources added for 19 single-source claims on ten person records, each quotation checked in its source by the script before writing (Bancroft I, III, IV and V, Hoffman 1862, Bryant, Bell, the 1950 congressional directory on Archive.org; Nadeau's obituary, Reynolds's bibliography and the Camulos nomination on Reggie; three archive records) (second_sources_2026_10_10.php); Perkins #333 note 7 quotes the bibliography instead of naming a review. McGrath #28455: howEnded resigned to unknown, the district's announcement footnoted (mcgrath_how_ended_2026_10_10.php). The single-source census fixed for footnotes citing Perkins or Reynolds (single_source_claims_2026_10_10.py): 50 claims on them alone are 41. Write-ups for the morning: one page of every decision (inventory/review/DECISIONS-2026-10-10.md); the 22 pairs grouped by the claim each makes, with the three guesses settled by measurement (Perkins's woman cropped and the remaining sliver painted over; lw9501's credit removed inside the frame; rr1's light the original's with a haze added) (the-22-pairs-by-claim-2026-10-10.md); the four differing second sources, dossier style; drafts for Pollack, Saletore and Jacobs and the nine unclear bylines; the 43 recorded resignations, deaths in office, recalls and removals against their sources; the type audit's 55 as a nine-batch dry run (retype_sure_55_2026_10_10.php, nothing applied); person bodies ours against Leon's (about 24 to 1 in words); the 2,445 images' provenance; the archive's claims about itself; the week's cost and gain; the census fix; staging with the critical path.
+- Decisions: none new of Nathan's. Held as needing a new judgment: claim 44 (del Valle's heirs, its only second source in dispute), Olsen, Love and Pecsi's citations, every date change.
+- Errors: the seventh instance of the read-from-a-description pattern (Pecsi's resignation from a search snippet), written up and not fixed, and six smaller candidates; the census undercount; a silent failed query of mine; the Jenkins certificate set into an asset field (all in ERRORLOG).
+- Snapshots: before-jenkins-certificate-obituary-2026-10-10, before-second-sources-2026-10-10, before-mcgrath-how-ended-2026-10-10.
+- Also: On This Day printed the 10th as the 1st (and the 20th and 30th likewise): `trim('0')` stripped both ends; fixed to left-only (ERRORLOG). check_rendered_fields no longer asks for an evidence note beside a date the record does not have.
+- Checks: see the commit message for check_render's result.
+- Blockers: DECISIONS-2026-10-10.md.
+- Next: Nathan's decisions, from the top of that page.
+
 2026-10-09 (evening; Nathan's long run)
 
 - Agent: Claude Code (read-only subagents for the bylines, single-source, disputed-points, withheld-links, image census, staging and audit write-ups)
