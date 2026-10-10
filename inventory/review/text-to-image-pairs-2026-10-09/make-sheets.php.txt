@@ -1,0 +1,13 @@
+$d = json_decode(file_get_contents('storage/runtime/scratch/pairs.json'), true);
+$load = function ($p) { $s = @file_get_contents($p); return $s ? @imagecreatefromstring($s) : null; };
+foreach (array_chunk($d, 6) as $k => $chunk) {
+  $H = 260; $W = 2 * 230 + 30; $im = imagecreatetruecolor(2 * $W, 3 * ($H + 20)); imagefill($im, 0, 0, imagecolorallocate($im, 255, 255, 255)); $black = imagecolorallocate($im, 0, 0, 0);
+  foreach ($chunk as $i => [$id, $ep, $oid, $op]) {
+    $x0 = ($i % 2) * $W; $y0 = intdiv($i, 2) * ($H + 20);
+    imagestring($im, 3, $x0 + 4, $y0 + 2, "#$oid original  |  #$id enhanced", $black);
+    foreach ([[$op, 0], [$ep, 1]] as [$p, $c]) { $s = $load($p); if (!$s) continue; $sw = imagesx($s); $sh = imagesy($s); $sc = min(225 / $sw, ($H - 20) / $sh);
+      imagecopyresampled($im, $s, $x0 + $c * 232, $y0 + 18, 0, 0, (int)($sw * $sc), (int)($sh * $sc), $sw, $sh); }
+  }
+  imagejpeg($im, "storage/runtime/scratch/pairsheet-$k.jpg", 85);
+}
+echo 'ok', PHP_EOL;

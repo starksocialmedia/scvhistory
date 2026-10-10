@@ -13,6 +13,9 @@
 
 {% set asset = craft.assets().id(assetId).one() ?? null %}
 {% if not asset %}{% exit 404 %}{% endif %}
+{#- A generated or generatively edited image that no record uses has no page (Nathan, 9 October 2026: thirty-four such files
+    were publicly fetchable while off every record). The list is built from the files themselves (config/withheld-media.json). -#}
+{% if asset.id in (craft.app.config.custom.withheldMedia ?? []) %}{% exit 404 %}{% endif %}
 
 {#- Handles off the layout. A custom field reads as defined on an element whose
     type lacks it and then throws when it is read. -#}

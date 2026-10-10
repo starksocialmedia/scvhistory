@@ -20,7 +20,7 @@ $reads([['file', 'every script in scripts/import not in reads-baseline.txt, as t
         ['file', 'reads-baseline.txt', $root . 'reads-baseline.txt']]);
 $FIELDS = ['sourceChecksum', 'legacySourcePath', 'sourceUrl', 'provenanceKind', 'contentCredentials', 'enhancementMethod', 'enhancedFrom', 'filename'];
 $FILECALL = [
-  'php' => '~\b(hash_file|file_get_contents|fopen|getimagesize|scandir|glob|exec|shell_exec|filesize|exif_read_data|replaceAssetFile|copy)\s*\(~',
+  'php' => '~\b(hash_file|file_get_contents|fopen|getimagesize|scandir|glob|exec|shell_exec|filesize|exif_read_data|replaceAssetFile|copy)\s*\(|_generated_scan\.php~',  /* _generated_scan.php opens every file it is given (9 October 2026) */
   'py' => '~\b(open|os\.walk|os\.listdir|os\.scandir|os\.path\.getsize|os\.stat|Image\.open|subprocess\.\w+)\s*\(|hashlib~',
   'sh' => '~\b(sha256sum|shasum|identify|exiftool|convert|pdfinfo|find|stat|cat)\b~',
 ];

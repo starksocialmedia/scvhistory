@@ -155,6 +155,8 @@ foreach (\craft\elements\Asset::find()->each(200) as $a) {
     $lay = $a->getFieldLayout(); if (!$lay) { continue; }
     /* A body's current mark has no /media page: its address goes to the record, where its source and date show (3 October 2026). */
     if ($lay->getFieldByHandle('assetRole') && (string)($a->getFieldValue('assetRole')->value ?? '') === 'current-mark') { continue; }
+    /* A withheld asset (generated or generatively edited, on no record) has no /media page either (9 October 2026). */
+    if (in_array($a->id, \Craft::$app->config->custom->withheldMedia ?? [], true)) { continue; }
     $has = [];
     foreach (array_keys($left) as $h) { if (!$lay->getFieldByHandle($h)) { continue; } try { $v = $a->getFieldValue($h); } catch (\Throwable $t) { continue; } if ($v instanceof \craft\fields\data\SingleOptionFieldData ? (string)$v->value !== '' : ($v instanceof \DateTimeInterface || trim((string)$v) !== '')) { $has[$h] = $v; } }
     if (!$has) { continue; }

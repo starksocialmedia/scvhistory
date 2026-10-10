@@ -665,6 +665,7 @@ and treat that second diff as the one that counts.
 cd ~/scvhistory
 rsync -avz --partial --progress \
   --exclude='_*/' \
+  --exclude-from=config/withheld-media.txt \
   web/uploads/archive-media/ \
   <user>@<host>:/home/1656314.cloudwaysapps.com/ufppzhwvbk/public_html/web/uploads/archive-media/
 ```
@@ -672,6 +673,13 @@ rsync -avz --partial --progress \
 Only what changed since 25 September moves: the edited portraits, the legacy
 scans imported for the profiles (SC1311, SC1401), and the rest. No `--delete`.
 The banners are in git (`web/banners/`) and came with the pull.
+
+`--exclude-from=config/withheld-media.txt` leaves out the generated and
+generatively edited files that no record uses (9 October 2026). The list is
+built by `scripts/import/build_withheld_media.php`, which opens the files, and
+check_render fails when it is out of date; the same list makes `/media/<id>`
+answer 404 for them. Files already on staging stay there, because the rsync
+never deletes: removing them by hand on the server is Nathan's call.
 
 ### 8. Clear and check  — **Server**, then **MacBook**
 

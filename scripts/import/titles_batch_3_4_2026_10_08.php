@@ -10,6 +10,9 @@
  * it gets its page's title tag (minus the site name) there, as #4909 did in batch 2. #21936 has no legacy page (an
  * election import), so no legacyHeadline; its full printed title goes to originallyPublishedTitle, which is empty.
  * Every title written here is listed with the one it replaces, so this reverses. Slugs do not change.
+ * Applied 9 October 2026, evening, on Nathan's word ("Apply titles 3 and 4's 27 retitles and the 10 keeps. Hold the 2
+ * unsure."), less $HOLD: his four calls and the printed-date question, which he asked to have sent to him that morning, and
+ * #4519, whose record holds the wrong file. The morning summary's "2 unsure" named no records; these are what is held.
  * Idempotent. Dry run by default. Set $APPLY = true only after Nathan rules.
  * Run: ddev craft exec "eval(file_get_contents('scripts/import/titles_batch_3_4_2026_10_08.php'))"
  */
@@ -54,6 +57,9 @@ $P = [
   20099 => ['C.A. Mentry, in Pen Pictures From the Garden of the World', 'C.A. Mentry, in An Illustrated History of Los Angeles County', 'People | Charles Alexander Mentry, Pico Oil Field Superintendent: Biography During Life (Pen Pictures L.A. County 1889).', null, null],
   21936 => ['Resolution No. 12-9: the results of the General Municipal Election of April 10, 2012', 'Resolution No. 12-9', null, null, $OPT21936],
 ];
+/* Held for Nathan: the four calls, the three printed dates, and #4519's wrong file. */
+$HOLD = [4567, 21936, 5481, 20099, 5377, 3191, 4943, 4519];
+foreach ($HOLD as $id) { echo "#$id held for Nathan" . PHP_EOL; unset($P[$id]); }
 $capLimit = Craft::$app->getFields()->getFieldByHandle('catalogueCaption')->charLimit ?? null;
 foreach ($P as $id => [$from, $to, $head, $catIfEmpty, $optIfEmpty]) {
   $e = Entry::find()->id($id)->status(null)->one(); if (!$e) { echo "#$id missing" . PHP_EOL; continue; }

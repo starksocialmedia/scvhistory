@@ -347,6 +347,12 @@ if ($dateBad) { $fail++; echo 'TODAY FAIL: ' . implode('; ', $dateBad) . PHP_EOL
 $cs = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_checksums.php'));
 if (is_array($cs) && !($cs['ok'] ?? true)) { $fail++; echo 'CHECKSUMS FAIL' . PHP_EOL; }
 
+/* No generated image on any record, checked by opening every file, not by reading its fields (9 October 2026: the
+   field test passed with a generated portrait live on a record); and every generated or generatively edited file on no
+   record withheld from /media and the rsync. */
+$gf = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_generated_files.php'));
+if (is_array($gf) && !($gf['ok'] ?? true)) { $fail++; echo 'GENERATED FILES FAIL' . PHP_EOL; }
+
 /* Every script made since 8 October 2026 says what it read before any number, and names a Craft field about a file
    as a record, not the file (scripts/import/_reads.php). */
 $cr = eval(file_get_contents(\Craft::getAlias('@root') . '/scripts/import/check_census_reads.php'));

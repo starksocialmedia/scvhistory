@@ -13,7 +13,8 @@ ini_set('memory_limit', '4G');
 $root = \Craft::getAlias('@root');
 $reads = require "$root/scripts/import/_reads.php";
 $reads([
-  ['record', 'Craft fields enhancementMethod, enhancedFrom, enhancedBy, enhancedDate, contentCredentials, source, sourceChecksum, provenanceKind, license, assetRole and filename on every asset', 'the image files and their content credentials', 'not read: this audit checks what the records say against the rules; whether the records describe their files truly is the unchecked-claims census (inventory/review/unchecked-claims-2026-10-08.md)'],
+  ['record', 'Craft fields enhancementMethod, enhancedFrom, enhancedBy, enhancedDate, contentCredentials, source, sourceChecksum, provenanceKind, license, assetRole and filename on every asset', 'the image files and their content credentials', 'not read: this audit checks what the records say against the rules, except IMG-1 and IMG-2, which open the files (below)'],
+  ['file', 'IMG-1 and IMG-2 (9 October): the master on Reggie, the master held in the repo, the stored copy and the manifest of every asset they cover, through _generated_scan.php', '/mnt/reggie/scvhistory.com'],
   ['record', 'Craft entries, their fields and relations, and Craft revisions of them (titles, featuredImage, recordImages, body)', 'the rendered pages', 'not read: no page is fetched here; the relations are what the pages render from'],
   ['file', 'web/banners, the banner folder', '@webroot/banners'],
   ['file', 'templates/_data/banners.json, the banner registry', '@root/templates/_data/banners.json'],
@@ -68,40 +69,44 @@ $RESTORED17 = [333 => 27381, 323 => 27387, 21584 => 27383, 279 => 27396, 29316 =
   15919 => 31472, 16140 => 31449, 30219 => 31404, 2585 => 31423, 15477 => 31398, 20224 => 31387, 18702 => 31408, 321 => 31406, 16432 => 31391];
 $KEPT_ENLARGE = [31474, 38450, 38452]; /* López, and the Wicks and Kellar enlargements as their own assets (8 October, continued) */
 
-/* IMG-1: no generated image of a real person, place or event anywhere (8 October) */
-$gen = []; $genApplies = 0;
+/* IMG-1: no generated image of a real person, place or event anywhere (8 October). Rewritten 9 October 2026 to open the
+   files (Nathan: "Rewrite it to open the file"): the field test it replaces passed with Bill Cooper's generated portrait on
+   his record, because his asset's fields were silent and the file was not (ERRORLOG, 9 October). */
+$scan = require "$root/scripts/import/_generated_scan.php";
+$gen = []; $genApplies = 0; $scanned = [];
 foreach ($A as $a) {
-  $t = $s($a, 'enhancementMethod') . ' ' . $s($a, 'contentCredentials') . ' ' . $s($a, 'source') . ' ' . $a->filename;
-  if (!preg_match('~text prompt|text to image|text_to_image|grok|xai\b|ai-generated~i', $t)) continue;
-  $genApplies++;
-  $u = $usedBy($a->id);
-  if ($u) $gen[] = ['id' => $a->id, 'label' => $lab($a), 'why' => mb_substr($s($a, 'enhancementMethod'), 0, 140), 'usedBy' => array_map(fn($x) => '#' . $x[0] . ' ' . $x[1], $u)];
+  $u = $usedBy($a->id); if (!$u) continue;
+  $genApplies++; $r = $scanned[$a->id] = $scan($a);
+  if (in_array($r['class'], ['generated', 'text-prompt-step'], true)) $gen[] = ['id' => $a->id, 'label' => $lab($a), 'why' => $r['class'] . ': ' . implode(', ', $r['why']), 'read' => implode(' | ', $r['read']), 'usedBy' => array_map(fn($x) => '#' . $x[0] . ' ' . $x[1], $u)];
 }
 $bfiles = is_dir("$root/web/banners") ? array_values(array_filter(scandir("$root/web/banners"), fn($f) => $f[0] !== '.')) : [];
 $breg = json_decode((string)@file_get_contents("$root/templates/_data/banners.json"), true) ?: [];
 $bentries = array_filter(array_keys($breg), fn($k) => preg_match('~^[a-z]+:\d+$~', $k));
 foreach ($bfiles as $f) $gen[] = ['id' => 0, 'label' => "web/banners/$f", 'why' => 'a banner file on the web root', 'usedBy' => []];
 foreach ($bentries as $k) $gen[] = ['id' => 0, 'label' => "banners.json $k", 'why' => 'a registry entry', 'usedBy' => []];
-$add('IMG-1', 'No generated image of a real person, place or event on any record (DATA-MODEL, 8 October): assets whose recorded method, credential or source names a text prompt, text-to-image, Grok or xAI, related to no live record; web/banners and the registry empty', $genApplies + count($bfiles) + count($bentries), $gen,
-  'Applies to the changed assets whose own records name a generator; an asset whose record is silent is not caught (the 3 to 6 October Firefly downloads were caught only by reading the files). Relations as enhancedFrom are not counted as use.');
+$add('IMG-1', 'No generated image of a real person, place or event on any record (DATA-MODEL, 8 October): every asset changed in the window and related to a live record has its files opened (master, stored copy, manifest); none generated, none with a text_to_image step; web/banners and the registry empty', $genApplies + count($bfiles) + count($bentries), $gen,
+  'Files, not fields (9 October): _generated_scan.php opens the master on Reggie or held in the repo, the stored copy, and the manifest each points to. Relations as enhancedFrom are not counted as use.');
 
-/* IMG-2: the Firefly-edit rule of 8 October, late, on every portrait (featuredImage of a person) */
-$f2 = []; $f2app = 0; $restoredSeen = [];
+/* IMG-2: the enhancement rule (DATA-MODEL, Nathan, 9 October), which reconciles the Firefly rule of 8 October: an edited
+   image on a person's record is published as a pair with its original held and on the same record, the edit named, and no
+   generated element in its file. Replaces the 8 October rule as written, which failed exactly the 17 Nathan restored. */
+$f2 = []; $f2app = 0;
 foreach ($bySec['persons'] ?? [] as $e) {
   $fi = $ids($e, 'featuredImage'); if (!$fi) continue; $a = Asset::find()->id($fi[0])->one(); if (!$a) continue;
-  $k = $kind($a); if (!$k || $k === ['crop']) continue;
-  $f2app++;
-  $noOrig = !$ids($a, 'enhancedFrom');
-  $bad = array_intersect($k, ['text-prompt', 'fill', 'removal-or-clean', 'model-edit-undescribed']);
-  $off = $bad || ($noOrig && !in_array($a->id, $KEPT_ENLARGE, true));
-  if (!$off && in_array('enlarge', $k) && !in_array($a->id, $KEPT_ENLARGE, true)) $off = true; /* enlargements kept: López, Wicks, Kellar only */
-  if (!$off) continue;
-  $r17 = ($RESTORED17[$e->id] ?? 0) === $a->id; if ($r17) $restoredSeen[] = $e->id;
-  $f2[] = ['id' => $e->id, 'label' => $lab($e), 'asset' => $a->id . ' ' . $a->filename, 'edits' => implode(', ', $k), 'enhancedBy' => $s($a, 'enhancedBy'), 'original' => $noOrig ? 'none linked' : 'linked',
-    'status' => $r17 ? 'one of the 17 put back on Nathan\'s word, 8 October evening' : 'NOT covered by any later word'];
+  $r = $scanned[$a->id] ?? ($scanned[$a->id] = $scan($a));
+  $k = $kind($a);
+  if ((!$k || $k === ['crop']) && $r['class'] === 'none-found') continue;
+  $f2app++; $p = [];
+  if (in_array($r['class'], ['generated', 'text-prompt-step'], true)) $p[] = 'the file holds a generated element (' . $r['class'] . ')';
+  $from = $ids($a, 'enhancedFrom');
+  if (!$from) $p[] = 'no original linked';
+  elseif (!in_array($from[0], array_merge($ids($e, 'recordImages'), $fi), true)) $p[] = 'original #' . $from[0] . ' not on the record';
+  if ($s($a, 'enhancementMethod') === '') $p[] = 'the edit is not named (enhancementMethod empty)';
+  if (in_array($a->id, $KEPT_ENLARGE, true) && $p === ['no original linked']) continue;
+  if ($p) $f2[] = ['id' => $e->id, 'label' => $lab($e), 'asset' => $a->id . ' ' . $a->filename, 'file' => $r['class'], 'problems' => implode('; ', $p)];
 }
-$add('IMG-2', 'The Firefly-edit rule (8 October, late): no portrait where Firefly filled, removed, cleaned or made an edit the credential does not describe, nor an edit with no original held; the enlargements of López, Wicks and Kellar stay', $f2app, $f2,
-  'Applies to person records changed in the window whose portrait asset records any edit other than a plain crop. The rule as written, not as amended by the evening restore: the 17 are listed and marked.');
+$add('IMG-2', 'The enhancement rule (DATA-MODEL, 9 October; reconciles the Firefly rule of 8 October): an edited portrait is published beside its original, the original held and on the same record, the edit named, and no generated element in the file', $f2app, $f2,
+  'Applies to person records changed in the window whose portrait is edited by its record or its file. The file is opened (_generated_scan.php). The López, Wicks and Kellar enlargements are kept by the 8 October ruling and pass when their only fault is no original linked.');
 
 /* IMG-3: the enhanced pair (DATA-MODEL, 6 October) on every record whose featuredImage records an edit */
 $f3 = []; $f3app = 0; $pairs = [];

@@ -325,6 +325,7 @@ applying.** A difference means the dump and the commit don't match.
 cd ~/scvhistory
 rsync -avz --partial --progress \
   --exclude='_*/' \
+  --exclude-from=config/withheld-media.txt \
   web/uploads/archive-media/ \
   <user>@<host>:/home/1656314.cloudwaysapps.com/ufppzhwvbk/public_html/web/uploads/archive-media/
 ```
@@ -341,6 +342,9 @@ rsync -avz --partial --progress \
   inside itself.
 - `--partial` lets a dropped connection resume. Re-running the same command
   picks up where it stopped.
+- **`--exclude-from=config/withheld-media.txt`** leaves out the generated and
+  generatively edited files on no record (9 October 2026; built by
+  `scripts/import/build_withheld_media.php`, checked by check_render).
 - Do **not** add `--delete`.
 
 #### The masters
